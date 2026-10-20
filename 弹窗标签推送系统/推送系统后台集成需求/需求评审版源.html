@@ -58,10 +58,35 @@ table.et td:nth-child(1){white-space:nowrap}
 .arch h2{font-size:21px;line-height:1.4;margin:0 0 12px}
 .frame{border:2px solid var(--ink);border-radius:12px;background:var(--card);padding:12px 16px 16px}
 .frame .fh{font-size:17px;font-weight:700;margin:0 0 12px}
-.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:stretch}
-.mcol{background:var(--pbg);border-top:4px solid var(--pc);border-radius:9px;padding:10px 12px 6px}
-.mcol .mh{display:block;font-size:17px;font-weight:700;color:var(--pc);text-decoration:none;margin:0 0 10px}
-.mcol .mh:hover{text-decoration:underline}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) 132px minmax(0,1fr);grid-template-rows:repeat(5,auto)}
+.cbg{grid-row:1/6;background:var(--pbg);border-top:4px solid var(--pc);border-radius:9px}
+.cbg.L,.ci.L{grid-column:1}.cbg.R,.ci.R{grid-column:3}
+.cols>.ci{margin:0 12px 8px;min-width:0}
+.cols>.mh{display:block;font-size:17px;font-weight:700;color:var(--pc);text-decoration:none;margin:14px 12px 10px}
+.cols>.mh:hover{text-decoration:underline}
+.cols>.ci.cls{margin:0 12px 12px}
+.cols>.ci.last{margin-bottom:14px}
+.gz{font-style:normal;font-size:12px;font-weight:400;line-height:1.5;margin-left:6px;padding:0 5px;border-radius:4px;background:var(--ink2);color:#fff;vertical-align:1px;white-space:nowrap}
+.rt{font-size:13.5px;line-height:1.4;color:var(--ink2);white-space:nowrap}
+.rel{grid-column:2;align-self:center;display:flex;flex-direction:column;align-items:center;gap:5px;text-align:center}
+.rel .rt{white-space:normal}
+.rel .ln{display:block;width:100%;height:0;border-top:1.5px solid var(--ink3);position:relative}
+.rel .ln::after{content:"";position:absolute;right:0;top:-6.5px;border-style:solid;border-width:5.5px 0 5.5px 9px;border-color:transparent transparent transparent var(--ink3)}
+.rel .ln.two::before{content:"";position:absolute;left:0;top:-6.5px;border-style:solid;border-width:5.5px 9px 5.5px 0;border-color:transparent var(--ink3) transparent transparent}
+/* 框外两格：会员标签设定、活动配置 */
+.xbox{display:inline-flex;align-items:center;gap:12px;background:var(--card);border:1.5px solid #9aa5b1;border-radius:10px;padding:8px 14px 10px}
+.xbox .xh{font-size:15px;font-weight:700;color:var(--ink2);white-space:nowrap}
+.xbox .xt{font-size:14.5px;color:var(--ink);white-space:nowrap}
+.xtop{margin:0 0 30px}
+.anc{position:relative;display:inline-block}
+.drop{position:absolute;left:50%;top:100%;width:0;border-left:1.5px solid var(--ink3)}
+.drop .rt{position:absolute;left:10px;bottom:3px}
+.xtop .drop{height:41.5px}
+.xtop .drop::after{content:"";position:absolute;left:-6.25px;bottom:0;border-style:solid;border-width:9px 5.5px 0 5.5px;border-color:var(--ink3) transparent transparent transparent}
+.shared .drop{height:56px}
+.shared .drop .xbox{position:absolute;top:100%;left:-36px}
+.arch{padding-bottom:72px}
+.shared .rt{margin:0 6px 0 -2px}
 .meth{display:block;background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 12px 10px;margin:0 0 8px}
 .meth .mt{display:block;font-size:15px;font-weight:700;color:var(--ink);margin:0 0 7px;text-decoration:none}
 a.meth{color:var(--ink);font-size:15px;font-weight:700;text-decoration:none;padding:8px 12px}
@@ -77,6 +102,7 @@ a.pgx:hover{background:var(--pc);color:#fff}
 .shared .sl{font-size:17px;font-weight:700;color:var(--pc);text-decoration:none;margin-right:6px}
 .shared .sl:hover{text-decoration:underline}
 @media (max-width:1100px){.wrap{grid-template-columns:1fr}nav{display:none}}
+@media (max-width:760px){.cols{display:flex;flex-direction:column}.cbg{display:none}.rel{margin:4px 0 10px}.rel .ln{display:none}}
 </style>
 </head>
 <body>
@@ -94,11 +120,12 @@ a.pgx:hover{background:var(--pc);color:#fff}
   <a href="#p7">7 每人每天弹窗与快显上限</a>
   <a href="#p8">8 弹窗与快显数据统计</a>
   <a href="#p9">9 快显</a>
-  <div class="grp g3">第三部分　两类共用<span>第 10–13 页</span></div>
-  <a href="#p10">10 概览</a>
-  <a href="#p11">11 项目目录</a>
-  <a href="#p12">12 玩家查询</a>
-  <a href="#p13">13 操作纪录</a>
+  <div class="grp g3">第三部分　两类共用<span>第 10–14 页</span></div>
+  <a href="#p10">10 标签群组</a>
+  <a href="#p11">11 概览</a>
+  <a href="#p12">12 项目目录</a>
+  <a href="#p13">13 玩家查询</a>
+  <a href="#p14">14 操作纪录</a>
 </nav>
 <main>
 <header class="top" id="top">
@@ -106,24 +133,25 @@ a.pgx:hover{background:var(--pc);color:#fff}
 </header>
 <section class="arch">
   <h2>后台结构</h2>
+  <div class="xtop"><div class="xbox"><span class="xh">会员标签设定</span><span class="anc"><a class="pgx pt3" href="#p10">标签群组<i class="gz">改造</i></a><span class="drop"><span class="rt">供各推送选对象</span></span></span></div></div>
   <div class="frame">
     <div class="fh">推送统一后台</div>
     <div class="cols">
-      <div class="mcol pt1">
-        <a class="mh" href="#part1">游戏外推送</a>
-        <div class="chips cls"><a class="pgx" href="#p3">每人每天上限与勿扰</a><a class="pgx" href="#p4">推播与短信数据统计</a></div>
-        <div class="meth"><span class="mt">推播</span><div class="chips"><a class="pgx" href="#p1">按玩家分群推送</a><a class="pgx" href="#p2">按玩家行为自动推送</a></div></div>
-        <a class="meth" href="#p5">短信</a>
-        <div class="laterrow"><div class="meth later"><span>Facebook</span><i>后续</i></div><div class="meth later"><span>LINE</span><i>后续</i></div></div>
-      </div>
-      <div class="mcol pt2">
-        <a class="mh" href="#part2">游戏内推送</a>
-        <div class="chips cls"><a class="pgx" href="#p7">每人每天弹窗与快显上限</a><a class="pgx" href="#p8">弹窗与快显数据统计</a></div>
-        <div class="meth"><span class="mt">弹窗</span><div class="chips"><a class="pgx" href="#p6">按玩家分群配置弹窗</a></div></div>
-        <a class="meth" href="#p9">快显</a>
-      </div>
+      <div class="cbg L pt1"></div>
+      <div class="cbg R pt2"></div>
+      <a class="mh ci L pt1" href="#part1" style="grid-row:1">游戏外推送</a>
+      <a class="mh ci R pt2" href="#part2" style="grid-row:1">游戏内推送</a>
+      <div class="chips ci cls L pt1" style="grid-row:2"><a class="pgx" href="#p3">每人每天上限与勿扰</a><a class="pgx" href="#p4">推播与短信数据统计</a></div>
+      <div class="rel" style="grid-row:2"><span class="rt">上限互不占用</span><span class="ln two"></span></div>
+      <div class="chips ci cls R pt2" style="grid-row:2"><a class="pgx" href="#p7">每人每天弹窗与快显上限</a><a class="pgx" href="#p8">弹窗与快显数据统计</a></div>
+      <div class="meth ci L pt1" style="grid-row:3"><span class="mt">推播</span><div class="chips"><a class="pgx" href="#p1">按玩家分群推送<i class="gz">改造</i></a><a class="pgx" href="#p2">按玩家行为自动推送<i class="gz">改造</i></a></div></div>
+      <div class="rel" style="grid-row:3"><span class="rt">在线不发<br>改由快显或弹窗</span><span class="ln"></span></div>
+      <div class="meth ci R pt2" style="grid-row:3"><span class="mt">弹窗</span><div class="chips"><a class="pgx" href="#p6">按玩家分群配置弹窗<i class="gz">改造</i></a></div></div>
+      <a class="meth ci L pt1" href="#p5" style="grid-row:4">短信<i class="gz">改造</i></a>
+      <a class="meth ci R pt2" href="#p9" style="grid-row:4">快显<i class="gz">改造</i></a>
+      <div class="laterrow ci last L" style="grid-row:5"><div class="meth later"><span>Facebook</span><i>后续</i></div><div class="meth later"><span>LINE</span><i>后续</i></div></div>
     </div>
-    <div class="shared pt3"><a class="sl" href="#part3">两类共用</a><a class="pgx" href="#p10">概览</a><a class="pgx" href="#p11">项目目录</a><a class="pgx" href="#p12">玩家查询</a><a class="pgx" href="#p13">操作纪录</a></div>
+    <div class="shared pt3"><a class="sl" href="#part3">两类共用</a><a class="pgx" href="#p11">概览</a><span class="anc"><a class="pgx" href="#p12">项目目录</a><span class="drop"><span class="rt">改期不改活动本身</span><span class="xbox"><span class="xh">活动配置</span><span class="xt">活动本身的起止时间</span></span></span></span><span class="rt">↑ 供各推送选所属活动</span><a class="pgx" href="#p13">玩家查询<i class="gz">改造</i></a><a class="pgx" href="#p14">操作纪录</a></div>
   </div>
 </section>
 
@@ -135,26 +163,18 @@ a.pgx:hover{background:var(--pc);color:#fff}
 
 <!-- 1 -->
 <section class="pg pt1" id="p1">
-  <div class="kick"><span class="pchip">第一部分　游戏外推送</span><span class="pos">第 1 页 / 共 13 页</span></div>
+  <div class="kick"><span class="pchip">第一部分　游戏外推送</span><span class="pos">第 1 页 / 共 14 页</span></div>
   <h2>按玩家分群推送</h2>
 
   <div class="shots">
-    <figure><img src="需求评审版_图/01_群组交集.jpg" alt="会员标签设定里编辑标签群组" style="width:601px"><figcaption>会员标签设定里编辑标签群组：引用「回流」「潜在付费」两个标签群组取交集</figcaption></figure>
     <figure><img src="需求评审版_图/02_新建推播.jpg" alt="新建推播的发送对象" style="width:980px"><figcaption>新建推播的发送对象</figcaption></figure>
     <figure><img src="需求评审版_图/02b_预计人数.jpg" alt="确认前的预计人数" style="width:980px"><figcaption>确认前的预计人数</figcaption></figure>
   </div>
 
   <h3 class="bk">业务规则</h3>
-  <h4 class="rg">标签群组</h4>
-  <table class="rule">
-    <tr><td>现有：在会员标签设定里用会员标签按且、或、排除组合出一组玩家，随标签数据定时更新。</td></tr>
-    <tr><td>新增功能：建群组时可在群组之间取交集，如「回流且潜在付费」；每个条件显示人数。</td></tr>
-    <tr><td>新建 6 个标签：<br>· 潜在付费：注册第 7–60 天、从未储值、近 14 天押注合计不低于 20,000（游戏内货币）<br>· 潜在流失两档：近 14 天登录 2–3 天；近 14 天登录 1 天<br>· 近 7 天发生过破产<br>· 新增玩家两档：注册次日未再登录；注册第 3 天未再登录</td></tr>
-    <tr><td>在用的标签群组不能停用或删除；修改在用的群组时，保存前列出受影响的推播、短信、快显和弹窗规则。</td></tr>
-  </table>
   <h4 class="rg">发送对象</h4>
   <table class="rule">
-    <tr><td>发送对象为一个或多个标签群组、全部玩家，或上传的会员编号名单；上传名单只用于立即、定时推送，如中奖、补偿名单。</td></tr>
+    <tr><td>发送对象为一个或多个标签群组（见第 10 页）、全部玩家，或上传的会员编号名单；上传名单只用于立即、定时推送，如中奖、补偿名单。</td></tr>
     <tr><td>选多个群组时取并集：满足任一即发送，重叠的玩家只收 1 条。</td></tr>
     <tr><td>排除群组：<br>固定排除，不能移出：黑名单、机器人与测试账号、敏感状态账号（停权、自我限制、注销处理中）<br>默认排除，运营可移出：VIP 名单<br>运营还可再加其他群组</td></tr>
     <tr><td>能收到推送的玩家：<br>推播：装了 App 且开启通知的玩家<br>短信：有有效手机号且未退订的玩家<br>同一设备或同一手机号只发 1 条</td></tr>
@@ -174,7 +194,7 @@ a.pgx:hover{background:var(--pc);color:#fff}
 
 <!-- 2 -->
 <section class="pg pt1" id="p2">
-  <div class="kick"><span class="pchip">第一部分　游戏外推送</span><span class="pos">第 2 页 / 共 13 页</span></div>
+  <div class="kick"><span class="pchip">第一部分　游戏外推送</span><span class="pos">第 2 页 / 共 14 页</span></div>
   <h2>按玩家行为自动推送</h2>
 
   <div class="shots">
@@ -207,7 +227,7 @@ a.pgx:hover{background:var(--pc);color:#fff}
 
 <!-- 3 -->
 <section class="pg pt1" id="p3">
-  <div class="kick"><span class="pchip">第一部分　游戏外推送</span><span class="pos">第 3 页 / 共 13 页</span></div>
+  <div class="kick"><span class="pchip">第一部分　游戏外推送</span><span class="pos">第 3 页 / 共 14 页</span></div>
   <h2>每人每天上限与勿扰</h2>
 
   <div class="shots">
@@ -237,7 +257,7 @@ a.pgx:hover{background:var(--pc);color:#fff}
 
 <!-- 4 -->
 <section class="pg pt1" id="p4">
-  <div class="kick"><span class="pchip">第一部分　游戏外推送</span><span class="pos">第 4 页 / 共 13 页</span></div>
+  <div class="kick"><span class="pchip">第一部分　游戏外推送</span><span class="pos">第 4 页 / 共 14 页</span></div>
   <h2>推播与短信数据统计</h2>
 
   <div class="shots">
@@ -269,7 +289,7 @@ a.pgx:hover{background:var(--pc);color:#fff}
 
 <!-- 5 -->
 <section class="pg pt1" id="p5">
-  <div class="kick"><span class="pchip">第一部分　游戏外推送</span><span class="pos">第 5 页 / 共 13 页</span></div>
+  <div class="kick"><span class="pchip">第一部分　游戏外推送</span><span class="pos">第 5 页 / 共 14 页</span></div>
   <h2>短信</h2>
 
   <div class="shots">
@@ -300,7 +320,7 @@ a.pgx:hover{background:var(--pc);color:#fff}
 
 <!-- 6 -->
 <section class="pg pt2" id="p6">
-  <div class="kick"><span class="pchip">第二部分　游戏内推送</span><span class="pos">第 6 页 / 共 13 页</span></div>
+  <div class="kick"><span class="pchip">第二部分　游戏内推送</span><span class="pos">第 6 页 / 共 14 页</span></div>
   <h2>按玩家分群配置弹窗</h2>
 
   <div class="shots">
@@ -309,6 +329,11 @@ a.pgx:hover{background:var(--pc);color:#fff}
   </div>
 
   <h3 class="bk">业务规则</h3>
+  <h4 class="rg">现状与改动</h4>
+  <table class="rule">
+    <tr><td>现在：在弹窗后台「大厅弹窗顺序设定」页配置；每条规则设弹窗类型、位置、每次最多弹出几个，对象为全部玩家或一个标签群组，要排除部分玩家须先在会员标签设定建带排除条件的群组；排序项设弹出时机、弹窗次数、冷却时间。</td></tr>
+    <tr><td>改后：整页移入推送统一后台；新加排除群组、固定排除、弹窗预计人数、优先级、互斥组、重叠检查、当天快显提示过的排序项跳过、保存并上架前确认、实验、每人总次数、关闭后冷却，排序项新加「弹出后终止本次后续弹窗」和不可关闭。</td></tr>
+  </table>
   <h4 class="rg">规则内容</h4>
   <table class="rule">
     <tr><td>每条规则选弹窗类型（活动类、储值类）和位置：大厅弹窗（进入大厅时自动弹出）、破产弹窗（玩家破产时弹出）；并设每次最多弹出几个。</td></tr>
@@ -319,7 +344,7 @@ a.pgx:hover{background:var(--pc);color:#fff}
   </table>
   <h4 class="rg">对象与预计人数</h4>
   <table class="rule">
-    <tr><td>对象为全部玩家或标签群组，可再选排除群组。</td></tr>
+    <tr><td>对象为全部玩家或标签群组，可再选排除群组；潜在付费、潜在流失等新建标签的群组同样可选（见第 10 页）。</td></tr>
     <tr><td>VIP 名单、黑名单、机器人与测试账号、敏感状态账号对所有弹窗固定排除；推播、短信、快显的 VIP 名单是默认排除、可移出（见第 1 页）。</td></tr>
     <tr><td>弹窗预计人数为对象减去排除群组后会命中本规则的人数；固定排除的玩家弹出时才扣，不从预计人数里减，旁边注明其中固定排除约多少人。</td></tr>
   </table>
@@ -332,7 +357,7 @@ a.pgx:hover{background:var(--pc);color:#fff}
   <table class="rule">
     <tr><td>与同位置、同类型其他上架规则重叠时，显示重叠的人数、这些人弹哪一条，以及本规则与其他规则每天互相接替的人数。</td></tr>
     <tr><td>规则之间用排除群组避免重叠，如回流规则排除新增玩家；仍重叠的玩家按优先级弹。</td></tr>
-    <tr><td>当天已用快显（游戏内横幅）提示过的同一活动或礼包，对应的排序项跳过。</td></tr>
+    <tr><td>每条规则可选择跳过当天已用快显（游戏内横幅）提示过的同一活动或礼包对应的排序项，默认不跳过。</td></tr>
     <tr><td>勾了「弹出后终止本次后续弹窗」的排序项弹出后，同位置后面的排序项本次不弹；现有规则里的发财金、揪友同乐邀请默认勾选。</td></tr>
   </table>
   <h4 class="rg">保存并上架</h4>
@@ -347,7 +372,7 @@ a.pgx:hover{background:var(--pc);color:#fff}
 
 <!-- 7 -->
 <section class="pg pt2" id="p7">
-  <div class="kick"><span class="pchip">第二部分　游戏内推送</span><span class="pos">第 7 页 / 共 13 页</span></div>
+  <div class="kick"><span class="pchip">第二部分　游戏内推送</span><span class="pos">第 7 页 / 共 14 页</span></div>
   <h2>每人每天弹窗与快显上限</h2>
 
   <div class="shots">
@@ -373,7 +398,7 @@ a.pgx:hover{background:var(--pc);color:#fff}
 
 <!-- 8 -->
 <section class="pg pt2" id="p8">
-  <div class="kick"><span class="pchip">第二部分　游戏内推送</span><span class="pos">第 8 页 / 共 13 页</span></div>
+  <div class="kick"><span class="pchip">第二部分　游戏内推送</span><span class="pos">第 8 页 / 共 14 页</span></div>
   <h2>弹窗与快显数据统计</h2>
 
   <div class="shots">
@@ -386,7 +411,7 @@ a.pgx:hover{background:var(--pc);color:#fff}
   <table class="rule">
     <tr><td>按位置统计大厅弹窗、破产弹窗、快显的曝光人数、曝光、点击、点击率，与前一个同样长度的周期对比；合计行的曝光人数按玩家去重。</td></tr>
     <tr><td>按位次统计玩家这次进入该位置时第几个看到的弹窗，各位次的曝光与点击率；位次跨规则计，与排序项在规则里的先后无关。</td></tr>
-    <tr><td>改动前后对比：选操作纪录（第 13 页）里的一次改动，对比改动前后几天整个位置和各排序项的曝光与点击率。</td></tr>
+    <tr><td>改动前后对比：选操作纪录（第 14 页）里的一次改动，对比改动前后几天整个位置和各排序项的曝光与点击率。</td></tr>
     <tr><td>同期有游戏发版或其他改动时提示不能单独归因，要确定效果用实验组与对照组。</td></tr>
   </table>
   <h4 class="rg">单条规则</h4>
@@ -404,7 +429,7 @@ a.pgx:hover{background:var(--pc);color:#fff}
 
 <!-- 9 -->
 <section class="pg pt2" id="p9">
-  <div class="kick"><span class="pchip">第二部分　游戏内推送</span><span class="pos">第 9 页 / 共 13 页</span></div>
+  <div class="kick"><span class="pchip">第二部分　游戏内推送</span><span class="pos">第 9 页 / 共 14 页</span></div>
   <h2>快显</h2>
 
   <div class="shots">
@@ -412,6 +437,11 @@ a.pgx:hover{background:var(--pc);color:#fff}
   </div>
 
   <h3 class="bk">业务规则</h3>
+  <h4 class="rg">现状与改动</h4>
+  <table class="rule">
+    <tr><td>现在：快显的内容与触发写死在客户端里，发给当时在线的全部玩家；数据没有后台页面可查。</td></tr>
+    <tr><td>改后：在推送统一后台新建快显，由服务端下发；客户端上报曝光与点击。</td></tr>
+  </table>
   <h4 class="rg">内容与对象</h4>
   <table class="rule">
     <tr><td>快显是游戏界面里的即时横幅，如通行证升级提示；可设横幅文字、显示位置、停留秒数、点击跳转的页面。</td></tr>
@@ -427,12 +457,33 @@ a.pgx:hover{background:var(--pc);color:#fff}
 <!-- 第三部分 -->
 <div class="partband pt3" id="part3">
   <div class="pn">第三部分</div>
-  <div class="pm"><b>两类共用</b><span>第 10–13 页</span></div>
+  <div class="pm"><b>两类共用</b><span>第 10–14 页</span></div>
 </div>
 
 <!-- 10 -->
 <section class="pg pt3" id="p10">
-  <div class="kick"><span class="pchip">第三部分　两类共用</span><span class="pos">第 10 页 / 共 13 页</span></div>
+  <div class="kick"><span class="pchip">第三部分　两类共用</span><span class="pos">第 10 页 / 共 14 页</span></div>
+  <h2>标签群组</h2>
+
+  <div class="shots">
+    <figure><img src="需求评审版_图/01_群组交集.jpg" alt="会员标签设定里编辑标签群组" style="width:601px"><figcaption>会员标签设定里编辑标签群组：引用「回流」「潜在付费」两个标签群组取交集</figcaption></figure>
+  </div>
+
+  <h3 class="bk">业务规则</h3>
+  <h4 class="rg">现状与改动</h4>
+  <table class="rule">
+    <tr><td>现在：在会员标签设定里用会员标签按且、或、排除组合出一组玩家，随标签数据定时更新。</td></tr>
+    <tr><td>改后：会员标签设定加群组之间取交集，如「回流且潜在付费」，每个条件显示人数；在用的群组不能停用或删除，修改时保存前列出受影响的推播、短信、快显和弹窗规则。</td></tr>
+  </table>
+  <h4 class="rg">新建标签</h4>
+  <table class="rule">
+    <tr><td>新建 6 个标签：<br>· 潜在付费：注册第 7–60 天、从未储值、近 14 天押注合计不低于 20,000（游戏内货币）<br>· 潜在流失两档：近 14 天登录 2–3 天；近 14 天登录 1 天<br>· 近 7 天发生过破产<br>· 新增玩家两档：注册次日未再登录；注册第 3 天未再登录</td></tr>
+  </table>
+</section>
+
+<!-- 11 -->
+<section class="pg pt3" id="p11">
+  <div class="kick"><span class="pchip">第三部分　两类共用</span><span class="pos">第 11 页 / 共 14 页</span></div>
   <h2>概览</h2>
 
   <div class="shots">
@@ -454,9 +505,9 @@ a.pgx:hover{background:var(--pc);color:#fff}
   </table>
 </section>
 
-<!-- 11 -->
-<section class="pg pt3" id="p11">
-  <div class="kick"><span class="pchip">第三部分　两类共用</span><span class="pos">第 11 页 / 共 13 页</span></div>
+<!-- 12 -->
+<section class="pg pt3" id="p12">
+  <div class="kick"><span class="pchip">第三部分　两类共用</span><span class="pos">第 12 页 / 共 14 页</span></div>
   <h2>项目目录</h2>
 
   <div class="shots">
@@ -479,9 +530,9 @@ a.pgx:hover{background:var(--pc);color:#fff}
   </table>
 </section>
 
-<!-- 12 -->
-<section class="pg pt3" id="p12">
-  <div class="kick"><span class="pchip">第三部分　两类共用</span><span class="pos">第 12 页 / 共 13 页</span></div>
+<!-- 13 -->
+<section class="pg pt3" id="p13">
+  <div class="kick"><span class="pchip">第三部分　两类共用</span><span class="pos">第 13 页 / 共 14 页</span></div>
   <h2>玩家查询</h2>
 
   <div class="shots">
@@ -501,9 +552,9 @@ a.pgx:hover{background:var(--pc);color:#fff}
   </table>
 </section>
 
-<!-- 13 -->
-<section class="pg pt3" id="p13">
-  <div class="kick"><span class="pchip">第三部分　两类共用</span><span class="pos">第 13 页 / 共 13 页</span></div>
+<!-- 14 -->
+<section class="pg pt3" id="p14">
+  <div class="kick"><span class="pchip">第三部分　两类共用</span><span class="pos">第 14 页 / 共 14 页</span></div>
   <h2>操作纪录</h2>
 
   <div class="shots">
