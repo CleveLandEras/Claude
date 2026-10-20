@@ -37,9 +37,20 @@ section.pg{background:var(--card);border:1px solid var(--line);border-top:5px so
 .kick .pchip{display:inline-block;padding:1px 12px;border-radius:12px;background:var(--pc);color:#fff;font-size:13.5px;font-weight:700;white-space:nowrap}
 .kick .pos b{color:var(--ink)}
 h2{font-size:26px;line-height:1.45;margin:0 0 14px;font-weight:700}
-h3.bk{margin:30px 0 10px;font-size:15px;font-weight:700;color:var(--pc);letter-spacing:.04em}
+/* 业务规则：默认折叠 */
+details.rules{margin:30px 0 0;border:1px solid var(--line);border-radius:10px;background:var(--card)}
+details.rules>summary{display:flex;align-items:baseline;flex-wrap:wrap;gap:2px 18px;position:relative;padding:13px 22px 13px 48px;border-radius:9px;background:var(--soft);list-style:none;cursor:pointer;user-select:none;transition:background-color .15s}
+details.rules>summary::-webkit-details-marker{display:none}
+details.rules>summary::before{content:"";position:absolute;left:22px;top:27px;width:7px;height:7px;margin-top:-5px;border-right:2px solid var(--pc);border-bottom:2px solid var(--pc);transform:rotate(-45deg);transition:transform .2s,margin-top .2s}
+details.rules[open]>summary::before{transform:rotate(45deg);margin-top:-7px}
+details.rules>summary:hover{background:var(--pbg)}
+details.rules>summary:focus-visible{outline:2px solid var(--pc);outline-offset:2px}
+details.rules[open]>summary{border-radius:9px 9px 0 0;border-bottom:1px solid var(--line)}
+details.rules .rt{font-size:15.5px;font-weight:700;color:var(--pc);letter-spacing:.04em}
+details.rules .rgs{font-size:13.5px;color:var(--ink3)}
+details.rules .rbody{padding:4px 26px 18px}
 h4.rg{margin:18px 0 6px;font-size:15px;font-weight:700;color:var(--ink)}
-h3.bk + h4.rg{margin-top:4px}
+.rbody>h4.rg:first-child{margin-top:12px}
 p{margin:0 0 12px}
 table{border-collapse:collapse;width:100%;font-size:15px;line-height:1.65}
 th,td{border-bottom:1px solid var(--line);padding:10px 14px;text-align:left;vertical-align:top}
@@ -47,7 +58,7 @@ th{background:var(--soft);font-weight:600;color:var(--ink2);font-size:14px;white
 table.rule th{width:100%}
 table.rule .why{display:block;margin-top:3px;color:var(--ink3);font-size:14px;line-height:1.6}
 .shots{display:flex;flex-direction:column;gap:18px;margin:4px 0 6px}
-.shots figure{margin:0}
+.shots figure{margin:0;overflow-x:auto}
 .shots img{display:block;max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;background:#fff}
 .shots figcaption{max-width:980px;margin-top:6px;font-size:13.5px;color:var(--ink3);line-height:1.5}
 table.et{max-width:980px;background:#fff;border:1px solid var(--line);font-size:14px;line-height:1.55}
@@ -139,12 +150,14 @@ a.pgx:hover{background:var(--pc);color:#fff}
   <h2>按玩家分群推送</h2>
 
   <div class="shots">
-    <figure><img src="需求评审版_图/01_群组交集.jpg" alt="会员标签设定里编辑标签群组" style="width:601px"><figcaption>会员标签设定里编辑标签群组：引用「回流」「潜在付费」两个标签群组取交集</figcaption></figure>
+    <figure><img src="需求评审版_图/01_群组交集.jpg" alt="会员标签设定里编辑标签群组" style="width:601px"><figcaption>会员标签设定里编辑标签群组：「回流」与「潜在付费」取交集</figcaption></figure>
     <figure><img src="需求评审版_图/02_新建推播.jpg" alt="新建推播的发送对象" style="width:980px"><figcaption>新建推播的发送对象</figcaption></figure>
     <figure><img src="需求评审版_图/02b_预计人数.jpg" alt="确认前的预计人数" style="width:980px"><figcaption>确认前的预计人数</figcaption></figure>
   </div>
 
-  <h3 class="bk">业务规则</h3>
+  <details class="rules">
+    <summary><span class="rt">业务规则</span><span class="rgs">标签群组 · 发送对象 · 发送时间 · 防错</span></summary>
+    <div class="rbody">
   <h4 class="rg">标签群组</h4>
   <table class="rule">
     <tr><td>现有：在会员标签设定里用会员标签按且、或、排除组合出一组玩家，随标签数据定时更新。</td></tr>
@@ -170,6 +183,8 @@ a.pgx:hover{background:var(--pc);color:#fff}
     <tr><td>可先发给测试账号；发给全部玩家时，确认前多一步核对总人数。</td></tr>
     <tr><td>发送中可停止，已发出的不撤回。</td></tr>
   </table>
+    </div>
+  </details>
 </section>
 
 <!-- 2 -->
@@ -181,7 +196,9 @@ a.pgx:hover{background:var(--pc);color:#fff}
     <figure><img src="需求评审版_图/03_按行为.jpg" alt="新建推播里按行为发送的设置" style="width:1024px"><figcaption>新建推播里按行为发送的设置</figcaption></figure>
   </div>
 
-  <h3 class="bk">业务规则</h3>
+  <details class="rules">
+    <summary><span class="rt">业务规则</span><span class="rgs">触发与对象 · 提醒次数与间隔 · 勿扰与在线</span></summary>
+    <div class="rbody">
   <h4 class="rg">触发与对象</h4>
   <table class="rule">
     <tr><td>触发行为首批 6 种：限时加码礼包快到期、玩家升级、完成任务、通行证升级、破产后未回到游戏、时间偏移（活动、礼包等项目开始或结束前后 N 小时）；新的触发行为由 RD 登记后可选。</td></tr>
@@ -203,6 +220,8 @@ a.pgx:hover{background:var(--pc);color:#fff}
     <tr><td>默认玩家升级、完成任务、通行证升级不发，限时加码礼包快到期、时间偏移照发；破产后未回到游戏只在玩家离线时触发。</td></tr>
     <tr><td>触发时玩家在线且选了不发的，这次收不到推播；同一事件改由游戏内显示，用同一触发行为的快显，或同一活动的弹窗规则；两者都没有时，系统在保存时提示运营。</td></tr>
   </table>
+    </div>
+  </details>
 </section>
 
 <!-- 3 -->
@@ -214,7 +233,9 @@ a.pgx:hover{background:var(--pc);color:#fff}
     <figure><img src="需求评审版_图/04_上限勿扰.jpg" alt="每人每天上限与勿扰设置" style="width:980px"><figcaption>每人每天上限与勿扰设置页</figcaption></figure>
   </div>
 
-  <h3 class="bk">业务规则</h3>
+  <details class="rules">
+    <summary><span class="rt">业务规则</span><span class="rgs">消息类别 · 上限与勿扰 · 例外</span></summary>
+    <div class="rbody">
   <h4 class="rg">消息类别</h4>
   <table class="rule">
     <tr><td>营销类受每人每天上限和勿扰；服务通知（补偿到账、维护、账号安全、绑定结果）不受上限，勿扰时段内默认顺延。</td></tr>
@@ -233,6 +254,8 @@ a.pgx:hover{background:var(--pc);color:#fff}
     <tr><td>单条推送可勾选「不受每人每天上限」或「不受勿扰」，须填原因。</td></tr>
     <tr><td>运营把含促销字样（禮包、優惠、加碼、儲值）的内容发为服务通知时，须填写归为服务通知的原因。</td></tr>
   </table>
+    </div>
+  </details>
 </section>
 
 <!-- 4 -->
@@ -245,16 +268,21 @@ a.pgx:hover{background:var(--pc);color:#fff}
     <figure><img src="需求评审版_图/07_单条漏斗.jpg" alt="单条推送数据" style="width:980px"><figcaption>单条推送数据</figcaption></figure>
   </div>
 
-  <h3 class="bk">业务规则</h3>
-  <h4 class="rg">数据列表</h4>
+  <details class="rules">
+    <summary><span class="rt">业务规则</span><span class="rgs">推送列表 · 每人每天收到几条 · 单条推送数据 · 指标算法 · 效果参考</span></summary>
+    <div class="rbody">
+  <h4 class="rg">推送列表</h4>
   <table class="rule">
     <tr><td>游戏外推送数据按每条推送列出发送、到达、点击，可按所属活动筛选、导出。</td></tr>
-    <tr><td>每人每天收到几条：玩家每天收到几条的分布、每天多少人碰到每人每天上限、上限拦下多少人次。</td></tr>
+  </table>
+  <h4 class="rg">每人每天收到几条</h4>
+  <table class="rule">
+    <tr><td>玩家每天收到几条的分布，图上标出每人每天上限的位置；每天碰到上限的人数走势；上限拦下多少人次。</td></tr>
   </table>
   <h4 class="rg">单条推送数据</h4>
   <table class="rule">
     <tr><td>点一条推送进入：从受众、发送、到达到点击，每一步少了多少；另列发送后 24 小时内的登录与付费。</td></tr>
-    <tr><td>未发出的原因：发送前拦下的按原因分项，如没装 App、通知关闭、勿扰放弃、每人每天上限拦下；服务商未受理的另列；可导出名单。</td></tr>
+    <tr><td>未发出的原因：发送前拦下的按原因分项、从多到少排列，如没装 App、通知关闭、勿扰放弃、每人每天上限拦下；服务商未受理的另列；可导出名单。</td></tr>
     <tr><td>逐人明细：推播、短信每人每条的结果与原因，可导出。</td></tr>
   </table>
   <h4 class="rg">指标算法</h4>
@@ -265,6 +293,8 @@ a.pgx:hover{background:var(--pc);color:#fff}
   <table class="rule">
     <tr><td>短信用「发送后 24 小时内登录」看效果；推播的登录与付费数据只作参考。<span class="why">玩家收到短信后多直接打开游戏，不点链接。</span></td></tr>
   </table>
+    </div>
+  </details>
 </section>
 
 <!-- 5 -->
@@ -276,7 +306,9 @@ a.pgx:hover{background:var(--pc);color:#fff}
     <figure><img src="需求评审版_图/16_短信.jpg" alt="新建短信" style="width:980px"><figcaption>新建短信</figcaption></figure>
   </div>
 
-  <h3 class="bk">业务规则</h3>
+  <details class="rules">
+    <summary><span class="rt">业务规则</span><span class="rgs">内容与计费 · 发送</span></summary>
+    <div class="rbody">
   <h4 class="rg">内容与计费</h4>
   <table class="rule">
     <tr><td>内文先选消息类别（营销或服务通知）；输入时显示字数与则数，超出一则时提示；营销短信自动加品牌前缀【會員通知】和退订说明。</td></tr>
@@ -290,6 +322,8 @@ a.pgx:hover{background:var(--pc);color:#fff}
     <tr><td>发送时间：立即、定时或按行为，填法同推播；勿扰时段与每人每天上限见第 3 页。</td></tr>
     <tr><td>确认前显示能收到短信的人数、上限拦下、预计发出人数、每条计几则和共计几则。</td></tr>
   </table>
+    </div>
+  </details>
 </section>
 
 <!-- 第二部分 -->
@@ -308,7 +342,9 @@ a.pgx:hover{background:var(--pc);color:#fff}
     <figure><img src="需求评审版_图/11_保存确认.jpg" alt="保存并上架" style="width:980px"><figcaption>保存并上架时的重叠与确认框</figcaption></figure>
   </div>
 
-  <h3 class="bk">业务规则</h3>
+  <details class="rules">
+    <summary><span class="rt">业务规则</span><span class="rgs">规则内容 · 对象与预计人数 · 优先级与互斥 · 重叠与跳过 · 保存并上架 · 实验</span></summary>
+    <div class="rbody">
   <h4 class="rg">规则内容</h4>
   <table class="rule">
     <tr><td>每条规则选弹窗类型（活动类、储值类）和位置：大厅弹窗（进入大厅时自动弹出）、破产弹窗（玩家破产时弹出）；并设每次最多弹出几个。</td></tr>
@@ -330,7 +366,7 @@ a.pgx:hover{background:var(--pc);color:#fff}
   </table>
   <h4 class="rg">重叠与跳过</h4>
   <table class="rule">
-    <tr><td>与同位置、同类型其他上架规则重叠时，显示重叠的人数、这些人弹哪一条，以及本规则与其他规则每天互相接替的人数。</td></tr>
+    <tr><td>与同位置、同类型其他上架规则重叠时，显示重叠的人数和这些人弹哪一条。</td></tr>
     <tr><td>规则之间用排除群组避免重叠，如回流规则排除新增玩家；仍重叠的玩家按优先级弹。</td></tr>
     <tr><td>当天已用快显（游戏内横幅）提示过的同一活动或礼包，对应的排序项跳过。</td></tr>
     <tr><td>勾了「弹出后终止本次后续弹窗」的排序项弹出后，同位置后面的排序项本次不弹；现有规则里的发财金、揪友同乐邀请默认勾选。</td></tr>
@@ -343,6 +379,8 @@ a.pgx:hover{background:var(--pc);color:#fff}
   <table class="rule">
     <tr><td>实验把玩家分成实验组与对照组，每位玩家固定在一组；对照组的玩家可设为改看下一条命中的规则，或不弹。</td></tr>
   </table>
+    </div>
+  </details>
 </section>
 
 <!-- 7 -->
@@ -351,10 +389,12 @@ a.pgx:hover{background:var(--pc);color:#fff}
   <h2>每人每天弹窗与快显上限</h2>
 
   <div class="shots">
-    <figure><img src="需求评审版_图/12_弹窗上限.jpg" alt="每人每天弹窗上限设置" style="width:980px"><figcaption>每人每天弹窗上限设置页</figcaption></figure>
+    <figure><img src="需求评审版_图/12_弹窗上限.jpg" alt="每人每天弹窗与快显上限设置" style="width:980px"><figcaption>每人每天弹窗与快显上限设置页</figcaption></figure>
   </div>
 
-  <h3 class="bk">业务规则</h3>
+  <details class="rules">
+    <summary><span class="rt">业务规则</span><span class="rgs">上限 · 判断先后 · 例外</span></summary>
+    <div class="rbody">
   <h4 class="rg">上限</h4>
   <table class="rule">
     <tr><td>每人每天上限：大厅弹窗与破产弹窗合计 8 个、快显 3 次，两种各自计数；上线后可调。</td></tr>
@@ -369,6 +409,8 @@ a.pgx:hover{background:var(--pc);color:#fff}
   <table class="rule">
     <tr><td>排序项可勾选「不受每人每天弹窗上限」，再选仍计入或不计入当天个数，并填原因。</td></tr>
   </table>
+    </div>
+  </details>
 </section>
 
 <!-- 8 -->
@@ -378,28 +420,32 @@ a.pgx:hover{background:var(--pc);color:#fff}
 
   <div class="shots">
     <figure><img src="需求评审版_图/13_游戏内数据.jpg" alt="游戏内推送数据" style="width:980px"><figcaption>游戏内推送数据：按整个位置统计</figcaption></figure>
-    <figure><img src="需求评审版_图/14_单条规则数据.jpg" alt="单条弹窗规则数据" style="width:980px"><figcaption>单条弹窗规则数据：只算本规则</figcaption></figure>
+    <figure><img src="需求评审版_图/14_单条规则数据.jpg" alt="单条弹窗规则数据" style="width:980px"><figcaption>单条弹窗规则数据</figcaption></figure>
   </div>
 
-  <h3 class="bk">业务规则</h3>
+  <details class="rules">
+    <summary><span class="rt">业务规则</span><span class="rgs">整个位置 · 单条规则 · 改动与发版</span></summary>
+    <div class="rbody">
   <h4 class="rg">整个位置</h4>
   <table class="rule">
     <tr><td>按位置统计大厅弹窗、破产弹窗、快显的曝光人数、曝光、点击、点击率，与前一个同样长度的周期对比；合计行的曝光人数按玩家去重。</td></tr>
+    <tr><td>每个位置一张趋势图，按日显示曝光与点击率；图上标出这个位置上所有规则的改动和客户端发版。</td></tr>
     <tr><td>按位次统计玩家这次进入该位置时第几个看到的弹窗，各位次的曝光与点击率；位次跨规则计，与排序项在规则里的先后无关。</td></tr>
-    <tr><td>改动前后对比：选操作纪录（第 13 页）里的一次改动，对比改动前后几天整个位置和各排序项的曝光与点击率。</td></tr>
-    <tr><td>同期有游戏发版或其他改动时提示不能单独归因，要确定效果用实验组与对照组。</td></tr>
   </table>
   <h4 class="rg">单条规则</h4>
   <table class="rule">
     <tr><td>漏斗：一条规则从目标人数、进入弹窗位置、符合条件、曝光到点击，每一步少了多少。</td></tr>
+    <tr><td>趋势图按日显示这条规则的曝光与点击率，图上标出这条规则每一次保存的改动和客户端发版；相邻两次改动之间画出这段时间的平均点击率。</td></tr>
     <tr><td>点击后 24 小时内的领取、购买，按来源弹窗规则记录；只作参考，不画进漏斗。<span class="why">领取、购买还受弹窗以外的因素影响。</span></td></tr>
-    <tr><td>可拆分：按日、按小时、按平台与设备、按客户端版本、按人群、按实验组与对照组、按排序项。</td></tr>
+    <tr><td>可拆分：按排序项、按人群、按平台、按实验组与对照组。</td></tr>
   </table>
-  <h4 class="rg">版本</h4>
+  <h4 class="rg">改动与发版</h4>
   <table class="rule">
-    <tr><td>同一条规则每次确认保存成为一个新规则版本；两个规则版本各自生效期间的日均曝光与点击率并排对比，可恢复旧版本的设置。</td></tr>
-    <tr><td>规则改动或游戏发版后，旧数据照样保留，按规则版本、客户端版本分开看。</td></tr>
+    <tr><td>趋势图上的规则改动取自操作纪录（第 13 页），图下按时间逐条列出每次改动的日期、改了什么、谁改的。</td></tr>
+    <tr><td>规则改动或客户端发版之前的数据照样保留，与之后的数据画在同一张趋势图上。</td></tr>
   </table>
+    </div>
+  </details>
 </section>
 
 <!-- 9 -->
@@ -411,7 +457,9 @@ a.pgx:hover{background:var(--pc);color:#fff}
     <figure><img src="需求评审版_图/17_快显.jpg" alt="新建快显" style="width:980px"><figcaption>新建快显</figcaption></figure>
   </div>
 
-  <h3 class="bk">业务规则</h3>
+  <details class="rules">
+    <summary><span class="rt">业务规则</span><span class="rgs">内容与对象 · 发送时间</span></summary>
+    <div class="rbody">
   <h4 class="rg">内容与对象</h4>
   <table class="rule">
     <tr><td>快显是游戏界面里的即时横幅，如通行证升级提示；可设横幅文字、显示位置、停留秒数、点击跳转的页面。</td></tr>
@@ -422,6 +470,8 @@ a.pgx:hover{background:var(--pc);color:#fff}
   <table class="rule">
     <tr><td>立即、定时或按行为；按行为的触发行为、提醒次数与间隔同第 2 页。</td></tr>
   </table>
+    </div>
+  </details>
 </section>
 
 <!-- 第三部分 -->
@@ -439,19 +489,27 @@ a.pgx:hover{background:var(--pc);color:#fff}
     <figure><img src="需求评审版_图/06_概览.jpg" alt="概览的关键数字" style="width:980px"><figcaption>概览：游戏外、游戏内两层的关键数字</figcaption></figure>
   </div>
 
-  <h3 class="bk">业务规则</h3>
+  <details class="rules">
+    <summary><span class="rt">业务规则</span><span class="rgs">游戏外推送 · 游戏内推送 · 对比与走势 · 指标算法</span></summary>
+    <div class="rbody">
   <h4 class="rg">游戏外推送</h4>
   <table class="rule">
-    <tr><td>推播、短信的发送、到达、点击、到达人数和人均每天收到几条，与前一个同样长度的周期对比；明细见第 4 页。</td></tr>
+    <tr><td>推播、短信的发送、到达、点击、到达人数和人均每天收到几条；明细见第 4 页。</td></tr>
   </table>
   <h4 class="rg">游戏内推送</h4>
   <table class="rule">
-    <tr><td>弹窗、快显的曝光、曝光人数、点击、点击率和人均每天弹窗曝光几个，与前一个同样长度的周期对比；明细见第 8 页。</td></tr>
+    <tr><td>弹窗、快显的曝光、曝光人数、点击、点击率和人均每天弹窗曝光几个；明细见第 8 页。</td></tr>
+  </table>
+  <h4 class="rg">对比与走势</h4>
+  <table class="rule">
+    <tr><td>每个数字显示与前一个同样长度的周期相比的增减，并附所选期间的每日走势。</td></tr>
   </table>
   <h4 class="rg">指标算法</h4>
   <table class="rule">
     <tr><td>游戏外推送从发送算起，点击率＝点击÷发送；游戏内推送从曝光算起，点击率＝点击÷曝光；两层分开统计。</td></tr>
   </table>
+    </div>
+  </details>
 </section>
 
 <!-- 11 -->
@@ -461,10 +519,12 @@ a.pgx:hover{background:var(--pc);color:#fff}
 
   <div class="shots">
     <figure><img src="需求评审版_图/18a_项目目录.jpg" alt="项目目录" style="width:980px"><figcaption>项目目录</figcaption></figure>
-    <figure><img src="需求评审版_图/18_改期影响.jpg" alt="改起止时间时的影响确认框" style="width:940px"><figcaption>改起止时间时的影响确认框</figcaption></figure>
+    <figure><img src="需求评审版_图/18_改期影响.jpg" alt="改起止时间时的受影响规则列表" style="width:940px"><figcaption>改起止时间时的受影响规则列表</figcaption></figure>
   </div>
 
-  <h3 class="bk">业务规则</h3>
+  <details class="rules">
+    <summary><span class="rt">业务规则</span><span class="rgs">项目登记 · 改期联动</span></summary>
+    <div class="rbody">
   <h4 class="rg">项目登记</h4>
   <table class="rule">
     <tr><td>项目目录是活动与礼包的登记表：名称、编码、类型、起止时间、状态（已排程、可用、已下线）。</td></tr>
@@ -473,10 +533,13 @@ a.pgx:hover{background:var(--pc);color:#fff}
   </table>
   <h4 class="rg">改期联动</h4>
   <table class="rule">
-    <tr><td>改起止时间前，列出受影响的推播、短信、快显和弹窗规则；其中时间写成具体时刻的，逐条选择跟着平移或保持，也可全部平移；选完才能确认。</td></tr>
+    <tr><td>改起止时间前，列出受影响的推播、短信、快显和弹窗规则。</td></tr>
     <tr><td>按相对活动时间设置的推播、短信、快显（如「结束前 2 小时」）和跟随项目时间的弹窗排序项，自动跟随新的起止时间。</td></tr>
-    <tr><td>改起止时间只改这些推播、短信、快显和弹窗的时间，不改活动本身的开始与结束；活动自己的起止时间，要运营在活动配置里另行修改。</td></tr>
+    <tr><td>时间写成具体时刻的，如定时发送的推播，不自动跟随，在列表里标出，由运营逐条修改。</td></tr>
+    <tr><td>在项目目录改起止时间，不改活动本身的开始与结束；活动自己的起止时间，要运营在活动配置里另行修改。</td></tr>
   </table>
+    </div>
+  </details>
 </section>
 
 <!-- 12 -->
@@ -488,7 +551,9 @@ a.pgx:hover{background:var(--pc);color:#fff}
     <figure><img src="需求评审版_图/19_玩家查询.jpg" alt="玩家查询" style="width:980px"><figcaption>玩家查询</figcaption></figure>
   </div>
 
-  <h3 class="bk">业务规则</h3>
+  <details class="rules">
+    <summary><span class="rt">业务规则</span><span class="rgs">查询与结果 · 原有页面</span></summary>
+    <div class="rbody">
   <h4 class="rg">查询与结果</h4>
   <table class="rule">
     <tr><td>按会员编号、会员昵称或手机号码查一位玩家；查到后显示玩家资料（标签、最后登录、平台与版本、在线状态）。</td></tr>
@@ -499,6 +564,8 @@ a.pgx:hover{background:var(--pc);color:#fff}
   <table class="rule">
     <tr><td>现有「玩家弹窗顺序查询」整页移入，并扩展为推播、短信、弹窗、快显四种推送的查询。</td></tr>
   </table>
+    </div>
+  </details>
 </section>
 
 <!-- 13 -->
@@ -519,12 +586,15 @@ a.pgx:hover{background:var(--pc);color:#fff}
     </figure>
   </div>
 
-  <h3 class="bk">业务规则</h3>
+  <details class="rules">
+    <summary><span class="rt">业务规则</span><span class="rgs">记录内容 · 记录范围 · 查询导出 · 账号角色</span></summary>
+    <div class="rbody">
   <h4 class="rg">记录内容</h4>
   <table class="rule">
     <tr><td>每条记录含时间、操作人、推送方式、对象、操作、改动内容。</td></tr>
     <tr><td>改内文这类操作可展开，对照改前与改后。</td></tr>
     <tr><td>系统自动发生的状态变化，如到时开始发送、发送失败、生效期间结束，也记录，操作人记为「系统」。</td></tr>
+    <tr><td>弹窗与快显数据统计（第 8 页）趋势图上的规则改动标记取自操作纪录。</td></tr>
   </table>
   <h4 class="rg">记录范围</h4>
   <table class="rule">
@@ -539,6 +609,8 @@ a.pgx:hover{background:var(--pc);color:#fff}
   <table class="rule">
     <tr><td>账号分运营、客服、只读三种角色：运营可新建与发送，客服可查玩家与操作纪录，只读账号只能查看。</td></tr>
   </table>
+    </div>
+  </details>
 </section>
 </main>
 </div>

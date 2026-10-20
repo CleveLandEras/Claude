@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>04 上限勿扰</title>
+<link rel="stylesheet" href="../原型样式.css">
+<style>
+html,body{margin:0;padding:0;background:#fff}
+body{font-family:"Inter","Noto Sans CJK SC","PingFang SC","Microsoft YaHei",sans-serif;font-size:13px;line-height:1.5}
+.shot{background:#fff;overflow:hidden}
+.shot .z{zoom:1.12}
+.shot .win{padding:0;border:0;border-radius:0;background:#fff;box-shadow:none}
+.shot .fig{width:auto;border:0;border-radius:0}
+.tc{font-family:"Inter","Noto Sans CJK TC","PingFang TC",sans-serif}
+</style>
+</head>
+<body>
+<div class="shot" style="width:980px"><div class="z"><div class="win"><div class="fig">
+  <div class="sec" style="padding:12px 18px 12px">
+    <div class="sh" style="height:auto;min-height:22px;flex-wrap:wrap;row-gap:2px">消息类别<span style="font-weight:400;font-size:13px;color:var(--ink2)">游戏外推送两种（推播、短信）</span></div>
+    <table class="tb" style="margin-top:2px">
+      <colgroup><col style="width:190px"><col><col></colgroup>
+      <tr><th>规则项</th><th>营销（默认）</th><th>服务通知</th></tr>
+      <tr><td>适用</td><td>全部推送</td><td>补偿到账、维护、账号安全、绑定结果</td></tr>
+      <tr><td>受每人每天上限</td><td>受</td><td>不受</td></tr>
+      <tr><td>计入当天条数</td><td>计入</td><td><span class="in" style="width:84px">不计入<span class="dn">⌵</span></span></td></tr>
+      <tr><td>受勿扰</td><td>受（按单条顺延或放弃）</td><td><span class="in" style="width:84px">顺延<span class="dn">⌵</span></span></td></tr>
+    </table>
+    <div class="f" style="margin-top:8px"><label style="width:66px;text-align:left">促销字样</label><span class="tg">禮包</span><span class="tg">優惠</span><span class="tg">加碼</span><span class="tg">儲值</span><span class="u" style="color:var(--ink2)">＋ 添加</span><span class="hi">服务通知内容含这些词时，须填原因</span></div>
+  </div>
+  <div class="sec" style="padding:12px 18px 12px">
+    <div class="sh">每人每天上限</div>
+    <table class="tb" style="margin-top:2px">
+      <colgroup><col style="width:190px"><col></colgroup>
+      <tr><th>推送方式</th><th>每人每天上限</th></tr>
+      <tr class="gh"><td colspan="2">游戏外推送<span class="s">两种各自计数</span></td></tr>
+      <tr><td>推播</td><td><span class="num" style="margin-left:0">2</span>条</td></tr>
+      <tr><td>短信</td><td><span class="num" style="margin-left:0">1</span>条</td></tr>
+    </table>
+    <div class="f" style="color:var(--ink2);margin-top:6px">到上限后当天不再发，不排队补发；次日 00:00（台湾时间）重新计数</div>
+  </div>
+  <div class="sec" style="padding:12px 18px 12px">
+    <div class="sh">勿扰时段<span class="tsw" style="margin-left:4px"></span><span style="font-weight:400;font-size:13px;color:var(--ink2)">已开启 · 只对游戏外推送生效</span></div>
+    <div class="f"><label>时段</label><span class="in" style="width:66px">00:00</span><span style="margin:0 8px">至</span><span class="in" style="width:66px">08:00</span><span class="hi">台湾时间</span></div>
+    <div class="f"><label>适用</label><span class="tg nx">推播</span><span class="tg nx">短信</span><span class="hi" style="margin-left:4px">两种游戏外推送共用这一时段；弹窗、快显不受勿扰限制</span></div>
+    <div class="f"><label>命中时</label>立即、定时：整条顺延到勿扰结束（当前 08:00）<span style="color:var(--line);margin:0 10px">|</span>按行为：默认放弃，单条可改顺延</div>
+  </div>
+  <div class="sec" style="padding:12px 18px 14px">
+    <div class="sh">判断先后<span style="font-weight:400;font-size:13px;color:var(--ink2)">前一步拦下的，不再进入后一步</span></div>
+    <div class="f" style="height:auto;padding:3px 0"><label style="width:84px;white-space:nowrap;text-align:left">游戏外推送</label><div class="steps" style="border:0;padding:0;font-size:13px">
+      <span class="s">能收到<em>有联系方式、未退订、通知开启</em></span><span class="ar">›</span>
+      <span class="s">勿扰时段<em>顺延或放弃</em></span><span class="ar">›</span>
+      <span class="s">每人每天上限<em>到上限当天不再发</em></span>
+    </div></div>
+  </div>
+</div></div></div></div>
+</body>
+</html>
