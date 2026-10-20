@@ -59,7 +59,7 @@
 .ch-sub{display:flex;align-items:baseline;gap:10px;font-size:13.5px;margin-bottom:4px}
 .ch-note{font-size:12.5px;color:var(--mute);margin-top:6px}
 .ch-2col.eq{grid-template-columns:1fr 1fr;gap:40px}
-.ch-2col.w07{grid-template-columns:440px minmax(0,1fr);gap:40px}
+.ch-2col.w07{grid-template-columns:396px minmax(0,1fr);gap:28px}
 .ch-h .btn2.sm{font-weight:400}
 /* 02b 确认区 */
 .ch-kv{display:grid;grid-template-columns:72px minmax(0,1fr);row-gap:6px;font-size:13px;line-height:20px}

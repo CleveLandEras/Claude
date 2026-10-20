@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <title>19 玩家查询</title>
 <link rel="stylesheet" href="../原型样式.css">
+<link rel="stylesheet" href="_后台框.css">
 <style>
 html,body{margin:0;padding:0;background:#fff}
 body{font-family:"Inter","Noto Sans CJK SC","PingFang SC","Microsoft YaHei",sans-serif;font-size:13px;line-height:1.5}
-.shot{background:#fff;overflow:hidden}
 .shot .z{zoom:1.12}
 .shot .win{padding:0;border:0;border-radius:0;background:#fff;box-shadow:none}
 .shot .fig{width:auto;border:0;border-radius:0}
@@ -17,7 +17,7 @@ table.et td.l, table.et th.l{padding-left:8px}
 </style>
 </head>
 <body>
-<div class="shot" style="width:980px"><div class="z"><div class="win"><div class="fig ew">
+<div class="shot bk" data-page="玩家查询"><div class="z"><div class="win"><div class="fig ew">
   <div class="sec" style="padding:12px 18px 14px">
     <div style="display:flex;gap:8px;align-items:center"><span class="ein v" style="width:190px">180820055306761</span><span class="ein" style="width:170px">会员昵称</span><span class="ein" style="width:170px">手机号码</span><span class="ebtn b">查询</span></div>
     <div style="display:flex;flex-wrap:wrap;gap:6px 28px;margin-top:10px;background:#DCDCDA;padding:9px 12px;color:#303133">
@@ -46,7 +46,7 @@ table.et td.l, table.et th.l{padding-left:8px}
       <thead><tr><th>时间</th><th>推送方式</th><th class="l">推送名称或弹窗规则</th><th class="l">玩家看到的内容</th><th class="l">结果</th></tr></thead>
       <tbody>
         <tr><td>10/12 15:00</td><td>推播</td><td class="l"><span class="pd-lk">月月抽开奖提醒</span></td><td class="l tc">月月抽今晚開獎，快來看看你的號碼</td><td class="l pd-bad">每人每天上限拦下 · 推播每日营销 2／2<span class="sub2" style="color:#606266">名额已被限时加码礼包未购买提醒（09:30）、任务完成奖励提醒（12:30）占用</span></td></tr>
-        <tr><td>10/12 14:05</td><td>大厅弹窗</td><td class="l">活动类·潜在流失（实验组）＋通用弹窗</td><td class="l">每日补给计划、热门资讯、发信送奖、独享礼包</td><td class="l">已曝光 4 个，点击：每日补给计划<span style="display:block"><span class="u">展开 ⌵</span><span style="margin-left:8px;padding:0 5px;border-radius:3px;background:#FDF6EC;color:#8A5A12">1 个排序项未显示</span></span></td></tr>
+        <tr><td>10/12 14:05</td><td>大厅弹窗</td><td class="l">活动类·潜在流失（实验组）＋储值类</td><td class="l">每日补给计划、热门资讯、发信送奖、独享礼包</td><td class="l">已曝光 4 个，点击：每日补给计划<span style="display:block"><span class="u">展开 ⌵</span><span style="margin-left:8px;padding:0 5px;border-radius:3px;background:#FDF6EC;color:#8A5A12">1 个排序项未显示</span></span></td></tr>
         <tr><td>10/12 13:42</td><td>破产弹窗</td><td class="l">破产储值弹窗（实验组）</td><td class="l">破产礼包</td><td class="l">已曝光</td></tr>
         <tr><td>10/12 12:30</td><td>推播</td><td class="l"><span class="pd-lk">任务完成奖励提醒</span></td><td class="l tc">任務完成！獎勵已發放，點擊立即領取</td><td class="l">已点击</td></tr>
         <tr><td>10/12 12:00</td><td>快显</td><td class="l"><span class="pd-lk">通行证升级提示</span></td><td class="l tc">恭喜升級！通行證獎勵已可領取</td><td class="l">已显示</td></tr>
@@ -56,5 +56,6 @@ table.et td.l, table.et th.l{padding-left:8px}
     </table>
   </div>
 </div></div></div></div>
+<script src="_后台框.js"></script>
 </body>
 </html>

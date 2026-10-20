@@ -67,7 +67,10 @@ table.rule .why{display:block;margin-top:3px;color:var(--ink3);font-size:14px;li
 table.et{max-width:980px;background:#fff;border:1px solid var(--line);font-size:14px;line-height:1.55}
 table.et th,table.et td{padding:7px 10px}
 table.et td:nth-child(1){white-space:nowrap}
+a.pref{color:var(--accent);text-decoration:none;border-bottom:1px dotted var(--accent)}
+a.pref:hover{border-bottom-style:solid}
 @media (max-width:1100px){.wrap{grid-template-columns:1fr}nav{display:none}}
+@media print{body{background:#fff}.wrap{display:block;padding:0}nav{display:none}section.pg,.partband{break-inside:auto}details.rules>summary::before{display:none}}
 </style>
 </head>
 <body>
@@ -126,13 +129,13 @@ table.et td:nth-child(1){white-space:nowrap}
   <table class="rule">
     <tr><td>现有：在会员标签设定里用会员标签按且、或、排除组合出一组玩家，随标签数据定时更新。</td></tr>
     <tr><td>新增功能：建群组时可在群组之间取交集，如「回流且潜在付费」；每个条件显示人数。</td></tr>
-    <tr><td>新建 7 个标签：<br>· 潜在付费：注册第 7–60 天、从未储值、近 14 天押注合计不低于 20,000（游戏内货币）<br>· 潜在流失两档：注册满 28 天、近 7 天内有登录、第 15–28 天登录不少于 4 天，且近 14 天登录 2–3 天；另一档其余相同、近 14 天登录 1 天；两档的群组都排除新增、回流玩家<br>· 近 7 天发生过破产<br>· 注册后未再登录两档：注册次日未再登录；注册第 3 天未再登录<br>· 随机分桶号：按会员编号和所属实验算出的 0–99，每位玩家在同一实验里固定一个号，实验改名不重新分组；用来分实验组与对照组（见第 5 页）</td></tr>
+    <tr><td>新建 7 个标签：<br>· 潜在付费：注册第 7–60 天、从未储值、近 14 天押注合计不低于 20,000（游戏内货币）<br>· 潜在流失两档：注册满 28 天、近 7 天内有登录、第 15–28 天登录不少于 4 天，且近 14 天登录 2–3 天；另一档其余相同、近 14 天登录 1 天；两档的群组都排除新增、回流玩家<br>· 近 7 天发生过破产<br>· 注册后未再登录两档：注册次日未再登录；注册第 3 天未再登录<br>· 随机分桶号：按会员编号和所属实验算出的 0–99，每位玩家在同一实验里固定一个号，实验改名不重新分组；用来分实验组与对照组（见<a class="pref" href="#p5">第 5 页</a>）</td></tr>
     <tr><td>在用的标签群组不能停用或删除；修改在用的群组时，保存前列出受影响的推播、短信、快显和弹窗规则。</td></tr>
   </table>
   <h4 class="rg">内容</h4>
   <table class="rule">
     <tr><td>标题与内容按繁中、越南文、英文三种语言填，可一键生成另外两种后再改；玩家收到自己游戏语言的那一种。</td></tr>
-    <tr><td>营销推送新建时选重要程度：普通（默认）或重要；重要的为发送对象预留当天 1 条名额（见第 4 页）。</td></tr>
+    <tr><td>营销推送新建时选重要程度：普通（默认）或重要；重要的为发送对象预留当天 1 条名额（见<a class="pref" href="#p4">第 4 页</a>）。</td></tr>
   </table>
   <h4 class="rg">发送对象</h4>
   <table class="rule">
@@ -140,18 +143,18 @@ table.et td:nth-child(1){white-space:nowrap}
     <tr><td>选多个群组时取并集：满足任一即发送，重叠的玩家只收 1 条。</td></tr>
     <tr><td>排除群组：<br>固定排除，不能移出：黑名单、机器人与测试账号、敏感状态账号（停权、自我限制、注销处理中）<br>默认排除，运营可移出：VIP 名单<br>运营还可再加其他群组</td></tr>
     <tr><td>能收到推送的玩家：<br>推播：装了 App 且开启通知的玩家<br>短信：有有效手机号且未退订的玩家<br>同一设备或同一手机号只发 1 条</td></tr>
-    <tr><td>预计发出：群组人数扣掉排除群组得到受众，再扣掉收不到推送的玩家；立即发送时再扣掉此刻已收满每人每天上限的人（上限见第 4 页），定时发送不预估这一项，到发送时按当时扣除；确认前逐层显示。</td></tr>
+    <tr><td>预计发出：群组人数扣掉排除群组得到受众，再扣掉收不到推送的玩家；立即发送时再扣掉此刻已收满每人每天上限的人（上限见<a class="pref" href="#p4">第 4 页</a>），定时发送不预估这一项，到发送时按当时扣除；确认前逐层显示。</td></tr>
   </table>
   <h4 class="rg">发送时间</h4>
   <table class="rule">
-    <tr><td>推播分立即、定时、按行为三种；按行为的设置见第 2 页。</td></tr>
+    <tr><td>推播分立即、定时、按行为三种；按行为的设置见<a class="pref" href="#p2">第 2 页</a>。</td></tr>
     <tr><td>定时推送按开始发送时群组里的玩家发出。</td></tr>
     <tr><td>定时可设每天或每周几重复，填重复至哪天（不超过 90 天）；每次到点按当时群组里的玩家发出。</td></tr>
   </table>
   <h4 class="rg">所属活动</h4>
   <table class="rule">
     <tr><td>推播、短信、快显新建时选所属活动，或选「不属于活动」；所属活动和点击跳转的页面从后台现有的活动、礼包里选。</td></tr>
-    <tr><td>弹窗规则里的每个排序项各对应一个活动或礼包，同样从现有的活动、礼包里选（见第 5 页）。</td></tr>
+    <tr><td>弹窗规则里的每个排序项各对应一个活动或礼包，同样从现有的活动、礼包里选（见<a class="pref" href="#p5">第 5 页</a>）。</td></tr>
   </table>
   <h4 class="rg">防错</h4>
   <table class="rule">
@@ -180,7 +183,7 @@ table.et td:nth-child(1){white-space:nowrap}
     <tr><td>活动、礼包开始或结束前后的提醒，活动、礼包改期后自动跟随；发送对象选全部玩家或标签群组。</td></tr>
     <tr><td>触发条件按触发行为填，如礼包剩余几小时发送、只发给尚未购买该礼包的玩家。</td></tr>
     <tr><td>生效期间从开始日期起运行；不填结束日期则长期运行。</td></tr>
-    <tr><td>玩家行为的发送对象为触发的玩家，可再限定标签群组、加排除群组，规则同第 1 页；确认前显示近 7 天该行为每天发生的次数与人数。</td></tr>
+    <tr><td>玩家行为的发送对象为触发的玩家，可再限定标签群组、加排除群组，规则同<a class="pref" href="#p1">第 1 页</a>；确认前显示近 7 天该行为每天发生的次数与人数。</td></tr>
   </table>
   <h4 class="rg">提醒间隔</h4>
   <table class="rule">
@@ -193,7 +196,7 @@ table.et td:nth-child(1){white-space:nowrap}
     <tr><td>顺延的提醒到勿扰结束时，重新判断触发条件和每人每天上限。<span class="why">按行为的提醒到勿扰结束时可能已失效，如礼包已过期。</span></td></tr>
     <tr><td>玩家在线时照发或不发，每条推送单独选。</td></tr>
     <tr><td>默认玩家升级、完成任务、通行证升级不发，限时加码礼包快到期、活动与礼包开始或结束前后照发；破产后未回到游戏只在玩家离线时触发。</td></tr>
-    <tr><td>选了在线不发的，触发时在线的玩家这次收不到推播；需要在游戏里提示的，运营另配同一触发行为的快显（第 6 页）。</td></tr>
+    <tr><td>选了在线不发的，触发时在线的玩家这次收不到推播；需要在游戏里提示的，运营另配同一触发行为的快显（<a class="pref" href="#p6">第 6 页</a>）。</td></tr>
   </table>
     </div>
   </details>
@@ -220,10 +223,10 @@ table.et td:nth-child(1){white-space:nowrap}
   </table>
   <h4 class="rg">发送</h4>
   <table class="rule">
-    <tr><td>发送对象、排除群组的选法同推播（第 1 页）；能收到短信的是有有效手机号且未退订的玩家。</td></tr>
-    <tr><td>发送时间：立即、定时或按行为，填法同推播；勿扰时段与每人每天上限见第 4 页。</td></tr>
+    <tr><td>发送对象、排除群组的选法同推播（<a class="pref" href="#p1">第 1 页</a>）；能收到短信的是有有效手机号且未退订的玩家。</td></tr>
+    <tr><td>发送时间：立即、定时或按行为，填法同推播；勿扰时段与每人每天上限见<a class="pref" href="#p4">第 4 页</a>。</td></tr>
     <tr><td>按行为发送须设每天最多发几则（默认 2,000 则），到顶后当天其余触发不发，次日 00:00 重新计数。</td></tr>
-    <tr><td>确认前显示能收到短信的人数、预计发出人数（上限拦下的算法同推播，见第 1 页）、每条计几则和共计几则（玩家收到哪种语言按哪种语言计）。</td></tr>
+    <tr><td>确认前显示能收到短信的人数、预计发出人数（上限拦下的算法同推播，见<a class="pref" href="#p1">第 1 页</a>）、每条计几则和共计几则（玩家收到哪种语言按哪种语言计）。</td></tr>
   </table>
     </div>
   </details>
@@ -262,7 +265,7 @@ table.et td:nth-child(1){white-space:nowrap}
   </table>
   <h4 class="rg">例外</h4>
   <table class="rule">
-    <tr><td>单条推送可勾选「不受每人每天上限」或「不受勿扰」，须填原因。</td></tr>
+    <tr><td>单条推送可勾选「不受每人每天上限」或「不受勿扰」，须填原因；不受上限的再选仍计入或不计入当天条数。</td></tr>
   </table>
     </div>
   </details>
@@ -300,7 +303,7 @@ table.et td:nth-child(1){white-space:nowrap}
   <h4 class="rg">对象与预计人数</h4>
   <table class="rule">
     <tr><td>对象为全部玩家或标签群组，可再选排除群组。</td></tr>
-    <tr><td>VIP 名单、黑名单、机器人与测试账号、敏感状态账号对所有弹窗固定排除；推播、短信、快显的 VIP 名单是默认排除、可移出（见第 1 页）。</td></tr>
+    <tr><td>VIP 名单、黑名单、机器人与测试账号、敏感状态账号对所有弹窗固定排除；推播、短信、快显的 VIP 名单是默认排除、可移出（见<a class="pref" href="#p1">第 1 页</a>）。</td></tr>
     <tr><td>弹窗预计人数为会先弹本规则的人数：对象减去排除群组，再减去与权重更大的规则重叠的人；固定排除的玩家弹出时才扣，不从预计人数里减，旁边注明其中固定排除约多少人。</td></tr>
   </table>
   <h4 class="rg">权重与互斥</h4>
@@ -328,7 +331,7 @@ table.et td:nth-child(1){white-space:nowrap}
   </table>
   <h4 class="rg">实验</h4>
   <table class="rule">
-    <tr><td>实验组与对照组用标签群组分：按随机分桶号（每位玩家在同一实验里固定的 0–99 号，见第 1 页）建两个群组，如 0–49、50–99，两组各配一条规则，分别看两条规则的数据（第 8 页）对比。</td></tr>
+    <tr><td>实验组与对照组用标签群组分：按随机分桶号（每位玩家在同一实验里固定的 0–99 号，见<a class="pref" href="#p1">第 1 页</a>）建两个群组，如 0–49、50–99，两组各配一条规则，分别看两条规则的数据（<a class="pref" href="#p8">第 8 页</a>）对比。</td></tr>
   </table>
     </div>
   </details>
@@ -349,16 +352,16 @@ table.et td:nth-child(1){white-space:nowrap}
   <h4 class="rg">内容与对象</h4>
   <table class="rule">
     <tr><td>快显是游戏界面里的即时横幅，如通行证升级提示；可设横幅文字、显示位置、停留秒数、点击跳转的页面。横幅文字按繁中、越南文、英文三种语言填，可一键生成另外两种；玩家看到自己游戏语言的那一种。</td></tr>
-    <tr><td>发送对象和排除群组的选法同推播（第 1 页），VIP 名单同样默认排除、可移出。</td></tr>
+    <tr><td>发送对象和排除群组的选法同推播（<a class="pref" href="#p1">第 1 页</a>），VIP 名单同样默认排除、可移出。</td></tr>
     <tr><td>只显示给在线玩家。定时快显可设显示时段（到点起 0–240 分钟，默认 30 分钟）：时段内上线的发送对象上线时显示一次，时段结束后上线的不显示；设 0 即只显示给到点在线的玩家。</td></tr>
   </table>
   <h4 class="rg">发送时间</h4>
   <table class="rule">
-    <tr><td>立即、定时或按行为；定时可设每天或每周几重复，同推播；按行为的触发行为与提醒间隔同第 2 页。</td></tr>
+    <tr><td>立即、定时或按行为；定时可设每天或每周几重复，同推播；按行为的触发行为与提醒间隔同<a class="pref" href="#p2">第 2 页</a>。</td></tr>
   </table>
   <h4 class="rg">每人每天上限</h4>
   <table class="rule">
-    <tr><td>快显每人每天 3 次，显示 1 次计 1 次；和弹窗上限一起在弹窗列表顶部设置（见第 5 页）。</td></tr>
+    <tr><td>快显每人每天 3 次，显示 1 次计 1 次；和弹窗上限一起在弹窗列表顶部设置（见<a class="pref" href="#p5">第 5 页</a>）。</td></tr>
   </table>
     </div>
   </details>
@@ -376,7 +379,7 @@ table.et td:nth-child(1){white-space:nowrap}
   <h2>数据概览</h2>
 
   <div class="shots">
-    <figure><img src="需求评审版_图/06_概览.jpg" alt="数据概览的关键数字" style="width:980px"><figcaption>数据概览：游戏外、游戏内两层的关键数字</figcaption></figure>
+    <figure><img src="需求评审版_图/06_概览.jpg" alt="数据概览的关键数字" style="width:1056px"><figcaption>数据概览：游戏外、游戏内两层的关键数字</figcaption></figure>
   </div>
 
   <details class="rules">
@@ -384,11 +387,11 @@ table.et td:nth-child(1){white-space:nowrap}
     <div class="rbody">
   <h4 class="rg">游戏外推送</h4>
   <table class="rule">
-    <tr><td>推播、短信的发送、到达、点击、到达人数和人均每天收到几条；每条推送的数据见第 8 页。</td></tr>
+    <tr><td>推播、短信合计的发送、到达、点击、到达人数和人均每天收到几条；到达率、点击率按推送方式分开列，不给合计（两种推送方式到达、点击的条件不同）；每条推送的数据见<a class="pref" href="#p8">第 8 页</a>。</td></tr>
   </table>
   <h4 class="rg">游戏内推送</h4>
   <table class="rule">
-    <tr><td>弹窗、快显的曝光、曝光人数、点击、点击率和人均每天弹窗曝光几个；每条弹窗规则的数据见第 8 页，各位置的数据见第 9 页。</td></tr>
+    <tr><td>弹窗、快显的曝光、曝光人数、点击、点击率和人均每天弹窗曝光几个；每条弹窗规则的数据见<a class="pref" href="#p8">第 8 页</a>，各位置的数据见<a class="pref" href="#p9">第 9 页</a>。</td></tr>
   </table>
   <h4 class="rg">对比与走势</h4>
   <table class="rule">
@@ -410,9 +413,9 @@ table.et td:nth-child(1){white-space:nowrap}
   <h2>数据明细</h2>
 
   <div class="shots">
-    <figure><img src="需求评审版_图/09_数据明细.jpg" alt="每条推送与弹窗规则的数据列表" style="width:980px"><figcaption>数据列表（游戏外推送一层）</figcaption></figure>
-    <figure><img src="需求评审版_图/07_单条漏斗.jpg" alt="单条推送数据" style="width:980px"><figcaption>在列表里点一条推送，进入这条推送的数据</figcaption></figure>
-    <figure><img src="需求评审版_图/14_单条规则数据.jpg" alt="单条弹窗规则数据" style="width:980px"><figcaption>在列表里点一条弹窗规则，进入这条规则的数据</figcaption></figure>
+    <figure><img src="需求评审版_图/09_数据明细.jpg" alt="每条推送与弹窗规则的数据列表" style="width:1056px"><figcaption>数据列表（游戏外推送一层）</figcaption></figure>
+    <figure><img src="需求评审版_图/07_单条漏斗.jpg" alt="单条推送数据" style="width:1056px"><figcaption>在列表里点一条推送，进入这条推送的数据</figcaption></figure>
+    <figure><img src="需求评审版_图/14_单条规则数据.jpg" alt="单条弹窗规则数据" style="width:1056px"><figcaption>在列表里点一条弹窗规则，进入这条规则的数据</figcaption></figure>
   </div>
 
   <details class="rules">
@@ -422,7 +425,7 @@ table.et td:nth-child(1){white-space:nowrap}
   <table class="rule">
     <tr><td>一张表每行一条推播、短信、快显或弹窗规则及其数据；页内切换游戏外推送、游戏内推送两层。</td></tr>
     <tr><td>游戏外推送一层的数据是受众、发送、到达与到达率、点击、点击率；游戏内推送一层是曝光人数、曝光、点击、点击率。</td></tr>
-    <tr><td>点击率的分母各按本层；到达率的分母不含 iOS 未接入的发送，所以不等于到达÷发送（算法见第 7 页）。</td></tr>
+    <tr><td>点击率的分母各按本层；到达率的分母不含 iOS 未接入的发送，所以不等于到达÷发送（算法见<a class="pref" href="#p7">第 7 页</a>）；合计行只给数量，到达率、点击率写「—」。</td></tr>
     <tr><td>按行为推送和弹窗规则持续运行，列表里的数据按所选时间范围累计。</td></tr>
   </table>
   <h4 class="rg">筛选与导出</h4>
@@ -438,8 +441,8 @@ table.et td:nth-child(1){white-space:nowrap}
   </table>
   <h4 class="rg">单条弹窗规则</h4>
   <table class="rule">
-    <tr><td>漏斗：一条规则从目标人数、进入弹窗位置、符合条件、曝光到点击，每一步少了多少。</td></tr>
-    <tr><td>趋势图按日显示这条规则的曝光与点击率，图上标出这条规则每一次保存的改动和客户端发版，画法同位置数据（第 9 页）。</td></tr>
+    <tr><td>漏斗：一条规则从进入弹窗位置、符合条件、曝光到点击，每一步少了多少。</td></tr>
+    <tr><td>趋势图按日显示这条规则的曝光与点击率，图上标出这条规则每一次保存的改动和客户端发版，画法同位置数据（<a class="pref" href="#p9">第 9 页</a>）。</td></tr>
     <tr><td>可拆分：按排序项、按人群、按平台。</td></tr>
   </table>
     </div>
@@ -452,7 +455,7 @@ table.et td:nth-child(1){white-space:nowrap}
   <h2>弹窗与快显位置数据</h2>
 
   <div class="shots">
-    <figure><img src="需求评审版_图/13_游戏内数据.jpg" alt="弹窗与快显位置数据" style="width:980px"><figcaption>大厅弹窗：关键数字、按日趋势与改动标记、按位次的点击率、这个位置上的规则</figcaption></figure>
+    <figure><img src="需求评审版_图/13_游戏内数据.jpg" alt="弹窗与快显位置数据" style="width:1056px"><figcaption>大厅弹窗：关键数字、按日趋势与改动标记、按位次的点击率、这个位置上的规则</figcaption></figure>
   </div>
 
   <details class="rules">
@@ -462,16 +465,16 @@ table.et td:nth-child(1){white-space:nowrap}
   <table class="rule">
     <tr><td>大厅弹窗、破产弹窗、快显各自统计曝光人数、曝光、点击、点击率，与前一个同样长度的周期对比。</td></tr>
     <tr><td>每个位置一张趋势图，按日显示曝光与点击率；图上标出这个位置上所有规则的改动和客户端发版。</td></tr>
-    <tr><td>列出这个位置上各条规则的数据，点规则名进入这条规则的数据（第 8 页）；合计行的曝光人数按玩家去重，所以小于各行相加。</td></tr>
+    <tr><td>列出这个位置上各条规则的数据，点规则名进入这条规则的数据（<a class="pref" href="#p8">第 8 页</a>）；合计行的曝光人数按玩家去重，所以小于各行相加。</td></tr>
   </table>
   <h4 class="rg">按位次</h4>
   <table class="rule">
-    <tr><td>统计玩家这次进入该位置时第几个看到的弹窗，各位次的曝光与点击率；位次跨规则计，与排序项在规则里的先后无关。</td></tr>
+    <tr><td>统计玩家这次进入该位置时第几个看到的弹窗，各位次的曝光与点击率；位次按服务端下发的先后算，跨规则计，与排序项在规则里的先后无关。</td></tr>
   </table>
   <h4 class="rg">改动与发版</h4>
   <table class="rule">
     <tr><td>趋势图上相邻两次改动或发版之间，画出这段时间的平均点击率。</td></tr>
-    <tr><td>趋势图上的规则改动取自操作纪录（第 12 页），图下按时间逐条列出每次改动的日期、改了什么、谁改的。</td></tr>
+    <tr><td>趋势图上的规则改动取自操作纪录（<a class="pref" href="#p12">第 12 页</a>），图下按时间逐条列出每次改动的日期、改了什么、谁改的。</td></tr>
     <tr><td>规则改动或客户端发版之前的数据照样保留，与之后的数据画在同一张趋势图上。</td></tr>
   </table>
     </div>
@@ -484,7 +487,7 @@ table.et td:nth-child(1){white-space:nowrap}
   <h2>每人每天推送量</h2>
 
   <div class="shots">
-    <figure><img src="需求评审版_图/06b_每人每天收到.jpg" alt="每人每天推送量" style="width:980px"><figcaption>游戏外推送一层：每人每天收到几条的分布、碰到上限的走势</figcaption></figure>
+    <figure><img src="需求评审版_图/06b_每人每天收到.jpg" alt="每人每天推送量" style="width:1056px"><figcaption>游戏外推送一层：每人每天计入上限几条的分布、碰到上限的走势</figcaption></figure>
   </div>
 
   <details class="rules">
@@ -492,8 +495,8 @@ table.et td:nth-child(1){white-space:nowrap}
     <div class="rbody">
   <h4 class="rg">游戏外推送</h4>
   <table class="rule">
-    <tr><td>玩家每天收到几条推播、短信的分布，图上标出每人每天上限的位置。</td></tr>
-    <tr><td>每天碰到上限的人数（当天已收满上限条数的玩家）与上限拦下人次（收满后又被拦下的推送）的走势，推播、短信分开看；图上标出每人每天上限与勿扰页（第 4 页）设置的改动。</td></tr>
+    <tr><td>玩家每天计入上限的推播、短信条数的分布，图上标出每人每天上限的位置；服务通知不计入，不在分布里。</td></tr>
+    <tr><td>每天碰到上限的人数（当天已收满上限条数的玩家）与上限拦下人次（收满后又被拦下的推送）的走势，推播、短信分开看；图上标出每人每天上限与勿扰页（<a class="pref" href="#p4">第 4 页</a>）设置的改动。</td></tr>
   </table>
   <h4 class="rg">游戏内推送</h4>
   <table class="rule">
@@ -515,7 +518,7 @@ table.et td:nth-child(1){white-space:nowrap}
   <h2>玩家查询</h2>
 
   <div class="shots">
-    <figure><img src="需求评审版_图/19_玩家查询.jpg" alt="玩家查询" style="width:980px"><figcaption>查到一位玩家：各推送方式能否收到、今天已收几条、近 30 天收到记录</figcaption></figure>
+    <figure><img src="需求评审版_图/19_玩家查询.jpg" alt="玩家查询" style="width:1056px"><figcaption>查到一位玩家：各推送方式能否收到、今天已收几条、近 30 天收到记录</figcaption></figure>
   </div>
 
   <details class="rules">
@@ -541,20 +544,11 @@ table.et td:nth-child(1){white-space:nowrap}
   <h2>操作纪录</h2>
 
   <div class="shots">
-    <figure>
-      <table class="et">
-        <tr><th>时间</th><th>操作人</th><th>推送方式</th><th>对象</th><th>操作</th><th>改动内容</th></tr>
-        <tr><td>10/12 15:04</td><td>运营01</td><td>推播</td><td>推送 43 月月抽开奖提醒</td><td>停止</td><td>已发出 1,050 条，不撤回；其余不再发送</td></tr>
-        <tr><td>10/12 14:36</td><td>运营02</td><td>弹窗</td><td>弹窗规则 13 活动类·回流</td><td>编辑</td><td>弹窗排序：回流任务 第 7 → 第 1</td></tr>
-        <tr><td>10/12 14:30</td><td>系统</td><td>推播</td><td>推送 44 限时挑战开启</td><td>系统状态变化</td><td>服务商未受理：发送中 → 发送失败（9,120 条）</td></tr>
-        <tr><td>10/09 16:12</td><td>运营02</td><td>推播</td><td>推送 31 限时加码礼包未购买提醒</td><td>编辑</td><td>改了内文</td></tr>
-      </table>
-      <figcaption>操作纪录示例</figcaption>
-    </figure>
+    <figure><img src="需求评审版_图/20_操作纪录.jpg" alt="操作纪录总表" style="width:1056px"><figcaption>操作纪录总表：全部页面的记录，可筛选、导出，改内文的可展开对照改前改后</figcaption></figure>
   </div>
 
   <details class="rules">
-    <summary><span class="rt">业务规则</span><span class="rgs">记录内容 · 记录范围 · 查询导出 · 账号权限</span></summary>
+    <summary><span class="rt">业务规则</span><span class="rgs">记录内容 · 记录范围 · 总表与页签 · 账号权限</span></summary>
     <div class="rbody">
   <h4 class="rg">记录内容</h4>
   <table class="rule">
@@ -564,21 +558,33 @@ table.et td:nth-child(1){white-space:nowrap}
   </table>
   <h4 class="rg">记录范围</h4>
   <table class="rule">
-    <tr><td>推播、短信、快显与弹窗规则的新建、编辑、发送、停止，每人每天上限与勿扰的修改，以及测试发送，每次各记一条；记录只增不改不删。</td></tr>
+    <tr><td>推播、短信、快显与弹窗规则的新建、编辑、发送、停止，每人每天上限与勿扰、弹窗与快显上限的修改，以及测试发送，每次各记一条；记录只增不改不删。</td></tr>
     <tr><td>活动、礼包改期后，发送时间随之变动的推播、短信和快显各记一条，操作人记为「系统」。</td></tr>
   </table>
-  <h4 class="rg">查询导出</h4>
+  <h4 class="rg">总表与页签</h4>
   <table class="rule">
-    <tr><td>按日期、操作人、推送方式、操作、对象名称或编号查询，可导出。</td></tr>
+    <tr><td>推播、短信、弹窗、快显和每人每天上限与勿扰各页有「操作纪录」页签，只列本页面的记录；这一页是全部记录的总表，用于跨页面查与导出。</td></tr>
+    <tr><td>总表按日期、操作人、推送方式、操作、对象名称或编号查询，可导出。</td></tr>
   </table>
   <h4 class="rg">账号权限</h4>
   <table class="rule">
-    <tr><td>沿用后台现有的账号权限。运营可用全部页面，可新建、编辑与发送；客服可用玩家查询与操作纪录；只读账号可查看全部页面，不能改动。</td></tr>
+    <tr><td>沿用后台现有的账号权限，分运营、只读两种：运营可用全部页面，可新建、编辑与发送；只读账号可查看全部页面，不能改动；客服用只读账号。</td></tr>
   </table>
     </div>
   </details>
 </section>
 </main>
 </div>
+<script>
+// 打印或存 PDF 时展开全部业务规则，结束后恢复
+(function () {
+  var opened = [];
+  window.addEventListener('beforeprint', function () {
+    opened = [];
+    document.querySelectorAll('details.rules:not([open])').forEach(function (d) { d.open = true; opened.push(d); });
+  });
+  window.addEventListener('afterprint', function () { opened.forEach(function (d) { d.open = false; }); });
+})();
+</script>
 </body>
 </html>
