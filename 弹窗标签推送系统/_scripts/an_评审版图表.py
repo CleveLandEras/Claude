@@ -829,7 +829,7 @@ def build_00():
 # ================================================================ 示例数据：02b 确认发送前的预计人数（第 1 页的推播：潜在流失两档）
 F02B = [   # 与 02_新建推播 的预计人数一致
     ('群组人数', 7880, '潜在流失（两档）', ''),
-    ('受众', 7850, '少 30 人', '排除群组：VIP 名单 12 · 黑名单 3 · 机器人与测试账号 7 · 敏感状态 8'),
+    ('受众', 7850, '少 30 人', '排除群组：VIP 名单 12 · 黑名单 3 · 机器人与测试账号 7 · 敏感状态账号 8'),
     ('能收到', 4310, '少 3,540 人', '收不到推播：没装 App 2,860 · 通知关闭 660 · 同一设备只发 1 条 20'),
     ('预计发出', 4200, '少 110 人', '每人每天上限拦下：10/15 当天已收满 2 条推播'),
 ]
@@ -847,7 +847,7 @@ def build_02b():
 <div class="ch-sec">
   <div class="ch-kv">
     <span>发送方式</span><span>定时 2026-10-15 20:00</span>
-    <span>发送对象</span><span>潜在流失（两档）；排除 VIP 名单、黑名单、机器人与测试账号</span>
+    <span>发送对象</span><span>潜在流失（两档）；排除 VIP 名单、黑名单、机器人与测试账号、敏感状态账号</span>
     <span>测试</span><span>上次测试 10/12 11:12 · 运营01 · 5 个测试账号：已发出 4，未送达 1（测试03 未开启通知）</span>
   </div>
   <div class="ch-row ch-btns"><span class="ch-m">取消</span><span class="ch-sp"></span><span class="btn2">存为草稿</span><span class="btn2">发送测试</span><span class="btn2 p">确认排程</span></div>
@@ -887,7 +887,7 @@ def build_07():
     blk = sorted(NOTSENT07, key=lambda x: -x[1])
     body = f"""<div class="ch-sec">
   <div class="ch-row"><div class="ch-ttl">周末登录送金币提醒<span class="pd-st">已发送</span><span class="pd-st">推送 46</span></div><span class="ch-sp"></span><span class="btn2">逐人明细</span></div>
-  <div class="ch-meta">推播<i>|</i>定时 10/10 19:00<i>|</i>发送对象：回流；排除 VIP 名单、黑名单、机器人与测试账号</div>
+  <div class="ch-meta">推播<i>|</i>定时 10/10 19:00<i>|</i>发送对象：回流；排除 VIP 名单、黑名单、机器人与测试账号、敏感状态账号</div>
 </div>
 <div class="ch-sec">
   <div class="ch-h">漏斗</div>
