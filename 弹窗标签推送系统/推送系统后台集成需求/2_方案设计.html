@@ -1,0 +1,745 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>推送后台方案设计</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.4;margin:0 0 8px}
+.sub{font-size:16px;color:var(--ink-2);margin:0 0 18px}
+.sub b{font-weight:600} .sub .o{color:var(--blue)} .sub .i{color:var(--green)}
+.done{display:flex;align-items:baseline;gap:14px;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:6px;padding:12px 18px;margin:0 0 22px}
+.done .lb{flex:none;font-size:12.5px;font-weight:700;color:var(--accent);letter-spacing:.08em}
+.done ul{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:4px 0;font-size:14.5px}
+.done li{white-space:nowrap;margin-right:22px}
+.done li::before{content:"·";color:var(--muted);margin-right:8px;font-weight:700}
+h2{font-family:var(--serif);font-size:21px;line-height:1.45;margin:56px 0 16px;padding-top:20px;border-top:1px solid var(--line)}
+/* 决定卡 */
+.dcs{display:grid;gap:14px;margin-top:26px}
+.dc{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 22px 16px 20px;scroll-margin-top:16px}
+.dh{display:flex;align-items:center;gap:12px;margin:0 0 10px}
+.dn{flex:none;width:26px;height:26px;border-radius:50%;background:var(--accent);color:var(--surface);font-size:13.5px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.dc h3{font-size:17px;font-weight:700;margin:0;flex:1}
+.dh .st{flex:none;font-size:12.5px;color:var(--muted)}
+.dc dl{margin:0 0 0 38px;display:grid;grid-template-columns:52px 1fr;gap:6px 12px;font-size:14.5px}
+.dc dt{color:var(--muted);font-weight:600;font-size:13px;padding-top:1px}
+.dc dd{margin:0;color:var(--ink-2)}
+.dc dd.no{color:var(--muted)}
+.dc dd ul{margin:0;padding-left:16px} .dc dd li{margin:2px 0}
+.dc dd .o{color:var(--blue);font-weight:600} .dc dd .i{color:var(--green);font-weight:600}
+.dc .shotc{margin:12px 0 2px 38px}
+.dc .shotc img{display:block;border:1px solid var(--line);border-radius:6px;background:#fff;max-width:100%;height:auto}
+/* 通用 */
+.svgc{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:20px 22px}
+.svgc svg{display:block;width:100%;height:auto}
+.note{font-size:13.5px;color:var(--muted);margin:10px 0 0}
+.note b{color:var(--ink-2);font-weight:600}
+ul.pts{margin:0;padding-left:20px}
+ul.pts>li{margin:7px 0}
+ul.pts>li::marker{color:var(--muted)}
+.pts .k{font-weight:600}
+.mu{color:var(--muted)}
+.g{display:inline-block;font-size:12px;font-weight:700;padding:0 7px;border-radius:3px;line-height:20px}
+.g.m{background:var(--blue-soft);color:var(--blue)} .g.s{background:var(--gray-soft);color:var(--gray)} .g.o{border:1px dashed var(--muted);color:var(--muted)}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14.5px}
+th,td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--ground)}
+tr:last-child td{border-bottom:none}
+td.ly{font-weight:600;white-space:nowrap;background:var(--ground)}
+td.ly.o{color:var(--blue)} td.ly.i{color:var(--green)}
+td.nm{font-weight:600;white-space:nowrap}
+td.gr{white-space:nowrap;width:64px}
+td.v{white-space:nowrap;font-weight:600}
+td.r{color:var(--ink-2)}
+td.at{white-space:nowrap;color:var(--accent);font-weight:600}
+tr.grp td{border-top:2px solid var(--line)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.optl{display:flex;align-items:baseline;gap:12px;font-size:13.5px;color:var(--muted);margin:12px 0 0;line-height:1.8}
+.optl .g{flex:none}
+.optl span.it{white-space:nowrap}
+a{color:var(--accent)}
+/* 附录 */
+details.ap{margin-top:12px;background:var(--surface);border:1px solid var(--line);border-radius:6px}
+details.ap>summary{cursor:pointer;padding:13px 18px;font-size:15px;font-weight:700;list-style:none}
+details.ap>summary::-webkit-details-marker{display:none}
+details.ap>summary::before{content:"";display:inline-block;width:7px;height:7px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(-45deg);margin:0 14px 2px 2px;transition:transform .15s}
+details.ap[open]>summary::before{transform:rotate(45deg)}
+details.ap>summary span{font-weight:400;color:var(--muted);font-size:14px;margin-left:12px}
+details.ap[open]>summary{border-bottom:1px solid var(--line)}
+details.ap .in{padding:6px 22px 22px}
+details.ap h4{font-size:16px;font-weight:700;margin:24px 0 10px}
+details.ap h5{font-size:14.5px;font-weight:700;margin:18px 0 8px;color:var(--ink-2)}
+.shot{display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:start;margin-top:16px}
+.shot img{display:block;border:1px solid var(--line);border-radius:6px;background:#fff;max-width:100%;height:auto}
+.shot .cap b{display:block;font-size:15px;margin-bottom:6px}
+.shot .cap ul{margin:0 0 10px;padding-left:18px;color:var(--ink-2);font-size:14px}
+/* SVG */
+.sv text{font-family:var(--sans);font-size:13px;fill:var(--ink)}
+.sv .t2{fill:var(--ink-2)} .sv .m{fill:var(--muted);font-size:12px} .sv .b{font-weight:700}
+.sv .ac{fill:var(--accent);font-weight:700;font-size:12.5px} .sv .to{fill:var(--blue)} .sv .ti{fill:var(--green)} .sv .tr{fill:var(--red)}
+.sv .bx{fill:var(--surface);stroke:var(--line);stroke-width:1.2}
+.sv .bo{fill:var(--blue-soft);stroke:var(--blue);stroke-width:1}
+.sv .bi{fill:var(--green-soft);stroke:var(--green);stroke-width:1}
+.sv .br{fill:var(--red-soft);stroke:var(--red);stroke-width:1}
+.sv .bg{fill:var(--gray-soft);stroke:none}
+.sv .bk{fill:var(--ink);stroke:none}
+.sv .hl-o{fill:var(--blue-soft)} .sv .hl-i{fill:var(--green-soft)}
+.sv .ln{stroke:var(--line);stroke-width:1.2;fill:none}
+.sv .lnd{stroke:var(--line);stroke-width:1;fill:none;stroke-dasharray:3 3}
+.sv .ar{stroke:var(--muted);stroke-width:1.5;fill:none}
+.sv .ard{stroke:var(--muted);stroke-width:1.4;fill:none;stroke-dasharray:4 3}
+.sv .acl{stroke:var(--accent);stroke-width:1.5;fill:none}
+.sv .ah{fill:var(--muted)}
+.sv .dto{fill:var(--blue)} .sv .dti{fill:var(--green)} .sv .dtr{fill:var(--red)} .sv .dth{fill:var(--surface);stroke:var(--blue);stroke-width:1.5}
+.sv .wt{fill:var(--surface);font-weight:700}
+.sv .mk circle{fill:var(--accent)} .sv .mk text{fill:var(--surface);font-size:12px;font-weight:700}
+.sv a.mk:hover circle{fill:var(--ink)}
+</style></head><body><div class="wrap">
+
+<p class="meta">推送系统的后台集成需求 · 方案设计 · 2026-10-13 · 依据 10/13 通过的需求清单与原型</p>
+<h1>推送统一后台：全部推送一处配置，共用同一套人群、上限与数据规则</h1>
+<p class="sub">两层分开：<b class="o">游戏外推送</b>（推播、短信、Facebook、LINE）不在游戏里也收得到；<b class="i">游戏内推送</b>（弹窗、快显）在游戏里才看得到</p>
+
+<div class="done"><span class="lb">已定</span><ul>
+<li>统一入口：全部推送在推送统一后台配置和发送</li>
+<li>每种推送一页，游戏外、游戏内两层分开列</li>
+<li>新建按「内容 → 对象 → 时间 → 频率上限 → 确认」</li>
+<li>不设审批：防错靠确认页、测试发送、可停止</li>
+</ul></div>
+
+<!-- 总览图：编号为下方各决定所在的环节 -->
+<div class="svgc">
+<svg class="sv" viewBox="0 0 1016 282" role="img" aria-label="一条推送从配置到查数据的路径与各决定所在环节">
+<defs><marker id="a0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker></defs>
+<!-- 决定编号 -->
+<a class="mk" href="#d10"><circle cx="70" cy="13" r="11"/><text x="70" y="17.5" text-anchor="middle">10</text></a>
+<a class="mk" href="#d1"><circle cx="220" cy="13" r="11"/><text x="220" y="17.5" text-anchor="middle">1</text></a>
+<a class="mk" href="#d2"><circle cx="345" cy="13" r="11"/><text x="345" y="17.5" text-anchor="middle">2</text></a>
+<a class="mk" href="#d11"><circle cx="371" cy="13" r="11"/><text x="371" y="17.5" text-anchor="middle">11</text></a>
+<a class="mk" href="#d3"><circle cx="469" cy="13" r="11"/><text x="469" y="17.5" text-anchor="middle">3</text></a>
+<a class="mk" href="#d5"><circle cx="495" cy="13" r="11"/><text x="495" y="17.5" text-anchor="middle">5</text></a>
+<a class="mk" href="#d6"><circle cx="521" cy="13" r="11"/><text x="521" y="17.5" text-anchor="middle">6</text></a>
+<a class="mk" href="#d7"><circle cx="547" cy="13" r="11"/><text x="547" y="17.5" text-anchor="middle">7</text></a>
+<a class="mk" href="#d4"><circle cx="635" cy="13" r="11"/><text x="635" y="17.5" text-anchor="middle">4</text></a>
+<a class="mk" href="#d8"><circle cx="661" cy="13" r="11"/><text x="661" y="17.5" text-anchor="middle">8</text></a>
+<path class="acl" d="M714,19 V13 M714,13 H850 M876,13 H1012 M1012,19 V13"/>
+<a class="mk" href="#d9"><circle cx="863" cy="13" r="11"/><text x="863" y="17.5" text-anchor="middle">9</text></a>
+<!-- 步骤名 -->
+<g font-size="14">
+<text x="70" y="50" text-anchor="middle" class="b">配置</text>
+<text x="220" y="50" text-anchor="middle" class="b">选发送对象</text>
+<text x="358" y="50" text-anchor="middle" class="b">发送时间</text>
+<text x="508" y="50" text-anchor="middle" class="b">发送前拦下</text>
+<text x="648" y="50" text-anchor="middle" class="b">发送</text>
+<text x="785" y="50" text-anchor="middle" class="b">回执与曝光、点击</text>
+<text x="945" y="50" text-anchor="middle" class="b">查数据</text>
+</g>
+<!-- 配置 -->
+<rect class="bo" x="0" y="62" width="140" height="112" rx="6"/>
+<text x="14" y="88" class="b to">游戏外推送</text>
+<text x="14" y="114">推播 · 短信</text>
+<text x="14" y="136">Facebook · LINE</text>
+<rect class="bi" x="0" y="184" width="140" height="94" rx="6"/>
+<text x="14" y="214" class="b ti">游戏内推送</text>
+<text x="14" y="240">弹窗 · 快显</text>
+<!-- 选发送对象（两层共用） -->
+<rect class="bx" x="154" y="62" width="132" height="216" rx="6"/>
+<text x="166" y="88" class="m">立即、定时</text>
+<text x="166" y="108">全部玩家</text>
+<text x="166" y="128">或标签群组</text>
+<text x="166" y="158" class="m">按行为</text>
+<text x="166" y="178">触发的玩家</text>
+<line class="ln" x1="166" y1="200" x2="274" y2="200"/>
+<text x="166" y="236">都可排除群组</text>
+<!-- 发送时间 -->
+<rect class="bo" x="300" y="62" width="116" height="112" rx="6"/>
+<text x="312" y="92">立即</text>
+<text x="312" y="114">定时</text>
+<text x="312" y="136">按行为</text>
+<rect class="bi" x="300" y="184" width="116" height="94" rx="6"/>
+<text x="312" y="206">快显</text>
+<text x="312" y="223" class="m">立即、按行为</text>
+<text x="312" y="248">弹窗</text>
+<text x="312" y="265" class="m">按规则弹出</text>
+<!-- 发送前拦下 -->
+<rect class="bo" x="430" y="62" width="156" height="112" rx="6"/>
+<text x="442" y="88">频率上限</text>
+<text x="442" y="108">勿扰时段</text>
+<text x="442" y="128">无联系方式</text>
+<text x="442" y="148">通知关闭</text>
+<rect class="bi" x="430" y="184" width="156" height="94" rx="6"/>
+<text x="442" y="236">频率上限</text>
+<!-- 发送 -->
+<rect class="bo" x="600" y="62" width="96" height="112" rx="6"/>
+<text x="612" y="110">服务商受理</text>
+<text x="612" y="132" class="m">失败重试</text>
+<rect class="bi" x="600" y="184" width="96" height="94" rx="6"/>
+<text x="612" y="236">弹出或显示</text>
+<!-- 回执 -->
+<rect class="bo" x="710" y="62" width="150" height="112" rx="6"/>
+<text x="722" y="92">到达</text>
+<text x="722" y="114">曝光<tspan class="m">（能回传时）</tspan></text>
+<text x="722" y="136">点击</text>
+<rect class="bi" x="710" y="184" width="150" height="94" rx="6"/>
+<text x="722" y="225">曝光</text>
+<text x="722" y="247">点击</text>
+<!-- 查数据 -->
+<rect class="bx" x="874" y="62" width="142" height="216" rx="6"/>
+<text x="886" y="110">数据看板</text>
+<text x="886" y="134">单条推送数据</text>
+<text x="886" y="158">玩家查询</text>
+<g class="ar" marker-end="url(#a0)">
+<path d="M141,118 H152"/><path d="M141,231 H152"/>
+<path d="M287,118 H298"/><path d="M287,231 H298"/>
+<path d="M417,118 H428"/><path d="M417,231 H428"/>
+<path d="M587,118 H598"/><path d="M587,231 H598"/>
+<path d="M697,118 H708"/><path d="M697,231 H708"/>
+<path d="M861,118 H872"/><path d="M861,231 H872"/>
+</g>
+</svg>
+<p class="note" style="margin:12px 0 0">标签群组：用几个会员标签组合出的玩家群，如新增、回流、潜在付费、潜在流失</p>
+</div>
+
+<div class="dcs">
+
+<div class="dc" id="d1"><div class="dh"><span class="dn">1</span><h3>按行为推送发给触发的玩家，群组只作可选限定</h3><span class="st">选发送对象</span></div>
+<dl><dt>规则</dt><dd>每次触发时判断这位玩家在不在限定群组、在不在排除群组</dd>
+<dt>为什么</dt><dd>触发条件本身已决定谁该收</dd>
+<dt>不选</dt><dd class="no">先选群组再等触发；限定群组设为可选，已能覆盖这种用法</dd></dl></div>
+
+<div class="dc" id="d2"><div class="dh"><span class="dn">2</span><h3>定时推送按发送那一刻的群组名单发</h3><span class="st">发送时间</span></div>
+<dl><dt>为什么</dt><dd>群组每 25 分钟刷新，提前建好的推送按发送时的名单更准；确认页显示的人数是预计值</dd>
+<dt>不选</dt><dd class="no">建推送时锁定名单：到发送时名单已过时</dd></dl></div>
+
+<div class="dc" id="d11"><div class="dh"><span class="dn">11</span><h3>运行中的按行为推送修改后存为新版本</h3><span class="st">发送时间</span></div>
+<dl><dt>规则</dt><dd><ul><li>新版本只对之后的触发生效</li><li>已排程的推送可改，改后须重新确认；发送中的不能改</li></ul></dd>
+<dt>为什么</dt><dd>已发出的数据要能对应发送当时的设置</dd>
+<dt>不选</dt><dd class="no">直接覆盖原设置：改前已发出的数据对不上设置</dd></dl></div>
+
+<div class="dc" id="d3"><div class="dh"><span class="dn">3</span><h3>每种推送每人每天各有上限，游戏内与游戏外分开计</h3><span class="st">发送前拦下</span></div>
+<dl><dt>默认</dt><dd><ul><li><span class="o">游戏外推送</span>：推播 2 条、短信 1 条、Facebook 1 条、LINE 1 条</li><li><span class="i">游戏内推送</span>：弹窗 8 个（大厅与破产合计）、快显 3 次</li><li>运营可在「频率上限」页修改</li></ul></dd>
+<dt>为什么</dt><dd>两层打扰玩家的场合不同；分开计，一层发得多不会挤掉另一层</dd>
+<dt>不选</dt><dd class="no">所有推送合计一个上限：做成可选功能，默认关闭</dd></dl>
+<div class="shotc"><img src="../分析/推送后台_方案设计/卡3_上限表.jpg" width="634" alt="频率上限页上限表截图"></div></div>
+
+<div class="dc" id="d4"><div class="dh"><span class="dn">4</span><h3>游戏外推送按服务商受理计 1 条，游戏内推送按显示计</h3><span class="st">发送</span></div>
+<dl><dt>为什么</dt><dd>受理在发送当下就能确定，计数不用等回执</dd>
+<dt>不选</dt><dd class="no">按到达计：到达回执会延迟或没有（如 iOS 推播），上限会失效</dd></dl></div>
+
+<div class="dc" id="d5"><div class="dh"><span class="dn">5</span><h3>到上限当天不再发，不排队补发</h3><span class="st">发送前拦下</span></div>
+<dl><dt>为什么</dt><dd>补发会在次日集中打扰；有时效的内容到时也已过期</dd>
+<dt>不选</dt><dd class="no">排到次日补发</dd></dl></div>
+
+<div class="dc" id="d6"><div class="dh"><span class="dn">6</span><h3>勿扰 00:00–08:00 只管游戏外推送：立即、定时顺延，按行为放弃</h3><span class="st">发送前拦下</span></div>
+<dl><dt>为什么</dt><dd>按行为的内容有时效：礼包剩 2 小时的提醒顺延到早上已过期</dd>
+<dt>不选</dt><dd class="no">一律顺延：08:00 集中发出，部分内容已过期</dd></dl></div>
+
+<div class="dc" id="d7"><div class="dh"><span class="dn">7</span><h3>单条推送可不受上限，但须选「仍计入／不计入」并填原因</h3><span class="st">发送前拦下</span></div>
+<dl><dt>为什么</dt><dd>维护公告这类通知不能被挡；原因记入操作纪录，防止滥用</dd>
+<dt>不选</dt><dd class="no">不设例外：重要通知会频率上限拦下</dd></dl>
+<div class="shotc"><img src="../分析/推送后台_方案设计/卡7_单条不受上限.jpg" width="680" alt="新建推播频率上限区块截图"></div></div>
+
+<div class="dc" id="d8"><div class="dh"><span class="dn">8</span><h3>临时错误由系统自动重试，服务商当场拒绝的不重试</h3><span class="st">发送</span></div>
+<dl><dt>规则</dt><dd><ul><li>超时、服务商临时错误（服务商未受理）：30 分钟内自动重试 3 次；自动重试结束后 24 小时内可手动重试失败部分</li><li>服务商当场拒绝（令牌失效、号码无效）：不重试，记原因</li><li>服务商未受理的不计入发送，也不占每人每天上限；受理后退回的计入发送，不计入到达</li><li>未装 App、已退订、已封锁属于发送前拦下，不进发送</li></ul></dd>
+<dt>为什么</dt><dd>运营不用处理大量瞬时失败，也不会对无效号码反复发</dd>
+<dt>不选</dt><dd class="no">失败全部交运营手动重试：瞬时失败多时处理不过来</dd></dl></div>
+
+<div class="dc" id="d9"><div class="dh"><span class="dn">9</span><h3>数据两层各算一套；拿不到的写原因、不估算</h3><span class="st">回执与查数据</span></div>
+<dl><dt>口径</dt><dd><ul><li><span class="o">游戏外推送</span>：发送、到达、点击，能回传时加曝光；到达率＝到达 ÷ 发送，点击率＝点击 ÷ 发送</li><li><span class="i">游戏内推送</span>：从曝光算起；点击率＝点击 ÷ 曝光</li><li>拿不到时写原因：该渠道不回传、无回执、低于统计门槛、不适用</li></ul></dd>
+<dt>为什么</dt><dd>游戏内推送没有发送、到达两步</dd>
+<dt>不选</dt><dd class="no">用上一步的数代填：iOS 推播的到达率会显示成 100%</dd></dl>
+<div class="shotc"><img src="../分析/推送后台_方案设计/图4_数据看板.jpg" width="680" alt="数据看板游戏外推送表截图"></div></div>
+
+<div class="dc" id="d10"><div class="dh"><span class="dn">10</span><h3>迁移时同一条推送只在一处生效</h3><span class="st">配置</span></div>
+<dl><dt>规则</dt><dd><ul><li>限时加码礼包推播：在推播页建成后，礼包后台原设置改为只读</li><li>短信、Facebook、LINE：逐种切换；营销侧已排好的发完，不在新后台重建</li><li>快显：服务端下发上线后，关闭客户端写死的快显</li><li>弹窗：弹窗页原样移入菜单，规则、ID、数据不变</li></ul></dd>
+<dt>为什么</dt><dd>切换期间玩家不会收到两次</dd>
+<dt>不选</dt><dd class="no">新旧两处并行一段时间：同一提醒会发两次</dd></dl></div>
+
+</div>
+
+<h2>拿不准的地方</h2>
+<table>
+<tr><th style="width:200px">拿不准</th><th style="width:300px">已按</th><th>改成另一种会怎样</th></tr>
+<tr><td class="nm">按行为推送命中勿扰时段</td><td>默认放弃，单条可改为顺延</td><td class="r">默认顺延：升级、任务类提醒不会丢，但礼包快到期类会过期</td></tr>
+<tr><td class="nm">游戏外推送点击率的分母</td><td>点击 ÷ 发送</td><td class="r">点击 ÷ 到达：数值更高，但 iOS 推播没有到达，算不出</td></tr>
+<tr><td class="nm">每人每天上限的默认值</td><td>决定 3 中的默认值</td><td class="r">放宽：被拦下的人少，每人收到的更多</td></tr>
+<tr><td class="nm">切换前营销侧已排程的发送</td><td>在营销侧发完</td><td class="r">迁到新后台重建：数据从第一天起集中，但切换时要逐条重建</td></tr>
+</table>
+
+<h2>附录</h2>
+
+<details class="ap"><summary>附录一　需求对照<span>每项必须、建议需求由哪个决定或附录处理</span></summary><div class="in">
+<table style="margin-top:16px">
+<tr><th>需求</th><th>分级</th><th style="width:150px">在哪处理</th></tr>
+<tr><td>一个入口进入全部推送，游戏外、游戏内分开列，每种推送一页</td><td class="gr"><span class="g m">必须</span></td><td class="at">已定</td></tr>
+<tr><td>运营自己设内容、点击跳转和发送时间（立即、定时、按行为）</td><td class="gr"><span class="g m">必须</span></td><td class="at">已定；附录四</td></tr>
+<tr><td>限时加码礼包的推播迁入，礼包后台不再单独配置</td><td class="gr"><span class="g m">必须</span></td><td class="at">10</td></tr>
+<tr><td>短信、Facebook、LINE 的发送从营销侧接入</td><td class="gr"><span class="g m">必须</span></td><td class="at">10</td></tr>
+<tr><td>快显改由后台配置</td><td class="gr"><span class="g m">必须</span></td><td class="at">10</td></tr>
+<tr><td>每种推送都能按标签群组选发送对象，并可排除部分玩家</td><td class="gr"><span class="g m">必须</span></td><td class="at">1、2；附录四</td></tr>
+<tr><td>每种推送每人每天上限，游戏内与游戏外分开算</td><td class="gr"><span class="g m">必须</span></td><td class="at">3、4、5、7</td></tr>
+<tr><td>游戏外推送设勿扰时段</td><td class="gr"><span class="g s">建议</span></td><td class="at">6</td></tr>
+<tr><td>游戏外推送查发送、到达、点击；游戏内推送查曝光、点击</td><td class="gr"><span class="g m">必须</span></td><td class="at">9；附录五</td></tr>
+<tr><td>按推送方式、人群、单条推送、日期查看，可导出</td><td class="gr"><span class="g m">必须</span></td><td class="at">附录四</td></tr>
+<tr><td>拿不到的数据写明原因，不估算</td><td class="gr"><span class="g m">必须</span></td><td class="at">9；附录五</td></tr>
+<tr><td>列出没送达的原因</td><td class="gr"><span class="g s">建议</span></td><td class="at">附录四、五</td></tr>
+<tr><td>发送前看到预计人数、可触达人数、会频率上限拦下的人数</td><td class="gr"><span class="g s">建议</span></td><td class="at">附录四</td></tr>
+<tr><td>先发给测试账号看效果</td><td class="gr"><span class="g s">建议</span></td><td class="at">已定；附录四</td></tr>
+<tr><td>发送状态可查，可以停止，失败可以重试</td><td class="gr"><span class="g s">建议</span></td><td class="at">8、11；附录三</td></tr>
+<tr><td>查一个玩家能不能收到、收到过什么、被什么拦下</td><td class="gr"><span class="g s">建议</span></td><td class="at">附录四</td></tr>
+</table>
+<div class="optl"><span class="g o">可选</span><div>已留位置、可后做：<span class="it">文案插入变量；</span> <span class="it">游戏外推送合计上限；</span> <span class="it">同一位置两个弹窗的最小间隔；</span> <span class="it">一条内容复制到其他推送方式</span></div></div>
+</div></details>
+
+<details class="ap"><summary>附录二　界面<span>主要页面截图；完整界面见原型</span></summary><div class="in">
+<div class="shot"><img src="../分析/推送后台_方案设计/图1_推播页.jpg" width="620" alt="推播页列表截图">
+<div class="cap"><b>推播页</b><ul><li>侧栏分游戏外、游戏内两层</li><li>限时加码礼包未购买提醒迁入后是一条按行为推送</li></ul><a href="3_原型.html#p2">原型 页 2</a></div></div>
+<div class="shot"><img src="../分析/推送后台_方案设计/图2_发送对象.jpg" width="620" alt="新建推播发送对象截图">
+<div class="cap"><b>新建推播 · 发送对象</b><ul><li>下拉列出每个标签群组的当前人数</li><li>排除群组默认选中三项，可删</li></ul><a href="3_原型.html#p3">原型 页 3</a><br><a href="3_原型.html#p4">按行为时：原型 页 4</a></div></div>
+<div class="shot"><img src="../分析/推送后台_方案设计/图3_频率上限.jpg" width="560" alt="频率上限页截图">
+<div class="cap"><b>「频率上限」页</b><ul><li>上限与勿扰时段在同一页设定</li><li>游戏外、游戏内分组显示</li></ul><a href="3_原型.html#p11">原型 页 11</a></div></div>
+<div class="shot"><img src="../分析/推送后台_方案设计/图5_玩家查询.jpg" width="620" alt="玩家查询截图">
+<div class="cap"><b>玩家查询：每种推送能否收到</b><ul><li>不能收到的写原因</li><li>达到上限的标红</li></ul><a href="3_原型.html#p14">原型 页 14</a></div></div>
+<p class="note" style="margin-top:18px">完整界面：<a href="3_原型.html">3_原型.html</a>（总览、各推送页、新建表单、频率上限、数据看板、单条推送数据、玩家查询）</p>
+</div></details>
+
+<details class="ap"><summary>附录三　流程图<span>按行为推送的触发判断；两种发送方式的状态流转</span></summary><div class="in">
+<h4>按行为推送：每次触发逐项判断，全部通过才发送</h4>
+<div class="svgc"><svg class="sv" viewBox="0 0 1016 244" role="img" aria-label="按行为推送的触发判断流程">
+<defs><marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker></defs>
+<!-- 主线 -->
+<rect class="bg" x="0" y="20" width="110" height="76" rx="6"/>
+<text x="55" y="48" text-anchor="middle" class="b">事件发生</text>
+<text x="55" y="68" text-anchor="middle" class="m">礼包快到期</text>
+<text x="55" y="85" text-anchor="middle" class="m">玩家升级等</text>
+<rect class="bx" x="132" y="20" width="112" height="76" rx="6"/>
+<text x="188" y="63" text-anchor="middle">在生效期间内？</text>
+<rect class="bx" x="266" y="20" width="112" height="76" rx="6"/>
+<text x="322" y="53" text-anchor="middle">在只限群组内</text>
+<text x="322" y="73" text-anchor="middle">且不在排除群组？</text>
+<rect class="bx" x="400" y="20" width="112" height="76" rx="6"/>
+<text x="456" y="53" text-anchor="middle">提醒次数与间隔</text>
+<text x="456" y="73" text-anchor="middle">还允许？</text>
+<rect class="bx" x="534" y="20" width="112" height="76" rx="6"/>
+<text x="590" y="53" text-anchor="middle">本推送能触达？</text>
+<text x="590" y="74" text-anchor="middle" class="m">联系方式、通知</text>
+<rect class="bx" x="668" y="20" width="112" height="76" rx="6"/>
+<text x="724" y="53" text-anchor="middle">不在勿扰时段？</text>
+<text x="724" y="74" text-anchor="middle" class="m">只查游戏外推送</text>
+<rect class="bx" x="802" y="20" width="112" height="76" rx="6"/>
+<text x="858" y="53" text-anchor="middle">今天还没到</text>
+<text x="858" y="73" text-anchor="middle">每人每天上限？</text>
+<rect class="bk" x="936" y="20" width="80" height="76" rx="6"/>
+<text x="976" y="63" text-anchor="middle" class="wt">发送</text>
+<g class="ar" marker-end="url(#a2)">
+<path d="M111,58 H130"/><path d="M245,58 H264"/><path d="M379,58 H398"/><path d="M513,58 H532"/><path d="M647,58 H666"/><path d="M781,58 H800"/><path d="M915,58 H934"/>
+<path d="M188,97 V130"/><path d="M322,97 V130"/><path d="M456,97 V130"/><path d="M590,97 V130"/><path d="M724,97 V130"/><path d="M858,97 V130"/>
+</g>
+<g class="m"><text x="255" y="50" text-anchor="middle">是</text><text x="389" y="50" text-anchor="middle">是</text><text x="523" y="50" text-anchor="middle">是</text><text x="657" y="50" text-anchor="middle">是</text><text x="791" y="50" text-anchor="middle">是</text><text x="925" y="50" text-anchor="middle">是</text>
+<text x="196" y="118">否</text><text x="330" y="118">否</text><text x="464" y="118">否</text><text x="598" y="118">否</text><text x="732" y="118">否</text><text x="866" y="118">否</text></g>
+<!-- 否的去向 -->
+<rect class="bg" x="132" y="132" width="112" height="62" rx="6"/><text x="188" y="168" text-anchor="middle" class="t2">不发</text>
+<rect class="bg" x="266" y="132" width="112" height="62" rx="6"/><text x="322" y="168" text-anchor="middle" class="t2">不发</text>
+<rect class="bg" x="400" y="132" width="112" height="62" rx="6"/><text x="456" y="168" text-anchor="middle" class="t2">不发</text>
+<rect class="br" x="530" y="132" width="120" height="62" rx="6"/><text x="590" y="152" text-anchor="middle" class="tr">不发</text><text x="590" y="170" text-anchor="middle" class="m">记无联系方式</text><text x="590" y="186" text-anchor="middle" class="m">或通知关闭</text>
+<rect class="br" x="664" y="132" width="120" height="62" rx="6"/><text x="724" y="152" text-anchor="middle" class="tr">默认放弃</text><text x="724" y="170" text-anchor="middle" class="m">记勿扰</text><text x="724" y="186" text-anchor="middle" class="m">可改为顺延发送</text>
+<rect class="br" x="798" y="132" width="120" height="62" rx="6"/><text x="858" y="152" text-anchor="middle" class="tr">不发</text><text x="858" y="170" text-anchor="middle" class="m">记频率上限拦下</text>
+<!-- 归属 -->
+<path class="ln" d="M136,208 V214 H508 V208"/>
+<text x="322" y="234" text-anchor="middle" class="m">不算这条推送的受众</text>
+<path class="ln" d="M532,208 V214 H916 V208"/>
+<text x="724" y="234" text-anchor="middle" class="m">算受众，原因计入未送达原因</text>
+</svg></div>
+<h4>状态按发送方式分两套；每个状态只给能做的操作</h4>
+<div class="svgc"><svg class="sv" viewBox="0 0 1016 352" role="img" aria-label="一次性推送与按行为推送的状态流转">
+<defs><marker id="a5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker></defs>
+<text x="0" y="16" class="b">一次性：立即、定时</text>
+<!-- 一次性 -->
+<rect class="bx" x="0" y="50" width="104" height="34" rx="17"/><text x="52" y="72" text-anchor="middle">草稿</text>
+<rect class="bo" x="330" y="50" width="104" height="34" rx="17"/><text x="382" y="72" text-anchor="middle" class="b">发送中</text>
+<rect class="bo" x="165" y="120" width="104" height="34" rx="17"/><text x="217" y="142" text-anchor="middle" class="b">已排程</text>
+<rect class="bg" x="330" y="190" width="104" height="34" rx="17"/><text x="382" y="212" text-anchor="middle" class="t2">已停止</text>
+<rect class="bg" x="560" y="14" width="124" height="34" rx="17"/><text x="622" y="36" text-anchor="middle" class="t2">已完成</text>
+<rect class="br" x="560" y="64" width="124" height="34" rx="17"/><text x="622" y="86" text-anchor="middle" class="tr">发送失败</text>
+<rect class="br" x="560" y="114" width="124" height="34" rx="17"/><text x="622" y="136" text-anchor="middle" class="tr">无可发送对象</text>
+<g class="ar" marker-end="url(#a5)">
+<path d="M105,67 H328"/>
+<path d="M60,85 V137 H163"/>
+<path d="M270,130 L338,86"/>
+<path d="M270,146 L338,196"/>
+<path d="M382,85 V188"/>
+<path d="M435,62 L558,31"/>
+<path d="M435,67 H558 V81"/>
+<path d="M435,72 L558,131"/>
+</g>
+<g class="m">
+<text x="217" y="60" text-anchor="middle">确认发送（立即）</text>
+<text x="70" y="130">确认排程（定时）</text>
+<text x="308" y="104">到时间</text>
+<text x="292" y="186">停止</text>
+<text x="390" y="146">停止</text>
+</g>
+<g class="m">
+<text x="700" y="36">部分失败也算已完成，失败数在单条数据页</text>
+<text x="700" y="86">全部失败；可重试的已自动重试</text>
+<text x="700" y="136">开始发送时名单为 0 人</text>
+<text x="446" y="212">已发出的不撤回</text>
+</g>
+<!-- 按行为 -->
+<line class="ln" x1="0" y1="246" x2="1016" y2="246"/>
+<text x="0" y="272" class="b">按行为</text>
+<rect class="bx" x="0" y="296" width="104" height="34" rx="17"/><text x="52" y="318" text-anchor="middle">草稿</text>
+<rect class="bo" x="220" y="296" width="104" height="34" rx="17"/><text x="272" y="318" text-anchor="middle" class="b">运行中</text>
+<rect class="bg" x="460" y="296" width="104" height="34" rx="17"/><text x="512" y="318" text-anchor="middle" class="t2">已暂停</text>
+<rect class="bg" x="700" y="296" width="104" height="34" rx="17"/><text x="752" y="318" text-anchor="middle" class="t2">已结束</text>
+<g class="ar" marker-end="url(#a5)">
+<path d="M105,313 H218"/>
+<path d="M325,306 H458"/>
+<path d="M459,322 H327"/>
+<path d="M565,313 H698"/>
+<path d="M272,295 V280 H752 V294"/>
+</g>
+<g class="m">
+<text x="118" y="306">确认启用</text>
+<text x="392" y="300" text-anchor="middle">暂停</text>
+<text x="392" y="342" text-anchor="middle">恢复：手动或到设定时间</text>
+<text x="632" y="306" text-anchor="middle">结束</text>
+<text x="512" y="274" text-anchor="middle">手动结束，或生效期间结束</text>
+<text x="816" y="318">只读，可复制</text>
+</g>
+</svg></div>
+<table style="margin-top:14px">
+<tr><th style="width:220px">状态</th><th>能否修改</th></tr>
+<tr><td class="nm">草稿</td><td>随时改</td></tr>
+<tr><td class="nm">已排程</td><td>可改，改后须重新确认</td></tr>
+<tr><td class="nm">发送中</td><td>不可改，但可停止</td></tr>
+<tr><td class="nm">运行中</td><td>可改：保存为新版本，只对之后的触发生效</td></tr>
+<tr><td class="nm">已完成、已停止、已结束</td><td>只读，可复制成新推送</td></tr>
+</table>
+<p class="note">每次修改都留版本快照，在单条推送数据页可查</p>
+</div></details>
+
+<details class="ap"><summary>附录四　规则明细<span>配置与迁移、对象与时间、上限与勿扰、数据查看、操作</span></summary><div class="in">
+
+<h4>配置与迁移</h4>
+<div class="svgc"><svg class="sv" viewBox="0 0 1016 440" role="img" aria-label="现有配置位置迁到推送统一后台侧栏各页">
+<defs><marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker></defs>
+<text x="0" y="18" class="m b">现在配置在哪</text>
+<text x="400" y="18" class="m b">推送统一后台的侧栏</text>
+<text x="640" y="18" class="m b">每页做什么</text>
+<!-- 左：现在 -->
+<rect class="bx" x="0" y="60" width="230" height="56" rx="6"/><text x="14" y="83" class="b">礼包后台</text><text x="14" y="104" class="t2">限时加码礼包未购买提醒</text>
+<rect class="bx" x="0" y="150" width="230" height="56" rx="6"/><text x="14" y="173" class="b">营销侧</text><text x="14" y="194" class="t2">短信、Facebook、LINE 按名单发</text>
+<rect class="bx" x="0" y="246" width="230" height="56" rx="6"/><text x="14" y="269" class="b">弹窗后台</text><text x="14" y="290" class="t2">「大厅弹窗顺序设定」</text>
+<rect class="bx" x="0" y="322" width="230" height="56" rx="6"/><text x="14" y="345" class="b">客户端</text><text x="14" y="366" class="t2">快显写死在版本里</text>
+<!-- 中：侧栏 -->
+<rect class="bx" x="400" y="34" width="200" height="398" rx="6"/>
+<text x="416" y="60" class="b">推送统一后台</text>
+<text x="416" y="88">总览</text>
+<text x="416" y="118" class="m b to">游戏外推送</text>
+<rect class="hl-o" x="408" y="128" width="184" height="22" rx="3"/><text x="432" y="144">推播</text>
+<rect class="hl-o" x="408" y="152" width="184" height="22" rx="3"/><text x="432" y="168">短信</text>
+<rect class="hl-o" x="408" y="176" width="184" height="22" rx="3"/><text x="432" y="192">Facebook</text>
+<rect class="hl-o" x="408" y="200" width="184" height="22" rx="3"/><text x="432" y="216">LINE</text>
+<text x="416" y="246" class="m b ti">游戏内推送</text>
+<rect class="hl-i" x="408" y="256" width="184" height="22" rx="3"/><text x="432" y="272">弹窗</text>
+<rect class="hl-i" x="408" y="280" width="184" height="22" rx="3"/><text x="432" y="296">快显</text>
+<line class="ln" x1="412" y1="316" x2="588" y2="316"/>
+<text x="416" y="342">频率上限</text>
+<text x="416" y="366">数据看板</text>
+<text x="416" y="390">玩家查询</text>
+<text x="416" y="414">操作纪录</text>
+<!-- 迁入箭头 -->
+<g class="ar" marker-end="url(#a1)">
+<path d="M231,88 C320,88 320,139 404,139"/>
+<path d="M231,178 C320,178 320,163 404,163"/>
+<path d="M231,178 C320,178 320,187 404,187"/>
+<path d="M231,178 C320,178 320,211 404,211"/>
+<path d="M231,274 C320,274 320,267 404,267"/>
+<path d="M231,350 C320,350 320,291 404,291"/>
+</g>
+<text x="242" y="80" class="t2" font-size="12">迁入为按行为推送</text>
+<text x="242" y="158" class="t2" font-size="12">改在本后台发送</text>
+<text x="242" y="264" class="t2" font-size="12">整页移入，规则不变</text>
+<text x="250" y="372" class="t2" font-size="12">改为服务端下发</text>
+<!-- 右：每页做什么 -->
+<path class="lnd" d="M604,84 H632"/>
+<text x="640" y="89" class="t2">今日各推送的状态与数据；待处理事项</text>
+<path class="ln" d="M616,130 V220 M610,130 H616 M610,220 H616"/>
+<text x="640" y="152" class="t2">每页：推送列表 ＋ 新建表单</text>
+<text x="640" y="176" class="t2">新建表单依次填：推送内容 → 发送对象</text>
+<text x="640" y="198" class="t2">→ 发送时间 → 频率上限 → 确认与测试</text>
+<path class="lnd" d="M604,267 H632"/>
+<text x="640" y="272" class="t2">保留现有规则表单与排序项</text>
+<path class="lnd" d="M604,291 H632"/>
+<text x="640" y="296" class="t2">新建表单同游戏外推送，但没有定时</text>
+<path class="ln" d="M616,326 V420 M610,326 H616 M610,420 H616"/>
+<text x="640" y="364" class="t2">两层共用的页面</text>
+<text x="640" y="386" class="t2">页内按游戏外、游戏内分开显示</text>
+</svg></div>
+<h5>切换方式</h5>
+<table>
+<tr><th style="width:150px">推送</th><th style="width:390px">迁入后</th><th>切换方式</th></tr>
+<tr><td class="nm">推播</td><td>推播页的按行为推送「限时加码礼包未购买提醒」<br>礼包剩 N 小时且尚未购买时发</td><td class="r">新推送启用的同一时刻，礼包后台原设置改为只读<br>并提示已迁到推送统一后台</td></tr>
+<tr><td class="nm">短信、Facebook、LINE</td><td>各一页，在本后台新建并发送</td><td class="r">逐种整体切换：切换后新推送只能在本后台建<br>切换前已排程的在营销侧发完，不在本后台重建</td></tr>
+<tr><td class="nm">弹窗</td><td>「大厅弹窗顺序设定」整页移到侧栏的弹窗页</td><td class="r">现有规则、ID、数据不变<br>只有一份规则，不会重复弹出</td></tr>
+<tr><td class="nm">快显</td><td>快显页新建，服务端下发给在线玩家</td><td class="r">下发生效后，客户端停用写死的快显<br>下发失败时，客户端沿用现有内容</td></tr>
+</table>
+<h5>新建表单</h5>
+<ul class="pts">
+<li>顺序固定：推送内容 → 发送对象 → 发送时间 → 频率上限 → 确认与测试</li>
+<li>游戏外推送的点击跳转：推播选游戏内页面；短信、Facebook、LINE 填链接，系统加追踪</li>
+<li>游戏内推送的点击跳转：快显选游戏内页面</li>
+<li>弹窗保留现有规则表单与跳转设置，不走这套顺序</li>
+</ul>
+<table style="margin-top:12px">
+<tr><th style="width:150px">推送</th><th>内容栏</th></tr>
+<tr><td class="ly o">推播</td><td>标题、内文、点击跳转；同时预览 iOS 与 Android</td></tr>
+<tr><td class="ly o">短信</td><td>内文按 70 字一则计费并显示则数；链接自动转短链并记录点击</td></tr>
+<tr><td class="ly o">Facebook</td><td>文字、图片、按钮与链接；只发给已绑定 Facebook 的玩家</td></tr>
+<tr><td class="ly o">LINE</td><td>文字、图片、按钮与链接；只发给已加 LINE 好友的玩家</td></tr>
+<tr><td class="ly i">快显</td><td>横幅文字、显示位置、停留秒数、点击跳转</td></tr>
+<tr><td class="ly i">弹窗</td><td>现有规则表单：弹窗类型、位置、弹出数量、排序项</td></tr>
+</table>
+
+<h4>发送对象与发送时间</h4>
+<table>
+<tr><th style="width:110px">发送方式</th><th style="width:300px">发送对象</th><th style="width:320px">名单什么时候定</th><th>保存前看到的人数</th></tr>
+<tr><td class="nm">立即、定时</td><td>全部玩家，或选标签群组；再选排除群组</td><td class="r">开始发送那一刻按当时的群组名单<br>群组每 25 分钟刷新</td><td class="r">群组人数、排除后人数<br>本推送可触达人数</td></tr>
+<tr><td class="nm">按行为</td><td>触发的玩家<br>可加「只限这些群组」与排除群组</td><td class="r">每次触发时判断这位玩家<br>在不在只限群组、在不在排除群组</td><td class="r">近 7 天平均每天触发人数</td></tr>
+</table>
+<ul class="pts" style="margin-top:12px">
+<li>排除群组默认选中 VIP 名单、黑名单、机器人与测试账号，运营可删</li>
+<li>立即、定时的推送对同一玩家只发一次</li>
+</ul>
+<h5>可触达人数只算本推送发得到的玩家</h5>
+<div class="two">
+<table>
+<tr><th colspan="2">游戏外推送</th></tr>
+<tr><td class="ly o">推播</td><td>装了 App 且开启通知</td></tr>
+<tr><td class="ly o">短信</td><td>有有效手机号且未退订</td></tr>
+<tr><td class="ly o">Facebook</td><td>已绑定 Facebook 且可发</td></tr>
+<tr><td class="ly o">LINE</td><td>已加 LINE 好友且未封锁</td></tr>
+</table>
+<table>
+<tr><th colspan="2">游戏内推送</th></tr>
+<tr><td class="ly i">弹窗</td><td>当时在线：进大厅、破产时按规则弹出</td></tr>
+<tr><td class="ly i">快显</td><td>当时在线</td></tr>
+<tr><td colspan="2" class="mu" style="background:var(--ground)">8 天以上未登录的玩家只收得到游戏外推送</td></tr>
+</table>
+</div>
+<h5>发送时间分立即、定时、按行为三种；弹窗按自己的规则弹出</h5>
+<table>
+<tr><th style="width:120px">发送时间</th><th>规则</th></tr>
+<tr><td class="nm">立即</td><td>确认后马上发；快显只发给当前在线的玩家</td></tr>
+<tr><td class="nm">定时</td><td>须在 3 分钟后、30 天内；快显没有定时</td></tr>
+<tr><td class="nm">按行为</td><td>玩家发生某个行为时自动发；设生效期间，以及每次触发最多提醒几次、两次至少间隔多久（建议默认值：1 次、24 小时）</td></tr>
+<tr><td class="nm">弹窗</td><td>沿用现有规则：上架期间内，玩家进大厅、破产时按排序弹出</td></tr>
+</table>
+<p class="note"><b>按行为的首批行为</b>　限时加码礼包快到期（剩 N 小时且尚未购买该礼包）；玩家升级；完成任务；通行证升级；快显另有中奖（金额不低于 N）</p>
+<h5>文案插入变量 <span class="g o">可选</span></h5>
+<ul class="pts">
+<li>文案可插入玩家昵称、礼包名称、剩余时间、中奖金额，随触发的行为可用</li>
+<li>取不到值时用设定的替代文字；预览显示示例值</li>
+</ul>
+
+<h4>上限与勿扰</h4>
+<table>
+<tr><th style="width:120px">层</th><th style="width:140px">推送</th><th>计 1 次的时点</th><th style="width:170px">建议默认值（运营可改）</th></tr>
+<tr><td class="ly o" rowspan="4">游戏外推送</td><td class="nm">推播</td><td rowspan="4" class="r">服务商受理成功（服务商接下这条发送）计 1 条；四种推送各自计数</td><td class="v">2 条</td></tr>
+<tr><td class="nm">短信</td><td class="v">1 条</td></tr>
+<tr><td class="nm">Facebook</td><td class="v">1 条</td></tr>
+<tr><td class="nm">LINE</td><td class="v">1 条</td></tr>
+<tr class="grp"><td class="ly i" rowspan="2">游戏内推送</td><td class="nm">弹窗</td><td class="r">弹出 1 个计 1；大厅弹窗与破产弹窗合计</td><td class="v">8 个</td></tr>
+<tr><td class="nm">快显</td><td class="r">显示 1 次计 1</td><td class="v">3 次</td></tr>
+</table>
+<ul class="pts" style="margin-top:12px">
+<li>统计周期为自然日 00:00–24:00（台湾时间）；在「频率上限」页修改，保存后对之后的发送生效</li>
+<li>到上限后当天不再收到这种推送；第二天 00:00 重新计数</li>
+<li>截断顺序：游戏外推送按发送先后；游戏内推送中，快显按触发先后、弹窗按排序</li>
+<li>被拦下的记「频率上限拦下」，在数据看板和玩家查询里可查</li>
+<li>勿扰时段默认 00:00–08:00（台湾时间），在「频率上限」页设置；每条推送可改选顺延或放弃</li>
+<li>游戏内推送不受勿扰限制：玩家在游戏里才看得到</li>
+<li>测试发送不计入上限，也不受勿扰限制</li>
+</ul>
+<div class="optl"><span class="g o">可选</span><div><span class="it">游戏外推送合计上限：默认关闭，开启后与各推送的上限同时生效；</span> <span class="it">同一位置两个弹窗的最小间隔：默认关闭，单条弹窗可勾选忽略间隔</span></div></div>
+<h5>示例：一位玩家的一天里，两层各自计数、互不占用</h5>
+<div class="svgc"><svg class="sv" viewBox="0 0 1016 304" role="img" aria-label="一位玩家一天内收到推送的时间线">
+<defs><marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker></defs>
+<!-- 网格 -->
+<g class="lnd"><path d="M110,36 V276"/><path d="M236.7,36 V276"/><path d="M363.3,36 V276"/><path d="M490,36 V276"/><path d="M616.7,36 V276"/><path d="M743.3,36 V276"/><path d="M870,36 V276"/></g>
+<g class="m" text-anchor="middle"><text x="110" y="296">00:00</text><text x="236.7" y="296">04:00</text><text x="363.3" y="296">08:00</text><text x="490" y="296">12:00</text><text x="616.7" y="296">16:00</text><text x="743.3" y="296">20:00</text><text x="870" y="296">24:00</text></g>
+<!-- 勿扰带 -->
+<rect class="bg" x="110" y="40" width="253.3" height="110" />
+<text x="120" y="58" class="m">勿扰 00:00–08:00</text>
+<line class="ln" x1="0" y1="157" x2="1016" y2="157"/>
+<!-- 泳道标签 -->
+<text x="0" y="90" class="b to">游戏外推送</text>
+<text x="0" y="110" class="m">推播上限 2 条</text>
+<text x="0" y="128" class="m">短信上限 1 条</text>
+<text x="0" y="210" class="b ti">游戏内推送</text>
+<text x="0" y="230" class="m">弹窗上限 8 个</text>
+<text x="0" y="248" class="m">快显上限 3 次</text>
+<text x="120" y="182" class="m">不受勿扰限制</text>
+<!-- 泳道线 -->
+<line x1="110" y1="95" x2="870" y2="95" class="ln" stroke-width="2"/>
+<line x1="110" y1="215" x2="870" y2="215" class="ln" stroke-width="2"/>
+<!-- 游戏外事件 -->
+<circle cx="347.5" cy="95" r="5" class="dth"/>
+<path class="ard" d="M353,95 H356" marker-end="url(#a3)"/>
+<circle cx="363.3" cy="95" r="6" class="dto"/>
+<text x="363" y="70" text-anchor="middle">07:30 定时推播</text>
+<text x="363" y="86" text-anchor="middle" class="m">顺延到 08:00 发出 · 1/2</text>
+<circle cx="458.3" cy="95" r="6" class="dto"/>
+<text x="458" y="120" text-anchor="middle">11:00 短信</text>
+<text x="458" y="136" text-anchor="middle" class="m">发出 · 1/1</text>
+<circle cx="537.5" cy="95" r="6" class="dto"/>
+<text x="537" y="70" text-anchor="middle">13:30 按行为推播</text>
+<text x="537" y="86" text-anchor="middle" class="m">礼包快到期 · 2/2</text>
+<circle cx="616.7" cy="95" r="6" class="dtr"/>
+<text x="617" y="120" text-anchor="middle">16:00 推播</text>
+<text x="617" y="136" text-anchor="middle" class="tr" font-size="12">频率上限拦下</text>
+<circle cx="743.3" cy="95" r="6" class="dto"/>
+<text x="743" y="70" text-anchor="middle">20:00 短信维护公告</text>
+<text x="743" y="86" text-anchor="middle" class="m">不遵守上限、不计入</text>
+<!-- 游戏内事件 -->
+<circle cx="490" cy="215" r="6" class="dti"/>
+<text x="490" y="190" text-anchor="middle">12:00 快显</text>
+<text x="490" y="206" text-anchor="middle" class="m">显示 · 1/3</text>
+<circle cx="553.3" cy="215" r="6" class="dti"/>
+<text x="553" y="240" text-anchor="middle">14:00 大厅弹窗</text>
+<text x="553" y="256" text-anchor="middle" class="m">弹出 4 个 · 4/8</text>
+<circle cx="711.7" cy="215" r="6" class="dti"/>
+<text x="712" y="190" text-anchor="middle">19:00 破产弹窗</text>
+<text x="712" y="206" text-anchor="middle" class="m">弹出 1 个 · 5/8</text>
+<circle cx="759.2" cy="215" r="6" class="dti"/>
+<text x="759" y="240" text-anchor="middle">20:30 大厅弹窗</text>
+<text x="759" y="256" text-anchor="middle" class="m">弹出 3 个 · 8/8</text>
+<circle cx="838.3" cy="215" r="6" class="dtr"/>
+<text x="838" y="190" text-anchor="middle">23:00 进大厅</text>
+<text x="838" y="206" text-anchor="middle" class="tr" font-size="12">不再弹出</text>
+<!-- 当天合计 -->
+<text x="900" y="56" class="m b">当天已收／上限</text>
+<text x="900" y="90">推播 2/2</text>
+<text x="900" y="112">短信 1/1</text>
+<text x="900" y="210">弹窗 8/8</text>
+<text x="900" y="232">快显 1/3</text>
+</svg></div>
+
+<h4>数据查看</h4>
+<ul class="pts">
+<li><span class="k">统计窗口</span>：到达、点击统计至发送后 5 天，LINE 14 天；窗口内数字还会增长</li>
+<li><span class="k">更新</span>：建议每 15 分钟内更新一次；页面写「数据更新于 15:30」这类时间</li>
+<li><span class="k">维度</span>：推送方式、人群、单条推送、日期、小时；可导出 Excel</li>
+<li><span class="k">人群归属</span>：按发送时玩家所在的群组，即新增、回流、潜在付费、潜在流失；都不属于的计入「其余」；破产玩家看破产弹窗一行；一人可属多个人群，各行不相加</li>
+<li><span class="k">未送达原因</span>：数据看板单列一页，发送前拦下与发送失败分开；每行的玩家名单可导出</li>
+<li><span class="k">保留</span>：逐人明细保留 30 天；汇总长期保留</li>
+<li><span class="k">单条推送数据页</span>：从受众到点击逐步列出，可按设备、人群、小时拆分；同一页留发送设置的各版本快照与改动记录</li>
+</ul>
+
+<h4>操作</h4>
+<h5>选对象时看人数，确认页看拦下人数与预计发出条数</h5>
+<table>
+<tr><th style="width:140px">在哪一步</th><th>看到什么</th></tr>
+<tr><td class="nm">选发送对象时</td><td>群组人数 → 排除后人数 → 本推送可触达人数；大群组先出估算值，15 秒内出，算完替换；按行为推送看近 7 天平均每天触发人数</td></tr>
+<tr><td class="nm">确认页</td><td>预计频率上限拦下的人数、勿扰时段放弃或顺延的人数、预计发出条数；全部设置汇成一张摘要表</td></tr>
+<tr><td class="nm">校验</td><td>内容完整、对象不为 0 人、触发条件完整、生效期间有效；全部通过才能确认</td></tr>
+</table>
+<h5>测试发送只发给测试账号，不计入上限与数据</h5>
+<ul class="pts">
+<li>选测试名单（现有标签群组「运营测试组」），或输入会员编号，最多 10 个</li>
+<li>直接发当前内容，不等触发条件；不受勿扰限制</li>
+<li>结果按账号逐行列出：已送达，或未送达的原因（如该账号未开启推播通知）</li>
+</ul>
+<h5>停止与失败</h5>
+<ul class="pts">
+<li>已排程、发送中可停止，已发出的不撤回；按行为推送可暂停或结束</li>
+<li>全部失败＝发送失败；部分失败仍为已完成，失败数与原因在单条推送数据页</li>
+<li>发送失败、部分失败·可重试、无可发送对象三类列入总览的「待处理」，每行写明原因和下一步</li>
+</ul>
+<h5>玩家查询：先看能不能收到，再看收到过什么</h5>
+<ul class="pts">
+<li>按会员编号、昵称、手机号查</li>
+<li>玩家信息：所属群组；每种推送能否收到，不能时写原因（如未绑定 Facebook）；今日已收与上限；最近一次收到时间</li>
+<li>收到记录：近 30 天倒序，收到与被拦下的都列出并写原因；可按推送、日期、结果筛选</li>
+<li>现有「自动弹窗顺序」「游戏破产弹窗顺序」两张表照旧保留</li>
+</ul>
+<h5>权限与操作纪录</h5>
+<ul class="pts">
+<li>两种角色：运营可做全部操作；只读角色只看页面与数据</li>
+<li>不设审批：确认页、测试发送、操作纪录三者代替</li>
+<li>操作纪录记新建、编辑（改前与改后）、确认、停止、暂停、恢复、结束、重试，以及上限与勿扰的修改；每条记操作人、时间、对象</li>
+<li>沿用现有「操作纪录」页签，扩到全部推送</li>
+</ul>
+</div></details>
+
+<details class="ap"><summary>附录五　指标口径<span>每个指标怎么算，拿不到时写什么</span></summary><div class="in">
+<h4>每条推送从受众算到点击，少掉的每一步都写原因</h4>
+<div class="svgc"><svg class="sv" viewBox="0 0 1016 280" role="img" aria-label="单条推送从受众到点击的步骤">
+<defs><marker id="a4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker></defs>
+<!-- 游戏外 -->
+<text x="0" y="72" class="b to">游戏外推送</text>
+<rect class="bx" x="100" y="44" width="110" height="48" rx="6"/><text x="155" y="73" text-anchor="middle" class="b">受众</text>
+<rect class="bo" x="300" y="44" width="110" height="48" rx="6"/><text x="355" y="73" text-anchor="middle" class="b">发送</text>
+<rect class="bo" x="500" y="44" width="110" height="48" rx="6"/><text x="555" y="73" text-anchor="middle" class="b">到达</text>
+<rect class="bo" x="700" y="44" width="110" height="48" rx="6"/><text x="755" y="73" text-anchor="middle" class="b">曝光</text>
+<rect class="bo" x="900" y="44" width="110" height="48" rx="6"/><text x="955" y="73" text-anchor="middle" class="b">点击</text>
+<text x="555" y="34" text-anchor="middle" class="m">收不到回执的记「无回执」</text>
+<text x="755" y="34" text-anchor="middle" class="m">服务商能回传时才有</text>
+<g class="ar" marker-end="url(#a4)"><path d="M211,68 H298"/><path d="M411,68 H498"/><path d="M611,68 H698"/><path d="M811,68 H898"/>
+<path d="M232,68 V112"/><path d="M276,68 V102 H400 V112"/><path d="M455,68 V102 H610 V112"/></g>
+<rect class="br" x="100" y="114" width="190" height="76" rx="6"/>
+<text x="114" y="136" class="tr b">发送前拦下</text>
+<text x="114" y="158" class="m">无联系方式 → 通知关闭</text>
+<text x="114" y="176" class="m">→ 勿扰时段 → 频率上限</text>
+<rect class="br" x="305" y="114" width="190" height="76" rx="6"/>
+<text x="319" y="136" class="tr b">发送失败（服务商未受理）</text>
+<text x="319" y="158" class="m">可重试：超时、临时错误</text>
+<text x="319" y="176" class="m">不重试：服务商当场拒绝</text>
+<rect class="br" x="515" y="114" width="190" height="76" rx="6"/>
+<text x="529" y="136" class="tr b">受理后退回</text>
+<text x="529" y="158" class="m">计入发送</text>
+<text x="529" y="176" class="m">不计入到达</text>
+<!-- 游戏内 -->
+<line class="ln" x1="0" y1="208" x2="1016" y2="208"/>
+<text x="0" y="254" class="b ti">游戏内推送</text>
+<rect class="bx" x="100" y="226" width="110" height="48" rx="6"/><text x="155" y="255" text-anchor="middle" class="b">受众</text>
+<rect class="bi" x="700" y="226" width="110" height="48" rx="6"/><text x="755" y="255" text-anchor="middle" class="b">曝光</text>
+<rect class="bi" x="900" y="226" width="110" height="48" rx="6"/><text x="955" y="255" text-anchor="middle" class="b">点击</text>
+<g class="ar" marker-end="url(#a4)"><path d="M211,250 H698"/><path d="M811,250 H898"/></g>
+<text x="355" y="242" text-anchor="middle" class="m">发送：不适用</text>
+<text x="555" y="242" text-anchor="middle" class="m">到达：不适用</text>
+<text x="455" y="270" text-anchor="middle" class="m">被频率上限拦下的不弹出、不显示</text>
+</svg></div>
+<p class="note">受众＝符合发送对象条件的玩家，按行为推送按触发人次算。拦下原因按图中顺序判断，每人次只计第一个命中的原因</p>
+<h4>指标按层定义；比率写明分母</h4>
+<table>
+<tr><th style="width:120px">层</th><th style="width:110px">指标</th><th>怎么算</th></tr>
+<tr><td class="ly o" rowspan="6">游戏外推送</td><td class="nm">发送</td><td>被服务商受理的条数，含受理后退回的；服务商未受理的不计入</td></tr>
+<tr><td class="nm">到达</td><td>服务商回执为送达的条数</td></tr>
+<tr><td class="nm">到达率</td><td>到达 ÷ 发送</td></tr>
+<tr><td class="nm">曝光</td><td>玩家看到的条数：推播 Android 显示通知、Facebook 已读、LINE 官方统计</td></tr>
+<tr><td class="nm">点击</td><td>点开推送或点了链接的条数</td></tr>
+<tr><td class="nm">点击率</td><td>点击 ÷ 发送</td></tr>
+<tr class="grp"><td class="ly i" rowspan="3">游戏内推送</td><td class="nm">曝光</td><td>弹出或显示 1 次计 1</td></tr>
+<tr><td class="nm">点击</td><td>点了弹窗或快显</td></tr>
+<tr><td class="nm">点击率</td><td>点击 ÷ 曝光</td></tr>
+</table>
+<h4>拿不到的数据写明原因，不估算，也不用上一步的数代填</h4>
+<table>
+<tr><th style="width:150px">格子里写</th><th>什么时候用</th><th>例子</th></tr>
+<tr><td class="nm">该渠道不回传</td><td>服务商本身不提供这一步</td><td class="r">iOS 推播的到达、曝光；短信的曝光；LINE 单条推送的到达（只有按日汇总）</td></tr>
+<tr><td class="nm">无回执</td><td>发出了，但没收到这一条的回执</td><td class="r">短信运营商没回状态的条数；不算失败</td></tr>
+<tr><td class="nm">低于统计门槛</td><td>服务商只在人数达到门槛时才给数</td><td class="r">LINE 曝光不足 20 人时不返回</td></tr>
+<tr><td class="nm">不适用</td><td>这一层没有这一步</td><td class="r">游戏内推送的发送、到达</td></tr>
+</table>
+</div></details>
+
+</div></body></html>

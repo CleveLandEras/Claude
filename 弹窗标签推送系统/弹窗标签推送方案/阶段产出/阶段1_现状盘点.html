@@ -1,0 +1,195 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>现状盘点</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.35;margin:0 0 8px}
+.sub{font-size:16px;color:var(--ink-2);margin:0 0 28px}
+h2{font-family:var(--serif);font-size:20px;margin:48px 0 16px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px}
+.kpi .n{font-size:38px;font-weight:700;line-height:1.1;color:var(--ink)}
+.kpi .n small{font-size:16px;font-weight:600;margin-left:4px;color:var(--ink-2)}
+.kpi .t{font-size:14.5px;color:var(--ink-2);margin-top:8px}
+.kpi.red .n{color:var(--red)}
+.phase{border-top:4px solid var(--gray)}
+.phase.red{border-top-color:var(--red)} .phase.blue{border-top-color:var(--blue)}
+.phase .d{font-size:13px;color:var(--muted);font-weight:600}
+.phase .h{font-size:16.5px;font-weight:700;margin:4px 0 10px}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:12px}
+.tag.red{background:var(--red-soft);color:var(--red)} .tag.blue{background:var(--blue-soft);color:var(--blue)} .tag.gray{background:var(--gray-soft);color:var(--gray)} .tag.green{background:var(--green-soft);color:var(--green)}
+.kv{font-size:14px;color:var(--ink-2);margin:6px 0}
+.kv b{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:2px}
+.keep{display:flex;flex-wrap:wrap;gap:10px}
+.keep span{background:var(--green-soft);color:var(--green);font-size:14.5px;font-weight:600;padding:8px 14px;border-radius:4px}
+.cause .h{font-size:16.5px;font-weight:700;margin:0 0 6px}
+.cause .l{font-size:14.5px;color:var(--ink-2);margin:0 0 12px}
+.cause .e{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14.5px}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--line)}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--ground)}
+tr:last-child td{border-bottom:none}
+td.w{color:var(--ink)} td.r{color:var(--ink-2)} td.d{color:var(--muted);width:80px}
+tr.same td.w{color:var(--red);font-weight:600}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);margin-right:8px;vertical-align:1px}
+.legend{font-size:13px;color:var(--muted);margin:10px 0 0}
+.q{font-size:17px;font-weight:700;margin:0 0 14px}
+.opt{position:relative}
+.opt .h{font-size:16px;font-weight:700;margin:0 0 6px}
+.opt .l{font-size:14.5px;color:var(--ink-2)}
+.opt.rec{border:2px solid var(--blue)}
+.opt .badge{position:absolute;top:-11px;right:16px;background:var(--blue);color:#fff;font-size:12px;font-weight:700;padding:2px 10px;border-radius:3px}
+.why{font-size:14.5px;color:var(--ink-2);margin:14px 0 0}
+.why b{color:var(--ink)}
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.steps div{counter-increment:s;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 18px;font-size:14.5px;color:var(--ink-2)}
+.steps div::before{content:counter(s);display:block;font-size:22px;font-weight:700;color:var(--accent);margin-bottom:4px}
+.links{font-size:13px;color:var(--muted);margin-top:40px} a{color:var(--accent)}
+
+.v4{background:var(--surface);border:2px solid var(--ink);border-radius:8px;padding:18px 22px}
+.v4 .lab{font-size:12.5px;font-weight:700;color:var(--muted);letter-spacing:.08em;margin:0 0 10px}
+.row3{display:grid;grid-template-columns:90px 1fr 360px;gap:18px;align-items:center;padding:12px 0;border-top:1px solid var(--line)}
+.row3:first-of-type{border-top:none}
+.row3 .k{font-size:17px;font-weight:700}
+.row3 .s{font-size:15px;color:var(--ink)}
+.row3 .num{font-size:15px;color:var(--ink-2)} .row3 .num b{display:block;font-size:26px;color:var(--red);line-height:1.15}
+.shot{display:block}
+.imgwrap{position:relative;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#fff}
+.imgwrap img{display:block;width:100%}
+.mk{position:absolute;width:26px;height:26px;border-radius:50%;background:var(--blue);color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;transform:translate(-50%,-50%);box-shadow:0 0 0 3px rgba(255,255,255,.9)}
+.leg{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:14px}
+.leg div{font-size:14px;color:var(--ink-2);display:grid;grid-template-columns:26px 1fr;gap:10px}
+.leg i{font-style:normal;width:22px;height:22px;border-radius:50%;background:var(--blue);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.leg b{color:var(--ink);display:block}
+.cap{font-size:12.5px;color:var(--muted);margin:6px 0 0}
+.lane{display:grid;grid-template-columns:110px 1fr 190px;gap:14px;align-items:center;margin:10px 0}
+.lane .t{font-size:14.5px;font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips span{font-size:13px;padding:5px 9px;border-radius:4px;background:var(--gray-soft);color:var(--ink-2)}
+.chips span.on{background:var(--blue-soft);color:var(--blue);font-weight:700}
+.lane .r{font-size:14px;color:var(--ink-2)} .lane .r b{color:var(--ink)}
+.sum{display:flex;justify-content:space-between;align-items:center;border-top:1px dashed var(--line);margin-top:12px;padding-top:12px;font-size:14.5px;color:var(--ink-2)}
+.sum b{font-size:20px;color:var(--ink)}
+.place{border-top:4px solid var(--gray)}
+.place .h{font-size:16px;font-weight:700;margin:0 0 12px}
+.ch{border-top:1px solid var(--line);padding-top:10px;margin-top:10px}
+.ch:first-of-type{border-top:none;margin-top:0;padding-top:0}
+.ch .n{font-size:15px;font-weight:700;margin-bottom:4px}
+.ch p{margin:2px 0;font-size:13.5px;color:var(--ink-2)}
+.reach{display:flex;height:40px;border-radius:5px;overflow:hidden;margin:8px 0 6px}
+.reach div{display:flex;align-items:center;padding:0 12px;font-size:13.5px;font-weight:700;color:#fff}
+.grp{text-align:center}
+.grp .g{font-size:16px;font-weight:700}
+.grp .how{display:inline-block;font-size:12.5px;font-weight:700;padding:2px 9px;border-radius:3px;margin:8px 0 6px}
+.grp .c{font-size:13.5px;color:var(--ink-2)}
+.grp.new{border:2px solid var(--red)}
+.g5{grid-template-columns:repeat(5,1fr)}
+.fact .h{font-size:15px;font-weight:700;margin:0 0 4px}
+.fact .l{font-size:14px;color:var(--ink-2);margin:0}
+</style></head><body><div class="wrap">
+
+<p class="meta">阶段 1 · 现状盘点 · 2026-10-10 · 依据：10/10 后台截图、9/16 盘点、已确认的答复、近一月活跃数据</p>
+<h1>现状：所有玩家看同一套弹窗，推送分在三处，两类目标人群没有标签</h1>
+<p class="sub">回答「现在是什么样」。第一块是进入 V4 的缩略，下面三节是依据。</p>
+
+<div class="v4">
+  <p class="lab">V4 缩略</p>
+  <div class="row3"><div class="k">弹窗</div><div class="s">后台已能按规则定内容、顺序与数量；3 条上架规则都面向全部玩家</div><div class="num"><b>4 个</b>后台规则下每次最多弹出，所有人相同<br>新增另有客户端新手弹窗 2 个</div></div>
+  <div class="row3"><div class="k">推送</div><div class="s">5 种推送分在礼包后台、客户端、营销侧，各自配置、各自记录</div><div class="num"><b>40,117 人</b>8 天以上未登录、只能靠推送触达（占 74,480 人的 53.86%）</div></div>
+  <div class="row3"><div class="k">标签</div><div class="s">约 100 个标签，支持且、排除、或；群组之间不能取交集</div><div class="num"><b>2 类</b>五类目标人群中没有现成标签：潜在付费、潜在流失</div></div>
+</div>
+
+<h2><span class="no">01</span>弹窗：数量、内容、顺序都能按规则设定，但规则都面向全部玩家</h2>
+<div class="shot">
+  <div>
+    <div class="imgwrap">
+      <img src="../../来源资料/后台截图_1010/弹窗顺序设定_规则列表.png" alt="大厅弹窗顺序设定">
+      <span class="mk" style="left:44.6%;top:26.2%">1</span>
+      <span class="mk" style="left:66%;top:26.2%">2</span>
+      <span class="mk" style="left:75.2%;top:26.2%">3</span>
+      <span class="mk" style="left:83.4%;top:26.2%">4</span>
+      <span class="mk" style="left:10.9%;top:19.4%">5</span>
+    </div>
+    <p class="cap">大厅弹窗顺序设定（现有后台，10/10 截图，上架中共 3 条）</p>
+  </div>
+  <div class="leg">
+    <div><i>1</i><span><b>弹窗排序</b>排在前面的弹不了就往下取</span></div>
+    <div><i>2</i><span><b>弹出数量</b>每次最多弹几个</span></div>
+    <div><i>3</i><span><b>弹窗位置</b>大厅自动弹窗、游戏破产弹窗</span></div>
+    <div><i>4</i><span><b>对象</b>可选全部玩家或标签；3 条都是全部玩家</span></div>
+    <div><i>5</i><span><b>玩家弹窗顺序查询</b>输入玩家，看他的完整弹窗顺序</span></div>
+  </div>
+</div>
+
+<div class="card" style="margin-top:16px">
+  <p class="q" style="margin-bottom:6px">一位玩家每次进大厅看到什么</p>
+  <div class="lane"><div class="t">活动类 14 项</div>
+    <div class="chips"><span class="on">热门资讯</span><span class="on">发信送奖</span><span>月月抽</span><span class="on">卡别直升活动</span><span>限时挑战</span><span>天天敲蛋礼</span><span>回流任务</span><span>…共 14 项</span></div>
+    <div class="r"><b>取前 3 个可弹的</b><br>普卡跳过月月抽（金卡起）</div></div>
+  <div class="lane"><div class="t">储值类 7 项</div>
+    <div class="chips"><span class="on">首储礼包</span><span>独享礼包</span><span>惊喜三选一</span><span>限时加码礼包</span><span>…共 7 项</span></div>
+    <div class="r"><b>取第 1 个可买的</b><br>从未储值者总先取到首储礼包</div></div>
+  <div class="sum"><span>示例：从未储值的普卡玩家，活动均在开放期；蓝色为本次弹出</span><span>后台规则下每次最多 <b>4 个</b>；新增另有客户端新手弹窗 2 个</span></div>
+</div>
+
+<div class="grid g3" style="margin-top:14px">
+  <div class="card fact"><p class="h">多条规则同时命中都会弹</p><p class="l">顺序查询中活动类在前、储值类在后</p></div>
+  <div class="card fact"><p class="h">每项每日 1 次</p><p class="l">进大厅次数多的玩家，一天最多看到 14 个活动弹窗</p></div>
+  <div class="card fact"><p class="h">新手弹窗不在这套设定里</p><p class="l">新手挑战、新手通行证写死在客户端</p></div>
+</div>
+<p class="legend">破产时另弹 1 个：从未储值者先取首储礼包；已付费者先取独享礼包，破产礼包排第 3。弹窗曝光、点击有记录，部分不全。</p>
+
+<h2><span class="no">02</span>推送：五种方式分在三处，各自配置、各自记录</h2>
+<div class="grid g3">
+  <div class="card place"><p class="h">礼包后台</p>
+    <div class="ch"><div class="n">推播</div><p>装了 App 并授权的玩家</p><p>限时加码礼包触发后未购买时发送</p><p>推播报表：傳送、曝光、開啟</p></div></div>
+  <div class="card place"><p class="h">客户端</p>
+    <div class="ch"><div class="n">快显</div><p>当时在线的玩家</p><p>写死：如通行证升级提示、大厅中奖播报</p><p>记录位置未查清</p></div></div>
+  <div class="card place"><p class="h">营销侧</p>
+    <div class="ch"><div class="n">短信</div><p>按名单发送；数据在 BI，链接点击近期才埋点</p></div>
+    <div class="ch"><div class="n">Facebook、LINE</div><p>由营销侧发送；配置与记录方式未查清</p></div></div>
+</div>
+<div class="card" style="margin-top:14px">
+  <p class="q" style="margin-bottom:4px">谁只能靠推送：近一月活跃加八月已离开者 74,480 人</p>
+  <div class="reach"><div style="flex:34363;background:#8b9099">0–7 天内登录　34,363 人</div><div style="flex:40117;background:var(--red)">8 天以上未登录　40,117 人（53.86%）</div></div>
+  <p class="cap">8 天以上未登录的玩家进不了大厅，弹窗够不到；其中新增 5,960 人、回流 8,542 人</p>
+</div>
+
+<h2><span class="no">03</span>标签：三类人群有现成判定，两类要新建</h2>
+<div class="grid g5">
+  <div class="card grp"><div class="g">新增</div><span class="how tag gray">现有标签</span><div class="c">注册 30 天内<br>10,749 人</div></div>
+  <div class="card grp"><div class="g">回流</div><span class="how tag gray">现有标签</span><div class="c">会员身份为回流<br>16,564 人</div></div>
+  <div class="card grp"><div class="g">破产</div><span class="how tag gray">弹窗位置</span><div class="c">破产的时刻<br>不形成名单</div></div>
+  <div class="card grp new"><div class="g">潜在付费</div><span class="how tag red">无现成标签</span><div class="c">现有付费标签<br>只按储值金额分</div></div>
+  <div class="card grp new"><div class="g">潜在流失</div><span class="how tag red">无现成标签</span><div class="c">现有衰减标签<br>按储值、不按登录</div></div>
+</div>
+<p class="cap">人数为近一月活跃 62,292 人中（最后登录 8/16–9/16，已剔除机器人 599、测试账号 141）。</p>
+<div class="grid g3" style="margin-top:14px">
+  <div class="card fact"><p class="h">约 100 个标签，十大类</p><p class="l">每个标签是独立的 BigQuery 脚本，最快 25 分钟刷新</p></div>
+  <div class="card fact"><p class="h">组合：且、排除、或</p><p class="l">标签之间可组合；群组之间取交集尚未提供</p></div>
+  <div class="card fact"><p class="h">弹窗对象可选标签</p><p class="l">规则对象可选全部玩家或标签群组</p></div>
+</div>
+
+<h2><span class="no">04</span>待核实：不阻塞，不写成「做不到」</h2>
+<table>
+<tr><th>查什么</th><th>影响哪里</th></tr>
+<tr><td class="w">回流身份的离开天数与保留期</td><td class="r">回流组圈的是不是刚回来的玩家</td></tr>
+<tr><td class="w">玩家同属两个人群时，顺序查询显示哪套</td><td class="r">分组是否还要靠排除互斥</td></tr>
+<tr><td class="w">弹窗图片、文案、点击去向能否由运营编辑</td><td class="r">各组内容能否自行迭代</td></tr>
+<tr><td class="w">推播、短信能否按标签发送</td><td class="r">推送能否与弹窗共用人群</td></tr>
+<tr><td class="w">快显、Facebook、LINE 的记录在哪</td><td class="r">推送效果能否汇总到一处</td></tr>
+<tr><td class="w">实验分流能否直接配置</td><td class="r">能否在组内随机对照</td></tr>
+</table>
+
+<p class="links">依据：<a href="../../来源资料/后台截图_1010/弹窗顺序设定_1.png">弹窗顺序设定截图</a>　·　<a href="../../来源资料/后台截图_1010/玩家弹窗顺序查询_1.png">玩家弹窗顺序查询截图</a>　·　<a href="../../来源资料/claude_弹窗标签推送_盘点.html">9/16 盘点</a></p>
+</div></body></html>

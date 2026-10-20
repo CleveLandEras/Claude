@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>推送统一后台原型</title>
+<link rel="stylesheet" href="原型样式.css">
+</head>
+<body>
+<div class="page">
+<nav class="toc"><a href="#part1">一、全景<span>（侧栏 21 项对应 25 页）</span></a><i>／</i><a href="#part2">二、各页<span>（27 页：侧栏内 25 页、侧栏之外 2 页）</span></a><i>／</i><a href="#part3">三、按任务走一遍<span>（7 项任务）</span></a><i>／</i><a href="#appx">附录<span>（验收用例 819 条、追溯表 83 条、状态流转图 3 张、术语表 86 个、默认值与门槛依据 69 项）</span></a></nav>
+<header class="doc-hd">
+  <div class="eyebrow">推送系统的后台集成需求 · 原型 · 示例数据截至 2026-10-12（周一）15:30</div>
+  <h1 class="doc-t">推送统一后台集中发推送、设上限、查数据与操作纪录；「限时加码礼包未购买提醒」迁入本后台</h1>
+  <p class="doc-sub"><b>现在分在五处配置</b>推播分两处：礼包后台只发「限时加码礼包未购买提醒」，每周固定推播与活动推播由运营在另一个推播工具发；短信、Facebook、LINE 在营销侧（现在负责发送短信、Facebook、LINE 的营销团队及其工具）；弹窗在弹窗后台；快显写死在客户端。改后都在推送统一后台配置</p>
+  <p class="doc-sub"><b>共用规则</b>各推送方式选发送对象用同一套标签群组；每人每天上限、数据统计按同一套规则</p>
+  <p class="doc-sub"><b>六种推送方式分两层</b>游戏外推送（推播、短信、Facebook、LINE）：不在游戏里也收得到；游戏内推送（弹窗、快显）：在游戏里才看得到</p>
+  <div class="doc-key"><span class="co il">1</span>紫色＝说明标注<span class="sep">；</span><span class="mk n">新增</span><span class="mk c">改</span>蓝色「新增」「改」与蓝色虚线框＝相对现有后台的改动<span class="sep">；</span>「*」＝必填<span class="sep">；</span>「—」＝该格没有值（如未发生、未切换、无到期日）<span class="sep">；</span>「不适用」＝该推送方式没有这项指标</div>
+  <div class="doc-key" style="margin-top:6px">其余颜色：界面截图里按钮、链接与状态标签的颜色沿用现有后台；日历与图表里的颜色只在该图内有效，以图旁图例为准</div>
+</header>

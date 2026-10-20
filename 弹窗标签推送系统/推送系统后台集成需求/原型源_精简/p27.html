@@ -1,0 +1,56 @@
+<!-- ============ 页 27 告警 ============ -->
+<section id="p27">
+  <div class="crumb">其他 › 告警 · <b>页 27</b></div>
+  <h2>发送失败、到达骤降、新版本弹窗不显示、数据停更时系统自动提醒，不用等玩家或客服反映</h2>
+  <div class="pst"><span class="pk n">新页面</span>现在发送异常要等线上通报才发现</div>
+  <div class="row">
+    <div class="win"><div class="win-in"><div class="win-bar"><i></i><i></i><i></i><span>推送统一后台 › 其他 › 告警</span></div><div class="fig pd-flow">
+      <div class="main">
+        <div class="top"><span>推送统一后台 › 其他 › <span class="cur">告警</span></span><span>最近检测 15:30</span></div>
+        <div class="sec rel">
+          <div class="pd-bt"><span class="pd-h">告警记录</span><span class="pd-chips" style="margin:0"><span class="pd-chip pd-on">全部 4</span><span class="pd-chip">未处理 1</span><span class="pd-chip">已处理 2</span><span class="pd-chip">已恢复 1</span></span><span class="co il" data-n="1">1</span></div>
+          <table class="pd-dt">
+            <thead><tr><th>首次触发</th><th>规则</th><th>对象</th><th class="pd-r">当前值</th><th>状态</th><th>处理</th></tr></thead>
+            <tbody>
+              <tr><td>10/12 14:45</td><td>新客户端版本曝光异常</td><td style="white-space:normal">大厅弹窗 · App 3.8.3（Android）发版后请求 3,420 次</td><td class="pd-r">曝光 0</td><td><span class="pd-st pd-bad">未处理</span></td><td class="pd-lk">标为已处理</td></tr>
+              <tr><td>10/12 14:15</td><td>服务商未受理占比高</td><td style="white-space:normal">推播 · 当天累计，ID 44 未受理 9,120 条</td><td class="pd-r">78%</td><td>已处理</td><td style="white-space:normal">运营01：推送服务恢复后已重试</td></tr>
+              <tr><td>10/11 20:00</td><td>到达率低于同龄均值</td><td style="white-space:normal">推播 ID 46 · 10/10 20:00 这一批</td><td class="pd-r">77.2%</td><td>已处理</td><td style="white-space:normal">运营01：Android 通道波动，已恢复</td></tr>
+              <tr><td>10/10 12:00</td><td>回执中断</td><td style="white-space:normal">短信 · 10:00 发送的一批，2 小时后无回执占比</td><td class="pd-r">62%</td><td>已恢复（自动）</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="sec rel">
+          <div class="pd-bt"><span class="pd-h">告警规则</span><span class="pd-m">阈值可改、可单条停用</span><span class="co il" data-n="2">2</span></div>
+          <table class="pd-dt">
+            <thead><tr><th>规则</th><th>什么时候告警</th><th>样本够了才判断</th><th>适用</th></tr></thead>
+            <tbody>
+              <tr><td>到达率低于同龄均值</td><td style="white-space:normal">发送后 2 小时、24 小时各查一次，比近 7 天同龄均值低 5 个百分点</td><td>该批发送 ≥ 1,000</td><td style="white-space:normal">推播、短信</td></tr>
+              <tr><td>服务商未受理占比高</td><td style="white-space:normal">按推送方式当天累计，未受理占提交超过 5%</td><td>提交 ≥ 1,000</td><td style="white-space:normal">游戏外两种</td></tr>
+              <tr><td>回执中断</td><td style="white-space:normal">发送后 2 小时到达回执为 0；短信为无回执占比超过 50%</td><td>发送 ≥ 500</td><td style="white-space:normal">推播、短信</td></tr>
+              <tr><td>新客户端版本曝光异常</td><td style="white-space:normal">新版本有弹窗请求但曝光为 0，或曝光人数占比低于请求占比的一半</td><td>该版本请求 ≥ 100 次</td><td style="white-space:normal">弹窗、快显</td></tr>
+              <tr><td>游戏内上报中断</td><td style="white-space:normal">请求、下发正常，但曝光、点击的上报量比近 7 天同时段低一半以上；或某版本有返回、上报为 0</td><td>该版本返回 ≥ 100 项</td><td style="white-space:normal">弹窗、快显</td></tr>
+              <tr><td>数据汇总停更</td><td style="white-space:normal">数据汇总超过 60 分钟没有更新；停更时其余规则都不会触发，所以单独检测</td><td>—</td><td style="white-space:normal">全部</td></tr>
+              <tr class="pd-more"><td colspan="4">⋮ 迁入项 4 条（量级骤降、重复显示、开关读取失败、影子比对差异）随迁入管理一起做，规则写在迁入一节</td></tr>
+            </tbody>
+          </table>
+          <div class="pd-bt" style="margin-top:10px"><span class="pd-m">收件人</span><span class="pd-chip">运营01 ✕</span><span class="pd-chip">运营02 ✕</span><span class="pd-chip">数据01 ✕</span><span class="pd-m">＋ 添加</span></div>
+        </div>
+        <div class="sec rel">
+          <div class="pd-bt"><span class="pd-h">发版登记</span><span class="btn2 sm" style="margin-left:auto">＋ 手动登记</span><span class="co il" data-n="3">3</span></div>
+          <table class="pd-dt">
+            <thead><tr><th>版本号</th><th>平台</th><th>发版时间</th><th>来源</th><th>备注</th></tr></thead>
+            <tbody>
+              <tr><td>App 3.8.3</td><td>Android</td><td>10/12 14:00</td><td>自动识别</td><td class="dim">—</td></tr>
+              <tr><td>App 3.8.2</td><td>iOS</td><td>10/08 15:40</td><td>运营01 手动修正</td><td>商店审核延迟，按上架时间修正</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div></div></div>
+    <div class="aside"><div class="notes">
+      <div class="note"><span class="nb">1</span><div><b>怎么通知、什么时候结束</b><p>每 15 分钟检测一次。首次触发时，总览和概览顶部出现告警条，同时发邮件给收件人。条件持续时不重复通知；连续两次检测不再满足，自动转「已恢复」。</p></div></div>
+      <div class="note"><span class="nb">2</span><div><b>为什么用同龄均值和样本门槛</b><p>刚发出的推送到达还在增长，所以与过去比时两边都只取发送后同样时长的数（同龄）。样本不够不判断；某推送方式在本后台的数据不足 7 天时也先不判断，避免误报。</p></div></div>
+      <div class="note"><span class="nb">3</span><div><b>发版时间自动识别</b><p>某平台首次收到新版本号的弹窗请求、且当天该版本请求不少于 100 次时记为发版时间。可手动修正，修正记入操作纪录。告警「新客户端版本曝光异常」和趋势图的发版竖线都用它。</p></div></div>
+    </div></div>
+  </div>
+</section>

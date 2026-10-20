@@ -1,0 +1,437 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>推送后台评审要点</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;--accent-soft:#f5ecdc;--tint:#f9f8f6;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;--accent-soft:#2c2618;--tint:#202328;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;--accent-soft:#2c2618;--tint:#202328;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 32px 96px}
+a{color:var(--accent)}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.4;margin:0 0 10px}
+.sub{font-size:15px;color:var(--ink-2);margin:0 0 28px}
+.sub .sep{color:var(--line);margin:0 10px}
+.sync{font-size:13.5px;color:var(--ink-2);background:var(--accent-soft);border-radius:4px;padding:8px 14px;margin:-14px 0 28px}
+.pnote{font-size:13px;color:var(--ink-2);margin:12px 0 0}
+
+/* 首屏：各方入口（subgrid 让四张卡的各行对齐） */
+.parties{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(5,auto);column-gap:14px}
+a.pc{grid-row:span 5;display:grid;grid-template-rows:subgrid;row-gap:0;background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:6px;padding:16px 18px 12px;text-decoration:none;color:inherit}
+a.pc:hover{border-color:var(--accent)}
+.pc .pn{font-size:16px;font-weight:700;color:var(--ink);line-height:1.4}
+.pc .lb{font-size:12px;font-weight:600;color:var(--muted);margin:14px 0 8px}
+.pc .ki{margin:0 0 12px}
+.pc .ki b{display:block;font-size:14.5px;font-weight:700;color:var(--ink);line-height:1.45}
+.pc .ki span{display:block;font-size:13.5px;color:var(--ink-2);line-height:1.5;margin-top:2px}
+.pc .ft{padding-top:10px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted);display:flex;justify-content:space-between;align-items:baseline;align-self:end}
+.pc .ft i{font-style:normal;color:var(--accent);font-weight:700;font-size:14px}
+
+/* 各方小节 */
+section.party{margin-top:80px;padding-top:30px;border-top:1px solid var(--line)}
+h2{font-family:var(--serif);font-size:22px;margin:0;display:flex;align-items:baseline;gap:12px;scroll-margin-top:24px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+h3{font-size:15px;font-weight:700;margin:30px 0 12px;display:flex;align-items:baseline;gap:12px;color:var(--ink)}
+h3 small{font-size:13px;font-weight:400;color:var(--muted)}
+
+/* 关键确认卡：每项一行，左列事项与要确认的问题，中列文档已按的值，右列值不同时的影响 */
+.keys{display:flex;flex-direction:column;gap:12px}
+.kc{display:grid;grid-template-columns:290px 1.25fr 1fr;column-gap:32px;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:0 6px 6px 0;padding:16px 22px 18px}
+.kc .kt{margin:0;font-size:16.5px;font-weight:700;color:var(--ink);line-height:1.45}
+.kc .id{display:inline-block;min-width:36px;font-size:13.5px;font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums}
+.kc .ly{display:inline-block;margin:6px 0 0 36px;font-size:12px;color:var(--ink-2);background:var(--gray-soft);padding:1px 8px;border-radius:3px;white-space:nowrap}
+.kc .q{margin:8px 0 0 36px;font-size:13.5px;color:var(--ink-2);line-height:1.55}
+.kc .q b{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:1px}
+.kc .lb{display:block;font-size:12px;font-weight:600;color:var(--muted);margin:3px 0 4px}
+.kc .kf div{font-size:14.5px;color:var(--ink-2)}
+.kc .kf.v div{color:var(--ink);font-weight:500}
+.kc .kf.v .kg>span:nth-child(odd){color:var(--ink-2);font-weight:400}
+
+/* 并列值 */
+ul.vl{list-style:none;margin:0;padding:0}
+ul.vl li{position:relative;padding-left:13px}
+ul.vl li+li{margin-top:3px}
+ul.vl li::before{content:"";position:absolute;left:1px;top:.7em;width:4px;height:4px;border-radius:50%;background:var(--muted)}
+.kg{display:grid;grid-template-columns:max-content 1fr;column-gap:14px;row-gap:4px}
+.kg .k{color:var(--ink-2);font-weight:600}
+
+/* 其余确认表 */
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14px}
+th,td{padding:8px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12.5px;color:var(--muted);font-weight:600;background:var(--tint)}
+tr:last-child td{border-bottom:none}
+table.rest td.w{width:260px;font-weight:600;color:var(--ink)}
+.n{display:inline-block;min-width:46px;color:var(--muted);font-weight:600;font-variant-numeric:tabular-nums}
+table.rest td.w .wn{display:block;font-weight:400;font-size:12.5px;color:var(--muted);padding-left:46px}
+table.rest td.v{color:var(--ink)}
+tr.grp td{background:var(--tint);font-size:12.5px;font-weight:700;color:var(--ink-2);padding:6px 16px}
+
+/* 任务 */
+.tasks{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:4px 20px}
+.trow{display:flex;gap:16px;align-items:flex-start;padding:11px 0;border-top:1px solid var(--line)}
+.trow:first-child{border-top:none}
+.tm{flex:0 0 128px;font-size:13.5px;color:var(--ink-2);font-weight:600;padding-top:3px}
+.tb{flex:1}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{border:1px solid var(--line);background:var(--ground);border-radius:4px;padding:2px 10px;font-size:14px;color:var(--ink);white-space:nowrap}
+.chips span small{color:var(--muted);font-size:12.5px;margin-left:6px}
+.tdesc{display:flex;flex-wrap:wrap;column-gap:32px;row-gap:3px;font-size:13.5px;color:var(--ink-2);margin:10px 0 2px}
+ul.vl.tdesc li+li{margin-top:0}
+
+/* 结果 */
+section.end{margin-top:80px;padding-top:30px;border-top:1px solid var(--line)}
+.res{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+.res div{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 18px}
+.res b{display:block;font-size:15px;color:var(--ink);margin-bottom:4px}
+.res span{font-size:14px;color:var(--ink-2)}
+
+/* 折叠区 */
+.folds{margin-top:56px}
+details.fold{background:var(--surface);border:1px solid var(--line);border-radius:6px}
+details.fold+details.fold{margin-top:12px}
+details.fold>summary{list-style:none;cursor:pointer;padding:14px 20px;font-size:15.5px;font-weight:700;display:flex;align-items:baseline;gap:12px}
+details.fold>summary::-webkit-details-marker{display:none}
+details.fold>summary::before{content:"▸";color:var(--accent);font-size:12px;display:inline-block;transition:transform .15s}
+details.fold[open]>summary::before{transform:rotate(90deg)}
+details.fold>summary small{font-size:13px;font-weight:400;color:var(--muted)}
+.fold .in{padding:4px 20px 22px}
+.fold h4{font-size:14px;font-weight:700;color:var(--ink-2);margin:16px 0 8px}
+.fold h4:first-child{margin-top:4px}
+.fold table{font-size:14px}
+td.p{font-weight:600;color:var(--ink);background:var(--tint);width:150px}
+td.stg{width:150px;color:var(--ink-2);font-weight:600;background:var(--tint);border-right:1px solid var(--line)}
+.dn{display:inline-block;min-width:30px;font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums}
+.it{display:inline-block;white-space:nowrap;margin-right:6px}
+.it:not(:last-child)::after{content:"；"}
+table.loc td.w{width:300px;font-weight:600;color:var(--ink)}
+table.loc td.c9{width:110px;color:var(--muted);font-variant-numeric:tabular-nums}
+table.loc th.c9{width:110px}
+.ln{display:block}
+.s{display:inline-block}
+.nw{white-space:nowrap}
+</style></head><body><div class="wrap">
+
+<p class="meta">推送系统的后台集成需求 · 需求评审 · 确认项取自需求文档第 9 章 · 任务取自第 8 章</p>
+<h1>评审请各方先定会改设计或工时的关键确认项，再确认其余项并估算本方任务</h1>
+<p class="sub">评审对象：<a href="4_需求文档.md">需求文档 v0.9.24</a><span class="sep">|</span>界面：<a href="3_原型.html">原型</a><span class="sep">|</span>设计决定：<a href="2_方案设计.html">方案设计</a></p>
+<p class="sync">10/16 夜按需求文档 v0.9.24 同步评审前必须项；范围分级与任务拆分以<a href="4_需求文档.md#s8">需求文档第 8 章</a>为准</p>
+
+<nav class="parties">
+  <a class="pc" href="#rd">
+    <span class="pn">研发（服务端、后台）</span>
+    <span class="lb">影响最大的两项</span>
+    <span class="ki"><b>发送吞吐</b><span>15 分钟内全部玩家提交服务商</span></span>
+    <span class="ki"><b>重试幂等</b><span>每人 × 推送 × 期次一个发送键；推播、Facebook 超时不重试</span></span>
+    <span class="ft"><span>确认 71 项 · 任务 170 行</span><i>→</i></span>
+  </a>
+  <a class="pc" href="#kh">
+    <span class="pn">客户端（iOS、Android、Web、H5）</span>
+    <span class="lb">影响最大的两项</span>
+    <span class="ki"><b>快显下发通道与覆盖</b><span>经现有长连接下发到四端</span></span>
+    <span class="ki"><b>通知权限上报</b><span>App 启动与回到前台时上报</span></span>
+    <span class="ft"><span>确认 41 项 · 任务 21 行</span><i>→</i></span>
+  </a>
+  <a class="pc" href="#yx">
+    <span class="pn">营销侧</span>
+    <span class="lb">影响最大的两项</span>
+    <span class="ki"><b>切换方式</b><span>短信、Facebook、LINE 逐种切换</span></span>
+    <span class="ki"><b>Facebook「可发」的条件</b><span>在 Meta 允许的范围内才发</span></span>
+    <span class="ft"><span>确认 23 项 · 任务 3 行</span><i>→</i></span>
+  </a>
+  <a class="pc" href="#sj">
+    <span class="pn">数据平台</span>
+    <span class="lb">影响最大的两项</span>
+    <span class="ki"><b>更新间隔</b><span>每 15 分钟内更新一次</span></span>
+    <span class="ki"><b>人群归属</b><span>按发送时刻玩家所在的群组</span></span>
+    <span class="ft"><span>确认 18 项 · 任务 6 行</span><i>→</i></span>
+  </a>
+</nav>
+<p class="pnote">确认项数含已并入或已定的条目（研发 9 项、客户端 2 项、营销侧 1 项）；另有运营 36 项与暂定参数表 27 行，见<a href="4_需求文档.md#s9">需求文档第 9 章</a>。任务数取自<a href="4_需求文档.md#s8-2">需求文档 8.2</a>（共 214 行），研发一方只计服务端与后台前端，标签系统、礼包后台等其余 14 行见 8.2</p>
+
+<!-- 研发 -->
+<section class="party">
+<h2 id="rd"><span class="no">01</span>研发（服务端、后台）</h2>
+
+<h3>关键确认<small>值不同会改架构、工时或玩家看到的结果</small></h3>
+<div class="keys">
+  <div class="kc">
+    <div class="kq"><p class="kt"><span class="id">研1</span>发送吞吐</p><p class="q"><b>要确认</b><span class="s">推送服务与各服务商实际的发送速率</span></p></div>
+    <div class="kf v"><span class="lb">文档已按</span><div><ul class="vl"><li>推播：全部玩家 15 分钟内提交服务商<span class="nw">（例 74,480 人）</span></li><li>短信、Facebook、LINE：每秒不低于 50 条<span class="nw">（74,480 人约 25 分钟）</span></li></ul></div></div>
+    <div class="kf"><span class="lb">值不同时</span><div><span class="s">发送队列的并发设计与 15 分钟完成时限</span><span class="s">都要按实际速率重定</span></div></div></div>
+  <div class="kc">
+    <div class="kq"><p class="kt"><span class="id">研2</span>重试幂等</p><p class="q"><b>要确认</b><span class="s">按签约服务商逐项确认</span><span class="s">能否按我方 ID 去重或查询发送状态</span></p></div>
+    <div class="kf v"><span class="lb">文档已按</span><div><ul class="vl"><li>以本系统发送记录为准：每人 × 推送 × 期次一个发送键，自动重试、手动重试、续发沿用</li><li><span class="s">推播、Facebook 不能按我方 ID 去重或查询：</span><span class="s">提交后超时记「结果不明」，保守计入上限、不自动重试</span><span class="s">（推播可在重试窗口内手动重试一次，消息带折叠键）</span></li><li>推播连接未建立、请求未送达的超时可重试</li><li>LINE 用重试键（24 小时）；短信按能去重与查询</li></ul></div></div>
+    <div class="kf"><span class="lb">值不同时</span><div><span class="s">服务商能力与此不同的，</span><span class="s">「结果不明」的判定、是否可重试</span><span class="s">与发送键的用法随之改</span></div></div></div>
+  <div class="kc">
+    <div class="kq"><p class="kt"><span class="id">研3</span>发送时效</p><p class="q"><b>要确认</b><span class="s">从到点或事件发生，</span><span class="s">到提交服务商或下发快显的时限</span></p></div>
+    <div class="kf v"><span class="lb">文档已按</span><div><span class="kg"><span>游戏外推送 · 定时</span><span>到点后 1 分钟内开始</span><span>游戏外推送 · 按行为</span><span><span class="s">事件发生到提交服务商</span><span class="s"><span class="nw">1 分钟内</span></span></span><span>游戏内推送 · 快显</span><span>事件发生到下发 5 秒内</span></span></div></div>
+    <div class="kf"><span class="lb">值不同时</span><div><span class="s">事件处理要按实际时限</span><span class="s">选择实时处理或分批处理</span></div></div></div>
+  <div class="kc">
+    <div class="kq"><p class="kt"><span class="id">研4</span>首批触发事件</p><p class="q"><b>要确认</b><span class="s">五种触发事件能否都由服务端提供</span></p></div>
+    <div class="kf v"><span class="lb">文档已按</span><div><span class="kg"><span>礼包后台</span><span><span class="s">限时加码礼包快到期：</span><span class="s">礼包后台只发「礼包出现」事件（带到期时间），</span><span class="s">推送服务按 N 推算到点并复查购买状态</span></span><span>游戏服务端</span><span><span class="s">玩家升级、完成任务、</span><span class="s">通行证升级、中奖</span></span></span></div></div>
+    <div class="kf"><span class="lb">值不同时</span><div><span class="s">提供不了的事件从触发行为里去掉，</span><span class="s">或补开发并另估工时</span></div></div></div>
+</div>
+
+<h3>其余确认<small>值不同只改对应的数值或规则</small></h3>
+<table class="rest">
+<tr><th>要确认的事</th><th>文档已按的值</th></tr>
+<tr class="grp"><td colspan="2">时效与性能</td></tr>
+<tr><td class="w"><span class="n">研5</span>预计人数时效</td><td class="v"><ul class="vl"><li>估算值 2 秒内显示</li><li>准确值 15 秒内替换</li></ul></td></tr>
+<tr><td class="w"><span class="n">研6</span>玩家查询时效</td><td class="v"><ul class="vl"><li>发送结果产生后 5 分钟内在收到记录里查得到</li><li>查询 3 秒内返回</li></ul></td></tr>
+<tr><td class="w"><span class="n">研7</span>页面响应</td><td class="v">列表、看板查近 30 天范围，3 秒内返回</td></tr>
+<tr class="grp"><td colspan="2">发送与计数规则</td></tr>
+<tr><td class="w"><span class="n">研8</span>自动重试节奏</td><td class="v">30 分钟内 3 次：第 5、15、30 分钟</td></tr>
+<tr><td class="w"><span class="n">研9</span>系统延迟发送<span class="wn">推送服务故障使定时推送延后</span></td><td class="v"><span class="kg"><span class="k">延后 2 小时内</span><span>恢复后发出</span><span class="k">超过 2 小时</span><span>不发，状态为发送失败</span></span></td></tr>
+<tr><td class="w"><span class="n">研10</span>推播多设备</td><td class="v">一位玩家只发 1 条，发给最近一次登录的已装 App 设备</td></tr>
+<tr><td class="w"><span class="n">研11</span>弹窗额度占用</td><td class="v"><ul class="vl"><li>已返回、未上报显示的弹窗项目占用额度</li><li>5 分钟内未上报的释放</li></ul></td></tr>
+<tr class="grp"><td colspan="2">配置与保留</td></tr>
+<tr><td class="w"><span class="n">研12</span>测试名单登记</td><td class="v"><ul class="vl"><li>研发在系统配置登记哪些标签群组可作测试名单</li><li>默认「运营测试组」</li></ul></td></tr>
+<tr><td class="w"><span class="n">研13</span>切换开关由谁操作</td><td class="v"><span class="kg"><span class="k">研发操作</span><span><ul class="vl"><li>游戏外推送：短信、Facebook、LINE 的开关</li><li>游戏内推送：快显的开关</li><li>在系统配置中操作，运营界面不显示</li></ul></span><span class="k">运营操作</span><span>游戏外推送：限时加码礼包推播的开关，在「推荐礼包设定」页操作</span></span></td></tr>
+<tr><td class="w"><span class="n">研14</span>保留期限</td><td class="v"><ul class="vl"><li>每人每天计数 7 天</li><li>导出文件 7 天</li><li>操作纪录、版本快照长期</li></ul></td></tr>
+<tr class="grp"><td colspan="2">需求文档第 9 章研发 15–71（本页未逐条展开，按第 9 章确认）</td></tr>
+<tr><td class="w">需研发实质确认的</td><td class="v"><ul class="vl"><li>快显的在线状态与长连接下发归谁做</li><li>弹窗下发接口的性能</li><li>弹窗承接推送的取数</li><li>渠道凭证到期时间与余额读取</li><li>活动、礼包清单的来源；通用模块的标准事件</li><li>发送可靠性的做法：单执行者推进、请求幂等与互斥、限速限流退避与熔断、计数降级与预占过期、回执对账、操作纪录发件箱、测试环境隔离与令牌失效回落</li><li>弹窗判定时限与降级</li><li>按玩家存最近登录的平台与版本</li></ul></td></tr>
+<tr><td class="w">暂定数值</td><td class="v">各条做法只确认做法，数值在<a href="4_需求文档.md#s9">第 9 章末暂定参数表</a>确认（27 行，每行写明由谁确认）</td></tr>
+</table>
+
+<h3>要估工时的任务<small>下列为分组概览；逐行估算按需求文档 8.2，每行带批次与依赖</small></h3>
+<div class="tasks">
+  <div class="trow"><span class="tm">服务端</span><span class="chips"><span>推送任务与状态</span><span>发送对象与人数估算</span><span>发送执行与重试</span><span>每人每天上限与勿扰</span><span>按行为事件<small>含游戏服务端</small></span><span>服务商对接</span><span>测试发送</span><span>快显下发</span><span>弹窗下发改造<small>弹窗服务端</small></span><span>玩家查询</span><span>权限与操作纪录</span><span>切换开关</span></span></div>
+  <div class="trow"><span class="tm">后台前端</span><span class="chips"><span>推送统一后台框架与总览</span><span>游戏外推送页</span><span>快显页</span><span>弹窗页改造</span><span>频率上限页</span><span>数据看板与单条推送数据</span><span>玩家查询与操作纪录页</span></span></div>
+  <div class="trow"><span class="tm">礼包后台</span><span class="chips"><span>推荐礼包设定切换开关</span></span></div>
+  <div class="trow"><span class="tm">服务端、后台前端</span><span class="chips"><span>可选功能<small>复制到其他推送、文案变量、游戏外合计上限、弹窗间隔</small></span></span></div>
+  <div class="trow"><span class="tm">测试（QA）</span><span class="chips"><span>测试</span></span></div>
+</div>
+<p class="pnote">完整清单：<a href="4_需求文档.md#s8-2">需求文档 8.2</a>，服务端 103 行、后台前端 67 行；范围按 <a href="4_需求文档.md#s8-1">8.1</a> 分为本期必要 24 块、可延后 9 块、建议可延后 9 块，建议先议范围再估工时</p>
+</section>
+
+<!-- 客户端 -->
+<section class="party">
+<h2 id="kh"><span class="no">02</span>客户端（iOS、Android、Web、H5）</h2>
+
+<h3>关键确认<small>值不同会改架构、工时或玩家看到的结果</small></h3>
+<div class="keys">
+  <div class="kc">
+    <div class="kq"><p class="kt"><span class="id">客1</span>快显下发通道与覆盖</p><span class="ly">游戏内推送 · 快显</span><p class="q"><b>要确认</b><span class="s">快显经什么通道下发到哪些端</span></p></div>
+    <div class="kf v"><span class="lb">文档已按</span><div><ul class="vl"><li>沿用现有长连接</li><li>iOS、Android、Web、H5 都支持</li></ul></div></div>
+    <div class="kf"><span class="lb">值不同时</span><div><span class="s">要另建下发通道，</span><span class="s">或不支持的端继续显示写死内容</span></div></div></div>
+  <div class="kc">
+    <div class="kq"><p class="kt"><span class="id">客2</span>通知权限上报</p><span class="ly">游戏外推送 · 推播</span><p class="q"><b>要确认</b><span class="s">通知权限与设备令牌</span><span class="s">能否上报、何时上报</span></p></div>
+    <div class="kf v"><span class="lb">文档已按</span><div><ul class="vl"><li>App 启动与回到前台时上报</li><li>现有推送服务已有此状态的沿用</li></ul></div></div>
+    <div class="kf"><span class="lb">值不同时</span><div><span class="s">推播的可触达人数、「通知关闭」原因、</span><span class="s">玩家查询都要另找数据来源</span></div></div></div>
+  <div class="kc">
+    <div class="kq"><p class="kt"><span class="id">客3</span>推播回传</p><span class="ly">游戏外推送 · 推播</span><p class="q"><b>要确认</b><span class="s">两端推播各能回传哪几步</span></p></div>
+    <div class="kf v"><span class="lb">文档已按</span><div><span class="kg"><span>Android</span><span>到达、显示通知与点击</span><span>iOS</span><span>只回传点击</span></span></div></div>
+    <div class="kf"><span class="lb">值不同时</span><div><span class="s">数据看板推播两行的到达、曝光</span><span class="s">与<span class="nw">「仅 Android」</span>标注要改</span></div></div></div>
+</div>
+
+<h3>其余确认<small>值不同只改对应的数值或规则</small></h3>
+<table class="rest">
+<tr><th>要确认的事</th><th>文档已按的值</th></tr>
+<tr class="grp"><td colspan="2">游戏内推送：快显</td></tr>
+<tr><td class="w"><span class="n">客4</span>旧版本客户端</td><td class="v"><ul class="vl"><li>不支持服务端下发的继续显示写死内容</li><li>服务端不向其下发</li></ul></td></tr>
+<tr><td class="w"><span class="n">客5</span>玩家不在大厅时的快显</td><td class="v">回到大厅后显示，当次登录内有效</td></tr>
+<tr><td class="w"><span class="n">客6</span>快显下发有效期</td><td class="v"><ul class="vl"><li>下发后 30 分钟内未显示的丢弃，不计曝光</li><li>退出登录时一并丢弃</li></ul></td></tr>
+<tr class="grp"><td colspan="2">游戏内推送：弹窗</td></tr>
+<tr><td class="w"><span class="n">客7</span>弹窗计数</td><td class="v"><ul class="vl"><li>客户端每弹出 1 个上报 1 次</li><li>服务端下发时按剩余额度截断</li></ul></td></tr>
+<tr><td class="w"><span class="n">客8</span>新手挑战、新手通行证</td><td class="v"><ul class="vl"><li>改由弹窗规则下发</li><li>旧版本客户端照旧写死</li></ul></td></tr>
+<tr class="grp"><td colspan="2">需求文档第 9 章客户端 9–41（本页未逐条展开，按第 9 章确认）</td></tr>
+<tr><td class="w">需客户端实质确认的</td><td class="v"><ul class="vl"><li>服务端如何识别客户端支持服务端下发；下发协议与协议门槛版本</li><li>写死项开关的读取接口与变化消息；写死项的读开关与本地状态；读开关失败的判断顺序</li><li>曝光、点击、推播回传上报的可靠性与补报</li><li>弹窗显示失败回报；弹窗请求超时</li><li>游戏事件中延后</li><li>撤回消息与最长残留（未确认）</li><li>同号多端同时在线与断线排队</li></ul></td></tr>
+</table>
+
+<h3>要估工时的任务</h3>
+<div class="tasks">
+  <div class="trow"><span class="tm">iOS、Android</span><span class="chips"><span>快显服务端下发</span><span>弹窗改造</span></span></div>
+  <div class="trow"><span class="tm">Android</span><span class="chips"><span>推播回传</span><span>通知权限上报</span></span></div>
+  <div class="trow"><span class="tm">iOS</span><span class="chips"><span>通知权限上报</span></span></div>
+  <div class="trow"><span class="tm">Web／H5</span><span class="chips"><span>快显与弹窗适配</span></span></div>
+</div>
+<p class="pnote">完整清单：<a href="4_需求文档.md#s8-2">需求文档 8.2</a> 客户端 21 行</p>
+</section>
+
+<!-- 营销侧 -->
+<section class="party">
+<h2 id="yx"><span class="no">03</span>营销侧</h2>
+
+<h3>关键确认<small>值不同会改架构、工时或玩家看到的结果</small></h3>
+<div class="keys">
+  <div class="kc">
+    <div class="kq"><p class="kt"><span class="id">营1</span>切换方式</p><p class="q"><b>要确认</b><span class="s">短信、Facebook、LINE</span><span class="s">怎样从营销侧切到本后台</span></p></div>
+    <div class="kf v"><span class="lb">文档已按</span><div><ul class="vl"><li>逐种整体切换，每种一个切换开关</li><li>切换前已排程的在营销侧发完</li></ul></div></div>
+    <div class="kf"><span class="lb">值不同时</span><div><span class="s">切换开关、切换前检查项与回退流程</span><span class="s">都要重新设计</span></div></div></div>
+  <div class="kc">
+    <div class="kq"><p class="kt"><span class="id">营2</span>退订</p><p class="q"><b>要确认</b><span class="s">短信退订怎样同步到本后台</span></p></div>
+    <div class="kf v"><span class="lb">文档已按</span><div><ul class="vl"><li>服务商实时回传退订</li><li>切换前导入现有退订名单</li><li>退订方式由运营写在内文，系统只提示</li></ul></div></div>
+    <div class="kf"><span class="lb">值不同时</span><div><span class="s">不能实时回传时要另做定时同步，</span><span class="s">同步前退订的玩家仍可能收到短信</span></div></div></div>
+  <div class="kc">
+    <div class="kq"><p class="kt"><span class="id">营3</span>Facebook「可发」的条件</p><p class="q"><b>要确认</b><span class="s">Meta 允许向哪些已绑定玩家发消息</span></p></div>
+    <div class="kf v"><span class="lb">文档已按</span><div><ul class="vl"><li><span class="s">已绑定、未封锁主页消息，</span><span class="s">且在 Meta 允许的发送范围内</span></li><li>不在范围内的发送前拦下，记「平台限制」</li></ul></div></div>
+    <div class="kf"><span class="lb">值不同时</span><div><span class="s">Facebook 的可触达人数</span><span class="s">与「平台限制」的拦下规则随之改</span></div></div></div>
+  <div class="kc">
+    <div class="kq"><p class="kt"><span class="id">营4</span>LINE 数据</p><p class="q"><b>要确认</b><span class="s">LINE 的数据回传范围</span><span class="s">与超出消息额度时的处理</span></p></div>
+    <div class="kf v"><span class="lb">文档已按</span><div><ul class="vl"><li>只给按日汇总的送达</li><li>曝光不足 20 人不返回</li><li>超出消息额度按服务商当场拒绝处理</li></ul></div></div>
+    <div class="kf"><span class="lb">值不同时</span><div><span class="s">数据看板里 LINE 的到达、曝光写法</span><span class="s">与超额处理都要改</span></div></div></div>
+</div>
+
+<h3>其余确认<small>值不同只改对应的数值或规则</small></h3>
+<table class="rest">
+<tr><th>要确认的事</th><th>文档已按的值</th></tr>
+<tr class="grp"><td colspan="2">切换</td></tr>
+<tr><td class="w"><span class="n">营5</span>迁移期的上限与数据</td><td class="v"><ul class="vl"><li>切换前营销侧已排程、切换后在营销侧发出的（不限切换当天）不计入本后台的每人每天上限，也不进数据看板</li><li>验收从营销侧已排程的发完后起算</li></ul></td></tr>
+<tr class="grp"><td colspan="2">短信</td></tr>
+<tr><td class="w"><span class="n">营6</span>短信分则计费</td><td class="v"><ul class="vl"><li>单则 70 字</li><li>超过按服务商长短信串接规则计，常见每则 67 字（71–134 字 2 则）</li><li>营销侧按签约服务商的实际计费字数确认</li></ul></td></tr>
+<tr><td class="w"><span class="n">营7</span>短信长度上限</td><td class="v">350 字（按 67 字串接为 6 则）</td></tr>
+<tr><td class="w"><span class="n">营8</span>短链</td><td class="v">系统自带短链服务，每位收件人一个追踪码</td></tr>
+<tr class="grp"><td colspan="2">Facebook、LINE</td></tr>
+<tr><td class="w"><span class="n">营9</span>字数上限</td><td class="v"><ul class="vl"><li>Facebook 文字 640 字</li><li>LINE 带图片时 60 字</li><li>按钮文字 20 字</li></ul></td></tr>
+<tr><td class="w"><span class="n">营10</span>平台内容政策</td><td class="v"><ul class="vl"><li>运营按 Meta、LINE 政策撰写内容</li><li>平台拒绝的按当场拒绝处理</li></ul></td></tr>
+<tr class="grp"><td colspan="2">需求文档第 9 章营销侧 11–23（本页未逐条展开，按第 9 章确认）</td></tr>
+<tr><td class="w">需营销侧实质确认的</td><td class="v"><ul class="vl"><li>Facebook、LINE 账号与会员编号的对应；导出资料的格式与对应键</li><li>切换后与回退时的状态同步；营销侧怎么停止与恢复新建</li><li>切换后仍在营销侧发出的已排程推送，其回调怎么处理</li><li>切换前已排程清单与周期性排程；回退演练</li><li>短信单价、品牌前缀与 Facebook 消息标签用途；Facebook 现有发送方式；LINE 本月额度读取</li><li>计费条数口径；切换后营销侧对应页只读</li></ul></td></tr>
+</table>
+
+<h3>要估工时的任务</h3>
+<div class="tasks">
+  <div class="trow"><span class="tm">营销侧</span><div class="tb"><span class="chips"><span>切换准备</span></span><ul class="vl tdesc"><li>服务商账号与接口资料</li><li>退订名单、绑定与好友状态导出</li><li>切换前已排程清单</li><li>回退演练</li></ul></div></div>
+</div>
+<p class="pnote">完整清单：<a href="4_需求文档.md#s8-2">需求文档 8.2</a> 营销侧 3 行</p>
+</section>
+
+<!-- 数据平台 -->
+<section class="party">
+<h2 id="sj"><span class="no">04</span>数据平台</h2>
+
+<h3>关键确认<small>值不同会改架构、工时或玩家看到的结果</small></h3>
+<div class="keys">
+  <div class="kc">
+    <div class="kq"><p class="kt"><span class="id">数1</span>更新间隔</p><p class="q"><b>要确认</b><span class="s">数据看板、单条推送数据、总览多久更新</span></p></div>
+    <div class="kf v"><span class="lb">文档已按</span><div>每 15 分钟内更新一次</div></div>
+    <div class="kf"><span class="lb">值不同时</span><div><span class="s">汇总的计算方式要按实际间隔改，</span><span class="s">运营看到的数据延迟随之变</span></div></div></div>
+  <div class="kc">
+    <div class="kq"><p class="kt"><span class="id">数2</span>人群归属</p><p class="q"><b>要确认</b><span class="s">按人群统计时，</span><span class="s">玩家归入哪个时刻的群组</span></p></div>
+    <div class="kf v"><span class="lb">文档已按</span><div>按发送时刻玩家所在的群组归属</div></div>
+    <div class="kf"><span class="lb">值不同时</span><div><span class="s">改按当前群组时，不必记发送时的群组，</span><span class="s">但按人群的历史数字会随名单刷新变动</span></div></div></div>
+  <div class="kc">
+    <div class="kq"><p class="kt"><span class="id">数3</span>历史数据</p><p class="q"><b>要确认</b><span class="s">切换前的发送数据是否导入数据看板</span></p></div>
+    <div class="kf v"><span class="lb">文档已按</span><div><ul class="vl"><li><span class="s">营销侧、礼包后台时期的发送数据</span><span class="s">不导入数据看板</span></li><li>原推播报表保留，用于查迁移前数据</li></ul></div></div>
+    <div class="kf"><span class="lb">值不同时</span><div><span class="s">要导入时，增加历史数据的映射与导入，</span><span class="s">并另估工时</span></div></div></div>
+</div>
+
+<h3>其余确认<small>值不同只改对应的数值或规则</small></h3>
+<table class="rest">
+<tr><th>要确认的事</th><th>文档已按的值</th></tr>
+<tr><td class="w"><span class="n">数4</span>统计窗口</td><td class="v"><ul class="vl"><li>游戏外推送的到达、点击统计至发送后 5 天</li><li>LINE 14 天</li></ul></td></tr>
+<tr><td class="w"><span class="n">数5</span>保留</td><td class="v"><ul class="vl"><li>逐人明细 30 天</li><li>汇总长期</li></ul></td></tr>
+<tr class="grp"><td colspan="2">需求文档第 9 章数据平台 6–18（本页未逐条展开，按第 9 章确认）</td></tr>
+<tr><td class="w">需数据平台实质确认的</td><td class="v"><ul class="vl"><li>数据进入方式；接口与统计的分工；汇总结果交给推送服务的方式</li><li>汇总表的粒度与指标</li><li>超过逐人明细保留期（30 天）的发送、拦下、未受理</li><li>短信「发送后登录」的计算与交付</li><li>弹窗规则数据的来源与粒度；点击后的领取、购买；对照组为另一条规则中的部分玩家</li><li>打扰后果观察；看板新增数据的来源；邮件服务</li></ul></td></tr>
+</table>
+
+<h3>要估工时的任务</h3>
+<div class="tasks">
+  <div class="trow"><span class="tm">数据平台</span><div class="tb"><span class="chips"><span>指标汇总与导出</span></span><ul class="vl tdesc"><li>两层指标</li><li>人群归属</li><li>统计窗口</li><li>按日期、小时、设备汇总</li><li>导出</li><li>保留期</li></ul></div></div>
+</div>
+<p class="pnote">完整清单：<a href="4_需求文档.md#s8-2">需求文档 8.2</a> 数据平台 6 行</p>
+</section>
+
+<!-- 结果 -->
+<section class="end">
+<h2><span class="no">05</span>评审后要拿到的结果</h2>
+<div class="res">
+  <div><b>每项确认有结论</b><span>按文档已按的值开发，或给出实际值</span></div>
+  <div><b>每个任务有工时估算</b><span>按需求文档 8.2 逐行估算，单位人日</span></div>
+  <div><b>值不同的项改需求文档</b><span>只改该项所在的章节，其余不变</span></div>
+</div>
+</section>
+
+<div class="folds">
+<details class="fold">
+<summary>已定，不在本次讨论<small>范围、方案设计的 11 条决定</small></summary>
+<div class="in">
+<h4>范围</h4>
+<table>
+<tr><td class="p">推送方式</td><td><span class="kg"><span class="k">游戏外推送</span><span>推播、短信、Facebook、LINE</span><span class="k">游戏内推送</span><span>弹窗、快显</span></span></td></tr>
+<tr><td class="p">入口与流程</td><td><ul class="vl">
+  <li>全部推送在推送统一后台配置和发送</li>
+  <li>游戏外、游戏内分两组列出，组内每种推送方式一页</li>
+  <li>新建顺序：推送内容 → 发送对象 → 发送时间 → 频率上限 → 确认与测试</li>
+  <li>不设审批：防错靠确认页、测试发送、可停止与操作纪录</li></ul></td></tr>
+<tr><td class="p">在现有页面上改</td><td><ul class="vl">
+  <li>弹窗后台「大厅弹窗顺序设定」整页移入弹窗页</li>
+  <li>「玩家弹窗顺序查询」扩展为玩家查询</li>
+  <li>弹窗页的「操作纪录」页签扩到全部推送</li>
+  <li>礼包后台「推荐礼包设定」页的推播两项改为只读</li></ul></td></tr>
+<tr><td class="p">可选（已留位置）</td><td><ul class="vl"><li>一条内容复制到其他推送</li><li>文案插入变量</li><li>游戏外推送合计每人每天上限</li><li>同一位置两个弹窗的最小间隔</li></ul></td></tr>
+<tr><td class="p">不在本需求</td><td><ul class="vl"><li>会员标签设定、标签群组设定 4.3 以外的改动<span class="nw">（4.3 全部 8 小节在本需求内，由标签系统实现）</span></li><li>按人群拆分弹窗规则的配置<span class="nw">（弹窗规则本身的改动以 4.2.1 为准）</span></li><li>A/B 测试功能<span class="nw">（弹窗规则可分实验组与对照组）</span></li><li>多步自动化流程</li><li>埋点需求</li><li>其余后续与方案外事项见<a href="4_需求文档.md#s3-5">需求文档 3.5</a></li></ul></td></tr>
+</table>
+
+<h4>方案设计的 11 条决定</h4>
+<table>
+<tr><th>环节</th><th>决定</th></tr>
+<tr><td class="stg">配置</td><td><span class="dn">10</span>迁移时同一条推送只在一处生效</td></tr>
+<tr><td class="stg">选发送对象</td><td><span class="dn">1</span>按行为推送发给触发的玩家，群组只作可选限定</td></tr>
+<tr><td class="stg" rowspan="2">发送时间</td><td><span class="dn">2</span>定时推送按发送那一刻的群组名单发</td></tr>
+<tr><td><span class="dn">11</span>运行中的按行为推送修改后存为新版本</td></tr>
+<tr><td class="stg" rowspan="4">发送前拦下</td><td><span class="dn">3</span>每种推送方式每人每天各有上限，游戏内与游戏外分开计；合计上限做成可选，默认关闭</td></tr>
+<tr><td><span class="dn">5</span>到上限当天不再发，不排队补发</td></tr>
+<tr><td><span class="dn">6</span>勿扰 00:00–08:00 只管游戏外推送：立即、定时顺延，按行为放弃</td></tr>
+<tr><td><span class="dn">7</span>单条推送可不受上限，但须选「仍计入／不计入」并填原因</td></tr>
+<tr><td class="stg" rowspan="2">发送</td><td><span class="dn">4</span>游戏外推送按服务商受理计 1 条，游戏内推送按显示计</td></tr>
+<tr><td><span class="dn">8</span>临时错误由系统自动重试，服务商当场拒绝的不重试</td></tr>
+<tr><td class="stg">回执与查数据</td><td><span class="dn">9</span>数据两层各算一套；拿不到的写原因、不估算</td></tr>
+</table>
+</div>
+</details>
+
+<details class="fold">
+<summary>各确认项在需求文档里的位置<small>值不同时要改的章节</small></summary>
+<div class="in">
+<table class="loc">
+<tr><th>确认项</th><th class="c9">第 9 章编号</th><th>要改的章节</th></tr>
+<tr class="grp"><td colspan="3">研发（服务端、后台）</td></tr>
+<tr><td class="w"><span class="n">研1</span>发送吞吐</td><td class="c9">1</td><td>4.1.14 非功能要求</td></tr>
+<tr><td class="w"><span class="n">研2</span>重试幂等</td><td class="c9">14</td><td><span class="ln">4.1.1 八 发送任务的可靠性</span><span class="ln">4.2.5 短信、Facebook、LINE 从营销侧逐种切换</span></td></tr>
+<tr><td class="w"><span class="n">研3</span>发送时效</td><td class="c9">3</td><td><span class="ln">4.1.4 按行为触发</span><span class="ln">4.1.14 非功能要求</span></td></tr>
+<tr><td class="w"><span class="n">研4</span>首批触发事件</td><td class="c9">6</td><td><span class="ln">4.1.4 按行为触发</span><span class="ln">4.2.2 推荐礼包设定的推播迁移</span></td></tr>
+<tr><td class="w"><span class="n">研5</span>预计人数时效</td><td class="c9">2</td><td><span class="ln">4.1.1 通用规则</span><span class="ln">4.1.14 非功能要求</span></td></tr>
+<tr><td class="w"><span class="n">研6</span>玩家查询时效</td><td class="c9">11</td><td>4.1.14 非功能要求</td></tr>
+<tr><td class="w"><span class="n">研7</span>页面响应</td><td class="c9">12</td><td>4.1.14 非功能要求</td></tr>
+<tr><td class="w"><span class="n">研8</span>自动重试节奏</td><td class="c9">4</td><td>4.1.1 通用规则</td></tr>
+<tr><td class="w"><span class="n">研9</span>系统延迟发送</td><td class="c9">5</td><td>4.1.14 非功能要求</td></tr>
+<tr><td class="w"><span class="n">研10</span>推播多设备</td><td class="c9">7</td><td>4.1.1 通用规则</td></tr>
+<tr><td class="w"><span class="n">研11</span>弹窗额度占用</td><td class="c9">13</td><td><span class="ln">4.1.7 频率上限与勿扰</span><span class="ln">4.2.1 弹窗后台</span></td></tr>
+<tr><td class="w"><span class="n">研12</span>测试名单登记</td><td class="c9">8</td><td>4.1.5 测试发送</td></tr>
+<tr><td class="w"><span class="n">研13</span>切换开关由谁操作</td><td class="c9">10</td><td>4.2 已有需求修改</td></tr>
+<tr><td class="w"><span class="n">研14</span>保留期限</td><td class="c9">9</td><td>4.1.14 非功能要求</td></tr>
+<tr class="grp"><td colspan="3">客户端（iOS、Android、Web、H5）</td></tr>
+<tr><td class="w"><span class="n">客1</span>快显下发通道与覆盖</td><td class="c9">1</td><td><span class="ln">4.1.6 快显</span><span class="ln">4.2.4 快显改为服务端下发</span></td></tr>
+<tr><td class="w"><span class="n">客2</span>通知权限上报</td><td class="c9">7</td><td><span class="ln">4.1.1 通用规则</span><span class="ln">5.19 设备通知权限与切换开关</span></td></tr>
+<tr><td class="w"><span class="n">客3</span>推播回传</td><td class="c9">4</td><td>4.1.8 数据看板</td></tr>
+<tr><td class="w"><span class="n">客4</span>旧版本客户端</td><td class="c9">2</td><td>4.2.4 快显改为服务端下发</td></tr>
+<tr><td class="w"><span class="n">客5</span>玩家不在大厅时的快显</td><td class="c9">3</td><td>4.1.6 快显</td></tr>
+<tr><td class="w"><span class="n">客6</span>快显下发有效期</td><td class="c9">8</td><td>4.1.6 快显</td></tr>
+<tr><td class="w"><span class="n">客7</span>弹窗计数</td><td class="c9">5</td><td>4.2.1 弹窗后台</td></tr>
+<tr><td class="w"><span class="n">客8</span>新手挑战、新手通行证</td><td class="c9">6</td><td>4.2.1 弹窗后台</td></tr>
+<tr class="grp"><td colspan="3">营销侧</td></tr>
+<tr><td class="w"><span class="n">营1</span>切换方式</td><td class="c9">1</td><td>4.2.5 短信、Facebook、LINE 从营销侧逐种切换</td></tr>
+<tr><td class="w"><span class="n">营2</span>退订</td><td class="c9">4</td><td><span class="ln">4.1.15 合规</span><span class="ln">4.2.5 短信、Facebook、LINE 从营销侧逐种切换</span></td></tr>
+<tr><td class="w"><span class="n">营3</span>Facebook「可发」的条件</td><td class="c9">6</td><td><span class="ln">4.1.1 通用规则</span><span class="ln">4.1.15 合规</span></td></tr>
+<tr><td class="w"><span class="n">营4</span>LINE 数据</td><td class="c9">8</td><td><span class="ln">4.1.8 数据看板</span><span class="ln">4.1.15 合规</span></td></tr>
+<tr><td class="w"><span class="n">营5</span>迁移期的上限与数据</td><td class="c9">9</td><td>4.2.5 短信、Facebook、LINE 从营销侧逐种切换</td></tr>
+<tr><td class="w"><span class="n">营6</span>短信分则计费</td><td class="c9">2</td><td><span class="ln">4.1.3.5 短信、Facebook、LINE 与推播的不同</span><span class="ln">5.6 短信表单</span></td></tr>
+<tr><td class="w"><span class="n">营7</span>短信长度上限</td><td class="c9">3</td><td>5.6 短信表单</td></tr>
+<tr><td class="w"><span class="n">营8</span>短链</td><td class="c9">5</td><td><span class="ln">4.1.3.5 短信、Facebook、LINE 与推播的不同</span><span class="ln">5.6 短信表单</span></td></tr>
+<tr><td class="w"><span class="n">营9</span>字数上限</td><td class="c9">7</td><td>5.7 Facebook、LINE 表单</td></tr>
+<tr><td class="w"><span class="n">营10</span>平台内容政策</td><td class="c9">10</td><td>4.1.15 合规</td></tr>
+<tr class="grp"><td colspan="3">数据平台</td></tr>
+<tr><td class="w"><span class="n">数1</span>更新间隔</td><td class="c9">1</td><td>4.1.8 数据看板</td></tr>
+<tr><td class="w"><span class="n">数2</span>人群归属</td><td class="c9">3</td><td>4.1.8 数据看板</td></tr>
+<tr><td class="w"><span class="n">数3</span>历史数据</td><td class="c9">4</td><td><span class="ln">4.2.2 推荐礼包设定的推播迁移</span><span class="ln">4.2.5 短信、Facebook、LINE 从营销侧逐种切换</span></td></tr>
+<tr><td class="w"><span class="n">数4</span>统计窗口</td><td class="c9">2</td><td>4.1.8 数据看板</td></tr>
+<tr><td class="w"><span class="n">数5</span>保留</td><td class="c9">5</td><td>4.1.8 数据看板</td></tr>
+</table>
+</div>
+</details>
+</div>
+
+</div></body></html>

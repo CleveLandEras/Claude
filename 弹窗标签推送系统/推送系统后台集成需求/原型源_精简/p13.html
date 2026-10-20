@@ -1,0 +1,41 @@
+<!-- ============ 页 13 礼包后台：推荐礼包设定 ============ -->
+<section id="p13">
+  <div class="crumb">推播 › 礼包后台 · 推荐礼包设定（其他后台） · <b>页 13</b></div>
+  <h2>「限时加码礼包未购买提醒」迁入后，礼包后台这页只显示迁入状态，推播改到推送统一后台编辑</h2>
+  <div class="pst"><span class="pk o">现有页面上改</span>现在这条提醒在本页设定、由礼包后台发送；现有页面改两处：页顶加迁入状态块，「未购买推播时间」「标题」迁入后只读</div>
+  <div class="row">
+    <div class="win"><div class="win-in"><div class="win-bar"><i></i><i></i><i></i><span>礼包后台 › 推荐礼包设定</span></div><div class="fig ew" style="width:800px">
+      <div class="etabs" style="padding-left:14px"><span>储值品项设定</span><span>储值活动设定</span><span>产包设定</span><span class="on">推荐礼包管理</span></div>
+      <div style="display:flex">
+        <div class="emenu"><div class="on">推荐礼包设定</div><div>限时加码礼包玩家触发明细</div><div>限时加码订单明细</div><div>操作纪录</div></div>
+        <div style="flex:1;padding:12px 18px 16px;min-width:0">
+          <div class="rel" style="padding:8px 12px 9px;border:1px solid #D9ECFF;background:#ECF5FF;border-radius:4px;color:#303133;line-height:24px">
+            <span class="co" data-n="1" style="left:-11px;top:-11px">1</span>
+            <div style="font-weight:600">限时加码礼包未购买提醒 · 已迁入推送统一后台</div>
+            <div>生效位置：由推送统一后台发送<span class="co il" data-n="2">2</span><span class="elink" style="margin-left:14px">去迁入管理 ›</span><span class="co il" data-n="3">3</span></div>
+            <div>推播：ID 31 限时加码礼包未购买提醒 · 运行中<span class="elink" style="margin-left:14px">查看该推播 ›</span><span class="co il" data-n="4">4</span></div>
+          </div>
+
+          <div class="etitle">推荐礼包基础设定</div>
+          <div class="ef"><label style="width:170px">推荐码礼包开关</label><span class="esw"></span><span style="margin-left:6px">开</span></div>
+          <div class="ef"><label style="width:170px">排除名单</label><span class="eck">✓</span>黑名单<span class="eck" style="margin-left:14px">✓</span>VIP 名单<span class="co il" data-n="5">5</span></div>
+          <div class="ef"><label style="width:170px"></label><span class="mute">⋮ 玩家储值订单天数、限时礼包出现时间、重置时间、冷却时间，各项不变</span></div>
+          <div class="ef rel"><label style="width:170px">限时礼包未购买推播时间</label>还剩<span class="ein dis" style="width:46px;margin:0 6px">2</span>小时<span class="co il" data-n="6">6</span></div>
+          <div class="ef"><label style="width:170px">标题</label><span class="ein dis" style="width:220px">最後提醒⚠️幸運加碼禮包</span></div>
+
+          <div class="etitle">触发 RTP 加码条件 · 准入、加码幅度</div>
+          <div class="ef"><label style="width:170px"></label><span class="mute">⋮ 累计 RTP 天数、累计总押注额与加码幅度表，各项不变</span></div>
+          <div style="margin-top:14px"><span class="ebtn b">保存</span></div>
+        </div>
+      </div>
+    </div></div></div>
+    <div class="aside"><div class="notes">
+      <div class="note"><span class="nb">1</span><div><b>迁入后本页只显示状态，不再编辑推播</b><p>这条提醒已迁入推送统一后台，推播的内容、触发条件、排除群组都在推送统一后台改，本页不提供编辑。</p></div></div>
+      <div class="note"><span class="nb">2</span><div><b>生效位置有两个值，本页随之显示</b><p>「由推送统一后台发送」时显示本块，下方两项只读。未迁入或已切回「由礼包后台发送」时，本块写「由礼包后台发送 · 迁入在迁入管理」，下方两项恢复可编辑，礼包后台照常发送。</p></div></div>
+      <div class="note"><span class="nb">3</span><div><b>切换与切回在迁入管理（页 12）操作，本页不能改</b><p>「去迁入管理」打开页 12 并定位到该行。切换（礼包后台停止发送、推播变为运行中）在同一事务内完成，不会出现两处都发或都不发的时段；切回时，触发行为为「限时加码礼包快到期」的运行中推播（共 1 条，含 ID 31）全部变为已暂停，礼包后台恢复发送。</p></div></div>
+      <div class="note"><span class="nb">4</span><div><b>「查看该推播」打开页 4 里该条按行为推播</b><p>定位到 ID 31：触发行为「限时加码礼包快到期」，礼包剩余 2 小时时发送，只发给尚未购买该礼包的玩家。</p></div></div>
+      <div class="note"><span class="nb">5</span><div><b>其余设定项不变，排除名单只管礼包资格</b><p>开关、冷却时间、RTP 准入与加码幅度仍在本页设置。推播的排除在推播里另设（VIP 名单默认排除，黑名单、机器人与测试账号固定排除），不由本页排除名单决定。</p></div></div>
+      <div class="note"><span class="nb">6</span><div><b>「未购买推播时间」「标题」迁入后只读</b><p>时间对应该推播的触发条件，标题对应推送内容，要改到页 4 的该推播里改。</p></div></div>
+    </div></div>
+  </div>
+</section>

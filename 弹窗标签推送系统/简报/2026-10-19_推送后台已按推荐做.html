@@ -1,0 +1,108 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>推送后台按推荐先做</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1240px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.35;margin:0 0 8px}
+.sub{font-size:16px;color:var(--ink-2);margin:0 0 24px}
+h2{font-family:var(--serif);font-size:20px;margin:56px 0 16px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+h3{font-size:16px;margin:28px 0 10px}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)} .g2{grid-template-columns:repeat(2,1fr)} .g4{grid-template-columns:repeat(4,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px}
+.phase{border-top:4px solid var(--gray)}
+.phase.blue{border-top-color:var(--blue)} .phase.green{border-top-color:var(--green)} .phase.red{border-top-color:var(--red)}
+.phase .h{font-size:16.5px;font-weight:700;margin:4px 0 10px}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:10px}
+.tag.red{background:var(--red-soft);color:var(--red)} .tag.blue{background:var(--blue-soft);color:var(--blue)} .tag.gray{background:var(--gray-soft);color:var(--gray)} .tag.green{background:var(--green-soft);color:var(--green)}
+.kv{font-size:14px;color:var(--ink-2);margin:8px 0}
+.kv b{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:2px}
+.kv .pick{color:var(--blue);font-weight:700}
+ul.s{margin:0;padding-left:18px;color:var(--ink-2);font-size:14.5px} ul.s li{margin:3px 0}
+.kv ul.s{font-size:14px}
+.cause .h{font-size:16px;font-weight:700;margin:0 0 6px}
+.cause .l{font-size:14.5px;color:var(--ink-2);margin:0 0 10px}
+.cause .e{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px;margin:0}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14.5px}
+th,td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--ground)}
+tr:last-child td{border-bottom:none}
+td.k{font-weight:700;color:var(--ink);white-space:nowrap}
+td.p{color:var(--muted);white-space:nowrap}
+td.b{color:var(--muted)} td.a{color:var(--ink)} td.w{color:var(--ink-2);font-size:13.5px}
+td.miss{color:var(--red)}
+table.main td{font-size:14px}
+.note{font-size:13px;color:var(--muted);margin:10px 0 0}
+.q{font-size:16px;font-weight:700;margin:0 0 4px}
+.opt{position:relative}
+.opt.rec{border:2px solid var(--blue)}
+.badge{display:inline-block;background:var(--blue);color:#fff;font-size:11.5px;font-weight:700;padding:1px 8px;border-radius:3px;margin-left:6px;vertical-align:1px}
+.flow{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.flow div{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px 14px;font-size:13.5px;color:var(--ink-2)}
+.flow div b{display:block;color:var(--ink);font-size:14px;margin-bottom:4px}
+.flow div.empty{background:var(--gray-soft)}
+.src{font-size:13px;color:var(--muted);margin:12px 0 0}
+.src a,.links a{color:var(--accent)}
+.links{font-size:13px;color:var(--muted);margin-top:48px;line-height:2}
+td.t{white-space:nowrap;font-weight:700}
+td.t.new{color:var(--blue)} td.t.old{color:var(--green)}
+table.main td{font-size:14px}
+</style></head><body><div class="wrap">
+
+<p class="meta">2026-10-19 · 推送后台「按人群发」「一个入口」· 10/18 夜至 10/19 凌晨按我方推荐先做的事</p>
+<h1>推送后台：夜里按推荐先做的 19 件事，都可推翻</h1>
+<p class="sub">共 19 件：按人群发 11 件（6 件在原有段落里改写或加行，5 件是新加的整块），一个入口 8 件（见第 03 节）。都已写进需求文档和原型；你不同意哪件，告诉我那一行，我按「不同意时改回哪里」一列改回去。</p>
+
+<div class="grid g3">
+<div class="card phase green"><span class="tag green">6 件</span><div class="h">在原有段落里改</div><p class="kv">条件组、破产后未回到游戏、随机分桶号、名单另存为手动标签、召回类默认不发已登录的人、可疑批次暂停取用列本期最小版</p></div>
+<div class="card phase blue"><span class="tag blue">5 件</span><div class="h">新加的整块</div><p class="kv">人数名称、预计与实际对照、是否在某群组内、五类人群的重叠、实验与对照按整组看</p></div>
+<div class="card phase"><span class="tag gray">怎么推翻</span><div class="h">点名哪一行即可</div><p class="kv">改写的按最后一列改回原写法；新加的可整块删，删后不影响其他已定内容</p></div>
+</div>
+
+<h2><span class="no">01</span>6 件在原有段落里改，改回原写法即可</h2>
+<table class="main">
+<tr><th style="width:28%">定了什么</th><th style="width:26%">依据</th><th style="width:22%">已有块内改写还是新加</th><th>不同意时改回哪里</th></tr>
+<tr><td>群组的组合条件改为「条件组」：组内只用一种连接（全「且」或全「或」），组与组之间也只用一种，排除组最后扣；每行可切「不在」。取代「且优先于或」与「要括号先建中间群组」</td><td>原写法运营照直觉配会圈错；条件本身是群组时，中间群组违反「只嵌套 1 层」，走不通。Braze、CleverTap、Firebase、PlayFab、数数 TE 都用组结构表达括号</td><td class="w"><b>改写</b>：原「组合条件」逐行写法整段换成条件组写法，原文与原因留在旁边</td><td>原型页 19 组合条件；需求文档 4.3.2、4.3.9、5.23（改回「且优先于或」逐行写法与计算式）</td></tr>
+<tr><td>按行为推送加触发行为「破产后未回到游戏」：破产后 N 小时内未再登录才发，只用于游戏外推送四种</td><td>在游戏里破产由破产位弹窗承接，离开后才需要游戏外推送；原来「破产后很快推」两条路都走不通</td><td class="w"><b>块内加</b>：触发行为表加一行、下拉加一项；同时删去「破产弹窗的请求本身计入」的旧说法</td><td>原型页 4；需求文档 4.1.4、4.1.20、5.5</td></tr>
+<tr><td>随机分组改用系统标签「随机分桶号」（会员编号与实验名一起哈希，取 0–99），取代按会员编号尾数分</td><td>会员编号 8 位以上末位全为偶数，尾数奇偶实际是新老账号；同一实验名在推送、弹窗、快显同组，不同实验互不重叠（Amplitude 同此做法）</td><td class="w"><b>改写为主</b>：实验分流选项去掉「按会员编号尾数」；另在 4.3.3 加一张「随机分桶号」说明表</td><td>原型页 9、12、14、19；需求文档 3.5、4.2.1、4.3.3</td></tr>
+<tr><td>上传的名单可「另存为手动标签」（有效期 1–90 天）再用，并可加「只限群组」</td><td>补偿、回访名单常要再用、要与人群组合；借现有手动标签的批量导入，不另建名单库</td><td class="w"><b>块内加</b>：名单表、手动标签一节各加一行；原「只用于本条、不写入会员标签」改为「默认不写入，可另存」</td><td>原型页 3 名单区；需求文档 4.1.1「名单」、4.3.8</td></tr>
+<tr><td>召回类推送：群组「在」行含「未登录型」标签时，默认勾「名单算出后又登录过的不发」，逐人从此人命中的未登录型标签的数据截至之后查登录，命中多个取最早</td><td>标签按日或按批刷新，早上回来的人晚上仍会收到召回；按此人命中标签的数据截至补查，群组里混入别的标签也不会推后起点，也不误伤「注册次日未再登录」名单和「或」分支里正常登录的人</td><td class="w"><b>块内加</b>：发送对象表加一行勾选项，判断顺序加一步</td><td>原型页 2、3、4；需求文档 4.1.1、4.3.3</td></tr>
+<tr><td>「群组可疑批次暂停取用」（原候选块 B29）已列本期最小版</td><td>标签脚本出错时，没有它错名单会直接发出</td><td class="w"><b>改分级</b>：8.1 该行由「候选」改为「本期最小版」，追溯表第 72 项同步</td><td>需求文档 8.1「群组人数骤降自动暂停取用」一行改回「候选」，第 9 章运营 44、10.1 第 72 项同步</td></tr>
+</table>
+
+<h2><span class="no">02</span>5 块是新加的，你可整块删</h2>
+<p class="note" style="margin:0 0 12px">这几块是在「定之前不加新块」的约定下加的，按夜间规则先做；你不要哪块，整块删掉即可。</p>
+<table class="main">
+<tr><th style="width:24%">定了什么</th><th style="width:30%">依据：运营靠它完成什么</th><th style="width:10%">已有块内改写还是新加</th><th>不同意时改回哪里</th></tr>
+<tr><td>五种人数各起一个名字：群组人数、受众（排除后）、可触达、预计发出、弹窗预计人数；快显另叫「预计显示次数」；各处标名字与批次</td><td>运营看到一个人数，知道它是哪一层、哪一批；新建时预计与发完实际差多少时，能对上是哪一层少了</td><td class="t new">新加</td><td>删需求文档 4.1.1「人数名称」块；原型页 10 漏斗下的人数名称说明、术语表新增词条</td></tr>
+<tr><td>单条推送数据加「预计与实际对照」：确认时、开始发送时各存一份人数，逐层列差额和差额来源；含新接口 estimate-vs-actual</td><td>预计 12,000、实际只发出 7,800 时，运营自己按层对平，分清是群组变了、排除变了还是可触达变了，不用开单问研发</td><td class="t new">新加</td><td>删需求文档 4.1.9「预计与实际对照」块与接口 estimate-vs-actual，及 5.4、5.15 对应字段；原型页 13「预计与实际对照」卡片</td></tr>
+<tr><td>玩家查询加「是否在某群组内」：按条件组逐行看命中与否、数据截至与批次、命中了哪条排除；含新接口 group-check，第 9 章研发 17 加「按会员查群组命中」</td><td>客服或运营查一个玩家为什么没收到、为什么被圈进来，自己看到是哪条条件、哪天的数据</td><td class="t new">新加</td><td>删需求文档 4.1.10「是否在某群组内」块、接口 group-check、5.16 对应字段、第 9 章研发 17 中「按会员查群组组成命中」一段；原型页 15「查是否在群组内」</td></tr>
+<tr><td>五类人群概况：新增、回流、近 7 天破产、潜在付费、潜在流失各自人数、数据截至、状态，两两重叠与「不属于五类」的人数</td><td>运营负责人每月复核五类重叠多少、谁都不属于，原来只能看离线分析</td><td class="t new">新加</td><td>删需求文档 4.3.3 末「五类人群的重叠」块、4.1.8「按人群 · 五类人群概况」一行；原型页 12「五类人群概况」</td></tr>
+<tr><td>数据看板「按人群」加整组指标：两组的群组人数、发送后 1 日 / 7 日内登录占比（按整组，不论是否收到）、样本量与是否显著</td><td>实验组发、对照组不发时，按整组比较登录占比，判断这条推送有没有用；只比收到的人时，对照组没人收到，无从比较</td><td class="t new">新加</td><td>删原型页 12「按人群」整组指标块；需求文档 4.1.8 游戏外推送数据中整组指标一行</td></tr>
+</table>
+
+<h2><span class="no">03</span>「一个入口」8 件：一次活动的六种推送靠「所属活动」串起来</h2>
+<table class="main">
+<tr><th style="width:28%">定了什么</th><th style="width:30%">依据：运营靠它完成什么</th><th style="width:12%">已有块内改写还是新加</th><th>不同意时改回哪里</th></tr>
+<tr><td>推播、短信、Facebook、LINE、快显都加必选的「所属活动」（取活动与事件目录的项目，第一项是「不属于活动」），弹窗以排序项的项目为所属活动；营销档期退为跨活动的营销主题，只在档期页挂活动</td><td>原来一次活动由营销档期和项目两套键各挂一部分，开跑前的预热推送、外链短信挂不上项目，改期和停止都会漏。Satori 把消息挂在活动下</td><td class="w"><b>改写</b>：4.1.1、4.1.17、4.1.20 与各表单第 1 块</td><td>需求文档 4.1.17、4.1.20 原「营销档期与项目各管一半」写法；原型页 3、4、6、7、10 第 1 块去掉所属活动</td></tr>
+<tr><td>活动总览：在活动与事件目录点项目名打开，一页看这个活动六种推送的条数、状态、时刻、负责人、测试状态，页头「上线前核对」，带主文案、时间线、其他引用；「复制整套到新期次」列候选</td><td>「周年庆已配哪几种、缺哪种、测过没有」原来要在六个列表各筛一次。Satori 活动详情页集中列该活动全部消息</td><td class="t new">新加</td><td>删需求文档 4.1.20「活动总览」一节、原型页 16a 活动总览与总览「近 7 天的活动」卡</td></tr>
+<tr><td>项目时间变更传导的最小版（所属活动对象全进影响清单、相对活动时间自动跟随、绝对时间逐行选平移或保持、提前结束默认停发、通知负责人）从候选移入本期最小版</td><td>周年庆延后 2 天，原来 10/23 20:00 仍会发「明天开跑」，提前结束时外链短信照发</td><td class="w"><b>范围</b>：8.1 B27</td><td>8.1 B27 改回候选，改期只提示</td></tr>
+<tr><td>「撤下本活动」一次停六种：推送暂停、快显停止下发、弹窗只在各规则里关该项；取代档期停止里的「整条弹窗规则下架」</td><td>原来按档期停漏快显和弹窗项，按项目撤下漏预热与外链推送；整条下架会把常驻规则里其他活动一起撤掉</td><td class="w"><b>改写</b>：4.1.2、4.1.3.4</td><td>需求文档 4.1.3.4 与原型页 12b 档期停止原确认框</td></tr>
+<tr><td>短信、Facebook、LINE 切换期：营销侧已排、未发完的逐行登记为只读「外部排程」，所属活动必选，新建时比对同时刻的排程，改期撤下后进待处理跟进；列入 B08 最小版</td><td>原来营销侧已排的在本后台看不见，活动总览显示「未配」，照着新建会让同一批人收两条短信</td><td class="w"><b>范围＋新加</b>：8.1 B08、4.2.5</td><td>8.1 B08 改回「营销侧已排程的在营销侧发完」，删 4.2.5「外部排程」</td></tr>
+<tr><td>渠道连接状态与令牌到期提醒（到期前 7 天、1 天）从候选移入本期最小版</td><td>Facebook、LINE 令牌失效会让整批发送失败，原来只能等告警发现</td><td class="w"><b>范围</b>：8.1 B38</td><td>8.1 B38 改回候选</td></tr>
+<tr><td>全局搜索（按名称、ID、所属活动找推送、弹窗规则、快显）从候选移入本期最小版</td><td>第一次用的运营按 ID 找一条弹窗规则原来没有路</td><td class="w"><b>范围</b>：8.1 B34</td><td>8.1 B34 改回只留终止型弹窗</td></tr>
+<tr><td>弹窗新建规则底栏加「保存并上架」，一个确认框完成</td><td>推送确认一步上线，弹窗原来要保存后回列表再上架，两步两页</td><td class="t new">新加</td><td>删原型页 9 与需求文档 4.2.1 的「保存并上架」，保留保存后回列表上架</td></tr>
+</table>
+
+<p class="note" style="margin-top:32px">核对：需求文档中 estimate-vs-actual、group-check 两个接口行与第 9 章研发 17 一行，都没有写工时、人周、人天或研发任务拆分。</p>
+
+</div></body></html>

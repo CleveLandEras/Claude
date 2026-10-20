@@ -1,0 +1,6 @@
+# 仓库只放行列出的项目文件夹；各项目内另有 .gitignore
+/*
+!/.gitignore
+!/README.md
+!/CLAUDE.md
+!/弹窗标签推送系统/

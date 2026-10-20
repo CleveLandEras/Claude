@@ -1,0 +1,72 @@
+
+<div class="part" id="part3">三、按任务走一遍<span class="sub">7 项运营任务</span></div>
+<nav class="span-row c7"><a href="#t1"><b>1</b>给潜在流失发定时推播<span>5 步</span></a><a href="#t2"><b>2</b>迁入限时加码礼包未购买提醒<span>5 步</span></a><a href="#t3"><b>3</b>回流任务排到大厅弹窗第 1<span>4 步</span></a><a href="#t4"><b>4</b>调整每人每天上限与勿扰<span>3 步</span></a><a href="#t5"><b>5</b>看近 7 天数据并导出<span>5 步</span></a><a href="#t6"><b>6</b>查玩家没收到的原因<span>3 步</span></a><a href="#t7"><b>7</b>重试发送失败的推送<span>4 步</span></a></nav>
+<section id="tasks">
+  <h2>常做的 7 项任务各 3–5 步完成，每步标出所在页</h2>
+  <div class="tw">
+    <article class="tw-task" id="t1">
+      <div class="tw-hd"><span class="tw-n">1</span><div class="tw-tt"><b>给潜在流失（两档：近 14 天只登录 1 天、近 14 天登录 2–3 天）发一条 10/15 20:00 的定时推播</b><span class="tw-sub">确认排程前看到预计人数与被拦下人数，并先发给测试账号</span></div></div>
+      <ol class="tw-steps">
+        <li><a class="tw-st" href="#p2"><span class="tw-fr"><img src="../分析/推送后台_原型/走一遍_1-1.jpg" alt=""></span><span class="tw-cap"><i>1</i><span>推播列表点<span class="tw-nw">「新建推播」</span><em>页 2</em></span></span></a></li>
+        <li><a class="tw-st" href="#p3"><span class="tw-fr"><img src="../分析/推送后台_原型/走一遍_1-2.jpg" alt=""></span><span class="tw-cap"><i>2</i><span><span class="tw-ph">选潜在流失（两档）：</span><span class="tw-ph">7,880 → 排除后 7,850</span><span class="tw-ph">→ 可触达 <span class="tw-nw">4,310 人</span></span><em>页 3</em></span></span></a></li>
+        <li><a class="tw-st" href="#p3"><span class="tw-fr"><img src="../分析/推送后台_原型/走一遍_1-3.jpg" alt=""></span><span class="tw-cap"><i>3</i><span><span class="tw-ph">选定时 <span class="tw-nw">10/15 20:00</span>；</span>确认前看到频率上限拦下 <span class="tw-nw">110 人</span>、<span class="tw-ph">预计发出 <span class="tw-nw">4,200 人</span></span><em>页 3</em></span></span></a></li>
+        <li><a class="tw-st" href="#p3"><span class="tw-fr"><img src="../分析/推送后台_原型/走一遍_1-4.jpg" alt=""></span><span class="tw-cap"><i>4</i><span>确认排程前先发给「运营测试组」，<span class="tw-ph">按账号逐行看测试结果</span><em>页 3</em></span></span></a></li>
+        <li><a class="tw-st" href="#p2"><span class="tw-fr"><img src="../分析/推送后台_原型/走一遍_1-5.jpg" alt=""></span><span class="tw-cap"><i>5</i><span>点<span class="tw-nw">「确认排程」</span>，<span class="tw-ph">列表新增一行，状态为「已排程」</span><em>页 2</em></span></span></a></li>
+      </ol>
+    </article>
+    <article class="tw-task" id="t2">
+      <div class="tw-hd"><span class="tw-n">2</span><div class="tw-tt"><b>把「限时加码礼包未购买提醒」迁成按行为推播（触发行为：限时加码礼包快到期）</b><span class="tw-sub">在「推荐礼包设定」页确认切换后，礼包后台停止发送，选定的推播同时开始运行</span></div></div>
+      <ol class="tw-steps">
+        <li><a class="tw-st" href="#p4"><span class="tw-fr"><img src="../分析/推送后台_原型/走一遍_2-1.jpg" alt=""></span><span class="tw-cap"><i>1</i><span>按行为：选「限时加码礼包快到期」，<span class="tw-ph">礼包剩余 2 小时、只发给尚未购买该礼包的玩家</span><em>页 4</em></span></span></a></li>
+        <li><a class="tw-st" href="#p4"><span class="tw-fr"><img src="../分析/推送后台_原型/走一遍_2-3.jpg" alt=""></span><span class="tw-cap"><i>2</i><span>预计每天触发 <span class="tw-nw">1,250 人次</span> <span class="tw-ph">→ 可触达 <span class="tw-nw">800 人次</span></span><em>页 4</em></span></span></a></li>
+        <li><a class="tw-st" href="#p4"><span class="tw-fr"><img src="../分析/推送后台_原型/走一遍_2-4.jpg" alt=""></span><span class="tw-cap"><i>3</i><span>提示礼包后台仍在发送，<span class="tw-ph">点「保存，去切换」</span><em>页 4</em></span></span></a></li>
+        <li><a class="tw-st" href="#p18"><span class="tw-fr"><img src="../分析/推送后台_原型/走一遍_2-5.jpg" alt=""></span><span class="tw-cap"><i>4</i><span>「推荐礼包设定」页切到「由推送统一后台发送」，<span class="tw-ph">选定推播 ID 31</span><em>页 18</em></span></span></a></li>
+        <li><a class="tw-st" href="#p18"><span class="tw-fr"><img src="../分析/推送后台_原型/走一遍_2-2.jpg" alt=""></span><span class="tw-cap"><i>5</i><span>切换后：礼包后台的推播时间与标题改为只读，<span class="tw-ph">ID 31 变为运行中</span><em>页 18</em></span></span></a></li>
+      </ol>
+    </article>
+    <article class="tw-task" id="t3">
+      <div class="tw-hd"><span class="tw-n">3</span><div class="tw-tt"><b>把回流玩家的大厅弹窗里「回流任务」排到第 1</b><span class="tw-sub">改现有规则 ID 13 的排序，保存后回流玩家进大厅先弹回流任务</span></div></div>
+      <ol class="tw-steps">
+        <li><a class="tw-st" href="#p8"><span class="tw-fr"><img src="../分析/推送后台_原型/走一遍_3-1.jpg" alt=""></span><span class="tw-cap"><i>1</i><span>弹窗列表找到 ID 13「活动类·回流」，<span class="tw-ph">点「编辑」</span><em>页 8</em></span></span></a></li>
+        <li><a class="tw-st" href="#p9"><span class="tw-fr"><img src="../分析/推送后台_原型/走一遍_3-2.jpg" alt=""></span><span class="tw-cap"><i>2</i><span>弹窗排序里把回流任务从第 7 拖到第 1，<span class="tw-ph">保存并在确认框核对改动</span><em>页 9</em></span></span></a></li>
+        <li><a class="tw-st" href="#p8"><span class="tw-fr"><img src="../分析/推送后台_原型/走一遍_3-3.jpg" alt=""></span><span class="tw-cap"><i>3</i><span>列表里 ID 13 的排序第 1 项<span class="tw-ph">变为回流任务</span><em>页 8</em></span></span></a></li>
+        <li><a class="tw-st" href="#p16"><span class="tw-fr"><img src="../分析/推送后台_原型/走一遍_3-4.jpg" alt=""></span><span class="tw-cap"><i>4</i><span>操作纪录记一条：<span class="tw-ph">回流任务 第 7 → 第 1</span><em>页 16</em></span></span></a></li>
+      </ol>
+    </article>
+    <article class="tw-task" id="t4">
+      <div class="tw-hd"><span class="tw-n">4</span><div class="tw-tt"><b>调整每人每天上限与勿扰时段</b><span class="tw-sub">保存前看到影响人次；改动记入操作纪录</span></div></div>
+      <ol class="tw-steps">
+        <li><a class="tw-st" href="#p11"><span class="tw-fr"><img src="../分析/推送后台_原型/走一遍_4-1.jpg" alt=""></span><span class="tw-cap"><i>1</i><span>推播每人每天上限改为 <span class="tw-nw">3 条</span>，<span class="tw-ph">勿扰时段改为 <span class="tw-nw">23:00–08:00</span></span><em>页 11</em></span></span></a></li>
+        <li><a class="tw-st" href="#p11"><span class="tw-fr"><img src="../分析/推送后台_原型/走一遍_4-2.jpg" alt=""></span><span class="tw-cap"><i>2</i><span>保存前确认改前改后：<span class="tw-ph">推播每天约少拦下 <span class="tw-nw">430 人</span>，</span><span class="tw-ph">勿扰时段延长使按行为推送每天约多放弃 <span class="tw-nw">120 人次</span></span><em>页 11</em></span></span></a></li>
+        <li><a class="tw-st" href="#p11"><span class="tw-fr"><img src="../分析/推送后台_原型/走一遍_4-3.jpg" alt=""></span><span class="tw-cap"><i>3</i><span>保存后对之后的发送生效，<span class="tw-ph">改动记入操作纪录</span><em>页 11</em></span></span></a></li>
+      </ol>
+    </article>
+    <article class="tw-task" id="t5">
+      <div class="tw-hd"><span class="tw-n">5</span><div class="tw-tt"><b>看近 7 天各推送方式的数据并导出</b><span class="tw-sub">游戏外推送看发送、到达、点击；游戏内推送看曝光、点击</span></div></div>
+      <ol class="tw-steps">
+        <li><a class="tw-st" href="#p12"><span class="tw-fr"><img src="../分析/推送后台_原型/走一遍_5-1.jpg" alt=""></span><span class="tw-cap"><i>1</i><span><span class="tw-ph">日期选<span class="tw-nw">「近 7 天」</span>；</span><span class="tw-ph">游戏外推送表从发送算起</span><em>页 12</em></span></span></a></li>
+        <li><a class="tw-st" href="#p12"><span class="tw-fr"><img src="../分析/推送后台_原型/走一遍_5-2.jpg" alt=""></span><span class="tw-cap"><i>2</i><span><span class="tw-ph">游戏内推送表从曝光算起</span><em>页 12</em></span></span></a></li>
+        <li><a class="tw-st" href="#p12"><span class="tw-fr"><img src="../分析/推送后台_原型/走一遍_5-3.jpg" alt=""></span><span class="tw-cap"><i>3</i><span><span class="tw-ph">点<span class="tw-nw">「导出 Excel」</span>：</span><span class="tw-ph">游戏外与游戏内汇总、</span><span class="tw-ph">按人群、</span><span class="tw-ph">按日期、</span><span class="tw-ph">推送明细一起导出</span><em>页 12</em></span></span></a></li>
+        <li><a class="tw-st" href="#p12"><span class="tw-fr"><img src="../分析/推送后台_原型/走一遍_5-4.jpg" alt=""></span><span class="tw-cap"><i>4</i><span>推送明细看每条推送的发送、<span class="tw-ph">到达、</span><span class="tw-ph">点击，</span><span class="tw-ph">点名称进入单条推送数据</span><em>页 12</em></span></span></a></li>
+        <li><a class="tw-st" href="#p13"><span class="tw-fr"><img src="../分析/推送后台_原型/走一遍_5-5.jpg" alt=""></span><span class="tw-cap"><i>5</i><span>单条推送数据从受众到点击逐步列出，<span class="tw-ph">每一步写少了多少、少在哪</span><em>页 13</em></span></span></a></li>
+      </ol>
+    </article>
+    <article class="tw-task" id="t6">
+      <div class="tw-hd"><span class="tw-n">6</span><div class="tw-tt"><b>查一位玩家为什么没收到 10/12 10:00 的短信</b><span class="tw-sub">从玩家查询直接看到没收到的原因</span></div></div>
+      <ol class="tw-steps">
+        <li><a class="tw-st" href="#p15"><span class="tw-fr"><img src="../分析/推送后台_原型/走一遍_6-1.jpg" alt=""></span><span class="tw-cap"><i>1</i><span>按会员编号查询<em>页 15</em></span></span></a></li>
+        <li><a class="tw-st" href="#p15"><span class="tw-fr"><img src="../分析/推送后台_原型/走一遍_6-2.jpg" alt=""></span><span class="tw-cap"><i>2</i><span>「各推送方式能否收到」短信一行：有手机号；<span class="tw-ph">今日（10/12）已收 0／1 条</span><em>页 15</em></span></span></a></li>
+        <li><a class="tw-st" href="#p15"><span class="tw-fr"><img src="../分析/推送后台_原型/走一遍_6-3.jpg" alt=""></span><span class="tw-cap"><i>3</i><span>结果选「未收到」：10/12 10:00 短信未送达，<span class="tw-ph">原因是服务商接口超时；</span><span class="tw-ph">点推送名称进入单条推送数据</span><em>页 15</em></span></span></a></li>
+      </ol>
+    </article>
+    <article class="tw-task" id="t7">
+      <div class="tw-hd"><span class="tw-n">7</span><div class="tw-tt"><b>处理一条发送失败的推送：重试失败部分</b><span class="tw-sub">只重发可重试的部分，结果当场可查</span></div></div>
+      <ol class="tw-steps">
+        <li><a class="tw-st" href="#p1"><span class="tw-fr"><img src="../分析/推送后台_原型/走一遍_7-1.jpg" alt=""></span><span class="tw-cap"><i>1</i><span>总览待处理：发送失败与<span class="tw-ph">部分失败·可重试的各列一行</span><em>页 1</em></span></span></a></li>
+        <li><a class="tw-st" href="#p2"><span class="tw-fr"><img src="../分析/推送后台_原型/走一遍_7-2.jpg" alt=""></span><span class="tw-cap"><i>2</i><span>点「重试失败部分」：<span class="tw-ph">确认框列出可重试条数、截止时间与重发规则</span><em>页 2 · 其他界面状态</em></span></span></a></li>
+        <li><a class="tw-st" href="#p13"><span class="tw-fr"><img src="../分析/推送后台_原型/走一遍_7-3.jpg" alt=""></span><span class="tw-cap"><i>3</i><span>重试之后：受理 <span class="tw-nw">9,040 条</span>，<span class="tw-ph">仍未受理 <span class="tw-nw">80 条</span></span><em>页 13 · 其他界面状态</em></span></span></a></li>
+        <li><a class="tw-st" href="#p1"><span class="tw-fr"><img src="../分析/推送后台_原型/走一遍_7-4.jpg" alt=""></span><span class="tw-cap"><i>4</i><span>总览里 ID 44 改列<span class="tw-ph">「部分失败·可重试」</span><em>页 1</em></span></span></a></li>
+      </ol>
+    </article>
+  </div>
+</section>

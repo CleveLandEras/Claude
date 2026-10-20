@@ -1,0 +1,98 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>阶段产出规划</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.35;margin:0 0 8px}
+.sub{font-size:16px;color:var(--ink-2);margin:0 0 28px}
+h2{font-family:var(--serif);font-size:20px;margin:48px 0 16px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px}
+.kpi .n{font-size:38px;font-weight:700;line-height:1.1;color:var(--ink)}
+.kpi .n small{font-size:16px;font-weight:600;margin-left:4px;color:var(--ink-2)}
+.kpi .t{font-size:14.5px;color:var(--ink-2);margin-top:8px}
+.kpi.red .n{color:var(--red)}
+.phase{border-top:4px solid var(--gray)}
+.phase.red{border-top-color:var(--red)} .phase.blue{border-top-color:var(--blue)}
+.phase .d{font-size:13px;color:var(--muted);font-weight:600}
+.phase .h{font-size:16.5px;font-weight:700;margin:4px 0 10px}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:12px}
+.tag.red{background:var(--red-soft);color:var(--red)} .tag.blue{background:var(--blue-soft);color:var(--blue)} .tag.gray{background:var(--gray-soft);color:var(--gray)} .tag.green{background:var(--green-soft);color:var(--green)}
+.kv{font-size:14px;color:var(--ink-2);margin:6px 0}
+.kv b{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:2px}
+.keep{display:flex;flex-wrap:wrap;gap:10px}
+.keep span{background:var(--green-soft);color:var(--green);font-size:14.5px;font-weight:600;padding:8px 14px;border-radius:4px}
+.cause .h{font-size:16.5px;font-weight:700;margin:0 0 6px}
+.cause .l{font-size:14.5px;color:var(--ink-2);margin:0 0 12px}
+.cause .e{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14.5px}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--line)}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--ground)}
+tr:last-child td{border-bottom:none}
+td.w{color:var(--ink)} td.r{color:var(--ink-2)} td.d{color:var(--muted);width:80px}
+tr.same td.w{color:var(--red);font-weight:600}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);margin-right:8px;vertical-align:1px}
+.legend{font-size:13px;color:var(--muted);margin:10px 0 0}
+.q{font-size:17px;font-weight:700;margin:0 0 14px}
+.opt{position:relative}
+.opt .h{font-size:16px;font-weight:700;margin:0 0 6px}
+.opt .l{font-size:14.5px;color:var(--ink-2)}
+.opt.rec{border:2px solid var(--blue)}
+.opt .badge{position:absolute;top:-11px;right:16px;background:var(--blue);color:#fff;font-size:12px;font-weight:700;padding:2px 10px;border-radius:3px}
+.why{font-size:14.5px;color:var(--ink-2);margin:14px 0 0}
+.why b{color:var(--ink)}
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.steps div{counter-increment:s;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 18px;font-size:14.5px;color:var(--ink-2)}
+.steps div::before{content:counter(s);display:block;font-size:22px;font-weight:700;color:var(--accent);margin-bottom:4px}
+.links{font-size:13px;color:var(--muted);margin-top:40px} a{color:var(--accent)}
+
+.ans{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:6px;padding:16px 20px;margin-top:14px}
+.ans .h{font-size:16px;font-weight:700;margin:0 0 8px}
+.ans p{margin:4px 0;font-size:14.5px;color:var(--ink-2)}
+.stage{display:grid;grid-template-columns:150px 1.1fr 1fr 130px;gap:18px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 20px;margin-bottom:10px}
+.stage .nm{font-size:16px;font-weight:700} .stage .nm small{display:block;font-size:13px;font-weight:600;color:var(--blue);margin-top:2px}
+.stage .c{font-size:14px;color:var(--ink-2)} .stage .c b{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:2px}
+.stage .pg{font-size:13px;color:var(--muted)} .stage .pg b{display:block;font-size:15px;color:var(--ink)}
+.bar{display:flex;gap:4px;margin:6px 0 10px}
+.bar div{border-radius:4px;padding:12px 10px;font-size:13.5px;font-weight:700;color:#fff;text-align:center}
+.bar .s0{background:#5d6470} .bar .s1{background:var(--red)} .bar .s2{background:var(--blue)} .bar .s3{background:#b0782a} .bar .s4{background:var(--green)} .bar .s5{background:#8b9099}
+.bar div small{display:block;font-weight:500;font-size:12px;opacity:.9;margin-top:2px}
+.ref .h{font-size:15.5px;font-weight:700;margin:0 0 6px}
+.ref .from{font-size:12.5px;color:var(--muted);margin:0 0 8px}
+.ref .to{font-size:14px;color:var(--ink-2);border-top:1px solid var(--line);padding-top:8px;margin:0}
+.need{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.need div{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px 16px;font-size:14px;color:var(--ink-2)}
+.need b{display:block;color:var(--ink);font-size:14.5px;margin-bottom:2px}
+</style></head><body><div class="wrap">
+<p class="meta">阶段产出规划 · 2026-10-10 起 · 本表变更需 Dk 确认（10/10「直接开始」确认按四段并成五份）</p>
+<h1>五份阶段产出，各回答一个问题，各落成 V4 的一段</h1>
+<p class="sub">每份顶部先写「V4 缩略」；现状只写有截图、数据或确认的事实，未确认的列待核实。</p>
+
+<div class="stage"><div class="nm">1 现状盘点<small>现在是什么样</small></div><div class="c"><b>内容</b>弹窗、推送、标签：后台能配什么、现在怎么配、一个玩家实际看到什么</div><div class="c"><b>完成标准</b>每条现状有截图、数据或确认，注明来源</div><div class="pg"><b>已完成</b><a href="阶段1_现状盘点.html">阶段1_现状盘点</a></div></div>
+<div class="stage"><div class="nm">2 目标<small>目标是什么样、为什么</small></div><div class="c"><b>内容</b>五类人群定义与各看什么；数量、顺序怎么控；推送入口与数据；标签组合</div><div class="c"><b>完成标准</b>每个目标一句话能转述，附理由</div><div class="pg"><b>已完成</b><a href="阶段2_目标.html">阶段2_目标</a></div></div>
+<div class="stage"><div class="nm">3 原因<small>为什么现在做不到</small></div><div class="c"><b>内容</b>现状与目标逐项对照：只是没配，还是功能不满足</div><div class="c"><b>完成标准</b>每个差距对应一条现状</div><div class="pg"><b>已完成</b><a href="阶段3_原因.html">阶段3_原因</a></div></div>
+<div class="stage"><div class="nm">4 做法<small>该如何做</small></div><div class="c"><b>内容</b>先用现有功能（五类人群改前改后）；排期补充（截图上标新增）；分期</div><div class="c"><b>完成标准</b>每项改动指回一个差距</div><div class="pg"><b>已完成</b><a href="阶段4_做法.html">阶段4_做法</a></div></div>
+<div class="stage"><div class="nm">5 验证<small>做完能否达到目标</small></div><div class="c"><b>内容</b>五类人群各取一个玩家，走一遍改后看到什么；改动清单一页</div><div class="c"><b>完成标准</b>每个目标有达成结论</div><div class="pg"><b>已完成</b><a href="阶段5_验证.html">阶段5_验证</a></div></div>
+
+<h2><span class="no">V4</span>呈交版：只按四段排</h2>
+<p style="margin:8px 0 12px;padding:10px 14px;border-left:4px solid #c0392b;background:#fdecea;color:#7b1d14;font-weight:700">已过时（10/12 起）：呈交版主干见已定事项 21，完成标准见 标准_弹窗标签推送方案.md</p>
+<div class="bar">
+  <div class="s0" style="flex:1">结论<small>1 页</small></div>
+  <div class="s1" style="flex:2">现状<small>2 页</small></div>
+  <div class="s2" style="flex:2">目标<small>2 页</small></div>
+  <div class="s3" style="flex:1">原因<small>1 页</small></div>
+  <div class="s4" style="flex:4">做法<small>4 页</small></div>
+  <div class="s5" style="flex:3">分期、待决、附录<small>3 页</small></div>
+</div>
+<p class="legend">写法：不出现「主管」等指称读者的词；放大的数字写清主语与分母；改动画在真实后台截图上；不写段落。旧八阶段产出在 归档/阶段产出_八阶段版_至1010/。</p>
+</div></body></html>

@@ -1,0 +1,405 @@
+
+<!-- ============ 页 17 ============ -->
+<section id="p17">
+  <div class="crumb"><a class="back" href="#overview">回全景</a>迁入管理 · <b>页 17</b><span class="scp now">本期</span></div>
+  <h2>客户端、服务端写死的弹窗、快显与推送在本页逐项按阶段切换到本后台发送（仅测试账号 → 按比例 → 全部玩家 → 验收），迁移完成（写死代码删除）前出问题可随时切回原处</h2>
+  <div class="pst"><span class="pk n">新页面</span>取代：现有后台无此功能；写死的弹窗、快显与推送现在分散在客户端与服务端代码里，没有清单</div>
+  <div class="row stack">
+    <div class="win focus"><div class="win-in"><div class="win-bar"><i></i><i></i><i></i><span>推送统一后台 › 迁入管理</span></div><div class="fig flow" style="width:1220px">
+      <div class="side">
+        <div class="hd">推送统一后台</div>
+        <div class="it">总览</div>
+        <div class="gl">游戏外推送</div>
+        <div class="it sub">推播</div><div class="it sub">短信</div><div class="it sub">Facebook</div><div class="it sub">LINE</div>
+        <div class="gl">游戏内推送</div>
+        <div class="it sub">弹窗</div><div class="it sub">快显</div>
+        <div class="dv"></div>
+        <div class="gl">活动与配置</div>
+        <div class="it">活动与事件目录</div><div class="it">模板</div><div class="it">推送日历</div><div class="it">长期运行项</div>
+        <div class="gl">整体控制</div>
+        <div class="it">频率上限</div>
+        <div class="gl">数据</div>
+        <div class="it">数据看板</div><div class="it sub dk">概览</div><div class="it sub dk">游戏外推送数据</div><div class="it sub dk">游戏内推送数据</div><div class="it sub dk">档期汇总</div><div class="it sub dk">触达与打扰</div><div class="it sub dk">告警与报表</div>
+        <div class="gl">查询与记录</div>
+        <div class="it">玩家查询</div><div class="it">操作纪录</div>
+        <div class="gl">迁入</div>
+        <div class="it on">迁入管理</div>
+      </div>
+      <div class="main">
+        <div class="top"><span>推送统一后台 › <span class="cur">迁入管理</span></span><span>数据更新于 10/19 15:30</span></div>
+        <div class="sec key" style="padding-top:12px">
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><b style="font-size:15px;color:#303133">本期可迁 13 项：已完成 0 · 已验收 1 · 全部玩家观察中 1 · 测试或放量中 1 · 未切换 10</b><span style="font-size:14px;color:#606266">｜ 待能力接入 29 项（另计）</span><span class="mk c">改</span><span class="co il" data-n="1">1</span><span class="btn2 key" style="margin-left:auto">全部迁入项一键切回</span><span class="mk n">新增</span></div>
+          <div class="mute" style="font-size:13px;line-height:19px;margin-top:3px">已登记 42 项＝列表 9 行＋34 种服务端系统推送（序号 31 即第一行，不重计）；原写「全量已迁入 2 项 · 仅测试账号中 0 项，共 6 项（34 种服务端系统推送另计）」（全量已迁入指开关为「由推送统一后台发送」且生效范围为全部玩家），现＝已完成＋已验收＋全部玩家观察中＝2</div>
+          <div style="height:8px;margin:8px 0 7px;border-radius:4px;background:#EBEEF5;overflow:hidden;display:flex"><div style="width:15.4%;height:100%;background:#4E5560"></div><div style="width:7.7%;height:100%;background:#A0A6AE"></div></div>
+          <div style="font-size:13px;line-height:19px;color:#C4332B">清单待客户端、服务端补全：客户端写死清单、服务端写死清单均未提交；现列 6 项为已知项，清单提交后逐项加入，总数随之更新</div>
+        </div>
+        <div class="sec">
+          <div class="flt">
+            <span class="lbl">来源</span>
+            <span class="seg"><span class="on">全部</span><span>客户端</span><span>服务端</span></span>
+            <span class="lbl" style="margin-left:14px">推送方式</span>
+            <span class="in" style="width:96px">全部<span class="dn">⌵</span></span>
+            <span class="lbl" style="margin-left:14px">开关状态</span>
+            <span class="in" style="width:150px">全部<span class="dn">⌵</span></span>
+            <span class="lbl" style="margin-left:14px">依赖</span>
+            <span class="in" style="width:80px">全部<span class="dn">⌵</span></span>
+            <span class="lbl key" style="margin-left:14px">阶段</span><span class="mk n key">新增</span>
+            <span class="in key" style="width:110px">全部<span class="dn">⌵</span></span>
+          </div>
+        </div>
+        <div class="sec">
+          <table class="ut fx mig">
+            <thead><tr class="key"><th style="width:104px">名称</th><th style="width:56px;position:relative">来源<br>推送方式<span class="co" data-n="2" style="right:-6px;top:-11px">2</span></th><th style="width:68px">触发</th><th style="width:62px">业务<br>负责人</th><th style="width:124px">迁入后对应的<br>规则或推送<span class="co il" data-n="3" style="margin-left:4px">3</span></th><th style="width:64px" class="rel">依赖<span class="co" data-n="4" style="right:-8px;top:-11px">4</span></th><th style="width:120px" class="rel nc">阶段<span class="mk n">新增</span><span class="co" data-n="8" style="right:-8px;top:-11px">8</span></th><th style="width:156px">开关状态<span class="co il" data-n="5" style="margin-left:4px">5</span><br>生效范围</th><th style="width:72px">新版本占比</th><th style="width:76px">切换时间</th><th style="width:86px" class="rel">切换前基线<span class="co" data-n="6" style="right:-8px;top:-11px">6</span></th><th>操作<span class="co il" data-n="7" style="margin-left:4px">7</span></th></tr></thead>
+            <tbody>
+              <tr class="key"><td class="nm"><b>限时加码礼包未购买提醒</b><span class="sub" style="white-space:normal">礼包后台 · 推荐礼包设定</span></td><td>服务端<span class="sub">推播</span></td><td>礼包剩 2 小时且未购买</td><td>运营01</td><td>推播 ID 31 · 运行中<span class="sub" style="white-space:normal">限时加码礼包未购买提醒</span></td><td>不需发版</td><td class="nc">全部玩家 · 观察已满 7 天<span class="sub">等运营01 验收签字</span></td><td><span class="stt on">由推送统一后台发送</span><span class="sub">全部玩家</span></td><td class="mute">不适用</td><td>10/02 10:12</td><td>发送 3,840<span class="sub">近 7 天 3,617</span></td><td class="ops key"><span>验收</span><span>切回</span><span class="sub">原「去礼包后台 ›」（推荐礼包设定页，页 18），10/19 起在本页<span class="mk c">改</span></span></td></tr>
+              <tr class="key"><td class="nm"><b>通行证升级提示</b><span class="sub" style="white-space:normal">原处：游戏界面右上角横幅；迁入后暂用大厅顶部横幅</span></td><td>客户端<span class="sub">快显</span></td><td>通行证升级时</td><td>运营02</td><td>快显 ID 32 · 运行中<span class="sub" style="white-space:normal">按行为 · 通行证升级；版本 2（10/14 验收后改文案与跳转，未发版）</span></td><td>读开关版本</td><td class="nc">已验收<span class="sub">等满 30 天（11/06）后删代码，App 3.10.0</span></td><td><span class="stt on">由推送统一后台发送</span><span class="sub">全部玩家</span></td><td>iOS 82%<span class="sub">Android 46%</span></td><td>10/06 10:30</td><td>曝光 14,320<span class="sub">近 7 天 13,860</span></td><td class="ops"><span>切回</span></td></tr>
+              <tr class="gr key"><td colspan="12">▾ 切换组「新手」2 项相连：新手挑战、新手通行证共用客户端状态，一起切换；组内任一项未建，全组不能切（待研发确认，第 9 章客户端 26）；强制弹窗是否同组待研发确认，未确认前单独迁，不把新手挑战拖到新位置版本（原「3 项相连」含强制弹窗，改）<span class="mk n">新增</span><span class="co il" data-n="10" style="width:18px;height:18px;font-size:11px">10</span></td></tr>
+              <tr class="key"><td class="nm"><b>新手挑战弹窗</b><span class="sub" style="white-space:normal">大厅弹窗</span><span class="sub">同组「新手」</span></td><td>客户端<span class="sub">弹窗</span></td><td>新增玩家进大厅</td><td>运营03</td><td>排序项「新手挑战」<span class="sub" style="white-space:normal">在规则 12 活动类·新增</span></td><td>读开关版本</td><td class="nc">已建<span class="sub">等运营03 切换（原「等同组『强制弹窗』建好」，改）</span></td><td><span class="stt">由客户端内置显示</span></td><td>iOS 82%<span class="sub red">Android 46%</span></td><td class="mute">—</td><td>曝光 2,980<span class="sub">未切换</span></td><td class="ops"><span>切换</span><span class="sub">同组 2 项一起切（原「同组有未建项」不可切，改）</span></td></tr>
+              <tr class="key"><td class="nm"><b>新手通行证弹窗</b><span class="sub" style="white-space:normal">大厅弹窗</span><span class="sub">同组「新手」</span></td><td>客户端<span class="sub">弹窗</span></td><td>新增玩家进大厅</td><td>运营03</td><td>排序项「新手通行证」<span class="sub" style="white-space:normal">在规则 12 活动类·新增</span></td><td>读开关版本</td><td class="nc">已建<span class="sub">等运营03 切换（原「等同组『强制弹窗』建好」，改）</span></td><td><span class="stt">由客户端内置显示</span></td><td>iOS 82%<span class="sub red">Android 46%</span></td><td class="mute">—</td><td>曝光 2,410<span class="sub">未切换</span></td><td class="ops"><span>切换</span><span class="sub">同组 2 项一起切（原「同组有未建项」不可切，改）</span></td></tr>
+              <tr class="key"><td class="nm"><b>新手挑战完成后的强制弹窗</b><span class="sub" style="white-space:normal">大厅弹窗</span><span class="sub">是否同组待研发确认（第 9 章客户端 26；原标同组「新手」）</span></td><td>客户端<span class="sub">弹窗</span></td><td>完成新手挑战时</td><td>运营03</td><td class="red">未建<span class="sub" style="white-space:normal">缺：行为「完成新手挑战」、弹出时点「行为发生时」、不可关闭</span></td><td>新位置版本</td><td class="nc">已登记<span class="sub">等新位置版本与所缺能力</span></td><td><span class="stt">由客户端内置显示</span></td><td class="mute">新位置版本未发布</td><td class="mute">—</td><td>曝光 1,060<span class="sub">未切换</span></td><td class="ops"><span class="off">切换</span><span class="off">按写死项新建</span></td></tr>
+              <tr class="key"><td class="nm"><b>大厅中奖播报</b><span class="sub" style="white-space:normal">大厅横幅</span></td><td>客户端<span class="sub">快显</span></td><td>有玩家中奖时</td><td>运营01</td><td class="red">未建<span class="sub" style="white-space:normal">待新建：快显按行为 · 中奖，发送对象「当时在线的全部玩家」（页 10）</span></td><td class="mute">待定</td><td class="nc">已登记<span class="sub">等迁法确定（第 9 章运营 3）</span></td><td><span class="stt">由客户端内置显示</span></td><td class="mute">—</td><td class="mute">—</td><td>曝光 52,300<span class="sub">未切换</span></td><td class="ops"><span class="off">切换</span><span class="off">按写死项新建</span></td></tr>
+              <tr class="key"><td class="nm"><b>五星好评</b><span class="mk n">新增</span><span class="sub" style="white-space:normal">系统设定 · 系统功能弹窗；次数原记客户端本地，迁入改服务端按会员计</span></td><td>客户端<span class="sub">弹窗</span></td><td>进大厅且满足评分条件</td><td>运营02</td><td class="red">未建<span class="sub" style="white-space:normal">可按写死项新建（弹窗规则）</span></td><td>读开关版本</td><td class="nc">已登记<span class="sub">等读开关版本（Android 未发布）</span></td><td><span class="stt">由客户端内置显示</span></td><td>iOS 61%<span class="sub red">Android 未发布</span></td><td class="mute">—</td><td>未取得基线<span class="sub">读开关版本未接齐</span></td><td class="ops"><span>按写死项新建</span></td></tr>
+              <tr class="key"><td class="nm"><b>Loading 页比赛弹窗</b><span class="mk n">新增</span><span class="sub" style="white-space:normal">公告管理 · 游戏 Loading 页</span></td><td>客户端<span class="sub">弹窗</span></td><td>比赛期间进 Loading 页</td><td>运营01</td><td class="mute">待能力接入<span class="sub" style="white-space:normal">本期不新增 Loading 位置</span></td><td class="mute">新位置版本</td><td class="nc">待能力接入<span class="sub">不计入本期分母</span></td><td><span class="stt">由客户端内置显示</span></td><td class="mute">—</td><td class="mute">—</td><td class="mute">—</td><td class="ops"><span class="off">切换</span></td></tr>
+              <tr class="key"><td class="nm"><b>风控停权短信</b><span class="mk n">新增</span><span class="sub" style="white-space:normal">风控服务 · 自动停权；服务通知 · 账号安全</span></td><td>服务端<span class="sub">短信</span></td><td>风控自动停权时</td><td>运营01</td><td>短信 ID 68 · 运行中<span class="sub" style="white-space:normal">服务通知，不受营销上限与勿扰</span></td><td>不需发版</td><td class="nc">仅测试账号<span class="sub">等 QA 走查（影子比对 10/16–10/18 已通过）</span></td><td><span class="stt on">由推送统一后台发送</span><span class="sub">仅测试账号</span></td><td class="mute">不适用</td><td>10/19 10:20</td><td>发送 37<span class="sub">仅测试账号中</span></td><td class="ops"><span>调大范围</span><span>切回</span></td></tr>
+              <tr class="gr"><td colspan="12">▸ 服务端系统推送 34 种按模板分组折叠：时间偏移 · 项目锚点 5、时间偏移 · 事件锚点 13、排名变化 1、每日定点＋状态 14、专属事件 1；研发确认后登记<span class="key">；（改）本期可迁 6 种（项目锚点 5，与序号 31 即第一行），其余 28 种待能力接入、不计入本期分母；每日定点＋状态随该模板上线（8.1 候选）后迁，第一批机会与命运、祈福财神庙、限时任务</span><span class="key">；同一合并组的服务端项（32、7、16、26）作切换组一起切；同模板首项验收后，其余同模板项可一批切（各自仍须影子比对通过）</span><span class="mk n">新增</span></td></tr>
+              <tr class="key"><td class="nm"><b>红包狂欢开始</b><span class="mk n">新增</span><span class="sub" style="white-space:normal">服务端系统推送 · 序号 24</span></td><td>服务端<span class="sub">推播</span></td><td>红包狂欢开始时</td><td>运营02</td><td>推播 ID 65 · 影子<span class="sub" style="white-space:normal">时间偏移（项目开始）</span></td><td>不需发版</td><td class="nc">影子比对 · 3/3 发送日已过<span class="sub">差异率 0.4% · 等运营02 切换</span></td><td><span class="stt">由游戏服务端发送</span></td><td class="mute">不适用</td><td class="mute">—</td><td>发送 68,600<span class="sub">未切换</span></td><td class="ops"><span>切换</span></td></tr>
+              <tr class="key"><td class="nm"><b>发财金（冷却结束）</b><span class="sub" style="white-space:normal">服务端系统推送 · 序号 14</span></td><td>服务端<span class="sub">推播</span></td><td>冷却结束时</td><td>运营02</td><td>推播 ID 64 · 已建<span class="sub" style="white-space:normal">时间偏移（availableAt）· 待冷却模块接入</span></td><td class="mute">待定</td><td class="nc">待能力接入<span class="sub">等冷却模块接入</span></td><td><span class="stt">由游戏服务端发送</span><span class="sub">全部玩家</span></td><td class="mute">不适用</td><td class="mute">—</td><td>发送 3,120<span class="sub">未切换</span></td><td class="ops"><span class="off">切换</span></td></tr>
+              <tr class="gr"><td colspan="12">⋮ 客户端写死清单、服务端写死清单提交后，其余写死项逐项加入本表</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="sec key nc">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><b style="font-size:14px;color:#303133">未登记来源 · 待认定 2</b><span class="mk n">新增</span><span class="co il" data-n="9" style="margin-left:0">9</span><span class="mute" style="font-size:13px">每天统计近 7 天：推送服务按调用方＋标题，客户端显示事件按弹窗与横幅名称；既不是本后台发出、也不在写死清单的列在这里</span></div>
+          <table class="ut">
+            <thead><tr><th style="width:220px">来源</th><th>标题或名称</th><th style="width:96px" class="r">近 7 天次数</th><th style="width:76px">首次出现</th><th style="width:330px">操作</th></tr></thead>
+            <tbody>
+              <tr><td>推送服务 · 调用方 activity-svc</td><td>萬聖節南瓜派對開跑囉！（推播）</td><td class="r">18,420</td><td>10/16</td><td class="ops"><span>登记为写死项</span><span>标为不是写死项</span></td></tr>
+              <tr><td>客户端显示事件 · 大厅横幅</td><td>首儲雙倍限時開啟</td><td class="r">6,310</td><td>10/14</td><td class="ops"><span>登记为写死项</span><span>标为不是写死项</span></td></tr>
+              <tr class="gr"><td>推送服务 · 调用方 mkt-gateway</td><td>【會員通知】週末加碼…（短信）</td><td class="r">2,140</td><td>10/03</td><td style="white-space:normal">已标不是写死项：营销侧排程，已在配置所在地登记（运营01 · 10/15）</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div></div></div>
+
+    <div class="aside">
+    <div class="notes">
+      <div class="note" data-n="1"><span class="nb">1</span><div><b>进度：本期可迁按阶段分五档，待能力接入另计（改）</b><p>总数为研发已登记的写死项数；客户端、服务端的写死清单未交齐前，页顶标明「清单待客户端、服务端补全」。（改）本期可迁分已完成、已验收、全部玩家观察中、测试或放量中（仅测试账号、按比例）、未切换（已登记、已建、影子比对、已切回）五档；待能力接入（所需能力本期不做或待外部模块接入）另计、不进分母；进度条按已完成＋已验收＋全部玩家观察中，测试或放量中另一色。原写「全量已迁入 N1 · 仅测试账号中 N2，共 M」，候选项计入 M 使 100% 本期达不到，改；原全量已迁入＝已完成＋已验收＋全部玩家观察中</p></div></div>
+      <div class="note" data-n="2"><span class="nb">2</span><div><b>来源：写死在客户端还是服务端</b><p>推送方式为迁入后所属的推送方式；写死项由研发登记，本页不能新增、删除</p></div></div>
+      <div class="note" data-n="3"><span class="nb">3</span><div><b>每项迁入后成为一条规则或推送</b><p>弹窗为排序项或一条弹窗规则，快显、推播为一条推送；还没建好的写「未建」与原因，不能切换</p></div></div>
+      <div class="note" data-n="4"><span class="nb">4</span><div><b>列表加触发、业务负责人、依赖、生效范围、新版本占比、切换前基线</b><p>触发、业务负责人取自写死清单；依赖：不需发版（服务端项）、读开关版本（客户端接齐全部读开关的版本）、新位置版本（补新显示位置、新弹窗形式的客户端版本），依赖相同的项一次只切一项；生效范围写在开关状态下方：仅测试账号或全部玩家，切换时先选仅测试账号，走查通过再改全部玩家（改：另有按比例 10%、50%，随机分桶号，只能调大；见注 8 与其他界面状态）；新版本占比按平台取近 7 天登录玩家中已达读开关版本的比例，服务端项写「不适用」；「未建」写缺的能力</p></div></div>
+      <div class="note" data-n="5"><span class="nb">5</span><div><b>开关只有两种状态</b><p>「由推送统一后台发送」与原处：客户端写死的为「由客户端内置显示」，服务端写死的写原处名称，如「由礼包后台发送」</p></div></div>
+      <div class="note" data-n="6"><span class="nb">6</span><div><b>切换前基线：切换前 7 天的曝光或发送</b><p>弹窗、快显按曝光，推播按发送，口径同数据看板；客户端写死项取读开关版本的客户端上报，服务端写死项取原处事件或发送记录；已切换的项下方写近 7 天同口径数字，与基线直接比较</p></div></div>
+      <div class="note" data-n="7"><span class="nb">7</span><div><b>切换、切回都先弹确认框；试点也在本页（改）</b><p>切换须通过切换前检查；迁移完成（写死代码删除）前切回随时可做；（改）限时加码礼包未购买提醒 10/19 起也在本页切换、切回、调大范围与验收，页 18 只显示「已迁入推送统一后台 · 推播 ID 31」与「去迁入管理」；原写「仍在推荐礼包设定页切换（页 18）」，因试点要验证本页的切回与验收单，改；「未建」的行操作为「按写死项新建」</p></div></div>
+      <div class="note" data-n="8"><span class="nb">8</span><div><b>阶段列：每项一条状态线，写等谁（新增）</b><p>已登记 → 已建 → 影子比对（只服务端项）→ 仅测试账号 → 按比例（可选）→ 全部玩家 · 观察 7 天 → 已验收（业务负责人签字）→ 已完成（新版本删写死代码）；另有已切回（写原因，回到已建）、待能力接入（不计入本期）；保留原「开关状态」「生效范围」列；可按阶段筛选；点名称打开写死项详情（见其他界面状态）。为什么：原来观察中、待签字、待删代码在列表上看不到</p></div></div>
+      <div class="note" data-n="9"><span class="nb">9</span><div><b>未登记来源：持续发现新写死项（新增）</b><p>登记为写死项：转研发补写死清单字段后进列表；标为不是写死项：理由必填，记操作纪录。新活动的系统推送按模板（页 10a）在后台配；模板做不到的，研发先在写死清单登记（写计划迁入的版本）再写代码。为什么：三方交叉核对原是一次性的，新写死项无人发现</p></div></div>
+      <div class="note" data-n="10"><span class="nb">10</span><div><b>切换组：同组相连、一起切（新增）</b><p>共用客户端状态、须一起切的项由研发在写死清单填「切换组」；同组行相连并标同组；切换确认框列全组、一个事务一起切；组内任一项未建全组不能切；新手 3 项待研发确认（第 9 章客户端 26），原型标「待研发确认」；（改）组内只放共享状态的项：新手挑战、新手通行证同组，强制弹窗是否同组待研发确认，未确认前单独迁，不把新手挑战拖到新位置版本；服务端同一合并组（32、7、16、26）也作切换组</p></div></div>
+    </div>
+    </div>
+  </div>
+
+  <div class="ref">
+  <details class="st-fold">
+    <summary>其他界面状态（12 个）</summary>
+  <div class="states" style="grid-template-columns:repeat(2,1fr)">
+    <div class="stc" style="grid-column:1/-1">
+      <div class="ui">
+        <div class="ttl">点名称打开右侧抽屉「写死项详情」<span class="mk n">新增</span>　以新手挑战弹窗为例；示例时刻 11/09：同组 2 项（新手挑战、新手通行证）11/05 一起切换，现为按比例 10% 第 4 天（列表在 10/19 时为「已建」）</div>
+        <div style="display:flex;border:1px solid #DCDFE6;border-radius:6px;overflow:hidden">
+          <div style="width:120px;flex:none;background:#F4F5F7;padding:10px;color:#A0A6AE;font-size:12px;line-height:18px">迁入管理列表<br>（抽屉打开时变暗）<br><br>新手挑战弹窗 ◂</div>
+          <div style="flex:1;min-width:0;padding:10px 14px 12px;box-shadow:-6px 0 14px rgba(0,0,0,.06)">
+            <div style="display:flex;align-items:center;gap:8px;padding-bottom:8px;border-bottom:1px solid #EBEEF5"><b style="font-size:15px">新手挑战弹窗</b><span class="mute">LEGACY_NOVICE_CHALLENGE</span><span class="stt on">由推送统一后台发送</span><span class="stt">按比例 10% · 第 4 天</span><span class="btn2 sm key" style="margin-left:auto">测试账号重置该项状态</span><span class="mk n">新增</span><span class="mute" style="margin-left:8px">✕</span></div>
+            <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:16px;margin-top:10px">
+              <div>
+                <div style="font-weight:600;font-size:13px;color:#303133;margin:0 0 4px">① 写死版<span class="mute" style="font-weight:400;margin-left:6px">研发登记 · 只读 · 内容冻结作存档</span></div>
+                <table class="kv" style="margin-top:0">
+                  <tr><td class="k">名称与键</td><td>新手挑战弹窗 · LEGACY_NOVICE_CHALLENGE</td></tr>
+                  <tr><td class="k">类型</td><td>弹窗 · 状态型</td></tr>
+                  <tr><td class="k">触发方式</td><td>新增玩家进大厅</td></tr>
+                  <tr><td class="k">内容</td><td>图片 novice_challenge_v3.png；文案「完成新手挑戰，領取 50,000 金幣！」；按钮「立即挑戰」→ 新手挑战页</td></tr>
+                  <tr><td class="k">对象</td><td>新增玩家；完成新手挑战后不再弹</td></tr>
+                  <tr><td class="k">频率</td><td>每人终身 1 次</td></tr>
+                  <tr><td class="k">代码位置</td><td>客户端 LobbyPopup / NoviceChallenge</td></tr>
+                  <tr><td class="k">状态记在哪里</td><td>设备本地（已显示标记）</td></tr>
+                  <tr><td class="k">触发端</td><td>客户端</td></tr>
+                  <tr><td class="k">显示位置</td><td>大厅自动弹窗第 1 位</td></tr>
+                  <tr><td class="k">业务负责人</td><td>运营03</td></tr>
+                  <tr><td class="k">依赖</td><td>读开关版本</td></tr>
+                  <tr><td class="k">切换组</td><td>新手：新手挑战弹窗、新手通行证弹窗（待研发确认）；强制弹窗是否同组待研发确认（第 9 章客户端 26），原列入本组，改</td></tr>
+                  <tr><td class="k">写死版录屏</td><td>novice_challenge.mp4 · 10/10 研发02 上传 <span class="elink">查看</span><span class="mute">（登记时必传，删代码后即为存档）</span></td></tr>
+                  <tr><td class="k">核对来源</td><td>代码 ✓　线上显示记录 ✓　玩家路径走查 ✓</td></tr>
+                </table>
+                <div style="font-weight:600;font-size:13px;color:#303133;margin:0 0 4px;margin-top:10px">② 后台版对照<span class="mute" style="font-weight:400;margin-left:6px">9 行 · 一致 8 · 有意改动 1 · 未确认 0；另附他项示例 1 行</span></div>
+                <table class="ut">
+                  <thead><tr><th>字段</th><th>写死版</th><th>后台版</th><th>结果</th></tr></thead>
+                  <tbody>
+                    <tr><td>文案</td><td>完成新手挑戰，領取 50,000 金幣！</td><td>同左</td><td>一致 · 逐字比对</td></tr>
+                    <tr><td>按钮文字</td><td>立即挑戰</td><td>立即挑戰</td><td>一致 · 逐字比对</td></tr>
+                    <tr><td>跳转</td><td>新手挑战页</td><td>游戏内页面 / 新手挑战</td><td>一致 · 系统比对</td></tr>
+                    <tr><td>图片</td><td>novice_challenge_v3.png</td><td>同一文件</td><td>一致（运营03 勾）</td></tr>
+                    <tr><td>触发</td><td>新增玩家进大厅</td><td>规则 12 · 进大厅时</td><td>一致（运营03 勾）</td></tr>
+                    <tr><td>对象</td><td>完成新手挑战后不再弹</td><td>对象排除 标签「已完成新手挑战」</td><td>一致（运营03 勾）</td></tr>
+                    <tr><td>频率</td><td>每人终身 1 次</td><td>每人总次数 1</td><td>一致（运营03 勾）</td></tr>
+                    <tr><td>位置</td><td>大厅自动弹窗第 1 位</td><td>规则 12 第 1 位</td><td>一致（运营03 勾）</td></tr>
+<tr class="key"><td>每人每天弹窗上限<span class="mk n">新增</span></td><td>不受限（写死弹窗不计上限）</td><td>计入每人每天弹窗上限（默认）→ 建议勾「不受每人每天弹窗上限」</td><td>有差异 · 有意改动（运营03）：切换时已勾，保持原行为，验收后再决定是否取消；不勾预计每天少 40 次，基线比较扣除</td></tr>
+<tr class="key"><td>显示位置<span class="sub">另例：通行证升级提示</span></td><td>游戏界面右上角横幅</td><td>大厅顶部横幅</td><td>有差异 · 有意改动（业务负责人运营02 确认）：回大厅前已过期的不显示，基线比较扣除这部分</td></tr>
+                  </tbody>
+                </table>
+                <div class="mute" style="margin-top:4px">结果另有「有差异 · 已确认有意改动（谁、原因）」「有差异 · 未确认」；有未确认时切换前检查第三项不可勾</div>
+                <div style="margin-top:8px;padding:6px 8px;background:#FAFBFC;border:1px solid #EBEEF5;border-radius:4px;line-height:19px"><b>迁入后能改什么</b><br>在后台能改：图片、文案、按钮文字、跳转（限活动与事件目录已有目标）、位置内先后、对象、时机、每人次数、生效期间、暂停<br>仍要发版：新手挑战页本身、新显示位置、新弹窗形式、新跳转目标类型、新触发事件</div>
+              </div>
+              <div>
+                <div style="font-weight:600;font-size:13px;color:#303133;margin:0 0 4px">③ 阶段与验收单<span class="mute" style="font-weight:400;margin-left:6px">本图为运营03（业务负责人）视角</span></div>
+                <div style="display:flex;flex-wrap:wrap;gap:4px;align-items:center;margin-bottom:6px"><span class="stt dim">✓ 已登记 10/10</span><span class="stt dim">✓ 已建 10/16</span><span class="stt dim" style="text-decoration:line-through">影子比对</span><span class="stt dim">✓ 仅测试账号 11/05</span><span class="stt on">按比例 10% · 第 4 天</span><span class="stt">按比例 50%</span><span class="stt">全部玩家 · 观察 7 天</span><span class="stt">已验收</span><span class="stt">已完成</span></div>
+                <table class="ut">
+                  <thead><tr><th>阶段</th><th>通过标准</th><th>谁做</th><th>完成</th></tr></thead>
+                  <tbody>
+                    <tr><td>已登记</td><td>写死清单 12 个字段齐全，录屏已传，核对来源三格都勾</td><td>研发02</td><td>10/10 14:20 研发02</td></tr>
+                    <tr><td>已建</td><td>后台版对照无未确认；测试预览核对</td><td>运营03</td><td>10/16 17:05 运营03</td></tr>
+                    <tr><td>影子比对</td><td>客户端项不做</td><td>—</td><td>—</td></tr>
+                    <tr><td>仅测试账号</td><td>线上走查：测试账号见后台版，普通账号见写死版，无两份</td><td>QA01</td><td>11/05 16:40 QA01 · 线上走查通过</td></tr>
+                    <tr><td>按比例 10%、50%</td><td>重复显示为 0 或有解释；状态导入与客户端上报条数对得上；开关读取失败率低于 1%；最短 2 天<span class="mk c">改</span><span class="sub" style="white-space:normal">同期对照三个指标只作参考与护栏，不作放行条件（原「同期对照三个指标无显著变差；重复显示 0；开关读取失败不超过 1%」，改）</span></td><td>运营03</td><td>10% 进行中（11/06 起）</td></tr>
+                    <tr><td>全部玩家 · 观察 7 天</td><td>曝光人数÷对象人数不低于基线 70%；点击率不低于基线 80%</td><td>运营03</td><td>—</td></tr>
+                    <tr><td>已验收</td><td>业务负责人确认可保持</td><td>运营03</td><td><span class="btn2 sm dis">验收签字</span></td></tr>
+                    <tr><td>已完成</td><td>全部玩家且自最近一次切回起连续 30 天；确认放弃回退；新版本删写死代码</td><td>运营03、研发02</td><td><span class="btn2 sm dis">确认放弃回退</span><span class="mute" style="margin-left:4px">删代码版本 App 3.10.0</span></td></tr>
+                  </tbody>
+                </table>
+                <div class="mute" style="margin-top:4px">按角色显示按钮：QA「线上走查通过」，业务负责人「验收签字」「确认放弃回退」（未到阶段置灰）；研发填读开关进度：iOS App 3.8.2 · Android App 3.8.2 · Web 10/08 上线 · H5 不涉及；（新增）右上「测试账号重置该项状态」只对测试名单：清除该项的已显示与次数，便于重复走查</div>
+                <div style="font-weight:600;font-size:13px;color:#303133;margin:0 0 4px;margin-top:10px">④ 对比<span class="mute" style="font-weight:400;margin-left:6px">都限读开关版本客户端；链接 <span class="elink">规则 12 单条弹窗规则数据（页 14）›</span></span></div>
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><span class="seg"><span class="on">曝光人数÷对象人数</span><span>点击率</span><span class="last">新注册当日进入新手挑战的比例</span></span></div>
+                <div class="mute" style="font-size:12px"><svg width="18" height="6" style="vertical-align:1px;margin-right:3px"><line x1="0" y1="3" x2="18" y2="3" stroke="#4E5560" stroke-width="2"/></svg>写死（11/06 起为未切换组 90%）　<svg width="18" height="6" style="vertical-align:1px;margin-right:3px"><line x1="0" y1="3" x2="18" y2="3" stroke="#409EFF" stroke-width="2"/></svg>后台 · 已切换组 10%　竖线：切换、改范围、切回</div>
+                <svg viewBox="0 0 560 150" style="display:block;width:100%;height:150px" font-size="10" font-family="inherit">
+                  <line x1="44" y1="120" x2="550" y2="120" stroke="#EBEEF5"/><line x1="44" y1="70" x2="550" y2="70" stroke="#EBEEF5"/><line x1="44" y1="20" x2="550" y2="20" stroke="#EBEEF5"/>
+                  <text x="40" y="124" text-anchor="end" fill="#909399">94%</text><text x="40" y="74" text-anchor="end" fill="#909399">96%</text><text x="40" y="24" text-anchor="end" fill="#909399">98%</text>
+                  <line x1="393" y1="18" x2="393" y2="126" stroke="#303133" stroke-dasharray="6 3"/><text x="389" y="14" text-anchor="end" fill="#303133">11/05 切换 · 切回 · 再切换（仅测试账号）</text>
+                  <line x1="442" y1="18" x2="442" y2="126" stroke="#303133" stroke-dasharray="12 3"/><text x="446" y="14" fill="#303133">11/06 改范围 10%</text>
+                  <polyline points="50,60 99,47.5 148,67.5 197,52.5 246,57.5 295,50 344,62.5 393,55 442,55 491,60 540,50" fill="none" stroke="#4E5560" stroke-width="2"/>
+                  <polyline points="442,72.5 491,95 540,75" fill="none" stroke="#409EFF" stroke-width="2"/>
+                  <g fill="#4E5560"><circle cx="50" cy="60" r="2.5"/><circle cx="99" cy="47.5" r="2.5"/><circle cx="148" cy="67.5" r="2.5"/><circle cx="197" cy="52.5" r="2.5"/><circle cx="246" cy="57.5" r="2.5"/><circle cx="295" cy="50" r="2.5"/><circle cx="344" cy="62.5" r="2.5"/><circle cx="393" cy="55" r="2.5"/><circle cx="442" cy="55" r="2.5"/><circle cx="491" cy="60" r="2.5"/><circle cx="540" cy="50" r="2.5"/></g>
+                  <g fill="#409EFF"><circle cx="442" cy="72.5" r="2.5"/><circle cx="491" cy="95" r="2.5"/><circle cx="540" cy="75" r="2.5"/></g>
+                  <g fill="#606266" text-anchor="middle"><text x="50" y="54">96.4</text><text x="99" y="41">96.9</text><text x="148" y="82">96.1</text><text x="197" y="46">96.7</text><text x="246" y="72">96.5</text><text x="295" y="44">96.8</text><text x="344" y="77">96.3</text><text x="491" y="54">96.4</text><text x="540" y="44">96.8</text><text x="491" y="108">95.0</text><text x="540" y="88">95.8</text></g>
+                  <g fill="#909399" text-anchor="middle"><text x="50" y="140">10/29</text><text x="99" y="140">10/30</text><text x="148" y="140">10/31</text><text x="197" y="140">11/01</text><text x="246" y="140">11/02</text><text x="295" y="140">11/03</text><text x="344" y="140">11/04</text><text x="393" y="140">11/05</text><text x="442" y="140">11/06</text><text x="491" y="140">11/07</text><text x="540" y="140">11/08</text></g>
+                </svg>
+                <table class="ut">
+                  <thead><tr><th>11/06–11/08 合计</th><th class="r">已切换组 · 后台</th><th class="r">未切换组 · 写死</th><th>差异（参考）</th></tr></thead>
+                  <tbody>
+                    <tr><td>对象人数</td><td class="r">158</td><td class="r">1,421</td><td>—</td></tr>
+                    <tr><td>曝光人数÷对象人数</td><td class="r">95.6%（151/158）</td><td class="r">96.6%（1,373/1,421）</td><td>−1.0 个百分点 · 不显著</td></tr>
+                    <tr><td>点击率</td><td class="r">40.4%（61/151）</td><td class="r">41.2%（566/1,373）</td><td>不显著</td></tr>
+                    <tr><td>新注册当日进入新手挑战的比例</td><td class="r">37.3%（59/158）</td><td class="r">38.1%（541/1,421）</td><td>不显著</td></tr>
+<tr class="key"><td>崩溃率（护栏）<span class="mk n">新增</span></td><td class="r">0.18%</td><td class="r">0.17%</td><td>未超阈值</td></tr>
+<tr class="key"><td>下发接口错误率（护栏）<span class="mk n">新增</span></td><td class="r">0.06%</td><td class="r">0.05%</td><td>未超阈值；超阈值进告警规则 19 通知</td></tr>
+                  </tbody>
+                </table>
+                <div class="mute" style="margin-top:4px">切换前 7 天（10/29–11/04）写死 96.5%，取读开关版本客户端上报；两组同一天、同一档期，差异标记方法同页 12d（4.1.8）；业务指标由业务负责人登记；事件型项指标为曝光 ÷ 同期事件数；（新增）同期对照只作参考与护栏，放行看阶段与验收单的绝对数；崩溃率、下发接口错误率按两组全部读开关版本设备算，超阈值进告警规则 19 的通知（页 12d）</div>
+                <div style="font-weight:600;font-size:13px;color:#303133;margin:0 0 4px;margin-top:10px">⑤ 切换记录<span class="mute" style="font-weight:400;margin-left:6px">累计已回写「已显示」153 人（仅测试账号 2 ＋ 10% 组 151，迁移完成前双写）</span><span class="mk n">新增</span></div>
+                <table class="ut">
+                  <thead><tr><th>时刻</th><th>操作人</th><th>操作</th><th>状态继承导入</th><th>在途补排</th><th>已显示回写</th><th>切回原因</th></tr></thead>
+                  <tbody>
+                    <tr><td>11/06 10:00</td><td>运营03</td><td>改范围 仅测试账号 → 10%（同组 2 项）</td><td>补导新纳入 1,326 条</td><td>—</td><td>—</td><td>—</td></tr>
+                    <tr><td>11/05 13:30</td><td>运营03</td><td>再切换 · 仅测试账号</td><td>再导入 3 条</td><td>—</td><td>—</td><td>—</td></tr>
+                    <tr><td>11/05 11:40</td><td>运营03</td><td>切回</td><td>—</td><td>—</td><td>已回写 2 人，切回后不重弹</td><td>其他：按钮跳转到旧版新手挑战页（QA01 走查发现，后台改跳转后再切换）</td></tr>
+                    <tr><td>11/05 10:00</td><td>运营03</td><td>切换 · 仅测试账号（同组 2 项）</td><td>导入 3 条（客户端上报本地记录）</td><td>—</td><td>—</td><td>—</td></tr>
+                  </tbody>
+                </table>
+                <div class="mute" style="margin-top:4px">在途补排只服务端项有；每次操作同时记入操作纪录（页 16）；（新增）已显示回写只状态型项有：迁移完成前后台版显示后同时写写死逻辑读的「已显示」标记，切回时记人数，看过后台版的不再弹写死版</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cap"><b>写死项详情：写死版、后台版对照、阶段与验收单、对比、切换记录五块（新增）</b>点名称打开右侧抽屉。写死版由研发登记、只读，内容冻结作存档，录屏登记时必传（删代码后即为存档）；后台版对照逐字段三列，文案、按钮文字、跳转系统逐字比对，图片、触发、对象、频率、位置由运营逐行勾；阶段与验收单写每阶段的通过标准、谁做、完成时刻与签字人，按角色显示按钮，研发在此填读开关进度与删代码版本；对比按日图标切换、改范围、切回竖线，按比例期间改为同期两组并排，服务端项显示影子比对每日对账表（见下方「影子比对」）；切换记录写状态继承导入数、在途补排条数与切回原因。为什么：原来写死版的内容、对象、频率在后台看不到，「清单详情」指向不存在的页面，验收单与签字无处可点</div>
+    </div>
+    <div class="stc">
+      <div class="ui">
+        <div class="dlg">
+          <div class="t">将「新手挑战弹窗」切换到「由推送统一后台发送」？</div>
+          <div class="key nc" style="margin-bottom:4px">同组一起切换（切换组「新手」，待研发确认）：新手挑战弹窗、新手通行证弹窗，一个事务一起切；强制弹窗是否同组待研发确认（第 9 章客户端 26），未确认前单独迁（原 3 项一起切，改）<span class="mk n">新增</span></div>
+          <div class="mute">切换前检查</div>
+          <div>✓ 已通过 · 对应：排序项「新手挑战」，在规则 12 活动类·新增（上架、启用）；同组另 1 项已建</div>
+          <div>✓ 已通过 · 客户端读开关的版本已发布</div>
+          <div style="display:flex;align-items:center"><span class="eck">✓</span>已用测试预览核对，内容与弹窗时机同写死的一致<span class="key">；后台版对照 9 行：一致 8、有意改动 1（每人每天弹窗上限，见下方勾选）、未确认 0（原「8 行一致」）</span><span class="mk c">改</span></div>
+          <div class="rel key" style="margin-top:6px;padding-top:6px;border-top:1px dashed #DCDFE6"><span class="mute">生效范围</span> <span class="in" style="width:110px;height:22px">仅测试账号<span class="dn">⌵</span></span><span class="elink" style="margin-left:4px">按设备或安装 ID 指定</span><span class="mk n">新增</span><span class="mute" style="margin-left:4px">可选 仅测试账号／10%／50%／全部玩家</span>　<span class="mute">状态继承</span> <span class="in" style="width:136px;height:22px">客户端上报本地记录<span class="dn">⌵</span></span></div>
+          <div class="key"><span class="mute">测试名单</span> 会员编号 3 个＋设备或安装 ID 2 台（按设备或安装 ID 指定的，新注册账号首次进大厅前即在范围内，新玩家类项可走查）<span class="mk n">新增</span></div>
+          <div class="mute key">同组另 1 项：新手通行证 从服务端导入（原另列「强制弹窗 无需继承（事件型）」，强制弹窗是否同组待确认，改）</div>
+          <div><span class="mute">预计减少</span> 约每天少 40 次（每人每天弹窗上限截断）<span class="key">；勾下行后为 0</span><span class="mk c">改</span></div>
+          <div class="key" style="display:flex;align-items:center"><span class="eck">✓</span>不受每人每天弹窗上限（建议勾，保持原行为；验收后再决定是否取消；不勾时在后台版对照列为有意改动，基线比较扣除）<span class="mk n">新增</span></div>
+          <div style="color:#B88230">新版本占比：iOS 82%、Android 46%、网页不适用；切换后只有 46% 的 Android 玩家由本后台发送</div>
+          <div class="key">近 7 天同账号用新旧两版本设备登录约 1,180 人（对象内约 40 人），切换后可能各看一次<span class="mk n">新增</span></div>
+          <div class="key mute">提示（不阻断）：同依赖「读开关版本」的另一项正在仅测试账号、按比例或观察中时黄字出现；此刻无此类项，不出现（原例写「五星好评」正在仅测试账号中，与列表「已登记」不一致，改；黄字例见推播类切换确认框「风控停权短信」）<span class="mk c">改</span></div>
+          <div style="margin-top:6px">切换后客户端停用写死的新手挑战弹窗，规则 12 开始弹出「新手挑战」，计入弹出数量与每人每天弹窗上限（勾「不受每人每天弹窗上限」时只计弹出数量）；旧版本客户端照旧显示写死内容</div>
+          <div class="ft"><span class="btn2">取消</span><span class="btn2 p">确认切换</span></div>
+        </div>
+      </div>
+      <div class="cap"><b>切换：三项检查都通过才能确认</b>对应的规则或推送开始生效与原处停用在同一事务内完成，同一玩家不会收到两份；确认框另列生效范围、状态继承、预计减少、新版本占比：状态继承未选定时「确认切换」不可点，新版本占比低于 50% 时提示、不阻断。（改）同组项列全组、一个事务一起切，组内任一项未建全组不能切；生效范围可选仅测试账号、10%、50%、全部玩家（默认仅测试账号）；另写近 7 天新旧两版本设备人数（客服口径见页 15）；黄字提示不阻断：同依赖另一项正在仅测试账号、按比例或观察中，同显示位置今天已切过另一项；后台版对照有「未确认」时第三项不可勾，有「有意改动」时提示「切换前后对比会失真，建议验收后再改」；「同一玩家不会收到两份」由下发握手保证：客户端请求带开关快照，服务端只对快照与服务端判定都为后台的项下发；（新增）仅测试账号可按设备或安装 ID 指定，新注册账号首次进大厅前即在范围内；全局控制（每人每天上限、勿扰、活动提醒上限）带来的差异在后台版对照列为有意改动并写预计减少，基线比较扣除，新手挑战、新手通行证建议勾「不受每人每天弹窗上限」，验收后再决定是否取消</div>
+    </div>
+    <div class="stc">
+      <div class="ui">
+        <div class="dlg">
+          <div class="t">将「通行证升级提示」切回「由客户端内置显示」？</div>
+          <div>切回后快显 ID 32 变为已暂停，客户端恢复显示写死的通行证升级提示；<br>已显示的不撤回，ID 32 的数据保留；之后可再次切换</div>
+          <div class="rel key" style="margin-top:6px"><span class="mute"><i style="color:#F56C6C;font-style:normal">*</i>切回原因</span> <span class="in" style="width:150px;height:22px">重复显示投诉<span class="dn">⌵</span></span></div>
+          <div class="key" style="color:#B88230">已下发、尚未显示的提示：客户端显示前再核对开关，已切回的丢弃、按写死处理<span class="mk c">改</span></div>
+          <div class="key"><span class="mute">生效时延</span> 在线玩家经长连接即时；离线的下次启动生效<span class="mk n">新增</span></div>
+          <div class="key"><span class="mute">已显示回写</span> 状态型项写「已回写 N 人『已显示』，切回后不重弹」（例：新手挑战 11/08 止已回写 153 人）；本项为事件型，不回写<span class="mk n">新增</span></div>
+          <div class="mute key">服务端项此处另写在途归属与发送窗口提示，见推播类切换确认框下方的切回例</div>
+          <div class="mute key">原写「切回前 30 分钟内已触发、尚未显示的提示不再显示」，依赖候选 B28 撤回，未做时会两份，改</div>
+          <div class="ft"><span class="btn2">取消</span><span class="btn2 p">确认切回</span></div>
+        </div>
+      </div>
+      <div class="cap"><b>切回：迁移完成前随时可做，原因必填</b>原因可选量级明显偏低、重复显示投诉、崩溃或接口错误率上升、其他（手填 ≤100 字）；列表写「已切回：原因」；按行为加时限的项提示漏弹；切换与切回都记入操作纪录（页 16）。（改）原因与告警对应：量级骤降（规则 17）、重复显示（规则 18）、开关读取失败（规则 19）、影子或对照差异（规则 20，页 12d）；切回不依赖撤回，客户端显示前再核对开关；确认框写生效时延：服务端推送项下一次发送前生效，客户端项在线玩家经长连接即时、离线的下次启动；阶段回到「已建」；（新增）状态型项写已回写「已显示」人数（迁移完成前双写），切回后看过后台版的不再弹写死版；服务端项写在途归属（按应发送时刻与切回时刻比较，与切换对称）与发送窗口黄字提示</div>
+    </div>
+    <div class="stc">
+      <div class="ui">
+        <div class="ttl">点页头「全部迁入项一键切回」<span class="mk n">新增</span></div>
+        <div class="dlg">
+          <div class="t">将全部未完成的迁入项切回原处？</div>
+          <div>将切回 3 项（未完成、当前由推送统一后台发送）：</div>
+          <div class="mute" style="padding-left:12px">限时加码礼包未购买提醒 · 全部玩家观察中 → 由礼包后台发送<br>通行证升级提示 · 已验收 → 由客户端内置显示<br>风控停权短信 · 仅测试账号 → 由风控服务发送</div>
+          <div class="mute">不涉及：已完成 0 项（写死代码已删，不能切回）；其余 10 项未切换</div>
+          <div class="rel" style="margin-top:6px"><span class="mute"><i style="color:#F56C6C;font-style:normal">*</i>切回原因</span> <span class="in" style="width:150px;height:22px">其他<span class="dn">⌵</span></span> <span class="in" style="width:220px;height:22px">推送服务故障，下发大面积超时</span></div>
+          <div><span class="mute">生效</span> 开关经独立通道下发（不经推送服务），推送服务故障时仍能生效；服务端项按应发送时刻归属在途发送</div>
+          <div style="color:#B88230">二次确认：点「全部切回」后再弹一次「确认切回 3 项？」，确认后逐项记入切换记录与操作纪录</div>
+          <div class="ft"><span class="btn2">取消</span><span class="btn2 p">全部切回（3 项）</span></div>
+        </div>
+      </div>
+      <div class="cap"><b>全部迁入项一键切回：推送服务故障时用（新增）</b>只对未完成且当前由推送统一后台发送的项；列出将切回的项数与名称；原因必填，二次确认；各项阶段回到「已建」，原因相同；开关走独立于推送服务的通道（启动配置或静态开关文件，带版本号，研发确认），推送服务故障时切回仍能生效；只读角色不显示该按钮</div>
+    </div>
+    <div class="stc">
+      <div class="ui">
+        <div class="ttl">「大厅中奖播报」一行，鼠标悬停在「切换」上</div>
+        <div><span class="stt">由客户端内置显示</span><span style="margin-left:12px;color:#B8BDC4">切换</span></div>
+        <div class="tip2">对应的快显未建，不能切换</div>
+      </div>
+      <div class="cap"><b>对应的规则或推送未建好时，「切换」不可点</b>悬停提示原因；原因写在「迁入后对应的规则或推送」列</div>
+    </div>
+    <div class="stc">
+      <div class="ui">
+        <div class="dlg">
+          <div class="t">将「通行证升级提示」切换到「由推送统一后台发送」？</div>
+          <div style="display:flex;align-items:center;gap:6px;margin:2px 0 4px"><span>选定快显</span><span class="in" style="width:226px">ID 32 通行证升级提示 · 已暂停<span class="dn">⌵</span></span></div>
+          <div class="mute">切换前检查</div>
+          <div>✓ 已通过 · 对应：快显 ID 32，状态为已暂停</div>
+          <div>✓ 已通过 · 客户端读开关的版本已发布</div>
+          <div style="display:flex;align-items:center"><span class="eck">✓</span>已用测试发送核对，内容与触发同写死的一致</div>
+          <div class="mute key" style="padding-left:19px">版本 1 原样迁入：横幅文字「通行證升級了！」、不跳转，与写死版一致；显示位置由游戏界面右上角改为大厅顶部横幅，不算一致，为有意改动（运营02 确认），基线比较扣除回大厅前已过期的部分（原只写「与写死版一致」，改）<span class="mk c">改</span></div>
+          <div style="margin-top:4px">生效范围 <span class="in" style="width:110px">仅测试账号<span class="dn">⌵</span></span></div>
+          <div class="mute">新版本占比：iOS 82%、Android 46%、网页不适用；切换后只有 46% 的 Android 玩家由本后台发送</div>
+          <div style="margin-top:6px">切换后快显 ID 32 变为运行中，客户端停用写死的通行证升级提示</div>
+          <div class="ft"><span class="btn2">取消</span><span class="btn2 p">确认切换</span></div>
+        </div>
+      </div>
+      <div class="cap"><b>快显、推播类须先选定一条推送</b>下拉只列同一推送方式、状态为草稿或已暂停的推送；切回后再次切换时选回原来那条；生效范围与新版本占比同弹窗类的切换确认框。（改）ID 32 版本 1（10/06）为原样迁入，确认框里「已核对一致」因此成立（改：显示位置除外，列为有意改动）；10/14 验收后运营02 改文案与跳转，生成版本 2，不发版（页 10）</div>
+    </div>
+    <div class="stc">
+      <div class="ui">
+        <div class="dlg">
+          <div class="t">调大「新手挑战弹窗」的生效范围？<span class="mk c">改</span></div>
+          <div>当前：由推送统一后台发送 · 仅测试账号（同组 2 项一起改）</div>
+          <div class="key" style="display:flex;align-items:center;gap:6px;margin:4px 0"><span class="mute">改为</span><span class="seg"><span class="on">10%</span><span>50%</span><span class="last">全部玩家</span></span><span class="mute">只能调大，调大只追加新玩家</span></div>
+          <div class="mute key">按随机分桶号取，实验 ID 取写死项键 LEGACY_NOVICE_CHALLENGE，同一玩家恒在同一组</div>
+          <div class="key">补导：确认后同一事务先对新纳入的玩家补导已显示记录（客户端上报本地记录：读开关版本客户端已上报 1,326 条），再按新范围下发；新纳入的在线玩家经长连接收到开关变化</div>
+          <div>新版本占比：iOS 82%、Android 46%、网页不适用；改后读开关版本客户端的全部玩家由本后台弹出，旧版本客户端照旧显示写死内容（选全部玩家时）</div>
+          <div>预计影响：规则 12 的「新手挑战」约每天弹 430 次（切换前 7 天曝光 2,980），计入每人每天弹窗上限；选 10% 约每天 43 次</div>
+          <div class="ft"><span class="btn2">取消</span><span class="btn2 p">确认改为 10%</span></div>
+        </div>
+      </div>
+      <div class="cap"><b>生效范围为仅测试账号或按比例的行，操作列为「调大范围」「切回」（改）</b>原为「改为全部玩家」：点后先弹确认框，写新版本占比与预计影响，确认后记入操作纪录；按比例放量原写本期不做（10/16 夜），改为可选 10%、50%、全部玩家，只能调大；确认框另写补导：从服务端导入的补导原处记录，客户端上报本地记录的补导读开关版本客户端已上报的写死显示，避免范围外期间看过写死版的人重弹；推荐状态型、量大的客户端项走仅测试账号 → 10% → 50% → 全部玩家，服务端项与量小的项可从仅测试账号直接到全部玩家；按比例期间写死项详情「对比」并排已切换组与未切换组</div>
+    </div>
+    <div class="stc">
+      <div class="ui">
+        <div class="ttl">满足完成条件后的一行</div>
+        <div><b>限时加码礼包未购买提醒</b>　<span class="stt on">由推送统一后台发送</span> <span class="stt dim">已完成</span></div>
+        <div class="mute" style="margin-top:4px">新版本已删写死代码，不能切回 · 写死配置存档 <span class="elink">查看</span></div>
+        <div class="mute key">删代码后剩余手段：暂停推播 ID 31、改内容；不能恢复由礼包后台发送<span class="mk n">新增</span></div>
+        <div class="dlg" style="margin-top:8px"><div class="t">将「限时加码礼包未购买提醒」切回「由礼包后台发送」？</div><div style="color:#B88230">写死代码将在礼包后台 2.6 版本删除，之后不能再切回</div><div class="ft"><span class="btn2">取消</span><span class="btn2 p">确认切回</span></div></div>
+      </div>
+      <div class="cap"><b>迁移完成：全部玩家连续 30 天未切回、业务负责人确认放弃回退</b>状态写「已完成」；删代码前上传写死配置存档；满足条件但未删代码时，切回确认框提示将删除的版本。（改）30 天自最近一次切回起算（未切回过的自改为全部玩家起算）；满 30 天给业务负责人待办（总览待处理），每周提醒；不加新版本占比条件；存档即登记时必传的写死版截图或录屏；删代码后剩余手段：可暂停后台推送、下架排序项、改内容，不能恢复写死，客户端旧版本仍显示写死直到更新</div>
+    </div>
+    <div class="stc">
+      <div class="ui">
+        <table class="ut">
+          <thead><tr><th>配置</th><th>当前可改</th><th>自何时起</th></tr></thead>
+          <tbody><tr><td>限时加码礼包未购买提醒</td><td>推送统一后台</td><td>10/02 10:12</td></tr><tr><td>短信</td><td>推送统一后台</td><td>10/08 10:00</td></tr><tr><td>Facebook、LINE</td><td>推送统一后台</td><td>10/09 10:00</td></tr><tr class="key"><td>五星好评<span class="mk n">新增</span></td><td>系统设定 · 系统功能弹窗</td><td>—（未切换；切换后该页只读）</td></tr></tbody>
+        </table>
+        <div style="margin-top:6px">短信存量排程核对（10/08 切换前完成）：5 行 · 一致 3 · 已改 2（含「每晚签到提醒」文案不同）· 未核对 0；营销侧切换前已排程的 3 条 10/14 前发完</div>
+        <div class="mute" style="margin-top:4px">未核对为 0 才算切换前检查项通过</div>
+      </div>
+      <div class="cap"><b>配置所在地与存量配置核对</b>切换后营销侧对应页只读并提示已迁移；营销侧周期排程导入为本后台草稿，逐行核对差异</div>
+    </div>
+    <div class="stc">
+      <div class="ui">
+        <div class="dlg">
+          <div class="t">按写死项新建：五星好评<span class="mk n">新增</span></div>
+          <div style="display:flex;align-items:center;gap:6px"><span class="mute">迁入为</span><span class="seg"><span>在已有规则加排序项</span><span class="on last">新建弹窗规则</span></span></div>
+          <div class="mute" style="margin-top:6px">按写死版预填（10/18 研发02 登记）</div>
+          <div>内容：图片 rate_us.png；文案「喜歡這款遊戲嗎？給我們五星好評吧！」；按钮「去評分」「下次再說」</div>
+          <div>触发：进大厅且满足评分条件　对象：注册满 3 天、未评分</div>
+          <div>频率：每人终身 2 次，间隔 7 天　位置：大厅弹窗</div>
+          <div style="margin-top:4px">新规则标「来源：写死项迁入 LEGACY_FIVE_STAR_RATING」，存为草稿、不上架</div>
+          <div class="ft"><span class="btn2">取消</span><span class="btn2 p">打开页 9 预填</span></div>
+        </div>
+        <div style="margin-top:8px">回到本页：该行「迁入后对应的规则或推送」变为弹窗规则草稿，阶段「已建 · 等读开关版本（Android 未发布）」</div>
+        <table class="ut" style="margin-top:6px">
+          <thead><tr><th>字段</th><th>写死版</th><th>后台版</th><th>结果</th></tr></thead>
+          <tbody>
+            <tr><td>按钮文字</td><td>下次再說</td><td>稍後</td><td>有差异 · 已确认有意改动（运营02：与新版界面统一）</td></tr>
+            <tr><td>频率</td><td>终身 2 次，间隔 7 天</td><td>每人总次数 2，未设间隔</td><td class="red">有差异 · 未确认</td></tr>
+          </tbody>
+        </table>
+        <div style="color:#B88230;margin-top:4px">切换前检查第三项不可勾：1 项未确认；有意改动 1 项，切换确认框提示「切换前后对比会失真，建议验收后再改」</div>
+      </div>
+      <div class="cap"><b>「未建」的行可按写死项新建，原样迁入（新增）</b>弹窗类打开页 9，在所选规则加排序项或新建弹窗规则；快显、推播打开新建表单；按写死版预填内容、触发、对象、频率、位置；新对象标「来源：写死项迁入 LEGACY_…」，推送存草稿、规则不上架；回到本页该行变「已建」；切换时后台版须与写死版一致，有差异须业务负责人确认为有意改动并写原因；不做自动导出：写死项只有几十项，多数写在代码里，没有结构化配置；缺能力的行（如强制弹窗）该操作置灰</div>
+    </div>
+    <div class="stc">
+      <div class="ui">
+        <div class="dlg">
+          <div class="t">将「红包狂欢开始」切换到「由推送统一后台发送」？<span class="mk n">新增</span></div>
+          <div style="display:flex;align-items:center;gap:6px;margin:2px 0 4px"><span>选定推播</span><span class="in" style="width:226px">ID 65 红包狂欢开始 · 影子<span class="dn">⌵</span></span></div>
+          <div class="mute">切换前检查</div>
+          <div>✓ 已通过 · 对应：推播 ID 65，状态为影子</div>
+          <div>✓ 已通过 · 原服务读开关代码已上线（10/15）</div>
+          <div>✓ 已通过 · 影子比对：3 个发送日差异率 0.40%、0.48%、0.34%，合计 0.4%（不超过 1%）</div>
+          <div class="mute" style="padding-left:14px">预期差异：勿扰顺延 12 人、活动提醒上限 101 人；只在后台 6 人（原服务 10/17 重启漏发，研发确认）</div>
+          <div style="display:flex;align-items:center"><span class="eck">✓</span>后台版对照一致，已用测试发送核对</div>
+          <div style="margin-top:6px;padding-top:6px;border-top:1px dashed #DCDFE6"><span class="mute">迁入默认设置</span> 消息类别 活动提醒 · 只读；勿扰 顺延，截止事件到期；合并组 不进（默认只信箱类与掉榜进）；维护期间 顺延</div>
+          <div><span class="mute">在途交接</span> 应发送时刻在切换后的由本后台发；原服务已排队、未到点 3 条交接，按触发事件唯一标识去重<span class="key">；（改）归属只看应发送时刻与切换时刻比较、不看此刻开关值：早于切换时刻的由原服务发完（含已到点正在发的批次），晚于的由本后台发；切回对称；两边同一去重键（会员、写死项键、应发送时刻）</span></div>
+          <div class="key mute">发送窗口提示：本项批次发送窗口（应发送时刻前后 15 分钟，暂定）内点切换时黄字「正在发送，建议窗口后再切」，不阻断；此刻不在窗口内，不出现<span class="mk n">新增</span></div>
+          <div class="key" style="color:#B88230">提示（不阻断）：同依赖「不需发版」的「风控停权短信」正在仅测试账号中，建议它观察结束后再切<span class="mk n">新增</span></div>
+          <div><span class="mute">生效范围</span> <span class="in" style="width:110px;height:22px">仅测试账号<span class="dn">⌵</span></span></div>
+          <div class="ft"><span class="btn2">取消</span><span class="btn2 p">确认切换</span></div>
+        </div>
+        <div class="dlg key" style="margin-top:8px">
+          <div class="t">切回例：将「红包狂欢开始」切回「由游戏服务端发送」？<span class="mk n">新增</span></div>
+          <div>切回后推播 ID 65 变为已暂停，原服务恢复发送；已发出的不撤回，数据保留</div>
+          <div class="rel" style="margin-top:6px"><span class="mute"><i style="color:#F56C6C;font-style:normal">*</i>切回原因</span> <span class="in" style="width:150px;height:22px">量级明显偏低<span class="dn">⌵</span></span></div>
+          <div><span class="mute">在途归属</span> 与切换对称：应发送时刻早于切回时刻的由本后台发完（含已到点未发完的批次、勿扰与维护顺延队列），晚于的由原服务发；两边同一去重键（会员、写死项键、应发送时刻）</div>
+          <div style="color:#B88230">提示（不阻断）：本项批次正在发送（应发送时刻 12:00 前后 15 分钟内，暂定），建议 12:15 后再切</div>
+          <div class="ft"><span class="btn2">取消</span><span class="btn2 p">确认切回</span></div>
+        </div>
+      </div>
+      <div class="cap"><b>推播类（34 种）切换确认框：影子比对结果、迁入默认设置、在途交接（新增）</b>以 34 种第 24 号「红包狂欢开始」为例（项目锚点，本期可迁）；选定推播只列同一推送方式、状态为影子、草稿或已暂停的推播；服务端项影子比对未通过时第三项不通过；迁入默认设置列默认值，消息类别只读、其余可改；在途交接按应发送时刻归属，原服务已排队、未到点的交给本后台补排，按触发事件唯一标识去重；每日定点＋状态的去重键为（会员、写死项键、发送日）；（改）在途按应发送时刻与切换（切回）时刻比较归属，切换、切回对称，原只写切换方向；批次发送窗口（应发送时刻前后 15 分钟，暂定）内切换、切回黄字提示，不阻断；下方加切回例</div>
+    </div>
+    <div class="stc">
+      <div class="ui">
+        <div class="ttl">写死项详情 · 对比（服务端项）：红包狂欢开始 · 影子比对每日对账<span class="mk n">新增</span></div>
+        <table class="ut">
+          <thead><tr><th>发送日</th><th class="r">两边都有</th><th class="r">只在后台</th><th class="r">只在原处</th><th class="r">时刻差 &gt; 5 分钟</th><th class="r">文案不同</th><th class="r">差异率</th></tr></thead>
+          <tbody>
+            <tr><td>10/16</td><td class="r">9,742</td><td class="r">0</td><td class="r">35</td><td class="r">4</td><td class="r">0</td><td class="r">0.40%</td></tr>
+            <tr><td>10/17</td><td class="r">9,810</td><td class="r">6</td><td class="r">36</td><td class="r">5</td><td class="r">0</td><td class="r">0.48%</td></tr>
+            <tr><td>10/18</td><td class="r">9,705</td><td class="r">0</td><td class="r">30</td><td class="r">3</td><td class="r">0</td><td class="r">0.34%</td></tr>
+            <tr><td><b>合计</b></td><td class="r">29,257</td><td class="r">6</td><td class="r">101</td><td class="r">12</td><td class="r">0</td><td class="r"><b>0.4%</b></td></tr>
+          </tbody>
+        </table>
+        <div class="mute" style="margin-top:4px">差异率＝不一致人数 ÷ 两边并集人数＝119 ÷ 29,364；时刻差的人计入「两边都有」</div>
+        <div style="margin-top:4px">差异解释：时刻差 12 人＝勿扰顺延；只在原处 101 人＝活动提醒每人每天上限；只在后台 6 人＝原服务 10/17 重启漏发（研发确认）；业务负责人运营02 已确认</div>
+        <div style="margin-top:4px">通过标准：连续 3 个发送日差异率不超过 1%（暂定），或差异逐类有解释并由业务负责人确认 → <b>已通过</b></div>
+      </div>
+      <div class="cap"><b>影子比对：服务端项在已建后、仅测试账号前，后台只算不发，与原服务逐人对账（新增）</b>对应推送状态「影子」：到点或触发时照常算对象、上限、勿扰、合并组，逐人记「应发」，不发送；原服务照常发送并回传实发记录（会员、时刻、写死项键、文案键）；每天对账五类：两边都有、只在后台、只在原处、时刻差超过 5 分钟、文案不同；只比发给谁、何时、什么文案，不比渠道送达；差异率超过 1% 触发告警规则 20（页 12d）。客户端项不做影子（同一设备不能新旧都跑而不重复显示），靠仅测试账号与按比例同期对照</div>
+    </div>
+  </div>
+  </details>
+  <p class="ref-link">本页全部字段与规则见需求文档 <a href="4_需求文档.md#s5-21">5.21 迁入管理</a>、<a href="4_需求文档.md#s4-2-6">4.2.6 写死项清点与迁入</a></p>
+  </div>
+</section>

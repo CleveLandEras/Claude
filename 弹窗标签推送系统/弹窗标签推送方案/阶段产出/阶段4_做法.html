@@ -1,0 +1,288 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>做法</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.35;margin:0 0 8px}
+.sub{font-size:16px;color:var(--ink-2);margin:0 0 28px}
+h2{font-family:var(--serif);font-size:20px;margin:48px 0 16px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px}
+.kpi .n{font-size:38px;font-weight:700;line-height:1.1;color:var(--ink)}
+.kpi .n small{font-size:16px;font-weight:600;margin-left:4px;color:var(--ink-2)}
+.kpi .t{font-size:14.5px;color:var(--ink-2);margin-top:8px}
+.kpi.red .n{color:var(--red)}
+.phase{border-top:4px solid var(--gray)}
+.phase.red{border-top-color:var(--red)} .phase.blue{border-top-color:var(--blue)}
+.phase .d{font-size:13px;color:var(--muted);font-weight:600}
+.phase .h{font-size:16.5px;font-weight:700;margin:4px 0 10px}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:12px}
+.tag.red{background:var(--red-soft);color:var(--red)} .tag.blue{background:var(--blue-soft);color:var(--blue)} .tag.gray{background:var(--gray-soft);color:var(--gray)} .tag.green{background:var(--green-soft);color:var(--green)}
+.kv{font-size:14px;color:var(--ink-2);margin:6px 0}
+.kv b{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:2px}
+.keep{display:flex;flex-wrap:wrap;gap:10px}
+.keep span{background:var(--green-soft);color:var(--green);font-size:14.5px;font-weight:600;padding:8px 14px;border-radius:4px}
+.cause .h{font-size:16.5px;font-weight:700;margin:0 0 6px}
+.cause .l{font-size:14.5px;color:var(--ink-2);margin:0 0 12px}
+.cause .e{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14.5px}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--line)}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--ground)}
+tr:last-child td{border-bottom:none}
+td.w{color:var(--ink)} td.r{color:var(--ink-2)} td.d{color:var(--muted);width:80px}
+tr.same td.w{color:var(--red);font-weight:600}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);margin-right:8px;vertical-align:1px}
+.legend{font-size:13px;color:var(--muted);margin:10px 0 0}
+.q{font-size:17px;font-weight:700;margin:0 0 14px}
+.opt{position:relative}
+.opt .h{font-size:16px;font-weight:700;margin:0 0 6px}
+.opt .l{font-size:14.5px;color:var(--ink-2)}
+.opt.rec{border:2px solid var(--blue)}
+.opt .badge{position:absolute;top:-11px;right:16px;background:var(--blue);color:#fff;font-size:12px;font-weight:700;padding:2px 10px;border-radius:3px}
+.why{font-size:14.5px;color:var(--ink-2);margin:14px 0 0}
+.why b{color:var(--ink)}
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.steps div{counter-increment:s;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 18px;font-size:14.5px;color:var(--ink-2)}
+.steps div::before{content:counter(s);display:block;font-size:22px;font-weight:700;color:var(--accent);margin-bottom:4px}
+.links{font-size:13px;color:var(--muted);margin-top:40px} a{color:var(--accent)}
+
+.v4{background:var(--surface);border:2px solid var(--ink);border-radius:8px;padding:18px 22px}
+.v4 .lab{font-size:12.5px;font-weight:700;color:var(--muted);letter-spacing:.08em;margin:0 0 10px}
+.row3{display:grid;grid-template-columns:90px 1fr 360px;gap:18px;align-items:center;padding:12px 0;border-top:1px solid var(--line)}
+.row3:first-of-type{border-top:none}
+.row3 .k{font-size:17px;font-weight:700}
+.row3 .s{font-size:15px;color:var(--ink)}
+.row3 .num{font-size:15px;color:var(--ink-2)} .row3 .num b{display:block;font-size:26px;color:var(--red);line-height:1.15}
+.shot{display:block}
+.imgwrap{position:relative;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#fff}
+.imgwrap img{display:block;width:100%}
+.mk{position:absolute;width:26px;height:26px;border-radius:50%;background:var(--blue);color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;transform:translate(-50%,-50%);box-shadow:0 0 0 3px rgba(255,255,255,.9)}
+.leg{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:14px}
+.leg div{font-size:14px;color:var(--ink-2);display:grid;grid-template-columns:26px 1fr;gap:10px}
+.leg i{font-style:normal;width:22px;height:22px;border-radius:50%;background:var(--blue);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.leg b{color:var(--ink);display:block}
+.cap{font-size:12.5px;color:var(--muted);margin:6px 0 0}
+.lane{display:grid;grid-template-columns:110px 1fr 190px;gap:14px;align-items:center;margin:10px 0}
+.lane .t{font-size:14.5px;font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips span{font-size:13px;padding:5px 9px;border-radius:4px;background:var(--gray-soft);color:var(--ink-2)}
+.chips span.on{background:var(--blue-soft);color:var(--blue);font-weight:700}
+.lane .r{font-size:14px;color:var(--ink-2)} .lane .r b{color:var(--ink)}
+.sum{display:flex;justify-content:space-between;align-items:center;border-top:1px dashed var(--line);margin-top:12px;padding-top:12px;font-size:14.5px;color:var(--ink-2)}
+.sum b{font-size:20px;color:var(--ink)}
+.place{border-top:4px solid var(--gray)}
+.place .h{font-size:16px;font-weight:700;margin:0 0 12px}
+.ch{border-top:1px solid var(--line);padding-top:10px;margin-top:10px}
+.ch:first-of-type{border-top:none;margin-top:0;padding-top:0}
+.ch .n{font-size:15px;font-weight:700;margin-bottom:4px}
+.ch p{margin:2px 0;font-size:13.5px;color:var(--ink-2)}
+.reach{display:flex;height:40px;border-radius:5px;overflow:hidden;margin:8px 0 6px}
+.reach div{display:flex;align-items:center;padding:0 12px;font-size:13.5px;font-weight:700;color:#fff}
+.grp{text-align:center}
+.grp .g{font-size:16px;font-weight:700}
+.grp .how{display:inline-block;font-size:12.5px;font-weight:700;padding:2px 9px;border-radius:3px;margin:8px 0 6px}
+.grp .c{font-size:13.5px;color:var(--ink-2)}
+.grp.new{border:2px solid var(--red)}
+.g5{grid-template-columns:repeat(5,1fr)}
+.fact .h{font-size:15px;font-weight:700;margin:0 0 4px}
+.fact .l{font-size:14px;color:var(--ink-2);margin:0}
+
+/* 本页补充 */
+:root{--amber-soft:#f6eddc}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--amber-soft:#342a1a}}
+:root[data-theme="dark"]{--amber-soft:#342a1a}
+.tag.amber{background:var(--amber-soft);color:var(--accent)}
+.v4 .row3{grid-template-columns:150px 1fr 330px}
+.row3 .k small{display:block;font-size:13px;font-weight:600;color:var(--muted);margin-top:2px}
+.row3 .num b{color:var(--blue)}
+.lab2{display:flex;align-items:center;flex-wrap:wrap;gap:10px;font-size:15.5px;font-weight:700;margin:30px 0 12px;color:var(--ink)}
+.lab2 .ix{flex:none;width:22px;height:22px;border-radius:50%;background:var(--ink);color:var(--surface);font-size:12px;display:flex;align-items:center;justify-content:center}
+.lab2 .tag{margin:0}
+.fig{margin:0 0 12px}
+.gapl{font-size:13.5px;color:var(--ink-2);margin:10px 0 0}
+.gapl b{font-size:12.5px;color:var(--muted);font-weight:600;margin-right:12px}
+td.k{font-weight:700;color:var(--ink);white-space:nowrap}
+td .tag{margin:0}
+table.fx{table-layout:fixed}
+table.fx td{vertical-align:top}
+td.g{color:var(--ink-2);font-size:13.5px}
+td.b{color:var(--blue);font-weight:600}
+.it .h{font-size:16px;font-weight:700;margin:0 0 8px}
+.it .l{font-size:14.5px;color:var(--ink-2);margin:0 0 6px}
+.it .l b{color:var(--ink);font-weight:600}
+.it .e{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px;margin:12px 0 0}
+.do{display:grid;grid-template-columns:1fr 300px;gap:14px;margin-top:12px}
+.do .card{padding:14px 18px}
+.do p{margin:0;font-size:14.5px;color:var(--ink)}
+.do .kk{font-size:12.5px;color:var(--muted);font-weight:600;margin-bottom:4px}
+.plan{display:grid;grid-template-columns:1fr 24px 1fr 24px 1fr 24px 1fr;gap:0}
+.plan.p5{grid-template-columns:1fr 14px 1fr 14px 1fr 14px 1fr 14px 1fr}
+.ph.gray{border-top-color:var(--gray)} .ph.gray .hd b{color:var(--gray)}
+.plan .span{font-size:13px;font-weight:700;color:var(--ink-2);border-bottom:2px solid var(--ink);padding:0 0 6px;margin:0 0 12px;letter-spacing:.04em}
+.plan .span.mid{border-bottom:2px dashed var(--gray);color:var(--muted)}
+.plan .ar{display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:18px}
+.ph{background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--gray);border-radius:6px;padding:14px 16px}
+.ph.green{border-top-color:var(--green)} .ph.blue{border-top-color:var(--blue)} .ph.amber{border-top-color:var(--accent)}
+.ph.mid{background:transparent;border-style:dashed;border-top-style:solid}
+.ph .hd{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.ph .hd span{font-size:15px;font-weight:700}
+.ph .hd b{font-size:26px;line-height:1;color:var(--ink)} .ph .hd b small{font-size:13px;color:var(--ink-2);margin-left:2px}
+.ph.green .hd b{color:var(--green)} .ph.blue .hd b{color:var(--blue)} .ph.amber .hd b{color:var(--accent)} .ph.mid .hd b{color:var(--gray)}
+.ph ul{list-style:none;padding:0;margin:10px 0 0}
+.ph li{font-size:13.5px;color:var(--ink-2);padding:6px 0;border-top:1px solid var(--line)}
+.ph .pre{font-size:12.5px;color:var(--accent);margin:8px 0 0;padding-top:8px;border-top:1px dashed var(--line)}
+.dc .q{font-size:16px;font-weight:700;margin:0 0 10px}
+.dc .rec{font-size:14.5px;color:var(--ink);margin:0 0 8px}
+.dc .rec .tag{margin:0 8px 0 0}
+.dc .why{font-size:13.5px;color:var(--ink-2);border-top:1px solid var(--line);padding-top:10px;margin:0}
+.nw{white-space:nowrap}
+.it .h .ix-s{display:inline-flex;width:20px;height:20px;border-radius:50%;background:var(--ink);color:var(--surface);font-size:11.5px;align-items:center;justify-content:center;margin-right:8px;vertical-align:2px}
+</style></head><body><div class="wrap">
+
+<p class="meta">阶段 4 · 做法 · 2026-10-10 · 依据：阶段 1 现状、阶段 2 目标、阶段 3 原因、10/10 后台截图</p>
+<h1>做法：弹窗分人群用现有后台配，上限、新手弹窗、推送统一后台、交集需开发</h1>
+<p class="sub">回答「该如何做」。第一块是进入 V4 的缩略，下面五节是依据。</p>
+
+<div class="v4">
+  <p class="lab">V4 缩略</p>
+  <div class="row3"><div class="k">现有功能可做<small>6 项</small></div><div class="s"><span class="nw">活动弹窗分四组、</span><span class="nw">五类人群首版内容、</span><span class="nw">推播与短信按标签发送、</span><span class="nw">新建两类标签、</span><span class="nw">效果按人群汇总、</span><span class="nw">组内随机对照</span></div><div class="num"><b>6 → 4 个</b>新增玩家每次进大厅看到的弹窗<br>活动类由 3 个减为 1 个</div></div>
+  <div class="row3"><div class="k">需开发 · 小改动<small>2 项</small></div><div class="s"><span class="nw">每人每日弹窗上限、</span><span class="nw">群组交集</span></div><div class="num"><b>14 个</b>进大厅次数多的玩家一天最多看到的活动弹窗<br>改由每人每日上限一处设定</div></div>
+  <div class="row3"><div class="k">需开发 · 较大开发<small>4 项</small></div><div class="s"><span class="nw">新手弹窗接入后台、</span><span class="nw">推送统一后台（含效果一处查）、</span><span class="nw">跳转与触发自助、</span><span class="nw">每种方式每日上限</span></div><div class="num"><b>3 处 → 1 个</b>五种推送的配置位置<br>礼包后台、客户端、营销侧合到推送统一后台</div></div>
+  <div class="row3"><div class="k">核实后定<small>5 项</small></div><div class="s"><span class="nw">标签人数预览、</span><span class="nw">口径说明、</span><span class="nw">变更记录、</span><span class="nw">引用清单、</span><span class="nw">快显 Facebook LINE 效果记录</span></div><div class="num"><b>5 项</b>可用 SQL、说明文档、营销侧导出代替<br>核实没有则按小改动做</div></div>
+</div>
+
+<h2><span class="no">01</span>现有功能可做：活动弹窗按人群分四组，五类人群各看本组首版内容</h2>
+
+<p class="lab2" style="margin-top:0"><span class="ix">1</span>活动弹窗分四组：按先后判定组别，每人只命中本组一条规则</p>
+<div class="fig"><div class="imgwrap"><img src="../../分析/示意图_V4/机制_分组流程.png" alt="分组机制流程"></div></div>
+<div class="fig"><div class="imgwrap"><img src="../../分析/示意图_V4/弹窗_规则按人群.png" alt="改后弹窗规则按人群"></div>
+  <p class="cap">改后上架 7 条：活动类 4 条按人群互斥；储值类通用沿用；破产储值 2 条（实验组新建 1 条，原规则排除实验组）。顶部「每人每日上限」一栏需开发（见 02）</p></div>
+<div class="grid g3">
+  <div class="card fact"><p class="h">组间用排除互斥</p><p class="l">回流组排除新增<br>潜在流失实验组排除新增、回流<br>其余组排除新增、回流、潜在流失实验组</p></div>
+  <div class="card fact"><p class="h">对照组看到的与改前相同</p><p class="l">潜在流失对照组留在其余组；<br>破产对照组留在原破产储值规则</p></div>
+  <div class="card fact"><p class="h">配置后抽查</p><p class="l">用玩家弹窗顺序查询，每组抽查几名玩家<br>只命中本组规则</p></div>
+</div>
+<p class="gapl"><b>对应差距</b>各组顺序单独设定 · 同属两类只看一套（按新增、回流、潜在流失实验组的先后只进一组）</p>
+
+<p class="lab2"><span class="ix">2</span>五类人群首版内容：新增少弹，回流先看回流任务，潜在流失与破产组内对照</p>
+<table class="fx">
+<tr><th style="width:92px">人群</th><th style="width:132px">位置</th><th>改前看到</th><th>改后看到</th><th style="width:226px">对应差距</th></tr>
+<tr><td class="k">新增</td><td class="g">大厅自动弹窗</td><td class="r">活动 3 个＋储值 1 个＋新手弹窗 2 个，<br>共 6 个</td><td class="b">活动弹 1 个，储值与新手弹窗不变，<br>共 4 个</td><td class="r">新增少弹</td></tr>
+<tr><td class="k">回流</td><td class="g">大厅自动弹窗</td><td class="r">回流任务排活动类第 7；<br>前面取满 3 个就轮不到</td><td class="b">回流任务排第 1，活动仍弹 3 个</td><td class="r">回流先看回流任务</td></tr>
+<tr><td class="k">潜在付费</td><td class="g">大厅、破产弹窗</td><td class="r">储值位、破产位都先取首储礼包</td><td class="w">沿用，不另建规则</td><td class="r">潜在付费先看首储礼包<br>（现已做到）</td></tr>
+<tr><td class="k">潜在流失</td><td class="g">大厅自动弹窗</td><td class="r">与其余玩家相同；<br>每日补给计划排活动类第 8</td><td class="b">实验组：新建一条活动类规则，每日补给计划排第 1<br><span style="color:var(--ink);font-weight:400">对照组：留在其余组，沿用</span></td><td class="r">潜在流失一组先看补给计划</td></tr>
+<tr><td class="k">破产</td><td class="g">游戏破产弹窗</td><td class="r">已付费者先取独享礼包；<br>破产礼包排第 3</td><td class="b">实验组：新建一条破产储值规则，破产礼包提到第 2<br><span style="color:var(--ink);font-weight:400">对照组：原规则排除实验组，沿用</span></td><td class="r">破产礼包提到第 2</td></tr>
+<tr><td class="k">其余</td><td class="g">全部位置</td><td class="r">现有 3 条规则，对象为全部玩家</td><td class="w">内容沿用；活动类对象排除新增、回流、潜在流失实验组</td><td class="r">其余沿用</td></tr>
+</table>
+<p class="cap">蓝字为改动。排序与弹出数量为首版建议配置，运营按活动开放期调整；实验组与对照组比较曝光、点击后定。</p>
+
+<div class="grid g2" style="margin-top:22px">
+  <div class="card it"><p class="h"><span class="ix-s">3</span>推播、短信按标签发送</p>
+    <p class="l">发送对象取五类人群的标签名单，与弹窗同一套人群</p>
+    <p class="l"><b>替代办法：</b>短信按标签导出名单，交营销侧发送<br><b>推播：</b>能按标签发送则直接选，不能则等推送统一后台</p>
+    <p class="e">对应差距　按标签人群发送</p></div>
+  <div class="card it"><p class="h"><span class="ix-s">4</span>新建潜在付费、潜在流失标签</p>
+    <p class="l"><b>潜在付费：</b>从未储值，近 14 天押注不低于 20,000</p>
+    <p class="l"><b>潜在流失：</b>注册满 28 天、近 7 天有登录<br>第 15–28 天登录不少于 4 天，近 14 天 2–3 天或 1 天，分两档</p>
+    <p class="e">对应差距　新建两类标签</p></div>
+  <div class="card it"><p class="h"><span class="ix-s">5</span>效果按人群汇总</p>
+    <p class="l">弹窗曝光、点击，推播傳送、曝光、開啟，按五类人群统计</p>
+    <p class="l">短信按发送对象中一定时间内登录的人数统计，时长由运营设定</p>
+    <p class="e">对应差距　曝光、点击按人群查 · 推播、短信效果按人群查</p></div>
+  <div class="card it"><p class="h"><span class="ix-s">6</span>组内随机对照</p>
+    <p class="l">潜在流失、破产组内随机分实验组与对照组，比较两组曝光、点击</p>
+    <p class="l"><b>替代办法：</b>按玩家 ID 尾数奇偶建潜在流失实验组、破产实验组子标签；实验分流能直接配置时改用分流</p>
+    <p class="e">对应差距　组内随机分两组</p></div>
+</div>
+
+<h2><span class="no">02</span>需开发：弹窗加每日上限、新手弹窗接入，推送建统一后台，群组可取交集</h2>
+
+<p class="lab2" style="margin-top:0"><span class="ix">1</span>每人每日弹窗上限：弹窗后台加一栏，一天最多弹几个一处设定<span class="tag blue">弹窗后台 · 小改动</span></p>
+<div class="fig"><div class="imgwrap"><img src="../../分析/示意图_V4/弹窗_每日上限.png" alt="每人每日上限设置"></div></div>
+<div class="do">
+  <div class="card"><p class="kk">改什么</p><p>每人每日最多弹几个，含各时机；超出后当日不再弹，按排序截断</p></div>
+  <div class="card"><p class="kk">对应差距</p><p>每人每日最多几个</p></div>
+</div>
+
+<p class="lab2"><span class="ix">2</span>新手弹窗接入后台：新手挑战、新手通行证计入弹出数量，后台读得出<span class="tag amber">客户端 · 较大开发</span></p>
+<div class="fig"><div class="imgwrap"><img src="../../分析/示意图_V4/弹窗_玩家改前改后.png" alt="新增玩家改前改后"></div>
+  <p class="cap">现有功能把活动类由 3 个减为 1 个，共 4 个，新手弹窗不变；接入后台后新手弹窗排最前，4 个都在玩家弹窗顺序查询里读得出</p></div>
+<div class="do">
+  <div class="card"><p class="kk">改什么</p><p>两项改由弹窗后台配置时机、次数、对象与先后；计入新增组弹出数量</p></div>
+  <div class="card"><p class="kk">对应差距</p><p>新手弹窗计入数量</p></div>
+</div>
+
+<p class="lab2"><span class="ix">3</span>推送统一后台：五种推送一个后台配置，对象引用标签，效果一处查<span class="tag amber">推送统一后台（新建）· 较大开发</span></p>
+<div class="fig"><div class="imgwrap"><img src="../../分析/示意图_V4/推送_现在与改后.png" alt="推送现在与改后"></div></div>
+<div class="fig"><div class="imgwrap"><img src="../../分析/示意图_V4/推送_统一后台.png" alt="推送统一后台示意"></div></div>
+<table class="fx">
+<tr><th style="width:190px">项</th><th>改什么</th><th style="width:250px">对应差距</th></tr>
+<tr><td class="k">推送统一后台</td><td class="r">五种推送在一个后台配置，发送对象引用标签群组；快显改由后台下发<br>发送量、到达、点击按方式、按人群一处查；推播报表并入；短信另看登录人数</td><td class="r">五种推送一处配置<br>按标签人群发送</td></tr>
+<tr><td class="k">跳转与触发自助</td><td class="r">文案、图片、点击跳转运营自助；<br>触发条件可选定时或按行为（升级、任务完成、礼包将到期）</td><td class="r">内容、跳转、触发自助</td></tr>
+<tr><td class="k">每种方式每日上限</td><td class="r">每种推送每人每日最多几条；各方式相加即每人每日最多几条</td><td class="r">每人每日最多几条</td></tr>
+</table>
+
+<p class="lab2"><span class="ix">4</span>群组交集：已建群组可直接取交集，不必拆回标签重建<span class="tag blue">会员标签设定 · 小改动</span></p>
+<div class="fig"><div class="imgwrap"><img src="../../分析/示意图_V4/标签_群组交集.png" alt="标签群组交集"></div>
+  <p class="cap">底部「当前人数」一栏即核实后定的人数预览（见 03）</p></div>
+<div class="do">
+  <div class="card"><p class="kk">改什么</p><p>群组条件可选另一群组，取交集；且、或、排除沿用</p></div>
+  <div class="card"><p class="kk">对应差距</p><p>群组之间取交集</p></div>
+</div>
+
+<h2><span class="no">03</span>核实后定：五项可用代替办法，核实没有则按小改动做</h2>
+<table class="fx">
+<tr><th style="width:200px">项</th><th>核实没有时改什么</th><th style="width:330px">代替办法</th></tr>
+<tr><td class="k">标签人数预览</td><td class="r">标签、群组保存前显示人数，剔除机器人、测试账号</td><td class="r">用标签 SQL 查人数</td></tr>
+<tr><td class="k">口径说明</td><td class="r">每个标签写明来源、时间窗、门槛</td><td class="r">写进标签说明文档</td></tr>
+<tr><td class="k">变更记录</td><td class="r">记录谁在何时改了什么</td><td class="r">改口径时在说明文档记日期与改动</td></tr>
+<tr><td class="k">引用清单</td><td class="r">列出引用该标签的弹窗规则与推送</td><td class="r">弹窗规则列表按「对象」筛选</td></tr>
+<tr><td class="k" style="white-space:normal">快显、Facebook、LINE<br>效果记录</td><td class="r">补发送、点击记录，按人群可查</td><td class="r">Facebook、LINE 由营销侧按次导出；<br>快显随推送统一后台补记录</td></tr>
+</table>
+<p class="gapl"><b>对应差距</b>人数预览 · 口径说明 · 变更记录 · 引用清单 · 快显、Facebook、LINE 效果（各对应同名一项）</p>
+
+<h2><span class="no">04</span>改动分层：17 项改动中现有功能可做 6 项，需开发 6 项，5 项核实后定</h2>
+<div class="plan p5">
+  <div class="span" style="grid-column:1 / 8">本方案改动 17 项</div><div></div><div class="span mid">方案外的后续建议</div>
+  <div class="ph green"><div class="hd"><span>现有功能可做</span><b>6<small>项</small></b></div>
+    <ul><li>活动弹窗分四组</li><li>五类人群首版内容</li><li>推播、短信按标签发送</li><li>新建两类标签</li><li>效果按人群汇总</li><li>组内随机对照</li></ul>
+    <p class="pre" style="color:var(--green)">替代办法：组内随机按玩家 ID 尾数建子标签；按标签发送用短信导出名单</p></div>
+  <div class="ar"></div>
+  <div class="ph blue"><div class="hd"><span>小改动</span><b>2<small>项</small></b></div>
+    <ul><li>每人每日弹窗上限</li><li>群组交集</li></ul></div>
+  <div class="ar"></div>
+  <div class="ph amber"><div class="hd"><span>较大开发</span><b>4<small>项</small></b></div>
+    <ul><li>新手弹窗接入后台</li><li>推送统一后台</li><li>跳转与触发自助</li><li>每种方式每日上限</li></ul>
+    <p class="pre">前置：短信、Facebook、LINE 需营销侧接入；限时加码礼包推播要迁移</p></div>
+  <div class="ar"></div>
+  <div class="ph gray"><div class="hd"><span>核实后定</span><b>5<small>项</small></b></div>
+    <ul><li>标签人数预览</li><li>口径说明</li><li>变更记录</li><li>引用清单</li><li>快显、Facebook、LINE 效果记录</li></ul></div>
+  <div class="ar"></div>
+  <div class="ph mid"><div class="hd"><span>后续建议</span><b>2<small>项</small></b></div>
+    <ul><li>弹窗与推送按人合计上限</li><li>跨推送方式每日上限</li></ul></div>
+</div>
+<p class="cap" style="margin-top:12px">需开发 6 项（小改动 2、较大开发 4）即阶段 3 判为缺功能的 6 项；发送量、到达、点击一处查并入推送统一后台<br>核实后定 5 项可用 SQL、说明文档、营销侧导出代替，核实没有则按小改动做；后续建议两项要五种推送都在一个后台发送后才能合计</p>
+
+<h2><span class="no">05</span>前置条件与风险：分组靠排除互斥，推送统一后台开发量最大</h2>
+<table class="fx">
+<tr><th style="width:150px">改动</th><th>前置条件</th><th>主要风险</th><th>怎么确认做到</th></tr>
+<tr><td class="k">活动弹窗分四组</td><td class="r">对象可用排除；两类新标签与实验组子标签已建好</td><td class="r">分组有漏或重叠时，<br>重叠者叠加弹出</td><td class="r">顺序查询抽查各组<br>只命中本组规则</td></tr>
+<tr><td class="k">新建两类标签</td><td class="r">按定义写好 BigQuery 脚本，<br>潜在流失分两档</td><td class="r">门槛不合适时圈得过宽或过窄</td><td class="r">建标签时用 SQL 看人数，<br>按人数调门槛</td></tr>
+<tr><td class="k">组内随机对照</td><td class="r">实验分流可配置，<br>或按玩家 ID 尾数建子标签</td><td class="r">不能分组时只能前后比较，<br>内容与活动开放期的影响分不开</td><td class="r">两组各自拉得出曝光、点击</td></tr>
+<tr><td class="k">每人每日弹窗上限</td><td class="r">弹窗后台可加全局设置</td><td class="r">上限过低时，排序靠后的活动曝光下降</td><td class="r">事前读得出各组<br>每人每日最多几个</td></tr>
+<tr><td class="k">新手弹窗接入后台</td><td class="r">查清两项写死在客户端的原因</td><td class="r">改造期间新增玩家看到的弹窗会变</td><td class="r">顺序查询里看得到新手弹窗</td></tr>
+<tr><td class="k">推送统一后台</td><td class="r">短信、Facebook、LINE 需营销侧接入</td><td class="r">开发量最大；限时加码礼包推播等<br>现有推送要迁移</td><td class="r">每条推送查得到发送量、<br>到达、点击</td></tr>
+</table>
+
+<p class="links">依据：<a href="阶段3_原因.html">阶段 3 原因</a>　·　<a href="阶段2_目标.html">阶段 2 目标</a>　·　<a href="阶段1_现状盘点.html">阶段 1 现状盘点</a>　·　<a href="../../分析/示意图_V4">示意图</a></p>
+</div></body></html>

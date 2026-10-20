@@ -1,0 +1,210 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>原因</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.35;margin:0 0 8px}
+.sub{font-size:16px;color:var(--ink-2);margin:0 0 28px}
+h2{font-family:var(--serif);font-size:20px;margin:48px 0 16px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px}
+.kpi .n{font-size:38px;font-weight:700;line-height:1.1;color:var(--ink)}
+.kpi .n small{font-size:16px;font-weight:600;margin-left:4px;color:var(--ink-2)}
+.kpi .t{font-size:14.5px;color:var(--ink-2);margin-top:8px}
+.kpi.red .n{color:var(--red)}
+.phase{border-top:4px solid var(--gray)}
+.phase.red{border-top-color:var(--red)} .phase.blue{border-top-color:var(--blue)}
+.phase .d{font-size:13px;color:var(--muted);font-weight:600}
+.phase .h{font-size:16.5px;font-weight:700;margin:4px 0 10px}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:12px}
+.tag.red{background:var(--red-soft);color:var(--red)} .tag.blue{background:var(--blue-soft);color:var(--blue)} .tag.gray{background:var(--gray-soft);color:var(--gray)} .tag.green{background:var(--green-soft);color:var(--green)}
+.kv{font-size:14px;color:var(--ink-2);margin:6px 0}
+.kv b{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:2px}
+.keep{display:flex;flex-wrap:wrap;gap:10px}
+.keep span{background:var(--green-soft);color:var(--green);font-size:14.5px;font-weight:600;padding:8px 14px;border-radius:4px}
+.cause .h{font-size:16.5px;font-weight:700;margin:0 0 6px}
+.cause .l{font-size:14.5px;color:var(--ink-2);margin:0 0 12px}
+.cause .e{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14.5px}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--line)}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--ground)}
+tr:last-child td{border-bottom:none}
+td.w{color:var(--ink)} td.r{color:var(--ink-2)} td.d{color:var(--muted);width:80px}
+tr.same td.w{color:var(--red);font-weight:600}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);margin-right:8px;vertical-align:1px}
+.legend{font-size:13px;color:var(--muted);margin:10px 0 0}
+.q{font-size:17px;font-weight:700;margin:0 0 14px}
+.opt{position:relative}
+.opt .h{font-size:16px;font-weight:700;margin:0 0 6px}
+.opt .l{font-size:14.5px;color:var(--ink-2)}
+.opt.rec{border:2px solid var(--blue)}
+.opt .badge{position:absolute;top:-11px;right:16px;background:var(--blue);color:#fff;font-size:12px;font-weight:700;padding:2px 10px;border-radius:3px}
+.why{font-size:14.5px;color:var(--ink-2);margin:14px 0 0}
+.why b{color:var(--ink)}
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.steps div{counter-increment:s;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 18px;font-size:14.5px;color:var(--ink-2)}
+.steps div::before{content:counter(s);display:block;font-size:22px;font-weight:700;color:var(--accent);margin-bottom:4px}
+.links{font-size:13px;color:var(--muted);margin-top:40px} a{color:var(--accent)}
+
+.v4{background:var(--surface);border:2px solid var(--ink);border-radius:8px;padding:18px 22px}
+.v4 .lab{font-size:12.5px;font-weight:700;color:var(--muted);letter-spacing:.08em;margin:0 0 10px}
+.row3{display:grid;grid-template-columns:90px 1fr 360px;gap:18px;align-items:center;padding:12px 0;border-top:1px solid var(--line)}
+.row3:first-of-type{border-top:none}
+.row3 .k{font-size:17px;font-weight:700}
+.row3 .s{font-size:15px;color:var(--ink)}
+.row3 .num{font-size:15px;color:var(--ink-2)} .row3 .num b{display:block;font-size:26px;color:var(--red);line-height:1.15}
+.shot{display:block}
+.imgwrap{position:relative;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#fff}
+.imgwrap img{display:block;width:100%}
+.mk{position:absolute;width:26px;height:26px;border-radius:50%;background:var(--blue);color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;transform:translate(-50%,-50%);box-shadow:0 0 0 3px rgba(255,255,255,.9)}
+.leg{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:14px}
+.leg div{font-size:14px;color:var(--ink-2);display:grid;grid-template-columns:26px 1fr;gap:10px}
+.leg i{font-style:normal;width:22px;height:22px;border-radius:50%;background:var(--blue);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.leg b{color:var(--ink);display:block}
+.cap{font-size:12.5px;color:var(--muted);margin:6px 0 0}
+.lane{display:grid;grid-template-columns:110px 1fr 190px;gap:14px;align-items:center;margin:10px 0}
+.lane .t{font-size:14.5px;font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips span{font-size:13px;padding:5px 9px;border-radius:4px;background:var(--gray-soft);color:var(--ink-2)}
+.chips span.on{background:var(--blue-soft);color:var(--blue);font-weight:700}
+.lane .r{font-size:14px;color:var(--ink-2)} .lane .r b{color:var(--ink)}
+.sum{display:flex;justify-content:space-between;align-items:center;border-top:1px dashed var(--line);margin-top:12px;padding-top:12px;font-size:14.5px;color:var(--ink-2)}
+.sum b{font-size:20px;color:var(--ink)}
+.place{border-top:4px solid var(--gray)}
+.place .h{font-size:16px;font-weight:700;margin:0 0 12px}
+.ch{border-top:1px solid var(--line);padding-top:10px;margin-top:10px}
+.ch:first-of-type{border-top:none;margin-top:0;padding-top:0}
+.ch .n{font-size:15px;font-weight:700;margin-bottom:4px}
+.ch p{margin:2px 0;font-size:13.5px;color:var(--ink-2)}
+.reach{display:flex;height:40px;border-radius:5px;overflow:hidden;margin:8px 0 6px}
+.reach div{display:flex;align-items:center;padding:0 12px;font-size:13.5px;font-weight:700;color:#fff}
+.grp{text-align:center}
+.grp .g{font-size:16px;font-weight:700}
+.grp .how{display:inline-block;font-size:12.5px;font-weight:700;padding:2px 9px;border-radius:3px;margin:8px 0 6px}
+.grp .c{font-size:13.5px;color:var(--ink-2)}
+.grp.new{border:2px solid var(--red)}
+.g5{grid-template-columns:repeat(5,1fr)}
+.fact .h{font-size:15px;font-weight:700;margin:0 0 4px}
+.fact .l{font-size:14px;color:var(--ink-2);margin:0}
+
+/* 本页补充 */
+.mx{display:grid;grid-template-columns:76px 1.7fr 1fr 1fr;margin-top:4px}
+.mx > div{padding:12px 14px;border-top:1px solid var(--line)}
+.mx > div:nth-child(4n+2),.mx > div:nth-child(4n+3),.mx > div:nth-child(4n+4){border-left:1px solid var(--line)}
+.mx .mh{border-top:none;display:flex;align-items:center;gap:10px;padding-top:4px}
+.mx .mh .tag{margin:0}
+.mx .mh b{font-size:22px;line-height:1;color:var(--ink)}
+.mx .mh b small{font-size:13px;font-weight:600;color:var(--ink-2);margin-left:2px}
+.mx .rk{font-size:16px;font-weight:700;display:flex;align-items:center;padding-left:0}
+.mx .cell{display:flex;flex-wrap:wrap;gap:6px;align-content:flex-start}
+.cp{font-size:13px;padding:4px 9px;border-radius:4px;font-weight:600;line-height:1.4}
+.cp.b{background:var(--blue-soft);color:var(--blue)} .cp.gr{background:var(--green-soft);color:var(--green)} .cp.r{background:var(--red-soft);color:var(--red)} .cp.g{background:var(--gray-soft);color:var(--gray)}
+.one{font-size:15.5px;font-weight:600;color:var(--ink);margin:16px 0 0;padding-top:14px;border-top:1px solid var(--line)}
+.one span{display:block;font-size:13px;font-weight:400;color:var(--muted);margin-top:4px}
+.one span+span{margin-top:2px}
+table.gap{table-layout:fixed}
+table.gap td{vertical-align:top}
+table.gap td .tag{margin:0}
+tr.sec td{background:var(--ground);font-size:14px;font-weight:700;color:var(--ink);padding:8px 16px}
+tr.sec td small{font-size:12.5px;font-weight:600;color:var(--muted);margin-left:8px}
+.cc .tag{margin:0 0 10px}
+.cc .n{font-size:38px;font-weight:700;line-height:1.1}
+.cc .n small{font-size:16px;font-weight:600;margin-left:4px;color:var(--ink-2)}
+.cc.blue .n{color:var(--blue)} .cc.green .n{color:var(--green)} .cc.red .n{color:var(--red)} .cc.gray .n{color:var(--gray)}
+.cc .h{font-size:16px;font-weight:700;margin:8px 0 6px}
+.cc .t{font-size:14.5px;color:var(--ink-2);margin:0 0 12px}
+.cc .e{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px;margin:0}
+.cc{border-top:4px solid var(--gray)} .cc.blue{border-top-color:var(--blue)} .cc.green{border-top-color:var(--green)} .cc.red{border-top-color:var(--red)}
+</style></head><body><div class="wrap">
+
+<p class="meta">阶段 3 · 原因 · 2026-10-10 · 依据：阶段 1 现状、阶段 2 目标、10/10 后台截图、已确认的后台规则</p>
+<h1>原因：弹窗分人群缺配置；新手弹窗、每日上限、推送统一后台、群组交集缺功能</h1>
+<p class="sub">回答「为什么现在做不到」。第一块是进入 V4 的缩略，下面两节是依据。</p>
+
+<div class="v4">
+  <p class="lab">V4 缩略</p>
+  <div class="mx">
+    <div class="mh"></div>
+    <div class="mh"><span class="tag green">缺配置</span><b>10<small>项</small></b></div>
+    <div class="mh"><span class="tag red">缺功能</span><b>6<small>项</small></b></div>
+    <div class="mh"><span class="tag gray">待核实</span><b>7<small>项</small></b></div>
+
+    <div class="rk">弹窗</div>
+    <div class="cell"><span class="cp gr">新增少弹</span><span class="cp gr">回流先看回流任务</span><span class="cp gr">潜在流失一组先看补给计划</span><span class="cp gr">破产礼包提到第 2</span><span class="cp gr">其余沿用</span><span class="cp gr">各组顺序单独设定</span><span class="cp gr">同属两类只看一套</span><span class="cp gr">曝光、点击按人群查</span></div>
+    <div class="cell"><span class="cp r">新手弹窗计入数量</span><span class="cp r">每人每日最多几个</span></div>
+    <div class="cell"><span class="cp g">组内随机分两组</span></div>
+
+    <div class="rk">推送</div>
+    <div class="cell"><span class="cp gr">推播、短信效果按人群查</span></div>
+    <div class="cell"><span class="cp r">五种推送一处配置</span><span class="cp r">内容、跳转、触发自助</span><span class="cp r">每人每日最多几条</span></div>
+    <div class="cell"><span class="cp g">按标签人群发送</span><span class="cp g">快显、Facebook、LINE 效果</span></div>
+
+    <div class="rk">标签</div>
+    <div class="cell"><span class="cp gr">新建两类标签</span></div>
+    <div class="cell"><span class="cp r">群组之间取交集</span></div>
+    <div class="cell"><span class="cp g">人数预览</span><span class="cp g">口径说明</span><span class="cp g">变更记录</span><span class="cp g">引用清单</span></div>
+  </div>
+  <p class="one">弹窗分人群用现有规则就能配出；要开发的 6 项集中在新手弹窗、每日上限、推送统一后台与群组交集<span>24 个目标项：缺配置 10、缺功能 6、待核实 7，另 1 项现已做到（潜在付费先看首储礼包）</span><span>待核实 7 项中 2 项有现成替代，现有功能可做（组内随机：按玩家 ID 尾数建子标签；按标签发送：短信导出名单）；其余 5 项核实后定</span></p>
+</div>
+
+<h2><span class="no">01</span>逐项对照：弹窗分人群缺的是配置，新手弹窗、每日上限、推送统一后台、群组交集缺的是功能</h2>
+<table class="gap">
+<tr><th style="width:300px">目标项</th><th style="width:320px">现在</th><th style="width:110px">差距</th><th>原因</th></tr>
+<tr class="sec"><td colspan="4">弹窗<small>12 项</small></td></tr>
+<tr><td class="w">新增少弹，总数不多于其他玩家</td><td class="r">活动 3 个＋储值 1 个，另有新手弹窗 2 个</td><td><span class="tag green">缺配置</span></td><td class="r">规则对象可选标签，弹出数量可设</td></tr>
+<tr><td class="w">回流先看回流任务</td><td class="r">回流任务排活动类第 7</td><td><span class="tag green">缺配置</span></td><td class="r">每条规则自带排序</td></tr>
+<tr><td class="w">潜在付费先看首储礼包</td><td class="r">从未储值者已先取到首储礼包</td><td><span class="tag green">现已做到</span></td><td class="r">排序跳过买不了的礼包</td></tr>
+<tr><td class="w">潜在流失一组先看每日补给计划</td><td class="r">与其余玩家相同</td><td><span class="tag green">缺配置</span></td><td class="r">建实验组子标签后单设一条规则</td></tr>
+<tr><td class="w">破产一组破产礼包提到第 2</td><td class="r">破产礼包排第 3</td><td><span class="tag green">缺配置</span></td><td class="r">实验组新建一条破产位规则</td></tr>
+<tr><td class="w">其余沿用现有内容</td><td class="r">3 条规则对象都是全部玩家</td><td><span class="tag green">缺配置</span></td><td class="r">对象可用排除，去掉前几组</td></tr>
+<tr><td class="w">每人每次最多几个，新手弹窗计入</td><td class="r">后台读得出 4 个；新手弹窗 2 个不在其中</td><td><span class="tag red">缺功能</span></td><td class="r">新手弹窗写死在客户端</td></tr>
+<tr><td class="w">每人每日最多几个可设定</td><td class="r">只能逐项相加，活动类一天最多 14 个</td><td><span class="tag red">缺功能</span></td><td class="r">只有每项次数与冷却，无每人每日总数</td></tr>
+<tr><td class="w">各组顺序单独设定</td><td class="r">3 条规则各有排序，都面向全部玩家</td><td><span class="tag green">缺配置</span></td><td class="r">每条规则自带排序</td></tr>
+<tr><td class="w">同属两类只看一套</td><td class="r">多条规则同时命中都会弹</td><td><span class="tag green">缺配置</span></td><td class="r">对象可用排除，组间互斥</td></tr>
+<tr><td class="w">组内随机分两组对照</td><td class="r">资料未记载分组设置</td><td><span class="tag gray">待核实</span></td><td class="r">实验分流能否直接配置未确认；替代：按玩家 ID 尾数建子标签</td></tr>
+<tr><td class="w">曝光、点击按人群可查</td><td class="r">曝光、点击有记录，部分不全</td><td><span class="tag green">缺配置</span></td><td class="r">记录已有，按标签人群统计</td></tr>
+<tr class="sec"><td colspan="4">推送<small>6 项</small></td></tr>
+<tr><td class="w">五种推送一处配置</td><td class="r">分在礼包后台、客户端、营销侧三处</td><td><span class="tag red">缺功能</span></td><td class="r">各功能各一套，没有推送统一后台</td></tr>
+<tr><td class="w">发送对象引用标签人群</td><td class="r">推播由礼包触发；短信按名单发送</td><td><span class="tag gray">待核实</span></td><td class="r">推播、短信能否按标签发送未确认；替代：短信按标签导出名单</td></tr>
+<tr><td class="w">内容、跳转、触发条件运营自助</td><td class="r">推播挂在限时加码礼包；快显写死</td><td><span class="tag red">缺功能</span></td><td class="r">快显要改客户端；推播只由礼包触发</td></tr>
+<tr><td class="w">每人每日最多几条可设定</td><td class="r">五种各自配置、各自发送</td><td><span class="tag red">缺功能</span></td><td class="r">没有推送统一后台，无法跨方式合计</td></tr>
+<tr><td class="w">推播、短信效果按人群可查</td><td class="r">推播报表：傳送、曝光、開啟；短信在 BI</td><td><span class="tag green">缺配置</span></td><td class="r">记录已有，按标签人群统计即可</td></tr>
+<tr><td class="w">快显、Facebook、LINE 效果按人群可查</td><td class="r">记录位置未查清</td><td><span class="tag gray">待核实</span></td><td class="r">记录在哪、有哪些字段未确认</td></tr>
+<tr class="sec"><td colspan="4">标签<small>6 项</small></td></tr>
+<tr><td class="w">新建潜在付费、潜在流失标签</td><td class="r">两类没有现成标签</td><td><span class="tag green">缺配置</span></td><td class="r">标签是自行编写的 BigQuery 脚本</td></tr>
+<tr><td class="w">群组之间取交集</td><td class="r">支持且、排除、或；群组之间不能取交集</td><td><span class="tag red">缺功能</span></td><td class="r">群组之间的运算尚未提供</td></tr>
+<tr><td class="w">人数预览</td><td class="r">资料未记载</td><td><span class="tag gray">待核实</span></td><td class="r">是否显示人数未确认；可用 SQL 查</td></tr>
+<tr><td class="w">口径说明</td><td class="r">标签是独立脚本；部分名称看不出口径</td><td><span class="tag gray">待核实</span></td><td class="r">后台有无说明栏未确认</td></tr>
+<tr><td class="w">变更记录</td><td class="r">弹窗后台有操作纪录；标签侧资料未记载</td><td><span class="tag gray">待核实</span></td><td class="r">标签有无变更记录未确认</td></tr>
+<tr><td class="w">引用清单</td><td class="r">弹窗规则列表可按「对象」筛选</td><td><span class="tag gray">待核实</span></td><td class="r">能否按标签列出引用它的规则未确认</td></tr>
+</table>
+<p class="legend">「缺配置」：后台截图或已确认的后台规则证明已有该能力；「缺功能」：资料证明没有；「待核实」：资料没写或未确认，不等于做不到。</p>
+
+<h2><span class="no">02</span>结论：配置用现有后台补齐，四处功能需开发；待核实 7 项中 2 项有替代办法，5 项核实后定</h2>
+<div class="grid g3">
+  <div class="card cc green"><span class="tag green">缺配置</span><div class="n">10<small>项</small></div>
+    <p class="h">现有功能配一下就能做到</p>
+    <p class="t">五类人群各设弹窗规则，组间排除互斥；<br>新建两类标签；按人群统计效果</p>
+    <p class="e">潜在流失一组要等新标签建好</p></div>
+  <div class="card cc red"><span class="tag red">缺功能</span><div class="n">6<small>项</small></div>
+    <p class="h">需开发</p>
+    <p class="t">新手弹窗接入后台、每人每日弹窗上限、<br>推送统一后台、群组交集</p>
+    <p class="e">推送三项都落在推送统一后台上</p></div>
+  <div class="card cc gray"><span class="tag gray">待核实</span><div class="n">7<small>项</small></div>
+    <p class="h">核实后才知道</p>
+    <p class="t">2 项有替代办法：组内随机、按标签发送<br>5 项核实后定：推送记录、标签四项工具</p>
+    <p class="e">答案只改变开发量，不改变目标</p></div>
+</div>
+
+<p class="links">依据：<a href="阶段1_现状盘点.html">阶段 1 现状盘点</a>　·　<a href="阶段2_目标.html">阶段 2 目标</a>　·　<a href="../../来源资料/后台截图_1010/弹窗顺序设定_规则列表.png">弹窗顺序设定截图</a>　·　<a href="../../规则与交接/已定事项.md">已确认的后台规则</a></p>
+</div></body></html>

@@ -1,0 +1,124 @@
+<!-- ============ 页 12 写死推送迁入（推播） ============ -->
+<section id="p12">
+  <div class="crumb">推播 › 迁入管理 · <b>页 12</b></div>
+  <h2>写死在服务端的推送逐项切到后台发送，先与原服务逐人对账，迁移完成前随时可切回，切换、切回时不重发、不漏发</h2>
+  <div class="pst"><span class="pk n">新页面</span>现在写死的推送分散在服务端代码里，没有清单</div>
+  <div class="seealso"><b>另见</b>写死的弹窗、快显（在客户端）的迁入、切回与迁入项告警在<a href="#p20">页 20</a>；推送与弹窗、快显共用同一条阶段线</div>
+  <div class="row">
+    <div class="win"><div class="win-in"><div class="win-bar"><i></i><i></i><i></i><span>推送统一后台 › 推播 › 迁入管理</span></div><div class="fig pd-flow">
+      <div class="main">
+        <div class="top"><span>推送统一后台 › 推播 › <span class="cur">迁入管理</span></span></div>
+        <div class="sec">
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><b style="font-size:15px;color:#303133">本期可迁 13 项（推送 6、弹窗与快显 7）：已完成 0 · 已验收 1 · 全部玩家观察中 1 · 测试或放量中 3 · 未切换 8</b><span class="mute">｜ 待能力接入 29 项（另计）</span><span class="btn2 sm" style="margin-left:auto">全部迁入项一键切回</span></div>
+        </div>
+        <div class="sec">
+          <table class="ut fx mig">
+            <thead><tr><th style="width:166px">名称 · 来源</th><th style="width:116px;white-space:normal">依赖 · 新版本占比<span class="co il" data-n="2" style="margin-left:3px">2</span></th><th style="width:150px">阶段</th><th style="width:160px">开关状态 · 生效范围</th><th style="width:92px;white-space:normal">切换前 7 天<span class="co il" data-n="3" style="margin-left:3px">3</span></th><th>操作</th></tr></thead>
+            <tbody>
+              <tr><td class="nm"><b>限时加码礼包未购买提醒</b><span class="sub">服务端 · 推播 ID 31 · 试点</span></td><td>不需发版</td><td>全部玩家 · 观察已满 7 天<span class="sub">等运营01 签字</span></td><td><span class="stt on">由推送统一后台发送</span><span class="sub">全部玩家</span></td><td>发送 3,840</td><td class="ops"><span>验收</span><span>切回</span></td></tr>
+              <tr><td class="nm"><b>红包狂欢开始</b><span class="sub">服务端 · 推播 ID 65 · 序号 24</span></td><td>不需发版</td><td>影子比对 3/3 发送日已过</td><td><span class="stt">由游戏服务端发送</span></td><td>发送 68,600</td><td class="ops"><span>切换</span></td></tr>
+              <tr class="gr"><td colspan="6">⋮ 其余本期可迁推送 4 项</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="sec rel">
+          <div class="pd-bt"><span class="pd-h">服务端系统推送 34 种</span><span class="pd-m">加粗 6 种本期迁入，其余 28 种待能力接入</span></div>
+          <table class="ut">
+            <thead><tr><th style="width:158px">对应模板（条数）</th><th>序号与名称</th></tr></thead>
+            <tbody>
+              <tr><td>时间偏移 · 项目开始、结束（5）</td><td><b>10 至尊刮刮乐（储值期后）、23 Boss 战开启、24 红包狂欢开始、28 活动鱼机开打、29 尊爵礼包上架</b></td></tr>
+              <tr><td>时间偏移 · 事件到期（6）</td><td>16 金银满盆（未领取）、25 满购礼包到期、<b>31 限时加码礼包未购买提醒</b>、32 活动奖励信件过期、34 保留座即将到期、7 金币小玛莉</td></tr>
+              <tr><td>时间偏移 · 事件可用（7）</td><td>3 天天敲蛋礼、14 发财金（冷却结束）、19 卡别补给站、22 鸿运转盘、27 新手礼包解锁、30 独享礼包解锁、33 延时福袋解锁</td></tr>
+              <tr><td>排名变化（1）</td><td>26 排行榜掉榜</td></tr>
+              <tr><td>每日定点＋状态（14）</td><td>1 登入签到礼、2 天天敲蛋礼（每日）、4 福利卡、5 限时任务、6 红包墙、8 疯狂扭蛋机、9 至尊刮刮乐（进行中）、11 机会与命运、12 祈福财神庙、13 发财金（每日）、15 金银满盆（押注）、17 每日补给（任务）、18 每日补给（领奖）、20 月月抽（抽奖）</td></tr>
+              <tr><td>专属事件（1）</td><td>21 月月抽（升级）</td></tr>
+            </tbody>
+          </table>
+          <span class="co" data-n="1" style="right:8px;top:4px">1</span>
+        </div>
+      </div>
+    </div></div></div>
+    <div class="aside"><div class="notes">
+      <div class="note"><span class="nb">1</span><div><b>34 种全部列进清单，本期迁 6 种，序号 31 先迁作试点</b><p>清单由研发登记，本页不能增删。序号 31 的切换、切回、验收都在本页，礼包后台只显示迁入状态（页 13）；另 5 种只依赖项目起止时间，其余 28 种缺所需模块。</p></div></div>
+      <div class="note"><span class="nb">2</span><div><b>依赖相同的项一次只切一项</b><p>「不需发版」指服务端项；前一项检查通过再切下一项。</p></div></div>
+      <div class="note"><span class="nb">3</span><div><b>切换前 7 天作基线，每次操作留痕并标竖线</b><p>切换后与基线同口径比较。切换、改范围、切回记入操作纪录（页 28），数据页趋势图（页 7）当天标竖线。</p></div></div>
+    </div></div>
+  </div>
+
+  <h3 class="subh">每项走同一条阶段线，通过本阶段标准才进下一阶段</h3>
+  <div class="row">
+    <div class="win"><div class="win-in"><div class="win-bar"><i></i><i></i><i></i><span>迁入管理 · 阶段线（推送、弹窗、快显通用）</span></div><div class="fig pd-flow">
+      <div class="main">
+        <div class="sec" style="padding:14px 16px 16px">
+          <table class="ut">
+            <thead><tr><th style="width:150px">阶段</th><th>通过标准（数值暂定）</th><th style="width:104px">谁做</th></tr></thead>
+            <tbody>
+              <tr><td>已登记</td><td>清单字段齐全，写死版录屏已传</td><td>研发</td></tr>
+              <tr><td>已建</td><td>后台建好对应规则或推送，对照无「未确认」差异</td><td>运营</td></tr>
+              <tr><td>影子比对</td><td>只服务端项：连续 3 个发送日差异率 ≤ 1%，或差异逐类有解释；客户端项不做</td><td>系统、业务负责人</td></tr>
+              <tr><td>仅测试账号</td><td>线上走查：测试账号见后台版，其余见写死版</td><td>QA</td></tr>
+              <tr><td><span class="stt on">按比例 10%、50%</span></td><td><span class="co il" data-n="4" style="margin:0 6px 0 0">4</span>可选；每档 ≥ 2 天；重复显示为 0 或有解释；导入与上报条数一致；读开关失败率 &lt; 1%</td><td>业务负责人</td></tr>
+              <tr><td>全部玩家 · 观察 7 天 → 已验收</td><td>曝光人数÷对象人数 ≥ 基线 70%，点击率 ≥ 基线 80%；业务负责人确认可保持，签字</td><td>业务负责人</td></tr>
+              <tr><td>已完成</td><td>全部玩家且连续 30 天未切回；业务负责人确认放弃回退；新版本删写死代码</td><td>业务负责人、研发</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div></div></div>
+    <div class="aside"><div class="notes">
+      <div class="note"><span class="nb">4</span><div><b>按比例只能调大，放行看绝对数</b><p>按玩家随机分桶号取 10%、50%，调大只追加新玩家，并先补导其已显示记录。同期对照与崩溃率只作护栏（10% 档样本小）。服务端项与量小的项可从仅测试账号直达全部玩家。</p></div></div>
+    </div></div>
+  </div>
+
+  <h3 class="subh">服务端项先影子比对：后台只算不发，与原服务逐人对账</h3>
+  <div class="row">
+    <div class="win"><div class="win-in"><div class="win-bar"><i></i><i></i><i></i><span>迁入管理 · 红包狂欢开始</span></div><div class="fig pd-flow">
+      <div class="main">
+        <div class="sec rel" style="padding:14px 16px 16px">
+          <div class="pd-bt"><span class="pd-h">推播 ID 65 · 每日对账</span><span class="co il" data-n="5">5</span></div>
+          <table class="ut">
+            <thead><tr><th>发送日</th><th class="r">两边都有</th><th class="r">只在后台</th><th class="r">只在原处</th><th class="r">时刻差 &gt; 5 分钟</th><th class="r">文案不同</th><th class="r">差异率</th></tr></thead>
+            <tbody>
+              <tr><td>10/09</td><td class="r">9,742</td><td class="r">0</td><td class="r">35</td><td class="r">4</td><td class="r">0</td><td class="r">0.40%</td></tr>
+              <tr><td>10/10</td><td class="r">9,810</td><td class="r">6</td><td class="r">36</td><td class="r">5</td><td class="r">0</td><td class="r">0.48%</td></tr>
+              <tr><td>10/11</td><td class="r">9,705</td><td class="r">0</td><td class="r">30</td><td class="r">3</td><td class="r">0</td><td class="r">0.34%</td></tr>
+              <tr><td><b>合计</b></td><td class="r">29,257</td><td class="r">6</td><td class="r">101</td><td class="r">12</td><td class="r">0</td><td class="r"><b>0.4%</b></td></tr>
+            </tbody>
+          </table>
+          <div style="margin-top:6px">时刻差＝勿扰顺延，只在原处＝每人每天上限，只在后台 6 人＝原服务 10/10 重启漏发 → <b>已通过</b></div>
+        </div>
+      </div>
+    </div></div></div>
+    <div class="aside"><div class="notes">
+      <div class="note"><span class="nb">5</span><div><b>影子比对只比发给谁、何时、什么文案</b><p>后台照常算对象、上限、勿扰，逐人记「应发」不发送；原服务照常发送并回传实发记录。差异率＝不一致人数÷两边并集人数。</p></div></div>
+    </div></div>
+  </div>
+
+  <h3 class="subh">点「切换」：切换前检查全部通过才能确认</h3>
+  <div class="row">
+    <div class="win"><div class="win-in"><div class="win-bar"><i></i><i></i><i></i><span>迁入管理 · 切换确认</span></div><div class="fig pd-flow">
+      <div class="main">
+        <div class="sec" style="padding:14px 18px 16px">
+          <div class="dlg">
+            <div class="t">将「红包狂欢开始」切换到「由推送统一后台发送」？</div>
+            <div class="mute">切换前检查</div>
+            <div>✓ 对应：推播 ID 65，状态为影子</div>
+            <div>✓ 原服务读开关的代码已上线（10/08）</div>
+            <div>✓ 影子比对：合计差异率 0.4%，不超过 1%</div>
+            <div style="display:flex;align-items:center"><span class="eck">✓</span>后台版对照一致，已用测试发送核对</div>
+            <div style="margin-top:6px;padding-top:6px;border-top:1px dashed #DCDFE6"><span class="mute">迁入默认设置</span> 消息类别 系统推送 · 只读；勿扰 顺延，截止取触发事件的到期时刻<span class="co il" data-n="7">7</span></div>
+            <div><span class="mute">在途交接</span> 原服务已排队、未到点的 3 条交接过来<span class="co il" data-n="6">6</span></div>
+            <div style="display:flex;align-items:center;gap:6px"><span class="mute">生效范围</span><span class="in" style="width:110px;height:22px">仅测试账号<span class="dn">⌵</span></span></div>
+            <div><span class="mute">客户端项另列</span> 状态继承、新版本占比（页 20）</div>
+            <div class="ft"><span class="btn2">取消</span><span class="btn2 p">确认切换</span></div>
+          </div>
+        </div>
+      </div>
+    </div></div></div>
+    <div class="aside"><div class="notes">
+      <div class="note"><span class="nb">6</span><div><b>服务端项在途发送按应发送时刻归属</b><p>早于切换时刻的由原服务发完，晚于的由本后台发，切回对称，两边用同一去重键，不重发、不漏发。</p></div></div>
+      <div class="note"><span class="nb">7</span><div><b>迁入的系统推送按固定默认设置</b><p>类别只读，不占营销每人每天 2 条名额。勿扰默认顺延：现在 22:00–08:00 不发也不补，迁入后 22:00–24:00 照发。</p></div></div>
+    </div></div>
+  </div>
+
+</section>
