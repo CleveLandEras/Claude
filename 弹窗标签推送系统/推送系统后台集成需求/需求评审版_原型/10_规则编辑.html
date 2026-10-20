@@ -4,57 +4,92 @@
 <meta charset="utf-8">
 <title>10 规则编辑</title>
 <link rel="stylesheet" href="../原型样式.css">
+<link rel="stylesheet" href="_后台框.css">
 <style>
 html,body{margin:0;padding:0;background:#fff}
 body{font-family:"Inter","Noto Sans CJK SC","PingFang SC","Microsoft YaHei",sans-serif;font-size:13px;line-height:1.5}
-.shot{background:#fff;overflow:hidden}
 .shot .z{zoom:1.12}
 .shot .win{padding:0;border:0;border-radius:0;background:#fff;box-shadow:none}
 .shot .fig{width:auto;border:0;border-radius:0}
-.tc{font-family:"Inter","Noto Sans CJK TC","PingFang TC",sans-serif}
+.sub2{display:block;font-size:12px;color:#73767A;line-height:17px}
+table.ov{width:100%;border-collapse:collapse;margin:2px 0 4px;font-size:13px}
+table.ov th{font-weight:600;color:#73767A;background:#FAFBFC;text-align:left;padding:5px 10px;border-bottom:1px solid #EBEEF5}
+table.ov td{padding:4px 10px;border-bottom:1px solid #EBEEF5;color:#303133}
+table.ov .r{text-align:right}
+.tm{position:relative}
+.tm .ein{width:100%;justify-content:flex-start;border-color:#409EFF}
+.ddt{position:absolute;left:3px;top:32px;width:330px;background:#fff;border:1px solid #E4E7ED;border-radius:4px;box-shadow:0 4px 14px rgba(0,0,0,.12);padding:4px 0;z-index:3;text-align:left}
+.ddt div{display:flex;align-items:center;height:30px;padding:0 10px;color:#303133}
+.ddt div em{font-style:normal;margin-left:auto;color:#909399;font-size:12px}
+.ddt .num{display:inline-flex;align-items:center;justify-content:center;width:26px;height:20px;border:1px solid #DCDFE6;border-radius:3px;margin:0 4px;font-size:12px;color:#606266}
+.cyc{display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
+.cyc .ein{height:24px;padding:0 5px}
 </style>
 </head>
 <body>
-<div class="shot" style="width:980px"><div class="z"><div class="win"><div class="fig ew">
-  <div style="padding:10px 18px 14px">
+<div class="shot bk" data-page="弹窗" data-crumb="弹窗排序配置"><div class="z"><div class="win"><div class="fig ew">
+  <div style="padding:8px 18px 12px">
     <div class="ebt first">基本信息</div>
-    <div class="ef"><label style="width:78px"><i>*</i>弹窗类型</label><span class="ein v" style="width:140px">活动类弹窗<span class="dn">⌵</span></span><label style="width:96px"><i>*</i>弹窗位置</label><span class="ein v" style="width:150px">大厅弹窗<span class="dn">⌵</span></span><label style="width:96px"><i>*</i>弹出数量</label><span class="ein v" style="width:50px">3</span><span style="margin-left:6px">个</span></div>
+    <div class="ef"><label style="white-space:nowrap;width:94px"><i>*</i>弹窗类型</label><span class="ein v" style="width:118px">活动类弹窗<span class="dn">⌵</span></span><label style="white-space:nowrap;width:94px"><i>*</i>弹窗位置</label><span class="ein v" style="width:124px">大厅自动弹窗<span class="dn">⌵</span></span><label style="white-space:nowrap;width:94px"><i>*</i>弹出数量</label><span class="ein v" style="width:40px">3</span><span style="margin-left:6px">个</span><label style="white-space:nowrap;width:94px">标签状态</label><span class="ein v" style="width:72px">启用<span class="dn">⌵</span></span></div>
+    <div class="ef" style="height:auto;align-items:flex-end;margin-top:2px"><label style="white-space:nowrap;width:94px;padding-bottom:5px"><i>*</i>弹窗名称</label><span class="lang"><span class="on">中文繁体</span><span>Việt nam</span><span>English</span></span><span class="gen" style="margin-bottom:3px">一键多语言生成</span></div>
+    <div class="ef" style="margin-top:-1px"><label style="white-space:nowrap;width:94px"></label><span class="ein v" style="width:330px;border-radius:0 4px 4px 4px">潛在付費活動彈窗</span></div>
 
-    <div class="ebt">对象</div>
-    <div style="display:flex;gap:24px;align-items:flex-start">
+    <div class="ebt">派发对象</div>
+    <div style="display:flex;gap:20px;align-items:flex-start">
       <div style="flex:1;min-width:0">
-        <div class="ef"><label style="width:78px"><i>*</i>对象</label><span class="erad"><i></i>全部玩家</span><span class="erad on"><i></i>标签群组</span></div>
-        <div class="ef"><label style="width:78px"><i>*</i>标签群组</label><span class="ein v" style="width:240px">潜在流失·实验组　3,950 人<span class="dn">⌵</span></span></div>
-        <div class="ef"><label style="width:78px">排除群组</label><span class="ein" style="width:120px">选择群组<span class="dn">⌵</span></span></div>
-        <div class="ef" style="align-items:flex-start;padding-top:6px"><label style="width:78px;line-height:22px">固定排除</label><span style="display:flex;flex-wrap:wrap;gap:4px 0"><span class="tg fix">VIP 名单</span><span class="tg fix">黑名单</span><span class="tg fix">机器人与测试账号</span><span class="tg fix">敏感状态账号</span></span></div>
+        <div class="ef"><label style="white-space:nowrap;width:94px"><i>*</i>派发对象</label><span class="erad"><i></i>全部玩家</span><span class="erad"><i></i>VIP 卡别</span><span class="erad"><i></i>指定名单</span><span class="erad on"><i></i>群组标签</span></div>
+        <div class="ef"><label style="white-space:nowrap;width:94px"><i>*</i>群组标签</label><span class="ein v" style="width:220px">潜在付费　4,860 人<span class="dn">⌵</span></span></div>
+        <div class="ef"><label style="white-space:nowrap;width:94px">排除群组<em class="xn">新</em></label><span class="ein" style="width:120px">选择群组<span class="dn">⌵</span></span></div>
+        <div class="ef" style="align-items:flex-start;padding-top:6px"><label style="white-space:nowrap;width:94px;line-height:22px">固定排除<em class="xn">新</em></label><span style="display:flex;flex-wrap:wrap;gap:4px 0"><span class="tg fix">VIP 名单</span><span class="tg fix">黑名单</span><span class="tg fix">机器人与测试账号</span><span class="tg fix">敏感状态账号</span></span></div>
       </div>
-      <div class="estb" style="width:240px;flex:none;margin-top:4px">
-        <div class="l">弹窗预计人数</div>
-        <div style="font-size:16px;font-weight:700;color:var(--ink);margin:2px 0">预计 3,950 人</div>
+      <div class="estb" style="width:232px;flex:none;margin-top:4px">
+        <div class="l">弹窗预计人数<em class="xn">新</em></div>
+        <div style="font-size:16px;font-weight:700;color:var(--ink);margin:2px 0">预计 2,510 人</div>
+        <div class="mute">＝潜在付费 4,860 人 − 先弹权重更大规则的 2,350 人</div>
         <div class="mute">其中固定排除约 15 人</div>
-        <div class="mute">与其他上架规则不重叠</div>
       </div>
     </div>
+    <div class="ef" style="align-items:flex-start;padding-top:4px"><label style="white-space:nowrap;width:94px;line-height:24px">重叠<em class="xn">新</em></label>
+      <table class="ov">
+        <tr><th>同位置、同类型的上架规则</th><th class="r">权重</th><th class="r">重叠人数</th><th>这些人先弹</th></tr>
+        <tr><td>新增玩家活动弹窗　<span class="mute">ID 12</span></td><td class="r">40</td><td class="r">610</td><td>新增玩家活动弹窗</td></tr>
+        <tr><td>回流活动弹窗　<span class="mute">ID 13</span></td><td class="r">35</td><td class="r">1,320</td><td>回流活动弹窗</td></tr>
+        <tr><td>潜在流失活动弹窗　<span class="mute">ID 14</span></td><td class="r">30</td><td class="r">420</td><td>潜在流失活动弹窗</td></tr>
+        <tr><td>活动类弹窗　<span class="mute">ID 5</span></td><td class="r">20</td><td class="r">2,510</td><td style="font-weight:600">本规则</td></tr>
+      </table>
+    </div>
 
-    <div class="ebt">优先级与高级设置</div>
-    <div class="ef"><label style="width:78px"><i>*</i>优先级</label><span class="ein v" style="width:50px">3</span><span class="mute" style="margin-left:10px">同一位置内 1 最高</span></div>
-    <div class="ef"><label style="width:78px;white-space:nowrap">高级设置 ▸</label><span>已设 2 项（每人总次数、关闭后冷却），其余为默认</span></div>
+    <div class="ebt">权重与跳过</div>
+    <div class="ef"><label style="white-space:nowrap;width:94px"><i>*</i>权重</label><span class="ein v" style="width:50px">25</span><span class="mute" style="margin-left:10px">数字越大排序越靠前</span></div>
+    <div class="ef"><label style="white-space:nowrap;width:94px">跳过<em class="xn">新</em></label><span class="eck off"></span><span>当天已用快显提示过的同一活动或礼包</span></div>
 
-    <div class="ebt">弹窗排序</div>
-    <div class="ef"><label style="width:78px"><i>*</i>弹窗排序</label><span>共 14 项，每次最多弹出 3 个</span><span style="margin-left:14px">⠿ 拖动调整先后</span><span class="ebtn w" style="height:26px;margin-left:auto">＋ 添加排序项</span></div>
+    <div class="ebt">弹窗顺序</div>
+    <div class="ef"><label style="white-space:nowrap;width:94px"><i>*</i>弹窗顺序</label><span>共 6 项</span><span style="margin-left:14px">⠿ 拖动调整先后</span><span class="ebtn w" style="height:26px;margin-left:auto">＋ 添加弹窗内容</span></div>
     <table class="et" style="margin-top:4px">
-      <colgroup><col style="width:34px"><col style="width:56px"><col style="width:170px"><col><col style="width:100px"><col style="width:130px"><col style="width:96px"></colgroup>
+      <colgroup><col style="width:22px"><col style="width:34px"><col style="width:112px"><col><col style="width:84px"><col style="width:120px"><col style="width:62px"><col style="width:78px"><col style="width:58px"></colgroup>
       <thead>
-        <tr style="border-top:1px solid #EBEEF5"><th></th><th>顺序</th><th><span style="color:#F56C6C">*</span>排序项<br><span style="font-weight:400;font-size:12px">从现有活动、礼包里选</span></th><th><span style="color:#F56C6C">*</span>弹出时机（多选）</th><th>弹窗次数</th><th style="padding:7px 1px">弹出后终止本次<br>后续弹窗</th><th style="padding:7px 1px">不可关闭<br><span style="font-weight:400;font-size:12px">须点按钮</span></th></tr>
+        <tr style="border-top:1px solid #EBEEF5"><th></th><th>顺序</th><th><span style="color:#F56C6C">*</span>弹窗内容<br><span style="font-weight:400;font-size:12px">选现有活动、礼包</span></th><th><span style="color:#F56C6C">*</span>弹窗时机（多选）</th><th>弹窗形式</th><th>弹窗次数<br><span style="font-weight:400;font-size:12px">周期内几次</span></th><th>冷却时间<br><span style="font-weight:400;font-size:12px">秒</span></th><th style="padding:7px 1px">弹出后终止<br>后续弹窗<em class="xn">新</em></th><th style="padding:7px 1px">不可关闭<em class="xn">新</em></th></tr>
       </thead>
       <tbody>
-        <tr><td style="color:#73767A;font-size:15px">⠿</td><td>1</td><td><span class="ein v sm" style="width:140px;padding:0 6px">每日补给计划<span class="dn">⌵</span></span></td><td class="l">活动开启、当日首次登入、进入大厅</td><td style="white-space:nowrap">每日 1 次</td><td><span class="eck off" style="margin:0"></span></td><td><span class="eck off" style="margin:0"></span></td></tr>
-        <tr><td style="color:#73767A;font-size:15px">⠿</td><td>2</td><td class="l">热门资讯</td><td class="l">当日首次登入、进入大厅</td><td style="white-space:nowrap">每日 1 次</td><td><span class="eck off" style="margin:0"></span></td><td><span class="eck off" style="margin:0"></span></td></tr>
-        <tr><td style="color:#73767A;font-size:15px">⠿</td><td>3</td><td class="l">揪友同乐邀请</td><td class="l">进入大厅</td><td style="white-space:nowrap">每日 1 次</td><td><span class="eck" style="margin:0">✓</span></td><td><span class="eck off" style="margin:0"></span></td></tr>
-        <tr><td colspan="7" class="l mute" style="padding-left:90px">⋮ 共 14 项</td></tr>
+        <tr><td style="color:#73767A;font-size:15px">⠿</td><td>1</td><td><span class="ein v sm" style="width:108px;padding:0 6px">每日补给计划<span class="dn">⌵</span></span></td><td class="l">活动开启、首次登入</td><td>活动本身</td><td><span class="cyc"><span class="ein v">每日<span class="dn">⌵</span></span>1 次</span></td><td>0</td><td><span class="eck off" style="margin:0"></span></td><td><span class="eck off" style="margin:0"></span></td></tr>
+        <tr><td style="color:#73767A;font-size:15px">⠿</td><td>2</td><td class="l">揪友同乐邀请</td><td class="l">进入大厅</td><td>活动广告页</td><td><span class="cyc"><span class="ein v">每 3 天<span class="dn">⌵</span></span>1 次</span></td><td>0</td><td><span class="eck" style="margin:0">✓</span></td><td><span class="eck off" style="margin:0"></span></td></tr>
+        <tr><td style="color:#73767A;font-size:15px">⠿</td><td>3</td><td class="l">储值返利活动</td><td class="l">活动开启</td><td>活动本身</td><td><span class="cyc"><span class="ein v">生效期间内<span class="dn">⌵</span></span>2 次</span></td><td>600</td><td><span class="eck off" style="margin:0"></span></td><td><span class="eck off" style="margin:0"></span></td></tr>
+        <tr><td style="color:#73767A;font-size:15px">⠿</td><td>4</td><td class="l">热门资讯</td><td class="l tm"><span class="ein v sm">非首次登入、返回大厅<span class="dn">⌃</span></span>
+          <div class="ddt">
+            <div><span class="eck off"></span>活动开启<em>活动上架后第一次进入大厅</em></div>
+            <div><span class="eck off"></span>首次登入<em>沿用现有</em></div>
+            <div><span class="eck">✓</span>非首次登入<i class="xn">新</i><em>首次登入以外的每次登入</em></div>
+            <div><span class="eck off"></span>第<span class="num">3</span>次登入<i class="xn">新</i><em>账号累计第 N 次登入</em></div>
+            <div><span class="eck off"></span>进入大厅<em>每次登入后第一次到大厅</em></div>
+            <div><span class="eck">✓</span>返回大厅<em>从游戏或其他页面回到大厅</em></div>
+          </div></td><td>活动本身</td><td><span class="cyc"><span class="ein v">每周<span class="dn">⌵</span></span>2 次</span></td><td>0</td><td><span class="eck off" style="margin:0"></span></td><td><span class="eck off" style="margin:0"></span></td></tr>
+        <tr><td colspan="9" class="l mute" style="padding-left:66px">⋮ 共 6 项</td></tr>
       </tbody>
     </table>
+    <div style="height:150px"></div>
   </div>
+  <div class="bk-foot"><span class="btn2">取消</span><span class="btn2">存为草稿</span><span class="btn2">测试预览</span><span class="btn2 p">保存并上架</span></div>
 </div></div></div></div>
+<script src="_后台框.js"></script>
 </body>
 </html>

@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <title>02 新建推播</title>
 <link rel="stylesheet" href="../原型样式.css">
+<link rel="stylesheet" href="_后台框.css">
 <style>
 html,body{margin:0;padding:0;background:#fff}
 body{font-family:"Inter","Noto Sans CJK SC","PingFang SC","Microsoft YaHei",sans-serif;font-size:13px;line-height:1.5}
-.shot{background:#fff;overflow:hidden}
 .shot .z{zoom:1.12}
 .shot .win{padding:0;border:0;border-radius:0;background:#fff;box-shadow:none}
 .shot .fig{width:auto;border:0;border-radius:0}
@@ -15,30 +15,36 @@ body{font-family:"Inter","Noto Sans CJK SC","PingFang SC","Microsoft YaHei",sans
 .b2{display:flex;gap:18px;align-items:flex-start}
 .b2 .lc{flex:none;width:330px}
 .b2 .r{flex:1;min-width:0}
+.wd{display:inline-flex;gap:4px;margin-left:8px}
+.wd span{width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:3px;color:var(--ink2)}
+.wd span.on{background:#4E5560;border-color:#4E5560;color:#fff;font-weight:600}
 </style>
 </head>
 <body>
-<div class="shot" style="width:980px"><div class="z"><div class="win"><div class="fig">
-  <div class="sec" style="padding:14px 18px 16px">
-    <div class="f"><label style="width:70px"><span class="rq">*</span>发送对象</label><span class="rad"><i></i>全部玩家（74,480 人）</span><span class="rad on"><i></i>标签群组</span><span class="rad"><i></i>名单</span></div>
-    <div class="b2">
-      <div class="lc">
-        <div class="f"><label style="width:70px"><span class="rq">*</span>标签群组</label><span class="in" style="width:250px">潜在流失（两档）<span class="dn">⌃</span></span></div>
-      </div>
-      <div class="r">
-        <div class="f" style="height:auto;align-items:flex-start;padding-top:2px"><label style="width:auto;padding-right:10px;line-height:22px;white-space:nowrap">排除群组</label><span style="display:flex;flex-wrap:wrap;gap:6px 0"><span class="tg nw">VIP 名单</span><span class="tg fix nw">黑名单</span><span class="tg fix nw">机器人与测试账号</span><span class="tg fix nw">敏感状态账号</span></span></div>
-        <div class="estb" style="margin-top:10px;padding:10px 14px">
-          <div class="l">预计人数<span class="mute" style="margin-left:8px">人数截至 10/12 15:25</span></div>
-          <div class="ln"><span>群组人数</span><b>7,880 人</b></div>
-          <div style="padding-left:12px;color:var(--mute);line-height:20px">排除 30：VIP 名单 12 · 黑名单 3 · 机器人与测试账号 7 · 敏感状态账号 8</div>
-          <div class="ln"><span>受众（排除后）</span><b>7,850 人</b></div>
-          <div style="padding-left:12px;color:var(--mute);line-height:20px">不能收到 3,540：没装 App 2,860 · 通知关闭 660 · 同一设备只发 1 条 20</div>
-          <div class="ln big"><span style="white-space:nowrap">推播能收到</span><b style="text-align:right">4,310 人</b></div>
-          <div class="ft">开始发送时按群组当时的名单发，人数以那一刻为准</div>
-        </div>
-      </div>
+<div class="shot bk" data-page="推播" data-crumb="新建推播"><div class="z"><div class="win"><div class="fig">
+  <div class="sec" style="padding:12px 18px 12px">
+    <div class="sh">推送内容</div>
+    <div class="f"><label style="width:80px"><span class="rq">*</span>消息类别</label><span class="seg"><span class="on">营销</span><span>服务通知</span></span><label style="width:96px"><span class="rq">*</span>重要程度</label><span class="seg"><span>普通</span><span class="on">重要</span></span><span class="hi">重要：为发送对象预留当天推播 1 条名额</span></div>
+    <div class="f"><label style="width:80px"><span class="rq">*</span>推送名称</label><span class="in" style="width:250px">周末登录送金币提醒 · 潜在流失</span><label style="width:96px"><span class="rq">*</span>所属活动</label><span class="in" style="width:150px">周末登录送金币<span class="dn">⌵</span></span></div>
+    <div class="f" style="margin-top:6px;height:auto;align-items:flex-end"><label style="width:80px;padding-bottom:4px"><span class="rq">*</span>标题与内容</label><span class="lang"><span class="on">中文繁体</span><span>Việt nam</span><span>English</span></span><span class="gen" style="margin-bottom:2px">一键多语言生成</span></div>
+    <div style="margin-left:80px;border:1px solid var(--line);border-radius:0 3px 3px 3px;padding:8px 10px;width:560px">
+      <div class="f tc" style="height:26px"><span class="mute" style="width:36px">标题</span><span class="in" style="width:400px">週末登入送金幣開跑</span></div>
+      <div class="f tc" style="height:26px"><span class="mute" style="width:36px">内容</span><span class="in" style="width:500px">週六、週日登入各領 5 萬金幣，連續兩天再加碼！</span></div>
     </div>
+    <div class="f" style="margin-top:6px"><label style="width:80px">点击跳转</label><span class="in" style="width:150px">周末登录送金币<span class="dn">⌵</span></span><span class="hi">从现有活动、礼包里选</span></div>
+  </div>
+  <div class="sec" style="padding:10px 18px 10px">
+    <div class="sh">发送时间</div>
+    <div class="f"><label style="width:80px"><span class="rq">*</span>发送方式</label><span class="seg"><span>立即</span><span class="on">定时</span><span>按行为</span></span><span class="in" style="width:132px;margin-left:10px">2026-10-17　19:00</span></div>
+    <div class="f"><label style="width:80px">重复</label><span class="in" style="width:96px">每周几<span class="dn">⌵</span></span><span class="wd"><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span class="on">六</span><span>日</span></span><label style="width:80px">重复至</label><span class="in" style="width:96px">2026-12-26</span><span class="hi">共 11 次，每次按当时的群组名单发</span></div>
+  </div>
+  <div class="sec" style="padding:12px 18px 14px">
+    <div class="sh">发送对象</div>
+    <div class="f"><label style="width:80px"><span class="rq">*</span>发送对象</label><span class="rad"><i></i>全部玩家（74,480 人）</span><span class="rad on"><i></i>标签群组</span><span class="rad"><i></i>名单</span></div>
+        <div class="f"><label style="width:80px"><span class="rq">*</span>标签群组</label><span class="in" style="width:250px">潜在流失（两档）<span class="dn">⌵</span></span></div>
+        <div class="f" style="height:auto;align-items:flex-start;padding-top:2px"><label style="width:80px;line-height:22px">排除群组</label><span style="display:flex;flex-wrap:wrap;gap:6px 0"><span class="tg nw">VIP 名单</span><span class="tg fix nw">黑名单</span><span class="tg fix nw">机器人与测试账号</span><span class="tg fix nw">敏感状态账号</span></span></div>
   </div>
 </div></div></div></div>
+<script src="_后台框.js"></script>
 </body>
 </html>

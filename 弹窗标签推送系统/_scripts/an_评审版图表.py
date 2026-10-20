@@ -30,6 +30,9 @@ REL, REL_BG, REL_TX = '#B26B00', '#FFF3DC', '#7A4A00'   # 客户端发版竖线�
 E = html.escape
 
 
+CW = 744   # 外框内容区宽 887 ÷ 缩放 1.12 − 左右内边距 48：图表按这个宽排
+
+
 def tw(s, size):
     """估算文字宽度（px）：中文与全角 1em，数字约 0.6em。只用来排布，最终以渲染为准。"""
     w = 0.0
@@ -145,7 +148,7 @@ def segments(events):
 
 
 # ---------------------------------------------------------------- 可复用：趋势图
-def trend_svg(bars, num, events, *, den=None, W=827, top_ticks, bar_ticks, top_fmt, avg_fmt,
+def trend_svg(bars, num, events, *, den=None, W=CW, top_ticks, bar_ticks, top_fmt, avg_fmt,
               top_title, bar_title, top_h=176, bar_h=74):
     """上格：每日折线（浅）＋两条竖线之间的平均（深，标数字）；下格：每日柱；两格共用 x 轴，竖线贯穿两格。
     上格的值＝num/den（比率，段内平均＝段内 num 合计 ÷ den 合计），不给 den 时为 num 本身（段内平均＝日均）。
@@ -236,7 +239,7 @@ def legend_html(bar='每日曝光', line='每日点击率', avg='两条竖线之
     sw_r = f'<svg width="8" height="14"><line x1="4" x2="4" y1="0" y2="14" stroke="{REL}" stroke-width="1.5" stroke-dasharray="4 3"/></svg>'
     return ('<div class="ch-lg">'
             f'<span>{sw_bar}{E(bar)}</span><span>{sw_ln}{E(line)}</span><span>{sw_av}{E(avg)}</span>'
-            f'<span>{sw_c}{E(chg)}</span>' + (f'<span>{sw_r}客户端发版</span>' if rel else '') + '</div>')
+            f'<span>{sw_c}{E(chg)}</span>' + (f'<span>{sw_r}App 发版</span>' if rel else '') + '</div>')
 
 
 def event_rows(events, with_rule=False):
@@ -259,7 +262,7 @@ def event_rows(events, with_rule=False):
 
 
 # ---------------------------------------------------------------- 横条（漏斗、拆分）与柱形（位次）
-def funnel_svg(rows, W=827, unit='人', unit2='次', BMAX=170, VW=150):
+def funnel_svg(rows, W=CW, unit='人', unit2='次', BMAX=170, VW=150):
     """rows: [(步骤, 数量, 第二个数量或 None, 第一行说明, 第二行说明)]；横条长度＝数量。"""
     RH = 44
     LW, BX = 92, 96
@@ -284,7 +287,7 @@ def funnel_svg(rows, W=827, unit='人', unit2='次', BMAX=170, VW=150):
     return '\n'.join(s)
 
 
-def hbars_svg(rows, *, vmax, W=827, LW=150, BMAX=420, vfmt=None):
+def hbars_svg(rows, *, vmax, W=CW, LW=150, BMAX=420, vfmt=None):
     """rows: [(名称, 值, 旁注)]；横条长＝值，条端标值（默认按百分比），旁注紧跟其后。"""
     vfmt = vfmt or pct
     RH = 32
@@ -303,7 +306,7 @@ def hbars_svg(rows, *, vmax, W=827, LW=150, BMAX=420, vfmt=None):
     return '\n'.join(s)
 
 
-def cols_svg(rows, *, vmax, W=372, H=212):
+def cols_svg(rows, *, vmax, W=335, H=212):
     """rows: [(位次, 比率, 曝光)]；柱上标比率，柱下标位次与曝光。"""
     top, bot = 26, 44
     ph = H - top - bot
@@ -328,7 +331,17 @@ def seg_html(items, on):
         f'<span{" class=\"on\"" if x == on else ""}>{E(x)}</span>' for x in items) + '</span>'
 
 
+# 外框（_后台框.js）：数据页在「数据」分组下；单条推送、单条弹窗规则是数据明细的下一层；页内切换的层、位置画成子导航
+FRAME = {'数据概览': dict(page='数据概览'),
+         '数据明细': dict(page='数据明细', subnav='*游戏外推送|游戏内推送'),
+         '单条推送数据': dict(page='数据明细', crumb='推送 46'),
+         '单条弹窗规则数据': dict(page='数据明细', crumb='破产储值弹窗（实验组）'),
+         '弹窗与快显位置数据': dict(page='弹窗与快显位置数据', subnav='*大厅自动弹窗|游戏破产弹窗|快显'),
+         '每人每天推送量': dict(page='每人每天推送量', subnav='*游戏外推送|游戏内推送')}
+
+
 def page(title, body):
+    attrs = ' '.join(f'data-{k}="{E(v)}"' for k, v in FRAME[title].items())
     return f'''<!doctype html>
 <html lang="zh-CN">
 <head>
@@ -336,12 +349,14 @@ def page(title, body):
 <title>{E(title)}</title>
 <link rel="stylesheet" href="../原型样式.css">
 <link rel="stylesheet" href="_图表.css">
+<link rel="stylesheet" href="_后台框.css">
 </head>
 <!-- 由 _scripts/an_评审版图表.py 生成，改数字请改脚本后重跑 -->
 <body class="ch-page">
-<div class="shot ch" style="width:980px"><div class="ch-z">
+<div class="shot ch bk" {attrs}><div class="ch-z">
 {body}
 </div></div>
+<script src="_后台框.js"></script>
 </body>
 </html>
 '''
@@ -371,13 +386,13 @@ def check(cond, msg):
 
 # ================================================================ 示例数据：14 单条弹窗规则数据
 R14 = dict(
-    name='破产储值弹窗（实验组）', rid='弹窗规则 15',
-    meta=['储值类弹窗', '破产弹窗', '优先级 1', '每次最多弹出 1 个', '对象：破产储值实验·实验组'],
+    name='破产储值弹窗（实验组）', rid='ID 15',
+    meta=['储值类弹窗', '游戏破产弹窗', '权重 30', '弹出数量 1 个', '对象：标签群组 破产储值实验·实验组'],
 )
 EV14 = [   # 取自操作纪录（本规则的每一次保存）＋客户端发版
-    dict(t=dt.datetime(2026, 9, 18, 10, 5), kind='chg', what='关闭后冷却：无 → 30 分钟', who='运营01'),
+    dict(t=dt.datetime(2026, 9, 18, 10, 5), kind='chg', what='冷却时间：破产礼包 0 → 1,800 秒', who='运营01'),
     dict(t=dt.datetime(2026, 9, 24, 15, 20), kind='chg', what='弹窗次数：破产礼包 每日 2 次 → 每日 1 次', who='运营02'),
-    dict(t=dt.datetime(2026, 10, 6, 10, 0), kind='rel', what='客户端发版：App 3.8.2（iOS、Android）', who='—'),
+    dict(t=dt.datetime(2026, 10, 6, 10, 0), kind='rel', what='App 发版：3.8.2（iOS、Android）', who='—'),
     dict(t=dt.datetime(2026, 10, 9, 11, 30), kind='chg', what='弹窗排序：破产礼包 第 3 → 第 2', who='运营02'),
 ]
 for e in EV14:
@@ -386,8 +401,8 @@ for e in EV14:
 EXPO14, CLK14 = gen_daily(EV14, 3150, [1.00, 0.91, 0.87, 0.88, 0.90],
                           [0.105, 0.117, 0.122, 0.119, 0.131],
                           wkend_expo=0.12, wkend_ctr=-0.002, sd_expo=0.035, sd_ctr=0.0025, seed=14)
-F14 = dict(target=38600, enter=15210, ok=14380, expo_ppl=14290, clk_ppl=4620,      # 人数
-           cap_block=14200, cd_block=5300, all_skip=3200, fail_show=190, no_report=1280)  # 次数；请求次数由曝光倒推
+F14 = dict(enter=15210, ok=14380, expo_ppl=14290, clk_ppl=4620,      # 人数
+           used_block=19500, all_skip=3200, fail_show=190, no_report=1280)  # 次数；请求次数由曝光倒推
 ITEMS14 = [('第 1　首储礼包', 0.40, 0.101), ('第 2　破产礼包', 0.23, 0.159), ('第 3　独享礼包', 0.19, 0.110),
            ('第 4　限时加码礼包', 0.10, 0.126), ('其余 4 项（第 5–8）', 0.08, 0.084)]
 
@@ -396,19 +411,18 @@ def build_14():
     expo, clk = sum(EXPO14), sum(CLK14)
     f = F14
     ok_req = expo + f['fail_show'] + f['no_report']     # 符合条件（返回了排序项）的次数 = 曝光 + 显示失败 + 返回后未上报
-    f['enter_req'] = ok_req + f['cap_block'] + f['cd_block'] + f['all_skip']   # 进入弹窗位置（请求）的次数
+    f['enter_req'] = ok_req + f['used_block'] + f['all_skip']   # 进入弹窗位置（请求）的次数
     no_report = f['no_report']
     rows = [
-        ('目标人数', f['target'], None, '期间内属于对象群组的玩家', ''),
-        ('进入弹窗位置', f['enter'], f['enter_req'], f'少 {fmt(f["target"] - f["enter"])} 人', '期间内没有破产'),
+        ('进入弹窗位置', f['enter'], f['enter_req'], '对象群组里期间内破产过的玩家', ''),
         ('符合条件', f['ok'], ok_req, f'少 {fmt(f["enter"] - f["ok"])} 人、{fmt(f["enter_req"] - ok_req)} 次',
-         f'每人每天上限拦下 {fmt(f["cap_block"])} · 关闭后冷却中 {fmt(f["cd_block"])} · 排序项全部跳过 {fmt(f["all_skip"])}'),
+         f'弹窗次数用完或冷却中 {fmt(f["used_block"])} · 弹窗内容都跳过 {fmt(f["all_skip"])}'),
         ('曝光', f['expo_ppl'], expo, f'少 {fmt(f["ok"] - f["expo_ppl"])} 人、{fmt(ok_req - expo)} 次',
-         f'弹出失败 {fmt(f["fail_show"])} · 未回传曝光 {fmt(no_report)}'),
+         f'弹出失败 {fmt(f["fail_show"])} · 弹出后未确认显示 {fmt(no_report)}'),
         ('点击', f['clk_ppl'], clk, f'点击率 {pct(clk / expo)}', '点击次数 ÷ 曝光次数'),
     ]
     ppl = [r[1] for r in rows]
-    tms = [r[2] for r in rows[1:]]
+    tms = [r[2] for r in rows]
     check(all(a > b for a, b in zip(ppl, ppl[1:])), f'14 漏斗人数逐步递减 {ppl}')
     check(all(a > b for a, b in zip(tms, tms[1:])), f'14 漏斗次数逐步递减 {tms}')
     check(all(r[1] <= (r[2] or 10**9) for r in rows), '14 每步人数 ≤ 次数')
@@ -425,9 +439,9 @@ def build_14():
     # 按排序项
     ex_items = split_int(expo, [w for _, w, _ in ITEMS14])
     ck_items = split_clicks(clk, ex_items, [c for _, _, c in ITEMS14])
-    check(sum(ex_items) == expo and sum(ck_items) == clk, '14 各排序项曝光、点击相加等于合计')
+    check(sum(ex_items) == expo and sum(ck_items) == clk, '14 各弹窗内容曝光、点击相加等于合计')
     item_rows = [(n, c / x, f'曝光 {fmt(x)}') for (n, _, _), x, c in zip(ITEMS14, ex_items, ck_items)]
-    check(True, '14 各排序项点击率 ' + '、'.join(f'{n.split("　")[-1]} {pct(v)}' for n, v, _ in item_rows))
+    check(True, '14 各弹窗内容点击率 ' + '、'.join(f'{n.split("　")[-1]} {pct(v)}' for n, v, _ in item_rows))
     meta = '<i>|</i>'.join(E(m) for m in R14['meta'])
     body = f'''<div class="ch-sec">
   <div class="ch-row"><div class="ch-ttl">{E(R14["name"])}<span class="pd-st">上架中</span><span class="pd-st">{R14["rid"]}</span></div><span class="ch-sp"></span><span class="btn2">编辑规则</span></div>
@@ -438,7 +452,7 @@ def build_14():
 </div>
 <div class="ch-sec">
   <div class="ch-h">漏斗</div>
-  {funnel_svg(rows)}
+  {funnel_svg(rows, BMAX=130)}
 </div>
 <div class="ch-sec">
   <div class="ch-h">按日趋势</div>
@@ -447,8 +461,8 @@ def build_14():
   {event_rows(EV14)}
 </div>
 <div class="ch-sec">
-  <div class="pd-tabs"><span class="pd-on">按排序项</span><span>按人群</span><span>按平台</span></div>
-  <div class="ch-h" style="margin-bottom:6px">各排序项的点击率<span class="ch-m">排序项按现在的先后排列</span></div>
+  <div class="pd-tabs"><span class="pd-on">按弹窗内容</span><span>按人群</span><span>按平台</span></div>
+  <div class="ch-h" style="margin-bottom:6px">各弹窗内容的点击率<span class="ch-m">按现在的先后排列</span></div>
   {hbars_svg(item_rows, vmax=0.18)}
 </div>'''
     return page('单条弹窗规则数据', body)
@@ -456,26 +470,26 @@ def build_14():
 
 # ================================================================ 示例数据：13 游戏内推送数据（大厅弹窗）
 EV13 = [   # 取自操作纪录（大厅弹窗上全部规则的保存）＋客户端发版
-    dict(t=dt.datetime(2026, 9, 16, 14, 10), kind='chg', rule='5 活动类·其余', what='每次最多弹出：3 个 → 2 个', who='运营01'),
-    dict(t=dt.datetime(2026, 9, 23, 11, 20), kind='chg', rule='12 活动类·新增玩家', what='弹窗排序：新手通行证 第 2 → 第 1', who='运营02'),
-    dict(t=dt.datetime(2026, 9, 30, 16, 5), kind='chg', rule='14 活动类·潜在流失', what='关闭后冷却：无 → 60 分钟', who='运营01'),
-    dict(t=dt.datetime(2026, 10, 6, 10, 0), kind='rel', rule='', what='客户端发版：App 3.8.2（iOS、Android）', who='—'),
-    dict(t=dt.datetime(2026, 10, 12, 14, 36), kind='chg', rule='13 活动类·回流', what='弹窗排序：回流任务 第 7 → 第 1', who='运营02'),
+    dict(t=dt.datetime(2026, 9, 16, 14, 10), kind='chg', rule='5 活动类弹窗', what='弹出数量：3 → 2 个', who='运营01'),
+    dict(t=dt.datetime(2026, 9, 23, 11, 20), kind='chg', rule='12 新增玩家活动弹窗', what='弹窗排序：新手通行证 第 2 → 第 1', who='运营02'),
+    dict(t=dt.datetime(2026, 9, 30, 16, 5), kind='chg', rule='14 潜在流失活动弹窗', what='冷却时间：热门资讯 0 → 3,600 秒', who='运营01'),
+    dict(t=dt.datetime(2026, 10, 6, 10, 0), kind='rel', rule='', what='App 发版：3.8.2（iOS、Android）', who='—'),
+    dict(t=dt.datetime(2026, 10, 12, 14, 36), kind='chg', rule='13 回流活动弹窗', what='弹窗排序：回流任务 第 7 → 第 1', who='运营02'),
 ]
 for e in EV13:
-    e['tag'] = '发版' if e['kind'] == 'rel' else '弹窗规则 ' + e['rule'].split()[0]
+    e['tag'] = '发版' if e['kind'] == 'rel' else 'ID ' + e['rule'].split()[0]
     if e['rule']:
-        e['rule'] = '弹窗规则 ' + e['rule']
+        e['rule'] = e['rule'].split(' ', 1)[1] + '（ID ' + e['rule'].split()[0] + '）'
 #                      段：  9/13–  9/16–  9/23–  9/30–  10/06– 10/12–
 EXPO13, CLK13 = gen_daily(EV13, 47000, [1.00, 0.91, 0.91, 0.90, 0.905, 0.91],
                           [0.066, 0.0725, 0.0738, 0.0752, 0.0731, 0.0745],
                           wkend_expo=0.14, wkend_ctr=-0.0015, sd_expo=0.025, sd_ctr=0.0009, seed=13)
 PPL13, PREV13 = 71400, dict(ppl=69900, expo=1361800, clk=94100)
 POS13 = [('第 1 个', 0.404, 0.096), ('第 2 个', 0.307, 0.068), ('第 3 个', 0.182, 0.054), ('第 4 个及以后', 0.107, 0.043)]
-#            规则, 优先级, 曝光份额, 预设点击率, 曝光人数（各规则各自去重；合计行按玩家去重＝PPL13，小于各行相加）
-RULES13 = [('12 活动类·新增玩家', 1, 0.122, 0.112, 9860), ('13 活动类·回流', 2, 0.151, 0.087, 14620),
-           ('14 活动类·潜在流失', 3, 0.040, 0.074, 4130), ('5 活动类·其余', 4, 0.472, 0.066, 52340),
-           ('6 通用弹窗', 5, 0.215, 0.060, 38950)]
+#            规则, 权重（越大越靠前，与 10a 弹窗列表一致）, 曝光份额, 预设点击率, 曝光人数（各规则各自去重；合计行按玩家去重＝PPL13，小于各行相加）
+RULES13 = [('12 新增玩家活动弹窗', 40, 0.122, 0.112, 9860), ('13 回流活动弹窗', 35, 0.151, 0.087, 14620),
+           ('14 潜在流失活动弹窗', 30, 0.040, 0.074, 4130), ('5 活动类弹窗', 20, 0.472, 0.066, 52340),
+           ('6 通用弹窗', 10, 0.215, 0.060, 38950)]
 
 
 def delta_pct(cur, prev):
@@ -517,13 +531,13 @@ def build_13():
         f'<div class="ch-card"><div class="l">{E(l)}</div><div class="v">{v}<small>{u}</small></div>'
         f'<div class="d">比前 30 天 <b>{E(d)}</b></div></div>' for l, v, u, d in cards)
     trs = ''.join(
-        f'<tr><td><span class="pd-lk">{E(r[0].split(" ", 1)[1])}</span><span class="pd-s2">弹窗规则 {r[0].split()[0]}</span></td><td class="pd-r">{r[1]}</td><td class="pd-r">{fmt(r[4])}</td><td class="pd-r">{fmt(x)}</td><td class="pd-r">{pct(c / x)}</td></tr>'
+        f'<tr><td><span class="pd-lk">{E(r[0].split(" ", 1)[1])}</span><span class="pd-s2">ID {r[0].split()[0]}</span></td><td class="pd-r">{r[1]}</td><td class="pd-r">{fmt(r[4])}</td><td class="pd-r">{fmt(x)}</td><td class="pd-r">{pct(c / x)}</td></tr>'
         for r, x, c in zip(RULES13, ex_r, ck_r))
     trs += (f'<tr class="pd-tot"><td>合计（按玩家去重）</td><td class="pd-r">—</td><td class="pd-r">{fmt(PPL13)}</td><td class="pd-r">{fmt(expo)}</td>'
             f'<td class="pd-r">{pct(ctr)}</td></tr>')
     body = f'''<div class="ch-sec" style="padding-top:14px;padding-bottom:12px">
   <div class="ch-ptitle">弹窗与快显位置数据</div>
-  <div class="ch-row">{seg_html(["大厅弹窗", "破产弹窗", "快显"], "大厅弹窗")}<span style="width:14px"></span>{seg_html(["今日", "近 7 天", "近 30 天", "自定义"], "近 30 天")}<span class="ch-m">{md(DAYS[0])}–{md(DAYS[-1])}，与前 30 天（{md(PREV[0])}–{md(PREV[1])}）比</span></div>
+  <div class="ch-row">{seg_html(["今日", "近 7 天", "近 30 天", "自定义"], "近 30 天")}<span class="ch-m">{md(DAYS[0])}–{md(DAYS[-1])}，与前 30 天（{md(PREV[0])}–{md(PREV[1])}）比</span><span class="ch-sp"></span><span class="pd-lk">本位置各条规则的数据 ›</span></div>
 </div>
 <div class="ch-sec">
   <div class="ch-cards">{card_html}</div>
@@ -535,18 +549,9 @@ def build_13():
   {event_rows(EV13, with_rule=True)}
 </div>
 <div class="ch-sec">
-  <div class="ch-2col">
-    <div>
-      <div class="ch-h">按位次<span class="ch-m">这次进入大厅时第几个看到，跨规则计</span></div>
-      {cols_svg(pos_rows, vmax=0.11, W=330)}
-    </div>
-    <div>
-      <div class="ch-h">规则<span class="ch-m">点规则名看这条规则的数据</span></div>
-      <table class="pd-dt"><thead><tr><th>规则</th><th class="pd-r">优先级</th><th class="pd-r">曝光人数</th><th class="pd-r">曝光</th><th class="pd-r">点击率</th></tr></thead>
-      <tbody>{trs}</tbody></table>
-    </div>
-  </div>
-</div>'''
+  <div class="ch-h">按位次<span class="ch-m">这次进入大厅时第几个看到，跨规则计</span></div>
+  {cols_svg(pos_rows, vmax=0.11, W=297)}
+</div>'''   # 各条规则的数据只在数据明细（游戏内推送一层）与弹窗列表「查看数据」，本页不另列规则表，页头给链接
     return page('弹窗与快显位置数据', body)
 
 
@@ -568,7 +573,7 @@ def spark_svg(vals, w, h=26):
             f'<circle cx="{xe:.1f}" cy="{ye:.1f}" r="3" fill="{ACC}" stroke="#fff" stroke-width="2"/></svg>')
 
 
-def dist_svg(rows, cap_after, cap_label, *, vmax, W=390, H=180):
+def dist_svg(rows, cap_after, cap_label, *, vmax, W=351, H=180):
     """每人每天收到几条的分布：rows [(条数, 占比)]；在第 cap_after 根柱之后画上限线。"""
     top, bot = 30, 24
     ph = H - top - bot
@@ -578,9 +583,10 @@ def dist_svg(rows, cap_after, cap_label, *, vmax, W=390, H=180):
     cw = 24
     s = [f'<svg class="ch-svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img">']
     s.append(f'<line x1="0" x2="{W}" y1="{base}" y2="{base}" stroke="{AXIS}"/>')
-    xc = L + slot * cap_after
-    s.append(f'<line x1="{xc:.1f}" x2="{xc:.1f}" y1="14" y2="{base}" stroke="{CHG}" stroke-width="1.5" stroke-dasharray="4 3"/>')
-    s.append(txt(xc + 6, 14, cap_label, 12, INK, weight='600'))
+    if cap_after is not None:
+        xc = L + slot * cap_after
+        s.append(f'<line x1="{xc:.1f}" x2="{xc:.1f}" y1="14" y2="{base}" stroke="{CHG}" stroke-width="1.5" stroke-dasharray="4 3"/>')
+        s.append(txt(xc + 6, 14, cap_label, 12, INK, weight='600'))
     for k, (name, v) in enumerate(rows):
         cx = L + slot * k + slot / 2
         y = base - v / vmax * ph
@@ -591,20 +597,15 @@ def dist_svg(rows, cap_after, cap_label, *, vmax, W=390, H=180):
     return '\n'.join(s)
 
 
-def page_raw(title, inner):
-    """不加 .ch-z 外层的页面（00 后台首页自带外框与缩放）。"""
-    return page(title, '').replace('<div class="ch-z">\n\n</div>', inner)
-
-
 def delta_pp(cur, prev):
     d = (cur - prev) * 100
     return ('▲ ' if d >= 0 else '▼ ') + f'{abs(d):.1f} 个百分点'
 
 
 # ================================================================ 示例数据：06b 每人每天收到几条（近 30 天）
-EV6B = [   # 取自操作纪录：每人每天上限与勿扰页的改动
-    dict(t=dt.datetime(2026, 9, 22, 15, 30), kind='chg', what='推播的服务通知：不计入当天条数 → 计入', who='运营01'),
-    dict(t=dt.datetime(2026, 10, 5, 10, 10), kind='chg', what='推播的服务通知：计入当天条数 → 不计入', who='运营01'),
+EV6B = [   # 取自操作纪录：推播、短信列表顶部上限与勿扰设置的改动
+    dict(t=dt.datetime(2026, 9, 22, 15, 30), kind='chg', what='勿扰时段：00:00–08:00 → 22:00–08:00', who='运营01'),
+    dict(t=dt.datetime(2026, 10, 5, 10, 10), kind='chg', what='勿扰时段：22:00–08:00 → 00:00–08:00', who='运营01'),
 ]
 for e in EV6B:
     e['tag'] = md(e['t'].date())
@@ -663,6 +664,7 @@ def build_06b():
     tot_s = sum(RECV_S)
     cnt_s = split_int(tot_s, SHARE_S)
     rows_p = [(f'{k} 条' if k < 4 else '4 条及以上', c / tot_p) for k, c in zip(range(1, 5), cnt_p)]
+    rows_p2 = [('1 条', cnt_p[0] / tot_p), ('2 条（到上限）', sum(cnt_p[1:]) / tot_p)]   # 不设单条不受上限的例外，计入上限最多 2 条；超出的是服务通知（不计入）
     rows_s = [(f'{k} 条' if k < 3 else '3 条及以上', c / tot_s) for k, c in zip(range(1, 4), cnt_s)]
     avg_p = sum(SEND_P) / tot_p
     avg_s = sum(SEND_S) / tot_s
@@ -677,21 +679,11 @@ def build_06b():
     check(True, '06b 碰到上限日均 ' + ' → '.join(fmt(round(a[2])) for a in avgs if a))
     body = f"""<div class="ch-sec" style="padding-top:14px;padding-bottom:12px">
   <div class="ch-ptitle">每人每天推送量</div>
-  <div class="ch-row">{seg_html(["游戏外推送", "游戏内推送"], "游戏外推送")}<span style="width:14px"></span>{seg_html(["今日", "近 7 天", "近 30 天", "自定义"], "近 30 天")}<span class="ch-m">{md(DAYS[0])}–{md(DAYS[-1])}</span></div>
+  <div class="ch-row">{seg_html(["今日", "近 7 天", "近 30 天", "自定义"], "近 30 天")}<span class="ch-m">{md(DAYS[0])}–{md(DAYS[-1])}</span></div>
 </div>
 <div class="ch-sec">
-  <div class="ch-h">每人每天收到几条<span class="ch-m">近 30 天平均</span></div>
-  <div class="ch-2col eq">
-    <div>
-      <div class="ch-sub"><b>推播</b><span class="ch-m">占当天收到推播的玩家</span></div>
-      {dist_svg(rows_p, 2, '每人每天上限 2 条', vmax=0.70)}
-    </div>
-    <div>
-      <div class="ch-sub"><b>短信</b><span class="ch-m">占当天收到短信的玩家</span></div>
-      {dist_svg(rows_s, 1, '每人每天上限 1 条', vmax=1.12)}
-    </div>
-  </div>
-  <div class="ch-note">超过上限的是服务通知，和勾了「不受每人每天上限」的推送。</div>
+  <div class="ch-h">推播每人每天计入上限几条<span class="ch-m">近 30 天平均，占当天收到推播的玩家</span></div>
+  {dist_svg(rows_p2, None, '', vmax=0.70, W=240)}
 </div>
 <div class="ch-sec">
   <div class="ch-h">碰到上限</div>
@@ -755,8 +747,8 @@ def ov_cards(spark_w):
     c, p, sp = d['cur'], d['prv'], d['spark']
     out_cards = [
         ('发送', fmt(c['send']), '', '', delta_pct(c['send'], p['send']), sp['send']),
-        ('到达', fmt(c['arr']), '', f'到达率 {pct(c["arr_rate"])}\n不含 iOS 未接入 {fmt(c["ios"])}', delta_pct(c['arr'], p['arr']), sp['arr']),
-        ('点击', fmt(c['clk']), '', f'点击率 {pct(c["ctr_out"])}', delta_pct(c['clk'], p['clk']), sp['clk']),
+        ('到达', fmt(c['arr']), '', f'另有 iOS 未接入 {fmt(c["ios"])}', delta_pct(c['arr'], p['arr']), sp['arr']),
+        ('点击', fmt(c['clk']), '', '', delta_pct(c['clk'], p['clk']), sp['clk']),
         ('到达人数', fmt(c['arr_ppl']), '', '按玩家去重', delta_pct(c['arr_ppl'], p['arr_ppl']), sp['arr_ppl']),
         ('人均每天收到', f'{c["per"]:.1f}', ' 条', '按当天收到的玩家', delta_pct(c['per'], p['per']), sp['per']),
     ]
@@ -783,8 +775,15 @@ def ov_parts(spark_w):
     oc, ic = ov_cards(spark_w)
     flt = (f'<div class="ch-row">{seg_html(["今日", "近 7 天", "近 30 天", "自定义"], "近 7 天")}'
            f'<span class="ch-m">{md(DAYS[CUR7[0]])}–{md(DAYS[CUR7[-1]])}，与前 7 天（{md(DAYS[PRV7[0]])}–{md(DAYS[PRV7[-1]])}）比</span></div>')
-    l1 = ('<div class="ch-lh"><b>游戏外推送</b><span>推播、短信</span><span class="ch-m">从发送算起，点击率＝点击 ÷ 发送</span></div>'
-          f'<div class="ch-cards c5">{oc}</div>')
+    # 游戏外跨推送方式只给数量，比率按推送方式给（需求文档 4.1.8 第 22、99 行）；按推送方式的数取 09 数据明细同期各行
+    def by_way(w):
+        rs = [r for r in ROWS09 if r[3] == w]
+        sent, ios, arr, clk = (sum(r[k] or 0 for r in rs) for k in (9, 10, 11, 12))
+        return f'<tr><td>{w}</td><td class="pd-r">{fmt(sent)}</td><td class="pd-r">{pct(arr / (sent - ios))}</td><td class="pd-r">{pct(clk / sent)}</td></tr>'
+    way_tbl = ('<table class="pd-dt ch-tbl" style="margin-top:10px;width:auto"><thead><tr><th>按推送方式</th><th class="pd-r">发送</th>'
+               '<th class="pd-r">到达率</th><th class="pd-r">点击率</th></tr></thead><tbody>' + by_way('推播') + by_way('短信') + '</tbody></table>')
+    l1 = ('<div class="ch-lh"><b>游戏外推送</b><span>推播、短信</span><span class="ch-m">从发送算起；卡片只给数量，比率按推送方式看</span></div>'
+          f'<div class="ch-cards c5">{oc}</div>{way_tbl}')
     l2 = ('<div class="ch-lh"><b>游戏内推送</b><span>弹窗、快显</span><span class="ch-m">从曝光算起，点击率＝点击 ÷ 曝光</span></div>'
           f'<div class="ch-cards c5">{ic}</div>')
     return flt, l1, l2
@@ -805,45 +804,60 @@ def build_06():
     return page('数据概览', body)
 
 
-MENU = [('gl', '游戏外推送'), ('it sub on', '推播'), ('it sub', '短信'), ('it sub', '每人每天上限与勿扰'),
-        ('gl', '游戏内推送'), ('it sub', '弹窗'), ('it sub', '快显'), ('it sub', '每人每天弹窗与快显上限'),
-        ('gl', '数据'), ('it sub', '数据概览'), ('it sub', '数据明细'), ('it sub', '弹窗与快显位置数据'), ('it sub', '每人每天推送量'),
-        ('gl', '查询'), ('it sub', '玩家查询'), ('it sub', '操作纪录')]
+# 00 后台首页的左侧菜单、面包屑、页签由 需求评审版_原型/_后台框.js 统一画（全部截图共用一份菜单）
 
 
 
 
 # ================================================================ 示例数据：02b 确认发送前的预计人数（第 1 页的推播：潜在流失两档）
-F02B = [   # 与 02_新建推播 的预计人数一致
+F02B = [   # 与 02_新建推播 的预计人数一致；定时推送不预估每人每天上限拦下（到点按当时扣除），所以没有「预计发出」一层
     ('群组人数', 7880, '潜在流失（两档）', ''),
     ('受众', 7850, '少 30 人', '排除群组：VIP 名单 12 · 黑名单 3 · 机器人与测试账号 7 · 敏感状态账号 8'),
     ('能收到', 4310, '少 3,540 人', '收不到推播：没装 App 2,860 · 通知关闭 660 · 同一设备只发 1 条 20'),
-    ('预计发出', 4200, '少 110 人', '每人每天上限拦下：今天已收满 2 条推播'),
 ]
 
 
 def build_02b():
     v = [r[1] for r in F02B]
     check(all(a > b for a, b in zip(v, v[1:])), f'02b 逐层递减 {v}')
-    check(v[0] - v[1] == 12 + 3 + 7 + 8 and v[1] - v[2] == 2860 + 660 + 20 and v[2] - v[3] == 110, '02b 每层少的人数＝各原因相加')
+    check(v[0] - v[1] == 12 + 3 + 7 + 8 and v[1] - v[2] == 2860 + 660 + 20, '02b 每层少的人数＝各原因相加')
     rows = [(n, x, None, l1, l2) for n, x, l1, l2 in F02B]
-    body = f"""<div class="ch-sec">
-  <div class="ch-h">预计人数<span class="ch-m">人数截至 10/12 15:25</span></div>
-  {funnel_svg(rows, BMAX=200, VW=104)}
+    # 新建推播页的下半段「确认与测试」；外框由 _后台框.js 画（与 02_新建推播 同一页）
+    return f'''<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>确认前的预计人数</title>
+<link rel="stylesheet" href="../原型样式.css">
+<link rel="stylesheet" href="_图表.css">
+<link rel="stylesheet" href="_后台框.css">
+</head>
+<!-- 由 _scripts/an_评审版图表.py 生成，改数字请改脚本后重跑 -->
+<body class="ch-page">
+<div class="shot ch bk" data-page="推播" data-crumb="新建推播"><div class="ch-z">
+<div class="ch-sec">
+  <div class="ch-h">确认与测试<span class="ch-m">预计人数截至 10/12 15:25</span></div>
+  {funnel_svg(rows, W=744, BMAX=170, VW=104)}
+  <div class="ch-m" style="margin-top:2px">定时推送每次到点按当时的群组名单发，每人每天上限也按当时扣除</div>
 </div>
 <div class="ch-sec">
   <div class="ch-kv">
-    <span>发送时间</span><span>立即</span>
+    <span>发送时间</span><span>定时 10/17 19:00 起每周六，重复至 12/26，共 11 次</span>
     <span>发送对象</span><span>潜在流失（两档）；排除 VIP 名单、黑名单、机器人与测试账号、敏感状态账号</span>
+    <span>重要程度</span><span>重要：每次发送当天为 4,310 人预留推播 1 条，当天更早的普通推送预计多拦下约 260 人</span>
     <span>测试</span><span>上次测试 10/12 11:12 · 运营01 · 5 个测试账号：已发出 4，未送达 1（测试03 未开启通知）</span>
   </div>
   <div class="ch-row ch-btns"><span class="ch-m">取消</span><span class="ch-sp"></span><span class="btn2">存为草稿</span><span class="btn2">发送测试</span><span class="btn2 p">确认发送</span></div>
-</div>"""
-    return page('确认前的预计人数', body)
+</div>
+</div></div>
+<script src="_后台框.js"></script>
+</body>
+</html>
+'''
 
 
 # ================================================================ 示例数据：07 单条推送数据（推送 46，定时推播，正常发完）
-# 号码与第 13 页操作纪录里的 31、43、44 不同；所属活动「周末登录送金币」（09 数据明细里同一行）。
+# 号码与第 12 页操作纪录里的 31、43、44 不同；所属活动「周末登录送金币」（09 数据明细里同一行）。
 # 一次性推送，每人最多 1 条，漏斗全程按人。定时 19:00 不在勿扰时段，没有勿扰顺延。
 P07 = dict(aud=16240, reject=41, bounce=22, no_receipt=310, ios=705, clk=612,
            login=3980)
@@ -865,31 +879,30 @@ def build_07():
     noapp, off, cap = (n for _, n in NOTSENT07)
     rows = [
         ('受众', f['aud'], None, '发送对象扣掉排除群组', ''),
-        ('发送', sent, None, f'少 {fmt(f["aud"] - sent)} 人',
-         f'收不到推播 {fmt(pre)} · 每人每天上限拦下 {cap} · 服务商未受理 {f["reject"]}'),
+        ('发送', sent, None, f'少 {fmt(f["aud"] - sent)} 人', ''),   # 拆分只放下方「未发出的原因」「服务商未受理」，不在漏斗旁重复
         ('到达', arr, None, f'少 {fmt(sent - arr)} 人 · 到达率 {pct(arr_rate)}',
-         f'服务商退回 {f["bounce"]} · 服务商未回传结果 {f["no_receipt"]} · iOS 未接入 {f["ios"]}（单列，不进分母）'),
+         f'服务商退回 {f["bounce"]} · 结果不明 {f["no_receipt"]} · iOS 未接入 {f["ios"]}（不进分母）'),
         ('点击', f['clk'], None, f'点击率 {pct(ctr)}', '点击 ÷ 发送'),
     ]
     blk = sorted(NOTSENT07, key=lambda x: -x[1])
     body = f"""<div class="ch-sec">
-  <div class="ch-row"><div class="ch-ttl">周末登录送金币提醒<span class="pd-st">已发送</span><span class="pd-st">推送 46</span></div></div>
+  <div class="ch-row"><div class="ch-ttl">周末登录送金币提醒<span class="pd-st">已完成</span><span class="pd-st">推送 46</span></div></div>
   <div class="ch-meta">推播<i>|</i>定时 10/10 19:00<i>|</i>发送对象：回流；排除 VIP 名单、黑名单、机器人与测试账号、敏感状态账号</div>
 </div>
 <div class="ch-sec">
   <div class="ch-h">漏斗</div>
-  {funnel_svg(rows, BMAX=150, VW=104)}
+  {funnel_svg(rows, BMAX=120, VW=104)}
   <div class="ch-ref"><b>发送后 24 小时内</b><span class="ch-m">推播只作参考</span>登录 {fmt(f["login"])} 人</div>
 </div>
 <div class="ch-sec">
   <div class="ch-2col w07">
     <div>
       <div class="ch-h">未发出的原因<span class="ch-m">从多到少，单位：人</span><span class="ch-sp"></span><span class="btn2 sm">导出名单</span></div>
-      {hbars_svg([(n, x, '') for n, x in blk], vmax=5600, W=440, LW=118, BMAX=260, vfmt=fmt)}
+      {hbars_svg([(n, x, '') for n, x in blk], vmax=5600, W=396, LW=118, BMAX=220, vfmt=fmt)}
     </div>
     <div>
       <div class="ch-h">服务商未受理<span class="ch-m">{f["reject"]} 人</span></div>
-      {hbars_svg([(n, x, '') for n, x in REJECT07], vmax=40, W=347, LW=196, BMAX=110, vfmt=fmt)}
+      {hbars_svg([(n, x, '') for n, x in REJECT07], vmax=40, W=312, LW=196, BMAX=80, vfmt=fmt)}
     </div>
   </div>
 </div>"""
@@ -897,24 +910,24 @@ def build_07():
 
 # ================================================================ 示例数据：09 数据明细（游戏外推送一层，近 7 天 10/06–10/12，按发送时间倒序）
 # 近 7 天游戏外推送共 11 条，一页列完；11 条的发送、到达、点击、iOS 未接入合计正好等于 06 数据概览的同期数字（表末合计行）。
-# 推送 46 与 07 一致；43、44、31 与第 13 页操作纪录一致（43 在 15:04 停止，已发出 1,050；44 服务商未受理，发送失败；31 按行为）。
+# 推送 46 与 07 一致；43、44、31 与第 12 页操作纪录一致（43 在 15:04 停止，已发出 1,050；44 服务商未受理，发送失败；31 按行为）。
 # 按行为的两条：发送时间写生效起始日，各数只算所选期间内的发送。
 # 每行：编号、名称、状态、推送方式、所属活动、发送时间（方式）、发送时间（时刻）、发送对象、受众、发送、iOS 未接入、到达、点击（无点击链接为 None）
 FIXED09 = {   # 由别处定死的行
     46: (8199, 705, 7162, 612),     # 07
-    43: (1050, 92, 921, 84),        # 第 13 页：已发出 1,050 后停止
-    44: (0, 0, 0, 0),               # 第 13 页：服务商未受理，发送失败
+    43: (1050, 92, 921, 84),        # 第 12 页：已发出 1,050 后停止
+    44: (0, 0, 0, 0),               # 第 12 页：服务商未受理，发送失败
 }
 BASE09 = [   # 其余各行的相对大小（发送、iOS 未接入、到达、点击），按 06 的合计等比放大
     (47, '回流礼包 B 加码通知', '发送中', '推播', '回流礼包 B', '立即', '10/12 15:20', '回流', 16240, (8230, 708, 7190, 395)),
     (43, '月月抽开奖提醒', '已停止', '推播', '月月抽', '定时', '10/12 15:00', '月月抽本期参与者', 6820, None),
     (44, '限时挑战开启', '发送失败', '推播', '限时挑战', '定时', '10/12 14:00', '近 7 天登录', 14380, None),
-    (45, '中秋排名赛结算倒数', '已发送', '推播', '中秋排名赛', '定时', '10/11 20:00', '中秋排名赛参与者', 9860, (5540, 470, 4980, 277)),
-    (46, '周末登录送金币提醒', '已发送', '推播', '周末登录送金币', '定时', '10/10 19:00', '回流', 16240, None),
-    (41, '回流礼包 B 限时上架', '已发送', '短信', '回流礼包 B', '定时', '10/10 12:00', '回流', 16240, (3410, 0, 3268, 150)),
-    (39, '中秋排名赛冲榜提醒', '已发送', '短信', '中秋排名赛', '定时', '10/08 20:00', '中秋排名赛参与者', 9420, (2450, 0, 2371, 74)),
-    (37, '周年庆预告', '已发送', '推播', '周年庆', '定时', '10/08 19:30', '近 30 天登录', 22310, (13920, 1180, 12410, 640)),
-    (40, '账号安全验证通知', '已发送', '短信', '不属于活动', '立即', '10/07 16:20', '上传名单', 1720, (1248, 0, 1231, None)),
+    (45, '中秋排名赛结算倒数', '已完成', '推播', '中秋排名赛', '定时', '10/11 20:00', '中秋排名赛参与者', 9860, (5540, 470, 4980, 277)),
+    (46, '周末登录送金币提醒', '已完成', '推播', '周末登录送金币', '定时', '10/10 19:00', '回流', 16240, None),
+    (41, '回流礼包 B 限时上架', '已完成', '短信', '回流礼包 B', '定时', '10/10 12:00', '回流', 16240, (3410, 0, 3268, 150)),
+    (39, '中秋排名赛冲榜提醒', '已完成', '短信', '中秋排名赛', '定时', '10/08 20:00', '中秋排名赛参与者', 9420, (2450, 0, 2371, 74)),
+    (37, '周年庆预告', '已完成', '推播', '周年庆', '定时', '10/08 19:30', '近 30 天登录', 22310, (13920, 1180, 12410, 640)),
+    (40, '账号安全验证通知', '已完成', '短信', '不属于活动', '立即', '10/07 16:20', '上传名单', 1720, (1248, 0, 1231, None)),
     (31, '限时加码礼包未购买提醒', '运行中', '推播', '限时加码礼包', '按行为', '9/20 起', '触发的玩家', 8652, (3617, 313, 3133, 290)),
     (33, '任务完成奖励提醒', '运行中', '推播', '每日任务', '按行为', '9/01 起', '触发的玩家', 12940, (6730, 520, 5960, 404)),
 ]
@@ -965,7 +978,6 @@ def build_09():
     check(all(r[11] <= r[9] - r[10] for r in ROWS09), '09 每行到达 ≤ 发送 − iOS 未接入；到达率 ' +
           '、'.join(f'{r[0]}:{pct(r[11] / (r[9] - r[10]))}' for r in ROWS09 if r[9]))
     check(all(r[8] > r[9] for r in ROWS09), '09 每行受众 > 发送')
-    mx = 0.20      # 点击率小横条的满格
     trs = []
     for (no, name, st, way, act, mode, when, grp, aud, sent, ios, arr, clk) in ROWS09:
         bad = ' pd-bad' if st == '发送失败' else ''
@@ -977,7 +989,7 @@ def build_09():
             arr_td = f'<td class="pd-r">{fmt(arr)}<span class="pd-s2">{pct(arr / (sent - ios))}</span></td>'
             ctr = clk / sent
             clk_td = f'<td class="pd-r">{fmt(clk)}</td>'
-            ctr_td = (f'<td class="pd-r"><span class="ch-mbar"><i style="width:{min(ctr / mx, 1) * 40:.1f}px"></i></span><span class="ch-mv">{pct(ctr)}</span></td>')
+            ctr_td = f'<td class="pd-r">{pct(ctr)}</td>'
         else:
             arr_td = clk_td = ctr_td = '<td class="pd-r dim">—</td>'
         trs.append(f'<tr>{name_td}<td>{way}</td><td>{E(act)}</td><td>{when_html(mode, when)}</td>'
@@ -991,64 +1003,226 @@ def build_09():
     dd = lambda lab, val, w=None: (f'<span class="ch-fl"><label>{lab}</label><span class="in"{f" style=\"width:{w}px\"" if w else ""}>{val}'
                                    f'<span class="dn">⌵</span></span></span>')
     tot = (f'<tr class="pd-tot"><td>合计</td><td></td><td></td><td></td><td class="pd-r dim">—</td><td class="pd-r">{fmt(S(9))}</td>'
-           f'<td class="pd-r">{fmt(S(11))}<span class="pd-s2">{pct(S(11) / (S(9) - S(10)))}</span></td><td class="pd-r">{fmt(S(12))}</td>'
-           f'<td class="pd-r"><span class="ch-mv">{pct(S(12) / S(9))}</span></td><td></td></tr>')
+           f'<td class="pd-r">{fmt(S(11))}<span class="pd-s2">—</span></td><td class="pd-r">{fmt(S(12))}</td>'
+           f'<td class="pd-r dim">—</td><td></td></tr>')
     trs.append(tot)
-    body = f"""<div class="ch-sec" style="padding-top:14px;padding-bottom:12px">
-  <div class="ch-ptitle">数据明细</div>
-  <div class="ch-row">{seg_html(["游戏外推送", "游戏内推送"], "游戏外推送")}<span class="ch-sp"></span><span class="btn2">导出</span></div>
-</div>
-<div class="ch-sec" style="padding-top:12px;padding-bottom:12px">
-  <div class="ch-row">{seg_html(["今日", "近 7 天", "近 30 天", "自定义"], "近 7 天")}<span class="ch-m">{md(DAYS[CUR7[0]])}–{md(DAYS[CUR7[-1]])}</span></div>
+    body = f"""<div class="ch-sec" style="padding-top:12px;padding-bottom:12px">
+  <div class="ch-row">{seg_html(["今日", "近 7 天", "近 30 天", "自定义"], "近 7 天")}<span class="ch-m">{md(DAYS[CUR7[0]])}–{md(DAYS[CUR7[-1]])}</span><span class="ch-sp"></span><span class="btn2">导出</span></div>
   <div class="ch-flt">{dd('推送方式', '全部')}{dd('所属活动', '全部', 80)}{dd('发送时间', '全部')}{dd('状态', '全部')}{dd('标签群组', '全部', 80)}<span class="in ch-search"><span class="ph">搜索名称或编号</span></span></div>
 </div>
 <div class="ch-sec">
   <table class="pd-dt ch-tbl"><thead><tr>{ths}</tr></thead><tbody>{''.join(trs)}</tbody></table>
-  <div class="ch-pg"><span>共 {len(ROWS09)} 条</span></div>
+  <div class="ch-pg"><span>共 {len(ROWS09)} 条；合计行只给数量，比率只在同一推送方式内比较</span></div>
 </div>"""
     return page('数据明细', body)
 
 
 # ================================================================ 示例数据：00 后台首页 = 推播列表（10/12 15:25 时的样子）
-# 与 09 一致：同编号、同名称、同所属活动与发送对象；47 此刻发送中，48 排程中（10/15 发）。按编号倒序。
+# 与 09 一致：同编号、同名称、同所属活动与发送对象；47 此刻发送中，48 已排程（10/15 发，重要），49 每天重复的定时、还没发过。按编号倒序。
+# 推播、短信列表（点开菜单直接看到的一层）。列表内容按需求文档 5.3 / 4.1.3「列表」：筛选、两套状态计数、名称下写 ID·创建人·创建日期、
+# 发送方式写触发行为、发送对象写人数（未开始发送的写当前人数，已开始发送的写发送时人数，按行为写触发的玩家）、按状态开放的操作、共 N 条。
+# 数据列（发送、到达率、点击率）在数据明细（09），列表不重复。
+# 列表顶部是这种推送方式的每人每天上限与勿扰时段（推播、短信共用同一勿扰设置，两处显示同一设置）；不单开上限页。
+# 「全部｜今明两天」两个视图：今明两天按时间列当天与次日要发的推送、重要程度、能收到与预计被上限拦下（原名额占用总览，需求文档 4.1.7「名额占用」、5.3 序号 34）。
+# 状态名按需求文档 4.1.3 第 20 行：一次性为草稿、已排程、发送中、已完成、已停止、发送失败、无可发送对象；按行为为草稿、运行中、已暂停、已结束。
+# 截图时刻：10/12（一）15:25（与新建推播的「人数截至 10/12 15:25」一致），今天 10/12、明天 10/13。
+AUD09 = {r[0]: r[8] for r in ROWS09}
+SENT09 = {r[0]: r[9] for r in ROWS09}
+REACH47 = 13660   # 推送 47 发送中：能收到 13,660 人（受众 16,240），已发出取 09 同一行，进度＝已发出 ÷ 能收到
+#        编号, 名称, 发送方式, 发送时间或触发行为, 下一行, 所属活动, 发送对象, 当前或发送时人数, 状态, 进度, 创建人, 创建日期
 PUSH00 = [
-    (48, '中秋排名赛倒数 5 天', '定时', '10/15 19:00', '中秋排名赛', '全部玩家', '排程中', None),
-    (47, '回流礼包 B 加码通知', '立即', '10/12 15:20', '回流礼包 B', '回流', '发送中', 0.62),
-] + [(r[0], r[1], r[5], r[6], r[4], r[7], r[2], None)
-     for r in sorted(ROWS09, key=lambda r: -r[0]) if r[3] == '推播' and r[0] != 47]
-OPS00 = {'排程中': '编辑 停止 复制', '发送中': '停止 复制 查看数据', '运行中': '编辑 停止 复制 查看数据',
-         '已发送': '复制 查看数据', '已停止': '复制 查看数据', '发送失败': '复制 查看数据'}
+    (50, '限时挑战第二轮开启', '定时', '10/13 20:30', '', '限时挑战', '近 30 天登录', 22540, '已排程', None, '运营02', '10/12'),
+    (49, '每日任务提醒', '定时', '每天 12:30', '下次 10/13 12:30 · 第 1/30 次', '每日任务', '近 7 天登录', 14520, '已排程', None, '运营01', '10/12'),
+    (48, '中秋排名赛倒数 5 天', '定时', '10/13 19:00', '', '中秋排名赛', '全部玩家', 74480, '已排程', None, '运营02', '10/10'),
+    (47, '回流礼包 B 加码通知', '立即', '10/12 15:20', '', '回流礼包 B', '回流', AUD09[47], '发送中', round(SENT09[47] / REACH47, 2), '运营01', '10/12'),
+]
+MORE00 = {46: ('运营02', '10/09'), 45: ('运营01', '10/09'), 44: ('运营02', '10/11'), 43: ('运营01', '10/11'),
+          37: ('运营02', '10/05'), 33: ('运营01', '8/30'), 31: ('运营02', '9/18')}
+TRIG00 = {33: ('完成任务', '9/01 起'), 31: ('礼包结束前 2 小时', '9/20 起')}   # 31 用「活动、礼包开始或结束前后」，限时加码礼包按每位玩家各自的礼包时间
+for r in sorted(ROWS09, key=lambda r: -r[0]):
+    if r[3] != '推播' or r[0] == 47:
+        continue
+    when, sub = TRIG00.get(r[0], (r[6], ''))
+    PUSH00.append((r[0], r[1], r[5], when, sub, r[4], r[7], None if r[5] == '按行为' else r[8], r[2], None) + MORE00[r[0]])
+IMPORTANT00 = {48}   # 营销推送的重要程度：重要（为发送对象预留当天 1 条名额，需求文档 4.1.7 第 34 行）；短信不设重要程度
+OPS00 = {'已排程': '编辑 停止 复制', '发送中': '停止 复制 查看数据', '运行中': '编辑 暂停 结束 复制 查看数据',
+         '已完成': '复制 查看数据', '已停止': '复制 查看数据', '发送失败': '复制 查看数据'}
+# 状态计数（两套分开计数，需求文档 5.3 序号 11）；合计即「共 N 条」
+CNT_P = ([('草稿', 1), ('已排程', 3), ('发送中', 1), ('已完成', 22), ('已停止', 2), ('发送失败', 1), ('无可发送对象', 0)],
+         [('草稿', 0), ('运行中', 2), ('已暂停', 0), ('已结束', 1)])
+
+# 短信列表：41、40、39 与 09 数据明细一致；42 已排程、38 按行为（每天封顶 2,000 则，列表显示今日已用／封顶，需求文档 5.6 序号 17）
+SMS = [
+    (42, '中秋排名赛最后一天', '定时', '10/14 20:00', '', '中秋排名赛', '中秋排名赛参与者', 9610, '已排程', None, '运营02', '10/12'),
+    (41, '回流礼包 B 限时上架', '定时', '10/10 12:00', '', '回流礼包 B', '回流', AUD09[41], '已完成', None, '运营01', '10/09'),
+    (40, '账号安全验证通知', '立即', '10/07 16:20', '', '不属于活动', '名单', AUD09[40], '已完成', None, '运营02', '10/07'),
+    (39, '中秋排名赛冲榜提醒', '定时', '10/08 20:00', '', '中秋排名赛', '中秋排名赛参与者', AUD09[39], '已完成', None, '运营01', '10/07'),
+    (38, '破产后召回', '按行为', '破产后 2 小时未回到游戏', '9/25 起', '不属于活动', '触发的玩家', None, '运行中', None, '运营01', '9/24'),
+    (36, '周年庆预告', '定时', '10/05 12:00', '', '周年庆', '近 30 天登录', 22310, '已完成', None, '运营02', '10/03'),
+]
+SMS_CAP = {38: (1240, 2000)}   # 按行为短信：今日已用、每天封顶（则）
+# 快显列表（需求文档 5.8 序号 15；快显按显示先后占每人每天 3 次的名额，列表显示今天被上限拦下的人数）
+FLASH = [
+    (52, '中秋排名赛最后 1 小时', '定时', '10/14 23:00', '', '中秋排名赛', '中秋排名赛参与者', 9610, '已排程', None, '运营02', '10/12'),
+    (51, '回流礼包 B 加码横幅', '立即', '10/12 15:00', '', '回流礼包 B', '回流', 16240, '已完成', None, '运营01', '10/12'),
+    (35, '通行证升级提示', '按行为', '通行证升级', '等级不超过 20 · 10/03 起', '通行证', '触发的玩家', None, '运行中', None, '运营01', '10/02'),
+    (32, '每日补给计划开启', '定时', '每天 12:00', '下次 10/13 12:00 · 第 12/30 次', '每日补给计划', '近 7 天登录', 14520, '已排程', None, '运营02', '9/30'),
+    (30, '周年庆倒数', '定时', '10/08 20:00', '', '周年庆', '全部玩家', 74480, '已完成', None, '运营02', '10/06'),
+]
+FLASH_CUT = {51: 320, 35: 140, 32: 210}   # 今天（10/12）被上限拦下的人数
+CNT_F = ([('草稿', 0), ('已排程', 2), ('发送中', 0), ('已完成', 2), ('已停止', 0)],
+         [('草稿', 0), ('运行中', 1), ('已暂停', 0), ('已结束', 0)])
+CNT_S = ([('草稿', 0), ('已排程', 1), ('发送中', 0), ('已完成', 4), ('已停止', 0), ('发送失败', 0), ('无可发送对象', 0)],
+         [('草稿', 0), ('运行中', 1), ('已暂停', 0), ('已结束', 0)])
+
+# 今明两天（推播）：按行为每天运行的只列近 7 天日均触发人数；今天已开始发送的写已拦下，其余写预计被上限拦下
+TODAY, TMR = '今天 10/12（一）', '明天 10/13（二）'
+QUOTA_P = [   # 日, 时刻, 编号, 能收到, 拦下, 说明, 已开始
+    (TODAY, '15:20', 47, REACH47, 85, '发送中，已拦下', True),
+    (TMR, '12:30', 49, 9420, 120, '名额已为 19:00 重要推送预留', False),
+    (TMR, '19:00', 48, 41600, 0, '为 41,600 人预留 1 条', False),
+    (TMR, '20:30', 50, 12960, 3910, '当天已收满 2 条', False),
+]
 
 
-def build_00():
-    menu = ''.join(f'<div class="{c}">{E(t)}</div>' for c, t in MENU)
+def list_rows(rows, important, caps=None, cut=None):
     trs = []
-    for no, name, mode, when, act, grp, st, prog in PUSH00:
-        when_td = f'{mode} {when}'
+    for no, name, mode, when, sub, act, grp, n, st, prog, who, day in rows:
+        when_td = f'{mode} {E(when)}' + (f'<span class="pd-s2">{E(sub)}</span>' if sub else '')
+        if n is None:
+            grp_td = E(grp)
+        else:
+            started = st in ('发送中', '已完成', '已停止', '发送失败')
+            grp_td = f'{E(grp)}<span class="pd-s2">{"发送时" if started else "当前"} {fmt(n)} 人</span>'
         stc = ' pd-bad' if st == '发送失败' else ''
         st_td = f'<span class="pd-st{stc}">{st}</span>'
         if prog is not None:
             st_td += f'<span class="ch-mbar sm"><i style="width:{prog * 26:.1f}px"></i></span><span class="ch-m">{prog * 100:.0f}%</span>'
+        if caps and no in caps:
+            used, cap = caps[no]
+            st_td += f'<span class="pd-s2">今日 {fmt(used)}／封顶 {fmt(cap)} 则</span>'
         ops = ''.join(f'<span class="pd-lk">{o}</span>' for o in OPS00[st].split())
-        trs.append(f'<tr><td><span class="pd-lk">{E(name)}</span><span class="pd-s2">推送 {no}</span></td><td>{when_td}</td>'
-                   f'<td>{E(act)}</td><td>{E(grp)}</td><td class="ch-stc">{st_td}</td><td class="ch-ops">{ops}</td></tr>')
-    check([r[0] for r in PUSH00] == sorted([r[0] for r in PUSH00], reverse=True), '00 推播列表按编号倒序：' + '、'.join(str(r[0]) for r in PUSH00))
-    sts = ['全部', '排程中', '发送中', '运行中', '已发送', '已停止', '发送失败']
-    inner = f"""<div class="ch-app">
-  <div class="ch-topbar"><b>推送统一后台</b><span class="ch-sp"></span><span class="ch-acct"><i>运</i>运营01</span></div>
-  <div class="ch-frame">
-    <div class="ch-menu">{menu}</div>
-    <div class="ch-mainx cp">
-      <div class="ch-row" style="margin-bottom:10px"><div class="ch-ptitle" style="margin:0">推播</div><span class="ch-sp"></span><span class="btn2 p">＋ 新建推播</span></div>
-      <div class="ch-row">{seg_html(sts, '全部')}</div>
-      <table class="pd-dt ch-tbl ch-list"><thead><tr><th>推送</th><th>发送时间</th><th>所属活动</th><th>发送对象</th><th>状态</th><th>操作</th></tr></thead>
-      <tbody>{''.join(trs)}</tbody></table>
-    </div>
-  </div>
-</div>"""
-    return page_raw('后台首页', inner)
+        imp = '<span class="pd-st imp">重要</span>' if no in important else ''
+        cut_td = '' if cut is None else (f'<td class="pd-r">{fmt(cut[no])}</td>' if no in cut else '<td class="pd-r dim">—</td>')
+        trs.append(f'<tr><td><span class="pd-lk">{E(name)}</span>{imp}<span class="pd-s2">推送 {no} · {who} {day}</span></td><td>{when_td}</td>'
+                   f'<td>{E(act)}</td><td>{grp_td}</td><td class="ch-stc">{st_td}</td>{cut_td}<td class="ch-ops">{ops}</td></tr>')
+    check([r[0] for r in rows] == sorted([r[0] for r in rows], reverse=True), '列表按编号倒序：' + '、'.join(str(r[0]) for r in rows))
+    return ''.join(trs)
 
-BUILDERS = {'14_单条规则数据': build_14, '13_游戏内数据': build_13, '06_概览': build_06, '00_后台首页': build_00,
+
+def cap_box(way, cap):
+    t = lambda v, w=46: f'<span class="in" style="width:{w}px">{v}</span>'
+    return (f'<div class="pl-cap"><span class="pl-k">每人每天上限</span>{way} {t(cap, 34)} 条'
+            f'<span class="pl-k" style="margin-left:26px">勿扰时段</span>{t("00:00")}<span class="pl-to">至</span>{t("08:00")}'
+            f'<span class="ch-m" style="margin-left:6px">推播、短信共用</span>'
+            f'<span class="pl-k" style="margin-left:26px">服务通知遇勿扰</span><span class="in" style="width:70px">顺延<span class="dn">⌵</span></span></div>')
+
+
+def list_body(kind, view):
+    way = {'p': '推播', 's': '短信', 'q': '快显'}[kind]
+    rows, cnts = {'p': (PUSH00, CNT_P), 's': (SMS, CNT_S), 'q': (FLASH, CNT_F)}[kind]
+    sel = lambda ph, w: f'<span class="in ph" style="width:{w}px">{ph}<span class="dn">⌵</span></span>'
+    views = f'<span class="seg pl-v"><span{" class=\"on\"" if view == "all" else ""}>全部</span><span{" class=\"on\"" if view == "2d" else ""}>今明两天</span></span>'
+    new = f'<span class="ch-sp"></span><span class="btn2 p">＋ 新建{way}</span>'
+    # 快显的每人每天上限在弹窗列表顶部与大厅自动弹窗一起设，快显列表不重复设置，也没有今明两天视图（快显不受勿扰）
+    head = f'    <div class="ch-mainx cp pl">\n' + ('' if kind == 'q' else f'      {cap_box(way, 2 if kind == "p" else 1)}\n')
+    if kind == 'q':
+        views = ''
+    if view == '2d':
+        return head + f'      <div class="ch-row pl-f">{views}{new}</div>\n      {quota_table()}\n    </div>'
+    total = sum(c for _, c in cnts[0] + cnts[1])
+    for st in {r[8] for r in rows}:
+        shown = sum(1 for r in rows if r[8] == st)
+        cnt = dict(cnts[1] if st in ('运行中', '已暂停', '已结束') else cnts[0])[st]
+        check(shown <= cnt, f'{way}列表 {st}：列出 {shown} 条，计数 {cnt}')
+    if total == len(rows):
+        check(all(sum(1 for r in rows if r[8] == k) == v for k, v in cnts[0] + cnts[1] if v), f'{way}列表一页列完，状态计数与各行一致')
+    cnt = lambda xs: '<span class="seg">' + ''.join(
+        f'<span{" class=\"pd-bad2\"" if k == "发送失败" and v else ""}>{k} {v}</span>' for k, v in xs) + '</span>'
+    more = '<tr><td colspan="6" class="pl-more">⋮</td></tr>' if total > len(rows) else ''
+    pager = '<span class="pl-pg"><span>‹</span><span class="on">1</span><span>2</span><span>›</span></span>' if total > 20 else ''
+    return head + f"""      <div class="ch-row pl-f">{views}<span class="in ph" style="width:90px">名称或 ID</span>{sel('发送方式', 76)}{sel('所属活动', 76)}{sel('发送对象', 76)}{sel('创建人', 64)}<span class="in ph" style="width:112px">创建日期 起–止</span><span class="btn2">查询</span><span class="btn2">重置</span>{new}</div>
+      <div class="ch-row pl-c"><span class="seg"><span class="on">全部 {total}</span></span><span class="pl-gp"><span class="pl-g">一次性</span>{cnt(cnts[0])}</span><span class="pl-gp"><span class="pl-g">按行为</span>{cnt(cnts[1])}</span></div>
+      <table class="pd-dt ch-tbl ch-list"><thead><tr><th>推送</th><th>发送方式</th><th>所属活动</th><th>发送对象</th><th>状态</th>{'<th class="pd-r">今天被上限拦下</th>' if kind == 'q' else ''}<th>操作</th></tr></thead>
+      <tbody>{list_rows(rows, IMPORTANT00 if kind == 'p' else set(), SMS_CAP if kind == 's' else None, FLASH_CUT if kind == 'q' else None)}{more}</tbody></table>
+      <div class="ch-row pl-p"><span class="ch-sp"></span>共 {total} 条{pager}</div>
+    </div>"""
+
+
+def quota_table():
+    byno = {r[0]: r for r in PUSH00}
+    beh = [r for r in PUSH00 if r[2] == '按行为']
+    out = ['<table class="pd-dt ch-tbl pl-q"><thead><tr><th>发送时间</th><th>推送</th><th>发送方式</th><th>重要程度</th>'
+           '<th>能收到<span class="ch-m" style="font-weight:400;margin-left:6px">红色为被上限拦下</span></th><th>被上限拦下</th></tr></thead><tbody>']
+    out.append('<tr class="gh"><td colspan="6">每天运行<span class="s">按行为推送，按发送先后占用名额，不预估</span></td></tr>')
+    for r in beh:
+        avg = round(SENT09[r[0]] / 7 / 10) * 10
+        out.append(f'<tr><td>全天</td><td>{E(r[1])}<span class="pd-s2">推送 {r[0]}</span></td><td class="m">按行为</td><td class="m">普通</td>'
+                   f'<td colspan="2" class="m">近 7 天日均触发 {fmt(avg)} 人</td></tr>')
+    vmax = max(q[3] for q in QUOTA_P)
+    for day in (TODAY, TMR):
+        qs = [q for q in QUOTA_P if q[0] == day]
+        started = all(q[6] for q in qs)
+        out.append(f'<tr class="gh"><td colspan="6">{day}<span class="s">{"已" if started else "预计被上限"}拦下 {fmt(sum(q[4] for q in qs))} 人</span></td></tr>')
+        for _, hm, no, reach, cut, note, st in qs:
+            r = byno[no]
+            mode = r[2] + (' · 每天' if r[3].startswith('每天') else '')
+            imp = '<span class="pd-st imp" style="margin-left:0">重要</span>' if no in IMPORTANT00 else '<span class="m">普通</span>'
+            w = 150 * reach / vmax
+            bar = f'<span class="qb"><i style="width:{w * (reach - cut) / reach:.1f}px"></i><b style="width:{w * cut / reach:.1f}px"></b></span>'
+            cut_td = f'<b class="cut">{fmt(cut)}</b>' if cut else '0'
+            out.append(f'<tr><td>{hm}</td><td>{E(r[1])}<span class="pd-s2">推送 {no}{" · 发送中" if st else ""}</span></td><td class="m">{mode}</td><td>{imp}</td>'
+                       f'<td><span class="nm">{fmt(reach)}</span>{bar}</td><td>{cut_td}<span class="pd-s2">{note}</span></td></tr>')
+            check(cut <= reach and (byno[no][7] is None or reach <= byno[no][7]), f'今明两天 推送 {no}：拦下 {cut} ≤ 能收到 {reach} ≤ 发送对象人数 {byno[no][7]}')
+    out.append('</tbody></table>')
+    return ''.join(out)
+
+
+def list_page(title, attrs, body):
+    return f'''<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>{title}</title>
+<link rel="stylesheet" href="../原型样式.css">
+<link rel="stylesheet" href="_图表.css">
+<link rel="stylesheet" href="_后台框.css">
+</head>
+<!-- 由 _scripts/an_评审版图表.py 生成，改数字请改脚本后重跑 -->
+<body class="ch-page">
+<div class="shot ch bk" {attrs}>
+{body}
+</div>
+<script src="_后台框.js"></script>
+</body>
+</html>
+'''
+
+
+# 00 后台结构不再与推播列表共用（手写的 需求评审版_原型/00_后台首页.html：管理后台菜单全部展开、弹窗页顶部写原入口改指新页）
+
+
+def build_02a():
+    # 第 1 页：点开菜单「推播」直接看到的列表；新建推播（02、02b、03）是它的下一层
+    return list_page('推播列表', 'data-page="推播" data-tabs="*推播列表|操作纪录"', list_body('p', 'all'))
+
+
+def build_02c():
+    # 第 1 页：推播列表的「今明两天」视图（原名额占用总览）
+    return list_page('推播列表 今明两天', 'data-page="推播" data-tabs="*推播列表|操作纪录"', list_body('p', '2d'))
+
+
+def build_17a():
+    # 第 5 页：点开菜单「快显」直接看到的列表；新建快显（17）是它的下一层
+    return list_page('快显列表', 'data-page="快显" data-tabs="*快显列表|操作纪录"', list_body('q', 'all'))
+
+
+def build_16a():
+    # 第 3 页：点开菜单「短信」直接看到的列表；新建短信（16）是它的下一层
+    return list_page('短信列表', 'data-page="短信" data-tabs="*短信列表|操作纪录"', list_body('s', 'all'))
+
+
+BUILDERS = {'14_单条规则数据': build_14, '13_游戏内数据': build_13, '06_概览': build_06, '02a_推播列表': build_02a, '02c_推播今明两天': build_02c, '16a_短信列表': build_16a, '17a_快显列表': build_17a,
             '02b_预计人数': build_02b, '09_数据明细': build_09, '06b_每人每天收到': build_06b, '07_单条漏斗': build_07}
 
 if __name__ == '__main__':

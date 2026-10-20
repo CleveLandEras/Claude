@@ -4,46 +4,69 @@
 <meta charset="utf-8">
 <title>11 保存确认</title>
 <link rel="stylesheet" href="../原型样式.css">
+<link rel="stylesheet" href="_后台框.css">
 <style>
 html,body{margin:0;padding:0;background:#fff}
 body{font-family:"Inter","Noto Sans CJK SC","PingFang SC","Microsoft YaHei",sans-serif;font-size:13px;line-height:1.5}
-.shot{background:#fff;overflow:hidden}
 .shot .z{zoom:1.12}
 .shot .win{padding:0;border:0;border-radius:0;background:#fff;box-shadow:none}
 .shot .fig{width:auto;border:0;border-radius:0}
-.tc{font-family:"Inter","Noto Sans CJK TC","PingFang TC",sans-serif}
-.sub2{display:block;font-size:12px;color:#73767A;line-height:17px}
+.clip{height:404px;overflow:hidden}
+table.ov{width:100%;border-collapse:collapse;margin:2px 0 4px;font-size:13px}
+table.ov th{font-weight:600;color:#73767A;background:#FAFBFC;text-align:left;padding:5px 10px;border-bottom:1px solid #EBEEF5}
+table.ov td{padding:4px 10px;border-bottom:1px solid #EBEEF5;color:#303133}
+table.ov .r{text-align:right}
+.bk-pop.dlg{width:560px;padding:14px 18px 14px;border:0;border-radius:6px;font-size:13px;line-height:20px}
+.bk-pop.dlg .t{font-size:15px;margin-bottom:10px}
+.bk-pop table.et{width:100%;margin:0}
+.bk-pop table.et td{padding:7px 10px}
 </style>
 </head>
 <body>
-<div class="shot" style="width:980px"><div class="z"><div class="win"><div class="fig ew">
-  <div class="sec" style="padding:14px 18px 18px">
-    <div class="mute" style="margin-bottom:8px">新增活动类规则 · 对象潜在付费 · 优先级 4</div>
-    <div style="display:flex;gap:10px;align-items:flex-start">
-      <div class="estb" style="width:410px;flex:none;padding:10px 14px">
-        <div style="color:var(--ink2)">潜在付费 4,860 人，其中 2,350 人先弹更高优先级的规则</div>
-        <div style="font-size:16px;font-weight:700;color:var(--ink);margin:2px 0 4px">预计 2,510 人</div>
-        <table class="tb" style="margin-top:4px">
-          <tr><th>重叠的上架规则</th><th style="text-align:right">人数</th><th style="white-space:nowrap">这些人弹</th></tr>
-          <tr><td style="white-space:nowrap">弹窗规则 12<span class="sub2">活动类·新增玩家　优先级 1</span></td><td style="text-align:right">610</td><td style="white-space:nowrap">弹窗规则 12</td></tr>
-          <tr><td style="white-space:nowrap">弹窗规则 13<span class="sub2">活动类·回流　优先级 2</span></td><td style="text-align:right">1,320</td><td style="white-space:nowrap">弹窗规则 13</td></tr>
-          <tr><td style="white-space:nowrap">弹窗规则 14<span class="sub2">活动类·潜在流失　优先级 3</span></td><td style="text-align:right">420</td><td style="white-space:nowrap">弹窗规则 14</td></tr>
-          <tr><td style="white-space:nowrap">弹窗规则 5<span class="sub2">活动类·其余　优先级 4 → 5</span></td><td style="text-align:right">2,510</td><td style="white-space:nowrap;font-weight:600">本规则</td></tr>
-        </table>
+<div class="shot bk" data-page="弹窗" data-crumb="弹窗排序配置"><div class="z"><div class="win"><div class="fig ew">
+  <div class="clip" style="padding:8px 18px 12px">
+    <div class="ebt first">基本信息</div>
+    <div class="ef"><label style="white-space:nowrap;width:94px"><i>*</i>弹窗类型</label><span class="ein v" style="width:118px">活动类弹窗<span class="dn">⌵</span></span><label style="white-space:nowrap;width:94px"><i>*</i>弹窗位置</label><span class="ein v" style="width:124px">大厅自动弹窗<span class="dn">⌵</span></span><label style="white-space:nowrap;width:94px"><i>*</i>弹出数量</label><span class="ein v" style="width:40px">3</span><span style="margin-left:6px">个</span><label style="white-space:nowrap;width:94px">标签状态</label><span class="ein v" style="width:72px">启用<span class="dn">⌵</span></span></div>
+    <div class="ef" style="height:auto;align-items:flex-end;margin-top:2px"><label style="white-space:nowrap;width:94px;padding-bottom:5px"><i>*</i>弹窗名称</label><span class="lang"><span class="on">中文繁体</span><span>Việt nam</span><span>English</span></span><span class="gen" style="margin-bottom:3px">一键多语言生成</span></div>
+    <div class="ef" style="margin-top:-1px"><label style="white-space:nowrap;width:94px"></label><span class="ein v" style="width:330px;border-radius:0 4px 4px 4px">潛在付費活動彈窗</span></div>
+
+    <div class="ebt">派发对象</div>
+    <div style="display:flex;gap:20px;align-items:flex-start">
+      <div style="flex:1;min-width:0">
+        <div class="ef"><label style="white-space:nowrap;width:94px"><i>*</i>派发对象</label><span class="erad"><i></i>全部玩家</span><span class="erad"><i></i>VIP 卡别</span><span class="erad"><i></i>指定名单</span><span class="erad on"><i></i>群组标签</span></div>
+        <div class="ef"><label style="white-space:nowrap;width:94px"><i>*</i>群组标签</label><span class="ein v" style="width:220px">潜在付费　4,860 人<span class="dn">⌵</span></span></div>
+        <div class="ef"><label style="white-space:nowrap;width:94px">排除群组<em class="xn">新</em></label><span class="ein" style="width:120px">选择群组<span class="dn">⌵</span></span></div>
+        <div class="ef" style="align-items:flex-start;padding-top:6px"><label style="white-space:nowrap;width:94px;line-height:22px">固定排除<em class="xn">新</em></label><span style="display:flex;flex-wrap:wrap;gap:4px 0"><span class="tg fix">VIP 名单</span><span class="tg fix">黑名单</span><span class="tg fix">机器人与测试账号</span><span class="tg fix">敏感状态账号</span></span></div>
       </div>
-      <div class="ovarr" style="width:60px;margin-top:92px;white-space:nowrap"><span>→</span>点「保存<br>并上架」</div>
-      <div class="dlg" style="flex:1;min-width:0">
-        <div class="t">保存并上架新增规则「活动类·潜在付费」？</div>
-        <table class="et" style="margin:2px 0 6px">
-          <colgroup><col style="width:118px"><col></colgroup>
-          <tr><td class="l mute" style="vertical-align:top">改了什么</td><td class="l">新增活动类弹窗，对象潜在付费，优先级 4</td></tr>
-          <tr><td class="l mute" style="vertical-align:top">受影响的其他规则</td><td class="l">弹窗规则 5：优先级 4 → 5，<span class="nw">预计少 2,510 人</span><br>弹窗规则 6：优先级 5 → 6</td></tr>
-          <tr><td class="l mute" style="vertical-align:top">预计人数</td><td class="l">2,510 人；与 4 条规则重叠</td></tr>
-        </table>
-        <div class="ft"><span class="btn2 sm" style="margin-right:6px">返回修改</span><span class="btn2 p sm">确认保存并上架</span></div>
+      <div class="estb" style="width:232px;flex:none;margin-top:4px">
+        <div class="l">弹窗预计人数<em class="xn">新</em></div>
+        <div style="font-size:16px;font-weight:700;color:var(--ink);margin:2px 0">预计 2,510 人</div>
+        <div class="mute">＝潜在付费 4,860 人 − 先弹权重更大规则的 2,350 人</div>
+        <div class="mute">其中固定排除约 15 人</div>
       </div>
     </div>
+    <div class="ef" style="align-items:flex-start;padding-top:4px"><label style="white-space:nowrap;width:94px;line-height:24px">重叠<em class="xn">新</em></label>
+      <table class="ov">
+        <tr><th>同位置、同类型的上架规则</th><th class="r">权重</th><th class="r">重叠人数</th><th>这些人先弹</th></tr>
+        <tr><td>新增玩家活动弹窗　<span class="mute">ID 12</span></td><td class="r">40</td><td class="r">610</td><td>新增玩家活动弹窗</td></tr>
+        <tr><td>回流活动弹窗　<span class="mute">ID 13</span></td><td class="r">35</td><td class="r">1,320</td><td>回流活动弹窗</td></tr>
+      </table>
+    </div>
+  </div></div>
+  <div class="bk-foot"><span class="btn2">取消</span><span class="btn2">存为草稿</span><span class="btn2">测试预览</span><span class="btn2 p">保存并上架</span></div>
+
+  <div class="bk-pop dlg z" style="--pop-top:56px">
+    <div class="t">保存并上架「潜在付费活动弹窗」？</div>
+    <table class="et">
+      <colgroup><col style="width:150px"><col></colgroup>
+      <tr><td class="l mute" style="vertical-align:top">改了什么</td><td class="l">新增大厅自动弹窗的活动类规则，派发对象潜在付费，权重 25，弹出数量 3 个，弹窗内容 6 项</td></tr>
+      <tr><td class="l mute" style="vertical-align:top">预计人数</td><td class="l">2,510 人</td></tr>
+      <tr><td class="l mute" style="vertical-align:top">与其他上架规则重叠</td><td class="l">4 条：与 ID 12、13、14 重叠的 2,350 人先弹对方；与 ID 5 活动类弹窗重叠的 2,510 人先弹本规则</td></tr>
+      <tr><td class="l mute" style="vertical-align:top">受影响的其他规则</td><td class="l">活动类弹窗（ID 5）：<span class="nw">预计少 2,510 人</span></td></tr>
+    </table>
+    <div class="ft"><span class="btn2 sm" style="margin-right:6px">返回修改</span><span class="btn2 p sm">确认保存并上架</span></div>
   </div>
 </div></div></div></div>
+<script src="_后台框.js"></script>
 </body>
 </html>

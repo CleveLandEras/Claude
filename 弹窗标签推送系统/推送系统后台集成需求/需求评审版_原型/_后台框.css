@@ -1,0 +1,47 @@
+/* 需求评审版截图：后台外框（左侧菜单分组与当前页高亮、顶部面包屑、页签、弹层遮罩）。配合 _后台框.js 使用，用法见该文件开头。
+   外框宽 1056（评审版正文栏最宽 1058），菜单 168，内容区 887；内容区沿用各截图原来的 .z 缩放（1.12），主体字号不变。 */
+.shot.bk{position:relative;width:1056px;background:#fff;color:var(--ink);font-family:"Inter","Noto Sans CJK SC","PingFang SC","Microsoft YaHei",sans-serif;font-size:13px;line-height:1.5;overflow:hidden}
+.bk-app{display:grid;grid-template-columns:168px minmax(0,1fr);grid-template-rows:38px 1fr;min-height:100%}
+.bk-brand{display:flex;align-items:center;padding-left:14px;background:#3A4049;color:#fff;font-size:14px;font-weight:700;letter-spacing:.02em}
+.bk-head{display:flex;align-items:center;gap:6px;padding:0 18px;border-bottom:1px solid var(--line2);font-size:13px;color:var(--mute);white-space:nowrap}
+.bk-head .sep{color:#B8BDC4}
+.bk-head .cur{color:var(--ink);font-weight:600}
+.bk-head .acct{margin-left:auto;display:inline-flex;align-items:center;gap:7px;color:var(--ink2)}
+.bk-head .acct i{width:22px;height:22px;border-radius:50%;background:#E4E7EB;display:inline-flex;align-items:center;justify-content:center;font-style:normal;font-size:11.5px}
+.bk-side{background:var(--fill);border-right:1px solid var(--line2);padding:6px 0 14px}
+.bk-side .g{height:30px;display:flex;align-items:center;gap:5px;padding-left:12px;font-size:13px;font-weight:600;color:var(--ink)}
+.bk-side .g::before{content:"";width:5px;height:5px;margin:0 4px 0 1px;border-right:1.5px solid #8C939C;border-bottom:1.5px solid #8C939C;transform:rotate(-45deg)}
+.bk-side .g.open::before{transform:rotate(45deg);margin-top:-3px}
+.bk-side .i{height:29px;display:flex;align-items:center;padding:0 4px 0 27px;font-size:12.5px;color:var(--ink2);white-space:nowrap}
+.bk-side .i.on{background:#E8F1FD;color:#2F6FCC;font-weight:600;box-shadow:inset 3px 0 0 #409EFF}
+.bk-main{min-width:0;display:flex;flex-direction:column}
+.bk-tabs{display:flex;align-items:flex-end;gap:26px;height:38px;padding:0 20px;border-bottom:1px solid var(--line2);font-size:13.5px}
+.bk-tabs span{padding-bottom:8px;color:var(--ink2)}
+.bk-tabs span.on{color:#2F6FCC;font-weight:600;box-shadow:inset 0 -2px 0 #409EFF}
+.bk-body{flex:1;min-width:0;position:relative}
+/* 页面底栏（编辑页） */
+.bk-foot{display:flex;justify-content:flex-end;align-items:center;gap:8px;padding:10px 20px;border-top:1px solid var(--line2);background:#fff}
+.bk-foot .btn2{margin-left:0}
+/* 弹层：叠在所属页面之上，遮罩盖住整个后台 */
+.bk-ov{position:absolute;inset:0;background:rgba(31,35,41,.30);display:flex;justify-content:center;align-items:flex-start;padding-left:168px}
+.bk-ov>.bk-pop{margin-top:var(--pop-top,96px);box-shadow:0 10px 30px rgba(0,0,0,.18)}
+.bk-pop .btn2.p{background:#409EFF;border-color:#409EFF;color:#fff}
+.bk-subnav{display:flex;gap:6px;padding:10px 20px 0;font-size:13px}
+.bk-subnav span{padding:3px 12px;border:1px solid var(--line);border-radius:14px;color:var(--ink2)}
+.bk-subnav span.on{border-color:#409EFF;color:#2F6FCC;background:#ECF5FF;font-weight:600}
+/* 列表里的重要程度标记 */
+.pd-st.imp,.imp-tag{margin-left:6px;border:1px solid #E6A23C;color:#B4791B;background:#FDF6EC;border-radius:3px;padding:0 5px;font-size:12px}
+/* 内容区共用：多语言页签（标题与内容按繁中、越南文、英文填）与「一键多语言生成」 */
+.lang{display:inline-flex;align-items:flex-end;gap:0;border-bottom:1px solid var(--line);margin-bottom:-1px}
+.lang span{height:26px;display:inline-flex;align-items:center;padding:0 12px;border:1px solid var(--line);border-bottom:0;margin-right:-1px;background:var(--fill);color:var(--ink2);font-size:13px;border-radius:3px 3px 0 0}
+.lang span.on{background:#fff;color:var(--ink);font-weight:600;position:relative;top:1px}
+.lang span em{font-style:normal;margin-left:6px;color:var(--mute);font-weight:400;font-size:12px}
+.gen{display:inline-flex;align-items:center;height:24px;padding:0 10px;border:1px solid var(--line);border-radius:3px;background:#fff;color:var(--ink2);font-size:13px;margin-left:10px}
+/* 编辑页里新加的字段：标签旁标「新」（现有后台没有的） */
+.xn{display:inline-block;margin-left:4px;padding:0 3px;border:1px solid #F5DAB1;border-radius:3px;background:#FDF6EC;color:#B4791B;font-size:11px;line-height:14px;font-weight:400;font-style:normal;vertical-align:1px}
+/* 推送统一后台一组下的小组与页面（第二、三级） */
+.bk-side .g2{height:28px;display:flex;align-items:center;gap:5px;padding-left:24px;font-size:12.5px;font-weight:600;color:var(--ink2)}
+.bk-side .g2::before{content:"";width:4px;height:4px;margin:0 4px 0 1px;border-right:1.5px solid #8C939C;border-bottom:1.5px solid #8C939C;transform:rotate(-45deg)}
+.bk-side .g2.open::before{transform:rotate(45deg);margin-top:-3px}
+.bk-side .i2{height:27px;display:flex;align-items:center;padding:0 4px 0 42px;font-size:12.5px;color:var(--ink2);white-space:nowrap}
+.bk-side .i2.on{background:#E8F1FD;color:#2F6FCC;font-weight:600;box-shadow:inset 3px 0 0 #409EFF}
