@@ -146,7 +146,7 @@ table.et td:nth-child(1){white-space:nowrap}
   <h4 class="rg">所属活动</h4>
   <table class="rule">
     <tr><td>推播、短信、快显新建时选所属活动，或选「不属于活动」；所属活动和点击跳转的页面从后台现有的活动、礼包里选。</td></tr>
-    <tr><td>弹窗规则不选所属活动，规则里的每个排序项对应一个活动或礼包，同样从现有的活动、礼包里选（见第 5 页）。</td></tr>
+    <tr><td>弹窗规则里的每个排序项各对应一个活动或礼包，同样从现有的活动、礼包里选（见第 5 页）。</td></tr>
   </table>
   <h4 class="rg">防错</h4>
   <table class="rule">
@@ -416,9 +416,9 @@ table.et td:nth-child(1){white-space:nowrap}
   <h2>数据明细</h2>
 
   <div class="shots">
-    <figure><img src="需求评审版_图/09_数据明细.jpg" alt="数据明细：每条推送与弹窗规则的数据列表" style="width:980px"><figcaption>数据明细：每条推送与弹窗规则的数据</figcaption></figure>
-    <figure><img src="需求评审版_图/07_单条漏斗.jpg" alt="单条推送数据" style="width:980px"><figcaption>单条推送数据</figcaption></figure>
-    <figure><img src="需求评审版_图/14_单条规则数据.jpg" alt="单条弹窗规则数据" style="width:980px"><figcaption>单条弹窗规则数据</figcaption></figure>
+    <figure><img src="需求评审版_图/09_数据明细.jpg" alt="每条推送与弹窗规则的数据列表" style="width:980px"><figcaption>数据列表（游戏外推送一层）</figcaption></figure>
+    <figure><img src="需求评审版_图/07_单条漏斗.jpg" alt="单条推送数据" style="width:980px"><figcaption>在列表里点一条推送，进入这条推送的数据</figcaption></figure>
+    <figure><img src="需求评审版_图/14_单条规则数据.jpg" alt="单条弹窗规则数据" style="width:980px"><figcaption>在列表里点一条弹窗规则，进入这条规则的数据</figcaption></figure>
   </div>
 
   <details class="rules">
@@ -426,26 +426,26 @@ table.et td:nth-child(1){white-space:nowrap}
     <div class="rbody">
   <h4 class="rg">数据列表</h4>
   <table class="rule">
-    <tr><td>一张表每行一条推播、短信、快显或弹窗规则，列出名称与编号、状态、推送方式、所属活动、发送方式、发送时间和数据；页内切换游戏外推送、游戏内推送两层。</td></tr>
-    <tr><td>游戏外推送一层的数据是受众、发送、到达与到达率、点击、点击率；游戏内推送一层是曝光人数、曝光、点击、点击率；点击率的分母各按本层（第 8 页）。</td></tr>
+    <tr><td>一张表每行一条推播、短信、快显或弹窗规则及其数据；页内切换游戏外推送、游戏内推送两层。</td></tr>
+    <tr><td>游戏外推送一层的数据是受众、发送、到达与到达率、点击、点击率；游戏内推送一层是曝光人数、曝光、点击、点击率。</td></tr>
+    <tr><td>点击率的分母各按本层；到达率的分母不含 iOS 未接入的发送，所以不等于到达÷发送（算法见第 8 页）。</td></tr>
+    <tr><td>按行为推送和弹窗规则持续运行，列表里的数据按所选时间范围累计。</td></tr>
   </table>
   <h4 class="rg">筛选与导出</h4>
   <table class="rule">
-    <tr><td>按时间范围、推送方式、所属活动、发送方式（立即、定时、按行为）、状态、标签群组、名称或编号筛选。</td></tr>
+    <tr><td>按时间范围、推送方式、所属活动、发送时间（立即、定时、按行为）、状态、标签群组、名称或编号筛选；游戏内推送一层按活动或礼包筛选时，列出含对应排序项的弹窗规则。</td></tr>
     <tr><td>可按任一列排序、导出；点一行进入这条推送或弹窗规则的数据。</td></tr>
   </table>
   <h4 class="rg">单条推送</h4>
   <table class="rule">
-    <tr><td>从受众、发送、到达到点击，每一步少了多少；另列发送后 24 小时内的登录与付费。</td></tr>
+    <tr><td>从受众、发送、到达到点击，每一步少了多少；另列发送后 24 小时内登录的人数。</td></tr>
     <tr><td>未发出的原因：发送前拦下的按原因分项、从多到少排列，如没装 App、通知关闭、勿扰放弃、每人每天上限拦下；服务商未受理的另列；可导出名单。</td></tr>
-    <tr><td>逐人明细：推播、短信每人每条的结果与原因，可导出。</td></tr>
-    <tr><td>短信用「发送后 24 小时内登录」看效果；推播的登录与付费数据只作参考。<span class="why">玩家收到短信后多直接打开游戏，不点链接。</span></td></tr>
+    <tr><td>短信用「发送后 24 小时内登录」看效果；推播的登录数据只作参考。<span class="why">玩家收到短信后多直接打开游戏，不点链接。</span></td></tr>
   </table>
   <h4 class="rg">单条弹窗规则</h4>
   <table class="rule">
     <tr><td>漏斗：一条规则从目标人数、进入弹窗位置、符合条件、曝光到点击，每一步少了多少。</td></tr>
     <tr><td>趋势图按日显示这条规则的曝光与点击率，图上标出这条规则每一次保存的改动和客户端发版，画法同位置数据（第 10 页）。</td></tr>
-    <tr><td>点击后 24 小时内的领取、购买，按来源弹窗规则记录；只作参考，不画进漏斗。<span class="why">领取、购买还受弹窗以外的因素影响。</span></td></tr>
     <tr><td>可拆分：按排序项、按人群、按平台。</td></tr>
   </table>
     </div>
@@ -458,7 +458,7 @@ table.et td:nth-child(1){white-space:nowrap}
   <h2>弹窗与快显位置数据</h2>
 
   <div class="shots">
-    <figure><img src="需求评审版_图/13_游戏内数据.jpg" alt="弹窗与快显位置数据" style="width:980px"><figcaption>弹窗与快显位置数据：大厅弹窗</figcaption></figure>
+    <figure><img src="需求评审版_图/13_游戏内数据.jpg" alt="弹窗与快显位置数据" style="width:980px"><figcaption>大厅弹窗：关键数字、按日趋势与改动标记、按位次的点击率、这个位置上的规则</figcaption></figure>
   </div>
 
   <details class="rules">
@@ -468,7 +468,7 @@ table.et td:nth-child(1){white-space:nowrap}
   <table class="rule">
     <tr><td>大厅弹窗、破产弹窗、快显各自统计曝光人数、曝光、点击、点击率，与前一个同样长度的周期对比。</td></tr>
     <tr><td>每个位置一张趋势图，按日显示曝光与点击率；图上标出这个位置上所有规则的改动和客户端发版。</td></tr>
-    <tr><td>列出这个位置上各条规则的数据，点规则名进入这条规则的数据（第 9 页）；合计行的曝光人数按玩家去重。</td></tr>
+    <tr><td>列出这个位置上各条规则的数据，点规则名进入这条规则的数据（第 9 页）；合计行的曝光人数按玩家去重，所以小于各行相加。</td></tr>
   </table>
   <h4 class="rg">按位次</h4>
   <table class="rule">
@@ -490,7 +490,7 @@ table.et td:nth-child(1){white-space:nowrap}
   <h2>每人每天推送量</h2>
 
   <div class="shots">
-    <figure><img src="需求评审版_图/06b_每人每天收到.jpg" alt="每人每天推送量" style="width:980px"><figcaption>每人每天推送量</figcaption></figure>
+    <figure><img src="需求评审版_图/06b_每人每天收到.jpg" alt="每人每天推送量" style="width:980px"><figcaption>游戏外推送一层：每人每天收到几条的分布、碰到上限的走势</figcaption></figure>
   </div>
 
   <details class="rules">
@@ -499,7 +499,7 @@ table.et td:nth-child(1){white-space:nowrap}
   <h4 class="rg">游戏外推送</h4>
   <table class="rule">
     <tr><td>玩家每天收到几条推播、短信的分布，图上标出每人每天上限的位置。</td></tr>
-    <tr><td>每天碰到上限的人数（当天已收满上限条数的玩家）与上限拦下人次（收满后又被拦下的推送）的走势，推播、短信分开看；图上标出每人每天上限与勿扰页（第 3 页）设置的改动。</td></tr>
+    <tr><td>每天碰到上限的人数（当天已收满上限条数的玩家）与上限拦下人次（收满后又被拦下的推送）的走势，推播、短信分开看；图上标出每人每天上限与勿扰页（第 4 页）设置的改动。</td></tr>
   </table>
   <h4 class="rg">游戏内推送</h4>
   <table class="rule">
@@ -521,7 +521,7 @@ table.et td:nth-child(1){white-space:nowrap}
   <h2>玩家查询</h2>
 
   <div class="shots">
-    <figure><img src="需求评审版_图/19_玩家查询.jpg" alt="玩家查询" style="width:980px"><figcaption>玩家查询</figcaption></figure>
+    <figure><img src="需求评审版_图/19_玩家查询.jpg" alt="玩家查询" style="width:980px"><figcaption>查到一位玩家：各推送方式能否收到、今天已收几条、近 30 天收到记录</figcaption></figure>
   </div>
 
   <details class="rules">
@@ -551,7 +551,7 @@ table.et td:nth-child(1){white-space:nowrap}
       <table class="et">
         <tr><th>时间</th><th>操作人</th><th>推送方式</th><th>对象</th><th>操作</th><th>改动内容</th></tr>
         <tr><td>10/12 15:04</td><td>运营01</td><td>推播</td><td>推送 43 月月抽开奖提醒</td><td>停止</td><td>已发出 1,050 条，不撤回；其余不再发送</td></tr>
-        <tr><td>10/12 14:36</td><td>运营02</td><td>弹窗</td><td>弹窗 13 活动类·回流</td><td>编辑</td><td>弹窗排序：回流任务 第 7 → 第 1</td></tr>
+        <tr><td>10/12 14:36</td><td>运营02</td><td>弹窗</td><td>弹窗规则 13 活动类·回流</td><td>编辑</td><td>弹窗排序：回流任务 第 7 → 第 1</td></tr>
         <tr><td>10/12 14:30</td><td>系统</td><td>推播</td><td>推送 44 限时挑战开启</td><td>系统状态变化</td><td>服务商未受理：发送中 → 发送失败（9,120 条）</td></tr>
         <tr><td>10/09 16:12</td><td>运营02</td><td>推播</td><td>推送 31 限时加码礼包未购买提醒</td><td>编辑</td><td>改了内文</td></tr>
       </table>
@@ -567,7 +567,6 @@ table.et td:nth-child(1){white-space:nowrap}
     <tr><td>每条记录含时间、操作人、推送方式、对象、操作、改动内容。</td></tr>
     <tr><td>改内文这类操作可展开，对照改前与改后。</td></tr>
     <tr><td>系统自动发生的状态变化，如到时开始发送、发送失败、生效期间结束，也记录，操作人记为「系统」。</td></tr>
-    <tr><td>数据明细（第 9 页）、弹窗与快显位置数据（第 10 页）、每人每天推送量（第 11 页）趋势图上的改动标记取自操作纪录。</td></tr>
   </table>
   <h4 class="rg">记录范围</h4>
   <table class="rule">

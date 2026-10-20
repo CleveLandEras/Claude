@@ -111,3 +111,12 @@
 .ch-fl .in{min-width:56px}
 .ch-flt{gap:8px 14px}
 .ch-search{width:128px}
+/* 第二轮：09 到达列表头注、行尾进入提示；00 推播列表 */
+.ch .ch-tbl th .th2{display:block;font-size:11px;font-weight:400;color:var(--mute);line-height:14px;margin-top:2px}
+.ch .ch-tbl td.ch-go{color:#A0A6AE;font-size:16px;padding-left:2px;padding-right:4px;text-align:right}
+.ch-mbar.sm{width:32px;margin-left:8px;margin-right:4px}
+.ch-list{margin-top:12px}
+.ch .ch-list td{font-size:12.5px}
+.ch .ch-list td.ch-ops .pd-lk{margin-right:10px}
+.ch .ch-list td.ch-ops .pd-lk:last-child{margin-right:0}
+.ch-mainx .seg>span{height:26px;padding:0 11px}
