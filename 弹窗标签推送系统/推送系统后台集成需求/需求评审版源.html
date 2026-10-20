@@ -11,6 +11,7 @@
   --p1:#1f5fa8; --p1bg:#e6f0fb;
   --p2:#2b7a4b; --p2bg:#e4f4ea;
   --p3:#9a5b00; --p3bg:#fff1d6;
+  --p4:#6b4fa0; --p4bg:#efe9f8;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -22,16 +23,18 @@ nav .grp{margin:16px 0 6px;font-size:13px;font-weight:700;padding-left:10px;bord
 nav .grp span{display:block;color:var(--ink3);font-weight:400}
 nav a{display:block;padding:5px 10px;border-left:2px solid var(--line);color:var(--ink2);text-decoration:none}
 nav a:hover{color:var(--accent);border-left-color:var(--accent);background:var(--accent-bg)}
-.g1{--c:var(--p1)}.g2{--c:var(--p2)}.g3{--c:var(--p3)}
+.g1{--c:var(--p1)}.g2{--c:var(--p2)}.g3{--c:var(--p3)}.g4{--c:var(--p4)}
 main{min-width:0}
 header.top{margin-bottom:26px}
 header.top h1{font-size:30px;line-height:1.35;margin:0}
+.arch{margin:0 0 8px}
+.arch h2{font-size:21px;line-height:1.4;margin:0 0 12px}
 .partband{background:var(--pbg);border:1px solid var(--line);border-left:10px solid var(--pc);border-radius:10px;padding:20px 30px 18px;margin:44px 0 22px;scroll-margin-top:20px}
 .partband .pn{font-size:14px;font-weight:700;color:var(--pc);letter-spacing:.06em}
 .partband .pm{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin:2px 0 0}
 .partband .pm b{font-size:26px;line-height:1.4}
 .partband .pm span{color:var(--ink2);font-size:15px}
-.pt1{--pc:var(--p1);--pbg:var(--p1bg)}.pt2{--pc:var(--p2);--pbg:var(--p2bg)}.pt3{--pc:var(--p3);--pbg:var(--p3bg)}
+.pt1{--pc:var(--p1);--pbg:var(--p1bg)}.pt2{--pc:var(--p2);--pbg:var(--p2bg)}.pt3{--pc:var(--p3);--pbg:var(--p3bg)}.pt4{--pc:var(--p4);--pbg:var(--p4bg)}
 section.pg{background:var(--card);border:1px solid var(--line);border-top:5px solid var(--pc);border-radius:12px;padding:26px 40px 38px;margin-bottom:28px;scroll-margin-top:20px}
 .kick{display:flex;align-items:center;flex-wrap:wrap;gap:8px 14px;font-size:14px;color:var(--ink2);margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--line)}
 .kick .pchip{display:inline-block;padding:1px 12px;border-radius:12px;background:var(--pc);color:#fff;font-size:13.5px;font-weight:700;white-space:nowrap}
@@ -66,60 +69,26 @@ table.et th,table.et td{padding:7px 10px}
 table.et td:nth-child(1){white-space:nowrap}
 @media (max-width:1100px){.wrap{grid-template-columns:1fr}nav{display:none}}
 </style>
-<style id="arch">
-/* 开屏：后台结构（原型截图在前，结构图在后） */
-.arch{margin:0 0 8px}
-.arch h2{font-size:21px;line-height:1.4;margin:0 0 12px}
-.arch .shots{margin:0 0 24px}
-.amap{display:block;width:100%;max-width:980px;height:auto;font-family:inherit}
-.amap text{font-size:15px;fill:var(--ink)}
-.amap .bound{fill:var(--card);stroke:var(--ink);stroke-width:2}
-.amap .ftitle{font-size:17px;font-weight:700}
-.amap .c1{--k:var(--p1);--kb:var(--p1bg)}
-.amap .c2{--k:var(--p2);--kb:var(--p2bg)}
-.amap .c3{--k:var(--p3);--kb:var(--p3bg)}
-.amap .cbg{fill:var(--kb)}
-.amap .cband{fill:var(--k)}
-.amap .cname text{font-size:19px;font-weight:700;fill:var(--k)}
-.amap a.cname:hover text{text-decoration:underline}
-.amap .csub{font-size:14px;fill:var(--ink2)}
-.amap .gbody{fill:#fff;fill-opacity:.6}
-.amap .gbar{fill:var(--k)}
-.amap .gline{fill:none;stroke:var(--k);stroke-width:1.5}
-.amap .mgrp text{fill:#fff;font-size:16px;font-weight:700}
-.amap .node rect{fill:#fff;stroke:var(--k);stroke-width:1.5}
-.amap .solo text{font-size:16px;font-weight:700}
-.amap a.node:hover rect{fill:var(--k)}
-.amap a.node:hover text{fill:#fff}
-.amap a:focus-visible rect{stroke:var(--ink);stroke-width:3}
-.amap .node .tag rect,.amap a.node:hover .tag rect{fill:var(--soft);stroke:#9aa5b1;stroke-width:1}
-.amap .node .tag text,.amap a.node:hover .tag text{font-size:12px;fill:var(--ink2)}
-.amap .ext rect{fill:var(--soft);stroke:#9aa5b1;stroke-width:1.5}
-.amap .en{font-size:16px;font-weight:700}
-.amap .es{font-size:14px;fill:var(--ink2)}
-.amap .feed path{fill:none;stroke:var(--ink2);stroke-width:1.6}
-.amap .ah{fill:var(--ink2)}
-.amap .flabel{font-size:14px;font-weight:600;fill:var(--ink2)}
-</style>
 </head>
 <body>
 <div class="wrap">
 <nav>
   <div class="nt">推送统一后台需求</div>
-  <div class="grp g1">第一部分　游戏外推送<span>第 1–5 页</span></div>
+  <div class="grp g1">第一部分　游戏外推送<span>第 1–4 页</span></div>
   <a href="#p1">1 按玩家分群推送</a>
   <a href="#p2">2 按玩家行为自动推送</a>
   <a href="#p3">3 每人每天上限与勿扰</a>
-  <a href="#p4">4 推播与短信数据统计</a>
-  <a href="#p5">5 短信</a>
-  <div class="grp g2">第二部分　游戏内推送<span>第 6–9 页</span></div>
-  <a href="#p6">6 按玩家分群配置弹窗</a>
-  <a href="#p7">7 每人每天弹窗与快显上限</a>
-  <a href="#p8">8 弹窗与快显数据统计</a>
-  <a href="#p9">9 快显</a>
-  <div class="grp g3">第三部分　两类共用<span>第 10–13 页</span></div>
-  <a href="#p10">10 概览</a>
-  <a href="#p11">11 项目目录</a>
+  <a href="#p4">4 短信</a>
+  <div class="grp g2">第二部分　游戏内推送<span>第 5–7 页</span></div>
+  <a href="#p5">5 按玩家分群配置弹窗</a>
+  <a href="#p6">6 每人每天弹窗与快显上限</a>
+  <a href="#p7">7 快显</a>
+  <div class="grp g3">第三部分　数据<span>第 8–11 页</span></div>
+  <a href="#p8">8 数据概览</a>
+  <a href="#p9">9 数据明细</a>
+  <a href="#p10">10 弹窗与快显位置数据</a>
+  <a href="#p11">11 每人每天推送量</a>
+  <div class="grp g4">第四部分　查询<span>第 12–13 页</span></div>
   <a href="#p12">12 玩家查询</a>
   <a href="#p13">13 操作纪录</a>
 </nav>
@@ -130,63 +99,14 @@ table.et td:nth-child(1){white-space:nowrap}
 <section class="arch">
   <h2>后台结构</h2>
   <div class="shots">
-    <figure><img src="需求评审版_图/00_后台首页.jpg" alt="后台首页：左侧菜单与概览" style="width:980px"><figcaption>后台首页</figcaption></figure>
+    <figure><img src="需求评审版_图/00_后台首页.jpg" alt="后台首页：左侧菜单与数据概览" style="width:980px"><figcaption>后台首页</figcaption></figure>
   </div>
-  <svg class="amap" viewBox="0 0 980 674" width="980" height="674" aria-label="后台结构图">
-    <defs>
-      <marker id="arch-ah" viewBox="0 0 10 10" refX="10" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" orient="auto"><path class="ah" d="M0,0 L10,5 L0,10 z"/></marker>
-      <clipPath id="arch-k1"><rect x="18" y="144" width="452" height="368" rx="12"/></clipPath>
-      <clipPath id="arch-k2"><rect x="510" y="144" width="452" height="368" rx="12"/></clipPath>
-      <clipPath id="arch-k3"><rect x="18" y="532" width="944" height="122" rx="12"/></clipPath>
-      <clipPath id="arch-g1"><rect x="36" y="246" width="200" height="142" rx="9"/></clipPath>
-      <clipPath id="arch-g3"><rect x="528" y="246" width="200" height="118" rx="9"/></clipPath>
-    </defs>
-    <!-- 框外：会员标签设定（现有后台） -->
-    <g class="ext"><rect x="364" y="2" width="252" height="44" rx="8"/><text x="490" y="24" dominant-baseline="central" text-anchor="middle"><tspan class="en">会员标签设定</tspan><tspan class="es">（现有后台）</tspan></text></g>
-    <!-- 推送统一后台 -->
-    <rect class="bound" x="1" y="96" width="978" height="576" rx="14"/>
-    <text class="ftitle" x="20" y="120" dominant-baseline="central">推送统一后台</text>
-    <!-- 游戏外推送 -->
-    <g class="c1">
-      <rect class="cbg" x="18" y="144" width="452" height="368" rx="12"/><rect class="cband" x="18" y="144" width="452" height="5" clip-path="url(#arch-k1)"/>
-      <a class="cname" href="#part1"><text x="36" y="176" dominant-baseline="central">游戏外推送</text></a>
-      <text class="csub" x="36" y="201" dominant-baseline="central">玩家不在游戏里也收得到</text>
-      <g class="mgrp"><rect class="gbody" x="36" y="246" width="200" height="142" rx="9"/><rect class="gbar" x="36" y="246" width="200" height="40" clip-path="url(#arch-g1)"/><text x="136" y="266" dominant-baseline="central" text-anchor="middle">推播</text><rect class="gline" x="36" y="246" width="200" height="142" rx="9"/></g>
-      <a class="node" href="#p1"><rect x="46" y="298" width="180" height="34" rx="8"/><text x="136" y="315" dominant-baseline="central" text-anchor="middle">按玩家分群推送</text></a>
-      <a class="node" href="#p2"><rect x="46" y="342" width="180" height="34" rx="8"/><text x="136" y="359" dominant-baseline="central" text-anchor="middle">按玩家行为自动推送</text></a>
-      <a class="node solo" href="#p5"><rect x="252" y="246" width="200" height="40" rx="8"/><text x="352" y="266" dominant-baseline="central" text-anchor="middle">短信</text></a>
-      <a class="node" href="#p3"><rect x="36" y="412" width="416" height="36" rx="8"/><text x="244" y="430" dominant-baseline="central" text-anchor="middle">每人每天上限与勿扰</text></a>
-      <a class="node" href="#p4"><rect x="36" y="458" width="416" height="36" rx="8"/><text x="244" y="476" dominant-baseline="central" text-anchor="middle">推播与短信数据统计</text></a>
-    </g>
-    <!-- 游戏内推送 -->
-    <g class="c2">
-      <rect class="cbg" x="510" y="144" width="452" height="368" rx="12"/><rect class="cband" x="510" y="144" width="452" height="5" clip-path="url(#arch-k2)"/>
-      <a class="cname" href="#part2"><text x="528" y="176" dominant-baseline="central">游戏内推送</text></a>
-      <text class="csub" x="528" y="201" dominant-baseline="central">玩家在游戏里才看得到</text>
-      <g class="mgrp"><rect class="gbody" x="528" y="246" width="200" height="118" rx="9"/><rect class="gbar" x="528" y="246" width="200" height="40" clip-path="url(#arch-g3)"/><text x="628" y="266" dominant-baseline="central" text-anchor="middle">弹窗</text><rect class="gline" x="528" y="246" width="200" height="118" rx="9"/></g>
-      <a class="node" href="#p6"><rect x="538" y="298" width="180" height="54" rx="8"/><text x="628" y="316" dominant-baseline="central" text-anchor="middle">按玩家分群配置弹窗</text><g class="tag"><rect x="585" y="328" width="86" height="18" rx="9"/><text x="628" y="337" dominant-baseline="central" text-anchor="middle">现有页面改造</text></g></a>
-      <a class="node solo" href="#p9"><rect x="744" y="246" width="200" height="40" rx="8"/><text x="844" y="266" dominant-baseline="central" text-anchor="middle">快显</text></a>
-      <a class="node" href="#p7"><rect x="528" y="412" width="416" height="36" rx="8"/><text x="736" y="430" dominant-baseline="central" text-anchor="middle">每人每天弹窗与快显上限</text></a>
-      <a class="node" href="#p8"><rect x="528" y="458" width="416" height="36" rx="8"/><text x="736" y="476" dominant-baseline="central" text-anchor="middle">弹窗与快显数据统计</text></a>
-    </g>
-    <!-- 两类共用 -->
-    <g class="c3">
-      <rect class="cbg" x="18" y="532" width="944" height="122" rx="12"/><rect class="cband" x="18" y="532" width="944" height="5" clip-path="url(#arch-k3)"/>
-      <a class="cname" href="#part3"><text x="36" y="564" dominant-baseline="central">两类共用</text></a>
-      <a class="node" href="#p10"><rect x="36" y="582" width="215" height="54" rx="8"/><text x="143.5" y="609" dominant-baseline="central" text-anchor="middle">概览</text></a>
-      <a class="node" href="#p11"><rect x="267" y="582" width="215" height="54" rx="8"/><text x="374.5" y="609" dominant-baseline="central" text-anchor="middle">项目目录</text></a>
-      <a class="node" href="#p12"><rect x="498" y="582" width="215" height="54" rx="8"/><text x="605.5" y="600" dominant-baseline="central" text-anchor="middle">玩家查询</text><g class="tag"><rect x="562.5" y="612" width="86" height="18" rx="9"/><text x="605.5" y="621" dominant-baseline="central" text-anchor="middle">现有页面改造</text></g></a>
-      <a class="node" href="#p13"><rect x="729" y="582" width="215" height="54" rx="8"/><text x="836.5" y="600" dominant-baseline="central" text-anchor="middle">操作纪录</text><g class="tag"><rect x="793.5" y="612" width="86" height="18" rx="9"/><text x="836.5" y="621" dominant-baseline="central" text-anchor="middle">现有页面改造</text></g></a>
-    </g>
-    <!-- 标签群组：进入推播、短信、弹窗、快显 -->
-    <g class="feed"><path d="M490,46 V222 M136,222 H844"/><path d="M136,222 V246" marker-end="url(#arch-ah)"/><path d="M352,222 V246" marker-end="url(#arch-ah)"/><path d="M628,222 V246" marker-end="url(#arch-ah)"/><path d="M844,222 V246" marker-end="url(#arch-ah)"/><text class="flabel" x="500" y="71" dominant-baseline="central">标签群组</text></g>
-  </svg>
 </section>
 
 <!-- 第一部分 -->
 <div class="partband pt1" id="part1">
   <div class="pn">第一部分</div>
-  <div class="pm"><b>游戏外推送</b><span>第 1–5 页</span></div>
+  <div class="pm"><b>游戏外推送</b><span>第 1–4 页</span></div>
 </div>
 
 <!-- 1 -->
@@ -201,13 +121,13 @@ table.et td:nth-child(1){white-space:nowrap}
   </div>
 
   <details class="rules">
-    <summary><span class="rt">业务规则</span><span class="rgs">标签群组 · 发送对象 · 发送时间 · 防错</span></summary>
+    <summary><span class="rt">业务规则</span><span class="rgs">标签群组 · 发送对象 · 发送时间 · 所属活动 · 防错</span></summary>
     <div class="rbody">
   <h4 class="rg">标签群组</h4>
   <table class="rule">
     <tr><td>现有：在会员标签设定里用会员标签按且、或、排除组合出一组玩家，随标签数据定时更新。</td></tr>
     <tr><td>新增功能：建群组时可在群组之间取交集，如「回流且潜在付费」；每个条件显示人数。</td></tr>
-    <tr><td>新建 7 个标签：<br>· 潜在付费：注册第 7–60 天、从未储值、近 14 天押注合计不低于 20,000（游戏内货币）<br>· 潜在流失两档：近 14 天登录 2–3 天；近 14 天登录 1 天<br>· 近 7 天发生过破产<br>· 注册后未再登录两档：注册次日未再登录；注册第 3 天未再登录<br>· 随机分桶号：由会员编号和实验名算出的 0–99，每位玩家在同一实验里固定一个号；用来分实验组与对照组（见第 6 页）</td></tr>
+    <tr><td>新建 7 个标签：<br>· 潜在付费：注册第 7–60 天、从未储值、近 14 天押注合计不低于 20,000（游戏内货币）<br>· 潜在流失两档：近 14 天登录 2–3 天；近 14 天登录 1 天<br>· 近 7 天发生过破产<br>· 注册后未再登录两档：注册次日未再登录；注册第 3 天未再登录<br>· 随机分桶号：由会员编号和实验名算出的 0–99，每位玩家在同一实验里固定一个号；用来分实验组与对照组（见第 5 页）</td></tr>
     <tr><td>在用的标签群组不能停用或删除；修改在用的群组时，保存前列出受影响的推播、短信、快显和弹窗规则。</td></tr>
   </table>
   <h4 class="rg">发送对象</h4>
@@ -222,6 +142,10 @@ table.et td:nth-child(1){white-space:nowrap}
   <table class="rule">
     <tr><td>推播分立即、定时、按行为三种；按行为的设置见第 2 页。</td></tr>
     <tr><td>定时推送按开始发送时群组里的玩家发出。</td></tr>
+  </table>
+  <h4 class="rg">所属活动</h4>
+  <table class="rule">
+    <tr><td>推播、短信、快显和弹窗规则新建时都要选所属活动，或选「不属于活动」；所属活动和点击跳转的页面从后台现有的活动、礼包里选。</td></tr>
   </table>
   <h4 class="rg">防错</h4>
   <table class="rule">
@@ -246,7 +170,8 @@ table.et td:nth-child(1){white-space:nowrap}
     <div class="rbody">
   <h4 class="rg">触发与对象</h4>
   <table class="rule">
-    <tr><td>触发行为首批 6 种：限时加码礼包快到期、玩家升级、完成任务、通行证升级、破产后未回到游戏、时间偏移（活动、礼包等项目开始或结束前后 N 小时）；新的触发行为由 RD 登记后可选。</td></tr>
+    <tr><td>触发行为首批 6 种：限时加码礼包快到期、玩家升级、完成任务、通行证升级、破产后未回到游戏、时间偏移（活动、礼包开始或结束前后 N 小时）；新的触发行为由 RD 登记后可选。</td></tr>
+    <tr><td>时间偏移按活动、礼包自己的起止时间算，活动、礼包改期后自动跟随。</td></tr>
     <tr><td>触发条件按触发行为填，如礼包剩余几小时发送、只发给尚未购买该礼包的玩家。</td></tr>
     <tr><td>生效期间从开始日期起运行；不填结束日期则长期运行。</td></tr>
     <tr><td>发送对象为触发的玩家，可再限定标签群组、加排除群组，规则同第 1 页；确认前显示预计每天触发和发出的人次。</td></tr>
@@ -305,45 +230,6 @@ table.et td:nth-child(1){white-space:nowrap}
 <!-- 4 -->
 <section class="pg pt1" id="p4">
   <div class="kick"><span class="pchip">第一部分　游戏外推送</span><span class="pos">第 4 页 / 共 13 页</span></div>
-  <h2>推播与短信数据统计</h2>
-
-  <div class="shots">
-    <figure><img src="需求评审版_图/06b_每人每天收到.jpg" alt="每人每天收到几条" style="width:980px"><figcaption>游戏外推送数据：每人每天收到几条</figcaption></figure>
-    <figure><img src="需求评审版_图/07_单条漏斗.jpg" alt="单条推送数据" style="width:980px"><figcaption>单条推送数据</figcaption></figure>
-  </div>
-
-  <details class="rules">
-    <summary><span class="rt">业务规则</span><span class="rgs">推送列表 · 每人每天收到几条 · 单条推送数据 · 指标算法 · 效果参考</span></summary>
-    <div class="rbody">
-  <h4 class="rg">推送列表</h4>
-  <table class="rule">
-    <tr><td>游戏外推送数据按每条推送列出发送、到达、点击，可按所属活动筛选、导出。</td></tr>
-  </table>
-  <h4 class="rg">每人每天收到几条</h4>
-  <table class="rule">
-    <tr><td>玩家每天收到几条的分布，图上标出每人每天上限的位置；每天碰到上限的人数（当天已收满上限条数的玩家）与上限拦下人次（收满后又被拦下的推送）的走势，图上标出每人每天上限与勿扰设置的改动。</td></tr>
-  </table>
-  <h4 class="rg">单条推送数据</h4>
-  <table class="rule">
-    <tr><td>点一条推送进入：从受众、发送、到达到点击，每一步少了多少；另列发送后 24 小时内的登录与付费。</td></tr>
-    <tr><td>未发出的原因：发送前拦下的按原因分项、从多到少排列，如没装 App、通知关闭、勿扰放弃、每人每天上限拦下；服务商未受理的另列；可导出名单。</td></tr>
-    <tr><td>逐人明细：推播、短信每人每条的结果与原因，可导出。</td></tr>
-  </table>
-  <h4 class="rg">指标算法</h4>
-  <table class="rule">
-    <tr><td>到达率＝到达÷可确认到达的发送；iOS 旧版本 App 不能上报到达，这部分单列为「iOS 未接入」，不进分母。</td></tr>
-  </table>
-  <h4 class="rg">效果参考</h4>
-  <table class="rule">
-    <tr><td>短信用「发送后 24 小时内登录」看效果；推播的登录与付费数据只作参考。<span class="why">玩家收到短信后多直接打开游戏，不点链接。</span></td></tr>
-  </table>
-    </div>
-  </details>
-</section>
-
-<!-- 5 -->
-<section class="pg pt1" id="p5">
-  <div class="kick"><span class="pchip">第一部分　游戏外推送</span><span class="pos">第 5 页 / 共 13 页</span></div>
   <h2>短信</h2>
 
   <div class="shots">
@@ -373,12 +259,12 @@ table.et td:nth-child(1){white-space:nowrap}
 <!-- 第二部分 -->
 <div class="partband pt2" id="part2">
   <div class="pn">第二部分</div>
-  <div class="pm"><b>游戏内推送</b><span>第 6–9 页</span></div>
+  <div class="pm"><b>游戏内推送</b><span>第 5–7 页</span></div>
 </div>
 
-<!-- 6 -->
-<section class="pg pt2" id="p6">
-  <div class="kick"><span class="pchip">第二部分　游戏内推送</span><span class="pos">第 6 页 / 共 13 页</span></div>
+<!-- 5 -->
+<section class="pg pt2" id="p5">
+  <div class="kick"><span class="pchip">第二部分　游戏内推送</span><span class="pos">第 5 页 / 共 13 页</span></div>
   <h2>按玩家分群配置弹窗</h2>
 
   <div class="shots">
@@ -392,7 +278,7 @@ table.et td:nth-child(1){white-space:nowrap}
   <h4 class="rg">规则内容</h4>
   <table class="rule">
     <tr><td>每条规则选弹窗类型（活动类、储值类）和位置：大厅弹窗（进入大厅时自动弹出）、破产弹窗（玩家破产时弹出）；并设每次最多弹出几个。</td></tr>
-    <tr><td>弹窗排序是本规则里按先后弹出的清单，清单里的每一项叫排序项，对应一个活动或礼包，先后可调整。</td></tr>
+    <tr><td>弹窗排序是本规则里按先后弹出的清单，清单里的每一项叫排序项，对应一个活动或礼包，从后台现有的活动、礼包里选，先后可调整。</td></tr>
     <tr><td>每个排序项设弹出时机、弹窗次数、是否「弹出后终止本次后续弹窗」、是否不可关闭（玩家须点按钮）；排序项自己的冷却时间沿用现行设置。</td></tr>
     <tr><td>同一位置、同一类型有多条规则时，优先级数字越小越先被选中，1 最高。</td></tr>
     <tr><td>高级设置里设互斥组、每人总次数和关闭后冷却（玩家直接关掉本规则的弹窗后，隔多久本规则才再弹）。</td></tr>
@@ -421,15 +307,15 @@ table.et td:nth-child(1){white-space:nowrap}
   </table>
   <h4 class="rg">实验</h4>
   <table class="rule">
-    <tr><td>实验组与对照组用标签群组分：按随机分桶号（每位玩家在同一实验里固定的 0–99 号，见第 1 页）建两个群组，如 0–49、50–99，两组各配一条规则，分别看两条规则的数据（第 8 页）对比。</td></tr>
+    <tr><td>实验组与对照组用标签群组分：按随机分桶号（每位玩家在同一实验里固定的 0–99 号，见第 1 页）建两个群组，如 0–49、50–99，两组各配一条规则，分别看两条规则的数据（第 9 页）对比。</td></tr>
   </table>
     </div>
   </details>
 </section>
 
-<!-- 7 -->
-<section class="pg pt2" id="p7">
-  <div class="kick"><span class="pchip">第二部分　游戏内推送</span><span class="pos">第 7 页 / 共 13 页</span></div>
+<!-- 6 -->
+<section class="pg pt2" id="p6">
+  <div class="kick"><span class="pchip">第二部分　游戏内推送</span><span class="pos">第 6 页 / 共 13 页</span></div>
   <h2>每人每天弹窗与快显上限</h2>
 
   <div class="shots">
@@ -457,46 +343,9 @@ table.et td:nth-child(1){white-space:nowrap}
   </details>
 </section>
 
-<!-- 8 -->
-<section class="pg pt2" id="p8">
-  <div class="kick"><span class="pchip">第二部分　游戏内推送</span><span class="pos">第 8 页 / 共 13 页</span></div>
-  <h2>弹窗与快显数据统计</h2>
-
-  <div class="shots">
-    <figure><img src="需求评审版_图/13_游戏内数据.jpg" alt="游戏内推送数据" style="width:980px"><figcaption>游戏内推送数据：按整个位置统计</figcaption></figure>
-    <figure><img src="需求评审版_图/14_单条规则数据.jpg" alt="单条弹窗规则数据" style="width:980px"><figcaption>单条弹窗规则数据</figcaption></figure>
-  </div>
-
-  <details class="rules">
-    <summary><span class="rt">业务规则</span><span class="rgs">按位置 · 单条规则 · 改动与发版</span></summary>
-    <div class="rbody">
-  <h4 class="rg">按位置</h4>
-  <table class="rule">
-    <tr><td>大厅弹窗、破产弹窗、快显各自统计曝光人数、曝光、点击、点击率，与前一个同样长度的周期对比。</td></tr>
-    <tr><td>每个位置一张趋势图，按日显示曝光与点击率；图上标出这个位置上所有规则的改动和客户端发版。</td></tr>
-    <tr><td>按位次统计玩家这次进入该位置时第几个看到的弹窗，各位次的曝光与点击率；位次跨规则计，与排序项在规则里的先后无关。</td></tr>
-    <tr><td>列出这个位置上各条规则的数据，点规则名进入单条规则数据；合计行的曝光人数按玩家去重。</td></tr>
-  </table>
-  <h4 class="rg">单条规则</h4>
-  <table class="rule">
-    <tr><td>漏斗：一条规则从目标人数、进入弹窗位置、符合条件、曝光到点击，每一步少了多少。</td></tr>
-    <tr><td>趋势图按日显示这条规则的曝光与点击率，图上标出这条规则每一次保存的改动和客户端发版。</td></tr>
-    <tr><td>点击后 24 小时内的领取、购买，按来源弹窗规则记录；只作参考，不画进漏斗。<span class="why">领取、购买还受弹窗以外的因素影响。</span></td></tr>
-    <tr><td>可拆分：按排序项、按人群、按平台。</td></tr>
-  </table>
-  <h4 class="rg">改动与发版</h4>
-  <table class="rule">
-    <tr><td>趋势图上相邻两次改动或发版之间，画出这段时间的平均点击率。</td></tr>
-    <tr><td>趋势图上的规则改动取自操作纪录（第 13 页），图下按时间逐条列出每次改动的日期、改了什么、谁改的。</td></tr>
-    <tr><td>规则改动或客户端发版之前的数据照样保留，与之后的数据画在同一张趋势图上。</td></tr>
-  </table>
-    </div>
-  </details>
-</section>
-
-<!-- 9 -->
-<section class="pg pt2" id="p9">
-  <div class="kick"><span class="pchip">第二部分　游戏内推送</span><span class="pos">第 9 页 / 共 13 页</span></div>
+<!-- 7 -->
+<section class="pg pt2" id="p7">
+  <div class="kick"><span class="pchip">第二部分　游戏内推送</span><span class="pos">第 7 页 / 共 13 页</span></div>
   <h2>快显</h2>
 
   <div class="shots">
@@ -523,16 +372,16 @@ table.et td:nth-child(1){white-space:nowrap}
 <!-- 第三部分 -->
 <div class="partband pt3" id="part3">
   <div class="pn">第三部分</div>
-  <div class="pm"><b>两类共用</b><span>第 10–13 页</span></div>
+  <div class="pm"><b>数据</b><span>第 8–11 页</span></div>
 </div>
 
-<!-- 10 -->
-<section class="pg pt3" id="p10">
-  <div class="kick"><span class="pchip">第三部分　两类共用</span><span class="pos">第 10 页 / 共 13 页</span></div>
-  <h2>概览</h2>
+<!-- 8 -->
+<section class="pg pt3" id="p8">
+  <div class="kick"><span class="pchip">第三部分　数据</span><span class="pos">第 8 页 / 共 13 页</span></div>
+  <h2>数据概览</h2>
 
   <div class="shots">
-    <figure><img src="需求评审版_图/06_概览.jpg" alt="概览的关键数字" style="width:980px"><figcaption>概览：游戏外、游戏内两层的关键数字</figcaption></figure>
+    <figure><img src="需求评审版_图/06_概览.jpg" alt="数据概览的关键数字" style="width:980px"><figcaption>数据概览：游戏外、游戏内两层的关键数字</figcaption></figure>
   </div>
 
   <details class="rules">
@@ -540,11 +389,11 @@ table.et td:nth-child(1){white-space:nowrap}
     <div class="rbody">
   <h4 class="rg">游戏外推送</h4>
   <table class="rule">
-    <tr><td>推播、短信的发送、到达、点击、到达人数和人均每天收到几条；明细见第 4 页。</td></tr>
+    <tr><td>推播、短信的发送、到达、点击、到达人数和人均每天收到几条；每条推送的数据见第 9 页。</td></tr>
   </table>
   <h4 class="rg">游戏内推送</h4>
   <table class="rule">
-    <tr><td>弹窗、快显的曝光、曝光人数、点击、点击率和人均每天弹窗曝光几个；明细见第 8 页。</td></tr>
+    <tr><td>弹窗、快显的曝光、曝光人数、点击、点击率和人均每天弹窗曝光几个；每条弹窗规则的数据见第 9 页，各位置的数据见第 10 页。</td></tr>
   </table>
   <h4 class="rg">对比与走势</h4>
   <table class="rule">
@@ -552,9 +401,83 @@ table.et td:nth-child(1){white-space:nowrap}
   </table>
   <h4 class="rg">指标算法</h4>
   <table class="rule">
-    <tr><td>游戏外推送从发送算起，点击率＝点击÷发送；游戏内推送从曝光算起，点击率＝点击÷曝光；两层分开统计。</td></tr>
-    <tr><td>到达率＝到达÷可确认到达的发送，iOS 未接入的部分不进分母（见第 4 页）。</td></tr>
+    <tr><td>游戏外推送从发送算起，点击率＝点击÷发送；游戏内推送从曝光算起，点击率＝点击÷曝光；两层分开统计，不相加。</td></tr>
+    <tr><td>到达率＝到达÷可确认到达的发送；iOS 旧版本 App 不能上报到达，这部分单列为「iOS 未接入」，不进分母。</td></tr>
     <tr><td>人均每天收到几条＝当天收到推播或短信的玩家平均每人收到几条；人均每天弹窗曝光几个＝当天看到弹窗的玩家平均每人看到几个；都取所选期间每天的平均。</td></tr>
+  </table>
+    </div>
+  </details>
+</section>
+
+<!-- 9 -->
+<section class="pg pt3" id="p9">
+  <div class="kick"><span class="pchip">第三部分　数据</span><span class="pos">第 9 页 / 共 13 页</span></div>
+  <h2>数据明细</h2>
+
+  <div class="shots">
+    <figure><img src="需求评审版_图/09_数据明细.jpg" alt="数据明细：每条推送与弹窗规则的数据列表" style="width:980px"><figcaption>数据明细：每条推送与弹窗规则的数据</figcaption></figure>
+    <figure><img src="需求评审版_图/07_单条漏斗.jpg" alt="单条推送数据" style="width:980px"><figcaption>单条推送数据</figcaption></figure>
+    <figure><img src="需求评审版_图/14_单条规则数据.jpg" alt="单条弹窗规则数据" style="width:980px"><figcaption>单条弹窗规则数据</figcaption></figure>
+  </div>
+
+  <details class="rules">
+    <summary><span class="rt">业务规则</span><span class="rgs">数据列表 · 筛选与导出 · 单条推送 · 单条弹窗规则</span></summary>
+    <div class="rbody">
+  <h4 class="rg">数据列表</h4>
+  <table class="rule">
+    <tr><td>一张表列出每条推播、短信、快显和弹窗规则的数据，页内切换游戏外推送、游戏内推送两层。</td></tr>
+    <tr><td>游戏外推送一层列发送、到达、点击和点击率；游戏内推送一层列曝光人数、曝光、点击和点击率；点击率的分母各按本层（第 8 页）。</td></tr>
+  </table>
+  <h4 class="rg">筛选与导出</h4>
+  <table class="rule">
+    <tr><td>按时间范围、推送方式、所属活动、发送方式（立即、定时、按行为）、状态、标签群组、名称或编号筛选。</td></tr>
+    <tr><td>可按任一列排序、导出；点一行进入这条推送或弹窗规则的数据。</td></tr>
+  </table>
+  <h4 class="rg">单条推送</h4>
+  <table class="rule">
+    <tr><td>从受众、发送、到达到点击，每一步少了多少；另列发送后 24 小时内的登录与付费。</td></tr>
+    <tr><td>未发出的原因：发送前拦下的按原因分项、从多到少排列，如没装 App、通知关闭、勿扰放弃、每人每天上限拦下；服务商未受理的另列；可导出名单。</td></tr>
+    <tr><td>逐人明细：推播、短信每人每条的结果与原因，可导出。</td></tr>
+    <tr><td>短信用「发送后 24 小时内登录」看效果；推播的登录与付费数据只作参考。<span class="why">玩家收到短信后多直接打开游戏，不点链接。</span></td></tr>
+  </table>
+  <h4 class="rg">单条弹窗规则</h4>
+  <table class="rule">
+    <tr><td>漏斗：一条规则从目标人数、进入弹窗位置、符合条件、曝光到点击，每一步少了多少。</td></tr>
+    <tr><td>趋势图按日显示这条规则的曝光与点击率，图上标出这条规则每一次保存的改动和客户端发版，画法同位置数据（第 10 页）。</td></tr>
+    <tr><td>点击后 24 小时内的领取、购买，按来源弹窗规则记录；只作参考，不画进漏斗。<span class="why">领取、购买还受弹窗以外的因素影响。</span></td></tr>
+    <tr><td>可拆分：按排序项、按人群、按平台。</td></tr>
+  </table>
+    </div>
+  </details>
+</section>
+
+<!-- 10 -->
+<section class="pg pt3" id="p10">
+  <div class="kick"><span class="pchip">第三部分　数据</span><span class="pos">第 10 页 / 共 13 页</span></div>
+  <h2>弹窗与快显位置数据</h2>
+
+  <div class="shots">
+    <figure><img src="需求评审版_图/13_游戏内数据.jpg" alt="弹窗与快显位置数据" style="width:980px"><figcaption>弹窗与快显位置数据：大厅弹窗</figcaption></figure>
+  </div>
+
+  <details class="rules">
+    <summary><span class="rt">业务规则</span><span class="rgs">位置统计 · 按位次 · 改动与发版</span></summary>
+    <div class="rbody">
+  <h4 class="rg">位置统计</h4>
+  <table class="rule">
+    <tr><td>大厅弹窗、破产弹窗、快显各自统计曝光人数、曝光、点击、点击率，与前一个同样长度的周期对比。</td></tr>
+    <tr><td>每个位置一张趋势图，按日显示曝光与点击率；图上标出这个位置上所有规则的改动和客户端发版。</td></tr>
+    <tr><td>列出这个位置上各条规则的数据，点规则名进入这条规则的数据（第 9 页）；合计行的曝光人数按玩家去重。</td></tr>
+  </table>
+  <h4 class="rg">按位次</h4>
+  <table class="rule">
+    <tr><td>统计玩家这次进入该位置时第几个看到的弹窗，各位次的曝光与点击率；位次跨规则计，与排序项在规则里的先后无关。</td></tr>
+  </table>
+  <h4 class="rg">改动与发版</h4>
+  <table class="rule">
+    <tr><td>趋势图上相邻两次改动或发版之间，画出这段时间的平均点击率。</td></tr>
+    <tr><td>趋势图上的规则改动取自操作纪录（第 13 页），图下按时间逐条列出每次改动的日期、改了什么、谁改的。</td></tr>
+    <tr><td>规则改动或客户端发版之前的数据照样保留，与之后的数据画在同一张趋势图上。</td></tr>
   </table>
     </div>
   </details>
@@ -562,37 +485,38 @@ table.et td:nth-child(1){white-space:nowrap}
 
 <!-- 11 -->
 <section class="pg pt3" id="p11">
-  <div class="kick"><span class="pchip">第三部分　两类共用</span><span class="pos">第 11 页 / 共 13 页</span></div>
-  <h2>项目目录</h2>
+  <div class="kick"><span class="pchip">第三部分　数据</span><span class="pos">第 11 页 / 共 13 页</span></div>
+  <h2>每人每天推送量</h2>
 
   <div class="shots">
-    <figure><img src="需求评审版_图/18a_项目目录.jpg" alt="项目目录" style="width:980px"><figcaption>项目目录</figcaption></figure>
-    <figure><img src="需求评审版_图/18_改期影响.jpg" alt="改起止时间时的受影响规则列表" style="width:940px"><figcaption>改起止时间时的受影响规则列表</figcaption></figure>
+    <figure><img src="需求评审版_图/06b_每人每天收到.jpg" alt="每人每天推送量" style="width:980px"><figcaption>每人每天推送量</figcaption></figure>
   </div>
 
   <details class="rules">
-    <summary><span class="rt">业务规则</span><span class="rgs">项目登记 · 改期联动</span></summary>
+    <summary><span class="rt">业务规则</span><span class="rgs">游戏外推送 · 游戏内推送</span></summary>
     <div class="rbody">
-  <h4 class="rg">项目登记</h4>
+  <h4 class="rg">游戏外推送</h4>
   <table class="rule">
-    <tr><td>项目目录是活动与礼包的登记表：名称、编码、类型、起止时间、状态（已排程、可用、已下线）。</td></tr>
-    <tr><td>运营登记新活动后，弹窗排序项和推播、快显的点击跳转可以选到它；推播、短信、快显和弹窗规则新建时，都要选所属活动，或选「不属于活动」。</td></tr>
-    <tr><td>每个项目显示被多少条推播、短信、快显和弹窗规则引用。</td></tr>
+    <tr><td>玩家每天收到几条推播、短信的分布，图上标出每人每天上限的位置。</td></tr>
+    <tr><td>每天碰到上限的人数（当天已收满上限条数的玩家）与上限拦下人次（收满后又被拦下的推送）的走势，图上标出每人每天上限与勿扰设置的改动。</td></tr>
   </table>
-  <h4 class="rg">改期联动</h4>
+  <h4 class="rg">游戏内推送</h4>
   <table class="rule">
-    <tr><td>改起止时间前，列出受影响的推播、短信、快显和弹窗规则。</td></tr>
-    <tr><td>按相对活动时间设置的推播、短信、快显（如「结束前 2 小时」）和跟随项目时间的弹窗排序项，自动跟随新的起止时间。</td></tr>
-    <tr><td>时间写成具体时刻的，如定时发送的推播，不自动跟随，在列表里标出，由运营逐条修改。</td></tr>
-    <tr><td>在项目目录改起止时间，不改活动本身的开始与结束；活动自己的起止时间，要运营在活动配置里另行修改。</td></tr>
+    <tr><td>玩家每天看到几个弹窗、几次快显的分布，图上标出每人每天上限的位置；每天碰到上限的人数走势。</td></tr>
   </table>
     </div>
   </details>
 </section>
 
+<!-- 第四部分 -->
+<div class="partband pt4" id="part4">
+  <div class="pn">第四部分</div>
+  <div class="pm"><b>查询</b><span>第 12–13 页</span></div>
+</div>
+
 <!-- 12 -->
-<section class="pg pt3" id="p12">
-  <div class="kick"><span class="pchip">第三部分　两类共用</span><span class="pos">第 12 页 / 共 13 页</span></div>
+<section class="pg pt4" id="p12">
+  <div class="kick"><span class="pchip">第四部分　查询</span><span class="pos">第 12 页 / 共 13 页</span></div>
   <h2>玩家查询</h2>
 
   <div class="shots">
@@ -617,8 +541,8 @@ table.et td:nth-child(1){white-space:nowrap}
 </section>
 
 <!-- 13 -->
-<section class="pg pt3" id="p13">
-  <div class="kick"><span class="pchip">第三部分　两类共用</span><span class="pos">第 13 页 / 共 13 页</span></div>
+<section class="pg pt4" id="p13">
+  <div class="kick"><span class="pchip">第四部分　查询</span><span class="pos">第 13 页 / 共 13 页</span></div>
   <h2>操作纪录</h2>
 
   <div class="shots">
@@ -635,27 +559,27 @@ table.et td:nth-child(1){white-space:nowrap}
   </div>
 
   <details class="rules">
-    <summary><span class="rt">业务规则</span><span class="rgs">记录内容 · 记录范围 · 查询导出 · 账号角色</span></summary>
+    <summary><span class="rt">业务规则</span><span class="rgs">记录内容 · 记录范围 · 查询导出 · 账号权限</span></summary>
     <div class="rbody">
   <h4 class="rg">记录内容</h4>
   <table class="rule">
     <tr><td>每条记录含时间、操作人、推送方式、对象、操作、改动内容。</td></tr>
     <tr><td>改内文这类操作可展开，对照改前与改后。</td></tr>
     <tr><td>系统自动发生的状态变化，如到时开始发送、发送失败、生效期间结束，也记录，操作人记为「系统」。</td></tr>
-    <tr><td>推播与短信数据统计（第 4 页）、弹窗与快显数据统计（第 8 页）趋势图上的改动标记取自操作纪录。</td></tr>
+    <tr><td>数据明细（第 9 页）、弹窗与快显位置数据（第 10 页）、每人每天推送量（第 11 页）趋势图上的改动标记取自操作纪录。</td></tr>
   </table>
   <h4 class="rg">记录范围</h4>
   <table class="rule">
     <tr><td>推播、短信、快显与弹窗规则的新建、编辑、发送、停止，每人每天上限与勿扰的修改，以及测试发送，每次各记一条；记录只增不改不删。</td></tr>
-    <tr><td>改项目起止时间后，随之变动的推播、短信、快显和弹窗规则各记一条「随项目时间变更」。</td></tr>
+    <tr><td>活动、礼包改期后，发送时间随之变动的推播、短信和快显各记一条，操作人记为「系统」。</td></tr>
   </table>
   <h4 class="rg">查询导出</h4>
   <table class="rule">
     <tr><td>按日期、操作人、推送方式、操作、对象名称或编号查询，可导出。</td></tr>
   </table>
-  <h4 class="rg">账号角色</h4>
+  <h4 class="rg">账号权限</h4>
   <table class="rule">
-    <tr><td>账号分运营、客服、只读三种角色：运营可新建与发送，客服可查玩家与操作纪录，只读账号只能查看。</td></tr>
+    <tr><td>沿用后台现有的账号权限。运营可用全部页面，可新建、编辑与发送；客服可用玩家查询与操作纪录；只读账号可查看全部页面，不能改动。</td></tr>
   </table>
     </div>
   </details>

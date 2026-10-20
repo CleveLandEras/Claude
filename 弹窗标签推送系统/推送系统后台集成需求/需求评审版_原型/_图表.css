@@ -86,3 +86,28 @@
 .ch-mainx.cp .ch-card .s{font-size:11.5px;min-height:34px;line-height:17px}
 .ch-mainx.cp .ch-card .v{font-size:20px}
 .ch-mainx.cp .ch-card .l{font-size:12.5px}
+/* 页内标题（数据各页） */
+.ch .ch-ptitle{font-size:17px;font-weight:600;margin-bottom:10px;line-height:1.4}
+/* 09 数据明细：筛选栏与列表 */
+.ch-flt{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;margin-top:10px}
+.ch-fl{display:inline-flex;align-items:center;gap:6px}
+.ch-fl label{font-size:13px;color:var(--ink2)}
+.ch-fl .in{min-width:64px}
+.ch-search{width:150px}
+.ch .ch-tbl th{white-space:nowrap;vertical-align:middle}
+.ch .ch-tbl th .ch-si{margin-left:4px;vertical-align:-1px}
+.ch .ch-tbl th.on{color:var(--ink)}
+.ch .ch-tbl td{white-space:nowrap;vertical-align:middle;padding-top:6px;padding-bottom:6px}
+.ch .ch-tbl .pd-s2{font-size:11.5px}
+.ch .ch-tbl .dim{color:var(--mute)}
+.ch-mbar{display:inline-block;width:40px;height:7px;border-radius:2px;background:#E8EEF9;margin-right:6px;vertical-align:1px;text-align:left}
+.ch-mbar i{display:block;height:7px;border-radius:2px;background:#1F63E0}
+.ch-pg{display:flex;align-items:center;gap:12px;margin-top:10px;font-size:13px;color:var(--mute)}
+.ch-pg .on{color:var(--ink);font-weight:600}
+.ch .ch-tbl th,.ch .ch-tbl td{padding-left:6px;padding-right:6px}
+.ch .ch-tbl th:first-child,.ch .ch-tbl td:first-child{padding-left:8px}
+.ch .ch-tbl th .ch-si{margin-left:3px}
+.ch-mv{display:inline-block;width:40px;text-align:right}
+.ch-fl .in{min-width:56px}
+.ch-flt{gap:8px 14px}
+.ch-search{width:128px}
