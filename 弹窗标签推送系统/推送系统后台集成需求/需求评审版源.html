@@ -77,12 +77,12 @@ table.et td:nth-child(1){white-space:nowrap}
   <div class="grp g1">第一部分　游戏外推送<span>第 1–4 页</span></div>
   <a href="#p1">1 按玩家分群推送</a>
   <a href="#p2">2 按玩家行为自动推送</a>
-  <a href="#p3">3 每人每天上限与勿扰</a>
-  <a href="#p4">4 短信</a>
+  <a href="#p3">3 短信</a>
+  <a href="#p4">4 每人每天上限与勿扰</a>
   <div class="grp g2">第二部分　游戏内推送<span>第 5–7 页</span></div>
   <a href="#p5">5 按玩家分群配置弹窗</a>
-  <a href="#p6">6 每人每天弹窗与快显上限</a>
-  <a href="#p7">7 快显</a>
+  <a href="#p6">6 快显</a>
+  <a href="#p7">7 每人每天弹窗与快显上限</a>
   <div class="grp g3">第三部分　数据<span>第 8–11 页</span></div>
   <a href="#p8">8 数据概览</a>
   <a href="#p9">9 数据明细</a>
@@ -136,7 +136,7 @@ table.et td:nth-child(1){white-space:nowrap}
     <tr><td>选多个群组时取并集：满足任一即发送，重叠的玩家只收 1 条。</td></tr>
     <tr><td>排除群组：<br>固定排除，不能移出：黑名单、机器人与测试账号、敏感状态账号（停权、自我限制、注销处理中）<br>默认排除，运营可移出：VIP 名单<br>运营还可再加其他群组</td></tr>
     <tr><td>能收到推送的玩家：<br>推播：装了 App 且开启通知的玩家<br>短信：有有效手机号且未退订的玩家<br>同一设备或同一手机号只发 1 条</td></tr>
-    <tr><td>预计发出：群组人数扣掉排除群组得到受众，再依次扣掉收不到推送的玩家和被每人每天上限拦下的人（上限见第 3 页）；确认前逐层显示。</td></tr>
+    <tr><td>预计发出：群组人数扣掉排除群组得到受众，再扣掉收不到推送的玩家；立即发送时再扣掉此刻已收满每人每天上限的人（上限见第 4 页），定时发送不预估这一项，到发送时按当时扣除；确认前逐层显示。</td></tr>
   </table>
   <h4 class="rg">发送时间</h4>
   <table class="rule">
@@ -145,7 +145,8 @@ table.et td:nth-child(1){white-space:nowrap}
   </table>
   <h4 class="rg">所属活动</h4>
   <table class="rule">
-    <tr><td>推播、短信、快显和弹窗规则新建时都要选所属活动，或选「不属于活动」；所属活动和点击跳转的页面从后台现有的活动、礼包里选。</td></tr>
+    <tr><td>推播、短信、快显新建时选所属活动，或选「不属于活动」；所属活动和点击跳转的页面从后台现有的活动、礼包里选。</td></tr>
+    <tr><td>弹窗规则不选所属活动，规则里的每个排序项对应一个活动或礼包，同样从现有的活动、礼包里选（见第 5 页）。</td></tr>
   </table>
   <h4 class="rg">防错</h4>
   <table class="rule">
@@ -187,7 +188,7 @@ table.et td:nth-child(1){white-space:nowrap}
     <tr><td>顺延的提醒到勿扰结束时，重新判断触发条件和每人每天上限。<span class="why">按行为的提醒到勿扰结束时可能已失效，如礼包已过期。</span></td></tr>
     <tr><td>玩家在线时照发或不发，每条推送单独选。</td></tr>
     <tr><td>默认玩家升级、完成任务、通行证升级不发，限时加码礼包快到期、时间偏移照发；破产后未回到游戏只在玩家离线时触发。</td></tr>
-    <tr><td>触发时玩家在线且选了不发的，这次收不到推播；同一事件改由游戏内显示，用同一触发行为的快显，或同一活动的弹窗规则；两者都没有时，系统在保存时提示运营。</td></tr>
+    <tr><td>选了在线不发的，触发时在线的玩家这次收不到推播；需要在游戏里提示的，运营另配同一触发行为的快显（第 6 页）。</td></tr>
   </table>
     </div>
   </details>
@@ -196,10 +197,39 @@ table.et td:nth-child(1){white-space:nowrap}
 <!-- 3 -->
 <section class="pg pt1" id="p3">
   <div class="kick"><span class="pchip">第一部分　游戏外推送</span><span class="pos">第 3 页 / 共 13 页</span></div>
+  <h2>短信</h2>
+
+  <div class="shots">
+    <figure><img src="需求评审版_图/16_短信.jpg" alt="新建短信" style="width:980px"><figcaption>新建短信：内文与则数、发送对象、确认前的预计人数与则数</figcaption></figure>
+  </div>
+
+  <details class="rules">
+    <summary><span class="rt">业务规则</span><span class="rgs">内容与计费 · 发送</span></summary>
+    <div class="rbody">
+  <h4 class="rg">内容与计费</h4>
+  <table class="rule">
+    <tr><td>内文先选消息类别（营销或服务通知）；输入时显示字数与则数，超出一则时提示；营销短信自动加品牌前缀【會員通知】和退订说明。</td></tr>
+    <tr><td>链接可选外部网页或游戏内页面；外部网页自动换成短链，统计点击次数。</td></tr>
+    <tr><td>按则计费：70 字以内计 1 则；超过 70 字时每 67 字计 1 则。</td></tr>
+    <tr><td>品牌前缀和退订说明计入字数。</td></tr>
+  </table>
+  <h4 class="rg">发送</h4>
+  <table class="rule">
+    <tr><td>发送对象、排除群组的选法同推播（第 1 页）；能收到短信的是有有效手机号且未退订的玩家。</td></tr>
+    <tr><td>发送时间：立即、定时或按行为，填法同推播；勿扰时段与每人每天上限见第 4 页。</td></tr>
+    <tr><td>确认前显示能收到短信的人数、预计发出人数（上限拦下的算法同推播，见第 1 页）、每条计几则和共计几则。</td></tr>
+  </table>
+    </div>
+  </details>
+</section>
+
+<!-- 4 -->
+<section class="pg pt1" id="p4">
+  <div class="kick"><span class="pchip">第一部分　游戏外推送</span><span class="pos">第 4 页 / 共 13 页</span></div>
   <h2>每人每天上限与勿扰</h2>
 
   <div class="shots">
-    <figure><img src="需求评审版_图/04_上限勿扰.jpg" alt="每人每天上限与勿扰设置" style="width:980px"><figcaption>每人每天上限与勿扰设置页</figcaption></figure>
+    <figure><img src="需求评审版_图/04_上限勿扰.jpg" alt="每人每天上限与勿扰设置" style="width:980px"><figcaption>消息类别、推播与短信的每人每天上限、勿扰时段的设置</figcaption></figure>
   </div>
 
   <details class="rules">
@@ -222,35 +252,6 @@ table.et td:nth-child(1){white-space:nowrap}
   <table class="rule">
     <tr><td>单条推送可勾选「不受每人每天上限」或「不受勿扰」，须填原因。</td></tr>
     <tr><td>运营把含促销字样（禮包、優惠、加碼、儲值）的内容发为服务通知时，须填写归为服务通知的原因。</td></tr>
-  </table>
-    </div>
-  </details>
-</section>
-
-<!-- 4 -->
-<section class="pg pt1" id="p4">
-  <div class="kick"><span class="pchip">第一部分　游戏外推送</span><span class="pos">第 4 页 / 共 13 页</span></div>
-  <h2>短信</h2>
-
-  <div class="shots">
-    <figure><img src="需求评审版_图/16_短信.jpg" alt="新建短信" style="width:980px"><figcaption>新建短信</figcaption></figure>
-  </div>
-
-  <details class="rules">
-    <summary><span class="rt">业务规则</span><span class="rgs">内容与计费 · 发送</span></summary>
-    <div class="rbody">
-  <h4 class="rg">内容与计费</h4>
-  <table class="rule">
-    <tr><td>内文先选消息类别（营销或服务通知）；输入时显示字数与则数，超出一则时提示；营销短信自动加品牌前缀【會員通知】和退订说明。</td></tr>
-    <tr><td>链接可选外部网页或游戏内页面；外部网页自动换成短链，统计点击次数。</td></tr>
-    <tr><td>按则计费：70 字以内计 1 则；超过 70 字时每 67 字计 1 则。</td></tr>
-    <tr><td>品牌前缀和退订说明计入字数。</td></tr>
-  </table>
-  <h4 class="rg">发送</h4>
-  <table class="rule">
-    <tr><td>发送对象、排除群组的选法同推播（第 1 页）；能收到短信的是有有效手机号且未退订的玩家。</td></tr>
-    <tr><td>发送时间：立即、定时或按行为，填法同推播；勿扰时段与每人每天上限见第 3 页。</td></tr>
-    <tr><td>确认前显示能收到短信的人数、上限拦下、预计发出人数、每条计几则和共计几则。</td></tr>
   </table>
     </div>
   </details>
@@ -316,10 +317,36 @@ table.et td:nth-child(1){white-space:nowrap}
 <!-- 6 -->
 <section class="pg pt2" id="p6">
   <div class="kick"><span class="pchip">第二部分　游戏内推送</span><span class="pos">第 6 页 / 共 13 页</span></div>
+  <h2>快显</h2>
+
+  <div class="shots">
+    <figure><img src="需求评审版_图/17_快显.jpg" alt="新建快显" style="width:980px"><figcaption>新建快显：横幅内容、发送对象、按行为发送</figcaption></figure>
+  </div>
+
+  <details class="rules">
+    <summary><span class="rt">业务规则</span><span class="rgs">内容与对象 · 发送时间</span></summary>
+    <div class="rbody">
+  <h4 class="rg">内容与对象</h4>
+  <table class="rule">
+    <tr><td>快显是游戏界面里的即时横幅，如通行证升级提示；可设横幅文字、显示位置、停留秒数、点击跳转的页面。</td></tr>
+    <tr><td>发送对象和排除群组的选法同推播（第 1 页），VIP 名单同样默认排除、可移出。</td></tr>
+    <tr><td>只显示给在线玩家：发送时不在线的玩家收不到，上线后也不补显。</td></tr>
+  </table>
+  <h4 class="rg">发送时间</h4>
+  <table class="rule">
+    <tr><td>立即、定时或按行为；按行为的触发行为与提醒间隔同第 2 页。</td></tr>
+  </table>
+    </div>
+  </details>
+</section>
+
+<!-- 7 -->
+<section class="pg pt2" id="p7">
+  <div class="kick"><span class="pchip">第二部分　游戏内推送</span><span class="pos">第 7 页 / 共 13 页</span></div>
   <h2>每人每天弹窗与快显上限</h2>
 
   <div class="shots">
-    <figure><img src="需求评审版_图/12_弹窗上限.jpg" alt="每人每天弹窗与快显上限设置" style="width:980px"><figcaption>每人每天弹窗与快显上限设置页</figcaption></figure>
+    <figure><img src="需求评审版_图/12_弹窗上限.jpg" alt="每人每天弹窗与快显上限设置" style="width:980px"><figcaption>弹窗、快显各自的上限，以及弹窗次数、冷却时间与上限的判断顺序</figcaption></figure>
   </div>
 
   <details class="rules">
@@ -338,32 +365,6 @@ table.et td:nth-child(1){white-space:nowrap}
   <h4 class="rg">例外</h4>
   <table class="rule">
     <tr><td>排序项可勾选「不受每人每天弹窗上限」，再选仍计入或不计入当天个数，并填原因。</td></tr>
-  </table>
-    </div>
-  </details>
-</section>
-
-<!-- 7 -->
-<section class="pg pt2" id="p7">
-  <div class="kick"><span class="pchip">第二部分　游戏内推送</span><span class="pos">第 7 页 / 共 13 页</span></div>
-  <h2>快显</h2>
-
-  <div class="shots">
-    <figure><img src="需求评审版_图/17_快显.jpg" alt="新建快显" style="width:980px"><figcaption>新建快显</figcaption></figure>
-  </div>
-
-  <details class="rules">
-    <summary><span class="rt">业务规则</span><span class="rgs">内容与对象 · 发送时间</span></summary>
-    <div class="rbody">
-  <h4 class="rg">内容与对象</h4>
-  <table class="rule">
-    <tr><td>快显是游戏界面里的即时横幅，如通行证升级提示；可设横幅文字、显示位置、停留秒数、点击跳转的页面。</td></tr>
-    <tr><td>发送对象和排除群组的选法同推播（第 1 页），VIP 名单同样默认排除、可移出。</td></tr>
-    <tr><td>只显示给在线玩家：发送时不在线的玩家收不到，上线后也不补显。</td></tr>
-  </table>
-  <h4 class="rg">发送时间</h4>
-  <table class="rule">
-    <tr><td>立即、定时或按行为；按行为的触发行为与提醒间隔同第 2 页。</td></tr>
   </table>
     </div>
   </details>
