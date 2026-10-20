@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>每人每天推送量</title>
+<link rel="stylesheet" href="../原型样式.css">
+<link rel="stylesheet" href="_图表.css">
+</head>
+<!-- 由 _scripts/an_评审版图表.py 生成，改数字请改脚本后重跑 -->
+<body class="ch-page">
+<div class="shot ch" style="width:980px"><div class="ch-z">
+<div class="ch-sec" style="padding-top:14px;padding-bottom:12px">
+  <div class="ch-ptitle">每人每天推送量</div>
+  <div class="ch-row"><span class="seg"><span class="on">游戏外推送</span><span>游戏内推送</span></span><span style="width:14px"></span><span class="seg"><span>今日</span><span>近 7 天</span><span class="on">近 30 天</span><span>自定义</span></span><span class="ch-m">9/13–10/12</span></div>
+</div>
+<div class="ch-sec">
+  <div class="ch-h">每人每天收到几条<span class="ch-m">近 30 天平均</span></div>
+  <div class="ch-2col eq">
+    <div>
+      <div class="ch-sub"><b>推播</b><span class="ch-m">占当天收到推播的玩家</span></div>
+      <svg class="ch-svg" width="390" height="180" viewBox="0 0 390 180" role="img">
+<line x1="0" x2="390" y1="156" y2="156" stroke="#C9CED6"/>
+<line x1="198.0" x2="198.0" y1="14" y2="156" stroke="#4E5560" stroke-width="1.5" stroke-dasharray="4 3"/>
+<text x="204.0" y="14.0" font-size="12" fill="#1F2329" font-weight="600">每人每天上限 2 条</text>
+<path d="M42.0,156.0 V53.5 Q42.0,49.5 46.0,49.5 H62.0 Q66.0,49.5 66.0,53.5 V156.0 Z" fill="#1F63E0"/>
+<text x="54.0" y="42.5" font-size="13" fill="#1F2329" text-anchor="middle" font-weight="700">59.2%</text>
+<text x="54.0" y="174.0" font-size="12.5" fill="#4E5560" text-anchor="middle">1 条</text>
+<path d="M138.0,156.0 V100.5 Q138.0,96.5 142.0,96.5 H158.0 Q162.0,96.5 162.0,100.5 V156.0 Z" fill="#1F63E0"/>
+<text x="150.0" y="89.5" font-size="13" fill="#1F2329" text-anchor="middle" font-weight="700">33.1%</text>
+<text x="150.0" y="174.0" font-size="12.5" fill="#4E5560" text-anchor="middle">2 条</text>
+<path d="M234.0,156.0 V149.3 Q234.0,145.3 238.0,145.3 H254.0 Q258.0,145.3 258.0,149.3 V156.0 Z" fill="#1F63E0"/>
+<text x="246.0" y="138.3" font-size="13" fill="#1F2329" text-anchor="middle" font-weight="700">6.0%</text>
+<text x="246.0" y="174.0" font-size="12.5" fill="#4E5560" text-anchor="middle">3 条</text>
+<path d="M330.0,156.0 V156.0 Q330.0,152.7 333.3,152.7 H350.7 Q354.0,152.7 354.0,156.0 V156.0 Z" fill="#1F63E0"/>
+<text x="342.0" y="145.7" font-size="13" fill="#1F2329" text-anchor="middle" font-weight="700">1.8%</text>
+<text x="342.0" y="174.0" font-size="12.5" fill="#4E5560" text-anchor="middle">4 条及以上</text>
+</svg>
+    </div>
+    <div>
+      <div class="ch-sub"><b>短信</b><span class="ch-m">占当天收到短信的玩家</span></div>
+      <svg class="ch-svg" width="390" height="180" viewBox="0 0 390 180" role="img">
+<line x1="0" x2="390" y1="156" y2="156" stroke="#C9CED6"/>
+<line x1="134.0" x2="134.0" y1="14" y2="156" stroke="#4E5560" stroke-width="1.5" stroke-dasharray="4 3"/>
+<text x="140.0" y="14.0" font-size="12" fill="#1F2329" font-weight="600">每人每天上限 1 条</text>
+<path d="M58.0,156.0 V51.8 Q58.0,47.8 62.0,47.8 H78.0 Q82.0,47.8 82.0,51.8 V156.0 Z" fill="#1F63E0"/>
+<text x="70.0" y="40.8" font-size="13" fill="#1F2329" text-anchor="middle" font-weight="700">96.2%</text>
+<text x="70.0" y="174.0" font-size="12.5" fill="#4E5560" text-anchor="middle">1 条</text>
+<path d="M186.0,156.0 V156.0 Q186.0,152.2 189.8,152.2 H206.2 Q210.0,152.2 210.0,156.0 V156.0 Z" fill="#1F63E0"/>
+<text x="198.0" y="145.2" font-size="13" fill="#1F2329" text-anchor="middle" font-weight="700">3.4%</text>
+<text x="198.0" y="174.0" font-size="12.5" fill="#4E5560" text-anchor="middle">2 条</text>
+<path d="M314.0,156.0 V156.0 Q314.0,155.6 314.4,155.6 H337.6 Q338.0,155.6 338.0,156.0 V156.0 Z" fill="#1F63E0"/>
+<text x="326.0" y="148.6" font-size="13" fill="#1F2329" text-anchor="middle" font-weight="700">0.4%</text>
+<text x="326.0" y="174.0" font-size="12.5" fill="#4E5560" text-anchor="middle">3 条及以上</text>
+</svg>
+    </div>
+  </div>
+  <div class="ch-note">超过上限的是服务通知，和勾了「不受每人每天上限」的推送。</div>
+</div>
+<div class="ch-sec">
+  <div class="ch-h">碰到上限</div>
+  <div class="ch-row" style="margin:-2px 0 8px"><span class="seg"><span class="on">推播</span><span>短信</span></span></div>
+  <div class="ch-lg"><span><svg width="10" height="12"><rect x="1" y="1" width="8" height="11" rx="1.5" fill="#BAC1CA"/></svg>每日上限拦下人次</span><span><svg width="20" height="10"><line x1="1" x2="19" y1="5" y2="5" stroke="#7FA3EA" stroke-width="1.5"/></svg>每日碰到上限的人数</span><span><svg width="20" height="10"><line x1="2" x2="18" y1="5" y2="5" stroke="#1F63E0" stroke-width="3" stroke-linecap="round"/></svg>两条竖线之间的日均人数（不含竖线当天）</span><span><svg width="8" height="14"><line x1="4" x2="4" y1="0" y2="14" stroke="#4E5560" stroke-width="1.5"/></svg>设置改动</span></div>
+  <svg class="ch-svg" width="827" height="338" viewBox="0 0 827 338" role="img">
+<line x1="52" x2="813" y1="196.0" y2="196.0" stroke="#EDEFF2"/>
+<text x="44.0" y="200.0" font-size="11" fill="#6B7280" text-anchor="end">0</text>
+<line x1="52" x2="813" y1="146.0" y2="146.0" stroke="#EDEFF2"/>
+<text x="44.0" y="150.0" font-size="11" fill="#6B7280" text-anchor="end">1,000</text>
+<line x1="52" x2="813" y1="96.0" y2="96.0" stroke="#EDEFF2"/>
+<text x="44.0" y="100.0" font-size="11" fill="#6B7280" text-anchor="end">2,000</text>
+<line x1="52" x2="813" y1="46.0" y2="46.0" stroke="#EDEFF2"/>
+<text x="44.0" y="50.0" font-size="11" fill="#6B7280" text-anchor="end">3,000</text>
+<line x1="52" x2="813" y1="279.0" y2="279.0" stroke="#EDEFF2"/>
+<text x="44.0" y="283.0" font-size="11" fill="#6B7280" text-anchor="end">1,000</text>
+<line x1="52" x2="813" y1="242.0" y2="242.0" stroke="#EDEFF2"/>
+<text x="44.0" y="246.0" font-size="11" fill="#6B7280" text-anchor="end">2,000</text>
+<text x="44.0" y="320.0" font-size="11" fill="#6B7280" text-anchor="end">0</text>
+<text x="0.0" y="30.0" font-size="12" fill="#4E5560" font-weight="600">碰到上限的人数</text>
+<text x="0.0" y="226.0" font-size="12" fill="#4E5560" font-weight="600">上限拦下人次</text>
+<path d="M57.1,316.0 V282.2 Q57.1,279.7 59.6,279.7 H69.8 Q72.3,279.7 72.3,282.2 V316.0 Z" fill="#BAC1CA"/>
+<path d="M82.4,316.0 V283.7 Q82.4,281.2 84.9,281.2 H95.2 Q97.7,281.2 97.7,283.7 V316.0 Z" fill="#BAC1CA"/>
+<path d="M107.8,316.0 V282.6 Q107.8,280.1 110.3,280.1 H120.5 Q123.0,280.1 123.0,282.6 V316.0 Z" fill="#BAC1CA"/>
+<path d="M133.2,316.0 V285.2 Q133.2,282.7 135.7,282.7 H145.9 Q148.4,282.7 148.4,285.2 V316.0 Z" fill="#BAC1CA"/>
+<path d="M158.5,316.0 V281.9 Q158.5,279.4 161.0,279.4 H171.3 Q173.8,279.4 173.8,281.9 V316.0 Z" fill="#BAC1CA"/>
+<path d="M183.9,316.0 V283.0 Q183.9,280.5 186.4,280.5 H196.6 Q199.1,280.5 199.1,283.0 V316.0 Z" fill="#BAC1CA"/>
+<path d="M209.3,316.0 V279.6 Q209.3,277.1 211.8,277.1 H222.0 Q224.5,277.1 224.5,279.6 V316.0 Z" fill="#BAC1CA"/>
+<path d="M234.6,316.0 V280.4 Q234.6,277.9 237.1,277.9 H247.4 Q249.9,277.9 249.9,280.4 V316.0 Z" fill="#BAC1CA"/>
+<path d="M260.0,316.0 V282.2 Q260.0,279.7 262.5,279.7 H272.7 Q275.2,279.7 275.2,282.2 V316.0 Z" fill="#BAC1CA"/>
+<path d="M285.4,316.0 V275.2 Q285.4,272.7 287.9,272.7 H298.1 Q300.6,272.7 300.6,275.2 V316.0 Z" fill="#BAC1CA"/>
+<path d="M310.7,316.0 V260.0 Q310.7,257.5 313.2,257.5 H323.5 Q326.0,257.5 326.0,260.0 V316.0 Z" fill="#BAC1CA"/>
+<path d="M336.1,316.0 V265.2 Q336.1,262.7 338.6,262.7 H348.8 Q351.3,262.7 351.3,265.2 V316.0 Z" fill="#BAC1CA"/>
+<path d="M361.5,316.0 V261.1 Q361.5,258.6 364.0,258.6 H374.2 Q376.7,258.6 376.7,261.1 V316.0 Z" fill="#BAC1CA"/>
+<path d="M386.8,316.0 V250.8 Q386.8,248.3 389.3,248.3 H399.6 Q402.1,248.3 402.1,250.8 V316.0 Z" fill="#BAC1CA"/>
+<path d="M412.2,316.0 V254.5 Q412.2,252.0 414.7,252.0 H424.9 Q427.4,252.0 427.4,254.5 V316.0 Z" fill="#BAC1CA"/>
+<path d="M437.6,316.0 V264.1 Q437.6,261.6 440.1,261.6 H450.3 Q452.8,261.6 452.8,264.1 V316.0 Z" fill="#BAC1CA"/>
+<path d="M462.9,316.0 V262.6 Q462.9,260.1 465.4,260.1 H475.7 Q478.2,260.1 478.2,262.6 V316.0 Z" fill="#BAC1CA"/>
+<path d="M488.3,316.0 V257.8 Q488.3,255.3 490.8,255.3 H501.0 Q503.5,255.3 503.5,257.8 V316.0 Z" fill="#BAC1CA"/>
+<path d="M513.7,316.0 V256.0 Q513.7,253.5 516.2,253.5 H526.4 Q528.9,253.5 528.9,256.0 V316.0 Z" fill="#BAC1CA"/>
+<path d="M539.0,316.0 V263.4 Q539.0,260.9 541.5,260.9 H551.8 Q554.3,260.9 554.3,263.4 V316.0 Z" fill="#BAC1CA"/>
+<path d="M564.4,316.0 V253.0 Q564.4,250.5 566.9,250.5 H577.1 Q579.6,250.5 579.6,253.0 V316.0 Z" fill="#BAC1CA"/>
+<path d="M589.8,316.0 V260.0 Q589.8,257.5 592.3,257.5 H602.5 Q605.0,257.5 605.0,260.0 V316.0 Z" fill="#BAC1CA"/>
+<path d="M615.1,316.0 V274.1 Q615.1,271.6 617.6,271.6 H627.9 Q630.4,271.6 630.4,274.1 V316.0 Z" fill="#BAC1CA"/>
+<path d="M640.5,316.0 V281.5 Q640.5,279.0 643.0,279.0 H653.2 Q655.7,279.0 655.7,281.5 V316.0 Z" fill="#BAC1CA"/>
+<path d="M665.9,316.0 V285.9 Q665.9,283.4 668.4,283.4 H678.6 Q681.1,283.4 681.1,285.9 V316.0 Z" fill="#BAC1CA"/>
+<path d="M691.2,316.0 V282.6 Q691.2,280.1 693.7,280.1 H704.0 Q706.5,280.1 706.5,282.6 V316.0 Z" fill="#BAC1CA"/>
+<path d="M716.6,316.0 V284.8 Q716.6,282.3 719.1,282.3 H729.3 Q731.8,282.3 731.8,284.8 V316.0 Z" fill="#BAC1CA"/>
+<path d="M742.0,316.0 V280.0 Q742.0,277.5 744.5,277.5 H754.7 Q757.2,277.5 757.2,280.0 V316.0 Z" fill="#BAC1CA"/>
+<path d="M767.3,316.0 V279.6 Q767.3,277.1 769.8,277.1 H780.1 Q782.6,277.1 782.6,279.6 V316.0 Z" fill="#BAC1CA"/>
+<path d="M792.7,316.0 V284.1 Q792.7,281.6 795.2,281.6 H805.4 Q807.9,281.6 807.9,284.1 V316.0 Z" fill="#BAC1CA"/>
+<line x1="52" x2="813" y1="316" y2="316" stroke="#C9CED6"/>
+<text x="64.7" y="332.0" font-size="11" fill="#6B7280" text-anchor="middle">9/13</text>
+<text x="140.8" y="332.0" font-size="11" fill="#6B7280" text-anchor="middle">9/16</text>
+<text x="216.9" y="332.0" font-size="11" fill="#6B7280" text-anchor="middle">9/19</text>
+<text x="293.0" y="332.0" font-size="11" fill="#6B7280" text-anchor="middle">9/22</text>
+<text x="369.1" y="332.0" font-size="11" fill="#6B7280" text-anchor="middle">9/25</text>
+<text x="445.2" y="332.0" font-size="11" fill="#6B7280" text-anchor="middle">9/28</text>
+<text x="521.3" y="332.0" font-size="11" fill="#6B7280" text-anchor="middle">10/01</text>
+<text x="597.4" y="332.0" font-size="11" fill="#6B7280" text-anchor="middle">10/04</text>
+<text x="673.5" y="332.0" font-size="11" fill="#6B7280" text-anchor="middle">10/07</text>
+<text x="749.6" y="332.0" font-size="11" fill="#6B7280" text-anchor="middle">10/10</text>
+<text x="800.3" y="332.0" font-size="11" fill="#6B7280" text-anchor="middle">10/12</text>
+<line x1="296.7" x2="296.7" y1="24.0" y2="316.0" stroke="#4E5560" stroke-width="1.5"/>
+<line x1="620.8" x2="620.8" y1="24.0" y2="316.0" stroke="#4E5560" stroke-width="1.5"/>
+<polyline points="64.7,103.5 90.0,114.0 115.4,111.5 140.8,114.0 166.2,119.5 191.5,112.0 216.9,107.5 242.2,102.0 267.6,109.5 293.0,99.5 318.4,91.0 343.7,93.0 369.1,90.0 394.4,79.5 419.8,89.5 445.2,93.5 470.6,95.5 495.9,89.0 521.3,91.5 546.7,91.0 572.0,78.5 597.4,80.5 622.8,108.5 648.1,114.0 673.5,110.5 698.9,113.5 724.2,114.5 749.6,101.0 775.0,101.5 800.3,113.5" fill="none" stroke="#7FA3EA" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="54.0" x2="278.3" y1="110.4" y2="110.4" stroke="#1F63E0" stroke-width="3" stroke-linecap="round"/>
+<text x="166.2" y="102.4" font-size="12.5" fill="#1F2329" text-anchor="middle" font-weight="700" stroke="#fff" stroke-width="4" stroke-linejoin="round" paint-order="stroke">1,710</text>
+<line x1="307.7" x2="608.1" y1="88.5" y2="88.5" stroke="#1F63E0" stroke-width="3" stroke-linecap="round"/>
+<text x="457.9" y="80.5" font-size="12.5" fill="#1F2329" text-anchor="middle" font-weight="700" stroke="#fff" stroke-width="4" stroke-linejoin="round" paint-order="stroke">2,150</text>
+<line x1="637.4" x2="811.0" y1="109.8" y2="109.8" stroke="#1F63E0" stroke-width="3" stroke-linecap="round"/>
+<text x="724.2" y="101.8" font-size="12.5" fill="#1F2329" text-anchor="middle" font-weight="700" stroke="#fff" stroke-width="4" stroke-linejoin="round" paint-order="stroke">1,720</text>
+<rect x="275.8" y="6" width="41.8" height="18" rx="9" fill="#4E5560"/>
+<text x="296.7" y="19.0" font-size="11.5" fill="#fff" text-anchor="middle" font-weight="600">9/22</text>
+<rect x="596.3" y="6" width="49.0" height="18" rx="9" fill="#4E5560"/>
+<text x="620.8" y="19.0" font-size="11.5" fill="#fff" text-anchor="middle" font-weight="600">10/05</text>
+</svg>
+  <div class="ch-ev" style="grid-template-columns:24px 98px minmax(0,1fr) 52px">
+<div><span><svg width="10" height="16"><line x1="5" x2="5" y1="0" y2="16" stroke="#4E5560" stroke-width="1.5"/></svg></span><span class="t">9/22 15:30</span><span>推播的服务通知：不计入当天条数 → 计入</span><span class="p">运营01</span></div>
+<div><span><svg width="10" height="16"><line x1="5" x2="5" y1="0" y2="16" stroke="#4E5560" stroke-width="1.5"/></svg></span><span class="t">10/05 10:10</span><span>推播的服务通知：计入当天条数 → 不计入</span><span class="p">运营01</span></div>
+</div>
+</div>
+</div></div>
+</body>
+</html>

@@ -1,0 +1,126 @@
+/* 需求评审版截图：数据图表共用样式（由 _scripts/an_评审版图表.py 生成的页面引用；原型样式.css 只读，不改它） */
+.ch-page{margin:0;padding:20px;background:var(--page)}
+.shot.ch{background:#fff;color:var(--ink);font-family:"Inter","Noto Sans CJK SC","PingFang SC","Microsoft YaHei",sans-serif;font-size:13px;line-height:1.5}
+.ch-z{zoom:1.12}   /* 与子任务 A 的截图同一字号观感（界面字约 14.5px）；内部按 875px 宽排版 */
+.ch-sec{padding:14px 24px 16px;border-bottom:1px solid var(--line2)}
+.ch-sec:last-child{border-bottom:0}
+.ch-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.ch-sp{flex:1}
+.ch-m{color:var(--mute);font-size:13px}
+.ch-h{display:flex;align-items:baseline;gap:10px;font-size:14px;font-weight:600;color:var(--ink);margin:0 0 8px}
+.ch-h .ch-m{font-weight:400}
+.ch-svg{display:block;overflow:visible}
+.ch-svg text{font-family:inherit}
+/* 分段按钮：原型样式里倒数第二个也会圆角，这里只让首尾圆角 */
+.ch .seg>span:not(:first-child):not(:last-child){border-radius:0}
+.ch .seg>span:last-child{border-radius:0 3px 3px 0}
+.ch .seg>span{height:28px;padding:0 13px}
+/* 规则标题 */
+.ch-ttl{display:flex;align-items:center;gap:8px;font-size:17px;font-weight:600}
+.ch-meta{font-size:13px;color:var(--ink2);margin-top:4px}
+.ch-meta i{font-style:normal;color:#C0C5CC;margin:0 8px}
+/* 图例 */
+.ch-lg{display:flex;flex-wrap:wrap;align-items:center;gap:4px 18px;font-size:12px;color:var(--ink2);margin:0 0 4px}
+.ch-lg span{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.ch-lg svg{flex:none}
+/* 图下的改动清单：每条竖线一行 */
+.ch-ev{display:grid;column-gap:0;align-items:center;font-size:13px;line-height:20px;margin-top:6px;border-top:1px solid var(--line2)}
+.ch-ev>div{display:contents}
+.ch-ev>div>span{padding:5px 14px 5px 0;border-bottom:1px solid var(--line2);white-space:nowrap;height:31px;display:flex;align-items:center}
+.ch-ev>div>span:last-child{padding-right:0}
+.ch-ev>div:last-child>span{border-bottom:0}
+.ch-ev .t{color:var(--ink2);font-variant-numeric:tabular-nums}
+.ch-ev .p{color:var(--ink2)}
+/* 数字卡 */
+.ch-cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.ch-card{border:1px solid var(--line2);border-radius:6px;padding:10px 14px 11px}
+.ch-card .l{font-size:13px;color:var(--ink2)}
+.ch-card .v{font-size:24px;font-weight:600;line-height:1.3;margin-top:2px}
+.ch-card .v small{font-size:14px;font-weight:600;margin-left:1px}
+.ch-card .d{font-size:12.5px;color:var(--ink2);margin-top:2px}
+.ch-card .d b{font-weight:600;color:var(--ink)}
+/* 参考行 */
+.ch-ref{margin-top:10px;padding:7px 12px;border:1px solid var(--line2);border-radius:4px;background:#FAFBFC;font-size:13px;color:var(--ink)}
+.ch-ref .ch-m{margin:0 10px 0 4px}
+/* 拆分页签 */
+.ch .pd-tabs{padding:0;margin:-4px 0 12px;height:36px}
+.ch .pd-tabs>span{height:34px;padding:0 16px 0 0;margin-right:16px}
+/* 两栏 */
+.ch-2col{display:grid;grid-template-columns:330px minmax(0,1fr);gap:28px;align-items:start}
+.ch .pd-dt td,.ch .pd-dt th{padding:6px 8px}
+.ch .pd-dt td{font-variant-numeric:tabular-nums}
+/* 概览数字卡（06、00）：两层各 5 张，带走势小图 */
+.ch-cards.c5{grid-template-columns:repeat(5,minmax(0,1fr))}
+.ch-card .s{font-size:12px;color:var(--ink2);min-height:36px;line-height:18px;white-space:nowrap}
+.ch-card .ch-svg{margin-top:6px}
+.ch-lh{display:flex;align-items:baseline;gap:10px;margin:0 0 10px;padding-left:10px;border-left:3px solid #3A4049;line-height:20px}
+.ch-lh b{font-size:15px;font-weight:600}
+.ch-lh>span:not(.ch-m){font-size:13.5px;color:var(--ink2)}
+.ch-sub{display:flex;align-items:baseline;gap:10px;font-size:13.5px;margin-bottom:4px}
+.ch-note{font-size:12.5px;color:var(--mute);margin-top:6px}
+.ch-2col.eq{grid-template-columns:1fr 1fr;gap:40px}
+.ch-2col.w07{grid-template-columns:440px minmax(0,1fr);gap:40px}
+.ch-h .btn2.sm{font-weight:400}
+/* 02b 确认区 */
+.ch-kv{display:grid;grid-template-columns:72px minmax(0,1fr);row-gap:6px;font-size:13px;line-height:20px}
+.ch-kv>span:nth-child(odd){color:var(--mute)}
+.ch-btns{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line2)}
+/* 00 后台首页外框 */
+.ch-app{zoom:1}
+.ch-topbar{height:44px;display:flex;align-items:center;padding:0 18px;border-bottom:1px solid var(--line2)}
+.ch-topbar b{font-size:15px;font-weight:600}
+.ch-acct{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--ink2)}
+.ch-acct i{width:24px;height:24px;border-radius:50%;background:#E4E7EB;display:inline-flex;align-items:center;justify-content:center;font-style:normal;font-size:12px;color:var(--ink2)}
+.ch-frame{display:flex;align-items:stretch}
+.ch-menu{flex:none;width:190px;background:var(--fill);border-right:1px solid var(--line2);padding:8px 0 14px}
+.ch-menu .it{height:30px;display:flex;align-items:center;padding-left:16px;font-size:13.5px;color:var(--ink2)}
+.ch-menu .it.sub{padding-left:26px}
+.ch-menu .it.on{background:#E4E7EB;color:var(--ink);font-weight:600;box-shadow:inset 3px 0 0 #3A4049}
+.ch-menu .gl{height:30px;display:flex;align-items:flex-end;padding:0 0 5px 16px;font-size:12.5px;font-weight:600;color:var(--mute)}
+.ch-menu .dv{height:1px;background:var(--line);margin:10px 14px}
+.ch-mainx{flex:1;min-width:0;padding:14px 16px 18px}
+.ch-ptitle{font-size:17px;font-weight:600;margin-bottom:10px}
+.ch-layer{margin-top:16px}
+.ch-mainx.cp .ch-cards{gap:10px}
+.ch-mainx.cp .ch-card{padding:8px 9px 9px}
+.ch-mainx.cp .ch-card .s{font-size:11.5px;min-height:34px;line-height:17px}
+.ch-mainx.cp .ch-card .v{font-size:20px}
+.ch-mainx.cp .ch-card .l{font-size:12.5px}
+/* 页内标题（数据各页） */
+.ch .ch-ptitle{font-size:17px;font-weight:600;margin-bottom:10px;line-height:1.4}
+/* 09 数据明细：筛选栏与列表 */
+.ch-flt{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;margin-top:10px}
+.ch-fl{display:inline-flex;align-items:center;gap:6px}
+.ch-fl label{font-size:13px;color:var(--ink2)}
+.ch-fl .in{min-width:64px}
+.ch-search{width:150px}
+.ch .ch-tbl th{white-space:nowrap;vertical-align:middle}
+.ch .ch-tbl th .ch-si{margin-left:4px;vertical-align:-1px}
+.ch .ch-tbl th.on{color:var(--ink)}
+.ch .ch-tbl td{white-space:nowrap;vertical-align:middle;padding-top:6px;padding-bottom:6px}
+.ch .ch-tbl .pd-s2{font-size:11.5px}
+.ch .ch-tbl .dim{color:var(--mute)}
+.ch-mbar{display:inline-block;width:40px;height:7px;border-radius:2px;background:#E8EEF9;margin-right:6px;vertical-align:1px;text-align:left}
+.ch-mbar i{display:block;height:7px;border-radius:2px;background:#1F63E0}
+.ch-pg{display:flex;align-items:center;gap:12px;margin-top:10px;font-size:13px;color:var(--mute)}
+.ch-pg .on{color:var(--ink);font-weight:600}
+.ch .ch-tbl th,.ch .ch-tbl td{padding-left:6px;padding-right:6px}
+.ch .ch-tbl th:first-child,.ch .ch-tbl td:first-child{padding-left:8px}
+.ch .ch-tbl th .ch-si{margin-left:3px}
+.ch-mv{display:inline-block;width:40px;text-align:right}
+.ch-fl .in{min-width:56px}
+.ch-flt{gap:8px 14px}
+.ch-search{width:128px}
+/* 第二轮：09 到达列表头注、行尾进入提示；00 推播列表 */
+.ch .ch-tbl th .th2{display:block;font-size:11px;font-weight:400;color:var(--mute);line-height:14px;margin-top:2px}
+.ch .ch-tbl td.ch-go{color:#A0A6AE;font-size:16px;padding-left:2px;padding-right:4px;text-align:right}
+.ch-mbar.sm{width:32px;margin-left:8px;margin-right:4px}
+.ch-list{margin-top:12px}
+.ch .ch-list td{font-size:12.5px}
+.ch .ch-list td.ch-ops .pd-lk{margin-right:10px}
+.ch .ch-list td.ch-ops .pd-lk:last-child{margin-right:0}
+.ch-mainx .seg>span{height:26px;padding:0 11px}
+.ch-mainx.cp{padding:14px 12px 18px 14px}
+.ch .ch-list th,.ch .ch-list td{padding-left:5px;padding-right:5px}
+.ch .ch-list td.ch-ops .pd-lk{margin-right:8px}
+.ch-list .ch-mbar.sm{width:26px;margin-left:6px;margin-right:3px}
