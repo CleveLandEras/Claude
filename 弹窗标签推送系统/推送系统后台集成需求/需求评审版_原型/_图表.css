@@ -139,3 +139,22 @@
 .pl .pl-pg span.on{border-color:#4E5560;background:#4E5560;color:#fff}
 .pl .pl-gp{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
 .pl .pl-c{row-gap:6px}
+/* 列表顶部的每人每天上限与勿扰、全部｜今明两天视图、今明两天表 */
+.pl .pl-cap{display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:8px 12px;margin-bottom:10px;border:1px solid var(--line2);border-radius:4px;background:var(--fill);font-size:12.5px;color:var(--ink2)}
+.pl .pl-cap .in{height:24px;font-size:12.5px;justify-content:center}
+.pl .pl-k{font-weight:600;color:var(--ink);margin-right:4px}
+.pl .pl-to{margin:0 2px}
+.pl .pl-v{margin-right:4px}
+.pl .pl-v>span{height:26px;padding:0 10px;font-size:12.5px}
+.pl .pl-q{margin-top:10px;width:100%}
+.pl .pl-q td{font-size:12.5px;white-space:nowrap}
+.pl .pl-q td.m,.pl .pl-q .m{color:var(--ink2)}
+.pl .pl-q tr.gh td{background:#FAFBFC;font-weight:600}
+.pl .pl-q tr.gh td .s{font-weight:400;color:var(--mute);margin-left:10px}
+.pl .qb{display:inline-flex;height:9px;vertical-align:middle}
+.pl .qb i{display:block;height:9px;background:#B9C7DA;border-radius:2px 0 0 2px}
+.pl .qb b{display:block;height:9px;background:#E5484D;border-radius:0 2px 2px 0}
+.pl .nm{display:inline-block;width:50px;text-align:right;margin-right:8px;font-variant-numeric:tabular-nums}
+.pl b.cut{color:#C62828;font-weight:600}
+.pl .pl-f{gap:5px}
+.pl .pl-f .in{padding:0 6px}
