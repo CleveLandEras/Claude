@@ -449,7 +449,7 @@ def build_14():
   {event_rows(EV14)}
 </div>
 <div class="ch-sec">
-  <div class="pd-tabs"><span class="pd-on">按排序项</span><span>按人群</span><span>按平台</span><span>按实验组与对照组</span></div>
+  <div class="pd-tabs"><span class="pd-on">按排序项</span><span>按人群</span><span>按平台</span></div>
   <div class="ch-h" style="margin-bottom:6px">各排序项的点击率<span class="ch-m">排序项按现在的先后排列</span></div>
   {hbars_svg(item_rows, vmax=0.18)}
 </div>'''
@@ -567,9 +567,9 @@ def spark_svg(vals, w, h=26):
             f'<circle cx="{xe:.1f}" cy="{ye:.1f}" r="3" fill="{ACC}" stroke="#fff" stroke-width="2"/></svg>')
 
 
-def dist_svg(rows, cap_after, cap_label, *, vmax, W=390, H=196):
-    """每人每天收到几条的分布：rows [(条数, 占比, 玩家·天)]；在第 cap_after 根柱之后画上限线。"""
-    top, bot = 30, 40
+def dist_svg(rows, cap_after, cap_label, *, vmax, W=390, H=180):
+    """每人每天收到几条的分布：rows [(条数, 占比)]；在第 cap_after 根柱之后画上限线。"""
+    top, bot = 30, 24
     ph = H - top - bot
     base = top + ph
     L = 6
@@ -580,13 +580,12 @@ def dist_svg(rows, cap_after, cap_label, *, vmax, W=390, H=196):
     xc = L + slot * cap_after
     s.append(f'<line x1="{xc:.1f}" x2="{xc:.1f}" y1="14" y2="{base}" stroke="{CHG}" stroke-width="1.5" stroke-dasharray="4 3"/>')
     s.append(txt(xc + 6, 14, cap_label, 12, INK, weight='600'))
-    for k, (name, v, n) in enumerate(rows):
+    for k, (name, v) in enumerate(rows):
         cx = L + slot * k + slot / 2
         y = base - v / vmax * ph
         s.append(col_path(cx - cw / 2, y, cw, base, 4))
         s.append(txt(cx, y - 7, pct(v), 13, INK, 'middle', '700'))
         s.append(txt(cx, base + 18, name, 12.5, INK2, 'middle'))
-        s.append(txt(cx, base + 34, fmt(n), 11.5, MUTE, 'middle'))
     s.append('</svg>')
     return '\n'.join(s)
 
@@ -662,8 +661,8 @@ def build_06b():
     cnt_p = split_int(tot_p, w)
     tot_s = sum(RECV_S)
     cnt_s = split_int(tot_s, SHARE_S)
-    rows_p = [(f'{k} 条' if k < 4 else '4 条及以上', c / tot_p, c) for k, c in zip(range(1, 5), cnt_p)]
-    rows_s = [(f'{k} 条' if k < 3 else '3 条及以上', c / tot_s, c) for k, c in zip(range(1, 4), cnt_s)]
+    rows_p = [(f'{k} 条' if k < 4 else '4 条及以上', c / tot_p) for k, c in zip(range(1, 5), cnt_p)]
+    rows_s = [(f'{k} 条' if k < 3 else '3 条及以上', c / tot_s) for k, c in zip(range(1, 4), cnt_s)]
     avg_p = sum(SEND_P) / tot_p
     avg_s = sum(SEND_S) / tot_s
     check(sum(cnt_p) == tot_p and sum(cnt_s) == tot_s, f'06b 分布相加＝收到至少 1 条的玩家·天（推播 {fmt(tot_p)}、短信 {fmt(tot_s)}）')
@@ -679,14 +678,14 @@ def build_06b():
   <div class="ch-row">{seg_html(["今日", "近 7 天", "近 30 天", "自定义"], "近 30 天")}<span class="ch-m">{md(DAYS[0])}–{md(DAYS[-1])}</span></div>
 </div>
 <div class="ch-sec">
-  <div class="ch-h">每人每天收到几条<span class="ch-m">按收到至少 1 条的玩家·天计，台湾时间自然日</span></div>
+  <div class="ch-h">每人每天收到几条<span class="ch-m">近 30 天平均</span></div>
   <div class="ch-2col eq">
     <div>
-      <div class="ch-sub"><b>推播</b><span class="ch-m">{fmt(tot_p)} 玩家·天，平均每天 {avg_p:.1f} 条</span></div>
+      <div class="ch-sub"><b>推播</b><span class="ch-m">占当天收到推播的玩家</span></div>
       {dist_svg(rows_p, 2, '每人每天上限 2 条', vmax=0.70)}
     </div>
     <div>
-      <div class="ch-sub"><b>短信</b><span class="ch-m">{fmt(tot_s)} 玩家·天，平均每天 {avg_s:.1f} 条</span></div>
+      <div class="ch-sub"><b>短信</b><span class="ch-m">占当天收到短信的玩家</span></div>
       {dist_svg(rows_s, 1, '每人每天上限 1 条', vmax=1.12)}
     </div>
   </div>
@@ -695,7 +694,7 @@ def build_06b():
 <div class="ch-sec">
   <div class="ch-h">碰到上限</div>
   <div class="ch-row" style="margin:-2px 0 8px">{seg_html(["推播", "短信"], "推播")}</div>
-  {legend_html(bar='每日上限拦下人次', line='每日碰到上限的人数', avg='两条竖线之间的日均人数（不含竖线当天）', chg='上限设置改动', rel=False)}
+  {legend_html(bar='每日上限拦下人次', line='每日碰到上限的人数', avg='两条竖线之间的日均人数（不含竖线当天）', chg='设置改动', rel=False)}
   {svg}
   {event_rows(EV6B)}
 </div>"""
@@ -754,18 +753,19 @@ def ov_cards(spark_w):
     c, p, sp = d['cur'], d['prv'], d['spark']
     out_cards = [
         ('发送', fmt(c['send']), '', '', delta_pct(c['send'], p['send']), sp['send']),
-        ('到达', fmt(c['arr']), '', f'到达率 {pct(c["arr_rate"])}', delta_pct(c['arr'], p['arr']), sp['arr']),
+        ('到达', fmt(c['arr']), '', f'到达率 {pct(c["arr_rate"])}\n不含 iOS 未接入 {fmt(c["ios"])}', delta_pct(c['arr'], p['arr']), sp['arr']),
         ('点击', fmt(c['clk']), '', f'点击率 {pct(c["ctr_out"])}', delta_pct(c['clk'], p['clk']), sp['clk']),
         ('到达人数', fmt(c['arr_ppl']), '', '按玩家去重', delta_pct(c['arr_ppl'], p['arr_ppl']), sp['arr_ppl']),
-        ('人均每天收到', f'{c["per"]:.1f}', ' 条', '', delta_pct(c['per'], p['per']), sp['per']),
+        ('人均每天收到', f'{c["per"]:.1f}', ' 条', '按当天收到推送的玩家', delta_pct(c['per'], p['per']), sp['per']),
     ]
     in_cards = [
         ('曝光人数', fmt(c['ex_ppl']), '', '按玩家去重', delta_pct(c['ex_ppl'], p['ex_ppl']), sp['ex_ppl']),
         ('曝光', fmt(c['ex']), '', '', delta_pct(c['ex'], p['ex']), sp['ex']),
         ('点击', fmt(c['ck']), '', '', delta_pct(c['ck'], p['ck']), sp['ck']),
         ('点击率', f'{c["ctr_in"] * 100:.1f}', '%', '', delta_pp(c['ctr_in'], p['ctr_in']), sp['ctr_in']),
-        ('人均每天弹窗曝光', f'{c["per_pop"]:.1f}', ' 个', '', delta_pct(c['per_pop'], p['per_pop']), sp['per_pop']),
+        ('人均每天弹窗曝光', f'{c["per_pop"]:.1f}', ' 个', '按当天看到弹窗的玩家', delta_pct(c['per_pop'], p['per_pop']), sp['per_pop']),
     ]
+    chk(abs(c['arr'] / (c['send'] - c['ios']) - c['arr_rate']) < 1e-9, f'06 到达率可由卡上数字复算：{fmt(c["arr"])} ÷ ({fmt(c["send"])} − {fmt(c["ios"])}) = {pct(c["arr_rate"])}')
     chk(c['arr'] < c['send'] - c['ios'] and c['clk'] < c['send'], f'06 游戏外 发送 {fmt(c["send"])} > 到达 {fmt(c["arr"])}（另 iOS 未接入 {fmt(c["ios"])}）> 点击 {fmt(c["clk"])}')
     chk(c['arr_ppl'] < c['arr'], f'06 到达人数 {fmt(c["arr_ppl"])} < 到达条数')
     chk(c['ex_ppl'] < c['ex'] and c['ck'] < c['ex'], f'06 游戏内 曝光 {fmt(c["ex"])}、点击 {fmt(c["ck"])}、点击率 {pct(c["ctr_in"], 2)}、曝光人数 {fmt(c["ex_ppl"])}（13 的 30 天大厅曝光人数 {fmt(PPL13)}）')
@@ -773,7 +773,7 @@ def ov_cards(spark_w):
 
     def card(l, v, u, sub, dl, vals):
         return (f'<div class="ch-card"><div class="l">{E(l)}</div><div class="v">{v}<small>{E(u)}</small></div>'
-                f'<div class="s">{E(sub) or "&nbsp;"}</div><div class="d"><b>{E(dl)}</b></div>{spark_svg(vals, spark_w)}</div>')
+                f'<div class="s">{"<br>".join(E(x) for x in sub.split(chr(10))) or "&nbsp;"}</div><div class="d"><b>{E(dl)}</b></div>{spark_svg(vals, spark_w)}</div>')
     return ''.join(card(*x) for x in out_cards), ''.join(card(*x) for x in in_cards)
 
 
@@ -855,57 +855,58 @@ def build_02b():
     return page('确认前的预计人数', body)
 
 
-# ================================================================ 示例数据：07 单条推送数据（推送 31，近 7 天 10/06–10/12）
-P07 = dict(aud=8652, pre_block=4873, reject=125, unknown=37, bounce=25, no_receipt=67, wait_receipt=79, ios=313, clk=290,
-           login=1520, pay_ppl=186, pay_amt='NT$93,400')
-BLOCK07 = [('没装 App', 1946), ('勿扰放弃', 1382), ('通知关闭', 1127), ('每人每天上限拦下', 418)]
-REJECT07 = [('令牌失效', 118), ('内容格式错误', 7)]
+# ================================================================ 示例数据：07 单条推送数据（推送 43，定时推播，10/12 15:04 停止）
+# 与第 13 页操作纪录一致：「10/12 15:04 运营01 停止推送 43 月月抽开奖提醒：已发出 1,050 条，不撤回；其余不再发送」；
+# 与 A 的 19_玩家查询一致：10/12 15:00 有玩家因每人每天上限被拦下。一次性推送，每人最多 1 条，漏斗全程按人。
+P07 = dict(aud=6820, sent=1050, reject=18, bounce=6, no_receipt=31, ios=92, clk=84,
+           login=512, pay_ppl=37, pay_amt='NT$18,600')
+NOTSENT07 = [('停止后不再发送', 3032), ('没装 App', 1620), ('通知关闭', 790), ('每人每天上限拦下', 310)]
+REJECT07 = [('令牌失效', 16), ('内容格式错误', 2)]
 
 
 def build_07():
     f = P07
-    send = f['aud'] - f['pre_block'] - f['reject'] - f['unknown']
-    arr = send - f['bounce'] - f['no_receipt'] - f['wait_receipt'] - f['ios']
-    arr_rate = arr / (send - f['ios'])
-    ctr = f['clk'] / send
-    check(sum(n for _, n in BLOCK07) == f['pre_block'] and sum(n for _, n in REJECT07) == f['reject'], '07 未发出原因相加＝发送前拦下、服务商未受理')
-    check(f['aud'] > send > arr > f['clk'], f'07 漏斗递减 {f["aud"]} → {send} → {arr} → {f["clk"]}；到达率 {pct(arr_rate)}、点击率 {pct(ctr)}')
+    sent = f['sent']
+    arr = sent - f['bounce'] - f['no_receipt'] - f['ios']
+    arr_rate = arr / (sent - f['ios'])
+    ctr = f['clk'] / sent
+    pre = sum(n for nm, n in NOTSENT07 if nm in ('没装 App', '通知关闭'))
+    check(f['aud'] - sent == sum(n for _, n in NOTSENT07) + f['reject'], '07 受众 − 发送＝未发出各原因＋服务商未受理')
+    check(sum(n for _, n in REJECT07) == f['reject'], '07 服务商未受理分项相加')
+    check(f['aud'] > sent > arr > f['clk'], f'07 漏斗（人）递减 {f["aud"]} → {sent} → {arr} → {f["clk"]}；到达率 {pct(arr_rate)}、点击率 {pct(ctr)}')
+    check(f['login'] < sent and f['pay_ppl'] < f['login'], '07 24 小时内登录、付费人数 < 发送人数')
+    stop, noapp, off, cap = (n for _, n in NOTSENT07)
     rows = [
-        ('受众', f['aud'], None, '排除群组后触发本推送的人次', ''),
-        ('发送', send, None, f'少 {fmt(f["aud"] - send)} 人次',
-         f'发送前拦下 {fmt(f["pre_block"])} · 服务商未受理 {f["reject"]} · 结果不明 {f["unknown"]}'),
-        ('到达', arr, None, f'少 {fmt(send - arr)} 人次 · 到达率 {pct(arr_rate)}',
-         f'受理后退回 {f["bounce"]} · 无回执 {f["no_receipt"]} · 待回执 {f["wait_receipt"]} · iOS 未接入 {f["ios"]}（单列，不进分母）'),
+        ('受众', f['aud'], None, '发送对象扣掉排除群组', ''),
+        ('发送', sent, None, f'少 {fmt(f["aud"] - sent)} 人',
+         f'停止后不再发送 {fmt(stop)} · 收不到推播 {fmt(pre)} · 每人每天上限拦下 {cap} · 服务商未受理 {f["reject"]}'),
+        ('到达', arr, None, f'少 {fmt(sent - arr)} 人 · 到达率 {pct(arr_rate)}',
+         f'受理后退回 {f["bounce"]} · 无回执 {f["no_receipt"]} · iOS 未接入 {f["ios"]}（单列，不进分母）'),
         ('点击', f['clk'], None, f'点击率 {pct(ctr)}', '点击 ÷ 发送'),
     ]
-    blk = sorted(BLOCK07, key=lambda x: -x[1])
+    blk = sorted(NOTSENT07, key=lambda x: -x[1])
     body = f"""<div class="ch-sec">
-  <div class="ch-row"><div class="ch-ttl">限时加码礼包未购买提醒<span class="pd-st">运行中</span><span class="pd-st">推送 31</span></div><span class="ch-sp"></span><span class="btn2">逐人明细</span></div>
-  <div class="ch-meta">推播<i>|</i>按行为：限时加码礼包剩 2 小时且尚未购买<i>|</i>排除 VIP 名单、黑名单、机器人与测试账号</div>
-</div>
-<div class="ch-sec" style="padding-top:12px;padding-bottom:12px">
-  <div class="ch-row">{seg_html(["今日", "近 7 天", "近 30 天", "自定义"], "近 7 天")}<span class="ch-m">{md(DAYS[CUR7[0]])}–{md(DAYS[CUR7[-1]])}</span></div>
+  <div class="ch-row"><div class="ch-ttl">月月抽开奖提醒<span class="pd-st">已停止</span><span class="pd-st">推送 43</span></div><span class="ch-sp"></span><span class="btn2">逐人明细</span></div>
+  <div class="ch-meta">推播<i>|</i>定时 10/12 15:00<i>|</i>发送对象：月月抽本期参与者；排除 VIP 名单、黑名单、机器人与测试账号<i>|</i>10/12 15:04 运营01 停止</div>
 </div>
 <div class="ch-sec">
-  <div class="ch-h">漏斗<span class="ch-m">按行为推送，同一玩家每次触发各计一次</span></div>
-  {funnel_svg(rows, unit='人次', BMAX=170, VW=118)}
+  <div class="ch-h">漏斗</div>
+  {funnel_svg(rows, BMAX=170, VW=104)}
   <div class="ch-ref"><b>发送后 24 小时内</b><span class="ch-m">推播只作参考</span>登录 {fmt(f["login"])} 人　·　付费 {f["pay_ppl"]} 人、{f["pay_amt"]}</div>
 </div>
 <div class="ch-sec">
   <div class="ch-2col w07">
     <div>
-      <div class="ch-h">未发出的原因<span class="ch-m">发送前拦下 {fmt(f["pre_block"])} 人次，从多到少</span><span class="ch-sp"></span><span class="btn2 sm">导出名单</span></div>
-      {hbars_svg([(n, x, '') for n, x in blk], vmax=2100, W=440, LW=118, BMAX=260, vfmt=fmt)}
+      <div class="ch-h">未发出的原因<span class="ch-m">从多到少，单位：人</span><span class="ch-sp"></span><span class="btn2 sm">导出名单</span></div>
+      {hbars_svg([(n, x, '') for n, x in blk], vmax=3300, W=440, LW=118, BMAX=260, vfmt=fmt)}
     </div>
     <div>
-      <div class="ch-h">服务商未受理<span class="ch-m">{f["reject"]} 人次</span></div>
-      {hbars_svg([(n, x, '') for n, x in REJECT07], vmax=135, W=320, LW=100, BMAX=150, vfmt=fmt)}
-      <div class="ch-note" style="margin-top:8px">另有结果不明 {f["unknown"]} 人次：已提交，服务商未返回</div>
+      <div class="ch-h">服务商未受理<span class="ch-m">{f["reject"]} 人</span></div>
+      {hbars_svg([(n, x, '') for n, x in REJECT07], vmax=18, W=320, LW=100, BMAX=150, vfmt=fmt)}
     </div>
   </div>
 </div>"""
     return page('单条推送数据', body)
-
 
 BUILDERS = {'14_单条规则数据': build_14, '13_游戏内数据': build_13, '06_概览': build_06, '00_后台首页': build_00,
             '02b_预计人数': build_02b, '06b_每人每天收到': build_06b, '07_单条漏斗': build_07}
