@@ -239,7 +239,7 @@ def legend_html(bar='每日曝光', line='每日点击率', avg='两条竖线之
     sw_r = f'<svg width="8" height="14"><line x1="4" x2="4" y1="0" y2="14" stroke="{REL}" stroke-width="1.5" stroke-dasharray="4 3"/></svg>'
     return ('<div class="ch-lg">'
             f'<span>{sw_bar}{E(bar)}</span><span>{sw_ln}{E(line)}</span><span>{sw_av}{E(avg)}</span>'
-            f'<span>{sw_c}{E(chg)}</span>' + (f'<span>{sw_r}客户端发版</span>' if rel else '') + '</div>')
+            f'<span>{sw_c}{E(chg)}</span>' + (f'<span>{sw_r}App 发版</span>' if rel else '') + '</div>')
 
 
 def event_rows(events, with_rule=False):
@@ -392,7 +392,7 @@ R14 = dict(
 EV14 = [   # 取自操作纪录（本规则的每一次保存）＋客户端发版
     dict(t=dt.datetime(2026, 9, 18, 10, 5), kind='chg', what='关闭后冷却：无 → 30 分钟', who='运营01'),
     dict(t=dt.datetime(2026, 9, 24, 15, 20), kind='chg', what='弹窗次数：破产礼包 每日 2 次 → 每日 1 次', who='运营02'),
-    dict(t=dt.datetime(2026, 10, 6, 10, 0), kind='rel', what='客户端发版：App 3.8.2（iOS、Android）', who='—'),
+    dict(t=dt.datetime(2026, 10, 6, 10, 0), kind='rel', what='App 发版：3.8.2（iOS、Android）', who='—'),
     dict(t=dt.datetime(2026, 10, 9, 11, 30), kind='chg', what='弹窗排序：破产礼包 第 3 → 第 2', who='运营02'),
 ]
 for e in EV14:
@@ -418,7 +418,7 @@ def build_14():
         ('符合条件', f['ok'], ok_req, f'少 {fmt(f["enter"] - f["ok"])} 人、{fmt(f["enter_req"] - ok_req)} 次',
          f'上限拦下 {fmt(f["cap_block"])} · 关闭后冷却中 {fmt(f["cd_block"])} · 排序项都跳过 {fmt(f["all_skip"])}'),
         ('曝光', f['expo_ppl'], expo, f'少 {fmt(f["ok"] - f["expo_ppl"])} 人、{fmt(ok_req - expo)} 次',
-         f'弹出失败 {fmt(f["fail_show"])} · 未回传曝光 {fmt(no_report)}'),
+         f'弹出失败 {fmt(f["fail_show"])} · 弹出后未确认显示 {fmt(no_report)}'),
         ('点击', f['clk_ppl'], clk, f'点击率 {pct(clk / expo)}', '点击次数 ÷ 曝光次数'),
     ]
     ppl = [r[1] for r in rows]
@@ -473,7 +473,7 @@ EV13 = [   # 取自操作纪录（大厅弹窗上全部规则的保存）＋客�
     dict(t=dt.datetime(2026, 9, 16, 14, 10), kind='chg', rule='5 活动类·其余', what='每次最多弹出：3 个 → 2 个', who='运营01'),
     dict(t=dt.datetime(2026, 9, 23, 11, 20), kind='chg', rule='12 活动类·新增玩家', what='弹窗排序：新手通行证 第 2 → 第 1', who='运营02'),
     dict(t=dt.datetime(2026, 9, 30, 16, 5), kind='chg', rule='14 活动类·潜在流失', what='关闭后冷却：无 → 60 分钟', who='运营01'),
-    dict(t=dt.datetime(2026, 10, 6, 10, 0), kind='rel', rule='', what='客户端发版：App 3.8.2（iOS、Android）', who='—'),
+    dict(t=dt.datetime(2026, 10, 6, 10, 0), kind='rel', rule='', what='App 发版：3.8.2（iOS、Android）', who='—'),
     dict(t=dt.datetime(2026, 10, 12, 14, 36), kind='chg', rule='13 活动类·回流', what='弹窗排序：回流任务 第 7 → 第 1', who='运营02'),
 ]
 for e in EV13:
@@ -899,7 +899,7 @@ def build_07():
         ('发送', sent, None, f'少 {fmt(f["aud"] - sent)} 人',
          f'收不到推播 {fmt(pre)} · 每人每天上限拦下 {cap} · 服务商未受理 {f["reject"]}'),
         ('到达', arr, None, f'少 {fmt(sent - arr)} 人 · 到达率 {pct(arr_rate)}',
-         f'服务商退回 {f["bounce"]} · 服务商未回传结果 {f["no_receipt"]} · iOS 未接入 {f["ios"]}（不进分母）'),
+         f'服务商退回 {f["bounce"]} · 结果不明 {f["no_receipt"]} · iOS 未接入 {f["ios"]}（不进分母）'),
         ('点击', f['clk'], None, f'点击率 {pct(ctr)}', '点击 ÷ 发送'),
     ]
     blk = sorted(NOTSENT07, key=lambda x: -x[1])

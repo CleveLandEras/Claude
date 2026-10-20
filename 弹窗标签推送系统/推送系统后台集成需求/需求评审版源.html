@@ -67,6 +67,8 @@ table.rule .why{display:block;margin-top:3px;color:var(--ink3);font-size:14px;li
 table.et{max-width:980px;background:#fff;border:1px solid var(--line);font-size:14px;line-height:1.55}
 table.et th,table.et td{padding:7px 10px}
 table.et td:nth-child(1){white-space:nowrap}
+nav a.on{color:var(--ink);border-left:4px solid var(--c,var(--accent));padding-left:8px;background:var(--accent-bg);font-weight:700}
+nav a.on em{color:var(--ink2)}
 a.pref{color:var(--accent);text-decoration:none;border-bottom:1px dotted var(--accent)}
 a.pref:hover{border-bottom-style:solid}
 @media (max-width:1100px){.wrap{grid-template-columns:1fr}nav{display:none}}
@@ -135,7 +137,7 @@ a.pref:hover{border-bottom-style:solid}
   <h4 class="rg">内容</h4>
   <table class="rule">
     <tr><td>标题与内容按繁中、越南文、英文三种语言填，可一键生成另外两种后再改；玩家收到自己游戏语言的那一种。</td></tr>
-    <tr><td>营销推送新建时选重要程度：普通（默认）或重要；重要的为发送对象预留当天 1 条名额（见<a class="pref" href="#p4">第 4 页</a>）。</td></tr>
+    <tr><td>营销的立即、定时推送新建时选重要程度：普通（默认）或重要；重要的为发送对象预留当天 1 条名额（见<a class="pref" href="#p4">第 4 页</a>）。</td></tr>
   </table>
   <h4 class="rg">发送对象</h4>
   <table class="rule">
@@ -216,7 +218,7 @@ a.pref:hover{border-bottom-style:solid}
     <div class="rbody">
   <h4 class="rg">内容与计费</h4>
   <table class="rule">
-    <tr><td>内文先选消息类别（营销或服务通知），按繁中、越南文、英文三种语言填，可一键生成另外两种；每种语言分别显示字数与则数，超出一则时提示；营销短信自动加品牌前缀【會員通知】和退订说明。</td></tr>
+    <tr><td>内文先选消息类别（营销或服务通知），三种语言的填法同<a class="pref" href="#p1">第 1 页</a>；每种语言分别显示字数与则数，超出一则时提示；营销短信自动加品牌前缀【會員通知】和退订说明。</td></tr>
     <tr><td>链接可选外部网页或游戏内页面；外部网页自动换成短链，统计点击次数。</td></tr>
     <tr><td>按则计费，三种语言计法相同：70 字以内计 1 则；超过 70 字时每 67 字计 1 则。</td></tr>
     <tr><td>品牌前缀和退订说明计入字数。</td></tr>
@@ -251,7 +253,8 @@ a.pref:hover{border-bottom-style:solid}
   </table>
   <h4 class="rg">重要程度与名额</h4>
   <table class="rule">
-    <tr><td>营销推送分普通（默认）和重要。重要的立即、定时推送确认后，为发送对象预留当天该推送方式 1 条名额；同一天比它早发的普通推送（含按行为）只能用剩下的名额；重要推送之间按发送先后。</td></tr>
+    <tr><td>营销的立即、定时推送分普通（默认）和重要。重要的确认后，为发送对象预留当天该推送方式 1 条名额；同一天比它早发的普通推送只能用剩下的名额；重要推送之间按发送先后。</td></tr>
+    <tr><td>按行为推送不分重要程度、不预留名额，与普通推送一样按发送先后占用。</td></tr>
     <tr><td>确认前写出为多少人预留、当天更早的普通推送预计多拦下多少人；重要推送停止、改为普通或改日期时，预留随之释放或改到新日期。</td></tr>
     <tr><td>名额占用总览按时间列出当天与次日要发的推送，标出重要程度、能收到的人数和预计被上限拦下的人数；按行为推送只列近 7 天日均触发人数，不预估。</td></tr>
   </table>
@@ -293,17 +296,17 @@ a.pref:hover{border-bottom-style:solid}
     <div class="rbody">
   <h4 class="rg">规则内容</h4>
   <table class="rule">
-    <tr><td>每条规则选弹窗类型（活动类、储值类）和位置：大厅弹窗（玩家进入或返回大厅时弹出）、破产弹窗（玩家破产、发财金领取结束后弹出）；并设每次最多弹出几个。</td></tr>
+    <tr><td>每条规则选弹窗类型（活动类、储值类）和位置：大厅弹窗（玩家进入或返回大厅时弹出）、破产弹窗（玩家在所选游戏里破产、发财金领取结束后弹出，游戏默认全部）；并设每次最多弹出几个。</td></tr>
     <tr><td>弹窗排序是本规则里按先后弹出的清单，清单里的每一项叫排序项，对应一个活动或礼包，从后台现有的活动、礼包里选，先后可调整。</td></tr>
     <tr><td>每个排序项设弹出时机、弹窗次数、是否「弹出后终止本次后续弹窗」、是否不可关闭（玩家须点按钮）；排序项自己的冷却时间沿用现行设置。</td></tr>
-    <tr><td>大厅弹窗的弹出时机可多选，所选时机任一发生即可弹出（弹窗次数未用完时）：活动开启（活动上架后玩家第一次进入大厅，每期一次）、当日首次登录、第 N 次登录、第 N 次登录起、进入大厅、返回大厅；第 N 次按账号累计登录次数，N 填 1 即账号第一次登录，「第 2 次登录起」即非首次登录。破产弹窗固定在破产时弹出，不选弹出时机。</td></tr>
+    <tr><td>大厅弹窗的弹出时机可多选，所选时机任一发生即可弹出（弹窗次数未用完时）：活动开启（活动上架后玩家第一次进入大厅，每期一次）、当日首次登录、第 N 次登录、第 N 次登录起、进入大厅、返回大厅；第 N 次按账号累计登录次数，N 填 1 即账号第一次登录，「第 2 次登录起」即非首次登录。破产弹窗不选弹出时机。</td></tr>
     <tr><td>弹窗次数按周期设：每日、每周、每 N 天、生效期间内、终身或每回流周期（玩家每回流一次算一个周期），再填周期内弹几次。</td></tr>
     <tr><td>高级设置里设互斥组、每人总次数和关闭后冷却（玩家直接关掉本规则的弹窗后，隔多久本规则才再弹）。</td></tr>
   </table>
   <h4 class="rg">对象与预计人数</h4>
   <table class="rule">
     <tr><td>对象为全部玩家或标签群组，可再选排除群组。</td></tr>
-    <tr><td>VIP 名单、黑名单、机器人与测试账号、敏感状态账号对所有弹窗固定排除；推播、短信、快显的 VIP 名单是默认排除、可移出（见<a class="pref" href="#p1">第 1 页</a>）。</td></tr>
+    <tr><td>VIP 名单、黑名单、机器人与测试账号、敏感状态账号对所有弹窗固定排除，不能移出；推播、短信、快显的排除群组见<a class="pref" href="#p1">第 1 页</a>。</td></tr>
     <tr><td>弹窗预计人数为会先弹本规则的人数：对象减去排除群组，再减去与权重更大的规则重叠的人；固定排除的玩家弹出时才扣，不从预计人数里减，旁边注明其中固定排除约多少人。</td></tr>
   </table>
   <h4 class="rg">权重与互斥</h4>
@@ -351,8 +354,8 @@ a.pref:hover{border-bottom-style:solid}
     <div class="rbody">
   <h4 class="rg">内容与对象</h4>
   <table class="rule">
-    <tr><td>快显是游戏界面里的即时横幅，如通行证升级提示；可设横幅文字、显示位置、停留秒数、点击跳转的页面。横幅文字按繁中、越南文、英文三种语言填，可一键生成另外两种；玩家看到自己游戏语言的那一种。</td></tr>
-    <tr><td>发送对象和排除群组的选法同推播（<a class="pref" href="#p1">第 1 页</a>），VIP 名单同样默认排除、可移出。</td></tr>
+    <tr><td>快显是游戏界面里的即时横幅，如通行证升级提示；可设横幅文字、显示位置、停留秒数、点击跳转的页面。横幅文字三种语言的填法同<a class="pref" href="#p1">第 1 页</a>。</td></tr>
+    <tr><td>发送对象和排除群组的选法同推播（<a class="pref" href="#p1">第 1 页</a>）。</td></tr>
     <tr><td>只显示给在线玩家。定时快显可设显示时段（到点起 0–240 分钟，默认 30 分钟）：时段内上线的发送对象上线时显示一次，时段结束后上线的不显示；设 0 即只显示给到点在线的玩家。</td></tr>
   </table>
   <h4 class="rg">发送时间</h4>
@@ -361,7 +364,7 @@ a.pref:hover{border-bottom-style:solid}
   </table>
   <h4 class="rg">每人每天上限</h4>
   <table class="rule">
-    <tr><td>快显每人每天 3 次，显示 1 次计 1 次；和弹窗上限一起在弹窗列表顶部设置（见<a class="pref" href="#p5">第 5 页</a>）。</td></tr>
+    <tr><td>快显的每人每天上限和弹窗上限一起在弹窗列表顶部设置（见<a class="pref" href="#p5">第 5 页</a>），显示 1 次计 1 次。</td></tr>
   </table>
     </div>
   </details>
@@ -400,7 +403,7 @@ a.pref:hover{border-bottom-style:solid}
   <h4 class="rg">指标算法</h4>
   <table class="rule">
     <tr><td>游戏外推送从发送算起，点击率＝点击÷发送；游戏内推送从曝光算起，点击率＝点击÷曝光；两层分开统计，不相加。</td></tr>
-    <tr><td>到达率＝到达÷可确认到达的发送；iOS 旧版本 App 不能上报到达，这部分单列为「iOS 未接入」，不进分母。</td></tr>
+    <tr><td>到达率＝到达÷可确认到达的发送；iOS 旧版本 App 收不到到达回执，这部分单列为「iOS 未接入」，不进分母。</td></tr>
     <tr><td>人均每天收到几条＝当天收到推播或短信的玩家平均每人收到几条；人均每天弹窗曝光几个＝当天看到弹窗的玩家平均每人看到几个；都取所选期间每天的平均。</td></tr>
   </table>
     </div>
@@ -442,7 +445,7 @@ a.pref:hover{border-bottom-style:solid}
   <h4 class="rg">单条弹窗规则</h4>
   <table class="rule">
     <tr><td>漏斗：一条规则从进入弹窗位置、符合条件、曝光到点击，每一步少了多少。</td></tr>
-    <tr><td>趋势图按日显示这条规则的曝光与点击率，图上标出这条规则每一次保存的改动和客户端发版，画法同位置数据（<a class="pref" href="#p9">第 9 页</a>）。</td></tr>
+    <tr><td>趋势图按日显示这条规则的曝光与点击率，图上标出这条规则每一次保存的改动和 App 发版，画法同位置数据（<a class="pref" href="#p9">第 9 页</a>）。</td></tr>
     <tr><td>可拆分：按排序项、按人群、按平台。</td></tr>
   </table>
     </div>
@@ -464,18 +467,18 @@ a.pref:hover{border-bottom-style:solid}
   <h4 class="rg">位置统计</h4>
   <table class="rule">
     <tr><td>大厅弹窗、破产弹窗、快显各自统计曝光人数、曝光、点击、点击率，与前一个同样长度的周期对比。</td></tr>
-    <tr><td>每个位置一张趋势图，按日显示曝光与点击率；图上标出这个位置上所有规则的改动和客户端发版。</td></tr>
+    <tr><td>每个位置一张趋势图，按日显示曝光与点击率；图上标出这个位置上所有规则的改动和 App 发版。</td></tr>
     <tr><td>列出这个位置上各条规则的数据，点规则名进入这条规则的数据（<a class="pref" href="#p8">第 8 页</a>）；合计行的曝光人数按玩家去重，所以小于各行相加。</td></tr>
   </table>
   <h4 class="rg">按位次</h4>
   <table class="rule">
-    <tr><td>统计玩家这次进入该位置时第几个看到的弹窗，各位次的曝光与点击率；位次按服务端下发的先后算，跨规则计，与排序项在规则里的先后无关。</td></tr>
+    <tr><td>统计玩家这次进入该位置时第几个看到的弹窗，各位次的曝光与点击率；位次按这次排定的弹出顺序算，跨规则计，与排序项在规则里的先后无关。</td></tr>
   </table>
   <h4 class="rg">改动与发版</h4>
   <table class="rule">
     <tr><td>趋势图上相邻两次改动或发版之间，画出这段时间的平均点击率。</td></tr>
     <tr><td>趋势图上的规则改动取自操作纪录（<a class="pref" href="#p12">第 12 页</a>），图下按时间逐条列出每次改动的日期、改了什么、谁改的。</td></tr>
-    <tr><td>规则改动或客户端发版之前的数据照样保留，与之后的数据画在同一张趋势图上。</td></tr>
+    <tr><td>规则改动或 App 发版之前的数据照样保留，与之后的数据画在同一张趋势图上。</td></tr>
   </table>
     </div>
   </details>
@@ -576,6 +579,32 @@ a.pref:hover{border-bottom-style:solid}
 </main>
 </div>
 <script>
+// 侧栏随滚动高亮当前页：页面顶部越过视口上方 120px 的最后一页为当前页
+(function () {
+  var links = {}, groups = {};
+  var g = null;
+  document.querySelectorAll('nav > *').forEach(function (el) {
+    if (el.classList.contains('grp')) g = el;
+    else if (el.tagName === 'A') { links[el.getAttribute('href').slice(1)] = el; groups[el.getAttribute('href').slice(1)] = g; }
+  });
+  var secs = Array.prototype.slice.call(document.querySelectorAll('section.pg'));
+  var cur = null, tick = false;
+  function update() {
+    tick = false;
+    var id = null;
+    for (var i = 0; i < secs.length; i++) { if (secs[i].getBoundingClientRect().top <= 120) id = secs[i].id; else break; }
+    if (id === cur) return;
+    if (cur && links[cur]) links[cur].classList.remove('on');
+    cur = id;
+    if (cur && links[cur]) {
+      links[cur].classList.add('on');
+      var c = getComputedStyle(groups[cur]).getPropertyValue('--c');
+      links[cur].style.setProperty('--c', c);
+    }
+  }
+  window.addEventListener('scroll', function () { if (!tick) { tick = true; requestAnimationFrame(update); } }, { passive: true });
+  update();
+})();
 // 打印或存 PDF 时展开全部业务规则，结束后恢复
 (function () {
   var opened = [];
