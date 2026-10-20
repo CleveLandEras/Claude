@@ -8,7 +8,8 @@
 <style>
 html,body{margin:0;padding:0;background:#fff}
 body{font-family:"Inter","Noto Sans CJK SC","PingFang SC","Microsoft YaHei",sans-serif;font-size:13px;line-height:1.5}
-.shot .z{zoom:1.12}
+.shot .z{zoom:1.04}
+.seg>span{white-space:nowrap}
 .shot .win{padding:0;border:0;border-radius:0;background:#fff;box-shadow:none}
 .shot .fig{width:auto;border:0;border-radius:0}
 .cap{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:8px 12px;border:1px solid #E4E7ED;border-radius:4px;background:#FAFBFC;color:#606266}
@@ -16,8 +17,8 @@ body{font-family:"Inter","Noto Sans CJK SC","PingFang SC","Microsoft YaHei",sans
 .cap .ein{height:24px;width:40px;justify-content:center;padding:0}
 .cap .sp{width:14px}
 table.pl{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}
-table.pl th{font-weight:600;color:#73767A;background:#FAFBFC;text-align:left;padding:6px 8px;border-bottom:1px solid #EBEEF5;white-space:nowrap}
-table.pl td{padding:6px 8px;border-bottom:1px solid #EBEEF5;color:#303133;vertical-align:top}
+table.pl th{font-weight:600;color:#73767A;background:#FAFBFC;text-align:left;padding:6px 6px;border-bottom:1px solid #EBEEF5;white-space:nowrap}
+table.pl td{padding:6px 6px;border-bottom:1px solid #EBEEF5;color:#303133;vertical-align:top}
 table.pl .r{text-align:right;font-variant-numeric:tabular-nums}
 table.pl .s2{display:block;font-size:12px;color:#909399;line-height:17px}
 table.pl .ac{color:#409EFF;white-space:nowrap}
@@ -27,22 +28,27 @@ table.pl .w{font-weight:600;font-size:14px}
 </style>
 </head>
 <body>
-<div class="shot bk" data-page="弹窗" data-tabs="*弹窗列表|操作纪录"><div class="z"><div class="win"><div class="fig ew">
+<div class="shot bk" data-page="弹窗" data-tabs="*大厅弹窗顺序设定|操作纪录"><div class="z"><div class="win"><div class="fig ew">
   <div style="padding:10px 16px 12px">
-    <div class="cap"><b>每人每天上限</b>弹窗<span class="ein v">8</span>个（大厅、破产合计）<span class="sp"></span>快显<span class="ein v">3</span>次<span class="sp"></span><span style="color:#909399">到上限后当天不再弹出或显示，次日 00:00 重新计数</span></div>
-    <div style="display:flex;align-items:center;gap:10px;margin-top:10px">
-      <span class="seg"><span class="on">大厅弹窗</span><span>破产弹窗</span></span>
-      <span class="ein v" style="width:110px">上架中<span class="dn">⌵</span></span>
-      <span style="margin-left:auto;color:#909399">数据更新于 15:20</span>
-      <span class="ebtn b" style="height:28px">＋ 新增弹窗规则</span>
+    <div class="cap"><b>每人每天上限</b>大厅自动弹窗<span class="ein v">8</span>个<span class="sp"></span>快显<span class="ein v">3</span>次</div>
+    <div style="display:flex;align-items:center;gap:8px;margin-top:10px">
+      <span class="seg"><span class="on">大厅自动弹窗</span><span>游戏破产弹窗</span></span>
+      <span class="ebtn b" style="height:28px;margin-left:auto">＋ 新增弹窗规则</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;margin-top:8px">
+      <span class="ein" style="width:118px">弹窗名称或 ID</span>
+      <span class="ein" style="width:96px">弹窗类型<span class="dn">⌵</span></span>
+      <span class="ein" style="width:76px">对象<span class="dn">⌵</span></span>
+      <span class="ein v" style="width:84px">上架中<span class="dn">⌵</span></span>
+      <span class="ebtn b" style="height:28px">查询</span>
     </div>
     <table class="pl">
-      <tr><th class="r">权重<span class="s2" style="font-weight:400">越大越靠前</span></th><th>弹窗规则</th><th>对象</th><th>弹窗排序</th><th class="r">今日曝光</th><th class="r">点击率</th><th>状态</th><th>操作</th></tr>
-      <tr><td class="r w">40</td><td class="nw">弹窗规则 12<span class="s2">活动类</span></td><td>标签群组：新增玩家</td><td>新手七日签到、每日补给计划<span class="s2">共 4 项，展开 ›</span></td><td class="r">3,120</td><td class="r">12.4%</td><td class="nw"><span class="st">上架中</span></td><td class="nw"><span class="ac">查看数据</span>　<span class="ac">操作 ⌵</span></td></tr>
-      <tr><td class="r w">35</td><td class="nw">弹窗规则 13<span class="s2">活动类</span></td><td>标签群组：回流</td><td>回流礼包 B、每日补给计划<span class="s2">共 5 项，展开 ›</span></td><td class="r">5,480</td><td class="r">9.8%</td><td class="nw"><span class="st">上架中</span></td><td class="nw"><span class="ac">查看数据</span>　<span class="ac">操作 ⌵</span></td></tr>
-      <tr><td class="r w">30</td><td class="nw">弹窗规则 14<span class="s2">活动类</span></td><td>标签群组：潜在流失</td><td>每日补给计划、热门资讯<span class="s2">共 6 项，展开 ›</span></td><td class="r">2,210</td><td class="r">7.1%</td><td class="nw"><span class="st">上架中</span></td><td class="nw"><span class="ac">查看数据</span>　<span class="ac">操作 ⌵</span></td></tr>
-      <tr><td class="r w">20</td><td class="nw">弹窗规则 5<span class="s2">活动类</span></td><td>全部玩家<span class="s2">排除：规则 12、13、14 的对象</span></td><td>每日补给计划、揪友同乐邀请<span class="s2">共 9 项，展开 ›</span></td><td class="r">16,340</td><td class="r">6.2%</td><td class="nw"><span class="st">上架中</span></td><td class="nw"><span class="ac">查看数据</span>　<span class="ac">操作 ⌵</span></td></tr>
-      <tr><td class="r w">10</td><td class="nw">弹窗规则 6<span class="s2">储值类</span></td><td>全部玩家</td><td>首储礼包、成长基金<span class="s2">共 8 项，展开 ›</span></td><td class="r">9,860</td><td class="r">3.4%</td><td class="nw"><span class="st">上架中</span></td><td class="nw"><span class="ac">查看数据</span>　<span class="ac">操作 ⌵</span></td></tr>
+      <tr><th class="r">权重<span class="s2" style="font-weight:400">越大越靠前</span></th><th class="r">弹窗<br>活动 ID</th><th>弹窗名称</th><th>对象</th><th>标签状态</th><th>弹窗排序</th><th class="r">弹出<br>数量</th><th>状态</th><th>操作</th></tr>
+      <tr><td class="r w">40</td><td class="r">12</td><td class="nw">新增玩家活动弹窗<span class="s2">活动类弹窗</span></td><td class="nw">标签群组：新增玩家</td><td>启用</td><td>新手七日签到、每日补给计划<span class="s2">共 4 项，展开 ›</span></td><td class="r">3</td><td class="nw"><span class="st">上架中</span></td><td class="nw"><span class="ac">查看数据</span>　<span class="ac">操作 ⌵</span></td></tr>
+      <tr><td class="r w">35</td><td class="r">13</td><td class="nw">回流活动弹窗<span class="s2">活动类弹窗</span></td><td class="nw">标签群组：回流</td><td>启用</td><td>回流礼包 B、每日补给计划<span class="s2">共 5 项，展开 ›</span></td><td class="r">3</td><td class="nw"><span class="st">上架中</span></td><td class="nw"><span class="ac">查看数据</span>　<span class="ac">操作 ⌵</span></td></tr>
+      <tr><td class="r w">30</td><td class="r">14</td><td class="nw">潜在流失活动弹窗<span class="s2">活动类弹窗</span></td><td class="nw">标签群组：潜在流失</td><td>启用</td><td>每日补给计划、热门资讯<span class="s2">共 6 项，展开 ›</span></td><td class="r">3</td><td class="nw"><span class="st">上架中</span></td><td class="nw"><span class="ac">查看数据</span>　<span class="ac">操作 ⌵</span></td></tr>
+      <tr><td class="r w">20</td><td class="r">5</td><td class="nw">活动类弹窗<span class="s2">活动类弹窗</span></td><td class="nw">全部玩家<span class="s2">排除 ID 12、13、14 的对象</span></td><td>-</td><td>热门资讯、发信送奖<span class="s2">共 14 项，展开 ›</span></td><td class="r">2</td><td class="nw"><span class="st">上架中</span></td><td class="nw"><span class="ac">查看数据</span>　<span class="ac">操作 ⌵</span></td></tr>
+      <tr><td class="r w">10</td><td class="r">6</td><td class="nw">通用弹窗<span class="s2">储值类弹窗</span></td><td class="nw">全部玩家</td><td>-</td><td>首储礼包、独享礼包<span class="s2">共 7 项，展开 ›</span></td><td class="r">1</td><td class="nw"><span class="st">上架中</span></td><td class="nw"><span class="ac">查看数据</span>　<span class="ac">操作 ⌵</span></td></tr>
     </table>
   </div>
 </div></div></div></div>
