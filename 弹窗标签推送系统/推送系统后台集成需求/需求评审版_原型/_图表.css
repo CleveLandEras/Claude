@@ -120,3 +120,7 @@
 .ch .ch-list td.ch-ops .pd-lk{margin-right:10px}
 .ch .ch-list td.ch-ops .pd-lk:last-child{margin-right:0}
 .ch-mainx .seg>span{height:26px;padding:0 11px}
+.ch-mainx.cp{padding:14px 12px 18px 14px}
+.ch .ch-list th,.ch .ch-list td{padding-left:5px;padding-right:5px}
+.ch .ch-list td.ch-ops .pd-lk{margin-right:8px}
+.ch-list .ch-mbar.sm{width:26px;margin-left:6px;margin-right:3px}
