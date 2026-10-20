@@ -591,11 +591,6 @@ def dist_svg(rows, cap_after, cap_label, *, vmax, W=390, H=180):
     return '\n'.join(s)
 
 
-def page_raw(title, inner):
-    """不加 .ch-z 外层的页面（00 后台首页自带外框与缩放）。"""
-    return page(title, '').replace('<div class="ch-z">\n\n</div>', inner)
-
-
 def delta_pp(cur, prev):
     d = (cur - prev) * 100
     return ('▲ ' if d >= 0 else '▼ ') + f'{abs(d):.1f} 个百分点'
@@ -805,10 +800,7 @@ def build_06():
     return page('数据概览', body)
 
 
-MENU = [('gl', '游戏外推送'), ('it sub on', '推播'), ('it sub', '短信'), ('it sub', '每人每天上限与勿扰'),
-        ('gl', '游戏内推送'), ('it sub', '弹窗'), ('it sub', '快显'), ('it sub', '每人每天弹窗与快显上限'),
-        ('gl', '数据'), ('it sub', '数据概览'), ('it sub', '数据明细'), ('it sub', '弹窗与快显位置数据'), ('it sub', '每人每天推送量'),
-        ('gl', '查询'), ('it sub', '玩家查询'), ('it sub', '操作纪录')]
+# 00 后台首页的左侧菜单、面包屑、页签由 需求评审版_原型/_后台框.js 统一画（全部截图共用一份菜单）
 
 
 
@@ -1021,7 +1013,6 @@ OPS00 = {'排程中': '编辑 停止 复制', '发送中': '停止 复制 查看
 
 
 def build_00():
-    menu = ''.join(f'<div class="{c}">{E(t)}</div>' for c, t in MENU)
     trs = []
     for no, name, mode, when, act, grp, st, prog in PUSH00:
         when_td = f'{mode} {when}'
@@ -1034,19 +1025,29 @@ def build_00():
                    f'<td>{E(act)}</td><td>{E(grp)}</td><td class="ch-stc">{st_td}</td><td class="ch-ops">{ops}</td></tr>')
     check([r[0] for r in PUSH00] == sorted([r[0] for r in PUSH00], reverse=True), '00 推播列表按编号倒序：' + '、'.join(str(r[0]) for r in PUSH00))
     sts = ['全部', '排程中', '发送中', '运行中', '已发送', '已停止', '发送失败']
-    inner = f"""<div class="ch-app">
-  <div class="ch-topbar"><b>推送统一后台</b><span class="ch-sp"></span><span class="ch-acct"><i>运</i>运营01</span></div>
-  <div class="ch-frame">
-    <div class="ch-menu">{menu}</div>
+    # 开屏后台结构：外框（菜单全部展开、当前页「推播」高亮、面包屑、页签）由 _后台框.js 画
+    return f'''<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>后台首页</title>
+<link rel="stylesheet" href="../原型样式.css">
+<link rel="stylesheet" href="_图表.css">
+<link rel="stylesheet" href="_后台框.css">
+</head>
+<!-- 由 _scripts/an_评审版图表.py 生成，改数字请改脚本后重跑 -->
+<body class="ch-page">
+<div class="shot ch bk" data-page="推播" data-tabs="*推播列表|操作纪录" data-open="all">
     <div class="ch-mainx cp">
-      <div class="ch-row" style="margin-bottom:10px"><div class="ch-ptitle" style="margin:0">推播</div><span class="ch-sp"></span><span class="btn2 p">＋ 新建推播</span></div>
-      <div class="ch-row">{seg_html(sts, '全部')}</div>
+      <div class="ch-row" style="margin-bottom:2px">{seg_html(sts, '全部')}<span class="ch-sp"></span><span class="btn2 p">＋ 新建推播</span></div>
       <table class="pd-dt ch-tbl ch-list"><thead><tr><th>推送</th><th>发送时间</th><th>所属活动</th><th>发送对象</th><th>状态</th><th>操作</th></tr></thead>
       <tbody>{''.join(trs)}</tbody></table>
     </div>
-  </div>
-</div>"""
-    return page_raw('后台首页', inner)
+</div>
+<script src="_后台框.js"></script>
+</body>
+</html>
+'''
 
 BUILDERS = {'14_单条规则数据': build_14, '13_游戏内数据': build_13, '06_概览': build_06, '00_后台首页': build_00,
             '02b_预计人数': build_02b, '09_数据明细': build_09, '06b_每人每天收到': build_06b, '07_单条漏斗': build_07}

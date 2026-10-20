@@ -20,8 +20,8 @@ body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.75 -apple-system
 nav{position:sticky;top:24px;align-self:start;max-height:calc(100vh - 48px);overflow:auto;font-size:14.5px;line-height:1.5}
 nav .nt{font-weight:700;font-size:15px;margin-bottom:4px}
 nav .grp{margin:16px 0 6px;font-size:13px;font-weight:700;padding-left:10px;border-left:4px solid var(--c)}
-nav .grp span{display:block;color:var(--ink3);font-weight:400}
-nav a{display:block;padding:5px 10px;border-left:2px solid var(--line);color:var(--ink2);text-decoration:none}
+nav a{display:flex;align-items:baseline;gap:10px;padding:5px 10px;border-left:2px solid var(--line);color:var(--ink2);text-decoration:none}
+nav a em{margin-left:auto;flex:none;font-style:normal;font-size:13px;color:var(--ink3);white-space:nowrap}
 nav a:hover{color:var(--accent);border-left-color:var(--accent);background:var(--accent-bg)}
 .g1{--c:var(--p1)}.g2{--c:var(--p2)}.g3{--c:var(--p3)}.g4{--c:var(--p4)}
 main{min-width:0}
@@ -74,23 +74,23 @@ table.et td:nth-child(1){white-space:nowrap}
 <div class="wrap">
 <nav>
   <div class="nt">推送统一后台需求</div>
-  <div class="grp g1">第一部分　游戏外推送<span>第 1–4 页</span></div>
-  <a href="#p1">1 按玩家分群推送</a>
-  <a href="#p2">2 按玩家行为自动推送</a>
-  <a href="#p3">3 短信</a>
-  <a href="#p4">4 每人每天上限与勿扰</a>
-  <div class="grp g2">第二部分　游戏内推送<span>第 5–7 页</span></div>
-  <a href="#p5">5 按玩家分群配置弹窗</a>
-  <a href="#p6">6 快显</a>
-  <a href="#p7">7 每人每天弹窗与快显上限</a>
-  <div class="grp g3">第三部分　数据<span>第 8–11 页</span></div>
-  <a href="#p8">8 数据概览</a>
-  <a href="#p9">9 数据明细</a>
-  <a href="#p10">10 弹窗与快显位置数据</a>
-  <a href="#p11">11 每人每天推送量</a>
-  <div class="grp g4">第四部分　查询<span>第 12–13 页</span></div>
-  <a href="#p12">12 玩家查询</a>
-  <a href="#p13">13 操作纪录</a>
+  <div class="grp g1">第一部分　游戏外推送</div>
+  <a href="#p1">按玩家分群推送<em>1 页</em></a>
+  <a href="#p2">按玩家行为自动推送<em>2 页</em></a>
+  <a href="#p3">短信<em>3 页</em></a>
+  <a href="#p4">每人每天上限与勿扰<em>4 页</em></a>
+  <div class="grp g2">第二部分　游戏内推送</div>
+  <a href="#p5">按玩家分群配置弹窗<em>5 页</em></a>
+  <a href="#p6">快显<em>6 页</em></a>
+  <a href="#p7">每人每天弹窗与快显上限<em>7 页</em></a>
+  <div class="grp g3">第三部分　数据</div>
+  <a href="#p8">数据概览<em>8 页</em></a>
+  <a href="#p9">数据明细<em>9 页</em></a>
+  <a href="#p10">弹窗与快显位置数据<em>10 页</em></a>
+  <a href="#p11">每人每天推送量<em>11 页</em></a>
+  <div class="grp g4">第四部分　查询</div>
+  <a href="#p12">玩家查询<em>12 页</em></a>
+  <a href="#p13">操作纪录<em>13 页</em></a>
 </nav>
 <main>
 <header class="top" id="top">
@@ -99,7 +99,7 @@ table.et td:nth-child(1){white-space:nowrap}
 <section class="arch">
   <h2>后台结构</h2>
   <div class="shots">
-    <figure><img src="需求评审版_图/00_后台首页.jpg" alt="后台首页：左侧菜单与推播列表" style="width:980px"><figcaption>后台首页</figcaption></figure>
+    <figure><img src="需求评审版_图/00_后台首页.jpg" alt="后台首页：左侧菜单与推播列表" style="width:1056px"><figcaption>后台首页</figcaption></figure>
   </div>
 </section>
 
@@ -269,19 +269,21 @@ table.et td:nth-child(1){white-space:nowrap}
   <h2>按玩家分群配置弹窗</h2>
 
   <div class="shots">
-    <figure><img src="需求评审版_图/10_规则编辑.jpg" alt="弹窗规则编辑" style="width:980px"><figcaption>弹窗规则编辑</figcaption></figure>
-    <figure><img src="需求评审版_图/11_保存确认.jpg" alt="保存并上架" style="width:980px"><figcaption>保存并上架时的重叠与确认框</figcaption></figure>
+    <figure><img src="需求评审版_图/10_规则编辑.jpg" alt="新增弹窗规则" style="width:1056px"><figcaption>新增弹窗规则</figcaption></figure>
+    <figure><img src="需求评审版_图/11_保存确认.jpg" alt="保存并上架的确认框" style="width:1056px"><figcaption>点「保存并上架」后的确认框</figcaption></figure>
   </div>
 
   <details class="rules">
-    <summary><span class="rt">业务规则</span><span class="rgs">规则内容 · 对象与预计人数 · 优先级与互斥 · 重叠与跳过 · 保存并上架 · 实验</span></summary>
+    <summary><span class="rt">业务规则</span><span class="rgs">规则内容 · 对象与预计人数 · 权重与互斥 · 重叠与跳过 · 保存并上架 · 实验</span></summary>
     <div class="rbody">
   <h4 class="rg">规则内容</h4>
   <table class="rule">
-    <tr><td>每条规则选弹窗类型（活动类、储值类）和位置：大厅弹窗（进入大厅时自动弹出）、破产弹窗（玩家破产时弹出）；并设每次最多弹出几个。</td></tr>
+    <tr><td>每条规则选弹窗类型（活动类、储值类）和位置：大厅弹窗（玩家进入或返回大厅时弹出）、破产弹窗（玩家破产、发财金领取结束后弹出）；并设每次最多弹出几个。</td></tr>
     <tr><td>弹窗排序是本规则里按先后弹出的清单，清单里的每一项叫排序项，对应一个活动或礼包，从后台现有的活动、礼包里选，先后可调整。</td></tr>
     <tr><td>每个排序项设弹出时机、弹窗次数、是否「弹出后终止本次后续弹窗」、是否不可关闭（玩家须点按钮）；排序项自己的冷却时间沿用现行设置。</td></tr>
-    <tr><td>同一位置、同一类型有多条规则时，优先级数字越小越先被选中，1 最高。</td></tr>
+    <tr><td>大厅弹窗的弹出时机可多选：活动开启、第 N 次登录、第 N 次登录起、进入大厅、返回大厅；登录次数按账号累计，N 填 1 即首次登录，「第 2 次登录起」即非首次登录。破产弹窗不选弹出时机。</td></tr>
+    <tr><td>弹窗次数按周期设：每日、每周、每 N 天、生效期间内、终身或每回流周期（玩家每回流一次算一个周期），再填周期内弹几次。</td></tr>
+    <tr><td>同一位置、同一类型有多条规则时，权重数字越大越先被选中。</td></tr>
     <tr><td>高级设置里设互斥组、每人总次数和关闭后冷却（玩家直接关掉本规则的弹窗后，隔多久本规则才再弹）。</td></tr>
   </table>
   <h4 class="rg">对象与预计人数</h4>
@@ -290,21 +292,21 @@ table.et td:nth-child(1){white-space:nowrap}
     <tr><td>VIP 名单、黑名单、机器人与测试账号、敏感状态账号对所有弹窗固定排除；推播、短信、快显的 VIP 名单是默认排除、可移出（见第 1 页）。</td></tr>
     <tr><td>弹窗预计人数为对象减去排除群组后会命中本规则的人数；固定排除的玩家弹出时才扣，不从预计人数里减，旁边注明其中固定排除约多少人。</td></tr>
   </table>
-  <h4 class="rg">优先级与互斥</h4>
+  <h4 class="rg">权重与互斥</h4>
   <table class="rule">
-    <tr><td>每次进入同一位置，活动类、储值类各取一条规则；放进同一互斥组的不同类型，合起来只取一条。</td></tr>
-    <tr><td>取哪一条看优先级：此刻对这位玩家有可弹排序项的规则里，优先级最高的一条。它的排序项用完或在冷却中时，由次高的一条接替，所以一位玩家一天里可能看到同类两条规则的排序项。</td></tr>
+    <tr><td>同一位置每次弹窗，活动类、储值类各取一条规则；放进同一互斥组的不同类型，合起来只取一条。</td></tr>
+    <tr><td>取哪一条看权重：此刻对这位玩家有可弹排序项的规则里，权重最大的一条。它的排序项用完或在冷却中时，由权重次大的一条接替，所以一位玩家一天里可能看到同类两条规则的排序项。</td></tr>
   </table>
   <h4 class="rg">重叠与跳过</h4>
   <table class="rule">
     <tr><td>与同位置、同类型其他上架规则重叠时，显示重叠的人数和这些人弹哪一条。</td></tr>
-    <tr><td>规则之间用排除群组避免重叠，如回流规则排除新增玩家；仍重叠的玩家按优先级弹。</td></tr>
-    <tr><td>当天已用快显（游戏内横幅）提示过的同一活动或礼包，对应的排序项跳过。</td></tr>
+    <tr><td>规则之间用排除群组避免重叠，如回流规则排除新增玩家；仍重叠的玩家按权重弹。</td></tr>
+    <tr><td>规则可勾选跳过当天已用快显（游戏内横幅）提示过的同一活动或礼包，默认不勾；勾了时，玩家当天已看过同项快显的排序项本次不弹，取下一项。</td></tr>
     <tr><td>勾了「弹出后终止本次后续弹窗」的排序项弹出后，同位置后面的排序项本次不弹；现有规则里的发财金、揪友同乐邀请默认勾选。</td></tr>
   </table>
   <h4 class="rg">保存并上架</h4>
   <table class="rule">
-    <tr><td>保存并上架前弹出确认，列出改了什么和受影响的其他规则，确认后才生效。</td></tr>
+    <tr><td>保存并上架前弹出确认，列出改了什么、预计人数、与其他上架规则的重叠和受影响的其他规则，确认后才生效。</td></tr>
   </table>
   <h4 class="rg">实验</h4>
   <table class="rule">
