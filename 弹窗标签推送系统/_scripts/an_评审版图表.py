@@ -145,10 +145,13 @@ def segments(events):
 
 
 # ---------------------------------------------------------------- 可复用：趋势图
-def trend_svg(expo, clk, events, *, W=827, ctr_ticks, expo_ticks, ctr_h=176, expo_h=74, ctr_dec=1):
-    """上格：每日比率线（浅）＋段内平均（深，标数字）；下格：每日曝光柱；竖线贯穿两格。
-    events: [{'t': datetime, 'kind': 'chg'|'rel', 'tag': 竖线顶上的标签}]。返回 (svg, 各段平均列表)。"""
-    n = len(expo)
+def trend_svg(bars, num, events, *, den=None, W=827, top_ticks, bar_ticks, top_fmt, avg_fmt,
+              top_title, bar_title, top_h=176, bar_h=74):
+    """上格：每日折线（浅）＋两条竖线之间的平均（深，标数字）；下格：每日柱；两格共用 x 轴，竖线贯穿两格。
+    上格的值＝num/den（比率，段内平均＝段内 num 合计 ÷ den 合计），不给 den 时为 num 本身（段内平均＝日均）。
+    events: [{'t': datetime, 'kind': 'chg'|'rel', 'tag': 竖线顶上的标签}]；平均只取段内完整的日（竖线当天不计）。
+    返回 (svg, 各段 (首日, 末日, 平均) 列表，空段为 None)。"""
+    n = len(bars)
     L, R = 52, 14
     pw = W - L - R
     bw = pw / n
@@ -166,61 +169,52 @@ def trend_svg(expo, clk, events, *, W=827, ctr_ticks, expo_ticks, ctr_h=176, exp
     nrow = 1 + max((t[4] for t in tags), default=0)
     TAG_H = 18
     top = 6 + nrow * (TAG_H + 4) + 18           # 上格顶（留出纵轴名的一行）
-    c_lo, c_hi = ctr_ticks[0], ctr_ticks[-1]
-    Yc = lambda v: top + ctr_h - (v - c_lo) / (c_hi - c_lo) * ctr_h
+    c_lo, c_hi = top_ticks[0], top_ticks[-1]
+    Yc = lambda v: top + top_h - (v - c_lo) / (c_hi - c_lo) * top_h
     gap = 46
-    e_top = top + ctr_h + gap                   # 下格顶
-    e_max = expo_ticks[-1]
-    Ye = lambda v: e_top + expo_h - v / e_max * expo_h
-    base = e_top + expo_h
+    e_top = top + top_h + gap                   # 下格顶
+    e_max = bar_ticks[-1]
+    Ye = lambda v: e_top + bar_h - v / e_max * bar_h
+    base = e_top + bar_h
     H = base + 22
     s = [f'<svg class="ch-svg" width="{W}" height="{H:.0f}" viewBox="0 0 {W} {H:.0f}" role="img">']
-    # 格线与刻度
-    for v in ctr_ticks:
+    for v in top_ticks:
         y = Yc(v)
         s.append(f'<line x1="{L}" x2="{W - R}" y1="{y:.1f}" y2="{y:.1f}" stroke="{GRID}"/>')
-        s.append(txt(L - 8, y + 4, pct(v, ctr_dec), 11, MUTE, 'end'))
-    for v in expo_ticks[1:]:
+        s.append(txt(L - 8, y + 4, top_fmt(v), 11, MUTE, 'end'))
+    for v in bar_ticks[1:]:
         y = Ye(v)
         s.append(f'<line x1="{L}" x2="{W - R}" y1="{y:.1f}" y2="{y:.1f}" stroke="{GRID}"/>')
         s.append(txt(L - 8, y + 4, fmt(v), 11, MUTE, 'end'))
     s.append(txt(L - 8, base + 4, '0', 11, MUTE, 'end'))
-    s.append(txt(0, top - 16, '点击率', 12, INK2, weight='600'))
-    s.append(txt(0, e_top - 16, '曝光', 12, INK2, weight='600'))
-    # 下格：每日曝光柱
+    s.append(txt(0, top - 16, top_title, 12, INK2, weight='600'))
+    s.append(txt(0, e_top - 16, bar_title, 12, INK2, weight='600'))
     cw = min(16.0, bw * 0.6)
-    for i, v in enumerate(expo):
+    for i, v in enumerate(bars):
         s.append(col_path(X(i + .5) - cw / 2, Ye(v), cw, base, 2.5, BAR))
     s.append(f'<line x1="{L}" x2="{W - R}" y1="{base}" y2="{base}" stroke="{AXIS}"/>')
-    # x 轴日期：每 3 天一个，再加最后一天
     for i in list(range(0, n, 3)) + [n - 1]:
         if i == n - 1 and (n - 1) % 3 and (n - 1) % 3 < 2:
             continue
         s.append(txt(X(i + .5), base + 16, md(DAYS[i]), 11, MUTE, 'middle'))
-    # 竖线（先画，压在折线下面）
     for e, x, x0, w, row in tags:
         y_tag = 6 + row * (TAG_H + 4)
-        if e['kind'] == 'rel':
-            s.append(f'<line x1="{x:.1f}" x2="{x:.1f}" y1="{y_tag + TAG_H:.1f}" y2="{base:.1f}" stroke="{REL}" stroke-width="1.5" stroke-dasharray="4 3"/>')
-        else:
-            s.append(f'<line x1="{x:.1f}" x2="{x:.1f}" y1="{y_tag + TAG_H:.1f}" y2="{base:.1f}" stroke="{CHG}" stroke-width="1.5"/>')
-    # 上格：每日点击率（浅）
-    ctr = [c / x for c, x in zip(clk, expo)]
-    pts = ' '.join(f'{X(i + .5):.1f},{Yc(v):.1f}' for i, v in enumerate(ctr))
+        dash = ' stroke-dasharray="4 3"' if e['kind'] == 'rel' else ''
+        s.append(f'<line x1="{x:.1f}" x2="{x:.1f}" y1="{y_tag + TAG_H:.1f}" y2="{base:.1f}" stroke="{REL if e["kind"] == "rel" else CHG}" stroke-width="1.5"{dash}/>')
+    vals = [a / b for a, b in zip(num, den)] if den else list(num)
+    pts = ' '.join(f'{X(i + .5):.1f},{Yc(v):.1f}' for i, v in enumerate(vals))
     s.append(f'<polyline points="{pts}" fill="none" stroke="{ACC_LT}" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>')
-    # 段内平均（深，标数字）
     avgs = []
     for sg in segments(events):
         if not sg:
             avgs.append(None)
             continue
         a, b = sg
-        av = sum(clk[a:b + 1]) / sum(expo[a:b + 1])
+        av = sum(num[a:b + 1]) / sum(den[a:b + 1]) if den else sum(num[a:b + 1]) / (b - a + 1)
         avgs.append((a, b, av))
         y = Yc(av)
         s.append(f'<line x1="{X(a) + 2:.1f}" x2="{X(b + 1) - 2:.1f}" y1="{y:.1f}" y2="{y:.1f}" stroke="{ACC}" stroke-width="3" stroke-linecap="round"/>')
-        s.append(txt((X(a) + X(b + 1)) / 2, y - 8, pct(av, ctr_dec + 0 if ctr_dec else 1), 12.5, INK, 'middle', '700', halo=True))
-    # 标签（最上层）
+        s.append(txt((X(a) + X(b + 1)) / 2, y - 8, avg_fmt(av), 12.5, INK, 'middle', '700', halo=True))
     for e, x, x0, w, row in tags:
         y_tag = 6 + row * (TAG_H + 4)
         if e['kind'] == 'rel':
@@ -233,16 +227,16 @@ def trend_svg(expo, clk, events, *, W=827, ctr_ticks, expo_ticks, ctr_h=176, exp
     return '\n'.join(s), avgs
 
 
-def legend_html():
+def legend_html(bar='每日曝光', line='每日点击率', avg='两条竖线之间的平均点击率（不含竖线当天）',
+                chg='规则改动', rel=True):
     sw_bar = f'<svg width="10" height="12"><rect x="1" y="1" width="8" height="11" rx="1.5" fill="{BAR}"/></svg>'
     sw_ln = f'<svg width="20" height="10"><line x1="1" x2="19" y1="5" y2="5" stroke="{ACC_LT}" stroke-width="1.5"/></svg>'
     sw_av = f'<svg width="20" height="10"><line x1="2" x2="18" y1="5" y2="5" stroke="{ACC}" stroke-width="3" stroke-linecap="round"/></svg>'
     sw_c = f'<svg width="8" height="14"><line x1="4" x2="4" y1="0" y2="14" stroke="{CHG}" stroke-width="1.5"/></svg>'
     sw_r = f'<svg width="8" height="14"><line x1="4" x2="4" y1="0" y2="14" stroke="{REL}" stroke-width="1.5" stroke-dasharray="4 3"/></svg>'
     return ('<div class="ch-lg">'
-            f'<span>{sw_bar}每日曝光</span><span>{sw_ln}每日点击率</span>'
-            f'<span>{sw_av}两条竖线之间的平均点击率（不含竖线当天）</span>'
-            f'<span>{sw_c}规则改动</span><span>{sw_r}客户端发版</span></div>')
+            f'<span>{sw_bar}{E(bar)}</span><span>{sw_ln}{E(line)}</span><span>{sw_av}{E(avg)}</span>'
+            f'<span>{sw_c}{E(chg)}</span>' + (f'<span>{sw_r}客户端发版</span>' if rel else '') + '</div>')
 
 
 def event_rows(events, with_rule=False):
@@ -265,12 +259,12 @@ def event_rows(events, with_rule=False):
 
 
 # ---------------------------------------------------------------- 横条（漏斗、拆分）与柱形（位次）
-def funnel_svg(rows, W=827):
-    """rows: [(步骤, 人数, 次数或 None, 第一行说明, 第二行说明)]；横条长度＝人数。"""
+def funnel_svg(rows, W=827, unit='人', unit2='次', BMAX=170, VW=150):
+    """rows: [(步骤, 数量, 第二个数量或 None, 第一行说明, 第二行说明)]；横条长度＝数量。"""
     RH = 44
-    LW, BX, BMAX = 92, 96, 170
+    LW, BX = 92, 96
     VX = BX + BMAX + 18
-    NX = VX + 150
+    NX = VX + VW
     H = RH * len(rows) + 4
     mx = rows[0][1]
     s = [f'<svg class="ch-svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img">']
@@ -279,9 +273,9 @@ def funnel_svg(rows, W=827):
         s.append(txt(0, yc + 5, name, 13, INK2))
         s.append(f'<line x1="{BX}" x2="{BX}" y1="{yc - 12}" y2="{yc + 12}" stroke="{AXIS}"/>')
         s.append(hbar_path(BX, yc, max(ppl / mx * BMAX, 2), 16, 3))
-        s.append(txt(VX, yc + 5, f'{fmt(ppl)} 人', 14, INK, weight='700'))
-        if times is not None:
-            s.append(txt(VX + tw(f'{fmt(ppl)} 人', 14) + 10, yc + 5, f'{fmt(times)} 次', 12, MUTE))
+        s.append(f'<text x="{VX}" y="{yc + 5}" font-size="14" fill="{INK}" font-weight="700">{fmt(ppl)} {unit}'
+                 + (f'<tspan dx="10" font-size="12" fill="{MUTE}" font-weight="400">{fmt(times)} {unit2}</tspan>' if times is not None else '')
+                 + '</text>')
         if l1:
             s.append(txt(NX, yc + 5, l1, 13, INK if l2 else MUTE))
         if l2:
@@ -290,8 +284,9 @@ def funnel_svg(rows, W=827):
     return '\n'.join(s)
 
 
-def hbars_svg(rows, *, vmax, W=827, LW=150, BMAX=420):
-    """rows: [(名称, 比率, 右侧说明)]；按比率画横条，条端标比率，右栏标曝光。"""
+def hbars_svg(rows, *, vmax, W=827, LW=150, BMAX=420, vfmt=None):
+    """rows: [(名称, 值, 旁注)]；横条长＝值，条端标值（默认按百分比），旁注紧跟其后。"""
+    vfmt = vfmt or pct
     RH = 32
     BX = LW
     H = RH * len(rows)
@@ -302,8 +297,8 @@ def hbars_svg(rows, *, vmax, W=827, LW=150, BMAX=420):
         s.append(txt(0, yc + 4.5, name, 13, INK2))
         ln = v / vmax * BMAX
         s.append(hbar_path(BX, yc, ln, 16, 3))
-        s.append(f'<text x="{BX + ln + 7:.1f}" y="{yc + 4.5:.1f}" font-size="13" fill="{INK}" font-weight="700">{pct(v)}'
-                 f'<tspan dx="10" font-size="12.5" fill="{MUTE}" font-weight="400">{E(right)}</tspan></text>')
+        s.append(f'<text x="{BX + ln + 7:.1f}" y="{yc + 4.5:.1f}" font-size="13" fill="{INK}" font-weight="700">{vfmt(v)}'
+                 + (f'<tspan dx="10" font-size="12.5" fill="{MUTE}" font-weight="400">{E(right)}</tspan>' if right else '') + '</text>')
     s.append('</svg>')
     return '\n'.join(s)
 
@@ -420,8 +415,9 @@ def build_14():
     check(all(r[1] <= (r[2] or 10**9) for r in rows), '14 每步人数 ≤ 次数')
     check(no_report > 0, f'14 返回后未上报 {no_report} > 0')
     # 趋势图
-    svg, avgs = trend_svg(EXPO14, CLK14, EV14, ctr_ticks=[0.09, 0.10, 0.11, 0.12, 0.13, 0.14],
-                          expo_ticks=[0, 2000, 4000], ctr_dec=0)
+    svg, avgs = trend_svg(EXPO14, CLK14, EV14, den=EXPO14, top_ticks=[0.09, 0.10, 0.11, 0.12, 0.13, 0.14],
+                          bar_ticks=[0, 2000, 4000], top_fmt=lambda v: pct(v, 0), avg_fmt=pct,
+                          top_title='点击率', bar_title='曝光')
     check(min(c / x for c, x in zip(CLK14, EXPO14)) > 0.09 and max(c / x for c, x in zip(CLK14, EXPO14)) < 0.14,
           '14 每日点击率都在纵轴 9%–14% 内')
     check(max(EXPO14) < 4000, f'14 每日曝光 {min(EXPO14)}–{max(EXPO14)} 在纵轴内')
@@ -476,8 +472,10 @@ EXPO13, CLK13 = gen_daily(EV13, 47000, [1.00, 0.91, 0.91, 0.90, 0.905, 0.91],
                           wkend_expo=0.14, wkend_ctr=-0.0015, sd_expo=0.025, sd_ctr=0.0009, seed=13)
 PPL13, PREV13 = 71400, dict(ppl=69900, expo=1361800, clk=94100)
 POS13 = [('第 1 个', 0.404, 0.096), ('第 2 个', 0.307, 0.068), ('第 3 个', 0.182, 0.054), ('第 4 个及以后', 0.107, 0.043)]
-RULES13 = [('12 活动类·新增玩家', 1, 0.122, 0.112), ('13 活动类·回流', 2, 0.151, 0.087), ('14 活动类·潜在流失', 3, 0.040, 0.074),
-           ('5 活动类·其余', 4, 0.472, 0.066), ('6 通用弹窗', 5, 0.215, 0.060)]
+#            规则, 优先级, 曝光份额, 预设点击率, 曝光人数（各规则各自去重；合计行按玩家去重＝PPL13，小于各行相加）
+RULES13 = [('12 活动类·新增玩家', 1, 0.122, 0.112, 9860), ('13 活动类·回流', 2, 0.151, 0.087, 14620),
+           ('14 活动类·潜在流失', 3, 0.040, 0.074, 4130), ('5 活动类·其余', 4, 0.472, 0.066, 52340),
+           ('6 通用弹窗', 5, 0.215, 0.060, 38950)]
 
 
 def delta_pct(cur, prev):
@@ -497,8 +495,9 @@ def build_13():
     ]
     check(PPL13 < expo, '13 曝光人数 < 曝光次数')
     check(True, f'13 合计 曝光 {fmt(expo)}、点击 {fmt(clk)}、点击率 {pct(ctr, 2)}；前 30 天 {pct(pctr, 2)}，差 {dpp:+.2f} 个百分点')
-    svg, avgs = trend_svg(EXPO13, CLK13, EV13, ctr_ticks=[0.060, 0.065, 0.070, 0.075, 0.080],
-                          expo_ticks=[0, 30000, 60000])
+    svg, avgs = trend_svg(EXPO13, CLK13, EV13, den=EXPO13, top_ticks=[0.060, 0.065, 0.070, 0.075, 0.080],
+                          bar_ticks=[0, 30000, 60000], top_fmt=pct, avg_fmt=pct,
+                          top_title='点击率', bar_title='曝光')
     dctr = [c / x for c, x in zip(CLK13, EXPO13)]
     check(min(dctr) > 0.06 and max(dctr) < 0.08, f'13 每日点击率 {pct(min(dctr))}–{pct(max(dctr))} 在纵轴内')
     check(max(EXPO13) < 60000, f'13 每日曝光 {fmt(min(EXPO13))}–{fmt(max(EXPO13))} 在纵轴内')
@@ -508,15 +507,20 @@ def build_13():
     check(sum(ex_pos) == expo and sum(ck_pos) == clk, '13 各位次曝光、点击相加等于合计')
     pos_rows = [(n, c / x, x) for (n, _, _), x, c in zip(POS13, ex_pos, ck_pos)]
     check(all(a[1] > b[1] for a, b in zip(pos_rows, pos_rows[1:])), '13 位次越后点击率越低 ' + '、'.join(pct(r[1]) for r in pos_rows))
-    ex_r = split_int(expo, [w for _, _, w, _ in RULES13])
-    ck_r = split_clicks(clk, ex_r, [c for _, _, _, c in RULES13])
+    ex_r = split_int(expo, [r[2] for r in RULES13])
+    ck_r = split_clicks(clk, ex_r, [r[3] for r in RULES13])
     check(sum(ex_r) == expo and sum(ck_r) == clk, '13 各规则曝光、点击相加等于合计')
+    ppl_sum = sum(r[4] for r in RULES13)
+    check(PPL13 < ppl_sum and max(r[4] for r in RULES13) <= PPL13, f'13 合计曝光人数 {fmt(PPL13)} < 各规则相加 {fmt(ppl_sum)}（按玩家去重），且不小于任一行')
+    check(all(r[4] < x for r, x in zip(RULES13, ex_r)), '13 各规则曝光人数 < 曝光次数')
     card_html = ''.join(
         f'<div class="ch-card"><div class="l">{E(l)}</div><div class="v">{v}<small>{u}</small></div>'
         f'<div class="d">比前 30 天 <b>{E(d)}</b></div></div>' for l, v, u, d in cards)
     trs = ''.join(
-        f'<tr><td>{E(n)}</td><td class="pd-r">{p}</td><td class="pd-r">{fmt(x)}</td><td class="pd-r">{pct(c / x)}</td><td><span class="pd-lk">查看数据</span></td></tr>'
-        for (n, p, _, _), x, c in zip(RULES13, ex_r, ck_r))
+        f'<tr><td><span class="pd-lk">{E(r[0])}</span></td><td class="pd-r">{r[1]}</td><td class="pd-r">{fmt(r[4])}</td><td class="pd-r">{fmt(x)}</td><td class="pd-r">{pct(c / x)}</td></tr>'
+        for r, x, c in zip(RULES13, ex_r, ck_r))
+    trs += (f'<tr class="pd-tot"><td>合计</td><td class="pd-r">—</td><td class="pd-r">{fmt(PPL13)}</td><td class="pd-r">{fmt(expo)}</td>'
+            f'<td class="pd-r">{pct(ctr)}</td></tr>')
     body = f'''<div class="ch-sec" style="padding-top:12px;padding-bottom:12px">
   <div class="ch-row">{seg_html(["大厅弹窗", "破产弹窗", "快显"], "大厅弹窗")}<span style="width:14px"></span>{seg_html(["今日", "近 7 天", "近 30 天", "自定义"], "近 30 天")}<span class="ch-m">{md(DAYS[0])}–{md(DAYS[-1])}，与前 30 天（{md(PREV[0])}–{md(PREV[1])}）比</span></div>
 </div>
@@ -533,11 +537,11 @@ def build_13():
   <div class="ch-2col">
     <div>
       <div class="ch-h">按位次<span class="ch-m">这次进入大厅时第几个看到，跨规则计</span></div>
-      {cols_svg(pos_rows, vmax=0.11)}
+      {cols_svg(pos_rows, vmax=0.11, W=330)}
     </div>
     <div>
-      <div class="ch-h">规则</div>
-      <table class="pd-dt"><thead><tr><th>规则</th><th class="pd-r">优先级</th><th class="pd-r">曝光</th><th class="pd-r">点击率</th><th></th></tr></thead>
+      <div class="ch-h">规则<span class="ch-m">点规则名看这条规则的数据</span></div>
+      <table class="pd-dt"><thead><tr><th>规则</th><th class="pd-r">优先级</th><th class="pd-r">曝光人数</th><th class="pd-r">曝光</th><th class="pd-r">点击率</th></tr></thead>
       <tbody>{trs}</tbody></table>
     </div>
   </div>
@@ -545,7 +549,366 @@ def build_13():
     return page('游戏内推送数据', body)
 
 
-BUILDERS = {'14_单条规则数据': build_14, '13_游戏内数据': build_13}
+# ================================================================ 通用：数字卡走势小图、分布柱、页面外框
+def spark_svg(vals, w, h=26):
+    """所选期间的每日走势小图：浅色面积＋折线，最后一天标点。"""
+    lo, hi = min(vals), max(vals)
+    if hi == lo:
+        hi, lo = hi + 1, lo - 1
+    pad = 4
+    X = lambda i: pad + i * (w - 2 * pad) / (len(vals) - 1)
+    Y = lambda v: pad + (h - 2 * pad) * (1 - (v - lo) / (hi - lo))
+    pts = ' '.join(f'{X(i):.1f},{Y(v):.1f}' for i, v in enumerate(vals))
+    area = f'{X(0):.1f},{h} ' + pts + f' {X(len(vals) - 1):.1f},{h}'
+    xe, ye = X(len(vals) - 1), Y(vals[-1])
+    return (f'<svg class="ch-svg" width="{w:.0f}" height="{h}" viewBox="0 0 {w:.0f} {h}">'
+            f'<polygon points="{area}" fill="{ACC}" fill-opacity="0.10"/>'
+            f'<polyline points="{pts}" fill="none" stroke="{ACC}" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>'
+            f'<circle cx="{xe:.1f}" cy="{ye:.1f}" r="3" fill="{ACC}" stroke="#fff" stroke-width="2"/></svg>')
+
+
+def dist_svg(rows, cap_after, cap_label, *, vmax, W=390, H=196):
+    """每人每天收到几条的分布：rows [(条数, 占比, 玩家·天)]；在第 cap_after 根柱之后画上限线。"""
+    top, bot = 30, 40
+    ph = H - top - bot
+    base = top + ph
+    L = 6
+    slot = (W - L) / len(rows)
+    cw = 24
+    s = [f'<svg class="ch-svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img">']
+    s.append(f'<line x1="0" x2="{W}" y1="{base}" y2="{base}" stroke="{AXIS}"/>')
+    xc = L + slot * cap_after
+    s.append(f'<line x1="{xc:.1f}" x2="{xc:.1f}" y1="14" y2="{base}" stroke="{CHG}" stroke-width="1.5" stroke-dasharray="4 3"/>')
+    s.append(txt(xc + 6, 14, cap_label, 12, INK, weight='600'))
+    for k, (name, v, n) in enumerate(rows):
+        cx = L + slot * k + slot / 2
+        y = base - v / vmax * ph
+        s.append(col_path(cx - cw / 2, y, cw, base, 4))
+        s.append(txt(cx, y - 7, pct(v), 13, INK, 'middle', '700'))
+        s.append(txt(cx, base + 18, name, 12.5, INK2, 'middle'))
+        s.append(txt(cx, base + 34, fmt(n), 11.5, MUTE, 'middle'))
+    s.append('</svg>')
+    return '\n'.join(s)
+
+
+def page_raw(title, inner):
+    """不加 .ch-z 外层的页面（00 后台首页自带外框与缩放）。"""
+    return page(title, '').replace('<div class="ch-z">\n\n</div>', inner)
+
+
+def delta_pp(cur, prev):
+    d = (cur - prev) * 100
+    return ('▲ ' if d >= 0 else '▼ ') + f'{abs(d):.1f} 个百分点'
+
+
+# ================================================================ 示例数据：06b 每人每天收到几条（近 30 天）
+EV6B = [   # 取自操作纪录：每人每天上限与勿扰页的改动
+    dict(t=dt.datetime(2026, 9, 22, 15, 30), kind='chg', what='推播的服务通知：不计入当天条数 → 计入', who='运营01'),
+    dict(t=dt.datetime(2026, 10, 5, 10, 10), kind='chg', what='推播的服务通知：计入当天条数 → 不计入', who='运营01'),
+]
+for e in EV6B:
+    e['tag'] = md(e['t'].date())
+
+
+def gen_series(events, base, levels, *, wkend, sd, seed, step=10):
+    """按段生成每日数量；竖线当天按时刻把前后两段加权。"""
+    rnd = random.Random(seed)
+    ev_days = {(e['t'].date() - D0).days: i for i, e in enumerate(events)}
+    out, seg = [], 0
+    for i, d in enumerate(DAYS):
+        if i in ev_days:
+            k = ev_days[i]
+            f = ev_pos(events[k]) - i
+            lv = f * levels[k] + (1 - f) * levels[k + 1]
+            seg = k + 1
+        else:
+            lv = levels[seg]
+        x = base * lv * (1 + (wkend if d.weekday() >= 5 else 0)) * (1 + rnd.gauss(0, sd))
+        out.append(int(round(x / step)) * step)
+    return out
+
+
+def seg_of_day(events, i):
+    k = 0
+    for e in sorted(events, key=ev_pos):
+        if (e['t'].date() - D0).days <= i:
+            k += 1
+    return k
+
+
+# 推播：每天收到至少 1 条的玩家、各段的条数分布（1、2、3、4 条及以上）
+RECV_P = gen_series([], 5600, [1.0], wkend=0.10, sd=0.03, seed=61)
+SHARE_P = [[0.596, 0.312, 0.070, 0.022], [0.585, 0.355, 0.047, 0.013], [0.598, 0.311, 0.069, 0.022]]
+CAP_P = gen_series(EV6B, 5600, [0.295, 0.368, 0.298], wkend=0.10, sd=0.035, seed=62)        # 碰到上限的人数
+BLOCK_P = gen_series(EV6B, 5600, [0.165, 0.272, 0.168], wkend=0.10, sd=0.05, seed=63)       # 上限拦下人次
+RECV_S = gen_series([], 860, [1.0], wkend=0.05, sd=0.05, seed=64)
+SHARE_S = [0.962, 0.034, 0.004]
+FOUR_PLUS = 4.25        # 「4 条及以上」的平均条数
+
+
+def mean_p(seg):
+    sh = SHARE_P[seg]
+    return sh[0] * 1 + sh[1] * 2 + sh[2] * 3 + sh[3] * FOUR_PLUS
+
+
+MEAN_S = SHARE_S[0] * 1 + SHARE_S[1] * 2 + SHARE_S[2] * 3.1
+SEND_P = [round(RECV_P[i] * mean_p(seg_of_day(EV6B, i))) for i in range(N)]     # 推播每天发出条数
+SEND_S = [round(r * MEAN_S) for r in RECV_S]
+
+
+def build_06b():
+    tot_p = sum(RECV_P)
+    w = [sum(RECV_P[i] * SHARE_P[seg_of_day(EV6B, i)][k] for i in range(N)) for k in range(4)]
+    cnt_p = split_int(tot_p, w)
+    tot_s = sum(RECV_S)
+    cnt_s = split_int(tot_s, SHARE_S)
+    rows_p = [(f'{k} 条' if k < 4 else '4 条及以上', c / tot_p, c) for k, c in zip(range(1, 5), cnt_p)]
+    rows_s = [(f'{k} 条' if k < 3 else '3 条及以上', c / tot_s, c) for k, c in zip(range(1, 4), cnt_s)]
+    avg_p = sum(SEND_P) / tot_p
+    avg_s = sum(SEND_S) / tot_s
+    check(sum(cnt_p) == tot_p and sum(cnt_s) == tot_s, f'06b 分布相加＝收到至少 1 条的玩家·天（推播 {fmt(tot_p)}、短信 {fmt(tot_s)}）')
+    check(all(b < c for b, c in zip(BLOCK_P, CAP_P)) or True, '06b 每天拦下人次与碰到上限人数并列，量级 ' +
+          f'{fmt(min(BLOCK_P))}–{fmt(max(BLOCK_P))} / {fmt(min(CAP_P))}–{fmt(max(CAP_P))}')
+    check(all(c < r for c, r in zip(CAP_P, RECV_P)), '06b 每天碰到上限的人数 < 当天收到的人数')
+    svg, avgs = trend_svg(BLOCK_P, CAP_P, EV6B, top_ticks=[0, 1000, 2000, 3000], bar_ticks=[0, 1000, 2000],
+                          top_fmt=fmt, avg_fmt=lambda v: fmt(int(round(v / 10.0)) * 10),
+                          top_title='碰到上限的人数', bar_title='上限拦下人次', top_h=150)
+    check(max(CAP_P) < 3000 and max(BLOCK_P) < 2000, '06b 每日数值在纵轴内')
+    check(True, '06b 碰到上限日均 ' + ' → '.join(fmt(round(a[2])) for a in avgs if a))
+    body = f"""<div class="ch-sec" style="padding-top:12px;padding-bottom:12px">
+  <div class="ch-row">{seg_html(["今日", "近 7 天", "近 30 天", "自定义"], "近 30 天")}<span class="ch-m">{md(DAYS[0])}–{md(DAYS[-1])}</span></div>
+</div>
+<div class="ch-sec">
+  <div class="ch-h">每人每天收到几条<span class="ch-m">按收到至少 1 条的玩家·天计，台湾时间自然日</span></div>
+  <div class="ch-2col eq">
+    <div>
+      <div class="ch-sub"><b>推播</b><span class="ch-m">{fmt(tot_p)} 玩家·天，平均每天 {avg_p:.1f} 条</span></div>
+      {dist_svg(rows_p, 2, '每人每天上限 2 条', vmax=0.70)}
+    </div>
+    <div>
+      <div class="ch-sub"><b>短信</b><span class="ch-m">{fmt(tot_s)} 玩家·天，平均每天 {avg_s:.1f} 条</span></div>
+      {dist_svg(rows_s, 1, '每人每天上限 1 条', vmax=1.12)}
+    </div>
+  </div>
+  <div class="ch-note">超过上限的是服务通知，和勾了「不受每人每天上限」的推送。</div>
+</div>
+<div class="ch-sec">
+  <div class="ch-h">碰到上限</div>
+  <div class="ch-row" style="margin:-2px 0 8px">{seg_html(["推播", "短信"], "推播")}</div>
+  {legend_html(bar='每日上限拦下人次', line='每日碰到上限的人数', avg='两条竖线之间的日均人数（不含竖线当天）', chg='上限设置改动', rel=False)}
+  {svg}
+  {event_rows(EV6B)}
+</div>"""
+    return page('每人每天收到几条', body)
+
+
+# ================================================================ 示例数据：06 概览、00 后台首页（近 7 天 10/06–10/12，对比 9/29–10/05）
+CUR7, PRV7 = range(23, 30), range(16, 23)
+RULE7_EXPO = [round(x * 0.97 / 10) * 10 for x in EXPO14]             # 破产弹窗的另一条规则 7（对照组那一半）
+RULE7_CLK = [round(x * (0.106 if i < 23 else 0.117)) for i, x in enumerate(RULE7_EXPO)]
+QS_EXPO = gen_series([], 1980, [1.0], wkend=0.08, sd=0.04, seed=71)  # 快显
+QS_CLK = [round(x * (0.098 if i < 23 else 0.128)) for i, x in enumerate(QS_EXPO)]   # 快显 10/06 起换了文案
+
+
+def ov_data():
+    """两层的数字：游戏外取 06b 的推播、短信每日数据，游戏内取 13（大厅弹窗）、14（破产弹窗）的每日数据加快显。"""
+    rnd = random.Random(72)
+    send = [SEND_P[i] + SEND_S[i] for i in range(N)]
+    ios = [round(SEND_P[i] * 0.083) for i in range(N)]                       # iOS 未接入（不进到达率分母）
+    arr = [round((send[i] - ios[i]) * (0.926 + rnd.gauss(0, 0.004))) for i in range(N)]
+    clk = [round(send[i] * (0.0556 + rnd.gauss(0, 0.0012))) for i in range(N)]
+    pdays = [RECV_P[i] + round(RECV_S[i] * 0.55) for i in range(N)]          # 当天收到至少 1 条的玩家
+    arr_ppl = [round(pdays[i] * 0.93) for i in range(N)]
+    pop = [EXPO13[i] + EXPO14[i] + RULE7_EXPO[i] for i in range(N)]           # 弹窗曝光（大厅＋破产）
+    ex = [pop[i] + QS_EXPO[i] for i in range(N)]
+    ck = [CLK13[i] + CLK14[i] + RULE7_CLK[i] + QS_CLK[i] for i in range(N)]
+    viewers = [round(pop[i] / (4.86 + rnd.gauss(0, 0.05))) for i in range(N)]  # 当天看到至少 1 个弹窗的玩家
+    ex_ppl = [v + 310 for v in viewers]
+    S = lambda a, r: sum(a[i] for i in r)
+    out = {}
+    for key, r in (('cur', CUR7), ('prv', PRV7)):
+        d = dict(send=S(send, r), arr=S(arr, r), ios=S(ios, r), clk=S(clk, r),
+                 arr_ppl=round(S(arr_ppl, r) * (0.62 if key == 'cur' else 0.615)),
+                 per=S(send, r) / S(pdays, r),
+                 ex=S(ex, r), ck=S(ck, r), ex_ppl=round(S(ex_ppl, r) * (0.68 if key == 'cur' else 0.675)),
+                 per_pop=S(pop, r) / S(viewers, r))
+        d['arr_rate'] = d['arr'] / (d['send'] - d['ios'])
+        d['ctr_out'] = d['clk'] / d['send']
+        d['ctr_in'] = d['ck'] / d['ex']
+        out[key] = d
+    sp = lambda a: [a[i] for i in CUR7]
+    out['spark'] = dict(send=sp(send), arr=sp(arr), clk=sp(clk), arr_ppl=sp(arr_ppl),
+                        per=[send[i] / pdays[i] for i in CUR7], ex_ppl=sp(ex_ppl), ex=sp(ex), ck=sp(ck),
+                        ctr_in=[ck[i] / ex[i] for i in CUR7], per_pop=[pop[i] / viewers[i] for i in CUR7])
+    return out
+
+
+_OV_CHECKED = []
+
+
+def ov_cards(spark_w):
+    d = ov_data()
+    first = not _OV_CHECKED
+    _OV_CHECKED.append(1)
+    chk = check if first else (lambda *a: None)
+    c, p, sp = d['cur'], d['prv'], d['spark']
+    out_cards = [
+        ('发送', fmt(c['send']), '', '', delta_pct(c['send'], p['send']), sp['send']),
+        ('到达', fmt(c['arr']), '', f'到达率 {pct(c["arr_rate"])}', delta_pct(c['arr'], p['arr']), sp['arr']),
+        ('点击', fmt(c['clk']), '', f'点击率 {pct(c["ctr_out"])}', delta_pct(c['clk'], p['clk']), sp['clk']),
+        ('到达人数', fmt(c['arr_ppl']), '', '按玩家去重', delta_pct(c['arr_ppl'], p['arr_ppl']), sp['arr_ppl']),
+        ('人均每天收到', f'{c["per"]:.1f}', ' 条', '', delta_pct(c['per'], p['per']), sp['per']),
+    ]
+    in_cards = [
+        ('曝光人数', fmt(c['ex_ppl']), '', '按玩家去重', delta_pct(c['ex_ppl'], p['ex_ppl']), sp['ex_ppl']),
+        ('曝光', fmt(c['ex']), '', '', delta_pct(c['ex'], p['ex']), sp['ex']),
+        ('点击', fmt(c['ck']), '', '', delta_pct(c['ck'], p['ck']), sp['ck']),
+        ('点击率', f'{c["ctr_in"] * 100:.1f}', '%', '', delta_pp(c['ctr_in'], p['ctr_in']), sp['ctr_in']),
+        ('人均每天弹窗曝光', f'{c["per_pop"]:.1f}', ' 个', '', delta_pct(c['per_pop'], p['per_pop']), sp['per_pop']),
+    ]
+    chk(c['arr'] < c['send'] - c['ios'] and c['clk'] < c['send'], f'06 游戏外 发送 {fmt(c["send"])} > 到达 {fmt(c["arr"])}（另 iOS 未接入 {fmt(c["ios"])}）> 点击 {fmt(c["clk"])}')
+    chk(c['arr_ppl'] < c['arr'], f'06 到达人数 {fmt(c["arr_ppl"])} < 到达条数')
+    chk(c['ex_ppl'] < c['ex'] and c['ck'] < c['ex'], f'06 游戏内 曝光 {fmt(c["ex"])}、点击 {fmt(c["ck"])}、点击率 {pct(c["ctr_in"], 2)}、曝光人数 {fmt(c["ex_ppl"])}（13 的 30 天大厅曝光人数 {fmt(PPL13)}）')
+    chk(True, f'06 到达率 {pct(c["arr_rate"])}、游戏外点击率 {pct(c["ctr_out"])}、人均每天收到 {c["per"]:.2f} 条、人均每天弹窗曝光 {c["per_pop"]:.2f} 个')
+
+    def card(l, v, u, sub, dl, vals):
+        return (f'<div class="ch-card"><div class="l">{E(l)}</div><div class="v">{v}<small>{E(u)}</small></div>'
+                f'<div class="s">{E(sub) or "&nbsp;"}</div><div class="d"><b>{E(dl)}</b></div>{spark_svg(vals, spark_w)}</div>')
+    return ''.join(card(*x) for x in out_cards), ''.join(card(*x) for x in in_cards)
+
+
+def ov_parts(spark_w):
+    oc, ic = ov_cards(spark_w)
+    flt = (f'<div class="ch-row">{seg_html(["今日", "近 7 天", "近 30 天", "自定义"], "近 7 天")}'
+           f'<span class="ch-m">{md(DAYS[CUR7[0]])}–{md(DAYS[CUR7[-1]])}，与前 7 天（{md(DAYS[PRV7[0]])}–{md(DAYS[PRV7[-1]])}）比</span></div>')
+    l1 = ('<div class="ch-lh"><b>游戏外推送</b><span>推播、短信</span><span class="ch-m">从发送算起，点击率＝点击 ÷ 发送</span></div>'
+          f'<div class="ch-cards c5">{oc}</div>')
+    l2 = ('<div class="ch-lh"><b>游戏内推送</b><span>弹窗、快显</span><span class="ch-m">从曝光算起，点击率＝点击 ÷ 曝光</span></div>'
+          f'<div class="ch-cards c5">{ic}</div>')
+    return flt, l1, l2
+
+
+def build_06():
+    flt, l1, l2 = ov_parts(124)
+    body = f"""<div class="ch-sec" style="padding-top:12px;padding-bottom:12px">
+  {flt}
+</div>
+<div class="ch-sec">
+  {l1}
+</div>
+<div class="ch-sec">
+  {l2}
+</div>"""
+    return page('概览', body)
+
+
+MENU = [('it on', '概览'), ('gl', '游戏外推送'), ('it sub', '推播'), ('it sub', '短信'), ('it sub', '每人每天上限与勿扰'),
+        ('it sub', '推播与短信数据统计'), ('gl', '游戏内推送'), ('it sub', '弹窗'), ('it sub', '快显'),
+        ('it sub', '每人每天弹窗与快显上限'), ('it sub', '弹窗与快显数据统计'), ('dv', ''),
+        ('it', '项目目录'), ('it', '玩家查询'), ('it', '操作纪录')]
+
+
+def build_00():
+    flt, l1, l2 = ov_parts(110)
+    menu = ''.join(f'<div class="{c}">{E(t)}</div>' for c, t in MENU)
+    inner = f"""<div class="ch-app">
+  <div class="ch-topbar"><b>推送统一后台</b><span class="ch-sp"></span><span class="ch-acct"><i>运</i>运营01</span></div>
+  <div class="ch-frame">
+    <div class="ch-menu">{menu}</div>
+    <div class="ch-mainx cp">
+      <div class="ch-ptitle">概览</div>
+      {flt}
+      <div class="ch-layer">{l1}</div>
+      <div class="ch-layer">{l2}</div>
+    </div>
+  </div>
+</div>"""
+    return page_raw('后台首页', inner)
+
+
+# ================================================================ 示例数据：02b 确认发送前的预计人数（第 1 页的推播：潜在流失两档）
+F02B = [   # 与 02_新建推播 的预计人数一致
+    ('群组人数', 7880, '潜在流失（两档）', ''),
+    ('受众', 7850, '少 30 人', '排除群组：VIP 名单 12 · 黑名单 3 · 机器人与测试账号 7 · 敏感状态 8'),
+    ('能收到', 4310, '少 3,540 人', '收不到推播：没装 App 2,860 · 通知关闭 660 · 同一设备只发 1 条 20'),
+    ('预计发出', 4200, '少 110 人', '每人每天上限拦下：10/15 当天已收满 2 条推播'),
+]
+
+
+def build_02b():
+    v = [r[1] for r in F02B]
+    check(all(a > b for a, b in zip(v, v[1:])), f'02b 逐层递减 {v}')
+    check(v[0] - v[1] == 12 + 3 + 7 + 8 and v[1] - v[2] == 2860 + 660 + 20 and v[2] - v[3] == 110, '02b 每层少的人数＝各原因相加')
+    rows = [(n, x, None, l1, l2) for n, x, l1, l2 in F02B]
+    body = f"""<div class="ch-sec">
+  <div class="ch-h">预计人数<span class="ch-m">群组批次 10/12 15:25</span></div>
+  {funnel_svg(rows, BMAX=200, VW=104)}
+</div>
+<div class="ch-sec">
+  <div class="ch-kv">
+    <span>发送方式</span><span>定时 2026-10-15 20:00</span>
+    <span>发送对象</span><span>潜在流失（两档）；排除 VIP 名单、黑名单、机器人与测试账号</span>
+    <span>测试</span><span>上次测试 10/12 11:12 · 运营01 · 5 个测试账号：已发出 4，未送达 1（测试03 未开启通知）</span>
+  </div>
+  <div class="ch-row ch-btns"><span class="ch-m">取消</span><span class="ch-sp"></span><span class="btn2">存为草稿</span><span class="btn2">发送测试</span><span class="btn2 p">确认排程</span></div>
+</div>"""
+    return page('确认前的预计人数', body)
+
+
+# ================================================================ 示例数据：07 单条推送数据（推送 31，近 7 天 10/06–10/12）
+P07 = dict(aud=8652, pre_block=4873, reject=125, unknown=37, bounce=25, no_receipt=67, wait_receipt=79, ios=313, clk=290,
+           login=1520, pay_ppl=186, pay_amt='NT$93,400')
+BLOCK07 = [('没装 App', 1946), ('勿扰放弃', 1382), ('通知关闭', 1127), ('每人每天上限拦下', 418)]
+REJECT07 = [('令牌失效', 118), ('内容格式错误', 7)]
+
+
+def build_07():
+    f = P07
+    send = f['aud'] - f['pre_block'] - f['reject'] - f['unknown']
+    arr = send - f['bounce'] - f['no_receipt'] - f['wait_receipt'] - f['ios']
+    arr_rate = arr / (send - f['ios'])
+    ctr = f['clk'] / send
+    check(sum(n for _, n in BLOCK07) == f['pre_block'] and sum(n for _, n in REJECT07) == f['reject'], '07 未发出原因相加＝发送前拦下、服务商未受理')
+    check(f['aud'] > send > arr > f['clk'], f'07 漏斗递减 {f["aud"]} → {send} → {arr} → {f["clk"]}；到达率 {pct(arr_rate)}、点击率 {pct(ctr)}')
+    rows = [
+        ('受众', f['aud'], None, '排除群组后触发本推送的人次', ''),
+        ('发送', send, None, f'少 {fmt(f["aud"] - send)} 人次',
+         f'发送前拦下 {fmt(f["pre_block"])} · 服务商未受理 {f["reject"]} · 结果不明 {f["unknown"]}'),
+        ('到达', arr, None, f'少 {fmt(send - arr)} 人次 · 到达率 {pct(arr_rate)}',
+         f'受理后退回 {f["bounce"]} · 无回执 {f["no_receipt"]} · 待回执 {f["wait_receipt"]} · iOS 未接入 {f["ios"]}（单列，不进分母）'),
+        ('点击', f['clk'], None, f'点击率 {pct(ctr)}', '点击 ÷ 发送'),
+    ]
+    blk = sorted(BLOCK07, key=lambda x: -x[1])
+    body = f"""<div class="ch-sec">
+  <div class="ch-row"><div class="ch-ttl">限时加码礼包未购买提醒<span class="pd-st">运行中</span><span class="pd-st">推送 31</span></div><span class="ch-sp"></span><span class="btn2">逐人明细</span></div>
+  <div class="ch-meta">推播<i>|</i>按行为：限时加码礼包剩 2 小时且尚未购买<i>|</i>排除 VIP 名单、黑名单、机器人与测试账号</div>
+</div>
+<div class="ch-sec" style="padding-top:12px;padding-bottom:12px">
+  <div class="ch-row">{seg_html(["今日", "近 7 天", "近 30 天", "自定义"], "近 7 天")}<span class="ch-m">{md(DAYS[CUR7[0]])}–{md(DAYS[CUR7[-1]])}</span></div>
+</div>
+<div class="ch-sec">
+  <div class="ch-h">漏斗<span class="ch-m">按行为推送，同一玩家每次触发各计一次</span></div>
+  {funnel_svg(rows, unit='人次', BMAX=170, VW=118)}
+  <div class="ch-ref"><b>发送后 24 小时内</b><span class="ch-m">推播只作参考</span>登录 {fmt(f["login"])} 人　·　付费 {f["pay_ppl"]} 人、{f["pay_amt"]}</div>
+</div>
+<div class="ch-sec">
+  <div class="ch-2col w07">
+    <div>
+      <div class="ch-h">未发出的原因<span class="ch-m">发送前拦下 {fmt(f["pre_block"])} 人次，从多到少</span><span class="ch-sp"></span><span class="btn2 sm">导出名单</span></div>
+      {hbars_svg([(n, x, '') for n, x in blk], vmax=2100, W=440, LW=118, BMAX=260, vfmt=fmt)}
+    </div>
+    <div>
+      <div class="ch-h">服务商未受理<span class="ch-m">{f["reject"]} 人次</span></div>
+      {hbars_svg([(n, x, '') for n, x in REJECT07], vmax=135, W=320, LW=100, BMAX=150, vfmt=fmt)}
+      <div class="ch-note" style="margin-top:8px">另有结果不明 {f["unknown"]} 人次：已提交，服务商未返回</div>
+    </div>
+  </div>
+</div>"""
+    return page('单条推送数据', body)
+
+
+BUILDERS = {'14_单条规则数据': build_14, '13_游戏内数据': build_13, '06_概览': build_06, '00_后台首页': build_00,
+            '02b_预计人数': build_02b, '06b_每人每天收到': build_06b, '07_单条漏斗': build_07}
 
 if __name__ == '__main__':
     names = sys.argv[1:] or list(BUILDERS)

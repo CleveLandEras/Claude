@@ -46,6 +46,42 @@
 .ch .pd-tabs{padding:0;margin:-4px 0 12px;height:36px}
 .ch .pd-tabs>span{height:34px;padding:0 16px 0 0;margin-right:16px}
 /* 两栏 */
-.ch-2col{display:grid;grid-template-columns:372px minmax(0,1fr);gap:30px;align-items:start}
+.ch-2col{display:grid;grid-template-columns:330px minmax(0,1fr);gap:28px;align-items:start}
 .ch .pd-dt td,.ch .pd-dt th{padding:6px 8px}
 .ch .pd-dt td{font-variant-numeric:tabular-nums}
+/* 概览数字卡（06、00）：两层各 5 张，带走势小图 */
+.ch-cards.c5{grid-template-columns:repeat(5,minmax(0,1fr))}
+.ch-card .s{font-size:12px;color:var(--ink2);min-height:18px;line-height:18px}
+.ch-card .ch-svg{margin-top:6px}
+.ch-lh{display:flex;align-items:baseline;gap:10px;margin:0 0 10px;padding-left:10px;border-left:3px solid #3A4049;line-height:20px}
+.ch-lh b{font-size:15px;font-weight:600}
+.ch-lh>span:not(.ch-m){font-size:13.5px;color:var(--ink2)}
+.ch-sub{display:flex;align-items:baseline;gap:10px;font-size:13.5px;margin-bottom:4px}
+.ch-note{font-size:12.5px;color:var(--mute);margin-top:6px}
+.ch-2col.eq{grid-template-columns:1fr 1fr;gap:40px}
+.ch-2col.w07{grid-template-columns:440px minmax(0,1fr);gap:40px}
+.ch-h .btn2.sm{font-weight:400}
+/* 02b 确认区 */
+.ch-kv{display:grid;grid-template-columns:72px minmax(0,1fr);row-gap:6px;font-size:13px;line-height:20px}
+.ch-kv>span:nth-child(odd){color:var(--mute)}
+.ch-btns{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line2)}
+/* 00 后台首页外框 */
+.ch-app{zoom:1.06}
+.ch-topbar{height:44px;display:flex;align-items:center;padding:0 18px;border-bottom:1px solid var(--line2)}
+.ch-topbar b{font-size:15px;font-weight:600}
+.ch-acct{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--ink2)}
+.ch-acct i{width:24px;height:24px;border-radius:50%;background:#E4E7EB;display:inline-flex;align-items:center;justify-content:center;font-style:normal;font-size:12px;color:var(--ink2)}
+.ch-frame{display:flex;align-items:stretch}
+.ch-menu{flex:none;width:180px;background:var(--fill);border-right:1px solid var(--line2);padding:8px 0 14px}
+.ch-menu .it{height:30px;display:flex;align-items:center;padding-left:16px;font-size:13.5px;color:var(--ink2)}
+.ch-menu .it.sub{padding-left:26px}
+.ch-menu .it.on{background:#E4E7EB;color:var(--ink);font-weight:600;box-shadow:inset 3px 0 0 #3A4049}
+.ch-menu .gl{height:30px;display:flex;align-items:flex-end;padding:0 0 5px 16px;font-size:12.5px;font-weight:600;color:var(--mute)}
+.ch-menu .dv{height:1px;background:var(--line);margin:10px 14px}
+.ch-mainx{flex:1;min-width:0;padding:14px 18px 18px}
+.ch-ptitle{font-size:17px;font-weight:600;margin-bottom:10px}
+.ch-layer{margin-top:16px}
+.ch-mainx.cp .ch-cards{gap:10px}
+.ch-mainx.cp .ch-card{padding:8px 10px 9px}
+.ch-mainx.cp .ch-card .v{font-size:20px}
+.ch-mainx.cp .ch-card .l{font-size:12.5px}
