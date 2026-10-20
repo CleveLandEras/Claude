@@ -28,14 +28,14 @@ body{font-family:"Inter","Noto Sans CJK SC","PingFang SC","Microsoft YaHei",sans
 </style>
 </head>
 <body>
-<div class="shot bk" data-page="推播" data-crumb="新建推播" data-tabs="*推播列表|操作纪录"><div class="z"><div class="win"><div class="fig">
+<div class="shot bk" data-page="推播" data-crumb="新建推播"><div class="z"><div class="win"><div class="fig">
   <div class="sec" style="padding:12px 18px 12px">
     <div class="sh">发送时间</div>
     <div style="display:flex;gap:20px;align-items:flex-start">
       <div style="flex:1;min-width:0">
         <div class="f"><label style="width:78px"><span class="rq">*</span>发送方式</label><span class="seg"><span>立即</span><span>定时</span><span class="on">按行为</span></span></div>
-        <div class="f"><label style="width:78px"><span class="rq">*</span>触发行为</label><span class="in" style="width:220px">限时加码礼包快到期<span class="dn">⌃</span></span></div>
-        <div class="f"><label style="width:78px">触发条件</label>礼包剩余<span class="num">2</span>小时时发送</div>
+        <div class="f"><label style="width:78px"><span class="rq">*</span>触发行为</label><span class="in" style="width:220px">活动、礼包开始或结束前后<span class="dn">⌃</span></span></div>
+        <div class="f"><label style="width:78px">触发条件</label><span class="in" style="width:118px">限时加码礼包<span class="dn">⌵</span></span><span class="in" style="width:62px;margin-left:6px">结束<span class="dn">⌵</span></span><span class="in" style="width:50px;margin-left:6px">前<span class="dn">⌵</span></span><span class="num">2</span>小时</div>
         <div class="f" style="padding-left:78px"><span class="ck">✓</span>只发给尚未购买该礼包的玩家</div>
         <div class="f"><label style="width:78px">生效期间</label><span class="in" style="width:96px">2026-10-02</span><span style="margin:0 6px">至</span><span class="in ph" style="width:96px">结束（选填）</span></div>
         <div class="f"><label style="width:78px">提醒间隔</label>同一玩家两次提醒至少间隔<span class="num">24</span>小时</div>
@@ -44,18 +44,17 @@ body{font-family:"Inter","Noto Sans CJK SC","PingFang SC","Microsoft YaHei",sans
       </div>
       <div class="dd2" style="flex:none;margin-top:30px">
         <div class="gh">玩家行为（发给触发的玩家）</div>
-        <div class="o on"><b>限时加码礼包快到期</b><em>按每位玩家各自的到期时间，剩余 N 小时</em></div>
         <div class="o"><b>玩家升级</b><em>可选升到等级 N</em></div>
         <div class="o"><b>完成任务</b><em>可指定任务</em></div>
         <div class="o"><b>通行证升级</b><em>可选等级不超过 N</em></div>
         <div class="o"><b>破产后未回到游戏</b><em>破产后 N 小时未再登录</em></div>
-        <div class="gh">活动事件（发给全部玩家或标签群组）</div>
-        <div class="o"><b>活动、礼包开始或结束前后</b><em>按活动或礼包统一的起止时间，所有玩家同一时刻</em></div>
+        <div class="gh">活动事件</div>
+        <div class="o on"><b>活动、礼包开始或结束前后</b><em>活动和所有玩家同时上架的礼包按统一的起止时间，所有玩家同一时刻；每位玩家各自出现的礼包（如限时加码礼包）按该玩家自己的礼包时间</em></div>
       </div>
     </div>
   </div>
   <div class="sec" style="padding:10px 18px 14px">
-    <div class="sh">近 7 天「限时加码礼包快到期」每天发生<span style="font-weight:400;color:var(--mute)">次数 · 人数</span></div>
+    <div class="sh">近 7 天「限时加码礼包结束前 2 小时」每天发生<span style="font-weight:400;color:var(--mute)">次数 · 人数</span></div>
     <div class="wk">
       <div class="c"><span>330</span><span class="p">290 人</span><i style="height:58px"></i></div>
       <div class="c"><span>312</span><span class="p">276 人</span><i style="height:55px"></i></div>

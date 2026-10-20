@@ -851,7 +851,7 @@ def build_02b():
 </head>
 <!-- 由 _scripts/an_评审版图表.py 生成，改数字请改脚本后重跑 -->
 <body class="ch-page">
-<div class="shot ch bk" data-page="推播" data-crumb="新建推播" data-tabs="*推播列表|操作纪录"><div class="ch-z">
+<div class="shot ch bk" data-page="推播" data-crumb="新建推播"><div class="ch-z">
 <div class="ch-sec">
   <div class="ch-h">确认与测试<span class="ch-m">预计人数截至 10/12 15:25</span></div>
   {funnel_svg(rows, W=744, BMAX=170, VW=104)}
@@ -1037,57 +1037,100 @@ def build_09():
 
 # ================================================================ 示例数据：00 后台首页 = 推播列表（10/12 15:25 时的样子）
 # 与 09 一致：同编号、同名称、同所属活动与发送对象；47 此刻发送中，48 已排程（10/15 发，重要），49 每天重复的定时、还没发过。按编号倒序。
-# 状态名按需求文档 4.1.3 第 20 行：一次性为已排程、发送中、已完成、已停止、发送失败；按行为为运行中、已暂停、已结束。
+# 推播列表：开屏「后台首页」（00，菜单全部展开）与第 1 页「推播列表」（02a，只展开当前分组）共用同一页内容。
+# 列表内容按需求文档 5.3 / 4.1.3「列表」：筛选、两套状态计数、名称下写 ID·创建人·创建日期、发送方式写触发行为、
+# 发送对象写人数（未开始发送的写当前人数，已开始发送的写发送时人数，按行为写触发的玩家）、按状态开放的操作、共 N 条。
+# 数据列（发送、到达率、点击率）在数据明细（09），列表不重复。
+# 状态名按需求文档 4.1.3 第 20 行：一次性为草稿、已排程、发送中、已完成、已停止、发送失败、无可发送对象；按行为为草稿、运行中、已暂停、已结束。
+AUD09 = {r[0]: r[8] for r in ROWS09}
+#        编号, 名称, 发送方式, 发送时间或触发行为, 下一行, 所属活动, 发送对象, 当前或发送时人数, 状态, 进度, 创建人, 创建日期
 PUSH00 = [
-    (49, '每日任务提醒', '定时', '每天 12:30<span class="pd-s2">下次 10/13 12:30 · 第 1/30 次</span>', '每日任务', '近 7 天登录', '已排程', None),
-    (48, '中秋排名赛倒数 5 天', '定时', '10/15 19:00', '中秋排名赛', '全部玩家', '已排程', None),
-    (47, '回流礼包 B 加码通知', '立即', '10/12 15:20', '回流礼包 B', '回流', '发送中', 0.62),
-] + [(r[0], r[1], r[5], r[6], r[4], r[7], r[2], None)
-     for r in sorted(ROWS09, key=lambda r: -r[0]) if r[3] == '推播' and r[0] != 47]
+    (49, '每日任务提醒', '定时', '每天 12:30', '下次 10/13 12:30 · 第 1/30 次', '每日任务', '近 7 天登录', 14520, '已排程', None, '运营01', '10/12'),
+    (48, '中秋排名赛倒数 5 天', '定时', '10/15 19:00', '', '中秋排名赛', '全部玩家', 74480, '已排程', None, '运营02', '10/10'),
+    (47, '回流礼包 B 加码通知', '立即', '10/12 15:20', '', '回流礼包 B', '回流', AUD09[47], '发送中', 0.62, '运营01', '10/12'),
+]
+MORE00 = {46: ('运营02', '10/09'), 45: ('运营01', '10/09'), 44: ('运营02', '10/11'), 43: ('运营01', '10/11'),
+          37: ('运营02', '10/05'), 33: ('运营01', '8/30'), 31: ('运营02', '9/18')}
+TRIG00 = {33: ('完成任务', '9/01 起'), 31: ('礼包结束前 2 小时', '9/20 起')}   # 31 用「活动、礼包开始或结束前后」，限时加码礼包按每位玩家各自的礼包时间
+for r in sorted(ROWS09, key=lambda r: -r[0]):
+    if r[3] != '推播' or r[0] == 47:
+        continue
+    when, sub = TRIG00.get(r[0], (r[6], ''))
+    PUSH00.append((r[0], r[1], r[5], when, sub, r[4], r[7], None if r[5] == '按行为' else r[8], r[2], None) + MORE00[r[0]])
 IMPORTANT00 = {48}   # 营销推送的重要程度：重要（为发送对象预留当天 1 条名额，需求文档 4.1.7 第 34 行）
 OPS00 = {'已排程': '编辑 停止 复制', '发送中': '停止 复制 查看数据', '运行中': '编辑 暂停 结束 复制 查看数据',
          '已完成': '复制 查看数据', '已停止': '复制 查看数据', '发送失败': '复制 查看数据'}
+# 状态计数（两套分开计数，需求文档 5.3 序号 11）；合计即「共 N 条」
+CNT_ONCE = [('草稿', 1), ('已排程', 2), ('发送中', 1), ('已完成', 22), ('已停止', 2), ('发送失败', 1), ('无可发送对象', 0)]
+CNT_BEH = [('草稿', 0), ('运行中', 2), ('已暂停', 0), ('已结束', 1)]
 
 
-def build_00():
+def push_list_body():
     trs = []
-    for no, name, mode, when, act, grp, st, prog in PUSH00:
-        when_td = f'{mode} {when}'
+    for no, name, mode, when, sub, act, grp, n, st, prog, who, day in PUSH00:
+        when_td = f'{mode} {E(when)}' + (f'<span class="pd-s2">{E(sub)}</span>' if sub else '')
+        if n is None:
+            grp_td = E(grp)
+        else:
+            started = st in ('发送中', '已完成', '已停止', '发送失败')
+            grp_td = f'{E(grp)}<span class="pd-s2">{"发送时" if started else "当前"} {fmt(n)} 人</span>'
         stc = ' pd-bad' if st == '发送失败' else ''
         st_td = f'<span class="pd-st{stc}">{st}</span>'
         if prog is not None:
             st_td += f'<span class="ch-mbar sm"><i style="width:{prog * 26:.1f}px"></i></span><span class="ch-m">{prog * 100:.0f}%</span>'
         ops = ''.join(f'<span class="pd-lk">{o}</span>' for o in OPS00[st].split())
         imp = '<span class="pd-st imp">重要</span>' if no in IMPORTANT00 else ''
-        trs.append(f'<tr><td><span class="pd-lk">{E(name)}</span>{imp}<span class="pd-s2">推送 {no}</span></td><td>{when_td}</td>'
-                   f'<td>{E(act)}</td><td>{E(grp)}</td><td class="ch-stc">{st_td}</td><td class="ch-ops">{ops}</td></tr>')
-    check([r[0] for r in PUSH00] == sorted([r[0] for r in PUSH00], reverse=True), '00 推播列表按编号倒序：' + '、'.join(str(r[0]) for r in PUSH00))
-    sts = ['全部', '已排程', '发送中', '已完成', '已停止', '发送失败', '运行中', '已暂停', '已结束']
-    # 开屏后台结构：外框（菜单全部展开、当前页「推播」高亮、面包屑、页签）由 _后台框.js 画
+        trs.append(f'<tr><td><span class="pd-lk">{E(name)}</span>{imp}<span class="pd-s2">推送 {no} · {who} {day}</span></td><td>{when_td}</td>'
+                   f'<td>{E(act)}</td><td>{grp_td}</td><td class="ch-stc">{st_td}</td><td class="ch-ops">{ops}</td></tr>')
+    check([r[0] for r in PUSH00] == sorted([r[0] for r in PUSH00], reverse=True), '推播列表按编号倒序：' + '、'.join(str(r[0]) for r in PUSH00))
+    total = sum(c for _, c in CNT_ONCE + CNT_BEH)
+    for st in {r[8] for r in PUSH00}:
+        shown = sum(1 for r in PUSH00 if r[8] == st)
+        cnt = dict(CNT_ONCE if st not in ('运行中',) else CNT_BEH)[st]
+        check(shown <= cnt, f'推播列表 {st}：列出 {shown} 条，计数 {cnt}')
+    cnt = lambda xs: '<span class="seg">' + ''.join(
+        f'<span{" class=\"pd-bad2\"" if k == "发送失败" and v else ""}>{k} {v}</span>' for k, v in xs) + '</span>'
+    sel = lambda ph, w: f'<span class="in ph" style="width:{w}px">{ph}<span class="dn">⌵</span></span>'
+    return f"""    <div class="ch-mainx cp pl">
+      <div class="ch-row pl-f"><span class="in ph" style="width:118px">名称或 ID</span>{sel('发送方式', 84)}{sel('所属活动', 84)}{sel('发送对象', 84)}{sel('创建人', 72)}<span class="in ph" style="width:150px">创建日期　起 – 止</span><span class="btn2">查询</span><span class="btn2">重置</span><span class="ch-sp"></span><span class="btn2 p">＋ 新建推播</span></div>
+      <div class="ch-row pl-c"><span class="seg"><span class="on">全部 {total}</span></span><span class="pl-gp"><span class="pl-g">一次性</span>{cnt(CNT_ONCE)}</span><span class="pl-gp"><span class="pl-g">按行为</span>{cnt(CNT_BEH)}</span></div>
+      <table class="pd-dt ch-tbl ch-list"><thead><tr><th>推送</th><th>发送方式</th><th>所属活动</th><th>发送对象</th><th>状态</th><th>操作</th></tr></thead>
+      <tbody>{''.join(trs)}<tr><td colspan="6" class="pl-more">⋮</td></tr></tbody></table>
+      <div class="ch-row pl-p"><span class="ch-sp"></span>共 {total} 条<span class="pl-pg"><span>‹</span><span class="on">1</span><span>2</span><span>›</span></span></div>
+    </div>"""
+
+
+def push_list_page(title, attrs):
     return f'''<!doctype html>
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
-<title>后台首页</title>
+<title>{title}</title>
 <link rel="stylesheet" href="../原型样式.css">
 <link rel="stylesheet" href="_图表.css">
 <link rel="stylesheet" href="_后台框.css">
 </head>
 <!-- 由 _scripts/an_评审版图表.py 生成，改数字请改脚本后重跑 -->
 <body class="ch-page">
-<div class="shot ch bk" data-page="推播" data-tabs="*推播列表|操作纪录" data-open="all">
-    <div class="ch-mainx cp">
-      <div class="ch-row" style="margin-bottom:2px">{seg_html(sts, '全部')}<span class="ch-sp"></span><span class="btn2 p">＋ 新建推播</span></div>
-      <table class="pd-dt ch-tbl ch-list"><thead><tr><th>推送</th><th>发送时间</th><th>所属活动</th><th>发送对象</th><th>状态</th><th>操作</th></tr></thead>
-      <tbody>{''.join(trs)}</tbody></table>
-    </div>
+<div class="shot ch bk" {attrs}>
+{push_list_body()}
 </div>
 <script src="_后台框.js"></script>
 </body>
 </html>
 '''
 
-BUILDERS = {'14_单条规则数据': build_14, '13_游戏内数据': build_13, '06_概览': build_06, '00_后台首页': build_00,
+
+def build_00():
+    # 开屏后台结构：外框（菜单全部展开、当前页「推播」高亮、面包屑、页签）由 _后台框.js 画
+    return push_list_page('后台首页', 'data-page="推播" data-tabs="*推播列表|操作纪录" data-open="all"')
+
+
+def build_02a():
+    # 第 1 页：点开菜单「推播」直接看到的列表；新建推播（02、02b、03）是它的下一层
+    return push_list_page('推播列表', 'data-page="推播" data-tabs="*推播列表|操作纪录"')
+
+BUILDERS = {'14_单条规则数据': build_14, '13_游戏内数据': build_13, '06_概览': build_06, '00_后台首页': build_00, '02a_推播列表': build_02a,
             '02b_预计人数': build_02b, '09_数据明细': build_09, '06b_每人每天收到': build_06b, '07_单条漏斗': build_07}
 
 if __name__ == '__main__':

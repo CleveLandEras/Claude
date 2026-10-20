@@ -124,3 +124,18 @@
 .ch .ch-list th,.ch .ch-list td{padding-left:5px;padding-right:5px}
 .ch .ch-list td.ch-ops .pd-lk{margin-right:8px}
 .ch-list .ch-mbar.sm{width:26px;margin-left:6px;margin-right:3px}
+/* 推播列表（00 后台首页、02a 推播列表共用）：筛选行、两套状态计数、末行省略、分页 */
+.pl .pl-f{gap:6px;margin-bottom:8px}
+.pl .pl-f .in{height:26px;font-size:12.5px}
+.pl .pl-f .btn2{height:26px;padding:0 10px;font-size:12.5px;margin-left:0}
+.pl .pl-c{gap:6px}
+.pl .pl-c .seg>span{height:24px;padding:0 8px;font-size:12px}
+.pl .pl-g{margin-left:6px;font-size:12px;color:var(--mute)}
+.pl .pl-c .seg>span.pd-bad2{color:#B42318;font-weight:600}
+.pl .pl-more{color:var(--mute);text-align:center;padding:2px 0;line-height:14px}
+.pl .pl-p{margin-top:8px;font-size:12.5px;color:var(--ink2);gap:8px}
+.pl .pl-pg{display:inline-flex;gap:4px}
+.pl .pl-pg span{min-width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:3px;font-size:12px}
+.pl .pl-pg span.on{border-color:#4E5560;background:#4E5560;color:#fff}
+.pl .pl-gp{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.pl .pl-c{row-gap:6px}
