@@ -21,6 +21,8 @@ nav .nt{font-weight:700;font-size:15px;margin-bottom:4px}
 nav .grp{margin:16px 0 6px;font-size:13px;font-weight:700;padding-left:10px;border-left:4px solid var(--c)}
 nav .grp span{display:block;color:var(--ink3);font-weight:400}
 nav a{display:block;padding:5px 10px;border-left:2px solid var(--line);color:var(--ink2);text-decoration:none}
+nav a.on{color:var(--accent);border-left:3px solid var(--accent);padding-left:9px;background:var(--accent-bg);font-weight:700}
+nav .grp.on{background:var(--soft)}
 nav a:hover{color:var(--accent);border-left-color:var(--accent);background:var(--accent-bg)}
 .g1{--c:var(--p1)}.g2{--c:var(--p2)}.g3{--c:var(--p3)}
 main{min-width:0}
@@ -79,16 +81,14 @@ a.pgx:hover .gz.xj{background:transparent;color:#fff;border-color:#fff}
 .xbox{display:inline-flex;align-items:center;gap:12px;background:var(--card);border:1.5px solid #9aa5b1;border-radius:10px;padding:8px 14px 10px}
 .xbox .xh{font-size:15px;font-weight:700;color:var(--ink2);white-space:nowrap}
 .xbox .xt{font-size:14.5px;color:var(--ink);white-space:nowrap}
-.xtop{margin:0 0 26px}
 .anc{position:relative;display:inline-block}
 .drop{position:absolute;left:50%;top:100%;width:0;border-left:1.5px solid var(--ink3)}
 .drop .rt{position:absolute;left:10px;bottom:3px}
-.xtop .drop{height:37.5px}
-.xtop .drop::after{content:"";position:absolute;left:-6.25px;bottom:0;border-style:solid;border-width:9px 5.5px 0 5.5px;border-color:var(--ink3) transparent transparent transparent}
 .shared .drop{height:50px}
 .shared .drop .xbox{position:absolute;top:100%;left:-36px}
+.shared .drop.dl .xbox{left:-80px}
 .arch{padding-bottom:66px}
-.shared .rt{margin:0 6px 0 -2px}
+.shared .rt{margin:0 4px 0 -2px}
 .meth{display:block;background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 12px 10px;margin:0 0 8px}
 .meth .mt{display:block;font-size:15px;font-weight:700;color:var(--ink);margin:0 0 7px;text-decoration:none}
 a.meth{color:var(--ink);font-size:15px;font-weight:700;text-decoration:none;padding:8px 12px}
@@ -100,8 +100,9 @@ a.pgx:hover{background:var(--pc);color:#fff}
 .laterrow{display:flex;gap:8px;margin:0 0 8px}
 .meth.later{flex:1;margin:0;background:transparent;border:1.5px dashed #9aa5b1;display:flex;align-items:baseline;justify-content:space-between;gap:8px;color:var(--ink2);font-size:15px;font-weight:700;padding:8px 12px}
 .meth.later i{font-style:normal;font-weight:400;font-size:13px;color:var(--ink3)}
-.shared{margin-top:12px;background:var(--pbg);border-top:4px solid var(--pc);border-radius:9px;padding:10px 12px;display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
-.shared .sl{font-size:17px;font-weight:700;color:var(--pc);text-decoration:none;margin-right:6px}
+.shared{margin-top:12px;background:var(--pbg);border-top:4px solid var(--pc);border-radius:9px;padding:10px 12px}
+.srow{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px}
+.shared .sl{display:inline-block;font-size:17px;font-weight:700;color:var(--pc);text-decoration:none;margin:0 0 8px}
 .shared .sl:hover{text-decoration:underline}
 @media (max-width:1100px){.wrap{grid-template-columns:1fr}nav{display:none}}
 @media (max-width:760px){.cols{display:flex;flex-direction:column}.cbg{display:none}.rel{margin:4px 0 10px}.rel .ln{display:none}}
@@ -135,7 +136,6 @@ a.pgx:hover{background:var(--pc);color:#fff}
 </header>
 <section class="arch">
   <h2>后台结构</h2>
-  <div class="xtop"><div class="xbox"><span class="xh">会员标签设定</span><span class="anc"><a class="pgx pt3" href="#p10">标签群组<i class="gz">改造</i></a><span class="drop"><span class="rt">供各推送选对象</span></span></span></div></div>
   <div class="frame">
     <div class="fh">推送统一后台</div>
     <div class="cols">
@@ -153,7 +153,7 @@ a.pgx:hover{background:var(--pc);color:#fff}
       <a class="meth ci R pt2" href="#p9" style="grid-row:4">快显<i class="gz">改造</i></a>
       <div class="laterrow ci last L" style="grid-row:5"><div class="meth later"><span>Facebook</span><i>后续</i></div><div class="meth later"><span>LINE</span><i>后续</i></div></div>
     </div>
-    <div class="shared pt3"><a class="sl" href="#part3">两类共用</a><a class="pgx" href="#p11">概览<i class="gz xj">新建</i></a><span class="anc"><a class="pgx" href="#p12">项目目录<i class="gz xj">新建</i></a><span class="drop"><span class="rt">改期不改活动本身</span><span class="xbox"><span class="xh">活动配置</span><span class="xt">活动本身的起止时间</span></span></span></span><span class="rt">↑ 供各推送选所属活动</span><a class="pgx" href="#p13">玩家查询<i class="gz">改造</i></a><a class="pgx" href="#p14">操作纪录<i class="gz xj">新建</i></a></div>
+    <div class="shared pt3"><a class="sl" href="#part3">两类共用</a><div class="srow"><span class="anc"><a class="pgx" href="#p10">标签群组<i class="gz">改造</i></a><span class="drop dl"><span class="xbox"><span class="xh">会员标签设定</span><span class="xt">标签群组在这里建和改</span></span></span></span><span class="rt">↑ 供各推送选对象</span><a class="pgx" href="#p11">概览<i class="gz xj">新建</i></a><span class="anc"><a class="pgx" href="#p12">项目目录<i class="gz xj">新建</i></a><span class="drop"><span class="rt">改期不改活动本身</span><span class="xbox"><span class="xh">活动配置</span><span class="xt">活动本身的起止时间</span></span></span></span><span class="rt">↑ 供各推送选所属活动</span><a class="pgx" href="#p13">玩家查询<i class="gz">改造</i></a><a class="pgx" href="#p14">操作纪录<i class="gz xj">新建</i></a></div></div>
   </div>
 </section>
 
@@ -176,8 +176,8 @@ a.pgx:hover{background:var(--pc);color:#fff}
   <h3 class="bk">业务规则</h3>
   <h4 class="rg">现状与改动</h4>
   <table class="rule">
-    <tr><td>现在：运营在另一个推播工具发推播，如每周 20:00 按卡别分层发的固定推播和活动推播。</td></tr>
-    <tr><td>改后：运营推播只在推送统一后台新建和发送；原工具里的周期排程改为本后台的定时推送，设每天或每周重复。</td></tr>
+    <tr><td>现在：运营在另一个推播工具发推播，如按价值分层（低 V、中 V、高 V、至尊卡四层）每周 20:00 分别发的固定推播，以及活动推播。</td></tr>
+    <tr><td>改后：运营推播只在推送统一后台新建和发送；发送对象改为按标签群组选、可加排除群组，四层价值分层改用对应的标签群组；原工具里的周期排程改为本后台的定时推送，设每天或每周重复。</td></tr>
   </table>
   <h4 class="rg">发送对象</h4>
   <table class="rule">
@@ -233,7 +233,7 @@ a.pgx:hover{background:var(--pc);color:#fff}
     <tr><td>顺延的提醒到勿扰结束时，重新判断触发条件和每人每天上限。<span class="why">按行为的提醒到勿扰结束时可能已失效，如礼包已过期。</span></td></tr>
     <tr><td>玩家在线时照发或不发，每条推送单独选。</td></tr>
     <tr><td>默认玩家升级、完成任务、通行证升级不发，限时加码礼包快到期、时间偏移照发；破产后未回到游戏只在玩家离线时触发。</td></tr>
-    <tr><td>触发时玩家在线且选了不发的，这次收不到推播；同一事件改由游戏内显示，用同一触发行为的快显，或同一活动的弹窗规则；两者都没有时，系统在保存时提示运营。</td></tr>
+    <tr><td>触发时玩家在线且选了不发的，这次收不到推播；同一事件改由游戏内显示，用同一触发行为的快显，或弹出同一活动或礼包的弹窗规则；两者都没有时，系统在保存时提示运营。</td></tr>
   </table>
 </section>
 
@@ -535,7 +535,7 @@ a.pgx:hover{background:var(--pc);color:#fff}
   <h4 class="rg">项目登记</h4>
   <table class="rule">
     <tr><td>项目目录是活动与礼包的登记表：名称、编码、类型、起止时间、状态（已排程、可用、已下线）。</td></tr>
-    <tr><td>运营登记新活动后，弹窗排序项和推播、快显的点击跳转可以选到它；推播、短信、快显和弹窗规则新建时，都要选所属活动，或选「不属于活动」。</td></tr>
+    <tr><td>运营登记新的活动或礼包后，弹窗排序项和推播、快显的点击跳转可以选到它；推播、短信、快显新建时都要选所属活动（项目目录里的一项），或选「不属于活动」；弹窗排序项选的活动或礼包就是它的所属活动。</td></tr>
     <tr><td>每个项目显示被多少条推播、短信、快显和弹窗规则引用。</td></tr>
   </table>
   <h4 class="rg">改期联动</h4>
@@ -610,5 +610,21 @@ a.pgx:hover{background:var(--pc);color:#fff}
 </section>
 </main>
 </div>
+<script>
+(function(){
+  var links=[].slice.call(document.querySelectorAll('nav a[href^="#p"]'));
+  var secs=links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));});
+  function grpOf(a){var e=a.previousElementSibling;while(e&&!e.classList.contains('grp'))e=e.previousElementSibling;return e;}
+  var grps=links.map(grpOf), last=-2;
+  function upd(){
+    var y=window.innerHeight*0.3,cur=-1;
+    for(var i=0;i<secs.length;i++){if(secs[i]&&secs[i].getBoundingClientRect().top<=y)cur=i;}
+    if(cur===last)return; last=cur;
+    links.forEach(function(a,i){a.classList.toggle('on',i===cur);});
+    grps.forEach(function(g,i){if(g)g.classList.toggle('on',cur>=0&&g===grps[cur]);});
+  }
+  window.addEventListener('scroll',upd,{passive:true});window.addEventListener('resize',upd);upd();
+})();
+</script>
 </body>
 </html>
