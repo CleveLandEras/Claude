@@ -24,14 +24,13 @@
 .ch-lg span{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
 .ch-lg svg{flex:none}
 /* 图下的改动清单：每条竖线一行 */
-.ch-ev{display:grid;column-gap:14px;align-items:center;font-size:13px;line-height:20px;margin-top:6px;border-top:1px solid var(--line2)}
+.ch-ev{display:grid;column-gap:0;align-items:center;font-size:13px;line-height:20px;margin-top:6px;border-top:1px solid var(--line2)}
 .ch-ev>div{display:contents}
-.ch-ev>div>span{padding:5px 0;border-bottom:1px solid var(--line2);white-space:nowrap}
+.ch-ev>div>span{padding:5px 14px 5px 0;border-bottom:1px solid var(--line2);white-space:nowrap;height:31px;display:flex;align-items:center}
+.ch-ev>div>span:last-child{padding-right:0}
 .ch-ev>div:last-child>span{border-bottom:0}
 .ch-ev .t{color:var(--ink2);font-variant-numeric:tabular-nums}
 .ch-ev .p{color:var(--ink2)}
-.ch-pill{display:inline-flex;align-items:center;justify-content:center;height:18px;padding:0 7px;border-radius:9px;font-size:11.5px;font-weight:600;line-height:1;background:#4E5560;color:#fff;min-width:40px}
-.ch-pill.rel{background:#FFF3DC;color:#7A4A00;box-shadow:inset 0 0 0 1px #B26B00}
 /* 数字卡 */
 .ch-cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
 .ch-card{border:1px solid var(--line2);border-radius:6px;padding:10px 14px 11px}

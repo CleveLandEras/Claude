@@ -168,7 +168,7 @@ def trend_svg(expo, clk, events, *, W=827, ctr_ticks, expo_ticks, ctr_h=176, exp
     top = 6 + nrow * (TAG_H + 4) + 18           # 上格顶（留出纵轴名的一行）
     c_lo, c_hi = ctr_ticks[0], ctr_ticks[-1]
     Yc = lambda v: top + ctr_h - (v - c_lo) / (c_hi - c_lo) * ctr_h
-    gap = 40
+    gap = 46
     e_top = top + ctr_h + gap                   # 下格顶
     e_max = expo_ticks[-1]
     Ye = lambda v: e_top + expo_h - v / e_max * expo_h
@@ -247,7 +247,7 @@ def legend_html():
 
 def event_rows(events, with_rule=False):
     """图下的清单：每条竖线一行，按时间。"""
-    cols = '10px 84px 136px minmax(0,1fr) 52px' if with_rule else '10px 84px minmax(0,1fr) 52px'
+    cols = '24px 98px 150px minmax(0,1fr) 52px' if with_rule else '24px 98px minmax(0,1fr) 52px'
     out = [f'<div class="ch-ev" style="grid-template-columns:{cols}">']
     for e in sorted(events, key=ev_pos):
         pill = (f'<svg width="10" height="16"><line x1="5" x2="5" y1="0" y2="16" stroke="{REL}" stroke-width="1.5" stroke-dasharray="4 3"/></svg>'
@@ -283,7 +283,7 @@ def funnel_svg(rows, W=827):
         if times is not None:
             s.append(txt(VX + tw(f'{fmt(ppl)} 人', 14) + 10, yc + 5, f'{fmt(times)} 次', 12, MUTE))
         if l1:
-            s.append(txt(NX, yc + 5, l1, 13, INK))
+            s.append(txt(NX, yc + 5, l1, 13, INK if l2 else MUTE))
         if l2:
             s.append(txt(NX, yc + 24, l2, 12, MUTE))
     s.append('</svg>')
@@ -294,7 +294,6 @@ def hbars_svg(rows, *, vmax, W=827, LW=150, BMAX=420):
     """rows: [(名称, 比率, 右侧说明)]；按比率画横条，条端标比率，右栏标曝光。"""
     RH = 32
     BX = LW
-    RX = W
     H = RH * len(rows)
     s = [f'<svg class="ch-svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img">']
     s.append(f'<line x1="{BX}" x2="{BX}" y1="2" y2="{H - 2}" stroke="{AXIS}"/>')
@@ -303,8 +302,8 @@ def hbars_svg(rows, *, vmax, W=827, LW=150, BMAX=420):
         s.append(txt(0, yc + 4.5, name, 13, INK2))
         ln = v / vmax * BMAX
         s.append(hbar_path(BX, yc, ln, 16, 3))
-        s.append(txt(BX + ln + 7, yc + 4.5, pct(v), 13, INK, weight='700'))
-        s.append(txt(RX, yc + 4.5, right, 12.5, MUTE, 'end'))
+        s.append(f'<text x="{BX + ln + 7:.1f}" y="{yc + 4.5:.1f}" font-size="13" fill="{INK}" font-weight="700">{pct(v)}'
+                 f'<tspan dx="10" font-size="12.5" fill="{MUTE}" font-weight="400">{E(right)}</tspan></text>')
     s.append('</svg>')
     return '\n'.join(s)
 
@@ -409,7 +408,7 @@ def build_14():
         ('目标人数', f['target'], None, '期间内属于对象群组的玩家', ''),
         ('进入弹窗位置', f['enter'], f['enter_req'], f'少 {fmt(f["target"] - f["enter"])} 人', '期间内没有破产'),
         ('符合条件', f['ok'], ok_req, f'少 {fmt(f["enter"] - f["ok"])} 人、{fmt(f["enter_req"] - ok_req)} 次',
-         f'每人每天弹窗上限拦下 {fmt(f["cap_block"])} · 关闭后冷却中 {fmt(f["cd_block"])} · 排序项全部跳过 {fmt(f["all_skip"])}'),
+         f'每人每天上限拦下 {fmt(f["cap_block"])} · 关闭后冷却中 {fmt(f["cd_block"])} · 排序项全部跳过 {fmt(f["all_skip"])}'),
         ('曝光', f['expo_ppl'], expo, f'少 {fmt(f["ok"] - f["expo_ppl"])} 人、{fmt(ok_req - expo)} 次',
          f'显示失败 {fmt(f["fail_show"])} · 返回后未上报 {fmt(no_report)}'),
         ('点击', f['clk_ppl'], clk, f'点击率 {pct(clk / expo)}', '点击次数 ÷ 曝光次数'),
@@ -454,7 +453,7 @@ def build_14():
   {event_rows(EV14)}
 </div>
 <div class="ch-sec">
-  <div class="pd-tabs"><span class="pd-on">按排序项</span><span>按人群</span><span>按平台</span><span>实验组与对照组</span></div>
+  <div class="pd-tabs"><span class="pd-on">按排序项</span><span>按人群</span><span>按平台</span><span>按实验组与对照组</span></div>
   <div class="ch-h" style="margin-bottom:6px">各排序项的点击率<span class="ch-m">排序项按现在的先后排列</span></div>
   {hbars_svg(item_rows, vmax=0.18)}
 </div>'''
@@ -498,10 +497,10 @@ def build_13():
     ]
     check(PPL13 < expo, '13 曝光人数 < 曝光次数')
     check(True, f'13 合计 曝光 {fmt(expo)}、点击 {fmt(clk)}、点击率 {pct(ctr, 2)}；前 30 天 {pct(pctr, 2)}，差 {dpp:+.2f} 个百分点')
-    svg, avgs = trend_svg(EXPO13, CLK13, EV13, ctr_ticks=[0.060, 0.065, 0.070, 0.075, 0.080, 0.085],
+    svg, avgs = trend_svg(EXPO13, CLK13, EV13, ctr_ticks=[0.060, 0.065, 0.070, 0.075, 0.080],
                           expo_ticks=[0, 30000, 60000])
     dctr = [c / x for c, x in zip(CLK13, EXPO13)]
-    check(min(dctr) > 0.06 and max(dctr) < 0.085, f'13 每日点击率 {pct(min(dctr))}–{pct(max(dctr))} 在纵轴内')
+    check(min(dctr) > 0.06 and max(dctr) < 0.08, f'13 每日点击率 {pct(min(dctr))}–{pct(max(dctr))} 在纵轴内')
     check(max(EXPO13) < 60000, f'13 每日曝光 {fmt(min(EXPO13))}–{fmt(max(EXPO13))} 在纵轴内')
     check(True, '13 段内平均 ' + ' → '.join(pct(a[2]) if a else '—（竖线后不满 1 天）' for a in avgs))
     ex_pos = split_int(expo, [w for _, w, _ in POS13])
@@ -525,7 +524,7 @@ def build_13():
   <div class="ch-cards">{card_html}</div>
 </div>
 <div class="ch-sec">
-  <div class="ch-h">按日趋势<span class="ch-m">竖线标出大厅弹窗上全部规则的改动与客户端发版</span></div>
+  <div class="ch-h">按日趋势</div>
   {legend_html()}
   {svg}
   {event_rows(EV13, with_rule=True)}
