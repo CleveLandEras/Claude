@@ -26,3 +26,14 @@
 .bk-ov{position:absolute;inset:0;background:rgba(31,35,41,.30);display:flex;justify-content:center;align-items:flex-start;padding-left:168px}
 .bk-ov>.bk-pop{margin-top:var(--pop-top,96px);box-shadow:0 10px 30px rgba(0,0,0,.18)}
 .bk-pop .btn2.p{background:#409EFF;border-color:#409EFF;color:#fff}
+.bk-subnav{display:flex;gap:6px;padding:10px 20px 0;font-size:13px}
+.bk-subnav span{padding:3px 12px;border:1px solid var(--line);border-radius:14px;color:var(--ink2)}
+.bk-subnav span.on{border-color:#409EFF;color:#2F6FCC;background:#ECF5FF;font-weight:600}
+/* 列表里的重要程度标记 */
+.pd-st.imp,.imp-tag{margin-left:6px;border:1px solid #E6A23C;color:#B4791B;background:#FDF6EC;border-radius:3px;padding:0 5px;font-size:12px}
+/* 内容区共用：多语言页签（标题与内容按繁中、越南文、英文填）与「一键多语言生成」 */
+.lang{display:inline-flex;align-items:flex-end;gap:0;border-bottom:1px solid var(--line);margin-bottom:-1px}
+.lang span{height:26px;display:inline-flex;align-items:center;padding:0 12px;border:1px solid var(--line);border-bottom:0;margin-right:-1px;background:var(--fill);color:var(--ink2);font-size:13px;border-radius:3px 3px 0 0}
+.lang span.on{background:#fff;color:var(--ink);font-weight:600;position:relative;top:1px}
+.lang span em{font-style:normal;margin-left:6px;color:var(--mute);font-weight:400;font-size:12px}
+.gen{display:inline-flex;align-items:center;height:24px;padding:0 10px;border:1px solid var(--line);border-radius:3px;background:#fff;color:var(--ink2);font-size:13px;margin-left:10px}

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>04b 名额占用总览</title>
+<link rel="stylesheet" href="../原型样式.css">
+<link rel="stylesheet" href="_后台框.css">
+<style>
+html,body{margin:0;padding:0;background:#fff}
+body{font-family:"Inter","Noto Sans CJK SC","PingFang SC","Microsoft YaHei",sans-serif;font-size:13px;line-height:1.5}
+.shot .z{zoom:1.12}
+.shot .win{padding:0;border:0;border-radius:0;background:#fff;box-shadow:none}
+.shot .fig{width:auto;border:0;border-radius:0}
+table.qt{width:100%;border-collapse:collapse;font-size:13px}
+table.qt th{font-weight:600;color:var(--ink2);text-align:left;padding:6px 8px;background:var(--fill);border-bottom:1px solid var(--line2);white-space:nowrap}
+table.qt td{padding:6px 8px;border-bottom:1px solid var(--line2);color:var(--ink);vertical-align:middle;white-space:nowrap}
+table.qt td.t{font-variant-numeric:tabular-nums;color:var(--ink)}
+table.qt td.m{color:var(--ink2)}
+table.qt .r{text-align:right;font-variant-numeric:tabular-nums}
+table.qt tr.gh td{background:#FAFBFC;font-weight:600;padding-top:8px}
+table.qt tr.gh td .s{font-weight:400;color:var(--mute);margin-left:10px}
+.qb{display:inline-flex;height:10px;vertical-align:middle}
+.qb i{display:block;height:10px;background:#B9C7DA;border-radius:2px 0 0 2px}
+.qb b{display:block;height:10px;background:#E5484D;border-radius:0 2px 2px 0}
+.nm{display:inline-block;width:52px;text-align:right;margin-right:8px;font-variant-numeric:tabular-nums}
+.qn{display:block;color:var(--mute);font-size:12px;line-height:16px}
+b.cut{color:#C62828;font-weight:600}
+</style>
+</head>
+<body>
+<div class="shot bk" data-page="每人每天上限与勿扰" data-tabs="设置|*名额占用总览|操作纪录"><div class="z"><div class="win"><div class="fig">
+  <div class="sec" style="padding:12px 18px 14px">
+    <div class="f" style="margin-bottom:6px"><span class="seg"><span class="on">推播</span><span>短信</span></span><span class="hi">营销类每人每天 2 条；重要推送为发送对象预留当天 1 条，比它早发的普通推送只能用剩下的</span></div>
+    <table class="qt">
+      <tr><th>发送时间</th><th>推送</th><th>发送方式</th><th>重要程度</th><th>能收到<span style="font-weight:400;color:var(--mute);margin-left:8px">红色为预计被上限拦下</span></th><th>预计被上限拦下</th></tr>
+      <tr class="gh"><td colspan="6">每天运行<span class="s">按行为推送，按发送先后占用名额，不预估</span></td></tr><tr><td class="t">全天</td><td>任务完成奖励提醒</td><td class="m">按行为</td><td><span class="mute">普通</span></td><td colspan="2" style="color:var(--ink2)">近 7 天日均触发 1,240 人</td></tr><tr><td class="t">全天</td><td>限时加码礼包未购买提醒</td><td class="m">按行为</td><td><span class="mute">普通</span></td><td colspan="2" style="color:var(--ink2)">近 7 天日均触发 308 人</td></tr><tr class="gh"><td colspan="6">今天 10/14（三）<span class="s">预计被上限拦下 110 人</span></td></tr><tr><td class="t">12:30</td><td>每日任务提醒</td><td class="m">定时 · 每天</td><td><span class="mute">普通</span></td><td><span class="nm">9,420</span><span class="qb"><i style="width:32px"></i><b style="width:2px"></b></span></td><td><b class="cut">110</b><span class="qn">名额已为 19:00 重要推送预留</span></td></tr><tr><td class="t">19:00</td><td>周年庆开跑</td><td class="m">定时</td><td><span class="imp-tag" style="margin-left:0">重要</span></td><td><span class="nm">41,600</span><span class="qb"><i style="width:150px"></i></span></td><td>0<span class="qn">为 41,600 人预留 1 条</span></td></tr><tr class="gh"><td colspan="6">明天 10/15（四）<span class="s">预计被上限拦下 9,220 人</span></td></tr><tr><td class="t">12:30</td><td>每日任务提醒</td><td class="m">定时 · 每天</td><td><span class="mute">普通</span></td><td><span class="nm">9,400</span><span class="qb"><i style="width:32px"></i><b style="width:2px"></b></span></td><td><b class="cut">120</b><span class="qn">名额已为 19:00 重要推送预留</span></td></tr><tr><td class="t">19:00</td><td>中秋排名赛倒数 5 天</td><td class="m">定时</td><td><span class="imp-tag" style="margin-left:0">重要</span></td><td><span class="nm">41,600</span><span class="qb"><i style="width:150px"></i></span></td><td>0<span class="qn">为 41,600 人预留 1 条</span></td></tr><tr><td class="t">20:30</td><td>限时挑战第二轮开启</td><td class="m">定时</td><td><span class="mute">普通</span></td><td><span class="nm">21,300</span><span class="qb"><i style="width:44px"></i><b style="width:33px"></b></span></td><td><b class="cut">9,100</b><span class="qn">当天已收满 2 条</span></td></tr>
+    </table>
+  </div>
+</div></div></div></div>
+<script src="_后台框.js"></script>
+</body>
+</html>
