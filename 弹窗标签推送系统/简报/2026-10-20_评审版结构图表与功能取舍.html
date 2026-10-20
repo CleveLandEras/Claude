@@ -1,0 +1,163 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>评审版改版</title>
+<!--
+  Dk 汇报简报模板（2026-10-10 改版：汇报不是文章）。复制整页，只替换 body 里的内容。
+  组件：.kpi 数字卡（一般不超过 3 张；没有能说明结论的数字就不用）· .phase 时间线卡（red 否决 / blue 当前 / 默认灰）· .keep 标签清单 · .cause 原因卡 · table 短语表（.same 行标红）· .opt 选项卡（.rec 推荐）· .steps 编号短条目。组件按内容选，不必都用。
+  规则：不写成段落，结构用版面表达；条目尽量短（一两行为宜，不是上限）；表格格子写短语。
+-->
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.35;margin:0 0 8px}
+.sub{font-size:16px;color:var(--ink-2);margin:0 0 28px}
+h2{font-family:var(--serif);font-size:20px;margin:48px 0 16px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px}
+.kpi .n{font-size:38px;font-weight:700;line-height:1.1;color:var(--ink)}
+.kpi .n small{font-size:16px;font-weight:600;margin-left:4px;color:var(--ink-2)}
+.kpi .t{font-size:14.5px;color:var(--ink-2);margin-top:8px}
+.kpi.red .n{color:var(--red)}
+.phase{border-top:4px solid var(--gray)}
+.phase.red{border-top-color:var(--red)} .phase.blue{border-top-color:var(--blue)}
+.phase .d{font-size:13px;color:var(--muted);font-weight:600}
+.phase .h{font-size:16.5px;font-weight:700;margin:4px 0 10px}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:12px}
+.tag.red{background:var(--red-soft);color:var(--red)} .tag.blue{background:var(--blue-soft);color:var(--blue)} .tag.gray{background:var(--gray-soft);color:var(--gray)} .tag.green{background:var(--green-soft);color:var(--green)}
+.kv{font-size:14px;color:var(--ink-2);margin:6px 0}
+.kv b{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:2px}
+.keep{display:flex;flex-wrap:wrap;gap:10px}
+.keep span{background:var(--green-soft);color:var(--green);font-size:14.5px;font-weight:600;padding:8px 14px;border-radius:4px}
+.cause .h{font-size:16.5px;font-weight:700;margin:0 0 6px}
+.cause .l{font-size:14.5px;color:var(--ink-2);margin:0 0 12px}
+.cause .e{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14.5px}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--line)}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--ground)}
+tr:last-child td{border-bottom:none}
+td.w{color:var(--ink)} td.r{color:var(--ink-2)} td.d{color:var(--muted);width:80px}
+tr.same td.w{color:var(--red);font-weight:600}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);margin-right:8px;vertical-align:1px}
+.legend{font-size:13px;color:var(--muted);margin:10px 0 0}
+.q{font-size:17px;font-weight:700;margin:0 0 14px}
+.opt{position:relative}
+.opt .h{font-size:16px;font-weight:700;margin:0 0 6px}
+.opt .l{font-size:14.5px;color:var(--ink-2)}
+.opt.rec{border:2px solid var(--blue)}
+.opt .badge{position:absolute;top:-11px;right:16px;background:var(--blue);color:#fff;font-size:12px;font-weight:700;padding:2px 10px;border-radius:3px}
+.why{font-size:14.5px;color:var(--ink-2);margin:14px 0 0}
+.why b{color:var(--ink)}
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.steps div{counter-increment:s;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 18px;font-size:14.5px;color:var(--ink-2)}
+.steps div::before{content:counter(s);display:block;font-size:22px;font-weight:700;color:var(--accent);margin-bottom:4px}
+.links{font-size:13px;color:var(--muted);margin-top:40px} a{color:var(--accent)}
+</style><style>
+.shot{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px;margin:0}
+.shot img{display:block;width:100%;height:auto;border-radius:3px}
+.shot figcaption{font-size:13px;color:var(--muted);margin-top:8px}
+.say{font-size:14.5px;color:var(--ink-2);margin:12px 0 0;padding-left:0;list-style:none}
+.say li{margin:4px 0}.say b{color:var(--ink)}
+td.ok{color:var(--green);font-weight:700;white-space:nowrap} td.no{color:var(--red);font-weight:700;white-space:nowrap}
+@media (max-width:760px){.g2,.g3,.g4{grid-template-columns:1fr}.wrap{padding:28px 16px 64px}}
+</style>
+</head><body><div class="wrap">
+<p class="meta">推送统一后台 · 需求评审版 · 2026-10-20 · 两位未参与写稿的审读员核过（按类型卡逐条核、无上下文读者测试），不过项已改</p>
+<h1>评审版按你的五条改完：结构有截图和架构图，规则折叠，数据改成图表，11 个功能按值不值得删或换</h1>
+<p class="sub">待你验收；另有 1 件要你定：项目目录里活动的起止时间从哪来（暂按现稿）</p>
+<div class="grid g3">
+  <div class="card kpi"><div class="n">2<small>种</small></div><div class="t">后台结构的展示：后台首页截图（菜单全部展开）＋信息架构图</div></div>
+  <div class="card kpi"><div class="n">7<small>张</small></div><div class="t">数据类截图改成图表；13 页业务规则默认折叠，不展开时全稿可读约 900 字</div></div>
+  <div class="card kpi"><div class="n">11<small>个</small></div><div class="t">功能按开发量与人工做法比较后删掉或换成更省的做法，含「恢复旧版本」</div></div>
+</div>
+
+<h2><span class="no">01</span>后台结构：截图看后台长什么样，架构图看每块有哪些页、谁管谁</h2>
+<div class="grid g2">
+  <figure class="shot"><img src="../推送系统后台集成需求/需求评审版_图/00_后台首页.jpg" alt="后台首页"><figcaption>原型截图：后台首页，左侧菜单按游戏外、游戏内两组全部展开，主区是概览</figcaption></figure>
+  <figure class="shot"><img src="图_1020/结构图.jpg" alt="结构图"><figcaption>结构图：菜单之下的页面、管整类的页面、两类共用、标签群组从哪来</figcaption></figure>
+</div>
+<ul class="say">
+  <li><b>截图回答</b>　后台入口与菜单怎么分：概览 → 游戏外推送 4 项 → 游戏内推送 4 项 → 项目目录、玩家查询、操作纪录。</li>
+  <li><b>架构图补截图看不到的</b>　推播下有分群推送、按行为推送两页；上限与数据统计横跨整类推送；会员标签设定在后台外，以标签群组连进四种推送；3 页标「现有页面改造」，其余 10 页是新页面。</li>
+  <li><b>为什么这样画</b>　试过树形，等于把侧栏横过来，看不出谁管整类；改为两栏容器加横条，用位置表达管辖范围，不写说明句（参照 C4 系统上下文图：框外画直接相连的现有系统）。</li>
+</ul>
+
+<h2><span class="no">02</span>版本对比换成一张趋势图：每次改动都标在图上，开发更省、看得更全</h2>
+<figure class="shot"><img src="图_1020/版本趋势图.jpg" alt="单条规则趋势图"><figcaption>单条弹窗规则数据：按日曝光与点击率，竖线是每次保存的改动（实线）与客户端发版（虚线），两线之间标出该段平均点击率，图下逐条列出改了什么、谁改的</figcaption></figure>
+<div class="grid g3" style="margin-top:14px">
+  <div class="card cause"><p class="h">原来</p><p class="l">表格只比版本 1、版本 2 两列，要比别的版本得重选；另带「恢复版本 1 的设置」按钮</p></div>
+  <div class="card cause"><p class="h">现在</p><p class="l">近 30 天所有改动一张图看全，每段平均点击率直接可比（10.5% → 11.6% → 12.1% → 11.9% → 13.0%）</p></div>
+  <div class="card cause"><p class="h">为什么更省</p><p class="l">不用存版本、不用做版本选择与对比表；改动标记直接取操作纪录；同一种图在整个位置、单条规则、每人每天收到几条三处复用</p><p class="e">参照：Amplitude 在趋势图上叠加批注与发版标记</p></div>
+</div>
+
+<h2><span class="no">03</span>「恢复旧版本」删掉：开发要做整套校验，人工照操作纪录改回只要一两分钟</h2>
+<table>
+<tr><th>问题</th><th>评估</th></tr>
+<tr><td class="w">谁用、多常用</td><td class="r">运营改错弹窗规则后回退，估计每季度几次</td></tr>
+<tr><td class="w">开发量（我方估，量级）</td><td class="r">中：每次保存存整份设置；恢复时要重新校验引用的活动与礼包是否已下线、优先级是否与其他规则冲突、重叠人数是否变化，再走一遍保存确认</td></tr>
+<tr><td class="w">人工做法</td><td class="r">操作纪录已存每次改动的改前与改后，照着把一两个字段改回去</td></tr>
+<tr><td class="w">结论</td><td class="r">删。Firebase 的「恢复此版本」恢复的是一份不引用别处的配置；我们的规则引用活动、礼包和其他规则的优先级，恢复的校验成本高</td></tr>
+</table>
+
+<h2><span class="no">04</span>其余 10 个删或换的功能：都有更便宜的做法，或用得少、看了也难决定怎么改</h2>
+<table>
+<tr><th>功能（页）</th><th>改成</th><th>理由</th></tr>
+<tr><td class="w">改动前后对比（8）</td><td class="r">并入整个位置的趋势图</td><td class="r">图上已标出这个位置所有规则的改动</td></tr>
+<tr><td class="w">同期发版提示不能单独归因（8）</td><td class="r">发版画成趋势图标记</td><td class="r">同期有没有别的变化一眼看到</td></tr>
+<tr><td class="w">按规则版本、客户端版本分开看（8）</td><td class="r">删，旧数据照样保留</td><td class="r">标记已把时间分段、每段有平均值</td></tr>
+<tr><td class="w">单条规则 7 种拆分（8）</td><td class="r">留按排序项、按人群、按平台</td><td class="r">按小时、按客户端版本用得少，需要时请数据组查</td></tr>
+<tr><td class="w">规则里内置实验分组（6）</td><td class="r">用「随机分桶号」标签建两个群组，各配一条规则对比</td><td class="r">标签群组已能做到，截图本来就这么画</td></tr>
+<tr><td class="w">一次触发后多次提醒（2、9）</td><td class="r">删，留两次提醒的最短间隔</td><td class="r">另建一条条件不同的按行为推送几分钟配完，文案还能各写</td></tr>
+<tr><td class="w">重叠规则「每天互相接替的人数」（6）</td><td class="r">删，留重叠人数与弹哪一条</td><td class="r">要逐人模拟一天的弹出，运营看了也难判断怎么改</td></tr>
+<tr><td class="w">保存确认「多截掉的项目个数」（6）</td><td class="r">删</td><td class="r">要模拟全部规则在上限下的截断；数据页已有碰到上限的人数</td></tr>
+<tr><td class="w">改期逐条选「平移或保持」（11）</td><td class="r">只列出受影响的推送：相对时间自动跟随，具体时刻标出由运营改</td><td class="r">改期每月几次、每次几条，逐条改每条约一分钟</td></tr>
+<tr><td class="w">短信点击按人记录（5）</td><td class="r">只统计点击次数</td><td class="r">短信效果看发送后 24 小时内登录，玩家多直接开游戏不点链接</td></tr>
+</table>
+<p class="legend">逐个功能（留下的 34 项也在内）的谁用、多常用、开发量、人工做法见 <a href="../分析/A91_评审版功能成本收益.md">A91 功能成本收益</a>。评审材料里只写留下的功能，不写删了什么。</p>
+
+<h2><span class="no">05</span>数据类截图全部改成图表，玩家查询与操作纪录仍用列表</h2>
+<table>
+<tr><th>截图（页）</th><th>原来</th><th>现在</th></tr>
+<tr><td class="w">概览（10）、后台首页</td><td class="r">数字表</td><td class="r">两层各 5 张数字卡：与前一周期的增减、7 天走势小图；到达率注明不含 iOS 未接入</td></tr>
+<tr><td class="w">预计人数（1）</td><td class="r">文字</td><td class="r">逐层递减横条：群组人数 → 受众 → 能收到 → 上限拦下后 → 预计发出</td></tr>
+<tr><td class="w">每人每天收到几条（4）</td><td class="r">数字表</td><td class="r">推播、短信各一张分布柱（标出上限）＋碰到上限人数与拦下人次走势（标出设置改动）</td></tr>
+<tr><td class="w">单条推送数据（4）</td><td class="r">文字漏斗</td><td class="r">漏斗横条＋未发出原因从多到少横条</td></tr>
+<tr><td class="w">游戏内推送数据（8）</td><td class="r">数字表</td><td class="r">数字卡＋带改动与发版标记的趋势图＋按位次的点击率柱</td></tr>
+<tr><td class="w">单条规则数据（8）</td><td class="r">文字漏斗＋版本对比表</td><td class="r">漏斗横条＋趋势图（第 02 节）＋各排序项点击率横条</td></tr>
+</table>
+<p class="legend">图表按 dataviz 规范：不用双纵轴（曝光与点击率上下两格共用日期轴），改动与发版用实线、虚线并写字区分，不只靠颜色。全部 19 张截图改为在云端由源文件渲染，字体与清晰度一致，以后改图不用到 Mac 上。</p>
+
+<h2><span class="no">06</span>要你定：项目目录里活动的起止时间，由运营登记还是从活动配置同步</h2>
+<div class="grid g2">
+  <div class="card cause"><p class="h">现稿怎么运作</p><p class="l">运营在项目目录登记活动与起止时间，活动配置里另存一份；改期要改两处</p><p class="e">例：万圣节榜从 10/31 延到 11/03，只改了活动配置、没改项目目录，「结束前 2 小时」那条推播仍在 10/31 发出</p></div>
+  <div class="card cause"><p class="h">与待定事项的关系</p><p class="l">这是「活动改期联动」那件待定事的另一半：现稿按推荐写成改项目目录时间不改活动本身；审读指出反方向的漏改风险</p></div>
+</div>
+<div class="grid g2" style="margin-top:14px">
+  <div class="card opt"><p class="h">甲　维持现稿</p><p class="l">运营在项目目录登记活动和时间；改期时列出受影响的推送。不需 RD 接入，靠运营两处都改</p></div>
+  <div class="card opt rec"><span class="badge">推荐</span><p class="h">乙　从活动与礼包配置同步</p><p class="l">RD 一次接入，项目目录的活动、礼包和起止时间自动取自现有配置，运营不再登记、不再改时间；改期只在活动配置改一次，相对时间的推送自动跟随，具体时刻的列出由运营改</p></div>
+</div>
+<p class="why"><b>理由</b>　一份时间只存一处，漏改的风险没有了，每个新活动也省去登记；代价是 RD 一次性接入（中等开发量），前提是活动与礼包配置里有结构化的起止时间——这一点你比我清楚。你选乙，我改第 11 页规则与两张截图；不回复则按甲交评审。</p>
+
+<h2><span class="no">07</span>上一版为什么没做到：截图沿用旧稿没重选形式，审读标出的疑似功能没当场定</h2>
+<div class="grid g3">
+  <div class="card cause"><p class="h">形式沿用旧稿</p><p class="l">截图从 28 页原型直接裁，数据页本来就是表格，只改了字</p><p class="e">已改：类型卡加你今天的五条；判例 50</p></div>
+  <div class="card cause"><p class="h">结构只做一种还被限死</p><p class="l">「可以都贴出来」被当成可选；画法限成不画现有系统、不加图例，只剩一排标签</p><p class="e">已改：截图＋架构图，框外画会员标签设定</p></div>
+  <div class="card cause"><p class="h">疑似功能留待判</p><p class="l">上午审读已列出恢复旧版本、改动前后对比等，我当成要你定的事留着</p><p class="e">已改：交付前必查第 8 条——疑似项交付前由我逐个定</p></div>
+</div>
+
+<h2><span class="no">08</span>交付前必查：9 条都过，篇幅一条附说明</h2>
+<table>
+<tr><th>#</th><th>条目</th><th>结果</th><th>证据</th></tr>
+CHECKROWS
+</table>
+
+<p class="links">原文：<a href="../推送系统后台集成需求/3_原型_需求评审版.html">需求评审版（成品）</a> · <a href="../分析/A91_评审版功能成本收益.md">功能成本收益</a> · <a href="../分析/需求评审版_改版记录.md">改版记录</a></p>
+</div></body></html>

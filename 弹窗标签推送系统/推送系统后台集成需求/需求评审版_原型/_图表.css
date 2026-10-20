@@ -51,7 +51,7 @@
 .ch .pd-dt td{font-variant-numeric:tabular-nums}
 /* 概览数字卡（06、00）：两层各 5 张，带走势小图 */
 .ch-cards.c5{grid-template-columns:repeat(5,minmax(0,1fr))}
-.ch-card .s{font-size:12px;color:var(--ink2);min-height:18px;line-height:18px}
+.ch-card .s{font-size:12px;color:var(--ink2);min-height:36px;line-height:18px;white-space:nowrap}
 .ch-card .ch-svg{margin-top:6px}
 .ch-lh{display:flex;align-items:baseline;gap:10px;margin:0 0 10px;padding-left:10px;border-left:3px solid #3A4049;line-height:20px}
 .ch-lh b{font-size:15px;font-weight:600}
@@ -66,22 +66,23 @@
 .ch-kv>span:nth-child(odd){color:var(--mute)}
 .ch-btns{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line2)}
 /* 00 后台首页外框 */
-.ch-app{zoom:1.06}
+.ch-app{zoom:1}
 .ch-topbar{height:44px;display:flex;align-items:center;padding:0 18px;border-bottom:1px solid var(--line2)}
 .ch-topbar b{font-size:15px;font-weight:600}
 .ch-acct{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--ink2)}
 .ch-acct i{width:24px;height:24px;border-radius:50%;background:#E4E7EB;display:inline-flex;align-items:center;justify-content:center;font-style:normal;font-size:12px;color:var(--ink2)}
 .ch-frame{display:flex;align-items:stretch}
-.ch-menu{flex:none;width:180px;background:var(--fill);border-right:1px solid var(--line2);padding:8px 0 14px}
+.ch-menu{flex:none;width:190px;background:var(--fill);border-right:1px solid var(--line2);padding:8px 0 14px}
 .ch-menu .it{height:30px;display:flex;align-items:center;padding-left:16px;font-size:13.5px;color:var(--ink2)}
 .ch-menu .it.sub{padding-left:26px}
 .ch-menu .it.on{background:#E4E7EB;color:var(--ink);font-weight:600;box-shadow:inset 3px 0 0 #3A4049}
 .ch-menu .gl{height:30px;display:flex;align-items:flex-end;padding:0 0 5px 16px;font-size:12.5px;font-weight:600;color:var(--mute)}
 .ch-menu .dv{height:1px;background:var(--line);margin:10px 14px}
-.ch-mainx{flex:1;min-width:0;padding:14px 18px 18px}
+.ch-mainx{flex:1;min-width:0;padding:14px 16px 18px}
 .ch-ptitle{font-size:17px;font-weight:600;margin-bottom:10px}
 .ch-layer{margin-top:16px}
 .ch-mainx.cp .ch-cards{gap:10px}
-.ch-mainx.cp .ch-card{padding:8px 10px 9px}
+.ch-mainx.cp .ch-card{padding:8px 9px 9px}
+.ch-mainx.cp .ch-card .s{font-size:11.5px;min-height:34px;line-height:17px}
 .ch-mainx.cp .ch-card .v{font-size:20px}
 .ch-mainx.cp .ch-card .l{font-size:12.5px}
