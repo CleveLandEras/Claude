@@ -537,7 +537,7 @@ def build_13():
             f'<td class="pd-r">{pct(ctr)}</td></tr>')
     body = f'''<div class="ch-sec" style="padding-top:14px;padding-bottom:12px">
   <div class="ch-ptitle">弹窗与快显位置数据</div>
-  <div class="ch-row">{seg_html(["今日", "近 7 天", "近 30 天", "自定义"], "近 30 天")}<span class="ch-m">{md(DAYS[0])}–{md(DAYS[-1])}，与前 30 天（{md(PREV[0])}–{md(PREV[1])}）比</span></div>
+  <div class="ch-row">{seg_html(["今日", "近 7 天", "近 30 天", "自定义"], "近 30 天")}<span class="ch-m">{md(DAYS[0])}–{md(DAYS[-1])}，与前 30 天（{md(PREV[0])}–{md(PREV[1])}）比</span><span class="ch-sp"></span><span class="pd-lk">本位置各条规则的数据 ›</span></div>
 </div>
 <div class="ch-sec">
   <div class="ch-cards">{card_html}</div>
@@ -549,18 +549,9 @@ def build_13():
   {event_rows(EV13, with_rule=True)}
 </div>
 <div class="ch-sec">
-  <div class="ch-2col">
-    <div>
-      <div class="ch-h">按位次<span class="ch-m">这次进入大厅时第几个看到，跨规则计</span></div>
-      {cols_svg(pos_rows, vmax=0.11, W=297)}
-    </div>
-    <div>
-      <div class="ch-h">规则<span class="ch-m">点规则名看这条规则的数据</span></div>
-      <table class="pd-dt"><thead><tr><th>规则</th><th class="pd-r">权重</th><th class="pd-r">曝光人数</th><th class="pd-r">曝光</th><th class="pd-r">点击率</th></tr></thead>
-      <tbody>{trs}</tbody></table>
-    </div>
-  </div>
-</div>'''
+  <div class="ch-h">按位次<span class="ch-m">这次进入大厅时第几个看到，跨规则计</span></div>
+  {cols_svg(pos_rows, vmax=0.11, W=297)}
+</div>'''   # 各条规则的数据只在数据明细（游戏内推送一层）与弹窗列表「查看数据」，本页不另列规则表，页头给链接
     return page('弹窗与快显位置数据', body)
 
 
@@ -1208,9 +1199,7 @@ def list_page(title, attrs, body):
 '''
 
 
-def build_00():
-    # 开屏后台结构：外框（菜单全部展开、当前页「推播」高亮、面包屑、页签）由 _后台框.js 画
-    return list_page('后台首页', 'data-page="推播" data-tabs="*推播列表|操作纪录" data-open="all"', list_body('p', 'all'))
+# 00 后台结构不再与推播列表共用（手写的 需求评审版_原型/00_后台首页.html：管理后台菜单全部展开、弹窗页顶部写原入口改指新页）
 
 
 def build_02a():
@@ -1233,7 +1222,7 @@ def build_16a():
     return list_page('短信列表', 'data-page="短信" data-tabs="*短信列表|操作纪录"', list_body('s', 'all'))
 
 
-BUILDERS = {'14_单条规则数据': build_14, '13_游戏内数据': build_13, '06_概览': build_06, '00_后台首页': build_00, '02a_推播列表': build_02a, '02c_推播今明两天': build_02c, '16a_短信列表': build_16a, '17a_快显列表': build_17a,
+BUILDERS = {'14_单条规则数据': build_14, '13_游戏内数据': build_13, '06_概览': build_06, '02a_推播列表': build_02a, '02c_推播今明两天': build_02c, '16a_短信列表': build_16a, '17a_快显列表': build_17a,
             '02b_预计人数': build_02b, '09_数据明细': build_09, '06b_每人每天收到': build_06b, '07_单条漏斗': build_07}
 
 if __name__ == '__main__':

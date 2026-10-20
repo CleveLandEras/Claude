@@ -39,3 +39,9 @@
 .gen{display:inline-flex;align-items:center;height:24px;padding:0 10px;border:1px solid var(--line);border-radius:3px;background:#fff;color:var(--ink2);font-size:13px;margin-left:10px}
 /* 编辑页里新加的字段：标签旁标「新」（现有后台没有的） */
 .xn{display:inline-block;margin-left:4px;padding:0 3px;border:1px solid #F5DAB1;border-radius:3px;background:#FDF6EC;color:#B4791B;font-size:11px;line-height:14px;font-weight:400;font-style:normal;vertical-align:1px}
+/* 推送统一后台一组下的小组与页面（第二、三级） */
+.bk-side .g2{height:28px;display:flex;align-items:center;gap:5px;padding-left:24px;font-size:12.5px;font-weight:600;color:var(--ink2)}
+.bk-side .g2::before{content:"";width:4px;height:4px;margin:0 4px 0 1px;border-right:1.5px solid #8C939C;border-bottom:1.5px solid #8C939C;transform:rotate(-45deg)}
+.bk-side .g2.open::before{transform:rotate(45deg);margin-top:-3px}
+.bk-side .i2{height:27px;display:flex;align-items:center;padding:0 4px 0 42px;font-size:12.5px;color:var(--ink2);white-space:nowrap}
+.bk-side .i2.on{background:#E8F1FD;color:#2F6FCC;font-weight:600;box-shadow:inset 3px 0 0 #409EFF}

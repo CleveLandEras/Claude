@@ -2,23 +2,61 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
-<title>后台首页</title>
+<title>后台结构</title>
 <link rel="stylesheet" href="../原型样式.css">
-<link rel="stylesheet" href="_图表.css">
 <link rel="stylesheet" href="_后台框.css">
+<style>
+html,body{margin:0;padding:0;background:#fff}
+body{font-family:"Inter","Noto Sans CJK SC","PingFang SC","Microsoft YaHei",sans-serif;font-size:13px;line-height:1.5}
+.shot .z{zoom:1.04}
+.seg>span{white-space:nowrap}
+.shot .win{padding:0;border:0;border-radius:0;background:#fff;box-shadow:none}
+.shot .fig{width:auto;border:0;border-radius:0}
+.cap{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:8px 12px;border:1px solid #E4E7ED;border-radius:4px;background:#FAFBFC;color:#606266}
+.cap b{color:#303133;font-weight:600;margin-right:4px}
+.cap .ein{height:24px;width:40px;justify-content:center;padding:0}
+.cap .sp{width:14px}
+table.pl{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}
+table.pl th{font-weight:600;color:#73767A;background:#FAFBFC;text-align:left;padding:6px 6px;border-bottom:1px solid #EBEEF5;white-space:nowrap}
+table.pl td{padding:6px 6px;border-bottom:1px solid #EBEEF5;color:#303133;vertical-align:top}
+table.pl .r{text-align:right;font-variant-numeric:tabular-nums}
+table.pl .s2{display:block;font-size:12px;color:#909399;line-height:17px}
+table.pl .ac{color:#409EFF;white-space:nowrap}
+table.pl td.nw{white-space:nowrap}
+table.pl .w{font-weight:600;font-size:14px}
+.st{display:inline-block;padding:0 6px;border:1px solid #C2E7B0;background:#F0F9EB;color:#529B2E;border-radius:3px;font-size:12px}
+.mvn{display:flex;align-items:center;gap:10px;padding:7px 12px;margin-bottom:10px;border:1px solid #B3D8FF;border-radius:4px;background:#ECF5FF;color:#606266}
+.mvn b{color:#2F6FCC;font-weight:600}
+.fade{height:40px;margin-top:-40px;position:relative;background:linear-gradient(rgba(255,255,255,0),#fff)}
+</style>
 </head>
-<!-- 由 _scripts/an_评审版图表.py 生成，改数字请改脚本后重跑 -->
-<body class="ch-page">
-<div class="shot ch bk" data-page="推播" data-tabs="*推播列表|操作纪录" data-open="all">
-    <div class="ch-mainx cp pl">
-      <div class="pl-cap"><span class="pl-k">每人每天上限</span>推播 <span class="in" style="width:34px">2</span> 条<span class="pl-k" style="margin-left:26px">勿扰时段</span><span class="in" style="width:46px">00:00</span><span class="pl-to">至</span><span class="in" style="width:46px">08:00</span><span class="ch-m" style="margin-left:6px">推播、短信共用</span><span class="pl-k" style="margin-left:26px">服务通知遇勿扰</span><span class="in" style="width:70px">顺延<span class="dn">⌵</span></span></div>
-      <div class="ch-row pl-f"><span class="seg pl-v"><span class="on">全部</span><span>今明两天</span></span><span class="in ph" style="width:90px">名称或 ID</span><span class="in ph" style="width:76px">发送方式<span class="dn">⌵</span></span><span class="in ph" style="width:76px">所属活动<span class="dn">⌵</span></span><span class="in ph" style="width:76px">发送对象<span class="dn">⌵</span></span><span class="in ph" style="width:64px">创建人<span class="dn">⌵</span></span><span class="in ph" style="width:112px">创建日期 起–止</span><span class="btn2">查询</span><span class="btn2">重置</span><span class="ch-sp"></span><span class="btn2 p">＋ 新建推播</span></div>
-      <div class="ch-row pl-c"><span class="seg"><span class="on">全部 33</span></span><span class="pl-gp"><span class="pl-g">一次性</span><span class="seg"><span>草稿 1</span><span>已排程 3</span><span>发送中 1</span><span>已完成 22</span><span>已停止 2</span><span class="pd-bad2">发送失败 1</span><span>无可发送对象 0</span></span></span><span class="pl-gp"><span class="pl-g">按行为</span><span class="seg"><span>草稿 0</span><span>运行中 2</span><span>已暂停 0</span><span>已结束 1</span></span></span></div>
-      <table class="pd-dt ch-tbl ch-list"><thead><tr><th>推送</th><th>发送方式</th><th>所属活动</th><th>发送对象</th><th>状态</th><th>操作</th></tr></thead>
-      <tbody><tr><td><span class="pd-lk">限时挑战第二轮开启</span><span class="pd-s2">推送 50 · 运营02 10/12</span></td><td>定时 10/13 20:30</td><td>限时挑战</td><td>近 30 天登录<span class="pd-s2">当前 22,540 人</span></td><td class="ch-stc"><span class="pd-st">已排程</span></td><td class="ch-ops"><span class="pd-lk">编辑</span><span class="pd-lk">停止</span><span class="pd-lk">复制</span></td></tr><tr><td><span class="pd-lk">每日任务提醒</span><span class="pd-s2">推送 49 · 运营01 10/12</span></td><td>定时 每天 12:30<span class="pd-s2">下次 10/13 12:30 · 第 1/30 次</span></td><td>每日任务</td><td>近 7 天登录<span class="pd-s2">当前 14,520 人</span></td><td class="ch-stc"><span class="pd-st">已排程</span></td><td class="ch-ops"><span class="pd-lk">编辑</span><span class="pd-lk">停止</span><span class="pd-lk">复制</span></td></tr><tr><td><span class="pd-lk">中秋排名赛倒数 5 天</span><span class="pd-st imp">重要</span><span class="pd-s2">推送 48 · 运营02 10/10</span></td><td>定时 10/13 19:00</td><td>中秋排名赛</td><td>全部玩家<span class="pd-s2">当前 74,480 人</span></td><td class="ch-stc"><span class="pd-st">已排程</span></td><td class="ch-ops"><span class="pd-lk">编辑</span><span class="pd-lk">停止</span><span class="pd-lk">复制</span></td></tr><tr><td><span class="pd-lk">回流礼包 B 加码通知</span><span class="pd-s2">推送 47 · 运营01 10/12</span></td><td>立即 10/12 15:20</td><td>回流礼包 B</td><td>回流<span class="pd-s2">发送时 16,240 人</span></td><td class="ch-stc"><span class="pd-st">发送中</span><span class="ch-mbar sm"><i style="width:20.3px"></i></span><span class="ch-m">78%</span></td><td class="ch-ops"><span class="pd-lk">停止</span><span class="pd-lk">复制</span><span class="pd-lk">查看数据</span></td></tr><tr><td><span class="pd-lk">周末登录送金币提醒</span><span class="pd-s2">推送 46 · 运营02 10/09</span></td><td>定时 10/10 19:00</td><td>周末登录送金币</td><td>回流<span class="pd-s2">发送时 16,240 人</span></td><td class="ch-stc"><span class="pd-st">已完成</span></td><td class="ch-ops"><span class="pd-lk">复制</span><span class="pd-lk">查看数据</span></td></tr><tr><td><span class="pd-lk">中秋排名赛结算倒数</span><span class="pd-s2">推送 45 · 运营01 10/09</span></td><td>定时 10/11 20:00</td><td>中秋排名赛</td><td>中秋排名赛参与者<span class="pd-s2">发送时 9,860 人</span></td><td class="ch-stc"><span class="pd-st">已完成</span></td><td class="ch-ops"><span class="pd-lk">复制</span><span class="pd-lk">查看数据</span></td></tr><tr><td><span class="pd-lk">限时挑战开启</span><span class="pd-s2">推送 44 · 运营02 10/11</span></td><td>定时 10/12 14:00</td><td>限时挑战</td><td>近 7 天登录<span class="pd-s2">发送时 14,380 人</span></td><td class="ch-stc"><span class="pd-st pd-bad">发送失败</span></td><td class="ch-ops"><span class="pd-lk">复制</span><span class="pd-lk">查看数据</span></td></tr><tr><td><span class="pd-lk">月月抽开奖提醒</span><span class="pd-s2">推送 43 · 运营01 10/11</span></td><td>定时 10/12 15:00</td><td>月月抽</td><td>月月抽本期参与者<span class="pd-s2">发送时 6,820 人</span></td><td class="ch-stc"><span class="pd-st">已停止</span></td><td class="ch-ops"><span class="pd-lk">复制</span><span class="pd-lk">查看数据</span></td></tr><tr><td><span class="pd-lk">周年庆预告</span><span class="pd-s2">推送 37 · 运营02 10/05</span></td><td>定时 10/08 19:30</td><td>周年庆</td><td>近 30 天登录<span class="pd-s2">发送时 22,310 人</span></td><td class="ch-stc"><span class="pd-st">已完成</span></td><td class="ch-ops"><span class="pd-lk">复制</span><span class="pd-lk">查看数据</span></td></tr><tr><td><span class="pd-lk">任务完成奖励提醒</span><span class="pd-s2">推送 33 · 运营01 8/30</span></td><td>按行为 完成任务<span class="pd-s2">9/01 起</span></td><td>每日任务</td><td>触发的玩家</td><td class="ch-stc"><span class="pd-st">运行中</span></td><td class="ch-ops"><span class="pd-lk">编辑</span><span class="pd-lk">暂停</span><span class="pd-lk">结束</span><span class="pd-lk">复制</span><span class="pd-lk">查看数据</span></td></tr><tr><td><span class="pd-lk">限时加码礼包未购买提醒</span><span class="pd-s2">推送 31 · 运营02 9/18</span></td><td>按行为 礼包结束前 2 小时<span class="pd-s2">9/20 起</span></td><td>限时加码礼包</td><td>触发的玩家</td><td class="ch-stc"><span class="pd-st">运行中</span></td><td class="ch-ops"><span class="pd-lk">编辑</span><span class="pd-lk">暂停</span><span class="pd-lk">结束</span><span class="pd-lk">复制</span><span class="pd-lk">查看数据</span></td></tr><tr><td colspan="6" class="pl-more">⋮</td></tr></tbody></table>
-      <div class="ch-row pl-p"><span class="ch-sp"></span>共 33 条<span class="pl-pg"><span>‹</span><span class="on">1</span><span>2</span><span>›</span></span></div>
+<body>
+<div class="shot bk" data-page="弹窗" data-tabs="*大厅弹窗顺序设定|操作纪录" data-open="all"><div class="z"><div class="win"><div class="fig ew">
+  <div style="padding:10px 16px 12px">
+    <div class="mvn"><b>已移到推送统一后台</b>原「活动管理 › 大厅自动弹窗管理」菜单保留 30 天，点开即到本页</div>
+    <div class="cap"><b>每人每天上限</b>大厅自动弹窗<span class="ein v">8</span>个<span class="sp"></span>快显<span class="ein v">3</span>次</div>
+    <div style="display:flex;align-items:center;gap:8px;margin-top:10px">
+      <span class="seg"><span class="on">大厅自动弹窗</span><span>游戏破产弹窗</span></span>
+      <span class="ebtn b" style="height:28px;margin-left:auto">＋ 新增弹窗规则</span>
     </div>
-</div>
+    <div style="display:flex;align-items:center;gap:8px;margin-top:8px">
+      <span class="ein" style="width:118px">弹窗名称或 ID</span>
+      <span class="ein" style="width:96px">弹窗类型<span class="dn">⌵</span></span>
+      <span class="ein" style="width:76px">对象<span class="dn">⌵</span></span>
+      <span class="ein v" style="width:84px">上架中<span class="dn">⌵</span></span>
+      <span class="ebtn b" style="height:28px">查询</span>
+    </div>
+    <table class="pl">
+      <tr><th class="r">权重<span class="s2" style="font-weight:400">越大越靠前</span></th><th class="r">弹窗<br>活动 ID</th><th>弹窗名称</th><th>对象</th><th>标签状态</th><th>弹窗排序</th><th class="r">弹出<br>数量</th><th>状态</th><th>操作</th></tr>
+      <tr><td class="r w">40</td><td class="r">12</td><td class="nw">新增玩家活动弹窗<span class="s2">活动类弹窗</span></td><td class="nw">标签群组：新增玩家</td><td>启用</td><td>新手七日签到、每日补给计划<span class="s2">共 4 项，展开 ›</span></td><td class="r">3</td><td class="nw"><span class="st">上架中</span></td><td class="nw"><span class="ac">查看数据</span>　<span class="ac">操作 ⌵</span></td></tr>
+      <tr><td class="r w">35</td><td class="r">13</td><td class="nw">回流活动弹窗<span class="s2">活动类弹窗</span></td><td class="nw">标签群组：回流</td><td>启用</td><td>回流礼包 B、每日补给计划<span class="s2">共 5 项，展开 ›</span></td><td class="r">3</td><td class="nw"><span class="st">上架中</span></td><td class="nw"><span class="ac">查看数据</span>　<span class="ac">操作 ⌵</span></td></tr>
+      
+      
+      
+    </table>
+    <div class="fade"></div>
+  </div>
+</div></div></div></div>
 <script src="_后台框.js"></script>
 </body>
 </html>

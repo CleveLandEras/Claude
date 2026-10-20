@@ -93,7 +93,6 @@ a.pref:hover{border-bottom-style:solid}
   <a href="#p9">每人每天推送量<em>9 页</em></a>
   <div class="grp g4">第四部分　查询</div>
   <a href="#p10">玩家查询<em>10 页</em></a>
-  <a href="#p11">操作纪录<em>11 页</em></a>
 </nav>
 <main>
 <header class="top" id="top">
@@ -102,7 +101,7 @@ a.pref:hover{border-bottom-style:solid}
 <section class="arch">
   <h2>后台结构</h2>
   <div class="shots">
-    <figure><img src="需求评审版_图/00_后台首页.jpg" alt="后台首页：左侧菜单与推播列表" style="width:1056px"><figcaption>后台首页</figcaption></figure>
+    <figure><img src="需求评审版_图/00_后台首页.jpg" alt="管理后台菜单里的推送统一后台" style="width:1056px"><figcaption>推送统一后台是管理后台菜单里的一组；原「活动管理 › 大厅自动弹窗管理」点开到游戏内推送 › 弹窗</figcaption></figure>
   </div>
 </section>
 
@@ -114,19 +113,20 @@ a.pref:hover{border-bottom-style:solid}
 
 <!-- 1 -->
 <section class="pg pt1" id="p1">
-  <div class="kick"><span class="pchip">第一部分　游戏外推送</span><span class="pos">第 1 页 / 共 11 页</span></div>
+  <div class="kick"><span class="pchip">第一部分　游戏外推送</span><span class="pos">第 1 页 / 共 10 页</span></div>
   <h2>按玩家分群推送</h2>
 
   <div class="shots">
     <figure><img src="需求评审版_图/02a_推播列表.jpg" alt="推播列表" style="width:1056px"><figcaption>推播列表：顶部设推播每人每天上限与勿扰时段，一次性与按行为的推送分开按状态计数</figcaption></figure>
     <figure><img src="需求评审版_图/02c_推播今明两天.jpg" alt="推播列表的今明两天视图" style="width:1056px"><figcaption>推播列表的今明两天视图：重要程度、能收到与被上限拦下的人数</figcaption></figure>
+    <figure><img src="需求评审版_图/20_操作纪录.jpg" alt="推播页的操作纪录页签" style="width:1056px"><figcaption>操作纪录页签：页面选「全部页面」时跨页查与导出，改内文的可展开对照改前改后</figcaption></figure>
     <figure><img src="需求评审版_图/02_新建推播.jpg" alt="新建推播" style="width:1056px"><figcaption>新建推播：三种语言的标题与内容、重要程度、每周重复、发送对象</figcaption></figure>
     <figure><img src="需求评审版_图/02b_预计人数.jpg" alt="新建推播的确认与测试" style="width:1056px"><figcaption>新建推播页下方的确认与测试</figcaption></figure>
     <figure><img src="需求评审版_图/01_群组交集.jpg" alt="会员标签设定里编辑标签群组" style="width:1056px"><figcaption>会员标签设定里编辑标签群组：「回流」与「潜在付费」取交集</figcaption></figure>
   </div>
 
   <details class="rules">
-    <summary><span class="rt">业务规则</span><span class="rgs">上限与勿扰 · 今明两天 · 内容 · 发送对象 · 发送时间 · 所属活动 · 防错 · 标签群组</span></summary>
+    <summary><span class="rt">业务规则</span><span class="rgs">上限与勿扰 · 今明两天 · 操作纪录 · 内容 · 发送对象 · 发送时间 · 所属活动 · 防错 · 标签群组</span></summary>
     <div class="rbody">
   <h4 class="rg">上限与勿扰</h4>
   <table class="rule">
@@ -139,6 +139,16 @@ a.pref:hover{border-bottom-style:solid}
   <h4 class="rg">今明两天</h4>
   <table class="rule">
     <tr><td>列表的今明两天视图按时间列出当天与次日要发的推送，标出重要程度、能收到的人数和被上限拦下的人数：已开始发送的为实际人数，未开始的为预计；按行为推送只列近 7 天日均触发人数，不预估。</td></tr>
+  </table>
+  <h4 class="rg">操作纪录</h4>
+  <table class="rule">
+    <tr><td>推播、短信、弹窗、快显各页沿用现有的「操作纪录」页签，默认只列本页面的记录；页面选「全部页面」时跨页面查，可导出。</td></tr>
+    <tr><td>按页面、日期、操作人、操作、对象名称或编号查询。</td></tr>
+    <tr><td>每条记录含时间、操作人、页面、对象、操作、改动内容。</td></tr>
+    <tr><td>改内文这类操作可展开，对照改前与改后。</td></tr>
+    <tr><td>系统自动发生的状态变化，如到时开始发送、发送失败、生效期间结束，也记录，操作人记为「系统」。</td></tr>
+    <tr><td>推播、短信、快显与弹窗规则的新建、编辑、发送、停止，列表顶部上限与勿扰的修改，以及测试发送，每次各记一条；记录只增不改不删。</td></tr>
+    <tr><td>活动、礼包改期后，发送时间随之变动的推播、短信和快显各记一条，操作人记为「系统」。</td></tr>
   </table>
   <h4 class="rg">内容</h4>
   <table class="rule">
@@ -185,7 +195,7 @@ a.pref:hover{border-bottom-style:solid}
 
 <!-- 2 -->
 <section class="pg pt1" id="p2">
-  <div class="kick"><span class="pchip">第一部分　游戏外推送</span><span class="pos">第 2 页 / 共 11 页</span></div>
+  <div class="kick"><span class="pchip">第一部分　游戏外推送</span><span class="pos">第 2 页 / 共 10 页</span></div>
   <h2>按玩家行为自动推送</h2>
 
   <div class="shots">
@@ -227,7 +237,7 @@ a.pref:hover{border-bottom-style:solid}
 
 <!-- 3 -->
 <section class="pg pt1" id="p3">
-  <div class="kick"><span class="pchip">第一部分　游戏外推送</span><span class="pos">第 3 页 / 共 11 页</span></div>
+  <div class="kick"><span class="pchip">第一部分　游戏外推送</span><span class="pos">第 3 页 / 共 10 页</span></div>
   <h2>短信</h2>
 
   <div class="shots">
@@ -274,7 +284,7 @@ a.pref:hover{border-bottom-style:solid}
 
 <!-- 4 -->
 <section class="pg pt2" id="p4">
-  <div class="kick"><span class="pchip">第二部分　游戏内推送</span><span class="pos">第 4 页 / 共 11 页</span></div>
+  <div class="kick"><span class="pchip">第二部分　游戏内推送</span><span class="pos">第 4 页 / 共 10 页</span></div>
   <h2>按玩家分群配置弹窗</h2>
 
   <div class="shots">
@@ -339,7 +349,7 @@ a.pref:hover{border-bottom-style:solid}
 
 <!-- 5 -->
 <section class="pg pt2" id="p5">
-  <div class="kick"><span class="pchip">第二部分　游戏内推送</span><span class="pos">第 5 页 / 共 11 页</span></div>
+  <div class="kick"><span class="pchip">第二部分　游戏内推送</span><span class="pos">第 5 页 / 共 10 页</span></div>
   <h2>快显</h2>
 
   <div class="shots">
@@ -383,7 +393,7 @@ a.pref:hover{border-bottom-style:solid}
 
 <!-- 6 -->
 <section class="pg pt3" id="p6">
-  <div class="kick"><span class="pchip">第三部分　数据</span><span class="pos">第 6 页 / 共 11 页</span></div>
+  <div class="kick"><span class="pchip">第三部分　数据</span><span class="pos">第 6 页 / 共 10 页</span></div>
   <h2>数据概览</h2>
 
   <div class="shots">
@@ -417,7 +427,7 @@ a.pref:hover{border-bottom-style:solid}
 
 <!-- 7 -->
 <section class="pg pt3" id="p7">
-  <div class="kick"><span class="pchip">第三部分　数据</span><span class="pos">第 7 页 / 共 11 页</span></div>
+  <div class="kick"><span class="pchip">第三部分　数据</span><span class="pos">第 7 页 / 共 10 页</span></div>
   <h2>数据明细</h2>
 
   <div class="shots">
@@ -459,11 +469,11 @@ a.pref:hover{border-bottom-style:solid}
 
 <!-- 8 -->
 <section class="pg pt3" id="p8">
-  <div class="kick"><span class="pchip">第三部分　数据</span><span class="pos">第 8 页 / 共 11 页</span></div>
+  <div class="kick"><span class="pchip">第三部分　数据</span><span class="pos">第 8 页 / 共 10 页</span></div>
   <h2>弹窗与快显位置数据</h2>
 
   <div class="shots">
-    <figure><img src="需求评审版_图/13_游戏内数据.jpg" alt="弹窗与快显位置数据" style="width:1056px"><figcaption>大厅自动弹窗：关键数字、按日趋势与改动标记、按位次的点击率、这个位置上的规则</figcaption></figure>
+    <figure><img src="需求评审版_图/13_游戏内数据.jpg" alt="弹窗与快显位置数据" style="width:1056px"><figcaption>大厅自动弹窗：关键数字、按日趋势与改动标记、按位次的点击率</figcaption></figure>
   </div>
 
   <details class="rules">
@@ -473,7 +483,7 @@ a.pref:hover{border-bottom-style:solid}
   <table class="rule">
     <tr><td>大厅自动弹窗、游戏破产弹窗、快显各自统计曝光人数、曝光、点击、点击率，与前一个同样长度的周期对比。</td></tr>
     <tr><td>每个位置一张趋势图，按日显示曝光与点击率；图上标出这个位置上所有规则的改动和 App 发版。</td></tr>
-    <tr><td>列出这个位置上各条规则的数据，点规则名进入这条规则的数据（<a class="pref" href="#p7">第 7 页</a>）；合计行的曝光人数按玩家去重，所以小于各行相加。</td></tr>
+    <tr><td>这个位置上各条规则的数据不在本页另列，页头链接到数据明细的游戏内推送一层（<a class="pref" href="#p7">第 7 页</a>）；曝光人数按玩家去重。</td></tr>
   </table>
   <h4 class="rg">按位次</h4>
   <table class="rule">
@@ -482,7 +492,7 @@ a.pref:hover{border-bottom-style:solid}
   <h4 class="rg">改动与发版</h4>
   <table class="rule">
     <tr><td>趋势图上相邻两次改动或发版之间，画出这段时间的平均点击率。</td></tr>
-    <tr><td>趋势图上的规则改动取自操作纪录（<a class="pref" href="#p11">第 11 页</a>），图下按时间逐条列出每次改动的日期、改了什么、谁改的。</td></tr>
+    <tr><td>趋势图上的规则改动取自弹窗页的操作纪录，图下按时间逐条列出每次改动的日期、改了什么、谁改的。</td></tr>
     <tr><td>规则改动或 App 发版之前的数据照样保留，与之后的数据画在同一张趋势图上。</td></tr>
   </table>
     </div>
@@ -491,7 +501,7 @@ a.pref:hover{border-bottom-style:solid}
 
 <!-- 9 -->
 <section class="pg pt3" id="p9">
-  <div class="kick"><span class="pchip">第三部分　数据</span><span class="pos">第 9 页 / 共 11 页</span></div>
+  <div class="kick"><span class="pchip">第三部分　数据</span><span class="pos">第 9 页 / 共 10 页</span></div>
   <h2>每人每天推送量</h2>
 
   <div class="shots">
@@ -517,62 +527,32 @@ a.pref:hover{border-bottom-style:solid}
 <!-- 第四部分 -->
 <div class="partband pt4" id="part4">
   <div class="pn">第四部分</div>
-  <div class="pm"><b>查询</b><span>第 10–11 页</span></div>
+  <div class="pm"><b>查询</b><span>第 10 页</span></div>
 </div>
 
 <!-- 10 -->
 <section class="pg pt4" id="p10">
-  <div class="kick"><span class="pchip">第四部分　查询</span><span class="pos">第 10 页 / 共 11 页</span></div>
+  <div class="kick"><span class="pchip">第四部分　查询</span><span class="pos">第 10 页 / 共 10 页</span></div>
   <h2>玩家查询</h2>
 
   <div class="shots">
-    <figure><img src="需求评审版_图/19_玩家查询.jpg" alt="玩家查询" style="width:1056px"><figcaption>查到一位玩家：各推送方式能否收到、今天已收几条、近 30 天收到记录</figcaption></figure>
+    <figure><img src="需求评审版_图/19_玩家查询.jpg" alt="玩家查询" style="width:1056px"><figcaption>查到一位玩家：自动弹窗顺序与游戏破产弹窗顺序、各推送方式能否收到、近 30 天收到记录</figcaption></figure>
   </div>
 
   <details class="rules">
-    <summary><span class="rt">业务规则</span><span class="rgs">查询与结果 · 现有页面移入</span></summary>
+    <summary><span class="rt">业务规则</span><span class="rgs">现状与改动 · 查询与结果 · 账号权限</span></summary>
     <div class="rbody">
+  <h4 class="rg">现状与改动</h4>
+  <table class="rule">
+    <tr><td>现有：弹窗后台的「玩家弹窗顺序查询」，按会员编号、昵称或手机号码查一位玩家，显示玩家信息（标签名称、标签状态）与自动弹窗顺序、游戏破产弹窗顺序两张表。</td></tr>
+    <tr><td>改为：整页移到推送统一后台「查询 › 玩家查询」，两张弹窗顺序表与字段名照旧，扩展为推播、短信、弹窗、快显四种推送的查询。</td></tr>
+  </table>
   <h4 class="rg">查询与结果</h4>
   <table class="rule">
-    <tr><td>按会员编号、会员昵称或手机号码查一位玩家；查到后显示玩家资料（标签、最后登录、平台与版本、在线状态）。</td></tr>
+    <tr><td>按会员编号、会员昵称或手机号码查一位玩家；查到后显示玩家资料（标签名称、标签状态、最后登录、平台与版本、在线状态）。</td></tr>
+    <tr><td>自动弹窗顺序、游戏破产弹窗顺序两张表列不变：顺序、类型、礼包名称、弹窗活动 ID、弹窗名称。</td></tr>
     <tr><td>推播、短信、弹窗、快显各自能否收到，不能时写原因（如通知关闭、没有手机号）；今天已收几条、上限多少、最近一次收到的时间。</td></tr>
     <tr><td>近 30 天推播、短信、快显的每一条和每次弹窗的结果与原因，如被每人每天上限拦下时写明名额被哪几条占用；弹窗可展开看每个弹窗内容弹没弹。</td></tr>
-  </table>
-  <h4 class="rg">现有页面移入</h4>
-  <table class="rule">
-    <tr><td>现有「玩家弹窗顺序查询」整页移入，并扩展为推播、短信、弹窗、快显四种推送的查询。</td></tr>
-  </table>
-    </div>
-  </details>
-</section>
-
-<!-- 11 -->
-<section class="pg pt4" id="p11">
-  <div class="kick"><span class="pchip">第四部分　查询</span><span class="pos">第 11 页 / 共 11 页</span></div>
-  <h2>操作纪录</h2>
-
-  <div class="shots">
-    <figure><img src="需求评审版_图/20_操作纪录.jpg" alt="操作纪录总表" style="width:1056px"><figcaption>操作纪录总表：全部页面的记录，可筛选、导出，改内文的可展开对照改前改后</figcaption></figure>
-  </div>
-
-  <details class="rules">
-    <summary><span class="rt">业务规则</span><span class="rgs">记录内容 · 记录范围 · 总表与页签 · 账号权限</span></summary>
-    <div class="rbody">
-  <h4 class="rg">记录内容</h4>
-  <table class="rule">
-    <tr><td>每条记录含时间、操作人、推送方式、对象、操作、改动内容。</td></tr>
-    <tr><td>改内文这类操作可展开，对照改前与改后。</td></tr>
-    <tr><td>系统自动发生的状态变化，如到时开始发送、发送失败、生效期间结束，也记录，操作人记为「系统」。</td></tr>
-  </table>
-  <h4 class="rg">记录范围</h4>
-  <table class="rule">
-    <tr><td>推播、短信、快显与弹窗规则的新建、编辑、发送、停止，每人每天上限与勿扰、弹窗与快显上限的修改，以及测试发送，每次各记一条；记录只增不改不删。</td></tr>
-    <tr><td>活动、礼包改期后，发送时间随之变动的推播、短信和快显各记一条，操作人记为「系统」。</td></tr>
-  </table>
-  <h4 class="rg">总表与页签</h4>
-  <table class="rule">
-    <tr><td>推播、短信、弹窗、快显各页有「操作纪录」页签，只列本页面的记录；这一页是全部记录的总表，用于跨页面查与导出。</td></tr>
-    <tr><td>总表按日期、操作人、推送方式、操作、对象名称或编号查询，可导出。</td></tr>
   </table>
   <h4 class="rg">账号权限</h4>
   <table class="rule">
@@ -581,6 +561,8 @@ a.pref:hover{border-bottom-style:solid}
     </div>
   </details>
 </section>
+
+
 </main>
 </div>
 <script>
