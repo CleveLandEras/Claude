@@ -58,15 +58,17 @@ table.et td:nth-child(1){white-space:nowrap}
 .arch h2{font-size:21px;line-height:1.4;margin:0 0 12px}
 .frame{border:2px solid var(--ink);border-radius:12px;background:var(--card);padding:12px 16px 16px}
 .frame .fh{font-size:17px;font-weight:700;margin:0 0 12px}
-.cols{display:grid;grid-template-columns:minmax(0,1fr) 132px minmax(0,1fr);grid-template-rows:repeat(5,auto)}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) 118px minmax(0,1fr);grid-template-rows:repeat(5,auto)}
 .cbg{grid-row:1/6;background:var(--pbg);border-top:4px solid var(--pc);border-radius:9px}
 .cbg.L,.ci.L{grid-column:1}.cbg.R,.ci.R{grid-column:3}
-.cols>.ci{margin:0 12px 8px;min-width:0}
+.cols>.ci{margin:0 10px 8px;min-width:0}
 .cols>.mh{display:block;font-size:17px;font-weight:700;color:var(--pc);text-decoration:none;margin:14px 12px 10px}
 .cols>.mh:hover{text-decoration:underline}
-.cols>.ci.cls{margin:0 12px 12px}
+.cols>.ci.cls{margin:0 10px 12px}
 .cols>.ci.last{margin-bottom:14px}
-.gz{font-style:normal;font-size:12px;font-weight:400;line-height:1.5;margin-left:6px;padding:0 5px;border-radius:4px;background:var(--ink2);color:#fff;vertical-align:1px;white-space:nowrap}
+.gz{font-style:normal;font-size:11.5px;font-weight:400;line-height:1.5;margin-left:5px;padding:0 4px;border-radius:4px;background:var(--ink2);color:#fff;vertical-align:1px;white-space:nowrap}
+.gz.xj{background:var(--card);color:var(--ink2);border:1px solid var(--ink3);padding:0 3px}
+a.pgx:hover .gz.xj{background:transparent;color:#fff;border-color:#fff}
 .rt{font-size:13.5px;line-height:1.4;color:var(--ink2);white-space:nowrap}
 .rel{grid-column:2;align-self:center;display:flex;flex-direction:column;align-items:center;gap:5px;text-align:center}
 .rel .rt{white-space:normal}
@@ -77,15 +79,15 @@ table.et td:nth-child(1){white-space:nowrap}
 .xbox{display:inline-flex;align-items:center;gap:12px;background:var(--card);border:1.5px solid #9aa5b1;border-radius:10px;padding:8px 14px 10px}
 .xbox .xh{font-size:15px;font-weight:700;color:var(--ink2);white-space:nowrap}
 .xbox .xt{font-size:14.5px;color:var(--ink);white-space:nowrap}
-.xtop{margin:0 0 30px}
+.xtop{margin:0 0 26px}
 .anc{position:relative;display:inline-block}
 .drop{position:absolute;left:50%;top:100%;width:0;border-left:1.5px solid var(--ink3)}
 .drop .rt{position:absolute;left:10px;bottom:3px}
-.xtop .drop{height:41.5px}
+.xtop .drop{height:37.5px}
 .xtop .drop::after{content:"";position:absolute;left:-6.25px;bottom:0;border-style:solid;border-width:9px 5.5px 0 5.5px;border-color:var(--ink3) transparent transparent transparent}
-.shared .drop{height:56px}
+.shared .drop{height:50px}
 .shared .drop .xbox{position:absolute;top:100%;left:-36px}
-.arch{padding-bottom:72px}
+.arch{padding-bottom:66px}
 .shared .rt{margin:0 6px 0 -2px}
 .meth{display:block;background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 12px 10px;margin:0 0 8px}
 .meth .mt{display:block;font-size:15px;font-weight:700;color:var(--ink);margin:0 0 7px;text-decoration:none}
@@ -93,7 +95,7 @@ a.meth{color:var(--ink);font-size:15px;font-weight:700;text-decoration:none;padd
 a.meth:hover{border-color:var(--pc);background:var(--pc);color:#fff}
 .chips{display:flex;flex-wrap:wrap;gap:6px 8px}
 .chips.cls{margin:0 0 12px}
-a.pgx{display:inline-block;background:#fff;border:1.5px solid var(--pc);border-radius:7px;padding:3px 10px;color:var(--ink);text-decoration:none;font-size:14.5px;line-height:1.5}
+a.pgx{display:inline-block;background:#fff;border:1.5px solid var(--pc);border-radius:7px;padding:3px 9px;color:var(--ink);text-decoration:none;font-size:14.5px;line-height:1.5}
 a.pgx:hover{background:var(--pc);color:#fff}
 .laterrow{display:flex;gap:8px;margin:0 0 8px}
 .meth.later{flex:1;margin:0;background:transparent;border:1.5px dashed #9aa5b1;display:flex;align-items:baseline;justify-content:space-between;gap:8px;color:var(--ink2);font-size:15px;font-weight:700;padding:8px 12px}
@@ -141,17 +143,17 @@ a.pgx:hover{background:var(--pc);color:#fff}
       <div class="cbg R pt2"></div>
       <a class="mh ci L pt1" href="#part1" style="grid-row:1">游戏外推送</a>
       <a class="mh ci R pt2" href="#part2" style="grid-row:1">游戏内推送</a>
-      <div class="chips ci cls L pt1" style="grid-row:2"><a class="pgx" href="#p3">每人每天上限与勿扰</a><a class="pgx" href="#p4">推播与短信数据统计</a></div>
+      <div class="chips ci cls L pt1" style="grid-row:2"><a class="pgx" href="#p3">每人每天上限与勿扰<i class="gz xj">新建</i></a><a class="pgx" href="#p4">推播与短信数据统计<i class="gz xj">新建</i></a></div>
       <div class="rel" style="grid-row:2"><span class="rt">上限互不占用</span><span class="ln two"></span></div>
-      <div class="chips ci cls R pt2" style="grid-row:2"><a class="pgx" href="#p7">每人每天弹窗与快显上限</a><a class="pgx" href="#p8">弹窗与快显数据统计</a></div>
+      <div class="chips ci cls R pt2" style="grid-row:2"><a class="pgx" href="#p7">每人每天弹窗与快显上限<i class="gz xj">新建</i></a><a class="pgx" href="#p8">弹窗与快显数据统计<i class="gz xj">新建</i></a></div>
       <div class="meth ci L pt1" style="grid-row:3"><span class="mt">推播</span><div class="chips"><a class="pgx" href="#p1">按玩家分群推送<i class="gz">改造</i></a><a class="pgx" href="#p2">按玩家行为自动推送<i class="gz">改造</i></a></div></div>
-      <div class="rel" style="grid-row:3"><span class="rt">在线不发<br>改由快显或弹窗</span><span class="ln"></span></div>
+      <div class="rel" style="grid-row:3/5"><span class="rt">推播选在线不发时<br>改由快显或弹窗</span><span class="ln"></span></div>
       <div class="meth ci R pt2" style="grid-row:3"><span class="mt">弹窗</span><div class="chips"><a class="pgx" href="#p6">按玩家分群配置弹窗<i class="gz">改造</i></a></div></div>
       <a class="meth ci L pt1" href="#p5" style="grid-row:4">短信<i class="gz">改造</i></a>
       <a class="meth ci R pt2" href="#p9" style="grid-row:4">快显<i class="gz">改造</i></a>
       <div class="laterrow ci last L" style="grid-row:5"><div class="meth later"><span>Facebook</span><i>后续</i></div><div class="meth later"><span>LINE</span><i>后续</i></div></div>
     </div>
-    <div class="shared pt3"><a class="sl" href="#part3">两类共用</a><a class="pgx" href="#p11">概览</a><span class="anc"><a class="pgx" href="#p12">项目目录</a><span class="drop"><span class="rt">改期不改活动本身</span><span class="xbox"><span class="xh">活动配置</span><span class="xt">活动本身的起止时间</span></span></span></span><span class="rt">↑ 供各推送选所属活动</span><a class="pgx" href="#p13">玩家查询<i class="gz">改造</i></a><a class="pgx" href="#p14">操作纪录</a></div>
+    <div class="shared pt3"><a class="sl" href="#part3">两类共用</a><a class="pgx" href="#p11">概览<i class="gz xj">新建</i></a><span class="anc"><a class="pgx" href="#p12">项目目录<i class="gz xj">新建</i></a><span class="drop"><span class="rt">改期不改活动本身</span><span class="xbox"><span class="xh">活动配置</span><span class="xt">活动本身的起止时间</span></span></span></span><span class="rt">↑ 供各推送选所属活动</span><a class="pgx" href="#p13">玩家查询<i class="gz">改造</i></a><a class="pgx" href="#p14">操作纪录<i class="gz xj">新建</i></a></div>
   </div>
 </section>
 
@@ -331,22 +333,21 @@ a.pgx:hover{background:var(--pc);color:#fff}
   <h3 class="bk">业务规则</h3>
   <h4 class="rg">现状与改动</h4>
   <table class="rule">
-    <tr><td>现在：在弹窗后台「大厅弹窗顺序设定」页配置；每条规则设弹窗类型、位置、每次最多弹出几个，对象为全部玩家或一个标签群组，要排除部分玩家须先在会员标签设定建带排除条件的群组；排序项设弹出时机、弹窗次数、冷却时间。</td></tr>
-    <tr><td>改后：整页移入推送统一后台；新加排除群组、固定排除、弹窗预计人数、优先级、互斥组、重叠检查、当天快显提示过的排序项跳过、保存并上架前确认、实验、每人总次数、关闭后冷却，排序项新加「弹出后终止本次后续弹窗」和不可关闭。</td></tr>
+    <tr><td>现在：在弹窗后台「大厅弹窗顺序设定」页配置；每条规则设弹窗类型、位置、每次最多弹出几个，对象为全部玩家或一个标签群组（要排除部分玩家须另建带排除条件的群组）；规则里的弹窗排序是按先后弹出的活动或礼包清单，每一项叫排序项，设弹出时机、弹窗次数、冷却时间。</td></tr>
+    <tr><td>改后：整页移入推送统一后台；新加排除群组、固定排除、弹窗预计人数、优先级、互斥组、重叠检查、当天快显提示过的排序项跳过、保存并上架前确认、实验、每人总次数（本规则对同一玩家最多弹几次）、关闭后冷却，排序项新加「弹出后终止本次后续弹窗」和不可关闭。</td></tr>
   </table>
   <h4 class="rg">规则内容</h4>
   <table class="rule">
     <tr><td>每条规则选弹窗类型（活动类、储值类）和位置：大厅弹窗（进入大厅时自动弹出）、破产弹窗（玩家破产时弹出）；并设每次最多弹出几个。</td></tr>
-    <tr><td>弹窗排序是本规则里按先后弹出的清单，清单里的每一项叫排序项，对应一个活动或礼包，先后可调整。</td></tr>
     <tr><td>每个排序项设弹出时机、弹窗次数、是否「弹出后终止本次后续弹窗」、是否不可关闭（玩家须点按钮）；排序项自己的冷却时间沿用现行设置。</td></tr>
     <tr><td>优先级数字越小越先弹，1 最高。</td></tr>
-    <tr><td>高级设置里设互斥组、实验分组、每人总次数和关闭后冷却（玩家直接关掉本规则的弹窗后，隔多久本规则才再弹）。</td></tr>
+    <tr><td>高级设置里设互斥组、实验分组、每人总次数（一次进入大厅弹出本规则计 1 次，按上架以来累计，或按每日、每周计）和关闭后冷却（玩家直接关掉本规则的弹窗后，隔多久本规则才再弹）。</td></tr>
   </table>
   <h4 class="rg">对象与预计人数</h4>
   <table class="rule">
-    <tr><td>对象为全部玩家或标签群组，可再选排除群组；潜在付费、潜在流失等新建标签的群组同样可选（见第 10 页）。</td></tr>
+    <tr><td>对象为全部玩家或一个标签群组；改后加排除群组（可选多个），对象下拉加入潜在付费、潜在流失等新建标签的群组（见第 10 页）。</td></tr>
     <tr><td>VIP 名单、黑名单、机器人与测试账号、敏感状态账号对所有弹窗固定排除；推播、短信、快显的 VIP 名单是默认排除、可移出（见第 1 页）。</td></tr>
-    <tr><td>弹窗预计人数为对象减去排除群组后会命中本规则的人数；固定排除的玩家弹出时才扣，不从预计人数里减，旁边注明其中固定排除约多少人。</td></tr>
+    <tr><td>弹窗预计人数为对象减去排除群组，再减去先命中同位置、同类型优先级更高规则的人；固定排除的玩家弹出时才扣，不从预计人数里减，旁边注明其中固定排除约多少人。</td></tr>
   </table>
   <h4 class="rg">优先级与互斥</h4>
   <table class="rule">
@@ -357,7 +358,7 @@ a.pgx:hover{background:var(--pc);color:#fff}
   <table class="rule">
     <tr><td>与同位置、同类型其他上架规则重叠时，显示重叠的人数、这些人弹哪一条，以及本规则与其他规则每天互相接替的人数。</td></tr>
     <tr><td>规则之间用排除群组避免重叠，如回流规则排除新增玩家；仍重叠的玩家按优先级弹。</td></tr>
-    <tr><td>每条规则可选择跳过当天已用快显（游戏内横幅）提示过的同一活动或礼包对应的排序项，默认不跳过。</td></tr>
+    <tr><td>每条规则设是否跳过已提示过的排序项：当天已用快显（游戏内横幅）向这位玩家提示过同一活动或礼包时，对应的排序项不弹；默认不跳过。</td></tr>
     <tr><td>勾了「弹出后终止本次后续弹窗」的排序项弹出后，同位置后面的排序项本次不弹；现有规则里的发财金、揪友同乐邀请默认勾选。</td></tr>
   </table>
   <h4 class="rg">保存并上架</h4>
@@ -366,7 +367,7 @@ a.pgx:hover{background:var(--pc);color:#fff}
   </table>
   <h4 class="rg">实验</h4>
   <table class="rule">
-    <tr><td>实验把玩家分成实验组与对照组，每位玩家固定在一组；对照组的玩家可设为改看下一条命中的规则，或不弹。</td></tr>
+    <tr><td>实验把玩家分成实验组与对照组，每位玩家固定在一组；对照组的玩家改看下一条命中的规则或不弹，由运营设定。</td></tr>
   </table>
 </section>
 
@@ -440,11 +441,11 @@ a.pgx:hover{background:var(--pc);color:#fff}
   <h4 class="rg">现状与改动</h4>
   <table class="rule">
     <tr><td>现在：快显的内容与触发写死在客户端里，发给当时在线的全部玩家；数据没有后台页面可查。</td></tr>
-    <tr><td>改后：在推送统一后台新建快显，由服务端下发；客户端上报曝光与点击。</td></tr>
+    <tr><td>改后：快显在推送统一后台配置，改内容不用发版；发送对象改为按标签群组选、加排除群组，发送时间改为在后台选立即、定时或按行为；曝光与点击在后台可查。</td></tr>
   </table>
   <h4 class="rg">内容与对象</h4>
   <table class="rule">
-    <tr><td>快显是游戏界面里的即时横幅，如通行证升级提示；可设横幅文字、显示位置、停留秒数、点击跳转的页面。</td></tr>
+    <tr><td>快显是游戏界面里的即时横幅，如通行证升级提示；运营在后台设横幅文字、显示位置、停留秒数和点击跳转的页面。</td></tr>
     <tr><td>发送对象和排除群组的选法同推播（第 1 页），VIP 名单同样默认排除、可移出。</td></tr>
     <tr><td>只显示给在线玩家：发送时不在线的玩家收不到，上线后也不补显。</td></tr>
   </table>
