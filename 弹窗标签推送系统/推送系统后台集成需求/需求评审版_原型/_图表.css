@@ -1,6 +1,7 @@
 /* 需求评审版截图：数据图表共用样式（由 _scripts/an_评审版图表.py 生成的页面引用；原型样式.css 只读，不改它） */
 .ch-page{margin:0;padding:20px;background:var(--page)}
-.shot.ch{background:#fff;color:var(--ink);font-size:13px;line-height:1.5}
+.shot.ch{background:#fff;color:var(--ink);font-family:"Inter","Noto Sans CJK SC","PingFang SC","Microsoft YaHei",sans-serif;font-size:13px;line-height:1.5}
+.ch-z{zoom:1.12}   /* 与子任务 A 的截图同一字号观感（界面字约 14.5px）；内部按 875px 宽排版 */
 .ch-sec{padding:14px 24px 16px;border-bottom:1px solid var(--line2)}
 .ch-sec:last-child{border-bottom:0}
 .ch-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
@@ -46,6 +47,6 @@
 .ch .pd-tabs{padding:0;margin:-4px 0 12px;height:36px}
 .ch .pd-tabs>span{height:34px;padding:0 16px 0 0;margin-right:16px}
 /* 两栏 */
-.ch-2col{display:grid;grid-template-columns:430px minmax(0,1fr);gap:28px;align-items:start}
+.ch-2col{display:grid;grid-template-columns:372px minmax(0,1fr);gap:30px;align-items:start}
 .ch .pd-dt td,.ch .pd-dt th{padding:6px 8px}
 .ch .pd-dt td{font-variant-numeric:tabular-nums}

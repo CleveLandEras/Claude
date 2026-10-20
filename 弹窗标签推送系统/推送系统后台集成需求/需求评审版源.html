@@ -64,30 +64,40 @@ table.rule .why{display:block;margin-top:3px;color:var(--ink3);font-size:14px;li
 table.et{max-width:980px;background:#fff;border:1px solid var(--line);font-size:14px;line-height:1.55}
 table.et th,table.et td{padding:7px 10px}
 table.et td:nth-child(1){white-space:nowrap}
-/* 开屏：后台结构图 */
+@media (max-width:1100px){.wrap{grid-template-columns:1fr}nav{display:none}}
+</style>
+<style id="arch">
+/* 开屏：后台结构（原型截图在前，结构图在后） */
 .arch{margin:0 0 8px}
 .arch h2{font-size:21px;line-height:1.4;margin:0 0 12px}
-.frame{border:2px solid var(--ink);border-radius:12px;background:var(--card);padding:12px 16px 16px}
-.frame .fh{font-size:17px;font-weight:700;margin:0 0 12px}
-.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:stretch}
-.mcol{background:var(--pbg);border-top:4px solid var(--pc);border-radius:9px;padding:10px 12px 6px}
-.mcol .mh{display:block;font-size:17px;font-weight:700;color:var(--pc);text-decoration:none;margin:0 0 10px}
-.mcol .mh:hover{text-decoration:underline}
-.meth{display:block;background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 12px 10px;margin:0 0 8px}
-.meth .mt{display:block;font-size:15px;font-weight:700;color:var(--ink);margin:0 0 7px;text-decoration:none}
-a.meth{color:var(--ink);font-size:15px;font-weight:700;text-decoration:none;padding:8px 12px}
-a.meth:hover{border-color:var(--pc);background:var(--pc);color:#fff}
-.chips{display:flex;flex-wrap:wrap;gap:6px 8px}
-.chips.cls{margin:0 0 12px}
-a.pgx{display:inline-block;background:#fff;border:1.5px solid var(--pc);border-radius:7px;padding:3px 10px;color:var(--ink);text-decoration:none;font-size:14.5px;line-height:1.5}
-a.pgx:hover{background:var(--pc);color:#fff}
-.laterrow{display:flex;gap:8px;margin:0 0 8px}
-.meth.later{flex:1;margin:0;background:transparent;border:1.5px dashed #9aa5b1;display:flex;align-items:baseline;justify-content:space-between;gap:8px;color:var(--ink2);font-size:15px;font-weight:700;padding:8px 12px}
-.meth.later i{font-style:normal;font-weight:400;font-size:13px;color:var(--ink3)}
-.shared{margin-top:12px;background:var(--pbg);border-top:4px solid var(--pc);border-radius:9px;padding:10px 12px;display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
-.shared .sl{font-size:17px;font-weight:700;color:var(--pc);text-decoration:none;margin-right:6px}
-.shared .sl:hover{text-decoration:underline}
-@media (max-width:1100px){.wrap{grid-template-columns:1fr}nav{display:none}}
+.arch .shots{margin:0 0 24px}
+.amap{display:block;width:100%;max-width:980px;height:auto;font-family:inherit}
+.amap text{font-size:15px;fill:var(--ink)}
+.amap .bound{fill:var(--card);stroke:var(--ink);stroke-width:2}
+.amap .ftitle{font-size:17px;font-weight:700}
+.amap .c1{--k:var(--p1);--kb:var(--p1bg)}
+.amap .c2{--k:var(--p2);--kb:var(--p2bg)}
+.amap .c3{--k:var(--p3);--kb:var(--p3bg)}
+.amap .cbg{fill:var(--kb)}
+.amap .cband{fill:var(--k)}
+.amap .cname text{font-size:19px;font-weight:700;fill:var(--k)}
+.amap a.cname:hover text{text-decoration:underline}
+.amap .csub{font-size:14px;fill:var(--ink2)}
+.amap .gbody{fill:#fff;fill-opacity:.6}
+.amap .gbar{fill:var(--k)}
+.amap .gline{fill:none;stroke:var(--k);stroke-width:1.5}
+.amap .mgrp text{fill:#fff;font-size:16px;font-weight:700}
+.amap .node rect{fill:#fff;stroke:var(--k);stroke-width:1.5}
+.amap .solo text{font-size:16px;font-weight:700}
+.amap a.node:hover rect{fill:var(--k)}
+.amap a.node:hover text{fill:#fff}
+.amap a:focus-visible rect{stroke:var(--ink);stroke-width:3}
+.amap .ext rect{fill:var(--soft);stroke:#9aa5b1;stroke-width:1.5}
+.amap .en{font-size:16px;font-weight:700}
+.amap .es{font-size:14px;fill:var(--ink2)}
+.amap .feed path{fill:none;stroke:var(--ink2);stroke-width:1.6}
+.amap .ah{fill:var(--ink2)}
+.amap .flabel{font-size:14px;font-weight:600;fill:var(--ink2)}
 </style>
 </head>
 <body>
@@ -117,25 +127,58 @@ a.pgx:hover{background:var(--pc);color:#fff}
 </header>
 <section class="arch">
   <h2>后台结构</h2>
-  <div class="frame">
-    <div class="fh">推送统一后台</div>
-    <div class="cols">
-      <div class="mcol pt1">
-        <a class="mh" href="#part1">游戏外推送</a>
-        <div class="chips cls"><a class="pgx" href="#p3">每人每天上限与勿扰</a><a class="pgx" href="#p4">推播与短信数据统计</a></div>
-        <div class="meth"><span class="mt">推播</span><div class="chips"><a class="pgx" href="#p1">按玩家分群推送</a><a class="pgx" href="#p2">按玩家行为自动推送</a></div></div>
-        <a class="meth" href="#p5">短信</a>
-        <div class="laterrow"><div class="meth later"><span>Facebook</span><i>后续</i></div><div class="meth later"><span>LINE</span><i>后续</i></div></div>
-      </div>
-      <div class="mcol pt2">
-        <a class="mh" href="#part2">游戏内推送</a>
-        <div class="chips cls"><a class="pgx" href="#p7">每人每天弹窗与快显上限</a><a class="pgx" href="#p8">弹窗与快显数据统计</a></div>
-        <div class="meth"><span class="mt">弹窗</span><div class="chips"><a class="pgx" href="#p6">按玩家分群配置弹窗</a></div></div>
-        <a class="meth" href="#p9">快显</a>
-      </div>
-    </div>
-    <div class="shared pt3"><a class="sl" href="#part3">两类共用</a><a class="pgx" href="#p10">概览</a><a class="pgx" href="#p11">项目目录</a><a class="pgx" href="#p12">玩家查询</a><a class="pgx" href="#p13">操作纪录</a></div>
+  <div class="shots">
+    <figure><img src="需求评审版_图/00_后台首页.jpg" alt="后台首页：左侧菜单与概览" style="width:980px"><figcaption>后台首页</figcaption></figure>
   </div>
+  <svg class="amap" viewBox="0 0 980 656" width="980" height="656" aria-label="后台结构图">
+    <defs>
+      <marker id="arch-ah" viewBox="0 0 10 10" refX="10" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" orient="auto"><path class="ah" d="M0,0 L10,5 L0,10 z"/></marker>
+      <clipPath id="arch-k1"><rect x="18" y="144" width="452" height="368" rx="12"/></clipPath>
+      <clipPath id="arch-k2"><rect x="510" y="144" width="452" height="368" rx="12"/></clipPath>
+      <clipPath id="arch-k3"><rect x="18" y="532" width="944" height="104" rx="12"/></clipPath>
+      <clipPath id="arch-g1"><rect x="36" y="246" width="200" height="142" rx="9"/></clipPath>
+      <clipPath id="arch-g3"><rect x="528" y="246" width="200" height="98" rx="9"/></clipPath>
+    </defs>
+    <!-- 框外：会员标签设定（现有后台） -->
+    <g class="ext"><rect x="364" y="2" width="252" height="44" rx="8"/><text x="490" y="24" dominant-baseline="central" text-anchor="middle"><tspan class="en">会员标签设定</tspan><tspan class="es">（现有后台）</tspan></text></g>
+    <!-- 推送统一后台 -->
+    <rect class="bound" x="1" y="96" width="978" height="558" rx="14"/>
+    <text class="ftitle" x="20" y="120" dominant-baseline="central">推送统一后台</text>
+    <!-- 游戏外推送 -->
+    <g class="c1">
+      <rect class="cbg" x="18" y="144" width="452" height="368" rx="12"/><rect class="cband" x="18" y="144" width="452" height="5" clip-path="url(#arch-k1)"/>
+      <a class="cname" href="#part1"><text x="36" y="176" dominant-baseline="central">游戏外推送</text></a>
+      <text class="csub" x="36" y="201" dominant-baseline="central">玩家不在游戏里也收得到</text>
+      <g class="mgrp"><rect class="gbody" x="36" y="246" width="200" height="142" rx="9"/><rect class="gbar" x="36" y="246" width="200" height="40" clip-path="url(#arch-g1)"/><text x="136" y="266" dominant-baseline="central" text-anchor="middle">推播</text><rect class="gline" x="36" y="246" width="200" height="142" rx="9"/></g>
+      <a class="node" href="#p1"><rect x="46" y="298" width="180" height="34" rx="8"/><text x="136" y="315" dominant-baseline="central" text-anchor="middle">按玩家分群推送</text></a>
+      <a class="node" href="#p2"><rect x="46" y="342" width="180" height="34" rx="8"/><text x="136" y="359" dominant-baseline="central" text-anchor="middle">按玩家行为自动推送</text></a>
+      <a class="node solo" href="#p5"><rect x="252" y="246" width="200" height="40" rx="8"/><text x="352" y="266" dominant-baseline="central" text-anchor="middle">短信</text></a>
+      <a class="node" href="#p3"><rect x="36" y="412" width="416" height="36" rx="8"/><text x="244" y="430" dominant-baseline="central" text-anchor="middle">每人每天上限与勿扰</text></a>
+      <a class="node" href="#p4"><rect x="36" y="458" width="416" height="36" rx="8"/><text x="244" y="476" dominant-baseline="central" text-anchor="middle">推播与短信数据统计</text></a>
+    </g>
+    <!-- 游戏内推送 -->
+    <g class="c2">
+      <rect class="cbg" x="510" y="144" width="452" height="368" rx="12"/><rect class="cband" x="510" y="144" width="452" height="5" clip-path="url(#arch-k2)"/>
+      <a class="cname" href="#part2"><text x="528" y="176" dominant-baseline="central">游戏内推送</text></a>
+      <text class="csub" x="528" y="201" dominant-baseline="central">玩家在游戏里才看得到</text>
+      <g class="mgrp"><rect class="gbody" x="528" y="246" width="200" height="98" rx="9"/><rect class="gbar" x="528" y="246" width="200" height="40" clip-path="url(#arch-g3)"/><text x="628" y="266" dominant-baseline="central" text-anchor="middle">弹窗</text><rect class="gline" x="528" y="246" width="200" height="98" rx="9"/></g>
+      <a class="node" href="#p6"><rect x="538" y="298" width="180" height="34" rx="8"/><text x="628" y="315" dominant-baseline="central" text-anchor="middle">按玩家分群配置弹窗</text></a>
+      <a class="node solo" href="#p9"><rect x="744" y="246" width="200" height="40" rx="8"/><text x="844" y="266" dominant-baseline="central" text-anchor="middle">快显</text></a>
+      <a class="node" href="#p7"><rect x="528" y="412" width="416" height="36" rx="8"/><text x="736" y="430" dominant-baseline="central" text-anchor="middle">每人每天弹窗与快显上限</text></a>
+      <a class="node" href="#p8"><rect x="528" y="458" width="416" height="36" rx="8"/><text x="736" y="476" dominant-baseline="central" text-anchor="middle">弹窗与快显数据统计</text></a>
+    </g>
+    <!-- 两类共用 -->
+    <g class="c3">
+      <rect class="cbg" x="18" y="532" width="944" height="104" rx="12"/><rect class="cband" x="18" y="532" width="944" height="5" clip-path="url(#arch-k3)"/>
+      <a class="cname" href="#part3"><text x="36" y="564" dominant-baseline="central">两类共用</text></a>
+      <a class="node" href="#p10"><rect x="36" y="582" width="215" height="36" rx="8"/><text x="143.5" y="600" dominant-baseline="central" text-anchor="middle">概览</text></a>
+      <a class="node" href="#p11"><rect x="267" y="582" width="215" height="36" rx="8"/><text x="374.5" y="600" dominant-baseline="central" text-anchor="middle">项目目录</text></a>
+      <a class="node" href="#p12"><rect x="498" y="582" width="215" height="36" rx="8"/><text x="605.5" y="600" dominant-baseline="central" text-anchor="middle">玩家查询</text></a>
+      <a class="node" href="#p13"><rect x="729" y="582" width="215" height="36" rx="8"/><text x="836.5" y="600" dominant-baseline="central" text-anchor="middle">操作纪录</text></a>
+    </g>
+    <!-- 标签群组：进入推播、短信、弹窗、快显 -->
+    <g class="feed"><path d="M490,46 V222 M136,222 H844"/><path d="M136,222 V246" marker-end="url(#arch-ah)"/><path d="M352,222 V246" marker-end="url(#arch-ah)"/><path d="M628,222 V246" marker-end="url(#arch-ah)"/><path d="M844,222 V246" marker-end="url(#arch-ah)"/><text class="flabel" x="500" y="71" dominant-baseline="central">标签群组</text></g>
+  </svg>
 </section>
 
 <!-- 第一部分 -->
