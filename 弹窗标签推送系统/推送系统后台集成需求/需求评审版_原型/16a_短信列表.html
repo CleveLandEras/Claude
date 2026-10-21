@@ -2,23 +2,75 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
-<title>短信列表</title>
-<link rel="stylesheet" href="../原型样式.css">
-<link rel="stylesheet" href="_图表.css">
+<title>16a 短信列表</title>
 <link rel="stylesheet" href="_后台框.css">
+<link rel="stylesheet" href="_弹窗.css">
+<link rel="stylesheet" href="_推送.css">
 </head>
-<!-- 由 _scripts/an_评审版图表.py 生成，改数字请改脚本后重跑 -->
-<body class="ch-page">
-<div class="shot ch bk" data-page="短信" data-tabs="*短信列表|操作纪录">
-    <div class="ch-mainx cp pl">
-      <div class="pl-cap"><span class="pl-k">每人每天上限</span>短信 <span class="in" style="width:34px">1</span> 条<span class="pl-k" style="margin-left:26px">勿扰时段</span><span class="in" style="width:46px">00:00</span><span class="pl-to">至</span><span class="in" style="width:46px">08:00</span><span class="ch-m" style="margin-left:6px">推播、短信共用</span><span class="pl-k" style="margin-left:26px">服务通知遇勿扰</span><span class="in" style="width:70px">顺延<span class="dn">⌵</span></span></div>
-      <div class="ch-row pl-f"><span class="seg pl-v"><span class="on">全部</span><span>今明两天</span></span><span class="in ph" style="width:90px">名称或 ID</span><span class="in ph" style="width:76px">发送方式<span class="dn">⌵</span></span><span class="in ph" style="width:76px">所属活动<span class="dn">⌵</span></span><span class="in ph" style="width:76px">发送对象<span class="dn">⌵</span></span><span class="in ph" style="width:64px">创建人<span class="dn">⌵</span></span><span class="in ph" style="width:112px">创建日期 起–止</span><span class="btn2">查询</span><span class="btn2">重置</span><span class="ch-sp"></span><span class="btn2 p">＋ 新建短信</span></div>
-      <div class="ch-row pl-c"><span class="seg"><span class="on">全部 6</span></span><span class="pl-gp"><span class="pl-g">一次性</span><span class="seg"><span>草稿 0</span><span>已排程 1</span><span>发送中 0</span><span>已完成 4</span><span>已停止 0</span><span>发送失败 0</span><span>无可发送对象 0</span></span></span><span class="pl-gp"><span class="pl-g">按行为</span><span class="seg"><span>草稿 0</span><span>运行中 1</span><span>已暂停 0</span><span>已结束 0</span></span></span></div>
-      <table class="pd-dt ch-tbl ch-list"><thead><tr><th>推送</th><th>发送方式</th><th>所属活动</th><th>发送对象</th><th>状态</th><th>操作</th></tr></thead>
-      <tbody><tr><td><span class="pd-lk">中秋排名赛最后一天</span><span class="pd-s2">推送 42 · 运营02 10/12</span></td><td>定时 10/14 20:00</td><td>中秋排名赛</td><td>中秋排名赛参与者<span class="pd-s2">当前 9,610 人</span></td><td class="ch-stc"><span class="pd-st">已排程</span></td><td class="ch-ops"><span class="pd-lk">编辑</span><span class="pd-lk">停止</span><span class="pd-lk">复制</span></td></tr><tr><td><span class="pd-lk">回流礼包 B 限时上架</span><span class="pd-s2">推送 41 · 运营01 10/09</span></td><td>定时 10/10 12:00</td><td>回流礼包 B</td><td>回流<span class="pd-s2">发送时 16,240 人</span></td><td class="ch-stc"><span class="pd-st">已完成</span></td><td class="ch-ops"><span class="pd-lk">复制</span><span class="pd-lk">查看数据</span></td></tr><tr><td><span class="pd-lk">账号安全验证通知</span><span class="pd-s2">推送 40 · 运营02 10/07</span></td><td>立即 10/07 16:20</td><td>不属于活动</td><td>名单<span class="pd-s2">发送时 1,720 人</span></td><td class="ch-stc"><span class="pd-st">已完成</span></td><td class="ch-ops"><span class="pd-lk">复制</span><span class="pd-lk">查看数据</span></td></tr><tr><td><span class="pd-lk">中秋排名赛冲榜提醒</span><span class="pd-s2">推送 39 · 运营01 10/07</span></td><td>定时 10/08 20:00</td><td>中秋排名赛</td><td>中秋排名赛参与者<span class="pd-s2">发送时 9,420 人</span></td><td class="ch-stc"><span class="pd-st">已完成</span></td><td class="ch-ops"><span class="pd-lk">复制</span><span class="pd-lk">查看数据</span></td></tr><tr><td><span class="pd-lk">破产后召回</span><span class="pd-s2">推送 38 · 运营01 9/24</span></td><td>按行为 破产后 2 小时未回到游戏<span class="pd-s2">9/25 起</span></td><td>不属于活动</td><td>触发的玩家</td><td class="ch-stc"><span class="pd-st">运行中</span><span class="pd-s2">今日 1,240／封顶 2,000 则</span></td><td class="ch-ops"><span class="pd-lk">编辑</span><span class="pd-lk">暂停</span><span class="pd-lk">结束</span><span class="pd-lk">复制</span><span class="pd-lk">查看数据</span></td></tr><tr><td><span class="pd-lk">周年庆预告</span><span class="pd-s2">推送 36 · 运营02 10/03</span></td><td>定时 10/05 12:00</td><td>周年庆</td><td>近 30 天登录<span class="pd-s2">发送时 22,310 人</span></td><td class="ch-stc"><span class="pd-st">已完成</span></td><td class="ch-ops"><span class="pd-lk">复制</span><span class="pd-lk">查看数据</span></td></tr></tbody></table>
-      <div class="ch-row pl-p"><span class="ch-sp"></span>共 6 条</div>
+<body>
+<div class="shot bk" data-page="短信" data-tabs="*推送|操作纪录"><div class="pw">
+  <div class="ttl"><h3>短信</h3><span class="sp"></span><span class="btnp">＋ 新建短信</span></div>
+
+  <div class="capbar">
+    <span class="k">上限与勿扰</span>
+    <span class="v">每人每天短信 <b class="num">1</b> 条</span>
+    <span class="div"></span>
+    <span class="v">勿扰 <b class="num">00:00–08:00</b> 推播、短信共用 · 服务通知遇勿扰顺延</span>
+    <span class="div"></span>
+    <span class="v">今天碰到上限 <b class="num">310</b> 人</span>
+    <span class="lk">修改</span>
+  </div>
+
+  <div class="quota">
+    <div class="qh"><b>今明两天名额</b><span class="m2">每人每天 1 条，按发送先后占用</span><span class="sp"></span><span class="m2">预计更新于 15:30</span><span class="lk">展开逐条 ▸</span></div>
+    <div class="qrow"><span>今天 10/21（二）</span><div class="qbar"><i class="b" style="width:12%"></i><i class="c" style="width:1%"></i></div><span>按行为 1 条 · 已拦下 <b class="num">310</b> 人</span></div>
+    <div class="qrow"><span>明天 10/22（三）</span><div class="qbar"><i class="b" style="width:34%"></i></div><span>定时 1 条 · 预计拦下 <b class="num">0</b> 人</span></div>
+    <div class="qkey"><span><i style="background:#7FA7E0"></i>占用</span><span><i style="background:#E05A4F"></i>被上限拦下</span><span>条长：占当天名额的比例</span></div>
+  </div>
+
+  <div class="fbar">
+    <span class="seg2"><span class="on">全部</span><span>立即与定时</span><span>按行为</span></span>
+    <span class="inp srch">名称、编号或所属活动</span>
+    <span class="inp" style="width:96px">所属活动<span class="dn">⌵</span></span>
+    <span class="inp" style="width:84px">对象<span class="dn">⌵</span></span>
+    <span class="inp" style="width:84px">创建人<span class="dn">⌵</span></span>
+    <span class="lk" style="margin-left:4px">更多筛选</span>
+  </div>
+  <div class="chips">
+    <span class="c on">生效中 <b>1</b></span><span class="c">未开始 <b>1</b></span><span class="c">已暂停 <b>0</b></span><span class="c">草稿 <b>0</b></span><span class="c">已结束 <b>4</b></span>
+    <span class="upd m2">数据更新于 15:30</span>
+  </div>
+
+  <div class="zone">
+    <h4>立即与定时<span class="m2">按下次发送时间排</span></h4>
+    <div class="grp">
+      <table class="rl">
+        <colgroup><col style="width:124px"><col style="width:206px"><col style="width:170px"><col style="width:90px"><col><col style="width:96px"></colgroup>
+        <tr><th>下次发送</th><th>推送</th><th>对象</th><th>每条计</th><th style="text-align:right">数据</th><th></th></tr>
+        <tr><td class="num">10/22 20:00</td><td><div class="nm">中秋排名赛最后一天<span class="id">#42</span></div><div class="sub"><span class="pill pend">未开始</span>中秋排名赛 · 运营02</div></td>
+          <td>中秋排名赛参与者 <span class="num m">9,610</span></td><td>2 则</td>
+          <td class="kpi m2">未发送</td>
+          <td class="ops"><span>编辑</span><span>数据</span><span class="dots">⋯</span></td></tr>
+      </table>
+      <div class="fold">▸ 已结束 4 条<span class="m2">已发完 4</span><span class="add">＋ 新建短信</span></div>
     </div>
-</div>
+  </div>
+
+  <div class="zone">
+    <h4>按行为<span class="m2">活动或礼包开始、结束前后 N 小时发给对象 · 每天封顶几则</span></h4>
+    <div class="grp">
+      <table class="rl">
+        <colgroup><col style="width:124px"><col style="width:206px"><col style="width:170px"><col style="width:90px"><col><col style="width:96px"></colgroup>
+        <tr><th>触发</th><th>推送</th><th>对象</th><th>生效期间</th><th style="text-align:right">今日已用</th><th></th></tr>
+        <tr><td>礼包结束前 6 小时<div class="m2">回流礼包 B</div></td><td><div class="nm">回流礼包 B 到期提醒<span class="id">#38</span></div><div class="sub"><span class="pill on">生效中</span>只发给未购买的 · 运营01</div></td>
+          <td>回流 <span class="num m">16,240</span></td><td class="m">至 10/31</td>
+          <td class="kpi"><b class="num">1,240</b>／封顶 2,000 则<div class="m2">近 7 天日均 1,120 则</div></td>
+          <td class="ops"><span>编辑</span><span>数据</span><span class="dots">⋯</span></td></tr>
+      </table>
+      <div class="fold"><span class="m2">没有未生效的短信</span><span class="add">＋ 新建短信</span></div>
+    </div>
+  </div>
+</div></div>
 <script src="_后台框.js"></script>
 </body>
 </html>
