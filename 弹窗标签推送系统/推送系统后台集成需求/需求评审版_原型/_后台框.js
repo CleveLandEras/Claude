@@ -13,7 +13,7 @@
   const PUSH = [
     ['游戏外推送', ['推播', '短信']],   // 推播、短信的每人每天上限与勿扰在各自列表顶部设置，不单开一页
     ['游戏内推送', ['弹窗', '快显']],   // 大厅自动弹窗与快显的每人每天上限在弹窗页顶部设置，不单开一页
-    ['数据', ['数据概览', '数据明细', '弹窗与快显位置数据', '每人每天推送量']],
+    ['数据', ['数据概览', '弹窗与快显位置数据', '每人每天推送量']],
     ['查询', ['玩家查询']],             // 操作纪录在各页的「操作纪录」页签，不单开总表
   ];
   // 现有管理后台里用到的页面（会员标签设定在会员管理下为推断）
@@ -32,7 +32,7 @@
     }).join('');
     const crumbs = [grp[0], page].concat((shot.dataset.crumb || '').split('/').map(s => s.trim()).filter(Boolean));
     const head = crumbs.map((c, i) => `<span class="${i === crumbs.length - 1 ? 'cur' : ''}">${esc(c)}</span>`).join('<span class="sep">/</span>') +
-      '<span class="acct"><i>运</i>运营01</span>';
+      '';
     const bar = (v, cls) => v ? `<div class="${cls}">` + v.split('|').map(t =>
       t.startsWith('*') ? `<span class="on">${esc(t.slice(1))}</span>` : `<span>${esc(t)}</span>`).join('') + '</div>' : '';
     const tabs = bar(shot.dataset.tabs, 'bk-tabs') + bar(shot.dataset.subnav, 'bk-subnav');

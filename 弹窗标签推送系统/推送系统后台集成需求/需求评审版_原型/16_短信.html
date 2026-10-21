@@ -2,54 +2,62 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
-<title>16 短信</title>
-<link rel="stylesheet" href="../原型样式.css">
+<title>16 新建短信</title>
 <link rel="stylesheet" href="_后台框.css">
-<style>
-html,body{margin:0;padding:0;background:#fff}
-body{font-family:"Inter","Noto Sans CJK SC","PingFang SC","Microsoft YaHei",sans-serif;font-size:13px;line-height:1.5}
-.shot .z{zoom:1.12}
-.shot .win{padding:0;border:0;border-radius:0;background:#fff;box-shadow:none}
-.shot .fig{width:auto;border:0;border-radius:0}
-.tc{font-family:"Inter","Noto Sans CJK TC","PingFang TC",sans-serif}
-</style>
+<link rel="stylesheet" href="_弹窗.css">
+<link rel="stylesheet" href="_推送.css">
 </head>
 <body>
-<div class="shot bk" data-page="短信" data-crumb="新建短信"><div class="z"><div class="win"><div class="fig">
-  <div class="sec" style="padding:12px 18px 12px">
-    <div class="sh">推送内容</div>
-    <div class="f"><label style="width:70px"><span class="rq">*</span>消息类别</label><span class="seg"><span class="on">营销</span><span>服务通知</span></span></div>
-    <div class="f"><label style="width:70px"><span class="rq">*</span>推送名称</label><span class="in" style="width:250px">每日补给计划开启 · 短信</span><label style="width:96px"><span class="rq">*</span>所属活动</label><span class="in" style="width:140px">每日补给计划<span class="dn">⌵</span></span></div>
-    <div class="f" style="margin-top:6px;height:auto;align-items:flex-end"><label style="width:70px;padding-bottom:4px"><span class="rq">*</span>内文</label><span class="lang"><span class="on">中文繁体<em>79 字 · 2 则</em></span><span>Việt nam<em>121 字 · 2 则</em></span><span>English<em>112 字 · 2 则</em></span></span><span class="gen" style="margin-bottom:2px">一键多语言生成</span></div>
-    <div class="ta tc" style="margin-left:70px;width:600px;border-radius:0 3px 3px 3px;padding-bottom:8px"><span class="mute">【會員通知】</span>每日補給計畫開跑！連續登入7天，每天都能領取補給獎勵，名額有限，千萬別錯過。點擊立即前往 <span class="u">https://s.game.tw/k3P9a</span> <span class="mute">退訂回T</span></div>
-    <div class="hint" style="height:auto;line-height:18px;margin-top:6px;padding-left:70px;color:#B88230">中文繁体已用 79 字，超出 1 则，按 2 则计费；再写 55 字内仍计 2 则</div>
-    <div class="f" style="margin-top:6px"><label style="width:70px">链接类型</label><span class="seg"><span class="on">外部网页</span><span>游戏内页面</span></span><label style="width:50px">链接</label><span class="lk">www.game.tw/event/daily-supply</span><span style="margin:0 8px">→</span><span class="lk s">s.game.tw/k3P9a</span></div>
-  </div>
-
-  <div class="sec" style="padding:12px 18px 14px">
-    <div class="sh">发送对象</div>
-    <div class="f"><label style="width:70px"><span class="rq">*</span>发送对象</label><span class="rad"><i></i>全部玩家</span><span class="rad on"><i></i>标签群组</span><span class="rad"><i></i>名单</span><span class="mute">群组选择、排除群组、名单上传同新建推播</span></div>
-        <div class="f"><label style="width:70px"><span class="rq">*</span>标签群组</label><span class="in" style="width:220px">潜在流失（两档）<span class="dn">⌵</span></span></div>
-        <div class="f" style="height:auto;align-items:flex-start;padding-top:4px"><label style="width:70px;line-height:22px">排除群组</label><span style="display:flex;flex-wrap:wrap;gap:6px 0;width:560px"><span class="tg">VIP 名单</span><span class="tg fix">黑名单</span><span class="tg fix">机器人与测试账号</span><span class="tg fix">敏感状态账号</span></span></div>
-  </div>
-
-  <div class="sec" style="padding:10px 18px 10px">
-    <div class="f" style="height:28px"><span class="sh" style="margin:0 14px 0 0">发送时间</span><span style="color:var(--ink2)">定时 2026-10-15　20:00</span></div>
-  </div>
-
-  <div class="sec" style="padding:12px 18px 16px">
-    <div class="sh">确认与测试</div>
-    <div class="fl" style="margin-top:4px">预计</div>
-    <div class="fun">
-      <div class="fb"><div class="l">群组人数（人）</div><div class="v">7,880</div></div><span class="arr">›</span>
-      <div class="fb"><div class="l">受众（人）</div><div class="v">7,850</div></div><span class="arr">›</span>
-      <div class="fb"><div class="l">短信能收到（人）</div><div class="v">6,690</div></div><span class="arr">›</span>
-      <div class="fb"><div class="l">预计发出（人）</div><div class="v">6,690</div></div><span class="arr">›</span>
-      <div class="fb"><div class="l">每条计</div><div class="v">2 则</div></div><span class="arr">›</span>
-      <div class="fb"><div class="l">共计</div><div class="v">13,380 则</div></div>
+<div class="shot bk" data-page="短信" data-crumb="新建短信">
+  <div class="eh"><h3>新建短信</h3><span class="pill draft">草稿</span><span class="sp"></span></div>
+  <div class="ed">
+    <div>
+      <div class="sec">
+        <div class="sh"><span class="n">1</span>名称与类别</div>
+        <div class="row"><label>推送名称</label><span class="inp v" style="width:260px">每日补给计划开启 · 短信</span><label style="margin-left:14px">所属活动</label><span class="inp v" style="width:150px">每日补给计划<span class="dn">⌵</span></span></div>
+        <div class="cards" style="margin-top:8px"><div class="card on"><i class="rd"></i><div><b>营销</b><span>受上限与勿扰，自动加品牌前缀与退订说明</span></div></div><div class="card"><i class="rd"></i><div><b>服务通知</b><span>补偿到账、维护、账号安全等，不受上限、不计条数</span></div></div></div>
+      </div>
+      <div class="sec">
+        <div class="sh"><span class="n">2</span>对象</div>
+        <div class="row"><span class="radio"><i></i>全部玩家</span><span class="radio on"><i></i>标签群组</span><span class="radio"><i></i>名单</span></div>
+        <div class="row"><label>标签群组</label><span class="inp v" style="width:460px"><span class="tgs"><em class="tg"><b>标签</b>潜在流失·近 14 天登录 1</em><em class="tg"><b>标签</b>潜在流失·近 14 天登录 2</em></span><span class="dn">⌵</span></span></div>
+        <div class="row"><label>多选时</label><span class="seg2"><span class="on">满足任一</span><span>同时满足</span></span></div>
+        <div class="or1">复杂组合可在「标签群组设定」页存成群组</div>
+        <div class="row"><label>排除</label><span class="inp v" style="width:460px"><span class="tgs"><em class="tg g"><b>群组</b>VIP 名单</em></span><span class="dn">⌵</span></span></div>
+        <div class="fixed">固定不发：黑名单、机器人与测试账号、敏感状态账号</div>
+        <table class="cnt"><tr><td>符合对象</td><td class="v">7,880 人</td></tr><tr><td>扣除排除后</td><td class="v">7,850 人</td></tr><tr class="k"><td>预计能收到</td><td class="v">6,690 人</td></tr></table>
+      </div>
+      <div class="sec">
+        <div class="sh"><span class="n">3</span>内容</div>
+        <div class="tabs3"><span class="on">繁中 <b class="num">79</b> 字 · 2 则<em class="ok">✓</em></span><span>越南文 <b class="num">121</b> 字 · 2 则<em class="chk">待核对</em></span><span>英文 <b class="num">112</b> 字 · 2 则<em class="ok">✓</em></span><span class="gen">一键生成另外两种</span></div>
+        <div class="ta"><span class="fx">【會員通知】</span>每日補給計畫開跑！連續登入7天，每天都能領取補給獎勵，名額有限，千萬別錯過。點擊立即前往 https://s.game.tw/k3P9a <span class="fx">退訂回T</span></div>
+        <div class="hint w">繁中 79 字，超过 70 字按每 67 字 1 则计，共 2 则；再写 55 字内仍为 2 则。灰字为自动加上的前缀与退订说明，计入字数</div>
+        <div class="row" style="margin-top:8px"><label>链接</label><span class="radio on"><i></i>外部网页</span><span class="radio"><i></i>游戏内页面</span><span class="inp v" style="width:210px">www.game.tw/event/daily-supply</span></div><div class="hint">外部网页自动换成短链 s.game.tw/k3P9a，统计点击</div>
+      </div>
+      <div class="sec">
+        <div class="sh"><span class="n">4</span>发送时间</div>
+        <div class="cards"><div class="card"><i class="rd"></i><div><b>立即</b><span>确认后马上发</span></div></div><div class="card on"><i class="rd"></i><div><b>定时</b><span>到点按当时群组里的玩家发</span></div></div><div class="card"><i class="rd"></i><div><b>按行为</b><span>活动或礼包开始、结束前后 N 小时；须设每天封顶几则</span></div></div></div>
+        <div class="row" style="margin-top:8px"><span class="inp v num" style="width:150px">2026-10-24　20:00</span><label style="margin-left:10px">重复</label><span class="inp v" style="width:90px">不重复<span class="dn">⌵</span></span></div>
+      </div>
+    </div>
+    <div>
+      <div class="sum">
+        <div class="h">这条短信</div>
+        <div class="big num">6,690<small>人</small></div>
+        <div class="m2">预计发出</div>
+        <div class="m2">收不到：没有有效手机号 940 · 已退订 210 · 同一手机号只发 1 条 10</div>
+        <hr>
+        <div class="k2"><span>共计</span><b>13,380 则</b></div>
+        <div class="lg3"><span>繁中</span><span>5,210 人 × 2 则</span><b>10,420</b><span>越南文</span><span>1,180 人 × 2 则</span><b>2,360</b><span>英文</span><span>300 人 × 2 则</span><b>600</b></div>
+        <div class="m2">玩家收到哪种语言按哪种语言计</div>
+        <hr>
+        <div class="k2"><span>发送</span><b>10/24 20:00</b></div>
+        <div class="m2">名额按发送先后占用</div>
+      </div>
     </div>
   </div>
-</div></div></div></div>
+  <div class="foot"><span class="sp"></span><span class="btno">取消</span><span class="btno">存为草稿</span><span class="tsh">先发给测试群组或指定账号（单次最多 50 人），在真机上看标题、内文、语言、跳转；不计数据、不受上限与勿扰</span><span class="btno">发送测试</span><span class="btnp">保存并发布</span></div>
+</div>
 <script src="_后台框.js"></script>
 </body>
 </html>

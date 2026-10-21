@@ -1,0 +1,50 @@
+/* 推播、短信页在 _弹窗.css 之上补的样式 */
+.pill.end{background:#F2F3F5;color:#909399}
+.pill.err{background:#FDECEC;color:#C0392B}
+.imp{display:inline-block;font-size:11px;line-height:16px;padding:0 5px;border-radius:3px;background:#FFF1E6;color:#C2591A;border:1px solid #F6CBA8}
+.nrm{font-size:12px;color:#909399}
+.quota{border:1px solid #E4E7ED;border-radius:6px;padding:10px 14px;margin:0 0 12px;background:#fff}
+.quota .qh{display:flex;align-items:center;gap:10px;font-size:13px;color:#1F2329;margin-bottom:6px}
+.quota .qh b{font-weight:600}
+.quota .qh .sp{flex:1}
+.qrow{display:grid;grid-template-columns:96px minmax(0,1fr) 230px;align-items:center;gap:12px;font-size:12px;color:#4E5560;padding:4px 0}
+.qbar{display:flex;height:14px;border-radius:3px;overflow:hidden;background:#F2F3F5}
+.qbar i{display:block;height:100%}
+.qbar .a{background:#E8894A}.qbar .b{background:#7FA7E0}.qbar .c{background:#E05A4F}
+.qkey{display:flex;gap:14px;font-size:11px;color:#909399;margin-top:4px;padding-left:108px}
+.qkey i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:4px;vertical-align:-1px}
+.qt{width:100%;border-collapse:collapse;font-size:12px;margin-top:6px}
+.qt th{font-weight:500;color:#909399;text-align:left;padding:5px 8px;border-bottom:1px solid #EBEEF5;background:#FAFBFC}
+.qt td{padding:6px 8px;border-bottom:1px solid #F2F3F5;color:#1F2329}
+.qt .day td{background:#F7F8FA;font-weight:600;color:#4E5560}
+.qt .r{text-align:right}
+.qt .red{color:#C0392B}
+.ta{border:1px solid #DCDFE6;border-radius:0 4px 4px 4px;padding:8px 10px;font-size:13px;line-height:20px;color:#1F2329;background:#fff}
+.ta .fx{color:#909399}
+.hint{font-size:12px;color:#909399;margin-top:4px}
+.hint.w{color:#A9671A}
+.trig{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:13px}
+.bars{display:flex;align-items:flex-end;gap:4px;height:44px;margin-top:6px}
+.bars i{flex:1;background:#9DB9E6;border-radius:2px 2px 0 0}
+.bars+.bl{display:flex;justify-content:space-between;font-size:10px;color:#909399;margin-top:2px}
+.lg3{display:grid;grid-template-columns:auto 1fr auto;gap:2px 8px;font-size:12px;color:#4E5560;margin-top:4px}
+.lg3 b{font-weight:600;color:#1F2329;text-align:right}
+/* 按行为：先选触发行为，选项旁一句常显说明（10/21 恢复玩家行为触发） */
+.tpk{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;margin:8px 0 4px;padding:8px 10px;border:1px solid #E4E7ED;border-radius:6px;background:#FAFBFC}
+.tpk .g{grid-column:1/-1;font-size:11.5px;font-weight:600;color:#909399;margin-top:2px}
+.tpk .o{display:flex;gap:7px;align-items:flex-start;font-size:12.5px;line-height:17px;color:#1F2329}
+.tpk .o i{flex:none;width:12px;height:12px;margin-top:2px;border:1px solid #C0C4CC;border-radius:50%;background:#fff;box-sizing:border-box}
+.tpk .o.on i{border:4px solid #409EFF}
+.tpk .o b{font-weight:600}
+.tpk .o span{display:block;font-size:11.5px;color:#909399}
+.tpk .o.off{color:#B0B3B8}.tpk .o.off b{font-weight:500}
+.tpk .o.on b{color:#2F6FCC}
+.ronly{display:flex;align-items:center;gap:14px;font-size:12.5px;margin-top:12px;padding:9px 14px;border:1px dashed #DCDFE6;border-radius:6px;background:#FAFBFC;color:#4E5560;flex-wrap:wrap}
+.ronly .k{font-weight:600;color:#303133}
+.ronly b{font-size:15px;color:#1F2329}
+.ronly .div{width:1px;align-self:stretch;background:#E4E7ED}
+.ronly .lk{margin-left:auto}
+.pvb{position:relative;height:118px;border-radius:6px;background:linear-gradient(160deg,#2B3A55,#1B2438);margin-top:6px;overflow:hidden}
+.pvb .bn{position:absolute;right:8px;top:8px;max-width:150px;padding:5px 9px;border-radius:5px;background:rgba(255,255,255,.95);font-size:11px;line-height:14px;color:#1F2329;box-shadow:0 2px 6px rgba(0,0,0,.3)}
+.pvb .tm{position:absolute;right:10px;top:46px;font-size:10px;color:#C9D2E3}
+.pvb .tb{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);width:120px;height:40px;border-radius:50%;background:#2E6B45;opacity:.7}

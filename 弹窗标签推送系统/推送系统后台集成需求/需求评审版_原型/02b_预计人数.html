@@ -2,47 +2,70 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
-<title>确认前的预计人数</title>
-<link rel="stylesheet" href="../原型样式.css">
-<link rel="stylesheet" href="_图表.css">
+<title>02b 发布确认</title>
 <link rel="stylesheet" href="_后台框.css">
+<link rel="stylesheet" href="_弹窗.css">
+<link rel="stylesheet" href="_推送.css">
 </head>
-<!-- 由 _scripts/an_评审版图表.py 生成，改数字请改脚本后重跑 -->
-<body class="ch-page">
-<div class="shot ch bk" data-page="推播" data-crumb="新建推播"><div class="ch-z">
-<div class="ch-sec">
-  <div class="ch-h">确认与测试<span class="ch-m">预计人数截至 10/12 15:25</span></div>
-  <svg class="ch-svg" width="744" height="136" viewBox="0 0 744 136" role="img">
-<text x="0.0" y="19.0" font-size="13" fill="#4E5560">群组人数</text>
-<line x1="96" x2="96" y1="2" y2="26" stroke="#C9CED6"/>
-<path d="M96.0,6.0 H263.0 Q266.0,6.0 266.0,9.0 V19.0 Q266.0,22.0 263.0,22.0 H96.0 Z" fill="#1F63E0"/>
-<text x="284" y="19" font-size="14" fill="#1F2329" font-weight="700">7,880 人</text>
-<text x="388.0" y="19.0" font-size="13" fill="#6B7280">潜在流失（两档）</text>
-<text x="0.0" y="63.0" font-size="13" fill="#4E5560">受众</text>
-<line x1="96" x2="96" y1="46" y2="70" stroke="#C9CED6"/>
-<path d="M96.0,50.0 H262.4 Q265.4,50.0 265.4,53.0 V63.0 Q265.4,66.0 262.4,66.0 H96.0 Z" fill="#1F63E0"/>
-<text x="284" y="63" font-size="14" fill="#1F2329" font-weight="700">7,850 人</text>
-<text x="388.0" y="63.0" font-size="13" fill="#1F2329">少 30 人</text>
-<text x="388.0" y="82.0" font-size="12" fill="#6B7280">排除群组：VIP 名单 12 · 黑名单 3 · 机器人与测试账号 7 · 敏感状态账号 8</text>
-<text x="0.0" y="107.0" font-size="13" fill="#4E5560">能收到</text>
-<line x1="96" x2="96" y1="90" y2="114" stroke="#C9CED6"/>
-<path d="M96.0,94.0 H186.0 Q189.0,94.0 189.0,97.0 V107.0 Q189.0,110.0 186.0,110.0 H96.0 Z" fill="#1F63E0"/>
-<text x="284" y="107" font-size="14" fill="#1F2329" font-weight="700">4,310 人</text>
-<text x="388.0" y="107.0" font-size="13" fill="#1F2329">少 3,540 人</text>
-<text x="388.0" y="126.0" font-size="12" fill="#6B7280">收不到推播：没装 App 2,860 · 通知关闭 660 · 同一设备只发 1 条 20</text>
-</svg>
-  <div class="ch-m" style="margin-top:2px">定时推送每次到点按当时的群组名单发，每人每天上限也按当时扣除</div>
-</div>
-<div class="ch-sec">
-  <div class="ch-kv">
-    <span>发送时间</span><span>定时 10/17 19:00 起每周六，重复至 12/26，共 11 次</span>
-    <span>发送对象</span><span>潜在流失（两档）；排除 VIP 名单、黑名单、机器人与测试账号、敏感状态账号</span>
-    <span>重要程度</span><span>重要：每次发送当天为 4,310 人预留推播 1 条，当天更早的普通推送预计多拦下约 260 人</span>
-    <span>测试</span><span>上次测试 10/12 11:12 · 运营01 · 5 个测试账号：已发出 4，未送达 1（测试03 未开启通知）</span>
+<body>
+<div class="shot bk" data-page="推播" data-crumb="新建推播">
+  <div class="eh"><h3>新建推播</h3><span class="pill draft">草稿</span><span class="sp"></span></div>
+  <div class="ed">
+    <div>
+      <div class="sec">
+        <div class="sh"><span class="n">1</span>名称与类别</div>
+        <div class="row"><label>推送名称</label><span class="inp v" style="width:260px">周末登录送金币提醒 · 潜在流失</span><label style="margin-left:14px">所属活动</label><span class="inp v" style="width:150px">周末登录送金币<span class="dn">⌵</span></span></div>
+        <div class="cards" style="margin-top:8px"><div class="card on"><i class="rd"></i><div><b>营销</b><span>受每人每天上限与勿扰</span></div></div><div class="card"><i class="rd"></i><div><b>服务通知</b><span>补偿到账、维护、账号安全等，不受上限、不计条数</span></div></div></div>
+      </div>
+      <div class="sec">
+        <div class="sh"><span class="n">2</span>对象</div>
+        <div class="row"><span class="radio"><i></i>全部玩家</span><span class="radio on"><i></i>标签群组</span><span class="radio"><i></i>名单</span></div>
+        <div class="row"><label>标签群组</label><span class="inp v" style="width:460px"><span class="tgs"><em class="tg"><b>标签</b>潜在流失·近 14 天登录 1</em><em class="tg"><b>标签</b>潜在流失·近 14 天登录 2</em></span><span class="dn">⌵</span></span></div>
+        <div class="row"><label>多选时</label><span class="seg2"><span class="on">满足任一</span><span>同时满足</span></span></div>
+        <div class="or1">复杂组合可在「标签群组设定」页存成群组</div>
+        <div class="row"><label>排除</label><span class="inp v" style="width:460px"><span class="tgs"><em class="tg g"><b>群组</b>VIP 名单</em></span><span class="dn">⌵</span></span></div>
+        <div class="fixed">固定不发：黑名单、机器人与测试账号、敏感状态账号</div>
+        <table class="cnt"><tr><td>符合对象</td><td class="v">7,880 人</td></tr><tr><td>扣除排除后</td><td class="v">7,850 人</td></tr><tr class="k"><td>预计能收到</td><td class="v">4,310 人</td></tr></table>
+      </div>
+      <div class="sec">
+        <div class="sh"><span class="n">3</span>内容</div>
+        <div class="tabs3"><span class="on">繁中<em class="ok">✓</em></span><span>越南文<em class="chk">待核对</em></span><span>英文<em class="ok">✓</em></span><span class="gen">一键生成另外两种</span></div>
+        <div class="ta"><div><span class="m">标题</span>　週末登入送金幣開跑</div><div><span class="m">内容</span>　週六、週日登入各領 5 萬金幣，連續兩天再加碼！</div></div>
+        <div class="row" style="margin-top:8px"><label>点击跳转</label><span class="inp v" style="width:200px">周末登录送金币<span class="dn">⌵</span></span><span class="m2">从现有活动、礼包里选</span></div>
+      </div>
+      <div class="sec">
+        <div class="sh"><span class="n">4</span>发送时间</div>
+        <div class="cards"><div class="card"><i class="rd"></i><div><b>立即</b><span>确认后马上发</span></div></div><div class="card on"><i class="rd"></i><div><b>定时</b><span>到点按当时群组里的玩家发</span></div></div><div class="card"><i class="rd"></i><div><b>按行为</b><span>活动或礼包开始、结束前后 N 小时</span></div></div></div>
+        <div class="row" style="margin-top:8px"><span class="inp v num" style="width:150px">2026-10-24　19:00</span><label style="margin-left:10px">重复</label><span class="inp v" style="width:90px">每周六<span class="dn">⌵</span></span><label>至</label><span class="inp v num" style="width:100px">2026-12-26</span><span class="m2">共 10 次，最长 90 天</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="sum">
+        <div class="h">这条推送</div>
+        <div class="big num">4,310<small>人</small></div>
+        <div class="m2">预计能收到</div>
+        <div class="m2">收不到：没装 App 2,860 · 通知关闭 660 · 同一设备只发 1 条 20</div>
+        <hr>
+        <div class="k2"><span>发送</span><b>10/24 19:00 起</b></div>
+        <div class="m2">每周六，至 12/26，共 10 次</div>
+      </div>
+    </div>
   </div>
-  <div class="ch-row ch-btns"><span class="ch-m">取消</span><span class="ch-sp"></span><span class="btn2">存为草稿</span><span class="btn2">发送测试</span><span class="btn2 p">确认发送</span></div>
+  <div class="foot"><span class="sp"></span><span class="btno">取消</span><span class="btno">存为草稿</span><span class="tsh">先发给测试群组或指定账号（单次最多 50 人），在真机上看标题、内文、语言、跳转；不计数据、不受上限与勿扰</span><span class="btno">发送测试</span><span class="btnp">保存并发布</span></div>
+  <div class="bk-pop cf" style="--pop-top:70px">
+    <div class="t">发布「周末登录送金币提醒 · 潜在流失」？</div>
+    <div class="t2">定时推送：每次到点按当时群组里的玩家发，每人每天上限也按当时扣除</div>
+    <table class="dif">
+      <tr><th style="width:110px">发送时间</th><td>10/24 19:00 起每周六，至 12/26，共 10 次</td></tr>
+      <tr><th>对象</th><td>标签 潜在流失·近 14 天登录 1、潜在流失·近 14 天登录 2（满足任一）；排除群组 VIP 名单；固定不发黑名单、机器人与测试账号、敏感状态账号</td></tr>
+      <tr><th>符合对象</th><td class="num">7,880 人</td></tr>
+      <tr><th>扣除排除后</th><td class="num">7,850 人</td></tr>
+      <tr><th>预计能收到</th><td class="num"><b>4,310 人</b></td></tr>
+    </table>
+    <div class="imp"><b>名额</b>　定时推送到点才按当时已收条数扣除；发出前可在列表顶部「今明两天名额」看预计拦下人数</div>
+    <div class="ft"><span class="btno">返回修改</span><span class="btnp">确认发布</span></div>
+  </div>
 </div>
-</div></div>
 <script src="_后台框.js"></script>
 </body>
 </html>

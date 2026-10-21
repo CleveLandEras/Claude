@@ -14,53 +14,96 @@ body{font-family:"Inter","Noto Sans CJK SC","PingFang SC","Microsoft YaHei",sans
 .tc{font-family:"Inter","Noto Sans CJK TC","PingFang TC",sans-serif}
 table.et td.l, table.et th.l{padding-left:8px}
 .sub2{display:block;font-size:12px;color:#73767A}
+.h3{font-size:14px;font-weight:600;color:#303133;margin:0 0 2px}
+.cap{font-size:12px;color:#73767A;margin:0 0 8px}
+.who{display:flex;flex-wrap:wrap;gap:4px 22px;margin-top:10px;border:1px solid #E4E7ED;border-radius:6px;padding:9px 12px;color:#303133}
+.who b{font-weight:600}.who .k{color:#73767A;margin-right:4px}
+.chip{display:inline-block;padding:0 7px;border-radius:10px;background:#ECF5FF;color:#2F6FB2;font-size:12px;margin-right:4px}
+.cards{display:grid;align-items:stretch;grid-template-columns:repeat(4,1fr);gap:10px}
+.cd{border:1px solid #E4E7ED;border-radius:6px;padding:9px 11px;border-top:3px solid #67A33A}
+.cd.qno{border-top-color:#C4473A}.cd.qpart{border-top-color:#D9932B}
+.cd{margin:0;align-self:stretch}.cd .w{font-size:12px;color:#73767A}.cd .s{font-size:14px;font-weight:600;margin:2px 0 4px}
+.cd.qno .s{color:#C4473A}.cd.qpart .s{color:#8A5A12}.cd:not(.qno):not(.qpart) .s{color:#3F7A1E}
+.cd .r{font-size:12px;color:#606266;line-height:1.6}
+.pos{display:flex;align-items:baseline;gap:10px;margin:12px 0 6px}
+.pos .n{font-weight:600;color:#303133}.pos .m{font-size:12px;color:#73767A}
+.next{margin:0 0 6px;padding:5px 10px;background:#F0F9EB;border-radius:4px;color:#3F7A1E;font-size:12.5px}
+tr.rg td{background:#FAFAFA;color:#303133;font-weight:600;padding:4px 8px;text-align:left}
+tr.rg td span{font-weight:400;color:#73767A;margin-left:8px}
+.st{display:inline-block;padding:0 7px;border-radius:3px;font-size:12px;white-space:nowrap}
+.st.ok{background:#F0F9EB;color:#3F7A1E}.st.used{background:#F4F4F5;color:#606266}.st.cool{background:#FDF6EC;color:#8A5A12}.st.over{background:#F4F4F5;color:#909399}
+tr.ex td{color:#909399;text-align:left;padding:4px 8px}
 </style>
 </head>
 <body>
 <div class="shot bk" data-page="玩家查询"><div class="z"><div class="win"><div class="fig ew">
-  <div class="sec" style="padding:12px 18px 14px">
-    <div style="display:flex;gap:8px;align-items:center"><span class="ein v" style="width:190px">180820055306761</span><span class="ein" style="width:170px">会员昵称</span><span class="ein" style="width:170px">手机号码</span><span class="ebtn b">查询</span></div>
-    <div style="display:flex;flex-wrap:wrap;gap:6px 28px;margin-top:10px;background:#DCDCDA;padding:9px 12px;color:#303133">
-      <span>会员编号: 180820055306761</span><span>会员昵称: 我来称王260134709</span><span>手机号码: 0912***678</span><span>标签名称: 潜在流失、破产储值实验·实验组</span><span>标签状态: 启用</span><span>最后登录: 10/12 14:05</span><span>平台与版本: Android · 3.8.2</span><span>在线状态: 当前在线</span>
+  <div class="sec" style="padding:12px 18px 12px">
+    <div style="display:flex;gap:8px;align-items:center"><span class="ein v" style="width:96px">会员编号<span class="dn">⌵</span></span><span class="ein v" style="width:220px">180820055306761</span><span class="ebtn b">查询</span><span style="font-size:12px;color:#73767A">可切换为会员昵称、手机号码；结果为 10/12 14:08 此刻的状态</span></div>
+    <div class="who">
+      <span><span class="k">会员编号</span>180820055306761</span><span><span class="k">会员昵称</span>我来称王260134709</span><span><span class="k">手机号码</span>0912***678</span><span><span class="k">标签名称</span><span class="chip">潜在流失</span><span class="chip">破产储值实验·实验组</span></span><span><span class="k">标签状态</span>启用</span><span><span class="k">最后登录</span>10/12 14:05</span><span><span class="k">平台与版本</span>Android · 3.8.2</span><span><span class="k">在线状态</span><b style="color:#3F7A1E">当前在线</b></span>
     </div>
-    <div class="pd-lt" style="margin-top:12px">自动弹窗顺序</div>
-    <table class="et">
-      <colgroup><col style="width:52px"><col style="width:150px"><col style="width:150px"><col style="width:96px"><col></colgroup>
-      <thead><tr><th>顺序</th><th>类型</th><th>礼包名称</th><th>弹窗活动 ID</th><th>弹窗名称</th></tr></thead>
-      <tbody><tr><td>1</td><td>每日补给计划</td><td>-</td><td>14</td><td>潜在流失活动弹窗</td></tr><tr><td>2</td><td>热门资讯</td><td>-</td><td>14</td><td>潜在流失活动弹窗</td></tr><tr><td>3</td><td>发信送奖</td><td>-</td><td>14</td><td>潜在流失活动弹窗</td></tr><tr><td colspan="5" class="l" style="color:#73767A;padding:3px 8px">⋮ 第 4–6 项</td></tr><tr><td>7</td><td>首储礼包</td><td>首储1.2</td><td>6</td><td>通用弹窗</td></tr><tr><td>8</td><td>独享礼包</td><td>-</td><td>6</td><td>通用弹窗</td></tr><tr><td colspan="5" class="l" style="color:#73767A;padding:4px 8px">⋮ 共 13 项</td></tr></tbody>
-    </table>
-    <div class="pd-lt" style="margin-top:12px">游戏破产弹窗顺序</div>
-    <table class="et">
-      <colgroup><col style="width:52px"><col style="width:150px"><col style="width:150px"><col style="width:96px"><col></colgroup>
-      <thead><tr><th>顺序</th><th>类型</th><th>礼包名称</th><th>弹窗活动 ID</th><th>弹窗名称</th></tr></thead>
-      <tbody><tr><td>1</td><td>首储礼包</td><td>首储1.2</td><td>15</td><td>破产储值弹窗（实验组）</td></tr><tr><td>2</td><td>破产礼包</td><td>-</td><td>15</td><td>破产储值弹窗（实验组）</td></tr><tr><td>3</td><td>独享礼包</td><td>-</td><td>15</td><td>破产储值弹窗（实验组）</td></tr><tr><td colspan="5" class="l" style="color:#73767A;padding:4px 8px">⋮ 共 8 项</td></tr></tbody>
-    </table>
   </div>
   <div class="sec" style="padding:10px 18px 12px">
-    <div class="pd-lt">各推送方式能否收到</div>
+    <div class="h3">现在能收到什么</div>
+    <div class="cap">四种推送方式各一张；收不到时写原因，碰到上限时写何时恢复</div>
+    <div class="cards">
+      <div class="cd qpart"><div class="w">推播</div><div class="s">今天不再收营销推播</div><div class="r">营销 2／2 条，已达每人每天上限，明天 00:00 恢复<br>服务通知不受上限<br>通知已开启（Android，10/01 App 回报）<br>最近一次收到 10/12 12:30</div></div>
+      <div class="cd qno"><div class="w">短信</div><div class="s">收不到：手机号已停用</div><div class="r">10/12 10:00 短信服务商退回<br>营销 0／1 条<br>最近一次收到 10/09 19:00</div></div>
+      <div class="cd"><div class="w">弹窗</div><div class="s">能收到</div><div class="r">大厅自动弹窗今天 4／8 个，还可弹 4 个<br>游戏破产弹窗不计入上限<br>最近一次 10/12 14:05</div></div>
+      <div class="cd"><div class="w">快显</div><div class="s">能收到</div><div class="r">当前在线<br>今天 1／3 次<br>最近一次 10/12 12:00</div></div>
+    </div>
+  </div>
+  <div class="sec" style="padding:10px 18px 12px">
+    <div class="h3">弹窗：此刻进入各位置会弹什么</div>
+    <div class="cap">按位置分组；同一位置按规则权重从高到低、规则内按弹窗内容顺序排；每个弹窗内容标所属规则与此刻状态</div>
+    <div class="pos"><span class="n">大厅自动弹窗</span><span class="m">玩家进入或返回大厅时 · 每人每天上限 8 个，今天已弹 4 个</span></div>
+    <div class="next">下次进入大厅会弹 4 个：储值返利活动、发信送奖、签到奖励（#14），首储礼包（#6）</div>
     <table class="et">
-      <colgroup><col style="width:86px"><col style="width:330px"><col style="width:250px"><col></colgroup>
-      <thead><tr><th class="l">推送方式</th><th class="l">能否收到</th><th class="l">今日已收／上限</th><th>最近一次收到</th></tr></thead>
+      <colgroup><col style="width:44px"><col style="width:120px"><col style="width:72px"><col style="width:178px"><col style="width:140px"><col></colgroup>
+      <thead><tr><th>顺序</th><th class="l">弹窗内容</th><th class="l">礼包名称</th><th class="l">所属规则</th><th class="l">此刻状态</th><th class="l">说明</th></tr></thead>
       <tbody>
-        <tr><td colspan="4" class="l" style="background:#FAFAFA;color:#73767A;padding:3px 8px">游戏外推送</td></tr>
-        <tr><td class="l">推播</td><td class="l pd-ok">已开启通知（Android）<span class="sub2">10/01 09:12 开启通知 · App 回报</span></td><td class="l"><b class="pd-bad" style="white-space:nowrap">营销 2／2 条 已达上限</b></td><td>10/12 12:30</td></tr>
-        <tr><td class="l">短信</td><td class="l pd-bad" style="white-space:nowrap"><b>✗ 不能收到：手机号已停用</b><span class="sub2" style="color:#606266">10/12 10:00 短信服务商退回</span></td><td class="l">营销 0／1 条</td><td>10/09 19:00</td></tr>
-        <tr><td colspan="4" class="l" style="background:#FAFAFA;color:#73767A;padding:3px 8px">游戏内推送</td></tr>
-        <tr><td class="l">弹窗</td><td class="l">在线时按规则弹出</td><td class="l">大厅自动弹窗 4／8 个<span class="sub2">游戏破产弹窗 1 个，不计入上限</span></td><td>10/12 14:05</td></tr>
-        <tr><td class="l">快显</td><td class="l">当前在线</td><td class="l">已显示 1／3 次</td><td>10/12 12:00</td></tr>
+        <tr class="rg"><td colspan="6">潜在流失活动弹窗 #14<span>权重 30 · 每次最多弹出 3 个 · 对象 潜在流失</span></td></tr>
+        <tr><td>1</td><td class="l">每日补给计划</td><td class="l">-</td><td class="l">潜在流失活动弹窗 #14</td><td class="l"><span class="st used">次数已用完</span></td><td class="l">每日 1 次，今天 14:05 已弹</td></tr>
+        <tr><td>2</td><td class="l">热门资讯</td><td class="l">-</td><td class="l">潜在流失活动弹窗 #14</td><td class="l"><span class="st cool">冷却中</span></td><td class="l">冷却 600 秒，14:15 后可弹</td></tr>
+        <tr><td>3</td><td class="l">储值返利活动</td><td class="l">-</td><td class="l">潜在流失活动弹窗 #14</td><td class="l"><span class="st ok">会弹</span></td><td class="l">本规则第 1 个</td></tr>
+        <tr><td>4</td><td class="l">发信送奖</td><td class="l">-</td><td class="l">潜在流失活动弹窗 #14</td><td class="l"><span class="st ok">会弹</span></td><td class="l">本规则第 2 个</td></tr>
+        <tr><td>5</td><td class="l">签到奖励</td><td class="l">-</td><td class="l">潜在流失活动弹窗 #14</td><td class="l"><span class="st ok">会弹</span></td><td class="l">本规则第 3 个</td></tr>
+        <tr><td>6</td><td class="l">幸运转盘</td><td class="l">-</td><td class="l">潜在流失活动弹窗 #14</td><td class="l"><span class="st over">超出每次最多弹出数</span></td><td class="l">前面有不可弹的时补位</td></tr>
+        <tr class="rg"><td colspan="6">通用弹窗 #6<span>权重 10 · 每次最多弹出 1 个 · 对象 全部玩家</span></td></tr>
+        <tr><td>7</td><td class="l">首储礼包</td><td class="l">首储1.2</td><td class="l">通用弹窗 #6</td><td class="l"><span class="st ok">会弹</span></td><td class="l">本规则第 1 个</td></tr>
+        <tr><td>8</td><td class="l">独享礼包</td><td class="l">-</td><td class="l">通用弹窗 #6</td><td class="l"><span class="st over">超出每次最多弹出数</span></td><td class="l">前面有不可弹的时补位</td></tr>
+        <tr class="ex"><td colspan="6">⋮ 第 9–13 项　超出每次最多弹出数　展开 ⌵</td></tr>
+        <tr class="ex"><td colspan="6">不在对象内：活动类弹窗 #5（对象排除了 #12、#13、#14 的对象）</td></tr>
+      </tbody>
+    </table>
+    <div class="pos"><span class="n">游戏破产弹窗</span><span class="m">玩家破产、发财金领取结束后 · 不计入每人每天上限</span></div>
+    <div class="next">下次破产会弹 1 个：独享礼包（#15）；储值类每次只取一条规则，取法同大厅自动弹窗</div>
+    <table class="et">
+      <colgroup><col style="width:44px"><col style="width:120px"><col style="width:72px"><col style="width:178px"><col style="width:140px"><col></colgroup>
+      <thead><tr><th>顺序</th><th class="l">弹窗内容</th><th class="l">礼包名称</th><th class="l">所属规则</th><th class="l">此刻状态</th><th class="l">说明</th></tr></thead>
+      <tbody>
+        <tr class="rg"><td colspan="6">破产储值弹窗（实验组） #15<span>权重 30 · 每次最多弹出 1 个 · 对象 破产储值实验·实验组</span></td></tr>
+        <tr><td>1</td><td class="l">首储礼包</td><td class="l">首储1.2</td><td class="l">破产储值弹窗（实验组） #15</td><td class="l"><span class="st used">次数已用完</span></td><td class="l">每日 1 次，今天 09:20 已弹</td></tr>
+        <tr><td>2</td><td class="l">破产礼包</td><td class="l">-</td><td class="l">破产储值弹窗（实验组） #15</td><td class="l"><span class="st cool">冷却中</span></td><td class="l">冷却 1,800 秒，14:12 后可弹</td></tr>
+        <tr><td>3</td><td class="l">独享礼包</td><td class="l">-</td><td class="l">破产储值弹窗（实验组） #15</td><td class="l"><span class="st ok">会弹</span></td><td class="l">本规则第 1 个</td></tr>
+        <tr><td>4</td><td class="l">限时加码礼包</td><td class="l">-</td><td class="l">破产储值弹窗（实验组） #15</td><td class="l"><span class="st over">超出每次最多弹出数</span></td><td class="l">前面有不可弹的时补位</td></tr>
+        <tr class="ex"><td colspan="6">⋮ 第 5–8 项　超出每次最多弹出数　展开 ⌵</td></tr>
+        <tr class="rg"><td colspan="6">破产储值弹窗 #7<span>权重 10 · 每次最多弹出 1 个 · 对象 全部玩家</span></td></tr>
+        <tr><td>9</td><td class="l">首储礼包</td><td class="l">首储1.2</td><td class="l">破产储值弹窗 #7</td><td class="l"><span class="st over">本次不取用</span></td><td class="l">同类只取 #15；#15 无可弹时接替</td></tr>
+        <tr class="ex"><td colspan="6">⋮ 第 10–16 项　本次不取用　展开 ⌵</td></tr>
       </tbody>
     </table>
   </div>
   <div class="sec" style="padding:10px 18px 12px">
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;white-space:nowrap"><span class="pd-lt" style="margin:0">收到记录</span><span style="font-size:12px;color:#73767A">近 30 天</span><span class="pd-sp"></span><span class="ein v" style="width:130px">推送／规则<span class="dn">⌵</span></span><span class="ein v" style="width:110px">方式：全部<span class="dn">⌵</span></span><span class="ein v" style="width:110px">结果：全部<span class="dn">⌵</span></span><span class="ein v" style="width:150px">09/13　至　10/12</span></div>
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;white-space:nowrap"><span class="h3" style="margin:0">收到记录</span><span style="font-size:12px;color:#73767A">近 30 天每一条推送、每一次弹窗的结果与原因</span><span class="pd-sp"></span><span class="ein v" style="width:110px">名称或编号<span class="dn">⌵</span></span><span class="ein v" style="width:96px">方式：全部<span class="dn">⌵</span></span><span class="ein v" style="width:96px">结果：全部<span class="dn">⌵</span></span><span class="ein v" style="width:130px">09/13　至　10/12</span></div>
     <table class="et">
-      <colgroup><col style="width:92px"><col style="width:76px"><col style="width:190px"><col style="width:190px"><col></colgroup>
-      <thead><tr><th>时间</th><th>推送方式</th><th class="l">推送名称或弹窗名称</th><th class="l">玩家看到的内容</th><th class="l">结果</th></tr></thead>
+      <colgroup><col style="width:92px"><col style="width:96px"><col style="width:200px"><col style="width:190px"><col></colgroup>
+      <thead><tr><th>时间</th><th>推送方式</th><th class="l">名称</th><th class="l">玩家看到的内容</th><th class="l">结果</th></tr></thead>
       <tbody>
-        <tr><td>10/12 15:00</td><td>推播</td><td class="l"><span class="pd-lk">月月抽开奖提醒</span></td><td class="l tc">月月抽今晚開獎，快來看看你的號碼</td><td class="l pd-bad">每人每天上限拦下 · 推播每日营销 2／2<span class="sub2" style="color:#606266">名额已被限时加码礼包未购买提醒（09:30）、任务完成奖励提醒（12:30）占用</span></td></tr>
-        <tr><td>10/12 14:05</td><td>大厅自动弹窗</td><td class="l">潜在流失活动弹窗（ID 14）＋通用弹窗（ID 6）</td><td class="l">每日补给计划、热门资讯、发信送奖、独享礼包</td><td class="l">已曝光 4 个，点击：每日补给计划<span style="display:block"><span class="u">展开 ⌵</span><span style="margin-left:8px;padding:0 5px;border-radius:3px;background:#FDF6EC;color:#8A5A12">1 个弹窗内容未显示</span></span></td></tr>
-        <tr><td>10/12 13:42</td><td>游戏破产弹窗</td><td class="l">破产储值弹窗（实验组）（ID 15）</td><td class="l">破产礼包</td><td class="l">已曝光</td></tr>
-        <tr><td>10/12 12:30</td><td>推播</td><td class="l"><span class="pd-lk">任务完成奖励提醒</span></td><td class="l tc">任務完成！獎勵已發放，點擊立即領取</td><td class="l">已点击</td></tr>
+        <tr><td>10/12 15:00</td><td>推播</td><td class="l"><span class="pd-lk">月月抽开奖提醒 #43</span></td><td class="l tc">月月抽今晚開獎，快來看看你的號碼</td><td class="l pd-bad">每人每天上限拦下 · 推播营销 2／2<span class="sub2" style="color:#606266">名额已被限时加码礼包未购买提醒 #31（09:30）、任务完成奖励提醒 #33（12:30）占用</span></td></tr>
+        <tr><td>10/12 14:05</td><td>大厅自动弹窗</td><td class="l">潜在流失活动弹窗 #14、通用弹窗 #6</td><td class="l">每日补给计划、热门资讯、发信送奖、独享礼包</td><td class="l">已曝光 4 个，点击：每日补给计划<span style="display:block"><span class="u">展开 ⌵</span><span style="margin-left:8px;padding:0 5px;border-radius:3px;background:#FDF6EC;color:#8A5A12">1 个弹窗内容未显示</span></span></td></tr>
+        <tr><td>10/12 13:42</td><td>游戏破产弹窗</td><td class="l">破产储值弹窗（实验组） #15</td><td class="l">破产礼包</td><td class="l">已曝光</td></tr>
+        <tr><td>10/12 12:30</td><td>推播</td><td class="l"><span class="pd-lk">任务完成奖励提醒 #33</span></td><td class="l tc">任務完成！獎勵已發放，點擊立即領取</td><td class="l">已点击</td></tr>
         <tr><td>10/12 12:00</td><td>快显</td><td class="l"><span class="pd-lk">通行证升级提示</span></td><td class="l tc">恭喜升級！通行證獎勵已可領取</td><td class="l">已显示</td></tr>
         <tr><td>10/12 10:00</td><td>短信</td><td class="l"><span class="pd-lk">每日补给计划提醒</span></td><td class="l tc">【會員通知】每日補給計畫加碼，登入即領獎勵</td><td class="l pd-bad">未送达：短信服务商退回<span class="sub2" style="color:#606266">手机号已停用</span></td></tr>
         <tr><td colspan="5" class="l" style="color:#73767A;padding:4px 8px">⋮ 共 49 条，向下滚动加载更早的记录</td></tr>
