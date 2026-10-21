@@ -136,11 +136,11 @@ def gen_daily(events, base, levels, ctrs, *, wkend_expo, wkend_ctr, sd_expo, sd_
     return expo, clk
 
 
-def segments(events):
+def segments(events, n=N):
     """竖线之间的段：只取段内完整的日（改动、发版当天不计）。返回 [(首日序号, 末日序号)]，空段为 None。"""
     cuts = sorted((e['t'].date() - D0).days for e in events)
     out, start = [], 0
-    for c in cuts + [N]:
+    for c in cuts + [n]:
         a, b = start, c - 1
         out.append((a, b) if b >= a else None)
         start = c + 1
@@ -149,12 +149,15 @@ def segments(events):
 
 # ---------------------------------------------------------------- 可复用：趋势图
 def trend_svg(bars, num, events, *, den=None, W=CW, top_ticks, bar_ticks, top_fmt, avg_fmt,
-              top_title, bar_title, top_h=176, bar_h=74):
+              top_title, bar_title, top_h=176, bar_h=74, off=0):
     """上格：每日折线（浅）＋两条竖线之间的平均（深，标数字）；下格：每日柱；两格共用 x 轴，竖线贯穿两格。
     上格的值＝num/den（比率，段内平均＝段内 num 合计 ÷ den 合计），不给 den 时为 num 本身（段内平均＝日均）。
     events: [{'t': datetime, 'kind': 'chg'|'rel', 'tag': 竖线顶上的标签}]；平均只取段内完整的日（竖线当天不计）。
     返回 (svg, 各段 (首日, 末日, 平均) 列表，空段为 None)。"""
     n = len(bars)
+    if off:   # 只画 DAYS[off:off+n]：事件挪到以这一段首日为 0，段外的事件不画
+        events = [dict(e, t=e['t'] - dt.timedelta(days=off)) for e in events
+                  if 0 < (e['t'].date() - D0).days - off < n]
     L, R = 52, 14
     pw = W - L - R
     bw = pw / n
@@ -199,7 +202,7 @@ def trend_svg(bars, num, events, *, den=None, W=CW, top_ticks, bar_ticks, top_fm
     for i in list(range(0, n, 3)) + [n - 1]:
         if i == n - 1 and (n - 1) % 3 and (n - 1) % 3 < 2:
             continue
-        s.append(txt(X(i + .5), base + 16, md(DAYS[i]), 11, MUTE, 'middle'))
+        s.append(txt(X(i + .5), base + 16, md(DAYS[i + off]), 11, MUTE, 'middle'))
     for e, x, x0, w, row in tags:
         y_tag = 6 + row * (TAG_H + 4)
         dash = ' stroke-dasharray="4 3"' if e['kind'] == 'rel' else ''
@@ -208,7 +211,7 @@ def trend_svg(bars, num, events, *, den=None, W=CW, top_ticks, bar_ticks, top_fm
     pts = ' '.join(f'{X(i + .5):.1f},{Yc(v):.1f}' for i, v in enumerate(vals))
     s.append(f'<polyline points="{pts}" fill="none" stroke="{ACC_LT}" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>')
     avgs = []
-    for sg in segments(events):
+    for sg in segments(events, n):
         if not sg:
             avgs.append(None)
             continue
@@ -331,11 +334,10 @@ def seg_html(items, on):
         f'<span{" class=\"on\"" if x == on else ""}>{E(x)}</span>' for x in items) + '</span>'
 
 
-# 外框（_后台框.js）：数据页在「数据」分组下；单条推送、单条弹窗规则是数据明细的下一层；页内切换的层、位置画成子导航
-FRAME = {'数据概览': dict(page='数据概览'),
-         '数据明细': dict(page='数据明细', subnav='*游戏外推送|游戏内推送'),
-         '单条推送数据': dict(page='数据明细', crumb='推送 46'),
-         '单条弹窗规则数据': dict(page='数据明细', crumb='破产储值弹窗（实验组）'),
+# 外框（_后台框.js）：数据页在「数据」分组下；单条推送、单条弹窗规则是数据概览的下一层；页内切换的层、位置画成子导航
+FRAME = {'数据概览': dict(page='数据概览', subnav='*游戏外推送|游戏内推送'),
+         '单条推送数据': dict(page='数据概览', crumb='周末登录送金币提醒 #46'),
+         '单条弹窗规则数据': dict(page='数据概览', crumb='破产储值弹窗（实验组） #15'),
          '弹窗与快显位置数据': dict(page='弹窗与快显位置数据', subnav='*大厅自动弹窗|游戏破产弹窗|快显'),
          '每人每天推送量': dict(page='每人每天推送量', subnav='*游戏外推送|游戏内推送')}
 
@@ -386,8 +388,9 @@ def check(cond, msg):
 
 # ================================================================ 示例数据：14 单条弹窗规则数据
 R14 = dict(
-    name='破产储值弹窗（实验组）', rid='ID 15',
-    meta=['储值类弹窗', '游戏破产弹窗', '权重 30', '弹出数量 1 个', '对象：标签群组 破产储值实验·实验组'],
+    name='破产储值弹窗（实验组）', rid='#15',
+    meta=['位置：游戏破产弹窗', '权重 30（本位置第 1）', '每次最多弹出 1 个', '对象：破产储值实验·实验组 2,410 人',
+          '弹窗内容 8 个', '生效期间：至 11/15'],
 )
 EV14 = [   # 取自操作纪录（本规则的每一次保存）＋客户端发版
     dict(t=dt.datetime(2026, 9, 18, 10, 5), kind='chg', what='冷却时间：破产礼包 0 → 1,800 秒', who='运营01'),
@@ -444,8 +447,8 @@ def build_14():
     check(True, '14 各弹窗内容点击率 ' + '、'.join(f'{n.split("　")[-1]} {pct(v)}' for n, v, _ in item_rows))
     meta = '<i>|</i>'.join(E(m) for m in R14['meta'])
     body = f'''<div class="ch-sec">
-  <div class="ch-row"><div class="ch-ttl">{E(R14["name"])}<span class="pd-st">上架中</span><span class="pd-st">{R14["rid"]}</span></div><span class="ch-sp"></span><span class="btn2">编辑规则</span></div>
-  <div class="ch-meta">{meta}</div>
+  <div class="ch-row"><div class="ch-ttl">{E(R14["name"])}<span class="pd-st">{R14["rid"]}</span><span class="pd-st">生效中</span></div><span class="ch-sp"></span><span class="btn2">编辑规则</span></div>
+  <div class="ch-meta"><b>当前设置</b><i>|</i>{meta}</div>
 </div>
 <div class="ch-sec" style="padding-top:12px;padding-bottom:12px">
   <div class="ch-row">{seg_html(["今日", "近 7 天", "近 30 天", "自定义"], "近 30 天")}<span class="ch-m">{md(DAYS[0])}–{md(DAYS[-1])}</span></div>
@@ -551,7 +554,7 @@ def build_13():
 <div class="ch-sec">
   <div class="ch-h">按位次<span class="ch-m">这次进入大厅时第几个看到，跨规则计</span></div>
   {cols_svg(pos_rows, vmax=0.11, W=297)}
-</div>'''   # 各条规则的数据只在数据明细（游戏内推送一层）与弹窗列表「查看数据」，本页不另列规则表，页头给链接
+</div>'''   # 各条规则的数据只在数据概览（游戏内推送一层）与弹窗列表「查看数据」，本页不另列规则表，页头给链接
     return page('弹窗与快显位置数据', body)
 
 
@@ -730,6 +733,7 @@ def ov_data():
         d['ctr_in'] = d['ck'] / d['ex']
         out[key] = d
     sp = lambda a: [a[i] for i in CUR7]
+    out['daily'] = dict(send=send, clk=clk, ex=ex, ck=ck)
     out['spark'] = dict(send=sp(send), arr=sp(arr), clk=sp(clk), arr_ppl=sp(arr_ppl),
                         per=[send[i] / pdays[i] for i in CUR7], ex_ppl=sp(ex_ppl), ex=sp(ex), ck=sp(ck),
                         ctr_in=[ck[i] / ex[i] for i in CUR7], per_pop=[pop[i] / viewers[i] for i in CUR7])
@@ -790,17 +794,31 @@ def ov_parts(spark_w):
 
 
 def build_06():
+    # A98：一页先图后表。上：所选层的关键数字；中：所选期间连同对比的前一段的每日走势，竖线为上限与勿扰设置的改动；下：每条推送
     flt, l1, l2 = ov_parts(124)
+    d = ov_data()['daily']
+    off, n = CUR7[0] - 7, 14
+    bars = d['send'][off:off + n]
+    clks = d['clk'][off:off + n]
+    check(max(bars) < 12000 and 0.045 < min(c / b for c, b in zip(clks, bars)) and max(c / b for c, b in zip(clks, bars)) < 0.065,
+          f'06 走势 每日发送 {min(bars)}–{max(bars)}、点击率在纵轴内')
+    svg, avgs = trend_svg(bars, clks, EV6B, den=bars, off=off, top_ticks=[0.045, 0.05, 0.055, 0.06, 0.065],
+                          bar_ticks=[0, 6000, 12000], top_fmt=lambda v: pct(v, 1), avg_fmt=pct,
+                          top_title='点击率', bar_title='发送（推播＋短信）', top_h=120, bar_h=60)
+    ev_in = [e for e in EV6B if off < (e['t'].date() - D0).days < off + n]
     body = f"""<div class="ch-sec" style="padding-top:14px;padding-bottom:12px">
-  <div class="ch-ptitle">数据概览</div>
   {flt}
 </div>
 <div class="ch-sec">
   {l1}
 </div>
 <div class="ch-sec">
-  {l2}
-</div>"""
+  <div class="ch-h">每日走势<span class="ch-m">所选 7 天连同对比的前 7 天；竖线是推播、短信上限与勿扰设置的改动</span></div>
+  {legend_html(bar='每日发送', avg='竖线前后的平均点击率（不含改动当天）', chg='上限与勿扰设置改动', rel=False)}
+  {svg}
+  {event_rows(ev_in)}
+</div>
+{table09()}"""
     return page('数据概览', body)
 
 
@@ -886,8 +904,8 @@ def build_07():
     ]
     blk = sorted(NOTSENT07, key=lambda x: -x[1])
     body = f"""<div class="ch-sec">
-  <div class="ch-row"><div class="ch-ttl">周末登录送金币提醒<span class="pd-st">已完成</span><span class="pd-st">推送 46</span></div></div>
-  <div class="ch-meta">推播<i>|</i>定时 10/10 19:00<i>|</i>发送对象：回流；排除 VIP 名单、黑名单、机器人与测试账号、敏感状态账号</div>
+  <div class="ch-row"><div class="ch-ttl">周末登录送金币提醒<span class="pd-st">#46</span><span class="pd-st">已结束</span></div><span class="ch-sp"></span><span class="btn2">复制</span></div>
+  <div class="ch-meta"><b>当前设置</b><i>|</i>推播<i>|</i>定时 10/10 19:00<i>|</i>所属活动：周末登录送金币<i>|</i>对象：回流 16,240 人；排除 VIP 名单、黑名单、机器人与测试账号、敏感状态账号</div>
 </div>
 <div class="ch-sec">
   <div class="ch-h">漏斗</div>
@@ -933,6 +951,10 @@ BASE09 = [   # 其余各行的相对大小（发送、iOS 未接入、到达、�
 ]
 
 
+# 状态叫法与推播、短信列表一致（A96、A97）：一次性推送 发送中、未开始、已暂停、草稿、已结束（行内写原因）；按行为推送 生效中
+ST09 = {'已完成': '已结束', '已停止': '已结束 · 手动停止', '发送失败': '已结束 · 发送失败', '运行中': '生效中'}
+
+
 def rows09():
     oc = ov_data()['cur']
     target = (oc['send'], oc['ios'], oc['arr'], oc['clk'])
@@ -965,7 +987,7 @@ def when_html(mode, when):
     return f'{mode} {E(when)}'
 
 
-def build_09():
+def table09():
     r46 = [r for r in ROWS09 if r[0] == 46][0]
     f = P07
     sent46 = f['aud'] - sum(n for _, n in NOTSENT07) - f['reject']
@@ -981,7 +1003,8 @@ def build_09():
     trs = []
     for (no, name, st, way, act, mode, when, grp, aud, sent, ios, arr, clk) in ROWS09:
         bad = ' pd-bad' if st == '发送失败' else ''
-        name_td = f'<td><span class="pd-lk">{E(name)}</span><span class="pd-s2{bad}">推送 {no} · {st}</span></td>'
+        st2 = ST09.get(st, st)
+        name_td = f'<td><span class="pd-lk">{E(name)}</span><span class="pd-s2{bad}">#{no} · {st2}</span></td>'
         if sent and clk is None:
             arr_td = f'<td class="pd-r">{fmt(arr)}<span class="pd-s2">{pct(arr / (sent - ios))}</span></td>'
             clk_td = ctr_td = '<td class="pd-r dim">—</td>'
@@ -1006,15 +1029,14 @@ def build_09():
            f'<td class="pd-r">{fmt(S(11))}<span class="pd-s2">—</span></td><td class="pd-r">{fmt(S(12))}</td>'
            f'<td class="pd-r dim">—</td><td></td></tr>')
     trs.append(tot)
-    body = f"""<div class="ch-sec" style="padding-top:12px;padding-bottom:12px">
-  <div class="ch-row">{seg_html(["今日", "近 7 天", "近 30 天", "自定义"], "近 7 天")}<span class="ch-m">{md(DAYS[CUR7[0]])}–{md(DAYS[CUR7[-1]])}</span><span class="ch-sp"></span><span class="btn2">导出</span></div>
+    return f"""<div class="ch-sec">
+  <div class="ch-row"><span class="ch-h" style="margin:0">每条推送</span><span class="ch-m">点一行看这条推送的数据；所选期间内发送过的才列出</span><span class="ch-sp"></span><span class="btn2">导出</span></div>
   <div class="ch-flt">{dd('推送方式', '全部')}{dd('所属活动', '全部', 80)}{dd('发送时间', '全部')}{dd('状态', '全部')}{dd('标签群组', '全部', 80)}<span class="in ch-search"><span class="ph">搜索名称或编号</span></span></div>
 </div>
 <div class="ch-sec">
   <table class="pd-dt ch-tbl"><thead><tr>{ths}</tr></thead><tbody>{''.join(trs)}</tbody></table>
   <div class="ch-pg"><span>共 {len(ROWS09)} 条；合计行只给数量，比率只在同一推送方式内比较</span></div>
 </div>"""
-    return page('数据明细', body)
 
 
 # ================================================================ 示例数据：00 后台首页 = 推播列表（10/12 15:25 时的样子）
@@ -1222,9 +1244,9 @@ def build_16a():
     return list_page('短信列表', 'data-page="短信" data-tabs="*短信列表|操作纪录"', list_body('s', 'all'))
 
 
-# 02a、16a、17a 已按 A96、A97 手写重做（10/21），不再由本脚本生成
-BUILDERS = {'14_单条规则数据': build_14, '13_游戏内数据': build_13, '06_概览': build_06, '02c_推播今明两天': build_02c, 
-            '02b_预计人数': build_02b, '09_数据明细': build_09, '06b_每人每天收到': build_06b, '07_单条漏斗': build_07}
+# 02a、02b、02c、16a、17a 已按 A96、A97 手写重做（10/21），09 数据明细已并进 06 数据概览（A98），均不再由本脚本生成
+BUILDERS = {'14_单条规则数据': build_14, '13_游戏内数据': build_13, '06_概览': build_06, 
+            '06b_每人每天收到': build_06b, '07_单条漏斗': build_07}
 
 if __name__ == '__main__':
     names = sys.argv[1:] or list(BUILDERS)

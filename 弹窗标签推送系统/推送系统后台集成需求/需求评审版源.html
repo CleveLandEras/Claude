@@ -88,7 +88,7 @@ a.pref:hover{border-bottom-style:solid}
   <a href="#p5">快显<em>5 页</em></a>
   <div class="grp g3">第三部分　数据</div>
   <a href="#p6">数据概览<em>6 页</em></a>
-  <a href="#p7">数据明细<em>7 页</em></a>
+  <a href="#p7">单条推送与规则数据<em>7 页</em></a>
   <a href="#p8">弹窗与快显位置数据<em>8 页</em></a>
   <a href="#p9">每人每天推送量<em>9 页</em></a>
   <div class="grp g4">第四部分　查询</div>
@@ -517,23 +517,38 @@ a.pref:hover{border-bottom-style:solid}
   <h2>数据概览</h2>
 
   <div class="shots">
-    <figure><img src="需求评审版_图/06_概览.jpg" alt="数据概览的关键数字" style="width:1056px"><figcaption>数据概览：游戏外、游戏内两层的关键数字</figcaption></figure>
+    <figure><img src="需求评审版_图/06_概览.jpg" alt="数据概览：关键数字、每日走势、每条推送" style="width:1056px"><figcaption>数据概览（游戏外推送一层）：上面关键数字，中间每日走势与设置改动，下面每条推送</figcaption></figure>
   </div>
 
   <details class="rules">
-    <summary><span class="rt">业务规则</span><span class="rgs">游戏外推送 · 游戏内推送 · 对比与走势 · 指标算法</span></summary>
+    <summary><span class="rt">业务规则</span><span class="rgs">现状与改动 · 关键数字 · 每日走势 · 每条推送 · 筛选与导出 · 指标算法</span></summary>
     <div class="rbody">
-  <h4 class="rg">游戏外推送</h4>
+  <h4 class="rg">现状与改动</h4>
   <table class="rule">
-    <tr><td>推播、短信合计的发送、到达、点击、到达人数和人均每天收到几条；到达率、点击率按推送方式分开列，不给合计（两种推送方式到达、点击的条件不同）；每条推送的数据见<a class="pref" href="#p7">第 7 页</a>。</td></tr>
+    <tr><td>原「数据概览」「数据明细」两页并成一页，先看总数与走势，再看每一条；页顶切换游戏外推送、游戏内推送两层，时间范围对整页生效。</td></tr>
   </table>
-  <h4 class="rg">游戏内推送</h4>
+  <h4 class="rg">关键数字</h4>
   <table class="rule">
-    <tr><td>弹窗、快显的曝光、曝光人数、点击、点击率和人均每天弹窗曝光几个；每条弹窗规则的数据见<a class="pref" href="#p7">第 7 页</a>，各位置的数据见<a class="pref" href="#p8">第 8 页</a>。</td></tr>
+    <tr><td>游戏外推送：推播、短信合计的发送、到达、点击、到达人数和人均每天收到几条；到达率、点击率按推送方式分开列，不给合计（两种推送方式到达、点击的条件不同）。</td></tr>
+    <tr><td>游戏内推送：弹窗、快显的曝光人数、曝光、点击、点击率和人均每天弹窗曝光几个；各位置的数据见<a class="pref" href="#p8">第 8 页</a>。</td></tr>
+    <tr><td>每个数字显示与前一个同样长度的周期相比的增减，并附所选期间的每日小图。</td></tr>
   </table>
-  <h4 class="rg">对比与走势</h4>
+  <h4 class="rg">每日走势</h4>
   <table class="rule">
-    <tr><td>每个数字显示与前一个同样长度的周期相比的增减，并附所选期间的每日走势。</td></tr>
+    <tr><td>按日画所选期间连同对比的前一段：游戏外推送一层柱为每日发送、线为点击率；游戏内推送一层柱为每日曝光、线为点击率。</td></tr>
+    <tr><td>图上用竖线标出改动：游戏外推送一层标推播、短信列表顶部上限与勿扰设置的改动；游戏内推送一层标弹窗规则的改动与 App 发版。竖线前后各画一段平均点击率（不含改动当天），图下逐条列出改动时间、改了什么、谁改的。</td></tr>
+  </table>
+  <h4 class="rg">每条推送</h4>
+  <table class="rule">
+    <tr><td>一张表每行一条推播、短信（游戏外推送一层）或一条快显、弹窗规则（游戏内推送一层），只列所选期间内发送或曝光过的；名称下一行写 #编号与状态，叫法与各列表一致（发送中、生效中、已结束等，已结束写原因）。</td></tr>
+    <tr><td>游戏外推送一层的列是推送方式、所属活动、发送时间、受众、发送、到达与到达率、点击、点击率；游戏内推送一层是曝光人数、曝光、点击、点击率。</td></tr>
+    <tr><td>到达率的分母不含 iOS 未接入的发送，所以不等于到达÷发送；合计行只给数量，到达率、点击率写「—」。按行为推送和弹窗规则持续运行，数据按所选时间范围累计。</td></tr>
+    <tr><td>点一行进入这条推送或规则的数据（<a class="pref" href="#p7">第 7 页</a>）；推播、短信、快显、弹窗各列表行上的「数据」也直达同一页。</td></tr>
+  </table>
+  <h4 class="rg">筛选与导出</h4>
+  <table class="rule">
+    <tr><td>按推送方式、所属活动、发送时间（立即、定时、按行为）、状态、标签群组、名称或编号筛选；游戏内推送一层按活动或礼包筛选时，列出含对应弹窗内容的弹窗规则。</td></tr>
+    <tr><td>可按任一列排序；「导出」导出当前筛选下的表。</td></tr>
   </table>
   <h4 class="rg">指标算法</h4>
   <table class="rule">
@@ -543,33 +558,40 @@ a.pref:hover{border-bottom-style:solid}
   </table>
     </div>
   </details>
+  <details class="rules" style="margin-top:12px">
+    <summary><span class="rt">设计依据</span><span class="rgs">数据概览 · 单条数据</span></summary>
+    <div class="rbody">
+  <h4 class="rg">数据概览</h4>
+  <table class="rule">
+    <tr><td><b>概览与明细并成一页，先图后表</b>　解决：总数在一页、每条在另一页，看到数字变了要换页才找得到是哪一条。参考：Braze、OneSignal 活动分析页上方总数与走势、下方逐条列表；极光、个推数据概况分块。</td></tr>
+    <tr><td><b>走势图上标出设置改动，前后各画平均</b>　解决：数字涨跌看不出是不是改了上限、勿扰或规则引起的。参考：Amplitude 图上批注与 Releases；Braze 变更日志留改前、改后值与操作人。</td></tr>
+    <tr><td><b>状态、编号叫法与各列表一致</b>　解决：数据页写「推送 46 · 已完成」，列表写「#46 · 已结束」，同一条两种叫法。参考：Shopify Polaris 同一对象在各处同名同状态。</td></tr>
+  </table>
+  <h4 class="rg">单条数据</h4>
+  <table class="rule">
+    <tr><td><b>顶部写这条推送或规则的当前设置</b>　解决：看数据时不知道这条现在发给谁、怎么排，要回编辑页对照。参考：Braze、OneSignal 单条报告页顶摘要（渠道、对象、发送时间）。</td></tr>
+  </table>
+    </div>
+  </details>
 </section>
 
 <!-- 7 -->
 <section class="pg pt3" id="p7">
   <div class="kick"><span class="pchip">第三部分　数据</span><span class="pos">第 7 页 / 共 10 页</span></div>
-  <h2>数据明细</h2>
+  <h2>单条推送与规则数据</h2>
 
   <div class="shots">
-    <figure><img src="需求评审版_图/09_数据明细.jpg" alt="每条推送与弹窗规则的数据列表" style="width:1056px"><figcaption>数据列表（游戏外推送一层）</figcaption></figure>
-    <figure><img src="需求评审版_图/07_单条漏斗.jpg" alt="单条推送数据" style="width:1056px"><figcaption>在列表里点一条推送，进入这条推送的数据</figcaption></figure>
-    <figure><img src="需求评审版_图/14_单条规则数据.jpg" alt="单条弹窗规则数据" style="width:1056px"><figcaption>在列表里点一条弹窗规则，进入这条规则的数据</figcaption></figure>
+    <figure><img src="需求评审版_图/07_单条漏斗.jpg" alt="单条推送数据" style="width:1056px"><figcaption>一条推送的数据：顶部当前设置，下面漏斗与未发出的原因</figcaption></figure>
+    <figure><img src="需求评审版_图/14_单条规则数据.jpg" alt="单条弹窗规则数据" style="width:1056px"><figcaption>一条弹窗规则的数据：顶部当前设置，下面漏斗、按日趋势与改动、各弹窗内容</figcaption></figure>
   </div>
 
   <details class="rules">
-    <summary><span class="rt">业务规则</span><span class="rgs">数据列表 · 筛选与导出 · 单条推送 · 单条弹窗规则</span></summary>
+    <summary><span class="rt">业务规则</span><span class="rgs">进入方式与顶部 · 单条推送 · 单条弹窗规则</span></summary>
     <div class="rbody">
-  <h4 class="rg">数据列表</h4>
+  <h4 class="rg">进入方式与顶部</h4>
   <table class="rule">
-    <tr><td>一张表每行一条推播、短信、快显或弹窗规则及其数据；页内切换游戏外推送、游戏内推送两层。</td></tr>
-    <tr><td>游戏外推送一层的数据是受众、发送、到达与到达率、点击、点击率；游戏内推送一层是曝光人数、曝光、点击、点击率。</td></tr>
-    <tr><td>点击率的分母各按本层；到达率的分母不含 iOS 未接入的发送，所以不等于到达÷发送（算法见<a class="pref" href="#p6">第 6 页</a>）；合计行只给数量，到达率、点击率写「—」。</td></tr>
-    <tr><td>按行为推送和弹窗规则持续运行，列表里的数据按所选时间范围累计。</td></tr>
-  </table>
-  <h4 class="rg">筛选与导出</h4>
-  <table class="rule">
-    <tr><td>按时间范围、推送方式、所属活动、发送时间（立即、定时、按行为）、状态、标签群组、名称或编号筛选；游戏内推送一层按活动或礼包筛选时，列出含对应弹窗内容的弹窗规则。</td></tr>
-    <tr><td>可按任一列排序、导出；点一行进入这条推送或弹窗规则的数据。</td></tr>
+    <tr><td>从数据概览的每条推送点一行，或从推播、短信、快显、弹窗列表行上的「数据」进入；面包屑写「数据概览 / 名称 #编号」。</td></tr>
+    <tr><td>顶部一行写名称、#编号、状态，下一行「当前设置」：推送写推送方式、发送时间、所属活动、对象与排除；弹窗规则写位置、权重与本位置名次、每次最多弹出数、对象、弹窗内容个数、生效期间；右侧按钮推送为「复制」，弹窗规则为「编辑规则」。</td></tr>
   </table>
   <h4 class="rg">单条推送</h4>
   <table class="rule">
@@ -603,7 +625,7 @@ a.pref:hover{border-bottom-style:solid}
   <table class="rule">
     <tr><td>大厅自动弹窗、游戏破产弹窗、快显各自统计曝光人数、曝光、点击、点击率，与前一个同样长度的周期对比。</td></tr>
     <tr><td>每个位置一张趋势图，按日显示曝光与点击率；图上标出这个位置上所有规则的改动和 App 发版。</td></tr>
-    <tr><td>这个位置上各条规则的数据不在本页另列，页头链接到数据明细的游戏内推送一层（<a class="pref" href="#p7">第 7 页</a>）；曝光人数按玩家去重。</td></tr>
+    <tr><td>这个位置上各条规则的数据不在本页另列，页头链接到数据概览的游戏内推送一层（<a class="pref" href="#p6">第 6 页</a>）；曝光人数按玩家去重。</td></tr>
   </table>
   <h4 class="rg">按位次</h4>
   <table class="rule">
@@ -656,27 +678,53 @@ a.pref:hover{border-bottom-style:solid}
   <h2>玩家查询</h2>
 
   <div class="shots">
-    <figure><img src="需求评审版_图/19_玩家查询.jpg" alt="玩家查询" style="width:1056px"><figcaption>查到一位玩家：自动弹窗顺序与游戏破产弹窗顺序、各推送方式能否收到、近 30 天收到记录</figcaption></figure>
+    <figure><img src="需求评审版_图/19_玩家查询.jpg" alt="玩家查询" style="width:1056px"><figcaption>查到一位玩家：现在能收到什么，弹窗此刻进入各位置会弹什么、为什么不弹，近 30 天收到记录</figcaption></figure>
   </div>
 
   <details class="rules">
-    <summary><span class="rt">业务规则</span><span class="rgs">现状与改动 · 查询与结果 · 账号权限</span></summary>
+    <summary><span class="rt">业务规则</span><span class="rgs">现状与改动 · 查询与玩家资料 · 现在能收到什么 · 弹窗 · 收到记录 · 账号权限</span></summary>
     <div class="rbody">
   <h4 class="rg">现状与改动</h4>
   <table class="rule">
     <tr><td>现有：弹窗后台的「玩家弹窗顺序查询」，按会员编号、昵称或手机号码查一位玩家，显示玩家信息（标签名称、标签状态）与自动弹窗顺序、游戏破产弹窗顺序两张表。</td></tr>
-    <tr><td>改为：扩展为推播、短信、弹窗、快显四种推送的查询，两张弹窗顺序表与字段名照旧。</td></tr>
+    <tr><td>改为：扩展为推播、短信、弹窗、快显四种推送的查询，先回答「这位玩家现在能收到什么、为什么没收到」；两张弹窗顺序表并入「弹窗」段，按位置分组，原有各列都在（见下）。</td></tr>
   </table>
-  <h4 class="rg">查询与结果</h4>
+  <h4 class="rg">查询与玩家资料</h4>
   <table class="rule">
-    <tr><td>按会员编号、会员昵称或手机号码查一位玩家；查到后显示玩家资料（标签名称、标签状态、最后登录、平台与版本、在线状态）。</td></tr>
-    <tr><td>自动弹窗顺序、游戏破产弹窗顺序两张表列不变：顺序、类型、礼包名称、弹窗活动 ID、弹窗名称。</td></tr>
-    <tr><td>推播、短信、弹窗、快显各自能否收到，不能时写原因（如通知关闭、没有手机号）；今天已收几条、上限多少、最近一次收到的时间。</td></tr>
-    <tr><td>近 30 天推播、短信、快显的每一条和每次弹窗的结果与原因，如被每人每天上限拦下时写明名额被哪几条占用；弹窗可展开看每个弹窗内容弹没弹。</td></tr>
+    <tr><td>一个输入框，左侧下拉切换会员编号、会员昵称、手机号码；结果写明是哪一刻的状态。</td></tr>
+    <tr><td>玩家资料：会员编号、会员昵称、手机号码（打码）、标签名称（玩家所在的全部标签群组）、标签状态、最后登录、平台与版本、在线状态。</td></tr>
+  </table>
+  <h4 class="rg">现在能收到什么</h4>
+  <table class="rule">
+    <tr><td>推播、短信、弹窗、快显各一张卡片：标题一句结论（能收到／收不到：原因／今天不再收营销推播），下面写今天已收几条、上限多少、何时恢复、最近一次收到的时间。</td></tr>
+    <tr><td>收不到的原因如通知关闭、没装 App、没有手机号、手机号已停用（服务商退回）、不在线；碰到每人每天上限写明恢复时间，服务通知不受上限另注。</td></tr>
+  </table>
+  <h4 class="rg">弹窗</h4>
+  <table class="rule">
+    <tr><td>按位置分组（大厅自动弹窗、游戏破产弹窗），每组顶上写触发时机与每人每天上限的已用数，下一行一句「下次进入会弹哪几个」。</td></tr>
+    <tr><td>组内按规则权重从高到低、规则内按弹窗内容顺序排，每条规则一行小标题写规则名称 #编号、权重、每次最多弹出数、对象。</td></tr>
+    <tr><td>每个弹窗内容一行：顺序、弹窗内容、礼包名称、所属规则（规则名称 #编号）、此刻状态、说明。此刻状态四种：会弹；次数已用完（写弹窗次数与今天弹出时间）；冷却中（写冷却秒数与几点后可弹）；超出每次最多弹出数（前面有不可弹的时补位）。</td></tr>
+    <tr><td>原两张表的列都在：顺序、类型（＝弹窗内容）、礼包名称、弹窗活动 ID（＝规则 #编号）、弹窗名称（＝规则名称）。超出每次最多弹出数的连续多项折叠为一行，可展开。</td></tr>
+    <tr><td>玩家所在标签群组被某条规则排除时，组末一行写「不在对象内：规则名称 #编号」及原因。</td></tr>
+  </table>
+  <h4 class="rg">收到记录</h4>
+  <table class="rule">
+    <tr><td>近 30 天推播、短信、快显的每一条和每次弹窗的结果与原因，按时间倒序；可按名称或编号、推送方式、结果、日期筛选。</td></tr>
+    <tr><td>被每人每天上限拦下时写明名额被哪几条占用；弹窗一行写规则名称 #编号，可展开看每个弹窗内容弹没弹。</td></tr>
   </table>
   <h4 class="rg">账号权限</h4>
   <table class="rule">
     <tr><td>沿用后台现有的账号权限，分运营、只读两种：运营可用全部页面，可新建、编辑与发送；只读账号可查看全部页面，不能改动；客服用只读账号。</td></tr>
+  </table>
+    </div>
+  </details>
+  <details class="rules" style="margin-top:12px">
+    <summary><span class="rt">设计依据</span><span class="rgs">玩家查询</span></summary>
+    <div class="rbody">
+  <table class="rule">
+    <tr><td><b>首屏先给四张「能否收到」卡片</b>　解决：原页只有玩家信息和两张顺序表，客服要自己推断玩家为什么没收到。参考：Braze 用户档案的各渠道订阅与可达状态；OneSignal 一个用户各订阅的状态；MoEngage Push Debug 按人逐步查资格、投递、到达。</td></tr>
+    <tr><td><b>弹窗按位置分组，每个弹窗内容标所属规则与此刻状态</b>　解决：原表只列顺序，看不出哪个此刻会弹、哪个因次数、冷却或每次最多弹出数而不弹。参考：Pendo 前一个不可显示时下一个补位；Braze、Appcues 应用内消息按优先级排、每天上限与最小间隔。</td></tr>
+    <tr><td><b>收到记录含被拦下的及原因</b>　解决：只看到收到的，看不到没收到的那几条。参考：Braze Messaging History 与 Message Activity Log；OneSignal Event log。</td></tr>
   </table>
     </div>
   </details>
