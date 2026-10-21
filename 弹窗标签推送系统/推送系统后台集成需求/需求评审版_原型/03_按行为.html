@@ -31,12 +31,24 @@
       </div>
       <div class="sec">
         <div class="sh"><span class="n">4</span>发送时间</div>
-        <div class="cards"><div class="card"><i class="rd"></i><div><b>立即</b><span>确认后马上发</span></div></div><div class="card"><i class="rd"></i><div><b>定时</b><span>到点按当时群组里的玩家发</span></div></div><div class="card on"><i class="rd"></i><div><b>按行为</b><span>活动或礼包开始、结束前后 N 小时</span></div></div></div>
-        <div class="row" style="margin-top:10px"><label>触发</label><div class="trig"><span class="inp v" style="width:130px">限时加码礼包<span class="dn">⌵</span></span><span class="inp v" style="width:64px">结束<span class="dn">⌵</span></span><span class="inp v" style="width:52px">前<span class="dn">⌵</span></span><span class="inp v num" style="width:40px">2</span>小时</div></div>
+        <div class="cards"><div class="card"><i class="rd"></i><div><b>立即</b><span>确认后马上发</span></div></div><div class="card"><i class="rd"></i><div><b>定时</b><span>到点按当时群组里的玩家发</span></div></div><div class="card on"><i class="rd"></i><div><b>按行为</b><span>玩家做了某件事或活动到点时发</span></div></div></div>
+        <div class="row" style="margin-top:10px;margin-bottom:0"><label>触发行为</label><span class="m2">先选一种，再在下面一句话填它的参数</span></div>
+        <div class="tpk">
+          <div class="g">玩家行为　发给做了这件事的玩家</div>
+          <div class="o"><i></i><div><b>玩家升级</b><span>升到等级 N 时发；不填等级为每次升级</span></div></div>
+          <div class="o"><i></i><div><b>完成任务</b><span>完成指定任务（可多选）时发；不填为任意任务</span></div></div>
+          <div class="o"><i></i><div><b>通行证升级</b><span>升到第 N 级及以前时发；不填为每次升级</span></div></div>
+          <div class="o"><i></i><div><b>破产后未回到游戏</b><span>破产 N 小时后仍没回到游戏才发</span></div></div>
+          <div class="g">活动事件　按活动、礼包的时间发</div>
+          <div class="o on"><i></i><div><b>活动或礼包开始、结束前后 N 小时</b><span>活动、礼包改期后自动跟随</span></div></div>
+          <div class="o"><i></i><div><b>每日定点＋状态</b><span>每天定点发给当时在某标签群组里的玩家</span></div></div>
+          <div class="o off"><i></i><div><b>排名变化</b><span>跌出排行榜前 K 名时发 · 待排行榜接入</span></div></div>
+        </div>
+        <div class="row"><label>参数</label><div class="trig"><span class="inp v" style="width:130px">限时加码礼包<span class="dn">⌵</span></span><span class="inp v" style="width:64px">结束<span class="dn">⌵</span></span><span class="inp v" style="width:52px">前<span class="dn">⌵</span></span><span class="inp v num" style="width:40px">2</span>小时</div></div>
         <div class="row"><label></label><span class="ck">✓</span>只发给尚未购买该礼包的玩家</div>
         <div class="row"><label>生效期间</label><span class="inp v num" style="width:110px">2026-09-20</span>至<span class="inp" style="width:110px">长期（选填）</span><span class="m2">活动、礼包改期后自动跟随</span></div>
         <div class="row"><label>提醒间隔</label>同一玩家两次至少隔<span class="inp v num" style="width:44px">24</span>小时</div>
-        <div class="row"><label>命中勿扰</label><span class="inp v" style="width:96px">放弃发送<span class="dn">⌵</span></span><label style="margin-left:10px">玩家在线</label><span class="inp v" style="width:76px">照发<span class="dn">⌵</span></span></div>
+        <div class="row"><label>命中勿扰</label><span class="inp v" style="width:96px">放弃发送<span class="dn">⌵</span></span><label style="margin-left:10px">玩家在线</label><span class="inp v" style="width:76px">照发<span class="dn">⌵</span></span><span class="m2">玩家行为类默认不发</span></div>
       </div>
     </div>
     <div>

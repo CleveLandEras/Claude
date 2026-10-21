@@ -1222,7 +1222,8 @@ def build_16a():
     return list_page('短信列表', 'data-page="短信" data-tabs="*短信列表|操作纪录"', list_body('s', 'all'))
 
 
-BUILDERS = {'14_单条规则数据': build_14, '13_游戏内数据': build_13, '06_概览': build_06, '02a_推播列表': build_02a, '02c_推播今明两天': build_02c, '16a_短信列表': build_16a, '17a_快显列表': build_17a,
+# 02a、16a、17a 已按 A96、A97 手写重做（10/21），不再由本脚本生成
+BUILDERS = {'14_单条规则数据': build_14, '13_游戏内数据': build_13, '06_概览': build_06, '02c_推播今明两天': build_02c, 
             '02b_预计人数': build_02b, '09_数据明细': build_09, '06b_每人每天收到': build_06b, '07_单条漏斗': build_07}
 
 if __name__ == '__main__':

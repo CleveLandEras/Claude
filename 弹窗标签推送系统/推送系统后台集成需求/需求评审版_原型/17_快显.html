@@ -3,52 +3,74 @@
 <head>
 <meta charset="utf-8">
 <title>17 快显</title>
-<link rel="stylesheet" href="../原型样式.css">
 <link rel="stylesheet" href="_后台框.css">
-<style>
-html,body{margin:0;padding:0;background:#fff}
-body{font-family:"Inter","Noto Sans CJK SC","PingFang SC","Microsoft YaHei",sans-serif;font-size:13px;line-height:1.5}
-.shot .z{zoom:1.12}
-.shot .win{padding:0;border:0;border-radius:0;background:#fff;box-shadow:none}
-.shot .fig{width:auto;border:0;border-radius:0}
-.tc{font-family:"Inter","Noto Sans CJK TC","PingFang TC",sans-serif}
-</style>
+<link rel="stylesheet" href="_弹窗.css">
+<link rel="stylesheet" href="_推送.css">
 </head>
 <body>
-<div class="shot bk" data-page="快显" data-crumb="新建快显"><div class="z"><div class="win"><div class="fig">
-  <div class="sec" style="padding:12px 18px 14px">
-    <div class="sh">推送内容</div>
-    <div style="display:flex;gap:28px;align-items:flex-start">
-      <div style="flex:1;min-width:0">
-        <div class="f"><label style="width:70px"><span class="rq">*</span>推送名称</label><span class="in" style="width:270px">通行证升级提示</span></div>
-        <div class="f"><label style="width:70px"><span class="rq">*</span>所属活动</label><span class="in" style="width:150px">通行证<span class="dn">⌵</span></span><span class="mute" style="margin-left:10px">必选、无默认；随点击跳转带入，可改</span></div>
-        <div class="f" style="height:auto;align-items:flex-end;margin-top:4px"><label style="width:70px;padding-bottom:4px"><span class="rq">*</span>横幅文字</label><span class="lang"><span class="on">中文繁体</span><span>Việt nam</span><span>English</span></span><span class="gen" style="margin-bottom:2px">一键多语言生成</span></div>
-        <div class="f" style="padding-left:70px;height:32px"><span class="in tc" style="width:300px;border-radius:0 3px 3px 3px">恭喜升級！通行證獎勵已可領取<span class="cnt">14/30</span></span></div>
-        <div class="f"><label style="width:70px"><span class="rq">*</span>显示位置</label><span class="in" style="width:140px">局内右上角横幅<span class="dn">⌵</span></span><span style="flex:none;white-space:nowrap;margin:0 6px 0 14px;color:var(--ink2)">停留</span><span class="num">5</span>秒</div>
-        <div class="f"><label style="width:70px;white-space:nowrap">旧版本</label><span style="color:var(--ink2);margin-right:8px">不支持该位置时回退到</span><span class="in" style="width:120px">大厅顶部横幅<span class="dn">⌵</span></span></div>
-        <div class="f"><label style="width:70px">点击跳转</label><span class="in" style="width:190px">活动页面 / 通行证<span class="dn">⌵</span></span></div>
+<div class="shot bk" data-page="快显" data-crumb="新建快显">
+  <div class="eh"><h3>升到 30 级解锁新场馆</h3><span class="pill draft">草稿</span><span class="sp"></span></div>
+  <div class="ed">
+    <div>
+      <div class="sec">
+        <div class="sh"><span class="n">1</span>名称与所属活动</div>
+        <div class="row"><label>推送名称</label><span class="inp v" style="width:240px">升到 30 级解锁新场馆</span><label style="margin-left:14px">所属活动</label><span class="inp v" style="width:130px">不属于活动<span class="dn">⌵</span></span><span class="m2">必选；随点击跳转带入，可改</span></div>
       </div>
-      <div class="pvs" style="width:260px">
+      <div class="sec">
+        <div class="sh"><span class="n">2</span>对象</div>
+        <div class="row"><span class="radio on"><i></i>触发的玩家</span><span class="m2">按行为发给做了这件事的玩家；只显示给当时在线的</span></div>
+        <div class="row"><label>只限群组</label><span class="inp" style="width:150px">不限（选填）<span class="dn">⌵</span></span><label style="margin-left:10px">排除群组</label><span class="inp v" style="width:150px">VIP 名单<span class="dn">⌵</span></span></div>
+        <div class="fixed">固定不发：黑名单、机器人与测试账号、敏感状态账号</div>
+      </div>
+      <div class="sec">
+        <div class="sh"><span class="n">3</span>内容与显示</div>
+        <div class="tabs3"><span class="on">繁中<em class="ok">✓</em></span><span>越南文<em class="ok">✓</em></span><span>英文<em class="chk">待核对</em></span><span class="gen">一键生成另外两种</span></div>
+        <div class="ta"><span class="m">横幅文字</span>　恭喜升到 30 級！新場館已開放 <span class="m2" style="float:right">14/30</span></div>
+        <div class="row" style="margin-top:8px"><label>显示位置</label><span class="inp v" style="width:140px">局内右上角横幅<span class="dn">⌵</span></span>停留<span class="inp v num" style="width:36px">5</span>秒</div>
+        <div class="row"><label>旧版本</label>不支持该位置时回退到<span class="inp v" style="width:120px">大厅顶部横幅<span class="dn">⌵</span></span></div>
+        <div class="row"><label>点击跳转</label><span class="inp v" style="width:200px">大厅 / 新场馆<span class="dn">⌵</span></span></div>
+      </div>
+      <div class="sec">
+        <div class="sh"><span class="n">4</span>发送时间</div>
+        <div class="cards"><div class="card"><i class="rd"></i><div><b>立即</b><span>确认后显示给此刻在线的对象</span></div></div><div class="card"><i class="rd"></i><div><b>定时</b><span>到点起一段时间内上线的对象各显示一次</span></div></div><div class="card on"><i class="rd"></i><div><b>按行为</b><span>玩家做了某件事或活动到点时显示</span></div></div></div>
+        <div class="row" style="margin-top:10px;margin-bottom:0"><label>触发行为</label><span class="m2">先选一种，再在下面一句话填它的参数</span></div>
+        <div class="tpk">
+          <div class="g">玩家行为　显示给做了这件事、当时在线的玩家</div>
+          <div class="o on"><i></i><div><b>玩家升级</b><span>升到等级 N 时显示；不填等级为每次升级</span></div></div>
+          <div class="o"><i></i><div><b>完成任务</b><span>完成指定任务（可多选）时显示；不填为任意任务</span></div></div>
+          <div class="o"><i></i><div><b>通行证升级</b><span>升到第 N 级及以前时显示；不填为每次升级</span></div></div>
+          <div class="o"><i></i><div><b>中奖</b><span>中奖金额不低于 N 时显示（只有快显）</span></div></div>
+          <div class="o"><i></i><div><b>破产后未回到游戏</b><span>破产 N 小时后仍没回到游戏时；回来后在线才显示</span></div></div>
+          <div class="g">活动事件　按活动、礼包的时间显示</div>
+          <div class="o"><i></i><div><b>活动或礼包开始、结束前后 N 小时</b><span>活动、礼包改期后自动跟随</span></div></div>
+          <div class="o"><i></i><div><b>每日定点＋状态</b><span>每天定点显示给当时在某标签群组里的玩家</span></div></div>
+          <div class="o off"><i></i><div><b>排名变化</b><span>跌出排行榜前 K 名时显示 · 待排行榜接入</span></div></div>
+        </div>
+        <div class="row"><label>参数</label><div class="trig">升到等级<span class="inp v num" style="width:40px">30</span>时显示<span class="m2">不填为每次升级</span></div></div>
+        <div class="row"><label>生效期间</label><span class="inp v num" style="width:110px">2026-10-23</span>至<span class="inp" style="width:110px">长期（选填）</span></div>
+        <div class="row"><label>提醒间隔</label>同一玩家两次至少隔<span class="inp v num" style="width:44px">24</span>小时<span class="m2">快显不受勿扰，不分重要程度</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="sum">
         <div class="h">横幅预览 · 局内右上角</div>
-        <div class="lobby tc"><div class="bn" style="left:auto;width:118px;height:auto;padding:4px 8px;font-size:11px;line-height:14px;white-space:normal">恭喜升級！通行證獎勵已可領取</div><div class="tm" style="top:50px">5 秒後收起</div><div class="gm"><i></i><i></i><i></i></div></div>
+        <div class="pvb"><div class="bn">恭喜升到 30 級！新場館已開放</div><div class="tm">5 秒後收起</div><div class="tb"></div></div>
+        <hr>
+        <div class="h">预计显示</div>
+        <div class="big num">294<small>次／天</small></div>
+        <div class="eq"><span>近 7 天日均升到 30 级</span><span>312</span><span>当时在线</span><span>312</span><span>被每人每天上限拦下</span><span>−18</span></div>
+        <div class="bars"><i style="height:62%"></i><i style="height:58%"></i><i style="height:66%"></i><i style="height:60%"></i><i style="height:81%"></i><i style="height:88%"></i><i style="height:64%"></i></div>
+        <div class="bl"><span>10/15</span><span>10/21</span></div>
+        <hr>
+        <div class="k2"><span>每人每天上限</span><b>快显 3 次</b></div>
+        <div class="m2">在弹窗页「上限与去重」设，按显示先后占用</div>
+        <hr>
+        <div class="k2"><span>上次测试</span><b>未测试</b></div>
       </div>
     </div>
   </div>
-
-  <div class="sec" style="padding:12px 18px 14px">
-    <div class="sh">发送对象</div>
-    <div class="f"><label style="width:70px"><span class="rq">*</span>发送对象</label><span class="in" style="width:130px">触发的玩家<span class="dn">⌵</span></span><span style="color:var(--ink2);margin:0 8px 0 18px">只限群组</span><span class="in ph" style="width:96px">不限<span class="dn">⌵</span></span></div>
-    <div class="f"><label style="width:70px">排除群组</label><span class="tg">VIP 名单</span><span class="tg fix">黑名单</span><span class="tg fix">机器人与测试账号</span><span class="tg fix">敏感状态账号</span></div>
-  </div>
-
-  <div class="sec" style="padding:12px 18px 14px">
-    <div class="sh" style="height:28px">发送时间<span class="seg" style="margin-left:12px;font-weight:400"><span style="border-radius:3px 0 0 3px">立即</span><span style="border-radius:0">定时</span><span class="on" style="border-radius:0 3px 3px 0">按行为</span></span></div>
-    <div class="f"><label style="width:70px"><span class="rq">*</span>触发行为</label><span class="in" style="width:180px">通行证升级<span class="dn">⌵</span></span><span style="margin:0 8px 0 24px;color:var(--ink2)">生效期间</span><span class="in" style="width:220px">2026-10-03　至　2026-12-31</span></div>
-    <div class="f"><label style="width:70px">触发条件</label>升级时等级不超过<span class="num">20</span></div>
-    <div class="f"><label style="width:70px">提醒间隔</label>同一玩家两次提醒至少间隔<span class="num">24</span>小时</div>
-  </div>
-
-</div></div></div></div>
+  <div class="foot"><span class="m2">英文横幅待核对</span><span class="sp"></span><span class="btno">取消</span><span class="btno">存为草稿</span><span class="btno">发送测试</span><span class="btnp">保存并发布</span></div>
+</div>
 <script src="_后台框.js"></script>
 </body>
 </html>
