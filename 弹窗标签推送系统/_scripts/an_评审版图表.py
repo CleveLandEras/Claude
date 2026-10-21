@@ -612,6 +612,11 @@ EV6B = [   # 取自操作纪录：推播、短信列表顶部上限与勿扰设�
 ]
 for e in EV6B:
     e['tag'] = md(e['t'].date())
+# 数据概览游戏外一层的走势：只标规则与设置改动（负责人 10/21 定），不标每次发送（太密会盖住走势）
+EV06 = sorted(EV6B + [dict(t=dt.datetime(2026, 10, 8, 14, 20), kind='chg', what='破产回流提醒 #44：破产后 3 小时未回来 → 2 小时', who='运营02')],
+              key=lambda e: e['t'])
+for e in EV06:
+    e['tag'] = md(e['t'].date())
 
 
 def gen_series(events, base, levels, *, wkend, sd, seed, step=10):
@@ -794,7 +799,7 @@ def ov_parts(spark_w):
 
 
 def build_06():
-    # A98：一页先图后表。上：所选层的关键数字；中：所选期间连同对比的前一段的每日走势，竖线为上限与勿扰设置的改动；下：每条推送
+    # A98：一页先图后表。上：所选层的关键数字；中：所选期间连同对比的前一段的每日走势，竖线为规则与设置改动（不标每次发送）；下：每条推送
     flt, l1, l2 = ov_parts(124)
     d = ov_data()['daily']
     off, n = CUR7[0] - 7, 14
@@ -802,10 +807,10 @@ def build_06():
     clks = d['clk'][off:off + n]
     check(max(bars) < 12000 and 0.045 < min(c / b for c, b in zip(clks, bars)) and max(c / b for c, b in zip(clks, bars)) < 0.065,
           f'06 走势 每日发送 {min(bars)}–{max(bars)}、点击率在纵轴内')
-    svg, avgs = trend_svg(bars, clks, EV6B, den=bars, off=off, top_ticks=[0.045, 0.05, 0.055, 0.06, 0.065],
+    svg, avgs = trend_svg(bars, clks, EV06, den=bars, off=off, top_ticks=[0.045, 0.05, 0.055, 0.06, 0.065],
                           bar_ticks=[0, 6000, 12000], top_fmt=lambda v: pct(v, 1), avg_fmt=pct,
                           top_title='点击率', bar_title='发送（推播＋短信）', top_h=120, bar_h=60)
-    ev_in = [e for e in EV6B if off < (e['t'].date() - D0).days < off + n]
+    ev_in = [e for e in EV06 if off < (e['t'].date() - D0).days < off + n]
     body = f"""<div class="ch-sec" style="padding-top:14px;padding-bottom:12px">
   {flt}
 </div>
@@ -813,8 +818,8 @@ def build_06():
   {l1}
 </div>
 <div class="ch-sec">
-  <div class="ch-h">每日走势<span class="ch-m">所选 7 天连同对比的前 7 天；竖线是推播、短信上限与勿扰设置的改动</span></div>
-  {legend_html(bar='每日发送', avg='竖线前后的平均点击率（不含改动当天）', chg='上限与勿扰设置改动', rel=False)}
+  <div class="ch-h">每日走势<span class="ch-m">所选 7 天连同对比的前 7 天；竖线是按行为推送规则的改动与推播、短信上限、勿扰设置的改动</span></div>
+  {legend_html(bar='每日发送', avg='竖线前后的平均点击率（不含改动当天）', chg='规则与设置改动', rel=False)}
   {svg}
   {event_rows(ev_in)}
 </div>
@@ -896,7 +901,7 @@ def build_07():
     check(f['login'] < sent, '07 24 小时内登录人数 < 发送人数')
     noapp, off, cap = (n for _, n in NOTSENT07)
     rows = [
-        ('受众', f['aud'], None, '发送对象扣掉排除群组', ''),
+        ('受众', f['aud'], None, '对象扣掉排除群组', ''),
         ('发送', sent, None, f'少 {fmt(f["aud"] - sent)} 人', ''),   # 拆分只放下方「未发出的原因」「服务商未受理」，不在漏斗旁重复
         ('到达', arr, None, f'少 {fmt(sent - arr)} 人 · 到达率 {pct(arr_rate)}',
          f'服务商退回 {f["bounce"]} · 结果不明 {f["no_receipt"]} · iOS 未接入 {f["ios"]}（不进分母）'),
