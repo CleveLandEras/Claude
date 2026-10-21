@@ -24,3 +24,4 @@
 - [Report only what and why](report-only-what-and-why.md) — 10/18: for a multi-part design push stay quiet until all is done, then report only 「做了什么——为什么」, core items only; cite top-product practice for every design point
 - [Size deliverables to reader time](size-deliverables-to-reader-time.md) — 10/19: set length from who reads it and their real reading time, measure with an_可读字数.py; it is a reference, never a hard line, never at the cost of clarity; first decide what is core, then how much to write
 - [GitHub repo sync](github-repo-sync.md) — private repo Clarelive/Claude = ~/claude (whitelist .gitignore, only 弹窗标签推送系统/ so far); refresh memory & report-format snapshots in the repo before pushing
+- [Review doc principles 10/21](review-doc-principles-1021.md) — 10/21 Dk: 图自明不靠小字; 不无故加工时(三行表); 成品不放设计依据
