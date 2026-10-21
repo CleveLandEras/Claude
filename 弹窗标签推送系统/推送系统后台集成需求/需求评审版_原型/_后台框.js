@@ -32,7 +32,7 @@
     }).join('');
     const crumbs = [grp[0], page].concat((shot.dataset.crumb || '').split('/').map(s => s.trim()).filter(Boolean));
     const head = crumbs.map((c, i) => `<span class="${i === crumbs.length - 1 ? 'cur' : ''}">${esc(c)}</span>`).join('<span class="sep">/</span>') +
-      '<span class="acct"><i>运</i>运营01</span>';
+      '';
     const bar = (v, cls) => v ? `<div class="${cls}">` + v.split('|').map(t =>
       t.startsWith('*') ? `<span class="on">${esc(t.slice(1))}</span>` : `<span>${esc(t)}</span>`).join('') + '</div>' : '';
     const tabs = bar(shot.dataset.tabs, 'bk-tabs') + bar(shot.dataset.subnav, 'bk-subnav');

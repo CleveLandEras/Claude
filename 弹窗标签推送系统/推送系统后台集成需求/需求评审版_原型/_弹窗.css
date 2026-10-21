@@ -170,3 +170,10 @@ table.dif td.n .up{font-weight:400;color:#2F8A4C;margin-left:4px}
 .cf .ft{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}
 .shot.bk .bk-ov{background:rgba(31,35,41,.34);z-index:5}
 .shot.bk .bk-ov>.bk-pop.cf{box-shadow:0 12px 32px rgba(0,0,0,.22)}
+/* 对象三选一：常显一句并集说明；人数三行表（固定字段：一个标签一个数） */
+.or1{font-size:12px;color:#4E5969;background:#F5F7FA;border-radius:4px;padding:5px 8px;margin:2px 0 8px}
+table.cnt{border-collapse:collapse;margin:8px 0 2px;min-width:260px}
+table.cnt td{padding:4px 12px 4px 0;border-bottom:1px solid #F0F2F5;font-size:13px}
+table.cnt td.v{text-align:right;font-variant-numeric:tabular-nums;font-weight:600;color:#1F2329}
+table.cnt tr:last-child td{border-bottom:0}
+table.cnt tr.k td{color:#1F2329;font-weight:600}
