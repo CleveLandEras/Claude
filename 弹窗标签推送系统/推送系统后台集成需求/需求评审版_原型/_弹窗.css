@@ -177,3 +177,15 @@ table.cnt td{padding:4px 12px 4px 0;border-bottom:1px solid #F0F2F5;font-size:13
 table.cnt td.v{text-align:right;font-variant-numeric:tabular-nums;font-weight:600;color:#1F2329}
 table.cnt tr:last-child td{border-bottom:0}
 table.cnt tr.k td{color:#1F2329;font-weight:600}
+/* 对象：标签与群组同一下拉（10/21 晚） */
+.tgs{display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
+.tg{font-style:normal;display:inline-flex;align-items:center;height:20px;padding:0 6px;border-radius:3px;background:#F0F2F5;color:#303133;font-size:12px;white-space:nowrap}
+.tg b{font-weight:400;color:#909399;margin-right:4px}
+.tg.g{background:#ECF5FF;color:#2F6FCC}
+.tg.g b{color:#6E9BD8}
+.ddp{border:1px solid #C6D9F5;border-radius:6px;box-shadow:0 6px 18px rgba(0,0,0,.12);padding:4px 0 6px;width:330px;margin:-4px 0 8px 64px;background:#fff}
+.ddp .gh{font-size:11.5px;font-weight:600;color:#909399;padding:6px 10px 2px}
+.ddp .o{display:flex;align-items:center;gap:6px;height:26px;padding:0 10px;color:#303133}
+.ddp .o em{margin-left:auto;color:#909399;font-style:normal;font-size:11.5px}
+.ddp .sr{margin:2px 8px 2px;height:24px;border:1px solid #DCDFE6;border-radius:3px;display:flex;align-items:center;padding:0 8px;color:#A8ABB2;font-size:12px}
+.tsh{font-size:12px;color:#606266;max-width:330px;line-height:1.45;text-align:right}
