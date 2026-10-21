@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>推送统一后台需求</title>
+<title>触达系统需求</title>
 <style>
 :root{
   --bg:#f4f5f7; --card:#fff; --ink:#1f2933; --ink2:#52606d; --ink3:#7b8794;
@@ -17,11 +17,11 @@
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.75 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif}
 .wrap{display:grid;grid-template-columns:244px minmax(0,1fr);gap:32px;max-width:1480px;margin:0 auto;padding:32px 32px 80px}
-nav{position:sticky;top:24px;align-self:start;max-height:calc(100vh - 48px);overflow:auto;font-size:14.5px;line-height:1.5}
-nav .nt{font-weight:700;font-size:15px;margin-bottom:4px}
-nav .grp{margin:16px 0 6px;font-size:13px;font-weight:700;padding-left:10px;border-left:4px solid var(--c)}
-nav a{display:flex;align-items:baseline;gap:10px;padding:5px 10px;border-left:2px solid var(--line);color:var(--ink2);text-decoration:none}
-nav a em{margin-left:auto;flex:none;font-style:normal;font-size:13px;color:var(--ink3);white-space:nowrap}
+nav{position:sticky;top:24px;align-self:start;max-height:calc(100vh - 48px);overflow:auto;font-size:13.5px;line-height:1.5}
+nav .nt{font-weight:700;font-size:17px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+nav .grp{margin:20px 0 6px;font-size:14.5px;font-weight:700;padding-left:10px;border-left:4px solid var(--c)}
+nav a{display:flex;align-items:baseline;gap:10px;margin-left:16px;padding:4px 10px;border-left:2px solid var(--line);color:var(--ink2);text-decoration:none}
+nav a em{margin-left:auto;flex:none;font-style:normal;font-size:12px;color:var(--ink3);white-space:nowrap}
 nav a:hover{color:var(--accent);border-left-color:var(--accent);background:var(--accent-bg)}
 .g1{--c:var(--p1)}.g2{--c:var(--p2)}.g3{--c:var(--p3)}.g4{--c:var(--p4)}
 main{min-width:0}
@@ -78,7 +78,7 @@ a.pref:hover{border-bottom-style:solid}
 <body>
 <div class="wrap">
 <nav>
-  <div class="nt">推送统一后台需求</div>
+  <div class="nt">触达系统需求</div>
   <div class="grp g1">第一部分　游戏外推送</div>
   <a href="#p1">按玩家分群推送<em>1 页</em></a>
   <a href="#p2">按玩家行为自动推送<em>2 页</em></a>
@@ -96,12 +96,12 @@ a.pref:hover{border-bottom-style:solid}
 </nav>
 <main>
 <header class="top" id="top">
-  <h1>推送统一后台需求</h1>
+  <h1>触达系统需求</h1>
 </header>
 <section class="arch">
   <h2>后台结构</h2>
   <div class="shots">
-    <figure><img src="需求评审版_图/00_后台首页.jpg" alt="管理后台菜单里的推送统一后台" style="width:1056px"><figcaption>推送统一后台是管理后台菜单里的一组；原来活动管理里的大厅自动弹窗管理，入口改为打开新的弹窗页</figcaption></figure>
+    <figure><img src="需求评审版_图/00_后台首页.jpg" alt="触达系统菜单" style="width:1056px"><figcaption>触达系统菜单：游戏外推送、游戏内推送、数据、查询四组；右侧为弹窗页</figcaption></figure>
   </div>
 </section>
 
@@ -251,7 +251,7 @@ a.pref:hover{border-bottom-style:solid}
   <h4 class="rg">现状与改动</h4>
   <table class="rule">
     <tr><td>现有：营销侧按名单发短信，不受每人每天上限与勿扰，数据在数据平台。</td></tr>
-    <tr><td>改为：在本后台按标签群组或名单发，受每人每天上限与勿扰；营销侧的周期排程停掉，在本后台用定时的重复重建。</td></tr>
+    <tr><td>改为：在触达系统按标签群组或名单发，受每人每天上限与勿扰；营销侧的周期排程停掉，在触达系统用定时的重复重建。</td></tr>
   </table>
   <h4 class="rg">上限与封顶</h4>
   <table class="rule">
@@ -299,7 +299,7 @@ a.pref:hover{border-bottom-style:solid}
   <h4 class="rg">现状与改动</h4>
   <table class="rule">
     <tr><td>现有：活动管理里大厅自动弹窗管理的「大厅弹窗顺序设定」，列表按弹窗名称、弹窗类型、弹窗位置、对象、状态筛选；编辑弹窗「弹窗排序配置」设弹窗类型、弹窗名称（三种语言）、弹窗位置、派发对象（全部玩家、VIP 卡别、指定名单、群组标签，即其他页说的标签群组）、权重、弹出数量、标签状态，以及弹窗顺序（弹窗内容、弹窗时机、弹窗形式、每日弹窗次数、冷却时间）。</td></tr>
-    <tr><td>改为：现有字段与叫法照旧，页面移进推送统一后台，原来活动管理里的大厅自动弹窗管理，入口改为打开新的弹窗页；新加排除群组与固定排除、预计人数与重叠、两种弹窗时机（非首次登入、第 N 次登入）、按周期的弹窗次数、弹出后终止后续弹窗、不可关闭、跳过当天快显提示过的同项、每人每天上限，截图里新加的字段标「新」。</td></tr>
+    <tr><td>改为：现有字段与叫法照旧；新加排除群组与固定排除、预计人数与重叠、两种弹窗时机（非首次登入、第 N 次登入）、按周期的弹窗次数、弹出后终止后续弹窗、不可关闭、跳过当天快显提示过的同项、每人每天上限，截图里新加的字段标「新」。</td></tr>
   </table>
   <h4 class="rg">每人每天上限</h4>
   <table class="rule">
@@ -364,7 +364,7 @@ a.pref:hover{border-bottom-style:solid}
   <h4 class="rg">现状与改动</h4>
   <table class="rule">
     <tr><td>现有：快显的内容与触发写死在客户端，如通行证升级提示（局内右上角横幅）、大厅中奖播报，发给当时在线的全部玩家，改内容要发版，没有数据。</td></tr>
-    <tr><td>改为：在本后台新建快显，设文字、位置、对象与发送时间；通行证升级提示改由一条按行为快显发；大厅中奖播报照旧由原处显示。</td></tr>
+    <tr><td>改为：在触达系统新建快显，设文字、位置、对象与发送时间；通行证升级提示改由一条按行为快显发；大厅中奖播报照旧由原处显示。</td></tr>
   </table>
   <h4 class="rg">每人每天上限</h4>
   <table class="rule">
@@ -546,7 +546,7 @@ a.pref:hover{border-bottom-style:solid}
   <h4 class="rg">现状与改动</h4>
   <table class="rule">
     <tr><td>现有：弹窗后台的「玩家弹窗顺序查询」，按会员编号、昵称或手机号码查一位玩家，显示玩家信息（标签名称、标签状态）与自动弹窗顺序、游戏破产弹窗顺序两张表。</td></tr>
-    <tr><td>改为：整页移进推送统一后台的玩家查询页，两张弹窗顺序表与字段名照旧，扩展为推播、短信、弹窗、快显四种推送的查询。</td></tr>
+    <tr><td>改为：扩展为推播、短信、弹窗、快显四种推送的查询，两张弹窗顺序表与字段名照旧。</td></tr>
   </table>
   <h4 class="rg">查询与结果</h4>
   <table class="rule">
