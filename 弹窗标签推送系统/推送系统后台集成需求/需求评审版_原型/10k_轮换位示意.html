@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>10k 轮换位示意</title>
+<link rel="stylesheet" href="_后台框.css">
+<link rel="stylesheet" href="_弹窗.css">
+<style>
+.gcal-ish{opacity:.4;pointer-events:none}
+.takebar{display:flex;align-items:center;gap:12px;margin:10px 0 0;padding:9px 14px;border:1px solid #E4E7ED;border-radius:6px;background:#FAFBFC;font-size:12.5px;color:#4E5560}
+.takebar .k{font-weight:600;color:#303133}
+.takebar .seg2 span.on{background:#ECF5FF;color:#2F6FCC;font-weight:600}
+
+.bk-pop.rot{width:680px;background:#fff;border-radius:8px;padding:0;font-size:13px;color:#303133;overflow:hidden}
+.shot.bk .bk-ov>.bk-pop.rot{box-shadow:0 14px 36px rgba(0,0,0,.24)}
+.rot .phd{display:flex;align-items:center;gap:10px;padding:14px 18px 10px;border-bottom:1px solid #E8EAED}
+.rot .phd h4{margin:0;font-size:16px;font-weight:700;color:#1F2329}
+.rot .phd .sub{font-size:13px;color:#4E5560}
+.rot .phd .x{margin-left:auto;width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;border-radius:4px;color:#909399;font-size:18px;line-height:1}
+.rot .pb{padding:14px 18px 8px}
+
+.who{margin:0 0 12px;padding:10px 12px;border:1px solid #E4E7ED;border-radius:6px;background:#FAFBFC;font-size:12.5px;color:#4E5560;line-height:1.5}
+.who b{color:#1F2329;font-weight:650}
+
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.cmp .col{border:1px solid #E4E7ED;border-radius:6px;overflow:hidden}
+.cmp .col .h{padding:8px 12px;background:#FAFBFC;border-bottom:1px solid #E8EAED;font-size:13px;font-weight:700;color:#1F2329}
+.cmp .col .h em{font-style:normal;font-weight:500;font-size:12px;color:#909399;margin-left:6px}
+.cmp .col.on .h{background:#EEF5FF;color:#2F6FCC}
+.cmp .slot{display:flex;align-items:flex-start;gap:8px;padding:8px 12px;border-bottom:1px solid #F0F1F3;font-size:12.5px}
+.cmp .slot:last-child{border-bottom:0}
+.cmp .slot .n{flex:none;width:28px;height:20px;display:inline-flex;align-items:center;justify-content:center;border-radius:3px;background:#F2F3F5;color:#606266;font-weight:700;font-size:11px}
+.cmp .slot.ok .n{background:#E8F6EC;color:#2F8A4C}
+.cmp .slot.miss .n{background:#F2F3F5;color:#C0C4CC}
+.cmp .slot .body{min-width:0;flex:1}
+.cmp .slot .body b{display:block;font-weight:650;color:#1F2329;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cmp .slot.miss .body b{color:#9AA0A6;font-weight:500}
+.cmp .slot .body span{display:block;margin-top:1px;font-size:11.5px;color:#9AA0A6}
+.cmp .col.dim .slot.miss{opacity:.85}
+
+.steps{margin:0;padding:10px 12px;border:1px solid #E4E7ED;border-radius:6px;background:#fff;font-size:12.5px;color:#4E5560;line-height:1.55}
+.steps b{color:#1F2329}
+
+.rot .ft{display:flex;justify-content:flex-end;align-items:center;gap:8px;padding:10px 18px;border-top:1px solid #E8EAED;background:#FAFBFC}
+.rot .ft .note{margin-right:auto;font-size:12px;color:#9AA0A6}
+.btno{display:inline-flex;align-items:center;height:30px;padding:0 14px;border:1px solid #DCDFE6;border-radius:4px;background:#fff;color:#606266}
+</style>
+</head>
+<body>
+<div class="shot bk" data-page="弹窗" data-tabs="*弹窗规则|弹窗内容|操作纪录" data-crumb="轮换位示意"><div class="pw plain">
+  <div class="ttl"><h3>弹窗</h3><span class="sp"></span><span class="btnp">＋ 新建弹窗规则</span></div>
+  <div class="frow gcal-ish"><div class="subsc"><span class="on">大厅自动弹窗 <b>8</b></span><span>破产 <b>2</b></span><span>购买指定礼包 <b>1</b></span><span>押注达到指定金额 <b>1</b></span></div><div class="sidebtns"><div class="chips"><span class="c">上架 <b>6</b></span></div><span class="btno">调整优先级</span></div></div>
+  <div class="takebar gcal-ish">
+    <span class="k">取用方式</span>
+    <span class="seg2"><span class="on">轮换位</span><span>顺序</span></span>
+    <span>本弹窗位置 · 符合的多条规则轮流占位</span>
+  </div>
+  <div style="height:320px"></div>
+
+  <div class="bk-pop rot" style="--pop-top:52px">
+    <div class="phd">
+      <h4>轮换位示意</h4>
+      <span class="sub">大厅自动弹窗</span>
+      <span class="x">×</span>
+    </div>
+    <div class="pb">
+      <div class="who">示例玩家同时符合 <b>回流</b>（优先级 4）与 <b>潜在流失</b>（优先级 5）。进入大厅自动弹窗时：</div>
+
+      <div class="cmp">
+        <div class="col dim">
+          <div class="h">顺序</div>
+          <div class="slot ok">
+            <span class="n">1</span>
+            <div class="body"><b>回流礼包 B</b><span>回流 · 每日 1 次</span></div>
+          </div>
+          <div class="slot ok">
+            <span class="n">2</span>
+            <div class="body"><b>每日补给计划</b><span>回流 · 每 3 天 1 次</span></div>
+          </div>
+          <div class="slot ok">
+            <span class="n">3</span>
+            <div class="body"><b>热门资讯</b><span>回流 · 每周 2 次</span></div>
+          </div>
+          <div class="slot miss">
+            <span class="n">—</span>
+            <div class="body"><b>潜在流失未取用</b><span>较低符合规则不生效</span></div>
+          </div>
+        </div>
+        <div class="col on">
+          <div class="h">轮换位<em>当前</em></div>
+          <div class="slot ok">
+            <span class="n">位1</span>
+            <div class="body"><b>回流礼包 B</b><span>回流 · 本轮第 1 位</span></div>
+          </div>
+          <div class="slot ok">
+            <span class="n">位2</span>
+            <div class="body"><b>每日补给计划</b><span>潜在流失 · 轮到下一条规则</span></div>
+          </div>
+          <div class="slot ok">
+            <span class="n">位3</span>
+            <div class="body"><b>热门资讯</b><span>回流 · 下一轮再回本规则</span></div>
+          </div>
+          <div class="slot ok">
+            <span class="n">位4</span>
+            <div class="body"><b>储值返利活动</b><span>潜在流失 · 继续轮换</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="steps">
+        <div><b>轮换位</b>　符合的上架规则按优先级排进轮换；每次进入本弹窗位置，从上次下一位起取；项次数用尽 / 冷却 / 暂停则跳过，该规则本轮无可弹则轮到下一条。</div>
+        <div style="margin-top:6px"><b>顺序</b>　只命中优先级最高的一条上架规则；较低的符合规则不生效。</div>
+      </div>
+    </div>
+    <div class="ft">
+      <span class="note">取用方式在规则列表按弹窗位置设置</span>
+      <span class="btno">关闭</span>
+    </div>
+  </div>
+</div></div>
+<script src="_后台框.js"></script>
+</body>
+</html>

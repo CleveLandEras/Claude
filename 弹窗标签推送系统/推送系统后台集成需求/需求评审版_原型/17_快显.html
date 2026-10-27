@@ -18,8 +18,8 @@
       </div>
       <div class="sec">
         <div class="sh"><span class="n">2</span>对象</div>
-        <div class="row"><span class="radio on"><i></i>触发的玩家</span><span class="m2">按行为发给做了这件事的玩家；只显示给当时在线的</span></div>
-        <div class="row"><label>只限</label><span class="inp" style="width:170px">不限（选填标签或群组）<span class="dn">⌵</span></span><label style="margin-left:10px">排除</label><span class="inp v" style="width:170px"><span class="tgs"><em class="tg g"><b>群组</b>VIP 名单</em></span><span class="dn">⌵</span></span></div>
+        <div class="row"><span class="radio on"><i></i>触发的玩家</span><span class="m2">条件触发对象为触发玩家，仅在线显示</span></div>
+        <div class="row"><label>只限</label><span class="inp" style="width:170px">不限（选填群组）<span class="dn">⌵</span></span><label style="margin-left:10px">排除</label><span class="inp v" style="width:170px"><span class="tgs"><em class="tg g"><b>群组</b>VIP 名单</em></span><span class="dn">⌵</span></span></div>
         <div class="fixed">固定不发：黑名单、机器人与测试账号、敏感状态账号</div>
       </div>
       <div class="sec">
@@ -32,10 +32,10 @@
       </div>
       <div class="sec">
         <div class="sh"><span class="n">4</span>发送时间</div>
-        <div class="cards"><div class="card"><i class="rd"></i><div><b>立即</b><span>确认后显示给此刻在线的对象</span></div></div><div class="card"><i class="rd"></i><div><b>定时</b><span>到点起一段时间内上线的对象各显示一次</span></div></div><div class="card on"><i class="rd"></i><div><b>按行为</b><span>玩家做了某件事或活动到点时显示</span></div></div></div>
-        <div class="row" style="margin-top:10px;margin-bottom:0"><label>触发行为</label><span class="m2">先选一种，再在下面一句话填它的参数</span></div>
+        <div class="cards"><div class="card"><i class="rd"></i><div><b>定时</b><span>到点后按时段显示</span></div></div><div class="card on"><i class="rd"></i><div><b>条件触发</b><span>满足触发条件时显示</span></div></div></div>
+        <div class="row" style="margin-top:10px;margin-bottom:0"><label>触发行为</label></div>
         <div class="tpk">
-          <div class="g">玩家行为　显示给做了这件事、当时在线的玩家</div>
+          <div class="g">玩家行为　满足触发条件且当时在线</div>
           <div class="o on"><i></i><div><b>玩家升级</b><span>升到等级 N 时显示；不填等级为每次升级</span></div></div>
           <div class="o"><i></i><div><b>完成任务</b><span>完成指定任务（可多选）时显示；不填为任意任务</span></div></div>
           <div class="o"><i></i><div><b>通行证升级</b><span>升到第 N 级及以前时显示；不填为每次升级</span></div></div>
@@ -43,7 +43,7 @@
           <div class="o"><i></i><div><b>破产后未回到游戏</b><span>破产 N 小时后仍没回到游戏时；回来后在线才显示</span></div></div>
           <div class="g">活动事件　按活动、礼包的时间显示</div>
           <div class="o"><i></i><div><b>活动或礼包开始、结束前后 N 小时</b><span>活动、礼包改期后自动跟随</span></div></div>
-          <div class="o"><i></i><div><b>每日定点＋状态</b><span>每天定点显示给当时在某标签群组里的玩家</span></div></div>
+          <div class="o"><i></i><div><b>每日定点＋状态</b><span>每天定点显示给当时在指定标签群组内的玩家</span></div></div>
           <div class="o off"><i></i><div><b>排名变化</b><span>跌出排行榜前 K 名时显示 · 待排行榜接入</span></div></div>
         </div>
         <div class="row"><label>参数</label><div class="trig">升到等级<span class="inp v num" style="width:40px">30</span>时显示<span class="m2">不填为每次升级</span></div></div>
@@ -58,12 +58,12 @@
         <hr>
         <div class="h">预计显示</div>
         <div class="big num">294<small>次／天</small></div>
-        <div class="eq"><span>近 7 天日均升到 30 级</span><span>312</span><span>当时在线</span><span>312</span><span>被每人每天上限拦下</span><span>−18</span></div>
+        <div class="eq"><span>近 7 天日均升到 30 级</span><span>312</span><span>当时在线</span><span>312</span><span>上限拦截</span><span>−18</span></div>
         <div class="bars"><i style="height:62%"></i><i style="height:58%"></i><i style="height:66%"></i><i style="height:60%"></i><i style="height:81%"></i><i style="height:88%"></i><i style="height:64%"></i></div>
         <div class="bl"><span>10/15</span><span>10/21</span></div>
         <hr>
         <div class="k2"><span>每人每天上限</span><b>快显 3 次</b></div>
-        <div class="m2">在弹窗页「上限与去重」设，按显示先后占用</div>
+        <div class="m2">快显列表顶部设置，按显示先后占用</div>
       </div>
     </div>
   </div>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>20b 操作纪录展开</title>
+<link rel="stylesheet" href="../原型样式.css">
+<link rel="stylesheet" href="_后台框.css">
+<style>
+html,body{margin:0;padding:0;background:#fff}
+body{font-family:"Inter","Noto Sans CJK SC","PingFang SC","Microsoft YaHei",sans-serif;font-size:13px;line-height:1.5}
+.shot .z{zoom:1.12}
+.shot .win{padding:0;border:0;border-radius:0;background:#fff;box-shadow:none}
+.shot .fig{width:auto;border:0;border-radius:0}
+table.ol{width:100%;border-collapse:collapse;font-size:13px;margin-top:10px}
+table.ol th{font-weight:600;color:#73767A;background:#FAFBFC;text-align:left;padding:6px 8px;border-bottom:1px solid #EBEEF5;white-space:nowrap}
+table.ol td{padding:6px 8px;border-bottom:1px solid #EBEEF5;color:#303133;vertical-align:top}
+table.ol td.nw{white-space:nowrap}
+table.ol tr.ex td{background:#FAFBFC}
+.cmp{display:grid;grid-template-columns:60px 1fr;gap:2px 8px;font-size:12.5px;color:#606266}
+.cmp b{font-weight:400;color:#909399}
+.fl{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.fl label{color:#606266}
+</style>
+</head>
+<body>
+<div class="shot bk" data-page="推播" data-tabs="推播|*操作纪录"><div class="z"><div class="win"><div class="fig ew">
+  <div style="padding:10px 16px 12px">
+    <div class="fl"><label>页面</label><span class="ein v" style="width:104px;border-color:#409EFF">全部页面<span class="dn">⌵</span></span><label style="margin-left:6px">日期</label><span class="ein v" style="width:190px">2026-10-06 至 2026-10-12</span><label style="margin-left:6px">操作人</label><span class="ein" style="width:72px">全部<span class="dn">⌵</span></span><label style="margin-left:6px">操作</label><span class="ein" style="width:72px">全部<span class="dn">⌵</span></span></div>
+    <div class="fl" style="margin-top:8px"><span class="ein" style="width:220px">对象名称或编号</span><span class="ebtn b" style="height:28px">查询</span><span class="ebtn w" style="height:28px;margin-left:auto">导出</span></div>
+    <table class="ol">
+      <tr><th>时间</th><th>操作人</th><th>页面</th><th>对象</th><th>操作</th></tr>
+      <tr><td class="nw">10/12 15:04</td><td class="nw">运营01</td><td class="nw">推播</td><td>推送 43 月月抽开奖提醒</td><td class="nw">停止</td></tr>
+      <tr><td class="nw">10/12 14:36</td><td class="nw">运营02</td><td class="nw">弹窗</td><td>回流活动弹窗（ID 13）</td><td class="nw">编辑</td></tr>
+      <tr><td class="nw">10/12 14:30</td><td class="nw">系统</td><td class="nw">推播</td><td>推送 44 限时挑战开启</td><td class="nw">系统状态变化</td></tr>
+      <tr><td class="nw">10/09 16:12</td><td class="nw">运营02</td><td class="nw">推播</td><td>推送 31 限时加码礼包未购买提醒</td><td class="nw">编辑 ▾</td></tr>
+      <tr class="ex"><td></td><td colspan="4"><div class="cmp tc"><b>改前</b><span>限時加碼禮包還有 2 小時到期，記得領取！</span><b>改后</b><span>限時加碼禮包 2 小時後下架，現在購買再送 10% 金幣！</span></div></td></tr>
+    </table>
+    <div style="margin-top:8px;color:#909399">共 4 条</div>
+  </div>
+</div></div></div></div>
+<script src="_后台框.js"></script>
+</body>
+</html>

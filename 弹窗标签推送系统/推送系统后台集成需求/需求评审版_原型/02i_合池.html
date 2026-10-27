@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>02i 合池</title>
+<link rel="stylesheet" href="_后台框.css">
+<link rel="stylesheet" href="_弹窗.css">
+<link rel="stylesheet" href="_推送.css">
+<style>
+.gcal{margin-top:8px;border:1px solid #E4E7ED;border-radius:6px;background:#fff;overflow:hidden;opacity:.5;pointer-events:none}
+.gcal .hd,.gcal .qband,.gcal .grid{display:grid;grid-template-columns:36px repeat(7,minmax(0,1fr))}
+.gcal .hd{background:#FAFBFC;border-bottom:1px solid #E4E7ED}
+.gcal .hd .c{text-align:center;padding:6px 2px 7px;line-height:1.2;border-left:1px solid #E8EAED}
+.gcal .hd .c b{display:block;font-size:11px;font-weight:500;color:#909399}
+.gcal .hd .c em{font-style:normal;font-size:14px;font-weight:700;color:#1F2329}
+.gcal .hd .c.today{background:#EEF3FB}
+.gcal .hd .c.today b{color:#3D6FB6;font-weight:700}
+.gcal .hd .c i{display:inline-block;margin-top:3px;padding:0 6px;height:16px;line-height:16px;border-radius:8px;font-style:normal;font-size:10px;font-weight:700;color:#fff;background:#3D6FB6}
+.gcal .qband{height:22px;align-items:center;background:#EEF0F3;border-bottom:1px solid #E4E7ED;color:#73767A;font-size:11px}
+.gcal .qband span{grid-column:2 / -1;padding-left:8px}
+.gcal .grid{height:200px;position:relative}
+.gcal .hrs{position:relative;z-index:2}
+.gcal .hrs i{position:absolute;right:4px;margin-top:2px;font-style:normal;font-size:10px;line-height:1;color:#909399}
+.gcal .cols{grid-column:2 / -1;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));height:100%;position:relative;z-index:1}
+.gcal .col{position:relative;overflow:hidden;border-left:1px solid #E8EAED;background-image:repeating-linear-gradient(to bottom,transparent 0,transparent 29px,#F0F1F3 29px,#F0F1F3 30px)}
+.gcal .col.today{background-color:#F5F8FD}
+.gcal .ev{position:absolute;left:4px;width:calc(100% - 8px);height:34px;padding:3px 7px;border:1px solid #DDE3EC;border-radius:4px;background:#F7F9FC;font-size:11px;line-height:14px;overflow:hidden}
+.gcal .ev b{display:block;height:12px;font-size:10px;line-height:12px;color:#9AA0A6;font-weight:500}
+.gcal .ev .nm{display:block;height:14px;margin:2px 0 0;font-size:12px;font-weight:700;line-height:14px;color:#1F2329;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gcal .ev.warn{background:#FFF8F0;border-color:#F0D9B8;box-shadow:inset 3px 0 0 #C47B2B;padding-left:8px}
+.rangebar{margin:10px 0 0;font-size:13px;font-weight:600;color:#1F2329}
+.rangebar .m2{font-weight:400;color:#73767A;font-size:12.5px}
+.capbar .acts{margin-left:auto;display:inline-flex;align-items:center;gap:8px}
+.capbar .acts .lk{margin-left:0}
+.capbar .lk.on{color:#2F6FCC;font-weight:700}
+.sumstrips{display:flex;flex-direction:column;gap:6px;margin-top:10px;opacity:.55;pointer-events:none}
+.sumstrips .s{display:flex;align-items:flex-start;gap:10px;padding:7px 10px;border:1px solid #E8EAED;border-left-width:3px;border-radius:4px;background:#FAFBFC;font-size:12.5px;line-height:1.45;color:#4E5560}
+.sumstrips .s b{flex:none;min-width:28px;font-weight:700;color:#1F2329}
+.sumstrips .s.warn{border-left-color:#C47B2B;background:#FFFBF6;border-color:#F0D9B8 #E8EAED #E8EAED #C47B2B}
+.sumstrips .s.info{border-left-color:#7FA7E0;background:#F7FAFD;border-color:#D6E3F5 #E8EAED #E8EAED #7FA7E0}
+.sumstrips .s .lk{flex:none;margin-left:8px;padding:0 2px;color:#2F6FCC;font-size:12.5px;font-weight:600;white-space:nowrap}
+.sumstrips .s .lk.on{font-weight:700;text-decoration:underline}
+
+.bk-pop.pool{width:740px;background:#fff;border-radius:8px;padding:0;font-size:13px;color:#303133;overflow:hidden}
+.shot.bk .bk-ov>.bk-pop.pool{box-shadow:0 14px 36px rgba(0,0,0,.24)}
+.pool .phd{display:flex;align-items:center;gap:10px;padding:14px 18px 10px;border-bottom:1px solid #E8EAED}
+.pool .phd h4{margin:0;font-size:16px;font-weight:700;color:#1F2329}
+.pool .phd .x{margin-left:auto;width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;border-radius:4px;color:#909399;font-size:18px;line-height:1}
+.pool .pb{padding:12px 18px 8px}
+
+.filt{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin-bottom:10px}
+.filt .lab{font-size:12.5px;color:#606266;white-space:nowrap}
+.filt .viewday{width:132px;color:#303133}
+.filt .aud{width:132px;color:#303133}
+.filt .gap{width:6px}
+.filt .m{font-size:12px;color:#909399}
+
+.capline{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin-bottom:10px;padding:8px 12px;border:1px solid #E4E7ED;border-radius:6px;background:#FAFBFC;font-size:12.5px;color:#4E5560}
+.capline b{font-weight:700;color:#1F2329;font-variant-numeric:tabular-nums}
+.capline .sep{width:1px;height:16px;background:#E4E7ED}
+
+.poolhd{display:flex;align-items:baseline;gap:10px;margin:0 0 6px}
+.poolhd b{font-size:13px;font-weight:700;color:#1F2329}
+.poolhd .m{font-size:12px;color:#909399}
+
+table.po{width:100%;border-collapse:collapse;table-layout:fixed}
+table.po th{padding:7px 8px;font-size:12px;font-weight:500;color:#9AA0A6;text-align:left;border-bottom:1px solid #E4E7ED;white-space:nowrap}
+table.po td{height:44px;padding:6px 8px;border-bottom:1px solid #F0F1F3;font-size:12.5px;vertical-align:middle;color:#1F2329}
+table.po .ord{font-variant-numeric:tabular-nums;font-weight:700;color:#4E5560}
+table.po .nm{font-weight:650;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+table.po .meta{margin-top:1px;font-size:11.5px;color:#9AA0A6;font-weight:400}
+table.po tr.keep td{background:#F3FAF4}
+table.po tr.block td{background:#FAFBFC;color:#6B7280}
+table.po tr.block .nm{color:#6B7280;font-weight:500}
+table.po tr.svc td{background:#F7F9FC}
+.st{display:inline-block;padding:0 7px;border-radius:3px;font-size:12px;font-weight:600;white-space:nowrap;line-height:20px}
+.st.ok{background:#E8F6EC;color:#2F8A4C}
+.st.block{background:#FDECEC;color:#C0392B}
+.st.free{background:#F2F3F5;color:#6B7280;font-weight:500}
+.blkc{display:block;margin-top:1px;font-size:11.5px;color:#9AA0A6;font-weight:400}
+
+.pool .ft{display:flex;justify-content:flex-end;align-items:center;gap:8px;padding:10px 18px;border-top:1px solid #E8EAED;background:#FAFBFC}
+.pool .ft .note{margin-right:auto;font-size:12px;color:#9AA0A6}
+.btno{display:inline-flex;align-items:center;height:30px;padding:0 14px;border:1px solid #DCDFE6;border-radius:4px;background:#fff;color:#606266;white-space:nowrap}
+</style>
+</head>
+<body>
+<div class="shot bk" data-page="推播" data-tabs="*日历|定时|条件触发|操作纪录" data-crumb="合池"><div class="pw plain">
+  <div class="ttl"><h3>推播</h3><span class="sp"></span><span class="btnp">＋ 新建推播</span></div>
+  <div class="capbar">
+    <span class="k">每人每天上限</span>
+    <span class="v">营销 <b class="num">2</b> 条 · 服务通知不计入</span>
+    <span class="div"></span>
+    <span class="v">勿扰 <b class="num">00:00–08:00</b>，与短信共用</span>
+    <span class="div"></span>
+    <span class="v">今天达到上限 <b class="num">2,180</b> 人</span>
+    <span class="acts">
+      <span class="lk">修改</span>
+    </span>
+  </div>
+  <div class="rangebar">10/21–10/27 <span class="m2">· 今天起 7 天</span></div>
+  <div class="gcal">
+    <div class="hd">
+      <div></div>
+      <div class="c today"><b>周三</b><em>10/21</em><i>今天</i></div>
+      <div class="c"><b>周四</b><em>10/22</em></div>
+      <div class="c"><b>周五</b><em>10/23</em></div>
+      <div class="c"><b>周六</b><em>10/24</em></div>
+      <div class="c"><b>周日</b><em>10/25</em></div>
+      <div class="c"><b>周一</b><em>10/26</em></div>
+      <div class="c"><b>周二</b><em>10/27</em></div>
+    </div>
+    <div class="qband"><span>勿扰 00:00–08:00</span></div>
+    <div class="grid">
+      <div class="hrs"><i style="top:0">08</i><i style="top:50%">15</i></div>
+      <div class="cols">
+        <div class="col today">
+          <div class="ev warn" style="top:0"><b>08:00</b><span class="nm">维护预告</span></div>
+          <div class="ev" style="top:22%"><b>09:00</b><span class="nm">签到加码</span></div>
+          <div class="ev warn" style="top:55%"><b>15:20</b><span class="nm">回流礼包 B</span></div>
+        </div>
+        <div class="col">
+          <div class="ev" style="top:40%"><b>12:30</b><span class="nm">每日任务</span></div>
+          <div class="ev warn" style="top:75%"><b>20:30</b><span class="nm">限时挑战</span></div>
+        </div>
+        <div class="col"></div><div class="col"></div><div class="col"></div><div class="col"></div><div class="col"></div>
+      </div>
+    </div>
+  </div>
+  <div class="sumstrips">
+    <div class="s warn"><b>今天</b><span>#47 实际上限拦截 85 · #45 已占用 1 条 · #53 顺延不计入</span><span class="lk pool-ent on">看合池</span></div>
+    <div class="s info"><b>明天</b><span>#50 预计上限拦截 4,030 · 更早的定时 #49 12:30、#48 19:00</span></div>
+  </div>
+  <div style="height:220px"></div>
+
+  <div class="bk-pop pool" style="--pop-top:40px">
+    <div class="phd">
+      <h4>合池</h4>
+      <span class="x">×</span>
+    </div>
+    <div class="pb">
+      <div class="filt">
+        <span class="lab">查看日</span>
+        <span class="inp v viewday">今天 10/21<span class="dn">⌵</span></span>
+        <span class="gap"></span>
+        <span class="lab">人群</span>
+        <span class="inp v aud">全部玩家<span class="dn">⌵</span></span>
+        <span class="gap"></span>
+        <span class="m">每天名额单独算</span>
+      </div>
+
+      <div class="capline">
+        <span>当前人群上限 <b>2</b> 条 / 人 · 天</span>
+        <span class="sep"></span>
+        <span>服务通知不计入</span>
+      </div>
+
+      <div class="poolhd">
+        <b>按发送先后</b>
+        <span class="m">定时 + 条件触发混排 · 营销 4 条候选，本档留下 2</span>
+      </div>
+
+      <table class="po">
+        <colgroup>
+          <col style="width:44px">
+          <col>
+          <col style="width:148px">
+          <col style="width:88px">
+          <col style="width:120px">
+        </colgroup>
+        <thead>
+          <tr>
+            <th>顺序</th>
+            <th>推播</th>
+            <th>发送</th>
+            <th>对象</th>
+            <th>结果</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="svc">
+            <td class="ord">—</td>
+            <td><div class="nm">维护预告</div><div class="meta">#53 · 服务通知</div></td>
+            <td>定时 · 08:00<div class="meta">由 02:30 顺延</div></td>
+            <td>—</td>
+            <td><span class="st free">不计入</span></td>
+          </tr>
+          <tr class="keep">
+            <td class="ord">1</td>
+            <td><div class="nm">签到加码</div><div class="meta">#45 · 定时</div></td>
+            <td>定时 · 09:00</td>
+            <td>全部</td>
+            <td><span class="st ok">占用 1/2</span></td>
+          </tr>
+          <tr class="keep">
+            <td class="ord">2</td>
+            <td><div class="nm">限时加码礼包未购买提醒</div><div class="meta">#31 · 条件触发</div></td>
+            <td>条件 · 礼包结束前 2 小时</td>
+            <td>全部</td>
+            <td><span class="st ok">占用 2/2</span></td>
+          </tr>
+          <tr class="block">
+            <td class="ord">3</td>
+            <td><div class="nm">回流礼包 B</div><div class="meta">#47 · 定时</div></td>
+            <td>定时 · 15:20</td>
+            <td>回流</td>
+            <td><span class="st block">上限拦截</span><span class="blkc">约 85 人</span></td>
+          </tr>
+          <tr class="block">
+            <td class="ord">4</td>
+            <td><div class="nm">破产回流提醒</div><div class="meta">#44 · 条件触发</div></td>
+            <td>条件 · 破产后 2 小时</td>
+            <td>全部</td>
+            <td><span class="st block">上限拦截</span><span class="blkc">触发中</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="ft">
+      <span class="note">今天 10/21 · 全部玩家 · 只读</span>
+      <span class="btno">关闭</span>
+    </div>
+  </div>
+</div></div>
+<script src="_后台框.js"></script>
+</body>
+</html>

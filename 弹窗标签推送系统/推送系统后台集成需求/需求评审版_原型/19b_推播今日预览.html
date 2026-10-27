@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>19b 推播今日预览</title>
+<link rel="stylesheet" href="_后台框.css">
+<link rel="stylesheet" href="_弹窗.css">
+<link rel="stylesheet" href="_推送.css">
+<style>
+/* 玩家查询语境下的推播今日预览：单表，一眼分留下/拦下 */
+.who{display:flex;flex-wrap:wrap;gap:4px 20px;margin-top:10px;border:1px solid #E4E7ED;border-radius:6px;padding:9px 12px;color:#303133;font-size:12.5px}
+.who .k{color:#909399;margin-right:4px}
+.who b{font-weight:600}
+.chip{display:inline-block;padding:0 7px;border-radius:10px;background:#ECF5FF;color:#2F6FB2;font-size:12px;margin-right:4px}
+.quota-card{display:flex;align-items:center;gap:14px;margin-top:12px;padding:10px 14px;border:1px solid #E4E7ED;border-radius:6px;background:#FFF8F2}
+.quota-card .qs{font-size:15px;font-weight:700;color:#C2591A;white-space:nowrap}
+.quota-card .qr{font-size:12.5px;color:#4E5560;line-height:1.45}
+.quota-card .qr b{color:#1F2329;font-weight:600}
+.hint-row{margin:8px 0 0;font-size:12px;color:#909399}
+table.pv{width:100%;border-collapse:collapse;margin-top:10px;table-layout:fixed}
+table.pv th{padding:8px 10px;font-size:12px;font-weight:500;color:#9AA0A6;text-align:left;border-bottom:1px solid #E4E7ED;white-space:nowrap}
+table.pv td{height:48px;padding:8px 10px;border-bottom:1px solid #F0F1F3;font-size:12.5px;vertical-align:middle;color:#1F2329}
+table.pv .nm{font-weight:650}
+table.pv .meta{margin-top:1px;font-size:11.5px;color:#9AA0A6;font-weight:400}
+table.pv .ord{font-variant-numeric:tabular-nums;font-weight:600;color:#4E5560;width:36px}
+table.pv .pri{color:#C0C4CC;font-variant-numeric:tabular-nums}
+table.pv tr.keep td{background:#F3FAF4}
+table.pv tr.block td{background:#FAFBFC;color:#6B7280}
+table.pv tr.block .nm{color:#6B7280;font-weight:500}
+table.pv tr.svc td{background:#F7F9FC}
+.st{display:inline-block;padding:0 7px;border-radius:3px;font-size:12px;font-weight:600;white-space:nowrap;line-height:20px}
+.st.ok{background:#E8F6EC;color:#2F8A4C}
+.st.sent{background:#EEF3FB;color:#3D6FB6}
+.st.block{background:#FDECEC;color:#C0392B}
+.st.free{background:#F2F3F5;color:#6B7280;font-weight:500}
+.note{margin-top:10px;font-size:12px;color:#9AA0A6;line-height:1.5}
+.leg{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px;font-size:12px;color:#73767A}
+.leg i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px;vertical-align:-1px}
+.leg .k{background:#F3FAF4;border:1px solid #C6E6C8}
+.leg .b{background:#FAFBFC;border:1px solid #E4E7ED}
+.leg .s{background:#F7F9FC;border:1px solid #D6E2F5}
+.back{display:inline-flex;align-items:center;gap:4px;font-size:12.5px;color:#2F6FCC;margin-bottom:2px}
+.daypick{display:inline-flex;align-items:center;gap:6px;margin-left:auto;font-size:12.5px;color:#4E5560}
+.daypick .inp{height:26px;font-size:12px}
+</style>
+</head>
+<body>
+<div class="shot bk" data-page="玩家查询" data-crumb="推播今日预览"><div class="pw plain">
+  <div class="back">← 返回玩家查询</div>
+  <div class="ttl">
+    <h3>推播 · 今日预览</h3>
+    <span class="daypick">日期<span class="inp v">今天 10/12<span class="dn">⌵</span></span></span>
+  </div>
+
+  <div class="who">
+    <span><span class="k">会员编号</span>180820055306761</span>
+    <span><span class="k">会员昵称</span>我来称王260134709</span>
+    <span><span class="k">标签</span><span class="chip">银卡已首储</span><span class="chip">新增玩家</span></span>
+    <span><span class="k">在线</span><b style="color:#2F8A4C">当前在线</b></span>
+    <span><span class="k">查询时刻</span>10/12 14:08</span>
+  </div>
+
+  <div class="quota-card">
+    <span class="qs">营销名额 2/2</span>
+    <span class="qr">判定规则：营销合池每天 <b>2</b> 条，按<strong>实际发送先后</strong>占用；服务通知<strong>不计入</strong>。定时与条件触发共用同一池。</span>
+  </div>
+  <div class="hint-row">改发送时间或触发时刻 → 顺序会变 · 共 5 条营销候选，留下 2 · 拦下 3</div>
+
+  <table class="pv">
+    <colgroup>
+      <col style="width:44px">
+      <col style="width:44px">
+      <col>
+      <col style="width:72px">
+      <col style="width:72px">
+      <col style="width:168px">
+      <col style="width:88px">
+      <col style="width:168px">
+    </colgroup>
+    <thead>
+      <tr>
+        <th>顺序</th>
+        <th>优先</th>
+        <th>推播</th>
+        <th>类别</th>
+        <th>发送方式</th>
+        <th>计划 / 触发</th>
+        <th>结果</th>
+        <th>说明</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="svc">
+        <td class="ord">—</td>
+        <td class="pri">—</td>
+        <td><div class="nm">维护预告</div><div class="meta">#53</div></td>
+        <td>服务通知</td>
+        <td>定时</td>
+        <td>08:00<span class="meta" style="display:block">由 02:30 顺延</span></td>
+        <td><span class="st free">不计入</span></td>
+        <td class="meta">服务通知不占营销名额</td>
+      </tr>
+      <tr class="keep">
+        <td class="ord">1</td>
+        <td class="pri">—</td>
+        <td><div class="nm">限时加码礼包未购买提醒</div><div class="meta">#31</div></td>
+        <td>营销</td>
+        <td>条件触发</td>
+        <td>礼包结束前 2 小时<span class="meta" style="display:block">实际 10:20</span></td>
+        <td><span class="st sent">已发送</span></td>
+        <td>占用名额 1/2</td>
+      </tr>
+      <tr class="keep">
+        <td class="ord">2</td>
+        <td class="pri">—</td>
+        <td><div class="nm">任务完成奖励提醒</div><div class="meta">#33</div></td>
+        <td>营销</td>
+        <td>条件触发</td>
+        <td>完成每日任务<span class="meta" style="display:block">实际 12:30</span></td>
+        <td><span class="st sent">已发送</span></td>
+        <td>占用名额 2/2</td>
+      </tr>
+      <tr class="block">
+        <td class="ord">3</td>
+        <td class="pri">—</td>
+        <td><div class="nm">月月抽开奖提醒</div><div class="meta">#43</div></td>
+        <td>营销</td>
+        <td>定时</td>
+        <td>15:00</td>
+        <td><span class="st block">上限拦截</span></td>
+        <td>第 3 条到达时名额已满</td>
+      </tr>
+      <tr class="block">
+        <td class="ord">4</td>
+        <td class="pri">—</td>
+        <td><div class="nm">回流礼包 B 加码通知</div><div class="meta">#47</div></td>
+        <td>营销</td>
+        <td>定时</td>
+        <td>15:20</td>
+        <td><span class="st block">上限拦截</span></td>
+        <td>计划时刻时名额已满</td>
+      </tr>
+      <tr class="block">
+        <td class="ord">5</td>
+        <td class="pri">—</td>
+        <td><div class="nm">破产回流提醒</div><div class="meta">#44</div></td>
+        <td>营销</td>
+        <td>条件触发</td>
+        <td>破产后 2 小时<span class="meta" style="display:block">预计约 16:40</span></td>
+        <td><span class="st block">上限拦截</span></td>
+        <td>触发时名额已满</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="leg">
+    <span><i class="k"></i>留下（计入营销）</span>
+    <span><i class="b"></i>上限拦截</span>
+    <span><i class="s"></i>服务通知 · 不计入</span>
+  </div>
+  <div class="note">重要程度 / 权重待定，本页先按发送先后演示。优先列预留，现为 —。</div>
+</div></div>
+<script src="_后台框.js"></script>
+</body>
+</html>

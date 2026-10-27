@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>02f 推播条件触发</title>
+<link rel="stylesheet" href="_后台框.css">
+<link rel="stylesheet" href="_弹窗.css">
+<link rel="stylesheet" href="_推送.css">
+<style>
+.shot .pt td:nth-child(1),
+.shot .pt td:nth-child(3),
+.shot .pt td:nth-child(4),
+.shot .pt td:nth-child(7){white-space:nowrap}
+.shot .pt .ell{max-width:none;overflow:visible;text-overflow:clip}
+</style>
+</head>
+<body>
+<div class="shot bk" data-page="推播" data-tabs="日历|定时|*条件触发|操作纪录"><div class="pw plain">
+  <div class="ttl"><h3>推播</h3><span class="sp"></span><span class="btnp">＋ 新建推播</span></div>
+  <div class="capbar">
+    <span class="k">每人每天上限</span>
+    <span class="v">营销 <b class="num">2</b> 条 · 服务通知不计入</span>
+    <span class="div"></span>
+    <span class="v">勿扰 <b class="num">00:00–08:00</b>，与短信共用</span>
+    <span class="div"></span>
+    <span class="v">今天达到上限 <b class="num">2,180</b> 人</span>
+    <span class="lk">修改</span>
+  </div>
+  <div class="frow"><div class="fbar">
+    <span class="inp srch">名称、推播 ID、标题</span>
+    <span class="inp">推播类型<span class="dn">⌵</span></span>
+    <span class="inp">子类型<span class="dn">⌵</span></span>
+    <span class="inp">平台<span class="dn">⌵</span></span>
+    <span class="inp">发送对象<span class="dn">⌵</span></span>
+  </div><div class="chips"><span class="c on">进行中</span><span class="c">草稿 <b>1</b></span><span class="c">已结束 <b>25</b></span></div></div>
+  <table class="pt">
+    <tr><th>触发行为</th><th>推播</th><th>标题</th><th>发送对象</th><th class="r">发送</th><th>状态</th><th>操作人</th><th>操作</th></tr>
+    <tr>
+      <td>礼包结束前 2 小时</td>
+      <td><div class="nm" title="创建 运营02 · 10/08 14:20">限时加码礼包未购买提醒</div><div class="meta">#31</div></td>
+      <td><span class="ell" title="您的专属加码礼包剩 2 小时，错过不再！">限时加码礼包即将结束</span></td>
+      <td>全部 · 排除 VIP 名单</td>
+      <td class="r">今日 248<div class="meta">近 7 日日均 290</div></td>
+      <td class="st mute">进行中</td>
+      <td>运营02</td>
+      <td class="ops"><span>暂停</span><span>编辑</span></td>
+    </tr>
+    <tr>
+      <td>破产后 2 小时</td>
+      <td><div class="nm" title="创建 运营02 · 10/08 14:20">破产回流提醒</div><div class="meta">#44</div></td>
+      <td><span class="ell">破产回流提醒</span></td>
+      <td>全部</td>
+      <td class="r">今日 136<div class="meta">近 7 日日均 160</div></td>
+      <td class="st mute">进行中</td>
+      <td>运营02</td>
+      <td class="ops"><span>暂停</span><span>编辑</span></td>
+    </tr>
+    <tr>
+      <td>活动开始后 1 小时</td>
+      <td><div class="nm" title="创建 运营01 · 10/12 09:00">周年庆</div><div class="meta">#52</div></td>
+      <td><span class="ell">周年庆</span></td>
+      <td>全部 · 至 11/10</td>
+      <td class="r">今日不触发<div class="meta">近 30 天 22,310</div></td>
+      <td class="st mute">进行中</td>
+      <td>运营01</td>
+      <td class="ops"><span>暂停</span><span>编辑</span></td>
+    </tr>
+  </table>
+</div></div>
+<script src="_后台框.js"></script>
+</body>
+</html>

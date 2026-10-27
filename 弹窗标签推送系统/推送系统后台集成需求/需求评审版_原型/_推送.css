@@ -19,6 +19,11 @@
 .qt .day td{background:#F7F8FA;font-weight:600;color:#4E5560}
 .qt .r{text-align:right}
 .qt .red{color:#C0392B}
+.dayh{display:flex;align-items:baseline;gap:8px;margin:10px 0 0;font-size:13.5px;font-weight:700;color:#1F2329}
+.dayh .m2{font-weight:400}
+.one{display:block;max-width:100%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-size:12px;color:#4E5560;line-height:18px}
+td.clip{overflow:hidden}
+.block{margin-top:2px;font-size:12px;font-weight:600;color:#C0392B;line-height:16px}
 .ta{border:1px solid #DCDFE6;border-radius:0 4px 4px 4px;padding:8px 10px;font-size:13px;line-height:20px;color:#1F2329;background:#fff}
 .ta .fx{color:#909399}
 .hint{font-size:12px;color:#909399;margin-top:4px}
@@ -48,3 +53,137 @@
 .pvb .bn{position:absolute;right:8px;top:8px;max-width:150px;padding:5px 9px;border-radius:5px;background:rgba(255,255,255,.95);font-size:11px;line-height:14px;color:#1F2329;box-shadow:0 2px 6px rgba(0,0,0,.3)}
 .pvb .tm{position:absolute;right:10px;top:46px;font-size:10px;color:#C9D2E3}
 .pvb .tb{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);width:120px;height:40px;border-radius:50%;background:#2E6B45;opacity:.7}
+
+/* 10/21 推播列表：按人群的名额格，不是按条的表 */
+.qnote{margin:8px 0 0;font-size:12px;color:#73767A;line-height:1.45}
+.slhead,.track{display:grid;grid-template-columns:108px repeat(4,minmax(0,1fr));gap:6px}
+.slhead{margin-top:10px;font-size:11px;color:#909399}
+.slhead b{display:block;color:#1F2329;font-size:12px}
+.track{margin-top:6px}
+.who b{display:block;padding-top:8px;font-size:13px;color:#1F2329;line-height:1.3}
+.who span{display:block;font-size:11.5px;color:#73767A}
+.sl{min-height:72px;border:1px solid #E4E7ED;border-radius:8px;padding:6px 8px;background:#fff;min-width:0}
+.sl.tmr{background:#FFFcf7}
+.sl.empty{display:flex;flex-direction:column;justify-content:center;border-style:dashed;background:#FAFBFC;color:#909399;font-size:12px}
+.sl.empty.tmr{background:#FCFBF8}
+.sl .tm{font-size:12px;font-weight:700;color:#1F2329;font-variant-numeric:tabular-nums}
+.sl .tm em{margin-left:4px;font-style:normal;font-weight:600;font-size:11px}
+.sl .tm em.on{color:#2F8A4C}
+.sl .tm em.end{color:#909399;font-weight:500}
+.sl .tm em.pend{color:#3D6FB6;font-weight:600}
+.sl .nm{margin-top:1px;font-size:12.5px;font-weight:600;color:#1F2329;line-height:1.35}
+.sl .nm .id{font-weight:400;color:#909399;margin-left:3px}
+.sl .sub{margin-top:1px;font-size:11.5px;color:#4E5560;line-height:1.35}
+.sl .via{margin-top:2px;font-size:11px;color:#909399}
+.sl .full{margin-top:3px;font-size:11.5px;font-weight:700;color:#C0392B;line-height:1.35}
+.sl.hit{box-shadow:inset 3px 0 0 #E05A4F}
+.sl .ops{margin-top:3px;font-size:12px;color:#2F6FCC;white-space:nowrap}
+.sl .ops span{margin-right:7px}
+.beh{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:8px}
+.beh .c{border:1px dashed #D5D8DD;border-radius:8px;padding:8px 10px;background:#fff;min-width:0}
+.beh .c b{display:block;font-size:12.5px;color:#1F2329}
+.beh .c b .id{font-weight:400;color:#909399;margin-left:3px}
+.beh .c .sub{margin-top:2px;font-size:11.5px;color:#4E5560;line-height:1.4;word-break:keep-all}
+.beh .c .ops{margin-top:3px;font-size:12px;color:#2F6FCC}
+.beh .c .ops span{margin-right:8px}
+
+/* 10/21 推播：今天明天的时间轴 */
+.dayblock{margin-top:14px}
+.dayblock>h4{display:flex;align-items:baseline;gap:8px;margin:0 0 6px;font-size:15px;font-weight:700;color:#1F2329}
+.dayblock>h4 .m2{font-weight:400;word-break:keep-all}
+.quiet{margin:0 0 8px;padding:7px 12px;border-radius:6px;background:#EEF0F3;color:#606266;font-size:12px;line-height:1.45;word-break:keep-all}
+.quiet b{color:#1F2329}
+.spine{margin-left:76px;border-left:2px solid #D5D8DD}
+.ev{display:grid;grid-template-columns:76px minmax(0,1fr);gap:8px;margin:0 0 8px -76px;align-items:start}
+.ev .hr{position:relative;padding-top:8px;font-size:13px;font-weight:700;color:#1F2329;font-variant-numeric:tabular-nums;text-align:right}
+.ev .hr::after{content:"";position:absolute;right:-13px;top:14px;width:8px;height:8px;border-radius:50%;background:#409EFF;box-shadow:0 0 0 2px #fff}
+.ev.sent .hr::after{background:#C0C4CC}
+.ev.now .hr::after{background:#2F8A4C}
+.ev.defer .hr::after{background:#E6A23C}
+.ev .card{display:block;border:1px solid #E4E7ED;border-radius:8px;padding:8px 10px;background:#fff;min-width:0}
+.ev.defer .card{box-shadow:inset 3px 0 0 #E6A23C}
+.ev.hit .card{box-shadow:inset 3px 0 0 #E05A4F}
+.ev .line{display:grid;grid-template-columns:150px 136px minmax(0,1fr) 96px 156px;gap:10px;align-items:center;width:100%}
+.ev .nums b{display:inline}
+.ev .nm{font-size:13px;font-weight:600;color:#1F2329;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ev .nm .id{font-weight:400;color:#909399;margin-left:4px}
+.ev .st{margin-top:3px;white-space:nowrap}
+.ev .who{font-size:12px;color:#4E5560;line-height:1.35;min-width:0}
+.ev .who div{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ev .one{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12px;color:#4E5560}
+.ev .nums{font-size:12px;color:#1F2329;line-height:1.35;text-align:right;white-space:nowrap}
+.ev .nums div{white-space:nowrap}
+.ev .nums b{font-variant-numeric:tabular-nums}
+.ev .nums .bad{color:#C0392B;font-weight:700}
+.ev .why{margin-top:6px;padding:6px 8px;border-radius:6px;background:#F7F8FA;font-size:12px;color:#4E5560;line-height:1.45;word-break:keep-all}
+.ev .why b{color:#1F2329}
+.ev .badge{display:inline-flex;align-items:center;height:18px;margin-right:4px;padding:0 6px;border-radius:3px;font-size:11px;font-weight:600;white-space:nowrap}
+.badge.svc{background:#EEF3FB;color:#3D6FB6}
+.badge.ex{background:#FDF3E6;color:#A9671A}
+.ev .ops{display:flex;justify-content:flex-end;gap:8px;font-size:12px;color:#2F6FCC;white-space:nowrap}
+.ev .ops span{color:#2F6FCC;font-size:12px}
+.beh .c .ops{white-space:nowrap}
+.beh .c b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* 10/21 推播：日历（天 × 小时）+ 右侧详情。按行为不进格子。 */
+.rescue{margin-top:10px;border:1px solid #F0C9C4;border-left:4px solid #E05A4F;border-radius:8px;background:#FFF8F7;padding:8px 12px}
+.rescue h4{margin:0 0 4px;font-size:14px;color:#1F2329}
+.rescue .item{display:grid;grid-template-columns:168px minmax(0,1fr) minmax(0,1.15fr);gap:10px;padding:6px 0;border-top:1px solid #F3D6D2;font-size:12px;line-height:1.4}
+.rescue .item b{display:block;font-size:13px}
+.rescue .fix{color:#1F2329}
+.kband{display:grid;grid-template-columns:1fr 1fr 1.15fr;gap:8px;margin-top:10px}
+.kcard{border:1px solid #E4E7ED;border-radius:8px;padding:8px 12px;background:#fff}
+.kcard .kday{font-size:12px;color:#73767A}
+.kcard .knums{margin-top:2px;font-size:15px;font-weight:700;color:#1F2329}
+.kcard .knums b{font-variant-numeric:tabular-nums}
+.kcard .sub{margin-top:2px;font-size:12px;color:#4E5560;line-height:1.4}
+.kcard .bad{color:#C0392B;font-weight:700}
+.kcard.cap{background:#FAFBFC}
+.behnote{margin:8px 0 0;font-size:12px;color:#606266;line-height:1.45}
+.week{display:flex;gap:6px;align-items:center;margin-top:10px;flex-wrap:wrap}
+.week span{height:26px;padding:0 8px;border:1px solid #E4E7ED;border-radius:4px;display:inline-flex;align-items:center;font-size:12px;color:#909399;background:#fff}
+.week span.on{border-color:#409EFF;color:#1F2329;font-weight:600;background:#F5F9FF}
+.calwork{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:12px;margin-top:8px;align-items:start}
+.axis,.drow{display:grid;grid-template-columns:56px minmax(0,1fr);gap:6px;align-items:stretch}
+.axis{height:18px;margin-bottom:2px}
+.axis b{font-size:11px;color:transparent}
+.ticks{position:relative;height:18px}
+.ticks i{position:absolute;top:0;font-style:normal;font-size:11px;color:#909399;transform:translateX(-50%)}
+.dlab{font-size:12px;font-weight:700;color:#1F2329;padding-top:8px;line-height:1.3}
+.dlab em{display:block;font-style:normal;font-weight:400;color:#909399}
+.track{position:relative;height:84px;border:1px solid #E4E7ED;border-radius:6px;background:#fff;overflow:hidden}
+.track .quiet{position:absolute;left:0;top:0;bottom:0;width:33.333%;background:#EEF0F3}
+.track .quiet span{position:absolute;left:8px;top:6px;font-size:11px;color:#909399}
+.chip{position:absolute;width:128px;height:32px;padding:2px 6px;border-radius:4px;border:1px solid #D5D8DD;background:#fff;font-size:12px;line-height:14px;overflow:hidden;z-index:1}
+.chip b{display:block;font-size:11px;color:#909399;font-weight:600}
+.chip.on{border-color:#409EFF;box-shadow:0 0 0 2px #D6E8FF;z-index:2}
+.chip.hit{box-shadow:inset 3px 0 0 #E05A4F}
+.chip.hit.on{box-shadow:inset 3px 0 0 #E05A4F,0 0 0 2px #D6E8FF}
+.chip.sent{background:#F7F8FA;color:#909399}
+.chip.svc{box-shadow:inset 3px 0 0 #E6A23C}
+.chip em{font-style:normal;color:#C0392B;font-weight:700}
+.insp{border:1px solid #E4E7ED;border-radius:8px;background:#fff;padding:10px 12px}
+.insp h4{margin:0;font-size:14px;color:#1F2329}
+.insp .id{font-weight:400;color:#909399;margin-left:4px}
+.insp .meta{margin-top:4px;font-size:12px;color:#4E5560;line-height:1.45}
+.insp .one{margin-top:6px;font-size:12px;color:#1F2329}
+.insp .nums{margin-top:8px;font-size:13px;color:#1F2329}
+.insp .nums .bad{color:#C0392B;font-weight:700}
+.insp .why{margin-top:8px;padding:8px;border-radius:6px;background:#F7F8FA;font-size:12px;color:#4E5560;line-height:1.45}
+.insp .ops{margin-top:8px;font-size:12px;color:#2F6FCC}
+.insp .ops span{margin-right:10px}
+.track.slim{height:46px}
+.track.slim .chip{height:18px;width:112px;font-size:11px;line-height:16px;padding:0 4px}
+.track.slim .chip b{display:inline;margin-right:4px}
+.rescue.slim{display:flex;align-items:center;gap:18px;margin-top:10px;padding:0;border:none;background:transparent;border-radius:0;font-size:13px}
+.rescue.slim h4{margin:0;font-size:13px;font-weight:650}
+.rescue.slim .item{display:flex;align-items:baseline;gap:6px;padding:0;border:none;font-size:13px}
+.rescue.slim .item b{display:inline;font-size:13px}
+.rescue.slim .n{font-weight:700;color:#C0392B;font-variant-numeric:tabular-nums}
+.rescue.slim .cap{margin-left:auto;color:#4E5560;font-size:12px;white-space:nowrap}
+.pw.plain .week{gap:16px}
+.pw.plain .week span{height:auto;padding:0 0 4px;border:none;border-radius:0;background:transparent}
+.pw.plain .week span.on{border:none;background:transparent;box-shadow:inset 0 -2px 0 #409EFF;color:#1F2329}
+.pw.plain .week .range{margin-left:4px;font-style:normal;font-size:12px;color:#909399}
+.pw.plain .insp{border:none;background:transparent;padding:2px 0 0}
+.pw.plain .insp .why{background:transparent;padding:8px 0 0}

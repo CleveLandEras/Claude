@@ -2,108 +2,91 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
-<title>10a 弹窗列表</title>
+<title>10a 弹窗规则</title>
 <link rel="stylesheet" href="_后台框.css">
 <link rel="stylesheet" href="_弹窗.css">
 </head>
 <body>
-<div class="shot bk" data-page="弹窗" data-tabs="*弹窗规则|操作纪录"><div class="pw">
-  <div class="ttl"><h3>弹窗</h3><span class="sp m">查玩家</span><span class="inp srch" style="width:150px">会员编号</span><span class="btnp">＋ 新建弹窗规则</span></div>
+<div class="shot bk" data-page="弹窗" data-tabs="*弹窗规则|弹窗内容|操作纪录"><div class="pw plain">
+  <div class="ttl"><h3>弹窗</h3><span class="sp"></span><span class="btnp">＋ 新建弹窗规则</span></div>
+  <div class="frow"><div class="subsc"><span class="on">大厅自动弹窗 <b>8</b></span><span>破产 <b>2</b></span><span>购买指定礼包 <b>1</b></span><span>押注达到指定金额 <b>1</b></span></div><div class="sidebtns"><div class="chips"><span class="c">上架 <b>6</b></span><span class="c">草稿 <b>1</b></span><span class="c">已结束 <b>1</b></span></div><span class="btno">调整优先级</span></div></div>
 
-  <div class="capbar">
-    <span class="k">上限与去重</span>
-    <span class="v">每人每天 大厅自动弹窗 <b class="num">8</b> 个 · 快显 <b class="num">3</b> 次</span>
-    <span class="div"></span>
-    <span class="v">当天已快显的同一活动或礼包 <b style="font-size:13px">不跳过</b></span>
-    <span class="div"></span>
-    <span class="v">今天碰到上限 <b class="num">1,240</b> 人</span>
-    <span class="lk">修改</span>
-  </div>
-
-  <div class="fbar">
-    <span class="seg2"><span class="on">全部</span><span>大厅自动弹窗</span><span>游戏破产弹窗</span></span>
-    <span class="inp srch">名称、编号或弹窗内容</span>
-    <span class="inp" style="width:84px">类型<span class="dn">⌵</span></span>
-    <span class="inp" style="width:84px">对象<span class="dn">⌵</span></span>
-  </div>
-  <div class="chips">
-    <span class="c on">生效中 <b>7</b></span><span class="c">未开始 <b>1</b></span><span class="c">已暂停 <b>1</b></span><span class="c">草稿 <b>1</b></span><span class="c">已结束 <b>4</b></span>
-    <span class="upd m2">今日数据更新于 15:30</span>
-  </div>
-
-  <div class="zone">
-    <h4>大厅自动弹窗<span class="m2">玩家进入或返回大厅时</span></h4>
-    <div class="grp">
-      <div class="gh"><b>活动类</b><span class="m2">每次取一条规则：此刻对这位玩家有可弹内容、权重最大的那条</span></div>
-      <table class="rl">
-        <colgroup><col style="width:46px"><col style="width:178px"><col style="width:148px"><col><col style="width:84px"><col style="width:96px"></colgroup>
-        <tr><th class="w">权重</th><th>规则</th><th>对象</th><th>弹窗内容（前几个每次先弹，其余补位）</th><th style="text-align:right">今日</th><th></th></tr>
-        <tr><td class="w num">40</td><td><div class="nm">新增玩家活动弹窗<span class="id">#12</span></div><div class="sub"><span class="pill on">生效中</span>长期</div></td>
-          <td>新增玩家 <span class="num m">10,749</span></td>
-          <td><span class="cap3">最多弹 3 个</span><div class="chain"><span class="it">新手七日签到</span><span class="ar">›</span><span class="it">每日补给计划</span><span class="ar">›</span><span class="it">热门资讯</span><span class="more">另 1 个补位 ▸</span></div></td>
-          <td class="kpi">曝光 <b class="num">8,120</b><div class="m2">点击率 12.4%</div></td>
-          <td class="ops"><span>编辑</span><span>数据</span><span class="dots">⋯</span></td></tr>
-        <tr><td class="w num">35</td><td><div class="nm">回流活动弹窗<span class="id">#13</span></div><div class="sub"><span class="pill on">生效中</span>至 10/31</div></td>
-          <td>回流 <span class="num m">16,564</span></td>
-          <td><span class="cap3">最多弹 3 个</span><div class="chain"><span class="it">回流礼包 B</span><span class="ar">›</span><span class="it">每日补给计划</span><span class="ar">›</span><span class="it">热门资讯</span><span class="more">收起 ▾</span></div></td>
-          <td class="kpi">曝光 <b class="num">11,936</b><div class="m2">点击率 9.8%</div></td>
-          <td class="ops"><span>编辑</span><span>数据</span><span class="dots">⋯</span></td></tr>
-        <tr class="exp"><td></td><td colspan="5">
-          <table class="mini">
-            <tr><th style="width:30px">顺序</th><th>弹窗内容</th><th>弹窗时机</th><th>弹窗形式</th><th>弹窗次数</th><th>冷却时间</th></tr>
-            <tr><td>1</td><td>回流礼包 B</td><td>首次登入、进入大厅</td><td class="d">活动本身</td><td class="d">每日 1 次</td><td class="d">0 秒</td></tr>
-            <tr><td>2</td><td>每日补给计划</td><td>活动开启</td><td>活动广告页</td><td>每 3 天 1 次</td><td class="d">0 秒</td></tr>
-            <tr><td>3</td><td>热门资讯</td><td>非首次登入、返回大厅</td><td class="d">活动本身</td><td>每周 2 次</td><td>600 秒</td></tr>
-            <tr class="cut"><td colspan="6"><span>每次最多弹 3 个；下面的在前面不可弹时补位</span></td></tr>
-            <tr><td>4</td><td>回流任务</td><td>进入大厅</td><td class="d">活动本身</td><td class="d">每日 1 次</td><td class="d">0 秒</td></tr>
-          </table></td></tr>
-        <tr><td class="w num">30</td><td><div class="nm">潜在流失活动弹窗<span class="id">#14</span></div><div class="sub"><span class="pill on">生效中</span>长期</div></td>
-          <td>潜在流失 <span class="num m">6,230</span></td>
-          <td><span class="cap3">最多弹 3 个</span><div class="chain"><span class="it">每日补给计划</span><span class="ar">›</span><span class="it">热门资讯</span><span class="ar">›</span><span class="it">储值返利活动</span><span class="more">另 3 个补位 ▸</span></div></td>
-          <td class="kpi">曝光 <b class="num">3,402</b><div class="m2">点击率 7.1%</div></td>
-          <td class="ops"><span>编辑</span><span>数据</span><span class="dots">⋯</span></td></tr>
-        <tr><td class="w num">20</td><td><div class="nm">活动类弹窗<span class="id">#5</span></div><div class="sub"><span class="pill on">生效中</span>长期</div></td>
-          <td>全部玩家<div class="m2">排除 #12、#13、#14 的对象</div></td>
-          <td><span class="cap3">最多弹 2 个</span><div class="chain"><span class="it">热门资讯</span><span class="ar">›</span><span class="it">发信送奖</span><span class="more">另 12 个补位 ▸</span></div></td>
-          <td class="kpi">曝光 <b class="num">21,650</b><div class="m2">点击率 5.3%</div></td>
-          <td class="ops"><span>编辑</span><span>数据</span><span class="dots">⋯</span></td></tr>
-      </table>
-      <div class="fold">▸ 未生效 4 条<span class="m2">未开始 1 · 已暂停 1 · 已结束 2</span><span class="add">＋ 在此组新建</span></div>
-    </div>
-    <div class="grp" style="margin-top:14px">
-      <div class="gh"><b>储值类</b><span class="m2">与活动类各取一条，互不影响</span></div>
-      <table class="rl">
-        <colgroup><col style="width:46px"><col style="width:178px"><col style="width:148px"><col><col style="width:84px"><col style="width:96px"></colgroup>
-        <tr><td class="w num">10</td><td><div class="nm">通用弹窗<span class="id">#6</span></div><div class="sub"><span class="pill on">生效中</span>长期</div></td>
-          <td>全部玩家</td>
-          <td><span class="cap3">最多弹 1 个</span><div class="chain"><span class="it">首储礼包</span><span class="more">另 6 个补位 ▸</span></div></td>
-          <td class="kpi">曝光 <b class="num">18,204</b><div class="m2">点击率 3.6%</div></td>
-          <td class="ops"><span>编辑</span><span>数据</span><span class="dots">⋯</span></td></tr>
-      </table>
-      <div class="fold">▸ 未生效 3 条<span class="m2">草稿 1 · 已结束 2</span><span class="add">＋ 在此组新建</span></div>
-    </div>
-  </div>
-
-  <div class="zone">
-    <h4>游戏破产弹窗<span class="m2">玩家破产、发财金领取结束后 · 不计入每人每天上限</span></h4>
-    <div class="grp">
-      <div class="gh"><b>储值类</b><span class="m2">每次取一条规则：此刻对这位玩家有可弹内容、权重最大的那条</span></div>
-      <table class="rl">
-        <colgroup><col style="width:46px"><col style="width:178px"><col style="width:148px"><col><col style="width:84px"><col style="width:96px"></colgroup>
-        <tr><td class="w num">30</td><td><div class="nm">破产储值弹窗（实验组）<span class="id">#15</span></div><div class="sub"><span class="pill on">生效中</span>至 11/15</div></td>
-          <td>破产储值实验·实验组 <span class="num m">2,410</span></td>
-          <td><span class="cap3">最多弹 1 个</span><div class="chain"><span class="it">破产礼包</span><span class="more">另 7 个补位 ▸</span></div></td>
-          <td class="kpi">曝光 <b class="num">1,186</b><div class="m2">点击率 15.2%</div></td>
-          <td class="ops"><span>编辑</span><span>数据</span><span class="dots">⋯</span></td></tr>
-        <tr><td class="w num">10</td><td><div class="nm">破产储值弹窗<span class="id">#7</span></div><div class="sub"><span class="pill on">生效中</span>长期</div></td>
-          <td>全部玩家</td>
-          <td><span class="cap3">最多弹 1 个</span><div class="chain"><span class="it">首储礼包</span><span class="more">另 7 个补位 ▸</span></div></td>
-          <td class="kpi">曝光 <b class="num">4,973</b><div class="m2">点击率 11.0%</div></td>
-          <td class="ops"><span>编辑</span><span>数据</span><span class="dots">⋯</span></td></tr>
-      </table>
-      <div class="fold"><span class="m2">没有未生效的规则</span><span class="add">＋ 在此组新建</span></div>
-    </div>
-  </div>
+  <table class="qtable">
+    <colgroup><col style="width:52px"><col style="width:132px"><col><col style="width:88px"><col style="width:80px"><col style="width:64px"><col style="width:52px"></colgroup>
+    <tr><th class="r">优先级</th><th>弹窗规则</th><th>弹窗内容</th><th class="r">对象人数</th><th class="r">弹出数量</th><th>状态</th><th></th></tr>
+    <tr>
+      <td class="ord">1</td>
+      <td><div class="nm" title="创建 运营02 · 修改 运营02 10/12 14:36">银卡已首储</div><div class="meta">ID 80</div></td>
+      <td class="clist" title="首储礼包　每天首次登录弹 1 次&#10;热门资讯　每周 2 次，冷却 600 秒（已暂停）&#10;每日补给计划　每 3 天 1 次"><span class="lk">首储礼包</span>、<span class="lk dead">热门资讯</span>、<span class="lk">每日补给计划</span></td>
+      <td class="cnt">8,200</td>
+      <td class="cnt">3</td>
+      <td class="st mute">上架</td>
+      <td class="ops"><span class="lk">编辑</span></td>
+    </tr>
+    <tr>
+      <td class="ord">2</td>
+      <td><div class="nm" title="创建 运营02 · 修改 运营01 10/08 11:00">普卡已首储</div><div class="meta">ID 81</div></td>
+      <td class="clist" title="首储礼包　每周 2 次&#10;热门资讯　每周 2 次，冷却 600 秒&#10;每日补给计划　每 3 天 1 次"><span class="lk">首储礼包</span>、<span class="lk">热门资讯</span>、<span class="lk">每日补给计划</span></td>
+      <td class="cnt">22,400</td>
+      <td class="cnt">3</td>
+      <td class="st mute">上架</td>
+      <td class="ops"><span class="lk">编辑</span></td>
+    </tr>
+    <tr>
+      <td class="ord">3</td>
+      <td><div class="nm" title="创建 运营02 · 修改 运营02 09/23 11:20">新增玩家</div><div class="meta">ID 82</div></td>
+      <td class="clist" title="新手七日签到　每日 1 次&#10;热门资讯　每周 2 次，冷却 600 秒&#10;每日补给计划　每 3 天 1 次"><span class="lk">新手七日签到</span>、<span class="lk">热门资讯</span>、<span class="lk">每日补给计划</span></td>
+      <td class="cnt">10,749</td>
+      <td class="cnt">3</td>
+      <td class="st mute">上架</td>
+      <td class="ops"><span class="lk">编辑</span></td>
+    </tr>
+    <tr>
+      <td class="ord">4</td>
+      <td><div class="nm" title="创建 运营02 · 修改 运营02 10/08 09:00">回流</div><div class="meta">ID 83</div></td>
+      <td class="clist" title="回流礼包 B　每日 1 次&#10;每日补给计划　每 3 天 1 次&#10;热门资讯　每周 2 次，冷却 600 秒&#10;回流任务　每日 1 次"><span class="lk">回流礼包 B</span>、<span class="lk">每日补给计划</span>、<span class="lk">热门资讯</span><span class="etc">等 4 个</span></td>
+      <td class="cnt">16,564</td>
+      <td class="cnt">4</td>
+      <td class="st mute">上架</td>
+      <td class="ops"><span class="lk">编辑</span></td>
+    </tr>
+    <tr>
+      <td class="ord">5</td>
+      <td><div class="nm" title="创建 运营01 · 修改 运营01 09/30 11:20">潜在流失</div><div class="meta">ID 84</div></td>
+      <td class="clist" title="每日补给计划　每 3 天 1 次&#10;热门资讯　每周 2 次，冷却 600 秒&#10;储值返利活动　每周 1 次"><span class="lk">每日补给计划</span>、<span class="lk">热门资讯</span>、<span class="lk">储值返利活动</span></td>
+      <td class="cnt">6,230</td>
+      <td class="cnt">3</td>
+      <td class="st mute">上架</td>
+      <td class="ops"><span class="lk">编辑</span></td>
+    </tr>
+    <tr>
+      <td class="ord">6</td>
+      <td><div class="nm" title="创建 运营01 · 修改 运营01 09/18 11:00">其余</div><div class="meta">ID 85</div></td>
+      <td class="clist" title="热门资讯　每周 2 次，冷却 600 秒&#10;发信送奖　活动期间 1 次"><span class="lk">热门资讯</span>、<span class="lk">发信送奖</span></td>
+      <td class="cnt">25,917</td>
+      <td class="cnt">2</td>
+      <td class="st mute">上架</td>
+      <td class="ops"><span class="lk">编辑</span></td>
+    </tr>
+    <tr>
+      <td class="ord">—</td>
+      <td><div class="nm" title="创建 运营02 · 修改 运营02 10/18 16:20">金卡未首储</div><div class="meta">ID 90</div></td>
+      <td class="clist"></td>
+      <td class="cnt">1,200</td>
+      <td class="cnt">—</td>
+      <td class="st">草稿</td>
+      <td class="ops"><span class="lk">编辑</span></td>
+    </tr>
+    <tr>
+      <td class="ord">—</td>
+      <td><div class="nm" title="创建 运营01 · 修改 运营01 09/30 23:59">上期签到</div><div class="meta">ID 91</div></td>
+      <td class="clist"></td>
+      <td class="cnt">—</td>
+      <td class="cnt">—</td>
+      <td class="st">已结束</td>
+      <td class="ops"><span class="lk">编辑</span></td>
+    </tr>
+  </table>
 </div></div>
 <script src="_后台框.js"></script>
 </body>

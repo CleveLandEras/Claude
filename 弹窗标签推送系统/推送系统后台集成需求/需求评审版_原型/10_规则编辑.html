@@ -2,90 +2,77 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
-<title>10 规则编辑</title>
+<title>10 编辑弹窗规则</title>
 <link rel="stylesheet" href="_后台框.css">
 <link rel="stylesheet" href="_弹窗.css">
 </head>
 <body>
-<div class="shot bk" data-page="弹窗" data-crumb="回流活动弹窗 #13">
-  <div class="eh"><h3>回流活动弹窗 <span class="id">#13</span></h3><span class="pill on">生效中</span><span class="sp"></span><span class="btno">复制</span><span class="btno">暂停</span></div>
+<div class="shot bk" data-page="弹窗" data-crumb="回流">
+  <div class="eh"><h3>回流 <span class="id">ID 83</span></h3><span class="pill on">上架</span><span class="sp"></span><span class="btno">复制</span><span class="btno">暂停</span></div>
   <div class="ed">
     <div>
       <div class="sec">
-        <div class="sh"><span class="n">1</span>位置与类型</div>
-        <div class="cards"><div class="card on"><i class="rd"></i><div><b>大厅自动弹窗</b><span>玩家进入或返回大厅时</span></div></div><div class="card"><i class="rd"></i><div><b>游戏破产弹窗</b><span>破产、发财金领取结束后</span></div></div></div>
-        <div class="cards" style="margin-top:8px"><div class="card on"><i class="rd"></i><div><b>活动类</b><span>弹活动，与储值类各取一条</span></div></div><div class="card"><i class="rd"></i><div><b>储值类</b><span>弹礼包，与活动类各取一条</span></div></div></div>
+        <div class="sh"><span class="n">1</span>弹窗位置</div>
+        <div class="cards pos4"><div class="card on"><i class="rd"></i><div><b>大厅自动弹窗</b></div></div><div class="card"><i class="rd"></i><div><b>破产</b></div></div><div class="card"><i class="rd"></i><div><b>购买指定礼包</b></div></div><div class="card"><i class="rd"></i><div><b>押注达到指定金额</b></div></div></div>
       </div>
       <div class="sec">
         <div class="sh"><span class="n">2</span>名称</div>
-        <div class="tabs3"><span class="on">繁中<em class="ok">✓</em></span><span>越南文<em class="chk">待核对</em></span><span>英文<em class="ok">✓</em></span><span class="gen">一键生成另外两种</span></div>
-        <span class="inp v" style="width:100%;border-radius:0 4px 4px 4px">回流活動彈窗</span>
+        <div class="tabs3"><span class="on">繁中<em class="ok">✓</em></span><span>越南文<em class="ok">✓</em></span><span>英文<em class="ok">✓</em></span></div>
+        <span class="inp v" style="width:100%;border-radius:0 4px 4px 4px">回流</span>
       </div>
       <div class="sec">
         <div class="sh"><span class="n">3</span>对象</div>
         <div class="row"><span class="radio"><i></i>全部玩家</span><span class="radio on"><i></i>标签群组</span><span class="radio"><i></i>名单</span></div>
-        <div class="row"><label>标签群组</label><span class="inp v" style="width:460px"><span class="tgs"><em class="tg g"><b>群组</b>回流</em></span><span class="dn">⌵</span></span></div>
-        <div class="row"><label>多选时</label><span class="seg2"><span class="on">满足任一</span><span>同时满足</span></span></div>
-        <div class="or1">复杂组合可在「标签群组设定」页存成群组</div>
-        <div class="row"><label>排除</label><span class="inp" style="width:460px">＋ 选标签或群组<span class="dn">⌵</span></span></div>
-        <div class="fixed">固定不弹：VIP 名单、黑名单、机器人与测试账号、敏感状态账号</div>
-        <table class="cnt"><tr><td>符合对象</td><td class="v">16,564 人</td></tr><tr><td>扣除排除后</td><td class="v">16,564 人</td></tr><tr class="k"><td>预计每天先弹本规则</td><td class="v">15,244 人</td></tr></table>
+        <div class="row"><label>标签群组</label><span class="inp v" style="width:420px"><span class="tgs"><em class="tg g"><b>群组</b>回流</em></span><span class="dn">⌵</span></span></div>
+        <div class="row"><label>排除</label><span class="inp" style="width:420px">群组，可多选<span class="dn">⌵</span></span></div>
+        <table class="cnt"><tr><td>符合对象</td><td class="v">16,564 人</td></tr><tr><td>扣除排除后</td><td class="v">16,564 人</td></tr></table>
       </div>
       <div class="sec">
-        <div class="sh"><span class="n">4</span>排在第几<span class="r">权重 <span class="inp v wbox num">35</span> 数字越大越靠前</span></div>
+        <div class="sh"><span class="n">4</span>优先级<span class="r">同一弹窗位置内，数字小的先排</span></div>
+        <div class="row"><label>优先级</label><span class="inp v" style="width:72px">4</span></div>
         <table class="rank">
-          <tr><th colspan="2">大厅自动弹窗 · 活动类 · 生效中</th><th class="r">与本规则重叠</th><th>重叠的人先弹</th></tr>
-          <tr><td class="r num" style="width:30px">40</td><td>新增玩家活动弹窗 <span class="m">#12</span></td><td class="r num">1,320</td><td>#12</td></tr>
-          <tr class="me"><td class="r num">35</td><td>本规则</td><td></td><td>第 2 / 4</td></tr>
-          <tr><td class="r num">30</td><td>潜在流失活动弹窗 <span class="m">#14</span></td><td class="r num">420</td><td>本规则</td></tr>
-          <tr><td class="r num">20</td><td>活动类弹窗 <span class="m">#5</span></td><td class="r num">0</td><td class="m">已排除本规则对象</td></tr>
+          <tr><th class="r">优先级</th><th>弹窗规则</th><th class="r">弹出数量</th></tr>
+          <tr><td class="r num">1</td><td>银卡已首储</td><td class="r num">3</td></tr>
+          <tr><td class="r num">2</td><td>普卡已首储</td><td class="r num">3</td></tr>
+          <tr><td class="r num">3</td><td>新增玩家</td><td class="r num">3</td></tr>
+          <tr class="me"><td class="r num">4</td><td>本规则 · 回流</td><td class="r num">4</td></tr>
+          <tr><td class="r num">5</td><td>潜在流失</td><td class="r num">3</td></tr>
+          <tr><td class="r num">6</td><td>其余</td><td class="r num">2</td></tr>
         </table>
       </div>
       <div class="sec">
-        <div class="sh"><span class="n">5</span>弹窗内容<span class="r">每次最多弹出 <span class="inp v wbox num" style="width:40px">3</span> 个</span></div>
-        <table class="ct">
-          <colgroup><col style="width:16px"><col style="width:18px"><col style="width:112px"><col><col style="width:84px"><col style="width:96px"><col style="width:58px"><col style="width:18px"></colgroup>
-          <tr><th></th><th></th><th>弹窗内容</th><th>弹窗时机（多选）</th><th>弹窗形式</th><th>弹窗次数</th><th>冷却</th><th></th></tr>
-          <tr><td class="hd">⠿</td><td>1</td><td><span class="inp v">回流礼包 B<span class="dn">⌵</span></span></td><td><span class="inp v">首次登入、进入大厅<span class="dn">⌵</span></span></td><td><span class="inp v">活动本身<span class="dn">⌵</span></span></td><td><span class="inp v">每日 · 1 次<span class="dn">⌵</span></span></td><td><span class="inp v">0 秒</span></td><td class="m">⋯</td></tr>
-          <tr><td class="hd">⠿</td><td>2</td><td><span class="inp v">每日补给计划<span class="dn">⌵</span></span><span class="tag">弹出后终止后续</span></td><td><span class="inp v">活动开启<span class="dn">⌵</span></span></td><td><span class="inp v">活动广告页<span class="dn">⌵</span></span></td><td><span class="inp v">每 3 天 · 1 次<span class="dn">⌵</span></span></td><td><span class="inp v">0 秒</span></td><td class="m">⋯</td></tr>
-          <tr><td class="hd">⠿</td><td>3</td><td><span class="inp v">热门资讯<span class="dn">⌵</span></span></td><td><span class="inp v">非首次登入、返回大厅<span class="dn">⌵</span></span></td><td><span class="inp v">活动本身<span class="dn">⌵</span></span></td><td><span class="inp v">每周 · 2 次<span class="dn">⌵</span></span></td><td><span class="inp v">600 秒</span></td><td class="m">⋯</td></tr>
-          <tr class="cut"><td colspan="8"><span>每次最多弹到这里；下面的在前面不可弹时补位</span></td></tr>
-          <tr class="fill"><td class="hd">⠿</td><td>4</td><td><span class="inp v">回流任务<span class="dn">⌵</span></span></td><td class="tm"><span class="inp v">进入大厅<span class="dn">⌃</span></span>
-            <div class="dd">
-              <div><span class="ck off"></span>活动开启<em>活动上架后第一次进入大厅</em></div>
-              <div><span class="ck off"></span>首次登入<em>账号第一次登入</em></div>
-              <div><span class="ck off"></span>非首次登入<em>首次登入以外的每次登入</em></div>
-              <div><span class="ck off"></span>第<span class="nbox">3</span>次登入<em>账号累计第 N 次登入</em></div>
-              <div><span class="ck">✓</span>进入大厅<em>每次登入后第一次到大厅</em></div>
-              <div><span class="ck off"></span>返回大厅<em>从游戏或其他页面回到大厅</em></div>
-            </div></td><td><span class="inp v">活动本身<span class="dn">⌵</span></span></td><td><span class="inp v">每日 · 1 次<span class="dn">⌵</span></span></td><td><span class="inp v">0 秒</span></td><td class="m">⋯</td></tr>
-        </table>
-        <div class="addl">＋ 添加弹窗内容</div>
-        <div style="height:118px"></div>
+        <div class="sh"><span class="n">5</span>弹窗排序<span class="r">弹出数量 4</span></div>
+        <div class="slist-h"><span class="hd"></span><span class="ix"></span><span class="nm">弹窗内容</span><span class="mk">标记</span><span class="freq">弹窗次数</span><span class="cool">冷却</span><span class="rm"></span></div>
+        <ol class="slist">
+          <li><span class="hd">⠿</span><span class="ix">1</span><span class="nm">回流礼包 B <span class="samp">ID 105</span></span><span class="kind pay">储值</span><span class="inp v freq">每日 1 次</span><span class="inp v cool">不设</span><span class="lk rm">移除</span></li>
+          <li><span class="hd">⠿</span><span class="ix">2</span><span class="nm">每日补给计划 <span class="samp">ID 103</span></span><span class="kind act">活动</span><span class="inp v freq">每 3 天 1 次</span><span class="inp v cool">不设</span><span class="lk rm">移除</span></li>
+          <li><span class="hd">⠿</span><span class="ix">3</span><span class="nm">热门资讯 <span class="samp">ID 102</span></span><span class="kind act">活动</span><span class="inp v freq">每周 2 次</span><span class="inp v cool">600 秒</span><span class="lk rm">移除</span></li>
+          <li><span class="hd">⠿</span><span class="ix">4</span><span class="nm">回流任务 <span class="samp">ID 106</span></span><span class="kind act">活动</span><span class="inp v freq">每日 1 次</span><span class="inp v cool">不设</span><span class="lk rm">移除</span></li>
+        </ol>
+        <div class="addc"><span class="lk">＋ 加入弹窗内容</span></div>
       </div>
       <div class="sec">
         <div class="sh"><span class="n">6</span>生效期间</div>
-        <div class="row"><span class="radio"><i></i>长期</span><span class="radio on"><i></i>指定</span><span class="inp v num" style="width:110px">2026-10-21</span>至<span class="inp v num" style="width:110px">2026-10-31</span></div>
+        <div class="row"><span class="radio on"><i></i>长期</span><span class="radio"><i></i>指定起止</span></div>
       </div>
     </div>
     <div>
       <div class="sum">
         <div class="h">这条规则</div>
-        <div class="big num">15,244<small>人</small></div>
-        <div class="m2">预计每天先弹本规则</div>
-        <div class="m2">其中固定不弹约 15 人</div>
+        <div class="big num">16,564<small>人</small></div>
+        <div class="m2">对象人数</div>
         <hr>
-        <div class="k2"><span>排在</span><b>大厅 · 活动类 第 2 / 4</b></div>
+        <div class="k2"><span>弹窗位置</span><b>大厅自动弹窗</b></div>
+        <div class="k2"><span>优先级</span><b>4 / 6</b></div>
+        <div class="k2"><span>弹出数量</span><b>4</b></div>
+        <div class="k2"><span>排除</span><b>未选</b></div>
         <hr>
-        <div class="k2"><span>每次最多弹</span><b>3 个</b></div>
-        <ol><li>回流礼包 B</li><li>每日补给计划</li><li>热门资讯</li></ol>
-        <div class="m2" style="margin-top:2px">另 1 个补位</div>
-        <hr>
-        <div class="k2"><span>生效期间</span><b>至 10/31</b></div>
+        <div class="k2"><span>弹窗排序</span><b>4 条</b></div>
+        <ol><li>回流礼包 B</li><li>每日补给计划</li><li>热门资讯</li><li>回流任务</li></ol>
       </div>
     </div>
   </div>
-  <div class="foot"><span class="dirty">有未保存的改动：权重 25 → 35</span><span class="sp"></span><span class="btno">取消</span><span class="btnp">保存</span></div>
+  <div class="foot"><span class="sp"></span><span class="btno">取消</span><span class="btnp">保存</span></div>
 </div>
 <script src="_后台框.js"></script>
 </body>

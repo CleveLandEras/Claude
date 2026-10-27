@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>02g 推播停止确认</title>
+<link rel="stylesheet" href="_后台框.css">
+<link rel="stylesheet" href="_弹窗.css">
+<link rel="stylesheet" href="_推送.css">
+<style>
+.gcal{margin-top:8px;border:1px solid #E4E7ED;border-radius:6px;background:#fff;overflow:hidden}
+.gcal .hd,.gcal .qband,.gcal .grid{display:grid;grid-template-columns:36px repeat(7,minmax(0,1fr))}
+.gcal .hd{background:#FAFBFC;border-bottom:1px solid #E4E7ED}
+.gcal .hd .c{text-align:center;padding:6px 2px 7px;line-height:1.2;border-left:1px solid #E8EAED}
+.gcal .hd .c b{display:block;font-size:11px;font-weight:500;color:#909399}
+.gcal .hd .c em{font-style:normal;font-size:14px;font-weight:700;color:#1F2329}
+.gcal .hd .c.today{background:#EEF3FB}
+.gcal .hd .c.today b{color:#3D6FB6;font-weight:700}
+.gcal .hd .c.today em{color:#1F2329}
+.gcal .hd .c i{display:inline-block;margin-top:3px;padding:0 6px;height:16px;line-height:16px;border-radius:8px;font-style:normal;font-size:10px;font-weight:700;color:#fff;background:#3D6FB6}
+.gcal .qband{height:22px;align-items:center;background:#EEF0F3;border-bottom:1px solid #E4E7ED;color:#73767A;font-size:11px}
+.gcal .qband span{grid-column:2 / -1;padding-left:8px}
+.gcal .grid{height:420px;position:relative}
+.gcal .hrs{position:relative;z-index:2}
+.gcal .hrs i{position:absolute;right:4px;margin-top:2px;font-style:normal;font-size:10px;line-height:1;color:#909399}
+.gcal .cols{grid-column:2 / -1;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));height:100%;position:relative;z-index:1}
+.gcal .col{position:relative;overflow:hidden;border-left:1px solid #E8EAED;background-color:transparent;background-image:repeating-linear-gradient(to bottom,transparent 0,transparent 29px,#F0F1F3 29px,#F0F1F3 30px)}
+.gcal .col.today{background-color:#F5F8FD}
+.gcal .ev{position:absolute;left:4px;width:calc(100% - 8px);min-width:0;box-sizing:border-box;height:34px;margin:0;display:block;padding:3px 7px;border:1px solid #DDE3EC;border-radius:4px;background:#F7F9FC;font-size:11px;line-height:14px;overflow:hidden;z-index:1}
+.gcal .ev b{display:block;height:12px;font-size:10px;line-height:12px;color:#9AA0A6;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gcal .ev .nm{display:block;height:14px;margin:2px 0 0;font-size:12px;font-weight:700;line-height:14px;color:#1F2329;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gcal .ev.warn{background:#FFF8F0;border-color:#F0D9B8;box-shadow:inset 3px 0 0 #C47B2B;padding-left:8px}
+.rangebar{margin:10px 0 0;font-size:13px;font-weight:600;color:#1F2329;letter-spacing:0}
+.rangebar .m2{font-weight:400;color:#73767A;font-size:12.5px}
+.sumstrips{display:flex;flex-direction:column;gap:6px;margin-top:10px}
+.sumstrips .s{display:flex;align-items:flex-start;gap:10px;padding:7px 10px;border:1px solid #E8EAED;border-left-width:3px;border-radius:4px;background:#FAFBFC;font-size:12.5px;line-height:1.45;color:#4E5560}
+.sumstrips .s b{flex:none;min-width:28px;font-weight:700;color:#1F2329}
+.sumstrips .s span{min-width:0;flex:1}
+.sumstrips .s.warn{border-left-color:#C47B2B;background:#FFFBF6;border-color:#F0D9B8 #E8EAED #E8EAED #C47B2B}
+.sumstrips .s.info{border-left-color:#7FA7E0;background:#F7FAFD;border-color:#D6E3F5 #E8EAED #E8EAED #7FA7E0}
+</style>
+</head>
+<body>
+<div class="shot bk" data-page="推播" data-tabs="*日历|定时|条件触发|操作纪录"><div class="pw plain">
+  <div class="ttl"><h3>推播</h3><span class="sp"></span><span class="btnp">＋ 新建推播</span></div>
+  <div class="capbar">
+    <span class="k">每人每天上限</span>
+    <span class="v">营销 <b class="num">2</b> 条 · 服务通知不计入</span>
+    <span class="div"></span>
+    <span class="v">勿扰 <b class="num">00:00–08:00</b>，与短信共用</span>
+    <span class="div"></span>
+    <span class="v">今天达到上限 <b class="num">2,180</b> 人</span>
+    <span class="lk">修改</span>
+  </div>
+  <div class="rangebar">10/21–10/27 <span class="m2">· 今天起 7 天</span></div>
+
+  <div class="gcal">
+    <div class="hd">
+      <div></div>
+      <div class="c today"><b>周三</b><em>10/21</em><i>今天</i></div>
+      <div class="c"><b>周四</b><em>10/22</em></div>
+      <div class="c"><b>周五</b><em>10/23</em></div>
+      <div class="c"><b>周六</b><em>10/24</em></div>
+      <div class="c"><b>周日</b><em>10/25</em></div>
+      <div class="c"><b>周一</b><em>10/26</em></div>
+      <div class="c"><b>周二</b><em>10/27</em></div>
+    </div>
+    <div class="qband"><span>勿扰 00:00–08:00</span></div>
+    <div class="grid">
+      <div class="hrs">
+        <i style="top:0">08</i><i style="top:7.14%">09</i><i style="top:14.29%">10</i><i style="top:21.43%">11</i><i style="top:28.57%">12</i><i style="top:35.71%">13</i><i style="top:42.86%">14</i><i style="top:50%">15</i><i style="top:57.14%">16</i><i style="top:64.29%">17</i><i style="top:71.43%">18</i><i style="top:78.57%">19</i><i style="top:85.71%">20</i><i style="top:92.86%">21</i>
+      </div>
+      <div class="cols">
+        <div class="col today">
+          <div class="ev warn" style="top:0" title="#53 · 顺延"><b>08:00</b><span class="nm">维护预告</span></div>
+          <div class="ev" style="top:7.14%" title="#45 · 已发完"><b>09:00</b><span class="nm">签到加码</span></div>
+          <div class="ev warn" style="top:52.38%" title="#47 · 发送中 · 实际上限拦截 85"><b>15:20</b><span class="nm">回流礼包 B</span></div>
+        </div>
+        <div class="col">
+          <div class="ev" style="top:32.14%" title="#49 · 未开始"><b>12:30</b><span class="nm">每日任务</span></div>
+          <div class="ev" style="top:78.57%" title="#48 · 未开始"><b>19:00</b><span class="nm">中秋排名赛</span></div>
+          <div class="ev warn" style="top:89.29%" title="#50 · 未开始 · 预计上限拦截 4,030"><b>20:30</b><span class="nm">限时挑战</span></div>
+        </div>
+        <div class="col">
+          <div class="ev" style="top:21.43%" title="#61"><b>11:00</b><span class="nm">储值返利</span></div>
+          <div class="ev" style="top:71.43%" title="#62"><b>18:00</b><span class="nm">回流任务</span></div>
+        </div>
+        <div class="col">
+          <div class="ev" style="top:57.14%" title="#63"><b>16:00</b><span class="nm">月月抽</span></div>
+        </div>
+        <div class="col"></div>
+        <div class="col">
+          <div class="ev" style="top:14.29%" title="#64"><b>10:00</b><span class="nm">每日补给</span></div>
+          <div class="ev" style="top:85.71%" title="#65"><b>20:00</b><span class="nm">通行证</span></div>
+        </div>
+        <div class="col">
+          <div class="ev" style="top:28.57%" title="#66"><b>12:00</b><span class="nm">发信送奖</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sumstrips">
+    <div class="s warn"><b>今天</b><span>#47 实际上限拦截 85 · #45 已占用 1 条 · #53 由 02:30 顺延，服务通知不计入</span></div>
+    <div class="s info"><b>明天</b><span>#50 预计上限拦截 4,030 · 更早的定时 #49 12:30、#48 19:00</span></div>
+  </div>
+  <div class="bk-pop cf" style="--pop-top:120px">
+    <div class="t">停止「回流礼包 B 加码通知 #47」？</div>
+    <div class="t2">已发 10,655。未提交的不再发送。</div>
+    <div class="ft"><span class="btno">取消</span><span class="btnp">确认停止</span></div>
+  </div>
+</div></div>
+<script src="_后台框.js"></script>
+</body>
+</html>
