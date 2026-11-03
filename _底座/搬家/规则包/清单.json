@@ -1,0 +1,161 @@
+{
+  "说明": "导出.sh 生成，别手改；原件在本机 ~/.claude/。全局规则不在规则包里，用 _底座/全局规则_快照.md。",
+  "导出时间": "2026-11-03 17:08:46",
+  "全局规则": {
+    "来源": "~/.claude/CLAUDE.md",
+    "规则包里用": "~/claude/_底座/全局规则_快照.md",
+    "快照sha": "f3f17ff40c39e0eeab98112d1d51ac1d4be1bb79979c1816ac536655c8af99a0"
+  },
+  "项": [
+    {
+      "名": "skills/grill-me",
+      "种类": "技能",
+      "来源": "~/.claude/skills/grill-me",
+      "来源sha": "732e5bc9f9cf2b783e1fa7584798c35e908a518e92033c61981c38bbddad72bc",
+      "规则包sha": "732e5bc9f9cf2b783e1fa7584798c35e908a518e92033c61981c38bbddad72bc",
+      "改了几处路径": 0,
+      "文件": [
+        {
+          "路径": "skills/grill-me/SKILL.md",
+          "来源sha": "caaf8b8de1684f96e26b28f3c29189db5c89cce4b73e1c93d86164f66ef88637",
+          "规则包sha": "caaf8b8de1684f96e26b28f3c29189db5c89cce4b73e1c93d86164f66ef88637",
+          "改了几处路径": 0
+        }
+      ]
+    },
+    {
+      "名": "skills/grilling",
+      "种类": "技能",
+      "来源": "~/.claude/skills/grilling",
+      "来源sha": "ce62be3279e82f767014ca9fc866706d676402d3f91996a99a174e1dc5d4d0f5",
+      "规则包sha": "ce62be3279e82f767014ca9fc866706d676402d3f91996a99a174e1dc5d4d0f5",
+      "改了几处路径": 0,
+      "文件": [
+        {
+          "路径": "skills/grilling/SKILL.md",
+          "来源sha": "befdff1e27a1dfe2a294d5871169ac1afe16d983911daa4f32627514a48c1e15",
+          "规则包sha": "befdff1e27a1dfe2a294d5871169ac1afe16d983911daa4f32627514a48c1e15",
+          "改了几处路径": 0
+        }
+      ]
+    },
+    {
+      "名": "skills/report-format",
+      "种类": "技能",
+      "来源": "~/.claude/skills/report-format",
+      "来源sha": "3f5f1df28ecff4b7f815f9f97f5bc1db0ba4ebdb39b75a9642d672392437d7de",
+      "规则包sha": "a0f8aa209eff6915c5fe42541bea7b6682a0fa46fdd294da24585d09f3a118b3",
+      "改了几处路径": 1,
+      "文件": [
+        {
+          "路径": "skills/report-format/SKILL.md",
+          "来源sha": "74f2349f8817df3219666cd69a4bafa87788730164169c478e727afe8e773ff9",
+          "规则包sha": "08981421de696f84d4cb1897320f98e0b53f5257496292d25cbedb5db5ad16b3",
+          "改了几处路径": 1
+        },
+        {
+          "路径": "skills/report-format/assets/brief_template.html",
+          "来源sha": "1685c029da17f5be99754b824c9b63522b23f9224ade5fd4a6c880f03d3cd150",
+          "规则包sha": "1685c029da17f5be99754b824c9b63522b23f9224ade5fd4a6c880f03d3cd150",
+          "改了几处路径": 0
+        }
+      ]
+    },
+    {
+      "名": "skills/开工",
+      "种类": "技能",
+      "来源": "~/.claude/skills/开工",
+      "来源sha": "24b0f3c95e2412453ad1980896095ef10f0d166fbe3236b6a73947adae61ae82",
+      "规则包sha": "41412c23203a6875ec840c3871e5c52655cce4410f4abfe905b1f0c3fc3ccaf3",
+      "改了几处路径": 2,
+      "文件": [
+        {
+          "路径": "skills/开工/SKILL.md",
+          "来源sha": "71b191a808d0b3d8d487a6da668e594ecf59e63ec75c2292943c9773e9627b1c",
+          "规则包sha": "2e9374fd0ac061a50f8cd24573eb621a64d55fdd6af11519003c0b2fb5ffa716",
+          "改了几处路径": 2
+        }
+      ]
+    },
+    {
+      "名": "skills/整理纠正",
+      "种类": "技能",
+      "来源": "~/.claude/skills/整理纠正",
+      "来源sha": "643735bbebedc5fa08ce7448b0f6e6a2481d7f2408cddb26a5a70dffd82d472c",
+      "规则包sha": "ed10f16351ae061d05892074d02dd452e828b0e10c43729dfe23032ed98d3312",
+      "改了几处路径": 9,
+      "文件": [
+        {
+          "路径": "skills/整理纠正/SKILL.md",
+          "来源sha": "5ff5f5a4c850c3f452cbd9cd17bd935e96dc0f175c13e0258262ffa0c4d845bf",
+          "规则包sha": "61c7baf3aa2c2c4f71ecd9af9b3db3fe9145c683f9947fcb7e640c8197fb67ea",
+          "改了几处路径": 9
+        }
+      ]
+    },
+    {
+      "名": "skills/验收考试",
+      "种类": "技能",
+      "来源": "~/.claude/skills/验收考试",
+      "来源sha": "5b90413ee6d5214ffcefde7fcfed2e47280dbb0b5e3a03899e52f9903d28b8a8",
+      "规则包sha": "8e0f5560df78ee18ae64b5190eedd2b7051dfb830587a780873f71b30a4578a3",
+      "改了几处路径": 7,
+      "文件": [
+        {
+          "路径": "skills/验收考试/SKILL.md",
+          "来源sha": "9f6e0e5019433ee3a3cd223115e15b69a5ce27d72800f9d882de36f8c26ae6f1",
+          "规则包sha": "1478118d8b96d3c2f6eed3a3f8cfc9b27c73d84010e6ffbe4bb846de8d83dcd1",
+          "改了几处路径": 7
+        }
+      ]
+    },
+    {
+      "名": "agents/总验收人.md",
+      "种类": "子代理",
+      "来源": "~/.claude/agents/总验收人.md",
+      "来源sha": "6e35cda8dde69aa5dc59368b2f35f3bc063bdf6bade6baf2c32d0d468b15f886",
+      "规则包sha": "6e35cda8dde69aa5dc59368b2f35f3bc063bdf6bade6baf2c32d0d468b15f886",
+      "改了几处路径": 0
+    },
+    {
+      "名": "agents/流程抽查员.md",
+      "种类": "子代理",
+      "来源": "~/.claude/agents/流程抽查员.md",
+      "来源sha": "67a0a2c0cba68671786e4db7b8bc9146804387dccc53ed4de7f0edbe8dcccb6e",
+      "规则包sha": "67a0a2c0cba68671786e4db7b8bc9146804387dccc53ed4de7f0edbe8dcccb6e",
+      "改了几处路径": 0
+    },
+    {
+      "名": "hooks/correction_capture.py",
+      "种类": "钩子",
+      "来源": "~/.claude/hooks/correction_capture.py",
+      "来源sha": "6d4840d13b41a2af77727643e7cbc45d8c2fdf913cb231343754ab9294ea8500",
+      "规则包sha": "b9f2be47eaed4a31db897c419ba4655a8a0f510cbe8f66b464e0cf72b2b17d50",
+      "改了几处路径": 6
+    },
+    {
+      "名": "hooks/deliverable_check.py",
+      "种类": "钩子",
+      "来源": "~/.claude/hooks/deliverable_check.py",
+      "来源sha": "ee22e7aa4e5d7f22cb2730bdca8179e37d5a20d7a0c65279c775d41e546d0696",
+      "规则包sha": "ee22e7aa4e5d7f22cb2730bdca8179e37d5a20d7a0c65279c775d41e546d0696",
+      "改了几处路径": 0
+    },
+    {
+      "名": "hooks/delivery_gate.py",
+      "种类": "钩子",
+      "来源": "~/.claude/hooks/delivery_gate.py",
+      "来源sha": "5e139082eb1cfed1984cb5137a77e3862ca65ab2610f63fb669bbf2a927a3f23",
+      "规则包sha": "5e139082eb1cfed1984cb5137a77e3862ca65ab2610f63fb669bbf2a927a3f23",
+      "改了几处路径": 0
+    },
+    {
+      "名": "钩子登记.json",
+      "种类": "钩子登记",
+      "来源": "~/.claude/settings.json 的 hooks 一段",
+      "来源sha": "1184a00a664c118cdf6f768cd917d5942897224f4e87b9acc1578ec6ab18ace8",
+      "规则包sha": "48129a0f069aed516bdff936e2ab806c47d72a606a7044b79717c77a91886fca",
+      "改了几处路径": 2
+    }
+  ]
+}
