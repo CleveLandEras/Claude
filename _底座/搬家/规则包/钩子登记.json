@@ -1,0 +1,26 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/bin/python3 -I \"$HOME/.claude/hooks/correction_capture.py\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/bin/python3 -I \"$HOME/.claude/hooks/delivery_gate.py\"",
+            "timeout": 15
+          }
+        ]
+      }
+    ]
+  }
+}

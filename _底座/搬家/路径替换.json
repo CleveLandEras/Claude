@@ -1,0 +1,44 @@
+{
+  "说明": "装上.sh --执行 在新环境按这张表改 _底座/ 里写死旧电脑家目录的地方（思考页 4.3、7.3）。{旧家} 代表旧电脑的家目录（/Users/<名> 或 /home/<名>），表里不写用户名；装上时按「逐条」的原句在文件里认出它，「通用」一类再把认出的旧家目录换成 ~。逐条：原句恰好出现一次才改，改成从文件自己的位置往上推。历史记录不在表里。导出.sh --对比 核每条原句在本机是不是恰好出现一次，对不上就在旧环境重新生成这张表。",
+  "逐条": [
+    {
+      "目标": "_底座/工具/备评审材料.py",
+      "原句": "BASE = Path('{旧家}/claude/_底座')",
+      "新句": "BASE = Path(__file__).resolve().parents[1]"
+    },
+    {
+      "目标": "_底座/工具/收样本.py",
+      "原句": "BASE = '{旧家}/claude/_底座'",
+      "新句": "BASE = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))"
+    },
+    {
+      "目标": "_底座/工具/收样本.py",
+      "原句": "ROOT = '{旧家}/claude'",
+      "新句": "ROOT = os.path.dirname(BASE)"
+    },
+    {
+      "目标": "_底座/工具/做项目总览.py",
+      "原句": "DEFAULT_BASE = \"{旧家}/claude/_底座\"",
+      "新句": "DEFAULT_BASE = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))"
+    },
+    {
+      "目标": "_底座/工具/看成品.py",
+      "原句": "PPTX_RENDER = \"{旧家}/claude/弹窗标签推送系统/_scripts/pl_pptx渲染.sh\"",
+      "新句": "PPTX_RENDER = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))), \"弹窗标签推送系统\", \"_scripts\", \"pl_pptx渲染.sh\")"
+    },
+    {
+      "目标": "_底座/工具/看成品.py",
+      "原句": "PDF_TO_IMG = \"{旧家}/claude/弹窗标签推送系统/_scripts/pl_pdf转图.swift\"",
+      "新句": "PDF_TO_IMG = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))), \"弹窗标签推送系统\", \"_scripts\", \"pl_pdf转图.swift\")"
+    }
+  ],
+  "通用": {
+    "规则": "认出的旧家目录（后面不接用户名里的字符）换成 ~：{旧家}/x 成 ~/x，单独的 {旧家} 成 ~",
+    "目标": [
+      "_底座/README.md",
+      "_底座/对话定位.md",
+      "_底座/项目登记.md",
+      "_底座/考试/题目.md"
+    ]
+  }
+}

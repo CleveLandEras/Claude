@@ -1,0 +1,218 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>验收官校准</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;--blue:#1f63a8;--blue-soft:#e4eef8;--green:#2f6b52;--green-soft:#e2efe8;--red:#a8382b;--red-soft:#f7e6e2;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--green:#7dbb9c;--green-soft:#1c3128;--red:#e48e7f;--red-soft:#3a211c}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--green:#7dbb9c;--green-soft:#1c3128;--red:#e48e7f;--red-soft:#3a211c}
+*{box-sizing:border-box} body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1000px;margin:0 auto;padding:40px 24px 120px}
+h1{font-family:var(--serif);font-size:26px;margin:0 0 8px} .sub{color:var(--ink-2);margin:0 0 12px}
+.req{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:6px;padding:12px 16px;margin:0 0 10px;font-size:14.5px}
+.note{font-size:13.5px;color:var(--muted);margin:0 0 8px}
+h2{font-family:var(--serif);font-size:19px;margin:44px 0 6px;display:flex;gap:12px;align-items:baseline} h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);white-space:nowrap}
+.meta{color:var(--ink-2);font-size:14px;margin:0 0 14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 18px;margin:0 0 12px}
+.top{display:flex;gap:10px;align-items:center;margin-bottom:8px} .id{font-weight:700;color:var(--accent)} .tag{font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;background:var(--blue-soft);color:var(--blue)}
+.row{display:grid;grid-template-columns:110px 1fr;gap:10px;padding:6px 0;border-top:1px dashed var(--line)} .row:first-of-type{border-top:0}
+.k{font-size:13px;color:var(--muted);font-weight:600} .v{white-space:pre-wrap;font-size:14.5px}
+details{margin:6px 0} details summary{cursor:pointer;color:var(--muted);font-size:13px} details .v{color:var(--ink-2);margin-top:6px}
+.pics{display:flex;gap:10px;margin:10px 0 0;flex-wrap:wrap} .pics figure{margin:0;flex:0 1 calc(50% - 5px);max-width:calc(50% - 5px);min-width:0} .pics figure img{width:100%;height:auto;border:1px solid var(--line);border-radius:4px;cursor:zoom-in;display:block} .pics figcaption{font-size:12px;color:var(--muted);margin-top:3px} .pics figure.big{flex-basis:100%;max-width:100%}
+.pics.one img{width:100%;height:auto;border:1px solid var(--line);border-radius:4px;cursor:zoom-in}
+.pics figure.big img{cursor:zoom-out}
+.hint{font-size:12px;color:var(--muted);margin:4px 0 0}
+.vote{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;border-top:1px solid var(--line);padding-top:10px;margin-top:10px}
+.vote label{cursor:pointer} .why{flex:1;min-width:220px;padding:6px 8px;border:1px solid var(--line);border-radius:4px;background:var(--surface);color:var(--ink);font:inherit}
+.item.yes{border-left:4px solid var(--green)} .item.no{border-left:4px solid var(--red)}
+.bar{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);padding:10px 16px;display:flex;gap:14px;align-items:center;justify-content:center}
+button{font:inherit;font-weight:700;padding:8px 16px;border-radius:4px;border:0;background:var(--blue);color:#fff;cursor:pointer}
+#out{width:100%;height:120px;margin-top:12px;font:13px var(--sans);display:none}
+@media (max-width:720px){.wrap{padding:28px 16px 140px}.row{grid-template-columns:1fr;gap:2px}.pics figure{flex-basis:100%;max-width:100%}}
+
+.wrap{max-width:1040px}
+h2.sh{font-size:16px;margin:22px 0 8px;flex-wrap:wrap} h2.sh small{font-family:var(--sans);font-size:12.5px;color:var(--muted);font-weight:400}
+.item{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:8px 12px;margin:0 0 6px}
+.line{display:flex;align-items:flex-start;gap:12px}
+.line .id{min-width:38px;padding-top:1px}
+.gist{flex:1;font-weight:600;font-size:15px;line-height:1.5}
+.where{display:block;font-weight:400;font-size:12.5px;color:var(--muted)}
+.btns{display:flex;gap:6px;white-space:nowrap}
+.btns label{cursor:pointer;padding:3px 10px;border:1px solid var(--line);border-radius:4px;font-size:13.5px}
+.item.yes .btns label:first-child{border-color:var(--green);color:var(--green)} .item.no .btns label:last-child{border-color:var(--red);color:var(--red)}
+.item .why{display:none;width:100%;margin-top:6px} .item.no .why{display:block}
+details.ev{margin:4px 0 0 50px} details.ev summary{font-size:12.5px} details.ev .row{grid-template-columns:96px 1fr}
+@media (max-width:720px){.line{flex-wrap:wrap}.btns{width:100%}details.ev{margin-left:0}}
+</style></head><body><div class="wrap">
+<h1>剩下 23 条，看第一行就能判</h1>
+<p class="sub">已判 13 条，已存。每条第一行是验收官说的问题和在哪；你觉得这处确实该改就点「同意」，不算问题或不值得改就点「不同意」（可写一句理由）。要看原文和截图，点「展开看证据」。点完按底部「复制结果」，贴给「用好 Claude：进度沟通」。</p>
+<details class="ev" style="margin:0 0 6px"><summary>主管的需求原文</summary><div class="req">主管的产品计划（短期三项）：「1. 彈窗功能：滿足不同用戶下的彈窗內容，并整體控制彈窗 數量/內容/順序等；針對 新增 / 回流 / 破產 / 潛在付費 / 潛在流失用戶 逐步設計 客製化彈窗內容。2. 推送：統一推送入口，提高易用性，并增加數據情況（發送量，到達率等）。3. 標籤能力：針對現有標籤能力進行補充，并根據產品側使用情況持續優化」</div></details>
+<h2 class="sh"><span class="no">第 1 份</span>弹窗方案呈交版 V4（10/12，29 页版的前 16 页）<small>当时的读者：主管｜用途：阶段性汇报进度，让主管看出方案和他的期望有没有出入</small></h2>
+<div class="item" data-id="1-9">
+  <div class="line"><span class="id">1-9</span><span class="gist">说「新增和回流看到的弹窗也一样」不准确，新增多看 2 个<small class="where">在哪：V4 前 16 页 · 第 5、6 页</small></span>
+    <span class="btns"><label><input type="radio" name="1-9" value="同意"> 同意</label><label><input type="radio" name="1-9" value="不同意"> 不同意</label></span></div>
+  <input type="text" class="why" placeholder="不同意：一句话说哪里不对（可空）">
+  <details class="ev"><summary>展开看证据</summary><div class="row"><span class="k">位置</span><div class="v">第 5 页对第 6 页</div></div><div class="row"><span class="k">稿件原文</span><div class="v">- 第 5 页：「其中新增与回流 27,313 人（43.85%）看到的也一样」
+- 第 6 页：「新增玩家 6 个」「+2 个 仅新增玩家」「取前 3 个可弹的」「取第 1 个可买的」</div></div><div class="row"><span class="k">验收官说的问题</span><div class="v">新增玩家比别人多看 2 个；每人能弹什么、能买什么不同，看到的内容也不同。说「看到的也一样」不准确。另外截图里有一条是「破产储值弹窗」，标题却叫「大厅弹窗」。</div></div><div class="row"><span class="k">依据</span><div class="v">同稿前后说法不一致</div></div><details><summary>验收官的修改建议</summary><div class="v">统一说成「所有人用同一套规则、同一顺序」（第 13 页已经是这么写的）。</div></details><div class="pics"><figure><img class="zoom" loading="lazy" src="图/甲/p05.png" alt="第 5 页"><figcaption>第 5 页</figcaption></figure><figure><img class="zoom" loading="lazy" src="图/甲/p06.png" alt="第 6 页"><figcaption>第 6 页</figcaption></figure><figure><img class="zoom" loading="lazy" src="图/甲/p13.png" alt="第 13 页"><figcaption>第 13 页</figcaption></figure></div><p class="hint">点图放大，再点缩回</p></details>
+</div>
+<h2 class="sh"><span class="no">第 2 份</span>弹窗方案呈交版 V4 第 2 页（结论页）（10/10 新设计，只有这一页）<small>当时的读者：主管｜用途：整份呈交版的结论页</small></h2>
+<details class="ev"><summary>看这份稿</summary><div class="pics one"><img class="zoom" loading="lazy" src="图/乙.jpg" alt="稿件图"></div></details>
+<div class="item" data-id="2-6">
+  <div class="line"><span class="id">2-6</span><span class="gist">标题只算 6 项要开发，待核实的 5 项也可能要开发<small class="where">在哪：V4 结论页 · 标题和底部</small></span>
+    <span class="btns"><label><input type="radio" name="2-6" value="同意"> 同意</label><label><input type="radio" name="2-6" value="不同意"> 不同意</label></span></div>
+  <input type="text" class="why" placeholder="不同意：一句话说哪里不对（可空）">
+  <details class="ev"><summary>展开看证据</summary><div class="row"><span class="k">位置</span><div class="v">标题对比底部</div></div><div class="row"><span class="k">稿件原文</span><div class="v">「另需开发 6 项能力」对比「5 项　核实后定」</div></div><div class="row"><span class="k">验收官说的问题</span><div class="v">待核实的 5 项（人数预览、变更记录、快显/Facebook/LINE 效果记录等）核实完很可能也要开发。标题只说 6 项，主管会按 6 项估资源；以后变多了，就成了前后说法不一。</div></div><details><summary>验收官的修改建议</summary><div class="v">写成「要开发 6 项，另有 5 项待核实，可能还要开发」，或者给一个范围。</div></details></details>
+</div>
+<div class="item" data-id="2-7">
+  <div class="line"><span class="id">2-7</span><span class="gist">标题说弹窗现有后台就能做，但新手弹窗和每日上限都要开发<small class="where">在哪：V4 结论页 · 标题和「需开发」栏</small></span>
+    <span class="btns"><label><input type="radio" name="2-7" value="同意"> 同意</label><label><input type="radio" name="2-7" value="不同意"> 不同意</label></span></div>
+  <input type="text" class="why" placeholder="不同意：一句话说哪里不对（可空）">
+  <details class="ev"><summary>展开看证据</summary><div class="row"><span class="k">位置</span><div class="v">标题对比「需开发」栏</div></div><div class="row"><span class="k">稿件原文</span><div class="v">「弹窗分组现有后台就能做」对比「新手弹窗接入后台」「每人每日弹窗上限」（都列在「需开发」）</div></div><div class="row"><span class="k">验收官说的问题</span><div class="v">新增是五类人群之一，新手弹窗却还没接入后台，那新增人群的弹窗现在到底能不能分组配？每日上限也要开发，所以目标框里的「每日最多弹几个」现在做不到。主管读标题会以为弹窗现在全都能做，判断就错了。</div></div><details><summary>验收官的修改建议</summary><div class="v">在标题或「现有功能可做」栏注明「新手弹窗、每日上限除外」。</div></details></details>
+</div>
+<div class="item" data-id="2-9">
+  <div class="line"><span class="id">2-9</span><span class="gist">底部「原因」行和「只缺配置」栏的说明，跟下面内容对不上<small class="where">在哪：V4 结论页 · 底部面板</small></span>
+    <span class="btns"><label><input type="radio" name="2-9" value="同意"> 同意</label><label><input type="radio" name="2-9" value="不同意"> 不同意</label></span></div>
+  <input type="text" class="why" placeholder="不同意：一句话说哪里不对（可空）">
+  <details class="ev"><summary>展开看证据</summary><div class="row"><span class="k">位置</span><div class="v">底部面板的行名和栏说明</div></div><div class="row"><span class="k">稿件原文</span><div class="v">「原因　只缺配置　弹窗分人群，现有后台就能配」「做法」</div></div><div class="row"><span class="k">验收官说的问题</span><div class="v">「原因」这一行写的其实是为什么归到这一栏，不是问题的原因，读起来对不上。另外「只缺配置」栏的说明写「弹窗分人群」，下面却列了「推播、短信按标签发送」「新建两类标签」「效果按人群汇总」，说明和内容也对不上。</div></div><details><summary>验收官的修改建议</summary><div class="v">行名改成「分类」，栏说明改成「现有后台就能配」，不要只说弹窗。</div></details></details>
+</div>
+<div class="item" data-id="2-10">
+  <div class="line"><span class="id">2-10</span><span class="gist">「事前读得出」「群组交集」等内部叫法，主管看不懂<small class="where">在哪：V4 结论页 · 多处</small></span>
+    <span class="btns"><label><input type="radio" name="2-10" value="同意"> 同意</label><label><input type="radio" name="2-10" value="不同意"> 不同意</label></span></div>
+  <input type="text" class="why" placeholder="不同意：一句话说哪里不对（可空）">
+  <details class="ev"><summary>展开看证据</summary><div class="row"><span class="k">位置</span><div class="v">内部叫法</div></div><div class="row"><span class="k">稿件原文</span><div class="v">「事前读得出」「组内随机对照」「群组交集」「推送跳转与触发自助」「快显」</div></div><div class="row"><span class="k">验收官说的问题</span><div class="v">主管 1 分钟内看不出这些指什么，会一个个问。
+- 建议改成说结果的话，例如：
+- 「上线前能看出每人会弹几个」
+- 「留一组人不弹，用来比效果」
+- 「同时满足多个标签才发送」</div></div></details>
+</div>
+<h2 class="sh"><span class="no">第 3 份</span>弹窗方案呈交版 V2（10/10，整份 18 页）<small>当时的读者：主管｜用途：判断方案方向对不对</small></h2>
+<div class="item" data-id="3-1">
+  <div class="line"><span class="id">3-1</span><span class="gist">主管的短期项「统一推送入口」被排到长期，首页没提<small class="where">在哪：V2 · 第 2、11 页</small></span>
+    <span class="btns"><label><input type="radio" name="3-1" value="同意"> 同意</label><label><input type="radio" name="3-1" value="不同意"> 不同意</label></span></div>
+  <input type="text" class="why" placeholder="不同意：一句话说哪里不对（可空）">
+  <details class="ev"><summary>展开看证据</summary><div class="row"><span class="k">位置</span><div class="v">第 11 页标题、第 2 页</div></div><div class="row"><span class="k">稿件原文</span><div class="v">「29 项分三层推进：中期达成弹窗侧与效果查看，长期达成推送侧」「长期　再加 9 项　推送并入、改造客户端」</div></div><div class="row"><span class="k">验收官说的问题</span><div class="v">需求原文三项都是主管的短期计划，稿件把第 2 项「统一推送入口」排到长期，首页第 2 页一个字没提。主管 3 分钟看完首页，不会知道自己的短期项被推后了，翻到第 11 页才发现，当场会问「我说的是短期，怎么成了长期」。</div></div><div class="row"><span class="k">依据</span><div class="v">需求原文「2. 推送：統一推送入口…」属于「短期三项」</div></div><details><summary>验收官的修改建议</summary><div class="v">在第 2 页明说「推送统一入口改排长期，原因是各推送方式能否按标签发送、营销侧能否接入还没查清」，并请主管确认；再给一个短期就能交的推送最小版本，比如先把各方式的数据汇总到一处看。</div></details><div class="pics"><figure><img class="zoom" loading="lazy" src="图/丙/s11.jpg" alt="第 11 页"><figcaption>第 11 页</figcaption></figure><figure><img class="zoom" loading="lazy" src="图/丙/s02.jpg" alt="第 2 页"><figcaption>第 2 页</figcaption></figure></div><p class="hint">点图放大，再点缩回</p></details>
+</div>
+<div class="item" data-id="3-2">
+  <div class="line"><span class="id">3-2</span><span class="gist">没写五类人群各弹什么；分组只分三组，和「五类各建规则」矛盾<small class="where">在哪：V2 · 第 4、6、11、15 页</small></span>
+    <span class="btns"><label><input type="radio" name="3-2" value="同意"> 同意</label><label><input type="radio" name="3-2" value="不同意"> 不同意</label></span></div>
+  <input type="text" class="why" placeholder="不同意：一句话说哪里不对（可空）">
+  <details class="ev"><summary>展开看证据</summary><div class="row"><span class="k">位置</span><div class="v">第 4、6、11、15 页</div></div><div class="row"><span class="k">稿件原文</span><div class="v">第 6 页「活动类弹窗分新增、回流、其余三组」，第 11 页「五类人群各建规则单独配置」，第 4 页「其余　五类以外的玩家保持默认内容」</div></div><div class="row"><span class="k">验收官说的问题</span><div class="v">需求原文要「針對 新增/回流/破產/潛在付費/潛在流失用戶 逐步設計 客製化彈窗內容」。全稿只讲配置能力，没有一页说每类人群该弹什么、先做哪一类。分组方案（第 6、15 页）只分了新增、回流、其余三组，破产、潜在付费、潜在流失不在里面，可第 11 页又写「五类人群各建规则」，前后对不上。</div></div><div class="row"><span class="k">依据</span><div class="v">需求原文第 1 项第二句</div></div><details><summary>验收官的修改建议</summary><div class="v">加一页「五类人群 × 弹什么内容 × 先做哪类 × 看什么指标」，三组还是五组统一成一种说法。</div></details><div class="pics"><figure><img class="zoom" loading="lazy" src="图/丙/s04.jpg" alt="第 4 页"><figcaption>第 4 页</figcaption></figure><figure><img class="zoom" loading="lazy" src="图/丙/s06.jpg" alt="第 6 页"><figcaption>第 6 页</figcaption></figure><figure><img class="zoom" loading="lazy" src="图/丙/s11.jpg" alt="第 11 页"><figcaption>第 11 页</figcaption></figure><figure><img class="zoom" loading="lazy" src="图/丙/s15.jpg" alt="第 15 页"><figcaption>第 15 页</figcaption></figure></div><p class="hint">点图放大，再点缩回</p></details>
+</div>
+<div class="item" data-id="3-3">
+  <div class="line"><span class="id">3-3</span><span class="gist">需求第 3 项「标签能力」首页没有，「持续优化」全稿没回应<small class="where">在哪：V2 · 第 2、13、14 页</small></span>
+    <span class="btns"><label><input type="radio" name="3-3" value="同意"> 同意</label><label><input type="radio" name="3-3" value="不同意"> 不同意</label></span></div>
+  <input type="text" class="why" placeholder="不同意：一句话说哪里不对（可空）">
+  <details class="ev"><summary>展开看证据</summary><div class="row"><span class="k">位置</span><div class="v">第 2 页结构，第 13、14 页</div></div><div class="row"><span class="k">稿件原文</span><div class="v">第 2 页三个问题是「弹窗不分人群／弹窗数量与先后不可控／推送入口分散」，标签只以「人群交集」出现</div></div><div class="row"><span class="k">验收官说的问题</span><div class="v">需求原文第 3 项「標籤能力」在首页结构里消失了。人数预览、口径说明、变更记录这些标签补充，放在第 12 页「改动明细」分隔页后面的附录里。「根據產品側使用情況持續優化」全稿没有回应：谁来看使用情况、多久看一次、怎么反馈回来都没写。主管会问「我的第三项呢」。</div></div><div class="row"><span class="k">依据</span><div class="v">需求原文第 3 项</div></div><details><summary>验收官的修改建议</summary><div class="v">首页把需求三项逐项对上，标签单列一行；补一句持续优化怎么做，例如用「引用清单」定期看哪些标签没人用、哪些口径常改。</div></details><div class="pics"><figure><img class="zoom" loading="lazy" src="图/丙/s02.jpg" alt="第 2 页"><figcaption>第 2 页</figcaption></figure><figure><img class="zoom" loading="lazy" src="图/丙/s13.jpg" alt="第 13 页"><figcaption>第 13 页</figcaption></figure><figure><img class="zoom" loading="lazy" src="图/丙/s14.jpg" alt="第 14 页"><figcaption>第 14 页</figcaption></figure><figure><img class="zoom" loading="lazy" src="图/丙/s12.jpg" alt="第 12 页"><figcaption>第 12 页</figcaption></figure></div><p class="hint">点图放大，再点缩回</p></details>
+</div>
+<div class="item" data-id="3-5">
+  <div class="line"><span class="id">3-5</span><span class="gist">「按标签发送」一处说不用开发、一处说较大开发，自相矛盾<small class="where">在哪：V2 · 第 9、10、11、13、17 页</small></span>
+    <span class="btns"><label><input type="radio" name="3-5" value="同意"> 同意</label><label><input type="radio" name="3-5" value="不同意"> 不同意</label></span></div>
+  <input type="text" class="why" placeholder="不同意：一句话说哪里不对（可空）">
+  <details class="ev"><summary>展开看证据</summary><div class="row"><span class="k">位置</span><div class="v">第 9、10、11、13、17 页</div></div><div class="row"><span class="k">稿件原文</span><div class="v">第 10 页「推送按标签发送｜现有推送 · 现有配置」，第 9 页「快显　写死在客户端」「推播　挂在推荐礼包后台」，第 11 页「长期　排期取决于各推送方式能否按标签发送」，第 17 页推送后台「按标签发送…较大开发」；第 9 页「现有后台没有配置入口的记载」，第 13 页「这些字段能否由运营编辑，没有记载｜…｜小改动」</div></div><div class="row"><span class="k">验收官说的问题</span><div class="v">同一项「按标签发送」，一处说不用开发、短期就能做，一处说较大开发、排期待查，自相矛盾。好几项现状只是「没有记载」，没查实，却已经定了开发量和分层。主管熟悉自家后台，会问「问过研发没有」。</div></div><div class="row"><span class="k">依据</span><div class="v">稿件前后页互相矛盾</div></div><details><summary>验收官的修改建议</summary><div class="v">没查清的统一移到第 18 页「排期前核实」，不放进短期项；按标签发送只保留一种说法。</div></details><div class="pics"><figure><img class="zoom" loading="lazy" src="图/丙/s09.jpg" alt="第 9 页"><figcaption>第 9 页</figcaption></figure><figure><img class="zoom" loading="lazy" src="图/丙/s10.jpg" alt="第 10 页"><figcaption>第 10 页</figcaption></figure><figure><img class="zoom" loading="lazy" src="图/丙/s11.jpg" alt="第 11 页"><figcaption>第 11 页</figcaption></figure><figure><img class="zoom" loading="lazy" src="图/丙/s13.jpg" alt="第 13 页"><figcaption>第 13 页</figcaption></figure><figure><img class="zoom" loading="lazy" src="图/丙/s17.jpg" alt="第 17 页"><figcaption>第 17 页</figcaption></figure><figure><img class="zoom" loading="lazy" src="图/丙/s18.jpg" alt="第 18 页"><figcaption>第 18 页</figcaption></figure></div><p class="hint">点图放大，再点缩回</p></details>
+</div>
+<div class="item" data-id="3-6">
+  <div class="line"><span class="id">3-6</span><span class="gist">首页说发送和点击数据已有记录，和后几页「不全」矛盾<small class="where">在哪：V2 · 第 2 页末行，对照第 3、9、18 页</small></span>
+    <span class="btns"><label><input type="radio" name="3-6" value="同意"> 同意</label><label><input type="radio" name="3-6" value="不同意"> 不同意</label></span></div>
+  <input type="text" class="why" placeholder="不同意：一句话说哪里不对（可空）">
+  <details class="ev"><summary>展开看证据</summary><div class="row"><span class="k">位置</span><div class="v">第 2 页末行</div></div><div class="row"><span class="k">稿件原文</span><div class="v">「效果数据　弹窗与推送的发送、曝光、点击已有记录，按人群汇总后评估。」</div></div><div class="row"><span class="k">验收官说的问题</span><div class="v">和第 3 页「部分不全」、第 9 页「短信数据要找 BI 取，链接点击近期才埋点」、第 18 页「Facebook、LINE 的发送与点击记录在哪里、能否获得」矛盾。需求原文要「增加數據情況（發送量，到達率等）」，首页却说已经有记录，也没提到达率。主管会问「都有了我为什么提这个需求」。</div></div><div class="row"><span class="k">依据</span><div class="v">需求原文第 2 项</div></div><details><summary>验收官的修改建议</summary><div class="v">改成「现在缺哪些（短信要找 BI 取、FB/LINE 不明、没有到达率），补什么，什么时候能看到发送量和到达率」。</div></details><div class="pics"><figure><img class="zoom" loading="lazy" src="图/丙/s02.jpg" alt="第 2 页"><figcaption>第 2 页</figcaption></figure><figure><img class="zoom" loading="lazy" src="图/丙/s03.jpg" alt="第 3 页"><figcaption>第 3 页</figcaption></figure><figure><img class="zoom" loading="lazy" src="图/丙/s09.jpg" alt="第 9 页"><figcaption>第 9 页</figcaption></figure><figure><img class="zoom" loading="lazy" src="图/丙/s18.jpg" alt="第 18 页"><figcaption>第 18 页</figcaption></figure></div><p class="hint">点图放大，再点缩回</p></details>
+</div>
+<div class="item" data-id="3-7">
+  <div class="line"><span class="id">3-7</span><span class="gist">首页论据有三处问题：「弹窗相同」不实、前后打架、分母不一<small class="where">在哪：V2 · 第 2、5、6、7、9 页</small></span>
+    <span class="btns"><label><input type="radio" name="3-7" value="同意"> 同意</label><label><input type="radio" name="3-7" value="不同意"> 不同意</label></span></div>
+  <input type="text" class="why" placeholder="不同意：一句话说哪里不对（可空）">
+  <details class="ev"><summary>展开看证据</summary><div class="row"><span class="k">位置</span><div class="v">第 2、5、6、7、9 页首页论据</div></div><div class="row"><span class="k">稿件原文</span><div class="v">第 2 页「新增与回流看到的弹窗与其余玩家相同」，第 7 页「新增　3 个＋新手弹窗」；第 5 页「分人群只能再叠加规则，叠加后同一人会多弹」，第 6 页「「其余」组用排除条件去掉新增与回流，三组互斥」（标为现有配置）；第 2 页问题三「推送入口分散　53.86%　最后登录 ≥ 8 天、弹窗够不到的玩家」</div></div><div class="row"><span class="k">验收官说的问题</span><div class="v">- 新增其实有客户端新手弹窗，「相同」不成立。
+- 第 5 页说只能叠加，第 6 页又说现有配置就能互斥，前后打架。
+- 53.86% 证明的是推送有必要，证明不了入口分散。它的分母（74,480）和问题一（62,292）不同，首页没交代。</div></div><div class="row"><span class="k">依据</span><div class="v">稿件前后页</div></div><details><summary>验收官的修改建议</summary><div class="v">改成「后台弹窗相同（另有写死在客户端的新手弹窗）」；删掉「只能叠加」，或改成「现在没按人群分组」；问题三的支撑换成入口分散的证据（五种方式各在何处配置、没有共同计数），53.86% 降为辅助说明。</div></details><div class="pics"><figure><img class="zoom" loading="lazy" src="图/丙/s02.jpg" alt="第 2 页"><figcaption>第 2 页</figcaption></figure><figure><img class="zoom" loading="lazy" src="图/丙/s05.jpg" alt="第 5 页"><figcaption>第 5 页</figcaption></figure><figure><img class="zoom" loading="lazy" src="图/丙/s06.jpg" alt="第 6 页"><figcaption>第 6 页</figcaption></figure><figure><img class="zoom" loading="lazy" src="图/丙/s07.jpg" alt="第 7 页"><figcaption>第 7 页</figcaption></figure><figure><img class="zoom" loading="lazy" src="图/丙/s09.jpg" alt="第 9 页"><figcaption>第 9 页</figcaption></figure></div><p class="hint">点图放大，再点缩回</p></details>
+</div>
+<div class="item" data-id="3-8">
+  <div class="line"><span class="id">3-8</span><span class="gist">请主管定排期，却没写各期多长、哪些项在哪一期<small class="where">在哪：V2 · 第 11、17 页</small></span>
+    <span class="btns"><label><input type="radio" name="3-8" value="同意"> 同意</label><label><input type="radio" name="3-8" value="不同意"> 不同意</label></span></div>
+  <input type="text" class="why" placeholder="不同意：一句话说哪里不对（可空）">
+  <details class="ev"><summary>展开看证据</summary><div class="row"><span class="k">位置</span><div class="v">第 11、17 页决策请求</div></div><div class="row"><span class="k">稿件原文</span><div class="v">「请主管定　中期、长期的排期；三层按层累加，短期可立即开始」「共 29 项：短期 9、中期 11、长期 9」</div></div><div class="row"><span class="k">验收官说的问题</span><div class="v">请主管拍板，却没给他拍板要用的东西：
+- 短期、中期、长期各是多长时间，没写。
+- 第 17 页只有 10 行、没有层级列，读者凑不出 29 项，也分不出哪 11 项是中期。
+- 开发量只写了「小改动／较大开发」。
+- 这个请求只出现在第 11 页，首页没有。</div></div><div class="row"><span class="k">依据</span><div class="v">读者要做的判断是方向对不对，并决定排期</div></div><details><summary>验收官的修改建议</summary><div class="v">首页放「请主管定」；每层列出具体项目，附时长或版本，以及人天量级。</div></details><div class="pics"><figure><img class="zoom" loading="lazy" src="图/丙/s11.jpg" alt="第 11 页"><figcaption>第 11 页</figcaption></figure><figure><img class="zoom" loading="lazy" src="图/丙/s17.jpg" alt="第 17 页"><figcaption>第 17 页</figcaption></figure></div><p class="hint">点图放大，再点缩回</p></details>
+</div>
+<div class="item" data-id="3-9">
+  <div class="line"><span class="id">3-9</span><span class="gist">验收标准只有工具能力，没有留存、储值这类业务结果<small class="where">在哪：V2 · 第 3 页</small></span>
+    <span class="btns"><label><input type="radio" name="3-9" value="同意"> 同意</label><label><input type="radio" name="3-9" value="不同意"> 不同意</label></span></div>
+  <input type="text" class="why" placeholder="不同意：一句话说哪里不对（可空）">
+  <details class="ev"><summary>展开看证据</summary><div class="row"><span class="k">位置</span><div class="v">第 3 页验收标准</div></div><div class="row"><span class="k">稿件原文</span><div class="v">「验收三　事后查得到曝光、点击」「评估方式　…按五类人群统计曝光、点击」</div></div><div class="row"><span class="k">验收官说的问题</span><div class="v">三条验收都是工具能力（能配、能读出、能查到），没有业务结果。这是有储值的博弈手游，主管判断方向时会问「做完能带来多少留存和储值」。首储礼包、潜在付费转化这些都该看转化，光看点击不够。</div></div><div class="row"><span class="k">依据</span><div class="v">读者要判断方向对不对</div></div><details><summary>验收官的修改建议</summary><div class="v">每类人群配一个业务指标和现在的基线，例如新增次留、回流后 7 日留存、潜在付费首储转化率、潜在流失储值恢复率。</div></details><div class="pics"><figure><img class="zoom" loading="lazy" src="图/丙/s03.jpg" alt="第 3 页"><figcaption>第 3 页</figcaption></figure></div><p class="hint">点图放大，再点缩回</p></details>
+</div>
+<div class="item" data-id="3-10">
+  <div class="line"><span class="id">3-10</span><span class="gist">第 6 页第一张卡片的文字超出了下边框<small class="where">在哪：V2 · 第 6 页</small></span>
+    <span class="btns"><label><input type="radio" name="3-10" value="同意"> 同意</label><label><input type="radio" name="3-10" value="不同意"> 不同意</label></span></div>
+  <input type="text" class="why" placeholder="不同意：一句话说哪里不对（可空）">
+  <details class="ev"><summary>展开看证据</summary><div class="row"><span class="k">位置</span><div class="v">第 6 页第一张卡片</div></div><div class="row"><span class="k">稿件原文</span><div class="v">「依据　每人在该位置只命中一组，调整新增或回流的内容不影响其余玩家」</div></div><div class="row"><span class="k">验收官说的问题</span><div class="v">第二行「或回流的内容不影响其余玩家」超出了卡片下边框，投影时很显眼。</div></div><div class="row"><span class="k">依据</span><div class="v">第 6 页截图</div></div><details><summary>验收官的修改建议</summary><div class="v">缩短文字或加高卡片。</div></details><div class="pics"><figure><img class="zoom" loading="lazy" src="图/丙/s06.jpg" alt="第 6 页"><figcaption>第 6 页</figcaption></figure></div><p class="hint">点图放大，再点缩回</p></details>
+</div>
+<h2 class="sh"><span class="no">第 4 份</span>推送统一后台原型（10/14，网页原型截成 15 段）<small>当时的读者：主管和运营｜用途：看后台要做成什么样｜Dk 和主管同步后确认：「确实要后台集成数据」</small></h2>
+<div class="item" data-id="4-2">
+  <div class="line"><span class="id">4-2</span><span class="gist">推送上限、勿扰、排除 VIP 等少发的规则直接当默认值，没写依据<small class="where">在哪：推送后台原型 · 页 3、4、11、13</small></span>
+    <span class="btns"><label><input type="radio" name="4-2" value="同意"> 同意</label><label><input type="radio" name="4-2" value="不同意"> 不同意</label></span></div>
+  <input type="text" class="why" placeholder="不同意：一句话说哪里不对（可空）">
+  <details class="ev"><summary>展开看证据</summary><div class="row"><span class="k">位置</span><div class="v">页 11、页 3、页 4、页 13</div></div><div class="row"><span class="k">稿件原文</span><div class="v">页 11 页头「现在推送没有上限，弹窗只有单项次数与冷却」；上限表「推播 2 条／短信 1 条／Facebook 1 条／LINE 1 条／大厅弹窗＋破产弹窗 8 个／快显 3 次」；「到上限后当天不发，不排队补发」；页 4「命中勿扰时段默认放弃」；页 3「默认排除 VIP 名单、黑名单、机器人与测试账号」</div></div><div class="row"><span class="k">验收官说的问题</span><div class="v">这几条都是新加的、会少发的规则，稿里直接当默认值呈现，没写为什么是 2 条、8 个，为什么默认排除 VIP，也没标出哪些要主管拍板。稿件自己的样例就能看出影响：页 13 一条推送有 8,652 人次触发，被「勿扰时段放弃 1,382」和「频率上限拦下 418」挡掉 1,800 人次，约 21%。主管看业绩，一定会追问</div></div><div class="row"><span class="k">依据</span><div class="v">需求原文只要求「統一推送入口、提高易用性、增加數據情況」，推送上限和勿扰不在原文里；弹窗只要求「整體控制彈窗數量」</div></div><details><summary>验收官的修改建议</summary><div class="v">页 11 每个默认值旁写依据（参照竞品或现有数据），再写按近 7 天估算的少发量；全景单列一栏「需要主管定的规则」。</div></details><div class="pics"><figure><img class="zoom" loading="lazy" src="图/丁/段08.jpg" alt="原型截图第 8 段（含第 11 页）"><figcaption>原型截图第 8 段（含第 11 页）</figcaption></figure><figure><img class="zoom" loading="lazy" src="图/丁/段09.jpg" alt="原型截图第 9 段（含第 11 页）"><figcaption>原型截图第 9 段（含第 11 页）</figcaption></figure><figure><img class="zoom" loading="lazy" src="图/丁/段03.jpg" alt="原型截图第 3 段（含第 3 页）"><figcaption>原型截图第 3 段（含第 3 页）</figcaption></figure><figure><img class="zoom" loading="lazy" src="图/丁/段04.jpg" alt="原型截图第 4 段（含第 3 页）"><figcaption>原型截图第 4 段（含第 3 页）</figcaption></figure><figure><img class="zoom" loading="lazy" src="图/丁/段10.jpg" alt="原型截图第 10 段（含第 13 页）"><figcaption>原型截图第 10 段（含第 13 页）</figcaption></figure></div><p class="hint">点图放大，再点缩回</p></details>
+</div>
+<div class="item" data-id="4-3">
+  <div class="line"><span class="id">4-3</span><span class="gist">看不出哪些功能必须、哪些可选，超出需求的也没标<small class="where">在哪：推送后台原型 · 全景和附录</small></span>
+    <span class="btns"><label><input type="radio" name="4-3" value="同意"> 同意</label><label><input type="radio" name="4-3" value="不同意"> 不同意</label></span></div>
+  <input type="text" class="why" placeholder="不同意：一句话说哪里不对（可空）">
+  <details class="ev"><summary>展开看证据</summary><div class="row"><span class="k">位置</span><div class="v">全景和附录</div></div><div class="row"><span class="k">稿件原文</span><div class="v">全景把 16 页平铺；附录「需求清单全部必须与建议项，另含 4 项可选」</div></div><div class="row"><span class="k">验收官说的问题</span><div class="v">页面上看不出哪些是必须、哪些可选，哪 4 项可选也没在页面上标。运行中改版本（页 5）、失败重试（页 1、页 13）、推送上限与勿扰（页 11）、玩家查询扩展（页 14）、迁移开关（页 16）都超出需求原文，也没标出来。主管判范围时没有可以下手删减的依据</div></div><div class="row"><span class="k">依据</span><div class="v">需求原文三句话的范围；读者里主管的任务是「判断方向和范围」</div></div><details><summary>验收官的修改建议</summary><div class="v">全景每张页卡标「必须／建议／可选」，并注明对应需求原文哪一句；超出原文的功能加一个标记。</div></details><div class="pics"><figure><img class="zoom" loading="lazy" src="图/丁/段01.jpg" alt="原型截图第 1 段"><figcaption>原型截图第 1 段</figcaption></figure><figure><img class="zoom" loading="lazy" src="图/丁/段14.jpg" alt="原型截图第 14 段"><figcaption>原型截图第 14 段</figcaption></figure></div><p class="hint">点图放大，再点缩回</p></details>
+</div>
+<div class="item" data-id="4-4">
+  <div class="line"><span class="id">4-4</span><span class="gist">到达率 90% 算法不对，iOS 送达自相矛盾，几项数字加不平<small class="where">在哪：推送后台原型 · 页 1、3、12</small></span>
+    <span class="btns"><label><input type="radio" name="4-4" value="同意"> 同意</label><label><input type="radio" name="4-4" value="不同意"> 不同意</label></span></div>
+  <input type="text" class="why" placeholder="不同意：一句话说哪里不对（可空）">
+  <details class="ev"><summary>展开看证据</summary><div class="row"><span class="k">位置</span><div class="v">页 12、页 1、页 3</div></div><div class="row"><span class="k">稿件原文</span><div class="v">页 12 推送明细表头「到达率 到达÷发送」，ID 43 一行「1,050｜576 仅 Android｜90.0%」；页 1 推播一行「发送 1,960｜到达 1,190 仅 Android」；页 3 测试结果「测试01 iOS 已送达」，而页 1 写「iOS 推播不回传到达」；页 12 短信「19,490｜18,392 无回执 1,002」、Facebook「6,520｜6,143 无回执 165」</div></div><div class="row"><span class="k">验收官说的问题</span><div class="v">①按表头算，576÷1,050＝54.9%，不是 90%；90% 实际用的是 Android 发送量作分母，表里没写。②测试结果说 iOS「已送达」，和「iOS 不回传到达」自相矛盾。③短信 18,392＋1,002＝19,394，比发送少 96；Facebook 少 212。同一页的 LINE 和页 1 的短信都对得上，读者会问差额去了哪里</div></div><div class="row"><span class="k">依据</span><div class="v">到達率是需求原文点名要的指标；APNs 不提供送达回执，稿件自己也这么写</div></div><details><summary>验收官的修改建议</summary><div class="v">没按平台拆行的推播，到达率改写成「到达÷Android 发送」，并显示这个分母；测试结果中 iOS 改写「已提交」或注明判断依据；短信和 Facebook 补一列「失败／退回」，让三个数加起来等于发送。</div></details><div class="pics"><figure><img class="zoom" loading="lazy" src="图/丁/段09.jpg" alt="原型截图第 9 段（含第 12 页）"><figcaption>原型截图第 9 段（含第 12 页）</figcaption></figure><figure><img class="zoom" loading="lazy" src="图/丁/段10.jpg" alt="原型截图第 10 段（含第 12 页）"><figcaption>原型截图第 10 段（含第 12 页）</figcaption></figure><figure><img class="zoom" loading="lazy" src="图/丁/段02.jpg" alt="原型截图第 2 段（含第 1 页）"><figcaption>原型截图第 2 段（含第 1 页）</figcaption></figure><figure><img class="zoom" loading="lazy" src="图/丁/段03.jpg" alt="原型截图第 3 段（含第 3 页）"><figcaption>原型截图第 3 段（含第 3 页）</figcaption></figure><figure><img class="zoom" loading="lazy" src="图/丁/段04.jpg" alt="原型截图第 4 段（含第 3 页）"><figcaption>原型截图第 4 段（含第 3 页）</figcaption></figure></div><p class="hint">点图放大，再点缩回</p></details>
+</div>
+<div class="item" data-id="4-5">
+  <div class="line"><span class="id">4-5</span><span class="gist">右侧说明栏和浮层叠在一起，挡住了可触达人数<small class="where">在哪：推送后台原型 · 页 3、6、7、10</small></span>
+    <span class="btns"><label><input type="radio" name="4-5" value="同意"> 同意</label><label><input type="radio" name="4-5" value="不同意"> 不同意</label></span></div>
+  <input type="text" class="why" placeholder="不同意：一句话说哪里不对（可空）">
+  <details class="ev"><summary>展开看证据</summary><div class="row"><span class="k">位置</span><div class="v">页 3、页 6、页 7、页 10（1280 宽截图）</div></div><div class="row"><span class="k">稿件原文</span><div class="v">页 6 标题「选群组时看到能发给多少人」，但可触达框被截成「有手机号且未退订（8」，人数看不到；页 7 被截成「已绑定 Facebook 且可」，右侧标注③④被 Messenger 预览盖住（只剩「…ook：已绑定且可发」）；页 10 横幅预览压住标注③④⑤；页 3「确认排程」按钮压在「测试结果按账号列出」底下</div></div><div class="row"><span class="k">验收官说的问题</span><div class="v">右侧说明栏和浮出的预览、人数框叠在一起，页面标题承诺的关键数字（各渠道可触达人数）正好被挡住，运营找不到</div></div><details><summary>验收官的修改建议</summary><div class="v">浮层限制在原型框内，说明栏不与原型重叠，改好后在 1280 宽下重截检查。</div></details><div class="pics"><figure><img class="zoom" loading="lazy" src="图/丁/段03.jpg" alt="原型截图第 3 段（含第 3 页）"><figcaption>原型截图第 3 段（含第 3 页）</figcaption></figure><figure><img class="zoom" loading="lazy" src="图/丁/段04.jpg" alt="原型截图第 4 段（含第 3 页）"><figcaption>原型截图第 4 段（含第 3 页）</figcaption></figure><figure><img class="zoom" loading="lazy" src="图/丁/段05.jpg" alt="原型截图第 5 段（含第 6 页）"><figcaption>原型截图第 5 段（含第 6 页）</figcaption></figure><figure><img class="zoom" loading="lazy" src="图/丁/段06.jpg" alt="原型截图第 6 段（含第 7 页）"><figcaption>原型截图第 6 段（含第 7 页）</figcaption></figure><figure><img class="zoom" loading="lazy" src="图/丁/段08.jpg" alt="原型截图第 8 段（含第 10 页）"><figcaption>原型截图第 8 段（含第 10 页）</figcaption></figure></div><p class="hint">点图放大，再点缩回</p></details>
+</div>
+<div class="item" data-id="4-6">
+  <div class="line"><span class="id">4-6</span><span class="gist">五个切换开关只画了一个，营销侧何时停发、由谁切没交代<small class="where">在哪：推送后台原型 · 页 6、7、10、15、16</small></span>
+    <span class="btns"><label><input type="radio" name="4-6" value="同意"> 同意</label><label><input type="radio" name="4-6" value="不同意"> 不同意</label></span></div>
+  <input type="text" class="why" placeholder="不同意：一句话说哪里不对（可空）">
+  <details class="ev"><summary>展开看证据</summary><div class="row"><span class="k">位置</span><div class="v">页 6、页 7、页 10、页 15</div></div><div class="row"><span class="k">稿件原文</span><div class="v">页 6、页 7 页头「现由营销侧按名单发」；页 10「现写死在客户端」；页 15 脚注「以及五个切换开关（礼包推播、短信、Facebook、LINE、快显）」</div></div><div class="row"><span class="k">验收官说的问题</span><div class="v">五个开关只画了礼包推播一个（页 16）。全景标注⑥「同一条推送只在一处生效」也只讲了礼包。营销侧什么时候停发、由谁切，快显要不要等客户端发版，都没交代，而这些直接影响范围和工期</div></div><div class="row"><span class="k">依据</span><div class="v">需求原文「統一推送入口」，迁移是统一入口的前提</div></div><details><summary>验收官的修改建议</summary><div class="v">全景按渠道列一行「现在谁发 → 上线后谁发 → 在哪切」，补画另外四个开关或指明位置，并注明快显需要客户端配合。</div></details><div class="pics"><figure><img class="zoom" loading="lazy" src="图/丁/段05.jpg" alt="原型截图第 5 段（含第 6 页）"><figcaption>原型截图第 5 段（含第 6 页）</figcaption></figure><figure><img class="zoom" loading="lazy" src="图/丁/段06.jpg" alt="原型截图第 6 段（含第 7 页）"><figcaption>原型截图第 6 段（含第 7 页）</figcaption></figure><figure><img class="zoom" loading="lazy" src="图/丁/段08.jpg" alt="原型截图第 8 段（含第 10 页）"><figcaption>原型截图第 8 段（含第 10 页）</figcaption></figure><figure><img class="zoom" loading="lazy" src="图/丁/段11.jpg" alt="原型截图第 11 段（含第 15 页）"><figcaption>原型截图第 11 段（含第 15 页）</figcaption></figure><figure><img class="zoom" loading="lazy" src="图/丁/段12.jpg" alt="原型截图第 12 段（含第 15 页）"><figcaption>原型截图第 12 段（含第 15 页）</figcaption></figure></div><p class="hint">点图放大，再点缩回</p></details>
+</div>
+<div class="item" data-id="4-7">
+  <div class="line"><span class="id">4-7</span><span class="gist">「按任务走一遍」只写上线后，没写现在怎么做，看不出好用在哪<small class="where">在哪：推送后台原型 · 第三部分</small></span>
+    <span class="btns"><label><input type="radio" name="4-7" value="同意"> 同意</label><label><input type="radio" name="4-7" value="不同意"> 不同意</label></span></div>
+  <input type="text" class="why" placeholder="不同意：一句话说哪里不对（可空）">
+  <details class="ev"><summary>展开看证据</summary><div class="row"><span class="k">位置</span><div class="v">第三部分「按任务走一遍」</div></div><div class="row"><span class="k">稿件原文</span><div class="v">「运营常做的 7 件事各经过哪几页」</div></div><div class="row"><span class="k">验收官说的问题</span><div class="v">只写了上线后的做法，没有现在的做法（去几个后台、找谁、几步），主管看不出易用性提高在哪</div></div><div class="row"><span class="k">依据</span><div class="v">需求原文「提高易用性」</div></div><details><summary>验收官的修改建议</summary><div class="v">7 件事每件补一行「现在：…」，和上线后的步骤对照。</div></details><div class="pics"><figure><img class="zoom" loading="lazy" src="图/丁/段13.jpg" alt="原型截图第 13 段"><figcaption>原型截图第 13 段</figcaption></figure><figure><img class="zoom" loading="lazy" src="图/丁/段14.jpg" alt="原型截图第 14 段"><figcaption>原型截图第 14 段</figcaption></figure></div><p class="hint">点图放大，再点缩回</p></details>
+</div>
+<div class="item" data-id="4-8">
+  <div class="line"><span class="id">4-8</span><span class="gist">大厅里活动类和储值类弹窗谁先谁后、一次弹几个没写<small class="where">在哪：推送后台原型 · 页 8、9、14</small></span>
+    <span class="btns"><label><input type="radio" name="4-8" value="同意"> 同意</label><label><input type="radio" name="4-8" value="不同意"> 不同意</label></span></div>
+  <input type="text" class="why" placeholder="不同意：一句话说哪里不对（可空）">
+  <details class="ev"><summary>展开看证据</summary><div class="row"><span class="k">位置</span><div class="v">页 8、页 9、页 14</div></div><div class="row"><span class="k">稿件原文</span><div class="v">页 9 标注⑦「只比同一位置、同一类型」；页 14「第 2–21 项，第 15–21 项为通用弹窗（ID 6）」；页 14 收到记录「大厅弹窗 活动类·潜在流失（… 已曝光 4 个」，而规则 14 写的是「弹出数量 3」「每次最多弹出 3 个」</div></div><div class="row"><span class="k">验收官说的问题</span><div class="v">活动类和储值类规则同在大厅时，谁先谁后、一次总共弹几个，弹窗页没写，只能从玩家查询的脚注倒推。收到记录把 4 个都算在规则 14 名下，和「最多 3 个」对不上，运营会当场追问</div></div><div class="row"><span class="k">依据</span><div class="v">需求原文「整體控制彈窗 數量/內容/順序」</div></div><details><summary>验收官的修改建议</summary><div class="v">页 8 写明跨规则的先后和单次总数（例：活动类在前，储值类在后，合计 4 个），说明能否调整；页 14 的记录按规则分行。</div></details><div class="pics"><figure><img class="zoom" loading="lazy" src="图/丁/段06.jpg" alt="原型截图第 6 段（含第 8 页）"><figcaption>原型截图第 6 段（含第 8 页）</figcaption></figure><figure><img class="zoom" loading="lazy" src="图/丁/段07.jpg" alt="原型截图第 7 段（含第 9 页）"><figcaption>原型截图第 7 段（含第 9 页）</figcaption></figure><figure><img class="zoom" loading="lazy" src="图/丁/段11.jpg" alt="原型截图第 11 段（含第 14 页）"><figcaption>原型截图第 11 段（含第 14 页）</figcaption></figure></div><p class="hint">点图放大，再点缩回</p></details>
+</div>
+<div class="item" data-id="4-9">
+  <div class="line"><span class="id">4-9</span><span class="gist">Facebook「可发」没定义，可触达人数可能被高估<small class="where">在哪：推送后台原型 · 页 7</small></span>
+    <span class="btns"><label><input type="radio" name="4-9" value="同意"> 同意</label><label><input type="radio" name="4-9" value="不同意"> 不同意</label></span></div>
+  <input type="text" class="why" placeholder="不同意：一句话说哪里不对（可空）">
+  <details class="ev"><summary>展开看证据</summary><div class="row"><span class="k">位置</span><div class="v">页 7</div></div><div class="row"><span class="k">稿件原文</span><div class="v">「可触达按推送判断：Facebook：已绑定且可发」；预计「Facebook 可触达 2,580」</div></div><div class="row"><span class="k">验收官说的问题</span><div class="v">「可发」的条件没定义。Messenger 规定，24 小时互动窗口之外发推广内容，要走赞助消息、一次性通知或营销消息订阅；登录绑定不等于可以发消息。示例内容「每日補給計畫開跑」属于推广，可触达人数可能被高估</div></div><div class="row"><span class="k">依据</span><div class="v">Meta Messenger Platform 政策 https://developers.facebook.com/docs/messenger-platform/policy/policy-overview ，发送说明 https://developers.facebook.com/docs/messenger-platform/send-messages</div></div><details><summary>验收官的修改建议</summary><div class="v">写明「可发」的口径，并和营销侧现在的发送方式核对。</div></details><div class="pics"><figure><img class="zoom" loading="lazy" src="图/丁/段06.jpg" alt="原型截图第 6 段（含第 7 页）"><figcaption>原型截图第 6 段（含第 7 页）</figcaption></figure></div><p class="hint">点图放大，再点缩回</p></details>
+</div>
+<div class="item" data-id="4-10">
+  <div class="line"><span class="id">4-10</span><span class="gist">两张「现有页面」的改动标记是推断的，不是照真实表单<small class="where">在哪：推送后台原型 · 页 9、16</small></span>
+    <span class="btns"><label><input type="radio" name="4-10" value="同意"> 同意</label><label><input type="radio" name="4-10" value="不同意"> 不同意</label></span></div>
+  <input type="text" class="why" placeholder="不同意：一句话说哪里不对（可空）">
+  <details class="ev"><summary>展开看证据</summary><div class="row"><span class="k">位置</span><div class="v">页 9、页 16</div></div><div class="row"><span class="k">稿件原文</span><div class="v">页 9「现有表单无截图，字段按列表推断，蓝色标出改动」；页 16「现有页面无截图，按现有设定项画」</div></div><div class="row"><span class="k">验收官说的问题</span><div class="v">两张「现有页面」上的「改／新增」标记是推断出来的。熟悉真实表单的运营一眼就能挑出不符，之后写研发需求时也会继承这些错误</div></div><details><summary>验收官的修改建议</summary><div class="v">交付前补这两张现有页面的截图，重新核对字段和改动标记。</div></details><div class="pics"><figure><img class="zoom" loading="lazy" src="图/丁/段07.jpg" alt="原型截图第 7 段（含第 9 页）"><figcaption>原型截图第 7 段（含第 9 页）</figcaption></figure><figure><img class="zoom" loading="lazy" src="图/丁/段12.jpg" alt="原型截图第 12 段（含第 16 页）"><figcaption>原型截图第 12 段（含第 16 页）</figcaption></figure></div><p class="hint">点图放大，再点缩回</p></details>
+</div>
+<textarea id="out" readonly></textarea>
+</div>
+<div class="bar"><span id="cnt"></span><button id="copy">复制结果</button></div>
+<script>
+const IDS=["1-9", "2-6", "2-7", "2-9", "2-10", "3-1", "3-2", "3-3", "3-5", "3-6", "3-7", "3-8", "3-9", "3-10", "4-2", "4-3", "4-4", "4-5", "4-6", "4-7", "4-8", "4-9", "4-10"]; const KEY='calib_1029_v2';
+let saved={}; try{saved=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(saved))}catch(e){}}
+function paint(){let n=0;document.querySelectorAll('.item').forEach(c=>{const v=(saved[c.dataset.id]||{}).v;c.classList.toggle('yes',v==='同意');c.classList.toggle('no',v==='不同意');if(v)n++});document.getElementById('cnt').textContent='已判 '+n+' / '+IDS.length}
+document.querySelectorAll('.item').forEach(c=>{const id=c.dataset.id,s=saved[id]||{};
+ c.querySelectorAll('input[type=radio]').forEach(r=>{if(r.value===s.v)r.checked=true;r.addEventListener('change',()=>{saved[id]=Object.assign(saved[id]||{},{v:r.value});save();paint()})});
+ const w=c.querySelector('.why');w.value=s.w||'';w.addEventListener('input',()=>{saved[id]=Object.assign(saved[id]||{},{w:w.value});save()})});
+document.querySelectorAll('img.zoom').forEach(i=>i.addEventListener('click',()=>(i.closest('figure')||i).classList.toggle('big')));
+document.getElementById('copy').addEventListener('click',()=>{const lines=IDS.map(id=>{const s=saved[id]||{};return id+' '+(s.v||'未判')+(s.w?'：'+s.w:'')});
+ const t='验收官校准 10/29\n'+lines.join('\n');const o=document.getElementById('out');o.style.display='block';o.value=t;o.select();
+ try{navigator.clipboard.writeText(t).then(()=>{document.getElementById('copy').textContent='已复制'},()=>{document.getElementById('copy').textContent='请手动复制下框文字'})}catch(e){document.getElementById('copy').textContent='请手动复制下框文字'}});
+paint();
+</script></body></html>
