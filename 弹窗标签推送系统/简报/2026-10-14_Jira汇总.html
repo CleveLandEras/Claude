@@ -1,0 +1,174 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Jira 汇总</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.35;margin:0 0 8px}
+.sub{font-size:16px;color:var(--ink-2);margin:0 0 28px}
+h2{font-family:var(--serif);font-size:20px;margin:48px 0 16px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+h3{font-size:15.5px;margin:22px 0 10px;color:var(--ink)}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px}
+.kpi .n{font-size:38px;font-weight:700;line-height:1.1;color:var(--ink)}
+.kpi .n small{font-size:16px;font-weight:600;margin-left:4px;color:var(--ink-2)}
+.kpi .t{font-size:14.5px;color:var(--ink-2);margin-top:8px}
+.kpi.red .n{color:var(--red)}
+.phase{border-top:4px solid var(--gray)}
+.phase.red{border-top-color:var(--red)} .phase.blue{border-top-color:var(--blue)} .phase.green{border-top-color:var(--green)}
+.phase .d{font-size:13px;color:var(--muted);font-weight:600}
+.phase .h{font-size:16.5px;font-weight:700;margin:4px 0 10px}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:12px}
+.tag.red{background:var(--red-soft);color:var(--red)} .tag.blue{background:var(--blue-soft);color:var(--blue)} .tag.gray{background:var(--gray-soft);color:var(--gray)} .tag.green{background:var(--green-soft);color:var(--green)}
+.kv{font-size:14px;color:var(--ink-2);margin:6px 0}
+.kv b{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:2px}
+.cause .h{font-size:16.5px;font-weight:700;margin:0 0 6px}
+.cause .l{font-size:14.5px;color:var(--ink-2);margin:0 0 12px}
+.cause .e{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14.5px}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--ground)}
+tr:last-child td{border-bottom:none}
+td.w{color:var(--ink)} td.r{color:var(--ink-2)} td.d{color:var(--muted);white-space:nowrap}
+tr.same td.w{color:var(--red);font-weight:600}
+.obs{font-size:14.5px;color:var(--ink-2);margin:14px 0 0;padding:12px 16px;border-left:3px solid var(--accent);background:var(--surface)}
+.obs b{color:var(--ink)}
+.opt{position:relative}
+.opt .h{font-size:16px;font-weight:700;margin:0 0 6px}
+.opt .l{font-size:14.5px;color:var(--ink-2)}
+.opt.rec{border:2px solid var(--blue)}
+.opt .badge{position:absolute;top:-11px;right:16px;background:var(--blue);color:#fff;font-size:12px;font-weight:700;padding:2px 10px;border-radius:3px}
+.why{font-size:14.5px;color:var(--ink-2);margin:14px 0 0}
+.why b{color:var(--ink)}
+.links{font-size:13px;color:var(--muted);margin-top:40px;line-height:1.9} a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+</style></head><body><div class="wrap">
+
+<p class="meta">Jira 只读汇总 · 2026-10-14 · 数据来自 Jira 直接查询，我已核实；未改动任何内容</p>
+<h1>你名下只有今天的日报没关；明天发版还差 66 项；推送相关需求在 Jira 里是三张空壳</h1>
+<p class="sub">要你做两件事：关掉今天的日报，从明天起按新规则在「十月管理任务集合」下记管理工时</p>
+
+<div class="grid g3">
+  <div class="card kpi"><div class="n">2<small>件</small></div><div class="t">你名下未完成：10 月 14 日日报、十月管理任务集合（空）</div></div>
+  <div class="card kpi red"><div class="n">66<small>／195</small></div><div class="t">明天（10/15）V47 版本未完成，占本版 33.8%，含 16 个缺陷</div></div>
+  <div class="card kpi"><div class="n">3<small>张</small></div><div class="t">推送相关需求单，全部待办、无正文或无进展，最近更新 9 月 16 日</div></div>
+</div>
+
+<h2><span class="no">01</span>你名下：日报按天在记，十月管理任务集合是别人替你开的空壳</h2>
+<div class="grid g3">
+  <div class="card phase blue"><div class="d">9 月 4 日起</div><div class="h">日报</div><span class="tag blue">25 张，24 张已完成</span>
+    <div class="kv"><b>内容</b>每天一张，挂在当月「产品部相关事项」下；工单正文为空，只有标题</div>
+    <div class="kv"><b>未完成</b>10 月 14 日这张，今天 16:58 建，状态待办</div></div>
+  <div class="card phase red"><div class="d">10 月 13 日 17:54</div><div class="h">黄德诚 十月管理任务内容集合</div><span class="tag red">空，待办，无截止</span>
+    <div class="kv"><b>谁开的</b>于金伶 10/13 分三批开了 11 张：开发组长 6 人、营运 3 人、产品 2 人（崔峰龙和你）</div>
+    <div class="kv"><b>你的这张</b>无描述、无评论、无子任务</div></div>
+  <div class="card phase green"><div class="d">对照</div><div class="h">黎梦霞的那张</div><span class="tag green">已填 6 项，4 项完成</span>
+    <div class="kv"><b>填了什么</b>泰版 10.22 任务分配、V48 任务分配、V49 估时、会议记录、用例查看、Xmind 转 Excel 导入 Vansah 的工具</div>
+    <div class="kv"><b>其余 10 张</b>和你一样还是空的</div></div>
+</div>
+<p class="obs"><b>规则（写在产品部集合的说明里）</b>　每天在你的集合下建一张 Story，命名「日期--姓名」；内容写进描述，工时填 Story Points。只记产品制作任务以外记不到的工作量，例如审核 PR、估时、自行处理的优化。于金伶 10/14 14:41 给集合加了「日报」标签。</p>
+
+<h2><span class="no">02</span>主项目 08RichOnline：周四发版节奏，明天 V47 还有三分之一没关</h2>
+<div class="grid g4">
+  <div class="card kpi"><div class="n">2,012<small>／22,247</small></div><div class="t">全项目未完成，占 9.0%</div></div>
+  <div class="card kpi"><div class="n">645</div><div class="t">近 7 天有更新的工单</div></div>
+  <div class="card kpi"><div class="n">753</div><div class="t">近 30 天新建的工单</div></div>
+  <div class="card kpi"><div class="n">518</div><div class="t">未关闭缺陷（全项目）</div></div>
+</div>
+
+<h3>版本节奏：每周四一版，后两版都已排满</h3>
+<table>
+<tr><th>版本</th><th>发版日</th><th>工单数</th><th>未完成</th><th>说明</th></tr>
+<tr class="same"><td class="w">V47</td><td class="d">10/15（明天）</td><td class="r">195</td><td class="w">66（33.8%）</td><td class="r">16 个缺陷未关，52 个缺陷里的 31%</td></tr>
+<tr><td class="w">V48</td><td class="d">10/22</td><td class="r">225</td><td class="r">183（81.3%）</td><td class="r">16 周年庆主力版本</td></tr>
+<tr><td class="w">V49</td><td class="d">10/29</td><td class="r">—</td><td class="r">—</td><td class="r">扭蛋机 part2、周年庆导航弹窗、多款游戏串接 10/29 不可延期</td></tr>
+<tr><td class="w">V50 / V51</td><td class="d">11/5、11/12</td><td class="r">—</td><td class="r">—</td><td class="r">台湾麻将筹码专区 11/12 不可延期、第三方支付优化 part2</td></tr>
+</table>
+
+<h3>V47 未完成的 66 项，按状态和归属看</h3>
+<div class="grid g2">
+<table>
+<tr><th>状态</th><th>项数</th></tr>
+<tr><td class="w">正在执行</td><td class="r">17</td></tr>
+<tr><td class="w">Checking（验收中）</td><td class="r">17</td></tr>
+<tr><td class="w">To Check（待验收）</td><td class="r">15</td></tr>
+<tr class="same"><td class="w">待办（还没开始）</td><td class="r">13</td></tr>
+<tr><td class="w">已解决待关 / 已拒绝</td><td class="r">3 / 1</td></tr>
+</table>
+<table>
+<tr><th>需求簇</th><th>状态</th></tr>
+<tr><td class="w">后台风控：溢出点数追回工具 part1</td><td class="r">开发中；9 个新缺陷待验收（董纯锐、成唯实）</td></tr>
+<tr><td class="w">游戏串接：包猪公（10/15 不可延期）</td><td class="r">3 张美术 + 后台配置验收中，官网说明待办</td></tr>
+<tr class="same"><td class="w">游戏串接：台湾麻将筹码专区（11/12）</td><td class="r">7 张全部待办，却挂在 V47 下</td></tr>
+<tr><td class="w">线上客服图片放大</td><td class="r">3 个新缺陷今天开，金科伟正在修</td></tr>
+<tr><td class="w">连线格格送后台优化、机会与命运优化、多语言适配 part3</td><td class="r">都在验收中</td></tr>
+</table>
+</div>
+<p class="obs"><b>推断</b>　13 项「待办」里 7 项是台湾麻将筹码专区，它的硬期限是 11/12，应该是版本标签挂错了，不是真的明天要发；去掉它们，V47 真正没开始的是 6 项。</p>
+
+<h2><span class="no">03</span>推送相关：三张需求单都停着，其中两张和你的弹窗标签推送方案同题</h2>
+<div class="grid g3">
+  <div class="card phase red"><div class="d">8 月 10 日 · 崔峰龙</div><div class="h">「产品」新手流程内容推送设置</div><span class="tag red">待办 · 无正文</span>
+    <div class="kv"><b>负责人</b>崔峰龙</div><div class="kv"><b>最后更新</b>8 月 24 日</div></div>
+  <div class="card phase red"><div class="d">8 月 10 日 · 崔峰龙</div><div class="h">「产品」分卡别内容推送</div><span class="tag red">待办 · 无正文 · 无负责人</span>
+    <div class="kv"><b>最后更新</b>8 月 12 日</div></div>
+  <div class="card phase"><div class="d">7 月 13 日 · 崔峰龙</div><div class="h">「功能优化」发财金主动推送规则</div><span class="tag gray">待办 · 有完整需求</span>
+    <div class="kv"><b>内容</b>金币不足时先弹纳福礼包，取消后再弹发财金；30 秒冷却，不重复弹</div>
+    <div class="kv"><b>进展</b>顾亿颉 8/4 估 2 小时；客户端、服务器、QA 子任务都待办，9/16 后没动</div></div>
+</div>
+
+<h3>更早的推送历史问题，和你方案里的人群推送能力直接相关</h3>
+<table>
+<tr><th>问题</th><th>类型 / 状态</th><th>时间</th><th>对你方案的意义</th></tr>
+<tr class="same"><td class="w">推播指定名单超过 1 万人就会失败</td><td class="r">缺陷 · 待办</td><td class="d">6/1 建</td><td class="r">按标签圈人推送要先确认名单上限，否则大人群推不出去</td></tr>
+<tr><td class="w">回流玩家发送过赠礼后收不到活动推送</td><td class="r">缺陷 · 待办</td><td class="d">4/16 建</td><td class="r">回流人群的推送链路本身有坑</td></tr>
+<tr><td class="w">红包夺宝推播需求</td><td class="r">需求 · 待办</td><td class="d">1/15 建</td><td class="r">运营侧长期有推播诉求，一直没排</td></tr>
+<tr><td class="w">推播优化</td><td class="r">需求 · 待办</td><td class="d">2025/11 建</td><td class="r">同上</td></tr>
+</table>
+<p class="obs"><b>推断</b>　崔峰龙 8 月开的「新手流程内容推送」「分卡别内容推送」就是你现在做的弹窗标签推送方案在 Jira 里的占位；方案提交时要说明和这两张的关系，否则会被当成两件事。「名单超过 1 万人失败」是已知的技术约束，方案里的人群规模要对着它核一次。</p>
+
+<h2><span class="no">04</span>其他 5 个项目没有业务内容，可以不看</h2>
+<table>
+<tr><th>项目</th><th>工单数</th><th>是什么</th><th>最后动静</th></tr>
+<tr><td class="w">TEST（IGAMING）</td><td class="r">61</td><td class="r">潘美霞建的老虎机研发流程模板：377 双边兑奖、378 尤米尔、379 西部牛仔和一份克隆版，每款拆成玩法开案到评测十几道工序</td><td class="d">9 月 4 日</td></tr>
+<tr><td class="w">Sample Scrum Project A</td><td class="r">47</td><td class="r">Atlassian 示例数据</td><td class="d">2025 年 5 月</td></tr>
+<tr><td class="w">Learn Jira</td><td class="r">9</td><td class="r">俞嘉杰的学习练习</td><td class="d">6 月 4 日</td></tr>
+<tr><td class="w">My discovery project</td><td class="r">6</td><td class="r">Atlassian 示例想法</td><td class="d">6 月 11 日</td></tr>
+<tr><td class="w">20250904test（SLOTS）</td><td class="r">0</td><td class="r">空项目</td><td class="d">—</td></tr>
+</table>
+
+<h2><span class="no">05</span>要你定：原来的日报还要不要继续建</h2>
+<div class="grid g2">
+  <div class="card opt rec"><span class="badge">推荐</span><p class="h">甲　两边都记，先问于金伶</p><p class="l">原日报照旧挂「10月份产品部相关事项」；新集合只记规则里的管理工时；同时问于金伶新集合是否替代原日报</p></div>
+  <div class="card opt"><p class="h">乙　明天起只建新集合下的 Story</p><p class="l">把日报内容和工时都挪到新集合，原日报停建</p></div>
+</div>
+<p class="why"><b>理由</b>　集合被加了「日报」标签，像是要替代原日报，但说明里没写停用旧的；两边都记不会漏，问清后再合并。</p>
+
+<h3>要你做</h3>
+<table>
+<tr><th>事项</th><th>说明</th></tr>
+<tr><td class="w">关掉 10 月 14 日日报</td><td class="r">今天 16:58 新建，状态待办；之前 24 张都是当天或次日关</td></tr>
+</table>
+
+<p class="links">
+Jira 原文：
+<a href="https://xsg-game.atlassian.net/browse/RICH-25339">10 月 14 日日报</a> ·
+<a href="https://xsg-game.atlassian.net/browse/RICH-25292">黄德诚 十月管理任务内容集合</a> ·
+<a href="https://xsg-game.atlassian.net/browse/RICH-25290">十月份 产品部门任务内容集合</a> ·
+<a href="https://xsg-game.atlassian.net/browse/RICH-25278">黎梦霞 十月管理任务内容集合</a><br>
+<a href="https://xsg-game.atlassian.net/issues?jql=project%20%3D%20RICH%20AND%20fixVersion%20%3D%20%2208_V47_10.15%22%20AND%20statusCategory%20!%3D%20Done">V47 未完成 66 项</a> ·
+<a href="https://xsg-game.atlassian.net/browse/RICH-23297">新手流程内容推送设置</a> ·
+<a href="https://xsg-game.atlassian.net/browse/RICH-23298">分卡别内容推送</a> ·
+<a href="https://xsg-game.atlassian.net/browse/RICH-22317">发财金主动推送规则</a> ·
+<a href="https://xsg-game.atlassian.net/browse/RICH-20386">推播名单超过 1 万人失败</a> ·
+<a href="https://xsg-game.atlassian.net/browse/RICH-19130">回流玩家收不到活动推送</a>
+</p>
+</div></body></html>

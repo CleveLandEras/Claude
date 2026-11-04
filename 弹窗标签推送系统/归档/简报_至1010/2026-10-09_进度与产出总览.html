@@ -1,0 +1,197 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>进度与产出总览</title>
+<style>
+:root{
+  --bg:#f4f3ef;--card:#ffffff;--ink:#1d1f22;--ink2:#4a4f56;--mute:#8a8f96;--line:#e4e1da;--soft:#f8f7f4;
+  --accent:#9a6f24;--accent-soft:#f6eedf;
+  --ok:#2f6e55;--ok-bg:#e3f0e9;--wait:#9a6a12;--wait-bg:#f8ecd2;--todo:#5b6470;--todo-bg:#eceef1;
+  --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  --serif:"Songti SC","Noto Serif SC",Georgia,serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141619;--card:#1c1f23;--ink:#ecebe7;--ink2:#b9bdc2;--mute:#858b93;--line:#2c3137;--soft:#181b1f;
+  --accent:#d6ab5c;--accent-soft:#2c2617;--ok:#7cc3a2;--ok-bg:#1b2f26;--wait:#e0b45c;--wait-bg:#33291a;--todo:#a9b1bb;--todo-bg:#262a30;}}
+:root[data-theme="dark"]{
+  --bg:#141619;--card:#1c1f23;--ink:#ecebe7;--ink2:#b9bdc2;--mute:#858b93;--line:#2c3137;--soft:#181b1f;
+  --accent:#d6ab5c;--accent-soft:#2c2617;--ok:#7cc3a2;--ok-bg:#1b2f26;--wait:#e0b45c;--wait-bg:#33291a;--todo:#a9b1bb;--todo-bg:#262a30;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15.5px;line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:780px;margin:0 auto;padding:36px 16px 72px}
+.meta{font-size:12.5px;color:var(--mute);letter-spacing:.02em;margin:0 0 10px}
+h1{font-family:var(--serif);font-size:26px;line-height:1.4;margin:0 0 8px;font-weight:700}
+.dek{font-size:15px;color:var(--ink2);margin:0 0 24px}
+
+/* 顶部三张状态卡 */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0 0 14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.card .k{font-size:12.5px;color:var(--mute);margin:0 0 2px}
+.card .v{font-size:24px;font-weight:700;line-height:1.3;margin:0}
+.card .v small{font-size:14px;font-weight:500;color:var(--ink2);margin-left:4px}
+.card .d{font-size:13px;color:var(--ink2);margin:4px 0 0}
+.card.hl{border-color:var(--accent);background:var(--accent-soft)}
+
+/* 三步进度条 */
+.steps{display:flex;gap:0;margin:0 0 30px;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.step{flex:1;padding:12px 14px;position:relative;border-right:1px solid var(--line)}
+.step:last-child{border-right:none}
+.step .n{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;font-size:12px;font-weight:700;margin-right:6px;background:var(--todo-bg);color:var(--todo)}
+.step .t{font-size:14px;font-weight:600}
+.step .s{display:block;font-size:12.5px;color:var(--mute);margin-top:2px;padding-left:28px}
+.step.now{background:var(--wait-bg)} .step.now .n{background:var(--wait);color:#fff}
+.step.done .n{background:var(--ok);color:#fff}
+
+/* 分节 */
+section{margin:0 0 34px}
+.sh{display:flex;align-items:baseline;gap:10px;margin:0 0 4px;padding-bottom:8px;border-bottom:2px solid var(--ink)}
+.sh .no{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--accent)}
+.sh h2{font-family:var(--serif);font-size:19px;margin:0;line-height:1.45}
+.lede{font-size:13.5px;color:var(--mute);margin:8px 0 14px}
+
+/* 分组列表 */
+.group{background:var(--card);border:1px solid var(--line);border-radius:10px;margin:0 0 12px;overflow:hidden}
+.group .gh{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;background:var(--soft);border-bottom:1px solid var(--line);font-size:13.5px;font-weight:650;color:var(--ink2)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:11px 16px;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:none}
+.row .name{font-weight:600}
+.row .name small{display:block;font-weight:400;font-size:13px;color:var(--mute)}
+.row.muted .name{color:var(--mute);font-weight:500}
+
+.badge{display:inline-block;font-size:12px;font-weight:650;padding:2px 9px;border-radius:999px;white-space:nowrap}
+.b-ok{background:var(--ok-bg);color:var(--ok)} .b-wait{background:var(--wait-bg);color:var(--wait)} .b-todo{background:var(--todo-bg);color:var(--todo)}
+
+/* 版本时间线 */
+.ver{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:0 0 10px}
+.ver .top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 0 10px}
+.ver .title{font-weight:650;font-size:15.5px}
+.ver .title .cnt{font-size:12.5px;font-weight:600;color:var(--accent);margin-left:8px}
+.line{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.chip{font-size:13px;padding:3px 10px;border-radius:6px;background:var(--soft);border:1px solid var(--line);color:var(--ink2);white-space:nowrap}
+.chip.last{border-color:var(--wait);background:var(--wait-bg);color:var(--wait);font-weight:600}
+.chip.pass{border-color:var(--ok);background:var(--ok-bg);color:var(--ok);font-weight:600}
+.arr{color:var(--mute);font-size:12px}
+details{margin:10px 0 0}
+summary{cursor:pointer;font-size:13px;color:var(--accent);list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"▸ ";}
+details[open] summary::before{content:"▾ ";}
+details ol{margin:8px 0 0;padding-left:1.3em;font-size:13.5px;color:var(--ink2)}
+details li{margin:3px 0}
+
+.note{font-size:12.5px;color:var(--mute);margin:8px 0 0}
+.todo{background:var(--accent-soft);border:1px solid var(--accent);border-radius:10px;padding:14px 18px}
+.todo b{display:block;font-size:15px;margin:0 0 4px}
+.todo p{margin:2px 0;font-size:14px;color:var(--ink2)}
+.links{font-size:13px;color:var(--mute);margin-top:24px} a{color:var(--accent)}
+
+@media (max-width:600px){
+  .cards{grid-template-columns:1fr}
+  .steps{flex-direction:column}
+  .step{border-right:none;border-bottom:1px solid var(--line)}
+  .step:last-child{border-bottom:none}
+  h1{font-size:22px}
+}
+</style></head><body><div class="wrap">
+
+<p class="meta">进度与产出总览　·　2026-10-09 14:27　·　状态由脚本按文件内容计算，版本取自进展日志与审查记录，已逐项核对</p>
+<h1>还不能验收，差最后一步：等审查者过审</h1>
+<p class="dek">10/9 改了 4 轮，最后一轮 14:13 已提交复审。审查者过审、我核对完，就交你验收。</p>
+
+<div class="cards">
+  <div class="card"><p class="k">交你验收</p><p class="v">10<small>份</small></p><p class="d">呈交版、阶段 1–8、阶段产出规划</p></div>
+  <div class="card"><p class="k">已过审</p><p class="v">3<small>/ 9 份</small></p><p class="d">阶段 2、3、4；其余 6 份改后待复核</p></div>
+  <div class="card hl"><p class="k">你现在要做</p><p class="v" style="font-size:20px">无</p><p class="d">等我通知</p></div>
+</div>
+
+<div class="steps">
+  <div class="step now"><span class="n">1</span><span class="t">审查者过审</span><span class="s">14:13 已提交，进行中</span></div>
+  <div class="step"><span class="n">2</span><span class="t">我核对</span><span class="s">你的答复和 10 处验收意见是否都已落实</span></div>
+  <div class="step"><span class="n">3</span><span class="t">交你验收</span><span class="s">先看呈交版，再看阶段 8</span></div>
+</div>
+
+<section>
+  <div class="sh"><span class="no">01</span><h2>产出：交你验收的 10 份，加支撑材料与规则</h2></div>
+  <p class="lede">状态取自状态脚本：过审后改过的文件一律显示「待复核」。</p>
+
+  <div class="group">
+    <div class="gh"><span>交你验收</span><span>状态</span></div>
+    <div class="row"><span class="name"><a href="../../归档/呈交版旧稿/弹窗标签推送方案_V1.html">呈交版 V1</a><small>给主管的完整方案</small></span><span class="badge b-wait">待复核</span></div>
+    <div class="row"><span class="name">阶段 1、5、6、7、8<small>需求分析、方案选型、方案设计、方案验证、结论汇总</small></span><span class="badge b-wait">待复核</span></div>
+    <div class="row"><span class="name">阶段 2、3、4<small>人群分析、现状盘点、问题诊断</small></span><span class="badge b-ok">已过审</span></div>
+    <div class="row"><span class="name"><a href="../../弹窗标签推送方案/阶段产出/阶段产出规划.html">阶段产出规划</a><small>每份产出写什么、做到什么算完</small></span><span class="badge b-todo">已加入呈交版</span></div>
+  </div>
+
+  <div class="group">
+    <div class="gh"><span>支撑与规则</span><span>维护方</span></div>
+    <div class="row"><span class="name">分析文件 66 份<small>阶段产出正文里链接的数据分析与论证明细</small></span><span class="badge b-todo">agent</span></div>
+    <div class="row"><span class="name">工作原则、已定事项 15 条<small>「甲」是你定的原则；已定事项供审查逐条核对</small></span><span class="badge b-todo">主对话</span></div>
+    <div class="row"><span class="name">判例库 12 条、状态脚本<small>审查者的检查项与考试；状态按文件内容计算</small></span><span class="badge b-todo">主对话</span></div>
+    <div class="row muted"><span class="name">旧方案链（9/27–10/8）<small>02 方案稿、03 配置单等，10/8 你判定不交后归档</small></span><span class="badge b-todo">已停用</span></div>
+  </div>
+</section>
+
+<section>
+  <div class="sh"><span class="no">02</span><h2>版本：呈交版和阶段 5–8 各 5 版，阶段 1 共 7 版</h2></div>
+  <p class="lede">只算内容有实质变化的版本；每版的具体改动点「展开」。</p>
+
+  <div class="ver">
+    <div class="top"><span class="title">呈交版 V1<span class="cnt">5 版</span></span><span class="badge b-wait">待复审</span></div>
+    <div class="line"><span class="chip">初稿</span><span class="arr">→</span><span class="chip">去掉照搬的目标</span><span class="arr">→</span><span class="chip pass">复审修改 · 过审</span><span class="arr">→</span><span class="chip">验收修改</span><span class="arr">→</span><span class="chip last">重写主管要定的事</span></div>
+    <details><summary>展开：每版改了什么</summary><ol>
+      <li>10/9 10:11 初稿，按参考稿版面搭建。</li>
+      <li>10:32 删掉照搬来的商业目标与说法（你：「这能保证吗」「你怎么胡抄啊」）。</li>
+      <li>12:17 首屏写出能力与推荐，删掉人群内容方向表，高卡测算并入通用测算；12:19 过审。</li>
+      <li>13:53 衡量去掉「购买」，统一层级叫法，「压低上限」改为「设定上限」，计数统一。</li>
+      <li>14:02 按你 13:5x 的意见重写「主管要定的事」，去掉写给内部的话。</li>
+    </ol></details>
+  </div>
+
+  <div class="ver">
+    <div class="top"><span class="title">阶段 8 结论汇总<span class="cnt">5 版</span></span><span class="badge b-wait">待复审</span></div>
+    <div class="line"><span class="chip pass">10/8 过审</span><span class="arr">→</span><span class="chip">首屏重排</span><span class="arr">→</span><span class="chip">去活跃付费</span><span class="arr">→</span><span class="chip pass">复审修改 · 过审</span><span class="arr">→</span><span class="chip last">验收修改</span></div>
+    <details><summary>展开：每版改了什么</summary><ol>
+      <li>10/8 20:43 过审。</li>
+      <li>10/9 首屏改成 3 分钟读完，明细折叠。</li>
+      <li>去掉活跃、付费类目标与指标。</li>
+      <li>去掉二选一，推荐理由改写，合规按保守写，首屏点名待决；12:19 过审。</li>
+      <li>第三节标题、待决移出一项、计数、推进顺序只看能力事实。</li>
+    </ol></details>
+  </div>
+
+  <div class="ver">
+    <div class="top"><span class="title">阶段 5、6、7<span class="cnt">各 5 版</span></span><span class="badge b-wait">待复审</span></div>
+    <div class="line"><span class="chip pass">10/8 过审</span><span class="arr">→</span><span class="chip">首屏重排</span><span class="arr">→</span><span class="chip">去活跃付费</span><span class="arr">→</span><span class="chip pass">复审回溯 · 过审</span><span class="arr">→</span><span class="chip last">验收修改</span></div>
+    <details><summary>展开：每版改了什么</summary><ol>
+      <li>复审回溯：去掉「先看覆盖还是先看验证」，改为一条按层推进；场景 18 补建设项。</li>
+      <li>验收修改：去掉衡量里的「购买」「召回后回流」，计数同步。</li>
+    </ol></details>
+  </div>
+
+  <div class="ver">
+    <div class="top"><span class="title">阶段 1 需求分析<span class="cnt">7 版</span></span><span class="badge b-wait">待复审</span></div>
+    <div class="line"><span class="chip">核心论证一页稿</span><span class="arr">→</span><span class="chip">重开，15 个场景</span><span class="arr">→</span><span class="chip pass">补到 25 个 · 过审</span><span class="arr">→</span><span class="chip">首屏重排</span><span class="arr">→</span><span class="chip">去活跃付费</span><span class="arr">→</span><span class="chip">验收标准去购买</span><span class="arr">→</span><span class="chip last">衡量去购买</span></div>
+    <details><summary>展开：每版改了什么</summary><ol>
+      <li>10/8 上午「核心论证」一页稿；你 14:00、14:1x 指出流程缺失后停用。</li>
+      <li>14:19 重开为需求分析，15 个场景；16:17 按「需求往全面写」补到 25 个，当天过审。</li>
+      <li>10/9：首屏重排；标题去掉「提升活跃与付费」；验收标准和衡量层先后去掉「购买」。</li>
+    </ol></details>
+  </div>
+
+  <div class="ver">
+    <div class="top"><span class="title">阶段 2、3、4<span class="cnt">2–3 版</span></span><span class="badge b-ok">已过审</span></div>
+    <div class="line"><span class="chip pass">10/8 过审</span><span class="arr">→</span><span class="chip">首屏重排</span><span class="arr">→</span><span class="chip pass">去活跃付费 · 复核通过</span></div>
+    <details><summary>展开：说明</summary><ol>
+      <li>阶段 3 没有活跃付费内容，只改了首屏，共 2 版。</li>
+      <li>阶段 4 去活跃付费时删掉了「机会」一节。</li>
+      <li>三份都在 10/9 11:50 复核通过，这一轮没有改动。</li>
+    </ol></details>
+  </div>
+
+  <p class="note">规模口径：10/8 14:19 八个阶段开工以来，进展日志共 287 行（每轮一行）：执行者 131、规划者 63、审查者 49、主对话 29、设计者 15；审查者判「过审通过」共 11 次。</p>
+</section>
+
+<div class="todo">
+  <b>你现在能做的：等我通知</b>
+  <p>审查者过审、我核对完，就交你验收，不需要你现在回复。想先看也可以，<a href="../../归档/呈交版旧稿/弹窗标签推送方案_V1.html">呈交版</a>已基本稳定，审查者可能还会退回个别措辞。</p>
+</div>
+
+<p class="links">原文：<a href="2026-10-09_核心验收意见.html">核心验收意见</a>　·　<a href="../../过程记录/推进计划.md">推进计划</a>　·　<a href="../../过程记录/进展日志.md">进展日志</a>　·　<a href="../../规则与交接/已定事项.md">已定事项</a></p>
+</div></body></html>

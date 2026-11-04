@@ -1,0 +1,253 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style></head><body>
+<title>弹窗方案诊断</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --ground:#f0efec; --surface:#ffffff; --surface-2:#f7f6f3;
+    --ink:#191b1e; --ink-2:#484d53; --muted:#7d8289; --line:#dcdad5; --line-2:#e8e6e1;
+    --accent:#9a6f24; --accent-soft:#f1e7d3;
+    --dead:#a63f38; --dead-soft:#f2e0de;
+    --live:#3d6b58;
+    --serif:"Noto Serif SC",Georgia,serif;
+    --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Source Han Sans SC",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#131518; --surface:#1a1d21; --surface-2:#20242a;
+      --ink:#e9e8e4; --ink-2:#b7bbc0; --muted:#868c94; --line:#2d3238; --line-2:#262b31;
+      --accent:#d6ab5c; --accent-soft:#372d1b; --dead:#dd8078; --dead-soft:#38231f; --live:#74b096;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#131518; --surface:#1a1d21; --surface-2:#20242a;
+    --ink:#e9e8e4; --ink-2:#b7bbc0; --muted:#868c94; --line:#2d3238; --line-2:#262b31;
+    --accent:#d6ab5c; --accent-soft:#372d1b; --dead:#dd8078; --dead-soft:#38231f; --live:#74b096;
+  }
+
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--ground); color:var(--ink);
+    font-family:var(--sans); font-size:16px; line-height:1.75; -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:860px; margin:0 auto; padding:48px 26px 90px;}
+
+  .masthead{border-bottom:2px solid var(--ink); padding-bottom:18px; margin-bottom:32px;}
+  .kicker{font-family:var(--mono); font-size:11px; font-weight:500; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--accent); margin:0 0 12px;}
+  h1{font-family:var(--serif); font-weight:700; font-size:36px; line-height:1.25; margin:0 0 10px; letter-spacing:-.01em;}
+  .meta{font-family:var(--mono); font-size:11.5px; color:var(--muted); margin:0;}
+
+  .thesis{background:var(--surface); border-left:3px solid var(--accent); padding:22px 26px; margin:0 0 44px;}
+  .thesis p{margin:0; font-size:16.5px; line-height:1.7;}
+  .thesis strong{font-weight:600; background:var(--accent-soft); padding:1px 4px;}
+
+  section{margin:0 0 52px;}
+  section:last-child{margin-bottom:0;}
+  .sec-head{display:flex; align-items:baseline; gap:12px; border-bottom:1px solid var(--line);
+    padding-bottom:9px; margin-bottom:22px;}
+  .sec-num{font-family:var(--mono); font-size:12px; font-weight:600; color:var(--accent); letter-spacing:.1em;}
+  h2{font-family:var(--serif); font-weight:700; font-size:22px; margin:0;}
+
+  .item{padding:18px 0; border-bottom:1px solid var(--line-2);}
+  .item:first-of-type{border-top:1px solid var(--line);}
+  .item h3{font-family:var(--sans); font-size:16.5px; font-weight:650; margin:0 0 6px; line-height:1.5;}
+  .item h3 .idx{font-family:var(--mono); font-weight:600; color:var(--accent); margin-right:8px; font-size:14px;}
+  .item p{margin:0; font-size:15px; color:var(--ink-2);}
+  .item p + p{margin-top:7px;}
+  .item strong{color:var(--ink); font-weight:600;}
+
+  code,.coord{font-family:var(--mono); font-size:12.5px; font-weight:500; background:var(--surface-2);
+    border:1px solid var(--line-2); padding:1px 5px; border-radius:2px; color:var(--ink-2); white-space:nowrap;}
+  .q-coords{display:flex; flex-wrap:wrap; gap:5px; margin:0 0 7px;}
+  .risk{color:var(--dead); font-size:13.5px;}
+
+  .tablewrap{overflow-x:auto; background:var(--surface); border:1px solid var(--line); margin:0 0 12px;}
+  table{border-collapse:collapse; width:100%; min-width:560px; font-size:13.5px;}
+  th{text-align:left; font-family:var(--mono); font-size:11px; font-weight:600; color:var(--muted);
+    letter-spacing:.05em; padding:13px 13px 7px; border-bottom:1px solid var(--line); white-space:nowrap;}
+  th.n,td.n{text-align:right; font-variant-numeric:tabular-nums;}
+  td{padding:8px 13px; border-bottom:1px solid var(--line-2);}
+  td.n{font-family:var(--mono); font-size:13px;}
+  td .co{font-family:var(--mono); font-size:11px; color:var(--muted); display:block;}
+  .grp td{background:var(--surface-2); font-family:var(--mono); font-size:11px; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--accent); padding:7px 13px; font-weight:600;}
+  .sum td{border-top:2px solid var(--ink); border-bottom:none; font-weight:700; background:var(--surface-2);}
+  .bar{display:flex; height:8px; width:96px; background:var(--line-2); overflow:hidden;}
+  .bar i{display:block; height:100%;}
+  .bar .l{background:var(--live);} .bar .d{background:var(--dead);}
+  .vl{color:var(--live); font-weight:600;} .vd{color:var(--dead); font-weight:600;}
+  .note{font-size:13px; color:var(--muted); margin:0; line-height:1.65;}
+
+  .tier-label{display:inline-block; font-family:var(--mono); font-size:11px; font-weight:600;
+    letter-spacing:.12em; padding:3px 9px; margin:0 0 12px;}
+  .t-must{background:var(--dead-soft); color:var(--dead);}
+  .t-rest{background:var(--surface-2); color:var(--muted); border:1px solid var(--line);}
+  .rest{list-style:none; padding:0; margin:0; border-top:1px solid var(--line);}
+  .rest li{padding:11px 0; border-bottom:1px solid var(--line-2); font-size:14.5px; color:var(--ink-2);}
+  .rest li b{color:var(--ink); font-weight:600;}
+
+  .tree{list-style:none; padding:0; margin:0 0 14px; counter-reset:step;}
+  .tree li{display:grid; grid-template-columns:24px 1fr; gap:12px; align-items:baseline;
+    padding:10px 0; border-bottom:1px solid var(--line-2); font-size:15px;}
+  .tree li:first-child{border-top:1px solid var(--line);}
+  .tree li::before{counter-increment:step; content:counter(step); font-family:var(--mono); font-size:11.5px;
+    font-weight:600; color:var(--surface); background:var(--ink); width:20px; height:20px;
+    display:flex; align-items:center; justify-content:center;}
+  .tree b{font-weight:650;} .tree span{color:var(--muted); font-size:13.5px;}
+
+  .axes{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:1px;
+    background:var(--line); border:1px solid var(--line); margin:0;}
+  .axis{background:var(--surface); padding:16px 18px;}
+  .axis h4{font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--accent); margin:0 0 6px; font-weight:600;}
+  .axis p{margin:0; font-size:14px; color:var(--ink-2);}
+  .axis strong{color:var(--ink); font-weight:600;}
+
+  a{color:var(--accent);}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+  @media (max-width:600px){.wrap{padding:32px 16px 70px} h1{font-size:28px}}
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="kicker">活动弹窗规则 · 配置审读</p>
+    <h1>弹窗方案诊断</h1>
+    <p class="meta">2026-09-02 · 活动弹窗规则.xlsx（工作表1 A1:G101 / 工作表2 A1:AB86）+ VIP 卡别权益表</p>
+  </header>
+
+  <div class="thesis">
+    <p>问题不在排序，在于<strong>「总弹窗数量」把大部分排序位关掉了</strong>，而<strong>人群不互斥</strong>让权重替你做了人群决策。71 个排序位只有 24 个够得着，被关掉的恰好是差异化那部分。</p>
+  </div>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">A</span><h2>曝光账</h2></div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>配置块</th><th class="n">排序位</th><th class="n">总数量</th><th class="n">可曝光</th><th class="n">沉默</th><th></th></tr></thead>
+        <tbody>
+          <tr class="grp"><td colspan="6">工作表 1</td></tr>
+          <tr><td>新增<span class="co">数量 B27 · 排序 B29:B37</span></td><td class="n">9</td><td class="n">1</td><td class="n vl">1</td><td class="n vd">8</td><td><div class="bar"><i class="l" style="width:11%"></i><i class="d" style="width:89%"></i></div></td></tr>
+          <tr><td>回流<span class="co">数量 B43 · 排序 B45:B53</span></td><td class="n">9</td><td class="n">3</td><td class="n vl">3</td><td class="n vd">6</td><td><div class="bar"><i class="l" style="width:33%"></i><i class="d" style="width:67%"></i></div></td></tr>
+          <tr><td>未首储<span class="co">数量 B58 · 排序 B60:B69</span></td><td class="n">10</td><td class="n">3</td><td class="n vl">3</td><td class="n vd">7</td><td><div class="bar"><i class="l" style="width:30%"></i><i class="d" style="width:70%"></i></div></td></tr>
+
+          <tr class="grp"><td colspan="6">工作表 2 · 新用户</td></tr>
+          <tr><td>未首储 · 活动类<span class="co">数量 B23 · 排序 B25:B29 全填「空」</span></td><td class="n">0</td><td class="n">2</td><td class="n vl">0</td><td class="n">—</td><td><div class="bar"></div></td></tr>
+          <tr><td>未首储 · 储值类<span class="co">数量 B34 · 排序 B36</span></td><td class="n">1</td><td class="n">1</td><td class="n vl">1</td><td class="n">0</td><td><div class="bar"><i class="l" style="width:100%"></i></div></td></tr>
+          <tr><td>已首储 · 活动类<span class="co">数量 I23 · 排序 I25:I27</span></td><td class="n">3</td><td class="n">2</td><td class="n vl">2</td><td class="n vd">1</td><td><div class="bar"><i class="l" style="width:67%"></i><i class="d" style="width:33%"></i></div></td></tr>
+          <tr><td>已首储 · 储值类<span class="co">数量 I34 · 排序 I36:I37</span></td><td class="n">2</td><td class="n">1</td><td class="n vl">1</td><td class="n vd">1</td><td><div class="bar"><i class="l" style="width:50%"></i><i class="d" style="width:50%"></i></div></td></tr>
+
+          <tr class="grp"><td colspan="6">工作表 2 · 全部用户（三档卡别内容完全相同）</td></tr>
+          <tr><td>活动类 × 3 档<span class="co">数量 B46/I46/P46 · 排序 第 48–51 行</span></td><td class="n">4</td><td class="n">2</td><td class="n vl">2</td><td class="n vd">2</td><td><div class="bar"><i class="l" style="width:50%"></i><i class="d" style="width:50%"></i></div></td></tr>
+          <tr><td>储值类 × 3 档<span class="co">数量 B57/I57/P57 · 排序 第 59–63 行</span></td><td class="n">5</td><td class="n">1</td><td class="n vl">1</td><td class="n vd">4</td><td><div class="bar"><i class="l" style="width:20%"></i><i class="d" style="width:80%"></i></div></td></tr>
+
+          <tr class="grp"><td colspan="6">工作表 2 · 回流用户</td></tr>
+          <tr><td>轻回流 · 活动类<span class="co">数量 B69 · 排序 B71</span></td><td class="n">1</td><td class="n">2</td><td class="n vl">1</td><td class="n">0</td><td><div class="bar"><i class="l" style="width:100%"></i></div></td></tr>
+          <tr><td>回流 · 活动类<span class="co">数量 I69 · 排序 I71</span></td><td class="n">1</td><td class="n">2</td><td class="n vl">1</td><td class="n">0</td><td><div class="bar"><i class="l" style="width:100%"></i></div></td></tr>
+          <tr><td>轻回流 · 储值类<span class="co">数量 B80 · 排序 B82:B84</span></td><td class="n">3</td><td class="n">1</td><td class="n vl">1</td><td class="n vd">2</td><td><div class="bar"><i class="l" style="width:33%"></i><i class="d" style="width:67%"></i></div></td></tr>
+          <tr><td>回流 · 储值类<span class="co">数量 I80 · 排序 I82:I86</span></td><td class="n">5</td><td class="n">1</td><td class="n vl">1</td><td class="n vd">4</td><td><div class="bar"><i class="l" style="width:20%"></i><i class="d" style="width:80%"></i></div></td></tr>
+
+          <tr class="sum"><td>合计（三档卡别、工作表1 重复块各按实际条目计）</td><td class="n">71</td><td class="n">—</td><td class="n vl">24</td><td class="n vd">47</td><td><div class="bar"><i class="l" style="width:34%"></i><i class="d" style="width:66%"></i></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">前提：按「总数量 = 从第 1 位起按序取，取满就停」读。若口径不是这样，全表要重算——见 C 部分第 1 条。工作表1 第 73–101 行与前面完全重复，合计只算一次。</p>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">B</span><h2>三个判断</h2></div>
+
+    <div class="item">
+      <h3><span class="idx">01</span>人群不互斥，权重在替你做人群决策</h3>
+      <p>工作表2 第 2–14 行把付费状态、卡别、回流时长、破产状态四个层级并排放在一列，一个用户会同时命中好几行，表里没写弹哪个——于是权重决定了结果，而三套机制并存（工作表1 的 P0–P4 按内容性质、工作表2 的 P1–P5 按弹出顺序、外加权重字段），没人说得清哪套生效。</p>
+      <p>具体后果：工作表1 新增权重 <code>B26=2</code>、未首储 <code>B57=1</code>，所有新增用户按定义都是未首储，权重高的赢，所以未首储那块对新用户从不生效；而新增块 <code>B27=1</code>，新用户一次登入只看得到「登入签到礼」。<strong>改成互斥判定树后，权重可以整个删掉。</strong></p>
+    </div>
+
+    <div class="item">
+      <h3><span class="idx">02</span>卡别是终身累计，不适合单独当分层轴</h3>
+      <p>升级看的是累计储值 / 累计押注（银卡 1,000、金卡 5,000、黑卡 100,000），记录的是历史投入总量。两年前充 10 万、之后一年没付费的用户今天仍是黑卡。用它单独切储值类弹窗，等于用历史行为决定今天推什么包。</p>
+      <p>标签体系里已有更合适的信号：<strong>当月储值额小于上月 70% / 50% / 25%</strong> 这组衰减型标签。</p>
+    </div>
+
+    <div class="item">
+      <h3><span class="idx">03</span>1800 秒间隔可能让「单次 ≤ 3 次」实际变成 1 次</h3>
+      <p>工作表1 <code>C18</code> 单次 ≤ 3 次、<code>C19</code> 间隔 1800 秒。要凑满 3 次，用户得在线 60 分钟。所以还缺一个数：<strong>人均单次在线时长中位数</strong>。若低于 30 分钟，表的写法要变——不是每人群排 5–10 条，而是定「第 1 弹是什么」。</p>
+      <p>另外时机只有 5 个且全是位置 / 事件，「连败后弹安慰包」「金币低于 X 弹补充包」这类都做不了，只能改成离线圈人 + 下次进大厅命中。这让<strong>标签的最快更新频率</strong>成为必答题。</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">C</span><h2>建议的结构</h2></div>
+    <p class="note" style="margin-bottom:14px">自上而下第一个命中就落桶，一个用户任一时刻只属于一个桶，跨桶不需仲裁。</p>
+    <ol class="tree">
+      <li><div><b>破产中</b> <span>独立通道，不占普通额度</span></div></li>
+      <li><div><b>新注册未完成引导</b> <span>生涯一次</span></div></li>
+      <li><div><b>未首储</b> <span>不分卡别——首储只能靠买首储礼包解除</span></div></li>
+      <li><div><b>回流</b> <span>7 天 / 7–30 天 / &gt;30 天</span></div></li>
+      <li><div><b>常规在线</b> <span>再按下面两根轴切</span></div></li>
+    </ol>
+    <p class="note" style="margin-bottom:16px">第 3 步的位置要验一个数：<b>未首储用户里高卡占比多少？</b>如果不是长尾，它会挤掉高价值用户的高价包，顺序就得反过来。</p>
+    <div class="axes">
+      <div class="axis"><h4>轴一 · 卡别</h4><p>决定<strong>给他看多贵的包</strong>。终身累计刻度，变化慢，适合当价格带。</p></div>
+      <div class="axis"><h4>轴二 · 当月储值 / 衰减</h4><p>决定<strong>现在该不该给他看包</strong>。现成的价值下滑信号。</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">D</span><h2>要拿去问的</h2></div>
+
+    <span class="tier-label t-must">必须 · 不确认没法定稿</span>
+    <div class="item">
+      <div class="q-coords"><span class="coord">B27</span><span class="coord">C3</span><span class="coord">B29:B37</span><span class="coord">工作表1</span></div>
+      <h3>「总弹窗数量」是什么口径？新增用户只看得到「登入签到礼」，是有意的吗？</h3>
+      <p>数量 = 1 但排了 9 条。而 <code>C3</code> 的核心规则举例写的是「新增用户 · 首次返回大厅 · 弹出首充礼包」，可首充 / 首储礼包在工作表1 三个排序块里一次都没出现。</p>
+      <p class="risk">不问 → A 部分整张账要重算。</p>
+    </div>
+    <div class="item">
+      <div class="q-coords"><span class="coord">B25:B29</span><span class="coord">B23</span><span class="coord">工作表2</span></div>
+      <h3>未首储新用户的活动类五个位置全填「空」，是留空还是待填？</h3>
+      <p>数量填了 2，内容一个没有；同区块已首储那列填了 3 条。</p>
+      <p class="risk">不问 → 最重要的转化人群活动侧完全空白。</p>
+    </div>
+    <div class="item">
+      <div class="q-coords"><span class="coord">I86</span><span class="coord">I80</span><span class="coord">B82:B86</span><span class="coord">工作表2</span></div>
+      <h3>限时加码礼包已经写进表了（回流 · 储值类第 5 位）——以弹窗表为准还是以它自己后台为准？</h3>
+      <p>该块数量 = 1，所以它永远弹不出；轻回流那列则没有它。它后台自带准入、冷却、推播、排除 VIP 名单一整套，两套机制不该并存。</p>
+      <p class="risk">不问 → 要么重复弹同类礼包，要么给高 V 配的加码因后台排除 VIP 而全空。</p>
+    </div>
+    <div class="item">
+      <div class="q-coords"><span class="coord">B60</span><span class="coord">工作表1</span><span class="coord">VIP 表 · 月月抽列</span></div>
+      <h3>未首储第 1 位是「月月抽」，但普卡 / 银卡的月月抽权益是「-」。是有意引导升卡吗？</h3>
+      <p>月月抽从金卡才开始有。未首储人群若以普卡银卡为主，最高优先级弹窗指向的是他们参加不了的活动。</p>
+      <p class="risk">不问 → 三个可曝光位里最重要的那个是无效曝光。</p>
+    </div>
+    <div class="item">
+      <div class="q-coords"><span class="coord">第 59 行</span><span class="coord">B57/I57/P57</span><span class="coord">F8:F10</span><span class="coord">工作表2</span></div>
+      <h3>三档卡别储值类第 1 位都是首储礼包且数量都是 1——钻卡黑卡至尊卡也只弹首储礼包，是有意的吗？</h3>
+      <p>第 2–5 位的惊喜三选一、每日礼包、独享礼包、平台限量 / 专属礼包永远不弹。而总表 <code>F8:F10</code> 明确写了小 V / 中 V / 高 V 三种包型，意图没落到配置块。</p>
+      <p class="risk">不问 → 高价包完全没有曝光渠道。</p>
+    </div>
+
+    <span class="tier-label t-rest" style="margin-top:28px">建议 · 影响效果不影响定稿</span>
+    <ul class="rest">
+      <li><b>第 48–51 / 59–63 行</b>：三档卡别内容、时机、次数、冷却完全一致，是占位还是就打算一致？若一致，三列可以先合并。</li>
+      <li><b>B45/I45/P45 = 1，B22/I22 = 10/20，B68/I68 = 30/40</b>：每个人都同时是「全部用户」，权重 1 是有意做兜底层吗？表里没写这句话，开发可能理解成别的。</li>
+      <li><b>工作表1 权重 1/2/3 vs 工作表2 权重 1/10/20/30/40</b>：两张表是同一套系统的两份配置，还是一份是旧版？两表的人群划分也不一致。</li>
+      <li><b>H8:H10 = VIP 特权活动，但 H2 表头是「储值(P3)」</b>：列的语义是硬约束吗？若是，活动会被当储值类走储值的频次规则。</li>
+      <li><b>破产礼包 / 发财金</b>：总表 <code>E14/F14</code> 和全局规则 <code>C19</code> 都提到了，但所有排序块的时机列里「破产」一次没出现，也没有这两个内容。走另一套配置吗？</li>
+    </ul>
+
+    <span class="tier-label t-rest" style="margin-top:28px">可选 · 整理时顺手问</span>
+    <ul class="rest">
+      <li><b>工作表1 第 73–101 行</b>与第 25–53 行完全重复，版本残留还是有区分意图？</li>
+      <li><b>工作表1 B21</b> 只有一个顿号，类型名漏填，规则是 24 小时 ≤ 2 次。本来指什么类型？</li>
+      <li><b>工作表2 C11</b> 回流 7 天标注「暂无标签」。新建标签还是并到轻回流？</li>
+      <li><b>储值类时机全部只有「返回大厅」</b>：是有意等用户玩过一局再推吗？若是，没进过游戏的新用户看不到首储礼包。</li>
+    </ul>
+  </section>
+
+</div>
+
+</body></html>

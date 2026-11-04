@@ -1,0 +1,601 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>数据看板判断题</title>
+<style>
+:root{--ground:#f4f3f0;--surface:#fff;--ink:#1b1d21;--ink-2:#3d4248;--muted:#4a4f56;--line:#e2e0db;--accent:#9a6f24;
+--yes:#2f6b52;--no:#a8382b;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#c9cdd2;--muted:#adb3ba;--line:#2e3339;--accent:#d6ab5c;
+--yes:#7dbb9c;--no:#e48e7f;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#c9cdd2;--muted:#adb3ba;--line:#2e3339;--accent:#d6ab5c;
+--yes:#7dbb9c;--no:#e48e7f;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.8}
+a{color:var(--accent)}
+.wrap{max-width:1600px;margin:0 auto;padding:48px 40px 96px}
+
+/* 页首 */
+.meta{font-size:14px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.5;margin:0 0 14px}
+.sub{font-size:16px;color:var(--ink);margin:0 0 4px}
+.legend{font-size:14px;color:var(--muted);margin:0}
+
+/* 节标题 */
+h2{font-family:var(--serif);font-size:21px;line-height:1.5;margin:56px 0 20px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:14px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+
+/* 标准卡片 */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:26px 32px 22px;margin:0 0 32px}
+.tag{font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.04em;margin:0 0 6px}
+.tag span{font-weight:400;color:var(--muted);letter-spacing:0;margin-left:8px}
+.std{font-size:18px;font-weight:700;line-height:1.65;margin:0;display:flex;gap:10px}
+.std .n{color:var(--accent);flex:none;width:14px}
+.std .eg{display:block;font-size:15px;font-weight:400;color:var(--ink-2);margin-top:4px}
+.info{font-size:14px;color:var(--muted);margin:6px 0 0 24px;line-height:1.7}
+.info b{font-weight:600;color:var(--ink-2)}
+.info i{font-style:normal;margin:0 10px;color:var(--line)}
+
+.cmp{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;margin:22px 0 0}
+.cmp h3{font-size:14px;font-weight:700;color:var(--muted);margin:0 0 10px;letter-spacing:.02em}
+ul.ind{margin:0;padding:0;list-style:none}
+ul.ind li{margin:0 0 12px;color:var(--ink-2)} ul.ind li:last-child{margin-bottom:0}
+ul.ind b{color:var(--ink)}
+ul.ind a{font-size:14px;white-space:nowrap;margin-left:4px}
+.none{color:var(--muted)}
+.uncheck{font-size:13px;font-weight:700;color:var(--no);white-space:nowrap}
+figure{margin:0 0 12px}
+figure img{display:block;max-width:100%;height:auto;border:1px solid var(--line);border-radius:4px;background:#fff}
+figcaption{font-size:13px;color:var(--muted);margin-top:4px;line-height:1.5}
+.txt{color:var(--ink-2);margin:0}
+.txt q{quotes:"「" "」"}
+
+.verdict{display:flex;align-items:center;justify-content:space-between;gap:32px;margin:24px 0 0;padding:16px 0 0;border-top:1px solid var(--line)}
+.ai{color:var(--ink-2);flex:1;min-width:0}
+.ai .lb{font-weight:600;color:var(--ink)}
+.ai b{font-size:17px;margin:0 2px}
+.ai b.yes{color:var(--yes)} .ai b.no{color:var(--no)}
+.you{flex:none;display:flex;align-items:center;gap:10px;font-size:15px;color:var(--ink)}
+.you .lb{font-weight:600}
+.you .opt{font-size:14px;color:var(--muted)}
+.dk{display:inline-block;width:150px;height:36px;border:1px solid var(--line);border-radius:4px}
+
+.note{font-size:14px;color:var(--muted);margin:-8px 0 0}
+.lead{font-size:14px;color:var(--muted);margin:-8px 0 20px}
+
+/* 参考案例 */
+.cases{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:start}
+.case{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:24px 28px}
+.case .h{font-size:17px;font-weight:700;margin:0 0 12px}
+.case dl{margin:0}
+.case dt{font-size:14px;font-weight:600;color:var(--muted);margin:0}
+.case dd{margin:0 0 12px;color:var(--ink-2)}
+.case dd.said{color:var(--ink);font-weight:600}
+.case figure{margin:16px 0 0}
+
+/* 怎么回 */
+.reply{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 28px;font-size:16px}
+.reply b{color:var(--accent)}
+.links{font-size:14px;color:var(--muted);margin-top:40px}
+</style><style id="dkjudge-css">
+.wrap{position:relative}
+.jstat{position:absolute;top:44px;right:40px;font-size:14px;line-height:1.8;color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:3px 12px}
+.jstat b{font-size:15px;color:var(--ink);margin:0 1px}
+.jstat.all b{color:var(--yes)}
+.jstat .d{color:var(--yes);font-weight:600}
+.verdict{flex-wrap:wrap;row-gap:12px}
+.you .jb{font-family:inherit;font-size:15px;line-height:1.2;padding:7px 18px;border:1px solid var(--line);border-radius:4px;background:var(--surface);color:var(--ink);cursor:pointer}
+.you .jb:hover{border-color:var(--muted)}
+.you .jb.on{font-weight:700;color:var(--surface)}
+.you .jb.on[data-v="同意"]{background:var(--yes);border-color:var(--yes)}
+.you .jb.on[data-v="不同意"]{background:var(--no);border-color:var(--no)}
+.why{flex:1 0 100%}
+.why[hidden]{display:none}
+.why input{display:block;width:100%;font-family:inherit;font-size:15px;line-height:1.5;padding:7px 12px;border:1px solid var(--line);border-left:3px solid var(--no);border-radius:4px;background:var(--surface);color:var(--ink)}
+.jend{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:22px 28px 20px}
+.jend .jlb{display:block;font-weight:600;margin:0 0 8px}
+.jend textarea{display:block;width:100%;min-height:180px;font-family:inherit;font-size:16px;line-height:1.7;padding:10px 14px;border:1px solid var(--line);border-radius:4px;background:var(--surface);color:var(--ink);resize:vertical}
+.jend textarea.jout{min-height:110px;margin-top:12px;font-size:15px}
+.jend textarea[hidden]{display:none}
+.jrow{display:flex;align-items:center;flex-wrap:wrap;gap:24px;margin:16px 0 0}
+.jdone{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:600;cursor:pointer}
+.jdone input{width:18px;height:18px;margin:0;accent-color:var(--yes);cursor:pointer}
+.jcopy{font-family:inherit;font-size:14px;line-height:1.2;padding:7px 14px;border:1px solid var(--line);border-radius:4px;background:var(--surface);color:var(--ink-2);cursor:pointer}
+.jcopy:hover{border-color:var(--muted)}
+.jmsg{font-size:14px;color:var(--yes)}
+.jnote{font-size:14px;color:var(--muted);margin:12px 0 0}
+</style></head><body><div class="wrap">
+<div class="jstat" id="dk-stat" aria-live="polite">已判 <b id="dk-x">0</b> / 14 条<span class="d" id="dk-statdone" hidden> · 判完了</span></div>
+
+<p class="meta">弹窗标签推送系统 · 2026-10-16 · 第 3 份产出 · 判断题</p>
+<h1>第 3 份｜运营每天看推送和弹窗的数据，这个数据看板够不够用？</h1>
+<p class="sub">按下面 14 条标准逐条看 AI 评审的结论（每条只答「符合」或「不符合」），你只判同意或不同意；也可补标准里缺的条目。</p>
+<p class="legend">「游戏外推送」＝推播、短信、Facebook、LINE；「游戏内推送」＝弹窗、快显（你 10/13 定的两层）。「主管计划」＝你 10/10 转来的主管产品计划原文。</p>
+
+<h2><span class="no">01</span>判断标准：6 条，先游戏外、再游戏内，最后看数据可信与每天怎么拿到</h2>
+
+<!-- 标准 1 -->
+<section class="card">
+  <p class="tag">功能覆盖<span>游戏外推送：发送量、到达率与发送后的登录、付费</span></p>
+  <p class="std"><span class="n">1</span><span>推播、短信、Facebook、LINE 各自的发送、到达、到达率、点击在一张表里看齐；各方式另有发送对象在设定时长内的登录人数，储值类推送另有发送后 24 小时内的付费人数与金额，并标明只作后台数据</span></p>
+  <p class="info"><b>使用者</b>　推送运营<i>|</i><b>出处</b>　你定的：主管计划「增加數據情況（發送量，到達率等）」；你 10/16 选乙：「发送后登录扩到推播、Facebook、LINE，储值类推送加发送后 24 小时内付费人数、金额，只作后台数据」；业内做法：极光、OneSignal、Braze</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>极光（EngageLab）</b>：推送统计列发送、送达、展示、点击；送达率＝送达÷发送，点击率＝点击÷送达 <a href="https://www.engagelab.com/zh_CN/docs/app-push/console/stat/push-statistics">极光文档</a></li>
+        <li><b>OneSignal</b>：每条推送报告列目标人数、发送、送达、设备确认收到、点击、失败、退订、被频率上限跳过 <a href="https://documentation.onesignal.com/docs/push-notification-message-reports">OneSignal 文档</a></li>
+        <li><b>Braze</b>：每条推送可设转化事件，可选「打开 App」「购买」或自定义事件；推送后在设定时限内（最长 30 天）发生即计入 <a href="https://www.braze.com/docs/user_guide/messaging/messaging_fundamentals/conversion_events/">Braze 文档</a></li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第3份_1_按推送方式.jpg" width="808" alt="按推送方式"><figcaption>数据看板 › 概览 ›「按推送方式」（游戏外部分）</figcaption></figure>
+      <ul class="ind">
+        <li><b>发送、到达、到达率、点击</b>：推播（Android、iOS 分两行）、短信、Facebook、LINE 在「按推送方式」一张表里</li>
+        <li><b>发送后登录</b>：表头写「仅短信」；短信 5,340（占发送 27.4%），推播、Facebook、LINE 为「—」；登录统计时长可选 1–120 小时</li>
+        <li><b>储值类推送发送后 24 小时内的付费人数与金额</b>：<span class="none">我们这里没有</span>；看板「口径说明」的「不统计的」一行写「付费金额、活跃、回流不作指标」</li>
+        <li><b>「只作后台数据」的标注</b>：<span class="none">我们这里没有</span></li></ul></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-1"><span class="lb">AI 评审：</span><b>否</b>　发送后登录只有短信有数，储值类推送付费人数与金额没有，也没标只作后台数据</div>
+    <div class="you" id="dk-1" data-k="ai-1"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-1" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 1 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 2 -->
+<section class="card">
+  <p class="tag">功能覆盖<span>游戏外推送：iOS 推播的到达</span></p>
+  <p class="std"><span class="n">2</span><span>推播的到达、到达率包含 iOS 设备，不只算 Android</span></p>
+  <p class="info"><b>使用者</b>　推送运营<i>|</i><b>出处</b>　你定的：主管计划「到達率」；业内做法：OneSignal</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>OneSignal</b>：App 内加装通知服务扩展（Notification Service Extension）后，iOS 设备收到推播即回报，报告单列「设备确认收到」；不装则 iOS 收到也不回报；付费版功能 <a href="https://documentation.onesignal.com/docs/confirmed-deliveries">OneSignal 文档</a></li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第3份_2_iOS推播.jpg" width="808" alt="推播 iOS 到达"><figcaption>数据看板 › 概览 ›「按推送方式」</figcaption></figure>
+      <p class="txt none">我们这里没有：推播 · iOS 的到达写「该渠道不回传」，到达率只算 Android，表头注明「不含 iOS 推播」。</p></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-2"><span class="lb">AI 评审：</span><b>否</b>　iOS到达格「该渠道不回传」，到达率只算Android；缺iOS到达回传</div>
+    <div class="you" id="dk-2" data-k="ai-2"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-2" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 2 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 3 -->
+<section class="card">
+  <p class="tag">功能覆盖<span>游戏内推送：弹窗、快显有自己的入口</span></p>
+  <p class="std"><span class="n">3</span><span>弹窗、快显的曝光、点击有单独一页，能按位置、按每条规则看，已下架、已删除和改版前的数据照常可查</span></p>
+  <p class="info"><b>使用者</b>　弹窗运营<i>|</i><b>出处</b>　你定的：已定：弹窗看曝光、点击，游戏内、游戏外分两层；你 10/15「推送系统弹窗的数据在哪里看？」「版本更新后，仍需保留旧版本的弹窗数据」；业内做法：Braze</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>Braze</b>：站内信单独出报告，列曝光人数、曝光次数、正文点击、按钮 1 与按钮 2 各自点击、关闭次数、转化 <a href="https://www.braze.com/docs/user_guide/message_building_by_channel/in-app_messages/reporting/">Braze 文档</a></li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第3份_3_规则与快显列表.jpg" width="834" alt="规则与快显列表"><figcaption>数据看板 › 游戏内推送数据 ›「规则与快显列表」</figcaption></figure>
+      <p class="txt">侧栏「数据看板」下单列「游戏内推送数据」；页上另有位置汇总、按日趋势（标出改版、发版、上限改动）、按客户端版本拆分；已删除规则在「规则状态」选「已删除」可见。</p></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-3"><span class="lb">AI 评审：</span><b>是</b>　页12a按位置、规则列曝光点击；下架行数据保留，删除可筛，可选旧版本</div>
+    <div class="you" id="dk-3" data-k="ai-3"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-3" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 3 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 4 -->
+<section class="card">
+  <p class="tag">功能覆盖<span>游戏内推送：点击之后</span></p>
+  <p class="std"><span class="n">4</span><span>每条弹窗规则能看到点击后 24 小时内领取、购买的人数与次数</span></p>
+  <p class="info"><b>使用者</b>　弹窗运营<i>|</i><b>出处</b>　你定的：10/16「弹窗点击后的领取、购买列入数据采集需求」；业内做法：Braze、Firebase</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>Braze</b>：站内信报告列看过后完成指定转化事件（如购买）的次数与转化率 <a href="https://www.braze.com/docs/user_guide/message_building_by_channel/in-app_messages/reporting/">Braze 文档</a></li>
+        <li><b>Firebase</b>：站内信活动可选一个转化事件，统计带来转化的曝光数 <a href="https://firebase.google.com/docs/in-app-messaging/compose-campaign">Firebase 文档</a></li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第3份_4_领取购买.jpg" width="808" alt="单条弹窗规则漏斗"><figcaption>数据看板 › 单条弹窗规则数据 › 漏斗</figcaption></figure>
+      <p class="txt">漏斗末行「点击后 24 小时内领取、购买」，按记录里的「来源弹窗规则」计；从商店等其他入口的购买不计入。</p></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-4"><span class="lb">AI 评审：</span><b>否</b>　页14漏斗末行领取、购买合并为520人/548次，看不到各自人数次数</div>
+    <div class="you" id="dk-4" data-k="ai-4"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-4" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 4 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 5 -->
+<section class="card">
+  <p class="tag">事实与依据<span>缺数、未满当场标出</span></p>
+  <p class="std"><span class="n">5</span><span>拿不到、记录不全或统计窗口未满的数，在出现的位置当场标出，不估算</span></p>
+  <p class="info"><b>使用者</b>　推送运营、弹窗运营<i>|</i><b>出处</b>　你定的：你 10/10「全都有记录，不管是推播还是弹窗。但可能会有不全的地方」；业内做法：极光、OneSignal</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>极光（EngageLab）</b>：送达、展示、点击只统计发送后 5 天，之后的不计入 <a href="https://www.engagelab.com/zh_CN/docs/app-push/console/stat/push-statistics">极光文档</a></li>
+        <li><b>OneSignal</b>：报告单列「尚未送达」（排队或在途）；「退订」写明是发送时已失效，不是本条造成 <a href="https://documentation.onesignal.com/docs/push-notification-message-reports">OneSignal 文档</a></li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第3份_5_缺数与窗口未满.jpg" width="808" alt="关键数字与缺数提示"><figcaption>数据看板 › 概览 › 关键数字</figcaption></figure>
+      <p class="txt">关键数字标「含窗口未满」，趋势中未满日期画虚线；缺数一行写明哪天哪种方式没回传；表格里拿不到的格写「该渠道不回传」「无回执」「低于统计门槛」。</p></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-5"><span class="lb">AI 评审：</span><b>否</b>　页14「点击后24小时内」行与按推送方式表未标窗口未满，只概览卡有标</div>
+    <div class="you" id="dk-5" data-k="ai-5"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-5" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 5 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 6 -->
+<section class="card">
+  <p class="tag">功能覆盖<span>每天怎么拿到：不用天天导出、盯盘</span></p>
+  <p class="std"><span class="n">6</span><span>日报定时发到运营邮箱，指标异常（如游戏发版后弹窗曝光为 0）主动提醒</span></p>
+  <p class="info"><b>使用者</b>　推送运营、弹窗运营、运营负责人<i>|</i><b>出处</b>　你 10/15「版本更新后……可能会出问题」；业内做法：Braze</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>Braze</b>：报表可设每隔几天、几周、几月定时发送，邮件附 CSV 下载链接 <a href="https://www.braze.com/docs/user_guide/analytics/reports/engagement_reports">Braze 文档</a></li>
+        <li><b>Braze</b>：活动告警：发送量超出设定的上下限时，发邮件或经 webhook 推到 Slack <a href="https://braze.com/docs/user_guide/messaging/campaigns/manage_campaigns/campaign_alerts/">Braze 文档</a></li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第3份_6a_告警条.jpg" width="808" alt="告警条"><figcaption>数据看板 › 概览 › 顶部告警条</figcaption></figure>
+      <figure><img src="图/2026-10-16_判断题新格式/第3份_6b_报表订阅.jpg" width="808" alt="报表订阅"><figcaption>数据看板 › 告警与报表 › 报表订阅</figcaption></figure>
+      <p class="txt">日报每天 09:00、周报每周一 09:00 发邮件；告警按预设规则检测，后台显示告警条并发邮件，可设值班人。</p></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-6"><span class="lb">AI 评审：</span><b>是</b>　页12d日报每天09:00发运营；告警规则含发版后曝光0，有收件人与值班</div>
+    <div class="you" id="dk-6" data-k="ai-6"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-6" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 6 不同意的理由"></div>
+  </div>
+</section>
+
+<p class="note">业内做法都已打开官方文档核对。</p>
+
+<h2><span class="no">02</span>按评审维度补齐的标准：8 条</h2>
+<p class="lead">按评审维度表补齐上面没覆盖到的维度；每条小标前半是所属维度。</p>
+
+<!-- 标准 7 -->
+<section class="card">
+  <p class="tag">信息结构与主次<span>关键数字在前，拆分在后</span></p>
+  <p class="std"><span class="n">7</span><span>第一屏先给各推送方式的关键数字及与上一周期的比较，按人群、发送小时、跳转类型的拆分和明细放在其下</span></p>
+  <p class="info"><b>看哪里</b>　「概览」上半与「游戏外推送数据」下半<i>|</i><b>出处</b>　写作标准：「树状结构：最上层条目最少、信息价值最高」；业内做法：NN/g 启发式第 8 条</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>NN/g 启发式第 8 条「美观与极简」</b>：界面只放相关、常用的信息；每多一个元素，就削弱重要内容的可见度 <a href="https://www.nngroup.com/articles/ten-usability-heuristics/">NN/g 文章</a></li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第3份_补_概览上半.jpg" width="808" alt="概览上半"><figcaption>数据看板 › 概览（上半）</figcaption></figure>
+      <figure><img src="图/2026-10-16_判断题新格式/第3份_补_游戏外下半.jpg" width="808" alt="游戏外推送数据下半"><figcaption>数据看板 › 游戏外推送数据（下半）</figcaption></figure>
+      <ul class="ind">
+        <li><b>概览自上而下</b>：告警条 → 日期与筛选 →「今日／所选期间」→ 关键数字（游戏外、游戏内各 5 格，带较上一周期）→ 按日趋势 → 按推送方式 → 五类人群对比 → 表现最好与最差</li>
+        <li><b>游戏外推送数据</b>：按推送方式 → 按人群；按发送小时、按跳转类型、拦下与未送达原因、推送明细四块折叠，标题行写一句摘要</li></ul></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-7"><span class="lb">AI 评审：</span><b>是</b>　概览先给两层关键数字和较上一周期，人群、小时、跳转拆分都在其下</div>
+    <div class="you" id="dk-7" data-k="ai-7"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-7" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 7 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 8 -->
+<section class="card">
+  <p class="tag">状态与防错<span>无数据、查询失败时写明并给操作</span></p>
+  <p class="std"><span class="n">8</span><span>筛选后没有数据或查询失败时，图表与表格处写明是哪一种情况，并给出改筛选或重试的操作</span></p>
+  <p class="info"><b>看哪里</b>　概览、游戏外推送数据、游戏内推送数据各图表与表格<i>|</i><b>出处</b>　业内做法：NN/g 启发式第 1、9 条</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>NN/g 启发式第 1 条「系统状态可见」</b>：随时让使用者知道系统处在什么状态，及时给出反馈 <a href="https://www.nngroup.com/articles/ten-usability-heuristics/">NN/g 文章</a></li>
+        <li><b>NN/g 启发式第 9 条「错误信息」</b>：用平实的话说清问题在哪，并给出解决办法 <a href="https://www.nngroup.com/articles/ten-usability-heuristics/">NN/g 文章</a></li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第3份_补_缺数说明.jpg" width="808" alt="按推送方式表下说明"><figcaption>概览 ›「按推送方式」表下的说明</figcaption></figure>
+      <figure><img src="图/2026-10-16_判断题新格式/第3份_补_已下架行.jpg" width="808" alt="已下架规则一行"><figcaption>游戏内推送数据 ›「规则与快显列表」已下架一行</figcaption></figure>
+      <ul class="ind">
+        <li><b>已画的情况</b>：拿不到的格写「该渠道不回传」「无回执」「低于统计门槛」「不适用」并在表下解释；已下架规则写「所选期间无曝光；数据保留，可查上架期间」；没有发送的格写「未发送」；发送少于 500 的小时置灰写「样本不足」；顶部未处理告警条</li>
+        <li><b>没画的情况</b>：筛选后整块没有数据、查询失败或超时，页上与「其他界面状态」里都没有对应画面</li></ul></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-8"><span class="lb">AI 评审：</span><b>否</b>　只画了单格缺数，整块无数据和查询失败都没画，也没有改筛选或重试</div>
+    <div class="you" id="dk-8" data-k="ai-8"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-8" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 8 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 9 -->
+<section class="card">
+  <p class="tag">视觉完成度<span>设计是否粗糙，数值列对齐</span></p>
+  <p class="std"><span class="n">9</span><span>按视觉完成度八个检查点逐项看没有不符合，其中表格数值列右对齐、同一指标小数位一致</span></p>
+  <p class="info"><b>看哪里</b>　概览、游戏外推送数据、游戏内推送数据整页，重点看各表格数值列<i>|</i><b>出处</b>　你定的：原型是否粗糙要判（10/16）；业内做法：Ant Design、NN/g</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做（八个检查点判「是」的条件）</h3>
+      <ul class="ind">
+        <li><b>对齐</b>：同一区块的文字共用一个左侧起点；表单标签按冒号对齐；数字取相同位数并右对齐 <a href="https://ant.design/docs/spec/alignment-cn">Ant Design 文档</a></li>
+        <li><b>间距分级</b>：关系越近间距越小；组内、组间、块间分三档（纵向 8／16／24px），全页一致 <a href="https://ant.design/docs/spec/proximity-cn">Ant Design 文档</a></li>
+        <li><b>字号与字重层级</b>：页标题、区块标题、字段名、正文、辅助说明各一级，一眼看得出先看哪里 <a href="https://www.nngroup.com/articles/principles-visual-design/">NN/g 文章</a></li>
+        <li><b>对比</b>：主操作与次要操作、必填与选填、可用与禁用，外观上分得出 <a href="https://www.nngroup.com/articles/principles-visual-design/">NN/g 文章</a></li>
+        <li><b>组件一致</b>：同一种控件全稿一个样式和用法，并与现有后台（Element UI 风格）一致；同一操作用同一个词 <a href="https://ant.design/docs/spec/repetition-cn">Ant Design 文档</a> <a href="https://www.nngroup.com/articles/ten-usability-heuristics/">NN/g 启发式第 4 条</a></li>
+        <li><b>颜色与装饰</b>：一色一义、全稿固定；没有不承载信息的边框、底色、图标 <a href="https://www.nngroup.com/articles/ten-usability-heuristics/">NN/g 启发式第 8 条</a></li>
+        <li><b>示例数据</b>：真实形态的示例值，全稿前后一致；没有「xxx」「123」这类占位（项目内：原型任务说明）</li>
+        <li><b>基础排版</b>：文字不截断、不溢出、不互相遮挡；折行在自然停顿处；并列几行有符号（项目内：你 10/12「这也太粗糙了吧」）</li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第3份_补_概览整页.jpg" width="808" alt="概览整页"><figcaption>数据看板 › 概览 · 整页</figcaption></figure>
+      <figure><img src="图/2026-10-16_判断题新格式/第3份_补_游戏内整页.jpg" width="850" alt="游戏内推送数据整页"><figcaption>数据看板 › 游戏内推送数据 · 整页（游戏外推送数据见第 7 条下图）</figcaption></figure>
+      <ul class="ind">
+        <li><b>对齐</b>：各表数值列（发送、到达、到达率、点击、点击率）与表头；关键数字格内的数字与「较上一周期」</li>
+        <li><b>间距分级</b>：关键数字两行之间、各区块之间、表格行高；「表现最好与最差」两张小卡内各行</li>
+        <li><b>字号与字重层级</b>：区块标题、关键数字大字、表头、表下灰字说明</li>
+        <li><b>对比</b>：「导出 Excel」与筛选控件；合计行与普通行；告警条与其他区块</li>
+        <li><b>组件一致</b>：三页的日期筛选、下拉、页签、表格样式；「查看数据」链接</li>
+        <li><b>颜色与装饰</b>：告警条红底、橙色「含窗口未满」、趋势图虚线、黄字显示失败率、按客户端版本表的红色一行</li>
+        <li><b>示例数据</b>：发送、曝光、点击数在概览与各页合计、位置汇总合计之间对得上；规则名与 ID</li>
+        <li><b>基础排版</b>：「规则与快显列表」最右「操作」列与窗口右缘；「表现最好与最差」标题折行；各表下两行灰字</li></ul></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-9"><span class="lb">AI 评审：</span><b>否</b>　「表现最好与最／差」断行，规则列表伸出右缘截掉按钮，橙色一色多义</div>
+    <div class="you" id="dk-9" data-k="ai-9"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-9" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 9 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 10 -->
+<section class="card">
+  <p class="tag">改动可辨<span>页首写明新页面及取代的报表</span></p>
+  <p class="std"><span class="n">10</span><span>页首写明它是新页面，并写出它取代或合并了哪几处现有报表（推播报表、数据平台的短信数据等）</span></p>
+  <p class="info"><b>看哪里</b>　各页页眉说明<i>|</i><b>出处</b>　写作标准：「写清是现状还是改后」；原型任务说明</p>
+  <div class="cmp">
+    <div><h3>依据的标准怎么写</h3>
+      <ul class="ind">
+        <li><b>写作标准</b>：写清是现状还是改后——现状句写「现在」，做法句用「新建、加、改为」或写「改后」</li>
+        <li><b>原型任务说明</b>：现有页面的改动标「新增」「改」；交付时说得出和现状比改了什么</li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第3份_补_页眉.jpg" width="661" alt="概览页眉"><figcaption>概览、游戏外推送数据 · 页眉</figcaption></figure>
+      <figure><img src="图/2026-10-16_判断题新格式/第3份_补_下半标题.jpg" width="661" alt="游戏外推送数据标题"><figcaption>游戏外推送数据 · 标题</figcaption></figure>
+      <figure><img src="图/2026-10-16_判断题新格式/第3份_补_游戏内页眉.jpg" width="661" alt="游戏内推送数据页眉"><figcaption>游戏内推送数据 · 页眉</figcaption></figure>
+      <p class="txt">概览页眉写「新页面」和现状（推播报表没有到达；短信数据在数据平台；Facebook、LINE 与快显在现有后台没有报表）；游戏外推送数据标题写「原三个页签合并为一页」；游戏内推送数据页眉写「新页面」，没写取代哪处现有报表。</p></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-10"><span class="lb">AI 评审：</span><b>否</b>　游戏内推送数据页眉只写新页面，概览也没明说取代哪几处现有报表</div>
+    <div class="you" id="dk-10" data-k="ai-10"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-10" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 10 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 11 -->
+<section class="card">
+  <p class="tag">方向一致<span>游戏外、游戏内分开呈现</span></p>
+  <p class="std"><span class="n">11</span><span>游戏外推送（推播、短信、Facebook、LINE）与游戏内推送（弹窗、快显）在看板上分两处呈现，没有放进同一张表合计</span></p>
+  <p class="info"><b>看哪里</b>　「游戏外推送数据」与「游戏内推送数据」的分工；「概览」<i>|</i><b>出处</b>　你定的：已定事项「推送分两层，不能混在一起说」</p>
+  <div class="cmp">
+    <div><h3>依据的标准怎么写</h3>
+      <ul class="ind">
+        <li><b>你定的</b>（已定事项「推送分两层，不能混在一起说」）：游戏内（弹窗、快显，玩家在游戏里才看得到，数据从曝光开始）与游戏外（推播、短信、Facebook、LINE，数据看发送、到达、点击）；写「推送」时要说清是哪一层；后台里两层分开列</li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第3份_补_按推送方式全表.jpg" width="808" alt="按推送方式全表"><figcaption>概览 ›「按推送方式」全表</figcaption></figure>
+      <ul class="ind">
+        <li><b>侧栏</b>：「游戏外推送数据」「游戏内推送数据」各一页</li>
+        <li><b>概览关键数字</b>：游戏外、游戏内各一行，分别从发送、从曝光算起</li>
+        <li><b>概览「按推送方式」</b>：一张表分两段（游戏外推送 · 从发送算起；游戏内推送 · 从曝光算起），点击率表头写「外：点击÷发送　内：点击÷曝光」，表内没有合计行</li>
+        <li><b>按日趋势</b>：游戏内、游戏外两条线画在同一张图</li>
+        <li><b>五类人群对比</b>：游戏外、游戏内各两列</li></ul></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-11"><span class="lb">AI 评审：</span><b>是</b>　两层各有一页；概览同表分两段、无合计行，趋势图两条线不相加</div>
+    <div class="you" id="dk-11" data-k="ai-11"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-11" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 11 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 12 -->
+<section class="card">
+  <p class="tag">措辞与指代<span>比例写明分子、分母和窗口</span></p>
+  <p class="std"><span class="n">12</span><span>看板上每个比例指标（到达率、点击率等）在页上写明分子、分母和统计窗口</span></p>
+  <p class="info"><b>看哪里</b>　各指标名与表头<i>|</i><b>出处</b>　写作标准：「每个比例标明分母，分母写进数字本身的标签」</p>
+  <div class="cmp">
+    <div><h3>依据的标准怎么写</h3>
+      <ul class="ind">
+        <li><b>写作标准</b>：每个比例标明分母，分母写进数字本身的标签；换分母时比较的两边一起换；摘要卡和短标签里的数字写明是什么、分母是什么、和什么比</li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第3份_5_缺数与窗口未满.jpg" width="808" alt="关键数字"><figcaption>概览 › 关键数字</figcaption></figure>
+      <figure><img src="图/2026-10-16_判断题新格式/第3份_补_位置汇总.jpg" width="808" alt="位置汇总"><figcaption>游戏内推送数据 ›「位置汇总」</figcaption></figure>
+      <ul class="ind">
+        <li><b>写了算式</b>：关键数字的两个点击率（点击÷发送、点击÷曝光）；「按推送方式」表的到达率（到达÷发送）与点击率；五类人群对比、位置汇总的点击率；规则与快显列表的「显示失败率」（表下写算式）</li>
+        <li><b>只写名称</b>：关键数字「到达率」（旁注「不含 iOS 推播」）；游戏外推送数据「按人群」表的到达率与各渠道点击率；规则与快显列表、按客户端版本的点击率；「占曝光人数」</li>
+        <li><b>统计窗口</b>：「按推送方式」表右上「到达、点击统计至发送后 5 天，LINE 14 天」；位置汇总右上「曝光、点击实时记录，无统计窗口」；表现最好与最差「发送后 24 小时同龄点击率」</li></ul></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-12"><span class="lb">AI 评审：</span><b>否</b>　关键数字到达率和按人群、规则列表的点击率没写算式，多处没写窗口</div>
+    <div class="you" id="dk-12" data-k="ai-12"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-12" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 12 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 13 -->
+<section class="card">
+  <p class="tag">无多余内容<span>每张图表对应一个日常问题</span></p>
+  <p class="std"><span class="n">13</span><span>每张图表都对应运营日常要回答的一个问题，没有只为版面完整而放的图表</span></p>
+  <p class="info"><b>看哪里</b>　概览、游戏外推送数据、游戏内推送数据各图表<i>|</i><b>出处</b>　写作标准：「不提供有效信息、反而增加阅读负担的图示」；业内做法：NN/g 启发式第 8 条</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>NN/g 启发式第 8 条「美观与极简」</b>：不放无关或很少用到的信息；每多一个元素，就和相关信息争夺注意力 <a href="https://www.nngroup.com/articles/ten-usability-heuristics/">NN/g 文章</a></li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第3份_补_最好最差.jpg" width="808" alt="表现最好与最差"><figcaption>概览 ›「表现最好与最差」</figcaption></figure>
+      <figure><img src="图/2026-10-16_判断题新格式/第3份_补_版本与快显.jpg" width="808" alt="按客户端版本与快显补充"><figcaption>游戏内推送数据 ›「按客户端版本」「快显补充」</figcaption></figure>
+      <ul class="ind">
+        <li><b>概览</b>：告警条、关键数字、按日趋势、按推送方式、五类人群对比、表现最好与最差</li>
+        <li><b>游戏外推送数据</b>：按推送方式、按人群；折叠的按发送小时、按跳转类型、拦下与未送达原因、推送明细</li>
+        <li><b>游戏内推送数据</b>：位置汇总、按日趋势（标出改版、发版、上限改动）、规则与快显列表、按客户端版本（表下写「请求数只作诊断，不作指标」）、快显补充</li></ul></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-13"><span class="lb">AI 评审：</span><b>是</b>　每张图表都对得上一个问题，诊断用表已标明，没有凑版面的图表</div>
+    <div class="you" id="dk-13" data-k="ai-13"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-13" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 13 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 14 -->
+<section class="card">
+  <p class="tag">措辞与指代<span>整页句式：说明与表下文字的开头</span></p>
+  <p class="std"><span class="n">14</span><span>数据看板各页的说明与表下文字，没有成片以同一主语或同一句式开头的句子，上下文已确定的主语没有逐句写出</span></p>
+  <p class="info"><b>看哪里</b>　数据看板八页（概览、游戏外推送数据、游戏内推送数据、档期汇总、触达与打扰、告警与报表、单条推送数据、单条弹窗规则数据）的表下文字与右侧说明栏<i>|</i><b>出处</b>　你 10/15：「永远是运营在开头，这三个字真的有必要？」；措辞审查「整稿通读」</p>
+  <div class="cmp">
+    <div><h3>依据的标准怎么写</h3>
+      <ul class="ind">
+        <li><b>措辞审查「整稿通读」</b>：逐句查完后通读全稿，同一开头、同一句式反复出现的删去或改写；全稿主体已经明确的不逐句写出，例如运营用的后台不写「运营在……」；补主语只补读者会读错或读不出的</li>
+        <li><b>你 10/15</b>（当时原型改稿后有 63 处以「运营」开头）：「永远是运营在开头，这三个字真的有必要？真的认真检查措辞了吗？」</li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <ul class="ind">
+        <li><b>以「运营」开头的句子</b>：没有；页上的「运营01」「运营02」是示例数据里的账号名</li>
+        <li><b>表下与表旁文字（原文）</b>
+          <br>「到达、点击统计至发送后 5 天，LINE 14 天」
+          <br>「一位玩家可属多个人群，各行不相加」
+          <br>「按推送方式分别排，与自身均值比；游戏外按发送后 24 小时同龄点击率，发送满 24 小时且不少于 1,000 才参与」
+          <br>「短信、LINE：没有发送满 24 小时且不少于 1,000 的推送」
+          <br>图例「该渠道不回传」服务商不提供这一步；「无回执」已受理但统计窗口内没收到回执，不算失败</li>
+        <li><b>概览与游戏外推送数据页说明栏（12 条）的小标</b>：概览分「今日」「所选期间」两个页签；关键数字分游戏外、游戏内两组，各与上一周期比较；按日趋势默认看点击率；拿不到的数据写明原因；五类人群并排对比；有未处理告警时顶部显示告警条；窗口未满：到达、点击仍在增长；打扰度小卡；点名称进入单条数据……</li>
+        <li><b>单条推送数据页说明栏（8 条）的小标</b>：操作按钮随状态显示；漏斗从受众算到点击；发送前拦下与服务商未受理分开列；只重发可重试的部分；iOS 的到达写「该渠道不回传」；每次修改生成一个版本……</li></ul></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-14"><span class="lb">AI 评审：</span><b>是</b>　八页表下文字与说明栏开头各异，无「运营」开头，漏斗行是逐步固定格式</div>
+    <div class="you" id="dk-14" data-k="ai-14"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-14" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 14 不同意的理由"></div>
+  </div>
+</section>
+
+<p class="note">业内做法都已打开官方文档核对。</p>
+
+<h2><span class="no">03</span>参考案例：你推翻过的两份同类稿</h2>
+<div class="cases">
+  <div class="case">
+    <p class="h">例 1　弹窗数据找不到，看板简陋</p>
+    <dl>
+      <dt>你的原话</dt><dd class="said">「推送系统弹窗的数据在哪里看？我怎么没找到？我看原型图里只有数据看板，而且很简陋啊。」（10/15）</dd>
+      <dt>当时的稿</dt><dd>10/14 原型：「数据看板」一页三个页签（各推送／按人群、按日期／未送达原因）；弹窗数据在第一个页签下半，与游戏外推送同页（下图）</dd>
+      <dt>改后</dt><dd>侧栏「数据看板」展开为概览、游戏外推送数据、游戏内推送数据、档期汇总、触达与打扰、告警与报表 6 页；弹窗、快显单列一页，可按每条规则看</dd>
+    </dl>
+    <figure><img src="图/2026-10-16_判断题新格式/第3份_例1_10月14日数据看板.jpg" width="950" alt="10月14日数据看板"><figcaption>10/14 原型 · 数据看板（当时版本）</figcaption></figure>
+  </div>
+  <div class="case">
+    <p class="h">例 2　没写改版、发版后旧弹窗数据怎么留</p>
+    <dl>
+      <dt>你的原话</dt><dd class="said">「对了，在版本更新后，仍需保留旧版本的弹窗数据。因为可能会出问题什么的」（10/15）</dd>
+      <dt>当时的稿</dt><dd>10/14 原型的弹窗数据不分版本：没有按客户端版本拆，也没写规则改设置、游戏发版后旧数据怎么保留</dd>
+      <dt>改后</dt><dd>规则改设置存为新版本，各版本数据分开保留、可两版对比；游戏内推送数据按客户端版本拆，趋势上标出发版与改版；已下架、已删除规则的数据照常可查</dd>
+    </dl>
+  </div>
+</div>
+
+<h2><span class="no">04</span>怎么判</h2>
+<div class="reply">直接在页面上点：每条下面点「同意」或「不同意」（不同意可写一句理由），页面最下面可补还缺的标准；点完自动保存，判完在对话里说一声「判完了」即可。<b></b></div>
+
+<h2><span class="no">05</span>还缺什么，判完没有</h2>
+<div class="jend">
+  <label class="jlb" for="dk-missing">还缺的标准（想到什么写什么，一条一行）</label>
+  <textarea id="dk-missing" rows="6"></textarea>
+  <div class="jrow">
+    <label class="jdone"><input type="checkbox" id="dk-done">这一份判完了</label>
+    <button type="button" class="jcopy" id="dk-copy">复制我的判断</button>
+    <span class="jmsg" id="dk-copymsg" aria-live="polite"></span>
+  </div>
+  <textarea class="jout" id="dk-out" readonly hidden aria-label="本页判断的文字"></textarea>
+  <p class="jnote">每次点选和输入都随手存在这台电脑的浏览器里，刷新、关掉再开都还在。</p>
+</div>
+
+<p class="links">原文：<a href="../推送系统后台集成需求/3_原型.html#p12">原型 · 数据看板概览</a>　<a href="../推送系统后台集成需求/3_原型.html#p12a">原型 · 游戏内推送数据</a>　<a href="../推送系统后台集成需求/3_原型.html#p14">原型 · 单条弹窗规则数据</a>　<a href="2026-10-16_请你判的10份产出.html">请你判的 10 份产出</a></p>
+</div><script>
+(function(){
+  var PAGE = '第3份', LABEL = '第 3 份', P = 'dkjudge:' + PAGE + ':';
+  function get(k){ try { return localStorage.getItem(P + k); } catch (e) { return null; } }
+  function put(k, v){ try { localStorage.setItem(P + k, v); } catch (e) {} }
+  function del(k){ try { localStorage.removeItem(P + k); } catch (e) {} }
+  function read(k){
+    var s = get(k); if (!s) return null;
+    try { var o = JSON.parse(s); return (o && (o.v === '同意' || o.v === '不同意')) ? o : null; } catch (e) { return null; }
+  }
+  var groups = [].slice.call(document.querySelectorAll('.you[data-k]'));
+  var total = groups.length;
+  var elX = document.getElementById('dk-x'), elStat = document.getElementById('dk-stat'), elStatDone = document.getElementById('dk-statdone');
+  var elMissing = document.getElementById('dk-missing'), elDone = document.getElementById('dk-done');
+  var elCopy = document.getElementById('dk-copy'), elMsg = document.getElementById('dk-copymsg'), elOut = document.getElementById('dk-out');
+
+  function whyBox(k){ return document.querySelector('.why[data-k="' + k + '"]'); }
+  function paint(g, v){
+    [].forEach.call(g.querySelectorAll('button.jb'), function(b){
+      var on = b.getAttribute('data-v') === v;
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    var w = whyBox(g.getAttribute('data-k'));
+    if (w) w.hidden = (v !== '不同意');
+  }
+  function stat(){
+    var x = 0;
+    groups.forEach(function(g){ if (read(g.getAttribute('data-k'))) x++; });
+    if (elX) elX.textContent = x;
+    if (elStat) elStat.classList.toggle('all', x === total);
+    if (elStatDone) elStatDone.hidden = get('done') !== 'true';
+  }
+
+  groups.forEach(function(g){
+    var k = g.getAttribute('data-k'), w = whyBox(k), inp = w ? w.querySelector('input') : null;
+    var o = read(k);
+    if (o && inp && o.why) inp.value = o.why;
+    paint(g, o ? o.v : null);
+    g.addEventListener('click', function(e){
+      var b = e.target.closest ? e.target.closest('button.jb') : null;
+      if (!b) return;
+      var v = b.getAttribute('data-v'), cur = read(k);
+      if (cur && cur.v === v) { del(k); paint(g, null); }
+      else {
+        put(k, JSON.stringify({ v: v, why: (v === '不同意' && inp) ? inp.value : '' }));
+        paint(g, v);
+        if (v === '不同意' && inp) { try { inp.focus({ preventScroll: true }); } catch (e2) { inp.focus(); } }
+      }
+      stat();
+    });
+    if (inp) inp.addEventListener('input', function(){
+      var cur = read(k);
+      if (cur && cur.v === '不同意') { cur.why = inp.value; put(k, JSON.stringify(cur)); }
+    });
+  });
+
+  if (elMissing) {
+    elMissing.value = get('missing') || '';
+    elMissing.addEventListener('input', function(){ if (elMissing.value) put('missing', elMissing.value); else del('missing'); });
+  }
+  if (elDone) {
+    elDone.checked = get('done') === 'true';
+    elDone.addEventListener('change', function(){ if (elDone.checked) put('done', 'true'); else del('done'); stat(); });
+  }
+  stat();
+
+  function summary(){
+    var parts = [], un = [];
+    groups.forEach(function(g){
+      var k = g.getAttribute('data-k'), o = read(k);
+      if (!o) { un.push(k); return; }
+      var s = k + ' ' + o.v, why = (o.why || '').replace(/\s+/g, ' ').trim();
+      if (o.v === '不同意' && why) s += '——' + why;
+      parts.push(s);
+    });
+    if (un.length) parts.push('未判 ' + un.join('、'));
+    var m = (get('missing') || '').split(/\n+/).map(function(t){ return t.trim(); }).filter(Boolean);
+    if (m.length) parts.push('还缺：' + m.join('；'));
+    return LABEL + (get('done') === 'true' ? '（判完了）' : '') + '：' + parts.join('；');
+  }
+  function say(t){ if (elMsg) { elMsg.textContent = t; clearTimeout(say.t); say.t = setTimeout(function(){ elMsg.textContent = ''; }, 4000); } }
+  function manual(text){
+    if (!elOut) return;
+    elOut.hidden = false; elOut.value = text; elOut.focus(); elOut.select();
+    if (elMsg) { clearTimeout(say.t); elMsg.textContent = '没能自动复制：下框文字已选中，请按 ⌘C 复制'; }
+  }
+  function fallback(text){
+    var t = document.createElement('textarea'), ok = false;
+    t.value = text; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.top = '0'; t.style.opacity = '0';
+    document.body.appendChild(t); t.select();
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    document.body.removeChild(t);
+    if (ok) say('已复制，可直接贴进对话'); else manual(text);
+  }
+  if (elCopy) elCopy.addEventListener('click', function(){
+    var text = summary();
+    if (elOut) { elOut.hidden = true; }
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(function(){ say('已复制，可直接贴进对话'); }, function(){ fallback(text); });
+    } else fallback(text);
+  });
+})();
+</script>
+</body></html>

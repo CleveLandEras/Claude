@@ -1,0 +1,139 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>工作模式诊断</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.35;margin:0 0 8px}
+.sub{font-size:16px;color:var(--ink-2);margin:0 0 28px}
+h2{font-family:var(--serif);font-size:20px;margin:48px 0 16px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px}
+.kpi .n{font-size:38px;font-weight:700;line-height:1.1;color:var(--ink)}
+.kpi .n small{font-size:16px;font-weight:600;margin-left:4px;color:var(--ink-2)}
+.kpi .t{font-size:14.5px;color:var(--ink-2);margin-top:8px}
+.kpi.red .n{color:var(--red)}
+.phase{border-top:4px solid var(--gray)}
+.phase.red{border-top-color:var(--red)} .phase.blue{border-top-color:var(--blue)}
+.phase .d{font-size:13px;color:var(--muted);font-weight:600}
+.phase .h{font-size:16.5px;font-weight:700;margin:4px 0 10px}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:12px}
+.tag.red{background:var(--red-soft);color:var(--red)} .tag.blue{background:var(--blue-soft);color:var(--blue)} .tag.gray{background:var(--gray-soft);color:var(--gray)} .tag.green{background:var(--green-soft);color:var(--green)}
+.kv{font-size:14px;color:var(--ink-2);margin:6px 0}
+.kv b{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:2px}
+.keep{display:flex;flex-wrap:wrap;gap:10px}
+.keep span{background:var(--green-soft);color:var(--green);font-size:14.5px;font-weight:600;padding:8px 14px;border-radius:4px}
+.cause .h{font-size:16.5px;font-weight:700;margin:0 0 6px}
+.cause .l{font-size:14.5px;color:var(--ink-2);margin:0 0 12px}
+.cause .e{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14.5px}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--line)}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--ground)}
+tr:last-child td{border-bottom:none}
+td.w{color:var(--ink)} td.r{color:var(--ink-2)} td.d{color:var(--muted);width:80px}
+tr.same td.w{color:var(--red);font-weight:600}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);margin-right:8px;vertical-align:1px}
+.legend{font-size:13px;color:var(--muted);margin:10px 0 0}
+.q{font-size:17px;font-weight:700;margin:0 0 14px}
+.opt{position:relative}
+.opt .h{font-size:16px;font-weight:700;margin:0 0 6px}
+.opt .l{font-size:14.5px;color:var(--ink-2)}
+.opt.rec{border:2px solid var(--blue)}
+.opt .badge{position:absolute;top:-11px;right:16px;background:var(--blue);color:#fff;font-size:12px;font-weight:700;padding:2px 10px;border-radius:3px}
+.why{font-size:14.5px;color:var(--ink-2);margin:14px 0 0}
+.why b{color:var(--ink)}
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.steps div{counter-increment:s;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 18px;font-size:14.5px;color:var(--ink-2)}
+.steps div::before{content:counter(s);display:block;font-size:22px;font-weight:700;color:var(--accent);margin-bottom:4px}
+.links{font-size:13px;color:var(--muted);margin-top:40px} a{color:var(--accent)}
+.li{margin:0;padding-left:18px}.li li{font-size:14.5px;color:var(--ink-2);margin:6px 0}.li b{color:var(--ink)}
+.steps div b{color:var(--ink);font-size:15.5px}
+</style></head><body><div class="wrap">
+<p class="meta">工作模式旁观诊断 · 2026-10-14 · 依据：规则与交接、判例库、标准判卷记录、过程记录、历次简报（均已打开核对）</p>
+<h1>力气大多花在规则和审查上，最贵的错却仍要等你和主管在最后发现</h1>
+<p class="sub">每次退回都加一层规则或审查；主管对齐、后台事实、团队评审这些外部检验，一直排在最后。</p>
+
+<div class="grid g3">
+  <div class="card kpi red"><div class="n">42<small>条判例</small></div><div class="t">10/9 建库至今；其中 4 条标明是同类再犯，最多第三次</div></div>
+  <div class="card kpi"><div class="n">4<small>套审查体系</small></div><div class="t">7 天内先后搭建，后一套叠在前一套上</div></div>
+  <div class="card kpi red"><div class="n">6<small>天</small></div><div class="t">进度汇报稿从 V1（10/9）改到今天，今天跑到第三轮模型判卷</div></div>
+</div>
+
+<h2><span class="no">01</span>检验顺序倒了：写法查了三轮，事实和方向排在最后</h2>
+<div class="grid g2">
+  <div class="card"><span class="tag gray">排在前面、反复做的（内部）</span>
+    <ul class="li">
+      <li>禁用词扫描</li>
+      <li>逗号句逐句判：第二轮 99 句</li>
+      <li>无上下文读者复述：必审 42 句</li>
+      <li>版面观感、标题与小标题</li>
+      <li>数字与本地分析文件比对</li>
+    </ul></div>
+  <div class="card"><span class="tag red">排在最后或没做的（外部）</span>
+    <ul class="li">
+      <li><b>主管对齐</b>：这份稿的用途就是「让主管知道和他期望有没有出入」，仍在等内部判卷全过</li>
+      <li><b>现状对后台</b>：「推播能否按标签发」仍待查；标签页三行「现在」是从「要开发」反推的</li>
+      <li><b>推送后台</b>：第一次判断「需求合不合理」在需求评审，此前原型、需求文档、148 条逐条表都已写完</li>
+    </ul></div>
+</div>
+<table style="margin-top:14px">
+<tr><th>证据</th><th>说明</th></tr>
+<tr><td class="w">被你纠正过的 8 处判断</td><td class="r">全是事实或方向（平台没有推送、先后不可控、只有新增能圈出、目标写活跃付费等），没有一处是措辞</td></tr>
+<tr><td class="w">前两版被否的原因</td><td class="r">现状没对后台、结构没对主管计划；占了 7 个工作日里的 6 天</td></tr>
+<tr><td class="w">今天判卷的实际收获</td><td class="r">查出页与页之间的矛盾（到达口径、Facebook／LINE 发送方式），有用；但替代不了对后台和主管的检验</td></tr>
+</table>
+<p class="why"><b>影响</b>　写法过关不代表能交；事实或方向一错，就是整稿返工。推送后台按你 10/13 定的方式推进，风险是评审若改范围，后面几份一起返工。</p>
+
+<h2><span class="no">02</span>每次退回都加一条规则，规则多到没法同时照做</h2>
+<div class="grid g3">
+  <div class="card cause"><p class="h">总量过大</p><p class="l">判例 42 条；写作标准 273 行；工作原则 90 行；已定事项 37 行；另有观感标准、措辞审查流程、格式规范；我的记忆 35 条</p><p class="e">交接文件的「最新状态」叠了三层，新对话要先读完才能动手</p></div>
+  <div class="card cause"><p class="h">写下不等于做到</p><p class="l">4 条判例标明同类再犯</p><p class="e">例：逗号问题写进原则后仍漏改；「本地算不出」当成「后台圈不出」犯了两次</p></div>
+  <div class="card cause"><p class="h">规则互相打架</p><p class="l">一项判卷要求把五类人群各看什么放回正文，另一项要求把第 15、17、18 页移到附录</p><p class="e">例：判卷人按通用标准建议删分隔页，与你 10/12 定的相反</p></div>
+</div>
+<p class="why"><b>观察</b>　今天的标准体系写明「不再加新写作规则」，但旧的各层都被映射进去保留，是叠加，不是替换。</p>
+
+<h2><span class="no">03</span>流程本身成了主要工作量</h2>
+<div class="grid g4">
+  <div class="card phase red"><div class="d">9 月底–10/12</div><div class="h">四个定时 agent 轮转审查</div><span class="tag red">已停用</span>
+    <div class="kv"><b>结果</b>暂停期间空跑 2,299 次，约 3.78 亿 token；「人群圈不出」过审后一路沿用</div></div>
+  <div class="card phase"><div class="d">10/9</div><div class="h">判例库＋考试</div><span class="tag gray">悬置</span>
+    <div class="kv"><b>结果</b>第 13 条起未考，要不要恢复挂在你名下</div></div>
+  <div class="card phase"><div class="d">10/9–10/10</div><div class="h">写作标准合并版</div><span class="tag gray">现行</span>
+    <div class="kv"><b>结果</b>273 行，之后仍在补</div></div>
+  <div class="card phase blue"><div class="d">10/14</div><div class="h">标准体系＋模型判卷＋校准</div><span class="tag blue">运行中</span>
+    <div class="kv"><b>结果</b>本周不设 token 上限；一句话的位置已判到第四轮</div></div>
+</div>
+<p class="why"><b>观察</b>　10/9 的 11 份简报里 5 份讲流程。每换一套，旧套的残留（旧审查脚本待改、判例未考、9 月验收表去留）就变成你的待定事项。</p>
+
+<h2><span class="no">04</span>你是唯一出口，也成了校对员和信息中转</h2>
+<table>
+<tr><th>现在挂在你名下的事</th><th>性质</th><th>该不该你定</th></tr>
+<tr><td class="w">呈交版验收与 3 项内容；推送后台原型；安排需求评审</td><td class="r">业务</td><td class="r">该</td></tr>
+<tr class="same"><td class="w">判例要不要考；定时 agent 要不要恢复</td><td class="r">我方流程</td><td class="r">不该</td></tr>
+<tr class="same"><td class="w">9 月验收表去留；规则文件清理</td><td class="r">我方流程</td><td class="r">不该</td></tr>
+<tr><td class="w">推播能否按标签发</td><td class="r">事实查证</td><td class="r">需要一个可直接问的人或后台截图</td></tr>
+</table>
+<p class="why"><b>观察</b>　你 10/12–10/13 的意见里有逗号、页码单位、目录说明、分行，都是在两位独立审稿人和脚本之后才被你发现的。推进速度目前等于你的空闲时间。</p>
+
+<h2><span class="no">05</span>如果要改，我建议四件事</h2>
+<div class="steps" style="grid-template-columns:repeat(2,1fr)">
+  <div><b>进度汇报设「够用线」</b><br>三项的现状、目标、做法说得清，没有事实错误，就交主管；措辞细节按主管反馈再改</div>
+  <div><b>事实核对排在措辞之前</b><br>写「现在能／不能」的句子，先有后台截图或负责人确认，再进措辞判卷</div>
+  <div><b>规则只减不增</b><br>新退回先并入已有条；定时 agent、判例考试、旧审查脚本正式停用归档</div>
+  <div><b>你只定业务</b><br>流程类事项我自己处理；标点、分行、页码这类在交你之前清零</div>
+</div>
+
+<p class="q" style="margin-top:36px">值得保留的</p>
+<div class="keep"><span>无上下文读者测试：查出了页间矛盾</span><span>推送后台分阶段、每阶段你确认</span><span>子任务干活、主对话把关</span></div>
+
+<p class="links">原文：<a href="../归档/简报_至1010/2026-10-10_七天工作复盘.html">七天工作复盘</a> · <a href="../规则与交接/标准体系.md">标准体系</a> · <a href="../规则与交接/标准_弹窗标签推送方案.md">弹窗方案待通过清单</a> · <a href="../规则与交接/判例库/索引.md">判例库索引</a> · <a href="../归档/规则_旧/项目交接_对话要点.md">项目交接</a></p>
+</div></body></html>

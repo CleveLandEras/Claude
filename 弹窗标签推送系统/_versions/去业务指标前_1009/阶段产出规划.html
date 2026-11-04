@@ -1,0 +1,48 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>阶段产出规划</title>
+<style>
+:root{--ground:#f0efec;--surface:#fff;--ink:#191b1e;--ink-2:#484d53;--muted:#7d8289;--line:#dcdad5;--accent:#9a6f24;--ok:#3d6b58;--ok-soft:#dfeae5;--info:#1c6ea4;--info-soft:#e0ecf4;--warn:#8a6410;--warn-soft:#f5ead2;--chg:#e6f0e9;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1a1d21;--ink:#e9e8e4;--ink-2:#b7bbc0;--muted:#868c94;--line:#2d3238;--accent:#d6ab5c;--ok:#74b096;--ok-soft:#1d3129;--info:#6aa8d6;--info-soft:#1b2a36;--warn:#cfa44e;--warn-soft:#332a16;--chg:#1d3129;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1a1d21;--ink:#e9e8e4;--ink-2:#b7bbc0;--muted:#868c94;--line:#2d3238;--accent:#d6ab5c;--ok:#74b096;--ok-soft:#1d3129;--info:#6aa8d6;--info-soft:#1b2a36;--warn:#cfa44e;--warn-soft:#332a16;--chg:#1d3129;}
+*{box-sizing:border-box} body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.7}
+.wrap{max-width:860px;margin:0 auto;padding:30px 16px 60px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 4px}
+h1{font-family:var(--serif);font-size:22px;margin:0 0 12px;line-height:1.45}
+h2.sec{font-family:var(--serif);font-size:18px;margin:30px 0 4px}
+.sub{font-size:13.5px;color:var(--muted);margin:0 0 10px}
+.lead{background:var(--surface);border-left:3px solid var(--accent);padding:12px 16px;margin:0 0 18px;font-size:15px}
+.lead p{margin:4px 0}
+.b{background:var(--surface);border:1px solid var(--line);padding:12px 16px;margin:0 0 10px}
+.b h3{font-size:16px;margin:0 0 6px} .b p{margin:4px 0;font-size:14px;color:var(--ink-2)} .b p b{color:var(--ink)}
+.tag{font-size:11px;font-weight:650;padding:0 6px;border-radius:2px;margin-left:6px;vertical-align:1px;white-space:nowrap}
+.ok{background:var(--ok-soft);color:var(--ok)} .in{background:var(--info-soft);color:var(--info)} .wt{background:var(--warn-soft);color:var(--warn)}
+.tw{overflow-x:auto;background:var(--surface);border:1px solid var(--line);margin:0 0 8px}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{border-bottom:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{font-weight:650;color:var(--ink-2);background:var(--ground);white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td.c{background:var(--chg)}
+.note{font-size:12.5px;color:var(--muted);margin:4px 0 10px}
+.todo{background:var(--surface);border:1px solid var(--accent);padding:12px 16px;margin:16px 0 10px}
+.todo h3{font-size:15.5px;margin:0 0 6px} .todo ol{margin:0;padding-left:1.3em;font-size:14px;color:var(--ink-2)} .todo li{margin:4px 0} .todo b{color:var(--ink)}
+.links{font-size:13px;color:var(--muted)} a{color:var(--accent)}
+details{margin:0 0 8px} summary{cursor:pointer;font-size:14px;color:var(--ink-2)}
+</style>
+<style>.wrap{max-width:1100px} td:nth-child(3){min-width:180px} td:nth-child(4){min-width:340px} td:nth-child(2){white-space:nowrap} ol.st{margin:0;padding-left:1.3em} ol.st li{margin:2px 0}</style></head><body><div class="wrap">
+
+<p class="meta">阶段产出规划 · 2026-10-08 · 范围：核心论证；落地规划（配置方案、配置单、需求文档、主管汇报）待核心确认后启动</p>
+<h1>核心论证分八个阶段：需求分析 →（人群分析 ∥ 现状盘点）→ 问题诊断 → 方案选型 → 方案设计 → 方案验证 → 结论汇总</h1>
+
+<div class="tw"><table>
+<tr><th>阶段</th><th>产出</th><th>对象</th><th>结构</th><th>完成标准</th><th>状态</th></tr>
+<tr><td>1</td><td><b>需求分析</b><br><code>阶段1_需求分析.html</code></td><td>弹窗、标签、推送三项能力的需求（主管、制作人、运营）</td><td><ol class="st"><li><b>需求来源</b>：主管弹窗、标签、推送三组目标，以及范围约束、同事建议，附原文与出处</li><li><b>能力拆解</b>：需求归为几项能力；每项能力下列出运营要完成的场景（按理想状态写全，标主管明确或本文补充）和业绩作用</li><li><b>验收标准与需求边界</b>：能力建成的判定标准；哪些不属于能力需求；成本取舍不在本阶段做</li><li><b>相关方</b>：各方在决策、使用、开发、数据支持中的职责</li><li><b>关键假设</b>：本阶段的推断及依据</li></ol></td><td>场景均可溯源至需求原文；能力项互斥且覆盖全部场景</td><td>进行中</td></tr>
+<tr><td>2<br><span class="note">与 3 并行</span></td><td><b>人群分析</b><br><code>阶段2_人群分析.html</code></td><td>五类目标人群，以及五类之外的人群</td><td><ol class="st"><li><b>人群口径</b>：五类人群的圈选条件</li><li><b>人群画像</b>：每类人群的规模、储值贡献、行为特征和需求</li><li><b>人群重叠</b>：同时属于多类的用户规模与分布</li><li><b>未覆盖人群</b>：五类以外的用户（如持续活跃用户、高卡用户）及处理建议</li><li><b>推送受众</b>：离线用户规模及各通路可触达范围</li><li><b>关键假设</b>：本阶段的推断及依据</li></ol></td><td>各类人群口径与数据完整；覆盖全量活跃用户</td><td>未开始</td></tr>
+<tr><td>3<br><span class="note">与 2 并行</span></td><td><b>现状盘点</b><br><code>阶段3_现状盘点.html</code></td><td>现有弹窗、标签、推送、数据和运营流程</td><td><ol class="st"><li><b>弹窗</b>：现有规则配置与内容池（活动、礼包）</li><li><b>标签</b>：现有标签体系与组合逻辑</li><li><b>推送</b>：各通路的覆盖、定向能力与数据回收</li><li><b>数据</b>：已有数据、可取数据与缺失数据</li><li><b>运营流程</b>：弹窗配置、标签创建、推送下发的现行流程与痛点</li><li><b>人群触达现状</b>：各类人群在进入大厅、破产时点的实际弹窗曝光</li><li><b>场景可行性</b>：需求分析中各场景：可实现、不可实现或推断可实现</li><li><b>关键假设</b>：本阶段的推断及依据</li></ol></td><td>每项均有出处或推断依据</td><td>未开始</td></tr>
+<tr><td>4</td><td><b>问题诊断</b><br><code>阶段4_问题诊断.html</code></td><td>需求与现状之间的缺口</td><td><ol class="st"><li><b>缺口</b>：不可实现的场景，及影响的用户规模与储值</li><li><b>根因</b>：缺口归因、依据及已排除的替代解释</li><li><b>机会</b>：补齐后可带来的业务增量及依据</li><li><b>优先级</b>：根因处理顺序及依据</li><li><b>关键假设</b>：本阶段的推断及依据</li></ol></td><td>缺口均有归因；优先级有依据；不涉及解决方案</td><td>未开始</td></tr>
+<tr><td>5</td><td><b>方案选型</b><br><code>阶段5_方案选型.html</code></td><td>能力建设的备选方案</td><td><ol class="st"><li><b>候选方案</b>：2–3 个备选方案（如按人群分层配置、按内容配置加排除去重、待总控功能上线后实施）</li><li><b>方案对比</b>：根因覆盖、现有后台可行性、改动成本、风险；成本作为对比项，不据此预先排除理想方案</li><li><b>行业参照</b>：同类产品的通行做法</li><li><b>推荐方案</b>：推荐及依据</li><li><b>关键假设</b>：本阶段的推断及依据</li></ol></td><td>各根因在每个方案下均有对比结论；推荐有依据</td><td>未开始</td></tr>
+<tr><td>6</td><td><b>方案设计</b><br><code>阶段6_方案设计.html</code></td><td>选定方案：标签、弹窗、推送、数据的整体设计和人群策略</td><td><ol class="st"><li><b>总体架构</b>：标签、弹窗、推送、数据四个模块如何衔接</li><li><b>标签体系</b>：人群分层、口径管理、交集需求</li><li><b>弹窗体系</b>：位置分层、互斥规则、总量控制</li><li><b>人群策略</b>：各类人群的内容策略及依据</li><li><b>推送体系</b>：统一入口、通路选择、定向、频控</li><li><b>指标体系</b>：各能力模块与人群的衡量指标</li><li><b>实施分层</b>：短期（现有后台配置）、中期（小改动开发）、长期（较大开发），每项标成本与依赖，供与上级讨论取舍</li><li><b>短期快速提升</b>：现有后台即可做、低成本、见效快的操作：做什么、对谁、预期作用、怎么验证</li><li><b>约束与风险</b>：现有功能限制、资源、合规、变更风险</li><li><b>关键假设</b>：本阶段的推断及依据</li></ol></td><td>各模块均有设计依据，并标注现有后台可行性</td><td>未开始</td></tr>
+<tr><td>7</td><td><b>方案验证</b><br><code>阶段7_方案验证.html</code></td><td>方案设计：用需求场景和目标人群逐一检验</td><td><ol class="st"><li><b>场景验证</b>：需求分析中各场景在方案下的实现路径</li><li><b>人群验证</b>：各类人群的触达结果与弹窗数量</li><li><b>根因验证</b>：问题诊断中各根因的解决情况</li><li><b>边界</b>：方案未覆盖的情形</li><li><b>假设汇总</b>：各阶段关键假设的依据、影响范围与验证方式</li></ol></td><td>场景与根因均有验证结论；不可实现项明确列出</td><td>未开始</td></tr>
+<tr><td>8</td><td><b>结论汇总</b><br><code>阶段8_结论汇总.html</code></td><td>各阶段结论和待决事项</td><td><ol class="st"><li><b>结论</b>：各阶段核心结论</li><li><b>完整方案与成本分层</b>：全部需求及短期、中期、长期分层</li><li><b>短期快速提升</b>：可立即执行的低成本操作清单</li><li><b>待决事项</b>：取舍建议，每项的背景、选项、建议</li></ol></td><td>首屏呈现结论与待决事项；确认后启动落地规划</td><td>未开始</td></tr>
+</table></div>
+<p class="note">过审硬条件：符合《阶段产出格式规范》（机器检查全部通过，且人工检查首屏、标题、层级、观感、信息完整、措辞）。需求按理想状态写全，成本取舍留给与上级讨论；短期快速提升的低成本操作单列。写法：按「结构」分节，每节对应一个问题，节标题即结论；内容按层级组织（先总后分，子项挂在所属父项下），不用几张平铺清单靠编号互相引用；以结构清晰为第一标准，不设篇幅上限；表述简洁但信息完整，标题和定义可直接转述。推进：需求分析通过后，人群分析与现状盘点并行；两者都通过后进入问题诊断，之后逐阶段推进。每阶段审查通过即进入下一阶段，不停下等确认，同时提醒 Dk（需求分析、方案选型两处重点提醒）；Dk 主动确认或反馈，反馈优先处理。信息缺失时基于合理假设推进，影响结论的列出备选方案；待核实问题单列，不阻塞推进。本表变更需经 Dk 确认。</p>
+</div></body></html>

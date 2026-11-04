@@ -1,0 +1,1131 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=1280"><title>推送统一后台界面展示稿</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--eb:#409EFF;--ebl:#ECF5FF;--gn:#67C23A;
+--bd:#DCDFE6;--bdl:#E4E7ED;--bdx:#EBEEF5;
+--t1:#303133;--t2:#606266;--t3:#909399;--t4:#C0C4CC;
+--bg:#F5F7FA;--zb:#FAFAFA;
+--wn:#E6A23C;--er:#F56C6C;--okc:#529B2E;--erc:#C45656;--wnc:#B88230;
+--ink:#1F2D3D;--page:#F2F4F7;
+}
+html,body{background:var(--page)}
+body{min-width:1280px;font:14px/1.6 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:var(--t1);word-break:normal;line-break:strict;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+[lang=zh-Hant]{font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Microsoft JhengHei",sans-serif}
+.wrap{width:1280px;margin:0 auto;padding:0 40px}
+.nb{white-space:nowrap}
+
+/* 标注 */
+.mk{display:inline-flex;align-items:center;height:22px;padding:0 7px;border-radius:3px;font-size:13px;font-weight:600;line-height:1;white-space:nowrap;vertical-align:middle;border:1px solid;flex:none}
+.mk.t{color:#fff;background:var(--ink);border-color:var(--ink)}
+.mk.a{color:var(--ink);background:#fff;border-color:var(--ink)}
+.mk.n{color:#5F3DC4;background:#F3F0FF;border-color:#B197FC}
+.mk.c{color:#0B7285;background:#E3FAFC;border-color:#66D9E8}
+.mk.w{color:#495057;background:#F1F3F5;border-color:#ADB5BD}
+.mk.q{color:#495057;background:#fff;border:1px dashed #6C757D;font-weight:500}
+
+/* 页首 */
+.lg{background:#fff;border-bottom:1px solid #E3E6EA}
+.lg .wrap{display:flex;align-items:center;gap:8px;height:52px;font-size:14px;color:var(--t2);white-space:nowrap}
+.lg .wrap>b{color:var(--t1);font-weight:600;margin-right:4px}
+.lg .sep{width:1px;height:16px;background:#DDE1E6;margin:0 8px}
+.hd1{padding:30px 0 4px}
+.hd1 h1{font-size:28px;font-weight:700}
+.hd1 .tl{margin-top:12px;display:grid;grid-template-columns:auto 1fr;gap:8px 12px;align-items:center;font-size:15px;color:var(--t2)}
+.hd1 .tl .mk{justify-self:start}
+
+/* 每屏 */
+.scr{padding:28px 0 30px}
+.scr+.scr{border-top:1px solid #E3E6EA}
+.sh{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.sh .no{flex:none;min-width:28px;height:28px;padding:0 6px;border-radius:6px;background:var(--ink);color:#fff;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.sh h2{font-size:20px;font-weight:700;line-height:1.4}
+.sh .smk{margin-left:auto;display:flex;gap:6px;flex:none}
+
+/* 窗口 */
+.pf{width:1200px;border:1px solid #D5DAE1;border-radius:6px;background:#fff;box-shadow:0 4px 18px rgba(16,32,52,.08);overflow:hidden}
+.pfh{height:50px;display:flex;align-items:center;gap:14px;padding:0 16px;border-bottom:1px solid var(--bdx)}
+.pfh>b{font-size:15px;font-weight:600;flex:none}
+.pfh .x{margin-left:auto;color:var(--t4);font-size:16px;flex:none}
+.stp{flex:1;display:flex;align-items:center;background:var(--bg);border-radius:4px;height:36px;padding:0 20px;margin:0 6px 0 18px}
+.stp .s{display:flex;align-items:center;gap:7px;font-size:14px;color:var(--t4);white-space:nowrap}
+.stp .s i{width:22px;height:22px;border-radius:50%;border:1px solid var(--t4);display:flex;align-items:center;justify-content:center;font-style:normal;font-size:13px;flex:none}
+.stp .s em{font-style:normal;font-size:13px;color:var(--t3)}
+.stp .s.dn{color:var(--eb)}
+.stp .s.dn i{border-color:var(--eb)}
+.stp .s.on{color:var(--t1);font-weight:600}
+.stp .s.on i{background:var(--eb);border-color:var(--eb);color:#fff}
+.stp .s.on em{font-weight:400}
+.stp .s.wr{color:var(--t2)}
+.stp .s.wr i{border-color:var(--er);color:var(--er)}
+.stp .s em.r{color:var(--er)}
+.stp .s em.g{color:var(--okc)}
+.stp .ar{flex:1;min-width:20px;height:1px;background:var(--t4);margin:0 14px}
+.pb{padding:12px 16px}
+.sbar{height:38px;display:flex;align-items:center;gap:12px;padding:0 16px;background:#F4F9FF;border-top:1px solid #D9ECFF;font-size:13px;color:var(--t2);white-space:nowrap}
+.sbar b{color:var(--t1);font-weight:600;font-size:14px}
+.sbar .v{width:1px;height:14px;background:#C6E2FF}
+.sbar .na{color:var(--t3)}
+.sbar .r{color:var(--er);font-weight:600}
+.sbar .ch{display:inline-flex;gap:12px}
+.sbar .mk{margin-left:auto}
+.pff{min-height:46px;display:flex;align-items:center;gap:10px;padding:7px 16px;border-top:1px solid var(--bdx);background:#FAFBFC}
+.pff .sp{margin-left:auto}
+.pff .nt2{font-size:13px;color:var(--t3)}
+.pff .nt2.r{color:var(--er)}
+
+/* 表单 */
+.fr{display:flex;align-items:flex-start;gap:10px}
+.fr+.fr{margin-top:10px}
+.fl{flex:none;width:72px;text-align:right;line-height:32px;color:var(--t2);font-size:14px;white-space:nowrap}
+.fl i{color:var(--er);font-style:normal;margin-right:3px}
+.fc{min-width:0;display:flex;flex-direction:column;gap:4px}
+.row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.nw{flex-wrap:nowrap!important}
+.hl{font-size:13px;color:var(--t3);line-height:32px;white-space:nowrap}
+.hlp{font-size:13px;color:var(--t3);line-height:1.5}
+.err{font-size:13px;color:var(--er);line-height:1.45}
+.gcol{display:grid;gap:10px 18px;align-items:start}
+.gcol>*{min-width:0}
+
+/* 下拉 */
+.sl{height:32px;border:1px solid var(--bd);border-radius:4px;background:#fff;display:flex;align-items:center;padding:0 28px 0 11px;font-size:14px;color:var(--t1);position:relative;white-space:nowrap}
+.sl::after{content:"";position:absolute;right:11px;top:50%;width:6px;height:6px;border-right:1px solid var(--t4);border-bottom:1px solid var(--t4);transform:translateY(-70%) rotate(45deg)}
+.sl.on{border-color:var(--eb)}
+.sl.on::after{transform:translateY(-25%) rotate(-135deg);border-color:var(--eb)}
+.dd{border:1px solid var(--bdl);border-radius:4px;background:#fff;box-shadow:0 2px 12px rgba(0,0,0,.1);padding:4px 0}
+.dd i{display:flex;align-items:center;gap:10px;height:27px;padding:0 12px 0 14px;font-style:normal;font-size:14px;color:var(--t2);white-space:nowrap}
+.dd i .n{margin-left:auto;font-size:13px;color:var(--t3);font-weight:400}
+.dd i.on{color:var(--eb);font-weight:600}
+.dd i.on .n{color:var(--eb)}
+.dd i.gp{height:22px;font-size:13px;color:var(--t3);padding-left:10px}
+.dd i.more{height:26px;font-size:13px;color:var(--t3);border-top:1px solid var(--bdx);margin-top:3px}
+.dd i .ck{color:var(--eb);font-weight:700;margin-left:2px}
+.ms{min-height:32px;border:1px solid var(--eb);border-radius:4px;background:#fff;display:flex;flex-wrap:wrap;align-items:center;gap:4px;padding:3px 28px 3px 5px;position:relative}
+.ms::after{content:"";position:absolute;right:11px;top:13px;width:6px;height:6px;border-right:1px solid var(--eb);border-bottom:1px solid var(--eb);transform:rotate(-135deg)}
+.ms.off{border-color:var(--bd)}
+.ms.off::after{border-color:var(--t4);transform:rotate(45deg);top:10px}
+.tg{display:inline-flex;align-items:center;gap:5px;height:24px;padding:0 8px;background:#F4F4F5;border:1px solid #E9E9EB;color:#909399;font-size:13px;border-radius:4px;white-space:nowrap}
+.tg em{font-style:normal;font-size:13px;color:#909399}
+.tg.b{background:var(--ebl);border-color:#D9ECFF;color:var(--eb)}
+.cas{display:flex;border:1px solid var(--bdl);border-radius:4px;background:#fff;box-shadow:0 2px 12px rgba(0,0,0,.1);width:max-content;flex:none}
+.cas .col{min-width:120px;padding:4px 0}
+.cas .col+.col{border-left:1px solid var(--bdx)}
+.cas i{display:flex;align-items:center;height:27px;padding:0 12px 0 14px;font-style:normal;font-size:14px;color:var(--t2);white-space:nowrap}
+.cas i em{margin-left:auto;font-style:normal;color:var(--t4);padding-left:14px}
+.cas i.on{color:var(--eb);font-weight:600;background:var(--bg)}
+.cas i.on em{color:var(--eb)}
+.cas i .ck{margin-left:auto;padding-left:12px;color:var(--eb)}
+.cas i.more{color:var(--t3)}
+
+/* 输入 */
+.ip{height:32px;border:1px solid var(--bd);border-radius:4px;padding:0 10px;font-size:14px;color:var(--t1);display:inline-flex;align-items:center;gap:8px;background:#fff;white-space:nowrap;min-width:0;overflow:hidden}
+.ip .c{margin-left:auto;font-size:13px;color:var(--t3);padding-left:8px;flex:none}
+.ip .ph,.ta .ph{color:var(--t4)}
+.ip.n{width:50px;justify-content:center}
+.ip.ro{background:var(--bg);color:var(--t2);border-color:var(--bdl)}
+.ip.bad,.ta.bad{border-color:var(--er)}
+.ip.f{width:100%}
+.ip svg{flex:none}
+.ta{position:relative;border:1px solid var(--bd);border-radius:4px;padding:5px 10px 21px;font-size:14px;line-height:1.5;color:var(--t1);background:#fff;white-space:normal;width:100%}
+.ta .c{position:absolute;right:8px;bottom:2px;font-size:13px;color:var(--t3)}
+.ta .c.w{color:var(--wnc);font-weight:600}
+.ta .c.r{color:var(--er);font-weight:600}
+.ta .x{color:var(--er);background:#FEF0F0}
+.un{font-size:14px;color:var(--t2);line-height:32px;white-space:nowrap}
+.thumb{width:44px;height:32px;border-radius:4px;background:linear-gradient(150deg,#A5B4FC,#6D7FE0);position:relative;flex:none;overflow:hidden}
+.thumb::after{content:"";position:absolute;left:6px;bottom:-6px;width:22px;height:22px;background:rgba(255,255,255,.45);transform:rotate(45deg)}
+.thumb::before{content:"";position:absolute;right:7px;top:6px;width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.8)}
+
+/* 单选 多选 开关 */
+.rd{display:inline-flex;align-items:center;gap:7px;font-size:14px;color:var(--t2);height:32px;border:1px solid var(--bd);border-radius:4px;padding:0 12px;background:#fff;white-space:nowrap;flex:none}
+.rd em{width:14px;height:14px;border:1px solid var(--bd);border-radius:50%;flex:none;position:relative;background:#fff}
+.rd.on{color:var(--eb);border-color:var(--eb)}
+.rd.on em{border-color:var(--eb);background:var(--eb)}
+.rd.on em::after{content:"";position:absolute;left:4px;top:4px;width:4px;height:4px;border-radius:50%;background:#fff}
+.rd.dis{color:var(--t4);background:var(--bg);border-color:var(--bdl)}
+.cb{display:inline-flex;align-items:center;gap:6px;font-size:14px;color:var(--t2);height:28px;white-space:nowrap}
+.cb em{width:14px;height:14px;border:1px solid var(--bd);border-radius:2px;flex:none;background:#fff;position:relative}
+.cb.on{color:var(--eb)}
+.cb.on em{background:var(--eb);border-color:var(--eb)}
+.cb.on em::after{content:"";position:absolute;left:4px;top:1px;width:4px;height:8px;border-right:1.6px solid #fff;border-bottom:1.6px solid #fff;transform:rotate(45deg)}
+.sww{display:inline-flex;align-items:center;gap:8px;height:32px;font-size:14px;color:var(--eb);flex:none}
+.sg{width:40px;height:20px;border-radius:10px;background:var(--t4);position:relative;flex:none}
+.sg.on{background:var(--eb)}
+.sg::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff}
+.sg.on::after{left:auto;right:2px}
+
+/* 按钮 */
+.bt{height:32px;padding:0 15px;border:1px solid var(--bd);border-radius:4px;background:#fff;font-size:14px;color:var(--t2);display:inline-flex;align-items:center;gap:5px;white-space:nowrap;flex:none}
+.bt.p{background:var(--eb);border-color:var(--eb);color:#fff}
+.bt.p.dis{background:#A0CFFF;border-color:#A0CFFF}
+.bt.g{border-color:#B3D8FF;color:var(--eb);background:var(--ebl)}
+.bt.t{border:none;background:none;color:var(--eb);padding:0 2px;height:auto;font-size:13px}
+
+/* 区块 */
+.sec{border:1px solid var(--bdx);border-radius:4px}
+.sec>h5{min-height:38px;display:flex;align-items:center;gap:10px;padding:5px 14px;background:var(--bg);border-bottom:1px solid var(--bdx);font-size:14px;font-weight:600;color:var(--t1);white-space:nowrap}
+.sec>h5 .sub{font-weight:400;color:var(--t3);font-size:13px}
+.sec>h5 .r{margin-left:auto;display:flex;align-items:center;gap:8px}
+.sec>h5 .big{font-size:18px}
+.sb{padding:10px 14px}
+
+/* 表格 */
+.tb{width:100%;border-collapse:collapse;font-size:14px}
+.tb th{background:#fff;color:var(--t3);font-weight:500;padding:6px 10px;border:1px solid var(--bdx);text-align:center;white-space:nowrap}
+.tb td{padding:6px 10px;border:1px solid var(--bdx);color:var(--t2);text-align:center;vertical-align:middle;white-space:nowrap}
+.tb tr:nth-child(odd) td{background:var(--zb)}
+.tb td.l,.tb th.l{text-align:left}
+.tb td.wr{white-space:normal}
+.tb td b{color:var(--t1);font-weight:600}
+.tb .red{color:var(--er);font-weight:600}
+.tb .org{color:var(--wnc);font-weight:600}
+.tb .okt{color:var(--okc)}
+.tb .sm{font-size:13px;color:var(--t3)}
+.tb td.lb{color:var(--t2);text-align:left;background:var(--bg)!important;white-space:nowrap}
+.tb th .cb{height:22px;font-weight:600}
+.tb th .src{font-size:13px;font-weight:400;color:var(--t3);margin-left:4px}
+.tb th .src.b{color:var(--eb)}
+.tb td.span{background:#FDF6EC!important;color:var(--wnc)}
+.ds{width:100%;border-collapse:collapse;font-size:14px}
+.ds th{width:92px;background:var(--bg);color:var(--t2);font-weight:500;text-align:left;padding:6px 12px;border:1px solid var(--bdx);white-space:nowrap}
+.ds td{padding:6px 12px;border:1px solid var(--bdx);color:var(--t1)}
+
+/* 提示条 */
+.st{display:block;padding:7px 12px;border-radius:4px;font-size:13px;line-height:1.5;white-space:normal}
+span.st{display:inline-block}
+.st .mk{margin-left:8px}
+.st.ok{background:#F0F9EB;color:var(--okc)}
+.st.wn{background:#FDF6EC;color:var(--wnc)}
+.st.er{background:#FEF0F0;color:var(--erc)}
+.st.in{background:#F4F4F5;color:#73767A}
+.okt-t{display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 9px;border-radius:4px;font-size:13px;background:#F0F9EB;border:1px solid #E1F3D8;color:var(--okc);white-space:nowrap;flex:none}
+.er-t{display:inline-flex;align-items:center;gap:5px;height:24px;padding:0 8px;border-radius:4px;font-size:13px;background:#FEF0F0;border:1px solid #FDE2E2;color:var(--erc);white-space:nowrap;font-weight:600;flex:none}
+.cond{border:1px solid var(--bdl);background:var(--bg);border-radius:4px;padding:6px 10px;font-size:14px;line-height:1.6;color:var(--t2)}
+.cond b{color:var(--eb);font-weight:600;margin-right:4px}
+.vbox{border:1px solid #FDE2E2;background:#FEF0F0;border-radius:4px;padding:9px 14px}
+.vbox .h{font-size:14px;font-weight:600;color:var(--erc);display:flex;align-items:center;gap:8px}
+.vbox .h i{width:16px;height:16px;border-radius:50%;background:var(--er);color:#fff;font-style:normal;font-size:13px;display:flex;align-items:center;justify-content:center}
+.vbox .vl{font-size:14px;color:var(--erc);line-height:24px;padding-left:24px}
+.vbox .ok{display:flex;flex-wrap:wrap;gap:6px;padding-left:24px;margin-top:6px}
+
+/* 渠道卡 */
+.cd{border:1px solid var(--bdx);border-radius:4px;min-width:0}
+.cd>h5{height:36px;display:flex;align-items:center;gap:8px;padding:0 12px;background:var(--bg);border-bottom:1px solid var(--bdx);font-size:14px;font-weight:600;white-space:nowrap}
+.cd>h5 .rc{font-weight:400;font-size:13px;color:var(--t3)}
+.cd>h5 .r{margin-left:auto;display:flex;gap:6px}
+.cdb{display:grid;gap:14px;padding:10px 12px}
+.cfs{display:flex;flex-direction:column;gap:8px;min-width:0}
+.cf{display:flex;align-items:flex-start;gap:8px;min-width:0}
+.cf>label{flex:none;width:44px;text-align:right;line-height:32px;font-size:14px;color:var(--t2);white-space:nowrap}
+.cf>label i{color:var(--er);font-style:normal;margin-right:2px}
+.cf>.fc,.cf>.ta,.cf>.ip.f{flex:1}
+
+/* 预览 */
+.pv{display:flex;flex-direction:column;gap:5px;min-width:0}
+.pvl{font-size:13px;color:var(--t3);line-height:1.4}
+.ios{background:linear-gradient(160deg,#6A7896,#34405A);border-radius:12px;padding:7px}
+.ios .n{background:rgba(255,255,255,.92);border-radius:10px;padding:6px 9px;font-size:13px;line-height:1.45;color:#1c1c1e}
+.ios .h,.and .h{display:flex;align-items:center;gap:5px;font-size:13px;color:#6b6b70;margin-bottom:1px}
+.ios .h i{width:14px;height:14px;border-radius:4px;background:#E8A33D;flex:none}
+.ios .h span,.and .h span{margin-left:auto}
+.and{background:#fff;border:1px solid #DADCE0;border-radius:8px;padding:6px 9px;font-size:13px;line-height:1.45;color:#202124;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.and .h i{width:14px;height:14px;border-radius:50%;background:#E8A33D;flex:none}
+.lob{height:128px;border-radius:8px;background:linear-gradient(160deg,#47286E,#1B1036);position:relative;overflow:hidden}
+.lob .bn{position:absolute;left:8px;right:8px;top:8px;background:linear-gradient(90deg,#F7CB5A,#EFA530);color:#3A2200;font-size:13px;line-height:1.4;border-radius:5px;padding:5px 8px;font-weight:600}
+.lob .bn .x{color:#C62828;text-decoration:underline}
+.lob .tm{position:absolute;right:10px;top:72px;font-size:13px;color:rgba(255,255,255,.75)}
+.lob .tl{position:absolute;bottom:8px;left:8px;right:8px;display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.lob .tl i{height:22px;border-radius:4px;background:rgba(255,255,255,.13)}
+.sms{background:#F2F2F7;border-radius:10px;padding:8px}
+.sms .fm{font-size:13px;color:#8e8e93;text-align:center;margin-bottom:5px}
+.sms .bb{background:#E5E5EA;border-radius:13px;padding:7px 10px;font-size:13px;line-height:1.5;color:#000}
+.sms .bb u{color:#0A64D8;text-decoration:none}
+.fbw{background:#F0F2F5;border-radius:10px;padding:8px}
+.fb{background:#fff;border-radius:10px;overflow:hidden;border:1px solid #E4E6EB}
+.fb .img{height:40px;background:linear-gradient(150deg,#A5B4FC,#6D7FE0)}
+.fb p{font-size:13px;padding:6px 9px;line-height:1.45;color:#050505}
+.fb .btn{border-top:1px solid #E4E6EB;text-align:center;font-size:13px;color:#0866FF;padding:5px;font-weight:600}
+.fb .btn.bad{color:var(--er);background:#FEF0F0}
+.ln{background:#8DA9D4;border-radius:10px;padding:8px}
+.ln .card{background:#fff;border-radius:12px;overflow:hidden}
+.ln .img{height:40px;background:linear-gradient(150deg,#A5B4FC,#6D7FE0)}
+.ln p{font-size:13px;padding:6px 9px;line-height:1.45;color:#111}
+.ln .btn{border-top:1px solid #EEE;text-align:center;font-size:13px;color:#06A64A;padding:5px;font-weight:600}
+
+/* 注释卡 */
+.nts{margin-top:14px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;width:1200px}
+.nts.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.nt{background:#fff;border:1px solid #DFE3E8;border-left:3px solid var(--ink);border-radius:0 4px 4px 0;padding:12px 16px;font-size:14px;line-height:1.65;color:var(--t2)}
+.nt b{display:block;font-size:15px;color:var(--t1);margin-bottom:4px;line-height:1.45}
+
+/* 待确认 */
+.pend{margin:6px 0 40px;width:1200px;border:1px dashed #868E96;border-radius:6px;background:#fff;padding:18px 24px}
+.pend h2{font-size:20px;font-weight:700;margin-bottom:10px}
+.pend ol{padding-left:22px;font-size:15px;color:var(--t2);line-height:1.9}
+.pend ol b{color:var(--t1);font-weight:600}
+</style>
+<style>
+/* 共用：可选标注、现有页面改动标注、状态标签、侧栏 */
+.mk.o{color:#A61E4D;background:#FFF0F6;border-color:#F783AC}
+.mk.f{color:#909399;background:#fff;border-color:#DCDFE6;font-weight:400}
+.xg{display:inline-flex;align-items:center;height:20px;padding:0 6px;border-radius:3px;font-size:13px;font-weight:600;line-height:1;white-space:nowrap;vertical-align:middle;flex:none;background:#2456A6;border:1px solid #2456A6;color:#fff;font-style:normal}
+.xg.m{background:#fff;color:#2456A6}
+.lg .xg{height:22px;padding:0 7px}
+.stg{display:inline-flex;align-items:center;height:24px;padding:0 8px;border-radius:4px;font-size:13px;border:1px solid;white-space:nowrap;vertical-align:middle;line-height:1}
+.stg.run{color:#529B2E;background:#F0F9EB;border-color:#E1F3D8}
+.stg.pau{color:#B88230;background:#FDF6EC;border-color:#FAECD8}
+.stg.snd{color:#409EFF;background:#ECF5FF;border-color:#D9ECFF}
+.stg.sch{color:#409EFF;background:#fff;border-color:#A0CFFF}
+.stg.done{color:#909399;background:#F4F4F5;border-color:#E9E9EB}
+.stg.stop{color:#606266;background:#fff;border-color:#DCDFE6}
+.stg.drf{color:#909399;background:#fff;border-color:#E9E9EB}
+.stg.fail{color:#C45656;background:#FEF0F0;border-color:#FDE2E2}
+.stg.none{color:#B88230;background:#FDF6EC;border-color:#FAECD8}
+.sd{flex:none;width:112px;border-right:1px solid var(--bdx);padding:6px 0 10px;background:#fff}
+.sd .hd{padding:6px 16px;font-size:14px;font-weight:600;color:var(--t1);white-space:nowrap}
+.sd i{display:flex;align-items:center;gap:6px;height:30px;padding:0 10px 0 18px;font-style:normal;font-size:14px;color:var(--t1);white-space:nowrap;position:relative}
+.sd i.on{color:var(--eb);background:var(--ebl)}
+.sd i.on::after{content:"";position:absolute;top:0;bottom:0;right:-1px;width:2px;background:var(--eb)}
+.sd i .xg{height:18px;padding:0 4px}
+.sd i.tw{height:auto;flex-wrap:wrap;padding-top:6px;padding-bottom:6px;padding-right:2px;row-gap:4px}
+.sd i.tw .mk{margin-left:-8px}
+.sd hr{border:none;border-top:1px solid var(--bdx);margin:4px 14px}
+</style>
+<style>.g1 .pfh .bc{font-size:13px;color:var(--t3);white-space:nowrap}
+.g1 .pfh .rt{margin-left:auto;display:flex;align-items:center;gap:10px}
+.g1 .pfh .stg{margin-left:-4px}
+.g1 .shell{display:flex;align-items:stretch}
+.g1 .cnt{flex:1;min-width:0;padding:12px 16px}
+.g1 .ft{display:flex;align-items:center;gap:10px;flex-wrap:nowrap;white-space:nowrap}
+.g1 .ft+.ft{margin-top:8px}
+.g1 .lb2{font-size:14px;color:var(--t2);white-space:nowrap;flex:none}
+.g1 .rbg{display:inline-flex;flex:none}
+.g1 .rbg i{height:32px;display:inline-flex;align-items:center;padding:0 13px;border:1px solid var(--bd);margin-left:-1px;font-style:normal;font-size:14px;color:var(--t2);background:#fff;white-space:nowrap}
+.g1 .rbg i:first-child{margin-left:0;border-radius:4px 0 0 4px}
+.g1 .rbg i:last-child{border-radius:0 4px 4px 0}
+.g1 .rbg i.on{background:var(--eb);border-color:var(--eb);color:#fff;position:relative}
+.g1 .ft .cb{height:32px}
+.g1 .bt.gn{background:var(--gn);border-color:var(--gn);color:#fff}
+.g1 .bt.sm{height:28px;padding:0 11px;font-size:13px}
+.g1 .chips{display:flex;align-items:center;gap:8px;flex-wrap:nowrap}
+.g1 .chips span{display:inline-flex;align-items:center;gap:4px;height:28px;padding:0 10px;border:1px solid var(--bdl);border-radius:4px;font-size:13px;color:var(--t2);background:#fff;white-space:nowrap}
+.g1 .chips span b{font-weight:600;color:var(--t1)}
+.g1 .chips span.on{border-color:var(--eb);color:var(--eb);background:var(--ebl)}
+.g1 .chips span.on b{color:var(--eb)}
+.g1 .mz{display:inline-block;padding:0 7px;border-radius:3px;background:#F0F2F5;color:#6B6F76;font-size:13px;line-height:22px;white-space:nowrap}
+.g1 .sx{font-size:13px;color:var(--t3);margin-left:5px;white-space:nowrap;font-weight:400}
+.g1 .ii{font-style:normal;color:var(--t4);font-size:13px;margin-left:3px}
+.g1 .tb.cp th,.g1 .tb.cp td{padding:4px 9px}
+.g1 .tb th small{display:block;font-size:13px;color:var(--t3);font-weight:400;line-height:1.35}
+.g1 .sec{overflow:hidden;background:#fff}
+.g1 .sec>.tb tr>*:first-child{border-left:none}
+.g1 .sec>.tb tr>*:last-child{border-right:none}
+.g1 .sec>.tb tr:last-child>td{border-bottom:none}
+.g1 .sec>.tb tr:first-child>th{border-top:none}
+.g1 .sec>.tb+.pd{border-top:1px solid var(--bdx)}
+.g1 .pd{padding:7px 14px}
+.g1 .tb tr.tt td{background:#F4F7FB!important}
+.g1 .tb td.op{position:relative}
+.g1 .tb .bt.t{font-size:13px}
+.g1 .tb .bt.t+.bt.t{margin-left:12px}
+.g1 .cnt2{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;padding:0 6px;border-radius:10px;background:var(--er);color:#fff;font-size:13px;font-weight:600}
+.g1 .ds.k4 th{width:auto}
+.g1 .ds td.w{white-space:nowrap}
+.g1 .cmpw{padding:14px 16px 14px}
+.g1 .cmp{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.g1 .cc{border:1px solid var(--bdx);border-radius:4px;overflow:hidden;background:#fff}
+.g1 .cch{height:42px;display:flex;align-items:center;gap:10px;padding:0 14px;background:var(--bg);border-bottom:1px solid var(--bdx);font-size:14px;color:var(--t1);white-space:nowrap}
+.g1 .cch .c{margin-left:auto;color:var(--t2);font-size:14px;font-weight:600}
+.g1 .cm{display:grid;grid-template-columns:112px minmax(0,1fr) auto;grid-auto-rows:27px;column-gap:12px;padding:5px 14px 5px 0}
+.g1 .cm .mi{grid-column:1;border-right:1px solid var(--bdl);padding-left:18px;font-size:14px;line-height:27px;color:var(--t1);white-space:nowrap}
+.g1 .cm .mi.no{color:var(--t4);text-decoration:line-through}
+.g1 .cm .d{grid-column:2;font-size:13px;color:var(--t2);display:flex;align-items:center;line-height:1.5;min-width:0}
+.g1 .cm .d.no{color:var(--t4)}
+.g1 .cm .d.grp{border-left:2px solid #D5DAE1;padding-left:10px;margin:3px 0}
+.g1 .cm .cs{grid-column:3;display:flex;align-items:center;justify-content:flex-end}
+.g1 .cbt{border-top:1px solid var(--bdx)}
+.g1 .cbt>div{display:flex;align-items:center;gap:10px;min-height:35px;padding:4px 14px;font-size:13px;color:var(--t2);white-space:nowrap}
+.g1 .cbt>div+div{border-top:1px solid var(--bdx)}
+.g1 .cbt b{flex:none;width:52px;color:var(--t1);font-size:14px;font-weight:600}
+.g1 .opt{margin-top:12px;border:1px dashed #ADB5BD;border-radius:4px;display:grid;grid-template-columns:auto minmax(0,1fr) minmax(0,1fr);align-items:center;gap:20px;padding:9px 14px;font-size:13px;color:var(--t2);background:#FCFCFD}
+.g1 .opt .ol{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--t2);white-space:nowrap}
+.g1 .opt .oi{display:flex;align-items:center;gap:8px;white-space:nowrap}
+.g1 .opt .oi b{color:var(--t1);font-size:14px;font-weight:600}
+.g1 .opt .oi .mk{margin-left:auto}
+.g1 .nwc{display:flex;flex-direction:column;gap:4px;align-items:flex-end}
+.g1 .nwc .dd{width:226px}
+.g1 .nwc .dd i{height:30px}
+.g1 .nwc .dd i.hv{background:var(--bg);color:var(--eb)}
+.g1 .nwc .hlp{align-self:flex-start}
+.g1 .fnl{display:flex;align-items:stretch;gap:0;margin-top:10px}
+.g1 .fnl .fb{flex:1;min-width:0;border:1px solid var(--bdx);background:var(--bg);border-radius:4px;padding:5px 12px;display:flex;flex-direction:column;line-height:1.35}
+.g1 .fnl .fb span{font-size:13px;color:var(--t2)}
+.g1 .fnl .fb b{font-size:18px;font-weight:600;color:var(--t1)}
+.g1 .fnl .fb em{font-style:normal;font-size:13px;color:var(--t3)}
+.g1 .fnl .fb.cut b{color:var(--wnc)}
+.g1 .fnl>i{flex:none;width:22px;display:flex;align-items:center;justify-content:center;font-style:normal;color:var(--t4);font-size:16px}
+.g1 .opd{position:absolute;right:4px;top:29px;z-index:5;width:106px;text-align:left}
+.g1 .opd i{padding:0 10px}
+.g1 .opd i{height:28px}
+.g1 .nt .ln{display:block}
+.g1 .sec>h5{min-height:36px;padding:4px 14px}
+.g1 .sec>.ds tr>*:first-child{border-left:none}
+.g1 .sec>.ds tr>*:last-child{border-right:none}
+.g1 .sec>.ds tr:last-child>*{border-bottom:none}
+.g1 .sec>.ds tr:first-child>*{border-top:none}
+.g1 .ds.cp th,.g1 .ds.cp td{padding:4px 12px}
+.g1 .bt .car{display:inline-block;width:6px;height:6px;border-left:1.5px solid #fff;border-top:1.5px solid #fff;transform:rotate(45deg);margin:4px 0 0 7px}
+.g1 .tb.dn th,.g1 .tb.dn td{padding:4px 7px}
+.g2 .pfh .bc{font-size:14px;color:var(--t3);white-space:nowrap}
+.g2 .pfh .bc b{color:var(--t1);font-weight:600}
+.g2 .pfh .rt{margin-left:auto;font-size:14px;color:var(--eb);white-space:nowrap}
+.g2 .anc{height:40px;display:flex;align-items:center;gap:0;padding:0 16px;border-bottom:1px solid var(--bdx);background:#FAFBFC;font-size:14px;white-space:nowrap}
+.g2 .anc a{display:flex;align-items:center;gap:6px;height:40px;padding:0 14px;color:var(--t2);text-decoration:none;border-bottom:2px solid transparent}
+.g2 .anc a i{width:20px;height:20px;border-radius:50%;border:1px solid var(--t4);font-style:normal;font-size:13px;display:flex;align-items:center;justify-content:center;color:var(--t3)}
+.g2 .anc a em{font-style:normal;font-size:13px;color:var(--t3)}
+.g2 .anc a em.g{color:var(--okc)}
+.g2 .anc a.on{color:var(--eb);font-weight:600;border-bottom-color:var(--eb)}
+.g2 .anc a.on i{background:var(--eb);border-color:var(--eb);color:#fff}
+.g2 .anc a.on em{font-weight:400}
+.g2 .anc .sp{flex:1}
+.g2 .lay{display:grid;grid-template-columns:112px minmax(0,1fr)}
+.g2 .lm{padding:12px 16px;min-width:0}
+.g2 .cnt{display:flex;align-items:center;gap:6px;flex-wrap:nowrap;font-size:13px;color:var(--t2);white-space:nowrap}
+.g2 .cnt .g{color:var(--t3);margin-right:2px}
+.g2 .cnt a{display:inline-flex;align-items:center;height:26px;padding:0 9px;border:1px solid var(--bdl);border-radius:13px;background:#fff;color:var(--t2);text-decoration:none;white-space:nowrap}
+.g2 .cnt a b{font-weight:600;margin-left:4px;color:var(--t1)}
+.g2 .cnt a.on{border-color:var(--eb);color:var(--eb);background:var(--ebl)}
+.g2 .cnt a.on b{color:var(--eb)}
+.g2 .cnt .v{width:1px;height:16px;background:var(--bdl);margin:0 6px}
+.g2 .seg2{display:inline-flex;border:1px solid var(--bd);border-radius:4px;overflow:hidden;flex:none}
+.g2 .seg2 b{height:30px;line-height:30px;padding:0 12px;font-size:14px;font-weight:400;color:var(--t2);border-left:1px solid var(--bd);white-space:nowrap;background:#fff}
+.g2 .seg2 b:first-child{border-left:none}
+.g2 .seg2 b.on{background:var(--eb);color:#fff;border-color:var(--eb)}
+.g2 .seg2.sm b{height:26px;line-height:26px;padding:0 10px;font-size:13px}
+.g2 .ops{display:inline-flex;gap:8px}
+.g2 .ops a{color:var(--eb);text-decoration:none;font-size:13px}
+.g2 .tb.lst{table-layout:fixed}
+.g2 .tb.lst td,.g2 .tb.lst th{font-size:13px;padding:5px 6px;overflow:hidden;text-overflow:ellipsis}
+.g2 .tb.lst td .sm2{color:var(--er);font-size:13px;margin-left:4px}
+.g2 .pg{display:flex;align-items:center;justify-content:flex-end;gap:8px;margin-top:10px;font-size:13px;color:var(--t2)}
+.g2 .pg i{font-style:normal;min-width:26px;height:26px;border-radius:3px;background:var(--bg);display:inline-flex;align-items:center;justify-content:center;padding:0 6px}
+.g2 .pg i.on{background:var(--eb);color:#fff}
+.g2 .sct{font-size:15px;font-weight:600;color:var(--t1);margin-bottom:10px;display:flex;align-items:center;gap:8px;height:24px;white-space:nowrap}
+.g2 .sct .n2{width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;font-size:13px;display:flex;align-items:center;justify-content:center;flex:none}
+.g2 .sct .sub{font-size:13px;font-weight:400;color:var(--t3)}
+.g2 .sct .r{margin-left:auto;display:flex;gap:6px;align-items:center}
+.g2 .sbk+.sbk{border-top:1px dashed var(--bdl);margin-top:14px;padding-top:12px}
+.g2 .numbox{border:1px solid var(--bdl);background:var(--bg);border-radius:4px;padding:6px 10px;font-size:14px;line-height:1.75;color:var(--t2)}
+.g2 .numbox b{color:var(--t1);font-weight:600}
+.g2 .btnrow{display:flex;align-items:center;gap:10px;border-top:1px solid var(--bdx);margin-top:14px;padding-top:12px}
+.g2 .btnrow .sp{margin-left:auto}
+.g2 .btnrow .nt2{font-size:13px;color:var(--t3)}
+.g2 .dif{border:1px solid var(--bdx);border-radius:4px;padding:10px 12px}
+.g2 .dif+.dif{margin-top:10px}
+.g2 .dif .k{font-size:14px;font-weight:600;color:var(--t1);margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.g2 .dif .k .n2{width:20px;height:20px;border-radius:50%;background:var(--ink);color:#fff;font-size:13px;display:flex;align-items:center;justify-content:center;flex:none}
+.g2 .dif .t{font-size:14px;color:var(--t2);line-height:1.65}
+.g2 .dif .t b{color:var(--t1);font-weight:600}
+.g3 .smk .xg{height:22px;padding:0 8px}
+.g3 .xn{background:#EEF4FC!important}
+.g3 .xbox{background:#EEF4FC;border:1px solid #BCD2F0;border-radius:4px}
+.g3 .gcol>.fr+.fr{margin-top:0}
+.g3 .pg{display:flex;align-items:stretch}
+.g3 .mn{flex:1;min-width:0;padding:12px 16px}
+.g3 .pt{font-size:16px;font-weight:600;color:var(--t1);white-space:nowrap}
+.g3 .sct{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--t1);margin-bottom:6px;white-space:nowrap}
+.g3 .sp{margin-left:auto}
+.g3 .sl .ph{color:var(--t4)}
+.g3 .bt.gr{background:var(--gn);border-color:var(--gn);color:#fff}
+.g3 .bt.dl{color:var(--er)}
+.g3 .sww.off{color:var(--t3)}
+.g3 .ip.dis{background:var(--bg);color:var(--t4);border-color:var(--bdl)}
+.g3 .tb.dn{font-size:13px;line-height:1.45}
+.g3 .tb.dn th,.g3 .tb.dn td{padding:5px 5px}
+.g3 .tb.cp td{padding:4px 5px;line-height:1.36}
+.g3 .tb td.wr2{white-space:normal;line-height:1.4}
+.g3 .tb th.mkc{padding:4px 2px}
+.g3 .tb th.mkc .row{justify-content:center;gap:4px;flex-wrap:nowrap}
+.g3 .tb th.mkc.l .row{justify-content:flex-start}
+.g3 .tb .lk{color:var(--eb)}
+.g3 .tb td.top{vertical-align:top}
+.g3 .tb .ip,.g3 .tb .sl{height:28px;font-size:13px}
+.g3 .tb .sl{padding-right:26px}
+.g3 .tb .ip.n{width:46px;height:28px}
+.g3 .tb .ms{min-height:28px;padding:1px 26px 1px 4px}
+.g3 .tb .ms::after{top:10px}
+.g3 .tb .ms.off::after{top:8px}
+.g3 .tb .tg{height:22px}
+.g3 .tb .dd i{height:26px;font-size:13px}
+.g3 .tb .cb{height:22px}
+.g3 .tb tr.om td{background:#fff!important;color:var(--t3);font-size:13px;text-align:left;padding-left:12px}
+.g3 .tb .xg{height:18px;padding:0 4px}
+.g3 .hdl{display:inline-block;width:10px;height:15px;background-image:radial-gradient(circle,#A8ABB2 1.3px,transparent 1.5px);background-size:5px 5px;vertical-align:middle}
+.g3 .capb{display:flex;align-items:center;gap:10px;height:36px;padding:0 12px;margin:8px 0;font-size:13px;color:var(--t2);white-space:nowrap}
+.g3 .capb b{color:var(--t1);font-size:14px}
+.g3 .capb .v{width:1px;height:14px;background:#BCD2F0}
+.g3 .capb .r{margin-left:auto;display:flex;align-items:center;gap:8px}
+.g3 .pgn{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:8px;font-size:13px;color:var(--t2);white-space:nowrap}
+.g3 .pgn .sl,.g3 .pgn .ip{height:28px;font-size:13px}
+.g3 .pgn .ip.n{width:42px;height:28px}
+.g3 .pgn .pa{min-width:20px;text-align:center;color:var(--t3);font-size:14px}
+.g3 .pgn .pa.on{color:var(--eb);font-weight:600}
+.g3 .pinf{background:#D9D9D9;padding:10px 14px;display:grid;grid-template-columns:200px minmax(0,1fr);gap:6px 20px;font-size:14px;line-height:1.5;color:#000;white-space:nowrap}
+.g3 .rbg{display:inline-flex;flex:none}
+.g3 .rbg i{height:32px;display:inline-flex;align-items:center;padding:0 12px;border:1px solid var(--bd);margin-left:-1px;font-style:normal;font-size:14px;color:var(--t2);background:#fff;white-space:nowrap}
+.g3 .rbg i:first-child{border-radius:4px 0 0 4px;margin-left:0}
+.g3 .rbg i:last-child{border-radius:0 4px 4px 0}
+.g3 .rbg i.on{background:var(--eb);border-color:var(--eb);color:#fff;position:relative;z-index:1}
+.g3 .rs{display:inline-flex;align-items:center;height:22px;padding:0 7px;border-radius:3px;font-size:13px;white-space:nowrap;border:1px solid}
+.g3 .rs.ok{background:#F0F9EB;border-color:#E1F3D8;color:var(--okc)}
+.g3 .rs.in{background:#F4F4F5;border-color:#E9E9EB;color:#73767A}
+.g3 .rs.wn{background:#FDF6EC;border-color:#FAECD8;color:var(--wnc)}
+.g3 .rs.er{background:#FEF0F0;border-color:#FDE2E2;color:var(--erc)}</style>
+<style>
+/* 文档框架 */
+.hero{background:linear-gradient(160deg,#0D1B2A 0%,#16283D 100%);color:#fff;padding:42px 0 34px}
+.hero h1{font-size:30px;font-weight:700;line-height:1.4}
+.hero h1 em{font-style:normal;color:#5AADFF}
+.kcs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:22px}
+.kc{border:1px solid rgba(255,255,255,.16);border-radius:6px;background:rgba(255,255,255,.05);padding:14px 18px}
+.kc b{display:block;font-size:16px;font-weight:600;color:#fff;margin-bottom:6px;line-height:1.5}
+.kc span{display:block;font-size:14px;line-height:1.75;color:#B9C8D8}
+.nav{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:9px;margin-top:18px}
+.nav a{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid rgba(255,255,255,.14);border-radius:6px;background:rgba(255,255,255,.03);text-decoration:none}
+.nav a i{flex:none;font-style:normal;font-size:15px;font-weight:700;color:#5AADFF;line-height:1.45;min-width:16px}
+.nav a b{display:block;font-size:14px;color:#fff;font-weight:600;line-height:1.45}
+.nav a span{display:block;font-size:13px;color:#8FA5BA;line-height:1.45;margin-top:2px}
+.lg .wrap{gap:5px}
+.lg .mk{padding:0 6px}
+.lg .sep{margin:0 5px}
+.gh{margin-top:34px;padding:24px 0 2px;border-top:2px solid #C3CBD5}
+.gh .ghh{display:flex;align-items:center;gap:12px}
+.gh .gn{flex:none;min-width:34px;height:34px;padding:0 8px;border-radius:7px;border:2px solid var(--ink);color:var(--ink);background:#fff;font-size:18px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.gh h1{font-size:24px;font-weight:700;line-height:1.4}
+.gh .tl{margin-top:12px;display:grid;grid-template-columns:auto 1fr;gap:7px 12px;align-items:center;font-size:15px;color:var(--t2)}
+.gh .tl .mk{justify-self:start}
+.gh .gs{margin-top:10px;font-size:15px;color:var(--t2)}
+.gh+div>.scr:first-child{padding-top:22px}
+.wrap>div:not(.gh)+div>.scr:first-child{border-top:1px solid #E3E6EA}
+.c10{padding:22px 0 10px}
+.c10 h2{font-size:20px;font-weight:700;line-height:1.4;margin:6px 0 12px}
+.c10 h2+.cvt,.c10 h2+.pdt{margin-top:0}
+.c10 .blk+.blk{margin-top:30px}
+.cvt,.pdt{width:1200px;border-collapse:collapse;background:#fff;font-size:14px}
+.cvt th,.pdt th{background:var(--bg);color:var(--t2);font-weight:600;text-align:left;padding:8px 12px;border:1px solid var(--bdl);white-space:nowrap}
+.cvt td,.pdt td{padding:7px 12px;border:1px solid var(--bdl);color:var(--t2);vertical-align:top;line-height:1.65}
+.cvt td.pn{color:var(--t1);font-weight:600;white-space:nowrap}
+.cvt td.sn{white-space:nowrap;color:var(--t3)}
+.cvt td .cl{display:block}
+.cvt td .cl b{color:var(--t1);font-weight:600;margin-right:4px}
+.cvt td.no{color:var(--t3)}
+.pdt td.who{color:var(--t1);font-weight:600;white-space:nowrap;background:#FAFBFC}
+.pdt td.q{color:var(--t1)}
+.pdt td{white-space:nowrap}
+.pdt td .co{color:var(--t3);font-size:13px;margin-left:6px}
+.endsp{height:56px}
+.cst{width:1200px;border-collapse:collapse;background:#fff;font-size:15px}
+.cst th{background:var(--bg);color:var(--t2);font-weight:600;text-align:left;padding:9px 14px;border:1px solid var(--bdl);white-space:nowrap;font-size:14px}
+.cst td{padding:9px 14px;border:1px solid var(--bdl);color:var(--t1);line-height:1.55}
+.cst td.pn{font-weight:600;white-space:nowrap}
+.cst td.sn{color:var(--t3);white-space:nowrap;font-size:14px}
+.cst .c{text-align:center}
+.cst td.c{color:var(--t4);font-size:16px}
+.cst td.c.ok{color:var(--okc);font-weight:700}
+.c10 h2 .cgm{height:26px;font-size:15px;padding:0 9px;margin-right:10px;vertical-align:2px}
+.pdt tr.gr td{background:#EEF1F5;color:var(--t1);font-weight:700}
+.c10 .pnote{margin-top:10px;font-size:14px;color:var(--t2)}
+.g1 .opt.opt3{grid-template-columns:auto auto auto auto minmax(0,1fr);gap:26px}
+.nt .cl{display:block}
+
+.kc .li{display:block;position:relative;padding-left:14px;font-size:14px;line-height:1.6;color:#B9C8D8}
+.kc .li+.li{margin-top:5px}
+.kc .li::before{content:"";position:absolute;left:2px;top:.72em;width:5px;height:5px;border-radius:50%;background:#6E89A6}
+.dfn{margin-top:14px;display:flex;align-items:center;gap:22px;font-size:14px;color:#B9C8D8;white-space:nowrap}
+.dfn b{color:#fff;font-weight:600}
+.dfn i{font-style:normal;display:inline-block;margin-right:8px;padding:1px 8px;border-radius:3px;background:#2B3E55;color:#E6EEF6;font-size:13px}
+.nav{grid-template-columns:repeat(5,minmax(0,1fr))}
+.nt .cl{position:relative;padding-left:13px}
+.nt .cl+.cl{margin-top:3px}
+.nt .cl::before{content:"";position:absolute;left:2px;top:.75em;width:5px;height:5px;border-radius:50%;background:#909399}
+.sd .gp{padding:8px 16px 2px;font-size:13px;color:var(--t3);white-space:nowrap}
+.sd i.c{padding-left:28px}
+.g1 .cm .gpr{grid-column:1/4;font-size:13px;color:var(--t3);padding-left:18px;line-height:27px;white-space:nowrap}
+.g1 .cm .mi.c{padding-left:30px}
+.g1 .tb.ov th,.g1 .tb.ov td{padding:4px 7px}
+.g1 .nwc .dd i{height:27px}
+.g1 .nwc .dd i.gp{height:24px;font-size:13px;color:var(--t3)}
+.g1 .vsep{width:1px;height:16px;background:var(--bdl);margin:0 4px;flex:none}
+.tb th.lyr{color:var(--t2);font-weight:600;background:var(--bg)}
+.gsub{margin-top:26px;padding-top:16px;border-top:1px dashed #C3CBD5}
+.gsub h3{font-size:18px;font-weight:700;line-height:1.4}
+.gsub .gs{margin-top:4px;font-size:15px;color:var(--t2)}
+.gsub+div>.scr:first-child{border-top:none;padding-top:16px}
+.cvt td.ly,.cst td.ly{font-weight:600;color:var(--t2);background:#FAFBFC;white-space:nowrap}
+</style></head><body><header class="hero"><div class="wrap"><h1><em>推送统一后台：</em>游戏外、游戏内两层推送都在一个入口配置和查数据</h1><div class="kcs"><div class="kc"><b>菜单共 11 页</b><span class="li">总览</span><span class="li">游戏外推送：推播、短信、Facebook、LINE，各一页</span><span class="li">游戏内推送：弹窗、快显，各一页</span><span class="li">共用页：频率上限、数据看板、玩家查询、操作纪录</span></div><div class="kc"><b>新建：一页表单，分五块依次填</b><span class="li">推送内容 → 发送对象 → 发送时间 → 频率上限 → 确认与测试</span><span class="li">发送时间：立即、定时、按行为（如玩家升级）</span><span class="li">确认前看到人数和被上限拦下的人数</span><span class="li">不设审批，可先发给测试账号</span></div><div class="kc"><b>数据：两层分开统计</b><span class="li">游戏外推送：发送 → 到达 → 曝光 → 点击</span><span class="li">游戏内推送：从曝光算起，没有发送、到达</span><span class="li">渠道不回传的步骤写明原因，不估算</span><span class="li">8 天以上未登录的玩家只收得到游戏外推送</span></div></div><div class="dfn"><b>两种统一程度</b><span><i>只统一数据</i>各推送仍在原处配置和发送，本后台只汇总记录和数据</span><span><i>统一入口</i>所有推送都在本后台配置和发送</span></div><nav class="nav"><a href="#s1"><i>1</i><div><b>统一程度对照</b><span>两种统一程度各有哪些页</span></div></a><a href="#s2"><i>2</i><div><b>总览</b><span>今日状态 · 待处理</span></div></a><a href="#g3"><i>3</i><div><b>游戏外推送</b><span>推播、短信、Facebook、LINE</span></div></a><a href="#g4"><i>4</i><div><b>游戏内推送</b><span>弹窗、快显</span></div></a><a href="#s5"><i>5</i><div><b>频率上限</b><span>每人每天上限 · 勿扰</span></div></a><a href="#g6"><i>6</i><div><b>数据看板</b><span>游戏外、游戏内分开统计</span></div></a><a href="#g7"><i>7</i><div><b>单条推送数据</b><span>漏斗 · 失败 · 设置版本</span></div></a><a href="#g8"><i>8</i><div><b>玩家查询</b><span>能否收到 · 收到记录</span></div></a><a href="#g9"><i>9</i><div><b>改动与成本</b><span>新开发集中在哪</span></div></a><a href="#g10"><i>10</i><div><b>覆盖对照与待确认</b><span>各页配置项 · 外部确认</span></div></a></nav></div></header><div class="lg"><div class="wrap"><b>标注</b><span class="mk t">只统一数据也有</span><span class="mk t">仅统一入口</span>每屏在哪种统一程度下出现<span class="sep"></span><span class="mk a">整屏新增</span><span class="xg">新增</span><span class="xg m">改</span>改动<span class="sep"></span><span class="mk o">可选</span>可选功能<span class="mk f">选填</span>非必填字段<span class="sep"></span><span class="mk q">待确认</span>等外部确认</div></div><div class="wrap"><div class="g1">
+<section class="scr" id="s1"><div class="sh"><span class="no">1</span><h2><span class="nb">统一程度对照：</span><span class="nb">只统一数据时 7 页只读，</span><span class="nb">统一入口时 11 页都能配置</span></h2></div>
+<div class="pf"><div class="cmpw"><div class="cmp"><div class="cc"><div class="cch"><span class="mk t">只统一数据</span><span>各推送仍在原处配置和发送，这里只汇总</span></div><div class="cm"><span class="mi no" style="grid-row:1">总览</span><span class="d no" style="grid-row:1">无</span><span class="gpr" style="grid-row:2">游戏外推送</span><span class="mi c" style="grid-row:3">推播</span><span class="mi c" style="grid-row:4">短信</span><span class="mi c" style="grid-row:5">Facebook</span><span class="mi c" style="grid-row:6">LINE</span><span class="gpr" style="grid-row:7">游戏内推送</span><span class="mi no c" style="grid-row:8">弹窗</span><span class="d" style="grid-row:8">留在原「大厅弹窗顺序设定」，规则改动同统一入口</span><span class="mi c" style="grid-row:9">快显</span><span class="d" style="grid-row:9">只有显示记录；客户端上报曝光、点击</span><span class="mi no" style="grid-row:10">频率上限</span><span class="d no" style="grid-row:10">无；游戏外推送无法统一拦截</span><span class="mi" style="grid-row:11">数据看板</span><span class="d" style="grid-row:11">从各原系统汇总，没有受众一步和拦下原因</span><span class="mi" style="grid-row:12">玩家查询</span><span class="d" style="grid-row:12">扩展现有「玩家弹窗顺序查询」</span><span class="mi no" style="grid-row:13">操作纪录</span><span class="d no" style="grid-row:13">无</span><span class="d grp" style="grid-row:3/span 4"><span>只有发送记录，不能新建、编辑、停止<br>推播仍在礼包后台发送<br>营销侧提供短信、Facebook、LINE 的发送记录与回执</span></span></div></div><div class="cc"><div class="cch"><span class="mk t">统一入口</span><span>所有推送都在这里配置和发送</span></div><div class="cm"><span class="mi" style="grid-row:1">总览</span><span class="d" style="grid-row:1">今日每种推送的状态、待处理、新建入口</span><span class="gpr" style="grid-row:2">游戏外推送</span><span class="mi c" style="grid-row:3">推播</span><span class="mi c" style="grid-row:4">短信</span><span class="mi c" style="grid-row:5">Facebook</span><span class="mi c" style="grid-row:6">LINE</span><span class="gpr" style="grid-row:7">游戏内推送</span><span class="mi c" style="grid-row:8">弹窗</span><span class="d" style="grid-row:8">原「大厅弹窗顺序设定」移到这里</span><span class="mi c" style="grid-row:9">快显</span><span class="d" style="grid-row:9">改为服务端下发后在快显页新建<span class="mk q">待确认：客户端</span></span><span class="mi" style="grid-row:10">频率上限</span><span class="d" style="grid-row:10">每种推送每人每天上限、勿扰时段</span><span class="mi" style="grid-row:11">数据看板</span><span class="d" style="grid-row:11">同左，数据由本后台直接记录</span><span class="mi" style="grid-row:12">玩家查询</span><span class="d" style="grid-row:12">同左，另含被上限、勿扰拦下的记录</span><span class="mi" style="grid-row:13">操作纪录</span><span class="d" style="grid-row:13">沿用现有页签，扩到推送</span><span class="d grp" style="grid-row:3/span 4"><span>每种推送一页：列表、新建、编辑、停止<br>新建表单相同：内容、对象、时间、频率上限、确认<br>营销侧把短信、Facebook、LINE 的发送接到本后台<br>限时加码礼包推播由礼包后台迁入推播页</span></span></div></div></div>
+<div class="opt opt3"><span class="ol"><span class="mk o">可选</span></span><span class="oi"><b>同时发到其他渠道</b>内容复制为其他渠道的草稿</span><span class="oi"><b>游戏外推送合计上限</b>推播、短信、Facebook、LINE 合计</span><span class="oi"><b>弹窗间隔</b>同一位置两个弹窗的最小间隔</span><span class="oi"></span></div>
+</div></div>
+<div class="nts"><div class="nt"><b>只统一数据：发送方式不变，营销侧只回传记录</b><span class="nb">推播仍在礼包后台发，</span><span class="nb">短信、Facebook、LINE 仍由营销侧发；</span><span class="nb">本后台只收发送记录与回执，</span><span class="nb">数据看板没有受众一步和拦下原因，</span><span class="nb">频率上限和勿扰无法统一执行。</span></div><div class="nt"><b>统一入口：营销侧要把发送接到本后台</b><span class="nb">短信、Facebook、LINE 改由本后台调用发送；</span><span class="nb">快显要改为服务端下发，</span><span class="nb">能否做到待客户端确认。</span></div><div class="nt"><b>可选三项都加在统一入口上</b><span class="nb">同时发到其他渠道、</span><span class="nb">游戏外推送合计上限要求各渠道在本后台发送；</span><span class="nb">弹窗间隔在「频率上限」页设置；</span><span class="nb">不加不影响其余页面。</span></div></div></section>
+</div>
+<div class="g1">
+<section class="scr" id="s2"><div class="sh"><span class="no">2</span><h2><span class="nb">总览：</span><span class="nb">今日每种推送的状态、数据和待处理在一页看完</span></h2><span class="smk"><span class="mk t">仅统一入口</span><span class="mk a">整屏新增</span></span></div>
+<div class="pf"><div class="pfh"><b>总览</b><span class="bc">推送统一后台 › 总览</span></div>
+<div class="shell"><div class="sd"><div class="hd">推送统一后台</div><i class="on">总览</i><div class="gp">游戏外推送</div><i class="c">推播</i><i class="c">短信</i><i class="c">Facebook</i><i class="c">LINE</i><div class="gp">游戏内推送</div><i class="c">弹窗</i><i class="c">快显</i><hr><i>频率上限</i><i>数据看板</i><i>玩家查询</i><i>操作纪录</i></div><div class="cnt">
+ <div class="gcol" style="grid-template-columns:minmax(0,1fr) 226px;gap:16px">
+  <div class="sec"><h5>今日各推送<span class="sub">10/12（周一）</span><span class="r"><span class="sub">到达、点击统计至发送后 5 天｜数据更新于 15:30</span></span></h5>
+   <table class="tb cp ov"><tr><th class="l" colspan="2">推送</th><th>已排程</th><th>发送中</th><th>运行中</th><th>有失败</th><th>发送</th><th>到达</th><th>曝光</th><th>点击</th></tr><tr><td class="l lb" rowspan="4">游戏外推送</td><td class="l">推播</td><td>1</td><td>0</td><td>2</td><td class="red">1</td><td>1,960</td><td>1,190<span class="sx">仅 Android</span></td><td>1,000<span class="sx">仅 Android</span></td><td>127</td></tr><tr><td class="l">短信</td><td>0</td><td>0</td><td>0</td><td class="red">1</td><td>6,690</td><td>4,412<span class="sx">无回执 408</span></td><td><span class="mz">该渠道不回传</span></td><td>96</td></tr><tr><td class="l">Facebook</td><td>0</td><td>1</td><td>0</td><td>0</td><td>920</td><td>871</td><td>540</td><td>61</td></tr><tr><td class="l">LINE</td><td>1</td><td>0</td><td>0</td><td>0</td><td colspan="4"><span class="sx">今日未发送；已排程 20:00</span></td></tr><tr><td class="l lb" rowspan="2">游戏内推送</td><td class="l">弹窗</td><td>—</td><td>—</td><td>上架中 7</td><td>—</td><td colspan="2"><span class="mz">不适用</span></td><td>22,860</td><td>1,751</td></tr><tr><td class="l">快显</td><td>—</td><td>0</td><td>1</td><td>—</td><td colspan="2"><span class="mz">不适用</span></td><td>890</td><td>95</td></tr></table></div>
+  <div class="nwc"><span class="bt gn">＋ 新建<i class="car"></i></span><div class="dd"><i class="gp">游戏外推送</i><i class="hv">推播<span class="n">装 App 且开启通知</span></i><i>短信<span class="n">有手机号</span></i><i>Facebook<span class="n">已绑定 Facebook</span></i><i>LINE<span class="n">已加 LINE 好友</span></i><i class="gp">游戏内推送</i><i>弹窗<span class="n">大厅、破产弹窗规则</span></i><i>快显<span class="n">只发给在线玩家</span></i></div><span class="hlp">点选后进入该推送页的新建表单</span></div>
+ </div>
+ <div class="sec" style="margin-top:10px"><h5>待处理<span class="cnt2">3</span><span class="sub">只列发送失败、无可发送对象；处理后移出</span><span class="r"></span></h5>
+  <table class="tb cp">
+   <tr><th class="l">类型</th><th>渠道</th><th class="l">推送</th><th class="l">时间</th><th class="l">原因</th><th class="l">操作</th></tr>
+   <tr><td class="l"><span class="stg fail">发送失败</span></td><td>短信</td><td class="l">每日补给计划提醒</td><td class="l">定时 10/12 10:00</td><td class="l">1,870 / 6,690 条失败：服务商接口超时</td><td class="l"><span class="bt t">重试失败部分</span><span class="bt t">查看数据</span></td></tr>
+   <tr><td class="l"><span class="stg fail">发送失败</span></td><td>推播</td><td class="l">潜在流失召回</td><td class="l">定时 10/11 20:00</td><td class="l">1,970 / 4,310 条失败：推送服务超时</td><td class="l"><span class="bt t">重试失败部分</span><span class="bt t">查看数据</span></td></tr>
+   <tr><td class="l"><span class="stg none">无可发送对象</span></td><td>LINE</td><td class="l">天天敲蛋礼提醒<span class="sx">敲蛋礼未参与</span></td><td class="l">定时 10/12 12:00</td><td class="l">群组发送时为 0 人：标签未完成首次计算</td><td class="l"><span class="bt t">复制并改受众</span><span class="bt t">查看数据</span></td></tr>
+  </table></div>
+</div></div></div>
+<div class="nts"><div class="nt"><b>待处理只列需要运营动手的</b><span class="nb">发送失败、无可发送对象两类，</span><span class="nb">每行写明原因和下一步：</span><span class="nb">重试失败部分，</span><span class="nb">或复制后换受众。</span></div><div class="nt"><b>新建先选推送</b><span class="nb">下拉按游戏外、游戏内分开列出，</span><span class="nb">并写明各自能发给谁；</span><span class="nb">点选后进入该推送页的新建表单，</span><span class="nb">弹窗进入新增规则。</span></div><div class="nt"><b>今日数据与数据看板同口径</b><span class="nb">拿不到的格子同样写</span><span class="nb">「不适用」「该渠道不回传」「无回执」；</span><span class="nb">LINE 今日未发送，</span><span class="nb">不写 0 条到达。</span></div></div></section>
+</div>
+<div class="gh" id="g3"><div class="ghh"><span class="gn">3</span><h1>游戏外推送：推播、短信、Facebook、LINE</h1></div><div class="tl"><span class="mk t">统一入口</span><span><span class="nb">每种推送一页：</span><span class="nb">列表加一页新建表单（推送内容、发送对象、发送时间、频率上限、确认与测试）</span></span><span class="mk t">只统一数据</span><span><span class="nb">各页只有发送记录，</span><span class="nb">可查看数据，</span><span class="nb">不能新建或编辑</span></span></div><div class="gs"><span class="nb">玩家不在游戏里也收得到；</span><span class="nb">8 天以上未登录的玩家只收得到游戏外推送</span></div></div>
+<div class="gsub"><h3>推播页</h3><div class="gs"><span class="nb">列表与新建表单画全，</span><span class="nb">作为短信、Facebook、LINE 页的样板；</span><span class="nb">示例：按行为发送为 ID 31「限时加码礼包未购买提醒」（10/02 由礼包后台迁入）；</span><span class="nb">定时为 ID 42「每日补给计划开启」</span></div></div>
+<div class="g2">
+<section class="scr" id="s3-1"><div class="sh"><span class="no">3-1</span><h2><span class="nb">推播列表：</span><span class="nb">按发送方式、触发行为和状态筛选</span></h2><span class="smk"><span class="mk t">只统一数据也有</span><span class="mk a">整屏新增</span></span></div><div class="pf"><div class="pfh"><b>推播</b><span class="bc">推送统一后台 › 推播</span></div><div class="lay"><div class="sd"><div class="hd">推送统一后台</div><i>总览</i><div class="gp">游戏外推送</div><i class="on c">推播</i><i class="c">短信</i><i class="c">Facebook</i><i class="c">LINE</i><div class="gp">游戏内推送</div><i class="c">弹窗</i><i class="c">快显</i><hr><i>频率上限</i><i>数据看板</i><i>玩家查询</i><i>操作纪录</i></div><div class="lm">
+<div class="row nw" style="gap:8px">
+ <span class="ip" style="width:150px"><span class="ph">名称或 ID</span></span>
+ <span class="sl" style="width:120px;color:var(--t4)">受众</span>
+ <span class="ip" style="width:96px"><span class="ph">创建人</span></span>
+ <span class="ip" style="width:200px"><svg width="14" height="14" viewBox="0 0 14 14"><rect x="1.5" y="2.5" width="11" height="10" rx="1.5" fill="none" stroke="#C0C4CC"/><path d="M1.5 5.5h11M4.5 1v3M9.5 1v3" stroke="#C0C4CC"/></svg><span class="ph">创建日期　至　</span></span>
+ <span class="bt p">查询</span><span class="bt">重置</span>
+ <span class="bt" style="margin-left:auto;background:#67C23A;border-color:#67C23A;color:#fff">新建推播</span>
+</div>
+<div class="row nw" style="gap:8px;margin-top:10px">
+ <span class="un" style="color:var(--t2)">发送方式</span>
+ <span class="seg2"><b class="on">全部</b><b>按行为</b><b>定时</b><b>立即</b></span>
+ <span class="un" style="color:var(--t2);margin-left:14px">触发行为</span>
+ <span class="seg2 sm"><b class="on">全部</b><b>限时加码礼包快到期</b><b>玩家升级</b><b>完成任务</b><b>通行证升级</b></span>
+ 
+</div>
+<div class="cnt" style="margin-top:10px">
+ <span class="g">自动提醒</span><a>运行中<b>2</b></a><a>已暂停<b>1</b></a><a>已结束<b>3</b></a>
+ <span class="v"></span>
+ <span class="g">一次性</span><a>草稿<b>1</b></a><a>已排程<b>1</b></a><a>发送中<b>0</b></a><a>已完成<b>14</b></a><a>已停止<b>1</b></a><a>发送失败<b>1</b></a><a>无可发送对象<b>0</b></a>
+</div>
+<table class="tb lst" style="margin-top:10px">
+ <colgroup><col style="width:30px"><col style="width:158px"><col style="width:160px"><col style="width:152px"><col style="width:142px"><col style="width:56px"><col style="width:104px"><col style="width:98px"><col></colgroup>
+ <tr><th>ID</th><th class="l">名称</th><th class="l">发送方式／触发行为</th><th class="l">受众</th><th class="l">状态</th><th style="text-align:right">发送</th><th style="text-align:right">到达率／点击率</th><th class="l">创建人 日期</th><th class="l">操作</th></tr>
+ <tr><td>43</td><td class="l"><b>月月抽开奖提醒</b></td><td class="l">立即</td><td class="l">全部玩家 74,480</td><td class="l"><span class="stg stop">已停止</span></td><td style="text-align:right">1,050</td><td style="text-align:right">90% / 2.9%</td><td class="l">运营01 10/12</td><td class="l"><span class="ops"><a>数据</a><a>复制</a></span></td></tr><tr><td>42</td><td class="l"><b>每日补给计划开启</b></td><td class="l">定时 10/15 20:00</td><td class="l">潜在流失（两档）7,880</td><td class="l"><span class="stg sch">已排程</span></td><td style="text-align:right">—</td><td style="text-align:right">—</td><td class="l">运营01 10/12</td><td class="l"><span class="ops"><a>编辑</a><a>停止</a><a>复制</a></span></td></tr><tr><td>37</td><td class="l"><b>首储礼包提醒</b></td><td class="l">定时 10/20 12:00</td><td class="l">新增 10,749</td><td class="l"><span class="stg drf">草稿</span></td><td style="text-align:right">—</td><td style="text-align:right">—</td><td class="l">运营03 10/11</td><td class="l"><span class="ops"><a>编辑</a><a>复制</a><a>删除</a></span></td></tr><tr><td>36</td><td class="l"><b>潜在流失召回</b></td><td class="l">定时 10/11 20:00</td><td class="l">潜在流失（两档）7,880</td><td class="l"><span class="stg fail">发送失败</span><span class="sm2">接口超时</span></td><td style="text-align:right">4,310</td><td style="text-align:right">50% / 2.1%</td><td class="l">运营03 10/10</td><td class="l"><span class="ops"><a>原因</a><a>重试</a><a>复制</a></span></td></tr><tr><td>35</td><td class="l"><b>回流任务开启</b></td><td class="l">立即</td><td class="l">回流 16,564</td><td class="l"><span class="stg done">已完成</span></td><td style="text-align:right">9,120</td><td style="text-align:right">89% / 3.8%</td><td class="l">运营02 10/09</td><td class="l"><span class="ops"><a>数据</a><a>复制</a></span></td></tr><tr><td>31</td><td class="l"><b>限时加码礼包未购买提醒</b></td><td class="l">按行为 · 礼包剩 2 小时</td><td class="l">触发的玩家</td><td class="l"><span class="stg run">运行中</span></td><td style="text-align:right">5,620</td><td style="text-align:right">92% / 7.6%</td><td class="l">运营01 10/02</td><td class="l"><span class="ops"><a>数据</a><a>编辑</a><a>暂停</a><a>复制</a></span></td></tr><tr><td>30</td><td class="l"><b>升级奖励领取提醒</b></td><td class="l">按行为 · 玩家升级</td><td class="l">触发的玩家 · 只限新增</td><td class="l"><span class="stg pau">已暂停</span></td><td style="text-align:right">2,310</td><td style="text-align:right">90% / 5.2%</td><td class="l">运营02 09/28</td><td class="l"><span class="ops"><a>数据</a><a>编辑</a><a>恢复</a><a>结束</a></span></td></tr>
+</table>
+<div class="pg"><span>共 24 条</span><i class="on">1</i><i>2</i><i>3</i><i>›</i></div></div></div></div><div class="nts"><div class="nt"><b><span class="nb">自动提醒和一次性推送分开计数</span></b><span class="nb">按行为发送的提醒状态为运行中、已暂停、已结束；</span><span class="nb">定时、立即的推送另计，</span><span class="nb">点数字即筛选。</span></div><div class="nt"><b><span class="nb">每行只给当前状态能做的操作</span></b><span class="nb">运行中可暂停；</span><span class="nb">已暂停可恢复或结束；</span><span class="nb">已排程可编辑或停止；</span><span class="nb">发送失败的行写明原因，</span><span class="nb">可只重试失败部分。</span></div><div class="nt"><b><span class="nb">只统一数据时只剩发送记录</span></b><span class="nb">同一张表只读，</span><span class="nb">没有「新建推播」和编辑、暂停等操作，</span><span class="nb">各渠道仍在原处发送。</span></div></div></section>
+<section class="scr" id="s3-2"><div class="sh"><span class="no">3-2</span><h2><span class="nb">新建推播·推送内容：</span><span class="nb">写标题、内文和点击跳转，</span><span class="nb">同时预览 iOS 与 Android</span></h2><span class="smk"><span class="mk t">仅统一入口</span><span class="mk a">整屏新增</span></span></div><div class="pf"><div class="pfh"><b>新建推播</b><span class="bc">推送统一后台 › 推播 › 新建推播</span><span class="rt">返回推播列表</span></div><div class="anc"><a class="on"><i>1</i>推送内容<em class="g">已填</em></a><a><i>2</i>发送对象<em>约 800 人/天</em></a><a><i>3</i>发送时间<em>按行为</em></a><a><i>4</i>频率上限<em>遵守</em></a><a><i>5</i>确认与测试<em class="g">校验通过</em></a><span class="sp"></span></div><div class="pb">
+<div class="sct"><span class="n2">1</span>推送内容</div>
+<div class="gcol" style="grid-template-columns:minmax(0,1fr) 300px;gap:20px">
+ <div>
+  <div class="fr"><span class="fl"><i>*</i>标题</span><span class="ip" style="width:420px" lang="zh-Hant">最後提醒⚠️幸運加碼禮包<span class="c">11 / 30</span></span></div>
+  <div class="fr"><span class="fl"><i>*</i>内文</span><div class="ta" style="width:600px" lang="zh-Hant">加碼禮包即將下架，打開就能看到專屬加碼內容，別錯過！<span class="c">26 / 60</span></div></div>
+  <div class="fr"><span class="fl">图片</span><div class="row"><span class="thumb"></span><span class="hl"><span class="nb">限时加码礼包.png</span></span><span class="bt t">更换</span><span class="mk f">选填</span></div></div>
+  <div class="fr"><span class="fl"><i>*</i>点击跳转</span><div class="fc">
+   <span class="sl on" style="width:242px">礼包 / 限时加码礼包</span>
+   <div class="row nw" style="align-items:flex-start;gap:12px">
+    <div class="cas"><div class="col"><i>活动页面<em>›</em></i><i class="on">礼包<em>›</em></i><i>大厅</i><i>外部链接<em>›</em></i></div><div class="col"><i>首储礼包</i><i class="on">限时加码礼包<span class="ck">✓</span></i><i class="more">⋮</i></div></div>
+    <div class="hlp" style="padding-top:4px"><span class="nb">活动页面下有回流任务、</span><br><span class="nb">月月抽、每日补给计划等</span></div>
+   </div>
+  </div></div>
+ </div>
+ <div class="pv">
+  <span class="pvl">iOS</span>
+  <div class="ios" lang="zh-Hant"><div class="n"><div class="h"><i></i>遊戲 App<span>現在</span></div><b>最後提醒⚠️幸運加碼禮包</b><br>加碼禮包即將下架，打開就能看到專屬加碼內容，別錯過！</div></div>
+  <span class="pvl" style="margin-top:4px">Android</span>
+  <div class="and" lang="zh-Hant"><div class="h"><i></i>遊戲 App · 現在</div><b>最後提醒⚠️幸運加碼禮包</b><br>加碼禮包即將下架，打開就能看到專屬加碼內…</div>
+ </div>
+</div>
+<div class="fr" style="margin-top:12px;padding-top:10px;border-top:1px dashed var(--bdl)">
+ <span class="fl" style="width:auto">同时发到其他渠道</span>
+ <div class="row"><span class="cb"><em></em>快显</span><span class="cb"><em></em>短信</span><span class="cb"><em></em>Facebook</span><span class="cb"><em></em>LINE</span>
+ <span class="hl"><span class="nb">勾选后，</span><span class="nb">保存时在所选渠道页各生成一份草稿</span></span><span class="mk o">可选</span></div>
+</div></div></div><div class="nts"><div class="nt"><b><span class="nb">标题和内文按推播上限计数</span></b><span class="nb">标题 30 字、内文 60 字，</span><span class="nb">超出时计数变红；</span><span class="nb">右侧同时显示 iOS 与 Android 的通知样式。</span></div><div class="nt"><b><span class="nb">点击跳转从现有页面里选</span></b><span class="nb">活动页面、礼包、大厅直接选，</span><span class="nb">只有外部链接需要手填网址。</span></div><div class="nt"><b><span class="nb">同时发到其他渠道为可选功能</span></b><span class="nb">勾选后在所选渠道页生成草稿，</span><span class="nb">再到各页按渠道规则修改。</span></div></div></section>
+<section class="scr" id="s3-3"><div class="sh"><span class="no">3-3</span><h2><span class="nb">新建推播·发送对象：</span><span class="nb">按行为发送时以触发的玩家为基础，</span><span class="nb">可再限定群组与排除名单</span></h2><span class="smk"><span class="mk t">仅统一入口</span><span class="mk a">整屏新增</span></span></div><div class="pf"><div class="pfh"><b>新建推播</b><span class="bc">推送统一后台 › 推播 › 新建推播</span><span class="rt">返回推播列表</span></div><div class="anc"><a><i>1</i>推送内容<em class="g">已填</em></a><a class="on"><i>2</i>发送对象<em>约 800 人/天</em></a><a><i>3</i>发送时间<em>按行为</em></a><a><i>4</i>频率上限<em>遵守</em></a><a><i>5</i>确认与测试<em class="g">校验通过</em></a><span class="sp"></span></div><div class="pb">
+<div class="sct"><span class="n2">2</span>发送对象<span class="sub">发送时间选「按行为」时，对象为触发的玩家</span></div>
+<div class="fr">
+ <span class="fl"><i>*</i>发送对象</span>
+ <span class="rd on"><em></em>触发的玩家</span>
+ <span class="hl"><span class="nb">立即、定时时改为「全部玩家（74,480 人）／标签群组」</span></span>
+</div>
+<div class="gcol" style="grid-template-columns:340px 410px minmax(0,1fr);margin-top:12px">
+ <div class="fr"><span class="fl" style="width:86px">只限这些群组</span><div class="fc" style="flex:1">
+  <div class="ms"><span class="ph" style="color:var(--t4);font-size:14px;padding-left:6px;line-height:24px">不限，触发即发</span></div>
+  <div class="dd">
+   <i>新增<span class="n">10,749 人</span></i>
+   <i>回流<span class="n">16,564 人</span></i>
+   <i>潜在付费<span class="n">4,860 人</span></i>
+   <i>潜在流失（两档）<span class="n">7,880 人</span></i>
+   <i class="more">⋮ 其余标签群组，可输入名称搜索</i>
+  </div>
+  <div class="row"><span class="mk f">选填</span><span class="hlp"><span class="nb">选了群组后，</span><span class="nb">只发给在群组内的触发玩家</span></span></div>
+ </div></div>
+ <div class="fr"><span class="fl">排除群组</span><div class="fc" style="flex:1">
+  <div class="ms"><span class="tg">VIP 名单<em>✕</em></span><span class="tg">黑名单<em>✕</em></span><span class="tg">机器人与测试账号<em>✕</em></span></div>
+  <div class="dd">
+   <i class="on">VIP 名单<span class="n">108 人</span><span class="ck">✓</span></i>
+   <i class="on">黑名单<span class="n">15 人</span><span class="ck">✓</span></i>
+   <i class="on">机器人与测试账号<span class="n">740 人</span><span class="ck">✓</span></i>
+   <i class="more">⋮ 其余标签群组</i>
+  </div>
+  <div class="hlp"><span class="nb">默认选中这三项，</span><span class="nb">可删除</span></div>
+ </div></div>
+ <div class="fr"><span class="fl">预计人数</span><div class="fc" style="flex:1">
+  <div class="numbox">近 7 天平均每天触发约 <b>1,250</b> 人<br>排除后约 <b>1,240</b> 人<br>推播可触达约 <b>800</b> 人（65%）</div>
+  
+  <div class="hlp"><span class="nb">按触发当时的群组判断</span></div>
+ </div></div>
+</div></div></div><div class="nts"><div class="nt"><b><span class="nb">按行为发送时发送对象是触发的玩家</span></b><span class="nb">可再勾选只发给某些群组；</span><span class="nb">改为立即或定时发送时，</span><span class="nb">这里换成全部玩家或标签群组。</span></div><div class="nt"><b><span class="nb">每天的人数按近 7 天估算</span></b><span class="nb">按行为发送没有固定名单，</span><span class="nb">按近 7 天平均每天的触发人数估算；</span><span class="nb">群组按触发当时判断。</span></div><div class="nt"><b><span class="nb">VIP、黑名单、机器人与测试账号默认排除</span></b><span class="nb">游戏外推送都要排除这三类，</span><span class="nb">默认选中可避免漏选。</span></div></div></section>
+<section class="scr" id="s3-4"><div class="sh"><span class="no">3-4</span><h2><span class="nb">新建推播·定时与立即的发送对象：</span><span class="nb">选全部玩家或标签群组，</span><span class="nb">实时显示推播可触达人数</span></h2><span class="smk"><span class="mk t">仅统一入口</span><span class="mk a">整屏新增</span></span></div><div class="pf"><div class="pfh"><b>新建推播</b><span class="bc">推送统一后台 › 推播 › 新建推播</span><span class="rt">返回推播列表</span></div><div class="anc"><a><i>1</i>推送内容<em class="g">已填</em></a><a class="on"><i>2</i>发送对象<em>7,850 人</em></a><a><i>3</i>发送时间<em>定时 10/15 20:00</em></a><a><i>4</i>频率上限<em>遵守</em></a><a><i>5</i>确认与测试<em>待校验</em></a><span class="sp"></span></div><div class="pb"><div class="sct"><span class="n2">2</span>发送对象<span class="sub">发送时间选「立即」或「定时」时</span></div><div class="fr"><span class="fl"><i>*</i>发送对象</span><span class="rd"><em></em>全部玩家（74,480 人）</span><span class="rd on"><em></em>标签群组</span><span class="hl"><span class="nb">群组每 25 分钟刷新，</span><span class="nb">发送时按当时名单发</span></span></div><div class="gcol" style="grid-template-columns:340px 410px minmax(0,1fr);margin-top:12px"><div class="fr"><span class="fl" style="width:86px"><i>*</i>标签群组</span><div class="fc" style="flex:1"><span class="sl on">潜在流失（两档）</span><div class="dd"><i>新增<span class="n">10,749 人</span></i><i>回流<span class="n">16,564 人</span></i><i>潜在付费<span class="n">4,860 人</span></i><i class="on">潜在流失（两档）<span class="n">7,880 人</span><span class="ck">✓</span></i><i>潜在流失·近 14 天 2–3 天<span class="n">3,420 人</span></i><i>潜在流失·近 14 天 1 天<span class="n">4,460 人</span></i><i>回流且潜在付费<span class="n">1,320 人</span></i><i class="more">⋮ 其余标签群组，可输入名称搜索</i></div></div></div><div class="fr"><span class="fl">排除群组</span><div class="fc" style="flex:1"><div class="ms off"><span class="tg">VIP 名单<em>✕</em></span><span class="tg">黑名单<em>✕</em></span><span class="tg">机器人与测试账号<em>✕</em></span></div><div class="hlp"><span class="nb">默认选中这三项，</span><span class="nb">可删除</span></div></div></div><div class="fr"><span class="fl">预计人数</span><div class="fc" style="flex:1"><div class="numbox">群组 <b>7,880</b> 人<br>排除后 <b>7,850</b> 人<br>推播可触达 <b>4,310</b> 人（55%）</div><div class="hlp">切换群组或排除项后立即重算</div><div class="hlp" style="margin-top:8px">群组为 0 人时：</div><span class="st er"><span class="nb">当前群组没有玩家，</span><span class="nb">不能发送；</span><span class="nb">「确认排程」不可点</span></span></div></div></div></div></div><div class="nts"><div class="nt"><b><span class="nb">定时、立即从全部玩家或标签群组里选</span></b><span class="nb">下拉列出每个群组的当前人数；</span><span class="nb">破产按弹窗位置判定，</span><span class="nb">不形成名单，</span><span class="nb">不在下拉里。</span></div><div class="nt"><b><span class="nb">发送时按当时名单发</span></b><span class="nb">群组每 25 分钟刷新；</span><span class="nb">定时推送以发送那一刻的名单为准，</span><span class="nb">预计人数是当前值。</span></div><div class="nt"><b><span class="nb">群组为 0 人时不能确认</span></b><span class="nb">警示条显示在预计人数下方，</span><span class="nb">「确认排程」不可点，</span><span class="nb">例如新建的群组还没完成首次计算。</span></div></div></section>
+<section class="scr" id="s3-5"><div class="sh"><span class="no">3-5</span><h2><span class="nb">新建推播·发送时间：</span><span class="nb">选立即、定时或按行为，</span><span class="nb">并设定提醒次数与勿扰时段</span></h2><span class="smk"><span class="mk t">仅统一入口</span><span class="mk a">整屏新增</span></span></div><div class="pf"><div class="pfh"><b>新建推播</b><span class="bc">推送统一后台 › 推播 › 新建推播</span><span class="rt">返回推播列表</span></div><div class="anc"><a><i>1</i>推送内容<em class="g">已填</em></a><a><i>2</i>发送对象<em>约 800 人/天</em></a><a class="on"><i>3</i>发送时间<em>按行为</em></a><a><i>4</i>频率上限<em>遵守</em></a><a><i>5</i>确认与测试<em class="g">校验通过</em></a><span class="sp"></span></div><div class="pb">
+<div class="sct"><span class="n2">3</span>发送时间</div>
+<div class="fr">
+ <span class="fl"><i>*</i>发送方式</span>
+ <span class="rd"><em></em>立即</span><span class="rd"><em></em>定时</span><span class="rd on"><em></em>按行为</span>
+ <span class="hl"><span class="nb">定时须在 3 分钟后、30 天内</span></span>
+</div>
+<div class="gcol" style="grid-template-columns:330px 400px minmax(0,1fr);margin-top:12px">
+ <div class="fr"><span class="fl"><i>*</i>触发行为</span><div class="fc" style="flex:1">
+  <span class="sl on">限时加码礼包快到期</span>
+  <div class="dd"><i class="on">限时加码礼包快到期<span class="ck" style="margin-left:auto">✓</span></i><i>玩家升级</i><i>完成任务</i><i>通行证升级</i></div>
+ </div></div>
+ <div>
+  <div class="fr"><span class="fl">触发条件</span><div class="row nw"><span class="un">礼包剩余</span><span class="ip n">2</span><span class="un">小时时发送</span></div></div>
+  <div class="fr"><span class="fl"></span><span class="cb on"><em></em>只发给尚未购买该礼包的玩家</span></div>
+  <div class="fr"><span class="fl"><i>*</i>生效期间</span><span class="ip" style="flex:1"><svg width="14" height="14" viewBox="0 0 14 14"><rect x="1.5" y="2.5" width="11" height="10" rx="1.5" fill="none" stroke="#C0C4CC"/><path d="M1.5 5.5h11M4.5 1v3M9.5 1v3" stroke="#C0C4CC"/></svg>2026-10-02<span style="color:var(--t3)">至</span>2026-12-31</span></div>
+ </div>
+ <div>
+  <div class="fr"><span class="fl">提醒次数</span><div class="row nw"><span class="un">每次触发最多</span><span class="ip n">1</span><span class="un">次</span></div></div>
+  <div class="fr"><span class="fl">冷却</span><div class="row nw"><span class="un">同一玩家间隔至少</span><span class="ip n">24</span><span class="un">小时</span></div></div>
+  
+ </div>
+</div>
+<div class="fr" style="margin-top:12px;padding-top:10px;border-top:1px dashed var(--bdl)">
+ <span class="fl">勿扰时段</span>
+ <div class="fc" style="flex:1;gap:8px">
+  <div class="row"><span class="sww"><span class="sg on"></span>开启</span><span class="ip ro">00:00–08:00</span><span class="hl"><span class="nb">时段在「频率上限」页设置</span></span></div>
+  <div class="row"><span class="un">命中时</span><span class="rd"><em></em>顺延到 08:00 发送</span><span class="rd on"><em></em>放弃发送</span><span class="st wn" style="padding:5px 12px"><span class="nb">按行为默认放弃：</span><span class="nb">礼包 2 小时内到期，顺延到 08:00 时可能已过期</span></span></div>
+ </div>
+</div></div></div><div class="nts"><div class="nt"><b><span class="nb">按行为发送时从下拉里选玩家行为</span></b><span class="nb">下拉列出限时加码礼包快到期、</span><span class="nb">玩家升级、完成任务、通行证升级；</span><span class="nb">原在礼包后台发送的限时加码礼包推播迁到这里。</span></div><div class="nt"><b><span class="nb">同一玩家不会被反复提醒</span></b><span class="nb">每次触发最多提醒 1 次；</span><span class="nb">同一玩家两次提醒至少间隔 24 小时。</span></div><div class="nt"><b><span class="nb">按行为命中勿扰时默认放弃</span></b><span class="nb">提醒有时效：礼包 2 小时内就到期，</span><span class="nb">顺延到 08:00 时可能已过期；</span><span class="nb">立即、定时默认顺延到 08:00。</span></div></div></section>
+<section class="scr" id="s3-6"><div class="sh"><span class="no">3-6</span><h2><span class="nb">新建推播·频率上限与确认：</span><span class="nb">看清被上限拦下的人数，</span><span class="nb">再核对全部设置</span></h2><span class="smk"><span class="mk t">仅统一入口</span><span class="mk a">整屏新增</span></span></div><div class="pf"><div class="pfh"><b>新建推播</b><span class="bc">推送统一后台 › 推播 › 新建推播</span><span class="rt">返回推播列表</span></div><div class="anc"><a><i>1</i>推送内容<em class="g">已填</em></a><a><i>2</i>发送对象<em>约 800 人/天</em></a><a><i>3</i>发送时间<em>按行为</em></a><a class="on"><i>4</i>频率上限<em>遵守</em></a><a class="on"><i>5</i>确认与测试<em class="g">校验通过</em></a><span class="sp"></span></div><div class="pb">
+<div class="sbk">
+ <div class="sct"><span class="n2">4</span>频率上限<span class="sub">只读，引用「频率上限」页设置</span><span class="r"><span class="bt t">去修改 ›</span></span></div>
+ <div class="fr"><span class="fl">上限</span><div class="row"><span class="ip ro">推播每人每天 2 条</span><span class="hl"><span class="nb">游戏外推送合计上限：</span><span class="nb">未开启</span></span><span class="mk o">可选</span></div></div>
+ <div class="fr"><span class="fl">预计拦截</span><div class="row"><span class="st wn" style="padding:5px 12px"><span class="nb">近 7 天触发的玩家中，</span><span class="nb">平均每天约 60 人当天已收到 2 条推播，</span><span class="nb">这些人收不到本提醒</span></span></div></div>
+ <div class="fr"><span class="fl"></span><div class="row"><span class="cb on"><em></em>本条遵守频率上限</span><span class="hl" style="margin-left:12px"><span class="nb">取消勾选时须填写：</span></span><span class="rd dis"><em></em>仍计入当天条数</span><span class="rd dis"><em></em>不计入</span><span class="ip ro" style="width:220px"><span class="ph">原因，例：系统维护公告</span></span></div></div>
+</div>
+<div class="sbk">
+ <div class="sct"><span class="n2">5</span>确认与测试<span class="r"><span class="okt-t">✓ 内容</span><span class="okt-t">✓ 发送对象不为 0</span><span class="okt-t">✓ 触发条件完整</span><span class="okt-t">✓ 生效期间有效</span></span></div>
+ <table class="ds">
+  <tr><th>名称</th><td>限时加码礼包未购买提醒</td><th>发送方式</th><td>按行为：限时加码礼包剩 2 小时，且尚未购买</td></tr>
+  <tr><th>发送对象</th><td>触发的玩家，排除 VIP 名单、黑名单、机器人与测试账号</td><th>生效期间</th><td>2026-10-02 至 2026-12-31</td></tr>
+  <tr><th>提醒频次</th><td>每次触发最多 1 次，间隔至少 24 小时</td><th>勿扰时段</th><td>00:00–08:00，命中时放弃</td></tr>
+  <tr><th>标题</th><td lang="zh-Hant">最後提醒⚠️幸運加碼禮包</td><th>内文</th><td lang="zh-Hant">加碼禮包即將下架，打開就能看到專屬加碼內容，別錯過！</td></tr><tr><th>点击跳转</th><td>礼包 / 限时加码礼包</td><th>预计每天</th><td>可触达约 800 人，勿扰放弃约 200 人，上限拦截约 60 人，发出约 <b>540</b> 条</td></tr>
+ </table>
+</div></div></div><div class="nts"><div class="nt"><b><span class="nb">拦截人数按近 7 天估算</span></b><span class="nb">只算当天已收满 2 条推播的人；</span><span class="nb">勿扰放弃的另计，</span><span class="nb">预计每天发出条数已扣除两者。</span></div><div class="nt"><b><span class="nb">不遵守上限须选计入方式并写原因</span></b><span class="nb">系统维护公告这类必须送达的消息可以不受上限限制，</span><span class="nb">原因记入操作纪录。</span></div><div class="nt"><b><span class="nb">摘要和校验放在表单末尾</span></b><span class="nb">内容、对象、时间、上限在一张表里核对，</span><span class="nb">校验全部通过后「确认启用」才可点。</span></div></div></section>
+<section class="scr" id="s3-7"><div class="sh"><span class="no">3-7</span><h2><span class="nb">新建推播·确认与测试：</span><span class="nb">先发给测试账号核对，</span><span class="nb">再存为草稿或确认启用</span></h2><span class="smk"><span class="mk t">仅统一入口</span><span class="mk a">整屏新增</span></span></div><div class="pf"><div class="pfh"><b>新建推播</b><span class="bc">推送统一后台 › 推播 › 新建推播</span><span class="rt">返回推播列表</span></div><div class="anc"><a><i>1</i>推送内容<em class="g">已填</em></a><a><i>2</i>发送对象<em>约 800 人/天</em></a><a><i>3</i>发送时间<em>按行为</em></a><a><i>4</i>频率上限<em>遵守</em></a><a class="on"><i>5</i>确认与测试<em class="g">校验通过</em></a><span class="sp"></span></div><div class="pb">
+<div class="sct"><span class="n2">5</span>确认与测试<span class="sub">测试发送</span></div>
+<div class="gcol" style="grid-template-columns:330px minmax(0,1fr);gap:20px">
+ <div>
+  <div class="fr"><span class="fl" style="width:60px">测试名单</span><div class="fc" style="flex:1"><span class="sl on">运营测试组（4 人）</span><div class="dd"><i class="on">运营测试组<span class="n">4 人</span><span class="ck">✓</span></i><i class="more">⋮ 其他测试名单</i></div></div></div>
+  <div class="fr"><span class="fl" style="width:60px">会员编号</span><div class="fc" style="flex:1"><div class="ms off"><span class="tg">180820055301234<em>✕</em></span></div><span class="hlp"><span class="nb">多个会员编号用逗号分隔</span></span></div></div>
+  <div class="fr"><span class="fl" style="width:60px"></span><div class="row"><span class="bt">发送测试</span></div></div>
+ </div>
+ <div>
+  <div class="row" style="margin-bottom:6px"><b style="font-size:14px">测试结果</b><span class="hlp"><span class="nb">10/02 10:05 发出，</span><span class="nb">直接发送当前内容，</span><span class="nb">不等触发条件</span></span></div>
+  <table class="tb">
+   <tr><th class="l">测试账号</th><th class="l">设备</th><th class="l">结果</th></tr>
+   <tr><td class="l">测试01 · …0101</td><td class="l">iOS</td><td class="l okt">✓ 已送达</td></tr>
+   <tr><td class="l">测试02 · …0102</td><td class="l">Android</td><td class="l okt">✓ 已送达</td></tr>
+   <tr><td class="l">测试03 · …0103</td><td class="l">iOS</td><td class="l red">未送达：该账号未开启推播通知</td></tr>
+   <tr><td class="l">测试04 · …0104</td><td class="l">Android</td><td class="l okt">✓ 已送达</td></tr>
+   <tr><td class="l">…1234（手动输入）</td><td class="l">iOS</td><td class="l okt">✓ 已送达</td></tr>
+  </table>
+ </div>
+</div>
+<div class="btnrow"><span class="bt">取消</span><span class="sp nt2">按钮随发送方式：按行为发送为「确认启用」，定时为「确认排程」，立即为「确认发送」</span><span class="bt">存为草稿</span><span class="bt">发送测试</span><span class="bt p">确认启用</span></div></div></div><div class="nts"><div class="nt"><b><span class="nb">测试不等触发条件</span></b><span class="nb">点「发送测试」直接把当前内容发给测试账号，</span><span class="nb">不用等礼包快到期。</span></div><div class="nt"><b><span class="nb">按账号和设备写明结果</span></b><span class="nb">例如 iOS 账号未开启推播通知时直接写原因，</span><span class="nb">不用查日志。</span></div><div class="nt"><b><span class="nb">确认启用后状态为运行中</span></b><span class="nb">不设审批；</span><span class="nb">启用后可在列表里随时暂停或结束，</span><span class="nb">所有操作记入操作纪录。</span></div></div></section>
+</div>
+<div class="gsub"><h3>短信、Facebook、LINE 页</h3><div class="gs"><span class="nb">表单结构同推播页（3-2～3-7）；</span><span class="nb">各屏只画推送内容、可触达判断和发送时间</span></div></div>
+<div class="g2">
+<section class="scr" id="s3-8"><div class="sh"><span class="no">3-8</span><h2><span class="nb">新建短信：</span><span class="nb">内文按 70 字一则计费并显示则数</span></h2><span class="smk"><span class="mk t">仅统一入口</span><span class="mk a">整屏新增</span></span></div><div class="pf"><div class="pfh"><b>新建短信</b><span class="bc">推送统一后台 › 短信 › 新建短信</span><span class="rt">返回短信列表</span></div><div class="pb">
+<div class="gcol" style="grid-template-columns:minmax(0,1fr) 380px;gap:16px">
+ <div class="dif"><div class="k"><span class="n2">1</span>推送内容</div>
+<div class="gcol" style="grid-template-columns:minmax(0,1fr) 250px;gap:14px">
+ <div class="cfs">
+  <div class="cf"><label><i>*</i>内文</label><div class="ta" lang="zh-Hant">【會員通知】每日補給計畫開跑！連續登入7天，每天都能領取補給獎勵，名額有限，千萬別錯過。點擊立即前往 https://s.xx.tw/k3P9a 退訂回T<span class="c w">77 字 · 2 则</span></div></div>
+  <div class="cf"><label>计费</label><span class="un">70 字计 1 则；2 则 × 6,690 人 ＝ 13,380 则</span></div>
+  <div class="cf"><label>链接</label><div class="row"><span class="ip ro" style="width:200px">xx.tw/event/daily-supply</span><span class="un">→</span><span class="ip ro" style="width:132px">s.xx.tw/k3P9a</span></div></div>
+  <div class="cf"><label>校验</label><span class="st wn" style="padding:5px 12px"><span class="nb">内文含未转短链的链接时提示改用短链</span></span></div>
+ </div>
+ <div class="pv"><span class="pvl">手机简讯</span><div class="sms" lang="zh-Hant"><div class="fm">簡訊 · 10/15 20:00</div><div class="bb">【會員通知】每日補給計畫開跑！連續登入7天，每天都能領取補給獎勵，名額有限，千萬別錯過。點擊立即前往 <u>https://s.xx.tw/k3P9a</u> 退訂回T</div></div></div>
+</div></div>
+ <div>
+  <div class="dif"><div class="k"><span class="n2">2</span>发送对象</div><div class="t"><span class="nb">发送对象：</span><span class="nb">潜在流失（两档）7,880 人</span><br>可触达：<b>有手机号</b><span class="nb">，</span><span class="nb">6,690 人（85%）</span><br><span class="nb">频率上限：</span><span class="nb">短信每人每天 1 条</span></div></div>
+  <div class="dif"><div class="k"><span class="n2">3</span>发送时间</div><div class="t"><div class="row"><span class="rd"><em></em>立即</span><span class="rd on"><em></em>定时</span><span class="rd"><em></em>按行为</span></div><div class="row" style="margin-top:8px"><span class="ip" style="width:220px"><svg width="14" height="14" viewBox="0 0 14 14"><rect x="1.5" y="2.5" width="11" height="10" rx="1.5" fill="none" stroke="#C0C4CC"/><path d="M1.5 5.5h11M4.5 1v3M9.5 1v3" stroke="#C0C4CC"/></svg>2026-10-15 20:00</span></div></div></div>
+ </div>
+</div></div></div><div class="nts"><div class="nt"><b><span class="nb">则数和计费量直接显示</span></b><span class="nb">70 字计 1 则，</span><span class="nb">本条 77 字计 2 则，</span><span class="nb">6,690 人共 13,380 则。</span></div><div class="nt"><b><span class="nb">链接自动转短链并记录点击</span></b><span class="nb">原链接发送时换成短链，</span><span class="nb">点击计入数据；</span><span class="nb">内文还有长链接时提示改用短链。</span></div><div class="nt"><b><span class="nb">只发给有手机号的玩家</span></b><span class="nb">7,880 人中有手机号的 6,690 人；</span><span class="nb">每则字数与计费方式待营销侧确认。</span></div></div></section>
+<section class="scr" id="s3-9"><div class="sh"><span class="no">3-9</span><h2><span class="nb">新建 Facebook 消息：</span><span class="nb">只发给已绑定 Facebook 的玩家</span></h2><span class="smk"><span class="mk t">仅统一入口</span><span class="mk a">整屏新增</span></span></div><div class="pf"><div class="pfh"><b>新建 Facebook</b><span class="bc">推送统一后台 › Facebook › 新建 Facebook</span><span class="rt">返回 Facebook 列表</span></div><div class="pb">
+<div class="gcol" style="grid-template-columns:minmax(0,1fr) 380px;gap:16px">
+ <div class="dif"><div class="k"><span class="n2">1</span>推送内容</div>
+<div class="gcol" style="grid-template-columns:minmax(0,1fr) 230px;gap:14px">
+ <div class="cfs">
+  <div class="cf"><label><i>*</i>文字</label><div class="ta" lang="zh-Hant">每日補給計畫開跑！連續登入7天，每天都能領取補給獎勵，千萬別錯過<span class="c">32 字</span></div></div>
+  <div class="cf"><label>图片</label><div class="row"><span class="thumb"></span><span class="hl"><span class="nb">每日补给计划.png</span></span><span class="bt t">更换</span><span class="mk f">选填</span></div></div>
+  <div class="cf"><label><i>*</i>按钮</label><div class="fc" style="flex:1"><div class="row nw"><span class="ip" style="width:120px" lang="zh-Hant">立即前往<span class="c">4 字</span></span><span class="ip bad" style="flex:1"><span class="ph">按钮链接 https://</span></span></div><span class="err">请填写按钮链接</span></div></div>
+  
+ </div>
+ <div class="pv"><span class="pvl">Messenger 消息</span><div class="fbw" lang="zh-Hant"><div class="fb"><div class="img"></div><p>每日補給計畫開跑！連續登入7天，每天都能領取補給獎勵，千萬別錯過</p><div class="btn bad">立即前往（缺链接）</div></div></div></div>
+</div></div>
+ <div>
+  <div class="dif"><div class="k"><span class="n2">2</span>发送对象</div><div class="t"><span class="nb">发送对象：</span><span class="nb">潜在流失（两档）7,880 人</span><br>可触达：<b><span class="nb">已绑定 Facebook</span></b><span class="nb">，</span><span class="nb">2,580 人（33%）</span><br><span class="nb">Meta 限制：</span><span class="nb">24 小时窗口外的营销消息每人每天 1 条</span></div></div>
+  <div class="dif"><div class="k"><span class="n2">3</span>发送时间</div><div class="t"><div class="row"><span class="rd"><em></em>立即</span><span class="rd on"><em></em>定时</span><span class="rd"><em></em>按行为</span></div><div class="row" style="margin-top:8px"><span class="ip" style="width:200px"><svg width="14" height="14" viewBox="0 0 14 14"><rect x="1.5" y="2.5" width="11" height="10" rx="1.5" fill="none" stroke="#C0C4CC"/><path d="M1.5 5.5h11M4.5 1v3M9.5 1v3" stroke="#C0C4CC"/></svg>2026-10-15 20:00</span></div></div></div>
+ </div>
+</div></div></div><div class="nts"><div class="nt"><b><span class="nb">只发给已绑定 Facebook 的玩家</span></b><span class="nb">7,880 人中已绑定的 2,580 人；</span><span class="nb">Meta 对窗口外的营销消息限每人每天 1 条。</span></div><div class="nt"><b>按钮链接必填</b><span class="nb">未填时输入框和预览按钮都标红，</span><span class="nb">确认时列为未通过项。</span></div><div class="nt"><b><span class="nb">能否从后台发送待营销侧确认</span></b><span class="nb">发送方式、字数上限和按钮写法，</span><span class="nb">取决于营销侧的接入方式。</span></div></div></section>
+<section class="scr" id="s3-10"><div class="sh"><span class="no">3-10</span><h2><span class="nb">新建 LINE 消息：</span><span class="nb">只发给已加 LINE 好友的玩家</span></h2><span class="smk"><span class="mk t">仅统一入口</span><span class="mk a">整屏新增</span></span></div><div class="pf"><div class="pfh"><b>新建 LINE</b><span class="bc">推送统一后台 › LINE › 新建 LINE</span><span class="rt">返回 LINE 列表</span></div><div class="pb">
+<div class="gcol" style="grid-template-columns:minmax(0,1fr) 380px;gap:16px">
+ <div class="dif"><div class="k"><span class="n2">1</span>推送内容</div>
+<div class="gcol" style="grid-template-columns:minmax(0,1fr) 230px;gap:14px">
+ <div class="cfs">
+  <div class="cf"><label><i>*</i>文字</label><div class="ta" lang="zh-Hant">每日補給計畫開跑！連續登入7天，每天都能領取補給獎勵，千萬別錯過<span class="c">32 字</span></div></div>
+  <div class="cf"><label>图片</label><div class="row"><span class="thumb"></span><span class="hl"><span class="nb">每日补给计划.png</span></span><span class="bt t">更换</span><span class="mk f">选填</span></div></div>
+  <div class="cf"><label><i>*</i>按钮</label><div class="fc" style="flex:1"><div class="row nw"><span class="ip" style="width:120px" lang="zh-Hant">立即前往<span class="c">4 字</span></span><span class="ip" style="flex:1">https://xx.tw/ds</span></div></div></div>
+  
+ </div>
+ <div class="pv"><span class="pvl">LINE 官方账号消息</span><div class="ln" lang="zh-Hant"><div class="card"><div class="img"></div><p>每日補給計畫開跑！連續登入7天，每天都能領取補給獎勵，千萬別錯過</p><div class="btn">立即前往</div></div></div></div>
+</div></div>
+ <div>
+  <div class="dif"><div class="k"><span class="n2">2</span>发送对象</div><div class="t"><span class="nb">发送对象：</span><span class="nb">潜在流失（两档）7,880 人</span><br>可触达：<b><span class="nb">已加 LINE 好友</span></b><span class="nb">，</span><span class="nb">3,240 人（41%）</span><br><span class="nb">未加好友的玩家收不到</span></div></div>
+  <div class="dif"><div class="k"><span class="n2">3</span>发送时间</div><div class="t"><div class="row"><span class="rd"><em></em>立即</span><span class="rd on"><em></em>定时</span><span class="rd"><em></em>按行为</span></div><div class="row" style="margin-top:8px"><span class="ip" style="width:200px"><svg width="14" height="14" viewBox="0 0 14 14"><rect x="1.5" y="2.5" width="11" height="10" rx="1.5" fill="none" stroke="#C0C4CC"/><path d="M1.5 5.5h11M4.5 1v3M9.5 1v3" stroke="#C0C4CC"/></svg>2026-10-15 20:00</span></div></div></div>
+ </div>
+</div></div></div><div class="nts two"><div class="nt"><b><span class="nb">只发给已加 LINE 好友的玩家</span></b><span class="nb">7,880 人中已加好友的 3,240 人，</span><span class="nb">未加好友的玩家收不到。</span></div><div class="nt"><b><span class="nb">消息额度与计费待营销侧确认</span></b><span class="nb">LINE 官方账号的消息数受方案额度限制，</span><span class="nb">超出部分怎么计费要看营销侧的方案。</span></div></div></section>
+</div>
+<div class="gh" id="g4"><div class="ghh"><span class="gn">4</span><h1>游戏内推送：弹窗、快显</h1></div><div class="tl"><span class="mk t">统一入口</span><span><span class="nb">弹窗页移到「推送统一后台」下；</span><span class="nb">每人每天弹窗上限改到「频率上限」页设置</span></span><span class="mk t">统一入口</span><span><span class="nb">快显改为服务端下发后，</span><span class="nb">在快显页新建</span></span><span class="mk t">只统一数据</span><span><span class="nb">弹窗页留在原菜单；</span><span class="nb">每人每天弹窗上限仍在弹窗页设置；</span><span class="nb">规则改动相同</span></span><span class="mk t">只统一数据</span><span><span class="nb">快显只有显示记录</span></span></div><div class="gs"><span class="nb">玩家在游戏里才看得到；</span><span class="nb">数据从曝光开始，</span><span class="nb">没有发送、到达</span></div></div>
+<div class="gsub"><h3>弹窗页</h3><div class="gs"><span class="nb">在现有「大厅弹窗顺序设定」上标出改动</span></div></div>
+<div class="g3">
+<section class="scr" id="s4-1"><div class="sh"><span class="no">4-1</span><h2><span class="nb">弹窗页·列表：</span><span class="nb">每条规则的对象和今日曝光、点击率直接可见</span></h2><span class="smk"><span class="mk t">只统一数据也有</span><span class="xg m">在现有页面上改</span></span></div><div class="pf"><div class="pg">
+<div class="sd"><div class="hd">推送统一后台</div><i>总览</i><div class="gp">游戏外推送</div><i class="c">推播</i><i class="c">短信</i><i class="c">Facebook</i><i class="c">LINE</i><div class="gp">游戏内推送</div><i class="on c">弹窗<span class="xg m">改</span></i><i class="c">快显</i><hr><i>频率上限</i><i>数据看板</i><i>玩家查询</i><i>操作纪录</i></div>
+<div class="mn" style="padding:10px 16px 8px">
+ <div class="row nw">
+  <span class="ip" style="width:136px"><span class="ph">弹窗名称</span></span>
+  <span class="sl" style="width:124px"><span class="ph">弹窗类型</span></span>
+  <span class="sl" style="width:124px"><span class="ph">弹窗位置</span></span>
+  <span class="sl" style="width:124px"><span class="ph">对象</span></span>
+  <span class="sl" style="width:112px">上架中</span>
+  <span class="bt p">查询</span><span class="bt gr">新增</span>
+  <span class="hl" style="margin-left:6px">对象筛选的可选值同规则里的标签群组</span>
+ </div>
+ <div class="capb xbox"><span class="xg">新增</span><span>每人每天弹窗上限 <b>8</b> 个（大厅与破产合计）</span><span class="v"></span><span>超出后当天不再弹出，按排序截断</span><span class="v"></span><span>今日被拦下 <b>1,240</b> 人</span><span class="r"><span class="bt t" style="font-size:14px">去「频率上限」修改 ›</span></span></div>
+ <table class="tb dn cp" style="table-layout:fixed">
+  <colgroup><col style="width:62px"><col style="width:78px"><col style="width:106px"><col style="width:198px"><col style="width:46px"><col style="width:90px"><col style="width:238px"><col style="width:46px"><col style="width:80px"><col style="width:60px"><col></colgroup>
+  <tr><th rowspan="2">弹窗活动<br>ID</th><th rowspan="2">弹窗类型</th><th rowspan="2">弹窗名称</th><th class="mkc l"><div class="row"><span class="xg m">改</span></div></th><th rowspan="2">弹出<br>数量</th><th rowspan="2">弹窗位置</th><th class="mkc l"><div class="row"><span class="xg m">改</span></div></th><th rowspan="2">标签<br>状态</th><th colspan="2" class="mkc xn"><div class="row"><span class="xg">新增</span></div></th><th rowspan="2">操作</th></tr>
+  <tr><th class="l">弹窗排序（默认收起）</th><th class="l">对象</th><th class="xn">今日曝光</th><th class="xn">点击率</th></tr>
+  <tr><td>12</td><td>活动类弹窗</td><td>活动类·新增</td><td class="l">1. 新手挑战　2. 新手通行证<br><span class="lk">共 16 项，展开 ›</span></td><td>3</td><td>大厅自动弹窗</td><td class="l">标签群组：新增</td><td>启用</td><td class="xn">2,920</td><td class="xn">11.4%</td><td class="lk">操作 ▾</td></tr>
+  <tr><td>13</td><td>活动类弹窗</td><td>活动类·回流</td><td class="l">1. 回流任务　2. 热门资讯<br><span class="lk">共 14 项，展开 ›</span></td><td>3</td><td>大厅自动弹窗</td><td class="l">标签群组：回流<br>排除：新增</td><td>启用</td><td class="xn">3,630</td><td class="xn">8.9%</td><td class="lk">操作 ▾</td></tr>
+  <tr><td>14</td><td>活动类弹窗</td><td>活动类·潜在流失<br>（实验组）</td><td class="l">1. 每日补给计划　2. 热门资讯<br><span class="lk">共 14 项，展开 ›</span></td><td>3</td><td>大厅自动弹窗</td><td class="l">标签群组：潜在流失·实验组<br>排除：新增、回流</td><td>启用</td><td class="xn">970</td><td class="xn">7.6%</td><td class="lk">操作 ▾</td></tr>
+  <tr><td>5</td><td>活动类弹窗</td><td>活动类·其余</td><td class="l">1. 热门资讯　2. 发信送奖<br><span class="lk">共 14 项，展开 ›</span></td><td>3</td><td>大厅自动弹窗</td><td class="l">全部玩家<br>排除：新增、回流、潜在流失·实验组</td><td>启用</td><td class="xn">8,190</td><td class="xn">6.6%</td><td class="lk">操作 ▾</td></tr>
+  <tr><td>6</td><td>储值类弹窗</td><td>通用弹窗</td><td class="l">1. 首储礼包　2. 独享礼包<br><span class="lk">共 7 项，展开 ›</span></td><td>1</td><td>大厅自动弹窗</td><td class="l">全部玩家</td><td>-</td><td class="xn">4,940</td><td class="xn">4.4%</td><td class="lk">操作 ▾</td></tr>
+  <tr><td>15</td><td>储值类弹窗</td><td>破产储值弹窗<br>（实验组）</td><td class="l">1. 首储礼包　2. 破产礼包<br><span class="lk">共 8 项，展开 ›</span></td><td>1</td><td>游戏破产弹窗</td><td class="l">标签群组：破产·实验组</td><td>启用</td><td class="xn">1,120</td><td class="xn">12.2%</td><td class="lk">操作 ▾</td></tr>
+  <tr><td>7</td><td>储值类弹窗</td><td>破产储值弹窗</td><td class="l">1. 首储礼包　2. 独享礼包<br><span class="lk">共 8 项，展开 ›</span></td><td>1</td><td>游戏破产弹窗</td><td class="l">全部玩家<br>排除：破产·实验组</td><td>启用</td><td class="xn">1,090</td><td class="xn">11.6%</td><td class="lk">操作 ▾</td></tr>
+ </table>
+ <div class="pgn"><span class="sl" style="width:92px">10项/页</span><span class="pa">‹</span><span class="pa on">1</span><span class="pa">›</span><span>前往</span><span class="ip n">1</span><span>页</span><span>共 7 项</span></div>
+</div></div></div><div class="nts"><div class="nt"><b><span class="nb">活动类四条规则用排除互斥</span></b><span class="nb">新增、回流、潜在流失·实验组各建一条，</span><span class="nb">原 ID 5 改为全部玩家并排除这三组，</span><span class="nb">每个玩家只命中其中一条；</span><span class="nb">用现有功能即可配置。</span></div><div class="nt"><b><span class="nb">排序默认收起</span></b><span class="nb">排序列只显示前两项，</span><span class="nb">点「展开」看全部。</span><span class="nb">今日数据按规则统计：</span><span class="nb">点击率＝点击÷曝光，</span><span class="nb">与数据看板一致。</span></div><div class="nt"><b><span class="nb">每天上限显示在列表上方</span></b><span class="nb">大厅与破产合计每人每天 8 个，</span><span class="nb">超出后按排序截断；</span><span class="nb">统一入口时本页移到「推送统一后台」下，</span><span class="nb">上限到「频率上限」页修改；</span><span class="nb">只统一数据时页面与上限都留在原处。</span></div></div></section>
+<section class="scr" id="s4-2"><div class="sh"><span class="no">4-2</span><h2><span class="nb">弹窗页·编辑规则：</span><span class="nb">对象选标签群组并排除其他组，</span><span class="nb">保存前看到人数</span></h2><span class="smk"><span class="mk t">只统一数据也有</span><span class="xg m">在现有页面上改</span></span></div><div class="pf"><div class="pfh"><b>编辑弹窗规则</b><span class="hl">ID 14 · 新增规则与编辑共用此表单</span><span class="x">✕</span></div><div class="pb" style="padding:8px 16px">
+<div class="gcol" style="grid-template-columns:300px 300px minmax(0,1fr);gap:10px 28px">
+ <div class="fr"><span class="fl"><i>*</i>弹窗类型</span><div class="fc" style="flex:1"><span class="sl on">活动类弹窗</span><div class="dd"><i>储值类弹窗</i><i class="on">活动类弹窗<span class="ck" style="margin-left:auto">✓</span></i></div></div></div>
+ <div class="fr"><span class="fl"><i>*</i>弹窗位置</span><div class="fc" style="flex:1"><span class="sl on">大厅自动弹窗</span><div class="dd"><i class="on">大厅自动弹窗<span class="ck" style="margin-left:auto">✓</span></i><i>游戏破产弹窗</i></div></div></div>
+ <div>
+  <div class="fr"><span class="fl"><i>*</i>弹窗名称</span><span class="ip" style="width:300px">活动类·潜在流失（实验组）</span><span class="hl">仅后台可见</span></div>
+  <div class="fr"><span class="fl"><i>*</i>弹出数量</span><span class="ip n">3</span><span class="un">个</span><span class="hl">每次最多弹出几个</span><span class="fl" style="width:64px;margin-left:18px">标签状态</span><span class="sww"><span class="sg on"></span>启用</span></div>
+ </div>
+</div>
+<div class="xbox" style="margin-top:10px;padding:6px 12px 8px">
+ <div class="fr"><span class="fl"><i>*</i>对象</span><span class="rd"><em></em>全部玩家</span><span class="rd on"><em></em>标签群组</span><span class="xg m">改</span><span class="hl">原为选一个标签；新增排除群组与人数预览</span></div>
+ <div class="gcol" style="grid-template-columns:300px 300px minmax(0,1fr);gap:10px 28px;margin-top:10px">
+  <div class="fr"><span class="fl"><i>*</i>标签群组</span><div class="fc" style="flex:1"><span class="sl on">潜在流失·实验组</span><div class="dd">
+   <i>新增<span class="n">10,749 人</span></i>
+   <i>回流<span class="n">16,564 人</span></i>
+   <i class="on">潜在流失·实验组<span class="n">3,950 人</span><span class="ck">✓</span></i>
+   <i>潜在流失·对照组<span class="n">3,930 人</span></i>
+   <i class="more">⋮ 其余标签群组，可输入名称搜索</i>
+  </div></div></div>
+  <div class="fr"><span class="fl">排除群组</span><div class="fc" style="flex:1">
+   <div class="ms"><span class="tg">新增<em>✕</em></span><span class="tg">回流<em>✕</em></span></div>
+   <div class="dd"><i class="on">新增<span class="n">10,749 人</span><span class="ck">✓</span></i><i class="on">回流<span class="n">16,564 人</span><span class="ck">✓</span></i><i class="more">⋮ 其余标签群组</i></div>
+   <div class="row"><span class="xg">新增</span><span class="hlp">活动类各规则靠排除互斥</span></div>
+  </div></div>
+  <div class="sec" style="background:#fff;align-self:start">
+   <h5>预计人数 <span class="big">2,730 人</span><span class="r"><span class="xg">新增</span></span></h5>
+   <div class="sb"><div class="hlp" style="font-size:14px;color:var(--t2)"><span class="nb">潜在流失·实验组 3,950 人，</span><span class="nb">排除新增 40、回流 1,180</span></div><div class="hlp" style="margin-top:4px"><span class="nb">修改后立即重算；</span><span class="nb">与其他规则重叠时提示人数</span></div></div>
+  </div>
+ </div>
+</div>
+<div class="fr" style="margin-top:10px">
+ <span class="fl">生效期间</span>
+ <span class="ip" style="width:330px"><svg width="14" height="14" viewBox="0 0 14 14"><rect x="1.5" y="2.5" width="11" height="10" rx="1.5" fill="none" stroke="#C0C4CC"/><path d="M1.5 5.5h11M4.5 1v3M9.5 1v3" stroke="#C0C4CC"/></svg>2026-10-10 00:00<span style="color:var(--t3)">至</span>2026-12-31 23:59</span>
+ <span class="xg">新增</span><span class="mk f">选填</span><span class="hl">不填则长期有效；上架后玩家下次进入大厅时生效</span>
+</div>
+</div><div class="pff"><span class="bt">取消</span><span class="sp nt2">保存后列表立即更新，修改记入操作纪录</span><span class="bt p">保存</span></div></div><div class="nts"><div class="nt"><b><span class="nb">字段按现有列表整理</span></b><span class="nb">现有新增表单没有截图，</span><span class="nb">类型、位置、名称、</span><span class="nb">弹出数量、对象、标签状态</span><span class="nb">按列表的列整理，</span><span class="nb">待研发核对。</span></div><div class="nt"><b><span class="nb">对象选群组并排除，</span><span class="nb">保存前看到人数</span></b><span class="nb">修改群组或排除项后立即重算；</span><span class="nb">与其他规则重叠时提示重叠人数，</span><span class="nb">避免同一玩家命中两条。</span></div><div class="nt"><b><span class="nb">实验组单独建规则，</span><span class="nb">对照组留在「其余」</span></b><span class="nb">对象选「潜在流失·实验组」这类子标签即可，</span><span class="nb">不加新控件；</span><span class="nb">两组的曝光与点击率在列表和数据看板里对比。</span></div></div></section>
+<section class="scr" id="s4-3"><div class="sh"><span class="no">4-3</span><h2><span class="nb">弹窗页·排序项：</span><span class="nb">逐项设时机、形式、次数与冷却，</span><span class="nb">并可拖动调整先后</span></h2><span class="smk"><span class="mk t">只统一数据也有</span><span class="xg m">在现有页面上改</span></span></div><div class="pf"><div class="pfh"><b>编辑弹窗规则</b><span class="hl">ID 14 · 活动类·潜在流失（实验组）· 弹窗排序</span><span class="x">✕</span></div><div class="pb">
+<div class="row nw" style="margin-bottom:8px"><b style="font-size:14px;font-weight:600">弹窗排序</b><span class="hl"><span class="nb">共 14 项；</span><span class="nb">排在前面的先弹，</span><span class="nb">每次最多弹出 3 个</span></span><span class="xg">新增</span><span class="hl">拖动 <span class="hdl"></span> 调整先后</span><span class="xg" style="margin-left:10px">新增</span><span class="hl">项目可选新手挑战、新手通行证</span><span class="sp"></span><span class="bt g">＋ 添加排序项</span></div>
+<table class="tb dn" style="table-layout:fixed">
+ <colgroup><col style="width:34px"><col style="width:48px"><col style="width:214px"><col style="width:340px"><col style="width:150px"><col style="width:94px"><col style="width:104px"><col style="width:116px"><col></colgroup>
+ <tr><th></th><th>顺序</th><th class="l"><span style="color:var(--er)">*</span>项目</th><th class="l"><span style="color:var(--er)">*</span>弹窗时机（多选）</th><th class="l"><span style="color:var(--er)">*</span>弹窗形式</th><th>弹窗次数</th><th>冷却时间</th><th class="xn">忽略间隔<div class="row nw" style="justify-content:center;gap:4px;margin-top:3px"><span class="xg">新增</span><span class="mk o">可选</span></div></th><th>操作</th></tr>
+ <tr><td class="top" style="padding-top:12px"><span class="hdl"></span></td><td class="top" style="padding-top:9px">1</td>
+  <td class="l top"><div class="fc"><span class="sl on">每日补给计划</span><div class="dd"><i>热门资讯</i><i class="on">每日补给计划<span class="ck" style="margin-left:auto">✓</span></i><i class="gp">⋮ 其余 12 个活动</i><i>新手挑战<span class="xg" style="margin-left:auto">新增</span></i><i>新手通行证<span class="xg" style="margin-left:auto">新增</span></i></div></div></td>
+  <td class="l top"><div class="fc"><div class="ms"><span class="tg">活动开启<em>✕</em></span><span class="tg">首次登入<em>✕</em></span><span class="tg">进入大厅<em>✕</em></span></div><div class="dd" style="width:200px"><i class="on">活动开启<span class="ck" style="margin-left:auto">✓</span></i><i class="on">首次登入<span class="ck" style="margin-left:auto">✓</span></i><i class="on">进入大厅<span class="ck" style="margin-left:auto">✓</span></i><i>返回大厅</i></div></div></td>
+  <td class="l top"><div class="fc"><span class="sl on">活动本身</span><div class="dd"><i class="on">活动本身<span class="ck" style="margin-left:auto">✓</span></i><i>活动广告页</i></div></div></td>
+  <td class="top"><div class="row nw" style="justify-content:center;gap:4px"><span class="ip n">1</span>次</div></td>
+  <td class="top"><div class="row nw" style="justify-content:center;gap:4px"><span class="ip n" style="width:56px">0</span>秒</div></td>
+  <td class="top xn" style="padding-top:9px"><span class="cb" style="justify-content:center"><em></em></span></td>
+  <td class="top" style="padding-top:9px"><span class="bt t dl">删除</span></td></tr>
+ <tr><td><span class="hdl"></span></td><td>2</td><td class="l"><span class="sl" style="width:100%">热门资讯</span></td><td class="l"><div class="ms off"><span class="tg">首次登入<em>✕</em></span><span class="tg">进入大厅<em>✕</em></span></div></td><td class="l"><span class="sl" style="width:100%">活动本身</span></td><td><div class="row nw" style="justify-content:center;gap:4px"><span class="ip n">1</span>次</div></td><td><div class="row nw" style="justify-content:center;gap:4px"><span class="ip n" style="width:56px">0</span>秒</div></td><td class="xn"><span class="cb" style="justify-content:center"><em></em></span></td><td><span class="bt t dl">删除</span></td></tr>
+ <tr><td><span class="hdl"></span></td><td>3</td><td class="l"><span class="sl" style="width:100%">发信送奖</span></td><td class="l"><div class="ms off"><span class="tg">首次登入<em>✕</em></span><span class="tg">进入大厅<em>✕</em></span></div></td><td class="l"><span class="sl" style="width:100%">活动本身</span></td><td><div class="row nw" style="justify-content:center;gap:4px"><span class="ip n">1</span>次</div></td><td><div class="row nw" style="justify-content:center;gap:4px"><span class="ip n" style="width:56px">0</span>秒</div></td><td class="xn"><span class="cb" style="justify-content:center"><em></em></span></td><td><span class="bt t dl">删除</span></td></tr>
+ <tr class="om"><td colspan="9">⋮ 第 4–14 项：月月抽、卡别直升活动、限时挑战、天天敲蛋礼 V2、回流任务……</td></tr>
+</table>
+</div><div class="pff"><span class="bt">取消</span><span class="sp nt2">保存后，玩家下次进入大厅时按新顺序弹出</span><span class="bt p">保存</span></div></div><div class="nts"><div class="nt"><b><span class="nb">拖动调整先后，</span><span class="nb">排在前面的先弹</span></b><span class="nb">进入大厅时按顺序取符合时机的项目，</span><span class="nb">最多弹出 3 个；</span><span class="nb">每日次数和冷却时间逐项设置，</span><span class="nb">取值同现有页面。</span></div><div class="nt"><b><span class="nb">新手挑战、新手通行证改为后台配置</span></b><span class="nb">原由客户端写死；</span><span class="nb">改为排序项后可设时机、次数、对象和先后，</span><span class="nb">在新增组规则里排最前，</span><span class="nb">计入弹出数量。</span></div><div class="nt"><b><span class="nb">「忽略间隔」配合弹窗间隔使用</span></b><span class="nb">在「频率上限」页开启弹窗间隔后，</span><span class="nb">勾选的项目不受间隔限制；</span><span class="nb">两项都可以不做。</span></div></div></section>
+</div>
+<div class="gsub"><h3>快显页</h3><div class="gs"><span class="nb">表单结构同推播页（3-2～3-7）；</span><span class="nb">本屏只画快显不同的部分</span></div></div>
+<div class="g2">
+<section class="scr" id="s4-4"><div class="sh"><span class="no">4-4</span><h2><span class="nb">新建快显：</span><span class="nb">设定横幅文字、显示位置和停留秒数</span></h2><span class="smk"><span class="mk t">仅统一入口</span><span class="mk a">整屏新增</span></span></div><div class="pf"><div class="pfh"><b>新建快显</b><span class="bc">推送统一后台 › 快显 › 新建快显</span><span class="rt">返回快显列表</span></div><div class="pb">
+<div class="gcol" style="grid-template-columns:minmax(0,1fr) 380px;gap:16px">
+ <div class="dif"><div class="k"><span class="n2">1</span>推送内容</div>
+<div class="gcol" style="grid-template-columns:minmax(0,1fr) 230px;gap:14px">
+ <div class="cfs">
+  <div class="cf"><label><i>*</i>文字</label><span class="ip f" lang="zh-Hant">恭喜升級！通行證獎勵已可領取<span class="c">14 / 30</span></span></div>
+  <div class="cf"><label>位置</label><div class="fc" style="flex:none"><span class="sl on" style="width:150px">大厅顶部横幅</span><div class="dd"><i class="on">大厅顶部横幅</i></div></div><label style="width:32px">停留</label><span class="ip n">5</span><span class="un">秒</span></div>
+  <div class="cf"><label>跳转</label><span class="ip ro" style="flex:1">活动页面 / 通行证</span></div>
+  
+ </div>
+ <div class="pv"><span class="pvl">大厅顶部横幅</span><div class="lob" lang="zh-Hant"><div class="bn">恭喜升級！通行證獎勵已可領取</div><span class="tm">5 秒後收起</span><div class="tl"><i></i><i></i><i></i></div></div></div>
+</div></div>
+ <div>
+  <div class="dif"><div class="k"><span class="n2">2</span>发送对象</div><div class="t"><span class="nb">发送对象：</span><span class="nb">触发的玩家，</span><span class="nb">近 7 天平均每天约 2,190 人</span><br>可触达：<b>触发时在线</b><span class="nb">，</span><span class="nb">即全部触发的玩家</span><br>预计显示：<b>约 1,980 次／天</b><span class="nb">，</span><span class="nb">已扣除每人每天 3 次上限</span><br><span class="nb">立即发送时只发给当前在线玩家，</span><span class="nb">现在约 3,800 人</span></div></div>
+  <div class="dif"><div class="k"><span class="n2">3</span>发送时间</div><div class="t"><div class="row"><span class="rd"><em></em>立即</span><span class="rd on"><em></em><span class="nb">按行为：</span><span class="nb">通行证升级</span></span></div><div class="hlp" style="margin-top:6px"><span class="nb">快显只在玩家在线时显示，</span><span class="nb">没有定时</span></div></div></div>
+ </div>
+</div></div></div><div class="nts"><div class="nt"><b><span class="nb">只发给在线玩家，</span><span class="nb">没有定时</span></b><span class="nb">快显在大厅里显示，</span><span class="nb">玩家不在线就看不到，</span><span class="nb">所以没有定时；</span><span class="nb">立即只发给当前在线的玩家。</span></div><div class="nt"><b><span class="nb">快显按显示次数预估</span></b><span class="nb">快显没有发送、到达两步，</span><span class="nb">从曝光算起；</span><span class="nb">预计显示次数已扣除每人每天 3 次上限。</span></div><div class="nt"><b><span class="nb">位置与停留秒数待客户端确认</span></b><span class="nb">目前只有大厅顶部横幅、停留 5 秒；</span><span class="nb">能否由服务端下发也待客户端确认。</span></div></div></section>
+</div>
+<div class="g3">
+<section class="scr" id="s5"><div class="sh"><span class="no">5</span><h2><span class="nb">频率上限：</span><span class="nb">每种推送的每人每天上限都在这一页设定，</span><span class="nb">游戏外与游戏内分开计数</span></h2><span class="smk"><span class="mk t">仅统一入口</span><span class="mk a">整屏新增</span></span></div><div class="pf"><div class="pg">
+<div class="sd"><div class="hd">推送统一后台</div><i>总览</i><div class="gp">游戏外推送</div><i class="c">推播</i><i class="c">短信</i><i class="c">Facebook</i><i class="c">LINE</i><div class="gp">游戏内推送</div><i class="c">弹窗</i><i class="c">快显</i><hr><i class="on">频率上限</i><i>数据看板</i><i>玩家查询</i><i>操作纪录</i></div>
+<div class="mn" style="padding:10px 16px 8px">
+ <div class="row nw" style="margin-bottom:8px"><span class="pt">频率上限</span><span class="hl">每人每天上限，保存后对之后的发送立即生效，修改记入操作纪录</span><span class="sp hl">今日数据截至 15:30</span><span class="bt">取消</span><span class="bt p">保存</span></div>
+ <table class="tb dn" style="table-layout:fixed">
+  <colgroup><col style="width:120px"><col style="width:176px"><col style="width:112px"><col style="width:206px"><col style="width:100px"><col></colgroup>
+  <tr><th class="l">计数分组</th><th class="l">渠道</th><th class="l"><span style="color:var(--er)">*</span>每人每天上限</th><th class="l">超出后</th><th>今日被拦下</th><th class="l">说明</th></tr>
+<tr><td class="lb" rowspan="5">游戏外推送<br><span class="sm">各自计数</span></td><td class="l">推播</td><td class="l"><div class="row nw" style="gap:6px"><span class="ip n" style="height:28px">2</span>条</div></td><td class="l">当天不再发送，按发送先后截断</td><td>520 人</td><td class="l sm wr2">—</td></tr>
+  <tr><td class="l">短信</td><td class="l"><div class="row nw" style="gap:6px"><span class="ip n" style="height:28px">1</span>条</div></td><td class="l">当天不再发送，按发送先后截断</td><td>0 人</td><td class="l sm wr2">—</td></tr>
+  <tr><td class="l">Facebook</td><td class="l"><div class="row nw" style="gap:6px"><span class="ip n" style="height:28px">1</span>条</div></td><td class="l">当天不再发送，按发送先后截断</td><td>0 人</td><td class="l sm wr2">Meta 规定：窗口外营销消息每人每天 1 条</td></tr>
+  <tr><td class="l">LINE</td><td class="l"><div class="row nw" style="gap:6px"><span class="ip n" style="height:28px">1</span>条</div></td><td class="l">当天不再发送，按发送先后截断</td><td>0 人</td><td class="l sm wr2">—</td></tr>
+  <tr><td class="l">游戏外推送合计 <span class="mk o">可选</span></td><td class="l"><div class="row nw" style="gap:6px"><span class="sg"></span><span class="ip n dis" style="height:28px">3</span>条</div></td><td class="l">开启后四个渠道合计不超过此数</td><td>—</td><td class="l sm wr2">默认关闭；各渠道上限同时有效</td></tr>
+<tr><td class="lb" rowspan="2">游戏内推送<br><span class="sm">各自计数</span></td><td class="l">大厅弹窗＋破产弹窗</td><td class="l"><div class="row nw" style="gap:6px"><span class="ip n" style="height:28px">8</span>个</div></td><td class="l">当天不再弹出，按排序截断</td><td>1,240 人</td><td class="l sm wr2">两个位置合计，原在弹窗页设置 </td></tr>
+  <tr><td class="l">快显</td><td class="l"><div class="row nw" style="gap:6px"><span class="ip n" style="height:28px">3</span>次</div></td><td class="l">当天不再显示，按触发先后截断</td><td>160 人</td><td class="l sm wr2">只发给在线玩家</td></tr>
+ </table>
+ <div class="gcol" style="grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:14px;margin-top:10px">
+  <div class="sec"><h5>勿扰时段<span class="sub">只对游戏外推送生效</span><span class="r"><span class="sww"><span class="sg on"></span>开启</span></span></h5><div class="sb" style="display:flex;flex-direction:column;gap:8px">
+   <div class="row nw"><span class="un">时段</span><span class="ip">00:00</span><span class="un">至</span><span class="ip">08:00</span><span class="un" style="margin-left:14px">适用</span><span class="cb on"><em></em>推播</span><span class="cb on"><em></em>短信</span><span class="cb on"><em></em>Facebook</span><span class="cb on"><em></em>LINE</span></div>
+   <div class="row nw"><span class="un">命中时</span><span class="rd on"><em></em>顺延到 08:00 发送</span><span class="rd"><em></em>放弃发送</span><span class="hl">按行为默认放弃；新建时可单条改选</span></div>
+  </div></div>
+  <div class="sec"><h5>弹窗间隔<span class="mk o">可选</span><span class="r"><span class="sww off"><span class="sg"></span>关闭</span></span></h5><div class="sb" style="display:flex;flex-direction:column;gap:8px">
+   <div class="row nw"><span class="un">同一位置任意两个弹窗间隔不少于</span><span class="ip n dis">10</span><span class="un">秒</span></div>
+   <div class="hlp" style="line-height:32px"><span class="nb">排序项里勾选「忽略间隔」的弹窗不受限制</span></div>
+  </div></div>
+ </div>
+</div></div></div><div class="nts"><div class="nt"><b><span class="nb">游戏外与游戏内推送分开计数</span></b><span class="nb">弹窗、快显在游戏内展示，</span><span class="nb">不占推播、短信、Facebook、LINE 的条数；</span><span class="nb">每种推送按自己的上限截断。</span></div><div class="nt"><b><span class="nb">两项可选，默认关闭</span></b><span class="nb">合计上限开启后与各渠道上限同时生效；</span><span class="nb">弹窗间隔不限制勾选了「忽略间隔」的弹窗。</span></div><div class="nt"><b><span class="nb">勿扰时段默认开启</span></b><span class="nb">00:00–08:00 不发游戏外推送；</span><span class="nb">立即、定时到 08:00 再发，</span><span class="nb">按行为默认放弃。</span></div></div></section>
+</div>
+<div class="gh" id="g6"><div class="ghh"><span class="gn">6</span><h1>数据看板</h1></div><div class="tl"><span class="mk t">只统一数据</span><span><span class="nb">数据从各原系统汇总，</span><span class="nb">没有发送前拦下的数据</span></span><span class="mk t">统一入口</span><span><span class="nb">数据由本后台直接记录，</span><span class="nb">含拦下原因</span></span></div></div>
+<div class="g1">
+<section class="scr" id="s6-1"><div class="sh"><span class="no">6-1</span><h2><span class="nb">数据看板·各推送：</span><span class="nb">游戏外推送从发送算起，</span><span class="nb">游戏内推送从曝光算起</span></h2><span class="smk"><span class="mk t">只统一数据也有</span><span class="mk a">整屏新增</span></span></div>
+<div class="pf"><div class="pfh"><b>数据看板</b><span class="bc">推送统一后台 › 数据看板</span></div>
+<div class="shell"><div class="sd"><div class="hd">推送统一后台</div><i>总览</i><div class="gp">游戏外推送</div><i class="c">推播</i><i class="c">短信</i><i class="c">Facebook</i><i class="c">LINE</i><div class="gp">游戏内推送</div><i class="c">弹窗</i><i class="c">快显</i><hr><i>频率上限</i><i class="on">数据看板</i><i>玩家查询</i><i>操作纪录</i></div><div class="cnt">
+ <div class="ft"><span class="lb2">日期</span><span class="rbg"><i>今日</i><i class="on">近 7 天</i><i>近 30 天</i><i>自定义</i></span><span class="ip ro" style="width:206px">2026-10-06 ~ 2026-10-12</span><span class="lb2" style="margin-left:16px">人群</span><span class="rbg"><i class="on">全部</i><i>新增</i><i>回流</i><i>潜在付费</i><i>潜在流失</i><i>其余</i></span></div>
+ <div class="ft"><span class="lb2">推送</span><span class="cb on"><em></em>推播</span><span class="cb on"><em></em>短信</span><span class="cb on"><em></em>Facebook</span><span class="cb on"><em></em>LINE</span><span class="vsep"></span><span class="cb on"><em></em>大厅弹窗</span><span class="cb on"><em></em>破产弹窗</span><span class="cb on"><em></em>快显</span><span class="ip" style="width:170px;margin-left:12px"><span class="ph">推送名称或 ID</span></span><span class="bt p">查询</span><span class="bt">重置</span><span class="bt" style="margin-left:auto">导出 Excel</span></div>
+ <div class="row nw" style="margin-top:12px"><b style="font-size:14px">各推送数据</b><span class="hlp">近 7 天 · 全部人群</span><span class="hlp" style="margin-left:auto">到达、点击统计至发送后 5 天，LINE 曝光 14 天｜数据更新于 15:30</span></div><div class="gcol" style="grid-template-columns:minmax(0,1fr) 290px;gap:12px;margin-top:6px"><div class="sec"><h5>游戏外推送<span class="sub">从发送算起</span></h5><table class="tb cp"><tr><th class="l">推送</th><th>发送<i class="ii">ⓘ</i></th><th>到达<i class="ii">ⓘ</i></th><th>到达率<small>到达÷发送</small></th><th>曝光<i class="ii">ⓘ</i></th><th>点击<i class="ii">ⓘ</i></th><th>点击率<small>点击÷发送</small></th></tr><tr><td class="l">推播 · Android</td><td>31,850</td><td>29,240</td><td>91.8%</td><td>24,610</td><td>1,980</td><td>6.2%</td></tr><tr><td class="l">推播 · iOS</td><td>16,420</td><td colspan="2"><span class="mz">该渠道不回传</span></td><td><span class="mz">该渠道不回传</span></td><td>1,150</td><td>7.0%</td></tr><tr><td class="l">短信</td><td>21,360</td><td>18,392<span class="sx">无回执 1,002</span></td><td>86.1%</td><td><span class="mz">该渠道不回传</span></td><td>642</td><td>3.0%</td></tr><tr><td class="l">Facebook</td><td>6,520</td><td>6,143</td><td>94.2%</td><td>3,890</td><td>405</td><td>6.2%</td></tr><tr><td class="l">LINE</td><td>6,808</td><td>6,561</td><td>96.4%</td><td>3,600<span class="sx">不含 1 条低于统计门槛</span></td><td>335</td><td>4.9%</td></tr></table></div><div class="sec"><h5>游戏内推送<span class="sub">从曝光算起</span></h5><table class="tb cp"><tr><th class="l">推送</th><th>曝光<i class="ii">ⓘ</i></th><th>点击<i class="ii">ⓘ</i></th><th>点击率<small>点击÷曝光</small></th></tr><tr><td class="l">大厅弹窗</td><td>302,460</td><td>21,780</td><td>7.2%</td></tr><tr><td class="l">破产弹窗</td><td>38,920</td><td>4,710</td><td>12.1%</td></tr><tr><td class="l">快显</td><td>13,860</td><td>1,470</td><td>10.6%</td></tr></table></div></div>
+</div></div></div>
+<div class="nts"><div class="nt"><b>拿不到的数据分四种写法</b><span class="cl">该渠道不回传：iOS 推播到达、短信曝光</span><span class="cl">无回执：短信 1,002 条没收到回执</span><span class="cl">低于统计门槛：LINE 不足 20 人</span><span class="cl">不适用：游戏内推送没有发送、到达</span></div><div class="nt"><b>不用上一步的数代填</b><span class="nb">iOS 推播的到达和到达率留空并写原因，</span><span class="nb">不拿发送数顶替，</span><span class="nb">否则到达率会显示成 100%。</span></div><div class="nt"><b>统计窗口与更新时间写在表格右上方</b><span class="nb">到达、点击统计至发送后 5 天；</span><span class="nb">LINE 曝光统计 14 天；</span><span class="nb">窗口内的数字还会增长。</span></div></div></section>
+<section class="scr" id="s6-2"><div class="sh"><span class="no">6-2</span><h2><span class="nb">数据看板·人群与日期：</span><span class="nb">按人群、按日期对照每种推送的指标</span></h2><span class="smk"><span class="mk t">只统一数据也有</span><span class="mk a">整屏新增</span></span></div>
+<div class="pf"><div class="pfh"><b>数据看板</b><span class="bc">推送统一后台 › 数据看板 › 按人群、按日期</span></div>
+<div class="pb">
+ <div class="ft"><span class="lb2">指标</span><span class="rbg"><i>触达人数</i><i>发送</i><i>到达率</i><i>曝光</i><i>点击</i><i class="on">点击率</i></span><span class="hlp">两张表随上方日期、渠道筛选：近 7 天、全部渠道</span><span style="margin-left:auto"></span></div>
+ <div class="gcol" style="grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;margin-top:10px">
+  <div class="sec"><h5>按人群<span class="sub">一人可属多个人群，各行不相加</span></h5>
+   <table class="tb cp"><tr><th class="l" rowspan="2">人群</th><th colspan="4" class="lyr">游戏外推送</th><th colspan="3" class="lyr">游戏内推送</th></tr><tr><th>推播<small>÷发送</small></th><th>短信<small>÷发送</small></th><th>Facebook<small>÷发送</small></th><th>LINE<small>÷发送</small></th><th>大厅弹窗<small>÷曝光</small></th><th>破产弹窗<small>÷曝光</small></th><th>快显<small>÷曝光</small></th></tr><tr><td class="l">新增</td><td>7.4%</td><td><span class="sx">未发送</span></td><td>5.4%</td><td>4.2%</td><td>8.1%</td><td>13.0%</td><td>11.2%</td></tr><tr><td class="l">回流</td><td>7.8%</td><td>3.7%</td><td>5.8%</td><td>5.3%</td><td>7.9%</td><td>12.6%</td><td>10.9%</td></tr><tr><td class="l">潜在付费</td><td>6.9%</td><td>3.2%</td><td>6.6%</td><td>5.1%</td><td>6.8%</td><td>14.2%</td><td>10.1%</td></tr><tr><td class="l">潜在流失</td><td>4.8%</td><td>1.4%</td><td>5.2%</td><td>3.9%</td><td>5.9%</td><td>10.4%</td><td>9.6%</td></tr><tr><td class="l">其余</td><td>5.6%</td><td><span class="sx">未发送</span></td><td>6.3%</td><td>4.6%</td><td>6.6%</td><td>11.5%</td><td>10.3%</td></tr></table>
+   <div class="hlp pd"><span class="nb">当前人数：</span><span class="nb">新增 10,749，</span><span class="nb">回流 16,564，</span><span class="nb">潜在付费 4,860，</span><span class="nb">潜在流失 7,880；</span><br><span class="nb">「其余」为不属于这四类的玩家</span></div>
+  </div>
+  <div class="sec"><h5>按日期<span class="sub">按发送日期汇总；10/12 截至 15:30</span></h5>
+   <table class="tb cp"><tr><th class="l" rowspan="2">日期</th><th colspan="4" class="lyr">游戏外推送</th><th colspan="3" class="lyr">游戏内推送</th></tr><tr><th>推播<small>÷发送</small></th><th>短信<small>÷发送</small></th><th>Facebook<small>÷发送</small></th><th>LINE<small>÷发送</small></th><th>大厅弹窗<small>÷曝光</small></th><th>破产弹窗<small>÷曝光</small></th><th>快显<small>÷曝光</small></th></tr><tr><td class="l">10/06</td><td>6.1%</td><td><span class="sx">未发送</span></td><td>5.4%</td><td><span class="sx">未发送</span></td><td>7.0%</td><td>11.8%</td><td>10.2%</td></tr><tr><td class="l">10/07</td><td>6.9%</td><td><span class="sx">未发送</span></td><td><span class="sx">未发送</span></td><td><span class="sx">未发送</span></td><td>7.3%</td><td>12.4%</td><td>10.9%</td></tr><tr><td class="l">10/08</td><td>6.3%</td><td><span class="sx">未发送</span></td><td><span class="sx">未发送</span></td><td>5.6%</td><td>7.1%</td><td>12.0%</td><td>10.4%</td></tr><tr><td class="l">10/09</td><td>6.6%</td><td>3.7%</td><td>6.5%</td><td><span class="sx">未发送</span></td><td>7.4%</td><td>12.3%</td><td>10.8%</td></tr><tr><td class="l">10/10</td><td>6.4%</td><td><span class="sx">未发送</span></td><td><span class="sx">未发送</span></td><td>4.9%</td><td>7.2%</td><td>11.9%</td><td>10.5%</td></tr><tr><td class="l">10/11</td><td>5.9%</td><td><span class="sx">未发送</span></td><td><span class="sx">未发送</span></td><td><span class="sx">未发送</span></td><td>7.3%</td><td>12.2%</td><td>10.7%</td></tr><tr><td class="l">10/12</td><td>6.5%</td><td>1.4%</td><td>6.6%</td><td><span class="sx">未发送</span></td><td>7.2%</td><td>11.9%</td><td>10.7%</td></tr></table></div>
+ </div>
+</div></div>
+<div class="nts"><div class="nt"><b>一人可属多个人群</b><span class="nb">回流且潜在付费的玩家同时计入两行，</span><span class="nb">各行不相加；</span><span class="nb">人群按发送时所在群组归属。</span></div><div class="nt"><b>每列的分母写在表头</b><span class="nb">游戏内推送的点击率除以曝光，</span><span class="nb">游戏外推送除以发送；</span><span class="nb">切到「到达率」时游戏内推送列写「不适用」。</span></div><div class="nt"><b>按发送日期归属</b><span class="nb">10/09 发出的短信，</span><span class="nb">之后几天的点击仍计入 10/09；</span><span class="nb">没有推送的日子写「未发送」，</span><span class="nb">不写 0%。</span></div></div></section>
+<section class="scr" id="s6-3"><div class="sh"><span class="no">6-3</span><h2><span class="nb">数据看板·游戏外推送未触达原因：</span><span class="nb">发送前拦下与渠道退回分开列</span></h2><span class="smk"><span class="mk t">只统一数据也有</span><span class="mk a">整屏新增</span></span></div>
+<div class="pf"><div class="pfh"><b>数据看板</b><span class="bc">推送统一后台 › 数据看板 › 未触达原因</span></div>
+<div class="pb"><div class="gcol" style="grid-template-columns:minmax(0,1fr) 446px;gap:16px">
+ <div class="sec"><h5>游戏外推送未触达原因<span class="sub">近 7 天 · 人次</span><span class="r"></span></h5>
+  <table class="tb cp">
+   <tr><th class="l">类别</th><th class="l">原因</th><th>推播</th><th>短信</th><th>Facebook</th><th>LINE</th><th>合计</th><th>名单</th></tr>
+   <tr><td class="l lb" rowspan="4"><span class="nb">发送前拦下</span></td><td class="l">无联系方式</td><td>14,620</td><td>3,064</td><td>29,088</td><td>9,798</td><td><b>56,570</b></td><td><span class="bt t">导出</span></td></tr>
+   <tr><td class="l">通知关闭</td><td>6,204</td><td><span class="mz">不适用</span></td><td><span class="mz">不适用</span></td><td><span class="mz">不适用</span></td><td><b>6,204</b></td><td><span class="bt t">导出</span></td></tr>
+   <tr><td class="l">勿扰（设为放弃）</td><td>1,382</td><td>0</td><td>0</td><td>0</td><td><b>1,382</b></td><td><span class="bt t">导出</span></td></tr>
+   <tr><td class="l">频率上限</td><td>6,920</td><td>0</td><td>0</td><td>0</td><td><b>6,920</b></td><td><span class="bt t">导出</span></td></tr>
+   <tr><td class="l lb">渠道退回</td><td class="l">发送失败</td><td>2,410</td><td>1,966</td><td>212</td><td>0</td><td><b>4,588</b></td><td><span class="bt t">导出</span></td></tr>
+  </table>
+  <div class="hlp pd"><span class="nb">每人次只计第一个命中的原因，</span><span class="nb">按表中自上而下的顺序判断；</span><br><span class="nb">导出的名单按玩家去重</span><br><span class="nb">游戏内推送：</span><span class="nb">快显近 7 天被每人每天上限拦下 1,480 人次</span></div>
+ </div>
+ <div class="sec"><h5>指标口径<span class="sub">表头 ⓘ 悬停时显示</span><span class="r"></span></h5>
+  <table class="ds cp">
+   <tr><th>发送</th><td>提交给渠道的条数，含被退回的；不代表到达</td></tr>
+   <tr><th>到达</th><td>推播 Android：客户端回执<br>短信：运营商回执，没收到的计「无回执」<br>Facebook：送达回调<br>LINE：只有按日汇总的送达数</td></tr>
+   <tr><th>曝光</th><td>弹窗、快显、推播 Android：客户端显示时上报<br>Facebook：已读<br>LINE：官方统计，不足 20 人不返回</td></tr>
+   <tr><th>点击</th><td>弹窗、快显、推播：客户端上报<br>短信、Facebook、LINE：追踪链接的点击</td></tr>
+   <tr><th>人群</th><td>按发送时玩家所在群组归属</td></tr>
+  </table></div>
+</div></div></div>
+<div class="nts"><div class="nt"><b>发送前拦下与发送失败分开列</b><span class="nb">前四项是本后台按规则拦下的，</span><span class="nb">发送失败是渠道退回的；</span><span class="nb">前者改规则或受众，</span><span class="nb">后者查渠道。</span></div><div class="nt"><b>拦下的四项只在统一入口有</b><span class="nb">只统一数据时各渠道在原处发送，</span><span class="nb">本后台没有受众，</span><span class="nb">只剩「发送失败」一行。</span></div><div class="nt"><b>每行的名单可导出</b><span class="nb">例如推播通知关闭的 6,204 人次，</span><span class="nb">导出去重后的玩家名单，</span><span class="nb">用于核对或改用其他渠道。</span></div></div></section>
+<section class="scr" id="s6-4"><div class="sh"><span class="no">6-4</span><h2><span class="nb">数据看板·推送明细：</span><span class="nb">游戏外推送和快显的每一条推送列在一张表</span></h2><span class="smk"><span class="mk t">只统一数据也有</span><span class="mk a">整屏新增</span></span></div>
+<div class="pf"><div class="pfh"><b>数据看板</b><span class="bc">推送统一后台 › 数据看板 › 推送明细</span></div>
+<div class="pb">
+ <div class="ft"><span class="lb2">渠道</span><span class="rbg"><i class="on">全部</i><i>推播</i><i>短信</i><i>Facebook</i><i>LINE</i><i>快显</i></span><span class="lb2" style="margin-left:12px">发送方式</span><span class="rbg"><i class="on">全部</i><i>按行为</i><i>定时</i><i>立即</i></span><span class="ip" style="width:180px;margin-left:12px"><span class="ph">推送名称或 ID</span></span><span class="bt p">查询</span><span class="bt">重置</span><span class="bt" style="margin-left:auto">导出 Excel</span></div>
+ <div class="ft"><span class="lb2">状态</span><div class="chips"><span class="on">全部 <b>19</b></span><span>运行中 <b>3</b></span><span>已暂停 <b>1</b></span><span>已排程 <b>2</b></span><span>发送中 <b>1</b></span><span>已完成 <b>7</b></span><span>已停止 <b>2</b></span><span>发送失败 <b>2</b></span><span>无可发送对象 <b>1</b></span></div><span class="hlp">近 7 天；点击即筛选</span><span style="margin-left:auto"></span></div>
+ <table class="tb cp dn" style="margin-top:10px">
+  <tr><th>ID</th><th class="l">名称</th><th>渠道</th><th class="l">发送方式</th><th class="l">受众</th><th>状态</th><th>发送</th><th>到达率<small>到达÷发送</small></th><th>曝光</th><th>点击率<small>点击÷发送</small></th><th>操作</th></tr>
+  <tr><td>31</td><td class="l">限时加码礼包未购买提醒</td><td>推播</td><td class="l">按行为：礼包剩 2 小时</td><td class="l">触发的玩家</td><td><span class="stg run">运行中</span></td><td>3,779</td><td>91.8%<span class="sx">仅 Android</span></td><td>2,031<span class="sx">仅 Android</span></td><td>7.7%</td><td><span class="bt t">查看数据 ▾</span></td></tr>
+  <tr><td>32</td><td class="l">通行证升级提示</td><td>快显</td><td class="l">按行为：通行证升级</td><td class="l">触发的玩家（在线）</td><td><span class="stg run">运行中</span></td><td colspan="2"><span class="mz">不适用</span></td><td>13,860</td><td>10.6%<span class="sx">÷曝光</span></td><td><span class="bt t">查看数据 ▾</span></td></tr>
+  <tr><td>41</td><td class="l">首储加赠提醒</td><td>Facebook</td><td class="l">立即 10/12 15:20</td><td class="l">潜在付费 4,860</td><td><span class="stg snd">发送中</span></td><td>920</td><td>94.7%</td><td>540</td><td>6.6%</td><td><span class="bt t">查看数据 ▾</span></td></tr>
+  <tr><td>38</td><td class="l">每日补给计划提醒</td><td>短信</td><td class="l">定时 10/12 10:00</td><td class="l">潜在流失 7,880</td><td><span class="stg fail">发送失败</span></td><td>6,690</td><td>65.9%</td><td><span class="mz">该渠道不回传</span></td><td>1.4%</td><td class="op"><span class="bt t">查看数据 ▴</span><div class="dd opd"><i>查看数据</i><i class="on">重试失败部分</i><i>复制</i></div></td></tr>
+  <tr><td>39</td><td class="l">天天敲蛋礼提醒</td><td>LINE</td><td class="l">定时 10/12 12:00</td><td class="l">敲蛋礼未参与 0</td><td><span class="stg none">无可发送对象</span></td><td colspan="4"><span class="sx">群组为 0 人，未发送</span></td><td><span class="bt t">查看数据 ▾</span></td></tr>
+  <tr><td>40</td><td class="l">回流任务进度提醒</td><td>LINE</td><td class="l">定时 10/12 20:00</td><td class="l">回流 16,564</td><td><span class="stg sch">已排程</span></td><td colspan="4"><span class="sx">未到发送时间</span></td><td><span class="bt t">查看数据 ▾</span></td></tr>
+  <tr><td>34</td><td class="l">生日礼领取提醒</td><td>LINE</td><td class="l">立即 10/08 15:30</td><td class="l">钻石卡生日名单 42</td><td><span class="stg done">已完成</span></td><td>18</td><td><span class="mz">该渠道不回传</span></td><td><span class="mz">低于统计门槛</span></td><td>5.6%</td><td><span class="bt t">查看数据 ▾</span></td></tr>
+  <tr><td>33</td><td class="l">卡别直升活动开启</td><td>Facebook</td><td class="l">定时 10/06 20:00</td><td class="l">回流 16,564</td><td><span class="stg stop">已停止</span></td><td>1,880</td><td>94.1%</td><td>1,060</td><td>5.4%</td><td><span class="bt t">查看数据 ▾</span></td></tr>
+ </table>
+ <div class="row" style="margin-top:8px"><span class="hlp">⋮ 本页其余 2 条</span><span class="hl" style="margin-left:auto">10 项/页　‹ 1 2 ›　共 19 项</span></div>
+</div></div>
+<div class="nts"><div class="nt"><b>跨渠道的推送集中在这一张表</b><span class="nb">各渠道页只列本渠道的推送；</span><span class="nb">跨渠道查找、对比在这里，</span><span class="nb">按渠道、发送方式、状态筛选。</span></div><div class="nt"><b>单条的缺失写法与渠道表一致</b><span class="nb">LINE 只有按日汇总的到达，</span><span class="nb">单条写「该渠道不回传」；</span><span class="nb">只发了 18 人的 LINE 推送，</span><span class="nb">曝光写「低于统计门槛」。</span></div><div class="nt"><b>操作按状态开放</b><span class="nb">发送失败可重试失败部分、复制；</span><span class="nb">运行中可暂停；</span><span class="nb">已完成、已停止只能查看数据和复制；</span><span class="nb">只统一数据时只有「查看数据」。</span></div></div></section>
+</div>
+<div class="gh" id="g7"><div class="ghh"><span class="gn">7</span><h1>单条推送数据</h1></div><div class="tl"><span class="mk t">只统一数据</span><span><span class="nb">只能查看；</span><span class="nb">游戏外推送的漏斗从发送开始</span></span><span class="mk t">统一入口</span><span><span class="nb">游戏外推送的漏斗从受众开始；</span><span class="nb">可暂停、结束、重试失败部分，</span><span class="nb">并查设置快照与本条操作纪录</span></span></div><div class="gs"><span class="nb">示例为推播 ID 31；</span><span class="nb">快显的单条数据从曝光算起</span></div></div>
+<div class="g1">
+<section class="scr" id="s7-1"><div class="sh"><span class="no">7-1</span><h2><span class="nb">单条推送数据：</span><span class="nb">从受众算起，</span><span class="nb">逐步列出每一步少了多少、少在哪</span></h2><span class="smk"><span class="mk t">只统一数据也有</span><span class="mk a">整屏新增</span></span></div>
+<div class="pf"><div class="pfh"><b>限时加码礼包未购买提醒</b><span class="stg run">运行中</span><span class="tg">推播</span><span class="tg">ID 31</span><span class="bc">推送统一后台 › 数据看板 › 推送明细 › 单条推送数据</span><span class="rt"><span class="bt t">‹ 返回推送明细</span></span></div>
+<div class="pb">
+ <div class="gcol" style="grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:start">
+  <table class="ds k4">
+   <tr><th>发送方式</th><td>按行为：限时加码礼包剩 2 小时，且尚未购买</td><th>生效</th><td class="w">2026-10-02 至 2026-12-31</td></tr>
+   <tr><th>受众</th><td>触发的玩家；排除 VIP 名单、黑名单、机器人与测试账号</td><th>创建</th><td class="w">运营01 · 10/02 10:12，由礼包后台迁入</td></tr>
+  </table>
+  <div class="fc" style="gap:6px;align-items:flex-end"><div class="row nw"><span class="bt">复制</span><span class="bt">暂停</span><span class="bt">结束</span></div><span class="hlp">暂停可设恢复时间或手动恢复；结束后不能恢复</span></div>
+ </div>
+ <div class="ft" style="margin-top:10px"><span class="lb2">统计期间</span><span class="rbg"><i>今日</i><i class="on">近 7 天</i><i>自生效起</i><i>自定义</i></span><span class="hlp">10/06–10/12，平均每天触发约 1,236 人次</span><span class="hlp" style="margin-left:auto">到达、点击统计至发送后 5 天｜数据更新于 15:30</span></div>
+ <div class="fnl"><div class="fb"><span>受众</span><b>8,652</b><em>触发人次</em></div><i>›</i><div class="fb cut"><span>发送前拦下</span><b>4,873</b><em>占受众 56.3%</em></div><i>›</i><div class="fb"><span>发送</span><b>3,779</b><em>占受众 43.7%</em></div><i>›</i><div class="fb cut"><span>失败</span><b>162</b><em>可重试 37</em></div><i>›</i><div class="fb"><span>到达</span><b>2,430</b><em>仅 Android</em></div><i>›</i><div class="fb"><span>曝光</span><b>2,031</b><em>仅 Android</em></div><i>›</i><div class="fb"><span>点击</span><b>290</b><em>点击率 7.7%</em></div></div>
+ <div class="ft" style="margin-top:10px"><span class="lb2">拆分</span><span class="rbg"><i class="on">按设备</i><i>按人群</i><i>按小时</i></span><span class="hlp">按人群、按小时</span><span class="mk f">选填</span><span class="bt" style="margin-left:auto">导出逐人明细</span><span class="hlp">保留 30 天</span></div>
+ <table class="tb cp" style="margin-top:8px">
+  <tr><th class="l" rowspan="2">设备</th><th colspan="5">受众与发送前拦下</th><th rowspan="2">发送</th><th rowspan="2">失败</th><th rowspan="2">到达</th><th rowspan="2">到达率<small>到达÷发送</small></th><th rowspan="2">曝光</th><th rowspan="2">点击</th><th rowspan="2">点击率<small>点击÷发送</small></th></tr>
+  <tr><th>受众</th><th>无联系方式</th><th>通知关闭</th><th>勿扰</th><th>频率上限</th></tr>
+  <tr><td class="l">Android</td><td>4,260</td><td>0</td><td>498</td><td>852</td><td>262</td><td><b>2,648</b></td><td>104</td><td>2,430<span class="sx">无回执 114</span></td><td>91.8%</td><td>2,031</td><td>196</td><td>7.4%</td></tr>
+  <tr><td class="l">iOS</td><td>2,446</td><td>0</td><td>629</td><td>530</td><td>156</td><td><b>1,131</b></td><td>58</td><td colspan="2"><span class="mz">该渠道不回传</span></td><td><span class="mz">该渠道不回传</span></td><td>94</td><td>8.3%</td></tr>
+  <tr><td class="l">未装 App</td><td>1,946</td><td>1,946</td><td>0</td><td>0</td><td>0</td><td><b>0</b></td><td colspan="6"><span class="sx">没有设备令牌，不发送</span></td></tr>
+  <tr class="tt"><td class="l"><b>合计</b></td><td><b>8,652</b></td><td><b>1,946</b></td><td><b>1,127</b></td><td><b>1,382</b></td><td><b>418</b></td><td><b>3,779</b></td><td><b>162</b></td><td><b>2,430</b><span class="sx">仅 Android</span></td><td><b>91.8%</b><span class="sx">仅 Android</span></td><td><b>2,031</b><span class="sx">仅 Android</span></td><td><b>290</b></td><td><b>7.7%</b></td></tr>
+ </table>
+</div></div>
+<div class="nts"><div class="nt"><b>漏斗从受众算起</b><span class="nb">先减去发送前拦下的人次，</span><span class="nb">再算发送、失败、到达；</span><span class="nb">拦下与失败原因不同、处理方式不同，</span><span class="nb">分开列。</span></div><div class="nt"><b>iOS 到达、曝光写「该渠道不回传」</b><span class="nb">合计行的到达只含 Android，</span><span class="nb">不用发送数代填；</span><span class="nb">Android 114 人次「无回执」，</span><span class="nb">不等于失败。</span></div><div class="nt"><b>每人次只计一个拦下原因</b><span class="nb">从左到右判断，</span><span class="nb">四列相加等于拦下总数；</span><span class="nb">只统一数据时本后台没有受众，</span><span class="nb">漏斗从发送开始。</span></div></div></section>
+<section class="scr" id="s7-2"><div class="sh"><span class="no">7-2</span><h2><span class="nb">单条推送数据·失败与留档：</span><span class="nb">失败原因与当时的设置、改动记录在一页查</span></h2><span class="smk"><span class="mk t">只统一数据也有</span><span class="mk a">整屏新增</span></span></div>
+<div class="pf"><div class="pfh"><b>限时加码礼包未购买提醒</b><span class="stg run">运行中</span><span class="tg">推播</span><span class="tg">ID 31</span><span class="bc">推送统一后台 › 数据看板 › 推送明细 › 单条推送数据</span><span class="rt"><span class="bt t">‹ 返回推送明细</span></span></div>
+<div class="pb"><div class="gcol" style="grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start">
+ <div class="sec"><h5>发送设置快照<span class="sub">按版本保存</span></h5>
+  <div class="sb">
+   <div class="row nw"><span class="lb2">版本</span><span class="sl on" style="width:330px">版本 2 · 10/09 16:12 起（当前）</span></div>
+   <div class="dd" style="width:330px;margin:4px 0 8px 38px"><i class="on">版本 2 · 10/09 16:12 起（当前）<span class="ck">✓</span></i><i>版本 1 · 10/02 10:12 – 10/09 16:12</i></div>
+   <table class="ds cp">
+    <tr><th>发送方式</th><td>按行为：限时加码礼包剩 2 小时，且尚未购买</td></tr>
+    <tr><th>受众</th><td>触发的玩家；排除 VIP 名单、黑名单、机器人与测试账号</td></tr>
+    <tr><th>提醒频次</th><td>每次触发最多 1 次，间隔至少 24 小时</td></tr>
+    <tr><th>标题</th><td lang="zh-Hant">最後提醒⚠️幸運加碼禮包</td></tr>
+    <tr><th>内文</th><td><span lang="zh-Hant">你的幸運加碼禮包將在 2 小時後到期，點擊立即查看</span><span class="sx">10/09 修改</span></td></tr>
+    <tr><th>点击跳转</th><td>礼包 / 限时加码礼包</td></tr>
+    <tr><th>勿扰</th><td>00:00–08:00 命中时放弃</td></tr>
+    <tr><th>频率上限</th><td>遵守；推播每人每天 2 条</td></tr>
+   </table>
+  </div></div>
+ <div>
+  <div class="sec"><h5>失败原因<span class="sub">近 7 天 · 162 人次</span><span class="r"></span></h5>
+   <table class="tb cp">
+    <tr><th class="l">原因</th><th>Android</th><th>iOS</th><th>合计</th><th>可重试</th></tr>
+    <tr><td class="l">令牌失效：App 已卸载或重装</td><td>76</td><td>42</td><td>118</td><td>否</td></tr>
+    <tr><td class="l">推送服务超时</td><td>23</td><td>14</td><td>37</td><td class="okt">是</td></tr>
+    <tr><td class="l">内容被拒：格式错误</td><td>5</td><td>2</td><td>7</td><td>否</td></tr>
+   </table>
+   <div class="row nw pd" style="border-top:1px solid var(--bdx)"><span class="bt p sm">重试失败部分</span><span class="hlp"><span class="nb">只发给超时且礼包未到期的 9 人次；</span><span class="nb">其余 28 人次礼包已到期</span></span></div>
+  </div>
+  <div class="sec" style="margin-top:12px"><h5>操作纪录<span class="sub">本条推送</span></h5>
+   <table class="tb cp">
+    <tr><th class="l">时间</th><th class="l">操作人</th><th class="l">操作</th><th class="l">内容</th></tr>
+    <tr><td class="l">10/09 16:12</td><td class="l">运营02</td><td class="l">编辑</td><td class="l">内文改为写明到期时间</td></tr>
+    <tr><td class="l">10/05 18:02</td><td class="l">运营01</td><td class="l">恢复</td><td class="l">暂停期间不触发提醒</td></tr>
+    <tr><td class="l">10/05 09:40</td><td class="l">运营01</td><td class="l">暂停</td><td class="l">原因：礼包准入规则调整</td></tr>
+    <tr><td class="l">10/02 10:12</td><td class="l">运营01</td><td class="l">新建并启用</td><td class="l">由礼包后台迁入，沿用原标题与提醒时间</td></tr>
+   </table></div>
+ </div>
+</div></div></div>
+<div class="nts"><div class="nt"><b>只重试会成功的部分</b><span class="nb">推送服务超时可以重试；</span><span class="nb">令牌失效、内容被拒重试也收不到；</span><span class="nb">礼包已到期的玩家不再发送。</span></div><div class="nt"><b>每次修改生成一个设置版本</b><span class="nb">10/09 改了内文，</span><span class="nb">生成版本 2；</span><span class="nb">之前的触发仍按版本 1 统计，</span><span class="nb">可切换查看。</span></div><div class="nt"><b>本条的操作纪录</b><span class="nb">新建、编辑、暂停、恢复都记下操作人和改动内容，</span><span class="nb">与「操作纪录」页同源。</span></div></div></section>
+</div>
+<div class="gh" id="g8"><div class="ghh"><span class="gn">8</span><h1>玩家查询</h1></div><div class="tl"><span class="mk t">统一入口</span><span><span class="nb">列出每种推送的收到与被拦截记录</span></span><span class="mk t">只统一数据</span><span><span class="nb">只列收到记录；</span><span class="nb">游戏外推送没有上限与拦截</span></span></div></div>
+<div class="g3">
+<section class="scr" id="s8-1"><div class="sh"><span class="no">8-1</span><h2><span class="nb">玩家查询·玩家信息：</span><span class="nb">所属群组、各渠道能否收到</span><span class="nb">与今日已收条数集中显示</span></h2><span class="smk"><span class="mk t">只统一数据也有</span><span class="xg m">在现有页面上改</span></span></div><div class="pf"><div class="pg">
+<div class="sd"><div class="hd">推送统一后台</div><i>总览</i><div class="gp">游戏外推送</div><i class="c">推播</i><i class="c">短信</i><i class="c">Facebook</i><i class="c">LINE</i><div class="gp">游戏内推送</div><i class="c">弹窗</i><i class="c">快显</i><hr><i>频率上限</i><i>数据看板</i><i class="on">玩家查询<span class="xg m">改</span></i><i>操作纪录</i></div>
+<div class="mn">
+ <div class="row nw"><span class="ip" style="width:190px">180820055306760</span><span class="ip" style="width:170px"><span class="ph">会员昵称</span></span><span class="ip" style="width:170px"><span class="ph">手机号码</span></span><span class="bt p">查询</span></div>
+ <div class="gcol" style="grid-template-columns:420px minmax(0,1fr);gap:16px;margin-top:12px">
+  <div>
+   <div class="sct">玩家信息</div>
+   <div class="pinf"><span>会员编号: 180820055306760</span><span>标签名称: 潜在流失·实验组</span><span>会员昵称: 我来称王260134709</span><span>手机号码: 0912***678</span><span>标签状态: 启用</span><span></span></div>
+   <div class="xbox" style="margin-top:8px;padding:8px 12px">
+    <div class="row nw" style="margin-bottom:6px"><span class="xg">新增</span><span style="font-size:14px;color:var(--t1)">所属群组</span><span class="hl">按当前名单，每 25 分钟刷新</span></div>
+    <div class="row"><span class="tg b">潜在流失·近 14 天 1 天</span><span class="tg b">潜在流失（两档）</span><span class="tg b">潜在流失·实验组</span></div>
+   </div>
+  </div>
+  <div>
+   <div class="sct">各渠道收到情况<span class="xg">新增</span></div>
+   <table class="tb dn" style="table-layout:fixed"><colgroup><col style="width:88px"><col style="width:74px"><col><col style="width:120px"><col style="width:112px"></colgroup><tr><th class="l xn" colspan="2">推送</th><th class="l xn">能否收到</th><th class="xn">今日已收／上限</th><th class="xn">最近一次收到</th></tr><tr><td class="l lb" rowspan="4">游戏外推送</td><td class="l">推播</td><td class="l okt">✓ 已开启通知（Android）</td><td class="red">2／2 条 已达上限</td><td>10/12 12:30</td></tr><tr><td class="l">短信</td><td class="l okt">✓ 有手机号</td><td>0／1 条</td><td>10/09 19:00</td></tr><tr><td class="l">Facebook</td><td class="l red">✕ 未绑定 Facebook</td><td>0／1 条</td><td>—</td></tr><tr><td class="l">LINE</td><td class="l red">✕ 未加 LINE 好友</td><td>0／1 条</td><td>—</td></tr><tr><td class="l lb" rowspan="2">游戏内推送</td><td class="l">弹窗</td><td class="l">在线时按规则弹出（大厅＋破产）</td><td>5／8 个</td><td>10/12 14:05</td></tr><tr><td class="l">快显</td><td class="l">当前在线</td><td>1／3 次</td><td>10/12 12:00</td></tr></table>
+  </div>
+ </div>
+ <div class="gcol" style="grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;margin-top:14px">
+  <div><div class="sct">自动弹窗顺序</div>
+   <table class="tb dn" style="table-layout:fixed"><colgroup><col style="width:44px"><col style="width:108px"><col style="width:86px"><col style="width:86px"><col></colgroup>
+    <tr><th class="l">顺序</th><th>类型</th><th>礼包名称</th><th>弹窗活动 ID</th><th>弹窗名称</th></tr>
+    <tr><td class="l">1</td><td>每日补给计划</td><td>-</td><td>14</td><td>活动类·潜在流失（实验组）</td></tr>
+    <tr><td class="l">2</td><td>热门资讯</td><td>-</td><td>14</td><td>活动类·潜在流失（实验组）</td></tr>
+    <tr class="om"><td colspan="5">⋮ 第 3–21 项，其中第 15–21 项为通用弹窗（ID 6）</td></tr>
+   </table></div>
+  <div><div class="sct">游戏破产弹窗顺序</div>
+   <table class="tb dn" style="table-layout:fixed"><colgroup><col style="width:44px"><col style="width:108px"><col style="width:86px"><col style="width:86px"><col></colgroup>
+    <tr><th class="l">顺序</th><th>类型</th><th>礼包名称</th><th>弹窗活动 ID</th><th>弹窗名称</th></tr>
+    <tr><td class="l">1</td><td>首储礼包</td><td>首储1.2</td><td>15</td><td>破产储值弹窗（实验组）</td></tr>
+    <tr><td class="l">2</td><td>破产礼包</td><td>-</td><td>15</td><td>破产储值弹窗（实验组）</td></tr>
+    <tr class="om"><td colspan="5">⋮ 第 3–8 项</td></tr>
+   </table></div>
+ </div>
+</div></div></div><div class="nts"><div class="nt"><b><span class="nb">所属群组和各渠道能否收到放在玩家信息旁</span></b><span class="nb">先看玩家在哪些群组、</span><span class="nb">哪些渠道本来就收不到，</span><span class="nb">例如未绑定 Facebook、未加 LINE 好友，</span><span class="nb">再查收到记录。</span></div><div class="nt"><b><span class="nb">今日已收与上限并列，</span><span class="nb">达上限标红</span></b><span class="nb">推播今日已收 2 条、上限 2 条，</span><span class="nb">今天余下的推播不会再发给他；</span><span class="nb">只统一数据时游戏外推送没有上限，</span><span class="nb">只显示已收条数。</span></div><div class="nt"><b><span class="nb">两张顺序表沿用现有内容</span></b><span class="nb">本页即现有「玩家弹窗顺序查询」；</span><span class="nb">按玩家命中的规则列出全部排序项，</span><span class="nb">这里是 ID 14 与 ID 15，</span><span class="nb">每日补给计划排第 1。</span></div></div></section>
+<section class="scr" id="s8-2"><div class="sh"><span class="no">8-2</span><h2><span class="nb">玩家查询·收到记录：</span><span class="nb">收到与被拦截的每一条按时间倒序列出并写明原因</span></h2><span class="smk"><span class="mk t">只统一数据也有</span><span class="xg">新增</span></span></div><div class="pf"><div class="pg">
+<div class="sd"><div class="hd">推送统一后台</div><i>总览</i><div class="gp">游戏外推送</div><i class="c">推播</i><i class="c">短信</i><i class="c">Facebook</i><i class="c">LINE</i><div class="gp">游戏内推送</div><i class="c">弹窗</i><i class="c">快显</i><hr><i>频率上限</i><i>数据看板</i><i class="on">玩家查询<span class="xg m">改</span></i><i>操作纪录</i></div>
+<div class="mn" style="padding:10px 16px 8px">
+ <div class="row nw xbox" style="padding:3px 12px"><b style="font-size:14px;font-weight:600">收到记录</b><span class="xg">新增</span><span class="hl">180820055306760 · 近 30 天，按时间倒序，逐条保留 30 天</span></div>
+ <div class="row nw" style="margin:8px 0"><span class="un">渠道</span><span class="rbg"><i class="on">全部</i><i>推播</i><i>短信</i><i>Facebook</i><i>LINE</i><i>弹窗</i><i>快显</i></span><span class="un" style="margin-left:12px">结果</span><span class="rbg"><i class="on">全部</i><i>已收到</i><i>未收到</i></span><span class="ip" style="margin-left:12px"><svg width="14" height="14" viewBox="0 0 14 14"><rect x="1.5" y="2.5" width="11" height="10" rx="1.5" fill="none" stroke="#C0C4CC"/><path d="M1.5 5.5h11M4.5 1v3M9.5 1v3" stroke="#C0C4CC"/></svg>2026-10-06<span style="color:var(--t3)">至</span>2026-10-12</span><span class="sp bt">导出</span></div>
+ <table class="tb dn cp" style="table-layout:fixed">
+  <colgroup><col style="width:96px"><col style="width:78px"><col style="width:248px"><col style="width:290px"><col></colgroup>
+  <tr><th class="l">时间</th><th class="l">渠道</th><th class="l">弹窗规则或推送名称</th><th class="l">玩家看到的内容</th><th class="l">结果</th></tr>
+  <tr><td class="l">10/12 15:00</td><td class="l">推播</td><td class="l">月月抽开奖提醒</td><td class="l" lang="zh-Hant">月月抽今晚開獎，快來看看你的號碼</td><td class="l"><span class="rs wn">被拦截：频率上限，推播今日已收 2／2</span></td></tr>
+  <tr><td class="l">10/12 14:05</td><td class="l">大厅弹窗</td><td class="l">活动类·潜在流失（实验组）＋通用弹窗</td><td class="l">每日补给计划、热门资讯、发信送奖、每日礼包</td><td class="l"><span class="rs ok">已曝光 4 个，已点击：每日补给计划</span></td></tr>
+  <tr><td class="l">10/12 13:42</td><td class="l">破产弹窗</td><td class="l">破产储值弹窗（实验组）</td><td class="l">破产礼包</td><td class="l"><span class="rs in">已曝光</span></td></tr>
+  <tr><td class="l">10/12 12:30</td><td class="l">推播</td><td class="l">任务完成奖励提醒</td><td class="l" lang="zh-Hant">任務完成！獎勵已發放，點擊立即領取</td><td class="l"><span class="rs ok">已点击</span></td></tr>
+  <tr><td class="l">10/12 12:00</td><td class="l">快显</td><td class="l">通行证升级提示</td><td class="l" lang="zh-Hant">恭喜升級！通行證獎勵已可領取</td><td class="l"><span class="rs in">已曝光</span></td></tr><tr><td class="l">10/12 10:00</td><td class="l">短信</td><td class="l">每日补给计划提醒</td><td class="l" lang="zh-Hant">【會員通知】每日補給計畫加碼，登入即領…</td><td class="l"><span class="rs er">未送达：服务商接口超时</span></td></tr>
+  <tr><td class="l">10/12 09:30</td><td class="l">推播</td><td class="l">限时加码礼包未购买提醒</td><td class="l" lang="zh-Hant">最後提醒⚠️幸運加碼禮包</td><td class="l"><span class="rs in">已到达</span></td></tr>
+  <tr><td class="l">10/11 22:30</td><td class="l">大厅弹窗</td><td class="l">活动类·潜在流失（实验组）</td><td class="l">热门资讯</td><td class="l"><span class="rs wn">被拦截：每天弹窗上限，当天已弹 8／8</span></td></tr>
+  <tr><td class="l">10/11 20:00</td><td class="l">推播</td><td class="l">潜在流失召回</td><td class="l" lang="zh-Hant">好久不見！回來就送你專屬補給，點擊領取</td><td class="l"><span class="rs er">未送达：推送服务超时</span></td></tr>
+  <tr><td class="l">10/11 07:40</td><td class="l">推播</td><td class="l">任务完成奖励提醒</td><td class="l" lang="zh-Hant">任務完成！獎勵已發放，點擊立即領取</td><td class="l"><span class="rs wn">顺延：勿扰时段，08:00 已到达</span></td></tr>
+  
+  <tr class="om"><td colspan="5">⋮ 共 46 条，向下滚动加载更早的记录</td></tr>
+ </table>
+</div></div></div><div class="nts"><div class="nt"><b><span class="nb">收到与没收到的都记一行</span></b><span class="nb">被频率上限拦截、勿扰顺延、未送达各占一行并写明原因，</span><span class="nb">排查「该收到没收到」不用再查日志。</span></div><div class="nt"><b><span class="nb">弹窗按一次进入大厅记一行</span></b><span class="nb">一次弹出 4 个，</span><span class="nb">列出名称和点了哪一个；</span><span class="nb">今日大厅 4 个加破产 1 个，</span><span class="nb">与「今日已收 5／8」一致。</span></div><div class="nt"><b><span class="nb">按推送和结果筛选</span></b><span class="nb">选「未收到」只看被拦截和未送达；</span><span class="nb">记录逐条保留 30 天，</span><span class="nb">更早的看数据看板的汇总；</span><span class="nb">没有记录时写明是不在受众内还是当天未发送。</span></div></div></section>
+</div>
+<div class="gh" id="g9"><div class="ghh"><span class="gn">9</span><h1><span class="nb">新开发集中在两处：</span><span class="nb">游戏外推送改在本后台新建发送；</span><span class="nb">共用页的上限、数据与查询从无到有</span></h1></div><div class="gs"><span class="nb">改动共 35 处：</span><span class="nb">要新开发逻辑 22 处、</span><span class="nb">用现有组件新增 9 处、</span><span class="nb">只改布局文案 4 处</span></div></div><div class="c10"><div class="blk"><h2><span class="mk n cgm">要新开发逻辑</span><span class="nb">22 处：</span><span class="nb">游戏外推送 7 处、游戏内推送 5 处、共用页 10 处</span></h2><table class="cst"><colgroup><col style="width:120px"><col style="width:180px"><col><col style="width:140px"><col style="width:150px"></colgroup><tr><th>类别</th><th>页面</th><th>改动</th><th>屏</th><th class="c">只统一数据时保留</th></tr><tr><td class="ly" rowspan="7">游戏外推送</td><td class="pn">游戏外推送</td><td>发送记录列表与状态计数</td><td class="sn">3-1</td><td class="c ok">✓</td></tr><tr><td class="pn">游戏外推送</td><td>新建、编辑、暂停、停止，按状态开放操作</td><td class="sn">3-1</td><td class="c">—</td></tr><tr><td class="pn">推播</td><td>发送对象：触发的玩家或标签群组加排除，预计人数与可触达人数</td><td class="sn">3-3、3-4</td><td class="c">—</td></tr><tr><td class="pn">推播</td><td>按行为发送：玩家行为、触发条件、提醒次数与冷却</td><td class="sn">3-5</td><td class="c">—</td></tr><tr><td class="pn">推播</td><td>勿扰命中时顺延或放弃；被上限拦下的人数预估</td><td class="sn">3-5、3-6</td><td class="c">—</td></tr><tr><td class="pn">推播</td><td>同时发到其他渠道（可选）</td><td class="sn">3-2</td><td class="c">—</td></tr><tr><td class="pn">短信、Facebook、LINE</td><td>在本后台新建与发送；短信链接自动转短链</td><td class="sn">3-8～3-10</td><td class="c">—</td></tr><tr><td class="ly" rowspan="5">游戏内推送</td><td class="pn">弹窗</td><td>列表的今日曝光、点击率</td><td class="sn">4-1</td><td class="c ok">✓</td></tr><tr><td class="pn">弹窗</td><td>规则对象的人数预览</td><td class="sn">4-2</td><td class="c ok">✓</td></tr><tr><td class="pn">弹窗</td><td>排序项新增新手挑战、新手通行证</td><td class="sn">4-3</td><td class="c ok">✓</td></tr><tr><td class="pn">快显</td><td>显示记录与曝光、点击</td><td class="sn">4-4</td><td class="c ok">✓</td></tr><tr><td class="pn">快显</td><td>服务端下发，立即或按行为发送</td><td class="sn">4-4</td><td class="c">—</td></tr><tr><td class="ly" rowspan="10">共用页</td><td class="pn">总览</td><td>今日每种推送的状态与数据、待处理列表</td><td class="sn">2</td><td class="c">—</td></tr><tr><td class="pn">频率上限</td><td>每种推送每人每天上限、勿扰时段</td><td class="sn">5</td><td class="c">—</td></tr><tr><td class="pn">频率上限</td><td>游戏外推送合计上限、弹窗间隔（可选）</td><td class="sn">5</td><td class="c">—</td></tr><tr><td class="pn">数据看板</td><td>每种推送的数据、按人群与日期、推送明细</td><td class="sn">6-1、6-2、6-4</td><td class="c ok">✓</td></tr><tr><td class="pn">数据看板</td><td>游戏外推送未触达原因里的发送前拦下</td><td class="sn">6-3</td><td class="c">—</td></tr><tr><td class="pn">单条推送数据</td><td>漏斗、按设备／人群／小时拆分、失败原因</td><td class="sn">7-1、7-2</td><td class="c ok">✓</td></tr><tr><td class="pn">单条推送数据</td><td>暂停、结束、重试失败部分；设置版本快照</td><td class="sn">7-1、7-2</td><td class="c">—</td></tr><tr><td class="pn">玩家查询</td><td>每种推送能否收到、今日已收、最近一次收到</td><td class="sn">8-1</td><td class="c ok">✓</td></tr><tr><td class="pn">玩家查询</td><td>收到记录（近 30 天逐条）</td><td class="sn">8-2</td><td class="c ok">✓</td></tr><tr><td class="pn">玩家查询</td><td>收到记录里的被拦截与顺延</td><td class="sn">8-2</td><td class="c">—</td></tr></table></div><div class="blk"><h2><span class="mk c cgm">用现有组件新增</span><span class="nb">9 处：</span><span class="nb">4 处在弹窗页</span></h2><table class="cst"><colgroup><col style="width:120px"><col style="width:180px"><col><col style="width:140px"><col style="width:150px"></colgroup><tr><th>类别</th><th>页面</th><th>改动</th><th>屏</th><th class="c">只统一数据时保留</th></tr><tr><td class="ly" rowspan="1">游戏外推送</td><td class="pn">推播</td><td>测试发送：测试名单、会员编号</td><td class="sn">3-7</td><td class="c">—</td></tr><tr><td class="ly" rowspan="4">游戏内推送</td><td class="pn">弹窗</td><td>列表上方的每人每天上限栏</td><td class="sn">4-1</td><td class="c ok">✓</td></tr><tr><td class="pn">弹窗</td><td>规则对象改为标签群组加排除群组</td><td class="sn">4-2</td><td class="c ok">✓</td></tr><tr><td class="pn">弹窗</td><td>规则的生效期间</td><td class="sn">4-2</td><td class="c ok">✓</td></tr><tr><td class="pn">弹窗</td><td>排序项拖动调整先后</td><td class="sn">4-3</td><td class="c ok">✓</td></tr><tr><td class="ly" rowspan="4">共用页</td><td class="pn">频率上限</td><td>弹窗每人每天上限移到本页（大厅与破产合计）</td><td class="sn">5</td><td class="c">—</td></tr><tr><td class="pn">单条推送数据</td><td>本条推送的操作纪录</td><td class="sn">7-2</td><td class="c">—</td></tr><tr><td class="pn">玩家查询</td><td>玩家所属群组</td><td class="sn">8-1</td><td class="c ok">✓</td></tr><tr><td class="pn">操作纪录</td><td>沿用现有页签，扩到推送</td><td class="sn">—</td><td class="c">—</td></tr></table></div><div class="blk"><h2><span class="mk w cgm">只改布局文案</span><span class="nb">4 处：</span><span class="nb">两处是页面移入「推送统一后台」</span></h2><table class="cst"><colgroup><col style="width:120px"><col style="width:180px"><col><col style="width:140px"><col style="width:150px"></colgroup><tr><th>类别</th><th>页面</th><th>改动</th><th>屏</th><th class="c">只统一数据时保留</th></tr><tr><td class="ly" rowspan="2">游戏内推送</td><td class="pn">弹窗</td><td>整页移到「推送统一后台」下</td><td class="sn">4-1</td><td class="c">—</td></tr><tr><td class="pn">弹窗</td><td>列表排序默认收起，对象列写明群组与排除</td><td class="sn">4-1</td><td class="c ok">✓</td></tr><tr><td class="ly" rowspan="2">共用页</td><td class="pn">玩家查询</td><td>整页移到「推送统一后台」下</td><td class="sn">8-1</td><td class="c">—</td></tr><tr><td class="pn">数据看板</td><td>表格右上方写明统计窗口与更新时间</td><td class="sn">6-1</td><td class="c ok">✓</td></tr></table></div></div><div class="gh" id="g10"><div class="ghh"><span class="gn">10</span><h1>覆盖对照与待确认</h1></div></div><div class="c10"><div class="blk"><h2><span class="nb">覆盖对照：</span><span class="nb">11 个页面；</span><span class="nb">只统一数据时 7 页只读，4 页不在本后台</span></h2><table class="cvt"><colgroup><col style="width:110px"><col style="width:110px"><col style="width:90px"><col><col style="width:270px"></colgroup><tr><th>类别</th><th>页面</th><th>屏</th><th>运营能配置什么</th><th>只统一数据时</th></tr><tr><td class="ly" rowspan="1">共用页</td><td class="pn">总览</td><td class="sn">2</td><td><span class="cl">新建：选推送后进入该推送页</span><span class="cl">待处理：重试失败部分、复制并改受众</span></td><td class="no">没有</td></tr><tr><td class="ly" rowspan="4">游戏外推送</td><td class="pn">推播</td><td class="sn">3-1～3-7</td><td><span class="cl"><b>列表</b>名称或 ID、受众、创建人、创建日期、发送方式、触发行为、状态；按状态开放的操作</span><span class="cl"><b>内容</b>标题（≤ 30 字）、内文（≤ 60 字）、图片、点击跳转；同时发到其他渠道（可选）</span><span class="cl"><b>对象</b>全部玩家、标签群组或触发的玩家；只限这些群组、排除群组</span><span class="cl"><b>时间</b>立即、定时、按行为（触发条件、生效期间、提醒次数、冷却）；勿扰命中时顺延或放弃</span><span class="cl"><b>上限与确认</b>遵守，或不遵守并选计入方式、填原因；测试名单、会员编号</span></td><td>只有发送记录，只读</td></tr><tr><td class="pn">短信</td><td class="sn">3-8</td><td><span class="cl"><b>内容</b>内文（70 字计 1 则）、链接自动转短链</span><span class="cl"><b>时间</b>立即、定时、按行为</span></td><td>只有发送记录，只读</td></tr><tr><td class="pn">Facebook</td><td class="sn">3-9</td><td><span class="cl"><b>内容</b>文字、图片、按钮文字与链接</span><span class="cl"><b>时间</b>立即、定时、按行为</span></td><td>只有发送记录，只读</td></tr><tr><td class="pn">LINE</td><td class="sn">3-10</td><td><span class="cl"><b>内容</b>文字、图片、按钮文字与链接</span><span class="cl"><b>时间</b>立即、定时、按行为</span></td><td>只有发送记录，只读</td></tr><tr><td class="ly" rowspan="2">游戏内推送</td><td class="pn">弹窗</td><td class="sn">4-1～4-3</td><td><span class="cl"><b>筛选</b>名称、类型、位置、对象、状态</span><span class="cl"><b>规则</b>类型、位置、名称、弹出数量、标签状态、对象与排除群组、生效期间</span><span class="cl"><b>排序项</b>项目、时机、形式、次数、冷却、忽略间隔（可选）、拖动排序</span></td><td><span class="cl">留在原菜单，每人每天上限在本页设置</span><span class="cl">其余改动相同</span></td></tr><tr><td class="pn">快显</td><td class="sn">4-4</td><td><span class="cl"><b>内容</b>文字（≤ 30 字）、显示位置、停留秒数、跳转</span><span class="cl"><b>时间</b>立即、按行为</span></td><td>只有显示记录，只读</td></tr><tr><td class="ly" rowspan="5">共用页</td><td class="pn">频率上限</td><td class="sn">5</td><td><span class="cl">每种推送每人每天上限；游戏外推送合计上限（可选）</span><span class="cl">勿扰时段、适用的游戏外推送、命中时顺延或放弃；弹窗间隔（可选）</span></td><td class="no">没有</td></tr><tr><td class="pn">数据看板</td><td class="sn">6-1～6-4</td><td><span class="cl">日期、人群、推送、推送名称或 ID、发送方式、状态筛选；指标切换</span><span class="cl">导出 Excel、导出未触达名单</span></td><td>有，数据从各原系统汇总</td></tr><tr><td class="pn">单条推送数据</td><td class="sn">7-1、7-2</td><td><span class="cl">统计期间、拆分方式、设置版本、导出逐人明细</span><span class="cl">复制、暂停、结束、重试失败部分</span></td><td>有，只能查看</td></tr><tr><td class="pn">玩家查询</td><td class="sn">8-1、8-2</td><td><span class="cl">会员编号、会员昵称、手机号码查询</span><span class="cl">收到记录按推送、结果、日期筛选，导出</span></td><td>有，只列收到记录</td></tr><tr><td class="pn">操作纪录</td><td class="sn">7-2</td><td><span class="cl">沿用现有页签；新建、编辑、暂停、恢复、停止都记下操作人与改动内容</span></td><td class="no">没有</td></tr></table></div><div class="blk"><h2><span class="nb">待确认：13 项，</span><span class="nb">前 3 项决定统一程度</span></h2><table class="pdt"><colgroup><col style="width:96px"><col style="width:600px"><col></colgroup><tr><th>确认方</th><th>要确认什么</th><th>答案不同时设计怎么变</th></tr><tr class="gr"><td colspan="3">决定统一程度的 3 项</td></tr><tr><td class="who">营销侧</td><td class="q">短信、Facebook、LINE 的发送能否接到本后台，能否用于按行为发送</td><td>不能：三页只有发送记录，同只统一数据；不能按行为发送则去掉该项</td></tr><tr><td class="who">客户端</td><td class="q">快显能否改为服务端下发并计数</td><td>不能：快显页只有显示记录，每人每天 3 次上限不生效</td></tr><tr><td class="who">营销侧</td><td class="q">Facebook、LINE 能否回传到达与点击；LINE 每月 1,000 个统计单位是否够用</td><td>不能：对应格子写「该渠道不回传」；额度不够时 LINE 曝光按日汇总</td></tr><tr class="gr"><td colspan="3">其余 10 项</td></tr><tr><td class="who" rowspan="1">数据平台</td><td class="q">推播报表「曝光次數」是否就是到达；四步口径、点击率分母、人群归属、统计窗口</td><td>取不到的格子写「该渠道不回传」；其余只改表头与「数据更新于」</td></tr><tr><td class="who" rowspan="2">客户端</td><td class="q">iOS 推播加通知扩展回传到达；Android 通知显示时上报曝光</td><td>不做：推播到达、曝光对应格子保持「该渠道不回传」</td></tr><tr><td class="q">快显显示位置、停留秒数能否配置；弹窗、快显的曝光与点击是否已上报</td><td>不能配置则两项只读；未上报则弹窗页两列随上报上线</td></tr><tr><td class="who" rowspan="3">营销侧</td><td class="q">只统一数据时能否回传发送记录与回执；短信服务商是否开通状态回报</td><td>不能：该推送不进看板；短信没有到达与「无回执」</td></tr><tr><td class="q">短信字数与计费、LINE 额度与计费、Facebook／LINE 字数上限与按钮写法</td><td>改字数计数、则数与额度提示、按钮字段</td></tr><tr><td class="q">Meta、LINE 对博弈类内容的政策限制（上线前）</td><td>受限的推送不开放新建，或限定可发内容</td></tr><tr><td class="who" rowspan="4">研发</td><td class="q">限时加码礼包快到期、玩家升级、完成任务、通行证升级能否接到本后台；「尚未购买该礼包」怎么判断</td><td>接不到的行为不进下拉；判断不了则去掉该勾选</td></tr><tr><td class="q">各推送「可触达」的判断：推播看令牌与通知授权，Facebook 看绑定，LINE 看好友<span class="co">与营销侧</span></td><td>改可触达人数与玩家查询「能否收到」</td></tr><tr><td class="q">同一位置命中多条规则时怎么合并排序（如规则 14 与通用弹窗）</td><td>要人工定先后时，弹窗页加规则间的先后设置</td></tr><tr><td class="q">弹窗表单现有字段与生效时机、玩家查询现有字段；新手挑战、新手通行证改为排序项的范围<span class="co">与客户端</span></td><td>4-2、4-3、8-1 按现有页面调整</td></tr></table><div class="pnote">实现细节（拦下原因的判断顺序、可重试的失败、设置快照与逐人明细的保留天数、迁入后停用原发送）在需求文档里写。</div></div></div><div class="endsp"></div></div></body></html>

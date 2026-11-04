@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>晨间验收 9/28</title>
+<style>
+  :root{
+    --ground:#f0efec; --surface:#ffffff; --surface-2:#f7f6f3; --surface-3:#eceae5;
+    --ink:#191b1e; --ink-2:#484d53; --muted:#7d8289; --line:#dcdad5; --line-2:#e8e6e1;
+    --accent:#9a6f24; --must:#a63f38; --must-soft:#f4e3e1;
+    --warn:#8a6410; --warn-soft:#f5ead2; --info:#1c6ea4; --info-soft:#e0ecf4; --ok:#3d6b58; --ok-soft:#dfeae5;
+    --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    --serif:"Songti SC","Noto Serif SC",Georgia,serif;
+    --mono:ui-monospace,Menlo,Consolas,monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#131518; --surface:#1a1d21; --surface-2:#20242a; --surface-3:#272c32;
+      --ink:#e9e8e4; --ink-2:#b7bbc0; --muted:#868c94; --line:#2d3238; --line-2:#262b31;
+      --accent:#d6ab5c; --must:#dd8078; --must-soft:#38231f; --warn:#cfa44e; --warn-soft:#332a16;
+      --info:#6aa8d6; --info-soft:#1b2a36; --ok:#74b096; --ok-soft:#1d3129;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#131518; --surface:#1a1d21; --surface-2:#20242a; --surface-3:#272c32;
+    --ink:#e9e8e4; --ink-2:#b7bbc0; --muted:#868c94; --line:#2d3238; --line-2:#262b31;
+    --accent:#d6ab5c; --must:#dd8078; --must-soft:#38231f; --warn:#cfa44e; --warn-soft:#332a16;
+    --info:#6aa8d6; --info-soft:#1b2a36; --ok:#74b096; --ok-soft:#1d3129;
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--ground); color:var(--ink); font-family:var(--sans); font-size:16px; line-height:1.75; -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:880px; margin:0 auto; padding:44px 24px 90px;}
+  header{border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:24px;}
+  h1{font-family:var(--serif); font-size:30px; line-height:1.3; margin:0 0 4px;}
+  .meta{font-size:13px; color:var(--muted); margin:0;}
+  .verdict{background:var(--surface); border-left:3px solid var(--ok); padding:18px 22px; margin:0 0 14px;}
+  .verdict p{margin:0; max-width:38em; font-size:17px; font-weight:600;}
+  .points{background:var(--surface); border:1px solid var(--line); padding:14px 22px; margin:0 0 36px;}
+  .points ol{margin:0; padding-left:1.3em; max-width:38em;}
+  .points li{margin:4px 0;}
+  h2{font-family:var(--serif); font-size:21px; margin:0 0 6px; padding-bottom:8px; border-bottom:1px solid var(--line);}
+  .sub{font-size:13.5px; color:var(--muted); margin:0 0 14px; max-width:42em;}
+  section{margin:0 0 40px;}
+  .card{background:var(--surface); border:1px solid var(--line); margin:0 0 12px;}
+  .card-head{padding:14px 20px 2px; display:flex; flex-wrap:wrap; gap:6px 12px; align-items:baseline;}
+  .card h3{font-size:16.5px; margin:0; flex:1 1 18em;}
+  .card h3 a{color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line);}
+  .ver{font-family:var(--mono); font-size:12px; color:var(--muted);}
+  .rec{font-size:12px; padding:1px 8px; border-radius:2px; font-weight:600;}
+  .rec.ok{background:var(--ok-soft); color:var(--ok);} .rec.fix{background:var(--warn-soft); color:var(--warn);} .rec.no{background:var(--must-soft); color:var(--must);}
+  .card-body{padding:2px 20px 14px;}
+  .fld{font-size:12.5px; font-weight:650; color:var(--muted); margin:10px 0 3px;}
+  .card ul{margin:0; padding-left:1.2em; max-width:38em;}
+  .card li{margin:3px 0; font-size:15px;}
+  .note{color:var(--muted); font-size:13.5px;}
+  .look li::marker{color:var(--accent);} .gap li::marker{color:var(--warn);}
+  .tablewrap{overflow-x:auto; background:var(--surface); border:1px solid var(--line);}
+  table{border-collapse:collapse; width:100%; min-width:640px; font-size:14px;}
+  th{text-align:left; font-size:12.5px; font-weight:650; color:var(--muted); padding:9px 10px; border-bottom:1px solid var(--line); white-space:nowrap;}
+  td{padding:8px 10px; border-bottom:1px solid var(--line-2); vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  td.old{color:var(--muted);} td.pos{white-space:nowrap; font-size:13px; color:var(--ink-2);}
+  .dec{background:var(--surface); border:1px solid var(--line); padding:12px 20px; margin:0 0 10px;}
+  .dec h3{font-size:15.5px; margin:0 0 4px;}
+  .dec p{margin:2px 0; font-size:14.5px; max-width:40em; color:var(--ink-2);}
+  .dec p b{color:var(--ink);}
+  details.apx{border:1px solid var(--line); background:var(--surface); margin-top:8px;}
+  details.apx summary{cursor:pointer; list-style:none; padding:12px 18px; font-size:14.5px; font-weight:600; display:flex; justify-content:space-between;}
+  details.apx summary::-webkit-details-marker{display:none;}
+  details.apx summary::after{content:"展开"; font-size:12px; color:var(--muted); font-weight:500;}
+  details.apx[open] summary::after{content:"收起";}
+  details.apx .body{padding:4px 18px 16px; border-top:1px solid var(--line-2); font-size:14px; color:var(--ink-2);}
+  details.apx .body ul{padding-left:1.2em; max-width:42em;}
+  a{color:var(--accent);}
+  @media (max-width:600px){ .wrap{padding:28px 16px 70px} h1{font-size:25px} .card-head,.card-body{padding-left:14px;padding-right:14px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>晨间验收 · 弹窗 标签 推送</h1>
+  <p class="meta">2026-09-28 09:30 · 覆盖 9/28 00:13 – 09:18 的定时推进</p>
+</header>
+
+<div class="verdict">
+  <p>昨夜在断网前完成 9 版迭代，5 份交付都从「能看」推进到「数据组照做基本不用回问」；今天最该先做的一件事是自己定下设计取舍 13–21，它一项就卡住 4 条完成判定。</p>
+</div>
+
+<div class="points">
+  <ol>
+    <li><b>02 迭代稿可以直接并回 Cowork：</b>共 11 处改动，建议采纳 10 处，恢复 1 处，逐条见第二节。</li>
+    <li><b>08 与 09 已相互对齐，但开始越写越细：</b>03:02 的监督轮已叫停新增取数条件，下一步只做可行性收口。</li>
+    <li><b>推送这一行本机的贡献为零：</b>06、07 不在本机，问题 9、10 也还没有答复，这一项今天只能靠你把 Cowork 的文件放进文件夹。</li>
+    <li><b>04:02–08:02 断网，失败 13 轮，</b>07:50 的验收包也因此失败，这一份是 09:30 补做的。09:18 起已恢复。</li>
+  </ol>
+</div>
+
+<section>
+  <h2>一、逐文件验收</h2>
+  <p class="sub">版本演进见 <a href="../过程记录/迭代记录.md">迭代记录.md</a>。每一版都做了差距评估、改进和回归验收；「剩余差距」是下一轮的起点。</p>
+
+  <article class="card">
+    <div class="card-head"><h3><a href="../支撑文件/02_弹窗分人群定制方案.html">02 弹窗分人群定制方案 · 迭代稿</a></h3><span class="ver">v1 → v3</span><span class="rec ok">建议通过，并回 Cowork</span></div>
+    <div class="card-body">
+      <p class="fld">主要变化（按主管拍板时的影响排序）</p>
+      <ul>
+        <li>补上月月抽对普卡、银卡的处理（这两类合计占近一月活跃 89.78%，分母 62,292），这是主管一定会问的一条</li>
+        <li>「定向规则先弹」移入前置条件，写明后台不可配置时的后果（数量不变，只有先后不受控）</li>
+        <li>「首储礼包始终可购买」改为开放期条件句，并写明开放期外的顺延项</li>
+        <li>目标框限定为「后台可配置部分」，消除与「客户端写死弹窗」的矛盾</li>
+        <li>潜在付费写明用哪两个标签；ID10 规则名随范围一起改</li>
+      </ul>
+      <p class="fld">剩余差距</p>
+      <ul class="gap">
+        <li>第四张卡缺价位依据（依赖问题 1）</li>
+        <li>储值类每日总量算不出（依赖问题 6，或运营导出 ID6、ID7 的设置）</li>
+        <li>首储礼包开放期不在第四节任何问题里，建议并入问题 2 一起问</li>
+      </ul>
+      <p class="fld">重点看</p>
+      <ul class="look"><li>第一张卡新增的月月抽前置条件：表述是否符合你对问题 3 的预期</li></ul>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-head"><h3><a href="../支撑文件/08_弹窗效果评估方案.md">08 弹窗效果评估方案</a></h3><span class="ver">v1 → v3</span><span class="rec fix">建议通过，但看一处</span></div>
+    <div class="card-body">
+      <p class="fld">主要变化</p>
+      <ul>
+        <li>储值类窗口改为两侧各取 14 个非 1–7 日的自然日，保证两侧可比</li>
+        <li>M4 参照组限定为「其余」身份，排除 ID5 拆分的干扰</li>
+        <li>M7 只计活动类规则，切换前后分别列出计入的规则 ID</li>
+        <li>补日期口径（台北自然日、第 0 日定义），M1、M5 补开放期判断条件</li>
+        <li>M4 中「月初误圈入」从事实改为条件句（监督抽查发现）</li>
+      </ul>
+      <p class="fld">剩余差距</p>
+      <ul class="gap">
+        <li>M4 金卡以上组样本可能太小，需要交叉表人数判断是否合并两个月</li>
+        <li>M5 不满足「全程开放」时没有替代口径</li>
+        <li>数据来源表名全部为空（数据组）</li>
+      </ul>
+      <p class="fld">重点看</p>
+      <ul class="look"><li>M4：限定「其余」身份后，定向效果的对比是否仍是你想要的问题</li></ul>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-head"><h3><a href="../支撑文件/09_取数需求_上线前基线.xlsx">09 取数需求 · 上线前基线</a></h3><span class="ver">v1 → v2</span><span class="rec ok">建议通过</span></div>
+    <div class="card-body">
+      <p class="fld">主要变化</p>
+      <ul>
+        <li>表4、表5、表8 给出「没有快照时怎么重算名单」，并加黄格让数据组填实际采用的来源</li>
+        <li>表8 写明人群按登录当日判定、三类身份互斥、潜在流失叠加计入</li>
+        <li>表6「其余」列出具体 5 个礼包；表1 改为按开放日期取数</li>
+        <li>随 08 同步两次口径，措辞逐字一致</li>
+      </ul>
+      <p class="fld">剩余差距</p>
+      <ul class="gap"><li>潜在流失标签的重算公式要看脚本（依赖问题 11）；无历史卡别时会有人错分</li></ul>
+      <p class="fld">重点看</p>
+      <ul class="look"><li>「格式同 T02」：01 不在本机，请用 01 对照一次版式</li></ul>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-head"><h3><a href="../支撑文件/C1_卡点解锁优先级.md">C1 卡点解锁优先级</a></h3><span class="ver">v1 → v3</span><span class="rec ok">建议保留</span></div>
+    <div class="card-body">
+      <p class="fld">主要变化</p>
+      <ul>
+        <li>结论给出先后：先定取舍 13–21（你自己就能定），再追问题 2–6、8</li>
+        <li>统一排序口径：条件性卡住的判定不计入条数</li>
+        <li>新增「数据组空缺」一节：第四节以外只需数据组回答的空缺，按回答对象合并成 4 行，标明哪些今天就能问</li>
+      </ul>
+      <p class="fld">剩余差距</p>
+      <ul class="gap"><li>交叉表是否另外卡住标签的两条判定，取决于 05 是否写了阈值（本机没有 05）</li></ul>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-head"><h3><a href="../支撑文件/C2_新标签脚本草稿.md">C2 新标签脚本草稿</a></h3><span class="ver">v1 → v3（v4 进行中）</span><span class="rec fix">建议保留，核对后再上线</span></div>
+    <div class="card-body">
+      <p class="fld">主要变化</p>
+      <ul>
+        <li>「从未储值」写清是全量账号，统计规模要再叠加活跃条件；另提示现有标签「已经先存储了」取反也许就够用，不必新建</li>
+        <li>快照补建表语句和同日判重（重跑不重复），改为每日写入，加身份、卡别两列，供 08 M4、M7 和 09 表8 使用</li>
+        <li>待核对字段给了定位线索：对应取数导出里的列名</li>
+      </ul>
+      <p class="fld">剩余差距</p>
+      <ul class="gap">
+        <li>线上「新增」「回流」标签是否读同一个身份字段，没有出处</li>
+        <li>「从未储值」和「未首储」不是同一口径，对 M5 分母的影响还没注明</li>
+      </ul>
+      <p class="fld">重点看</p>
+      <ul class="look"><li>所有【待核对】的表名和字段名：这是 SQL 草稿，字段没核对之前不能执行</li></ul>
+    </div>
+  </article>
+</section>
+
+<section>
+  <h2>二、02 并回 Cowork 的改动清单</h2>
+  <p class="sub">以 Cowork 原版为基准，迭代稿共 11 处不同。其中 ③④⑥ 来自 00:22 那一轮对本机正本的去重复审，其余来自 v2、v3 迭代。</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>#</th><th>位置</th><th>原文</th><th>迭代稿</th><th>建议</th></tr></thead>
+    <tbody>
+      <tr><td>①</td><td class="pos">目标框第 3 条</td><td class="old">全部以现有后台配置实现，无需开发介入</td><td>五项改动全部以现有后台配置实现，无需开发介入；客户端写死的弹窗不在调整范围内</td><td>采纳</td></tr>
+      <tr><td>②</td><td class="pos">卡一 前置条件（新增）</td><td class="old">—</td><td>月月抽对普卡、银卡玩家按不可参与跳过；不跳过时，ID5 与回流用户活动弹窗中的普卡、银卡玩家各有一个活动名额被月月抽占用（89.78%，55,926 人，分母 62,292）</td><td>采纳</td></tr>
+      <tr><td>③</td><td class="pos">规则结构图 ID6 副标题</td><td class="old">未购买首储礼包的玩家固定取到首储礼包，覆盖潜在付费</td><td>覆盖潜在付费</td><td>采纳（「固定取到」已被 ⑧ 改为条件句）</td></tr>
+      <tr><td>④</td><td class="pos">卡一 回流注释</td><td class="old">回流 16,564 人，此前无针对规则…</td><td>回流此前无针对规则…</td><td>采纳（人数在结构图和附录二里都有）</td></tr>
+      <tr><td>⑤</td><td class="pos">卡二 主要改动第 1 条</td><td class="old">…不再限普卡；ID11 停用</td><td>…不再限普卡，规则名称由「普卡储值衰退50%」改为「储值衰退50%」；ID11 停用</td><td>采纳</td></tr>
+      <tr><td>⑥</td><td class="pos">卡二 前置条件第 2 条</td><td class="old">每日补给计划在 ID5（每日 1 次、无冷却）与 ID10（每日 20 次、冷却 1800 秒）的两套设置由运营确定保留方式</td><td>每日补给计划在 ID5 与 ID10 的每日次数、冷却设置不同，由运营确定保留方式</td><td><b>不采纳，保留原文</b>：「ID5 每日 1 次、无冷却」只在这里出现，删掉后运营看不出差在哪里</td></tr>
+      <tr><td>⑦</td><td class="pos">卡三 主要改动第 2 条</td><td class="old">…首储礼包（NT$50）对其始终处于可购买状态，储值位优先取到首储礼包</td><td>…该人群未购买过，首储礼包在开放期内时储值位优先取到首储礼包</td><td>采纳</td></tr>
+      <tr><td>⑧</td><td class="pos">卡三 前置条件（新增）</td><td class="old">—</td><td>首储礼包对未购买玩家不设开放期限制；设有开放期时，开放期外该人群的储值位按排序顺延（ID6 取独享礼包，ID7 取破产礼包）</td><td>采纳</td></tr>
+      <tr><td>⑨</td><td class="pos">卡三 主要风险</td><td class="old">首储礼包为该人群储值位的唯一内容…</td><td>开放期内，首储礼包为该人群储值位的唯一内容…</td><td>采纳</td></tr>
+      <tr><td>⑩</td><td class="pos">卡五 主要改动 + 前置条件</td><td class="old">主要改动：多条规则同时命中时，定向规则先于全量规则弹出／前置条件：弹出先后可在后台配置</td><td>主要改动：潜在付费不另增弹出，其储值位 1 个已计入所属人群／前置条件：可配置时定向规则排在全量规则之前；不可配置时，各人群弹出数量不变，只有先后不受控</td><td>采纳</td></tr>
+      <tr><td>⑪</td><td class="pos">附录二 潜在付费</td><td class="old">从未储值，且近 4 个月投注总额超过 10,000</td><td>新建标签「从未储值」且现有标签「近 4 个月来的投资总额超过 10000」（赌注条件类）</td><td>采纳</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2>三、需要你决定的事</h2>
+  <p class="sub">夜里监督轮为了能继续推进，先按下面的口径执行。你不认可的，直接告诉我改。</p>
+
+  <div class="dec"><h3>1. 夜间执行口径（4 条）</h3>
+    <p>去重时保留信息最完整的一处；标签计算方式没有出处时一律写成条件句；02 只改迭代稿；08、09 暂停新增取数条件、只做可行性收口。</p>
+    <p><b>推荐：</b>全部保留。第 1 条是 ⑥ 那种丢信息的教训；第 4 条防止 08、09 越改越长。</p></div>
+
+  <div class="dec"><h3>2. C1、C2 是否保留</h3>
+    <p>这两项是我在本机任务做完后提议的，不在你的原清单里。</p>
+    <p><b>推荐：</b>都保留。C1 直接回答「今天先追谁」；C2 可以作为 05 的实现草稿，口径以 05 为准。</p></div>
+
+  <div class="dec"><h3>3. 覆盖检查（请在 Cowork 核对）</h3>
+    <p>脑图里有三个节点，本机无法判断是否已经覆盖：排除机器人与测试账号、语义不明的标签口径、通行证推送无跳转。</p>
+    <p><b>推荐：</b>合并 02 时顺手翻一下 05、07，缺的话告诉我，我来补任务。</p></div>
+
+  <div class="dec"><h3>4. 本机缺文件</h3>
+    <p>T13 卡在 00；推送目标卡在 06、07；09 的版式要用 01 对照。</p>
+    <p><b>推荐：</b>把 Cowork 的 00、01、03–07 存进 <code>弹窗标签推送系统/</code>，放进来后下一轮就会接上。</p></div>
+</section>
+
+<section>
+  <h2>四、解锁下一步需要你提供什么</h2>
+  <p class="sub">按 C1 的排序。</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>顺序</th><th>事项</th><th>谁来</th><th>解锁</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>设计取舍 13–21</td><td>你自己</td><td>T36；卡住 02 拍板、03 上线、04 排期、07 排期四条判定</td></tr>
+      <tr><td>2</td><td>弹窗机制问题 2–6、8（任一即可推进）；顺带问首储礼包开放期</td><td>运营／研发</td><td>T31；02、03、04</td></tr>
+      <tr><td>3</td><td>标签问题 7、11、12（先追 11，它同时回填 C2 四处）</td><td>标签编写人</td><td>T32；05、C2</td></tr>
+      <tr><td>4</td><td>数据组空缺：表名、字段、快照留存、机器人与测试账号判定、埋点覆盖（合并成一次询问）</td><td>数据组</td><td>08、09、C2；今天就能问</td></tr>
+      <tr><td>5</td><td>问题 9、10；问题 1；交叉表</td><td>对应负责人</td><td>T33、T34；T30；T35</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section style="margin-bottom:0">
+  <h2>附录</h2>
+  <details class="apx"><summary>运行情况</summary><div class="body"><ul>
+    <li>00:13–03:44：成功 14 轮，包括 T20 复审 1 轮、C1、C2、9 版迭代和 2 次监督</li>
+    <li>04:02–08:02：断网，13 轮认证失败；07:50 验收包同样失败</li>
+    <li>08:53：合盖进入睡眠；09:18 恢复，C2 v4 进行中</li>
+    <li>工具纪律：01:42–02:42 有三轮用 ls、date 看目录（违反 Bash 规定），03:02 监督后已纠正</li>
+  </ul></div></details>
+  <details class="apx"><summary>03:02 监督要点</summary><div class="body"><ul>
+    <li>方向没有偏：7 版迭代都能对上目标行和脑图节点，没有重复 00–07 的交付</li>
+    <li>08 和 09 互相派生新条件，暂停新增、转为可行性收口</li>
+    <li>02 迭代稿 v3 的一条剩余差距（结构图百分比）属于为改而改，已划掉</li>
+    <li>收紧的口径：每版关闭的差距数不少于新增的剩余差距数；文件净增的内容必须对应一条已关闭的差距</li>
+  </ul></div></details>
+  <details class="apx"><summary>相关文件</summary><div class="body"><ul>
+    <li><a href="../过程记录/任务清单.md">任务清单.md</a>：第六节有完整日志</li>
+    <li><a href="../过程记录/迭代记录.md">迭代记录.md</a>：每个文件的逐版差距与回归验收</li>
+    <li><a href="../过程记录/监督记录.md">监督记录.md</a></li>
+    <li><a href="00_推进记录_本机补充.md">00_推进记录_本机补充.md</a>：待并入 00 的内容与全部待回填项</li>
+  </ul></div></details>
+</section>
+
+</div>
+</body>
+</html>

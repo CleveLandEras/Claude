@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>成果与待你回答</title>
+<style>
+  :root{
+    --ground:#f0efec; --surface:#fff; --surface-2:#f7f6f3; --ink:#191b1e; --ink-2:#484d53; --muted:#7d8289;
+    --line:#dcdad5; --line-2:#e8e6e1; --accent:#9a6f24;
+    --ok:#3d6b58; --ok-soft:#dfeae5; --warn:#8a6410; --warn-soft:#f5ead2; --info:#1c6ea4; --info-soft:#e0ecf4; --must:#a63f38; --must-soft:#f4e3e1;
+    --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    --serif:"Songti SC","Noto Serif SC",Georgia,serif; --mono:ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+    --ground:#131518; --surface:#1a1d21; --surface-2:#20242a; --ink:#e9e8e4; --ink-2:#b7bbc0; --muted:#868c94;
+    --line:#2d3238; --line-2:#262b31; --accent:#d6ab5c;
+    --ok:#74b096; --ok-soft:#1d3129; --warn:#cfa44e; --warn-soft:#332a16; --info:#6aa8d6; --info-soft:#1b2a36; --must:#dd8078; --must-soft:#38231f; } }
+  :root[data-theme="dark"]{
+    --ground:#131518; --surface:#1a1d21; --surface-2:#20242a; --ink:#e9e8e4; --ink-2:#b7bbc0; --muted:#868c94;
+    --line:#2d3238; --line-2:#262b31; --accent:#d6ab5c;
+    --ok:#74b096; --ok-soft:#1d3129; --warn:#cfa44e; --warn-soft:#332a16; --info:#6aa8d6; --info-soft:#1b2a36; --must:#dd8078; --must-soft:#38231f; }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--ground); color:var(--ink); font-family:var(--sans); font-size:15.5px; line-height:1.7; -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:860px; margin:0 auto; padding:40px 22px 80px;}
+  .meta{font-size:12.5px; color:var(--muted); margin:0 0 10px;}
+  .verdict{font-family:var(--serif); font-size:23px; line-height:1.45; margin:0 0 22px; max-width:30em;}
+  .verdict b{background:linear-gradient(transparent 62%, var(--warn-soft) 62%);}
+  h2{font-size:13px; font-weight:700; letter-spacing:.08em; color:var(--muted); margin:38px 0 12px; text-transform:uppercase;}
+  /* 三件事 */
+  .todo{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:10px;}
+  .todo a{display:block; text-decoration:none; color:inherit; background:var(--surface); border:1px solid var(--line); border-top:3px solid var(--accent); padding:14px 16px;}
+  .todo a:hover{border-color:var(--accent);}
+  .todo .n{font-family:var(--mono); font-size:12px; color:var(--accent); font-weight:600;}
+  .todo .t{font-size:16.5px; font-weight:650; margin:2px 0 4px;}
+  .todo .d{font-size:13.5px; color:var(--ink-2);}
+  .todo .time{font-size:12px; color:var(--muted); margin-top:6px;}
+  /* 成果 */
+  .lines{display:grid; gap:10px;}
+  .line{background:var(--surface); border:1px solid var(--line); padding:14px 18px;}
+  .line-head{display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:8px;}
+  .line-head h3{margin:0; font-size:17px;}
+  .bar{flex:1 1 120px; max-width:180px; height:6px; background:var(--line-2); border-radius:3px; overflow:hidden;}
+  .bar i{display:block; height:100%; background:var(--ok);}
+  .line-head .st{font-size:12.5px; color:var(--ink-2);}
+  .files{width:100%; border-collapse:collapse; font-size:14px;}
+  .files td{padding:6px 8px 6px 0; border-top:1px solid var(--line-2); vertical-align:top;}
+  .files td:first-child{white-space:nowrap; width:1%;}
+  .files a{color:var(--ink); font-weight:600; text-decoration:none; border-bottom:1px solid var(--line);}
+  .chip{display:inline-block; font-size:11.5px; font-weight:600; padding:0 7px; border-radius:2px; white-space:nowrap;}
+  .c-ok{background:var(--ok-soft); color:var(--ok);} .c-wait{background:var(--warn-soft); color:var(--warn);} .c-go{background:var(--info-soft); color:var(--info);}
+  .files .what{color:var(--ink-2);}
+  /* 决策表 */
+  .dec{width:100%; border-collapse:collapse; background:var(--surface); border:1px solid var(--line); font-size:14px;}
+  .dec th{text-align:left; font-size:12px; color:var(--muted); font-weight:650; padding:9px 10px; border-bottom:1px solid var(--line); white-space:nowrap;}
+  .dec td{padding:9px 10px; border-bottom:1px solid var(--line-2); vertical-align:top;}
+  .dec tr:last-child td{border-bottom:none;}
+  .dec .id{font-family:var(--mono); font-weight:600; color:var(--accent); white-space:nowrap;}
+  .dec .rec{font-weight:600;}
+  .dec .flip{color:var(--must); font-weight:650;}
+  .grp td{background:var(--surface-2); font-size:12px; font-weight:700; color:var(--muted); padding:6px 10px;}
+  .reply{margin:10px 0 0; background:var(--surface); border:1px dashed var(--line); padding:10px 14px; font-size:13.5px; color:var(--ink-2);}
+  .reply code{font-family:var(--mono); font-size:13px; color:var(--ink); background:var(--surface-2); padding:1px 5px;}
+  /* 消息 */
+  .msgs{display:grid; gap:10px;}
+  details.msg{background:var(--surface); border:1px solid var(--line);}
+  details.msg summary{cursor:pointer; list-style:none; padding:12px 16px; display:flex; gap:10px; align-items:baseline; flex-wrap:wrap;}
+  details.msg summary::-webkit-details-marker{display:none;}
+  .to{font-weight:650;} .unl{font-size:13px; color:var(--ink-2); flex:1 1 16em;}
+  .qs{font-family:var(--mono); font-size:12px; color:var(--muted);}
+  details.msg .body{padding:0 16px 14px;}
+  pre{white-space:pre-wrap; font-family:var(--sans); font-size:13.5px; line-height:1.65; background:var(--surface-2); border:1px solid var(--line-2); padding:10px 12px; margin:0 0 8px;}
+  button{font:inherit; font-size:12.5px; padding:4px 12px; border:1px solid var(--line); background:var(--surface); color:var(--ink); cursor:pointer; border-radius:3px;}
+  button:hover{border-color:var(--accent);}
+  .note{font-size:12.5px; color:var(--muted); margin:6px 0 0;}
+  a{color:var(--accent);}
+  @media (max-width:600px){ .wrap{padding:26px 16px 60px} .verdict{font-size:20px} .dec{font-size:13px} .dec td,.dec th{padding:7px 6px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<p class="meta">2026-09-28 10:50 · 弹窗 · 标签 · 推送</p>
+<p class="verdict">弹窗方案已经可以交主管拍板，标签和推送还差一轮就能交研发；<b>现在卡住进度的是你的 11 个决定和 5 条消息</b>，本地已经没有更多可改的了。</p>
+
+<h2>今天你只需要做 3 件事</h2>
+<div class="todo">
+  <a href="#decide"><div class="n">① 拍板</div><div class="t">11 个决定</div><div class="d">每项都附了推荐答案，同意就打勾，不同意的说一声</div><div class="time">约 10 分钟 · 解锁 02、03、04、07 定稿</div></a>
+  <a href="#send"><div class="n">② 发消息</div><div class="t">5 条询问</div><div class="d">原话已写好，点「复制」就能发</div><div class="time">约 5 分钟 · 解锁推送线和标签线</div></a>
+  <a href="#results"><div class="n">③ 看成果</div><div class="t">先看 02</div><div class="d">交主管的方案，其他的有空再看</div><div class="time">约 10 分钟</div></a>
+</div>
+
+<!-- ============ ① 决定 ============ -->
+<h2 id="decide">① 需要你拍板的 11 个决定</h2>
+<table class="dec">
+  <thead><tr><th>#</th><th>要决定什么</th><th>推荐</th><th>不同意会怎样</th></tr></thead>
+  <tbody>
+    <tr class="grp"><td colspan="4">必须决定</td></tr>
+    <tr><td class="id">13</td><td>活动位怎么定向：按身份拆成三条互斥规则，还是保留全员规则、在上面叠加定向规则</td><td class="rec">拆成三条</td><td>改用叠加的话，新增和回流用户单次进大厅会多弹 1–2 个；02、03 要重写</td></tr>
+    <tr><td class="id">14</td><td>「潜在付费」指谁：从未储值且近 4 个月投注超过 1 万，还是有储值但没买过首储礼包</td><td class="rec">从未储值</td><td>换定义就要新建一条规则；02 第三张卡、01 表 3 要改</td></tr>
+    <tr class="grp"><td colspan="4">建议决定</td></tr>
+    <tr><td class="id">15</td><td>新增用户的活动弹窗弹 1 个还是 2 个</td><td class="rec">1 个</td><td>单次进大厅从 2 个回到 3 个，另外还有客户端的新手挑战、新手通行证弹窗</td></tr>
+    <tr><td class="id">16</td><td>潜在流失规则扩到全部卡别（沿用 50% 档）</td><td class="rec">扩</td><td>金卡以上的 6,366 名活跃用户仍然没有针对规则</td></tr>
+    <tr><td class="id">17</td><td>破产位把破产礼包调到第 2 位</td><td class="rec">调</td><td>保持现序：已买过首储礼包的人破产时，先看到的是独享礼包</td></tr>
+    <tr><td class="id">18</td><td>推送需求加上点击率和每人每日上限</td><td class="rec">加</td><td>只做发送量、到达率，推送效果无从判断</td></tr>
+    <tr><td class="id">19</td><td>功能缺口优先级：总量上限 P0，当日关闭不再弹、新手弹窗纳入后台 P1，分组实验 P2</td><td class="rec">同意</td><td>—</td></tr>
+    <tr class="grp"><td colspan="4">可选</td></tr>
+    <tr><td class="id">20</td><td>同时命中多条规则时，定向规则先于全量规则弹出</td><td class="rec">同意</td><td>全量规则在前的话，定向内容可能被挤掉</td></tr>
+    <tr><td class="id">21</td><td>弹窗埋点：不单独提需求，还是随功能缺口需求一起提</td><td class="rec flip">一起提（与原方案相反）</td><td>效果评估里有 2 个指标（破产位转化、人均曝光）没有埋点就量不出来，不单独提就等于放弃评估</td></tr>
+    <tr class="grp"><td colspan="4">审查者提出</td></tr>
+    <tr><td class="id">M5</td><td>潜在付费的弹窗在切换前后没有变化，它的前后对比还做不做</td><td class="rec">只作监测，不算改动效果</td><td>继续当效果来对比，得出的差值其实只是同期波动</td></tr>
+    <tr><td class="id">P</td><td>在方案里明确写出「潜在付费沿用全员相同的首储礼包」是一项取舍</td><td class="rec">写明</td><td>目标写的是「五类人群各有定制内容」，主管会追问潜在付费的定制在哪里</td></tr>
+  </tbody>
+</table>
+<div class="reply">怎么回复：直接跟我说 <code>全部按推荐</code>，或者 <code>按推荐，但 15 选 2 个</code>。我会登记进任务清单，被冻结的文件随即解冻继续推进。</div>
+
+<!-- ============ ② 消息 ============ -->
+<h2 id="send">② 需要你发出的 5 条消息</h2>
+<div class="msgs">
+
+<details class="msg"><summary><span class="to">发给研发</span><span class="qs">问题 2–7、9</span><span class="unl">解锁最多：弹窗机制、标签「或」、推送线的唯一入口</span></summary><div class="body">
+<pre id="m1">有几个弹窗和标签后台的机制问题想确认一下：
+
+2. 限时加码礼包在弹窗后台 ID6、ID7 的排序里排第 4 位。它会不会弹，是否取决于推荐礼包后台那套条件（每月 8–31 日才出现、累计押注满 1 万、冷却时间）？条件不满足时，弹窗是不是会跳过它，往下取下一个？另外，首储礼包有没有设开放期？
+
+3. ID5 活动类弹窗的排序第 1 位是月月抽，但普卡和银卡没有月月抽权益。普卡、银卡玩家进大厅时，这一项会被跳过、往下取，还是照样弹出？
+
+4. 弹窗规则的「对象」能不能填一个带排除条件的群组？比如「全部玩家，排除回流用户」。
+
+5. 一个玩家同时命中多条弹窗规则时，这些弹窗按什么顺序弹？这个顺序能在后台配置吗？
+
+6. 下面几项现在能不能做？如果要开发，大概是什么量级的工作量：
+  a. 设置单个玩家每天最多弹几个弹窗（所有规则合计）
+  b. 玩家点 X 关掉某个弹窗后，这个弹窗当天不再出现
+  c. 把同一人群随机分成两组，分别看到不同的弹窗内容
+  d. 新手挑战弹窗、新手通行证弹窗目前写在客户端，能否改成在弹窗后台配置
+
+7. 标签组合里的「或」现在已经能用了吗？
+
+9. 新手通行证升级时会给玩家发一条推送，这条推送是哪个系统发出去的？配置在哪个后台？</pre>
+<button onclick="cp('m1',this)">复制</button><p class="note">比 00 里的原文多问了一句「首储礼包有没有设开放期」，这是审查者要求合并询问的。</p>
+</div></details>
+
+<details class="msg"><summary><span class="to">发给标签维护人</span><span class="qs">问题 11</span><span class="unl">一次答复解锁 C2 的四处待核对、05 的编写人，以及 08、09 的重算公式</span></summary><div class="body">
+<pre id="m2">有两件事想确认：
+a. 新建标签的 BigQuery 脚本由谁来写？是产品提口径、由你们写，还是产品可以自己写？
+b. 有几条标签的口径看不懂：「赌注条件」里的「于中位数」具体指什么？「当前卡别」里的「目前，该卡比金卡更优越」「目前的卡等级高于铂金卡」「目前的卡大小比钻卡还要大一些」，是不是指「金卡及以上」这类区间标签？另外「已经先存储了」这个标签是什么口径？「新增」「回流」这两个标签读的是不是会员表里的身份字段？</pre>
+<button onclick="cp('m2',this)">复制</button><p class="note">最后一句是新加的，用来确认「三类身份互斥」这个前提。</p>
+</div></details>
+
+<details class="msg"><summary><span class="to">发给数据组</span><span class="qs">交叉表 + 表名</span><span class="unl">决定效果评估里 3 个指标能不能取到数</span></summary><div class="body">
+<pre id="m3">附件是一份人群交叉表的取数需求（01），说明页写了口径，麻烦帮忙取一下。
+另外想确认三件事：
+1. 会员登录、回流任务参与、储值订单、投注记录分别在哪张表？
+2. 会员的身份（新增、回流、持续）有没有按天保存的历史，还是只有当前值？
+3. 标签的计算结果有没有按天留存？</pre>
+<button onclick="cp('m3',this)">复制</button><p class="note">发的时候附上 01_取数需求_人群规模.xlsx。</p>
+</div></details>
+
+<details class="msg"><summary><span class="to">发给运营</span><span class="qs">问题 8、10</span><span class="unl">潜在流失规则的次数与冷却；推送易用性需求</span></summary><div class="body">
+<pre id="m4">8. 每日补给计划在 ID5（全部玩家）里设的是每日 1 次、无冷却，在 ID10、ID11（普卡、银卡储值衰退 50%）里设的是每日 20 次、冷却 1800 秒。这两处设置不同是有意安排的吗？符合条件的玩家两条规则都会命中，实际一天最多会弹几次？
+
+10. 平时配置推送时，哪一步最麻烦？有没有想发、但现有功能发不了的推送？</pre>
+<button onclick="cp('m4',this)">复制</button>
+</div></details>
+
+<details class="msg"><summary><span class="to">发给礼包配置负责人</span><span class="qs">问题 1</span><span class="unl">破产礼包前移有没有价格依据</span></summary><div class="body">
+<pre id="m5">弹窗排序里这几个礼包分别卖多少钱：独享礼包、惊喜三选一、限时加码礼包、生涯限购、每日礼包、平台限量/专属礼包、破产礼包？如果一个名称下有多个价位档，把档位列出来就行。</pre>
+<button onclick="cp('m5',this)">复制</button>
+</div></details>
+
+</div>
+<p class="note">收到答复后，把原话转给我，或者贴进任务清单第四节就行，agent 会自动接着推进。</p>
+
+<!-- ============ ③ 成果 ============ -->
+<h2 id="results">③ 成果：三条线各到了哪一步</h2>
+<div class="lines">
+
+  <div class="line">
+    <div class="line-head"><h3>弹窗</h3><div class="bar"><i style="width:85%"></i></div><span class="st">方案可以交主管；剩下的等答复</span></div>
+    <table class="files">
+      <tr><td><a href="../支撑文件/02_弹窗分人群定制方案.html">02 分人群方案</a></td><td><span class="chip c-ok">可交主管</span></td><td class="what">五类人群的规则和弹出总量。<b>先看这份</b></td></tr>
+      <tr><td><a href="../支撑文件/00_推进记录.md">00 第八节</a></td><td><span class="chip c-ok">可用</span></td><td class="what">交给主管时怎么写说明：结构和取舍的呈现方式</td></tr>
+      <tr><td><a href="../支撑文件/03_弹窗配置单.xlsx">03 配置单</a></td><td><span class="chip c-wait">等拍板</span></td><td class="what">给运营照着配置，与 02 已逐项核对一致</td></tr>
+      <tr><td><a href="../支撑文件/04_弹窗功能缺口需求.md">04 缺口需求</a></td><td><span class="chip c-go">排队迭代</span></td><td class="what">给研发的开发需求，下一轮会补清「总量上限」的计数规则</td></tr>
+      <tr><td><a href="../支撑文件/08_弹窗效果评估方案.md">08 效果评估</a></td><td><span class="chip c-wait">等数据组</span></td><td class="what">上线后怎么判断有没有效果，7 个指标</td></tr>
+      <tr><td><a href="../支撑文件/09_取数需求_上线前基线.xlsx">09 基线取数</a></td><td><span class="chip c-wait">等上线日期</span></td><td class="what">数据组照表取数</td></tr>
+    </table>
+  </div>
+
+  <div class="line">
+    <div class="line-head"><h3>标签</h3><div class="bar"><i style="width:60%"></i></div><span class="st">还差一轮可交研发</span></div>
+    <table class="files">
+      <tr><td><a href="../支撑文件/05_标签需求.md">05 标签需求</a></td><td><span class="chip c-go">排队迭代</span></td><td class="what">给研发。已修正「组合能力」与盘点相反的描述，下一轮补上推送的适用范围</td></tr>
+      <tr><td><a href="../支撑文件/C2_新标签脚本草稿.md">C2 新标签脚本</a></td><td><span class="chip c-wait">等标签维护人</span></td><td class="what">三个新标签的 SQL 草稿，字段核对后就能上线</td></tr>
+    </table>
+  </div>
+
+  <div class="line">
+    <div class="line-head"><h3>推送</h3><div class="bar"><i style="width:40%"></i></div><span class="st">需求文档刚开始迭代；现状摸底等研发答复</span></div>
+    <table class="files">
+      <tr><td><a href="../支撑文件/07_推送需求.md">07 推送需求</a></td><td><span class="chip c-go">迭代中</span></td><td class="what">给研发。刚补上「通行证推送点了不跳转」的需求和验收</td></tr>
+      <tr><td><a href="../支撑文件/06_推送现状整理.md">06 推送现状</a></td><td><span class="chip c-wait">等问题 9</span></td><td class="what">目前只有两个已知实例，等研发回答后才能补全</td></tr>
+    </table>
+  </div>
+</div>
+<p class="note">进度条是按「离交付还差多少」粗估的，不是精确数字。三个 agent 仍在自动推进，最新方向见 <a href="../过程记录/推进计划.md">推进计划</a>。</p>
+
+</div>
+<script>
+function cp(id,btn){
+  const t=document.getElementById(id).innerText;
+  const done=()=>{btn.textContent='已复制'; setTimeout(()=>btn.textContent='复制',1500);};
+  if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(done).catch(()=>fb(t,done));} else fb(t,done);
+}
+function fb(t,done){const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');done();}catch(e){}a.remove();}
+</script>
+</body>
+</html>

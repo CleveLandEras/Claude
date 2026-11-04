@@ -1,0 +1,179 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>重做方案</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.35;margin:0 0 8px}
+.sub{font-size:16px;color:var(--ink-2);margin:0 0 28px}
+h2{font-family:var(--serif);font-size:20px;margin:48px 0 16px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px}
+.kpi .n{font-size:38px;font-weight:700;line-height:1.1;color:var(--ink)}
+.kpi .n small{font-size:16px;font-weight:600;margin-left:4px;color:var(--ink-2)}
+.kpi .t{font-size:14.5px;color:var(--ink-2);margin-top:8px}
+.kpi.red .n{color:var(--red)}
+.phase{border-top:4px solid var(--gray)}
+.phase.red{border-top-color:var(--red)} .phase.blue{border-top-color:var(--blue)}
+.phase .d{font-size:13px;color:var(--muted);font-weight:600}
+.phase .h{font-size:16.5px;font-weight:700;margin:4px 0 10px}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:12px}
+.tag.red{background:var(--red-soft);color:var(--red)} .tag.blue{background:var(--blue-soft);color:var(--blue)} .tag.gray{background:var(--gray-soft);color:var(--gray)} .tag.green{background:var(--green-soft);color:var(--green)}
+.kv{font-size:14px;color:var(--ink-2);margin:6px 0}
+.kv b{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:2px}
+.keep{display:flex;flex-wrap:wrap;gap:10px}
+.keep span{background:var(--green-soft);color:var(--green);font-size:14.5px;font-weight:600;padding:8px 14px;border-radius:4px}
+.cause .h{font-size:16.5px;font-weight:700;margin:0 0 6px}
+.cause .l{font-size:14.5px;color:var(--ink-2);margin:0 0 12px}
+.cause .e{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14.5px}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--line)}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--ground)}
+tr:last-child td{border-bottom:none}
+td.w{color:var(--ink)} td.r{color:var(--ink-2)} td.d{color:var(--muted);width:80px}
+tr.same td.w{color:var(--red);font-weight:600}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);margin-right:8px;vertical-align:1px}
+.legend{font-size:13px;color:var(--muted);margin:10px 0 0}
+.q{font-size:17px;font-weight:700;margin:0 0 14px}
+.opt{position:relative}
+.opt .h{font-size:16px;font-weight:700;margin:0 0 6px}
+.opt .l{font-size:14.5px;color:var(--ink-2)}
+.opt.rec{border:2px solid var(--blue)}
+.opt .badge{position:absolute;top:-11px;right:16px;background:var(--blue);color:#fff;font-size:12px;font-weight:700;padding:2px 10px;border-radius:3px}
+.why{font-size:14.5px;color:var(--ink-2);margin:14px 0 0}
+.why b{color:var(--ink)}
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.steps div{counter-increment:s;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 18px;font-size:14.5px;color:var(--ink-2)}
+.steps div::before{content:counter(s);display:block;font-size:22px;font-weight:700;color:var(--accent);margin-bottom:4px}
+.links{font-size:13px;color:var(--muted);margin-top:40px} a{color:var(--accent)}
+
+.ans{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:6px;padding:16px 20px;margin-top:14px}
+.ans .h{font-size:16px;font-weight:700;margin:0 0 8px}
+.ans p{margin:4px 0;font-size:14.5px;color:var(--ink-2)}
+.stage{display:grid;grid-template-columns:150px 1.1fr 1fr 130px;gap:18px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 20px;margin-bottom:10px}
+.stage .nm{font-size:16px;font-weight:700} .stage .nm small{display:block;font-size:13px;font-weight:600;color:var(--blue);margin-top:2px}
+.stage .c{font-size:14px;color:var(--ink-2)} .stage .c b{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:2px}
+.stage .pg{font-size:13px;color:var(--muted)} .stage .pg b{display:block;font-size:15px;color:var(--ink)}
+.bar{display:flex;gap:4px;margin:6px 0 10px}
+.bar div{border-radius:4px;padding:12px 10px;font-size:13.5px;font-weight:700;color:#fff;text-align:center}
+.bar .s0{background:#5d6470} .bar .s1{background:var(--red)} .bar .s2{background:var(--blue)} .bar .s3{background:#b0782a} .bar .s4{background:var(--green)} .bar .s5{background:#8b9099}
+.bar div small{display:block;font-weight:500;font-size:12px;opacity:.9;margin-top:2px}
+.ref .h{font-size:15.5px;font-weight:700;margin:0 0 6px}
+.ref .from{font-size:12.5px;color:var(--muted);margin:0 0 8px}
+.ref .to{font-size:14px;color:var(--ink-2);border-top:1px solid var(--line);padding-top:8px;margin:0}
+.need{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.need div{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px 16px;font-size:14px;color:var(--ink-2)}
+.need b{display:block;color:var(--ink);font-size:14.5px;margin-bottom:2px}
+</style></head><body><div class="wrap">
+
+<p class="meta">V3 意见与重做方案 · 2026-10-10 · 依据：你对 V3 的五条意见、参考稿逐页对照、阶段 1–8 原文</p>
+<h1>按「现状 → 目标 → 原因 → 做法」重做阶段产出，每段落成 V4 的一部分</h1>
+<p class="sub">V3 的五个问题都出在主干看不见；确认阶段怎么分、补几张截图后开始。</p>
+
+<div class="grid g3">
+  <div class="card kpi red"><div class="n">5<small>条意见</small></div><div class="t">归为三类：读者视角、数字呈现、结构</div></div>
+  <div class="card kpi"><div class="n">4<small>段主干</small></div><div class="t">现状、目标、原因、做法；V4 只按这四段排</div></div>
+  <div class="card kpi"><div class="n">1<small>件要你定</small></div><div class="t">阶段怎么分；另需几张后台截图</div></div>
+</div>
+
+<h2><span class="no">01</span>五条意见各是什么问题</h2>
+<table>
+<tr><th>你的意见</th><th>问题</th><th>改法</th></tr>
+<tr><td class="w">写「主管要求」</td><td class="r">读者视角错：把读者当第三人称，写成交差口吻</td><td class="r">写成方案自己的目标，并写为什么</td></tr>
+<tr><td class="w">结论页数字看不懂</td><td class="r">数字没有主语和分母</td><td class="r">大数字紧跟「谁的几分之几」</td></tr>
+<tr><td class="w">阶段产出没有体现</td><td class="r">没有现状、目标、原因的缩略页</td><td class="r">每段一页极简缩略</td></tr>
+<tr><td class="w">结构乱、看不见核心</td><td class="r">三项 × 两页平铺，主干没成为骨架</td><td class="r">全稿按四段排，结论页即四段各一句</td></tr>
+<tr><td class="w">照抄字段示意</td><td class="r">搬了参考稿的页面结构，没学它的展示方式</td><td class="r">改动画在真实后台截图上；清单一页</td></tr>
+</table>
+<div class="ans">
+  <p class="h">第 1 条：是什么样的问题</p>
+  <p>方案的读者就是主管。写「主管要求」，是我们在向读者交差，不是方案自己的主张。</p>
+  <p>目标应写成方案的目标，并说明为什么是它；「请主管定」同理，改为「待决事项」。写作标准本就要求删掉这类元信息，这次又犯了。</p>
+</div>
+
+<h2><span class="no">02</span>阶段产出为什么不好</h2>
+<div class="grid g3">
+  <div class="card cause"><p class="h">现状不是实际</p><p class="l">依据 9/16 资料和本地数据，没有后台截图</p><p class="e">例：可做到的 17 个场景里，14 个是推断</p></div>
+  <div class="card cause"><p class="h">用了自造框架</p><p class="l">三项要求被拆成「5 项能力、25 个场景」，逐阶段打分</p><p class="e">例：读者要先学这套框架才看得懂</p></div>
+  <div class="card cause"><p class="h">写成长文</p><p class="l">长句、长段落加折叠明细，首屏是数字堆成的句子</p><p class="e">例：「25 个场景中的 17 个（14 个为推断）；做不到的 8 个……」</p></div>
+</div>
+
+<h2><span class="no">03</span>重做：五份阶段产出，各回答一个问题</h2>
+<div class="stage">
+  <div class="nm">1 现状盘点<small>现在是什么样</small></div>
+  <div class="c"><b>内容</b>弹窗、推送、标签：后台能配什么、现在怎么配、一个玩家实际看到什么</div>
+  <div class="c"><b>完成标准</b>每条现状有截图或负责人确认，注明日期</div>
+  <div class="pg"><b>V4 现状</b>2 页</div>
+</div>
+<div class="stage">
+  <div class="nm">2 目标<small>目标是什么样、为什么</small></div>
+  <div class="c"><b>内容</b>五类人群各看什么；数量、顺序怎么控；推送入口与数据；标签组合</div>
+  <div class="c"><b>完成标准</b>每个目标一句话能转述，附理由</div>
+  <div class="pg"><b>V4 目标</b>2 页</div>
+</div>
+<div class="stage">
+  <div class="nm">3 原因<small>为什么现在做不到</small></div>
+  <div class="c"><b>内容</b>现状与目标逐项对照：只是没配，还是功能不满足</div>
+  <div class="c"><b>完成标准</b>每个差距对应一张现状截图</div>
+  <div class="pg"><b>V4 原因</b>1 页</div>
+</div>
+<div class="stage">
+  <div class="nm">4 做法<small>该如何做</small></div>
+  <div class="c"><b>内容</b>先用现有功能（五类人群改前改后）；排期补充（截图上标新增）；分期</div>
+  <div class="c"><b>完成标准</b>每项改动指回一个差距</div>
+  <div class="pg"><b>V4 做法</b>4 页</div>
+</div>
+<div class="stage">
+  <div class="nm">5 验证<small>做完能否达到目标</small></div>
+  <div class="c"><b>内容</b>五类人群各取一个玩家，走一遍改后看到什么</div>
+  <div class="c"><b>完成标准</b>每个目标有达成结论</div>
+  <div class="pg"><b>V4 附录</b>1 页</div>
+</div>
+<p class="legend">由我直接做，你看一份、确认一份；agent 保持暂停。人群定义已确认，并入「目标」。</p>
+
+<h2><span class="no">04</span>V4 骨架：只看页标题就能读出主干</h2>
+<div class="bar">
+  <div class="s0" style="flex:1">结论<small>1 页</small></div>
+  <div class="s1" style="flex:2">现状<small>2 页</small></div>
+  <div class="s2" style="flex:2">目标<small>2 页</small></div>
+  <div class="s3" style="flex:1">原因<small>1 页</small></div>
+  <div class="s4" style="flex:4">做法<small>4 页</small></div>
+  <div class="s5" style="flex:3">分期、待决、附录<small>3 页</small></div>
+</div>
+<p class="legend">共约 13 页。结论页四行：现在怎样、目标怎样、为什么、怎么做，各一句加一个自带主语的数字。</p>
+
+<h2><span class="no">05</span>从参考稿学展示方式，不搬页面结构</h2>
+<div class="grid g4">
+  <div class="card ref"><p class="h">截图上标新增</p><p class="from">参考稿第 16 页</p><p class="to">弹窗顺序设定页上直接标出新增设置</p></div>
+  <div class="card ref"><p class="h">改前改后并排</p><p class="from">参考稿第 7 页</p><p class="to">一个新增玩家进大厅看到的弹窗，改前与改后</p></div>
+  <div class="card ref"><p class="h">一条流程讲机制</p><p class="from">参考稿第 20 页</p><p class="to">玩家属于哪组 → 命中哪条规则 → 看到什么</p></div>
+  <div class="card ref"><p class="h">清单一页收齐</p><p class="from">参考稿第 21 页</p><p class="to">全部改动一页，不再拆成多页</p></div>
+</div>
+
+<h2><span class="no">06</span>要你定：阶段怎么分</h2>
+<div class="grid g2">
+  <div class="card opt"><p class="h">甲　沿用八个阶段</p><p class="l">需求、人群、现状、诊断、选型、设计、验证、汇总逐份重做</p></div>
+  <div class="card opt rec"><span class="badge">推荐</span><p class="h">乙　按四段并成五份</p><p class="l">现状、目标、原因、做法、验证，各对应 V4 一段</p></div>
+</div>
+<p class="why"><b>理由</b>　每份阶段产出直接落成 V4 的一段，不再有重复内容和中间框架的换算。</p>
+
+<h2><span class="no">07</span>要你给：现状盘点需要的截图</h2>
+<div class="need">
+  <div><b>推送</b>推荐礼包后台的推播设定页、推播报表页；快显在游戏里的样子</div>
+  <div><b>标签</b>会员标签设定页、标签群组设定页（组合条件）</div>
+  <div><b>弹窗</b>新增或编辑一条规则的页面；游戏里弹窗的样子；新手挑战、新手通行证弹窗</div>
+  <div><b>营销侧</b>短信、Facebook、LINE 现在怎么发：截图或一句说明</div>
+</div>
+<p class="legend">没给到的先按已知写，标明待截图，不写成「做不到」。</p>
+
+<p class="links">原文：<a href="../../归档/呈交版旧稿/弹窗标签推送方案_V3.pptx">V3</a>　·　<a href="../../弹窗标签推送方案/阶段产出/阶段产出规划.html">阶段产出规划（现行）</a>　·　<a href="2026-10-10_七天工作复盘.html">七天工作复盘</a></p>
+</div></body></html>

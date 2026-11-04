@@ -1,0 +1,971 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>精细化运营能力方案 V1</title>
+<style>
+:root{
+  --bg:#f3f2ee;--card:#fff;--ink:#1c1e21;--ink2:#474c53;--mute:#868b92;--line:#e3e0d9;--soft:#f8f7f3;
+  --acc:#1f5f8b;--acc-l:#9cc3dc;--acc-w:#e8f1f7;--mut:#868b92;--red:#b4553a;--red-l:#e5b3a3;
+  --t1:#2f7d5b;--t1w:#e2f1e9;--t2:#1f5f8b;--t2w:#e3eef6;--t3:#a1660f;--t3w:#f7ebd6;
+  --warn:#a1660f;--warnw:#f7ebd6;
+  --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  --serif:"Songti SC","Noto Serif SC",Georgia,serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141619;--card:#1c1f23;--ink:#ebeae6;--ink2:#b9bdc2;--mute:#858b93;--line:#2d3238;--soft:#181b1f;
+  --acc:#78b3da;--acc-l:#35607c;--acc-w:#1a2731;--mut:#858b93;--red:#e08c72;--red-l:#6b3b2e;
+  --t1:#7cc3a2;--t1w:#1b2f26;--t2:#78b3da;--t2w:#1a2731;--t3:#e0b45c;--t3w:#33291a;--warn:#e0b45c;--warnw:#33291a;}}
+:root[data-theme="dark"]{
+  --bg:#141619;--card:#1c1f23;--ink:#ebeae6;--ink2:#b9bdc2;--mute:#858b93;--line:#2d3238;--soft:#181b1f;
+  --acc:#78b3da;--acc-l:#35607c;--acc-w:#1a2731;--mut:#858b93;--red:#e08c72;--red-l:#6b3b2e;
+  --t1:#7cc3a2;--t1w:#1b2f26;--t2:#78b3da;--t2w:#1a2731;--t3:#e0b45c;--t3w:#33291a;--warn:#e0b45c;--warnw:#33291a;}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15.5px;line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--acc);text-decoration:none} a:hover{text-decoration:underline}
+s{text-decoration:none}
+u{text-decoration:none}
+
+/* 顶栏 */
+.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--card) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.top .in{max-width:1180px;margin:0 auto;padding:10px 24px;display:flex;align-items:center;gap:16px}
+.top .bd{font-weight:700;font-size:15px;letter-spacing:.04em;white-space:nowrap}
+.top .bd em{font-style:normal;font-weight:500;color:var(--ink2);margin-left:10px;letter-spacing:0}
+.top .sp{flex:1}
+.top .meta{font-size:12.5px;color:var(--mute)}
+#tog{font:inherit;font-size:13px;padding:5px 14px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--ink2);cursor:pointer}
+#tog:hover{border-color:var(--acc);color:var(--acc)}
+
+/* 左侧目录 */
+.toc{position:fixed;top:72px;left:max(16px,calc(50% - 590px));width:188px;font-size:13.5px;display:none}
+.toc .tg0{font-size:12px;color:var(--mute);letter-spacing:.08em;margin:0 0 8px}
+.toc .tg0 i{font-style:normal}
+.toc a{display:block;color:var(--ink2);padding:5px 10px;border-left:2px solid var(--line);line-height:1.5}
+.toc a em{font-style:normal;display:inline-block;min-width:20px;color:var(--mute);font-weight:600}
+.toc a.lv1{font-weight:600;margin-top:6px}
+.toc a.lv2{padding-left:22px;font-size:13px}
+.toc a.on{border-left-color:var(--acc);color:var(--acc);background:var(--acc-w)}
+.toc a:hover{text-decoration:none;color:var(--acc)}
+@media (min-width:1180px){ .toc{display:block} .home,.doc{margin-left:max(220px,calc(50% - 370px))!important} }
+
+/* 主栏 */
+.home,.doc{max-width:860px;margin:0 auto;padding:0 24px;counter-reset:sec}
+.home{padding-top:36px}
+.hrow{margin:0 0 60px}
+.hlab{display:flex;align-items:baseline;gap:12px;padding:0 0 10px;margin:0 0 22px;border-bottom:2px solid var(--ink)}
+.hlab b{font-family:var(--serif);font-size:24px;font-weight:700}
+.hlab b::before{counter-increment:sec;content:counter(sec,decimal-leading-zero);font-family:var(--sans);font-size:14px;font-weight:700;color:var(--acc);margin-right:10px;vertical-align:3px}
+.hlab span{font-size:13px;color:var(--mute)}
+
+/* 首屏 */
+.hero-h{font-family:var(--serif);font-size:23px;line-height:1.55;font-weight:700;margin:0 0 18px}
+.caps{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:0 0 18px}
+.cap{display:block;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;color:var(--ink)}
+.cap:hover{border-color:var(--acc);text-decoration:none}
+.cap i{font-style:normal;font-size:12px;color:var(--acc);font-weight:700}
+.cap b{display:block;font-size:14.5px;line-height:1.4;margin:2px 0}
+.cap span{display:block;font-size:12.5px;color:var(--mute);line-height:1.45}
+.hero-g{display:grid;grid-template-columns:1.25fr 1.25fr .9fr;gap:12px;margin:0 0 14px}
+.hb{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.hb-k{font-size:12.5px;color:var(--mute);font-weight:600;letter-spacing:.04em;margin:0 0 8px}
+.acc3{margin:0;padding:0;list-style:none;counter-reset:a}
+.acc3 li{counter-increment:a;display:flex;gap:8px;font-size:14.5px;font-weight:600;line-height:1.5;margin:0 0 6px}
+.acc3 li::before{content:counter(a);flex:none;width:20px;height:20px;border-radius:50%;background:var(--acc);color:#fff;font-size:12px;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.tierbar{display:flex;height:34px;border-radius:7px;overflow:hidden;font-size:13px;font-weight:700}
+.tierbar span{display:flex;align-items:center;justify-content:center;color:#fff}
+.tierbar .t1{background:var(--t1)} .tierbar .t2{background:var(--t2)} .tierbar .t3{background:var(--t3)}
+.hb-d{font-size:12.5px;color:var(--ink2);margin:8px 0 0;line-height:1.55}
+.big{font-size:34px;font-weight:700;line-height:1.1}
+.big small{font-size:16px;color:var(--mute);font-weight:500}
+.hero-n{font-size:13px;color:var(--mute);margin:0 0 12px}
+
+/* 总览表 */
+.ov2{background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:6px 0 0}
+.ov2 .oh,.ov2>a{display:grid;grid-template-columns:40px 1.15fr 1.3fr 1fr;gap:14px;padding:12px 16px;border-bottom:1px solid var(--line)}
+.ov2 .oh{background:var(--soft);font-size:12.5px;font-weight:650;color:var(--mute);padding:9px 16px}
+.ov2>a{color:var(--ink);font-size:14px;line-height:1.55}
+.ov2>a:hover{background:var(--acc-w);text-decoration:none}
+.ov2 .n{font-family:var(--serif);font-weight:700;font-size:16px;color:var(--acc)}
+.ov2 .p{display:flex;flex-direction:column-reverse;font-weight:600}
+.ov2 .p s{display:inline-block;align-self:flex-start;font-size:12px!important;font-weight:650;color:var(--acc)!important;background:var(--acc-w);border-radius:999px;padding:0 9px;margin:0 0 4px}
+.ov2 .s,.ov2 .l{color:var(--ink2)}
+.ov2 .s s,.ov2 .l s{display:block;font-size:12px;font-weight:650;margin-top:4px}
+.ov2 .s s{color:var(--t1)} .ov2 .l s{color:var(--t3)}
+.ovn{padding:10px 16px;font-size:12.5px;color:var(--mute);background:var(--soft)}
+.ltp{margin:0}
+
+/* 问题块 */
+.pbk{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px 24px 18px;margin:0 0 22px}
+.pbk>header{display:flex;align-items:baseline;gap:12px;margin:0 0 16px}
+.qn{flex:none;font-size:12.5px;font-weight:700;color:#fff;background:var(--red);border-radius:6px;padding:2px 10px;letter-spacing:.04em}
+.qn.b{background:var(--acc)}
+.pbk h3{font-family:var(--serif);font-size:19px;line-height:1.5;margin:0}
+.ev{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:22px;margin:0 0 18px}
+.evf{background:var(--soft);border-radius:10px;padding:14px 16px}
+.cap2{font-size:12.5px;color:var(--mute);margin:0 0 12px;line-height:1.5}
+.fx{margin:0;padding:0;list-style:none}
+.fx li{position:relative;padding:0 0 0 16px;margin:0 0 9px;font-size:14.5px;color:var(--ink2);line-height:1.65}
+.fx li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;border-radius:50%;background:var(--red)}
+
+/* 条形与比例 */
+.sb2{display:flex;height:14px;border-radius:7px;overflow:hidden;margin:0 0 10px}
+.sleg{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12.5px;color:var(--ink2)}
+.sl{display:flex;align-items:center;gap:6px}
+.sl i{width:10px;height:10px;border-radius:3px;display:inline-block}
+.sl i.u{background:repeating-linear-gradient(45deg,var(--t3) 0 2px,transparent 2px 5px);border:1px solid var(--t3)}
+.cbar{display:grid;grid-template-columns:96px 1fr auto;align-items:center;gap:10px;margin:0 0 10px}
+.cbar .cl{font-size:13px;color:var(--ink2);line-height:1.35}
+.cbar .cl s{display:block;font-size:11.5px;color:var(--mute)}
+.cbar .ct{position:relative;height:12px;background:var(--line);border-radius:6px;overflow:hidden}
+.cbar .ct i{position:absolute;left:0;top:0;bottom:0;background:var(--acc);border-radius:6px}
+.cbar .ct b{position:absolute;top:0;bottom:0;background:var(--acc-l)}
+.cbar .ct b.u{background:repeating-linear-gradient(45deg,var(--t3) 0 2px,transparent 2px 5px)}
+.cbar.wv .ct i{background:var(--red)}
+.cbar.r .ct i{background:var(--red)}
+.cbar .cv{font-size:13.5px;font-weight:700;white-space:nowrap;text-align:right}
+.cbar .cv s{display:block;font-size:11.5px;font-weight:500;color:var(--mute)}
+.ring{display:flex;align-items:center;gap:16px}
+.ring svg{width:92px;height:92px;transform:rotate(-90deg);flex:none}
+.ring .tk{fill:none;stroke:var(--line);stroke-width:5}
+.ring .vl{fill:none;stroke:var(--red);stroke-width:5;stroke-linecap:round}
+.rv{font-size:30px;font-weight:700;line-height:1.1}
+.rv u{font-size:16px;margin-left:2px}
+.rd{font-size:13px;color:var(--ink2);margin-top:4px}
+
+/* 改动清单 */
+.chg{border-top:1px solid var(--line);padding:14px 0 0}
+.ck2{font-size:12.5px;font-weight:700;color:var(--mute);letter-spacing:.08em;margin:0 0 8px}
+.crs{display:flex;flex-direction:column}
+.cr{display:grid;grid-template-columns:48px minmax(150px,210px) 1fr;gap:12px;align-items:baseline;padding:9px 0;border-bottom:1px dashed var(--line);font-size:14px}
+.cr:last-child{border-bottom:none}
+.cr .ty{font-size:12px;font-weight:700;text-align:center;border-radius:5px;padding:1px 0;color:var(--ink2);background:var(--soft);border:1px solid var(--line)}
+.cr.n .ty{color:var(--acc);background:var(--acc-w);border-color:transparent}
+.cr.w .ty{color:#fff;background:var(--acc);border-color:transparent}
+.cr b{font-weight:650;line-height:1.5}
+.cr .ef{color:var(--ink2);line-height:1.6}
+.lv{font-style:normal;display:inline-block;font-size:11.5px;font-weight:700;border-radius:999px;padding:0 8px;margin-left:8px;vertical-align:1px;white-space:nowrap;background:var(--soft);color:var(--ink2)}
+.lv.t1{background:var(--t1w);color:var(--t1)} .lv.t2{background:var(--t2w);color:var(--t2)} .lv.t3{background:var(--t3w);color:var(--t3)}
+
+/* 展开明细 */
+details.pf{margin:14px 0 0;border-top:1px solid var(--line)}
+details.pf>summary{list-style:none;cursor:pointer;padding:12px 0 2px;font-size:13.5px;font-weight:600;color:var(--acc)}
+details.pf>summary::-webkit-details-marker{display:none}
+details.pf>summary::before{content:"＋";display:inline-block;width:20px;font-weight:700}
+details.pf[open]>summary::before{content:"－"}
+.pfb{display:flex;flex-direction:column;gap:14px;padding:12px 0 4px}
+.dt1{border:1px solid var(--line);border-radius:10px;padding:12px 16px}
+.dt1 h5{font-size:14.5px;margin:0 0 8px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.dt1 h5 span{font-size:12px;font-weight:500;color:var(--mute)}
+.dt1.lt{border-color:var(--t3);background:var(--t3w)}
+.dl2{display:grid;grid-template-columns:108px 1fr;gap:6px 14px;margin:0;font-size:14px}
+.dl2 dt{color:var(--mute);font-weight:600}
+.dl2 dd{margin:0;color:var(--ink2);line-height:1.6}
+.dbx{border-radius:10px;padding:12px 16px;background:var(--soft)}
+.dbx.sg2{background:var(--t1w)}
+.dbx .dbk{font-size:13px;font-weight:700;margin:0 0 6px;color:var(--ink)}
+.dbx ul{margin:0;padding-left:1.2em;font-size:14px;color:var(--ink2)}
+.dbx li{margin:3px 0}
+.dbx p{margin:3px 0;font-size:14px;color:var(--ink2)}
+.dbx.pr{display:flex;flex-direction:column;gap:8px;background:transparent;border:1px solid var(--line)}
+.prr{display:grid;grid-template-columns:76px 1fr;gap:12px;align-items:baseline}
+.prr em{font-style:normal;font-size:12px;font-weight:700;text-align:center;border-radius:5px;padding:1px 0;background:var(--soft);color:var(--ink2)}
+.prr em.w{background:var(--warnw);color:var(--warn)}
+.prr em.b{background:var(--acc-w);color:var(--acc)}
+.prr p{margin:0 0 3px;font-size:14px;color:var(--ink2)}
+.src{display:flex;flex-wrap:wrap;gap:6px;font-size:12.5px;color:var(--mute);margin:4px 0 0}
+.src a{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:1px 10px;background:var(--card)}
+.tn{font-size:12.5px;color:var(--mute);margin:8px 0 0}
+
+/* 本期范围 */
+.opts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 0 16px}
+.opt{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:var(--soft)}
+.opt .ok{font-size:14.5px;font-weight:700;display:flex;align-items:center;gap:8px}
+.opt .ov{font-size:22px;font-weight:700;margin:4px 0 2px}
+.opt .od{font-size:12.5px;color:var(--ink2);line-height:1.5}
+.opt.rec{border:2px solid var(--acc);background:var(--acc-w)}
+.rtag{font-size:11.5px;color:#fff;background:var(--acc);border-radius:999px;padding:0 8px}
+.opt.o1 .ov{color:var(--t1)} .opt.o2 .ov{color:var(--t2)} .opt.o3 .ov{color:var(--t3)}
+
+/* 附录 */
+.apxtoc{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.ac{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.ah{font-weight:700;font-size:14px;margin:0 0 6px}
+.ah em{font-style:normal;display:inline-block;width:22px;height:22px;border-radius:6px;background:var(--acc);color:#fff;text-align:center;line-height:22px;font-size:12px;margin-right:8px}
+.ac a{display:block;font-size:13px;color:var(--ink2);padding:2px 0}
+.ac a i{font-style:normal;color:var(--mute);display:inline-block;min-width:34px}
+.doc{padding-bottom:80px}
+details.apxall{margin:0}
+details.apxall>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 18px}
+details.apxall>summary::-webkit-details-marker{display:none}
+.aall{font-family:var(--serif);font-size:18px;font-weight:700}
+.aat{flex:1;font-size:13px;color:var(--mute)}
+.ax{font-size:12.5px;color:var(--acc);white-space:nowrap}
+.apxbody{padding:18px 0 0}
+.layer{margin:0 0 26px}
+.rail{display:flex;align-items:baseline;gap:10px;margin:0 0 10px;padding:0 0 6px;border-bottom:1px solid var(--line)}
+.rail .dot{display:none}
+.rail .st{display:flex;align-items:baseline;gap:10px}
+.rail .nm{font-family:var(--serif);font-size:17px;font-weight:700}
+.rail .sub{font-size:13px;color:var(--mute)}
+.layer .body{display:flex;flex-direction:column;gap:8px}
+details.apx{background:var(--card);border:1px solid var(--line);border-radius:10px}
+details.apx>summary{list-style:none;cursor:pointer;display:flex;align-items:baseline;gap:12px;padding:12px 16px}
+details.apx>summary::-webkit-details-marker{display:none}
+.ai{flex:none;font-size:12.5px;font-weight:700;color:var(--acc);min-width:34px}
+.at2{flex:1;font-weight:650;font-size:14.5px;line-height:1.5}
+.at2 s{display:block;font-weight:400;font-size:12.5px;color:var(--mute)}
+details.apx[open]>summary .ax{color:var(--mute)}
+.abody{padding:2px 16px 16px;border-top:1px solid var(--line)}
+.apxnote{font-size:13px;color:var(--ink2);background:var(--soft);border-radius:8px;padding:10px 12px;margin:12px 0}
+.pts{display:flex;flex-direction:column;gap:10px;padding:12px 0 0}
+.pt1{display:grid;grid-template-columns:24px 1fr;gap:6px;font-size:14px;color:var(--ink2);line-height:1.65}
+.pt1 .i{color:var(--acc);font-weight:700}
+.foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:12px;color:var(--mute);border-top:1px solid var(--line);padding:14px 0 0}
+
+/* 表格 */
+table.flt{width:100%;border-collapse:collapse;font-size:13.5px;margin:10px 0 6px}
+table.flt th{text-align:left;font-weight:650;color:var(--mute);font-size:12.5px;background:var(--soft);padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+table.flt td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink2);line-height:1.6}
+table.flt td.k{font-weight:650;color:var(--ink);white-space:nowrap}
+table.flt td.n{color:var(--mute);font-weight:600;width:34px}
+table.flt td s{display:inline-block;font-size:11px;color:var(--acc);background:var(--acc-w);border-radius:999px;padding:0 6px;margin-left:6px}
+table.flt tr.grp td{background:var(--soft);font-weight:700;color:var(--ink);font-size:13px}
+.abody table.flt{display:block;overflow-x:auto}
+
+/* 窄屏 */
+@media (max-width:860px){
+  .caps{grid-template-columns:repeat(2,1fr)}
+  .hero-g{grid-template-columns:1fr}
+  .ev{grid-template-columns:1fr}
+  .opts{grid-template-columns:1fr}
+  .apxtoc{grid-template-columns:repeat(2,1fr)}
+  .ov2 .oh{display:none}
+  .ov2>a{grid-template-columns:28px 1fr;gap:6px 10px}
+  .ov2>a .s,.ov2>a .l{grid-column:2}
+  .cr{grid-template-columns:44px 1fr}
+  .cr .ef{grid-column:2}
+  .top .meta{display:none}
+  table.flt{display:block;overflow-x:auto}
+}
+@media (max-width:560px){
+  .top .in{padding:10px 16px;gap:10px}
+  .top .bd em{display:none}
+  .home,.doc{padding:0 16px}
+  .home{padding-top:24px}
+  .hero-h{font-size:20px}
+  .caps,.apxtoc{grid-template-columns:1fr}
+  .pbk{padding:18px 16px 14px}
+  .dl2{grid-template-columns:1fr}
+  .dl2 dt{margin-top:6px}
+  .prr{grid-template-columns:1fr}
+  .prr em{justify-self:start;padding:1px 10px}
+}
+@media print{
+  .top,.toc{display:none}
+  .home,.doc{margin:0 auto!important}
+  .pbk,details.apx{break-inside:avoid}
+}
+</style></head>
+<body class="hastoc">
+<nav class="toc" id="toc">
+<div class="tg0"><i>正文</i></div>
+<a class="lv1" href="#home"><em>1</em>结论</a>
+<a class="lv1" href="#t-prob"><em>2</em>五个问题</a>
+<a class="lv2" href="#q1"><em>一</em>弹窗不分人群</a>
+<a class="lv2" href="#q2"><em>二</em>数量与先后控制不住</a>
+<a class="lv2" href="#q3"><em>三</em>人群圈不准</a>
+<a class="lv2" href="#q4"><em>四</em>推送分散，离线够不着</a>
+<a class="lv2" href="#q5"><em>五</em>看不到效果</a>
+<a class="lv1" href="#t-crit"><em>3</em>建成标准</a>
+<a class="lv1" href="#t-scope"><em>4</em>本期范围</a>
+<a class="lv1 apxlink" href="#L1">附录</a>
+</nav>
+<div class="top"><div class="in">
+<span class="bd">弹窗 · 标签 · 推送<em>精细化运营能力方案 V1</em></span>
+<span class="sp"></span>
+<span class="meta">近一月活跃 62,292 人（2026-08-16 至 09-16，已剔除机器人与测试账号）· 2026.10.09</span>
+<button id="tog" type="button">全部展开</button>
+</div></div>
+
+<div class="home" id="home">
+
+<!-- ══ 结论 ══ -->
+<div class="hrow">
+<div class="hlab"><b>结论</b><span>能力 · 验收 · 分层 · 总览</span></div>
+<div class="hmain">
+<p class="hero-h">运营要具备 5 项能力；推荐推送并入同一后台、按人合计弹窗与推送上限，弹窗自身的控制在弹窗规则里补字段</p>
+<div class="caps">
+<a class="cap" href="#q1"><i>一</i><b>分人群内容配置</b><span>解决：弹窗不分人群</span></a>
+<a class="cap" href="#q2"><i>二</i><b>触达量与顺序控制</b><span>解决：数量与先后控制不住</span></a>
+<a class="cap" href="#q3"><i>三</i><b>人群圈选</b><span>解决：人群圈不准</span></a>
+<a class="cap" href="#q4"><i>四</i><b>统一推送</b><span>解决：推送分散，离线够不着</span></a>
+<a class="cap" href="#q5"><i>五</i><b>效果查看</b><span>解决：看不到效果</span></a>
+</div>
+<div class="hero-g">
+<div class="hb"><div class="hb-k">三条验收</div><ol class="acc3"><li>新人群配置不依赖研发</li><li>事前算得出每人触达上限</li><li>事后查得到曝光、点击</li></ol></div>
+<div class="hb"><div class="hb-k">34 项，分短期、中期、长期推进</div><div class="tierbar"><span class="t1" style="flex:12">短期 12</span><span class="t2" style="flex:12">中期 12</span><span class="t3" style="flex:10">长期 10</span></div><p class="hb-d">短期＝现有配置 12 项、中期＝小改动 12 项、长期＝较大开发 10 项</p></div>
+<div class="hb"><div class="hb-k">现状</div><div class="big">2<small> / 25</small></div><p class="hb-d">现状只确定能做 25 个运营场景中的 2 个</p></div>
+</div>
+<p class="hero-n">下表为 5 个问题与对应能力；本期做到哪一层，见<a href="#t-scope">本期范围</a>。</p>
+<div class="ov2">
+<div class="oh"><span></span><span>问题（对应能力）</span><span>短期与中期</span><span>长期</span></div>
+<a href="#q1"><span class="n">一</span><span class="p">弹窗不分人群，新增、回流与其余玩家看同一组弹窗<s>能力：分人群配置内容</s></span><span class="s">活动类弹窗按新增、回流、其余分组；用现有标签建身份人群；弹窗图文与点击去向自助编辑<s>短期 2 项 · 中期 1 项</s></span><span class="l">—</span></a>
+<a href="#q2"><span class="n">二</span><span class="p">弹窗数量与先后控制不住<s>能力：触达量与顺序控制</s></span><span class="s">用单项次数与冷却设定每日上限（近似）、改动前测算；每人单次与单日上限、先后顺序、关闭后当日不再弹<s>短期 2 项 · 中期 4 项</s></span><span class="l">新手弹窗改由后台配置<s>1 项</s></span></a>
+<a href="#q3"><span class="n">三</span><span class="p">人群圈不准，五类目标人群只有新增能直接圈出<s>能力：人群圈选</s></span><span class="s">累计与月度储值条件圈选、口径说明、上线前看规模；回流与首储事件标签、人群交集、口径变更记录<s>短期 4 项 · 中期 5 项</s></span><span class="l">—</span></a>
+<a href="#q4"><span class="n">四</span><span class="p">推送分散在各功能，弹窗够不着离线玩家<s>能力：统一推送</s></span><span class="s">推送按标签或名单发送；营销侧召回记录并入<s>短期 1 项 · 中期 1 项</s></span><span class="l">五种推送并入同一后台，按人合计弹窗与推送上限，点击跳转、按行为触发<s>7 项</s></span></a>
+<a href="#q5"><span class="n">五</span><span class="p">看不到效果，推送没有数据、改动没有对照<s>能力：效果查看</s></span><span class="s">弹窗曝光点击汇总、随机分组对照、过程指标；关闭情况汇总<s>短期 3 项 · 中期 1 项</s></span><span class="l">推送发送到达点击汇总、每人每日合计收到条数<s>2 项</s></span></a>
+<div class="ovn"><b>短期</b>＝现有后台即可做，无需开发；<b>中期</b>＝后台增加字段、开关或汇总；<b>长期</b>＝推送并入同一后台、改造客户端、新建数据记录。档位是相对开发量，不是工期。</div>
+</div>
+</div>
+</div>
+
+<!-- ══ 五个问题 ══ -->
+<div class="hrow p" id="t-prob">
+<div class="hlab"><b>五个问题</b><span>问题 · 改动</span></div>
+<div class="hmain">
+
+<!-- 问题一 -->
+<section class="pbk" id="q1"><header><span class="qn">问题一</span><h3>弹窗不分人群，新增、回流与其余玩家看同一组弹窗</h3></header>
+<div class="ev"><div class="evf"><div class="cap2">近一月活跃 62,292 人中，新增与回流共占 43.85%</div>
+<div class="sb2"><span style="width:17.26%;background:var(--red)"></span><span style="width:26.59%;background:var(--red-l)"></span><span style="width:56.15%;background:#C9CFD6"></span></div>
+<div class="sleg"><div class="sl"><i style="background:var(--red)"></i>新增 <b>10,749 人 · 17.26%</b></div><div class="sl"><i style="background:var(--red-l)"></i>回流存量 <b>16,564 人 · 26.59%</b></div><div class="sl"><i style="background:#C9CFD6"></i>其余玩家</div></div></div>
+<div><ul class="fx">
+<li>后台 5 条弹窗规则中只有 2 条按人群投放（普卡、银卡当月储值低于上月 50%），其余 3 条面向全部玩家</li>
+<li>新增进大厅先看到限时挑战、卡别直升活动与首储礼包，与其他玩家相同；回流任务排活动类第 7 位，最晚第 3–4 次进大厅才轮到（推断）</li>
+<li>四个弹窗时机都已被占用，按人群投放只能叠加规则，叠加后同一人会多弹；个数为配置上限，非实际弹出</li>
+</ul></div></div>
+<div class="chg"><div class="ck2">改动</div><div class="crs">
+<div class="cr m"><span class="ty">修改</span><b>活动类弹窗按人群分组</b><span class="ef">按新增、回流、其余分三组，每人在该位置只命中一组规则<i class="lv t1">短期</i></span></div>
+<div class="cr n"><span class="ty">新增</span><b>身份人群圈选</b><span class="ef">用现有新增、回流、卡别标签建人群，作为各组的投放对象<i class="lv t1">短期</i></span></div>
+<div class="cr n"><span class="ty">新增</span><b>图文与点击去向自助编辑</b><span class="ef">弹窗项的图片、文案、点击去向字段开放给运营自助编辑；现有后台已支持（推断）则无需开发<i class="lv t2">中期</i></span></div>
+</div></div>
+<details class="pf"><summary>展开：分组配置 · 短期可先做 · 风险与确认方式 · 依据来源</summary><div class="pfb">
+<div class="dt1"><h5>活动类弹窗按人群分组<span>后台 · 大厅自动弹窗管理</span></h5><dl class="dl2">
+<dt>弹窗位置</dt><dd>活动类弹窗、储值类弹窗、破产弹窗各为一个位置；新手弹窗接入后台后另占一个位置</dd>
+<dt>分组</dt><dd>活动类弹窗按新增、回流、其余分三组；每人在同一位置只命中一组规则，各组上限可事先读出、单独调整</dd>
+<dt>储值下滑内容</dt><dd>默认沿用现状，放活动类弹窗：活动类按身份 × 是否下滑分六组。若有依据表明应改放储值类弹窗，则储值类按是否下滑分两组，整体做法不变</dd>
+<dt>单次上限</dt><dd>每人单次进大厅最多弹出数＝所在活动类分组个数＋储值类分组个数；现状为全部玩家 3 个，储值下滑的普卡、银卡 4 个</dd>
+<dt>去重</dt><dd>依赖弹窗对象的排除条件（推断）；没有排除条件时多建 2 个标签，仍无需开发</dd>
+</dl></div>
+<div class="dt1"><h5>身份人群圈选<span>后台 · 会员标签设定</span></h5><dl class="dl2">
+<dt>新增</dt><dd>身份为新增，即注册 ≤ 29 天，10,749 人；标签写「30 天以内」，若含第 30 天多 358 人</dd>
+<dt>回流</dt><dd>身份为回流，存量 16,564 人，其中近 7 天登录 8,022 人；存量中 51.57% 已 ≥ 8 天未登录</dd>
+<dt>卡别</dt><dd>沿用当前卡别、历史最高卡别标签；金卡以上 6,366 人，其中有储值 6,064 人</dd>
+</dl></div>
+<div class="dbx sg2"><div class="dbk">短期可先做（详见<a href="#b4">附录 B-4</a>）</div><ul>
+<li>运营自助调整弹窗图片、文案与点击去向，不经研发（依赖相关字段可自助，推断；不成立时由上方「图文与点击去向自助编辑」承接）</li>
+<li>分组上线前按标签名单核对：分组有漏或重叠时，重叠者会叠加弹出</li>
+</ul></div>
+<div class="dbx pr">
+<div class="prr"><em>前置条件</em><div><p>弹窗对象支持排除条件（推断）；标签名单可直接查询规模。</p></div></div>
+<div class="prr"><em class="w">主要风险</em><div><p>分组有漏或重叠时，重叠者叠加弹出；迁移现有规则可能影响既有人群（推断）。</p></div></div>
+<div class="prr"><em class="b">确认方式</em><div><p>新增、回流、其余三组的规则与上限可单独读出、单独调整；抽查各组玩家实际命中的规则只有一组。</p></div></div>
+</div>
+<div class="dbx"><div class="dbk">依据来源</div><p class="src"><a href="阶段3_现状盘点.html#s1">现状盘点 · 弹窗规则</a><a href="阶段3_现状盘点.html#s6">现状盘点 · 人群触达现状</a><a href="阶段6_方案设计.html#s3">方案设计 · 弹窗体系</a><a href="阶段6_方案设计.html#s4">方案设计 · 人群策略</a><a href="阶段2_人群分析.html#s2">人群分析 · 人群画像</a></p></div>
+</div></details>
+</section>
+
+<!-- 问题二 -->
+<section class="pbk" id="q2"><header><span class="qn">问题二</span><h3>弹窗数量与先后控制不住：规则命中即叠加，关闭后仍会再弹</h3></header>
+<div class="ev"><div class="evf"><div class="cap2">每人单次进大厅最多弹出的后台弹窗数（按现有配置推算）</div>
+<div class="cbar wv"><div class="cl">全部玩家</div><div class="ct"><i style="width:75%"></i></div><div class="cv t">3 个</div></div>
+<div class="cbar wv r"><div class="cl">普卡、银卡<s>储值下滑者</s></div><div class="ct"><i style="width:100%"></i></div><div class="cv t">4 个</div></div>
+<div class="cbar wv"><div class="cl">新增</div><div class="ct"><i style="width:75%"></i></div><div class="cv t">3 个＋新手弹窗<s>新手弹窗个数未知</s></div></div>
+</div>
+<div><ul class="fx">
+<li>规则只设对象、位置与弹出个数；多条规则同时命中时叠加弹出，跨规则的先后与每人总量没有设置项（推断）</li>
+<li>只能限制单个弹窗项的每日次数与冷却，玩家关闭后仍会再弹；「每日补给计划」在两条规则中分别为每日 20 次与 1 次，命中两条时叠加</li>
+<li>新手挑战、新手通行证弹窗写死在客户端，后台看不到也改不了，新增玩家实际弹几个未知</li>
+</ul></div></div>
+<div class="chg"><div class="ck2">改动</div><div class="crs">
+<div class="cr m"><span class="ty">修改</span><b>设定每日上限（近似）</b><span class="ef">活动类弹窗项设每日次数与冷却，限定每人每日最多弹出数；3、4 个是配置上限，非实际弹出数<i class="lv t1">短期</i></span></div>
+<div class="cr n"><span class="ty">新增</span><b>改规则前测算</b><span class="ef">用标签名单与配置算出受影响人群和每人弹窗数，结果按卡别拆分（卡别是现有规则的对象维度），再上线<i class="lv t1">短期</i></span></div>
+<div class="cr n"><span class="ty">新增</span><b>每人单次上限</b><span class="ef">弹窗规则增加单次进大厅合计上限，并可汇总查看<i class="lv t2">中期</i></span></div>
+<div class="cr n"><span class="ty">新增</span><b>每人单日上限</b><span class="ef">弹窗规则增加每人每日弹窗合计上限<i class="lv t2">中期</i></span></div>
+<div class="cr n"><span class="ty">新增</span><b>先后顺序</b><span class="ef">多条规则同时命中时可设定谁先弹<i class="lv t2">中期</i></span></div>
+<div class="cr n"><span class="ty">新增</span><b>关闭后当日不再弹</b><span class="ef">弹窗项增加开关，并记录玩家的关闭动作<i class="lv t2">中期</i></span></div>
+<div class="cr l"><span class="ty">新增</span><b>新手弹窗改由后台配置</b><span class="ef">改造客户端，新手弹窗接入后台并计入单次、单日上限<i class="lv t3">长期</i></span></div>
+</div></div>
+<details class="pf"><summary>展开：字段规则 · 短期可先做 · 风险与确认方式 · 长期说明 · 依据来源</summary><div class="pfb">
+<div class="dt1"><h5>每人单次与单日上限<span>后台 · 大厅自动弹窗管理（规则字段）</span></h5><dl class="dl2">
+<dt>单次上限</dt><dd>每人单次进大厅最多弹几个，等于所在各分组弹出个数之和；后台提供合计字段与汇总视图</dd>
+<dt>单日上限</dt><dd>实际单日弹出数取「单次个数 × 当日回大厅次数」与「各项每日次数之和」中的较小值；新增字段直接封顶，避免回大厅次数越多弹得越多</dd>
+<dt>现有近似</dt><dd>用单项每日次数与冷却设定活动类每日上限（近似；现为普卡、银卡 11 次，下滑者另加 20 次，金卡以上 12 次，均为配置上限，不是实际弹出数）；该设定对所有人一起生效，包括不受打扰的人</dd>
+</dl></div>
+<div class="dt1"><h5>先后顺序<span>后台 · 弹窗规则</span></h5><dl class="dl2">
+<dt>规则内</dt><dd>按排序取满弹出个数，当前不可参加的项被跳过（现有）</dd>
+<dt>同一位置</dt><dd>按人群分组后每人只命中一条规则，不必再设先后</dd>
+<dt>跨位置</dt><dd>活动类与储值类弹窗之间的先后，由新增字段设定</dd>
+<dt>弹窗与推送</dt><dd>两者之间的优先，在推送并入同一后台后统一设定（见问题四）</dd>
+</dl></div>
+<div class="dt1"><h5>关闭后当日不再弹<span>后台 · 弹窗项；客户端 · 关闭记录上报</span></h5><dl class="dl2">
+<dt>规则</dt><dd>玩家关闭某弹窗项后，当日不再出现该项</dd>
+<dt>记录</dt><dd>记录关闭动作，用于执行当日不再弹，也可查看关闭情况；目前是否记录未知，未记录时由客户端补上报</dd>
+<dt>不在范围</dt><dd>连续关闭后自动降低频次，开发更大，待有关闭记录后再定</dd>
+<dt>现有近似</dt><dd>把该项每日次数设为 1，含义不同：所有人每天只看一次，与是否关闭无关</dd>
+</dl></div>
+<div class="dbx sg2"><div class="dbk">短期可先做（详见<a href="#b4">附录 B-4</a>）</div><ul>
+<li>改规则前用标签名单与配置手工测算受影响人群与每人弹窗数，结果按卡别拆分，确认上限后再上线</li>
+<li>单日上限字段上线前，先用单项每日次数与冷却设定活动类每日上限（近似）；该设定对所有人一起生效，包括不受打扰的人</li>
+</ul></div>
+<div class="dbx pr">
+<div class="prr"><em>前置条件</em><div><p>弹窗规则可增加字段（推断）；若主管提到的「总控」功能已排期，先后与上限字段随其上线。</p></div></div>
+<div class="prr"><em class="w">主要风险</em><div><p>用单项次数近似单日上限时，所有人的曝光一起下降，不能只限制被多弹的人。</p><p>新手弹窗接入后，新增玩家进大厅的个数可能变化。</p></div></div>
+<div class="prr"><em class="b">确认方式</em><div><p>上线前算得出每人单次、单日最多弹几个；抽查关闭过某弹窗的玩家当日不再看到该项。</p></div></div>
+</div>
+<div class="dt1 lt"><h5>新手弹窗改由后台配置<span>长期</span></h5><dl class="dl2">
+<dt>涉及功能</dt><dd>客户端写死的新手挑战、新手通行证弹窗</dd>
+<dt>设计方向</dt><dd>接入后台后占新手弹窗位置，计入单次与单日上限，由运营调整时机、次数、冷却与对象</dd>
+<dt>归入长期的原因</dt><dd>需改造客户端；写死原因无记载，若只是历史遗留，可降为中期</dd>
+</dl></div>
+<div class="dbx"><div class="dbk">依据来源</div><p class="src"><a href="阶段3_现状盘点.html#s1">现状盘点 · 弹窗规则与机制</a><a href="阶段3_现状盘点.html#s6">现状盘点 · 人群触达现状</a><a href="阶段4_问题诊断.html#s2">问题诊断 · 做不到的原因</a><a href="阶段6_方案设计.html#s3">方案设计 · 弹窗体系</a></p></div>
+</div></details>
+</section>
+
+<!-- 问题三 -->
+<section class="pbk" id="q3"><header><span class="qn">问题三</span><h3>人群圈不准：五类目标人群只有新增能直接圈出</h3></header>
+<div class="ev"><div class="evf"><div class="cap2">五类目标人群可圈出的规模（占近一月活跃 62,292 人）</div>
+<div class="cbar wv"><div class="cl">新增</div><div class="ct"><i style="width:17.26%"></i></div><div class="cv t">10,749<s>可直接圈出</s></div></div>
+<div class="cbar wv"><div class="cl">回流</div><div class="ct"><i style="width:12.88%"></i><b style="left:12.88%;width:13.71%"></b></div><div class="cv t">8,022—16,564<s>近 7 天登录—存量</s></div></div>
+<div class="cbar wv"><div class="cl">潜在付费</div><div class="ct"><i style="width:9.59%"></i><b style="left:9.59%;width:32.10%"></b></div><div class="cv t">5,976—25,972<s>可核实—上界</s></div></div>
+<div class="cbar wv r"><div class="cl">潜在流失</div><div class="ct"><b class="u" style="left:21.59%;width:7.73%"></b></div><div class="cv t">不可知<s>参照 13,449—18,265</s></div></div>
+<div class="cbar wv r"><div class="cl">破产</div><div class="ct"><b class="u" style="left:0;width:55.16%"></b></div><div class="cv t">不可知<s>可能触发 0—34,363</s></div></div>
+<div class="sleg"><div class="sl"><i style="background:var(--acc)"></i>可确定</div><div class="sl"><i style="background:var(--acc-l)"></i>上界区间</div><div class="sl"><i class="u"></i>圈不出，仅参照范围</div></div>
+</div>
+<div><ul class="fx">
+<li>缺事件类字段：没有「回来后首次登录」、首储购买标记与每人月度储值，回流只能圈存量（其中 51.57% 已 ≥ 8 天未登录），潜在流失与破产圈不出</li>
+<li>同名不同义：新增标签写 30 天以内而取数为 29 天（差 358 人）；3 个回流标签判定天数未知；当前卡别类有 5 条标签含义不明</li>
+<li>人群之间不能取交集，排除条件后台截图未见（推断）；押注阈值从 1,000 调到 100,000，潜在付费从 36,028 人降到 11,803 人，上线前看不到规模</li>
+</ul></div></div>
+<div class="chg"><div class="ck2">改动</div><div class="crs">
+<div class="cr n"><span class="ty">新增</span><b>累计行为条件圈选</b><span class="ef">用累计储值有无、累计押注阈值圈潜在付费；「从未储值」标签需新建<i class="lv t1">短期</i></span></div>
+<div class="cr n"><span class="ty">新增</span><b>月度储值条件圈选</b><span class="ef">用现有储值衰减三档加排除去重圈潜在流失，补近 4 个月押注<i class="lv t1">短期</i></span></div>
+<div class="cr n"><span class="ty">新增</span><b>口径说明规范</b><span class="ef">每个标签写明来源、时间窗、阈值与取值时点，区分说明人与编写人<i class="lv t1">短期</i></span></div>
+<div class="cr n"><span class="ty">新增</span><b>上线前看规模</b><span class="ef">标签与规则上线前显示圈选人数，以及是否剔除机器人、测试账号<i class="lv t1">短期</i></span></div>
+<div class="cr n"><span class="ty">新增</span><b>回流时间与最近登录</b><span class="ef">由逐日登录生成回流时间点、最近登录天数标签<i class="lv t2">中期</i></span></div>
+<div class="cr n"><span class="ty">新增</span><b>首储购买标记</b><span class="ef">由订单明细生成「是否买过首储礼包」<i class="lv t2">中期</i></span></div>
+<div class="cr n"><span class="ty">新增</span><b>人群交集</b><span class="ef">人群可引用、排除另一人群，不必为每种组合另建标签<i class="lv t2">中期</i></span></div>
+<div class="cr n"><span class="ty">新增</span><b>口径变更记录</b><span class="ef">口径改动记录版本与生效日，改前列出引用方<i class="lv t2">中期</i></span></div>
+<div class="cr n"><span class="ty">新增</span><b>引用清单</b><span class="ef">自动列出引用某标签的弹窗规则与人群<i class="lv t2">中期</i></span></div>
+</div></div>
+<details class="pf"><summary>展开：标签分层 · 人群交集 · 口径管理 · 短期可先做 · 风险与确认方式 · 依据来源</summary><div class="pfb">
+<div class="dbx"><div class="dbk">标签按数据来源分四层，前三层沿用现有大类</div>
+<table class="flt"><thead><tr><th>层</th><th>装什么</th><th>现有对应</th><th>能否做</th></tr></thead><tbody>
+<tr><td class="k">账号属性</td><td>身份与注册天数、回流存量、卡别、登录平台</td><td>身份状态、当前卡别、历史最高卡别、支付平台</td><td>新增、卡别可做；回流存量推断可做</td></tr>
+<tr><td class="k">累计行为</td><td>累计储值有无、累计押注阈值</td><td>存储价值条件、赌注条件</td><td>推断可做；「从未储值」需新建</td></tr>
+<tr><td class="k">月度储值</td><td>当月与上月储值比较、近 4 个月押注</td><td>当月存款金额（衰减三档，线上只用 50% 一档）</td><td>推断可做，依赖数仓可取月度储值</td></tr>
+<tr><td class="k">事件</td><td>回流时间点、首储购买、最近登录、破产触发</td><td>现有十个大类里没有</td><td>破产走触发时机可做；其余需新开发</td></tr>
+</tbody></table></div>
+<div class="dt1"><h5>人群交集<span>后台 · 会员标签设定 › 标签群组</span></h5><dl class="dl2">
+<dt>运算</dt><dd>人群可引用、排除另一人群；标签之间的「且」「或」已有</dd>
+<dt>必需的情形</dt><dd>储值下滑内容放活动类弹窗时，「其余」组须排除「普卡、银卡且储值下滑」，现有条件写不出</dd>
+<dt>有用的情形</dt><dd>潜在流失三档嵌套去重；把新增排除出挽回内容；按「付过费没买首储」圈的潜在付费与潜在流失去重</dd>
+<dt>没有交集时</dt><dd>多建标签代替，最多多 8 个；有交集后为 0，做法不变</dd>
+</dl></div>
+<div class="dt1"><h5>口径管理<span>流程 · 标签后台</span></h5><dl class="dl2">
+<dt>谁定义</dt><dd>每个标签区分口径说明人与编写人；现状编写人无记载，运营自写与数据组代写两种都支持</dd>
+<dt>变更记录</dt><dd>改动记版本与生效日；现状押注阈值改一档规模差 3 倍以上，身份没有历史快照</dd>
+<dt>命名</dt><dd>名称与说明含来源层、时间窗、阈值、取值时点、是否含边界日</dd>
+<dt>规模可见</dt><dd>上线前显示规模、剔除口径，阈值类给出规模区间</dd>
+</dl></div>
+<div class="dbx sg2"><div class="dbk">短期可先做（详见<a href="#b4">附录 B-4</a>）</div><ul>
+<li>先给高影响标签补口径说明：新增是否含第 30 天、回流判定窗口、阈值与取值时点</li>
+<li>潜在付费沿用「累计押注 &gt; 10,000 且从未储值」；阈值敏感，上线前列出规模区间</li>
+<li>用现有衰减三档标签加排除去重，先只查潜在流失各档规模与口径差异，不改弹窗内容</li>
+</ul></div>
+<div class="dbx pr">
+<div class="prr"><em>前置条件</em><div><p>弹窗对象与人群支持排除条件（推断）；数仓可取每人月度储值（推断），不可取则需新建数据管线。</p><p>回流时间点依赖逐日登录；数仓没有逐日登录时，该项升为长期。</p></div></div>
+<div class="prr"><em class="w">主要风险</em><div><p>口径一改人数就变；身份没有历史快照，改后无法回溯。</p></div></div>
+<div class="prr"><em class="b">确认方式</em><div><p>标签与规则上线前看得到圈选人数与口径；五类人群中可直接圈出的类数（现为新增 1 类）。</p></div></div>
+</div>
+<div class="dbx"><div class="dbk">依据来源</div><p class="src"><a href="阶段2_人群分析.html#s1">人群分析 · 人群口径</a><a href="阶段3_现状盘点.html#s2">现状盘点 · 标签</a><a href="阶段6_方案设计.html#s2">方案设计 · 标签体系</a></p></div>
+</div></details>
+</section>
+
+<!-- 问题四 -->
+<section class="pbk" id="q4"><header><span class="qn">问题四</span><h3>推送分散在各功能，弹窗够不着的离线玩家只能靠推送</h3></header>
+<div class="ev"><div class="evf"><div class="cap2">最后登录 ≥ 8 天、弹窗够不到的玩家（近一月活跃加八月已离开者）</div>
+<div class="ring r qring"><svg aria-label="53.86% 离线 8 天以上" role="img" viewBox="0 0 42 42"><circle class="tk" cx="21" cy="21" r="15.915"></circle><circle class="vl" cx="21" cy="21" r="15.915" stroke-dasharray="53.86 46.14"></circle></svg><div><div class="rv">53.86<u>%</u></div><div class="rd"><b>40,117 人</b> ／ 74,480 人</div></div></div>
+</div>
+<div><ul class="fx">
+<li>5 种推送各自配置、没有统一入口：推播挂在推荐礼包后台，快显（站内即时提示）与升级提示写死在客户端，短信、Facebook、LINE 推断由营销侧按名单发送</li>
+<li>跨推送方式没有每人每日上限（推断）；升级提示点击不跳转；已有的按行为触发都嵌在各功能里，运营不能自助新增</li>
+<li>离线玩家中新增 5,960 人、回流 8,542 人；各方式能触达多少本地算不出，区间 0—40,117，且 40,117 本身是下界</li>
+</ul></div></div>
+<div class="chg"><div class="ck2">改动</div><div class="crs">
+<div class="cr m"><span class="ty">修改</span><b>推送按标签或名单发送</b><span class="ef">沿用现有推送方式，对象引用标签人群；只能按名单时每次导出名单<i class="lv t1">短期</i></span></div>
+<div class="cr n"><span class="ty">新增</span><b>营销侧召回记录并入</b><span class="ef">获取营销侧按名单召回的发送记录，并入汇总<i class="lv t2">中期</i></span></div>
+<div class="cr l"><span class="ty">新增</span><b>推送并入同一后台</b><span class="ef">快显、推播、短信、Facebook、LINE 在一个后台配置与查看<i class="lv t3">长期</i></span></div>
+<div class="cr l"><span class="ty">新增</span><b>按人合计上限</b><span class="ef">按人合计当日弹窗与推送条数，超过上限不再发<i class="lv t3">长期</i></span></div>
+<div class="cr l"><span class="ty">新增</span><b>每人每日推送上限</b><span class="ef">跨推送方式对每人每日封顶<i class="lv t3">长期</i></span></div>
+<div class="cr l"><span class="ty">新增</span><b>快显改为后台配置</b><span class="ef">改造客户端，快显不再写死<i class="lv t3">长期</i></span></div>
+<div class="cr l"><span class="ty">新增</span><b>点击跳转</b><span class="ef">每条推送可配置点击后去往的页面<i class="lv t3">长期</i></span></div>
+<div class="cr l"><span class="ty">新增</span><b>按行为触发</b><span class="ef">后台配置触发条件，如升级、任务完成、礼包将到期<i class="lv t3">长期</i></span></div>
+<div class="cr l"><span class="ty">新增</span><b>推送频次控制</b><span class="ef">按条计数，各方式各设上限，再加合计兜底<i class="lv t3">长期</i></span></div>
+</div></div>
+<details class="pf"><summary>展开：发送规则 · 推送方式现状 · 短期可先做 · 风险与确认方式 · 长期说明 · 依据来源</summary><div class="pfb">
+<div class="dt1"><h5>推送按标签或名单发送<span>现有推送方式</span></h5><dl class="dl2">
+<dt>对象</dt><dd>引用标签人群，与弹窗共用同一套人群</dd>
+<dt>只能按名单时</dt><dd>每次导出名单发送，不随标签自动更新；整体做法不变</dd>
+<dt>离线召回</dt><dd>≥ 8 天未登录的 40,117 人只能由推播与按名单发送的方式触达</dd>
+</dl></div>
+<div class="dt1"><h5>营销侧召回记录并入<span>营销侧 · 数据组</span></h5><dl class="dl2">
+<dt>内容</dt><dd>营销侧按名单召回的发送日期与名单</dd>
+<dt>方式</dt><dd>接入还是替代营销侧流程，不预设</dd>
+<dt>依赖</dt><dd>营销侧发送记录能否获得，目前未知</dd>
+</dl></div>
+<div class="dbx"><div class="dbk">推送方式现状</div>
+<table class="flt"><thead><tr><th>方式</th><th>谁能收到</th><th>现状</th></tr></thead><tbody>
+<tr><td class="k">快显</td><td>当时在线的人；离线召回不适用</td><td>写死在客户端；用例：新手通行证升级提示、大厅高额中奖播报</td></tr>
+<tr><td class="k">推播</td><td>装了 App 且授权者，授权人数未知；离线者中最后一次用 App 登录的 31,260 人只作参照</td><td>挂在推荐礼包后台：限时加码礼包触发后未购买，剩 2 小时发推播</td></tr>
+<tr><td class="k">短信</td><td>有手机号者，是否须绑定未知</td><td>无后台记载，推断由营销侧按名单发送</td></tr>
+<tr><td class="k">Facebook</td><td>有绑定账号者（推断）</td><td>同短信</td></tr>
+<tr><td class="k">LINE</td><td>有绑定账号者（推断）</td><td>同短信</td></tr>
+</tbody></table></div>
+<div class="dbx sg2"><div class="dbk">短期可先做（详见<a href="#b4">附录 B-4</a>）</div><ul>
+<li>先收集离线玩家的可达情况：推播授权率、手机号非空率、Facebook 与 LINE 绑定率</li>
+<li>合计上限只做兜底，各推送方式先各自设上限，避免压掉礼包等已嵌在功能里的推送</li>
+</ul></div>
+<div class="dbx pr">
+<div class="prr"><em>前置条件</em><div><p>各推送方式能否按标签发送、是否各自有发送记录，目前未知；短信、Facebook、LINE 依赖营销侧配合。</p><p>推送授权、联系方式使用与触达频次是否受监管或平台规则限制，尚未核实。</p></div></div>
+<div class="prr"><em class="w">主要风险</em><div><p>合计上限会限制已嵌在功能里的推送，如限时加码礼包推播。</p><p>推送并入同一后台开发量最大，最难事先验证和回退。</p></div></div>
+<div class="prr"><em class="b">确认方式</em><div><p>每条推送查得到发送、到达、点击；同一玩家当日弹窗与推送合计条数算得出、不超过上限。</p></div></div>
+</div>
+<div class="dt1 lt"><h5>推送并入同一后台、按人合计上限<span>长期</span></h5><dl class="dl2">
+<dt>做什么</dt><dd>五种推送在一个后台配置与查看，按标签发送，可配点击跳转与行为触发；同一玩家同一天的弹窗曝光与推送条数合计不超过上限，超过不再发</dd>
+<dt>与弹窗的分工</dt><dd>弹窗自身的单次、单日上限、先后与关闭后不再弹仍在弹窗规则里设置（问题二），不必等这一项建成；这里只管弹窗与推送的合计</dd>
+<dt>选择依据</dt><dd>比较过三条路线（前两条是第三条的子集）：只用现有后台（解决 0 个缺口）、弹窗与推送各自补功能（5 个）、推送并入同一后台并按人合计（10 个）；缺口共 10 个，即 9 个做不到的场景加跨位置先后；另一个部分实现的场景现有配置已能近似、只差精确口径，所以不算缺口，与附录 C-1 的「补全 11 个」对得上。前两条的内容即本方案的配置项与弹窗侧中期；被否掉的是停在中期、推送不并入同一后台，因其留下「推送随各功能分别实现」这一根因。代价是开发最大、最难事先验证和回退</dd>
+<dt>归入长期的原因</dt><dd>推送分布在推荐礼包后台、客户端与营销侧，单独补任何一项都会再多一套规则；跳转、行为触发、每日上限、频次控制都依赖它，与它一起建、开发量不重复计算</dd>
+</dl></div>
+<div class="dt1 lt"><h5>快显改为后台配置<span>长期</span></h5><dl class="dl2">
+<dt>涉及功能</dt><dd>客户端快显（升级提示、大厅高额中奖播报）</dd>
+<dt>设计方向</dt><dd>改为后台可配置，并补点击跳转</dd>
+<dt>归入长期的原因</dt><dd>需改造客户端，改造量无记载</dd>
+</dl></div>
+<div class="dbx"><div class="dbk">依据来源</div><p class="src"><a href="阶段2_人群分析.html#s5">人群分析 · 推送受众</a><a href="阶段3_现状盘点.html#s3">现状盘点 · 推送</a><a href="阶段5_方案选型.html#s1">方案选型 · 三条路线</a><a href="阶段6_方案设计.html#s5">方案设计 · 推送体系</a></p></div>
+</div></details>
+</section>
+
+<!-- 问题五 -->
+<section class="pbk" id="q5"><header><span class="qn">问题五</span><h3>看不到效果：推送没有发送与到达数据，改动没有对照</h3></header>
+<div class="ev"><div class="evf"><div class="cap2">效果查看须提供的 8 个数据项中，本地没有的数量</div>
+<div class="ring r qring"><svg aria-label="8 个数据项中 6 个本地没有" role="img" viewBox="0 0 42 42"><circle class="tk" cx="21" cy="21" r="15.915"></circle><circle class="vl" cx="21" cy="21" r="15.915" stroke-dasharray="75 25"></circle></svg><div><div class="rv">6<u>／8</u></div><div class="rd"><b>6 个本地没有</b>：推送发送、到达、点击、跳转到达，弹窗关闭，每人每日合计条数；弹窗曝光、点击 2 个推断已有未取出</div></div></div>
+</div>
+<div><ul class="fx">
+<li>推送发送量与到达率整体没有数据，点击无记载；各推送方式单独有无记录未知</li>
+<li>弹窗曝光、点击推断系统已有但未取出；关闭动作未记载</li>
+<li>没有任何分组对照记录，改动效果只能前后对比，分不清来自改动还是活动排期；本地只有两份累计快照，没有逐日登录</li>
+</ul></div></div>
+<div class="chg"><div class="ck2">改动</div><div class="crs">
+<div class="cr n"><span class="ty">新增</span><b>弹窗效果汇总</b><span class="ef">按人群汇总弹窗曝光、点击<i class="lv t1">短期</i></span></div>
+<div class="cr n"><span class="ty">新增</span><b>随机分组对照</b><span class="ef">同一人群内随机分两组，各看不同内容<i class="lv t1">短期</i></span></div>
+<div class="cr n"><span class="ty">新增</span><b>过程指标</b><span class="ef">上线前规模可见率、每人上限可算率、可直接圈出的人群类数<i class="lv t1">短期</i></span></div>
+<div class="cr n"><span class="ty">新增</span><b>关闭情况汇总</b><span class="ef">按弹窗汇总玩家关闭人数，随关闭记录上线<i class="lv t2">中期</i></span></div>
+<div class="cr l"><span class="ty">新增</span><b>推送记录汇总</b><span class="ef">各推送方式的发送、到达、点击记录并入同一后台汇总<i class="lv t3">长期</i></span></div>
+<div class="cr l"><span class="ty">新增</span><b>每人每日合计收到条数</b><span class="ef">弹窗曝光加推送条数，可查看并核对合计上限<i class="lv t3">长期</i></span></div>
+</div></div>
+<details class="pf"><summary>展开：指标定义 · 分组对照 · 短期可先做 · 风险与确认方式 · 长期说明 · 依据来源</summary><div class="pfb">
+<div class="dt1"><h5>弹窗效果汇总<span>数据组</span></h5><dl class="dl2">
+<dt>曝光人数</dt><dd>看到该弹窗项的玩家数 ÷ 进入对应时机的玩家数</dd>
+<dt>点击率</dt><dd>点击的玩家数 ÷ 看到的玩家数</dd>
+<dt>现状</dt><dd>曝光、点击推断已有、尚未取出</dd>
+</dl></div>
+<div class="dt1"><h5>随机分组对照<span>后台 · 实验分流</span></h5><dl class="dl2">
+<dt>做法</dt><dd>同一人群组内随机分两组，各看不同内容，比较曝光、点击</dd>
+<dt>对象</dt><dd>新增、回流等人数较多的组</dd>
+<dt>依赖</dt><dd>分流可配置（推断），开发成本未评估；不可配置时只能前后对比，归因受限</dd>
+</dl></div>
+<div class="dbx"><div class="dbk">衡量分两层，共 13 项</div>
+<table class="flt"><thead><tr><th>层</th><th>回答什么</th><th>包含</th></tr></thead><tbody>
+<tr><td class="k">能力建成（5）</td><td>能力是否建成、是否在用</td><td>新人群配置自主率、上线前规模可见率、每人上限可算率、可直接圈出的人群类数、效果可查覆盖</td></tr>
+<tr><td class="k">数据项（8）</td><td>运营事后能查到什么</td><td>弹窗曝光、点击、关闭；推送发送、到达、点击、跳转到达；每人每日合计收到条数</td></tr>
+</tbody></table>
+<div class="tn">两层共 13 项：已有 1 项、推断可取 5 项、本地没有 7 项，缺的集中在推送记录与关闭记录。</div></div>
+<div class="dbx sg2"><div class="dbk">短期可先做（详见<a href="#b4">附录 B-4</a>）</div><ul>
+<li>先搭随机分组对照，此后每项改动都有对照</li>
+<li>先取出已有的弹窗曝光、点击</li>
+<li>新增数据收集与配置项同步进行，不等数据再动手（清单见附录 D-3）</li>
+</ul></div>
+<div class="dbx pr">
+<div class="prr"><em>前置条件</em><div><p>分流可配置（推断）；弹窗曝光、点击已有记录（推断）。</p></div></div>
+<div class="prr"><em class="w">主要风险</em><div><p>分组不可配置时只能前后对比，效果与活动排期分不开。</p></div></div>
+<div class="prr"><em class="b">确认方式</em><div><p>事后查得到各弹窗的曝光、点击，各推送的发送、到达、点击；本地没有的数据项逐项补齐。</p></div></div>
+</div>
+<div class="dt1 lt"><h5>推送记录汇总<span>长期</span></h5><dl class="dl2">
+<dt>涉及功能</dt><dd>快显、推播、短信、Facebook、LINE 的发送、到达、点击</dd>
+<dt>设计方向</dt><dd>推送并入同一后台后，记录统一汇总查看</dd>
+<dt>归入长期的原因</dt><dd>记录分散在各功能与营销侧；若各方式已有记录，只需补汇总，可提前为中期</dd>
+</dl></div>
+<div class="dbx"><div class="dbk">依据来源</div><p class="src"><a href="阶段3_现状盘点.html#s4">现状盘点 · 数据</a><a href="阶段4_问题诊断.html#s1">问题诊断 · 缺口</a><a href="阶段6_方案设计.html#s6">方案设计 · 指标体系</a></p></div>
+</div></details>
+</section>
+
+</div>
+</div>
+
+<!-- ══ 建成标准 ══ -->
+<div class="hrow" id="t-crit"><div class="hlab"><b>建成标准</b><span>验收 · 场景覆盖</span></div><div class="hmain">
+<section class="pbk tg3"><header><span class="qn b">验收标准</span><h3>三条验收：新人群配置不依赖研发、事前算得出每人触达上限、事后查得到曝光点击；另须目标人群圈得出</h3></header>
+<div class="ev"><div class="evf"><div class="cap2">25 个运营场景中现有后台可做的数量（按 5 项能力）</div>
+<div class="cbar"><div class="cl">人群圈选<s>4 个场景</s></div><div class="ct"><i style="width:100.00%"></i></div><div class="cv t">4／4<s>均待确认后台能力</s></div></div>
+<div class="cbar"><div class="cl">分人群内容配置<s>7 个场景</s></div><div class="ct"><i style="width:71.43%"></i><b style="left:71.43%;width:14.29%"></b><b class="u" style="left:85.71%;width:14.29%"></b></div><div class="cv t">5／7<s>中期 1 · 长期 1</s></div></div>
+<div class="cbar"><div class="cl">触达量与顺序控制<s>6 个场景</s></div><div class="ct"><i style="width:33.33%"></i><b style="left:33.33%;width:33.33%"></b><b class="u" style="left:66.67%;width:33.33%"></b></div><div class="cv t">2／6<s>中期 2 · 长期 2</s></div></div>
+<div class="cbar"><div class="cl">统一推送<s>4 个场景</s></div><div class="ct"><i style="width:25.00%"></i><b class="u" style="left:25.00%;width:75.00%"></b></div><div class="cv t">1／4<s>长期 3</s></div></div>
+<div class="cbar"><div class="cl">效果查看<s>4 个场景</s></div><div class="ct"><i style="width:50.00%"></i><b class="u" style="left:50.00%;width:50.00%"></b></div><div class="cv t">2／4<s>长期 2</s></div></div>
+<div class="sleg"><div class="sl"><i style="background:var(--acc)"></i>现有后台可做</div><div class="sl"><i style="background:var(--acc-l)"></i>中期补全</div><div class="sl"><i class="u"></i>长期补全</div></div>
+</div>
+<div><ul class="fx">
+<li>现有后台可做 14 个，其中确定 2 个（新增、破产单独配置）；其余 12 个所需后台能力待确认，不成立时改为多建标签、提开发或只做前后对比</li>
+<li>回流后首次进大厅、跨位置先后 2 个短期只做到一部分，补全在中期</li>
+<li>长期补全的 8 个集中在推送与新手弹窗，须推送并入同一后台、改造客户端</li>
+</ul></div></div>
+<div class="chg"><div class="ck2">验收</div><div class="crs">
+<div class="cr w"><span class="ty">一</span><b>运营可自主为一类新人群单独配置内容</b><span class="ef">日常调整不依赖研发、不影响其他人群；看新人群配置自主率，需先补后台配置操作记录</span></div>
+<div class="cr w"><span class="ty">二</span><b>事前算得出每人触达上限</b><span class="ef">弹窗单次、单日上限与弹窗推送合计上限上线前可读出；现靠标签名单加配置手工推算</span></div>
+<div class="cr w"><span class="ty">三</span><b>事后查得到曝光、点击</b><span class="ef">弹窗曝光、点击与推送发送、到达、点击可查；现弹窗曝光、点击推断已有未取出，推送数据整体没有</span></div>
+<div class="cr w"><span class="ty">附</span><b>目标人群圈得出、规模看得见（前提条件，支撑第一条）</b><span class="ef">五类人群可直接圈出的类数，现为新增 1 类；标签与规则上线前可见规模与口径</span></div>
+</div></div></section>
+</div></div>
+
+<div class="hrow" id="t-scope"><div class="hlab"><b>本期范围</b><span>三档 · 建议</span></div><div class="hmain">
+<section class="pbk"><header><span class="qn b">请主管定</span><h3>本期做到哪一层：三档按层推进、不互斥</h3></header>
+<div class="opts">
+<div class="opt o1"><div class="ok">只做短期</div><div class="ov">12 项</div><div class="od">另含快速提升 8 条</div></div>
+<div class="opt o2 rec"><div class="ok">做到中期<span class="rtag">建议</span></div><div class="ov">再加 12 项</div><div class="od">推荐方案是三层全做的完整形态，建议本期先做到中期</div></div>
+<div class="opt o3"><div class="ok">做到长期</div><div class="ov">再加 10 项</div><div class="od">含统一后台、弹窗与推送合计限量</div></div>
+</div>
+<div class="dbx"><div class="dbk">为什么建议本期先做到中期</div><ul>
+<li>短期 12 项不消除任何根因，所以至少要做到中期。</li>
+<li>但中期只能消除「关闭后不再弹」1 个根因，规则的先后与个数字段在中期补齐，但与推送的合计要到长期；推送分散实现与新手弹窗写死要到长期，且只能部分消除；推送数据留存要看各方式有没有发送记录，中期或长期。</li>
+<li>长期 10 项（含统一后台、弹窗与推送合计限量）事前最难验证、也最难回退，依赖的未知最多，所以先用中期结果与数据收集验证，再决定是否提前。</li>
+</ul></div>
+<p class="tn">该建议的依据不足：缺各推送方式有没有发送记录、能不能按标签发送，以及各档工期，二者核实后可调整档位。</p>
+</section>
+</div></div>
+
+<!-- ══ 附录目录 ══ -->
+<div class="hrow" style="padding-bottom:0">
+<div class="hlab"><b>附录</b><span>证据 · 清单 · 假设</span></div>
+<div class="hmain">
+<div class="apxtoc">
+<div class="ac"><div class="ah"><em>A</em>证据与口径</div>
+<a href="#a1"><i>A-1</i>五类人群的圈选与规模</a>
+<a href="#a2"><i>A-2</i>人群重叠与五类以外</a>
+<a href="#a3"><i>A-3</i>现有弹窗规则与机制</a>
+<a href="#a4"><i>A-4</i>离线玩家分层</a>
+<a href="#a5"><i>A-5</i>数据与解释边界</a>
+</div>
+<div class="ac"><div class="ah"><em>B</em>改动清单（34 项）</div>
+<a href="#b1"><i>B-1</i>短期＝现有配置 12 项</a>
+<a href="#b2"><i>B-2</i>中期＝小改动 12 项</a>
+<a href="#b3"><i>B-3</i>长期＝较大开发 10 项</a>
+<a href="#b4"><i>B-4</i>短期快速提升 8 条</a>
+</div>
+<div class="ac"><div class="ah"><em>C</em>运营场景（25 个）</div>
+<a href="#c1"><i>C-1</i>场景现状与补全时点</a>
+<a href="#c2"><i>C-2</i>做不到的 5 个原因</a>
+</div>
+<div class="ac"><div class="ah"><em>D</em>假设与核实</div>
+<a href="#d1"><i>D-1</i>关键假设</a>
+<a href="#d2"><i>D-2</i>可顺手核实的事</a>
+<a href="#d3"><i>D-3</i>要新增的数据收集</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ══ 附录 ══ -->
+<div class="doc">
+<details class="apx apxall" id="apxall">
+<summary><span class="aall">附录</span><span class="aat">A–D 共 14 项 · 证据与口径、改动清单、运营场景、假设与核实</span><span class="ax">展开全部附录 ▾</span></summary>
+<div class="apxbody">
+
+<section class="layer" id="L1">
+<div class="rail"><div class="dot"></div><div class="st"><div class="nm">附录 A</div><div class="sub">证据与口径</div></div></div>
+<div class="body">
+<details class="apx" id="a1">
+<summary><span class="ai">A-1</span><span class="at2">五类人群的圈选与规模<s>只有新增可直接圈出；其余四类缺事件、月度储值或破产数据</s></span><span class="ax">展开详情</span></summary>
+<div class="abody">
+<div class="apxnote">分母为近一月活跃 62,292 人：最后登录 2026-08-16 至 09-16，原 63,032 行，剔除机器人 599、测试账号 141。<b>金额均为账号累计值</b>；规模写作下界—上界。</div>
+<table class="flt"><thead><tr><th>人群</th><th>圈选条件</th><th>规模</th><th>能否圈出</th></tr></thead><tbody>
+<tr><td class="k">新增</td><td>身份为新增，即注册距 9/16 ≤ 29 天，与身份字段完全吻合</td><td>10,749（17.26%）</td><td>可直接圈出</td></tr>
+<tr><td class="k">回流</td><td>身份为回流；「回来后首次登录」没有字段</td><td>存量 16,564（26.59%）；近 7 天登录 8,022（12.88%）</td><td>只能圈存量</td></tr>
+<tr><td class="k">潜在付费</td><td>累计押注 &gt; 10,000 且从未储值；缺近 4 个月押注</td><td>5,976（可核实）—25,972（41.69%，上界）</td><td>仅有上界</td></tr>
+<tr><td class="k">潜在流失</td><td>需每人月度储值，现有导出只有累计值</td><td>不可知；参照 13,449—18,265</td><td>圈不出</td></tr>
+<tr><td class="k">破产</td><td>破产是触发时刻，不产生名单；触发条件原文未见</td><td>不可知；可能触发 0—34,363</td><td>圈不出</td></tr>
+</tbody></table>
+<div class="xb"><p><b>潜在付费对阈值敏感。</b>押注阈值 1,000／5,000／10,000／50,000／100,000 时分别为 36,028／29,569／25,972／16,399／11,803 人；本方案沿用 10,000。若按「付过费但没买首储礼包」圈，规模为 0—18,265，且与潜在流失重叠。</p><p><b>回流存量不等于刚回来。</b>存量 16,564 人中 8,542 人（51.57%）已 ≥ 8 天未登录，场景按近 7 天登录的 8,022 人估规模。</p></div>
+<p class="src">依据：<a href="阶段2_人群分析.html#s1">人群分析 · 人群口径</a><a href="阶段2_人群分析.html#s2">人群分析 · 人群画像</a></p>
+</div></details>
+
+<details class="apx" id="a2">
+<summary><span class="ai">A-2</span><span class="at2">人群重叠与五类以外<s>每人最多命中 2 类；近 7 天登录者中 1,059—20,768 人不属五类</s></span><span class="ax">展开详情</span></summary>
+<div class="abody"><div class="pts">
+<div class="pt1"><span class="i">①</span><span class="t"><b>每人最多命中 2 类。</b>新增与回流互斥（同一身份字段）；按「从未储值」圈时潜在付费与潜在流失互斥。</span></div>
+<div class="pt1"><span class="i">②</span><span class="t"><b>重叠规模随口径变化。</b>同时命中 2 类：窄口径 3,443 人（5.53%），近 7 天登录者 7,572 人（占 34,363 的 22.04%），宽口径 13,424 人（21.55%）。按人群分组后，每人在同一位置只落一组，不构成额外叠加（前提是分组无漏、无重叠，现有后台靠手工核对）。</span></div>
+<div class="pt1"><span class="i">③</span><span class="t"><b>每人只归一类的代价。</b>新增优先时，至少 3,154 人收不到潜在付费内容；新增或回流优先时，潜在流失受影响的只占其储值的 0.21%—2.31%。</span></div>
+<div class="pt1"><span class="i">④</span><span class="t"><b>五类以外保持默认。</b>近 7 天登录者中 1,059—20,768 人不属五类；其中持续、有储值、近 7 天登录的 11,038 人占累计储值 77.79%（窄口径），是否在衰减本地看不到，暂不并入潜在流失。</span></div>
+<div class="pt1"><span class="i">⑤</span><span class="t"><b>储值集中在少数高卡。</b>有储值者 18,265 人中，金卡以上 6,064 人占累计储值 96.67%；VIP 108 人、黑名单 15 人单列。储值集中只说明高卡重要，推不出应优先服务头部。</span></div>
+</div>
+<p class="src">依据：<a href="阶段2_人群分析.html#s3">人群分析 · 人群重叠</a><a href="阶段2_人群分析.html#s4">人群分析 · 未覆盖人群</a></p>
+</div></details>
+
+<details class="apx" id="a3">
+<summary><span class="ai">A-3</span><span class="at2">现有弹窗规则与机制<s>5 条规则、18 个弹窗项；2 条按人群投放</s></span><span class="ax">展开详情</span></summary>
+<div class="abody">
+<table class="flt"><thead><tr><th>规则</th><th>类型与名称</th><th>位置</th><th>对象</th><th>每次弹出</th><th>排序条数</th></tr></thead><tbody>
+<tr><td class="n">5</td><td>活动类：活动类弹窗</td><td>大厅</td><td>全部玩家</td><td>2</td><td>10</td></tr>
+<tr><td class="n">6</td><td>储值类：通用弹窗</td><td>大厅</td><td>全部玩家</td><td>1</td><td>7</td></tr>
+<tr><td class="n">7</td><td>储值类：破产储值弹窗</td><td>破产</td><td>全部玩家</td><td>1</td><td>8</td></tr>
+<tr><td class="n">10</td><td>活动类：普卡储值衰退 50%</td><td>大厅</td><td>普卡且当月储值低于上月 50%</td><td>1</td><td>1</td></tr>
+<tr><td class="n">11</td><td>活动类：银卡储值衰退 50%</td><td>大厅</td><td>银卡且当月储值低于上月 50%</td><td>1</td><td>1</td></tr>
+</tbody></table>
+<div class="pts" style="margin-top:16px">
+<div class="pt1"><span class="i">①</span><span class="t"><b>排序即优先级</b>　当前不可参加的项被跳过，按序取满弹出个数（已记载）。</span></div>
+<div class="pt1"><span class="i">②</span><span class="t"><b>叠加与先后</b>　多条规则同时命中时叠加触发（已记载）；谁先弹不可设置（推断）。</span></div>
+<div class="pt1"><span class="i">③</span><span class="t"><b>时机</b>　有效时机 4 个：活动开启、首次登入、大厅、破产，全部被占用；进入与返回大厅不区分。另有资料记为 5 个，待核实。</span></div>
+<div class="pt1"><span class="i">④</span><span class="t"><b>频次与总量</b>　只能限单个弹窗项的每日次数与冷却，不支持关闭后静默（已记载）；单人跨规则总量上限没有（推断）。</span></div>
+<div class="pt1"><span class="i">⑤</span><span class="t"><b>内容池</b>　活动类 10 项、储值类 8 项，首储礼包均排储值类第 1；首储礼包 NT$50 为全部上架礼包最低价。新手挑战、新手通行证弹窗写死在客户端，新手礼包（1,000 金币）直接发放。</span></div>
+</div>
+<p class="src">依据：<a href="阶段3_现状盘点.html#s1">现状盘点 · 弹窗</a><a href="阶段3_现状盘点.html#s6">现状盘点 · 人群触达现状</a></p>
+</div></details>
+
+<details class="apx" id="a4">
+<summary><span class="ai">A-4</span><span class="at2">离线玩家分层<s>≥ 8 天未登录 40,117 人，为下界；8 天与 15 天阈值并列</s></span><span class="ax">展开详情</span></summary>
+<div class="abody">
+<div class="apxnote">合并口径 74,480 人＝近一月活跃 62,292 人＋八月登录流失名单中不在近一月活跃里的已离开者 12,188 人。8/1 以前最后登录的玩家不在两份数据内，<b>占比仅作参照</b>。</div>
+<table class="flt"><thead><tr><th>最后登录距 9/16</th><th>人数</th><th>占合并口径</th><th>新增／回流</th><th>有储值</th></tr></thead><tbody>
+<tr><td class="k">0–7 天（弹窗够得到）</td><td>34,363</td><td>46.14%</td><td>—</td><td>—</td></tr>
+<tr><td class="k">8–14 天</td><td>10,014</td><td>13.45%</td><td>2,173／3,452</td><td>2,024（20.21%）</td></tr>
+<tr><td class="k">15–31 天</td><td>17,915</td><td>24.05%</td><td>3,787／5,090</td><td>2,792（15.58%）</td></tr>
+<tr><td class="k">32–46 天（已离开）</td><td>12,188</td><td>16.36%</td><td>0／0</td><td>1,872（15.36%）</td></tr>
+<tr><td class="k">离线 ≥ 8 天合计</td><td>40,117</td><td>53.86%</td><td>5,960／8,542</td><td>6,688（16.67%）</td></tr>
+</tbody></table>
+<div class="xb"><p><b>阈值是约定。</b>8–14 天各日人数 1,132—1,659，逐日没有拐点；取 15 天时离线为 30,103 人。玩家可能每周或隔周登录，真离开者低于 40,117（推断）。</p><p><b>构成。</b>离线者 95.4% 是普卡；已离开的 12,188 人不属于任何一类目标人群。各推送方式最多能触达多少本地算不出，区间 0—40,117。</p></div>
+<p class="src">依据：<a href="阶段2_人群分析.html#s5">人群分析 · 推送受众</a></p>
+</div></details>
+
+<details class="apx" id="a5">
+<summary><span class="ai">A-5</span><span class="at2">数据与解释边界<s>累计快照、配置上限、推断缺口</s></span><span class="ax">展开详情</span></summary>
+<div class="abody"><div class="pts">
+<div class="pt1"><span class="i">①</span><span class="t"><b>本地只有两份累计快照。</b>近一月活跃快照与八月登录流失名单；身份与卡别为取数当时的值，没有历史快照、逐日登录与破产事件。</span></div>
+<div class="pt1"><span class="i">②</span><span class="t"><b>弹窗个数是配置上限。</b>3 个与 4 个是配置允许的最多弹出数，不是实际弹出；首次登入、活动开启时机可能另外多弹，次数未知。</span></div>
+<div class="pt1"><span class="i">③</span><span class="t"><b>10 个缺口（9 个做不到的场景加跨位置先后）中只有 2 个有资料明写。</b>新手弹窗写死在客户端、推送没有统一入口；其余 8 个为推断，若后台实际已有该能力，对应改动提前，不取消。</span></div>
+</div>
+<p class="src">依据：<a href="阶段3_现状盘点.html#s4">现状盘点 · 数据</a><a href="阶段4_问题诊断.html#s1">问题诊断 · 缺口</a></p>
+</div></details>
+</div>
+</section>
+
+<section class="layer" id="LB">
+<div class="rail"><div class="dot"></div><div class="st"><div class="nm">附录 B</div><div class="sub">改动清单</div></div></div>
+<div class="body">
+<div class="apxnote" style="margin-top:0">分层只看开发量：<b>短期</b>＝现有后台配置，无需开发；<b>中期</b>＝增加字段、开关或汇总；<b>长期</b>＝推送并入同一后台、改造客户端、新建数据管线。依赖的项开发量更大时随之后移。实施顺序：先做短期 12 项并同步收集数据；再补弹窗规则字段、事件标签与推送记录；之后把推送并入同一后台并按人合计上限；最后改造客户端。若后台已有某项能力，对应改动提前。顺序只看能力类事实：各推送方式有没有发送记录、能不能按标签发送。</div>
+<details class="apx" id="b1">
+<summary><span class="ai">B-1</span><span class="at2">短期＝现有配置 12 项<s>无需开发，运营或数据组可做</s></span><span class="ax">展开</span></summary>
+<div class="abody"><table class="flt"><thead><tr><th>模块</th><th>改动</th><th>开发量与依赖</th><th>需谁做</th><th>问题</th></tr></thead><tbody>
+<tr><td class="k">标签</td><td>身份人群圈选：新增、卡别、回流存量</td><td>无需开发，标签可自写脚本、自排程；回流存量为推断</td><td>运营或数据组</td><td><a href="#q1">问题一</a></td></tr>
+<tr><td class="k">标签</td><td>累计行为条件圈选：累计储值有无、累计押注阈值</td><td>无需开发；依赖排除条件（推断），没有则多建标签</td><td>运营或数据组</td><td><a href="#q3">问题三</a></td></tr>
+<tr><td class="k">标签</td><td>月度储值条件圈选：衰减三档、近 4 个月押注</td><td>无需开发；依赖每人月度储值可取（推断），不可取则需新建数据管线</td><td>数据组</td><td><a href="#q3">问题三</a></td></tr>
+<tr><td class="k">标签</td><td>口径说明人与命名说明规范</td><td>无需开发，流程项</td><td>运营、数据组</td><td><a href="#q3">问题三</a></td></tr>
+<tr><td class="k">标签</td><td>上线前显示规模与口径</td><td>无需开发；标签是脚本，可先跑查询（推断）</td><td>运营或数据组</td><td><a href="#q3">问题三</a></td></tr>
+<tr><td class="k">弹窗</td><td>活动类弹窗按人群分组，每人只命中一条规则</td><td>无需开发；按人群分层已记载，去重依赖排除条件（推断）</td><td>运营</td><td><a href="#q1">问题一</a></td></tr>
+<tr><td class="k">弹窗</td><td>用单项每日次数与冷却设定活动类每日上限（近似）</td><td>无需开发（已记载）</td><td>运营</td><td><a href="#q2">问题二</a></td></tr>
+<tr><td class="k">推送</td><td>按名单或标签发送（现有方式）</td><td>无需开发；各方式能否按名单或标签发送未知</td><td>运营、营销侧</td><td><a href="#q4">问题四</a></td></tr>
+<tr><td class="k">数据</td><td>弹窗曝光、点击汇总</td><td>无需开发；曝光、点击多半已有（推断）</td><td>数据组</td><td><a href="#q5">问题五</a></td></tr>
+<tr><td class="k">数据</td><td>随机分组对照</td><td>配置分流；可配置为推断，开发成本未评估</td><td>运营</td><td><a href="#q5">问题五</a></td></tr>
+<tr><td class="k">数据</td><td>过程指标：上线前规模可见率、每人上限可算率、可圈出类数</td><td>无需开发，流程记录</td><td>运营、数据组</td><td><a href="#q5">问题五</a></td></tr>
+<tr><td class="k">跨模块</td><td>改规则前测算受影响人群与每人弹窗数，结果按卡别拆分</td><td>无需开发，标签名单查询加手工推算</td><td>运营、数据组</td><td><a href="#q2">问题二</a></td></tr>
+</tbody></table>
+<p class="src">依据：<a href="阶段8_结论汇总.html#s2">结论汇总 · 完整方案与成本分层</a><a href="阶段6_方案设计.html#s7">方案设计 · 实施分层</a></p></div></details>
+
+<details class="apx" id="b2">
+<summary><span class="ai">B-2</span><span class="at2">中期＝小改动 12 项<s>研发在现有后台增加字段、开关或汇总</s></span><span class="ax">展开</span></summary>
+<div class="abody"><table class="flt"><thead><tr><th>模块</th><th>改动</th><th>开发量与依赖</th><th>需谁做</th><th>问题</th></tr></thead><tbody>
+<tr><td class="k">标签</td><td>回流时间点、最近登录天数标签</td><td>由逐日登录生成；数仓没有逐日登录则升为长期</td><td>数据组、研发</td><td><a href="#q3">问题三</a></td></tr>
+<tr><td class="k">标签</td><td>首储购买标记</td><td>由订单明细生成；订单明细可导出则可提前为配置（推断）</td><td>数据组、研发</td><td><a href="#q3">问题三</a></td></tr>
+<tr><td class="k">标签</td><td>人群交集：引用、排除另一人群</td><td>标签后台增加人群引用</td><td>研发</td><td><a href="#q3">问题三</a></td></tr>
+<tr><td class="k">标签</td><td>口径变更记录（版本与生效日）</td><td>增加版本字段；上线前可先人工登记</td><td>研发（先期：运营）</td><td><a href="#q3">问题三</a></td></tr>
+<tr><td class="k">标签</td><td>自动列出引用清单</td><td>后台增加引用关系</td><td>研发</td><td><a href="#q3">问题三</a></td></tr>
+<tr><td class="k">弹窗</td><td>每人单次进大厅合计上限与汇总视图</td><td>弹窗规则增加字段；规则字段可扩展为推断</td><td>研发</td><td><a href="#q2">问题二</a></td></tr>
+<tr><td class="k">弹窗</td><td>每人单日弹窗上限</td><td>同上</td><td>研发</td><td><a href="#q2">问题二</a></td></tr>
+<tr><td class="k">弹窗</td><td>跨规则先后顺序</td><td>推断现无此字段；若「总控」功能已排期则随其上线</td><td>研发</td><td><a href="#q2">问题二</a></td></tr>
+<tr><td class="k">弹窗</td><td>弹窗项图片、文案、点击去向字段开放给运营自助编辑</td><td>后台开放字段编辑；现有后台已支持（推断）则无需开发，属短期快速提升第 6 条</td><td>研发（已支持则：运营）</td><td><a href="#q1">问题一</a></td></tr>
+<tr><td class="k">弹窗</td><td>关闭后当日不再弹开关与关闭记录</td><td>关闭动作未记录时需客户端上报，最多升为长期</td><td>研发</td><td><a href="#q2">问题二</a></td></tr>
+<tr><td class="k">推送</td><td>营销侧按名单召回的记录并入（接入或替代不预设）</td><td>获取营销侧发送记录并入汇总；记录能否获得未知</td><td>营销侧、数据组</td><td><a href="#q4">问题四</a></td></tr>
+<tr><td class="k">数据</td><td>关闭情况汇总：按弹窗汇总关闭人数</td><td>计算无需开发，待关闭记录</td><td>数据组</td><td><a href="#q5">问题五</a></td></tr>
+</tbody></table>
+<p class="src">依据：<a href="阶段8_结论汇总.html#s2">结论汇总 · 完整方案与成本分层</a></p></div></details>
+
+<details class="apx" id="b3">
+<summary><span class="ai">B-3</span><span class="at2">长期＝较大开发 10 项<s>推送并入同一后台、改造客户端、新建数据记录</s></span><span class="ax">展开</span></summary>
+<div class="abody"><table class="flt"><thead><tr><th>模块</th><th>改动</th><th>开发量与依赖</th><th>需谁做</th><th>问题</th></tr></thead><tbody>
+<tr><td class="k">弹窗</td><td>新手弹窗接入后台，计入单次与单日上限</td><td>改造客户端；写死原因无记载</td><td>研发</td><td><a href="#q2">问题二</a></td></tr>
+<tr><td class="k">推送</td><td>按人合计当日弹窗与推送条数，超过上限不再发；弹窗与推送之间的优先</td><td>新增共享计数；与下面 5 项一起建，开发量不重复计算</td><td>研发</td><td><a href="#q4">问题四</a></td></tr>
+<tr><td class="k">推送</td><td>五种推送并入同一后台配置</td><td>与共享计数一起建；短信、Facebook、LINE 在后台之外，依赖营销侧</td><td>研发、营销侧</td><td><a href="#q4">问题四</a></td></tr>
+<tr><td class="k">推送</td><td>快显改为后台配置</td><td>改造客户端，改造量无记载</td><td>研发</td><td><a href="#q4">问题四</a></td></tr>
+<tr><td class="k">推送</td><td>每人每日推送上限</td><td>与共享计数一起建</td><td>研发</td><td><a href="#q4">问题四</a></td></tr>
+<tr><td class="k">推送</td><td>点击跳转配置（含快显）</td><td>与共享计数一起建，另依赖快显改造</td><td>研发</td><td><a href="#q4">问题四</a></td></tr>
+<tr><td class="k">推送</td><td>按行为触发配置</td><td>与共享计数一起建；可配置的触发条件范围未知</td><td>研发</td><td><a href="#q4">问题四</a></td></tr>
+<tr><td class="k">推送</td><td>推送频次控制：按条计数，各方式各设上限再加合计</td><td>与共享计数一起建，另依赖发送记录</td><td>研发</td><td><a href="#q4">问题四</a></td></tr>
+<tr><td class="k">数据</td><td>各推送方式发送、到达、点击记录汇总</td><td>取最弱情形为长期；各方式已有记录则只补汇总，提前为中期</td><td>研发、数据组</td><td><a href="#q5">问题五</a></td></tr>
+<tr><td class="k">数据</td><td>每人每日合计收到条数</td><td>计算无需开发，待推送记录与共享计数</td><td>数据组</td><td><a href="#q5">问题五</a></td></tr>
+</tbody></table>
+<p class="ltp" style="margin:14px 0 0">共享计数建成前，跳转、行为触发、每日上限、频次控制与通路并入不能单独启动。</p>
+<p class="src">依据：<a href="阶段8_结论汇总.html#s2">结论汇总 · 完整方案与成本分层</a><a href="阶段6_方案设计.html#s1">方案设计 · 总体架构</a></p></div></details>
+
+<details class="apx" id="b4">
+<summary><span class="ai">B-4</span><span class="at2">短期快速提升 8 条<s>现有后台可做，无需开发；1 条确定可做</s></span><span class="ax">展开</span></summary>
+<div class="abody">
+<div class="apxnote">入选须同时满足：属现有后台可做的场景、无需开发、运营或数据组可自助、配置到生效路径短。标「先拿数据」的 3 条主要产出数据或规模。</div>
+<table class="flt"><thead><tr><th></th><th>做什么</th><th>对谁</th><th>做完后运营能做到</th><th>怎么确认做到</th></tr></thead><tbody>
+<tr><td class="n">1</td><td>给高影响标签补口径说明（新增是否含第 30 天、回流判定窗口、阈值与取值时点）</td><td>全体标签使用者</td><td>看清同名标签的不同口径</td><td>抽查口径说明与实际取数一致</td></tr>
+<tr><td class="n">2</td><td>标签与规则上线前先显示规模与口径（含是否剔除机器人、测试账号）</td><td>全体标签使用者</td><td>上线前知道圈中多少人</td><td>每次上线前都有规模与口径记录</td></tr>
+<tr><td class="n">3</td><td>改规则前用标签名单加配置，手工测算受影响人群与每人弹窗数，结果按卡别拆分</td><td>改规则涉及的人群</td><td>事先算出每人弹窗上限</td><td>测算结果与上线后的配置一致</td></tr>
+<tr><td class="n">4</td><td>活动类弹窗按新增、回流、其余分三组，每人只命中一条</td><td>新增 10,749；回流 16,564（近 7 天 8,022）；其余</td><td>每组上限事先可读、可单独调</td><td>抽查各组玩家只命中本组规则</td></tr>
+<tr><td class="n">5</td><td>用单项每日次数与冷却设定活动类每日上限（近似）<s>先拿数据；唯一确定可做</s></td><td>碰到上限的玩家</td><td>每人每日最多弹出数可控</td><td>按配置算出每人每日上限</td></tr>
+<tr><td class="n">6</td><td>运营自助调整弹窗图片、文案与点击去向</td><td>现有弹窗项</td><td>改图文与去向不经研发</td><td>新人群配置自主率（需先补配置记录）</td></tr>
+<tr><td class="n">7</td><td>搭建随机分组对照<s>先拿数据</s></td><td>新增、回流等较大的组</td><td>同一人群内比较不同内容</td><td>能按组拉出曝光、点击</td></tr>
+<tr><td class="n">8</td><td>用衰减三档标签加排除去重，只查潜在流失各档规模<s>先拿数据</s></td><td>潜在流失</td><td>得到各档真实规模与口径差异</td><td>各档规模；完整月与本月至今两种口径之差</td></tr>
+</tbody></table>
+<div class="xb"><p><b>未入选的四类：</b>按名单发送的推送（发送在营销侧，运营不能自助）；新增组少弹（属内容选择，不属能力建设，见附录 D-1 的内容方向表）；关闭后不再弹的近似做法（每日次数设为 1，含义不同）；潜在流失与破产的内容配置（缺内容依据与礼包价位，只做规模查询）。</p></div>
+<p class="src">依据：<a href="阶段8_结论汇总.html#s3">结论汇总 · 短期快速提升</a><a href="阶段6_方案设计.html#s8">方案设计 · 短期快速提升</a></p>
+</div></details>
+</div>
+</section>
+
+<section class="layer" id="LC">
+<div class="rail"><div class="dot"></div><div class="st"><div class="nm">附录 C</div><div class="sub">运营场景</div></div></div>
+<div class="body">
+<details class="apx" id="c1">
+<summary><span class="ai">C-1</span><span class="at2">25 个运营场景的现状与补全时点<s>现有后台确定可做 2、依赖推断 12、部分实现 2、做不到 9</s></span><span class="ax">展开</span></summary>
+<div class="abody">
+<div class="apxnote">「依赖推断」指后台有对应能力（如排除条件、月度储值可取）才可做。补全做不到与部分实现的 11 个，需中期 3 个、长期 8 个。标「补充」的 10 个为主管原话之外按理想状态补充的场景，可在取舍时删减。</div>
+<table class="flt"><thead><tr><th></th><th>运营场景</th><th>现有后台</th><th>补全时点</th><th>问题</th></tr></thead><tbody>
+<tr class="grp"><td colspan="5">人群圈选（4）</td></tr>
+<tr><td class="n">9</td><td>用标签条件组合圈任一人群，并看规模与口径</td><td>依赖推断</td><td>配置</td><td><a href="#q3">问题三</a></td></tr>
+<tr><td class="n">10</td><td>反馈标签使用问题并看到迭代</td><td>依赖推断</td><td>配置</td><td><a href="#q3">问题三</a></td></tr>
+<tr><td class="n">20</td><td>两个人群之间做交集、排除</td><td>依赖推断</td><td>配置近似；完整形态中期</td><td><a href="#q3">问题三</a></td></tr>
+<tr><td class="n">21</td><td>自助新建标签并预估规模<s>补充</s></td><td>依赖推断</td><td>配置</td><td><a href="#q3">问题三</a></td></tr>
+<tr class="grp"><td colspan="5">分人群内容配置（7）</td></tr>
+<tr><td class="n">1</td><td>为新增单独配置进大厅的弹窗项与顺序</td><td>可做</td><td>配置</td><td><a href="#q1">问题一</a></td></tr>
+<tr><td class="n">2</td><td>为回流单独配置回来后首次进大厅的内容</td><td>部分实现</td><td>配置近似；精确口径中期</td><td><a href="#q1">问题一</a></td></tr>
+<tr><td class="n">3</td><td>为破产单独配置弹窗项、数量与顺序</td><td>可做</td><td>配置</td><td><a href="#q1">问题一</a></td></tr>
+<tr><td class="n">4</td><td>为潜在付费单独配置内容</td><td>依赖推断</td><td>配置；按「未买首储」圈需中期</td><td><a href="#q1">问题一</a></td></tr>
+<tr><td class="n">5</td><td>潜在流失按衰减分档，各档独立内容</td><td>依赖推断</td><td>配置</td><td><a href="#q1">问题一</a></td></tr>
+<tr><td class="n">17</td><td>新手弹窗纳入后台统一配置<s>补充</s></td><td>做不到</td><td>长期</td><td><a href="#q2">问题二</a></td></tr>
+<tr><td class="n">18</td><td>自助改弹窗图文与点击去向<s>补充；不成立时由中期建设项承接</s></td><td>依赖推断</td><td>配置；不成立则中期</td><td><a href="#q1">问题一</a></td></tr>
+<tr class="grp"><td colspan="5">弹窗数量与先后控制（6）</td></tr>
+<tr><td class="n">6</td><td>每人单次进大厅弹窗上限，事前可确定</td><td>依赖推断</td><td>配置手工算；汇总中期</td><td><a href="#q2">问题二</a></td></tr>
+<tr><td class="n">7</td><td>同时命中多项弹窗时的先后</td><td>部分实现</td><td>同一位置内配置；跨位置中期</td><td><a href="#q2">问题二</a></td></tr>
+<tr><td class="n">8</td><td>改规则前测算受影响人群与弹窗数量</td><td>依赖推断</td><td>配置手工算</td><td><a href="#q2">问题二</a></td></tr>
+<tr><td class="n">13</td><td>每人每日推送条数上限</td><td>做不到</td><td>长期</td><td><a href="#q4">问题四</a></td></tr>
+<tr><td class="n">16</td><td>关闭某弹窗后当日不再出现<s>补充</s></td><td>做不到</td><td>中期</td><td><a href="#q2">问题二</a></td></tr>
+<tr><td class="n">19</td><td>弹窗与推送每日合计上限<s>补充</s></td><td>做不到</td><td>长期</td><td><a href="#q4">问题四</a></td></tr>
+<tr class="grp"><td colspan="5">统一推送（4）</td></tr>
+<tr><td class="n">11</td><td>五种推送统一入口，快显可配置</td><td>做不到</td><td>长期</td><td><a href="#q4">问题四</a></td></tr>
+<tr><td class="n">12</td><td>按标签定向发送推送</td><td>依赖推断</td><td>配置</td><td><a href="#q4">问题四</a></td></tr>
+<tr><td class="n">22</td><td>推送点击后的跳转去向<s>补充</s></td><td>做不到</td><td>长期</td><td><a href="#q4">问题四</a></td></tr>
+<tr><td class="n">23</td><td>按玩家行为自动触发推送<s>补充</s></td><td>做不到</td><td>长期</td><td><a href="#q4">问题四</a></td></tr>
+<tr class="grp"><td colspan="5">效果查看（4）</td></tr>
+<tr><td class="n">14</td><td>单次推送的发送量与到达量</td><td>做不到</td><td>长期；各方式已有记录则中期</td><td><a href="#q5">问题五</a></td></tr>
+<tr><td class="n">15</td><td>看弹窗曝光、点击<s>补充</s></td><td>依赖推断</td><td>配置</td><td><a href="#q5">问题五</a></td></tr>
+<tr><td class="n">24</td><td>同一人群随机分组对比内容效果<s>补充</s></td><td>依赖推断</td><td>配置</td><td><a href="#q5">问题五</a></td></tr>
+<tr><td class="n">25</td><td>推送点击<s>补充</s></td><td>做不到</td><td>长期</td><td><a href="#q5">问题五</a></td></tr>
+</tbody></table>
+<p class="src">依据：<a href="阶段1_需求分析.html#c1">需求分析 · 5 项能力与 25 个场景</a><a href="阶段3_现状盘点.html#s7">现状盘点 · 场景可行性</a><a href="阶段7_方案验证.html#s1">方案验证 · 场景验证</a></p>
+</div></details>
+
+<details class="apx" id="c2">
+<summary><span class="ai">C-2</span><span class="at2">做不到的 5 个原因<s>现有后台配置只能绕开，消除都要中期以上</s></span><span class="ax">展开</span></summary>
+<div class="abody">
+<table class="flt"><thead><tr><th>做不到的原因</th><th>涉及场景</th><th>对应改动</th><th>何时消除</th><th>消除程度</th></tr></thead><tbody>
+<tr><td class="k">推送随各功能分别实现，没有统一入口与计数</td><td>统一入口、每人每日推送上限、按行为触发、弹窗与推送合计上限</td><td>推送并入同一后台、按人合计上限及随之的各项</td><td>长期</td><td>部分：各推送方式能否接入、按标签发送未知</td></tr>
+<tr><td class="k">部分弹窗与快显写死在客户端</td><td>新手弹窗纳入后台、推送点击跳转（快显）</td><td>新手弹窗接入后台、快显改为后台配置</td><td>长期</td><td>部分；若写死属历史遗留可全部消除</td></tr>
+<tr><td class="k">弹窗规则没有跨规则先后与总量设置</td><td>多条规则的先后、合计上限的弹窗侧</td><td>按人群分组（绕开）；单次、单日上限与先后字段</td><td>中期</td><td>部分：合计上限需推送并入后才完整</td></tr>
+<tr><td class="k">推送数据未汇总或未留存</td><td>发送量与到达量、点击</td><td>推送记录汇总、营销侧召回记录并入</td><td>中期或长期</td><td>待数据：各方式有无记录决定</td></tr>
+<tr><td class="k">弹窗频次不支持关闭后不再弹</td><td>关闭后当日不再弹</td><td>关闭后当日不再弹开关与关闭记录</td><td>中期</td><td>全部</td></tr>
+</tbody></table>
+<div class="xb"><p><b>读法：</b>「消除」指造成缺口的机制被改掉。短期 12 项不消除任何原因，只能绕开；推送分散在各功能是做不到场景最多的原因，但它居首只说明从哪一侧入手，不说明更重要。</p></div>
+<p class="src">依据：<a href="阶段4_问题诊断.html#s2">问题诊断 · 做不到的原因</a><a href="阶段7_方案验证.html#s3">方案验证 · 原因验证</a></p>
+</div></details>
+</div>
+</section>
+
+<section class="layer" id="LD">
+<div class="rail"><div class="dot"></div><div class="st"><div class="nm">附录 D</div><div class="sub">假设与核实</div></div></div>
+<div class="body">
+<details class="apx" id="d1">
+<summary><span class="ai">D-1</span><span class="at2">关键假设<s>推错时改变的是先后、开发量或规模，不改整体方向</s></span><span class="ax">展开</span></summary>
+<div class="abody"><div class="pts">
+<div class="pt1"><span class="i">①</span><span class="t"><b>后台能力是否已存在（推断）。</b>弹窗规则的先后与总量字段、标签排除条件、各推送方式的记录与按标签发送。若已存在，做不到的场景改档、对应改动提前，不取消。</span></div>
+<div class="pt1"><span class="i">②</span><span class="t"><b>新手弹窗与快显写死的原因未核实，按客户端限制写（保守）。</b>只能部分消除，新手弹窗接入属长期；若属历史遗留，可降为中期、全部消除。</span></div>
+<div class="pt1"><span class="i">③</span><span class="t"><b>补充场景属理想状态。</b>25 个场景中 10 个为主管原话之外的补充；取舍时移出，对应改动减少，整体方向不变。</span></div>
+<div class="pt1"><span class="i">④</span><span class="t"><b>人群口径（推断）。</b>潜在付费按「累计押注 &gt; 10,000 且从未储值」圈；回流按存量与近 7 天登录估规模；离线 40,117 为下界，真离开者更少。推错只改规模与重叠，不改五类划分。</span></div>
+<div class="pt1"><span class="i">⑤</span><span class="t"><b>各人群内容方向均为待验证假设，属内容选择，不在本方案建设范围。</b>缺曝光点击、月度储值、礼包价位、破产数据与回流任务内容；补到数据后再上调或取消。逐行见下表。</span></div>
+</div>
+<table class="flt" style="margin-top:14px"><thead><tr><th>人群</th><th>规模</th><th>内容方向（假设）</th><th>依据</th><th>强度与缺什么</th></tr></thead><tbody>
+<tr><td class="k">新增</td><td>10,749</td><td>不再叠加奖励类弹窗</td><td>押注为 0 的 1,698 人中 82.51% 领了 1,000 活动赠点却未使用，只推得出「再叠加奖励没有依据」，推不出「第一屏该少弹」</td><td>理由弱；缺：为什么没开始玩、第一屏实际弹窗清单、曝光与关闭数据</td></tr>
+<tr><td class="k">回流</td><td>近 7 天登录 8,022</td><td>给回来当天可完成的目标</td><td>回流任务内容未知，只能写设想</td><td>理由弱；缺：回流任务内容</td></tr>
+<tr><td class="k">潜在付费</td><td>5,976—25,972</td><td>首储礼包维持现有位置</td><td>首储礼包 NT$50 是全部上架礼包的最低价，只说明降低价格门槛没有余地，推不出「该排第一」</td><td>理由弱；缺：首储转化率、曝光次数</td></tr>
+<tr><td class="k">潜在流失</td><td>不可知，参照 13,449</td><td>与平时花费相称的挽回内容，金卡以上不合并</td><td>同卡别内储值相差 2.2–5.8 倍，卡别只作粗分档</td><td>理由弱；缺：每人月度储值</td></tr>
+<tr><td class="k">破产</td><td>不可知，可能触发 0—34,363</td><td>内容待定</td><td>两个礼包的价位、限购与排序用意查不到</td><td>理由弱；缺：礼包价位、限购、排序用意</td></tr>
+</tbody></table>
+<p class="ltp" style="margin:10px 0 0">五类以外的玩家保持默认内容；VIP 108 人、黑名单 15 人单列。</p>
+<p class="src">依据：<a href="阶段7_方案验证.html#s5">方案验证 · 假设汇总</a><a href="阶段6_方案设计.html#s10">方案设计 · 关键假设</a></p>
+</div></details>
+
+<details class="apx" id="d2">
+<summary><span class="ai">D-2</span><span class="at2">可顺手核实的事<s>有标准答案的事实，答案不同只改范围或开发量</s></span><span class="ax">展开</span></summary>
+<div class="abody"><table class="flt"><thead><tr><th>核实什么</th><th>答案不同时</th><th>谁能答</th></tr></thead><tbody>
+<tr><td class="k">新手弹窗与快显写死是历史遗留还是客户端限制</td><td>历史遗留：新手弹窗接入可降为中期；客户端限制：仍属长期</td><td>研发</td></tr>
+<tr><td class="k">各推送方式能否按标签发送、是否各自有记录</td><td>能且有记录：推送记录汇总降为中期，开发量下调；只能按名单：须新建记录</td><td>研发、营销侧、数据组</td></tr>
+<tr><td class="k">推送授权、联系方式使用、触达频次是否受监管或平台规则限制</td><td>未核实前按有限制写：上限取值服从，按名单发送的范围受限，做法不变；无限制则按设计取值</td><td>合规人员</td></tr>
+<tr><td class="k">潜在付费指「押注达阈值且未储值」，还是「付过费但没买首储礼包」</td><td>前者 5,976—25,972 人；后者 0—18,265 人，须与潜在流失去重并需首储购买标记</td><td>运营</td></tr>
+<tr><td class="k">金卡以上储值下降者有无专人维护</td><td>有：潜在流失只覆盖普卡、银卡，近 7 天登录上界 8,104；无：含金卡以上，13,449</td><td>运营</td></tr>
+</tbody></table>
+<p class="src">依据：<a href="阶段8_结论汇总.html#s4">结论汇总 · 待核实事项</a></p></div></details>
+
+<details class="apx" id="d3">
+<summary><span class="ai">D-3</span><span class="at2">要新增的数据收集 10 项<s>不阻塞推进，未取到时按区间与推断往下做</s></span><span class="ax">展开</span></summary>
+<div class="abody"><table class="flt"><thead><tr><th>收什么</th><th>解开哪一环</th><th>谁能取到</th></tr></thead><tbody>
+<tr><td class="k">各推送方式单独的发送、到达、点击记录及所在位置</td><td>推送记录汇总是中期还是长期</td><td>数据组、营销侧、研发</td></tr>
+<tr><td class="k">弹窗规则字段完整列表与排序列含义；推送触发条件清单</td><td>先后与总量字段是否缺失；行为触发可配置范围</td><td>研发、运营</td></tr>
+<tr><td class="k">「当日不再弹」能否配置，关闭动作是否记录</td><td>关闭后不再弹的开发量；关闭情况能否查看</td><td>研发、运营</td></tr>
+<tr><td class="k">每人月度储值（近 3 个月）</td><td>潜在流失圈选与人数</td><td>数据组</td></tr>
+<tr><td class="k">订单明细</td><td>首储购买标记</td><td>数据组</td></tr>
+<tr><td class="k">推送召回的发送记录，以及个人逐日登录</td><td>回流时间点；营销侧召回接入</td><td>数据组、营销侧</td></tr>
+<tr><td class="k">后台配置操作与提单记录</td><td>新人群配置自主率；标签由谁编写</td><td>运营、研发</td></tr>
+<tr><td class="k">破产弹窗每日触发人数与触发条件原文</td><td>破产人群圈选与规模</td><td>数据组、研发</td></tr>
+<tr><td class="k">离线玩家的推送可达情况：推播授权率、手机号非空率、Facebook 与 LINE 绑定率</td><td>各推送方式最多够到多少，收窄 0—40,117</td><td>数据组、营销侧</td></tr>
+<tr><td class="k">近 4 个月押注</td><td>潜在付费的真实规模（5,976—25,972）</td><td>数据组</td></tr>
+</tbody></table>
+<p class="src">依据：<a href="阶段8_结论汇总.html#s4">结论汇总 · 数据收集</a></p></div></details>
+</div>
+</section>
+
+<div><div class="foot" style="margin-top:26px">
+<span>弹窗 · 标签 · 推送 · 精细化运营能力方案 V1</span>
+<span>样本：近一月活跃 62,292 人（2026-08-16 至 09-16）· 2026.10.09</span>
+</div></div>
+</div>
+</details>
+</div>
+
+<script>
+(function(){
+  var ALL='details.apx, details.pf';
+  function setAll(v){ document.querySelectorAll(ALL).forEach(function(d){ d.open=v; }); }
+  var tog=document.getElementById('tog'), opened=false;
+  tog.addEventListener('click',function(){ opened=!opened; setAll(opened); tog.textContent=opened?'全部收起':'全部展开'; });
+  window.addEventListener('beforeprint',function(){ setAll(true); });
+  function openAncestors(el){ for(var d=el&&el.closest('details'); d; d=d.parentElement&&d.parentElement.closest('details')) d.open=true; }
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){ a.addEventListener('click',function(){ var t=document.querySelector(a.getAttribute('href')); if(t){ openAncestors(t); if(t.tagName==='DETAILS') t.open=true; } }); });
+  var tlinks=[].slice.call(document.querySelectorAll('.toc a'));
+  var marks=tlinks.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+  function spy(){ var y=window.scrollY+150, best=0;
+    for(var i=0;i<marks.length;i++){ var m=marks[i]; if(!m) continue; var r=m.getBoundingClientRect(); if(!r.height) continue; if(r.top+window.scrollY<=y) best=i; }
+    tlinks.forEach(function(a,i){ a.classList.toggle('on',i===best); }); }
+  window.addEventListener('scroll',spy,{passive:true}); window.addEventListener('resize',spy); spy();
+})();
+</script>
+</body></html>

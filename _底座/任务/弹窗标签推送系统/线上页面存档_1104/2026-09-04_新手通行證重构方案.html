@@ -1,0 +1,547 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style></head><body>
+<title>新手通行證重构方案</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@500;700;900&display=swap">
+
+<style>
+:root{
+  --ground:#EEF1F2;
+  --surface:#FFFFFF;
+  --surface-2:#E4E9EB;
+  --ink:#15202A;
+  --ink-2:#4C5D69;
+  --ink-3:#7C8C97;
+  --rule:#D2DADE;
+  --rule-strong:#B4C0C6;
+  --accent:#0B6B63;
+  --accent-soft:#D9EAE7;
+  --decline:#A33A2A;
+  --decline-soft:#F2DFDB;
+  --brass:#9A7126;
+  --focus:#0B6B63;
+  --shadow:0 1px 2px rgba(21,32,42,.06),0 8px 24px -16px rgba(21,32,42,.28);
+  --serif:"Noto Serif SC",Songti SC,SimSun,Georgia,serif;
+  --sans:"Noto Sans SC",-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#0E1418;
+    --surface:#151D22;
+    --surface-2:#1D272D;
+    --ink:#E7EDF0;
+    --ink-2:#A7B6BF;
+    --ink-3:#7E8F99;
+    --rule:#2A363D;
+    --rule-strong:#3C4A52;
+    --accent:#4FB9AC;
+    --accent-soft:#12302D;
+    --decline:#E2795F;
+    --decline-soft:#33201B;
+    --brass:#D3A54B;
+    --focus:#4FB9AC;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -18px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0E1418;
+  --surface:#151D22;
+  --surface-2:#1D272D;
+  --ink:#E7EDF0;
+  --ink-2:#A7B6BF;
+  --ink-3:#7E8F99;
+  --rule:#2A363D;
+  --rule-strong:#3C4A52;
+  --accent:#4FB9AC;
+  --accent-soft:#12302D;
+  --decline:#E2795F;
+  --decline-soft:#33201B;
+  --brass:#D3A54B;
+  --focus:#4FB9AC;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -18px rgba(0,0,0,.8);
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--ground);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:17px;
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+:focus-visible{outline:2px solid var(--focus);outline-offset:3px;border-radius:2px}
+
+/* ---------- chrome ---------- */
+.bar{
+  position:sticky;top:0;z-index:20;
+  background:color-mix(in srgb,var(--ground) 88%,transparent);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--rule);
+}
+.bar-in{
+  max-width:1000px;margin:0 auto;
+  padding:10px 28px;
+  display:flex;align-items:baseline;justify-content:space-between;gap:16px;
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--ink-3);
+}
+.bar-in b{color:var(--ink-2);font-weight:500}
+#prog{height:2px;background:var(--accent);width:0}
+
+.wrap{max-width:1000px;margin:0 auto;padding:0 28px 96px}
+
+/* ---------- slide ---------- */
+.slide{
+  padding:76px 0;
+  border-bottom:1px solid var(--rule);
+}
+.slide:last-of-type{border-bottom:0}
+.eyebrow{
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-3);display:flex;gap:14px;align-items:center;margin-bottom:22px;
+}
+.eyebrow .n{color:var(--accent)}
+.eyebrow .bar-l{flex:0 0 34px;height:1px;background:var(--rule-strong)}
+h2{
+  font-family:var(--serif);font-weight:700;font-size:clamp(27px,3.5vw,40px);
+  line-height:1.34;margin:0;text-wrap:balance;max-width:20ch;
+}
+.sub{margin:20px 0 0;color:var(--ink-2);max-width:60ch;font-size:17px}
+.sub strong{color:var(--ink);font-weight:500}
+
+/* ---------- the number ---------- */
+.figure{display:flex;align-items:flex-end;gap:20px;flex-wrap:wrap;margin:34px 0 0}
+.big{
+  font-family:var(--serif);font-weight:900;
+  font-size:clamp(64px,13vw,132px);line-height:.86;
+  letter-spacing:-.02em;font-variant-numeric:tabular-nums;
+}
+.big.brass{color:var(--brass)}
+.big.down{color:var(--decline)}
+.big.up{color:var(--accent)}
+.big-note{
+  font-family:var(--mono);font-size:12.5px;line-height:1.6;color:var(--ink-3);
+  padding-bottom:10px;max-width:22ch;
+}
+
+/* ---------- cover ---------- */
+.cover{padding:64px 0 68px;border-bottom:2px solid var(--rule-strong)}
+.cover h1{
+  font-family:var(--serif);font-weight:900;
+  font-size:clamp(34px,5.4vw,58px);line-height:1.18;margin:0;letter-spacing:-.01em;
+}
+.thesis{
+  margin:30px 0 0;padding:22px 26px;
+  background:var(--surface);border-left:3px solid var(--brass);
+  box-shadow:var(--shadow);
+  font-family:var(--serif);font-size:clamp(18px,2.2vw,23px);line-height:1.62;
+  max-width:34ch;
+}
+.meta{
+  margin-top:30px;display:flex;flex-wrap:wrap;gap:8px 26px;
+  font-family:var(--mono);font-size:12px;color:var(--ink-3);
+  font-variant-numeric:tabular-nums;
+}
+
+/* ---------- details ---------- */
+details{margin-top:28px;border-top:1px solid var(--rule);padding-top:14px;max-width:62ch}
+summary{
+  cursor:pointer;font-family:var(--mono);font-size:12px;letter-spacing:.06em;
+  color:var(--ink-3);text-transform:uppercase;list-style:none;
+}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"+ ";color:var(--accent)}
+details[open] summary::before{content:"− "}
+details p{margin:14px 0 0;font-size:15px;color:var(--ink-2);line-height:1.8}
+details p + p{margin-top:10px}
+
+/* ---------- tables ---------- */
+.tw{overflow-x:auto;margin-top:34px;border:1px solid var(--rule);background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:15px}
+th,td{padding:13px 18px;text-align:left;border-bottom:1px solid var(--rule);vertical-align:top}
+tr:last-child td{border-bottom:0}
+th{
+  font-family:var(--mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:500;background:var(--surface-2);
+}
+td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+td .up{color:var(--accent);font-weight:500}
+td .dn{color:var(--decline);font-weight:500}
+.pick{background:var(--accent-soft)}
+
+/* ---------- chain chips ---------- */
+.chain{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:34px}
+.chip{
+  background:var(--surface);border:1px solid var(--rule);
+  padding:11px 16px;font-size:15px;box-shadow:var(--shadow);
+}
+.chip.on{border-color:var(--accent);background:var(--accent-soft);color:var(--ink)}
+.arrow{font-family:var(--mono);color:var(--ink-3);font-size:13px}
+
+/* ---------- lists ---------- */
+.pts{list-style:none;padding:0;margin:34px 0 0;display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.pts li{background:var(--surface);padding:18px 20px;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:baseline}
+.pts .k{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;color:var(--accent);text-transform:uppercase;white-space:nowrap}
+.pts .v{font-size:15.5px;color:var(--ink-2)}
+.pts .v b{color:var(--ink);font-weight:500}
+
+/* ---------- figure ---------- */
+figure{margin:36px 0 0;padding:0}
+figure svg{width:100%;height:auto;display:block;color:var(--ink-2)}
+figcaption{
+  margin-top:14px;font-family:var(--mono);font-size:12px;color:var(--ink-3);line-height:1.7;
+}
+.svg-card{background:var(--surface);border:1px solid var(--rule);padding:20px 18px}
+
+.caveat{
+  margin-top:26px;padding:14px 18px;background:var(--surface-2);
+  font-size:14.5px;color:var(--ink-2);max-width:60ch;border-left:2px solid var(--rule-strong);
+}
+.caveat b{color:var(--ink);font-weight:500}
+
+.end{padding:60px 0 0;font-family:var(--mono);font-size:12px;color:var(--ink-3);line-height:1.9}
+
+@media (max-width:640px){
+  body{font-size:16px}
+  .wrap,.bar-in{padding-left:20px;padding-right:20px}
+  .slide{padding:56px 0}
+  .pts li{grid-template-columns:1fr;gap:6px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="bar">
+  <div class="bar-in"><b>新手通行證 · 重构方案</b><span>2026-09-03</span></div>
+  <div id="prog"></div>
+</div>
+
+<div class="wrap">
+
+<section class="cover">
+  <h1>新手通行證<br>重构方案</h1>
+  <p class="thesis">通行證在一个玩家不容易看到的位置，用玩家感觉不到的量，发一种平台其实不花现金的东西。</p>
+  <div class="meta">
+    <span>样本 31,645 人</span>
+    <span>2026-04-01 ~ 06-30 注册新用户</span>
+    <span>配置期内未调整</span>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow"><span class="n">01</span><span class="bar-l"></span><span>结论</span></div>
+  <h2>建议重构。本轮只做两件事。</h2>
+  <p class="sub"><strong>把奖励送到人手上，把奖励发在人走得到的地方。</strong>不动进度机制，不动满级门槛——这两样一动，就要连带处理防刷、闸门和界面解释，本轮不值得。</p>
+  <div class="chain">
+    <span class="chip on">改触达</span>
+    <span class="chip on">改奖励结构</span>
+    <span class="arrow">／</span>
+    <span class="chip">进度机制</span>
+    <span class="chip">满级门槛</span>
+    <span class="arrow">← 本轮不动</span>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow"><span class="n">02</span><span class="bar-l"></span><span>需要批准什么</span></div>
+  <h2>四项支持，两周内可见第一个指标。</h2>
+  <ul class="pts">
+    <li><span class="k">研发</span><span class="v"><b>等级奖励改自动到账</b>；大厅图标加未领取红点</span></li>
+    <li><span class="k">BI</span><span class="v">一条取数：<b>按等级区间统计未领奖人数</b></span></li>
+    <li><span class="k">策划</span><span class="v">两个口径：新手礼包发放条件、高级证价格分界日</span></li>
+    <li><span class="k">运营</span><span class="v">弹窗配置排期（<b>不占用新的弹窗位</b>）</span></li>
+  </ul>
+</section>
+
+<section class="slide">
+  <div class="eyebrow"><span class="n">03</span><span class="bar-l"></span><span>现状 · 失败之一</span></div>
+  <h2>三分之一的人，奖励躺着从没领走。</h2>
+  <div class="figure">
+    <div class="big down">9,027</div>
+    <div class="big-note">人<br>＝ 有押注者的 35.7%</div>
+  </div>
+  <p class="sub">他们已经在玩、已经有等级、奖励就在那里。<strong>入口是大厅一个常驻图标，无弹窗、无红点、无角标。</strong></p>
+  <details>
+    <summary>展开看依据</summary>
+    <p>计算方式：25,302（有押注即有等级）− 16,275（领取过等级奖励）= 9,027，分母为有押注者 25,302 人。</p>
+    <p>不采用「登录 31,115 − 领奖 16,275 = 14,840」这个算法——它把 5,813 名从未押注、等级为 0、本就没有奖励可领的人也算了进去。</p>
+    <p>不领取的原因目前无法区分：可能是没看到，也可能是看到了但奖励太少不值得点。区分方法是按等级区间拆分未领奖人数，此项取数已列入需求。</p>
+  </details>
+</section>
+
+<section class="slide">
+  <div class="eyebrow"><span class="n">04</span><span class="bar-l"></span><span>现状 · 失败之二</span></div>
+  <h2>中位用户拿到的东西，约等于十一分钟。</h2>
+  <div class="figure">
+    <div class="big brass">11</div>
+    <div class="big-note">分钟游戏时长<br>＝ 100 老幣 ＝ NT$1</div>
+  </div>
+  <p class="sub">他累计押注 19,885，走到 Lv35——<strong>走完了 35% 的等级，只拿到全程老幣奖励的 13.3%。</strong></p>
+  <details>
+    <summary>展开看依据</summary>
+    <p>换算：100 老幣在 RTP 95.79% 下期望可产生 100 ÷ 4.21% ≈ 2,375 老幣押注量；按单次押注 15 點、每 4 秒一次转轴，约 158 次转轴，约 11 分钟。</p>
+    <p>押注分布是极端幂律：中位 19,885，均值 1,688,726，均值是中位数的 85 倍，基尼 0.9787。因此所有「典型用户」指标一律使用中位数。</p>
+  </details>
+</section>
+
+<section class="slide">
+  <div class="eyebrow"><span class="n">05</span><span class="bar-l"></span><span>现状 · 失败之三</span></div>
+  <h2>配置三个月没动，吸引力自己在掉。</h2>
+  <div class="figure">
+    <div class="big down">−34%</div>
+    <div class="big-note">高级证购买率<br>3.15% → 2.08%</div>
+  </div>
+  <p class="sub">同期付费率只跌了 8.9%，<strong>剩下的跌幅来自通行證在付费用户中的渗透率下滑</strong>（20.1% → 14.5%）。而同一批流量下，新手挑戰的完成率基本持平。</p>
+  <div class="caveat"><b>口径提醒：</b>只有 3 个月度观测点，不足以做趋势外推或精确的定量归因。此处只主张方向——不改动不等于维持现状。</div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow"><span class="n">06</span><span class="bar-l"></span><span>关键发现</span></div>
+  <h2>买家在体验之前就买了。</h2>
+  <div class="figure">
+    <div class="big">72%</div>
+    <div class="big-note">的买家<br>在 Lv0–5 就完成购买</div>
+  </div>
+  <p class="sub">36% 在注册当天购买，前三天占 64.3%。<strong>购买决策发生在用户体验到进度条价值之前</strong>——所以能影响购买的是「看不看得见」和「看起来值不值」，不是进度机制怎么设计。</p>
+  <p class="sub">这一条直接决定了本轮改什么。</p>
+</section>
+
+<section class="slide">
+  <div class="eyebrow"><span class="n">07</span><span class="bar-l"></span><span>一个天然对照</span></div>
+  <h2>门槛更高、时间更短，参与反而更多。</h2>
+  <div class="tw">
+    <table>
+      <tr><th>　</th><th>新手挑戰</th><th>新手通行證</th></tr>
+      <tr><td>参与人数</td><td class="num">约 17,700 完成</td><td class="num">16,275 领过奖</td></tr>
+      <tr><td>达成门槛</td><td>走完整个活动</td><td>领一次奖励即可</td></tr>
+      <tr><td>时间窗</td><td class="num">7 天</td><td class="num">30 天</td></tr>
+      <tr><td>曝光</td><td><span class="up">每次进大厅强制弹窗</span></td><td><span class="dn">无弹窗、无红点</span></td></tr>
+    </table>
+  </div>
+  <div class="caveat"><b>归因要留余地：</b>新手挑戰另有 iPhone 抽奖作为钩子，曝光与奖励吸引力两个因素混在一起，现有数据无法分开。但无论哪个在起作用，指向的动作一致——通行證现在这两样都没有。</div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow"><span class="n">08</span><span class="bar-l"></span><span>方案 · 触达</span></div>
+  <h2>三条并行，都不占用新的弹窗位。</h2>
+  <p class="sub">五个弹窗时机已全部有占用，硬抢抢不过首储礼包和新手挑戰。<strong>所以不抢——搭车。</strong>系统已确认支持同一时机串行编排。</p>
+  <ul class="pts">
+    <li><span class="k">主手段</span><span class="v"><b>等级奖励改自动到账</b>。普通轨升级即到账，高级轨保留手动领取作为回访钩子</span></li>
+    <li><span class="k">最便宜</span><span class="v">大厅图标挂<b>未领取红点／数字角标</b>，零弹窗资源占用</span></li>
+    <li><span class="k">搭车</span><span class="v">串在既有弹窗之后，或挂进新手挑戰的节点弹窗</span></li>
+  </ul>
+  <div class="chain">
+    <span class="chip">破产</span><span class="arrow">→</span>
+    <span class="chip">发财金</span><span class="arrow">→</span>
+    <span class="chip on">你还有 X 老幣没领</span>
+  </div>
+  <div class="caveat">破产位串行有<b>弹窗疲劳风险</b>，建议每日一次上限，并在上线后观察破产时刻的整体关闭率。</div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow"><span class="n">09</span><span class="bar-l"></span><span>方案 · 奖励结构</span></div>
+  <h2>钱要发在人走得到的地方。</h2>
+  <p class="sub">中位用户只走到 Lv35。<strong>加厚要靠把奖励前移，不能靠让更多人满级。</strong></p>
+  <figure>
+    <div class="svg-card">
+      <svg viewBox="0 0 640 340" role="img" aria-label="累计奖励发放曲线对比：现状为后置平铺，中位用户走到 Lv35 时只拿到 13.3%；调整后为前置递减，同一位置约 70%。">
+        <line x1="60" y1="270" x2="612" y2="270" stroke="currentColor" stroke-width="1" opacity=".45"/>
+        <line x1="60" y1="270" x2="60" y2="34" stroke="currentColor" stroke-width="1" opacity=".45"/>
+        <line x1="60" y1="155" x2="612" y2="155" stroke="currentColor" stroke-width="1" opacity=".16" stroke-dasharray="3 4"/>
+        <line x1="60" y1="40" x2="612" y2="40" stroke="currentColor" stroke-width="1" opacity=".16" stroke-dasharray="3 4"/>
+
+        <line x1="249" y1="34" x2="249" y2="270" stroke="var(--brass)" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <text x="255" y="48" font-family="IBM Plex Mono, monospace" font-size="12" fill="var(--brass)">Lv35 中位用户到这里</text>
+
+        <polyline fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="6 5" opacity=".8"
+          points="60,270 114,267.7 168,263.1 249,239.4 330,214 438,155 519,104.4 600,40"/>
+        <polyline fill="none" stroke="var(--accent)" stroke-width="2.6"
+          points="60,270 114,201 168,155 249,109 330,81.4 438,58.4 519,46.9 600,40"/>
+
+        <circle cx="249" cy="239.4" r="4" fill="var(--decline)"/>
+        <text x="262" y="244" font-family="IBM Plex Mono, monospace" font-size="12" fill="var(--decline)">现状 13.3%</text>
+        <circle cx="249" cy="109" r="4" fill="var(--accent)"/>
+        <text x="262" y="103" font-family="IBM Plex Mono, monospace" font-size="12" fill="var(--accent)">调整后 约 70%</text>
+
+        <text x="52" y="274" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="11" fill="currentColor" opacity=".7">0%</text>
+        <text x="52" y="159" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="11" fill="currentColor" opacity=".7">50%</text>
+        <text x="52" y="44" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="11" fill="currentColor" opacity=".7">100%</text>
+        <text x="60" y="292" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="currentColor" opacity=".7">Lv1</text>
+        <text x="600" y="292" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="currentColor" opacity=".7">Lv100</text>
+        <text x="60" y="320" font-family="IBM Plex Mono, monospace" font-size="11" fill="currentColor" opacity=".7">纵轴：累计发到手的奖励占全程比例</text>
+      </svg>
+    </div>
+    <figcaption>现状是后置平铺——奖励压在没人到得了的后半段。调整后把同样的总量前移，中位用户在他实际走到的位置就能拿到大部分。</figcaption>
+  </figure>
+  <ul class="pts">
+    <li><span class="k">曲线</span><span class="v">后置平铺改为<b>前置递减 + 里程碑</b>（Lv5／10／20／35）</span></li>
+    <li><span class="k">零成本</span><span class="v"><b>69 张体验卡改为高级轨独占</b>。两轨现在完全相同，这一半发放价值对购买决策毫无贡献</span></li>
+    <li><span class="k">不动</span><span class="v">兌換星本轮不调整——已确认有其他获取途径，不再是瓶颈</span></li>
+  </ul>
+</section>
+
+<section class="slide">
+  <div class="eyebrow"><span class="n">10</span><span class="bar-l"></span><span>为什么不动门槛</span></div>
+  <h2>一个数值决定，会牵出四层新问题。</h2>
+  <figure>
+    <div class="svg-card">
+      <svg viewBox="0 0 700 250" role="img" aria-label="对比两条决策链：降低满级门槛会依次引出赠点自举、需要闸门、界面解释成本；维持门槛则可直接加发奖励。">
+        <defs>
+          <marker id="ar-d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <polygon points="0,0 10,5 0,10" fill="var(--decline)"/>
+          </marker>
+          <marker id="ar-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <polygon points="0,0 10,5 0,10" fill="var(--accent)"/>
+          </marker>
+        </defs>
+
+        <text x="20" y="24" font-family="IBM Plex Mono, monospace" font-size="11.5" fill="var(--decline)">若降低门槛</text>
+        <g fill="var(--decline-soft)" stroke="var(--decline)" stroke-width="1">
+          <rect x="20" y="38" width="130" height="46"/><rect x="190" y="38" width="130" height="46"/>
+          <rect x="360" y="38" width="130" height="46"/><rect x="530" y="38" width="130" height="46"/>
+        </g>
+        <g font-family="Noto Sans SC, sans-serif" font-size="13" fill="var(--ink)" text-anchor="middle">
+          <text x="85" y="66">降低满级门槛</text><text x="255" y="66">赠点自举刷穿</text>
+          <text x="425" y="66">必须加闸门</text><text x="595" y="66">界面要解释</text>
+        </g>
+        <g stroke="var(--decline)" stroke-width="1.5">
+          <line x1="152" y1="61" x2="184" y2="61" marker-end="url(#ar-d)"/>
+          <line x1="322" y1="61" x2="354" y2="61" marker-end="url(#ar-d)"/>
+          <line x1="492" y1="61" x2="524" y2="61" marker-end="url(#ar-d)"/>
+        </g>
+        <g font-family="IBM Plex Mono, monospace" font-size="10" fill="currentColor" opacity=".65" text-anchor="middle">
+          <text x="168" y="53">引出</text><text x="338" y="53">要求</text><text x="508" y="53">带来</text>
+        </g>
+
+        <line x1="20" y1="116" x2="680" y2="116" stroke="currentColor" stroke-width="1" opacity=".2"/>
+
+        <text x="20" y="150" font-family="IBM Plex Mono, monospace" font-size="11.5" fill="var(--accent)">本轮：维持门槛</text>
+        <g fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1">
+          <rect x="20" y="164" width="130" height="46"/><rect x="190" y="164" width="130" height="46"/>
+          <rect x="360" y="164" width="130" height="46"/>
+        </g>
+        <g font-family="Noto Sans SC, sans-serif" font-size="13" fill="var(--ink)" text-anchor="middle">
+          <text x="85" y="192">门槛不动</text><text x="255" y="192">安全线冗余十倍</text><text x="425" y="192">直接加发奖励</text>
+        </g>
+        <g stroke="var(--accent)" stroke-width="1.5">
+          <line x1="152" y1="187" x2="184" y2="187" marker-end="url(#ar-a)"/>
+          <line x1="322" y1="187" x2="354" y2="187" marker-end="url(#ar-a)"/>
+        </g>
+        <g font-family="IBM Plex Mono, monospace" font-size="10" fill="currentColor" opacity=".65" text-anchor="middle">
+          <text x="168" y="179">所以</text><text x="338" y="179">可以</text>
+        </g>
+        <text x="500" y="192" font-family="IBM Plex Mono, monospace" font-size="11" fill="currentColor" opacity=".7">整条链一次都不用碰</text>
+      </svg>
+    </div>
+    <figcaption>防自举的安全线约为免费发放总量的 23.8 倍。门槛维持 994,150 时，本方案的发放量级在安全线内有十倍以上冗余，因此不触及防刷问题，也就不需要闸门。</figcaption>
+  </figure>
+</section>
+
+<section class="slide">
+  <div class="eyebrow"><span class="n">11</span><span class="bar-l"></span><span>代价</span></div>
+  <h2>发出去的老幣，期望现金成本是零。</h2>
+  <div class="figure">
+    <div class="big up">102%</div>
+    <div class="big-note">点数回收率<br>投放 17.81 亿 ／ 收回 18.17 亿</div>
+  </div>
+  <p class="sub">老幣不可提现，玩家拿到的本金在庄家优势 4.21% 下期望会全部回到平台。<strong>理论值 100%，实测 102%。</strong></p>
+  <details>
+    <summary>展开看依据</summary>
+    <p>推导：发出本金 P → 玩家期望总押注 = P ÷ 4.21% → 平台期望抽水 = 该押注量 × 4.21% = P → 净现金成本 = 0。另有两处独立验算自洽。</p>
+    <p>真正的成本项是替代效应（免费点是否挤掉本可发生的充值）。横截面数据无法做因果识别，可算的只是上限：即使 100% 替代也仅占同期总储值约 3.4%，而受益者中约 85% 本来就不付费。</p>
+    <p>未确认项：老幣能否在账号间转移或赠送。若可转移，量产小号将构成真实成本，本条需重估。</p>
+  </details>
+</section>
+
+<section class="slide">
+  <div class="eyebrow"><span class="n">12</span><span class="bar-l"></span><span>怎么算成功</span></div>
+  <h2>主指标一个，其余分层。</h2>
+  <div class="tw">
+    <table>
+      <tr><th>层级</th><th>指标</th><th>现状</th><th>目标</th><th>见效</th></tr>
+      <tr class="pick"><td><b>主指标</b></td><td>付费用户中渗透率</td><td class="num">14.5%</td><td class="num"><span class="up">20%</span></td><td class="num">30 天</td></tr>
+      <tr><td>前置交付</td><td>等级奖励领取率</td><td class="num">51.4%</td><td class="num">80%+</td><td class="num">2 周</td></tr>
+      <tr><td>防守</td><td>30 天首充率</td><td class="num">14.0%</td><td class="num">≥ 12%</td><td class="num">全程</td></tr>
+      <tr><td>防守</td><td>人均押注量</td><td class="num">—</td><td class="num">降幅 ≤ 10%</td><td class="num">全程</td></tr>
+    </table>
+  </div>
+  <p class="sub"><strong>20% 不是拍脑袋——2026 年 4 月的实际水平就是 20.1%</strong>，同一个活动、同一个平台，三个月前刚达到过。</p>
+  <p class="sub">领取率不作主指标：改成自动到账后它几乎必然达标，用它考核等于自我送分。它的作用是在 30 天主指标出来之前，两周内证明动作已经生效。</p>
+  <div class="caveat"><b>口径提醒：</b>渗透率的分母是当期付费用户，付费人群构成变化也会让它波动。汇报时同时给出付费率，才看得出是哪一边在动。<br><b>回滚线：</b>首充率跌破 12%，或人均押注量降幅超过 10%。</div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow"><span class="n">13</span><span class="bar-l"></span><span>上线方式</span></div>
+  <h2>必须分两批，否则等于白做。</h2>
+  <p class="sub">触达和奖励结构一起上，渗透率涨了也说不清是哪件起的作用，下一轮又要重新猜。</p>
+  <div class="chain">
+    <span class="chip on">第一批 · 触达</span>
+    <span class="arrow">观察 1–2 周 →</span>
+    <span class="chip on">第二批 · 奖励结构</span>
+  </div>
+  <p class="sub">或者直接做小流量分流——已确认开发成本不高。<strong>另外，页面埋点必须先于任何改动上线</strong>：这一轮的页面打开数据已经永久缺失，用替代信号猜了三轮。</p>
+</section>
+
+<section class="slide">
+  <div class="eyebrow"><span class="n">14</span><span class="bar-l"></span><span>已知弱点</span></div>
+  <h2>这个方案的天花板不高，我知道。</h2>
+  <ul class="pts">
+    <li><span class="k">不治根因</span><span class="v">进度仍由押注自动结算，用户仍然不需要做任何事。<b>参与度大概率不变</b>，改善的是「拿到手」和「拿得多」</span></li>
+    <li><span class="k">量级有限</span><span class="v">通行證收入约占总流水 <b>0.7%</b>，渗透率即便回到 20%，绝对值仍然不大</span></li>
+    <li><span class="k">未经验证</span><span class="v">「触达变强 → 早期曝光变多 → 买家看见的人变多 → 购买上升」，每一环都合理，<b>但没有一环被数据证明过</b></span></li>
+    <li><span class="k">反向风险</span><span class="v">免费轨变厚，理论上会让「买不买」更容易选不买。用卡改高级轨独占来对冲，<b>对冲够不够是未知的</b></span></li>
+  </ul>
+  <div class="caveat">选它的理由不是它最好，是它<b>几乎一定能上线</b>，而上线本身会产出这个项目最缺的东西：真实的、带埋点的对照数据。</div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow"><span class="n">15</span><span class="bar-l"></span><span>下一轮</span></div>
+  <h2>真正的解法在下一轮，但它需要这一轮的数据。</h2>
+  <p class="sub">根因是<strong>进度自动结算，用户不需要参与</strong>。彻底的改法是把进度改为日任务驱动——与两家竞品的做法一致，天花板也最高。</p>
+  <p class="sub">但它需要开发排期，而且有一个用平台自己数据就能提出的质疑：<strong>同一活动内，单日重置型任务的覆盖率只有 24.2%，跨天累积型是 77.6%。</strong>在中位生命周期 2.48 天的人群里，按天推进可能天然吃亏。</p>
+  <div class="chain">
+    <span class="chip on">本轮 · 触达与奖励</span>
+    <span class="arrow">产出埋点数据 →</span>
+    <span class="chip">下一轮 · 进度机制</span>
+  </div>
+  <p class="sub">本轮做完，那个质疑就从「赌注」变成「可以先验算的事」。<strong>两轮不是二选一，是顺序。</strong></p>
+</section>
+
+<section class="slide">
+  <div class="eyebrow"><span class="n">16</span><span class="bar-l"></span><span>附 · 三版方案对比</span></div>
+  <h2>为什么是这一版。</h2>
+  <div class="tw">
+    <table>
+      <tr><th>　</th><th>A 版 · 降门槛加发</th><th>B 版 · 进度机制</th><th class="pick">C 版 · 本方案</th></tr>
+      <tr><td>动满级门槛</td><td><span class="dn">是</span></td><td><span class="dn">是</span></td><td class="pick"><span class="up">否</span></td></tr>
+      <tr><td>开发量</td><td>低</td><td><span class="dn">中</span></td><td class="pick"><span class="up">低</span></td></tr>
+      <tr><td>指标与动作对齐</td><td><span class="dn">否</span></td><td><span class="dn">否</span></td><td class="pick"><span class="up">是</span></td></tr>
+      <tr><td>落地概率</td><td><span class="dn">已否决</span></td><td>中</td><td class="pick"><span class="up">高</span></td></tr>
+    </table>
+  </div>
+  <p class="sub">A 版拿满级率当成果，但降门槛必然提升满级率——那是算术，不是效果；而且降到 26,950 后会被赠点自举刷穿。<strong>B 版最接近正解，但它改的是进度机制、考核的却是购买率，而买家在体验进度条之前就买了。</strong></p>
+  <p class="sub">完整对比、诊断数据与逐条依据见配套文档《数据诊断报告》《方案对比与建议》。</p>
+</section>
+
+<div class="end">
+  新手通行證 重构方案 · C 版 ｜ 2026-09-03<br>
+  配套：数据诊断报告 · 方案对比与建议 · 交接文档第四轮
+</div>
+
+</div>
+
+<script>
+(function(){
+  var p=document.getElementById('prog');
+  function u(){
+    var h=document.documentElement,
+        m=(h.scrollHeight-h.clientHeight)||1,
+        r=Math.min(1,Math.max(0,(h.scrollTop||document.body.scrollTop)/m));
+    p.style.width=(r*100).toFixed(2)+'%';
+  }
+  addEventListener('scroll',u,{passive:true});addEventListener('resize',u);u();
+})();
+</script>
+
+</body></html>

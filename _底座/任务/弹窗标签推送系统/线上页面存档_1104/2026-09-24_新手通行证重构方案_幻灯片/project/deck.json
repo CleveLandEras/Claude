@@ -1,0 +1,58 @@
+{
+ "v": 4,
+ "createdOnFiles": {
+  "v": 1,
+  "at": "2026-09-23T12:31:29Z"
+ },
+ "title": "新手通行证重构方案",
+ "order": [
+  "cover",
+  "summary",
+  "goals",
+  "p1",
+  "p1s",
+  "p2",
+  "p2s1",
+  "p2v",
+  "p2s2",
+  "p2s3",
+  "p3",
+  "p3s",
+  "p4",
+  "sec2",
+  "backend",
+  "bk1",
+  "bkp",
+  "bk2",
+  "bk3",
+  "bk4",
+  "changes",
+  "later"
+ ],
+ "cover": "cover",
+ "sections": {
+  "s1": {
+   "description": "结论与目标",
+   "start": "cover"
+  },
+  "s2": {
+   "description": "四个问题的支撑与方案",
+   "start": "p1"
+  },
+  "s3": {
+   "description": "后台改动、页面示意与改动清单",
+   "start": "sec2"
+  },
+  "s4": {
+   "description": "后续统一处理",
+   "start": "later"
+  }
+ },
+ "faces": {
+  "noto-sans-sc": {
+   "family": "Noto Sans SC",
+   "href": "https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap"
+  }
+ },
+ "designSystems": []
+}

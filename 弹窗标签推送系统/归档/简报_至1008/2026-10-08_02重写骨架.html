@@ -1,0 +1,125 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>02 重写骨架</title>
+<style>
+:root{--ground:#f0efec;--surface:#fff;--ink:#191b1e;--ink-2:#484d53;--muted:#7d8289;--line:#dcdad5;--accent:#9a6f24;--ok:#3d6b58;--ok-soft:#dfeae5;--info:#1c6ea4;--info-soft:#e0ecf4;--warn:#8a6410;--warn-soft:#f5ead2;--chg:#e6f0e9;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1a1d21;--ink:#e9e8e4;--ink-2:#b7bbc0;--muted:#868c94;--line:#2d3238;--accent:#d6ab5c;--ok:#74b096;--ok-soft:#1d3129;--info:#6aa8d6;--info-soft:#1b2a36;--warn:#cfa44e;--warn-soft:#332a16;--chg:#1d3129;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1a1d21;--ink:#e9e8e4;--ink-2:#b7bbc0;--muted:#868c94;--line:#2d3238;--accent:#d6ab5c;--ok:#74b096;--ok-soft:#1d3129;--info:#6aa8d6;--info-soft:#1b2a36;--warn:#cfa44e;--warn-soft:#332a16;--chg:#1d3129;}
+*{box-sizing:border-box} body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:30px 16px 60px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 4px}
+h1{font-family:var(--serif);font-size:22px;margin:0 0 12px;line-height:1.45}
+h2.sec{font-family:var(--serif);font-size:18px;margin:28px 0 4px}
+.sub{font-size:13.5px;color:var(--muted);margin:0 0 10px}
+.lead{background:var(--surface);border-left:3px solid var(--accent);padding:12px 16px;margin:0 0 18px;font-size:15px}
+.lead p{margin:4px 0}
+.b{background:var(--surface);border:1px solid var(--line);padding:12px 16px;margin:0 0 10px}
+.b h3{font-size:15.5px;margin:0 0 4px} .b p{margin:3px 0;font-size:14px;color:var(--ink-2)} .b p b{color:var(--ink)}
+.tag{font-size:11px;font-weight:650;padding:0 6px;border-radius:2px;margin-left:6px;vertical-align:1px;white-space:nowrap}
+.ok{background:var(--ok-soft);color:var(--ok)} .in{background:var(--info-soft);color:var(--info)} .wt{background:var(--warn-soft);color:var(--warn)}
+.tw{overflow-x:auto;background:var(--surface);border:1px solid var(--line);margin:0 0 8px}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{border-bottom:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{font-weight:650;color:var(--ink-2);background:var(--ground);white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td.c{background:var(--chg)}
+.note{font-size:12.5px;color:var(--muted);margin:4px 0 0}
+.todo{background:var(--surface);border:1px solid var(--accent);padding:12px 16px;margin:16px 0 10px}
+.todo h3{font-size:15.5px;margin:0 0 6px} .todo ol{margin:0;padding-left:1.3em;font-size:14px;color:var(--ink-2)} .todo li{margin:4px 0} .todo b{color:var(--ink)}
+.links{font-size:13px;color:var(--muted)} a{color:var(--accent)}
+</style></head><body><div class="wrap">
+
+<p class="meta">02 重写骨架 · 2026-10-08 · 先给你看方向，定了再写全文；数字取自现有分析，我已核对出处</p>
+<h1>新 02 的主体是一套分人群弹窗框架：人群分三层，每个位置每人只命中一条规则；现在的 9 条规则是用这套框架搭出来的第一版</h1>
+<div class="lead">
+<p><b>改成什么</b>：02 不再是「五处改动」，而是「分人群弹窗」这套能力的方案，顺序是：框架 → 后台现在能做到哪 → 第一版怎么配 → 做不到的进开发。</p>
+<p><b>新稿的「为什么」从两条判断来</b>：① 主管的五类人群不在一条线上。新增、回流是身份，潜在付费、潜在流失是付费状态，破产是一个时刻；一个人可以同时属于三类，所以不能一类配一条规则，要分层配。② 后台多条规则会叠加弹出，又没有总量上限。用现有功能控住总量，唯一的办法是每个位置每人只命中一条规则。</p>
+<p><b>要你看</b>：骨架方向对不对。第一版里有两处我写不出够硬的理由（新增弹几个、储值下滑的高卡换什么礼包），推荐做法放在第五节。</p>
+</div>
+
+<h2 class="sec">一、目标：交给主管的是「运营以后能做到的事」，不是一次配置</h2>
+<div class="tw"><table>
+<tr><th>能力</th><th>做到的样子</th><th>对应主管原话</th></tr>
+<tr><td>按人群配内容</td><td>运营想给某类人单独弹什么，加或改一条规则就行，不碰其他人</td><td>按新增、回流、破产、潜在付费、潜在流失分人群定制内容</td></tr>
+<tr><td>控住数量和顺序</td><td>任何一个人进一次大厅最多弹几个、弹什么，事先算得出来</td><td>总控数量、内容、顺序</td></tr>
+<tr><td>看得到效果</td><td>每条规则弹了多少、点了多少、买了多少，能分组比</td><td class="c">主管没明说，是我们加的。没有这一条，配了也不知道对不对</td></tr>
+<tr><td>做不到的排开发</td><td>现有后台做不到的，写成研发能直接评估的需求</td><td>优先用现有功能，不满足的再排期开发</td></tr>
+</table></div>
+
+<h2 class="sec">二、框架：人群分三层，每个位置每人只命中一条规则</h2>
+<div class="b"><h3>1. 五类人群分属三层，各自决定不同的位置</h3></div>
+<div class="tw"><table>
+<tr><th>层</th><th>包括</th><th>特点</th><th>决定哪个位置弹什么</th><th>人数（近一月活跃 62,292 人）</th></tr>
+<tr><td>身份</td><td>新增、回流、其余</td><td>互斥，每人恰好属于一类</td><td>活动位：新人要上手，回流要重新找到目标</td><td>新增 10,749（17.26%）；回流 16,564（26.59%）；其余 34,979（56.15%）</td></tr>
+<tr><td>付费</td><td>卡别；潜在付费（从没储值、押注过万）；潜在流失（本月储值不到上月一半）</td><td>和身份交叉；潜在付费和潜在流失彼此不重叠</td><td>储值位：买得起什么、该给什么礼包</td><td>金卡以上 6,366（10.22%），贡献累计储值的 96.68%；潜在付费最多 25,972；潜在流失本地算不出（没有月储值）</td></tr>
+<tr><td>时刻</td><td>破产</td><td>不是一群人，是一个时刻，谁都可能碰到</td><td>破产位</td><td>—</td></tr>
+</table></div>
+<p class="note">交叉的例子：潜在付费里最多 9,786 人同时是新增或回流（上限，推断）。一个回流玩家可以同时没付过费、又刚好破产，所以要按层配：身份管活动，付费状态管礼包，破产单独触发。要圈「回流且没付过费」这类交叉人群，就得用标签的「且」。主管提过要补标签「交集」，用处很可能就在这里（推断，没人解释过它的含义）。</p>
+
+<div class="b"><h3>2. 每个位置每人只命中一条规则，总量就控住了</h3>
+<p><b>为什么非这样不可</b>：后台多条规则同时命中时会叠加弹出（已证实），系统也没有单人每日总量上限（已证实）。所以用现有功能控总量，只能让同一个位置的几条规则对象互斥：用「排除」，或者建一组互补的标签。这样每个人进一次大厅最多弹几个，就等于各位置弹出数相加，事先算得出来。<b>新稿里每条规则为什么要这样拆，理由就是这一条。</b></p>
+<p><b>代价</b>：每加一类人群，同一位置的其他规则都要跟着改排除；不同位置之间谁先弹仍不知道。真正的总控要靠开发补上单人总量上限（见第四节）。</p></div>
+
+<h2 class="sec">三、后台现在能做到哪：内容和互斥都能配，总控和看效果做不到</h2>
+<p class="sub">出处：盘点、你的答复、同事盘点、后台截图；「未知」的都附了查法。</p>
+<div class="tw"><table>
+<tr><th>框架的一块</th><th>有</th><th>没有</th><th>未知</th></tr>
+<tr><td>圈身份</td><td>新增、回流标签（读身份字段）</td><td>—</td><td>—</td></tr>
+<tr><td>圈付费状态</td><td>当前卡别、当月储值额两类标签；能自己写 SQL 建标签，最快 25 分钟刷新一次</td><td>「从没储值」标签，要新建</td><td>「本月储值不到上月一半」是按完整月比，还是按 1 日到今天比（你查标签后台）</td></tr>
+<tr><td>同一位置互斥</td><td>标签支持「且」「或」「排除」</td><td>—</td><td>带排除的群组能不能选作弹窗对象（你查）。不能就改用互补标签，多建 2–3 个</td></tr>
+<tr><td>每类人群的内容</td><td>规则 = 对象 + 位置 + 弹几个 + 排序；排序会跳过不能买、不能参加的项</td><td>—</td><td>—</td></tr>
+<tr><td>总控</td><td>单项每日次数、冷却</td><td class="c">单人每日总量上限；关掉后当天不再弹</td><td>多条规则同时命中时谁先弹（你查后台有没有设置）</td></tr>
+<tr><td>看效果</td><td>—</td><td class="c">规则里不能随机分组</td><td>弹窗曝光、点击，月储值：本地没有，平台有没有要问数据组</td></tr>
+<tr><td>客户端弹窗</td><td>—</td><td>新手挑战、新手通行证弹窗写在客户端，后台管不到</td><td>—</td></tr>
+</table></div>
+
+<h2 class="sec">四、第一版：用现有后台把框架搭起来，每一格写清为什么</h2>
+<p class="sub">先看全景：横着是同一位置互斥的几条规则，每人只落进一格。绿色是新建或改了的。</p>
+<div class="tw"><table>
+<tr><th>位置</th><th colspan="3">规则（每人只命中一格）</th></tr>
+<tr><td><b>活动位</b>·进大厅</td><td class="c">新增：新建，弹 1 个（第五节建议改成 2 个）</td><td class="c">回流：新建，弹 2 个，回流任务排第 1</td><td>其余：原活动弹窗，弹 2 个，不变</td></tr>
+<tr><td><b>储值位</b>·进大厅</td><td class="c">普卡、银卡：原礼包弹窗（首储礼包排第 1），对象改为排除金卡以上</td><td class="c">金卡以上、储值没下滑：新建，排序同原礼包弹窗</td><td class="c">金卡以上、储值下滑：新建，第 1 个换成针对储值下滑的礼包</td></tr>
+<tr><td><b>额外位置</b>（现有）</td><td colspan="3">普卡、银卡储值下滑：每日补给计划，再弹 1 个，每天最多 20 次。不变</td></tr>
+<tr><td><b>破产位</b>·破产时</td><td colspan="3" class="c">所有人：首储 → 破产礼包 → 独享礼包（原来破产礼包排在独享之后）</td></tr>
+</table></div>
+<p class="note">一共 9 条规则，任何一类人进一次大厅都不比现在多弹（新增按现稿少弹 1 个，按第五节建议则持平）。现有的「额外位置」不符合「每个位置每人只命中一条」，第一版先不动，是否并进储值位，要先弄清每日补给计划的定位。</p>
+
+<div class="tw"><table>
+<tr><th>改动</th><th>为什么（假设）</th><th>上线看什么、怎么判</th><th>理由强弱</th></tr>
+<tr><td>活动位按身份拆三条</td><td>框架要求身份层管活动位。拆开以后，新增、回流各自的活动内容才能单独改，不影响其他人</td><td>各人群单次、每日弹出数和第二节算的一致</td><td><span class="tag ok">强：框架本身</span></td></tr>
+<tr><td>回流：回流任务排第 1</td><td>回流玩家缺的是一个「回来就能做的目标」，回流任务就是为此设计的，现在排第 7，常常轮不到</td><td>回流 7 日留存、回流任务参与率。参与率没涨，说明问题不在曝光，下一版换内容</td><td><span class="tag in">中：机制合理，管不管用要靠数据</span></td></tr>
+<tr><td>新增：只弹 1 个</td><td>注册满 8 天的新人 7,714 人里一半只来了注册当天，其中约四成没怎么玩就走了（押注不超过 1,000）。新人另有客户端写死的新手弹窗，后台少弹一个，可以让新手引导不被淹没（推断）</td><td>新增 7 日留存</td><td><span class="tag wt">弱：弹窗对新人是帮忙还是打扰，没有数据</span></td></tr>
+<tr><td>储值位按卡别拆成两条</td><td>框架要求付费层管储值位。金卡以上 10% 的人贡献 96.68% 的储值，给他们留一条单独的规则，以后才能单独配礼包</td><td>配置核对</td><td><span class="tag ok">强：框架本身</span></td></tr>
+<tr><td>储值下滑的高卡换礼包</td><td>储值下滑现在只针对普卡、银卡，高卡完全没有。换的是礼包位里第一个，不多弹</td><td>被圈入高卡下个月的人均储值</td><td><span class="tag wt">弱：换成什么礼包没定</span></td></tr>
+<tr><td>潜在付费：不加规则</td><td>没买过首储的人，礼包位第一个本来就是首储礼包（NT$50），已经是为他们配的</td><td>潜在付费人群的首储购买率，只监测</td><td><span class="tag ok">强</span></td></tr>
+<tr><td>破产：破产礼包提前</td><td>破产时手头紧，便宜的更可能买（推断）。现在买过首储的人破产时，先看到的是独享礼包</td><td>破产者的人均储值</td><td><span class="tag in">中：前提是破产礼包比独享便宜</span></td></tr>
+</table></div>
+
+<h2 class="sec">五、两处理由弱的，我的建议</h2>
+<div class="b"><h3>1. 新增弹 1 个还是 2 个？</h3>
+<p><b>背景</b>：这个数从初稿沿用至今，没人论证过；主管很可能会问。</p>
+<p><b>选项</b>：甲，弹 1 个：新人第一屏少一层打扰，但少一个活动入口。乙，弹 2 个，跟其他人一样：去掉月月抽、回流任务，数量不变。这样普卡新人第一版看到的和现在一样（月月抽本来就会被跳过），新增这条规则先只是「给新人留好一个能单独配的位置」，内容以后再改。</p>
+<p><b>推荐</b>：乙。　<b>理由</b>：少弹一个对新人是好是坏，现在没有任何数据，没必要在第一版里拿新人冒这个险。代价是新人这一格第一版几乎没有实际变化，主管可能会说「新增没做什么」；回答是位置已经留好，等有了曝光数据或分组，第一个要验证的就是「1 个对 2 个」。</p></div>
+<div class="b"><h3>2. 储值下滑的高卡，礼包位换成什么？</h3>
+<p><b>背景</b>：现稿写的是「运营从现有礼包里指定一项」，等于没定内容。另外这条规则还卡在储值下滑标签的口径上：如果是拿 1 日到今天跟上月全月比，每月初几乎所有付过费的高卡都会被圈进来。</p>
+<p><b>选项</b>：甲，框架里留好这个位置，第一版不上，等标签口径和礼包候选到了再上。乙，先上，礼包由运营临时指定。</p>
+<p><b>推荐</b>：甲。　<b>理由</b>：位置留好，框架就是完整的；内容没定就上线，验证不出任何东西。</p></div>
+
+<h2 class="sec">六、做不到的进开发：每一项解开框架的哪一块</h2>
+<div class="tw"><table>
+<tr><th>需求</th><th>解开什么</th><th>没有它怎么绕、代价</th></tr>
+<tr><td>单人每日总量上限</td><td>总控不再靠拆规则；加人群不用重新拆排除</td><td>靠「每个位置每人只命中一条」加手算，每加一类人群要改一串规则</td></tr>
+<tr><td>多条规则谁先弹可设</td><td>针对某类人的内容排在通用内容前面</td><td>不知道谁先弹，只能保证个数</td></tr>
+<tr><td>关掉后当天不再弹</td><td>不会反复弹同一个</td><td>只能靠每日次数和冷却</td></tr>
+<tr><td>新手弹窗进后台</td><td>新人那一格真正可控</td><td>新人实际看到几个，后台算不全</td></tr>
+<tr><td class="c">随机分组 + 弹窗曝光、点击数据</td><td class="c">知道哪一版更好；第五节两个问题都要靠它</td><td class="c">只能做上线前后对比，最多判到「方向一致」</td></tr>
+<tr><td>标签：从没储值、按完整月比的储值下滑、分组用的分桶</td><td>付费层能圈准</td><td>部分可以自己写 SQL，要有人写</td></tr>
+</table></div>
+
+<div class="todo"><h3>你现在能做的</h3><ol>
+<li><b>看骨架方向对不对</b>（约 5 分钟）：框架做主体、第一版放后面、每一格写理由强弱。对了，我就按这个写 02 全文，再从全文里整理出一张给运营的干净配置表（03）；决策汇报的首屏也照同一个骨架改。</li>
+<li><b>第五节两处</b>：同意推荐就回「同意」，不同意直接说改哪里。</li>
+<li><b>二十分钟自查照样最有用</b>：群组能不能带排除选作弹窗对象，储值下滑标签按什么比，后台能不能设多条规则谁先弹，两个礼包的价格。这几件就是第三节表里的「未知」。</li>
+</ol></div>
+
+<p class="links">对照：<a href="../支撑文件/02_弹窗分人群定制方案.html">02 现稿</a>　·　<a href="2026-10-08_方案与产出方式复盘.html">复盘简报</a>　·　<a href="../分析/A7_目标人群重叠.md">人群重叠分析</a>　·　<a href="../分析/A17_新增只来当天.md">新增只来当天分析</a></p>
+</div></body></html>

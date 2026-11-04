@@ -1,0 +1,344 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>方案验证</title>
+<style>
+/* 阶段产出模板样式（2026-10-08）。各阶段产出把本文件内容整段放进 <style>，组件用法见 阶段产出模板说明.md */
+:root{--bg:#f5f4f1;--card:#ffffff;--ink:#1b1d20;--ink2:#4a4f56;--muted:#868b92;--line:#e3e1dc;--line2:#efede9;
+--accent:#8a6a2c;--accent-soft:#f3ecdd;--ok:#2f6b52;--ok-soft:#e2efe8;--info:#225f8f;--info-soft:#e3edf5;--warn:#8a5d10;--warn-soft:#f6ecd8;--sup:#6b4fa0;--sup-soft:#ece6f6;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#141619;--card:#1c1f23;--ink:#e8e7e3;--ink2:#b9bdc2;--muted:#8a9098;--line:#30353c;--line2:#262a30;
+--accent:#d4ac62;--accent-soft:#2e2717;--ok:#7bb59a;--ok-soft:#1d3029;--info:#7fb0d8;--info-soft:#1b2a36;--warn:#d6a85a;--warn-soft:#332917;--sup:#b39ce0;--sup-soft:#2a2338;}}
+:root[data-theme="dark"]{--bg:#141619;--card:#1c1f23;--ink:#e8e7e3;--ink2:#b9bdc2;--muted:#8a9098;--line:#30353c;--line2:#262a30;
+--accent:#d4ac62;--accent-soft:#2e2717;--ok:#7bb59a;--ok-soft:#1d3029;--info:#7fb0d8;--info-soft:#1b2a36;--warn:#d6a85a;--warn-soft:#332917;--sup:#b39ce0;--sup-soft:#2a2338;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:940px;margin:0 auto;padding:36px 20px 72px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px;letter-spacing:.2px}
+h1{font-family:var(--serif);font-size:24px;line-height:1.5;margin:0 0 18px;font-weight:700}
+/* 概览数字 */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin:0 0 14px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+.kpi .n{font-size:24px;font-weight:700;line-height:1.2}
+.kpi .l{font-size:12.5px;color:var(--muted)}
+.kpi .d{font-size:12.5px;color:var(--ink2);margin-top:2px}
+/* 首屏摘要 */
+.summary{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:14px 18px;margin:0 0 8px}
+.summary dl{display:grid;grid-template-columns:72px 1fr;gap:6px 12px;margin:0}
+.summary dt{font-weight:650;color:var(--ink2);font-size:14px}
+.summary dd{margin:0;font-size:14.5px}
+/* 节 */
+.sec{margin:40px 0 0}
+.sec-h{display:flex;gap:12px;align-items:baseline;margin:0 0 4px}
+.sec-no{flex:none;font-size:12px;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:4px;padding:1px 8px;letter-spacing:1px}
+.sec-h h2{font-family:var(--serif);font-size:19px;line-height:1.5;margin:0;font-weight:700}
+.sec-sub{font-size:13.5px;color:var(--muted);margin:0 0 12px 0}
+/* 表格 */
+.tw{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:8px;margin:0 0 10px}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th{font-size:12.5px;font-weight:650;color:var(--muted);text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);white-space:nowrap;background:transparent}
+td{padding:10px 12px;border-bottom:1px solid var(--line2);vertical-align:top}
+tr:last-child td{border-bottom:none}
+tr.grp td{background:var(--bg);font-size:12.5px;font-weight:700;color:var(--ink2);padding:6px 12px;letter-spacing:1px}
+td.no{width:1%;white-space:nowrap;color:var(--muted);font-variant-numeric:tabular-nums}
+.src{display:block;font-size:12px;color:var(--muted);margin-top:2px}
+/* 标签 */
+.tag{display:inline-block;font-size:11.5px;font-weight:650;line-height:1.6;padding:0 7px;border-radius:4px;white-space:nowrap;vertical-align:1px}
+.t-goal{background:var(--ok-soft);color:var(--ok)} .t-con{background:var(--warn-soft);color:var(--warn)} .t-sug{background:var(--info-soft);color:var(--info)}
+.t-inf{background:var(--line2);color:var(--muted)} .t-add{background:var(--sup-soft);color:var(--sup)}
+.chip{display:inline-block;font-size:12px;padding:0 7px;border:1px solid var(--line);border-radius:10px;color:var(--ink2);margin:1px 2px 1px 0;font-variant-numeric:tabular-nums}
+/* 卡片 */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin:0 0 10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px 16px}
+.card h3{font-size:16px;margin:0 0 4px}
+.card .what{font-size:14px;color:var(--ink);margin:0 0 8px}
+.card .val{font-size:13.5px;color:var(--ink2);margin:8px 0 0;padding-top:8px;border-top:1px dashed var(--line)}
+/* 两栏 */
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 16px}
+.box h4{font-size:13px;color:var(--muted);margin:0 0 6px;font-weight:650;letter-spacing:.5px}
+.box ul{margin:0;padding-left:1.2em} .box li{margin:3px 0;font-size:14px}
+.note{font-size:12.5px;color:var(--muted);margin:6px 0 0}
+.links{font-size:13px;color:var(--muted);margin-top:40px;padding-top:12px;border-top:1px solid var(--line)}
+a{color:var(--accent)}
+@media (max-width:600px){h1{font-size:20px}.summary dl{grid-template-columns:1fr}.summary dt{margin-top:6px}}
+
+
+.tree{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin:0 0 10px}
+.tree .goal{font-weight:700;font-size:15.5px;margin:0 0 10px}
+.tree .goal small{display:block;font-weight:400;color:var(--ink2);font-size:13.5px;margin-top:2px}
+.tree ul{list-style:none;margin:0;padding:0 0 0 18px;border-left:2px solid var(--line)}
+.tree li{position:relative;margin:6px 0;padding-left:14px}
+.tree li:before{content:"";position:absolute;left:-2px;top:13px;width:12px;border-top:2px solid var(--line)}
+.tree li a{font-weight:650;text-decoration:none;color:var(--ink)}
+.tree li .d{color:var(--ink2);font-size:13.5px}
+.cap{background:var(--card);border:1px solid var(--line);border-radius:10px;margin:0 0 16px;overflow:hidden}
+.cap-h{padding:14px 18px 10px;border-bottom:1px solid var(--line2)}
+.cap-h .t{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.cap-h h3{font-size:17px;margin:0}
+.cap-h .def{font-size:14.5px;color:var(--ink);margin:4px 0 6px}
+.cap table{font-size:14px}
+.cap td,.cap th{padding-left:18px}
+.cap-v{padding:10px 18px 14px;font-size:13.8px;color:var(--ink2);background:var(--bg);border-top:1px solid var(--line2)}
+.cap-v b{color:var(--ink)}
+.reqgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.req{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+.req h4{margin:0 0 6px;font-size:14px;color:var(--ink2)}
+.req .it{padding:7px 0;border-top:1px dashed var(--line2)} .req .it:first-of-type{border-top:none}
+.req .o{font-size:14px} .req .u{font-size:13px;color:var(--ink2);margin-top:2px}
+
+
+.core{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:0 0 12px}
+.core h2{font-family:var(--serif);font-size:17px;margin:0 0 10px}
+.core table{font-size:13.8px}
+.core td{padding:9px 10px}
+.core td.cn{white-space:nowrap}
+.sc{display:inline-block;font-size:12.5px;background:var(--bg);border:1px solid var(--line2);border-radius:5px;padding:0 6px;margin:2px 3px 2px 0;line-height:1.7}
+.sc i{font-style:normal;color:var(--muted);margin-right:4px;font-variant-numeric:tabular-nums}
+.sc em{font-style:normal;color:var(--sup);font-size:11px;margin-left:3px}
+.must{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin:0 0 6px}
+.must .box p{margin:0;font-size:14px}
+details.more{margin:6px 0 0}
+details.more>summary{cursor:pointer;font-size:13px;color:var(--accent);margin:2px 0 10px;list-style:none}
+details.more>summary::before{content:"▸ ";} details.more[open]>summary::before{content:"▾ ";}
+.readtime{font-size:12.5px;color:var(--muted);margin:0 0 14px}
+h1{margin-bottom:6px}
+.h1sub{font-size:15px;color:var(--ink2);margin:0 0 14px}
+.chain{display:flex;align-items:stretch;gap:6px;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;margin:0 0 8px}
+.chain .nd{flex:1 1 120px;background:var(--bg);border:1px solid var(--line2);border-radius:8px;padding:8px 10px;font-weight:650;font-size:14px}
+.chain .nd small{display:block;font-weight:400;font-size:12px;color:var(--muted)}
+.chain .nd span{display:inline-block;font-size:11px;color:var(--accent);background:var(--accent-soft);border-radius:4px;padding:0 5px;margin-right:6px}
+.chain .nd.two{display:flex;flex-direction:column;gap:6px;background:transparent;border:none;padding:0}
+.chain .nd.two>div{background:var(--bg);border:1px solid var(--line2);border-radius:8px;padding:8px 10px}
+.chain .ar{align-self:center;color:var(--muted);font-size:16px}
+@media (max-width:640px){.chain{flex-direction:column}.chain .ar{transform:rotate(90deg);align-self:center;line-height:1}}
+.cc-now{margin:0 0 4px;font-size:13px;color:var(--ink2)}
+.cc-now b,.cc-v b{font-size:11.5px;color:var(--muted);margin-right:6px;font-weight:650}
+.ccs{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px}
+.cc{border:1px solid var(--line2);border-radius:8px;padding:11px 13px;background:var(--card)}
+.cc-h{display:flex;align-items:baseline;gap:8px;margin:0 0 4px}
+.cc-h b{font-size:15px}
+.cc-no{font-size:11.5px;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:4px;padding:0 6px}
+.cc-n{margin-left:auto;font-size:12px;color:var(--muted)}
+.cc-d{margin:0 0 6px;font-size:13.8px}
+.cc-s{margin:0 0 6px}
+.cc-v{margin:0;font-size:13px;color:var(--ink2);border-top:1px dashed var(--line);padding-top:6px}
+
+</style></head><body><div class="wrap">
+
+<p class="meta">阶段 7 · 方案验证 · 对象：方案设计，用需求场景、目标人群、问题根因逐一检验 · 2026-10-08 · 待审查</p>
+<h1>25 个场景中 14 个现有后台可做（12 个待确认），其余 11 个和全部 5 个根因须中期以上开发</h1>
+<p class="h1sub">每人进大厅弹窗上限基本沿用现状；10 类人群中 3 类有专属配置；方案未覆盖的情形 14 条</p>
+<p class="readtime">首屏为核心内容；各节明细默认折叠，点「展开」查看。</p>
+
+<div class="core">
+<h2>逐项检验：哪些做得到、哪些做不到</h2>
+<div class="ccs">
+<div class="cc"><div class="cc-h"><span class="cc-no">1</span><b>场景</b><span class="cc-n">25 个</span></div><p class="cc-d">确定可做 2（新增、破产），推断可做 12（所需能力待确认），部分实现 2，不可实现 9</p><p class="cc-now"><b>须开发</b>以下 11 个，未标注的为长期</p><div class="cc-s"><span class="sc"><i>2</i>回流首次<em>中期</em></span><span class="sc"><i>7</i>跨位置先后<em>中期</em></span><span class="sc"><i>16</i>关闭后不再弹<em>中期</em></span><span class="sc"><i>17</i>新手弹窗</span><span class="sc"><i>11</i>推送统一入口</span><span class="sc"><i>13</i>推送日上限</span><span class="sc"><i>19</i>合计上限</span><span class="sc"><i>22</i>推送跳转</span><span class="sc"><i>23</i>行为触发</span><span class="sc"><i>14</i>到达数据</span><span class="sc"><i>25</i>召回数据</span></div><p class="cc-v"><b>意味着</b>缺口集中在推送与新手弹窗；推断可做的 12 个须先确认后台能力</p></div>
+<div class="cc"><div class="cc-h"><span class="cc-no">2</span><b>人群</b><span class="cc-n">10 类</span></div><p class="cc-d">活动类弹窗个数取现状时每人上限不变；设计明确改动的只有新增（不超过 2 个）</p><div class="cc-s"><span class="sc">覆盖：新增、回流、潜在流失</span><span class="sc">未覆盖 7：数据缺口 4、成本取舍 3</span></div><p class="cc-v"><b>意味着</b>变化主要是上限可单独读、单独调，以及新手弹窗与推送两个入口</p></div>
+<div class="cc"><div class="cc-h"><span class="cc-no">3</span><b>根因</b><span class="cc-n">5 个</span></div><p class="cc-d">短期 14 项一个也不消除；中期以上全部消除 2、部分消除 2、待数据 1</p><div class="cc-s"><span class="sc">弹窗写死在客户端<em>全部</em></span><span class="sc">不支持关闭后不再弹<em>全部</em></span><span class="sc">推送分散实现<em>部分</em></span><span class="sc">缺先后与总量字段<em>部分</em></span><span class="sc">推送数据未汇总<em>待数据</em></span></div><p class="cc-v"><b>意味着</b>「写死」能全部消除，须写死属历史遗留；若为客户端限制，只能部分消除</p></div>
+<div class="cc"><div class="cc-h"><span class="cc-no">4</span><b>边界与假设</b><span class="cc-n">14 条 · 67 条</span></div><p class="cc-d">未覆盖情形以数据缺口为主（9 条）；唯一设计缺口是场景 18 自助改图文</p><p class="cc-v"><b>意味着</b>67 条假设合并为 14 类，影响最大的是判断标准的先后与作用方向</p></div>
+</div>
+</div>
+
+<div class="must">
+<div class="box"><h4>关键判断</h4><p>控制类与召回类建设对活跃、付费的作用没有前后对照，可能为负；短期价值主要是可管理、可测量。</p></div>
+<div class="box"><h4>推断与边界</h4><p>弹窗个数均为配置上限，非实际弹出；推断可做的场景若能力不存在，各有去向（多建标签、走研发或只做前后对比）。</p></div>
+<div class="box"><h4>需要 Dk 定</h4><p>判断标准的先后：先看覆盖全不全，推荐把推送接入同一个后台统一配置，并按人合计弹窗与推送条数、超过上限不再发；先看能否验证、回退，推荐在现有后台内重组、先收集数据。两条路径建设项相同。</p></div>
+</div>
+
+<section class="sec" id="s1">
+<div class="sec-h"><span class="sec-no">一</span><h2>场景验证：2 个确定可做、12 个待确认，11 个须中期以上开发</h2></div>
+<details class="more"><summary>展开：分能力统计、25 个场景逐一验证、11 项缺什么</summary>
+<p class="sec-sub">结论分档：可实现＝现有后台可做，所需能力均有记载；推断可做＝现有后台可做，但所需能力未经记载、为推断；部分实现＝短期只做到一部分；不可实现＝现有后台没有近似做法，须中期以上开发。推断可做的 12 个场景若所需能力不存在，各自的去向（多建标签、走研发、只能前后对比）写在下表最后一列。本阶段只验证，不改设计，不写配置单与统计口径。</p>
+<p class="note">用语：弹窗按位置分为活动位（活动类内容）、礼包位（储值类内容，如首储礼包）、破产位、新手位（新手挑战与新手通行证弹窗）；「格」是同一位置内按人群切出的互斥配置，每人在一个位置只命中一格。标签按来源分账号属性、累计行为、月度储值、事件四类，事件类（如回流时间点、首储购买标记）需新开发。建设项＝方案设计列出的 35 项建设内容（短期 14、中期 11、长期 10）。</p>
+<div class="tw"><table>
+<tr><th>能力</th><th>场景数</th><th>可实现</th><th>推断可做</th><th>部分实现</th><th>不可实现</th></tr>
+<tr><td>人群圈选</td><td>4</td><td>0</td><td>4</td><td>0</td><td>0</td></tr>
+<tr><td>分人群内容配置</td><td>7</td><td>2</td><td>3</td><td>1</td><td>1</td></tr>
+<tr><td>触达量与顺序控制</td><td>6</td><td>0</td><td>2</td><td>1</td><td>3</td></tr>
+<tr><td>统一推送</td><td>4</td><td>0</td><td>1</td><td>0</td><td>3</td></tr>
+<tr><td>效果查看</td><td>4</td><td>0</td><td>2</td><td>0</td><td>2</td></tr>
+<tr><td><b>合计</b></td><td><b>25</b></td><td><b>2</b></td><td><b>12</b></td><td><b>2</b></td><td><b>9</b></td></tr>
+</table></div>
+<p class="note">补全 11 项（部分实现 2、不可实现 9）需中期 3 项、长期 8 项；不可实现集中在推送侧与新手弹窗。</p>
+<h3 style="margin:14px 0 6px;font-size:15px">25 个场景逐一验证</h3>
+<div class="tw"><table>
+<tr><th>场景</th><th>做什么</th><th>用到的建设项</th><th>补全时点</th><th>结论</th><th>因为……所以……</th></tr>
+<tr class="grp"><td colspan="6">能力 1 · 人群圈选（4 个）</td></tr>
+<tr><td class="no">9</td><td>用标签条件组合圈任一人群，并看规模与口径</td><td>按属性、累计行为、月度储值三类标签圈选；规模与口径事前可见</td><td>短期</td><td><span class="tag t-inf">推断可做</span></td><td>因为「且」「或」已有记载、标签可自写脚本，所以三类人群可圈；排除条件、月度储值、规模查询为推断，事件类人群见场景 2、4</td></tr>
+<tr><td class="no">10</td><td>反馈标签使用问题并看到迭代</td><td>标签口径负责人；变更留痕（近似做法为人工登记）</td><td>短期</td><td><span class="tag t-inf">推断可做</span></td><td>因为该场景不依赖后台功能，所以按流程即可开始；反馈渠道与后台版本记录无记载</td></tr>
+<tr><td class="no">20</td><td>两个人群之间做交集、排除</td><td>用排除条件去重（近似做法）；群组交集（原需求形态）</td><td>短期近似；原需求形态中期</td><td><span class="tag t-inf">推断可做</span></td><td>因为「且」已有记载、排除条件为推断，所以短期可得到同一结果；无排除条件则多建标签，群组引用需小开发</td></tr>
+<tr><td class="no">21</td><td>自助新建标签并预估规模</td><td>三类标签圈选；规模与口径事前可见</td><td>短期</td><td><span class="tag t-inf">推断可做</span></td><td>因为新建标签可自写脚本、自排程已有记载，上线前先跑查询得规模为推断；由数据组代写时依赖他人排期</td></tr>
+<tr class="grp"><td colspan="6">能力 2 · 分人群内容配置（7 个）</td></tr>
+<tr><td class="no">1</td><td>为新增单独配置进大厅的弹窗项与顺序</td><td>按账号属性圈选；位置分格（活动位新增格）</td><td>短期</td><td><span class="tag t-goal">可实现</span></td><td>因为新增标签有口径，规则的对象、数量、排序字段均有记载，所以活动位新增格可单独配置且不影响他人</td></tr>
+<tr><td class="no">2</td><td>为回流单独配置回流后首次进大厅的内容</td><td>按账号属性圈选；位置分格；回流时间点（事件类标签）</td><td>短期近似；精确口径中期</td><td><span class="tag t-sug">部分实现</span></td><td>因为回流标签只能圈存量、「首次」没有事件字段，所以短期只能配置到回流存量，精确口径要事件类标签与个人逐日登录</td></tr>
+<tr><td class="no">3</td><td>为破产单独配置破产弹窗项、数量与顺序</td><td>位置分格（破产位单格）</td><td>短期</td><td><span class="tag t-goal">可实现</span></td><td>因为破产规则的位置、数量、排序可配且有记载，所以破产位单格即可；破产内容无依据属内容问题</td></tr>
+<tr><td class="no">4</td><td>为潜在付费（达阈值、未首储）单独配置内容</td><td>按累计行为圈选；礼包位</td><td>短期；「未买首储礼包」口径中期</td><td><span class="tag t-inf">推断可做</span></td><td>因为按「从未储值＋押注达阈值」口径可圈（取反依赖排除条件），所以短期可做；按「付过费但未买首储礼包」口径需首储购买标记，要中期事件类标签</td></tr>
+<tr><td class="no">5</td><td>潜在流失按衰减分档，各档独立内容</td><td>按月度储值圈选；排除去重</td><td>短期</td><td><span class="tag t-inf">推断可做</span></td><td>因为衰减三档标签已有，所以可分档；三档嵌套去重依赖排除条件，月度储值不可取则只能用上界</td></tr>
+<tr><td class="no">17</td><td>新手弹窗纳入后台统一配置</td><td>新手弹窗接入后台</td><td>长期</td><td><span class="tag t-con">不可实现</span></td><td>因为两项弹窗写死在客户端、现有后台没有近似做法，所以须改造客户端</td></tr>
+<tr><td class="no">18</td><td>自助改弹窗图文与点击去向</td><td>仅见于短期快速提升第 8 条，35 个建设项中无对应项</td><td>短期</td><td><span class="tag t-inf">推断可做</span></td><td>因为图文与点击去向字段能否自助无记载，不成立则走研发，方案内没有兜底的建设项</td></tr>
+<tr class="grp"><td colspan="6">能力 3 · 触达量与顺序控制（6 个）</td></tr>
+<tr><td class="no">6</td><td>单人单次进大厅弹窗上限，事前可确定</td><td>位置分格；改规则前测算；单次个数字段（中期）</td><td>短期手工；汇总字段中期</td><td><span class="tag t-inf">推断可做</span></td><td>因为上限等于所在两格个数之和，所以事前可读；但靠手工推算，无汇总字段与预览，且只含进大厅时机</td></tr>
+<tr><td class="no">7</td><td>同时命中多项弹窗的先后</td><td>位置分格；跨规则先后字段</td><td>同一位置内短期；跨位置中期</td><td><span class="tag t-sug">部分实现</span></td><td>因为位置互斥使同一位置不再有多条规则命中，所以位置内先后不必设置；活动位与礼包位之间的先后不可调</td></tr>
+<tr><td class="no">8</td><td>改规则前测算受影响人群与弹窗数量</td><td>改规则前测算；改动对高卡用户的影响测算</td><td>短期手工</td><td><span class="tag t-inf">推断可做</span></td><td>因为标签名单可查、个数可按配置推算，所以改前可测算；全靠手工，无预览或模拟</td></tr>
+<tr><td class="no">13</td><td>单人日推送条数上限</td><td>单人日推送上限（在推送统一后台上开发）</td><td>长期</td><td><span class="tag t-con">不可实现</span></td><td>因为各套推送独立计数、现有后台没有近似做法，所以须在推送统一后台跨通路合计计数，并接入各通路记录</td></tr>
+<tr><td class="no">16</td><td>关闭某弹窗后当日不再出现</td><td>「关闭后当日不再弹」开关</td><td>中期</td><td><span class="tag t-con">不可实现</span></td><td>因为把单项每日次数设为 1 的含义是所有人每日只看一次，不是关闭后不再弹，所以无近似做法，须开关与关闭事件记录</td></tr>
+<tr><td class="no">19</td><td>弹窗与推送每日合计上限</td><td>推送统一后台与合计限量；推送侧频控</td><td>长期</td><td><span class="tag t-con">不可实现</span></td><td>因为弹窗侧可用单项次数封顶、推送侧无近似做法，两侧不能共享余量，所以须把弹窗与推送条数合在一起计数</td></tr>
+<tr class="grp"><td colspan="6">能力 4 · 统一推送（4 个）</td></tr>
+<tr><td class="no">11</td><td>五通路统一入口，快显可配置</td><td>推送统一后台；五通路接入；快显可配置</td><td>长期</td><td><span class="tag t-con">不可实现</span></td><td>因为每个功能各有一套推送、快显写死在客户端，所以须新建推送统一后台并改造客户端</td></tr>
+<tr><td class="no">12</td><td>按标签定向发送推送</td><td>按名单或标签定向的现有形态</td><td>短期</td><td><span class="tag t-inf">推断可做</span></td><td>因为已知推播用例按触发名单发送，所以短期按名单导入可行；各通路能否按标签发送未知</td></tr>
+<tr><td class="no">22</td><td>推送点击后的跳转去向</td><td>点击跳转配置；快显可配置</td><td>长期</td><td><span class="tag t-con">不可实现</span></td><td>因为升级条点击不跳转、其他通路无记载，所以须在推送统一后台补跳转配置</td></tr>
+<tr><td class="no">23</td><td>按玩家行为自动触发推送</td><td>行为触发配置</td><td>长期</td><td><span class="tag t-con">不可实现</span></td><td>因为已有触发嵌在各功能内、运营自助新增触发无记载，所以须由统一入口提供触发条件配置</td></tr>
+<tr class="grp"><td colspan="6">能力 5 · 效果查看（4 个）</td></tr>
+<tr><td class="no">14</td><td>单次推送的发送量与到达量</td><td>各通路发送、到达、点击记录并汇总</td><td>长期；各通路已有记录则中期</td><td><span class="tag t-con">不可实现</span></td><td>因为整体层面无发送与到达数据、各通路单独有无未知，所以须记录并汇总</td></tr>
+<tr><td class="no">15</td><td>看弹窗曝光、点击、购买</td><td>弹窗效果汇总；业务指标汇总</td><td>短期</td><td><span class="tag t-inf">推断可做</span></td><td>因为曝光、点击多半已有，所以短期可取数；通用弹窗点击后的购买关联需订单明细</td></tr>
+<tr><td class="no">24</td><td>同一人群随机分组对比内容效果</td><td>分组对照搭建</td><td>短期</td><td><span class="tag t-inf">推断可做</span></td><td>因为现状盘点记载实验分流支持，所以推断可配置；不可配置则只能前后对比，归因受限</td></tr>
+<tr><td class="no">25</td><td>推送点击及被召回玩家此后回流</td><td>各通路记录并汇总；接入营销系统的召回名单</td><td>长期</td><td><span class="tag t-con">不可实现</span></td><td>因为点击无记载、召回后回流缺个人逐日登录，所以现有后台两部分都做不到</td></tr>
+</table></div>
+<p class="note">场景 18 在 35 个建设项中没有对应项，只出现在短期快速提升里，列入第四节边界。</p>
+<h3 style="margin:14px 0 6px;font-size:15px">不可实现与部分实现共 11 项：缺什么、何时补全</h3>
+<div class="tw"><table>
+<tr><th>场景</th><th>结论</th><th>缺什么</th><th>类型</th><th>补全时点</th></tr>
+<tr><td class="no">2</td><td><span class="tag t-sug">部分实现</span></td><td>回流时间点；个人逐日登录</td><td>建设项＋数据</td><td>中期</td></tr>
+<tr><td class="no">7</td><td><span class="tag t-sug">部分实现</span></td><td>弹窗规则配置里的跨位置先后字段</td><td>建设项</td><td>中期</td></tr>
+<tr><td class="no">16</td><td><span class="tag t-con">不可实现</span></td><td>关闭后不再弹开关；关闭事件记录</td><td>建设项＋数据</td><td>中期</td></tr>
+<tr><td class="no">17</td><td><span class="tag t-con">不可实现</span></td><td>改造客户端，新手弹窗占新手位</td><td>建设项</td><td>长期</td></tr>
+<tr><td class="no">13</td><td><span class="tag t-con">不可实现</span></td><td>跨通路合计计数；各通路记录</td><td>建设项＋数据</td><td>长期</td></tr>
+<tr><td class="no">19</td><td><span class="tag t-con">不可实现</span></td><td>弹窗曝光与推送发送合计计数</td><td>建设项</td><td>长期</td></tr>
+<tr><td class="no">11</td><td><span class="tag t-con">不可实现</span></td><td>推送统一后台、五通路接入、快显可配置</td><td>建设项＋通路能力</td><td>长期</td></tr>
+<tr><td class="no">22</td><td><span class="tag t-con">不可实现</span></td><td>跳转配置；快显写死</td><td>建设项＋通路能力</td><td>长期</td></tr>
+<tr><td class="no">23</td><td><span class="tag t-con">不可实现</span></td><td>自助触发条件配置</td><td>建设项＋数据</td><td>长期</td></tr>
+<tr><td class="no">14</td><td><span class="tag t-con">不可实现</span></td><td>各通路发送、到达记录</td><td>建设项＋数据</td><td>长期；有记录则中期</td></tr>
+<tr><td class="no">25</td><td><span class="tag t-con">不可实现</span></td><td>点击记录；召回名单接入；逐日登录</td><td>建设项＋数据</td><td>长期</td></tr>
+</table></div>
+<p class="note">与现状盘点对照，判定只有两处变化：回流「首次」单独拆出，判为部分实现；跨位置先后因位置互斥绕过了位置内先后，由推断不可实现改为部分实现。其余分档不变。</p>
+<p class="note">详见<a href="分析/A70_场景验证_圈选与内容.md">圈选与内容场景验证</a>、<a href="分析/A71_场景验证_触达推送效果.md">触达、推送、效果场景验证</a>。</p>
+</details>
+</section>
+
+<section class="sec" id="s2">
+<div class="sec-h"><span class="sec-no">二</span><h2>人群验证：每人弹窗上限基本沿用现状，10 类中 3 类有专属配置</h2></div>
+<details class="more"><summary>展开：10 类人群的入口与上限、未覆盖 7 类缺什么</summary>
+<p class="sec-sub">储值下滑的挽回内容放礼包位还是放活动位，两种放法并列、不推荐其一。个数均为配置上限（配置允许的最多弹出个数，不是实际弹出）；a 为活动位格的弹出个数，设计未定。在场＝近 7 天有登录、弹窗碰得到的玩家。</p>
+<p class="note">结论：活动位格个数取现状值时，每人上限沿用现状；设计中明确改变个数的只有新增格，其余变化在上限可单独读、可单独调，以及新手位与推送入口。</p>
+<div class="tw"><table>
+<tr><th>人群</th><th>规模与口径</th><th>现状入口与上限</th><th>方案入口与上限</th><th>变化类别与因果</th></tr>
+<tr><td>新增</td><td>10,749（在场 4,789）</td><td>大厅弹窗后台 3 个；另有客户端新手弹窗，个数未知</td><td>活动位新增格小于现状，加礼包位 1，不超过 2；新手位接入后计入</td><td><span class="tag t-con">个数上限变</span>因为设计明写新增格取小于现状，所以上限不超过 2（属先拿数据的试探性操作，理由弱）；入口变：新手位、推送</td></tr>
+<tr><td>回流</td><td>存量 16,564（在场 8,022）</td><td>后台 3 个；命中储值下滑规则者 4 个</td><td>回流格 a＋礼包位 1；a 设计未定，沿用现状 2 时为 3</td><td><span class="tag t-sug">可读性与可调性</span>因为回流格独立切出，所以个数可单独调；内容变化仅为设想（理由弱）</td></tr>
+<tr><td>潜在付费</td><td>5,976–25,972（上界）</td><td>后台 3 个，首储礼包排储值类第 1</td><td>无专属格，落在所在身份格；首储礼包照旧排第一</td><td><span class="tag t-inf">无变化</span>因为设计没有按潜在付费切格，老账号策略等数据</td></tr>
+<tr><td>潜在流失</td><td>不可知，参照 13,449–18,265</td><td>仅普卡、银卡下滑者 4 个，其余 3 个</td><td>放礼包位：身份格 a＋礼包位下滑格 1；放活动位：下滑格 a＋1</td><td><span class="tag t-con">个数取决于放法</span>因为放礼包位把下滑内容由活动类换到礼包位，所以上限可能少 1；放活动位同现状</td></tr>
+<tr><td>破产</td><td>不可知，暴露上界 34,363</td><td>破产位 1 个储值类</td><td>破产位单格 1（设计明写）</td><td><span class="tag t-inf">无变化</span>因为设计保持单格，内容待定</td></tr>
+<tr><td>持續无储值低押注</td><td>1,029（在场，全部普卡）</td><td>3 个</td><td>其余格 a＋1</td><td><span class="tag t-sug">可读性与可调性</span>因为策略保持默认，只多了其余格可独立调</td></tr>
+<tr><td>持續有储值</td><td>11,038（在场）</td><td>3 个；下滑上界命中者 4 个</td><td>其余格 a＋礼包位 1</td><td><span class="tag t-sug">可读性与可调性</span>因为是否在衰减本地看不到，所以保持默认（理由弱）</td></tr>
+<tr><td>高卡（金卡以上）</td><td>6,366（横切各类）</td><td>3 个，月月抽仅金卡以上有权益</td><td>随所在身份格；改个数前先测算</td><td><span class="tag t-sug">可读性与可调性</span>因为互斥与总量改动会波及高卡，所以先测算，不单独给格</td></tr>
+<tr><td>VIP 与黑名單</td><td>123（108＋15）</td><td>3 个；弹窗规则是否排除黑名單未知</td><td>落其余格，设计未覆盖</td><td><span class="tag t-inf">无变化</span>因为设计将两者单列、不深挖</td></tr>
+<tr><td>离线 ≥ 8 天</td><td>40,117（下界）</td><td>弹窗 0 个；推送各自独立</td><td>弹窗 0 个；入口为推送，短期按名单、长期统一入口，区间 0–40,117</td><td><span class="tag t-add">入口变</span>因为弹窗和快显依赖在线，所以离线者只能由推送触达</td></tr>
+</table></div>
+<div class="cards"><div class="card"><h3>配置上覆盖 3 类（理由弱）</h3><p class="what">新增、回流、潜在流失同时有专属格、专属内容方向和入口；残留：新手位未接入（设计缺口）、回流首次口径与下滑人数（数据缺口）。</p></div><div class="card"><h3>未覆盖 7 类</h3><p class="what">数据缺口 4（潜在付费、破产、持續有储值、离线者），成本取舍 3（持續无储值低押注、高卡、VIP 与黑名單）；合规未知叠加在离线者上。</p></div></div>
+<h3 style="margin:14px 0 6px;font-size:15px">未覆盖的 7 类：缺什么、原因、何时可补</h3>
+<div class="tw"><table>
+<tr><th>人群</th><th>缺什么</th><th>原因类别</th><th>可补时点与依赖</th></tr>
+<tr><td>潜在付费</td><td>专属格；老账号的专属内容</td><td><span class="tag t-inf">数据缺口</span></td><td>订单明细、首储购买标记（事件类标签，中期）</td></tr>
+<tr><td>破产</td><td>专属内容（礼包价位、限购、排序用意未知）</td><td><span class="tag t-inf">数据缺口</span></td><td>破产触发人数与条件原文</td></tr>
+<tr><td>持續有储值</td><td>是否在衰减</td><td><span class="tag t-inf">数据缺口</span></td><td>每人月度储值（按月度储值圈选，属短期）</td></tr>
+<tr><td>离线者</td><td>推送内容；通路可达性</td><td><span class="tag t-inf">数据缺口</span><span class="tag t-con">合规未知</span></td><td>入口短期按名单、长期统一入口；各通路记录</td></tr>
+<tr><td>持續无储值低押注</td><td>无独立主张</td><td><span class="tag t-add">成本取舍</span></td><td>设计有意保持默认</td></tr>
+<tr><td>高卡</td><td>专属格与内容</td><td><span class="tag t-add">成本取舍</span></td><td>设计只定改动前测算</td></tr>
+<tr><td>VIP 与黑名單</td><td>专属格、内容、入口三项全无</td><td><span class="tag t-add">成本取舍</span></td><td>单列不深挖</td></tr>
+</table></div>
+<p class="note">在场同时命中两类的 7,572 人是人群口径，不是被多弹的人数；互斥分格下每人在同一位置只落一格，不构成额外叠加，前提是人群切分无遗漏、无重叠，现有后台靠手工校验。</p>
+<p class="note">设计原文「金卡以上不合并成一档」有两种理解，整体方向不变，只改潜在流失一行：下滑格含金卡以上时在场上界 13,449，不含时 8,104。</p>
+<p class="note">详见<a href="分析/A72_人群验证.md">人群验证</a>。</p>
+</details>
+</section>
+
+<section class="sec" id="s3">
+<div class="sec-h"><span class="sec-no">三</span><h2>根因验证：5 个根因都须中期以上开发才能消除，短期项一个也不消除</h2></div>
+<details class="more"><summary>展开：各根因对应的建设项、消除程度与未解决部分</summary>
+<p class="sec-sub">消除程度：全部＝该根因下每个缺口都有建设项使根因不再起作用，剩余未知只影响补全时点或成本；部分＝至少一个缺口的建设项能否成立取决于未知（如通路能否接入），或须借另一根因的未知才能消除；仍待数据＝根因本身是否成立取决于数据收集。末列为「先看能否验证、回退」路径下的实施步骤。</p>
+<p class="note">结论：短期 14 项不消除任何根因；弹窗写死在客户端、频次不支持关闭后不再弹两个根因，有建设项可全部消除；推送分散实现与弹窗规则缺字段取决于通路能否接入推送统一后台，判部分；推送数据仍待数据。</p>
+<div class="tw"><table>
+<tr><th>根因</th><th>建设项</th><th>何时消除</th><th>消除程度</th><th>未解决部分</th><th>先看验证、回退时</th></tr>
+<tr><td>推送随各功能分别实现，没有统一后台</td><td>推送统一后台、五通路接入、日上限、跳转、行为触发、频控（长期）；接入营销系统召回名单（中期）；短期仅按名单定向（绕开）</td><td>长期</td><td><span class="tag t-sug">部分</span></td><td>通路能否接入与按标签发送未知；短信等依赖营销系统；合规未知</td><td>第五步，据数据再定，可能延后</td></tr>
+<tr><td>部分弹窗与快显写死在客户端</td><td>新手弹窗接入后台、快显可配置</td><td>长期</td><td><span class="tag t-goal">全部</span></td><td>为何写死无记载；接入前新手位个数不计入</td><td>第六步，时点后移</td></tr>
+<tr><td>弹窗规则配置没有跨规则先后与总量字段</td><td>位置分格互斥（绕开）；单次、单日个数字段与先后字段（中期）</td><td>中期</td><td><span class="tag t-sug">部分</span></td><td>合计上限须借推送统一后台，其可行性取决于通路能否接入（判部分的原因）；字段是否已有为推断；回大厅次数无数据</td><td>字段在第四步，据数据再定</td></tr>
+<tr><td>推送数据没有汇总或留存</td><td>各通路记录并入汇总；接入营销系统召回名单</td><td>中期或长期</td><td><span class="tag t-inf">仍待数据</span></td><td>根因只是缺口的复述；各通路有无记录决定补全时点；召回后回流缺逐日登录</td><td>先做数据收集，之后据结果</td></tr>
+<tr><td>弹窗频次不支持负反馈（关闭后不再弹）</td><td>「关闭后当日不再弹」开关与关闭事件记录</td><td>中期</td><td><span class="tag t-goal">全部</span></td><td>最轻版本是否已支持、关闭事件是否记录未知；连续关闭降权不在设计内</td><td>第四步，时点后移</td></tr>
+</table></div>
+<p class="note">「写死在客户端」判全部的依据：现状盘点只记事实、未记原因，推断写死属历史遗留，则只改成本、判全部；若为客户端限制，能否改由后台配置取决于该限制，改判部分。</p>
+<p class="note">负反馈一行的未知只影响补全时点：关闭事件未记录时，客户端补上报一定可行，不决定建设项能否成立。</p>
+<p class="note">两种判断标准先后下，建设项相同（35 项），差别只在时点：先看能否验证、回退时，推送数据这个根因要先收集数据，结果出来前不能说已解决。</p>
+<p class="note">问题诊断的 10 个缺口＝第一节 9 个不可实现＋跨位置先后 1 个部分实现；回流「首次」不在 10 个缺口内，归入第四节。</p>
+<p class="note">详见<a href="分析/A73_根因验证与边界.md">根因验证与边界</a>。</p>
+</details>
+</section>
+
+<section class="sec" id="s4">
+<div class="sec-h"><span class="sec-no">四</span><h2>边界：方案未覆盖的情形 14 条，数据缺口 9 条，设计缺口仅 1 条</h2></div>
+<details class="more"><summary>展开：14 条情形的归类、有无对应建设项与原因</summary>
+<p class="sec-sub">两种口径。归类（本文划分）：设计缺口＝方案内无对应建设项，且不是有意收窄；数据缺口＝缺依据数据；合规未知＝资料无合规记载；成本取舍＝设计有意收窄，留给与上级取舍。有无对应建设项：有＝35 个建设项里有直接对应项；部分有＝只有相关项；无＝没有对应项。</p>
+<p class="note">按归类：数据缺口 9、成本取舍 3、设计缺口 1、合规未知 1；按有无对应建设项：无 4、部分有 4、有 6。</p>
+<div class="tw"><table>
+<tr><th>序</th><th>方案未覆盖的情形</th><th>归类</th><th>方案内有无对应建设项</th><th>原因</th></tr>
+<tr><td class="no">1</td><td>场景 18 自助改图文与点击去向</td><td><span class="tag t-con">设计缺口</span></td><td><span class="tag t-con">无</span></td><td>35 个建设项中无对应项，只在短期快速提升；字段不能自助则方案内无兜底</td></tr>
+<tr><td class="no">2</td><td>回流「首次」进大厅的精确口径</td><td><span class="tag t-inf">数据缺口</span></td><td><span class="tag t-goal">有</span></td><td>事件类标签有建设项，但需个人逐日登录，数据不可取则长期停在近似</td></tr>
+<tr><td class="no">3</td><td>新手弹窗接入前，新手位个数不计入</td><td><span class="tag t-inf">数据缺口</span></td><td><span class="tag t-goal">有</span></td><td>写死原因与个数无记载，新增的实际进大厅个数只能写后台 3 个加写死项</td></tr>
+<tr><td class="no">4</td><td>回大厅次数、活动开启另弹、礼包位与破产位每日次数现值</td><td><span class="tag t-inf">数据缺口</span></td><td><span class="tag t-sug">部分有</span></td><td>设计只能用单项每日次数封顶，现值与进入次数无数据</td></tr>
+<tr><td class="no">5</td><td>弹多了是否让人烦</td><td><span class="tag t-inf">数据缺口</span></td><td><span class="tag t-sug">部分有</span></td><td>本地无弹窗个数与登录、留存的对照；控制类建设项的作用方向未知，可能为负</td></tr>
+<tr><td class="no">6</td><td>破产弹窗的内容与触发数据</td><td><span class="tag t-inf">数据缺口</span></td><td><span class="tag t-sug">部分有</span></td><td>礼包价位、限购、排序用意查不到；破产触发事件无记载</td></tr>
+<tr><td class="no">7</td><td>潜在流失的下滑人数与圈选</td><td><span class="tag t-inf">数据缺口</span></td><td><span class="tag t-goal">有</span></td><td>缺每人月度储值，只能给在场有储值者的上界（13,449，剔除 VIP 与黑名單后 13,368）</td></tr>
+<tr><td class="no">8</td><td>离线人群各通路能触达多少、通路排序</td><td><span class="tag t-inf">数据缺口</span></td><td><span class="tag t-goal">有</span></td><td>缺授权、手机号、绑定等可达字段，通路与人群的 30 个组合中没有一个确定适用</td></tr>
+<tr><td class="no">9</td><td>回流任务内容与回流策略</td><td><span class="tag t-inf">数据缺口</span></td><td><span class="tag t-goal">有</span></td><td>回流任务内容未知且有选择效应，策略只能写设想</td></tr>
+<tr><td class="no">10</td><td>客单价与付费率的月度口径</td><td><span class="tag t-inf">数据缺口</span></td><td><span class="tag t-goal">有</span></td><td>缺订单明细与月度储值，客单价指标缺失</td></tr>
+<tr><td class="no">11</td><td>推送授权、联系方式使用、触达频次的监管限制</td><td><span class="tag t-con">合规未知</span></td><td><span class="tag t-con">无</span></td><td>资料没有合规记载；名单型推送与频控取值依赖它，设计结构不变</td></tr>
+<tr><td class="no">12</td><td>连续关闭后自动静默（负反馈降权）</td><td><span class="tag t-add">成本取舍</span></td><td><span class="tag t-con">无</span></td><td>场景只要求当日不再弹，降权是更大改动，留给讨论</td></tr>
+<tr><td class="no">13</td><td>五类以外人群、VIP 与黑名單、高卡的专属策略</td><td><span class="tag t-add">成本取舍</span></td><td><span class="tag t-con">无</span></td><td>设计对五类以外保持默认，VIP 与黑名單单列，高卡只做改动前测算</td></tr>
+<tr><td class="no">14</td><td>短期快速提升未入选的三类</td><td><span class="tag t-add">成本取舍</span></td><td><span class="tag t-sug">部分有</span></td><td>名单型推送不可自助；关闭后不再弹的近似做法含义不同；潜在流失与破产的内容缺依据</td></tr>
+</table></div>
+<p class="note">两种口径各自成立，差别来自归类定义：被归为数据缺口或成本取舍的情形中，第 12、13 条在方案内同样没有对应建设项。因此不据计数判断设计本身的好坏；设计缺口只列不补，本阶段不改方案设计。</p>
+</details>
+</section>
+
+<section class="sec" id="s5">
+<div class="sec-h"><span class="sec-no">五</span><h2>假设汇总：67 条合并为 14 类，判断标准先后与作用方向影响最大</h2></div>
+<details class="more"><summary>展开：三类关键假设、14 类明细、代理指标拆分、本阶段新增推断</summary>
+<p class="sec-sub">阶段 1–6 的 67 条关键假设合并为 14 类。强度照抄原阶段标注（理由弱共 12 条），没有一类被抬高；验证方式只写用什么数据或观察、答案不同时选哪条路径。</p>
+<div class="cards"><div class="card"><h3>改变选哪条路径：判断标准的先后</h3><p class="what">先看覆盖全不全，推荐建推送统一后台与弹窗推送合计限量；先看能否验证、回退，推荐在现有后台内重组并先做数据收集。需 Dk 或上级判断，不是数据能验证的；方案设计已把两条路径并列，建设项相同。</p></div><div class="card"><h3>改变值不值得做：作用方向未知</h3><p class="what">控制类与召回类建设对活跃、付费的作用没有任何前后对照，可能为负，所以方案的价值主要是可管理、可测量。验证靠弹窗个数与登录留存的对照、推送召回与回流记录。</p></div><div class="card"><h3>改变做不做得到：能力是否已存在</h3><p class="what">弹窗规则配置的先后与总量字段、标签后台的排除条件、各通路记录与按标签发送，一旦已存在，8 个不可实现场景会改档、对应建设项提前，但建设项不取消。</p></div></div>
+<h3 style="margin:14px 0 6px;font-size:15px">14 类假设</h3>
+<div class="tw"><table>
+<tr><th>假设类</th><th>包含（阶段×条数）</th><th>强度</th><th>影响范围</th><th>验证方式与答案不同怎么办</th></tr>
+<tr><td>需求来源与范围解读</td><td>阶段1×5</td><td><span class="tag t-inf">推断</span></td><td>场景表述；中长期项是否进本期</td><td>向主管、制作人核对；若「现有功能迭代」指不做开发，中长期项不进本期，需求不删</td></tr>
+<tr><td>补充场景属理想状态</td><td>阶段1、4 各×1</td><td><span class="tag t-add">本文补充</span></td><td>10 个补充场景；写死在客户端与负反馈两个根因下的缺口</td><td>与上级讨论；不认则对应场景移出实施分层，推荐不变</td></tr>
+<tr><td>业绩作用方向未知</td><td>阶段1、4、5 各×1，阶段6×2</td><td><span class="tag t-inf">理由弱 4＋推断 1</span></td><td>机会排序、预期作用、策略强度</td><td>弹窗个数与登录留存对照、推送召回与回流记录；为负则控制类项升为中期首批，否则降为可管理、可测量</td></tr>
+<tr><td>后台能力是否存在（总体判断）</td><td>阶段3×1，阶段4×2</td><td><span class="tag t-inf">推断 2＋理由弱 1</span></td><td>8 个不可实现场景若有该能力则改档</td><td>查弹窗规则配置字段、触发条件、当日不再弹；存在则对应建设项提前</td></tr>
+<tr><td>弹窗规则配置与标签后台能力</td><td>阶段3×5，阶段6×2</td><td><span class="tag t-inf">推断</span></td><td>场景 5、6、7、19、20、24；去重配置方式；字段所属时点</td><td>弹窗规则配置的字段列表与排序列含义；已有则提前到短期，无排除条件则多建标签</td></tr>
+<tr><td>推送通路能力与定向</td><td>阶段2×1，阶段3×1，阶段6×2</td><td><span class="tag t-inf">推断</span></td><td>场景 12、13、14、22、23、25</td><td>各通路记录及存放位置；可按标签发送且有记录，则记录汇总降至中期</td></tr>
+<tr><td>推送受众规模上端</td><td>阶段2×2，阶段4×2</td><td><span class="tag t-inf">推断</span></td><td>推送受众区间 0–40,117；阶段 4 的并集</td><td>通路可达字段汇总（授权率、手机号非空率、绑定率），现有 9 项数据收集无对应</td></tr>
+<tr><td>数据可取性</td><td>阶段3×2，阶段4×1</td><td><span class="tag t-inf">推断</span></td><td>场景 5、8、15、24；按月度储值圈选</td><td>月度储值、订单明细；不可取则潜在流失以上界替代</td></tr>
+<tr><td>人群定义与规模口径</td><td>阶段2×7，阶段4×3，阶段6×3</td><td><span class="tag t-inf">推断（含理由弱 2）</span></td><td>五类规模与重叠（划分不变）；人群策略</td><td>月度储值、订单明细、逐日登录、破产触发；按「付过费但未买首储礼包」口径，潜在付费变 0–18,265 并须与潜在流失去重</td></tr>
+<tr><td>现状推算前提</td><td>阶段3×3</td><td><span class="tag t-inf">推断</span></td><td>现状上限 3 个与 4 个；新增策略</td><td>读后台每日次数与冷却；首储礼包并非每次都弹，则新增策略退化为保持现状</td></tr>
+<tr><td>运营流程与操作人</td><td>阶段3×2</td><td><span class="tag t-inf">推断 1＋理由弱 1</span></td><td>场景 4、8、9、15、21 是否依赖他人排期</td><td>后台配置操作与提单记录；数据组代写则依赖他人排期，仍属短期</td></tr>
+<tr><td>优先级与归并规则</td><td>阶段4×4</td><td><span class="tag t-inf">推断</span></td><td>阶段 4 的根因位次；推送侧内部先后</td><td>各通路记录；若当成硬依赖，则先做推送记录汇总再建入口</td></tr>
+<tr><td>选型判断标准与方案前提</td><td>阶段5×6</td><td><span class="tag t-inf">理由弱 3＋推断 3</span></td><td>阶段 5 的推荐；路径选择</td><td>Dk 或上级认可判断标准的先后；两种先后见上方卡片</td></tr>
+<tr><td>设计取舍</td><td>阶段6×6</td><td><span class="tag t-inf">设计取舍，理由弱 1</span></td><td>阶段 6 的架构与实施分层</td><td>通路记录、弹窗规则配置字段；若弹窗控制也移入统一后台，弹窗侧改造须等统一后台建成</td></tr>
+</table></div>
+<p class="note">阶段 4 的 7 项数据收集与阶段 6 另 2 项建议补充共 9 项，均被至少一类假设使用；阶段 2 提出的通路可达字段汇总和近 4 个月押注 2 项不在这 9 项内，建议阶段 8 汇总时并入。</p>
+<h3 style="margin:14px 0 6px;font-size:15px">打扰代理指标拆为两个方向</h3>
+<div class="tw"><table>
+<tr><th>指标</th><th>对象</th><th>定义（分子／分母）</th><th>读法</th></tr>
+<tr><td>弹窗触达后当日不再登录比例（打扰代理指标）</td><td>弹窗，在场玩家</td><td>弹窗触达后当日不再有登录的玩家数／当日被弹窗触达的玩家数</td><td>越高越可能是打扰；只是代理指标，须与分组对照或前后对比同看</td></tr>
+<tr><td>推送触达后当日再进入比例（响应指标）</td><td>推送，离线玩家</td><td>推送触达后当日产生登录的玩家数／当日被推送触达的玩家数</td><td>越高说明召回有响应；不是打扰指标，离线者不再登录是常态</td></tr>
+</table></div>
+<p class="note">本阶段只建议把原指标拆成这两个方向并标注适用通路；两个都是代理指标，不等于打扰或召回效果；方案设计暂不修改，是否修改在阶段 8 决定。</p>
+<h3 style="margin:14px 0 6px;font-size:15px">本阶段新增的 4 条推断</h3>
+<div class="tw"><table>
+<tr><th>本阶段新增的推断</th><th>依据</th><th>影响范围</th><th>验证方式</th></tr>
+<tr><td>礼包位下滑格个数沿用现状 1</td><td>位置表写现状 1，设计未单独声明</td><td>潜在流失；回流与潜在流失的重叠</td><td>向设计确认</td></tr>
+<tr><td>活动位回流格、其余格、下滑格个数设计未定（区间 0–2）</td><td>设计只明写新增格小于现状</td><td>所有在场人群的配置上限</td><td>落地前由运营定值</td></tr>
+<tr><td>VIP 与黑名單落其余格</td><td>身份字段不是新增、回流</td><td>VIP 与黑名單；其余格人数</td><td>设计确认；弹窗是否排除黑名單未知</td></tr>
+<tr><td>新增排除出挽回内容</td><td>交集有用（理由弱），前提是新增不满一个完整上月</td><td>新增与潜在流失的所在格</td><td>每人月度储值</td></tr>
+</table></div>
+<p class="note">详见<a href="分析/A74_假设汇总.md">假设汇总</a>，人群部分见<a href="分析/A72_人群验证.md">人群验证</a>。</p>
+</details>
+</section>
+
+<p class="links">依据与素材：<a href="分析/A70_场景验证_圈选与内容.md">圈选与内容场景验证</a> · <a href="分析/A71_场景验证_触达推送效果.md">触达、推送、效果场景验证</a> · <a href="分析/A72_人群验证.md">人群验证</a> · <a href="分析/A73_根因验证与边界.md">根因验证与边界</a> · <a href="分析/A74_假设汇总.md">假设汇总</a> · <a href="阶段6_方案设计.html">方案设计</a> · <a href="阶段4_问题诊断.html">问题诊断</a> · <a href="阶段2_人群分析.html">人群分析</a> · <a href="阶段1_需求分析.html">需求分析</a> · <a href="阶段产出规划.html">阶段产出规划</a> · 排版：<a href="规则与交接/阶段产出格式规范.md">阶段产出格式规范</a></p>
+</div></body></html>

@@ -1,0 +1,590 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>判断题第5份</title>
+<style>
+:root{--ground:#f4f3f0;--surface:#fff;--ink:#1b1d21;--ink-2:#3d4248;--muted:#4a4f56;--line:#e2e0db;--accent:#9a6f24;
+--yes:#2f6b52;--no:#a8382b;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#c9cdd2;--muted:#adb3ba;--line:#2e3339;--accent:#d6ab5c;
+--yes:#7dbb9c;--no:#e48e7f;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#c9cdd2;--muted:#adb3ba;--line:#2e3339;--accent:#d6ab5c;
+--yes:#7dbb9c;--no:#e48e7f;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.8}
+a{color:var(--accent)}
+.wrap{max-width:1600px;margin:0 auto;padding:48px 40px 96px}
+
+/* 页首 */
+.meta{font-size:14px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.5;margin:0 0 14px}
+.sub{font-size:16px;color:var(--ink);margin:0 0 4px}
+.legend{font-size:14px;color:var(--muted);margin:0}
+
+/* 节标题 */
+h2{font-family:var(--serif);font-size:21px;line-height:1.5;margin:56px 0 20px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:14px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+
+/* 标准卡片 */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:26px 32px 22px;margin:0 0 32px}
+.tag{font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.04em;margin:0 0 6px}
+.tag span{font-weight:400;color:var(--muted);letter-spacing:0;margin-left:8px}
+.std{font-size:18px;font-weight:700;line-height:1.65;margin:0;display:flex;gap:10px}
+.std .n{color:var(--accent);flex:none;width:14px}
+.std .eg{display:block;font-size:15px;font-weight:400;color:var(--ink-2);margin-top:4px}
+.info{font-size:14px;color:var(--muted);margin:6px 0 0 24px;line-height:1.7}
+.info b{font-weight:600;color:var(--ink-2)}
+.info i{font-style:normal;margin:0 10px;color:var(--line)}
+
+.cmp{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;margin:22px 0 0}
+.cmp h3{font-size:14px;font-weight:700;color:var(--muted);margin:0 0 10px;letter-spacing:.02em}
+ul.ind{margin:0;padding:0;list-style:none}
+ul.ind li{margin:0 0 12px;color:var(--ink-2)} ul.ind li:last-child{margin-bottom:0}
+ul.ind b{color:var(--ink)}
+ul.ind a{font-size:14px;white-space:nowrap;margin-left:4px}
+.none{color:var(--muted)}
+.uncheck{font-size:13px;font-weight:700;color:var(--no);white-space:nowrap}
+figure{margin:0 0 12px}
+figure img{display:block;max-width:100%;height:auto;border:1px solid var(--line);border-radius:4px;background:#fff}
+figcaption{font-size:13px;color:var(--muted);margin-top:4px;line-height:1.5}
+.txt{color:var(--ink-2);margin:0}
+.txt + .txt{margin-top:8px}
+.txt b{color:var(--ink)}
+.txt q{quotes:"「" "」"}
+
+.verdict{display:flex;align-items:center;justify-content:space-between;gap:32px;margin:24px 0 0;padding:16px 0 0;border-top:1px solid var(--line)}
+.ai{color:var(--ink-2);flex:1;min-width:0}
+.ai .lb{font-weight:600;color:var(--ink)}
+.ai b{font-size:17px;margin:0 2px}
+.ai b.yes{color:var(--yes)} .ai b.no{color:var(--no)}
+.you{flex:none;display:flex;align-items:center;gap:10px;font-size:15px;color:var(--ink)}
+.you .lb{font-weight:600}
+.you .opt{font-size:14px;color:var(--muted)}
+.dk{display:inline-block;width:150px;height:36px;border:1px solid var(--line);border-radius:4px}
+
+.note{font-size:14px;color:var(--muted);margin:-8px 0 0}
+.note.lead{margin:-8px 0 20px}
+ul.ind + figure{margin-top:18px}
+
+/* 参考案例 */
+.cases{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:start}
+.case{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:24px 28px}
+.case .h{font-size:17px;font-weight:700;margin:0 0 12px}
+.case dl{margin:0}
+.case dt{font-size:14px;font-weight:600;color:var(--muted);margin:0}
+.case dd{margin:0 0 12px;color:var(--ink-2)}
+.case dd:last-child{margin-bottom:0}
+.case dd.said{color:var(--ink);font-weight:600}
+
+/* 怎么回 */
+.reply{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 28px;font-size:16px}
+.reply b{color:var(--accent)}
+.links{font-size:14px;color:var(--muted);margin-top:40px}
+</style><style id="dkjudge-css">
+.wrap{position:relative}
+.jstat{position:absolute;top:44px;right:40px;font-size:14px;line-height:1.8;color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:3px 12px}
+.jstat b{font-size:15px;color:var(--ink);margin:0 1px}
+.jstat.all b{color:var(--yes)}
+.jstat .d{color:var(--yes);font-weight:600}
+.verdict{flex-wrap:wrap;row-gap:12px}
+.you .jb{font-family:inherit;font-size:15px;line-height:1.2;padding:7px 18px;border:1px solid var(--line);border-radius:4px;background:var(--surface);color:var(--ink);cursor:pointer}
+.you .jb:hover{border-color:var(--muted)}
+.you .jb.on{font-weight:700;color:var(--surface)}
+.you .jb.on[data-v="同意"]{background:var(--yes);border-color:var(--yes)}
+.you .jb.on[data-v="不同意"]{background:var(--no);border-color:var(--no)}
+.why{flex:1 0 100%}
+.why[hidden]{display:none}
+.why input{display:block;width:100%;font-family:inherit;font-size:15px;line-height:1.5;padding:7px 12px;border:1px solid var(--line);border-left:3px solid var(--no);border-radius:4px;background:var(--surface);color:var(--ink)}
+.jend{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:22px 28px 20px}
+.jend .jlb{display:block;font-weight:600;margin:0 0 8px}
+.jend textarea{display:block;width:100%;min-height:180px;font-family:inherit;font-size:16px;line-height:1.7;padding:10px 14px;border:1px solid var(--line);border-radius:4px;background:var(--surface);color:var(--ink);resize:vertical}
+.jend textarea.jout{min-height:110px;margin-top:12px;font-size:15px}
+.jend textarea[hidden]{display:none}
+.jrow{display:flex;align-items:center;flex-wrap:wrap;gap:24px;margin:16px 0 0}
+.jdone{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:600;cursor:pointer}
+.jdone input{width:18px;height:18px;margin:0;accent-color:var(--yes);cursor:pointer}
+.jcopy{font-family:inherit;font-size:14px;line-height:1.2;padding:7px 14px;border:1px solid var(--line);border-radius:4px;background:var(--surface);color:var(--ink-2);cursor:pointer}
+.jcopy:hover{border-color:var(--muted)}
+.jmsg{font-size:14px;color:var(--yes)}
+.jnote{font-size:14px;color:var(--muted);margin:12px 0 0}
+</style></head><body><div class="wrap">
+<div class="jstat" id="dk-stat" aria-live="polite">已判 <b id="dk-x">0</b> / 14 条<span class="d" id="dk-statdone" hidden> · 判完了</span></div>
+
+<p class="meta">弹窗标签推送系统 · 2026-10-16 · 第 5 份产出</p>
+<h1>第 5 份｜玩家来问「为什么没收到推送、为什么没看到弹窗」，客服按玩家查询这一页，能不能查出原因、给出答复？</h1>
+<p class="sub">按下面 14 条标准逐条看 AI 评审的结论（每条只答「符合」或「不符合」），你只判同意或不同意；也可补标准里缺的条目。</p>
+<p class="legend">「客服」＝页上新增的客服角色：只能查玩家、看操作纪录、做客服处置（弹窗减量、记录客诉）；这一角色是夜里补的，你还没确认。</p>
+
+<h2><span class="no">01</span>判断标准：6 条，按客服排查的先后排</h2>
+
+<!-- 标准 1 -->
+<section class="card">
+  <p class="tag">功能覆盖<span>推送现在能不能收到</span></p>
+  <p class="std"><span class="n">1</span><span>能看到玩家每种推送方式现在能不能收到；收不到的写出具体原因，以及是什么时候变成这样的
+    <span class="eg">例：通知关闭、未绑定 Facebook、删除 LINE 好友、换了手机号</span></span></p>
+  <p class="info"><b>玩家会这样问</b>　「我从来收不到 LINE 通知」<i>|</i><b>出处</b>　业内做法：Braze、OneSignal、CleverTap</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>Braze</b>：按外部 ID、邮箱、手机号、推送令牌查到用户；档案「Engagement」页签列邮件、短信、推送的订阅状态，并带推送令牌的变更记录 <a href="https://www.braze.com/docs/user_guide/audience/manage_audience/user_profiles">Braze 文档</a></li>
+        <li><b>OneSignal</b>：每台设备、每个渠道一条订阅，状态分已订阅／已退订／从未订阅，另有原因码（如 -2 主动退订、-10 卸载或在系统里关了通知）；文档提醒状态可能滞后，iOS 卸载、关通知可能 14 天以上才回报 <a href="https://documentation.onesignal.com/docs/en/subscriptions">OneSignal 文档</a></li>
+        <li><b>CleverTap</b>：用户档案的可达性一栏逐渠道写「可达／不可达」（推播、邮件、短信、网页推送） <a href="https://docs.clevertap.com/docs/debugger">CleverTap 文档</a></li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第5份_1_能否收到.jpg" width="500" alt="各推送方式能否收到"><figcaption>玩家查询 › 各推送方式能否收到</figcaption></figure>
+      <figure><img src="图/2026-10-16_判断题新格式/第5份_1b_可触达明细.jpg" width="630" alt="可触达明细"><figcaption>玩家查询 › 可触达明细（展开）</figcaption></figure>
+      <p class="txt">收不到的原因：未装 App、通知关闭、无有效手机号、已退订、未绑定 Facebook、未加 LINE 好友、已封锁、平台限制。做不到回写状态变化的推送方式只写当前状态。</p></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-1"><span class="lb">AI 评审：</span><b>是</b>　每种方式一行，写原因、最近变化时间与来源；90 天历史含换号</div>
+    <div class="you" id="dk-1" data-k="ai-1"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-1" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 1 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 2 -->
+<section class="card">
+  <p class="tag">功能覆盖<span>推送拦在哪一步</span></p>
+  <p class="std"><span class="n">2</span><span>只记得推送名称或大概日期，也能找到那一条，看出这位玩家收到没有；没收到的写明拦在哪一步和当时的数
+    <span class="eg">例：频率上限拦下（推播今日已收 2／2）、勿扰时段放弃、服务商未送达</span></span></p>
+  <p class="info"><b>玩家会这样问</b>　「昨晚那条每日补给通知我没收到」<i>|</i><b>出处</b>　你定的：玩家查询扩为查一位玩家收到的全部弹窗与推送（10/12）；业内做法：OneSignal、Braze</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>OneSignal</b>：单条消息的「Audience activity」按订阅列出已发送、确认收到、已点击、失败（附失败信息，如「Invalid token」）、发送时已不可触达；被频率上限拦下的只出现在汇总数里，不按人列 <a href="https://documentation.onesignal.com/docs/notification-delivery">OneSignal 文档</a></li>
+        <li><b>Braze</b>：用户档案「Messaging History」列这位用户近 30 天的消息事件（发送、收到、互动），约 40 条 <a href="https://www.braze.com/docs/user_guide/audience/manage_audience/user_profiles">Braze 文档</a></li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第5份_2_按推送查.jpg" width="630" alt="按推送查"><figcaption>玩家查询 › 收到记录 › 按推送查（输入名称、内文关键词或 ID，日期默认近 3 天）</figcaption></figure>
+      <figure><img src="图/2026-10-16_判断题新格式/第5份_2b_未收到原因.jpg" width="630" alt="只看未收到"><figcaption>玩家查询 › 收到记录（结果选「未收到」）</figcaption></figure></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-2"><span class="lb">AI 评审：</span><b>是</b>　按名称关键词加日期找推送，看得到有无记录；拦下时写计数与服务商原因</div>
+    <div class="you" id="dk-2" data-k="ai-2"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-2" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 2 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 3 -->
+<section class="card">
+  <p class="tag">功能覆盖<span>推送到没到手机</span></p>
+  <p class="std"><span class="n">3</span><span>推播发出后，能确认是否到了玩家手机，iOS 也能</span></p>
+  <p class="info"><b>玩家会这样问</b>　「系统说发了，我 iPhone 上没有」<i>|</i><b>出处</b>　业内做法：OneSignal</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>OneSignal</b>：把「服务商已受理」和「设备确认收到」分开记；确认收到由设备上的 SDK 回报 <a href="https://documentation.onesignal.com/docs/notification-delivery">OneSignal 文档</a></li>
+        <li><b>OneSignal</b>（iOS）：配好通知服务扩展（Notification Service Extension）与 App Group 后，iOS 也能确认收到；付费方案可用 <a href="https://documentation.onesignal.com/docs/en/confirmed-delivery">OneSignal 文档</a></li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <p class="txt">Android 推播按到达回执写「已到达」；短信写运营商回执，如<q>已到达：发往 0912-***-678，回执 DELIVRD 10/09 19:00:11</q>。</p>
+      <p class="txt">iOS 推播只写<q>已发出：该渠道不回传到达</q>，建议答复请玩家检查手机通知设定；批量查询里单列为「已发出·无法确认到达」，不算收到。</p>
+      <p class="txt"><b>我们这里没有</b>：iOS 推播是否到达手机的确认。</p></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-3"><span class="lb">AI 评审：</span><b>否</b>　文中明写没有 iOS 推播到达确认，只写已发出</div>
+    <div class="you" id="dk-3" data-k="ai-3"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-3" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 3 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 4 -->
+<section class="card">
+  <p class="tag">功能覆盖<span>弹窗为什么没弹</span></p>
+  <p class="std"><span class="n">4</span><span>弹窗没弹时，能看到那一次进大厅（或破产）每条规则、每个项目的结果和原因
+    <span class="eg">例：不在对象、冷却中、次数已满、被优先级更高的规则让出、当天额度已满、显示失败</span></span></p>
+  <p class="info"><b>玩家会这样问</b>　「今天登录没看到中秋活动的弹窗」<i>|</i><b>出处</b>　你定的：玩家查询扩为查一位玩家收到的全部弹窗与推送（10/12）；业内做法：Braze</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>Braze</b>：站内信没弹，由开发人员看事件日志（Event User Log）和用户档案排查；文档列的常见原因：不在分群、不可再次收到、达到频率上限、分到对照组、被优先级更高的站内信让出、图片下载失败 <a href="https://www.braze.com/docs/developer_guide/in_app_messages/troubleshooting">Braze 文档</a></li>
+        <li class="none">按次列出每条规则的判定结果、给客服看的页面：上列文档都没写</li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第5份_4_弹窗展开.jpg" width="630" alt="弹窗一行展开"><figcaption>玩家查询 › 收到记录 › 弹窗一行展开（上方「规则判定」一规则一行，下方每个项目一行）</figcaption></figure>
+      <p class="txt">逐项结果从推送统一后台上线日起记，之前只有曝光记录。</p></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-4"><span class="lb">AI 评审：</span><b>否</b>　规则判定只列对象含该玩家的规则，看不到「不在对象」</div>
+    <div class="you" id="dk-4" data-k="ai-4"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-4" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 4 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 5 -->
+<section class="card">
+  <p class="tag">状态与防错<span>查不到记录时写明是哪一种</span></p>
+  <p class="std"><span class="n">5</span><span>查不到记录时，页面写明是哪一种情况，客服不会误答「没发给您」
+    <span class="eg">例：当时不在发送对象内、当时收不到、由旧后台发送、超出保留期</span></span></p>
+  <p class="info"><b>玩家会这样问</b>　「上周那条简讯我没收到」<i>|</i><b>出处</b>　你定的：「全都有记录……但可能会有不全的地方」（10/10）；业内做法：OneSignal</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>OneSignal</b>：单条消息里「发送时已不可触达」与「投递失败」分开列：前者以后不再发，后者下次重试 <a href="https://documentation.onesignal.com/docs/notification-delivery">OneSignal 文档</a></li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第5份_5_迁移期.jpg" width="630" alt="迁移期查无记录"><figcaption>玩家查询 › 收到记录（所选日期早于切换到本后台）</figcaption></figure>
+      <p class="txt">超出 30 天：写<q>记录保留 30 天，这次发送已超出</q>。</p>
+      <p class="txt">那条推送发过、但没有这位玩家的记录：写<q>这位玩家不在本次的发送对象内，或不可触达</q>，两种合在一句；发送当时的群组和能否收到不逐条记，可对照可触达明细里的状态变更历史。</p></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-5"><span class="lb">AI 评审：</span><b>否</b>　有发送无记录时只写「不在对象或不可触达」，未写明哪种</div>
+    <div class="you" id="dk-5" data-k="ai-5"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-5" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 5 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 6 -->
+<section class="card">
+  <p class="tag">功能覆盖<span>每种原因一句答复</span></p>
+  <p class="std"><span class="n">6</span><span>每一种原因旁都有一句能直接发给玩家的答复（繁體），客服不必自己组织说法</span></p>
+  <p class="info"><b>玩家会这样问</b>　以上各种<i>|</i><b>出处</b>　业内做法：Zendesk</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>Zendesk</b>：「宏」（Macros）是预先写好的答复与操作，客服在工单里选用，可先预览；分共享的和个人的 <a href="https://support.zendesk.com/hc/en-us/articles/4408887656602">Zendesk 文档</a></li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第5份_6_原因与答复.jpg" width="740" alt="结论与建议答复"><figcaption>玩家查询 › 收到记录 › 结果列（结论、建议答复、复制）</figcaption></figure>
+      <p class="txt">收到记录、弹窗逐项、各推送方式能否收到三处的原因旁都显示「结论」与「建议答复」，一键复制；对照表共 21 种原因。答复是初稿，由运营与客服定稿后存为系统配置，可改。</p></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-6"><span class="lb">AI 评审：</span><b>否</b>　规则判定和空状态旁没有答复，截图 4 弹窗逐项也没有</div>
+    <div class="you" id="dk-6" data-k="ai-6"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-6" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 6 不同意的理由"></div>
+  </div>
+</section>
+
+<p class="note">业内做法都已打开官方文档核对。</p>
+
+<h2><span class="no">02</span>按评审维度补齐的标准：8 条</h2>
+<p class="note lead">按评审维度表补齐其余维度；每条小标前半是所属维度。</p>
+
+<!-- 标准 7 -->
+<section class="card">
+  <p class="tag">信息结构与主次<span>按客服排查的先后排</span></p>
+  <p class="std"><span class="n">7</span><span>玩家查询页按客服排查的先后排：先看玩家现在各推送方式能否收到，再查具体一条推送或一次弹窗，最后给答复</span></p>
+  <p class="info"><b>看哪里</b>　玩家查询整页分块与先后<i>|</i><b>出处</b>　写作标准「内容按什么顺序排要看得出」；业内做法：NN/g</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>NN/g</b> 可用性启发式第 6 条「识别而非回忆」：让需要的信息、操作和选项就在眼前，不让使用者记住上一处看到的内容再到下一处用 <a href="https://www.nngroup.com/articles/ten-usability-heuristics/">NN/g 原文</a></li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <p class="txt">自上而下：查询栏 → 玩家信息（左）与「各推送方式能否收到」（右）→ 所属群组 → 目前符合发送对象的推送 → 近 7 天汇总 → 收到记录（可按推送或规则查）→ 自动弹窗顺序、游戏破产弹窗顺序。答复不单列一块，写在收到记录结果列的原因旁。</p></div>
+  </div>
+  <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:start;margin:20px 0 0">
+    <figure><a href="图/2026-10-16_判断题新格式/第5份_补2_整页.jpg"><img src="图/2026-10-16_判断题新格式/第5份_补2_整页_上.jpg" width="768" alt="玩家查询上半"></a><figcaption>玩家查询 › 上半：查询栏、玩家信息与各推送方式能否收到、所属群组、目前符合发送对象的推送、近 7 天汇总</figcaption></figure>
+    <figure><a href="图/2026-10-16_判断题新格式/第5份_补2_整页.jpg"><img src="图/2026-10-16_判断题新格式/第5份_补2_整页_下.jpg" width="768" alt="玩家查询下半"></a><figcaption>玩家查询 › 下半：收到记录、自动弹窗顺序、游戏破产弹窗顺序；点图看整页</figcaption></figure>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-7"><span class="lb">AI 评审：</span><b>是</b>　能否收到在首屏右侧，其后收到记录查具体一条，答复写在该条结果列末尾</div>
+    <div class="you" id="dk-7" data-k="ai-7"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-7" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 7 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 8 -->
+<section class="card">
+  <p class="tag">视觉完成度<span>八个检查点逐项看</span></p>
+  <p class="std"><span class="n">8</span><span>玩家查询页按视觉完成度八个检查点逐项看，没有一项不符合；其中「能收到／收不到」「已送达／被拦下」这类状态全页用同一组颜色加文字标出</span></p>
+  <p class="info"><b>看哪里</b>　玩家查询主图与状态小图<i>|</i><b>出处</b>　你定的：10/16 要判原型设计是否粗糙；业内做法：NN/g 启发式第 4 条、Ant Design「重复」</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>1 对齐</b>：同一块的标题、正文、表单项共用一个左侧起点；表单标签冒号对齐；数字取相同位数并右对齐。Ant Design「对齐」 <a href="https://ant.design/docs/spec/alignment-cn">Ant Design 文档</a></li>
+        <li><b>2 间距分级</b>：组内、组与组、块与块的间距分三级，全页一致；关系越近间距越小（纵向 8／16／24px）。Ant Design「亲密性」 <a href="https://ant.design/docs/spec/proximity-cn">Ant Design 文档</a></li>
+        <li><b>3 字号与字重层级</b>：页标题、块标题、字段名、正文、辅助说明各一级，同级同样式，一眼看得出主次和阅读顺序。NN/g 视觉设计原则「比例」「视觉层级」 <a href="https://www.nngroup.com/articles/principles-visual-design/">NN/g 原文</a></li>
+        <li><b>4 对比</b>：主操作与次要操作、必填与选填、可用与禁用在外观上区分得出。NN/g 视觉设计原则「对比」 <a href="https://www.nngroup.com/articles/principles-visual-design/">NN/g 原文</a></li>
+        <li><b>5 组件一致</b>：同一种控件全页同一样式和用法，并与现有后台（Element UI 风格）一致；同一操作同一个词。NN/g 启发式第 4 条「一致性与标准」、Ant Design「重复」 <a href="https://www.nngroup.com/articles/ten-usability-heuristics/">NN/g 原文</a> <a href="https://ant.design/docs/spec/repetition-cn">Ant Design 文档</a></li>
+        <li><b>6 颜色与装饰</b>：一色一义、全页固定；没有不承载信息的边框、底色、图标。NN/g 启发式第 8 条「美观与极简」 <a href="https://www.nngroup.com/articles/ten-usability-heuristics/">NN/g 原文</a></li>
+        <li><b>7 示例数据</b>：字段里是真实形态的示例值（真实活动名、合理人数与日期），前后一致；玩家看到的文案用繁體；没有「xxx」「示例文字」「123」这类占位。原型要求</li>
+        <li><b>8 基础排版</b>：文字不截断、不溢出、不互相遮挡；折行在自然停顿处；并列几行前有符号，行间距大于行内。你 10/12：「这三行前面哪怕给打个点……这也太粗糙了吧」</li></ul>
+    </div>
+    <div><h3>我们原型对应的部分</h3>
+      <ul class="ind">
+        <li><b>1 对齐</b>：玩家信息「字段: 值」各行；各表格数字列（今日已收／上限、近 7 天汇总）</li>
+        <li><b>2 间距分级</b>：各块虚线框之间、表格行高、玩家信息与「客服处置」按钮之间</li>
+        <li><b>3 字号层级</b>：块标题（各推送方式能否收到、收到记录……）、表头、灰色说明小字</li>
+        <li><b>4 对比</b>：「查询」蓝色主按钮；红字「2／2 条 已达上限」「频率上限拦下」「未送达」与普通结果</li>
+        <li><b>5 组件一致</b>：筛选下拉（推送／规则、推送、结果）、日期范围、「导出」「客服处置 ▾」按钮；两张弹窗顺序表</li>
+        <li><b>6 颜色与装饰</b>：状态的颜色与符号——能否收到列 ✓／✕，结果列红字，「1 项未显示」黄底，近 7 天汇总超上限的红字；新增块的蓝色虚线框；玩家信息灰底</li>
+        <li><b>7 示例数据</b>：会员编号、昵称「我来称王260134709」、打码手机号；「玩家看到的内容」列为繁體（「月月抽今晚開獎……」）；今日已收与收到记录、近 7 天汇总的数字</li>
+        <li><b>8 基础排版</b>：「玩家看到的内容」列截成「…」；结果列多行折行；收到记录筛选栏右端「导出」按钮；弹窗顺序表「弹窗名称」列折行。空结果等状态小图见第 1–5 条的图</li></ul>
+      <figure><img src="图/2026-10-16_判断题新格式/第5份_补_整页.jpg" width="636" alt="玩家查询整页"><figcaption>玩家查询 › 整页（去掉编号标注）</figcaption></figure>
+      <figure><img src="图/2026-10-16_判断题新格式/第5份_补_收到记录.jpg" width="745" alt="收到记录"><figcaption>玩家查询 › 收到记录</figcaption></figure></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-8"><span class="lb">AI 评审：</span><b>否</b>　对齐、标题字重、链接样式、状态颜色、示例数据、折行六个检查点不符</div>
+    <div class="you" id="dk-8" data-k="ai-8"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-8" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 8 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 9 -->
+<section class="card">
+  <p class="tag">改动可辨<span>沿用与新增分得清</span></p>
+  <p class="std"><span class="n">9</span><span>玩家查询页标出哪些部分沿用现有「玩家弹窗顺序查询」、哪些是本次新增</span></p>
+  <p class="info"><b>看哪里</b>　页首「由现有『玩家弹窗顺序查询』扩展而来」及各区块<i>|</i><b>出处</b>　写作标准「写清是现状还是改后」；原型要求</p>
+  <div class="cmp">
+    <div><h3>依据的标准怎么写</h3>
+      <ul class="ind">
+        <li><b>写作标准</b>：写清是现状还是改后——现状句写「现在」，做法句用「新建、加、改为」或写「改后」；单用「可」「能」会被读成已经能做</li>
+        <li><b>原型要求</b>：现有页面的改动标「新增」「改」；只看图和右侧说明，就说得出这页让运营做什么、和现状比改了什么</li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第5份_补_页首.jpg" width="780" alt="玩家查询页首"><figcaption>玩家查询 › 页首</figcaption></figure>
+      <figure><img src="图/2026-10-16_判断题新格式/第5份_补_现有页首屏.jpg" width="620" alt="现有玩家弹窗顺序查询"><figcaption>对照：现有弹窗后台 ›「玩家弹窗顺序查询」首屏（局部）</figcaption></figure>
+      <p class="txt">页首写「由现有『玩家弹窗顺序查询』扩展而来」；窗口顶部标「改」：「弹窗后台的『玩家弹窗顺序查询』整页移到这里」。所属群组、各推送方式能否收到、目前符合发送对象的推送、近 7 天汇总、收到记录各标「新增」并用蓝色虚线框出，「客服处置」按钮也标「新增」；右侧说明第 6 条写「两张弹窗顺序表不变」。玩家信息区加了最后登录、平台与版本、在线状态、客服处置四项，写在右侧说明第 7 条，区内没有标记。</p></div>
+  </div>
+  <figure style="margin:20px 0 0"><img src="图/2026-10-16_判断题新格式/第5份_补2_改动标记.jpg" width="1278" alt="带改动标记的原型页"><figcaption>玩家查询 › 原型页原样：「改」「新增」标记与右侧说明</figcaption></figure>
+  <div class="verdict">
+    <div class="ai" id="ai-9"><span class="lb">AI 评审：</span><b>否</b>　玩家信息区新增四行没标「新增」，说明一处写玩家信息照旧、一处写加四项</div>
+    <div class="you" id="dk-9" data-k="ai-9"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-9" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 9 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 10 -->
+<section class="card">
+  <p class="tag">方向一致<span>游戏内、游戏外分开</span></p>
+  <p class="std"><span class="n">10</span><span>玩家查询页把游戏外推送（推播、短信、Facebook、LINE）与游戏内推送（弹窗、快显）分开查询、分开显示</span></p>
+  <p class="info"><b>看哪里</b>　玩家查询各区块<i>|</i><b>出处</b>　你定的：10/13 推送分游戏内、游戏外两层</p>
+  <div class="cmp">
+    <div><h3>依据的标准怎么写</h3>
+      <ul class="ind">
+        <li><b>你定的</b>（10/13）：游戏内推送（弹窗、快显：玩家在游戏里才看得到）与游戏外推送（推播、短信、Facebook、LINE：玩家不在游戏里也收得到）是两件事，不能混在一起说；写「推送」时要说清是哪一层；推送统一后台里游戏内与游戏外分开列</li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第5份_1_能否收到.jpg" width="500" alt="各推送方式能否收到"><figcaption>玩家查询 › 各推送方式能否收到</figcaption></figure>
+      <figure><img src="图/2026-10-16_判断题新格式/第5份_补_近7天汇总.jpg" width="745" alt="近7天汇总"><figcaption>玩家查询 › 近 7 天汇总</figcaption></figure>
+      <p class="txt">「各推送方式能否收到」分「游戏外推送」「游戏内推送」两组行；近 7 天汇总分「游戏外收到（条）」「弹窗曝光（个）」「快显（次）」等列。收到记录是一张表，推播、短信与大厅弹窗、破产弹窗、快显按时间混排（图见第 8 条），「推送方式」筛选的选项按游戏外、游戏内分组。全页一个查询入口。</p></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-10"><span class="lb">AI 评审：</span><b>否</b>　收到记录把推播、短信与弹窗、快显按时间混排在一张表，默认不分开</div>
+    <div class="you" id="dk-10" data-k="ai-10"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-10" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 10 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 11 -->
+<section class="card">
+  <p class="tag">事实与依据<span>每种原因都有记录可查</span></p>
+  <p class="std"><span class="n">11</span><span>玩家查询页显示的每种拦截原因和送达状态，在需求文档的记录表（逐人发送明细、设备通知权限）里都有对应字段</span></p>
+  <p class="info"><b>看哪里</b>　玩家查询的原因与结果；需求文档记录表<i>|</i><b>出处</b>　写作标准「事实只写已证实的」</p>
+  <div class="cmp">
+    <div><h3>依据的标准怎么写</h3>
+      <ul class="ind">
+        <li><b>写作标准</b>：事实只写已证实的，不猜；推断可以写，须写明依据和边界</li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第5份_2b_未收到原因.jpg" width="630" alt="未收到原因"><figcaption>玩家查询 › 收到记录（只看未收到）</figcaption></figure>
+      <p class="txt"><b>页上出现的原因与状态</b>　能否收到：通知关闭、未装 App、无有效手机号、已退订、未绑定 Facebook、未加 LINE 好友、已封锁、平台限制；令牌有效／已失效。收到记录：频率上限拦下、勿扰时段放弃或顺延、未送达（服务商接口超时、推送服务超时）、已到达、已发出（iOS 不回传）、已曝光、已点击。弹窗逐项：跳过（冷却中）、已下发·显示失败（资源加载失败）。</p>
+      <p class="txt"><b>记录表里的字段</b>　逐人发送明细：「结果」（发送前拦下、服务商未受理、当场拒绝、受理、受理后退回等）、「原因」（无联系方式、已退订、已封锁、平台限制、通知关闭、勿扰时段放弃、频率上限拦下、超时、令牌失效等）、到达时间、短信回执码。逐次显示明细：「结果」（已显示、频率上限拦下、不在线等）、弹窗逐项结果、显示失败回报。设备通知权限表：通知权限、令牌状态、状态变更（改前改后、来源）。</p></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-11"><span class="lb">AI 评审：</span><b>否</b>　页上「注销处理中」状态在逐人发送明细和设备通知权限表里都没有字段</div>
+    <div class="you" id="dk-11" data-k="ai-11"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-11" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 11 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 12 -->
+<section class="card">
+  <p class="tag">措辞与指代<span>答复不用后台用语</span></p>
+  <p class="std"><span class="n">12</span><span>玩家查询页给玩家的每句答复用繁體，不含群组、频率上限、冷却、批次这类后台用语</span></p>
+  <p class="info"><b>看哪里</b>　结果列的建议答复<i>|</i><b>出处</b>　写作标准「不用项目内部简称」；业内做法：NN/g</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>NN/g</b> 可用性启发式第 2 条「系统与现实世界匹配」：用使用者熟悉的词语、短语和概念，不用内部行话 <a href="https://www.nngroup.com/articles/ten-usability-heuristics/">NN/g 原文</a></li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第5份_6_原因与答复.jpg" width="740" alt="结论与建议答复"><figcaption>玩家查询 › 收到记录 › 结果列（结论、建议答复、复制）</figcaption></figure>
+      <p class="txt">页上可见的答复：「為避免打擾，每天發給每位玩家的通知有數量上限……」「您的註銷申請正在處理中，預計 MM/DD 完成……」。需求文档原因对照共 21 句，例：「為避免夜間打擾，勿擾時段內不發送通知，這則已順延到早上（或已取消）。」「此活動提醒已顯示過，可從大廳活動入口進入。」「系統當時忙碌，這次沒有顯示活動提醒……」</p></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-12"><span class="lb">AI 评审：</span><b>是</b>　21 句建议答复都是繁體，未见群组、频率上限、冷却、批次等用语</div>
+    <div class="you" id="dk-12" data-k="ai-12"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-12" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 12 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 13 -->
+<section class="card">
+  <p class="tag">无多余内容<span>只显示排查要用的玩家信息</span></p>
+  <p class="std"><span class="n">13</span><span>玩家查询页只显示排查要用的玩家信息，不显示储值金额等与排查无关的个人资料</span></p>
+  <p class="info"><b>看哪里</b>　玩家信息区<i>|</i><b>出处</b>　写作标准：与项目目标无关的内容删去；业内做法：NN/g</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>NN/g</b> 可用性启发式第 8 条「美观与极简」：界面不放无关或很少用到的信息；每多一个元素，都会和重要信息争夺注意力 <a href="https://www.nngroup.com/articles/ten-usability-heuristics/">NN/g 原文</a></li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第5份_补_玩家信息.jpg" width="240" alt="玩家信息"><figcaption>玩家查询 › 玩家信息</figcaption></figure>
+      <p class="txt">玩家信息 9 项：会员编号、标签名称、会员昵称、手机号码（中间打码）、标签状态、最后登录、平台与版本、在线状态、客服处置；旁边另列所属群组。页上没有储值金额、VIP 等级这类资料。</p></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-13"><span class="lb">AI 评审：</span><b>是</b>　玩家信息 9 项都与排查有关，手机号打码，没有储值金额、VIP 等级</div>
+    <div class="you" id="dk-13" data-k="ai-13"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-13" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 13 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 14 -->
+<section class="card">
+  <p class="tag">措辞与指代<span>整页句式：开头与主语</span></p>
+  <p class="std"><span class="n">14</span><span>玩家查询页的说明栏和页上文字，没有成片以同一主语（如「客服」）或同一句式开头的句子，上下文已确定的主语没有逐句写出</span></p>
+  <p class="info"><b>看哪里</b>　玩家查询整页与右侧说明栏<i>|</i><b>出处</b>　你 10/15：「永远是运营在开头，这三个字真的有必要？」；措辞审查「整稿通读」</p>
+  <div class="cmp">
+    <div><h3>依据的标准怎么写</h3>
+      <ul class="ind">
+        <li><b>措辞审查「整稿通读」</b>：逐句查完后通读全稿，同一开头、同一句式反复出现的删去或改写；全稿主体已经明确的不逐句写出，例如运营用的后台不写「运营在……」；补主语只补读者会读错或读不出的</li>
+        <li><b>你 10/15</b>（当时原型改稿后有 63 处以「运营」开头）：「永远是运营在开头，这三个字真的有必要？真的认真检查措辞了吗？」</li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <ul class="ind">
+        <li><b>以「客服」「运营」开头的句子</b>：没有；页上的「客服处置」是按钮名</li>
+        <li><b>说明栏 11 条的小标</b>：改：移入本后台；今日已收与上限并列；新增「各推送方式能否收到」；新增「所属群组」；新增「收到记录」；两张弹窗顺序表不变；玩家信息加最后登录、平台与版本、在线状态、客服处置；目前符合发送对象的推送；收到记录可按推送或规则查，弹窗行可展开逐项结果；可触达区写由谁发送与最近一次状态变化；近 7 天汇总与原因对照。第 3–5 条连续以「新增」开头</li>
+        <li><b>页上的说明句（原文）</b>
+          <br>所属群组「按当前名单，每 25 分钟刷新」
+          <br>目前符合发送对象的推送「按当前名单判断，到点按当时名单、可触达、勿扰与上限重新判断，不代表一定会收到，请勿向玩家承诺」
+          <br>近 7 天汇总「超过上限的格子标红」
+          <br>自动弹窗顺序「被优先级让出的规则灰显，注『由规则 N 弹出』」
+          <br>说明栏第 1 条「查询条件和玩家信息照旧；手机号码改为中间打码显示」</li></ul></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-14"><span class="lb">AI 评审：</span><b>是</b>　无「客服」开头；「新增」小标只连续三条，其余开头各异，不成片</div>
+    <div class="you" id="dk-14" data-k="ai-14"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-14" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 14 不同意的理由"></div>
+  </div>
+</section>
+
+<p class="note">业内做法取自 NN/g、Ant Design 官方页面，已打开核对。</p>
+
+<h2><span class="no">03</span>参考案例：你推翻过的两份同类稿</h2>
+<div class="cases">
+  <div class="case">
+    <p class="h">例 1　把「有记录」写成「查不到」</p>
+    <dl>
+      <dt>你的原话</dt><dd class="said">「全都有记录，不管是推播还是弹窗。但可能会有不全的地方。主要的大部分是有的」（10/10）</dd>
+      <dt>当时的稿</dt><dd>方案第二版问题四：把推播、弹窗的触达效果写成「查不到」（8 个数据项）</dd>
+      <dt>改后</dt><dd>删去问题四；记为已定：效果数据已有记录，可能部分不全，不写成「查不到」</dd>
+    </dl>
+  </div>
+  <div class="case">
+    <p class="h">例 2　弹窗数据只到规则汇总，当时评审已放行</p>
+    <dl>
+      <dt>你的原话</dt><dd class="said">「推送系统弹窗的数据在哪里看？我怎么没找到？我看原型图里只有数据看板，而且很简陋啊。」（10/15）</dd>
+      <dt>当时的稿</dt><dd>10/14 原型：弹窗只有曝光、点击、点击率，最细到规则；没有单条规则的数据页，也没有按排序项、设置版本的数据</dd>
+      <dt>改后</dt><dd>加「单条弹窗规则数据」：漏斗每一步写人数与次数、少在哪；每次保存存为一个版本，各版本数据分开保留、可对比</dd>
+    </dl>
+  </div>
+</div>
+
+<h2><span class="no">04</span>怎么判</h2>
+<div class="reply">直接在页面上点：每条下面点「同意」或「不同意」（不同意可写一句理由），页面最下面可补还缺的标准；点完自动保存，判完在对话里说一声「判完了」即可。<b></b></div>
+
+<h2><span class="no">05</span>还缺什么，判完没有</h2>
+<div class="jend">
+  <label class="jlb" for="dk-missing">还缺的标准（想到什么写什么，一条一行）</label>
+  <textarea id="dk-missing" rows="6"></textarea>
+  <div class="jrow">
+    <label class="jdone"><input type="checkbox" id="dk-done">这一份判完了</label>
+    <button type="button" class="jcopy" id="dk-copy">复制我的判断</button>
+    <span class="jmsg" id="dk-copymsg" aria-live="polite"></span>
+  </div>
+  <textarea class="jout" id="dk-out" readonly hidden aria-label="本页判断的文字"></textarea>
+  <p class="jnote">每次点选和输入都随手存在这台电脑的浏览器里，刷新、关掉再开都还在。</p>
+</div>
+
+<p class="links">原文：<a href="../推送系统后台集成需求/3_原型.html#p15">原型 · 玩家查询</a>　<a href="../推送系统后台集成需求/4_需求文档.md#s5-16">字段表</a>　<a href="2026-10-16_请你判的10份产出.html">请你判的 10 份产出</a></p>
+</div><script>
+(function(){
+  var PAGE = '第5份', LABEL = '第 5 份', P = 'dkjudge:' + PAGE + ':';
+  function get(k){ try { return localStorage.getItem(P + k); } catch (e) { return null; } }
+  function put(k, v){ try { localStorage.setItem(P + k, v); } catch (e) {} }
+  function del(k){ try { localStorage.removeItem(P + k); } catch (e) {} }
+  function read(k){
+    var s = get(k); if (!s) return null;
+    try { var o = JSON.parse(s); return (o && (o.v === '同意' || o.v === '不同意')) ? o : null; } catch (e) { return null; }
+  }
+  var groups = [].slice.call(document.querySelectorAll('.you[data-k]'));
+  var total = groups.length;
+  var elX = document.getElementById('dk-x'), elStat = document.getElementById('dk-stat'), elStatDone = document.getElementById('dk-statdone');
+  var elMissing = document.getElementById('dk-missing'), elDone = document.getElementById('dk-done');
+  var elCopy = document.getElementById('dk-copy'), elMsg = document.getElementById('dk-copymsg'), elOut = document.getElementById('dk-out');
+
+  function whyBox(k){ return document.querySelector('.why[data-k="' + k + '"]'); }
+  function paint(g, v){
+    [].forEach.call(g.querySelectorAll('button.jb'), function(b){
+      var on = b.getAttribute('data-v') === v;
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    var w = whyBox(g.getAttribute('data-k'));
+    if (w) w.hidden = (v !== '不同意');
+  }
+  function stat(){
+    var x = 0;
+    groups.forEach(function(g){ if (read(g.getAttribute('data-k'))) x++; });
+    if (elX) elX.textContent = x;
+    if (elStat) elStat.classList.toggle('all', x === total);
+    if (elStatDone) elStatDone.hidden = get('done') !== 'true';
+  }
+
+  groups.forEach(function(g){
+    var k = g.getAttribute('data-k'), w = whyBox(k), inp = w ? w.querySelector('input') : null;
+    var o = read(k);
+    if (o && inp && o.why) inp.value = o.why;
+    paint(g, o ? o.v : null);
+    g.addEventListener('click', function(e){
+      var b = e.target.closest ? e.target.closest('button.jb') : null;
+      if (!b) return;
+      var v = b.getAttribute('data-v'), cur = read(k);
+      if (cur && cur.v === v) { del(k); paint(g, null); }
+      else {
+        put(k, JSON.stringify({ v: v, why: (v === '不同意' && inp) ? inp.value : '' }));
+        paint(g, v);
+        if (v === '不同意' && inp) { try { inp.focus({ preventScroll: true }); } catch (e2) { inp.focus(); } }
+      }
+      stat();
+    });
+    if (inp) inp.addEventListener('input', function(){
+      var cur = read(k);
+      if (cur && cur.v === '不同意') { cur.why = inp.value; put(k, JSON.stringify(cur)); }
+    });
+  });
+
+  if (elMissing) {
+    elMissing.value = get('missing') || '';
+    elMissing.addEventListener('input', function(){ if (elMissing.value) put('missing', elMissing.value); else del('missing'); });
+  }
+  if (elDone) {
+    elDone.checked = get('done') === 'true';
+    elDone.addEventListener('change', function(){ if (elDone.checked) put('done', 'true'); else del('done'); stat(); });
+  }
+  stat();
+
+  function summary(){
+    var parts = [], un = [];
+    groups.forEach(function(g){
+      var k = g.getAttribute('data-k'), o = read(k);
+      if (!o) { un.push(k); return; }
+      var s = k + ' ' + o.v, why = (o.why || '').replace(/\s+/g, ' ').trim();
+      if (o.v === '不同意' && why) s += '——' + why;
+      parts.push(s);
+    });
+    if (un.length) parts.push('未判 ' + un.join('、'));
+    var m = (get('missing') || '').split(/\n+/).map(function(t){ return t.trim(); }).filter(Boolean);
+    if (m.length) parts.push('还缺：' + m.join('；'));
+    return LABEL + (get('done') === 'true' ? '（判完了）' : '') + '：' + parts.join('；');
+  }
+  function say(t){ if (elMsg) { elMsg.textContent = t; clearTimeout(say.t); say.t = setTimeout(function(){ elMsg.textContent = ''; }, 4000); } }
+  function manual(text){
+    if (!elOut) return;
+    elOut.hidden = false; elOut.value = text; elOut.focus(); elOut.select();
+    if (elMsg) { clearTimeout(say.t); elMsg.textContent = '没能自动复制：下框文字已选中，请按 ⌘C 复制'; }
+  }
+  function fallback(text){
+    var t = document.createElement('textarea'), ok = false;
+    t.value = text; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.top = '0'; t.style.opacity = '0';
+    document.body.appendChild(t); t.select();
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    document.body.removeChild(t);
+    if (ok) say('已复制，可直接贴进对话'); else manual(text);
+  }
+  if (elCopy) elCopy.addEventListener('click', function(){
+    var text = summary();
+    if (elOut) { elOut.hidden = true; }
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(function(){ say('已复制，可直接贴进对话'); }, function(){ fallback(text); });
+    } else fallback(text);
+  });
+})();
+</script>
+</body></html>

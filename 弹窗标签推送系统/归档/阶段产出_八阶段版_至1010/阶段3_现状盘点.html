@@ -1,0 +1,407 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>现状盘点</title>
+<style>
+/* 阶段产出模板样式（2026-10-08）。各阶段产出把本文件内容整段放进 <style>，组件用法见 阶段产出模板说明.md */
+:root{--bg:#f5f4f1;--card:#ffffff;--ink:#1b1d20;--ink2:#4a4f56;--muted:#868b92;--line:#e3e1dc;--line2:#efede9;
+--accent:#8a6a2c;--accent-soft:#f3ecdd;--ok:#2f6b52;--ok-soft:#e2efe8;--info:#225f8f;--info-soft:#e3edf5;--warn:#8a5d10;--warn-soft:#f6ecd8;--sup:#6b4fa0;--sup-soft:#ece6f6;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#141619;--card:#1c1f23;--ink:#e8e7e3;--ink2:#b9bdc2;--muted:#8a9098;--line:#30353c;--line2:#262a30;
+--accent:#d4ac62;--accent-soft:#2e2717;--ok:#7bb59a;--ok-soft:#1d3029;--info:#7fb0d8;--info-soft:#1b2a36;--warn:#d6a85a;--warn-soft:#332917;--sup:#b39ce0;--sup-soft:#2a2338;}}
+:root[data-theme="dark"]{--bg:#141619;--card:#1c1f23;--ink:#e8e7e3;--ink2:#b9bdc2;--muted:#8a9098;--line:#30353c;--line2:#262a30;
+--accent:#d4ac62;--accent-soft:#2e2717;--ok:#7bb59a;--ok-soft:#1d3029;--info:#7fb0d8;--info-soft:#1b2a36;--warn:#d6a85a;--warn-soft:#332917;--sup:#b39ce0;--sup-soft:#2a2338;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:940px;margin:0 auto;padding:36px 20px 72px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px;letter-spacing:.2px}
+h1{font-family:var(--serif);font-size:24px;line-height:1.5;margin:0 0 18px;font-weight:700}
+/* 概览数字 */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin:0 0 14px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+.kpi .n{font-size:24px;font-weight:700;line-height:1.2}
+.kpi .l{font-size:12.5px;color:var(--muted)}
+.kpi .d{font-size:12.5px;color:var(--ink2);margin-top:2px}
+/* 首屏摘要 */
+.summary{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:14px 18px;margin:0 0 8px}
+.summary dl{display:grid;grid-template-columns:72px 1fr;gap:6px 12px;margin:0}
+.summary dt{font-weight:650;color:var(--ink2);font-size:14px}
+.summary dd{margin:0;font-size:14.5px}
+/* 节 */
+.sec{margin:40px 0 0}
+.sec-h{display:flex;gap:12px;align-items:baseline;margin:0 0 4px}
+.sec-no{flex:none;font-size:12px;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:4px;padding:1px 8px;letter-spacing:1px}
+.sec-h h2{font-family:var(--serif);font-size:19px;line-height:1.5;margin:0;font-weight:700}
+.sec-sub{font-size:13.5px;color:var(--muted);margin:0 0 12px 0}
+/* 表格 */
+.tw{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:8px;margin:0 0 10px}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th{font-size:12.5px;font-weight:650;color:var(--muted);text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);white-space:nowrap;background:transparent}
+td{padding:10px 12px;border-bottom:1px solid var(--line2);vertical-align:top}
+tr:last-child td{border-bottom:none}
+tr.grp td{background:var(--bg);font-size:12.5px;font-weight:700;color:var(--ink2);padding:6px 12px;letter-spacing:1px}
+td.no{width:1%;white-space:nowrap;color:var(--muted);font-variant-numeric:tabular-nums}
+.src{display:block;font-size:12px;color:var(--muted);margin-top:2px}
+/* 标签 */
+.tag{display:inline-block;font-size:11.5px;font-weight:650;line-height:1.6;padding:0 7px;border-radius:4px;white-space:nowrap;vertical-align:1px}
+.t-goal{background:var(--ok-soft);color:var(--ok)} .t-con{background:var(--warn-soft);color:var(--warn)} .t-sug{background:var(--info-soft);color:var(--info)}
+.t-inf{background:var(--line2);color:var(--muted)} .t-add{background:var(--sup-soft);color:var(--sup)}
+.chip{display:inline-block;font-size:12px;padding:0 7px;border:1px solid var(--line);border-radius:10px;color:var(--ink2);margin:1px 2px 1px 0;font-variant-numeric:tabular-nums}
+/* 卡片 */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin:0 0 10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px 16px}
+.card h3{font-size:16px;margin:0 0 4px}
+.card .what{font-size:14px;color:var(--ink);margin:0 0 8px}
+.card .val{font-size:13.5px;color:var(--ink2);margin:8px 0 0;padding-top:8px;border-top:1px dashed var(--line)}
+/* 两栏 */
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 16px}
+.box h4{font-size:13px;color:var(--muted);margin:0 0 6px;font-weight:650;letter-spacing:.5px}
+.box ul{margin:0;padding-left:1.2em} .box li{margin:3px 0;font-size:14px}
+.note{font-size:12.5px;color:var(--muted);margin:6px 0 0}
+.links{font-size:13px;color:var(--muted);margin-top:40px;padding-top:12px;border-top:1px solid var(--line)}
+a{color:var(--accent)}
+@media (max-width:600px){h1{font-size:20px}.summary dl{grid-template-columns:1fr}.summary dt{margin-top:6px}}
+
+
+.tree{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin:0 0 10px}
+.tree .goal{font-weight:700;font-size:15.5px;margin:0 0 10px}
+.tree .goal small{display:block;font-weight:400;color:var(--ink2);font-size:13.5px;margin-top:2px}
+.tree ul{list-style:none;margin:0;padding:0 0 0 18px;border-left:2px solid var(--line)}
+.tree li{position:relative;margin:6px 0;padding-left:14px}
+.tree li:before{content:"";position:absolute;left:-2px;top:13px;width:12px;border-top:2px solid var(--line)}
+.tree li a{font-weight:650;text-decoration:none;color:var(--ink)}
+.tree li .d{color:var(--ink2);font-size:13.5px}
+.cap{background:var(--card);border:1px solid var(--line);border-radius:10px;margin:0 0 16px;overflow:hidden}
+.cap-h{padding:14px 18px 10px;border-bottom:1px solid var(--line2)}
+.cap-h .t{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.cap-h h3{font-size:17px;margin:0}
+.cap-h .def{font-size:14.5px;color:var(--ink);margin:4px 0 6px}
+.cap table{font-size:14px}
+.cap td,.cap th{padding-left:18px}
+.cap-v{padding:10px 18px 14px;font-size:13.8px;color:var(--ink2);background:var(--bg);border-top:1px solid var(--line2)}
+.cap-v b{color:var(--ink)}
+.reqgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.req{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+.req h4{margin:0 0 6px;font-size:14px;color:var(--ink2)}
+.req .it{padding:7px 0;border-top:1px dashed var(--line2)} .req .it:first-of-type{border-top:none}
+.req .o{font-size:14px} .req .u{font-size:13px;color:var(--ink2);margin-top:2px}
+
+
+.core{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:0 0 12px}
+.core h2{font-family:var(--serif);font-size:17px;margin:0 0 10px}
+.core table{font-size:13.8px}
+.core td{padding:9px 10px}
+.core td.cn{white-space:nowrap}
+.sc{display:inline-block;font-size:12.5px;background:var(--bg);border:1px solid var(--line2);border-radius:5px;padding:0 6px;margin:2px 3px 2px 0;line-height:1.7}
+.sc i{font-style:normal;color:var(--muted);margin-right:4px;font-variant-numeric:tabular-nums}
+.sc em{font-style:normal;color:var(--sup);font-size:11px;margin-left:3px}
+.must{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin:0 0 6px}
+.must .box p{margin:0;font-size:14px}
+details.more{margin:6px 0 0}
+details.more>summary{cursor:pointer;font-size:13px;color:var(--accent);margin:2px 0 10px;list-style:none}
+details.more>summary::before{content:"▸ ";} details.more[open]>summary::before{content:"▾ ";}
+.readtime{font-size:12.5px;color:var(--muted);margin:0 0 14px}
+h1{margin-bottom:6px}
+.h1sub{font-size:15px;color:var(--ink2);margin:0 0 14px}
+.chain{display:flex;align-items:stretch;gap:6px;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;margin:0 0 8px}
+.chain .nd{flex:1 1 120px;background:var(--bg);border:1px solid var(--line2);border-radius:8px;padding:8px 10px;font-weight:650;font-size:14px}
+.chain .nd small{display:block;font-weight:400;font-size:12px;color:var(--muted)}
+.chain .nd span{display:inline-block;font-size:11px;color:var(--accent);background:var(--accent-soft);border-radius:4px;padding:0 5px;margin-right:6px}
+.chain .nd.two{display:flex;flex-direction:column;gap:6px;background:transparent;border:none;padding:0}
+.chain .nd.two>div{background:var(--bg);border:1px solid var(--line2);border-radius:8px;padding:8px 10px}
+.chain .ar{align-self:center;color:var(--muted);font-size:16px}
+@media (max-width:640px){.chain{flex-direction:column}.chain .ar{transform:rotate(90deg);align-self:center;line-height:1}}
+.cc-now{margin:0 0 4px;font-size:13px;color:var(--ink2)}
+.cc-now b,.cc-v b{font-size:11.5px;color:var(--muted);margin-right:6px;font-weight:650}
+.ccs{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px}
+.cc{border:1px solid var(--line2);border-radius:8px;padding:11px 13px;background:var(--card)}
+.cc-h{display:flex;align-items:baseline;gap:8px;margin:0 0 4px}
+.cc-h b{font-size:15px}
+.cc-no{font-size:11.5px;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:4px;padding:0 6px}
+.cc-n{margin-left:auto;font-size:12px;color:var(--muted)}
+.cc-d{margin:0 0 6px;font-size:13.8px}
+.cc-s{margin:0 0 6px}
+.cc-v{margin:0;font-size:13px;color:var(--ink2);border-top:1px dashed var(--line);padding-top:6px}
+
+</style></head><body><div class="wrap">
+<p class="meta">阶段 3 · 现状盘点 · 对象：现有弹窗、标签、推送、数据和运营流程 · 2026-10-08 · 2026-10-10 按效果数据已有记录回溯修订，待审查（与人群分析并行）</p>
+<h1>现有能力可做到 25 个场景中的 17 个（14 个为推断）；做不到的 8 个，推送侧 4 个、弹窗侧 4 个</h1>
+<p class="h1sub">现状：弹窗 5 条规则仅 2 条按人群定向；标签无群组交集；推送 5 种通路无统一入口</p>
+<p class="readtime">首屏为核心内容；各节明细默认折叠，点「展开」查看。</p>
+
+<div class="core">
+<h2>25 个场景判定：人群圈选、内容配置、效果查看基本可做，触达控制与统一推送多数做不到</h2>
+<p class="note" style="margin:-4px 0 10px">数字为需求分析的场景编号，标「明写」的有出处；带「推断」的判定为资料无记载、按机制判断。</p>
+<div class="ccs">
+<div class="cc"><div class="cc-h"><span class="cc-no">1</span><b>人群圈选</b></div><p class="cc-now">推断可实现 4</p><p class="cc-d">标签「且」「或」可圈人，新建标签可自写脚本；排除条件、规模查询为推断</p><p class="cc-v"><b>卡点</b>群组之间无交集，用标签「且」替代；排除不可用则需新建标签</p></div>
+<div class="cc"><div class="cc-h"><span class="cc-no">2</span><b>分人群内容配置</b></div><p class="cc-now">可实现 2 · 推断可实现 4 · 不可实现 1</p><p class="cc-d">新增、破产可直接配置；回流、潜在付费、潜在流失、改图文为推断可配</p><p class="cc-now"><b>做不到</b><span class="sc"><i>17</i>新手弹窗纳入后台<em>明写</em></span></p><p class="cc-v"><b>卡点</b>新手弹窗写死在客户端；回流判定天数未知，潜在流失分档依赖排除条件</p></div>
+<div class="cc"><div class="cc-h"><span class="cc-no">3</span><b>触达量与顺序控制</b></div><p class="cc-now">推断可实现 2 · 推断不可实现 4</p><p class="cc-d">单次弹窗上限只能逐条规则约束，改规则前只能手工测算影响</p><p class="cc-now"><b>做不到</b><span class="sc"><i>7</i>跨规则先后</span><span class="sc"><i>13</i>单人日推送上限</span><span class="sc"><i>16</i>关闭后当日不再弹</span><span class="sc"><i>19</i>弹窗与推送合计上限</span></p><p class="cc-v"><b>卡点</b>后台无跨规则先后与总量设置，推送无统一计数（均为推断）</p></div>
+<div class="cc"><div class="cc-h"><span class="cc-no">4</span><b>统一推送</b></div><p class="cc-now">推断可实现 1 · 不可实现 1 · 推断不可实现 2</p><p class="cc-d">按标签定向推断可行；若只能按名单，每次需导名单</p><p class="cc-now"><b>做不到</b><span class="sc"><i>11</i>统一入口、快显可配置<em>明写</em></span><span class="sc"><i>22</i>点击跳转</span><span class="sc"><i>23</i>按行为触发</span></p><p class="cc-v"><b>卡点</b>每个功能各一套推送，快显写死在客户端</p></div>
+<div class="cc"><div class="cc-h"><span class="cc-no">5</span><b>效果查看</b></div><p class="cc-now">可实现 1 · 推断可实现 3</p><p class="cc-d">弹窗曝光、点击已有记录，推播发送、点击已有记录（Dk 10/10，可能部分不全）；推播「到达」字段、其余通路记录与分组实验为推断</p><p class="cc-v"><b>卡点</b>记录多数需取数，依赖他人排期（推断）；记录可能部分不全</p></div>
+</div>
+</div>
+
+<div class="must">
+<div class="box"><h4>关键判断</h4><p>做不到的 8 个只有 2 个有出处明写：新手弹窗写死在客户端、推送无统一入口；其余 6 个为推断。</p></div>
+<div class="box"><h4>推断与边界</h4><p>无记载不等于做不到，推断项均写明「若有该能力则可实现」；操作人未知只影响是否依赖他人排期。</p></div>
+<div class="box"><h4>待向后台确认</h4><p>跨规则先后能否设、有无单人总量上限、排除条件是否可用、分组实验能否配置、推送能否按标签定向。</p></div>
+</div>
+
+<section class="sec" id="s1">
+<div class="sec-h"><span class="sec-no">一</span><h2>弹窗：5 条规则仅 2 条按人群定向，只覆盖储值下滑的普卡、银卡</h2></div>
+<details class="more"><summary>展开：规则明细、规则机制、内容池与礼包</summary>
+<p class="sec-sub">标注：<span class="tag t-goal">已记载</span> 资料明写；<span class="tag t-inf">推断</span> 无记载，按机制和常见做法推；<span class="tag t-con">未知</span> 无记载也无法推。出处中「盘点」指弹窗标签推送盘点，「背景汇总」指背景信息汇总 v2。</p>
+<p class="sec-sub"><b>后台规则</b>：共 5 条规则、18 个弹窗项；2 条按人群定向，其余 3 条面向全部玩家</p>
+<div class="tw"><table>
+<tr><th>规则</th><th>类型与名称</th><th>位置</th><th>对象</th><th>每次弹出</th><th>排序条数</th></tr>
+<tr><td class="no">5</td><td>活动类：活动类弹窗</td><td>大厅</td><td>全部玩家</td><td>2</td><td>10</td></tr>
+<tr><td class="no">6</td><td>储值类：通用弹窗</td><td>大厅</td><td>全部玩家</td><td>1</td><td>7</td></tr>
+<tr><td class="no">7</td><td>储值类：破产储值弹窗</td><td>破产</td><td>全部玩家</td><td>1</td><td>8</td></tr>
+<tr><td class="no">10</td><td>活动类：普卡储值衰退 50%</td><td>大厅</td><td>普卡且当月储值低于上月 50%</td><td>1</td><td>1</td></tr>
+<tr><td class="no">11</td><td>活动类：银卡储值衰退 50%</td><td>大厅</td><td>银卡且当月储值低于上月 50%</td><td>1</td><td>1</td></tr>
+</table></div>
+<p class="note">出处：盘点第二节。后台共 5 条规则，编号 1–4、8、9 不存在；规则 10、11 的唯一排序项「每日补给计划」每日 20 次、冷却 1800 秒，在规则 5 中为每日 1 次、无冷却，同一人命中两条时叠加触发。</p>
+<p class="sec-sub"><b>规则机制</b>：同一规则内可排序、可限单项次数；跨规则的先后与总量上限按推断为不可设</p>
+<div class="tw"><table>
+<tr><th>机制</th><th>现状</th><th>状态</th></tr>
+<tr><td>排序</td><td>排序即优先级：当前不可参加的项被跳过，按序取满弹出数量为止。<span class="src">盘点第一节；答复登记第 3 项（Dk：不能参加的人会被跳过）</span></td><td><span class="tag t-goal">已记载</span></td></tr>
+<tr><td>叠加</td><td>多条规则同时命中时叠加触发，各条均生效。<span class="src">盘点第一节；背景汇总第 5 题</span></td><td><span class="tag t-goal">已记载</span></td></tr>
+<tr><td>先后</td><td>多条规则同时命中时谁先弹，后台不可设置。<span class="src">依据：盘点写规则只设对象、位置、弹出数量，规则字段中「排序」列的含义未确认；背景汇总第 5 题：叠加已确认，先后未确认</span></td><td><span class="tag t-inf">推断</span></td></tr>
+<tr><td>时机占用</td><td>四个时机全部有占用，没有空时机，定向要靠叠加规则实现。<span class="src">盘点第二节</span></td><td><span class="tag t-goal">已记载</span></td></tr>
+<tr><td>时机</td><td>有效时机 4 个：活动开启、首次登入、大厅、破产，进入与返回大厅不区分。<span class="src">盘点第一节；另有资料记 5 个（进入、返回分开）</span></td><td><span class="tag t-goal">已记载</span></td></tr>
+<tr><td>时机限制</td><td>金币水位、连败、当日下注量不能作时机，只能作圈人条件。<span class="src">盘点第一节</span></td><td><span class="tag t-goal">已记载</span></td></tr>
+<tr><td>频次</td><td>可限单个弹窗项的每日次数和冷却，不支持连续关闭后静默。<span class="src">盘点第一节</span></td><td><span class="tag t-goal">已记载</span></td></tr>
+<tr><td>总量上限</td><td>单人跨规则的总量上限不存在。<span class="src">依据：规则字段中没有总量字段，盘点只写单项每日次数与冷却；答复登记第 6 项空白</span></td><td><span class="tag t-inf">推断</span></td></tr>
+<tr><td>对象</td><td>弹窗对象可选「全部玩家」或「标签（群组）」。<span class="src">背景汇总第 4 题（后台截图）；盘点第一节</span></td><td><span class="tag t-goal">已记载</span></td></tr>
+<tr><td>排除</td><td>弹窗对象可使用排除条件。<span class="src">盘点写支持排除，后台截图未见排除栏</span></td><td><span class="tag t-inf">推断</span></td></tr>
+<tr><td>分组实验</td><td>同一人群随机分两组看不同弹窗，按推断可配置；若可配置，效果可做对照，若不可配置，效果判断只能前后对比、归因受限。<span class="src">盘点第一节写「实验分流支持，开发成本未评估」，第六节建议 P2 又把「现在配置上能做吗」列为待问，并写分流做不了则只能前后对比</span></td><td><span class="tag t-inf">推断</span></td></tr>
+<tr><td>排除名单</td><td>弹窗规则是否排除机器人、测试账号，无记载；推荐礼包后台有排除名单（黑名单、VIP）。<span class="src">盘点附录三、第六节</span></td><td><span class="tag t-con">未知</span></td></tr>
+</table></div>
+<p class="sec-sub"><b>内容池与礼包</b>：活动类 10 项、储值类 8 项；新手弹窗写死在客户端，不在后台</p>
+<div class="tw"><table>
+<tr><th>内容池</th><th>包含的弹窗项</th><th>现状</th></tr>
+<tr><td>活动类 10 项</td><td>月月抽、限时挑战、卡别直升活动、发信送奖、天天敲蛋礼V2、BOSS战、回流任务、每日补给计划、连线格格送、活动排行榜（按规则 5 的排序）</td><td>全部勾选首次登入与大厅，其中 6 项另勾活动开启；每日次数合计 12，普卡、银卡无月月抽权益合计 11。<span class="src">盘点第二节时机表、附录二</span></td></tr>
+<tr><td>储值类 8 项</td><td>首储礼包、独享礼包、破产礼包（仅破产位）、惊喜三选一、限时加码礼包、生涯限购、每日礼包、平台限量/专属礼包</td><td>大厅位 7 项、破产位 8 项，首储礼包均排第 1。<span class="src">盘点第二节</span></td></tr>
+<tr><td>礼包价格</td><td>已知首储礼包 NT$50 为全部上架礼包的最低价（最高 NT$30,000），其余 7 项售价与档位无记载</td><td>其余礼包不低于首储礼包；独享礼包、破产礼包按常见做法推断高于首储礼包 <span class="tag t-inf">推断</span><span class="src">盘点第四节；背景汇总第 6 题</span></td></tr>
+<tr><td>限时加码礼包</td><td>资格由推荐礼包后台控制：累计押注 ≥ 10,000、每月 8–31 日出现、购买后冷却 4 天、未购买冷却 2 天，按个人 RTP 分五档加码 2%–12%</td><td>条件不满足时弹窗跳过该项 <span class="tag t-inf">推断</span><span class="src">盘点第四节、附录三；背景汇总第 2 题</span></td></tr>
+<tr><td>不在后台</td><td>新手挑战弹窗和新手通行证弹窗写死在客户端，新手礼包（初始 1,000 金币）直接发放</td><td>后台不可配置，调整需研发。<span class="src">盘点第二节</span></td></tr>
+</table></div>
+</details>
+</section>
+
+<section class="sec" id="s2">
+<div class="sec-h"><span class="sec-no">二</span><h2>标签：约 100 个，支持且、或，群组间无交集；五类人群仅新增口径明确</h2></div>
+<details class="more"><summary>展开：标签体系、组合逻辑、五类人群对应的标签</summary>
+<p class="sec-sub">可自写脚本、最快 25 分钟刷新；回流只知读身份字段、判定天数未知，破产没有标签。</p>
+<div class="tw"><table>
+<tr><th>项</th><th>现状</th><th>状态</th></tr>
+<tr class="grp"><td colspan="3">体系</td></tr>
+<tr><td>规模</td><td>约 100 个，分十个大类：历史最高卡别、身份状态、游戏偏好、广告、当前卡别、支付平台、当月存款金额、指定活动、存储价值条件、赌注条件；后台截图显示 106 个，以截图计。<span class="src">盘点第一节、附录一；背景汇总第 8 题</span></td><td><span class="tag t-goal">已记载</span></td></tr>
+<tr><td>实现与刷新</td><td>每个标签是独立的 BigQuery 脚本，SQL 直接写在后台表单，更新方式分事件与定时，新建标签自行指定排程，最快 25 分钟一次。<span class="src">盘点第一节；背景汇总第 9 题</span></td><td><span class="tag t-goal">已记载</span></td></tr>
+<tr><td>编写人</td><td>由运营或数据同事编写。<span class="src">背景汇总第 9 题：具体由谁写未提及</span></td><td><span class="tag t-inf">推断</span></td></tr>
+<tr class="grp"><td colspan="3">组合逻辑</td></tr>
+<tr><td>且、或</td><td>标签之间支持「且」和「或」，标签可组合成群组（多个标签组合成的人群，可作弹窗对象），群组可任选、不受限。<span class="src">盘点第一节；背景汇总第 4 题</span></td><td><span class="tag t-goal">已记载</span></td></tr>
+<tr><td>排除</td><td>群组内可使用排除条件。<span class="src">盘点写支持，后台截图未见排除栏</span></td><td><span class="tag t-inf">推断</span></td></tr>
+<tr><td>交集</td><td>群组之间取交集尚无，「计划增加交集」出自同事盘点，不是主管本人说法。<span class="src">盘点第一节；背景汇总第 10 题；答复登记第 12 项</span></td><td><span class="tag t-con">没有</span></td></tr>
+<tr class="grp"><td colspan="3">五类人群对应的标签</td></tr>
+<tr><td>新增</td><td>标签「新增」，口径为注册 30 天以内，与持续、回流互斥。<span class="src">盘点第三节；背景汇总第 8 题</span></td><td><span class="tag t-goal">已记载</span></td></tr>
+<tr><td>回流</td><td>有「回流」「回流普卡直升」「7 到 30 天内回流的用户」，其中「回流」读会员身份字段，判定天数未知，另两个只有名称。<span class="src">盘点附录一；背景汇总第 8 题</span></td><td><span class="tag t-goal">标签存在：已记载</span> <span class="tag t-con">判定口径：未知</span></td></tr>
+<tr><td>潜在付费</td><td>「从未储值」可对阈值型「当月储值 ≥ 1 元／200／1,000／2,000／4,000」或条件未写的「已经先存储了」取反得到；「近 14 天押注」无对应标签，须新建，数仓分日押注推断可取。<span class="src">盘点附录一、第一节</span></td><td><span class="tag t-inf">推断</span></td></tr>
+<tr><td>潜在流失</td><td>现有登录类标签「本月有用户登录」「近 90 天有登入」「7–30 天未登入」「30 天未登入」只表示有无登录或未登录天数，衰减型「当月储值额小于上月 70%／50%／25%」是储值口径，均与登录天数下降对不上，须新建。<span class="src">盘点附录一、第二节</span></td><td><span class="tag t-inf">推断</span></td></tr>
+<tr><td>破产</td><td>没有对应标签，走破产时机，触发条件无记载。<span class="src">盘点第一节</span></td><td><span class="tag t-con">没有</span></td></tr>
+<tr class="grp"><td colspan="3">其他</td></tr>
+<tr><td>语义不明的标签</td><td>当前卡别类有 5 条看不懂（如「目前，该卡比金卡更优越」）、赌注条件类的「于中位数」含义不明，标签名含繁体和机翻痕迹。<span class="src">盘点附录一、第六节</span></td><td><span class="tag t-inf">推断</span></td></tr>
+<tr><td>卡别规则</td><td>（累计储值达标或累计押注达标）且账号等级达标，累计周期与是否降级未知。<span class="src">背景汇总第 14 题</span></td><td><span class="tag t-goal">已记载</span></td></tr>
+</table></div>
+<p class="note">两类新建标签都是自写 BigQuery 脚本（已记载），每人逐日登录与分日押注在数仓则可直接写日窗口（推断）；数仓没有则先补数据收集。</p>
+</details>
+</section>
+
+<section class="sec" id="s3">
+<div class="sec-h"><span class="sec-no">三</span><h2>推送：5 种通路各自配置、无统一入口；定向、频控无记载，推播、短信已有发送与点击记录</h2></div>
+<details class="more"><summary>展开：各通路的覆盖与配置、跨通路能力</summary>
+<p class="sec-sub">只确知快显和一个推播用例。通路清单出处：答复登记第 9 项（Dk 更正版）。效果记录：推播、弹窗已有（Dk 10/10，可能部分不全），短信见答复登记第 170 行；快显、Facebook、LINE 为 Dk 答复未覆盖。</p>
+<div class="tw"><table>
+<tr><th>通路</th><th>谁能收到</th><th>配置位置与已知用例</th><th>定向与数据</th></tr>
+<tr><td>快显</td><td>当时打开平台的人，不分端。</td><td>写死在客户端，无后台配置；用例：新手通行证升级条、大厅高额中奖播报。</td><td>不可配置；数据无记载（Dk 答复未覆盖）。</td></tr>
+<tr><td>推播</td><td>使用 App 的人，是否开启推送权限查不到。</td><td>用例：限时加码礼包触发后未购买、剩 2 小时发推播，在推荐礼包后台配置，是该礼包独立的一条通路。<span class="src">盘点第五节；背景汇总第 12 题</span></td><td>能否对任意人群发 <span class="tag t-con">未知</span>；发送、到达、点击已有记录 <span class="tag t-goal">已记载</span>（Dk 10/10，可能部分不全）。</td></tr>
+<tr><td>短信</td><td>不依赖是否打开平台和是否装 App <span class="tag t-inf">推断</span>；是否需要已绑定手机未知。</td><td>配置入口无记载。</td><td>发送记录要找 BI 取；链接点击近期才埋点且偏低，效果按发送对象一定时间内登录的人数判（Dk 10/10）<span class="src">答复登记第 170、171 行</span> <span class="tag t-goal">已记载</span></td></tr>
+<tr><td>Facebook</td><td>同短信，是否需要已绑定账号未知。</td><td>无记载。</td><td><span class="tag t-con">未知</span>；Dk 答复未覆盖</td></tr>
+<tr><td>LINE</td><td>同短信。</td><td>无记载。</td><td><span class="tag t-con">未知</span>；Dk 答复未覆盖</td></tr>
+</table></div>
+<div class="tw"><table>
+<tr><th>跨通路</th><th>现状</th><th>状态</th></tr>
+<tr><td>统一入口</td><td>每个功能各一套推送，没有统一入口。<span class="src">盘点第五节；背景汇总第 11 题</span></td><td><span class="tag t-goal">已记载</span></td></tr>
+<tr><td>按标签或名单定向</td><td>各通路能否按标签或名单发送未知，已知用例是限时加码推播按触发名单发送；若能按标签，推送可直接共用弹窗的人群，若只能按名单，每次要导名单，整体方案方向不变。<span class="src">答复登记第 9 项：定向能力仍然未知；盘点第六节建议 P0 第三步</span></td><td><span class="tag t-con">未知</span></td></tr>
+<tr><td>每人每日条数上限</td><td>跨通路没有每人每日上限，各套推送内部有无上限未知；若有，可直接用它控制推送总量，整体方案方向不变。<span class="src">依据：每个功能各一套推送、没有统一入口，所以没有跨套的统一计数；盘点第五、六节</span></td><td><span class="tag t-inf">推断</span></td></tr>
+<tr><td>发送、到达、点击记录</td><td>推播、弹窗已有记录（Dk 10/10，可能部分不全）；短信发送记录要找 BI 取；快显、Facebook、LINE 未知（Dk 答复未覆盖）；跨通路按人汇总无记载，推断没有。<span class="src">答复登记第 169、170 行</span></td><td><span class="tag t-goal">已记载</span></td></tr>
+<tr><td>营销侧召回</td><td>营销侧有按名单召回的手段，八月登录流失名单推断为其召回名单。<span class="src">数据说明；谁在用、发什么未知；短信发送记录要找 BI 取，其余通路有无效果数据未知</span></td><td><span class="tag t-inf">推断</span></td></tr>
+<tr><td>非推送触达</td><td>游戏内侧边栏常驻入口、红点、大厅活动中心二级入口、大厅限时活动入口（约 40 项）、游戏内悬浮活动。<span class="src">盘点第五节；背景汇总第 11 题</span></td><td><span class="tag t-goal">已记载</span></td></tr>
+</table></div>
+<p class="note">弹窗够不到的离线人群规模属人群分析，见<a href="阶段2_人群分析.html">人群分析</a>第五节，本节不重复。</p>
+</details>
+</section>
+
+<section class="sec" id="s4">
+<div class="sec-h"><span class="sec-no">四</span><h2>数据：本地仅两份累计快照；首储标记、分组标记缺失；弹窗与推播效果记录系统内已有</h2></div>
+<details class="more"><summary>展开：已有、推断可取、缺失的数据</summary>
+<p class="sec-sub">本地已有＝<code>数据/</code> 目录下的文件，金额为账号累计值、不分月；推断可取＝资料显示系统里有、现有导出没带（近 14 天押注与逐日登录多半可从数仓取到）；系统已有记录＝Dk 10/10 确认系统内已有、本地导出没带，可能部分不全；缺失＝无记载或确认没有。</p>
+<div class="tw"><table>
+<tr><th>数据</th><th>内容与局限</th><th>状态</th></tr>
+<tr class="grp"><td colspan="3">本地已有</td></tr>
+<tr><td>近一月活跃快照</td><td>最后登录 2026-08-16 至 09-16，63,032 行，剔除机器人 599、测试账号 141 后 62,292 人；金额为账号累计值，身份与卡别为取数当时的值。<span class="src">数据说明</span></td><td><span class="tag t-goal">已有</span></td></tr>
+<tr><td>八月登录流失名单</td><td>最后登录 8/1–8/31 共 29,242 行，其中仅在本文件的 12,188 人（剔除后）是近一月快照看不到的已离开用户；联系方式不使用。<span class="src">数据说明</span></td><td><span class="tag t-goal">已有</span></td></tr>
+<tr><td>同事草稿表</td><td>活动弹窗分层草稿，线上无配置，只作内容素材，不是事实来源。<span class="src">数据说明；盘点附录四</span></td><td><span class="tag t-goal">已有</span></td></tr>
+<tr class="grp"><td colspan="3">系统已有记录，本地导出未带</td></tr>
+<tr><td>弹窗曝光、点击、关闭</td><td>Dk 10/10 确认有记录，可能部分不全；点击后的订单关联未记载。<span class="src">答复登记第 169 行；盘点第六节</span></td><td><span class="tag t-goal">已记载</span></td></tr>
+<tr><td>推播发送、到达、点击</td><td>Dk 10/10 确认有记录，可能部分不全；「到达」依据 Dk 文字，报表截图列名为傳送、開啟、曝光，无「到达」列。<span class="src">答复登记第 169 行</span></td><td><span class="tag t-goal">已记载</span></td></tr>
+<tr><td>短信发送与点击</td><td>发送记录要找 BI 取；链接点击近期才埋点，且偏低（玩家多直接打开 App 或网页）；效果按发送对象一定时间内登录的人数判，时长由运营设定。<span class="src">答复登记第 170、171 行</span></td><td><span class="tag t-goal">已记载</span></td></tr>
+<tr class="grp"><td colspan="3">推断可取</td></tr>
+<tr><td>每人近 14 天押注与逐日登录</td><td>标签是数仓 BigQuery 脚本，线上「当月储值额」标签正在运行，说明数仓有明细、能按期汇总，推断可按日算出押注与登录，现有两份导出没带。<span class="src">盘点附录一、第一节、第二节</span></td><td><span class="tag t-inf">推断</span></td></tr>
+<tr><td>限时加码礼包触发与订单</td><td>推荐礼包后台有「玩家触发明细」「订单明细」，BigQuery 里有对应的活动表和触发表；通用弹窗的点击转化未记载。<span class="src">盘点附录三、附录五样例</span></td><td><span class="tag t-goal">已记载</span></td></tr>
+<tr><td>标签名单与规模</td><td>每个标签是 BigQuery 脚本，名单可直接查询，规模无需另行索取。<span class="src">盘点第一节</span></td><td><span class="tag t-inf">推断</span></td></tr>
+<tr class="grp"><td colspan="3">缺失</td></tr>
+<tr><td>是否买过首储礼包</td><td>两份导出均无首储字段，人群交叉表截至 9/24 没有结果，累计储值推不出首储状态。<span class="src">盘点第六节、附录五；背景汇总第 3、19 题</span></td><td><span class="tag t-con">没有</span></td></tr>
+<tr><td>分组或对照标记</td><td>弹窗分组实验按推断可配置（第一节）；即使可配置，目前也没有任何分组记录。<span class="src">盘点第一节、第六节</span></td><td><span class="tag t-con">没有</span></td></tr>
+<tr><td>历史快照</td><td>身份、卡别是取数当时的值，无法还原某人某天属于哪一类。<span class="src">数据说明</span></td><td><span class="tag t-con">没有</span></td></tr>
+<tr><td>逐日登录与破产事件</td><td>只有最后一次登录时间，没有逐日登录和破产事件，破产触发条件无记载。<span class="src">数据说明；盘点第一节</span></td><td><span class="tag t-con">没有</span></td></tr>
+</table></div>
+<p class="note">另有 2026-04 至 06 月注册的新用户快照（剔除后 31,395 人）见盘点附录五，原文件不在 <code>数据/</code> 目录下，本阶段不使用。</p>
+</details>
+</section>
+
+<section class="sec" id="s5">
+<div class="sec-h"><span class="sec-no">五</span><h2>运营流程：配置弹窗、建标签在后台内，取数与多数推送在后台外；操作人为推断</h2></div>
+<details class="more"><summary>展开：各项操作的现行步骤、操作人与痛点</summary>
+<p class="sec-sub">后台之外的环节：标签脚本编写、取数、快显（客户端）、短信、Facebook、LINE。资料没有一处写明操作人，只能推断。步骤顺序是本文的拆分，不是运营的实际顺序。痛点分两类：「明写」为出处直接写出的限制，「推出」为由明写限制加操作步骤推出（推断）；均不含耗时和使用感受。明细见<a href="分析/A50_运营流程现状.md">运营流程现状分析</a>。</p>
+<div class="tw"><table>
+<tr><th>操作</th><th>现行步骤</th><th>操作人</th><th>痛点</th></tr>
+<tr><td>弹窗小改</td><td>在大厅自动弹窗管理里直接改已有排序项的每日次数、冷却或顺序，完全在后台内。<span class="src">背景汇总第 1、5 题；盘点第一节</span> <span class="tag t-goal">已记载</span></td><td>运营 <span class="tag t-inf">推断</span></td><td>明写：四个时机全被占用、进入与返回大厅不区分。<span class="src">盘点第一、二节</span></td></tr>
+<tr><td>新增弹窗规则</td><td>确定人群，找到或新建标签并建群组，确认引用的活动和礼包已在别的后台建好，再在大厅自动弹窗管理新建规则并逐项设时机、次数、冷却。<span class="src">背景汇总第 1、4、5、6 题</span> <span class="tag t-goal">已记载</span></td><td>运营 <span class="tag t-inf">推断</span></td><td>明写：同一活动在两条规则里配置不同；推出：改规则前要自己算单人弹出上限。<span class="tag t-inf">推断</span><span class="src">盘点第二节</span></td></tr>
+<tr><td>新建标签</td><td>在标签定义表单内写 BigQuery 脚本，选更新方式和有效时间，排程最快 25 分钟，启用后加入群组。<span class="src">背景汇总第 9 题；盘点第一节</span> <span class="tag t-goal">已记载</span></td><td>运营或数据同事 <span class="tag t-inf">推断</span></td><td>明写：每个标签是独立脚本，部分标签口径语义不明；推出：向别人要标签人数。<span class="tag t-inf">推断</span><span class="src">盘点第一节、附录一、第六节</span></td></tr>
+<tr><td>取数</td><td>定口径后提交数据侧，导出 xlsx，剔除机器人和测试账号后分析；是否已提交、何时提交均未提及。<span class="src">背景汇总第 19 题；数据说明</span> <span class="tag t-inf">推断</span></td><td>数据组 <span class="tag t-inf">推断</span></td><td>明写：导出无首储字段、无月度字段，交叉表至 9/24 无结果。<span class="src">盘点附录五</span></td></tr>
+<tr><td>下发推送（嵌在功能内）</td><td>限时加码提醒在推荐礼包管理后台设「未购买推播时间」和标题，随礼包触发。<span class="src">盘点附录三；背景汇总第 12 题</span> <span class="tag t-goal">已记载</span></td><td>运营 <span class="tag t-inf">推断</span></td><td>明写：每个功能各一套，没有统一入口。<span class="src">盘点第五节</span></td></tr>
+<tr><td>下发推送（客户端写死）</td><td>快显和通行证升级条写死在客户端，调整要改客户端。<span class="src">答复登记第 9 项；背景汇总第 11、13 题</span> <span class="tag t-inf">推断</span></td><td>研发 <span class="tag t-inf">推断</span></td><td>明写：无后台配置项。</td></tr>
+<tr><td>下发推送（按名单）</td><td>短信、Facebook、LINE 没有任何后台记载，推断为营销侧按名单发送。<span class="src">背景汇总第 11 题；数据说明</span> <span class="tag t-inf">推断</span></td><td>营销侧 <span class="tag t-inf">推断</span></td><td>明写：短信发送记录要找 BI 取，其余通路记录有无未知。<span class="src">答复登记第 170 行；盘点第五节</span></td></tr>
+</table></div>
+<p class="note">发送入口出处明写的至少 2 个（推荐礼包后台的推播、客户端的快显），短信、Facebook、LINE 的入口为推断，不计入。操作人有两种可能（标签由数据组代写、取数由运营自助），只改变「按新人群圈选」「看效果」两类场景的判定，且只在「推断可实现」与「可实现但依赖他人排期」之间，其余场景同判。</p>
+</details>
+</section>
+
+<section class="sec" id="s6">
+<div class="sec-h"><span class="sec-no">六</span><h2>人群触达现状：仅储值下滑的普卡、银卡有专属规则，其余人群看同一组弹窗</h2></div>
+<details class="more"><summary>展开：五类人群的弹出个数、排在最前的内容与每日上限</summary>
+<p class="sec-sub">其余人群进大厅单次最多 3 个后台弹窗，破产时只弹 1 个储值类。按现有配置推算，个数是配置允许的最多，不是实际弹出；人数分母为近一月活跃 62,292 人；「存量」＝身份为回流的全部用户，「在场」＝最后登录距取数日（9/16）0–7 天、弹窗此刻碰得到的人。推算过程见<a href="分析/A51_人群触达现状.md">人群触达现状分析</a>。</p>
+<div class="tw"><table>
+<tr><th>人群</th><th>人数与卡别构成</th><th>进大厅最多弹出</th><th>排在最前的内容 <span class="tag t-inf">推断</span></th><th>每日活动类上限</th></tr>
+<tr><td>新增</td><td>10,749；普卡、银卡占 99.47%</td><td>后台 3 个；另有客户端写死的新手弹窗，个数未知</td><td>活动：限时挑战、卡别直升活动；储值：首储礼包（9,648 人，占 89.76% 从未储值）</td><td>11</td></tr>
+<tr><td>回流</td><td>存量 16,564（在场 8,022）；普卡、银卡占 97.52%</td><td>后台 3 个</td><td>同新增；回流任务排活动类第 7 位，无前置，普卡、银卡最晚在第 3–4 次进大厅时轮到</td><td>11</td></tr>
+<tr><td>潜在付费</td><td>下界 970、上界 16,509；上界中普卡、银卡占 98.29%</td><td>后台 3 个</td><td>储值：首储礼包（全部从未储值）；活动同新增</td><td>11</td></tr>
+<tr><td>潜在流失</td><td>不可知；候选池 30,406（含有储值与从未储值者）；现有储值下滑规则的命中者是另一批人</td><td>后台 3 个；命中现有储值下滑规则的普卡、银卡 4 个</td><td>活动类首位为月月抽（普卡、银卡跳过）；命中现有规则者另弹每日补给计划</td><td>普卡、银卡 11、金卡以上 12；命中现有规则者另加 20</td></tr>
+<tr><td>破产</td><td>规模不可知；可能遇到破产弹窗的人数上限取当前在场全体 34,363（近一月内破产过但当前不在场的人不在内）</td><td>破产时 1 个储值类，活动类项均未勾破产时机</td><td>未买首储者先见首储礼包，买过者先见独享礼包，再其次破产礼包</td><td>储值类每日次数未记载</td></tr>
+</table></div>
+<div class="cols">
+<div class="box"><h4>储值下滑规则的命中人数</h4><ul><li>实际人数需要月度储值，本地只能给上界：普卡、银卡有储值者 12,201，其中在场 8,104</li></ul></div>
+<div class="box"><h4>「排在最前的内容」与「第 3–4 次轮到」是推断</h4><ul><li>假设各活动都可参与、都在开放期，可参与的项越少越早轮到，所以第 3–4 次是最晚</li><li>首储礼包先弹还假设规则 6 对同一人每次进大厅都弹，盘点未记载</li></ul></div>
+<div class="box"><h4>个数与上限的口径</h4><ul><li>单次最多 3 个指进大厅时机，首次登入、活动开启时机另可能多弹，次数未知</li><li>每日活动类上限按普卡、银卡的 11 列，金卡以上为 12</li><li>储值类每日次数与冷却盘点未记载，故储值位每日上限为未知 <span class="tag t-con">未知</span></li></ul></div>
+</div>
+</details>
+</section>
+
+<section class="sec" id="s7">
+<div class="sec-h"><span class="sec-no">七</span><h2>场景可行性：可实现 17 个（14 个为推断），做不到 8 个（6 个为推断）</h2></div>
+<details class="more"><summary>展开：25 个场景按 5 项能力逐项判定与依据</summary>
+<p class="sec-sub">判定：<span class="tag t-goal">可实现</span> 所需能力都有明确记载；<span class="tag t-inf">推断可实现</span> 至少一项所需能力是推断或无记载；<span class="tag t-con">不可实现</span> 出处明写做不到；<span class="tag t-con">推断不可实现</span> 无记载，按机制推断做不到，并写「若有则……」。无记载本身不推出做不到，所以只有出处明写才判「不可实现」。依据指向本文各节。场景编号同<a href="阶段1_需求分析.html">需求分析</a>（共 25 个）。</p>
+<p class="sec-sub">做不到的 8 个：推送侧 4 个（统一入口、单人日推送上限、跳转、行为触发），弹窗侧 4 个（新手弹窗纳入后台、关闭后不再弹、跨规则先后、弹窗与推送合计上限）。</p>
+<div class="cap" id="c1">
+<div class="cap-h"><div class="t"><span class="sec-no">能力 1</span><h3>人群圈选</h3><span class="note">4 个场景：推断可实现 4</span></div>
+<p class="def">运营可以：用标签圈出任一目标人群，看到规模与口径；人群之间可做交集、排除</p></div>
+<table>
+<tr><th>场景</th><th>判定</th><th>依据</th></tr>
+<tr><td><span class="chip">9</span> 运营需触达的任一人群：已有或新建标签圈选，支持两个条件组合，可查看规模与口径并已剔除机器人和测试账号</td><td><span class="tag t-inf">推断可实现</span></td><td>且、或已记载（第二节）；标签规模可查询为推断，弹窗对象是否排除机器人、测试账号未知（第一、四节）。</td></tr>
+<tr><td><span class="chip">10</span> 标签使用者：反馈使用问题并看到后续迭代</td><td><span class="tag t-inf">推断可实现</span></td><td>主管目标写明按产品侧使用情况持续优化，反馈渠道无记载；该场景不依赖后台功能，按团队流程推断可行。</td></tr>
+<tr><td><span class="chip">20</span> 取交集或排除另一个人群，圈出新人群</td><td><span class="tag t-inf">推断可实现</span></td><td>群组之间取交集尚无（已记载），排除条件为推断支持，标签之间的「且」已记载，可达到同一结果（第二节）；若排除不可用，则需新建标签。</td></tr>
+<tr><td><span class="chip">21</span> 自助新建标签，并在上线前预估圈选规模</td><td><span class="tag t-inf">推断可实现</span></td><td>新建标签自写脚本、自排程已记载；脚本为 BigQuery 查询，上线前先跑查询得到规模为推断（第二、四节）。</td></tr>
+</table>
+<div class="cap-v"><b>现状小结</b>　4 个场景全部推断可实现：且、或已记载；排除条件、标签规模查询与剔除机器人、测试账号为推断或未知；群组之间的交集尚无，可由标签「且」达到交集；排除依赖排除条件（推断）。</div>
+</div>
+<div class="cap" id="c2">
+<div class="cap-h"><div class="t"><span class="sec-no">能力 2</span><h3>分人群内容配置</h3><span class="note">7 个场景：可实现 2 · 推断可实现 4 · 不可实现 1</span></div>
+<p class="def">运营可以：为五类人群分别配置弹窗内容，并能自助调整弹窗图文与新手弹窗</p></div>
+<table>
+<tr><th>场景</th><th>判定</th><th>依据</th></tr>
+<tr><td><span class="chip">1</span> 新增玩家：单独配置进大厅的弹窗项与顺序</td><td><span class="tag t-goal">可实现</span></td><td>「新增」标签有口径，新建规则的对象、数量、排序、时机字段均有记载（第一、二节）；新手挑战、新手通行证弹窗在客户端，不在可配置范围。</td></tr>
+<tr><td><span class="chip">2</span> 回流玩家：单独配置回流后首次登录进大厅的内容</td><td><span class="tag t-inf">推断可实现</span></td><td>「回流」标签读身份字段可圈存量，判定天数未知；「回流后首次登录」这一刻没有事件字段，「首次登入」时机的含义无记载（第二、六节）。</td></tr>
+<tr><td><span class="chip">3</span> 破产玩家：单独配置破产弹窗项、数量与顺序</td><td><span class="tag t-goal">可实现</span></td><td>规则 7 的位置为破产，弹出数量与排序可配，现已有 8 项排序（第一节）；破产无标签，按触发时机配置，破产触发条件未知不影响配置。</td></tr>
+<tr><td><span class="chip">4</span> 潜在付费玩家：单独配置进大厅的内容</td><td><span class="tag t-inf">推断可实现</span></td><td>「从未储值」可对阈值型标签或「已经先存储了」取反得到；「近 14 天押注不低于 20,000」须新建标签，新建标签可自写自排程，数仓有分日押注则可直接写（推断，第二节）。</td></tr>
+<tr><td><span class="chip">5</span> 潜在流失玩家：按近 14 天登录天数分两档，各档独立弹窗内容</td><td><span class="tag t-inf">推断可实现</span></td><td>现有登录类标签对不上，须新建；两档按登录天数区间切分，分档独立需用排除去重，排除能力为推断；每人逐日登录在数仓则可写（推断，第一、二节）。</td></tr>
+<tr><td><span class="chip">17</span> 新手挑战、新手通行证弹窗纳入后台统一配置</td><td><span class="tag t-con">不可实现</span></td><td>两项弹窗写死在客户端，调整需走开发（第一节「不在后台」）。</td></tr>
+<tr><td><span class="chip">18</span> 自助修改弹窗项的图片、文案与点击去向</td><td><span class="tag t-inf">推断可实现</span></td><td>弹窗内容在活动设定、储值品项设定、推荐礼包等后台配置，图文与点击去向字段无记载（第一节内容池、第五节）。</td></tr>
+</table>
+<p class="note">场景 1 的「新增」口径为注册 30 天以内，标签条件原文未见，与数据中 29 天的差异见人群分析第一节。场景 4、5 的圈选口径见人群分析第一节。</p>
+<div class="cap-v"><b>现状小结</b>　场景 1、3 可实现；2、4、5、18 推断可实现；17 的新手弹窗写死在客户端，不可实现（出处明写）。</div>
+</div>
+<div class="cap" id="c3">
+<div class="cap-h"><div class="t"><span class="sec-no">能力 3</span><h3>触达量与顺序控制</h3><span class="note">6 个场景：推断可实现 2 · 推断不可实现 4</span></div>
+<p class="def">运营可以：事前限定单人弹窗与推送的数量、先后和合计上限，改动前可测算影响</p></div>
+<table>
+<tr><th>场景</th><th>判定</th><th>依据</th></tr>
+<tr><td><span class="chip">6</span> 任一玩家：设定单人单次进大厅的弹窗数量上限，事前可确定</td><td><span class="tag t-inf">推断可实现</span></td><td>各规则弹出数量可配、叠加已记载，单次上限等于命中规则的弹出数量之和（现为 3 或 4，第六节）；没有统一的单人总量上限设置，推断只能逐规则约束（第一节）。</td></tr>
+<tr><td><span class="chip">7</span> 同时命中多项弹窗的玩家：设定先后顺序</td><td><span class="tag t-con">推断不可实现</span></td><td>同一规则内的排序可配；多条规则同时命中时先后不可设为推断（叠加已记载，先后未确认，第一节）；若可设，则本场景可实现，不再构成缺口。</td></tr>
+<tr><td><span class="chip">8</span> 受新增规则影响的玩家：改规则前测算受影响人群及弹窗数量与顺序变化</td><td><span class="tag t-inf">推断可实现</span></td><td>标签名单可查询，单人弹出个数可按规则配置手工推算（第六节）；无预览或模拟功能的记载，推断没有（第五节）。</td></tr>
+<tr><td><span class="chip">13</span> 设定单人日推送条数上限</td><td><span class="tag t-con">推断不可实现</span></td><td>每个功能各一套推送、没有统一计数，推断跨通路没有每人每日上限（第三节）；若有，则本场景可实现，不再构成缺口。</td></tr>
+<tr><td><span class="chip">16</span> 任一玩家：关闭某弹窗后当日不再出现</td><td><span class="tag t-con">推断不可实现</span></td><td>盘点写不支持负反馈降权，「当日不再弹」只在待问清单里，频次设置只见单项每日次数与冷却（第一节）；若有该能力，则本场景可实现。</td></tr>
+<tr><td><span class="chip">19</span> 设定单个玩家每日弹窗与推送合计上限</td><td><span class="tag t-con">推断不可实现</span></td><td>弹窗侧推断没有单人总量上限，推送侧没有统一计数，两侧之间也没有合计机制（均为推断，第一、三节）；若有合计，则本场景可实现。</td></tr>
+</table>
+<div class="cap-v"><b>现状小结</b>　场景 6、8 推断可实现（逐规则约束、手工测算）；7、13、16、19 推断不可实现，均为无记载的能力按推断处理，若实际有该能力则可实现。</div>
+</div>
+<div class="cap" id="c4">
+<div class="cap-h"><div class="t"><span class="sec-no">能力 4</span><h3>统一推送</h3><span class="note">4 个场景：推断可实现 1 · 不可实现 1 · 推断不可实现 2</span></div>
+<p class="def">运营可以：在单一入口配置全部推送通路，按标签定向发送，支持跳转与行为触发</p></div>
+<table>
+<tr><th>场景</th><th>判定</th><th>依据</th></tr>
+<tr><td><span class="chip">11</span> 单一入口查看并配置全部推送通路，含快显改为可配置</td><td><span class="tag t-con">不可实现</span></td><td>每个功能各一套推送、没有统一入口；快显写死在客户端（第三节）。</td></tr>
+<tr><td><span class="chip">12</span> 按标签定向发送推送</td><td><span class="tag t-inf">推断可实现</span></td><td>各通路能否按标签或名单定向未知，已知推播用例按触发名单发送（第三节）；若有通路能按标签，直接可行，若都只能按名单，每次要导名单，仍可实现但不随标签更新。</td></tr>
+<tr><td><span class="chip">22</span> 为推送配置点击后的跳转去向</td><td><span class="tag t-con">推断不可实现</span></td><td>已知通行证升级推送条点击不跳转（已记载），其他通路的跳转设置无记载（第三节）；若有，则本场景可实现。</td></tr>
+<tr><td><span class="chip">23</span> 按玩家行为自动触发推送</td><td><span class="tag t-con">推断不可实现</span></td><td>限时加码提醒、通行证升级条已有行为触发，但各嵌在功能内、无统一入口，运营自助新增触发无记载（第三、五节）；若有，则本场景可实现。</td></tr>
+</table>
+<div class="cap-v"><b>现状小结</b>　场景 12 推断可实现；11 不可实现（出处明写：各功能各一套推送、快显写死在客户端）；22、23 推断不可实现。</div>
+</div>
+<div class="cap" id="c5">
+<div class="cap-h"><div class="t"><span class="sec-no">能力 5</span><h3>效果查看</h3><span class="note">4 个场景：可实现 1 · 推断可实现 3</span></div>
+<p class="def">运营可以：查看推送发送、到达与点击、弹窗曝光与点击，并能分组对照判断改动效果</p></div>
+<table>
+<tr><th>场景</th><th>判定</th><th>依据</th></tr>
+<tr><td><span class="chip">14</span> 单次推送：查看发送量与到达量</td><td><span class="tag t-inf">推断可实现</span></td><td>推播发送已有记录（Dk 10/10），「到达」只见 Dk 文字、截图无此列，短信找 BI 取，其余通路未覆盖；场景不限通路，所以判推断可实现；各通路都有则可实现（第三、四节）。</td></tr>
+<tr><td><span class="chip">15</span> 看到弹窗的玩家：查看改动后的弹窗曝光、点击</td><td><span class="tag t-goal">可实现</span></td><td>曝光、点击已有记录（Dk 10/10，可能部分不全），取数依赖他人排期（推断）（第四节）。</td></tr>
+<tr><td><span class="chip">24</span> 对同一人群随机分组，对比不同弹窗内容的效果</td><td><span class="tag t-inf">推断可实现</span></td><td>盘点既写支持分流、又把能否配置列为待问，按推断可配置（第一节）；若不可配置，只能前后对比，归因受限，本场景退为部分可实现。</td></tr>
+<tr><td><span class="chip">25</span> 单次推送：查看点击</td><td><span class="tag t-inf">推断可实现</span></td><td>推播点击已有记录（Dk 10/10）；短信点击近期才埋点且偏低，按发送对象一定时间内登录判；Facebook、LINE、快显未覆盖；场景不限通路，所以判推断可实现（第三、四节）。</td></tr>
+</table>
+<div class="cap-v"><b>现状小结</b>　场景 15 可实现（弹窗曝光、点击记录已有，可能部分不全）；14、25 推断可实现（推播有记录，其余通路与推播「到达」字段为推断）；24 推断可实现（分组实验能否配置为推断）。</div>
+</div>
+<p class="note">操作人不同对判定的影响（见第五节）：若标签由数据组代写，需要新建标签的场景 4、9、21 改为「可实现但依赖他人排期」（场景 1、2、5 用现有标签，不受影响）；若取数由数据组导出，场景 8、14、15、25 同。两种情况都不会把场景改成不可实现。</p>
+</details>
+</section>
+
+<section class="sec" id="s8">
+<div class="sec-h"><span class="sec-no">八</span><h2>关键假设：11 项推断，推错只改对应场景的判定，不改现状事实</h2></div>
+<details class="more"><summary>展开：11 项推断的依据与推错影响</summary>
+<p class="sec-sub">原则：无记载不推出做不到，所以无记载的能力只判「推断可实现」或「推断不可实现」，并写明「若有该能力则……」；只有出处明写做不到才判「不可实现」。</p>
+<div class="tw"><table>
+<tr><th>#</th><th>推断</th><th>因为……所以……</th><th>推错影响</th></tr>
+<tr><td class="no">1</td><td>无记载的能力按推断判定，并写明若有该能力时的结果</td><td>因为资料对多数能力项没有记载，无记载既推不出能做，也推不出做不到，所以判为推断并写明两种情况</td><td>场景 7、13、16、19、22、23 若实际有该能力，改为可实现；其余场景判定不变</td></tr>
+<tr><td class="no">2</td><td>多条规则同时命中时先后不可设</td><td>因为盘点写规则只设对象、位置、弹出数量，「排序」列含义未确认，所以按不可设处理</td><td>可设则场景 7 可实现；第一节机制行改</td></tr>
+<tr><td class="no">3</td><td>没有单人跨规则的弹窗总量上限，跨通路也没有推送每日上限与合计上限</td><td>因为规则字段中没有总量字段、各套推送独立计数，所以按没有处理</td><td>有则场景 6、13、19 可直接实现；第一、三节改</td></tr>
+<tr><td class="no">4</td><td>弹窗对象、群组可使用排除条件</td><td>因为盘点写支持排除，只是后台截图未见排除栏，所以按支持处理</td><td>不支持则场景 5、20 须多建标签；第二节改</td></tr>
+<tr><td class="no">5</td><td>分组实验按可配置处理场景 24（盘点既写支持又列为待问，第一节标推断）</td><td>因为盘点写「实验分流支持」但开发成本未评估，所以按推断可实现</td><td>不可配置则场景 24 只能前后对比，归因受限</td></tr>
+<tr><td class="no">6</td><td>进入大厅与返回大厅不区分，有效时机 4 个</td><td>因为盘点明写，另有资料记 5 个，所以以盘点为准</td><td>若分开，场景 2 的「回流后首次登录」可更精确；第一节机制行改</td></tr>
+<tr><td class="no">7</td><td>标签由运营或数据同事编写，取数由数据组导出</td><td>因为全部资料没有一处写明操作人，所以按盘点「可自行编写」和背景汇总「已交数据组」推断</td><td>标签由数据组代写则场景 4、9、21，取数由数据组导出则场景 8、15，由推断可实现改为可实现但依赖他人排期；第五节改</td></tr>
+<tr><td class="no">8</td><td>数仓可按日算出每人押注与登录</td><td>因为标签是数仓 BigQuery 脚本、线上已有按「当月储值额」运行的标签，所以近 14 天押注与逐日登录推断可取，只是现有导出没带</td><td>不可取则潜在付费只有下界 970 与上界、潜在流失无法圈选，场景 4、5 的数据依赖变为缺失；第四节、人群分析改</td></tr>
+<tr><td class="no">9</td><td>各通路能否按标签或名单定向未知，按可行处理场景 12</td><td>因为已知推播用例按触发名单发送，没有记载做不到，所以按推断可实现</td><td>都只能按名单则每次要导名单，不随标签更新；第三节改</td></tr>
+<tr><td class="no">10</td><td>运营流程的步骤顺序与操作人为本文拆分</td><td>因为后台字段只证明页面和字段存在，不证明谁按什么顺序操作，所以步骤和操作人标推断</td><td>痛点的严重程度<span class="tag t-con">依据弱</span>，缺操作记录与访谈；不排严重度，出处明写的痛点全部作为问题诊断的输入</td></tr>
+<tr><td class="no">11</td><td>推播的发送、点击有记录，其余通路与推播「到达」字段按推断处理场景 14、25</td><td>因为 Dk 10/10 答复与截图只确认推播、弹窗有记录，推播「到达」只见文字、报表无对应列（V2 采纳「到达只有 Android 有统计」，推断，出处待核），快显、Facebook、LINE 未覆盖，而场景写的是单次推送、不限通路，所以只判推断可实现</td><td>「到达」无字段或其余通路无记录时，单次推送的发送、到达、点击以推播为主（短信发送、点击可取），到达只限 Android；各通路都有则场景 14、25 改为可实现，可实现 3 变 5</td></tr>
+</table></div>
+<p class="note">另有三项只用于第六节的推算前提：各活动都可参与、都在开放期（据此推算排在最前的内容与回流任务轮到的次数，可参与的项越少越早）；首储礼包对从未储值者每次进大厅都弹（盘点未记载）；储值类每日次数与冷却盘点未记载，写未知。</p>
+</details>
+</section>
+
+<p class="links">依据：<a href="阶段1_需求分析.html">需求分析</a>　·　<a href="阶段产出规划.html">阶段产出规划</a>　·　排版：<a href="规则与交接/阶段产出格式规范.md">阶段产出格式规范</a></p>
+</div></body></html>

@@ -73,17 +73,7 @@ tr.ovr td{background:#F7FAFF}
   <div class="ed">
     <div>
       <div class="sec">
-        <div class="sh"><span class="n">1</span><span><i style="color:#F56C6C;font-style:normal;margin-right:2px">*</i>场景</span></div>
-        <div class="row"><span class="radio on dis"><i></i>进大厅</span><span class="radio dis"><i></i>破产时</span><span class="radio dis"><i></i>买了指定礼包后</span><span class="inp dis" style="width:132px">礼包（可多选）<span class="dn">⌵</span></span><span class="radio dis"><i></i>押注达到指定金额</span><span class="inp dis" style="width:72px">金额</span></div>
-        <div class="m2">上架后只读；要换场景，复制这条规则后改</div>
-      </div>
-      <div class="sec">
-        <div class="sh"><span class="n">2</span><span><i style="color:#F56C6C;font-style:normal;margin-right:2px">*</i>名称</span></div>
-        <span class="inp v" style="width:100%">回流</span>
-        <div class="m2" style="margin-top:4px">默认「场景·发送对象群组名」，可改</div>
-      </div>
-      <div class="sec">
-        <div class="sh"><span class="n">3</span><span><i style="color:#F56C6C;font-style:normal;margin-right:2px">*</i>发送对象</span></div>
+        <div class="sh"><span class="n">1</span><span><i style="color:#F56C6C;font-style:normal;margin-right:2px">*</i>发送对象</span></div>
         <div class="row"><span class="radio"><i></i>全部玩家</span><span class="radio on"><i></i>群组</span><span class="radio"><i></i>上传名单</span><span class="btno sm dis">上传名单文件</span></div>
         <div class="row"><label>群组</label><span class="inp v" style="width:380px"><span class="tgs"><em class="tg g"><b>群组</b>回流</em></span><span class="dn">⌵</span></span><span class="m2">可多选，如普卡、银卡等卡别群组；可选实验组、对照组群组</span></div>
         <div class="row dis"><label>多个群组的关系</label><span class="radio on"><i></i>满足任一个</span><span class="radio"><i></i>同时满足全部</span><span class="m2">选 2 个以上群组才出现</span></div>
@@ -92,12 +82,22 @@ tr.ovr td{background:#F7FAFF}
         <table class="cnt"><tr><td>符合发送对象</td><td class="v">16,580 人</td></tr><tr><td>扣除排除后</td><td class="v">16,580 人</td></tr></table>
       </div>
       <div class="sec">
+        <div class="sh"><span class="n">2</span><span><i style="color:#F56C6C;font-style:normal;margin-right:2px">*</i>场景</span></div>
+        <div class="row"><span class="radio on"><i></i>进大厅</span><span class="radio"><i></i>破产时</span><span class="radio"><i></i>首次登录</span><span class="radio"><i></i>第二次登录</span></div>
+        <div class="m2">可多选，每选一个场景，下面「弹哪些活动或礼包」就有一格；上架后场景可改。首次登录、第二次登录指当天第一次、第二次登录</div>
+      </div>
+      <div class="sec">
+        <div class="sh"><span class="n">3</span><span><i style="color:#F56C6C;font-style:normal;margin-right:2px">*</i>名称</span></div>
+        <span class="inp v" style="width:100%">回流</span>
+        <div class="m2" style="margin-top:4px">默认「场景·发送对象群组名」，可改</div>
+      </div>
+      <div class="sec">
         <div class="sh"><span class="n">4</span><span><i style="color:#F56C6C;font-style:normal;margin-right:2px">*</i>生效期间</span></div>
         <div class="row"><span class="radio on"><i></i>长期</span><span class="radio"><i></i>指定起止</span><span class="inp dis" style="width:220px">开始时间 — 结束时间<span class="dn">⌵</span></span></div>
       </div>
       <div class="sec">
-        <div class="sh"><span class="n">5</span><span><i style="color:#F56C6C;font-style:normal;margin-right:2px">*</i>每次最多弹几个</span></div>
-        <div class="row"><span class="inp v num" style="width:48px;justify-content:center">3</span><span class="m2">个；进大厅默认 3、其他场景默认 1。轮换池先留走它每次弹的个数，其余给固定的</span></div>
+        <div class="sh"><span class="n">5</span><span><i style="color:#F56C6C;font-style:normal;margin-right:2px">*</i>固定每次弹几个、轮换池每次弹几个</span></div>
+        <div class="row"><span class="m2">固定</span><span class="inp v num" style="width:48px;justify-content:center">2</span><span class="m2">个；轮换池</span><span class="inp v num" style="width:48px;justify-content:center">1</span><span class="m2">个。两个池子各设各的，设在每个选中的场景那一格；默认：固定破产时 1 个、其余 3 个，轮换池 1 个，不相减</span></div>
       </div>
     </div>
     <div>
@@ -108,9 +108,9 @@ tr.ovr td{background:#F7FAFF}
         <hr>
         <div class="k2"><span>发送对象</span><b>回流</b></div>
         <div class="k2"><span>场景</span><b>进大厅</b></div>
-        <div class="k2"><span>多条规则都符合时</span><b>轮流</b></div>
-        <div class="k2"><span>优先级</span><b>4（本场景 7 条参与排序）</b></div>
-        <div class="k2"><span>每次最多弹几个</span><b>3</b></div>
+        <div class="k2"><span>多条规则都符合时</span><b>依次换用</b></div>
+        <div class="k2"><span>优先级</span><b>4（所有规则一份，共 7 条参与排序）</b></div>
+        <div class="k2"><span>固定／轮换池每次弹几个</span><b>2／1</b></div>
         <hr>
         <div class="k2"><span>弹窗</span><b>5 个</b></div>
         <div class="m2">固定 3 个，轮换池 2 个，轮换池每次弹 1 个</div><div class="m2">→ 每次最多 3 个，固定的实际最多弹 2 个</div>
@@ -118,11 +118,11 @@ tr.ovr td{background:#F7FAFF}
     </div>
     <div class="sec acts">
       <div class="sh"><span class="n">6</span>弹哪些活动或礼包<span class="r"><span class="lk">＋ 加入活动或礼包</span></span></div>
-      <div class="m2" style="margin:-4px 0 6px">宣传图、跳转页面、点击后是否跳转、弹出时机、次数按活动或礼包存一份，各规则共用，点名称打开它的弹窗设置；规则里默认沿用，可在「本规则另设」里改，只在这条规则生效。先弹固定的，再弹轮换池的。例：活动 2 个＋礼包 1 个＝每次最多弹 3 个、礼包进轮换池每次 1 个。固定＝按先后检查，名额用完、没到时机、今天次数用完就不弹，不等于每次一定弹</div>
-      <table class="rt"><colgroup><col style="width:16px"><col style="width:18px"><col><col style="width:84px"><col style="width:96px"><col style="width:166px"><col style="width:92px"><col style="width:120px"><col style="width:116px"></colgroup><thead><tr><th></th><th></th><th>活动或礼包</th><th>是否进轮换池</th><th>点击后是否跳转</th><th>弹出时机</th><th>每人每天几次</th><th>每人两次至少隔多久</th><th></th></tr></thead><tbody>
+      <div class="m2" style="margin:-4px 0 6px">宣传图、跳转页面、点击后是否跳转、弹出时机、次数按活动或礼包存一份，各规则共用，点名称打开它的弹窗设置；规则里默认沿用，可在「本规则另设」里改，只在这条规则生效。先弹固定的，再弹轮换池的。固定池：每次按同一顺序，能弹的依次弹；轮换池：弹过的暂时沉底，按顺序轮完全部才回原顺序，按每个玩家各自算。例：活动 2 个进固定池（固定每次弹 2 个）、礼包 1 个进轮换池（轮换池每次弹 1 个）。固定＝按先后检查，名额用完、没到时机、今天次数用完就不弹，不等于每次一定弹</div>
+      <table class="rt"><colgroup><col style="width:16px"><col style="width:18px"><col><col style="width:84px"><col style="width:96px"><col style="width:166px"><col style="width:92px"><col style="width:120px"><col style="width:116px"></colgroup><thead><tr><th></th><th></th><th>活动或礼包</th><th>是否进轮换池</th><th>点击后是否跳转</th><th>弹出时机</th><th>每人每天几次</th><th>冷却时间（同一活动或礼包每人两次至少隔多久）</th><th></th></tr></thead><tbody>
         <tr class="grp"><td colspan="9"><b>固定</b> · 3 个 · 按先后弹；固定的先后：拖动排序，默认新加入的排最后</td></tr>
-        <tr><td class="hd">⠿</td><td class="ix">1</td><td><span class="an"><span class="lk">每日补给计划</span><span class="kind act">活动</span></span></td><td><span class="seg2 sm"><span class="on">否</span><span>是</span></span></td><td>是<em class="fy">沿用</em></td><td>每次进大厅，含从游戏返回<em class="fy">沿用</em></td><td>1 次<em class="fy">沿用</em></td><td>不限<em class="fy">沿用</em></td><td class="op"><span class="lk">另设 ▾</span><span class="lk">移除</span></td></tr><tr class="hl"><td class="hd">⠿</td><td class="ix">2</td><td><span class="an"><span class="lk">热门资讯</span><span class="kind act">活动</span></span></td><td><span class="seg2 sm"><span class="on">否</span><span>是</span></span></td><td>是<em class="fy">沿用</em></td><td>当天首次登录<em class="fo">本规则另设</em></td><td>2 次<em class="fy">沿用</em></td><td>不限<em class="fy">沿用</em></td><td class="op"><span class="lk" style="color:#C47B2B;font-weight:600">已另设 1 项 ▾</span><span class="lk">移除</span></td></tr><tr class="hl"><td class="hd">⠿</td><td class="ix">3</td><td><span class="an"><span class="lk">回流任务</span><span class="kind act">活动</span></span><span class="nt">新加入</span></td><td><span class="seg2 sm"><span class="on">否</span><span>是</span></span></td><td>是<em class="fy">沿用</em></td><td>当天首次登录<em class="fy">沿用</em></td><td>1 次<em class="fy">沿用</em></td><td>不限<em class="fy">沿用</em></td><td class="op"><span class="lk">另设 ▾</span><span class="lk">移除</span></td></tr>
-        <tr class="grp"><td colspan="9"><b>轮换池</b> · 2 个 · 每次弹<span class="inp v n1" style="width:36px;justify-content:center">1</span>个，按顺序轮流、每次换下一个；轮换池内顺序：拖动排序，默认按进池先后</td></tr>
+        <tr><td class="hd">⠿</td><td class="ix">1</td><td><span class="an"><span class="lk">每日补给计划</span><span class="kind act">活动</span></span></td><td><span class="seg2 sm"><span class="on">否</span><span>是</span></span></td><td>是<em class="fy">沿用</em></td><td>每次进大厅，含从游戏返回<em class="fy">沿用</em></td><td>1 次<em class="fy">沿用</em></td><td>不限<em class="fy">沿用</em></td><td class="op"><span class="lk">另设 ▾</span><span class="lk">移除</span></td></tr><tr class="hl"><td class="hd">⠿</td><td class="ix">2</td><td><span class="an"><span class="lk">热门资讯</span><span class="kind act">活动</span></span></td><td><span class="seg2 sm"><span class="on">否</span><span>是</span></span></td><td>是<em class="fy">沿用</em></td><td>活动开始后第一次进大厅<em class="fo">本规则另设</em></td><td>2 次<em class="fy">沿用</em></td><td>不限<em class="fy">沿用</em></td><td class="op"><span class="lk" style="color:#C47B2B;font-weight:600">已另设 1 项 ▾</span><span class="lk">移除</span></td></tr><tr class="hl"><td class="hd">⠿</td><td class="ix">3</td><td><span class="an"><span class="lk">回流任务</span><span class="kind act">活动</span></span><span class="nt">新加入</span></td><td><span class="seg2 sm"><span class="on">否</span><span>是</span></span></td><td>是<em class="fy">沿用</em></td><td>活动开始后第一次进大厅<em class="fy">沿用</em></td><td>1 次<em class="fy">沿用</em></td><td>不限<em class="fy">沿用</em></td><td class="op"><span class="lk">另设 ▾</span><span class="lk">移除</span></td></tr>
+        <tr class="grp"><td colspan="9"><b>轮换池</b> · 2 个 · 每次弹<span class="inp v n1" style="width:36px;justify-content:center">1</span>个，弹过暂时沉底，轮完一遍才回原顺序；轮换池内顺序：拖动排序，默认按进池先后</td></tr>
         <tr><td class="hd">⠿</td><td class="ix">1</td><td><span class="an"><span class="lk">惊喜三选一</span><span class="kind pay">礼包</span></span></td><td><span class="seg2 sm"><span>否</span><span class="on">是</span></span></td><td>是<em class="fy">沿用</em></td><td>只在从游戏返回时<em class="fy">沿用</em></td><td>1 次<em class="fo">本规则另设</em></td><td>不限<em class="fy">沿用</em></td><td class="op"><span class="lk" style="color:#C47B2B;font-weight:600">已另设 1 项 ▾</span><span class="lk">移除</span></td></tr><tr><td class="hd">⠿</td><td class="ix">2</td><td><span class="an"><span class="lk">储值优惠礼包</span><span class="kind pay">礼包</span></span></td><td><span class="seg2 sm"><span>否</span><span class="on">是</span></span></td><td>是<em class="fy">沿用</em></td><td>只在从游戏返回时<em class="fy">沿用</em></td><td>2 次<em class="fy">沿用</em></td><td>不限<em class="fy">沿用</em></td><td class="op"><span class="lk">另设 ▾</span><span class="lk">移除</span></td></tr>
       </tbody></table>
       <div class="addc"><span class="lk">＋ 加入活动或礼包</span><span class="m2">可选范围：未结束的活动和礼包，搜名称或编号、可多选；第一次进弹窗的当场配一次弹窗设置，已有的直接沿用</span></div>
@@ -132,17 +132,19 @@ tr.ovr td{background:#F7FAFF}
   <div class="foot"><span class="dirty">有未保存的改动：2 处</span><span class="sp"></span><span class="btno">取消</span><span class="btnp">保存</span></div>
   <div class="bk-pop cf" style="--pop-top:42px;width:540px">
     <div class="t">保存「回流」？</div>
-    <div class="t2">上架中。确认后，玩家下一次进入场景起按新设置；今天已弹的次数不清零。</div>
+    <div class="t2">上架中。确认后，玩家下一次进入场景起按新设置；改了什么和最新版比。</div>
+    <div class="imp">打开后被改过的弹窗设置：你打开后，<b>惊喜三选一</b>的弹窗设置被 乙 在 15:12 改过：每 1 天 2 → 1 次；本规则另设过，不跟着变。</div>
     <table class="dif">
       <tr><th style="width:150px">改了什么</th><th style="width:150px">改前</th><th>改后</th></tr>
       <tr><td>加入活动或礼包</td><td class="o">—</td><td class="n">回流任务（固定，第 3 个）</td></tr>
-      <tr><td>热门资讯 · 弹出时机</td><td class="o">沿用：每次进大厅，含从游戏返回</td><td class="n">本规则另设：当天首次登录</td></tr>
+      <tr><td>热门资讯 · 弹出时机</td><td class="o">沿用：每次进大厅，含从游戏返回</td><td class="n">本规则另设：活动开始后第一次进大厅</td></tr>
     </table>
-    <div class="imp">哪些活动或礼包弹不到：每次最多弹 3 个，轮换池先留 1 个，固定的只有 2 个名额。<b>回流任务（固定第 3 个）</b>要等前面的当天次数用完，或轮换池没得弹时才弹得到。</div>
+    <div class="imp">哪些活动或礼包弹不到：固定每次弹 2 个、轮换池每次弹 1 个，固定池只有 2 个名额。<b>回流任务（固定第 3 个）</b>要等前面的当天次数用完，或轮换池没得弹时才弹得到。</div>
     <div class="imp">发送对象相同、不会一起弹的规则：<b>回流·礼包</b> 编号 88（发送对象同为群组回流）。一次进入只弹一条规则；要和「回流·礼包」一起弹，把这些活动或礼包加进同一条规则、设进轮换池。</div>
-    <div class="imp">轮流时发送对象部分重叠的规则：约 <b>2,310</b> 人同时符合<b>「潜在流失」</b>编号 84，这些人在两条规则间轮流，一次进入只弹其中一条。</div>
-    <div class="imp">轮流时可能错过的活动或礼包：弹出时机为当天首次登录、活动开始后第一次进大厅的，本例<b>热门资讯、回流任务</b>。本规则 16,580 人都还符合回流·礼包，可能轮不到本规则；那次进入轮到别的规则时，这天就错过，不补弹。</div>
-    <div class="imp">建议加进全部玩家规则排除的群组（仅轮流）：<b>回流</b>。本规则的人也会轮到「其余」编号 85（发送对象全部玩家）；只想让「其余」管剩下的人，把回流加进它的排除群组。</div>
+    <div class="imp">依次换用时发送对象部分重叠的规则：约 <b>2,310</b> 人同时符合<b>「潜在流失」</b>编号 84，这些人在两条规则间依次换用，一次进入只弹其中一条。</div>
+    <div class="imp">依次换用时可能错过的活动或礼包：弹出时机为活动开始后第一次进大厅的，本例<b>热门资讯、回流任务</b>。本规则 16,580 人都还符合回流·礼包，可能轮不到本规则；那次进入轮到别的规则时，这天就错过，不补弹。</div>
+    <div class="imp">建议加进全部玩家规则排除的群组（仅依次换用）：<b>回流</b>。本规则的人也会轮到「其余」编号 85（发送对象全部玩家）；只想让「其余」管剩下的人，把回流加进它的排除群组。</div>
+    <div class="when"><b>已弹次数怎么算</b>（改了次数才出现）<br><span class="radio on"><i></i>保留（默认）</span>　<span class="radio"><i></i>从现在起重新计</span>　<span class="m2">只影响这条规则的判定，别的规则照常数</span></div>
     <div class="ft"><span class="btno">返回修改</span><span class="btnp">确认保存</span></div>
   </div>
 </div>

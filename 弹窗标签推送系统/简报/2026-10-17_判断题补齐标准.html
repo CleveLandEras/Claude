@@ -1,0 +1,285 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>判断题补齐标准</title>
+<style>
+:root{--ground:#f4f3f0;--surface:#fff;--ink:#1b1d21;--ink-2:#3d4248;--muted:#4a4f56;--line:#e2e0db;--accent:#9a6f24;
+--yes:#2f6b52;--yes-soft:#e2efe8;--no:#a8382b;--no-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#c9cdd2;--muted:#adb3ba;--line:#2e3339;--accent:#d6ab5c;
+--yes:#7dbb9c;--yes-soft:#1c3128;--no:#e48e7f;--no-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#c9cdd2;--muted:#adb3ba;--line:#2e3339;--accent:#d6ab5c;
+--yes:#7dbb9c;--yes-soft:#1c3128;--no:#e48e7f;--no-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.75}
+a{color:var(--accent)}
+.wrap{max-width:1360px;margin:0 auto;padding:48px 40px 96px}
+.meta{font-size:14px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:29px;line-height:1.5;margin:0 0 12px}
+.sub{font-size:17px;color:var(--ink-2);margin:0 0 30px}
+h2{font-family:var(--serif);font-size:22px;line-height:1.5;margin:72px 0 22px;display:flex;align-items:baseline;gap:14px}
+h2 .no{font-family:var(--sans);font-size:14px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+h3.sh{font-size:17px;margin:40px 0 14px}
+.grid{display:grid;gap:16px}
+.g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g5{grid-template-columns:repeat(5,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:20px 24px}
+.kpi .k{font-size:14px;font-weight:700;color:var(--accent);margin:0 0 8px;letter-spacing:.02em}
+.kpi .n{font-size:40px;font-weight:700;line-height:1.1;margin:0 0 10px}
+.kpi .n small{font-size:17px;font-weight:600;margin-left:6px;color:var(--ink-2)}
+.kpi .t{font-size:16px;color:var(--ink);margin:0 0 12px}
+.kpi .e{font-size:15px;color:var(--ink-2);border-top:1px solid var(--line);padding-top:12px;margin:0}
+.kpi ul{margin:0;padding:0;list-style:none}
+.kpi li{position:relative;padding-left:18px;margin:0 0 10px;font-size:16px}
+.kpi li::before{content:"";position:absolute;left:2px;top:.72em;width:7px;height:7px;border-radius:50%;background:var(--accent)}
+i.yes,i.no{font-style:normal;font-weight:700} i.yes{color:var(--yes)} i.no{color:var(--no)}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:15.5px}
+th,td{padding:12px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+th{font-size:14px;color:var(--muted);font-weight:600;background:var(--ground)}
+tr:last-child td{border-bottom:none}
+.dt td.ty{width:150px;font-weight:700;border-right:1px solid var(--line)}
+.dt td.ty span{display:block;font-weight:400;font-size:14px;color:var(--muted)}
+.dt td.nm{width:190px;font-weight:700}
+.dt tr.gs td{border-top:2px solid var(--line)}
+.ckp .h{font-size:16px;font-weight:700;margin:0 0 6px}
+.ckp .l{font-size:15px;color:var(--ink-2);margin:0}
+.flow{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;counter-reset:s}
+.flow div{counter-increment:s;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 20px}
+.flow div::before{content:counter(s);display:block;font-size:20px;font-weight:700;color:var(--accent);line-height:1.2;margin-bottom:4px}
+.flow .c{font-size:15.5px;color:var(--ink-2);margin:0 0 6px}
+.flow .r{font-size:16px;font-weight:700;margin:0}
+.src td.s{width:230px;font-weight:700}
+.src td.u{width:250px;color:var(--ink-2)}
+.src a{font-weight:400;font-size:14px;margin-left:6px;white-space:nowrap}
+.grp .h{font-size:17px;font-weight:700;margin:0 0 4px}
+.grp .l{font-size:15px;color:var(--ink-2);margin:0 0 14px}
+.grp.no{border-top:4px solid var(--no)} .grp.mix{border-top:4px solid #c08a5a} .grp.yes{border-top:4px solid var(--yes)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{font-size:15px;padding:5px 12px;border-radius:4px;background:var(--ground);color:var(--ink)}
+.chips span b{margin-left:6px}
+.obs{margin:18px 0 0;padding:16px 22px;border-left:4px solid var(--accent);background:var(--surface);border-radius:0 6px 6px 0}
+.obs p{margin:0 0 6px} .obs p:last-child{margin:0;color:var(--ink-2);font-size:15px}
+.tiles{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:0 0 8px}
+.tile{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 16px;text-decoration:none;color:var(--ink)}
+.tile:hover{border-color:var(--accent)}
+.tile .tn{font-weight:700;font-size:16px} .tile .tt{font-size:14px;color:var(--muted)}
+.tile .tc{font-size:15px;margin-top:6px} .tile .tv{font-size:15px;display:flex;gap:12px}
+.pb{margin:40px 0 0;scroll-margin-top:20px}
+.ph{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin:0 0 12px}
+.ph .pk{font-size:14px;font-weight:700;color:var(--accent);margin:0;letter-spacing:.04em}
+.ph .pk span{font-weight:600;color:var(--muted);margin-left:10px;letter-spacing:0}
+.ph h3{font-size:18px;line-height:1.55;margin:2px 0 0}
+.ph .pr{text-align:right;flex:none}
+.ph .pc{margin:0;font-size:15px}
+.ph .pr a{font-size:15px}
+.pnote{font-size:15px;color:var(--ink-2);margin:0 0 12px;padding:10px 16px;background:var(--surface);border:1px dashed var(--line);border-radius:6px}
+.ct td.cn{width:46px;font-weight:700;color:var(--accent);text-align:center}
+.ct th:first-child{text-align:center}
+.ct td.dm{width:220px}
+.ct td.dm b{display:block;font-size:15px}
+.ct td.dm span{display:block;font-size:14.5px;color:var(--ink-2);line-height:1.6}
+.ct td.st{width:44%}
+.ct td.ai{width:30%}
+.vd{display:inline-block;font-size:13.5px;font-weight:700;padding:1px 9px;border-radius:3px;margin-right:8px}
+.vd.yes{background:var(--yes-soft);color:var(--yes)} .vd.no{background:var(--no-soft);color:var(--no)}
+.ct .why{color:var(--ink-2)}
+.rw{display:inline-block;margin:8px 8px 0 0;font-size:13.5px;font-weight:700;padding:1px 9px;border-radius:3px;background:var(--blue-soft);color:var(--blue)}
+.rwn{display:block;font-size:14.5px;color:var(--ink-2);margin-top:4px;line-height:1.6}
+.ct tr.sep td{background:var(--ground);font-size:14px;font-weight:600;color:var(--muted);padding:8px 16px}
+.ask .h{font-size:17px;font-weight:700;margin:0 0 8px}
+.ask .l{font-size:16px;color:var(--ink);margin:0 0 10px}
+.ask .e{font-size:15px;color:var(--ink-2);border-top:1px solid var(--line);padding-top:10px;margin:0}
+.reply{margin:18px 0 0;padding:16px 22px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:0 6px 6px 0;font-size:16px}
+.reply b{color:var(--accent);margin-right:10px}
+.links{font-size:15px;color:var(--ink-2);margin-top:56px;border-top:1px solid var(--line);padding-top:16px}
+.links a{margin-right:20px}
+.nw{white-space:nowrap}
+</style></head><body><div class="wrap">
+
+<p class="meta">判断题 · 2026-10-17 · AI 结论来自一个只看纯文本与截图、不看页面的独立 AI 评审，尚未经你判</p>
+<h1>判断题按维度表补齐 63 条标准，10 份该判的维度全部有了标准；新补条目 AI 判「否」45 条，原来漏问的维度问题更多</h1>
+<p class="sub">请逐份判新补条目的 AI 结论同意或不同意；觉得还缺维度，直接补，补的会写进维度表。</p>
+
+<div class="grid g3">
+  <div class="card kpi">
+    <p class="k">维度表：怎么保证问题全面</p>
+    <p class="n">85<small>项维度全部有标准</small></p>
+    <p class="t">每类产出列出必须判的维度：通用 4 项加本类型 <span class="nw">4–5 项</span>，每项至少一条标准。10 份合计应判 <span class="nw">85 项</span>，原来 60 条只覆盖 <span class="nw">32 项</span>。</p>
+    <p class="e">第 1 份缺的「设计是否粗糙」拆成八个检查点。</p>
+  </div>
+  <div class="card kpi">
+    <p class="k">补了什么</p>
+    <p class="n">63<small>条新标准</small></p>
+    <p class="t">每份补 <span class="nw">5–8 条</span>；按 10/17 现行规则改写了 4 条<span class="nw">（新补、原有各 2 条）</span>。</p>
+    <p class="e">新补条目 AI 判「是」18 条、「否」45 条；其中<span class="nw">视觉完成度</span>、<span class="nw">事实与依据</span>、<span class="nw">改动可辨</span>三个维度的 15 条全部判「否」。</p>
+  </div>
+  <div class="card kpi">
+    <p class="k">要你做的</p>
+    <ul>
+      <li>逐份判新补条目的 AI 结论：同意或不同意</li>
+      <li>觉得还缺维度就补，补的写进维度表</li>
+      <li>第 3–10 份的原有 6 条在同一页上，也还等你判</li>
+    </ul>
+  </div>
+</div>
+
+<h2><span class="no">01</span>维度表按产出类型列出必须判的维度，每份对每个维度至少出一条标准</h2>
+
+<h3 class="sh">五类产出各判哪些维度：通用 4 项，加本类型 4–5 项</h3>
+<table class="dt">
+<thead><tr><th>产出类型</th><th>维度</th><th>判什么</th></tr></thead>
+<tbody>
+<tr><td class="ty" rowspan="4">通用<span>五类产出都判</span></td><td class="nm">方向一致</td><td>内容与已定事项、项目目标和你定过的原则一致，不重开已定的事；交付状态最多写到「待你验收」</td></tr>
+<tr><td class="nm">事实与依据</td><td>每条事实与现有系统、数据一致；数字、门槛、默认值有出处；推断标明是推断</td></tr>
+<tr><td class="nm">措辞与指代</td><td>不了解项目的读者在出现处就读得懂：句子成分完整、不用内部简称、同一事物一个名字、比例有分母、不成片用同一句式开头</td></tr>
+<tr><td class="nm">无多余内容</td><td>没有阅读时间、读法、过程用语、内部记录，也没有夹进核心内容的成本或来源标注</td></tr>
+<tr class="gs"><td class="ty" rowspan="5">原型页<span>第 1–5 份</span></td><td class="nm">功能覆盖</td><td>对照使用者的真实任务和业内同类产品，该有的功能、字段、数据都在；这一页起作用的关键规则写在页上</td></tr>
+<tr><td class="nm">信息结构与主次</td><td>页面分成带标题的几块，先后跟随使用者已知的结构；常用的在前，少用的收起</td></tr>
+<tr><td class="nm">状态与防错</td><td>有外部影响的操作前能看到影响范围并确认；常见填错当场拦下；成功、失败、空结果有显示；发错能停下或撤回</td></tr>
+<tr><td class="nm">视觉完成度</td><td>对齐、间距、字号层级、对比、组件、颜色、示例数据、基础排版达到成品水准，即「设计是否粗糙」（拆成下面八个检查点）</td></tr>
+<tr><td class="nm">改动可辨</td><td>与现有后台相比，新增、改动、沿用用统一标记标出；整页新建的，页首写明它取代哪个现有功能</td></tr>
+<tr class="gs"><td class="ty" rowspan="5">需求文档节<span>第 6 份</span></td><td class="nm">需求覆盖</td><td>按理想状态写全，使用者要做的每件事都有对应需求，不因成本先删</td></tr>
+<tr><td class="nm">规则唯一确定</td><td>先后、优先级、取值范围、冲突时谁优先都写定，每条规则只有一种实现方式</td></tr>
+<tr><td class="nm">边界、异常与存量</td><td>边界值、异常输入、失败与超时、并发与冲突、改版前已有的配置与数据怎么处理都写定</td></tr>
+<tr><td class="nm">可验证</td><td>每条规则有验收用例或算例，写明输入与预期结果</td></tr>
+<tr><td class="nm">格式与粒度</td><td>按公司策划需求文档模板写到研发可直接实现的字段级；不写实现细节，不写成论证要不要做的稿子</td></tr>
+<tr class="gs"><td class="ty" rowspan="5">演示稿页<span>第 7 份</span></td><td class="nm">一页一断言</td><td>一页只讲一个结论，标题写成完整断言，不复述同页小标题</td></tr>
+<tr><td class="nm">证据支撑</td><td>图、数字、例子都在证明标题；数字写明是什么、分母是什么</td></tr>
+<tr><td class="nm">全稿位置与密度</td><td>看得出这一页在全稿主干中的位置，内容量与这个位置相称</td></tr>
+<tr><td class="nm">分组与版面关系</td><td>同组内容同类同层；左右、上下、主从的排法与内容关系一致；有因果、先后的画成图</td></tr>
+<tr><td class="nm">视觉完成度</td><td>留白、边距、对齐、字号层级、并列行排版、颜色达到成品水准，不挤、不粗糙</td></tr>
+<tr class="gs"><td class="ty" rowspan="5">取舍决定<span>第 8、9 份</span></td><td class="nm">取舍成立</td><td>确实需要取舍，选项有实质差别、等权呈现，写了推荐和理由；理由按本期交付、主管这一期交付、平台业绩的先后判断</td></tr>
+<tr><td class="nm">影响面与程度</td><td>写明影响谁、多常遇到、每次影响多大；不选的一方本期有替代做法</td></tr>
+<tr><td class="nm">成本依据</td><td>各选项写明现有功能可做还是需开发，需开发的标出开发量层级和原因；人周留给研发评审</td></tr>
+<tr><td class="nm">可逆性</td><td>判断改回来容易还是难，写明改回来要动哪几处、会不会返工</td></tr>
+<tr><td class="nm">业内对照</td><td>写明业内当前同类顶尖产品怎么处理，以及我们与之一致或不一致的理由</td></tr>
+<tr class="gs"><td class="ty" rowspan="4">简报<span>第 10 份</span></td><td class="nm">结论先行与分组</td><td>标题是中心结论，各节标题概括本节内容，只看各级标题就能读出完整论证</td></tr>
+<tr><td class="nm">首屏三问答全</td><td>第一屏答出做成了什么（内容本身）、还缺什么、要你定什么</td></tr>
+<tr><td class="nm">待定事项可直接决策</td><td>每件要你定的事先给现状例子、原话证据、已替你定的、各选项落地后的变化，再给选项、推荐、理由；要你判的界面或表放在页上</td></tr>
+<tr><td class="nm">版面</td><td>用要点卡、短条目、短表承载结构，不写成段落；字号、对比、行距读着不费力，正文栏不收窄</td></tr>
+</tbody></table>
+
+<h3 class="sh">原型「设计是否粗糙」拆成八个检查点，评审逐项写结论</h3>
+<div class="grid g4">
+  <div class="card ckp"><p class="h">对齐</p><p class="l">同一区块共用一个左侧起点；表单标签冒号对齐；数值列右对齐、位数一致</p></div>
+  <div class="card ckp"><p class="h">间距分级</p><p class="l">组内、组间、块间三级间距，全页一致；关系越近，间距越小</p></div>
+  <div class="card ckp"><p class="h">字号与字重层级</p><p class="l">页标题、区块标题、字段名、正文、辅助说明各一级；一眼看得出阅读顺序</p></div>
+  <div class="card ckp"><p class="h">对比</p><p class="l">主次操作、必填与选填、可用与禁用在外观上区分得出</p></div>
+  <div class="card ckp"><p class="h">组件一致</p><p class="l">同种控件全稿同一样式，并与现有后台一致；同一操作全稿同一个词</p></div>
+  <div class="card ckp"><p class="h">颜色与装饰</p><p class="l">一种颜色只表示一种意思，全稿固定；没有不承载信息的边框、底色、图标</p></div>
+  <div class="card ckp"><p class="h">示例数据</p><p class="l">填真实形态的示例值，玩家看到的文案用繁體，前后一致；没有「xxx」「123」这类占位</p></div>
+  <div class="card ckp"><p class="h">基础排版</p><p class="l">文字不截断、不溢出、不互相遮挡；折行在自然停顿处；并列的几行有符号</p></div>
+</div>
+
+<h3 class="sh">维度之间不重叠：一处问题按下面的先后只归一个维度</h3>
+<div class="flow">
+  <div><p class="c">与已定事项、项目目标或你的原则相抵触</p><p class="r">方向一致</p></div>
+  <div><p class="c">事实与实际不符，或数字、门槛拿不出出处</p><p class="r">事实与依据</p></div>
+  <div><p class="c">该有的内容没有</p><p class="r">本类型的覆盖类维度（如功能覆盖、需求覆盖）</p></div>
+  <div><p class="c">内容该在，但读者在出现处读不懂</p><p class="r">措辞与指代</p></div>
+  <div><p class="c">内容本不该出现，删掉才对</p><p class="r">无多余内容</p></div>
+  <div><p class="c">内容对、齐、读得懂，但排法让人读着费力</p><p class="r">本类型的结构类或视觉类维度</p></div>
+</div>
+
+<h3 class="sh">依据：业内评审细则与设计规范的做法，出处已打开核对</h3>
+<table class="src">
+<thead><tr><th>来源</th><th>做法</th><th>用在维度表哪里</th></tr></thead>
+<tbody>
+<tr><td class="s">OpenAI HealthBench<a href="https://arxiv.org/abs/2505.08775">论文</a></td><td>评审细则按五个固定维度（准确、完整、表达质量、情境把握、遵循指令）组织，每条细则标明所属维度，逐条判满足与否；不该出现的内容单列为扣分细则</td><td class="u">四个通用维度与「每条标准标维度」的做法</td></tr>
+<tr><td class="s">Anthropic「定义成功标准」<a href="https://platform.claude.com/docs/en/test-and-evaluate/define-success">文档</a></td><td>标准要具体、可度量、与用途相关；多数场景需要从多个维度评估</td><td class="u">每条标准只答是或否、按多维度出题</td></tr>
+<tr><td class="s">NN/g 十条可用性启发式<a href="https://www.nngroup.com/articles/ten-usability-heuristics/">文章</a></td><td>系统状态可见、与现实匹配、可撤销、一致性、防错、识别而非回忆、灵活高效、极简、错误信息说清办法</td><td class="u">原型页的状态与防错、信息结构、措辞与指代、无多余内容</td></tr>
+<tr><td class="s">NN/g 视觉设计原则<a href="https://www.nngroup.com/articles/principles-visual-design/">文章</a></td><td>比例、视觉层级、对比：作用不同的元素看上去要不同</td><td class="u">字号与字重层级、对比两个检查点</td></tr>
+<tr><td class="s">Ant Design 设计原则<a href="https://ant.design/docs/spec/proximity-cn">亲密性</a><a href="https://ant.design/docs/spec/alignment-cn">对齐</a><a href="https://ant.design/docs/spec/repetition-cn">重复</a></td><td>关联越高距离越近，间距按 8／16／24px 分档；文案左对齐、表单冒号对齐、数字右对齐；相同元素全界面重复同一样式</td><td class="u">间距分级、对齐、组件一致三个检查点</td></tr>
+<tr><td class="s">ISO/IEC/IEEE 29148 需求质量特性<a href="https://arxiv.org/html/2408.10886v1">转述来源</a></td><td>单条需求须必要、无歧义、完整、单一、可行、可验证、正确、符合模板（标准原文收费，读的是论文转述）</td><td class="u">需求文档节的五个维度</td></tr>
+<tr><td class="s">assertion-evidence（宾州州立大学）<a href="https://www.assertion-evidence.com/">网站</a></td><td>幻灯片标题写成一句断言，正文用视觉证据支撑，不用项目符号清单</td><td class="u">演示稿页的一页一断言、证据支撑</td></tr>
+<tr><td class="s">Amazon 2015 年致股东信<a href="https://www.sec.gov/Archives/edgar/data/1018724/000119312516530910/d168744dex991.htm">原文</a></td><td>决定分为难以退回的「单向门」和可以退回的「双向门」，可退回的决定不该套重流程</td><td class="u">取舍决定的可逆性</td></tr>
+<tr><td class="s">Intercom RICE 排序法<a href="https://www.intercom.com/blog/rice-simple-prioritization-for-product-managers/">文章</a></td><td>按覆盖、影响、信心、投入排序；「信心」用来压住定义不清的想法</td><td class="u">取舍决定的影响面与程度、事实与依据</td></tr>
+</tbody></table>
+
+<h2><span class="no">02</span>每份补了 5–8 条；新补条目判「否」的集中在事实出处、设计粗糙、改动标记三方面</h2>
+
+<div class="grid g3">
+  <div class="card grp no"><p class="h">全部判「否」：8 个维度 23 条</p><p class="l">这些维度原题都没问到</p>
+    <div class="chips"><span>事实与依据<b>6</b></span><span>视觉完成度<b>5</b></span><span>改动可辨<b>4</b></span><span>状态与防错<b>2</b></span><span>待定事项可直接决策<b>2</b></span><span>版面<b>2</b></span><span>全稿位置与密度<b>1</b></span><span>成本依据<b>1</b></span></div></div>
+  <div class="card grp mix"><p class="h">多数判「否」：3 个维度 25 条中否 17 条</p><p class="l">措辞、多余内容、取舍写法</p>
+    <div class="chips"><span>措辞与指代<b>否 8／12</b></span><span>无多余内容<b>否 6／9</b></span><span>取舍成立<b>否 3／4</b></span></div></div>
+  <div class="card grp yes"><p class="h">多数判「是」：4 个维度 15 条中是 10 条</p><p class="l">方向和结构基本守住了</p>
+    <div class="chips"><span>方向一致<b>是 6／10</b></span><span>信息结构与主次<b>是 2／3</b></span><span>可验证<b>是 1／1</b></span><span>格式与粒度<b>是 1／1</b></span></div></div>
+</div>
+<div class="obs">
+  <p><b>观察（推断）：</b>原有 60 条 AI 判「否」33 条（55%），新补 63 条判「否」45 条（71%）。只按题目问到的一面出标准时，这些问题判不出来，与你说的「问题不够全面」一致。</p>
+  <p>以上按 AI 结论计算；新补条目还没经你判，你判完后再看 AI 在这些维度上准不准。</p>
+</div>
+
+<h3 class="sh">逐份看：每份补了哪几条、AI 怎么判</h3>
+<div class="tiles">
+<a class="tile" href="#p1"><span class="tn">第 1 份</span><span class="tt">原型页</span><span class="tc">补 6 条</span><span class="tv"><i class="yes">是 1</i><i class="no">否 5</i></span></a>
+<a class="tile" href="#p2"><span class="tn">第 2 份</span><span class="tt">原型页</span><span class="tc">补 5 条</span><span class="tv"><i class="yes">是 0</i><i class="no">否 5</i></span></a>
+<a class="tile" href="#p3"><span class="tn">第 3 份</span><span class="tt">原型页</span><span class="tc">补 8 条</span><span class="tv"><i class="yes">是 4</i><i class="no">否 4</i></span></a>
+<a class="tile" href="#p4"><span class="tn">第 4 份</span><span class="tt">原型页</span><span class="tc">补 8 条</span><span class="tv"><i class="yes">是 2</i><i class="no">否 6</i></span></a>
+<a class="tile" href="#p5"><span class="tn">第 5 份</span><span class="tt">原型页</span><span class="tc">补 8 条</span><span class="tv"><i class="yes">是 4</i><i class="no">否 4</i></span></a>
+<a class="tile" href="#p6"><span class="tn">第 6 份</span><span class="tt">需求文档节</span><span class="tc">补 5 条</span><span class="tv"><i class="yes">是 3</i><i class="no">否 2</i></span></a>
+<a class="tile" href="#p7"><span class="tn">第 7 份</span><span class="tt">演示稿页</span><span class="tc">补 5 条</span><span class="tv"><i class="yes">是 2</i><i class="no">否 3</i></span></a>
+<a class="tile" href="#p8"><span class="tn">第 8 份</span><span class="tt">取舍决定</span><span class="tc">补 5 条</span><span class="tv"><i class="yes">是 0</i><i class="no">否 5</i></span></a>
+<a class="tile" href="#p9"><span class="tn">第 9 份</span><span class="tt">取舍决定</span><span class="tc">补 6 条</span><span class="tv"><i class="yes">是 2</i><i class="no">否 4</i></span></a>
+<a class="tile" href="#p10"><span class="tn">第 10 份</span><span class="tt">简报</span><span class="tc">补 7 条</span><span class="tv"><i class="yes">是 0</i><i class="no">否 7</i></span></a>
+</div>
+
+<section class="pb" id="p1">
+<div class="ph"><div><p class="pk">第 1 份<span>原型页</span></p><h3>运营新建或修改一条弹窗规则，按这一页的分块，能不能顺着配完、分得清主次？</h3></div>
+<div class="pr"><p class="pc">补 6 条：<i class="yes">是 1</i>　<i class="no">否 5</i></p><a href="2026-10-16_判断题_第1份.html">打开第 1 份判断页 →</a></div></div>
+<table class="ct"><thead><tr><th>条</th><th>维度｜看点</th><th>标准（只答是或否）</th><th>AI 评审结论</th></tr></thead><tbody><tr><td class="cn">7</td><td class="dm"><b>视觉完成度</b><span>设计是否粗糙</span></td><td class="st">按对齐、间距分级、字号与字重层级、对比、组件一致、颜色与装饰、示例数据、基础排版八个检查点逐项看，没有一项不符合</td><td class="ai"><span class="vd no">否</span><span class="why">第二列和表内数字没对齐，「每日 1／次」「计／算」断行，只读标签带删除叉</span></td></tr><tr><td class="cn">8</td><td class="dm"><b>改动可辨</b><span>新增、改动用同一种标记</span></td><td class="st">相对现有弹窗规则表单新增或改动的字段都用同一种标记标出，没标记的字段与现有后台一致</td><td class="ai"><span class="vd no">否</span><span class="why">优先级、高级设置、测试预览都是新增，却没有蓝框标记，与已标的几处不一致</span></td></tr><tr><td class="cn">9</td><td class="dm"><b>方向一致</b><span>保存流程不设审批</span></td><td class="st">保存与上线流程不含提交审核、等待审批这类环节</td><td class="ai"><span class="vd yes">是</span><span class="why">底部是取消、测试预览、保存，确认框只有返回修改、确认保存，没有审批</span></td></tr><tr><td class="cn">10</td><td class="dm"><b>事实与依据</b><span>推断的字段逐个标明</span></td><td class="st">按列表页推断、没有现有表单截图为据的字段，在页上逐个标明是推断</td><td class="ai"><span class="vd no">否</span><span class="why">页眉只有一句总括，字段没有逐个标推断，字段表反而写「现有」</span></td></tr><tr><td class="cn">11</td><td class="dm"><b>无多余内容</b><span>说明栏只讲交互和规则</span></td><td class="st">主图和右侧说明栏里没有成本、开发量、来源这类标注，说明栏只解释不显而易见的交互和规则</td><td class="ai"><span class="vd no">否</span><span class="why">说明栏多条带补充日期，承接推送一条写「较大开发」，图注带版本号</span></td></tr><tr><td class="cn">12</td><td class="dm"><b>措辞与指代</b><span>整页句式：开头与主语</span></td><td class="st">编辑弹窗规则页的说明栏和页上文字，没有成片以同一主语（如「运营」）或同一句式开头的句子，上下文已确定的主语没有逐句写出</td><td class="ai"><span class="vd no">否</span><span class="why">说明栏连续六条小标以「新增」开头，成片同一开头；主语方面没问题</span></td></tr></tbody></table>
+</section>
+<section class="pb" id="p2">
+<div class="ph"><div><p class="pk">第 2 份<span>原型页</span></p><h3>每天配弹窗的运营，用这些投放条件，够不够给新增、回流、破产、潜在付费、潜在流失五类人群配出各自要的弹窗？</h3></div>
+<div class="pr"><p class="pc">补 5 条：<i class="yes">是 0</i>　<i class="no">否 5</i></p><a href="2026-10-16_判断题_第2份.html">打开第 2 份判断页 →</a></div></div>
+<p class="pnote">与第 1 份判的是同一页（编辑弹窗规则页）：信息结构与主次、视觉完成度、改动可辨、无多余内容四个维度由第 1 份的标准承担，这里不重复出题。</p><table class="ct"><thead><tr><th>条</th><th>维度｜看点</th><th>标准（只答是或否）</th><th>AI 评审结论</th></tr></thead><tbody><tr><td class="cn">7</td><td class="dm"><b>状态与防错</b><span>条件矛盾或 0 人时当场提示</span></td><td class="st">投放条件互相矛盾或配出 0 人时（如冷却长于规则有效期、每日时段为空、对象群组为 0 人），保存前页上当场提示并指出是哪一项</td><td class="ai"><span class="vd no">否</span><span class="why">冷却长于生效期间、对象群组 0 人都没有当场提示，只有尾数分流一项有</span></td></tr><tr><td class="cn">8</td><td class="dm"><b>方向一致</b><span>五类人群按已定口径选</span></td><td class="st">五类人群在规则里按已定口径选取：新增、回流、破产用现有标签，潜在付费、潜在流失用新建标签，投放条件里没有另设一套人群判定</td><td class="ai"><span class="vd no">否</span><span class="why">高级设置另设「回流身份」「新增身份」，按登录、注册时间判定，可绕开标签</span></td></tr><tr><td class="cn">9</td><td class="dm"><b>事实与依据</b><span>默认值与上限有出处</span></td><td class="st">投放条件中带默认值或上限的项（每人每天弹窗上限、关闭后冷却的默认时长、实验分流比例）都注明了数值的出处</td><td class="ai"><span class="vd no">否</span><span class="why">关闭后冷却默认 24 小时、承接 3 天、上限 8 个等数值都没写出处</span></td></tr><tr><td class="cn">10</td><td class="dm"><b>措辞与指代</b><span>条件名旁有一句说明</span></td><td class="st">触发时机、实验分流、互斥、关闭后冷却等条件名，每个旁边有一句说明它管什么，运营不经解释就能读懂</td><td class="ai"><span class="vd no">否</span><span class="why">每日时段、每人总次数、关闭后冷却、承接推送旁没有说明文字</span></td></tr><tr><td class="cn">11</td><td class="dm"><b>措辞与指代</b><span>整页句式：说明文字的开头</span></td><td class="st">投放条件各项的说明文字，没有成片以同一主语（如「运营」）或同一句式开头的句子，上下文已确定的主语没有逐句写出</td><td class="ai"><span class="vd no">否</span><span class="why">灰字开头各异，但说明栏讲投放条件的连续五条小标都以「新增」开头</span></td></tr></tbody></table>
+</section>
+<section class="pb" id="p3">
+<div class="ph"><div><p class="pk">第 3 份<span>原型页</span></p><h3>运营每天看推送和弹窗的数据，这个数据看板够不够用？</h3></div>
+<div class="pr"><p class="pc">补 8 条：<i class="yes">是 4</i>　<i class="no">否 4</i></p><a href="2026-10-16_判断题_第3份.html">打开第 3 份判断页 →</a></div></div>
+<table class="ct"><thead><tr><th>条</th><th>维度｜看点</th><th>标准（只答是或否）</th><th>AI 评审结论</th></tr></thead><tbody><tr><td class="cn">7</td><td class="dm"><b>信息结构与主次</b><span>关键数字在前，拆分在后</span></td><td class="st">第一屏先给各推送方式的关键数字及与上一周期的比较，按人群、发送小时、跳转类型的拆分和明细放在其下</td><td class="ai"><span class="vd yes">是</span><span class="why">概览先给两层关键数字和较上一周期，人群、小时、跳转拆分都在其下</span></td></tr><tr><td class="cn">8</td><td class="dm"><b>状态与防错</b><span>无数据、查询失败时写明并给操作</span></td><td class="st">筛选后没有数据或查询失败时，图表与表格处写明是哪一种情况，并给出改筛选或重试的操作</td><td class="ai"><span class="vd no">否</span><span class="why">只画了单格缺数，整块无数据和查询失败都没画，也没有改筛选或重试</span></td></tr><tr><td class="cn">9</td><td class="dm"><b>视觉完成度</b><span>设计是否粗糙，数值列对齐</span></td><td class="st">按视觉完成度八个检查点逐项看没有不符合，其中表格数值列右对齐、同一指标小数位一致</td><td class="ai"><span class="vd no">否</span><span class="why">「表现最好与最／差」断行，规则列表伸出右缘截掉按钮，橙色一色多义</span></td></tr><tr><td class="cn">10</td><td class="dm"><b>改动可辨</b><span>页首写明新页面及取代的报表</span></td><td class="st">页首写明它是新页面，并写出它取代或合并了哪几处现有报表（推播报表、数据平台的短信数据等）</td><td class="ai"><span class="vd no">否</span><span class="why">游戏内推送数据页眉只写新页面，概览也没明说取代哪几处现有报表</span></td></tr><tr><td class="cn">11</td><td class="dm"><b>方向一致</b><span>游戏外、游戏内分开呈现</span></td><td class="st">游戏外推送（推播、短信、Facebook、LINE）与游戏内推送（弹窗、快显）在看板上分两处呈现，没有放进同一张表合计</td><td class="ai"><span class="vd yes">是</span><span class="why">两层各有一页；概览同表分两段、无合计行，趋势图两条线不相加</span></td></tr><tr><td class="cn">12</td><td class="dm"><b>措辞与指代</b><span>比例写明分子、分母和窗口</span></td><td class="st">看板上每个比例指标（到达率、点击率等）在页上写明分子、分母和统计窗口</td><td class="ai"><span class="vd no">否</span><span class="why">关键数字到达率和按人群、规则列表的点击率没写算式，多处没写窗口</span></td></tr><tr><td class="cn">13</td><td class="dm"><b>无多余内容</b><span>每张图表对应一个日常问题</span></td><td class="st">每张图表都对应运营日常要回答的一个问题，没有只为版面完整而放的图表</td><td class="ai"><span class="vd yes">是</span><span class="why">每张图表都对得上一个问题，诊断用表已标明，没有凑版面的图表</span></td></tr><tr><td class="cn">14</td><td class="dm"><b>措辞与指代</b><span>整页句式：说明与表下文字的开头</span></td><td class="st">数据看板各页的说明与表下文字，没有成片以同一主语或同一句式开头的句子，上下文已确定的主语没有逐句写出</td><td class="ai"><span class="vd yes">是</span><span class="why">八页表下文字与说明栏开头各异，无「运营」开头，漏斗行是逐步固定格式</span></td></tr><tr class="sep"><td colspan="4">原有标准中按 10/17 规则改写的一条</td></tr><tr><td class="cn">1</td><td class="dm"><b>功能覆盖</b><span>游戏外推送：发送量、到达率与发送后的登录、付费</span></td><td class="st">推播、短信、Facebook、LINE 各自的发送、到达、到达率、点击在一张表里看齐；各方式另有发送对象在设定时长内的登录人数，储值类推送另有发送后 24 小时内的付费人数与金额，并标明只作后台数据<span class="rw">按 10/17 规则改写</span><span class="rwn">你 10/16 定：发送后登录扩到推播、Facebook、LINE，储值类推送加发送后 24 小时内付费，只作后台数据。改写前只查短信有没有发送后登录，AI 判「是」</span></td><td class="ai"><span class="vd no">否</span><span class="why">发送后登录只有短信有数，储值类推送付费人数与金额没有，也没标只作后台数据</span></td></tr></tbody></table>
+</section>
+<section class="pb" id="p4">
+<div class="ph"><div><p class="pk">第 4 份<span>原型页</span></p><h3>运营每天用「新建推播」页发推播，这一页够不够用？不设审批，靠页上的校验和确认能不能防住发错？</h3></div>
+<div class="pr"><p class="pc">补 8 条：<i class="yes">是 2</i>　<i class="no">否 6</i></p><a href="2026-10-16_判断题_第4份.html">打开第 4 份判断页 →</a></div></div>
+<table class="ct"><thead><tr><th>条</th><th>维度｜看点</th><th>标准（只答是或否）</th><th>AI 评审结论</th></tr></thead><tbody><tr><td class="cn">7</td><td class="dm"><b>信息结构与主次</b><span>五块按填写先后，少用的收起</span></td><td class="st">新建推播页的五块（推送内容、发送对象、发送时间、频率上限、确认与测试）按运营填写的先后排，每块有标题，选填和少用的设置收起</td><td class="ai"><span class="vd no">否</span><span class="why">五块顺序和标题对，但选填的图片、营销档期和少用的「本条不受勿扰」未收起</span></td></tr><tr><td class="cn">8</td><td class="dm"><b>视觉完成度</b><span>八个检查点逐项看</span></td><td class="st">新建推播页按视觉完成度八个检查点逐项看，没有一项不符合；其中通知预览里是繁體真实文案，不是占位文字</td><td class="ai"><span class="vd no">否</span><span class="why">标题层级、必填标记、折叠控件样式、示例值、折行五个检查点不符</span></td></tr><tr><td class="cn">9</td><td class="dm"><b>改动可辨</b><span>新页面写明取代什么</span></td><td class="st">新建推播页页首写明是新页面，并写出现在推播在哪里建、迁入后哪个旧入口停用</td><td class="ai"><span class="vd no">否</span><span class="why">页首只写「新页面」，没写现在推播在礼包后台建、迁入后停用哪个旧入口</span></td></tr><tr><td class="cn">10</td><td class="dm"><b>方向一致</b><span>不设审批</span></td><td class="st">新建推播页的发送流程不含审批或提交审核环节，防错只靠确认页、测试发送和操作纪录</td><td class="ai"><span class="vd yes">是</span><span class="why">按钮为「确认排程」并注明无需审批，防错靠确认块、高风险确认和测试发送</span></td></tr><tr><td class="cn">11</td><td class="dm"><b>事实与依据</b><span>限制值有出处</span></td><td class="st">新建推播页上的限制值（文案字数上限、可选发送时间范围、每人每天营销推播 2 条）都注明了出处（运营规范、推送服务商限制或已定事项）</td><td class="ai"><span class="vd no">否</span><span class="why">字数上限、发送时间范围、每天 2 条上限都没注明出自哪项规范或已定事项</span></td></tr><tr><td class="cn">12</td><td class="dm"><b>措辞与指代</b><span>新名称当场说明</span></td><td class="st">新建推播页的字段名和按钮名沿用运营现有后台的叫法，新出现的名称（如「常用受众」「确认排程」）旁有一句说明</td><td class="ai"><span class="vd no">否</span><span class="why">「常用受众」「营销档期」旁无说明，只在图外说明栏解释；现有叫法无从对照</span></td></tr><tr><td class="cn">13</td><td class="dm"><b>无多余内容</b><span>编号与说明栏只放该放的</span></td><td class="st">新建推播页的主图和说明栏没有成本、来源标注；图上编号标注只标不显而易见的交互，不超过 6 处</td><td class="ai"><span class="vd no">否</span><span class="why">主图编号标注 11 处，超过 6 处；说明栏 8 条带修订版本或补充日期标注</span></td></tr><tr><td class="cn">14</td><td class="dm"><b>措辞与指代</b><span>整页句式：开头与主语</span></td><td class="st">新建推播页的说明栏和页上文字，没有成片以同一主语（如「运营」）或同一句式开头的句子，上下文已确定的主语没有逐句写出</td><td class="ai"><span class="vd yes">是</span><span class="why">无「运营」开头；说明栏仅两条以「确认前」开头，页上说明句开头各异</span></td></tr></tbody></table>
+</section>
+<section class="pb" id="p5">
+<div class="ph"><div><p class="pk">第 5 份<span>原型页</span></p><h3>玩家来问「为什么没收到推送、为什么没看到弹窗」，客服按玩家查询这一页，能不能查出原因、给出答复？</h3></div>
+<div class="pr"><p class="pc">补 8 条：<i class="yes">是 4</i>　<i class="no">否 4</i></p><a href="2026-10-16_判断题_第5份.html">打开第 5 份判断页 →</a></div></div>
+<table class="ct"><thead><tr><th>条</th><th>维度｜看点</th><th>标准（只答是或否）</th><th>AI 评审结论</th></tr></thead><tbody><tr><td class="cn">7</td><td class="dm"><b>信息结构与主次</b><span>按客服排查的先后排</span></td><td class="st">玩家查询页按客服排查的先后排：先看玩家现在各推送方式能否收到，再查具体一条推送或一次弹窗，最后给答复</td><td class="ai"><span class="vd yes">是</span><span class="why">能否收到在首屏右侧，其后收到记录查具体一条，答复写在该条结果列末尾</span></td></tr><tr><td class="cn">8</td><td class="dm"><b>视觉完成度</b><span>八个检查点逐项看</span></td><td class="st">玩家查询页按视觉完成度八个检查点逐项看，没有一项不符合；其中「能收到／收不到」「已送达／被拦下」这类状态全页用同一组颜色加文字标出</td><td class="ai"><span class="vd no">否</span><span class="why">对齐、标题字重、链接样式、状态颜色、示例数据、折行六个检查点不符</span></td></tr><tr><td class="cn">9</td><td class="dm"><b>改动可辨</b><span>沿用与新增分得清</span></td><td class="st">玩家查询页标出哪些部分沿用现有「玩家弹窗顺序查询」、哪些是本次新增</td><td class="ai"><span class="vd no">否</span><span class="why">玩家信息区新增四行没标「新增」，说明一处写玩家信息照旧、一处写加四项</span></td></tr><tr><td class="cn">10</td><td class="dm"><b>方向一致</b><span>游戏内、游戏外分开</span></td><td class="st">玩家查询页把游戏外推送（推播、短信、Facebook、LINE）与游戏内推送（弹窗、快显）分开查询、分开显示</td><td class="ai"><span class="vd no">否</span><span class="why">收到记录把推播、短信与弹窗、快显按时间混排在一张表，默认不分开</span></td></tr><tr><td class="cn">11</td><td class="dm"><b>事实与依据</b><span>每种原因都有记录可查</span></td><td class="st">玩家查询页显示的每种拦截原因和送达状态，在需求文档的记录表（逐人发送明细、设备通知权限）里都有对应字段</td><td class="ai"><span class="vd no">否</span><span class="why">页上「注销处理中」状态在逐人发送明细和设备通知权限表里都没有字段</span></td></tr><tr><td class="cn">12</td><td class="dm"><b>措辞与指代</b><span>答复不用后台用语</span></td><td class="st">玩家查询页给玩家的每句答复用繁體，不含群组、频率上限、冷却、批次这类后台用语</td><td class="ai"><span class="vd yes">是</span><span class="why">21 句建议答复都是繁體，未见群组、频率上限、冷却、批次等用语</span></td></tr><tr><td class="cn">13</td><td class="dm"><b>无多余内容</b><span>只显示排查要用的玩家信息</span></td><td class="st">玩家查询页只显示排查要用的玩家信息，不显示储值金额等与排查无关的个人资料</td><td class="ai"><span class="vd yes">是</span><span class="why">玩家信息 9 项都与排查有关，手机号打码，没有储值金额、VIP 等级</span></td></tr><tr><td class="cn">14</td><td class="dm"><b>措辞与指代</b><span>整页句式：开头与主语</span></td><td class="st">玩家查询页的说明栏和页上文字，没有成片以同一主语（如「客服」）或同一句式开头的句子，上下文已确定的主语没有逐句写出</td><td class="ai"><span class="vd yes">是</span><span class="why">无「客服」开头；「新增」小标只连续三条，其余开头各异，不成片</span></td></tr></tbody></table>
+</section>
+<section class="pb" id="p6">
+<div class="ph"><div><p class="pk">第 6 份<span>需求文档节</span></p><h3>标签群组取交集的规则，和「且、或、排除」混用时的运算顺序，够不够交给研发照着做？</h3></div>
+<div class="pr"><p class="pc">补 5 条：<i class="yes">是 3</i>　<i class="no">否 2</i></p><a href="2026-10-16_判断题_第6份.html">打开第 6 份判断页 →</a></div></div>
+<table class="ct"><thead><tr><th>条</th><th>维度｜看点</th><th>标准（只答是或否）</th><th>AI 评审结论</th></tr></thead><tbody><tr><td class="cn">7</td><td class="dm"><b>可验证</b><span>每条规则都有验收用例</span></td><td class="st">需求文档群组交集、运算顺序两节的每条规则（交集、嵌套 1 层、引用上限 5 个、「且」先于「或」、排除最后扣除）在验收用例里都有对应用例，用例写了输入群组和预期结果</td><td class="ai"><span class="vd yes">是</span><span class="why">交集、嵌套、上限、且先于或、排除最后扣都有验收用例，上限一条写得偏弱</span></td></tr><tr><td class="cn">8</td><td class="dm"><b>格式与粒度</b><span>规则都落到字段</span></td><td class="st">群组交集、运算顺序两节的规则在「标签群组设定新增字段」表里都有对应字段（字段名、数据类型、必填、规则说明），研发不用再问字段</td><td class="ai"><span class="vd yes">是</span><span class="why">组合条件、嵌套、上限、批次、计算状态均有字段；计算式由条件实时拼出</span></td></tr><tr><td class="cn">9</td><td class="dm"><b>方向一致</b><span>交集是本期要做的能力</span></td><td class="st">群组交集写成本期要做的能力，没有降为可选功能或列入后续</td><td class="ai"><span class="vd yes">是</span><span class="why">范围写明含群组交集，范围分级总表列为本期必要，没有列入后续</span></td></tr><tr><td class="cn">10</td><td class="dm"><b>措辞与指代</b><span>群组、批次、引用各用一个名字</span></td><td class="st">标签群组设定配套改动一节里，「群组」「标签群组」「批次」「引用」各只用一个名字，第一次出现时写明指什么</td><td class="ai"><span class="vd no">否</span><span class="why">引用他组的群组另称「上层群组」，被引用的另称「依赖群组」；「引用」首现未解释</span></td></tr><tr><td class="cn">11</td><td class="dm"><b>无多余内容</b><span>只写规则与例子</span></td><td class="st">群组交集、运算顺序两节只写规则与例子，没有论证要不要做的段落和工作过程用语（如「请评审定」）</td><td class="ai"><span class="vd no">否</span><span class="why">表内留有「夜补充」标记、成本标注和评审前让运营实测的工作安排</span></td></tr></tbody></table>
+</section>
+<section class="pb" id="p7">
+<div class="ph"><div><p class="pk">第 7 份<span>演示稿页</span></p><h3>主管读弹窗方案演示稿第 5 页，能不能看懂弹窗与推送的一条规则由哪几部分组成？</h3></div>
+<div class="pr"><p class="pc">补 5 条：<i class="yes">是 2</i>　<i class="no">否 3</i></p><a href="2026-10-16_判断题_第7份.html">打开第 7 份判断页 →</a></div></div>
+<table class="ct"><thead><tr><th>条</th><th>维度｜看点</th><th>标准（只答是或否）</th><th>AI 评审结论</th></tr></thead><tbody><tr><td class="cn">7</td><td class="dm"><b>全稿位置与密度</b><span>在本章里的位置与内容量</span></td><td class="st">第 5 页的页眉标出所在章，内容量与它在该章中的位置相称（章首页只放结论和少量支撑块，细节留给后页）</td><td class="ai"><span class="vd no">否</span><span class="why">页眉标了所属章，但作为章内第一页放了三行九块，比后两页还密</span></td></tr><tr><td class="cn">8</td><td class="dm"><b>视觉完成度</b><span>对齐、间距、符号、字号、留白</span></td><td class="st">第 5 页的卡片等宽对齐、间距一致，并列的行有符号，标题字号明显大于正文，留白充足不挤</td><td class="ai"><span class="vd no">否</span><span class="why">三张卡宽度不一，事件卡并列三行无符号，三行卡片间距约 0.17 英寸偏挤</span></td></tr><tr><td class="cn">9</td><td class="dm"><b>方向一致</b><span>四部分与你认可的框架一致</span></td><td class="st">第 5 页的规则组成就是你认可的「事件＋状态＋内容＋频次」四部分，没有增减部分或换用别的名称</td><td class="ai"><span class="vd yes">是</span><span class="why">事件、状态、内容、频次四部分齐全且名称一致，频次放在内容卡里</span></td></tr><tr><td class="cn">10</td><td class="dm"><b>事实与依据</b><span>关于现有后台的说法都核对过</span></td><td class="st">第 5 页「本方案补」一行里说现有后台能做或不能做的每一处，都与现有后台截图核对过</td><td class="ai"><span class="vd no">否</span><span class="why">后台截图只有弹窗顺序两页，推送和标签相关的说法无从核对</span></td></tr><tr><td class="cn">11</td><td class="dm"><b>无多余内容</b><span>没有读法、导语、标注和过程用语</span></td><td class="st">第 5 页没有读法提示、方法论导语、成本或来源标注和工作过程用语</td><td class="ai"><span class="vd yes">是</span><span class="why">整页只有导航、标题、卡片内容与页脚，无读法、导语、成本或来源标注</span></td></tr></tbody></table>
+</section>
+<section class="pb" id="p8">
+<div class="ph"><div><p class="pk">第 8 份<span>取舍决定</span></p><h3>运营要换弹窗图片和跳转，本期只开放在活动与事件目录里改跳转、换图列为后续，这个取舍可以吗？</h3></div>
+<div class="pr"><p class="pc">补 5 条：<i class="yes">是 0</i>　<i class="no">否 5</i></p><a href="2026-10-16_判断题_第8份.html">打开第 8 份判断页 →</a></div></div>
+<table class="ct"><thead><tr><th>条</th><th>维度｜看点</th><th>标准（只答是或否）</th><th>AI 评审结论</th></tr></thead><tbody><tr><td class="cn">7</td><td class="dm"><b>取舍成立</b><span>写没写出可选的做法和推荐</span></td><td class="st">这个决定写出了至少两个有实质差别的选项（本期做换图／本期只开放改跳转、换图后续做），并写明推荐哪个、为什么</td><td class="ai"><span class="vd no">否</span><span class="why">只写了「本期不做换图」一个做法，本期做换图没有作为并列选项写出做法和代价</span></td></tr><tr><td class="cn">8</td><td class="dm"><b>事实与依据</b><span>换图现状核实没有</span></td><td class="st">「换图现在怎么做」的现状（谁换、走什么流程、多久生效）已向运营或研发核实，并写明核实来源</td><td class="ai"><span class="vd no">否</span><span class="why">换图现状没有注来源，谁换、多久生效也没写，与 Jira「客端写死」说法不一致</span></td></tr><tr><td class="cn">9</td><td class="dm"><b>措辞与指代</b><span>两个名称读不读得懂</span></td><td class="st">「自定义公告弹窗」「弹窗项素材与跳转覆写」第一次出现时写明指什么，不了解项目的读者读得懂</td><td class="ai"><span class="vd no">否</span><span class="why">自定义公告弹窗只有「图文＋跳转」括注；弹窗项、排序项没解释，术语表也没有</span></td></tr><tr><td class="cn">10</td><td class="dm"><b>无多余内容</b><span>说明里有没有过程话</span></td><td class="st">这条取舍的说明里没有已被否定的推导、工作过程用语和与决定无关的背景</td><td class="ai"><span class="vd no">否</span><span class="why">该行有两处「（10/16 夜补充）」过程标注，还有「先核热门资讯」这类待办语</span></td></tr><tr><td class="cn">11</td><td class="dm"><b>取舍成立</b><span>推后理由按近、中、远三层</span></td><td class="st">推荐把换图放到后续的理由按近→中→远判断：写明了换图是否属于主管这一期要的交付，没有用平台业绩去否定本期要交的东西或主管这一期要的交付</td><td class="ai"><span class="vd no">否</span><span class="why">未用业绩作理由，但各处都没写换图算不算主管这一期要的弹窗内容</span></td></tr><tr class="sep"><td colspan="4">原有标准中按 10/17 规则改写的一条</td></tr><tr><td class="cn">4</td><td class="dm"><b>成本依据</b><span>「较大开发」写没写原因</span></td><td class="st">「换图」写明需开发、属较大开发，并写出定为较大开发的原因（如要改客户端渲染与下发协议）；人周与分端任务留研发评审<span class="rw">按 10/17 规则改写</span><span class="rwn">人周与分端拆分留到研发评审，现阶段只查需不需要开发、属哪一层开发量及原因。改写前要求拆到各端、写出人周，AI 判「否」</span></td><td class="ai"><span class="vd yes">是</span><span class="why">排除项写明换图要客户端按下发素材渲染并校验，属较大开发</span></td></tr></tbody></table>
+</section>
+<section class="pb" id="p9">
+<div class="ph"><div><p class="pk">第 9 份<span>取舍决定</span></p><h3>迁入后台的系统推送默认归「服务通知」而不占营销推播每人每天 2 条，这样定可以吗？</h3></div>
+<div class="pr"><p class="pc">补 6 条：<i class="yes">是 2</i>　<i class="no">否 4</i></p><a href="2026-10-16_判断题_第9份.html">打开第 9 份判断页 →</a></div></div>
+<table class="ct"><thead><tr><th>条</th><th>维度｜看点</th><th>标准（只答是或否）</th><th>AI 评审结论</th></tr></thead><tbody><tr><td class="cn">7</td><td class="dm"><b>取舍成立</b><span>写没写出几种计法和推荐</span></td><td class="st">这个决定写出了有实质差别的选项（计入营销每天 2 条／单独计并设服务通知上限／单独计不设上限），并写明推荐与理由</td><td class="ai"><span class="vd no">否</span><span class="why">只给了「服务通知·不计入」一个默认值，另外两种计法没有作为并列选项写出做法</span></td></tr><tr><td class="cn">8</td><td class="dm"><b>成本依据</b><span>两种计法各改哪里、属哪一层开发量</span></td><td class="st">两种计法各要改哪几处（频率上限计数、消息类别字段、截断先后）已写明，并标出各自的开发量层级（现有功能可做／小改动／较大开发）<span class="rw">按 10/17 规则改写</span><span class="rwn">原句「大致开发量」容易被当成人周来判，改为只查开发量层级（现有功能可做／小改动／较大开发）</span></td><td class="ai"><span class="vd no">否</span><span class="why">只写了选定做法，两种计法各改哪几处、各属哪层开发量都没写</span></td></tr><tr><td class="cn">9</td><td class="dm"><b>方向一致</b><span>归服务通知后还统不统计</span></td><td class="st">系统推送归服务通知后，其发送、到达、点击仍进入数据看板统计，不因不计入营销条数而不统计</td><td class="ai"><span class="vd yes">是</span><span class="why">需求文档「活动与事件目录」一节的看板行写明系统推送按模板×项目汇总，看板统计发送、到达、点击</span></td></tr><tr><td class="cn">10</td><td class="dm"><b>措辞与指代</b><span>三类推送说没说清包含哪些</span></td><td class="st">「服务通知」「营销推播」「系统推送」第一次出现时写明各包含哪些推送，34 种系统推送有清单可查</td><td class="ai"><span class="vd no">否</span><span class="why">系统推送首次出现处没有说明含哪些、没有指向 34 种对照表，术语表也没有收录</span></td></tr><tr><td class="cn">11</td><td class="dm"><b>无多余内容</b><span>规则行里有没有论证和过程话</span></td><td class="st">频率上限页「迁入的系统推送」一行和需求文档频率上限一节的相关规则只写规则与默认值，没有论证过程和工作过程用语</td><td class="ai"><span class="vd no">否</span><span class="why">原型分组标题和需求文档「频率上限与勿扰」一节都有「夜补充」、版本号改动标注和现实依据论证</span></td></tr><tr><td class="cn">12</td><td class="dm"><b>取舍成立</b><span>推荐理由按近、中、远三层</span></td><td class="st">推荐「服务通知不占营销 2 条」的理由按近→中→远判断，依据是本期交付与运营规范，没有用活跃、付费这类平台业绩作理由</td><td class="ai"><span class="vd yes">是</span><span class="why">理由是运营规范的 2 条只指运营推播并挂本期目标，没用业绩</span></td></tr></tbody></table>
+</section>
+<section class="pb" id="p10">
+<div class="ph"><div><p class="pk">第 10 份<span>简报</span></p><h3>夜间简报的第一屏，读完能不能说清夜里做成了什么、还缺什么、要你定什么？</h3></div>
+<div class="pr"><p class="pc">补 7 条：<i class="yes">是 0</i>　<i class="no">否 7</i></p><a href="2026-10-16_判断题_第10份.html">打开第 10 份判断页 →</a></div></div>
+<table class="ct"><thead><tr><th>条</th><th>维度｜看点</th><th>标准（只答是或否）</th><th>AI 评审结论</th></tr></thead><tbody><tr><td class="cn">7</td><td class="dm"><b>待定事项可直接决策</b><span>每件先给关键信息，再给选项与推荐</span></td><td class="st">「要你定」一节的每件事，先用一个真实例子讲现状怎么运作，并写出已替你定了什么、每个选项落地后会改变什么，再给封闭选项、我方推荐和一句理由<span class="rw">按 10/17 规则改写</span><span class="rwn">要你定的事先给关键信息：现状例子、已替你定了什么、各选项落地后的变化。原句只查选项、推荐、理由</span></td><td class="ai"><span class="vd no">否</span><span class="why">卡片只有背景、选项、理由三栏，缺真实例子、已替你定和各选项落地后的变化</span></td></tr><tr><td class="cn">8</td><td class="dm"><b>版面</b><span>成段文字与块间距</span></td><td class="st">页首用要点卡、短条目和短表呈现，没有成段的文字，块与块之间留出明显间距</td><td class="ai"><span class="vd no">否</span><span class="why">页首有两段三四百字的成段文字，无要点卡，表格单格最长 345 字</span></td></tr><tr><td class="cn">9</td><td class="dm"><b>方向一致</b><span>挂给你的只有三类事</span></td><td class="st">页首挂给你定的事只有业务方向取舍、验收和只有你能对外安排的事三类，我方流程和内容取舍没有挂给你</td><td class="ai"><span class="vd no">否</span><span class="why">除范围、验收、法务等外，还挂了测试白名单、导出限制、项名等我方内容细节</span></td></tr><tr><td class="cn">10</td><td class="dm"><b>无多余内容</b><span>内部记录与阅读说明</span></td><td class="st">页首没有轮数、改了几处、更正史这类内部记录，也没有读法、阅读时间这类说明</td><td class="ai"><span class="vd no">否</span><span class="why">表中写「设计概要 6 处冲突已改」，总述记修正过程，说明行列修订版本区间</span></td></tr><tr><td class="cn">11</td><td class="dm"><b>版面</b><span>文字本身好读</span></td><td class="st">页首正文不小于约 12pt，灰色说明字在白底上一眼读得清（参考对比度不低于 4.5:1），行距宽松，正文栏没有收窄</td><td class="ai"><span class="vd no">否</span><span class="why">说明行与表格字小于 12pt，灰字对比度约 3:1，低于 4.5:1</span></td></tr><tr><td class="cn">12</td><td class="dm"><b>待定事项可直接决策</b><span>要你判断的界面和页面放在页上</span></td><td class="st">页首要你判断或验收的界面、页面或表，截图或表本身就在简报页上（裁到要问的部分或框出位置），不只给链接</td><td class="ai"><span class="vd no">否</span><span class="why">全页无截图，要验收的原型和交主管方案页面只用文字描述</span></td></tr><tr><td class="cn">13</td><td class="dm"><b>方向一致</b><span>交付状态最多到待你验收</span></td><td class="st">页首写到的每份交付物状态最多到「待 Dk 验收」，没有「可交主管」「可原样转发」「可以上线」</td><td class="ai"><span class="vd no">否</span><span class="why">标题写需求文档「供需求评审估工时」、表里写「可进研发评估」，超出待验收</span></td></tr></tbody></table>
+</section>
+
+<h2><span class="no">03</span>要你做的：逐份判新补条目，觉得还缺维度就补</h2>
+<div class="grid g3">
+  <div class="card ask"><p class="h">逐份判新补条目</p><p class="l">每条 AI 结论回同意或不同意；不同意的写一句理由。</p><p class="e">同意的维度，下一版产出就按这条标准让 AI 先审；不同意的，改标准或评审说明后重判。</p></div>
+  <div class="card ask"><p class="h">觉得还缺维度就补</p><p class="l">说出某类产出还该看什么即可。</p><p class="e">能归进已有维度的补成标准；放不进的新增维度，写明来源，进维度表。</p></div>
+  <div class="card ask"><p class="h">第 3–10 份的原有 6 条</p><p class="l">与新补条目在同一页上，还没判，可以一起回。</p><p class="e">不判的话，这 8 份的 AI 结论只能暂按 AI 的判断用，准不准无从核对。</p></div>
+</div>
+<div class="reply"><b>回复示例</b>「第 4 份：8 不同意——示例值是真实形态，不算粗糙；其余同意。还缺：推播在不同手机上的显示效果」</div>
+
+<p class="links">原文：<a href="../规则与交接/评审题库/评审维度表.md">评审维度表</a><a href="2026-10-16_请你判的10份产出.html">10 份判断题总页</a></p>
+
+</div></body></html>

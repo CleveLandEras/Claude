@@ -1,0 +1,135 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>四环推进合理性评估</title><style>
+:root{--ground:#f0efec;--surface:#fff;--surface-2:#f7f6f3;--ink:#191b1e;--ink-2:#484d53;--muted:#7d8289;--line:#dcdad5;--line-2:#e8e6e1;--accent:#9a6f24;--ok:#3d6b58;--ok-soft:#dfeae5;--warn:#8a6410;--warn-soft:#f5ead2;--info:#1c6ea4;--info-soft:#e0ecf4;--must:#a63f38;--must-soft:#f4e3e1;--idle:#b9b6ae;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;--mono:ui-monospace,Menlo,monospace;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1a1d21;--surface-2:#20242a;--ink:#e9e8e4;--ink-2:#b7bbc0;--muted:#868c94;--line:#2d3238;--line-2:#262b31;--accent:#d6ab5c;--ok:#74b096;--ok-soft:#1d3129;--warn:#cfa44e;--warn-soft:#332a16;--info:#6aa8d6;--info-soft:#1b2a36;--must:#dd8078;--must-soft:#38231f;--idle:#4a4f56;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1a1d21;--surface-2:#20242a;--ink:#e9e8e4;--ink-2:#b7bbc0;--muted:#868c94;--line:#2d3238;--line-2:#262b31;--accent:#d6ab5c;--ok:#74b096;--ok-soft:#1d3129;--warn:#cfa44e;--warn-soft:#332a16;--info:#6aa8d6;--info-soft:#1b2a36;--must:#dd8078;--must-soft:#38231f;--idle:#4a4f56;}
+*{box-sizing:border-box} body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased}
+.wrap{max-width:920px;margin:0 auto;padding:34px 22px 80px} .meta{font-size:12.5px;color:var(--muted);margin:0 0 6px}
+h1{font-family:var(--serif);font-size:24px;margin:0 0 14px}
+.verdict{background:var(--surface);border-left:3px solid var(--accent);padding:14px 18px;margin:0 0 14px} .verdict p{margin:0 0 6px;font-size:16px;font-weight:600;max-width:46em} .verdict p:last-child{margin:0}
+.sum{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:0 0 28px}
+.sum div{background:var(--surface);border:1px solid var(--line);padding:10px 12px} .sum b{display:block;font-family:var(--mono);font-size:22px} .sum span{font-size:12.5px;color:var(--ink-2)} .sum .bad b{color:var(--must)}
+.no{font-family:var(--mono);font-size:12px;color:var(--accent);font-weight:600} h2{font-family:var(--serif);font-size:19px;margin:2px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+section{margin:0 0 34px} .card{background:var(--surface);border:1px solid var(--line);padding:14px 18px;margin:0 0 10px}
+.card h3{margin:0 0 6px;font-size:16px} .card p{margin:4px 0;font-size:14px;color:var(--ink-2);max-width:48em} .card p b,.card li b{color:var(--ink)}
+.card ul{margin:6px 0 0;padding-left:1.2em;font-size:14px;color:var(--ink-2)} .card li{margin:3px 0}
+.card.ok{border-left:3px solid var(--ok)} .card.bad{border-left:3px solid var(--must)} .card.mid{border-left:3px solid var(--warn)}
+.ev{font-size:13px;color:var(--muted);margin:6px 0 0}
+.note{font-size:13px;color:var(--muted);margin:8px 0 0} a{color:var(--accent)}
+.tw{overflow-x:auto} table{border-collapse:collapse;width:100%;font-size:13.5px;background:var(--surface);border:1px solid var(--line)}
+th{text-align:left;font-size:12px;color:var(--muted);font-weight:650;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap} td{padding:8px 10px;border-bottom:1px solid var(--line-2);vertical-align:top} tr:last-child td{border-bottom:none}
+td.n{font-family:var(--mono);font-size:13px;white-space:nowrap}
+tr.idle td{color:var(--muted);background:var(--surface-2)}
+.bar{display:flex;height:30px;border:1px solid var(--line);background:var(--surface);overflow:hidden;margin:0 0 4px}
+.bar div{display:flex;align-items:center;justify-content:center;font-size:11.5px;color:#fff;white-space:nowrap;overflow:hidden;border-right:1px solid var(--surface)}
+.bar .w{background:var(--ok)} .bar .i{background:var(--idle);color:var(--ink)} .bar .x{background:var(--must)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--ink-2);margin:4px 0 14px} .legend i{display:inline-block;width:10px;height:10px;margin-right:5px;vertical-align:-1px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:640px){.wrap{padding:24px 16px 60px} .sum{grid-template-columns:1fr 1fr} .two{grid-template-columns:1fr} table{font-size:12.5px} .bar div span{display:none}}
+</style></head><body><div class="wrap">
+<p class="meta">简报 · 2026-09-29 14:00 · 评估对象：9/28 11:45 定下闸门规则 → 9/29 10:20 最后一道闸 · 依据：工作原则第三、七节（各环完成标准）、四次闸门审核原文、审查记录全部 159 条意见、进展日志、数据说明、定时任务运行记录</p>
+<h1>四环推进合理性评估：流程是真的在跑，但结论的底子比汇报看上去薄</h1>
+<div class="verdict">
+<p>流程本身是合理的：闸门确实拦过人，数字都有人独立重算过，方向转弯也有依据、有记录。</p>
+<p>但有三件事不合理，会直接影响你能不能拿这份汇报去拍板：① 四道闸有三道，关键标准是靠「数据拿不到，已写成缺口」放行的；② 缺数据时，系统没有停下来等数据，而是用代理指标越做越细；③ 新主线的核心前提在本地只证实了 5,146 人里的 25 人。</p>
+<p>所以这份汇报适合拿去和主管对齐方向，不适合当成已经论证完的方案直接执行。</p>
+</div>
+<div class="sum">
+<div><b>约 11 小时</b><span>真正在干活的时间（23 小时里）</span></div>
+<div class="bad"><b>约 11.5 小时</b><span>停摆：额度用完两次、规划者掉线一夜</span></div>
+<div><b>130 条</b><span>四环里的审查意见，其中必须改 53 条</span></div>
+<div class="bad"><b>25 / 5,146</b><span>新主线前提在本地能证实的人数</span></div>
+</div>
+
+<section><div class="no">一 · 23 小时是怎么花的</div><h2>真正干活约 11 小时，其余一半在停摆</h2>
+<div class="bar">
+<div class="w" style="flex:305"><span>现状 ~5h</span></div>
+<div class="x" style="flex:155"><span>停 ~2.5h</span></div>
+<div class="w" style="flex:140"><span>诊断 2h20</span></div>
+<div class="w" style="flex:91"></div>
+<div class="x" style="flex:55"></div>
+<div class="w" style="flex:70"><span>方案</span></div>
+<div class="i" style="flex:477"><span>规划者掉线 8h</span></div>
+<div class="w" style="flex:63"><span>决策</span></div>
+</div>
+<div class="legend"><span><i style="background:var(--ok)"></i>干活</span><span><i style="background:var(--must)"></i>额度用完</span><span><i style="background:var(--idle)"></i>规划者掉线</span></div>
+<div class="tw"><table>
+<tr><th>环节</th><th>时间</th><th>实际干活</th><th>审查意见（必须 / 建议）</th><th>偏离警报</th><th>闸门</th></tr>
+<tr><td><b>1 现状</b></td><td class="n">09-28 11:45–19:24</td><td class="n">约 5h</td><td class="n">31 / 29</td><td class="n">19 次审查里 4 次</td><td>一次通过</td></tr>
+<tr class="idle"><td>停摆</td><td class="n">约 16:35–19:10</td><td class="n">0</td><td colspan="3">执行者、审查者都没跑。停止和恢复的时间，正好对上 5 小时额度窗口（19:10 开新窗口、00:10 再重置），推断是<b>额度第一次用完</b></td></tr>
+<tr><td><b>2 诊断</b></td><td class="n">19:24–21:44</td><td class="n">2h20</td><td class="n">11 / 24</td><td class="n">12 次里 <b>8 次</b></td><td>第一次不通过（汇报前后两套方向），补完通过</td></tr>
+<tr><td><b>3 方案</b></td><td class="n">21:44–01:20</td><td class="n">约 2h40</td><td class="n">9 / 7</td><td class="n">6 次里 4 次</td><td>第一次不通过（三处写法矛盾），补完通过</td></tr>
+<tr class="idle"><td>停摆</td><td class="n">23:15–00:10、01:20–09:17</td><td class="n">0</td><td colspan="3">额度第二次用完；随后规划者 8 小时没被启动</td></tr>
+<tr><td><b>4 决策</b></td><td class="n">09:17–10:20</td><td class="n">1h</td><td class="n">2 / 17</td><td class="n">8 次里 4 次</td><td>一次通过</td></tr>
+</table></div>
+<p class="note">偏离警报的意思是：一次审查里「实质推进 + 纠错」的改动不到一半。诊断环节 12 次审查里有 8 次报警，审查者给的原因是「一项分析要同步改三处文件」，属于结构性的同步工作，不是方向偏了。方案环节的最后一轮，28 处改动里只有 2 处算实质推进。</p>
+</section>
+
+<section><div class="no">二 · 合理的地方</div><h2>三件事说明流程不是走过场</h2>
+<div class="card ok"><h3>闸门真的拦过人</h3><p>诊断、方案两道闸，第一次审核都判了不通过：诊断是因为汇报后几节还在给出与新诊断相反的建议；方案是因为首屏和正文对「五张卡降级几张」说法矛盾。审查者每一条标准都回到原文去核，没有只看规划者自己给的证据。</p></div>
+<div class="card ok"><h3>数字靠得住</h3><p>审查者每一轮都另写脚本，从原始数据重算关键数字。现状阶段抓出过漏算（9/16 当天登录的 11,807 人）、错口径（首储按 15,000 点还是 16,800 点）。到了方案阶段，已经没有再发现算错。</p></div>
+<div class="card ok"><h3>方向转弯有依据、有记录</h3><p>主线从「五类人群」换成「高卡」，是方案阶段把 02–04 的 18 个动作逐条对照业绩链核出来的：五张卡里只有一张服务高卡，而且照原写法会让储值在下滑的高卡每天多看到 20 个弹窗。三次方向变更都写进了推进计划，并注明「如果审查推翻就撤回」。最终把它设为第 1 件、交主管定，而不是替主管定死。</p></div>
+</section>
+
+<section><div class="no">三 · 不合理的地方</div><h2>五个问题，前三个会影响你能不能拍板</h2>
+
+<div class="card bad"><h3>1. 三道闸的关键标准，是靠「拿不到，已写成缺口」放行的</h3>
+<p>工作原则允许「某条线被外部信息卡住时，只要缺口写清楚了，就算这一环做清楚」。这条规则让推进快了，但也让不确定性一路带到了最后：</p>
+<ul>
+<li><b>现状</b>要求描述「实际表现（曝光、转化、留存、付费）」。曝光、转化一个数都没有，留存只能从一次快照里推算，闸门写的是「满足（按拿不到的列为缺口）」。</li>
+<li><b>诊断</b>要求写「根因」。没有行为数据，大多数根因无法验证，只能写「已排除 / 不能排除的其他解释」。</li>
+<li><b>方案</b>要求写「预期影响量级」。结论是「本地估不出，只能换算」，也判了满足。</li></ul>
+<p>结果是四环全部过闸，但交到你手上的 13 件事，多数是「如果答复是 X，就选 Y」的条件句。</p>
+<p class="ev">证据：审查记录 19:24 闸门第 ③ 条原文、01:05 闸门第 ③ 条、工作原则第七节。</p></div>
+
+<div class="card bad"><h3>2. 缺数据时没有停下来等数据，而是用代理指标越做越细</h3>
+<p>全部分析只有一份数据：9/16 导出的一次快照，金额全是账号累计值，没有按月拆分，没有历史，没有曝光。最关键的缺口（每人近两个月的月储值、谁买过首储、独享礼包价格）在 9/28 上午就识别出来了，问句和取数表也陆续写好了（交运营的问句 9/28 下午就绪，交数据组的取数表 9/29 凌晨按新方案补齐），但到现在一条都没发出去。</p>
+<p>这期间系统做的，是在累计值上搭越来越精细的代理指标：</p>
+<ul>
+<li>「两把尺子」：用累计储值和累计除以账号月龄，代替月储值；</li>
+<li>储值位价格对照：把礼包价格和「历史月均储值」的分位数比，切出 74 / 160 / 300 / 690 / 1,360 元五个门槛。这句话前后改了四轮；</li>
+<li>「多大改善测得出来」：同样只能用历史月均代替月储值。</li></ul>
+<p><b>其实一张后台截图（独享礼包价格）就能让价格对照这一整份分析的大部分失去意义。</b>精确到个位数的门槛，建立在「历史月均 ≈ 一次愿意付多少」这个未经验证的假设上，看起来精确，其实是假精确。</p>
+<p>这一条我（主对话）也有责任：问句是我压缩的，但我没有在第一天就推你把它们发出去。</p>
+<p class="ev">证据：数据/说明.md 的「局限」一节；A30 方法第 1 条原文（「R 是历史月均，不是月储值，也不是单次付费」）；审查 R137、R139 的价格区间修改记录。</p></div>
+
+<div class="card bad"><h3>3. 新主线的核心前提在本地没有证实</h3>
+<p>推荐方案 A 的第一步，是「储值位按卡别分档」。它的前提是：高卡用户在储值位上先看到的是 NT$50 的首储礼包，价位偏低。本地数据<b>只能确定 25 人（0.49%）是这样</b>，上界是 5,145 人，差在谁买过首储这一点本地判断不了。报告自己也把这条标成「待确认」。</p>
+<p>另外，独享礼包如果在约 690 元以上，方案 A 首期就和方案 B 一样。所以现在推荐 A 是一个合理的假设，但不是论证出来的结论。</p>
+<p class="ev">证据：分析/A30 结论第 1 条、表 1。</p></div>
+
+<div class="card mid"><h3>4. 关键结论有一部分是按定义成立的</h3>
+<ul>
+<li><b>「10% 的高卡贡献 97% 的储值」</b>：卡别本来就是按储值或押注评出来的，高卡储值高是题中之义。真正的新信息只是「集中到这个程度」。</li>
+<li><b>「同样改善 1%，谁的业绩多」</b>：本质上是按每群人的储值底盘大小排序，告诉你钱在哪里，不告诉你哪里改得动。报告自己也写了「倍数大不等于容易做到」。</li></ul>
+<p>主线转向高卡，主要依据就是这两条。作为「先盯钱最多的地方」的优先级判断，它说得通；作为「高卡的问题最值得解决」的证据，它还不够。</p></div>
+
+<div class="card mid"><h3>5. 你的「按业绩排序」指正进系统晚了，诊断先按旧规则做了一段</h3>
+<p>工作原则第十一节注明的时间是 16:10，但审查记录显示，agent 读到的文件里最早是 20:1x 才出现这一节。19:4x 设计者写的诊断排序卡，仍然是「按出问题的人数和储值排」。这张卡 21:2x 作废，排序重做了一遍。这段返工本身不算大，但说明你的指示从说出来到 agent 执行，中间可能隔了几个小时。</p>
+<p class="ev">证据：审查记录 20:16 一节第 4 条（「工作原则在本轮审查期间新增了第十一节」）。</p></div>
+</section>
+
+<section><div class="no">四 · 这份汇报能怎么用</div><h2>能用来对齐方向，不能直接当执行方案</h2>
+<div class="two">
+<div class="card ok"><h3>可以用来</h3><ul>
+<li>和主管讨论「弹窗主线要不要从五类人群转向高卡」。数据上「钱集中在高卡」是站得住的。</li>
+<li>说明为什么不能承诺「上线后用储值证明提升 x%」。这个结论不依赖代理指标，而是由人数决定的。</li>
+<li>明确还缺哪几样东西、分别找谁要。</li></ul></div>
+<div class="card bad"><h3>还不能用来</h3><ul>
+<li>定储值位分几档、每档什么价位：前提待证实，门槛是用代理指标算的。</li>
+<li>估方案能带来多少业绩：本地估不出，汇报里的都是换算。</li>
+<li>判断高卡流失的原因：只有「最后登录在几天前」，没有行为数据。</li></ul></div>
+</div>
+</section>
+
+<section><div class="no">五 · 建议</div><h2>先补三样数据，再动流程规则</h2>
+<div class="card"><h3>拍板之前最值得补的三样（能把几条推断变成事实，或者推翻它们）</h3>
+<ul>
+<li><b>独享礼包价格</b>（你自己查后台截图，几分钟）：直接决定第 1、4 件，A30 的五档门槛大部分可以不用了。</li>
+<li><b>买过首储礼包的会员名单</b>（数据组）：直接判定新主线的前提成不成立，把 25 人和 5,145 人之间的差距收掉。</li>
+<li><b>每人近两个月的月储值</b>（数据组）：用真实数据替换「两把尺子」，「储值下滑预警」也才有依据。</li></ul></div>
+<div class="card"><h3>流程上要改的一条（需要你同意）</h3>
+<p><b>核心数据缺失时，闸门不能只凭「写了缺口」就放行。</b>建议规则改成：某环完成标准里的核心数据（现状的曝光和转化、诊断的月储值）拿不到时，先把取数和问句发出去；在答复到之前，这一环只做「不依赖该数据」的部分，并且禁止用代理指标去做依赖该数据的精细分析。这样会慢，但不会再出现「四环全过、结论全是条件句」的情况。</p>
+<p>你同意的话，我改进工作原则第七节和规划者、审查者的说明。</p></div>
+</section>
+</div></body></html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>昨晚迭代回顾</title><style>
+:root{--ground:#f0efec;--surface:#fff;--surface-2:#f7f6f3;--ink:#191b1e;--ink-2:#484d53;--muted:#7d8289;--line:#dcdad5;--line-2:#e8e6e1;--accent:#9a6f24;--ok:#3d6b58;--ok-soft:#dfeae5;--warn:#8a6410;--warn-soft:#f5ead2;--info:#1c6ea4;--info-soft:#e0ecf4;--must:#a63f38;--must-soft:#f4e3e1;--idle:#b9b6ae;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;--mono:ui-monospace,Menlo,monospace;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1a1d21;--surface-2:#20242a;--ink:#e9e8e4;--ink-2:#b7bbc0;--muted:#868c94;--line:#2d3238;--line-2:#262b31;--accent:#d6ab5c;--ok:#74b096;--ok-soft:#1d3129;--warn:#cfa44e;--warn-soft:#332a16;--info:#6aa8d6;--info-soft:#1b2a36;--must:#dd8078;--must-soft:#38231f;--idle:#4a4f56;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1a1d21;--surface-2:#20242a;--ink:#e9e8e4;--ink-2:#b7bbc0;--muted:#868c94;--line:#2d3238;--line-2:#262b31;--accent:#d6ab5c;--ok:#74b096;--ok-soft:#1d3129;--warn:#cfa44e;--warn-soft:#332a16;--info:#6aa8d6;--info-soft:#1b2a36;--must:#dd8078;--must-soft:#38231f;--idle:#4a4f56;}
+*{box-sizing:border-box} body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased}
+.wrap{max-width:900px;margin:0 auto;padding:34px 22px 80px} .meta{font-size:12.5px;color:var(--muted);margin:0 0 6px}
+h1{font-family:var(--serif);font-size:24px;margin:0 0 14px}
+.verdict{background:var(--surface);border-left:3px solid var(--accent);padding:14px 18px;margin:0 0 14px} .verdict p{margin:0;font-size:16px;font-weight:600;max-width:44em}
+.sum{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:0 0 18px}
+.sum div{background:var(--surface);border:1px solid var(--line);padding:10px 12px} .sum b{display:block;font-family:var(--mono);font-size:22px} .sum span{font-size:12.5px;color:var(--ink-2)}
+.sum .bad b{color:var(--must)}
+.no{font-family:var(--mono);font-size:12px;color:var(--accent);font-weight:600} h2{font-family:var(--serif);font-size:19px;margin:2px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+section{margin:0 0 32px} .card{background:var(--surface);border:1px solid var(--line);padding:14px 18px;margin:0 0 10px}
+.card h3{margin:0 0 6px;font-size:16px} .card p{margin:4px 0;font-size:14px;color:var(--ink-2);max-width:46em} .card p b{color:var(--ink)}
+.card ul{margin:6px 0 0;padding-left:1.2em;font-size:14px;color:var(--ink-2)} .card li{margin:3px 0} .card li b{color:var(--ink)}
+.card.bad{border-left:3px solid var(--must)} .card.ok{border-left:3px solid var(--ok)}
+.tw{overflow-x:auto} table{border-collapse:collapse;width:100%;font-size:13.5px;background:var(--surface);border:1px solid var(--line)}
+th{text-align:left;font-size:12px;color:var(--muted);font-weight:650;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap} td{padding:8px 10px;border-bottom:1px solid var(--line-2);vertical-align:top} tr:last-child td{border-bottom:none}
+.note{font-size:13px;color:var(--muted);margin:8px 0 0} a{color:var(--accent)}
+.tl{margin:0 0 6px} .bar{display:flex;height:34px;border:1px solid var(--line);background:var(--surface);overflow:hidden}
+.bar div{display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;white-space:nowrap;overflow:hidden;border-right:1px solid var(--surface)}
+.bar .w{background:var(--ok)} .bar .x{background:var(--must)} .bar .i{background:var(--idle);color:var(--ink)} .bar .r{background:var(--warn)}
+.ticks{position:relative;height:18px;font-family:var(--mono);font-size:11.5px;color:var(--muted);margin:3px 0 0} .ticks span{position:absolute;top:0}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--ink-2);margin:6px 0 0} .legend i{display:inline-block;width:10px;height:10px;margin-right:5px;vertical-align:-1px}
+details{margin:8px 0 0} summary{cursor:pointer;font-size:13px;color:var(--accent)} details p,details li{font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:640px){.wrap{padding:24px 16px 60px} .sum{grid-template-columns:1fr 1fr} table{font-size:12.5px} .two{grid-template-columns:1fr} .bar div span{display:none}}
+</style></head><body><div class="wrap">
+<p class="meta">简报 · 2026-09-29 09:35 · 范围：9/28 19:00 – 9/29 09:30 · 依据：进展日志、推进计划、审查记录、定时任务运行记录</p>
+<h1>昨晚迭代回顾：前半夜两环过闸，后半夜空转了 8 小时</h1>
+<div class="verdict"><p>前半夜推进得很扎实：诊断、方案两环相继过闸，方案主线从「五类人群分开定制」换到了「高卡用户」。后半夜几乎白费：01:20 方案已经过闸，但规划者之后 8 小时一次都没被启动，没人把项目推进到下一环。执行者和审查者空转了 330 多轮，一个交付文件都没改，还一直在消耗额度。</p></div>
+<div class="sum">
+<div><b>3 道</b><span>闸门审核通过（现状、诊断、方案）</span></div>
+<div><b>约 5 小时</b><span>有效推进（19:00–01:20，扣掉停摆）</span></div>
+<div class="bad"><b>约 8 小时</b><span>空转（01:20–09:17）</span></div>
+<div class="bad"><b>55 分钟</b><span>5 小时额度用完、全部停摆</span></div>
+</div>
+
+<div class="tl">
+<div class="bar">
+<div class="w" style="flex:24" title="19:00–19:24 现状收尾"></div>
+<div class="w" style="flex:140" title="19:24–21:44 诊断"><span>诊断</span></div>
+<div class="w" style="flex:91" title="21:44–23:15 方案"><span>方案</span></div>
+<div class="x" style="flex:55" title="23:15–00:10 额度用完"><span>停</span></div>
+<div class="w" style="flex:70" title="00:10–01:20 方案收尾"><span>方案</span></div>
+<div class="i" style="flex:477" title="01:20–09:17 空转"><span>空转：规划者没被启动</span></div>
+<div class="r" style="flex:13" title="09:17 恢复"></div>
+</div>
+<div class="ticks"><span style="left:0">19:00</span><span style="left:18.9%">21:44</span><span style="left:43.7%">01:20</span><span style="right:0">09:30</span></div>
+<div class="legend"><span><i style="background:var(--ok)"></i>有效推进</span><span><i style="background:var(--must)"></i>额度用完</span><span><i style="background:var(--idle)"></i>空转</span><span><i style="background:var(--warn)"></i>恢复，进入决策环节</span></div>
+</div>
+<p class="note" style="margin-bottom:28px">过闸时间：现状 → 诊断 19:24；诊断 → 方案 21:44；方案 → 决策 01:20 审查通过，09:2x 才切过去。</p>
+
+<section><div class="no">一 · 做成了什么</div><h2>方向变了：机会和风险都集中在高卡用户身上，弹窗主线跟着换</h2>
+<div class="card ok"><h3>诊断：对业绩影响最大的两件事都在高卡用户身上</h3>
+<p>金卡以上 6,366 人，占活跃用户的 10%，贡献了 <b>97%</b> 的累计储值。按「同样改善 1%，业绩能多多少」来排：</p>
+<ul><li><b>还在来的付费者多付一点</b>：13,234 人，已去掉 134 名大户。弹窗碰得到。</li>
+<li><b>高卡流失风险</b>：927 人，其中 755 人最近没来，172 人已经离开。弹窗碰不到。</li>
+<li>往后依次是沉默的老账号召回、回流用户多付一点。新增用户只来注册当天的问题分量最小。</li></ul>
+<p class="note">以上是换算出来的量级（推断），只能说明哪边分量大，不能说明哪边容易改。</p></div>
+<div class="card ok"><h3>方案：主线从「五类人群」换成「高卡两面都做」，首期基本不用研发</h3>
+<ul><li><b>还在来的高卡</b>：储值位按卡别分档，再加一条改过的「储值下滑预警」。</li>
+<li><b>不来的高卡</b>：按名单交给专人或推送去联系。名单前 168 人就占了这部分钱的八成。</li>
+<li>02 原来的五张人群卡退出主线，只留「储值衰退规则」一张，而且要改写。</li>
+<li>07 统一推送后台「为了钱」的理由不成立（推断），首期建议缩小为「按群组定向推播 + 看数据」。</li>
+<li>标签不挡首期：要动的 9 项里只有 2 项要新写 SQL，而且都有替代做法。</li></ul></div>
+<div class="card ok"><h3>评估：1–3% 的改善，按现在的人数用储值测不出来</h3>
+<p>还在来的高卡即使随机对半分组，也要多付约 9% 才看得出差别。所以交给主管时<b>不能承诺「上线后用储值证明效果」</b>，只能按做法本身和成本来决定上线，上线后盯住护栏指标。</p></div>
+<div class="card"><h3>顺带查出的三件事</h3>
+<ul><li>02 如果照原来的写法上线，储值在下滑的高卡，每天看到的活动弹窗会从 12 个增加到 <b>32 个</b>。</li>
+<li>活动类弹窗在一天第 6 次进大厅时就到顶了（11–12 个）。这部分<b>现在就能在后台按单项次数压下来</b>，不用等开发。</li>
+<li>最近 30 天注册的账号里有 583 个是机器人。「新增」标签如果按注册日期来圈，新增弹窗会弹给这些机器人。</li></ul></div>
+<p class="note">要你和主管定的 13 件事、两件自查、两条要发的消息，都在今早的 <a href="2026-09-29_项目汇报.html">项目汇报</a> 里，这里不再重复。</p>
+</section>
+
+<section><div class="no">二 · 质量</div><h2>数字靠得住；审查退回的主要是「话说过头」</h2>
+<div class="card"><p>审查者每一轮都从原始数据<b>自己重算</b>关键数字，整晚没有发现算错的地方。退回的大多是结论说得比证据更满，比如：</p>
+<ul><li>「多数流失高卡还会回来」→ 改成「会不会回来不知道，他们只是还在近一月名单里」</li>
+<li>「约 8,300 名老普卡可召回」→ 改成「召回有具体对象，召不召得回本地量不出」</li>
+<li>「新增只来当天，每改善 1% 的量在所有比较里都最小」→ 和自己的表矛盾，已改准</li></ul>
+<p>有一处改了四轮：「独享礼包价格决定储值位分几档」那句话，价格区间先写从 300 元起，后来补到 160 元，最后补到 74 元。每一轮都是在补遗漏，算纠错，不是瞎打磨，但说明第一次没把情况想全。</p></div>
+</section>
+
+<section><div class="no">三 · 出了什么问题</div><h2>规划者掉线 8 小时，系统没能发现真正原因，只是在空转</h2>
+<div class="card bad"><h3>01:20–09:17：规划者一次都没有运行</h3>
+<p>01:20 审查判定方案环节可以过闸，但切换到下一环是规划者的活。定时任务的运行记录显示，<b>规划者从 01:15 到 09:17 一次都没被启动</b>，也没有任何失败记录。执行者和审查者照常每 2 分钟、每 5 分钟醒来一次，发现没活可干就结束：</p>
+<ul><li>执行者空转了 <b>242 轮</b>，每轮往进展日志里写一行「等待」。进展日志因此变得很长，很难读。</li>
+<li>审查者连续空转了 <b>91 次</b>。</li>
+<li>系统自己先后给出过两个错误解释：规划者说「审查没在运行」，执行者一度猜「规划者读文件只读前 2,000 行」。后来执行者查对了：规划脚本自己判定「该规划了」，是规划任务根本没在跑。但它只能把这个结论写进日志，<b>没有办法通知你</b>，所以一直拖到早上。</li></ul>
+<p class="note">为什么应用没启动规划任务，我这边查不到原因，只能确认当时没有任何运行记录。09:17 之后它又恢复正常了。</p></div>
+<div class="card bad"><h3>23:15–00:10：5 小时额度用完，全部停摆</h3>
+<p>几个 agent 共用你一个 Pro 账号的额度。额度用完后，所有任务一启动就失败，直到 00:10 重置。空转也要消耗额度：每轮都要启动一次会话、读一遍文件。本周额度已经用掉 57%，而这一周才过去 48%。</p></div>
+</section>
+
+<section><div class="no">四 · 建议</div><h2>先换模型省额度，再加两道保险，避免再出现空转一整夜</h2>
+<div class="tw"><table>
+<tr><th>做什么</th><th>解决什么</th><th>谁来做</th></tr>
+<tr><td><b>执行者换 Sonnet 5.5</b>（规划、设计、审查三个角色继续用 Opus 5.5）</td><td>执行者最耗额度，换成 Sonnet 能明显省额度</td><td><b>你</b>：左侧栏「定时任务」→ 执行者 → 编辑 → 模型选 Sonnet 5.5（我的工具改不了模型）</td></tr>
+<tr><td><b>掉线报警</b>：执行者发出「需要规划」信号后 10 分钟内没人接手，就直接通知你</td><td>昨晚要是有这一条，01:30 左右就能发现问题，而不是早上 9 点</td><td>✓ 已加上（09:40）</td></tr>
+<tr><td><b>空转熔断</b>：执行者连续 3 轮没活可干，就自动暂停并通知你，不再每 2 分钟醒一次</td><td>不再白耗额度</td><td>✓ 已加上（09:40）</td></tr>
+<tr><td><b>空转不写日志</b>：只是等待的轮次不再往进展日志里追加</td><td>进展日志只记真正做了的事；昨晚那 242 行「等待」移进归档</td><td>✓ 已加上（09:40）</td></tr>
+</table></div>
+</section>
+
+<section><div class="no">五 · 你现在要做的</div><h2>两件事</h2>
+<div class="card"><ul>
+<li><b>换模型</b>：按上表第一行在应用里改，大约 1 分钟。</li>
+<li><s>回我一个「改」</s>：后面三条已在 09:40 加上。</li>
+</ul></div>
+</section>
+</div></body></html>

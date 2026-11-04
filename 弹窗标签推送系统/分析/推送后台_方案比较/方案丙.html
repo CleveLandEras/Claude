@@ -1,0 +1,436 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=1280"><title>新建推送 方案丙</title><style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--eb:#409EFF;--ebl:#ECF5FF;
+--bd:#DCDFE6;--bdl:#E4E7ED;--bdx:#EBEEF5;
+--t1:#303133;--t2:#606266;--t3:#909399;--t4:#C0C4CC;
+--bg:#F5F7FA;--bg2:#FAFBFC;
+--ok:#67C23A;--wn:#E6A23C;--er:#F56C6C;
+--ink:#0D1B2A;--page:#F2F4F7;
+--pu:#6B3FC4;
+}
+body{font:15px/1.6 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:var(--t1);background:var(--page);word-break:normal;line-break:strict;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+.wrap{width:1240px;margin:0 auto;padding:0 20px}
+
+/* 标注 */
+.ct{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:11px;font-size:13px;line-height:1;white-space:nowrap;font-weight:500;flex:none;font-style:normal}
+.ct.c1{border:1px solid #A784E3;color:var(--pu);background:#fff}
+.ct.c2{border:1px solid #D9C8F6;background:#F1E9FD;color:var(--pu)}
+.ct.c3{border:1px solid var(--pu);background:var(--pu);color:#fff}
+.ct.am{border:1px dashed #DE9A2E;background:#FFF6E5;color:#94570A}
+.ct.nw{border:1px solid #67C23A;background:#67C23A;color:#fff}
+.ct.tr{border:1px solid var(--ink);background:#fff;color:var(--ink)}
+.lgd{display:flex;align-items:center;gap:7px;padding:18px 0 0;font-size:14px;color:var(--t2);white-space:nowrap}
+.lgd .gap{width:16px}
+
+/* 页面标题 */
+.hd{padding:20px 0 4px}
+.hd h2{font-size:26px;font-weight:700;margin-bottom:8px;letter-spacing:.01em}
+.hd p{font-size:15px;color:var(--t2);line-height:1.75}
+.hd p b{color:var(--t1);font-weight:600}
+
+/* 每屏 */
+.scr{padding:30px 0 6px}
+.sh{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.sh .no{flex:none;min-width:32px;height:28px;padding:0 8px;border-radius:6px;background:var(--ink);color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.sh h3{font-size:20px;font-weight:700;line-height:1.35}
+.sh .r{margin-left:auto;display:flex;gap:6px}
+.nts{margin-top:12px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.nt{border:1px solid var(--bdl);border-left:3px solid var(--ink);border-radius:0 4px 4px 0;background:#fff;padding:11px 15px;font-size:14px;color:var(--t2);line-height:1.6}
+.nt b{display:block;color:var(--t1);font-size:15px;font-weight:600;margin-bottom:3px}
+
+/* 窗口 */
+.pf{border:1px solid #D9DEE5;border-radius:8px;background:#fff;box-shadow:0 4px 20px rgba(16,32,52,.09);overflow:hidden}
+.pfh{height:44px;display:flex;align-items:center;gap:12px;padding:0 18px;border-bottom:1px solid var(--bdx)}
+.pfh b{font-size:16px;font-weight:600}
+.pfh .bc{font-size:13px;color:var(--t3)}
+.pfh .bk{margin-left:auto;font-size:14px;color:var(--eb)}
+.pfb{display:grid;grid-template-columns:144px minmax(0,1fr) 276px;align-items:stretch}
+.anc{border-right:1px solid var(--bdx);padding:14px 0}
+.anc a{display:block;padding:9px 10px 9px 14px;border-right:2px solid transparent;margin-right:-1px;color:var(--t2);font-size:14px;line-height:1.4;text-decoration:none;white-space:nowrap}
+.anc a small{display:block;font-size:12.5px;color:var(--t3);margin-top:2px}
+.anc a small.ok{color:#529B2E}.anc a small.er{color:var(--er)}
+.anc a.on{color:var(--eb);border-right-color:var(--eb);font-weight:600;background:var(--ebl)}
+.anc a.on small{font-weight:400}
+.mn{padding:12px 20px 14px;min-width:0}
+.sm{border-left:1px solid var(--bdx);background:var(--bg2);padding:14px 14px 16px}
+
+/* 区块标题 */
+.stt{display:flex;align-items:center;gap:10px;height:32px;margin-bottom:10px;border-bottom:1px solid var(--bdx);padding-bottom:8px;font-size:16px;font-weight:600}
+.stt .n{width:22px;height:22px;border-radius:50%;background:var(--eb);color:#fff;font-size:13px;display:flex;align-items:center;justify-content:center;flex:none}
+.stt .r{margin-left:auto;font-size:13px;font-weight:400}
+.stt .r.er{color:var(--er)}
+.dots{color:var(--t4);font-size:14px;line-height:14px;margin:-4px 0 6px 2px}
+
+/* 表单 */
+.g2{display:grid;column-gap:22px;align-items:start}
+.fi{min-width:0}
+.fi>label{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--t2);height:22px;margin-bottom:6px;white-space:nowrap}
+.fi>label i{color:var(--er);font-style:normal;margin-right:-5px}
+.fi>label .ct{margin-left:auto}
+.fi>label .sub{font-size:13px;color:var(--t3)}
+.fv{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.rw{display:grid;grid-template-columns:72px minmax(0,1fr);column-gap:10px;align-items:start}
+.rw+.rw{margin-top:8px}
+.rw>.lb{font-size:14px;color:var(--t2);line-height:32px;text-align:right;white-space:nowrap}
+.rw>.lb i{color:var(--er);font-style:normal;margin-right:2px}
+.hlp{font-size:13px;color:var(--t3);margin-top:4px;line-height:1.5}
+.hlp.ok{color:#529B2E}
+.hlp a,.lk{color:var(--eb);text-decoration:none}
+.err{font-size:13px;color:var(--er);margin-top:3px;line-height:1.45}
+.mt6{margin-top:6px}.mt8{margin-top:8px}.mt10{margin-top:10px}.mt12{margin-top:12px}.mt14{margin-top:14px}.mt16{margin-top:16px}
+.un{font-size:14px;color:var(--t2);line-height:32px;white-space:nowrap}
+.un.s{color:var(--t3);font-size:13px}
+
+/* 控件 */
+.ip{height:32px;border:1px solid var(--bd);border-radius:4px;padding:0 11px;font-size:14px;color:var(--t1);display:flex;align-items:center;background:#fff;white-space:nowrap;overflow:hidden;min-width:0}
+.ip .c{margin-left:auto;font-size:13px;color:var(--t3);padding-left:10px;flex:none}
+.ip .ph,.ta .ph{color:var(--t4)}
+.ip.er,.ta.er{border-color:var(--er)}
+.ip .c.er,.ta .c.er{color:var(--er)}
+.ip.ro{background:var(--bg);color:var(--t2);border-color:var(--bdl)}
+.ip.n{width:56px;justify-content:center;padding:0 6px}
+.ip.dis,.ta.dis{background:var(--bg);border-color:var(--bdl);color:var(--t4)}
+.ta{border:1px solid var(--bd);border-radius:4px;padding:5px 11px 19px;font-size:14px;line-height:1.55;color:var(--t1);background:#fff;position:relative;white-space:normal}
+.nb,.ta a,.bub a{white-space:nowrap}
+.ta .c{position:absolute;right:9px;bottom:3px;font-size:13px;color:var(--t3);line-height:1.3}
+.ta .c.wn{color:#B88230}
+.ta a{color:var(--eb)}
+.s2{position:relative}
+.sl{height:32px;border:1px solid var(--bd);border-radius:4px;background:#fff;display:flex;align-items:center;padding:0 30px 0 11px;font-size:14px;color:var(--t1);position:relative;white-space:nowrap}
+.sl em{font-style:normal;color:var(--t3);margin-left:auto;font-size:13px}
+.sl::after{content:"";position:absolute;right:12px;top:50%;width:6px;height:6px;border-right:1px solid var(--t4);border-bottom:1px solid var(--t4);transform:translateY(-70%) rotate(45deg)}
+.sl.on{border-color:var(--eb)}
+.sl.on::after{transform:translateY(-25%) rotate(-135deg);border-color:var(--eb)}
+.dd{position:relative;margin-top:7px;background:#fff;border:1px solid var(--bdl);border-radius:4px;box-shadow:0 2px 12px rgba(0,0,0,.11);padding:5px 0;white-space:nowrap}
+.dd::before{content:"";position:absolute;top:-6px;left:20px;width:10px;height:10px;background:#fff;border-left:1px solid var(--bdl);border-top:1px solid var(--bdl);transform:rotate(45deg)}
+.dd i{display:flex;align-items:center;gap:10px;height:28px;padding:0 14px;font-size:14px;color:var(--t2);font-style:normal}
+.dd i em{font-style:normal;margin-left:auto;color:var(--t3);font-size:13px}
+.dd i.on{color:var(--eb);font-weight:600;background:var(--bg)}
+.dd i.on em{color:var(--eb);font-weight:400}
+.dd i.gp{height:24px;font-size:12.5px;color:var(--t3);padding-left:12px}
+.dd i.dis{color:var(--t4)}
+.dd i.dis em{color:var(--t4)}
+.dd i.more{height:26px;font-size:13px;color:var(--t3);border-top:1px solid var(--bdx);margin-top:4px}
+.cas{display:flex;margin-top:7px;background:#fff;border:1px solid var(--bdl);border-radius:4px;box-shadow:0 2px 12px rgba(0,0,0,.11);position:relative}
+.cas::before{content:"";position:absolute;top:-6px;left:20px;width:10px;height:10px;background:#fff;border-left:1px solid var(--bdl);border-top:1px solid var(--bdl);transform:rotate(45deg)}
+.cas .cp{flex:1;padding:5px 0}
+.cas .cp+.cp{border-left:1px solid var(--bdx)}
+.cas i{display:flex;align-items:center;height:28px;padding:0 12px;font-size:14px;color:var(--t2);font-style:normal;white-space:nowrap}
+.cas i.ar::after{content:"›";margin-left:auto;color:var(--t4);font-size:15px}
+.cas i.on{color:var(--eb);font-weight:600;background:var(--bg)}
+.cas i.ck{color:var(--eb);font-weight:600}
+.cas i.ck::after{content:"✓";margin-left:auto}
+.cas i.mo{color:var(--t4)}
+.cb{display:inline-flex;align-items:center;gap:7px;font-size:14px;color:var(--t2);height:28px;white-space:nowrap}
+.cb em{width:14px;height:14px;border:1px solid var(--bd);border-radius:2px;display:block;flex:none;background:#fff;position:relative}
+.cb.on{color:var(--eb)}
+.cb.on em{background:var(--eb);border-color:var(--eb)}
+.cb.on em::after{content:"";position:absolute;left:4px;top:1px;width:4px;height:8px;border-right:1.6px solid #fff;border-bottom:1.6px solid #fff;transform:rotate(45deg)}
+.cb .k{color:var(--t3);font-size:13px;margin-left:auto;padding-left:10px}
+.cbl{display:flex;flex-direction:column;border:1px solid var(--bdx);border-radius:4px;padding:3px 10px}
+.cbl .cb{width:100%}
+.rd{display:inline-flex;align-items:center;gap:7px;font-size:14px;color:var(--t2);height:32px;white-space:nowrap}
+.rd em{width:14px;height:14px;border:1px solid var(--bd);border-radius:50%;display:block;flex:none;position:relative;background:#fff}
+.rd.on{color:var(--eb)}
+.rd.on em{border-color:var(--eb);background:var(--eb)}
+.rd.on em::after{content:"";position:absolute;left:4px;top:4px;width:4px;height:4px;border-radius:50%;background:#fff}
+.rd.dis{color:var(--t4)}.rd.dis em{background:var(--bg);border-color:var(--bdl)}
+.rd+.rd{margin-left:14px}
+.rbg{display:inline-flex}
+.rbg b{height:32px;padding:0 15px;border:1px solid var(--bd);font-size:14px;font-weight:400;color:var(--t2);display:flex;align-items:center;background:#fff}
+.rbg b+b{border-left:none}
+.rbg b:first-child{border-radius:4px 0 0 4px}.rbg b:last-child{border-radius:0 4px 4px 0}
+.rbg b.on{background:var(--eb);border-color:var(--eb);color:#fff}
+.rbg.sm b{height:24px;padding:0 9px;font-size:12.5px}
+.sg{width:40px;height:20px;border-radius:10px;background:var(--t4);position:relative;flex:none}
+.sg.on{background:var(--eb)}
+.sg::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff}
+.sg.on::after{left:auto;right:2px}
+.bt{height:32px;padding:0 15px;border:1px solid var(--bd);border-radius:4px;background:#fff;font-size:14px;color:var(--t2);display:inline-flex;align-items:center;gap:5px;white-space:nowrap;flex:none}
+.bt.p{background:var(--eb);border-color:var(--eb);color:#fff}
+.bt.pd{background:#A0CFFF;border-color:#A0CFFF;color:#fff}
+.bt.g{background:var(--ebl);border-color:#B3D8FF;color:var(--eb)}
+.bt.sm{height:28px;padding:0 11px;font-size:13px}
+.up{height:32px;border:1px dashed var(--bd);border-radius:4px;padding:0 12px;font-size:13px;color:var(--t3);display:inline-flex;align-items:center;gap:6px;background:var(--bg2);white-space:nowrap}
+.thumb{width:52px;height:32px;border-radius:3px;background:linear-gradient(135deg,#F7B733,#E8553D);flex:none;position:relative;overflow:hidden}
+.thumb::after{content:"";position:absolute;right:6px;top:6px;width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.8)}
+.tg{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 8px;background:#F4F4F5;border:1px solid #E9E9EB;border-radius:4px;color:var(--t2);font-size:13px;white-space:nowrap}
+.tg x{color:var(--t3);font-size:11px}
+.ms{border:1px solid var(--bd);border-radius:4px;min-height:32px;display:flex;align-items:center;flex-wrap:wrap;gap:5px;padding:3px 6px;background:#fff}
+.st{display:block;padding:8px 12px;border-radius:4px;font-size:13.5px;line-height:1.55}
+.st.ok{background:#F0F9EB;color:#529B2E;border:1px solid #E1F3D8}
+.st.wn{background:#FDF6EC;color:#A8742A;border:1px solid #FAECD8}
+.st.er{background:#FEF0F0;color:#C45656;border:1px solid #FDE2E2}
+.st.in{background:var(--ebl);color:#2E7BD6;border:1px solid #D9ECFF}
+.st b{font-weight:600}
+.alt{border:1px dashed var(--bd);border-radius:4px;padding:8px 10px}
+.alt .al{font-size:12.5px;color:var(--t3);margin-bottom:5px}
+.big{display:flex;align-items:baseline;gap:6px;height:36px}
+.big b{font-size:28px;font-weight:600;color:var(--t1);letter-spacing:.01em;line-height:1}
+.big span{font-size:14px;color:var(--t2)}
+
+/* 表格 */
+.tb{width:100%;border-collapse:collapse;font-size:14px}
+.tb th{background:#fff;color:var(--t3);font-weight:500;padding:8px 10px;border:1px solid var(--bdx);text-align:center;white-space:nowrap;font-size:13.5px}
+.tb td{padding:7px 10px;border:1px solid var(--bdx);color:var(--t2);text-align:center;vertical-align:middle}
+.tb tbody tr:nth-child(even) td{background:#FAFAFA}
+.tb td.l,.tb th.l{text-align:left}
+.tb td b{font-weight:600;color:var(--t1)}
+.tb td .s{display:block;font-size:12.5px;color:var(--t3);line-height:1.4}
+.tb td.ok{color:#529B2E;white-space:nowrap}
+.tb td.er{color:var(--er);white-space:nowrap}
+.tb td.nw{white-space:nowrap}
+.tb.cp{table-layout:fixed}
+.tb.cp td{padding:6px 10px;line-height:1.5}
+
+/* 共用块与折叠面板 */
+.sec{border:1px solid var(--bdl);border-radius:4px}
+.sec>h5{height:34px;display:flex;align-items:center;gap:10px;padding:0 12px;background:var(--bg);border-bottom:1px solid var(--bdx);font-size:14.5px;font-weight:600;color:var(--t1);border-radius:4px 4px 0 0}
+.sec>h5 .sub{font-weight:400;color:var(--t3);font-size:13px}
+.sb{padding:12px}
+.cl{border:1px solid var(--bdl);border-radius:4px;background:#fff}
+.cl+.cl,.sec+.cl{margin-top:8px}
+.clh{height:36px;display:flex;align-items:center;gap:12px;padding:0 12px;border-bottom:1px solid var(--bdx);background:var(--bg2)}
+.clh b{font-size:14.5px;font-weight:600;color:var(--t1)}
+.clh .m{font-size:13px;color:var(--t3)}
+.clh .m.er{color:var(--er)}
+.clh .r{margin-left:auto;display:flex;gap:6px;align-items:center}
+.clh .ar{width:7px;height:7px;border-right:1.5px solid var(--t3);border-bottom:1.5px solid var(--t3);transform:rotate(45deg);margin:-3px 2px 0 6px}
+.clb{display:grid;grid-template-columns:minmax(0,1fr) 222px;column-gap:16px;padding:12px}
+
+/* 玩家侧预览 */
+.pv{min-width:0}
+.pvl{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--t3);height:24px;margin-bottom:5px}
+.pvl .tb2{margin-left:auto;display:flex;gap:10px}
+.pvl .tb2 span{color:var(--t3);padding-bottom:1px}
+.pvl .tb2 span.on{color:var(--eb);border-bottom:2px solid var(--eb)}
+.nf{background:#EEF0F4;border-radius:12px;padding:8px 10px;font-size:12.5px;line-height:1.45;color:#1C1C1E}
+.nf .h{display:flex;align-items:center;gap:6px;font-size:11.5px;color:#8E8E93;margin-bottom:2px}
+.nf .h i{width:15px;height:15px;border-radius:4px;background:linear-gradient(135deg,#F7B733,#E8553D);display:block}
+.nf .h span{margin-left:auto}
+.nf b{display:block;font-weight:600}
+.lob{border-radius:6px;background:linear-gradient(160deg,#2A1E4D,#16233F);height:88px;position:relative;overflow:hidden;padding:6px}
+.lob .ban{background:linear-gradient(90deg,#F7B733,#E8693D);border-radius:4px;color:#fff;font-size:12px;line-height:1.4;padding:4px 8px;font-weight:600;box-shadow:0 2px 6px rgba(0,0,0,.3)}
+.lob .tiles{display:flex;gap:5px;position:absolute;left:6px;right:6px;bottom:6px}
+.lob .tiles i{flex:1;height:16px;border-radius:3px;background:rgba(255,255,255,.12);display:block}
+.lob .sec2{position:absolute;right:8px;top:50px;font-size:11px;color:#C9C3E6}
+.phn{background:#fff;border:1px solid var(--bdx);border-radius:10px;padding:8px}
+.bub{background:#E9E9EB;border-radius:14px;padding:7px 10px;font-size:12.5px;line-height:1.45;color:#1C1C1E}
+.bub a{color:#0A64D8}
+.msn{display:flex;gap:6px;align-items:flex-start}
+.msn .av{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#F7B733,#E8553D);flex:none}
+.msn .card{flex:1;border:1px solid #E4E6EB;border-radius:14px;overflow:hidden;background:#fff}
+.msn .img{height:30px;background:linear-gradient(135deg,#F7B733,#E8553D)}
+.msn .tx{padding:6px 9px;font-size:12.5px;line-height:1.45;color:#050505}
+.msn .btn{border-top:1px solid #E4E6EB;text-align:center;font-size:12.5px;font-weight:600;color:#050505;padding:4px 0}
+.msn .btn.miss{color:var(--er);font-weight:400}
+.line{background:#8CA5CC;border-radius:8px;padding:6px}
+.line .card{background:#fff;border-radius:12px;overflow:hidden}
+.line .img{height:30px;background:linear-gradient(135deg,#F7B733,#E8553D)}
+.line .tx{padding:6px 9px;font-size:12.5px;line-height:1.45;color:#111}
+.line .btn{text-align:center;font-size:12.5px;font-weight:600;color:#06A94F;padding:4px 0;border-top:1px solid #EEE}
+
+/* 摘要 */
+.smc{background:#fff;border:1px solid var(--bdl);border-radius:4px;padding:12px 12px 14px}
+.smh{display:flex;align-items:baseline;gap:8px;padding-bottom:8px;border-bottom:1px solid var(--bdx);margin-bottom:8px}
+.smh b{font-size:15px;font-weight:600}
+.smh span{font-size:12.5px;color:var(--t3);margin-left:auto}
+.kv{display:grid;grid-template-columns:68px minmax(0,1fr);gap:5px 8px;font-size:13.5px;line-height:1.45}
+.kv dt{color:var(--t3);font-size:13px;white-space:nowrap}
+.kv dd{color:var(--t1)}
+.kv dd small{display:block;font-size:12.5px;color:var(--t3)}
+.kv dd.na{color:var(--t4)}
+.kv dd.er{color:var(--er)}
+.kv dd b{font-weight:600}
+.smt{margin:9px 0;border-top:1px solid var(--bdx);border-bottom:1px solid var(--bdx);padding:6px 0}
+.smt div{display:flex;justify-content:space-between;font-size:13.5px;line-height:1.75;color:var(--t1)}
+.smt div span:first-child{color:var(--t2)}
+.smt div.h span{color:var(--t3);font-size:12.5px}
+.smt .na{color:var(--t4);font-size:13.5px;padding:8px 0;text-align:center}
+.smb{margin-top:12px;display:flex;gap:8px}
+.smb .bt{flex:1;justify-content:center}
+
+/* 确认区按钮 */
+.act{margin-top:14px;border-top:1px solid var(--bdx);padding-top:12px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:14px}
+.act .bt{width:100%;justify-content:center}
+.act .hlp{margin-top:6px}
+</style></head><body><div class="wrap"><div class="lgd">标注　<span class="ct c1">只改布局文案</span><span class="ct c2">用现有组件新增</span><span class="ct c3">要新开发逻辑</span>开发成本<span class="gap"></span><span class="ct am">待确认</span>能否实现待外部确认<span class="gap"></span><span class="ct nw">新增页面</span>整屏为新页面<span class="gap"></span><span class="ct tr">统一操作档</span>该屏出现的档位</div><div class="hd"><h2>新建推送</h2><p><b>五种渠道一页填完</b>：① 受众　② 渠道与内容　③ 时间与频率上限　④ 确认并发送；左侧锚点跳转，右侧发送摘要随填写实时更新。</p><p><b>只在「统一操作」档出现</b>。「统一入口」档改为先选一个渠道，再进该渠道自己的配置页，受众同样选标签群组；「只统一数据」档没有新建功能。</p></div><section class="scr"><div class="sh"><span class="no">1</span><h3>选标签群组即显示预计人数与各渠道可触达人数</h3><span class="r"><span class="ct nw">新增页面</span><span class="ct tr">统一操作档</span></span></div><div class="pf"><div class="pfh"><b>新建推送</b><span class="bc">推送管理 › 推送列表 › 新建推送</span><span class="bk">返回列表</span></div><div class="pfb"><nav class="anc"><a class="on">① 受众<small class="ok">✓ 16,399 人</small></a><a>② 渠道与内容<small class="">未填</small></a><a>③ 时间与频率上限<small class="">未填</small></a><a>④ 确认并发送<small class="">—</small></a></nav><div class="mn">
+<div class="stt"><span class="n">1</span>受众</div>
+<div class="g2" style="grid-template-columns:392px minmax(0,1fr)">
+ <div>
+  <div class="fi"><label><i>*</i>推送名称<span class="ct c2">用现有组件新增</span></label>
+   <span class="ip">回流任务开启<span class="c">6 / 30</span></span>
+   <div class="hlp">仅后台可见，用于推送列表与数据看板</div></div>
+  <div class="fi mt14"><label><i>*</i>受众<span class="ct c2">用现有组件新增</span></label>
+   <div class="fv"><span class="rd"><em></em>全部玩家</span><span class="rd on"><em></em>标签群组</span></div>
+   <div class="s2 mt6"><span class="sl on" style="width:340px">回流<em>16,564 人</em></span>
+    <div class="dd" style="width:340px">
+     <i class="gp">五类人群（右侧为当前人数）</i>
+     <i>新增<em>10,749</em></i>
+     <i class="on">回流<em>16,564</em></i>
+     <i>潜在付费<em>3,281</em></i>
+     <i>潜在流失 · 近 14 天登录 2–3 天<em>8,926</em></i>
+     <i>潜在流失 · 近 14 天登录 1 天<em>12,470</em></i>
+     <i class="dis">破产<em>不形成名单，只用于弹窗</em></i>
+     <i>回流且潜在付费<em>1,904</em></i>
+     <i class="more">⋮　共 106 个标签群组，可输入名称搜索</i>
+    </div></div>
+  </div>
+ </div>
+ <div>
+  <div class="fi"><label>排除群组<span class="ct c2">用现有组件新增</span></label>
+   <div class="ms"><span class="tg">VIP 名单<x>✕</x></span><span class="tg">黑名单<x>✕</x></span><span class="tg">机器人与测试账号<x>✕</x></span></div>
+   <div class="hlp">默认已选，可移除或再加任意标签群组</div></div>
+  <div class="fi mt12"><label>名单锁定<span class="ct c1">只改布局文案</span></label>
+   <div class="st in">群组每 25 分钟刷新，发送时按当时名单发送</div></div>
+  <div class="fi mt12"><label>预计人数<span class="ct c3">要新开发逻辑</span></label>
+   <div class="big"><b>16,399</b><span>人</span></div>
+   <div class="hlp">回流 16,564 − 排除 165</div>
+   <div class="hlp">大群组先显示估算值（约 16,500 人），算完替换</div></div>
+  <div class="fi mt12"><label>查询会员<span class="ct c3">要新开发逻辑 · 可选</span></label>
+   <div class="fv" style="flex-wrap:nowrap"><span class="ip" style="flex:1">180820055306760</span><span class="bt">查询</span></div>
+   <div class="hlp ok">✓ 该会员在本次受众内（回流）</div></div>
+  <div class="alt mt12" style="display:flex;align-items:center;gap:10px"><span class="al" style="margin:0;white-space:nowrap">0 人时</span><div class="st er" style="flex:1">⚠ 当前群组没有玩家，不能发送</div></div>
+ </div>
+</div>
+<div class="fi mt14"><label>各渠道可触达人数<span class="ct c3">要新开发逻辑</span></label>
+ <table class="tb"><thead><tr><th class="l" style="width:92px"></th><th>推播</th><th>快显</th><th>短信</th><th>Facebook</th><th>LINE</th></tr></thead>
+ <tbody><tr><td class="l">可触达</td><td><b>9,812</b></td><td><b>约 2,100</b></td><td><b>7,430</b></td><td><b>4,016</b></td><td><b>3,205</b></td></tr>
+ <tr><td class="l">判断依据</td><td>装 App 且开启通知</td><td>发送时在线（估算）</td><td>有手机号</td><td>已绑定 Facebook</td><td>已加 LINE 好友</td></tr></tbody></table>
+</div>
+</div><aside class="sm"><div class="smc"><div class="smh"><b>发送摘要</b><span>随填写实时更新</span></div><dl class="kv"><dt>推送名称</dt><dd>回流任务开启</dd><dt>受众</dt><dd>回流 · <b>16,399</b> 人<small>群组 16,564</small></dd><dt>已排除</dt><dd>165 人<small>VIP 108、黑名单 15<br>机器人与测试账号 42</small></dd><dt>点击跳转</dt><dd class="na">未设定</dd><dt>发送时间</dt><dd class="na">未设定</dd></dl><div class="smt"><p class="na">尚未选择渠道</p></div><dl class="kv"><dt>被上限排除</dt><dd class="na">—</dd><dt>勿扰时段</dt><dd>00:00–08:00<small>命中时顺延到 08:00</small></dd><dt>频率上限</dt><dd>遵守</dd><dt>校验</dt><dd class="na">② ③ 未填</dd></dl><div class="smb"><span class="bt sm">存为草稿</span></div></div></aside></div></div><div class="nts"><div class="nt"><b>排除群组默认选好</b>VIP 名单、黑名单、机器人与测试账号预先排除，运营只在特殊情况下移除，避免误发。</div><div class="nt"><b>可触达人数按渠道分别计算</b>推播看是否开启通知，短信看有无手机号，LINE 看是否加好友；运营据此决定第 ② 部分勾选哪些渠道。</div><div class="nt"><b>名单在发送时锁定</b>群组每 25 分钟刷新，定时推送按发送那一刻的名单发送；页面写明这一点，运营不会按创建时的人数判断。</div></div></section><section class="scr"><div class="sh"><span class="no">2a</span><h3>共用文案写一次套用到各渠道，推播与快显逐个调整并预览</h3><span class="r"><span class="ct nw">新增页面</span><span class="ct tr">统一操作档</span></span></div><div class="pf"><div class="pfh"><b>新建推送</b><span class="bc">推送管理 › 推送列表 › 新建推送</span><span class="bk">返回列表</span></div><div class="pfb"><nav class="anc"><a>① 受众<small class="ok">✓ 16,399 人</small></a><a class="on">② 渠道与内容<small class="er">2 项待改</small></a><a>③ 时间与频率上限<small class="">未填</small></a><a>④ 确认并发送<small class="">—</small></a></nav><div class="mn">
+<div class="stt"><span class="n">2</span>渠道与内容<span class="r er">2 项待改</span></div>
+<div class="sec"><h5>共用内容<span class="sub">各渠道共用；套用后可在下方逐个修改</span></h5>
+ <div class="sb"><div class="g2" style="grid-template-columns:166px 280px minmax(0,1fr);column-gap:14px">
+  <div class="fi"><label><i>*</i>渠道</label>
+   <div class="cbl"><span class="cb on"><em></em>快显<span class="k">约 2,100</span></span><span class="cb on"><em></em>推播<span class="k">9,812</span></span><span class="cb on"><em></em>短信<span class="k">7,430</span></span><span class="cb on"><em></em>Facebook<span class="k">4,016</span></span><span class="cb on"><em></em>LINE<span class="k">3,205</span></span></div>
+   <div class="hlp">数字为可触达人数</div></div>
+  <div class="fi"><label><i>*</i>点击跳转<span class="ct c3">要新开发逻辑</span></label>
+   <span class="sl on">活动页面 / 回流任务</span>
+   <div class="cas"><div class="cp"><i class="ar on">活动页面</i><i class="ar">礼包</i><i>大厅</i><i>外部链接（填网址）</i></div><div class="cp"><i class="ck">回流任务</i><i>月月抽</i><i>每日补给计划</i><i class="mo">⋮</i></div></div>
+   <div class="hlp">礼包下有首储礼包、限时加码礼包……</div></div>
+  <div class="fi"><label>共用文案<span class="ct c3">要新开发逻辑</span></label>
+   <span class="ip">回流任務開啟<span class="c">6 字</span></span>
+   <div class="ta mt6">歡迎回來！連續登入7天，每天都能領取獎勵，最高可領50萬老幣。<span class="c">31 字</span></div>
+   <div class="fv mt8"><span class="bt g sm">套用到所有渠道</span><span class="un s">已套用</span></div>
+   <div class="hlp">套用后超出字数上限的渠道当场标红</div></div>
+ </div></div>
+</div>
+<div class="cl"><div class="clh"><b>推播</b><span class="m">可触达 9,812 · 预计 8,609 条</span><span class="r"><span class="ct c3">要新开发逻辑</span><i class="ar"></i></span></div>
+ <div class="clb"><div>
+  <div class="rw"><span class="lb"><i>*</i>标题</span><div class="fv" style="flex-wrap:nowrap"><span class="ip" style="flex:1">回流任務開啟<span class="c">6 / 30</span></span><span class="un" style="margin-left:6px">图片</span><span class="up">⬆ 上传（可选）</span></div></div>
+  <div class="rw"><span class="lb"><i>*</i>内文</span><div class="ta">歡迎回來！連續登入7天，每天都能領取獎勵，最高可領50萬老幣。<span class="c">31 / 60</span></div></div>
+ </div>
+ <div class="pv"><div class="pvl">玩家看到<span class="tb2"><span class="on">iOS</span><span>Android</span></span></div>
+  <div class="nf"><div class="h"><i></i>遊戲 App<span>現在</span></div><b>回流任務開啟</b>歡迎回來！連續登入7天，每天都能領取獎勵，最高可領50萬老幣。</div></div>
+ </div></div>
+<div class="cl"><div class="clh"><b>快显</b><span class="m">发送时在线约 2,100 人</span><span class="m er">文字超出 1 字</span><span class="r"><span class="ct am">服务端能否下发待客户端确认</span><span class="ct c3">要新开发逻辑</span><i class="ar"></i></span></div>
+ <div class="clb"><div>
+  <div class="rw"><span class="lb"><i>*</i>文字</span><div class="ta er">歡迎回來！連續登入7天，每天都能領取獎勵，最高可領50萬老幣。<span class="c er">31 / 30 · 超出 1 字</span></div></div>
+  <div class="rw"><span class="lb">显示位置</span><div class="fv"><span class="ip ro" style="width:132px">大厅顶部横幅</span><span class="un" style="margin-left:10px">停留</span><span class="ip n">5</span><span class="un">秒</span><span class="un s">默认 5 秒</span></div></div>
+ </div>
+ <div class="pv"><div class="pvl">玩家看到 · 大厅顶部</div>
+  <div class="lob"><div class="ban">歡迎回來！連續登入7天，每天都能領取獎勵，最高可領50萬老幣。</div><span class="sec2">5 秒后收起</span><div class="tiles"><i></i><i></i><i></i><i></i></div></div></div>
+ </div></div>
+</div><aside class="sm"><div class="smc"><div class="smh"><b>发送摘要</b><span>随填写实时更新</span></div><dl class="kv"><dt>推送名称</dt><dd>回流任务开启</dd><dt>受众</dt><dd>回流 · <b>16,399</b> 人<small>群组 16,564</small></dd><dt>已排除</dt><dd>165 人<small>VIP 108、黑名单 15<br>机器人与测试账号 42</small></dd><dt>点击跳转</dt><dd>活动页面 · 回流任务</dd><dt>发送时间</dt><dd class="na">未设定</dd></dl><div class="smt"><div class="h"><span>渠道</span><span>预计条数</span></div><div><span>快显</span><span>约 2,100 次</span></div><div><span>推播</span><span>8,609 条</span></div><div><span>短信</span><span>7,344 人 · 14,688 则</span></div><div><span>Facebook</span><span>4,016 条</span></div><div><span>LINE</span><span>3,205 条</span></div></div><dl class="kv"><dt>被上限排除</dt><dd>1,289 人<small>推播 1,203、短信 86</small></dd><dt>勿扰时段</dt><dd>00:00–08:00<small>命中时顺延到 08:00</small></dd><dt>频率上限</dt><dd>遵守</dd><dt>校验</dt><dd class="er">2 项未通过；③ 未填</dd></dl><div class="smb"><span class="bt sm">存为草稿</span></div></div></aside></div></div><div class="nts"><div class="nt"><b>五个渠道在同一页上下展开</b>勾选几个渠道就展开几个面板，每个面板右侧预览玩家<span class="nb">看到</span>的样子，不用切换页面核对。</div><div class="nt"><b>共用文案套用后逐个检查</b>各渠道字数上限不同（快显 30 字、推播内文 60 字），<span class="nb">套用后</span>超出的渠道当场标红，并计入未通过项。</div><div class="nt"><b>点击跳转从现有页面与礼包中选</b>活动页面、礼包、大厅直接选，只有外部链接需要手填<span class="nb">网址</span>，减少填错。</div></div></section><section class="scr"><div class="sh"><span class="no">2b</span><h3>短信按则计费，Facebook 与 LINE 带按钮，必填与字数当场校验</h3><span class="r"><span class="ct nw">新增页面</span><span class="ct tr">统一操作档</span></span></div><div class="pf"><div class="pfh"><b>新建推送</b><span class="bc">推送管理 › 推送列表 › 新建推送</span><span class="bk">返回列表</span></div><div class="pfb"><nav class="anc"><a>① 受众<small class="ok">✓ 16,399 人</small></a><a class="on">② 渠道与内容<small class="er">2 项待改</small></a><a>③ 时间与频率上限<small class="">未填</small></a><a>④ 确认并发送<small class="">—</small></a></nav><div class="mn">
+<div class="stt"><span class="n">2</span>渠道与内容<span class="r er">2 项待改</span></div>
+<div class="dots">⋮</div>
+<div class="cl"><div class="clh"><b>短信</b><span class="m">可触达 7,430 · 预计 7,344 人 × 2 则</span><span class="r"><span class="ct am">能否从后台发送待营销侧确认</span><span class="ct c3">要新开发逻辑</span><i class="ar"></i></span></div>
+ <div class="clb"><div>
+  <div class="rw"><span class="lb"><i>*</i>内文</span><div><div class="ta">歡迎回來！回流任務已開啟，連續登入7天每天都能領取獎勵，最高可領50萬老幣，活動至10/31止。立即前往：<a>s.example.com/a8K2</a><span class="c wn">79 字 · 按 2 则计费</span></div>
+   <div class="hlp">每 70 字计 1 则；链接自动转短链并记录点击，转换失败时提示</div></div></div>
+ </div>
+ <div class="pv"><div class="pvl">玩家看到 · 手机短信</div><div class="bub">歡迎回來！回流任務已開啟，連續登入7天每天都能領取獎勵，最高可領50萬老幣，活動至10/31止。立即前往：<a>s.example.com/a8K2</a></div></div>
+ </div></div>
+<div class="cl"><div class="clh"><b>Facebook</b><span class="m">可触达 4,016 · 预计 4,016 条</span><span class="m er">未填按钮链接</span><span class="r"><span class="ct am">能否发送、回传到达待营销侧确认</span><span class="ct c3">要新开发逻辑</span><i class="ar"></i></span></div>
+ <div class="clb"><div>
+  <div class="rw"><span class="lb"><i>*</i>文字</span><div class="ta">歡迎回來！連續登入7天，每天都能領取獎勵，最高可領50萬老幣。<span class="c">31 字</span></div></div>
+  <div class="rw"><span class="lb">图片</span><div class="fv"><span class="thumb"></span><span class="un s">back7_banner.png</span><a class="lk" style="font-size:13px">更换</a><span class="un s">可选</span></div></div>
+  <div class="rw"><span class="lb">按钮</span><div class="fv" style="flex-wrap:nowrap"><span class="ip" style="width:110px">立即領取</span><span class="ip er" style="flex:1"><span class="ph" style="color:#F89898">请填写按钮链接</span></span></div></div>
+ </div>
+ <div class="pv"><div class="pvl">玩家看到 · Messenger</div><div class="msn"><span class="av"></span><div class="card"><div class="img"></div><div class="tx">歡迎回來！連續登入7天，每天都能領取獎勵，最高可領50萬老幣。</div><div class="btn">立即領取</div></div></div></div>
+ </div></div>
+<div class="cl"><div class="clh"><b>LINE</b><span class="m">可触达 3,205 · 预计 3,205 条</span><span class="r"><span class="ct am">能否发送、回传到达待营销侧确认</span><span class="ct c3">要新开发逻辑</span><i class="ar"></i></span></div>
+ <div class="clb"><div>
+  <div class="rw"><span class="lb"><i>*</i>文字</span><div class="ta">歡迎回來！連續登入7天，每天都能領取獎勵，最高可領50萬老幣。<span class="c">31 字</span></div></div>
+  <div class="rw"><span class="lb">图片</span><div class="fv"><span class="thumb"></span><span class="un s">back7_banner.png</span><a class="lk" style="font-size:13px">更换</a><span class="un s">可选</span></div></div>
+  <div class="rw"><span class="lb">按钮</span><div class="fv" style="flex-wrap:nowrap"><span class="ip" style="width:110px">立即領取</span><span class="ip" style="flex:1">https://event.example.com/back7</span></div></div>
+ </div>
+ <div class="pv"><div class="pvl">玩家看到 · LINE 聊天</div><div class="line"><div class="card"><div class="img"></div><div class="tx">歡迎回來！連續登入7天，每天都能領取獎勵，最高可領50萬老幣。</div><div class="btn">立即領取</div></div></div></div>
+ </div></div>
+</div><aside class="sm"><div class="smc"><div class="smh"><b>发送摘要</b><span>随填写实时更新</span></div><dl class="kv"><dt>推送名称</dt><dd>回流任务开启</dd><dt>受众</dt><dd>回流 · <b>16,399</b> 人<small>群组 16,564</small></dd><dt>已排除</dt><dd>165 人<small>VIP 108、黑名单 15<br>机器人与测试账号 42</small></dd><dt>点击跳转</dt><dd>活动页面 · 回流任务</dd><dt>发送时间</dt><dd class="na">未设定</dd></dl><div class="smt"><div class="h"><span>渠道</span><span>预计条数</span></div><div><span>快显</span><span>约 2,100 次</span></div><div><span>推播</span><span>8,609 条</span></div><div><span>短信</span><span>7,344 人 · 14,688 则</span></div><div><span>Facebook</span><span>4,016 条</span></div><div><span>LINE</span><span>3,205 条</span></div></div><dl class="kv"><dt>被上限排除</dt><dd>1,289 人<small>推播 1,203、短信 86</small></dd><dt>勿扰时段</dt><dd>00:00–08:00<small>命中时顺延到 08:00</small></dd><dt>频率上限</dt><dd>遵守</dd><dt>校验</dt><dd class="er">2 项未通过；③ 未填</dd></dl><div class="smb"><span class="bt sm">存为草稿</span></div></div></aside></div></div><div class="nts"><div class="nt"><b>短信字数旁直接显示则数</b>每 70 字计 1 则，本条 79 字按 2 则计费，运营发送前就能看到条数翻倍。</div><div class="nt"><b>短信链接自动转短链</b>转换后每次点击都有记录，短信也能计入点击统计。</div><div class="nt"><b>Facebook、LINE 按两个平台消息的通用结构画出</b>文字、图片、按钮三项；能否从后台发送、能否回传<span class="nb">到达</span>，待营销侧确认后再定。</div></div></section><section class="scr"><div class="sh"><span class="no">3</span><h3>发送时间、勿扰与频率上限一处设定，页面预估多少人收不到</h3><span class="r"><span class="ct nw">新增页面</span><span class="ct tr">统一操作档</span></span></div><div class="pf"><div class="pfh"><b>新建推送</b><span class="bc">推送管理 › 推送列表 › 新建推送</span><span class="bk">返回列表</span></div><div class="pfb"><nav class="anc"><a>① 受众<small class="ok">✓ 16,399 人</small></a><a>② 渠道与内容<small class="er">2 项待改</small></a><a class="on">③ 时间与频率上限<small class="ok">✓ 10/15 20:00</small></a><a>④ 确认并发送<small class="">—</small></a></nav><div class="mn">
+<div class="stt"><span class="n">3</span>时间与频率上限</div>
+<div class="g2" style="grid-template-columns:372px minmax(0,1fr)">
+ <div>
+  <div class="fi"><label><i>*</i>发送时间<span class="ct c3">要新开发逻辑</span></label>
+   <div class="fv"><span class="rd"><em></em>立即发送</span><span class="un s">确认后立即开始发送</span></div>
+   <div class="fv"><span class="rd on"><em></em>定时发送</span><span class="ip" style="width:200px">📅　2026-10-15 20:00</span></div>
+   <div class="hlp" style="margin:0 0 4px 21px">须在 3 分钟后、30 天内</div>
+   <div class="fv"><span class="rd"><em></em>按行为触发</span><span class="un s">选这一项时填写下方条件</span></div>
+   <div style="margin-left:21px">
+    <div class="fv" style="align-items:flex-start;flex-wrap:nowrap"><div class="s2"><span class="sl on" style="width:150px">礼包将到期</span>
+      <div class="dd" style="width:150px"><i>升级</i><i>任务完成</i><i class="on">礼包将到期</i></div></div>
+     <span class="un">剩余</span><span class="ip n">2</span><span class="un">小时</span></div>
+    <div class="fv mt8"><span class="un">生效期间</span><span class="ip" style="flex:1"><span class="ph">开始日期</span><span class="ph" style="margin:0 12px">~</span><span class="ph">结束日期</span></span></div>
+   </div>
+  </div>
+  <div class="fi mt16"><label>勿扰时段<span class="ct c3">要新开发逻辑</span></label>
+   <div class="fv"><span class="sg on"></span><span class="un">遵守 00:00–08:00 勿扰（「频率上限」页设定）</span></div>
+   <div class="hlp" style="margin:0 0 2px">不发推播、短信、Facebook、LINE；快显不受影响</div>
+   <div class="fv"><span class="un">命中时</span><span class="rd on"><em></em>顺延到 08:00 发送</span><span class="rd"><em></em>放弃发送</span></div>
+   <div class="st in mt6">本条 20:00 发送，不在勿扰时段</div>
+  </div>
+ </div>
+ <div>
+  <div class="fi"><label>频率上限<span class="sub">只读，引用「频率上限」页设定</span><span class="ct c3">要新开发逻辑</span></label>
+   <table class="tb"><thead><tr><th class="l">渠道</th><th>每人每日上限</th><th>预计被挡</th></tr></thead>
+   <tbody><tr><td class="l">快显</td><td>3 次</td><td>0</td></tr>
+   <tr><td class="l">推播</td><td>2 条</td><td><b style="color:#A8742A">1,203 人</b></td></tr>
+   <tr><td class="l">短信</td><td>1 条</td><td><b style="color:#A8742A">86 人</b></td></tr>
+   <tr><td class="l">Facebook</td><td>1 条</td><td>0</td></tr>
+   <tr><td class="l">LINE</td><td>1 条</td><td>0</td></tr></tbody></table>
+   <div class="st wn mt8">⚠ 推播 1,203 人、短信 86 人发送当日已达上限，<span class="nb">不会</span>收到本条</div>
+   <div class="hlp">按当前数据预估，发送时按实际已收条数重新计算<br><a>去「频率上限」页修改 ›</a></div>
+  </div>
+  <div class="fi mt14"><label>遵守上限<span class="ct c3">要新开发逻辑</span></label>
+   <span class="cb on"><em></em>本条遵守频率上限（默认勾选）</span>
+   <div class="alt mt6"><div class="al">取消勾选时须填写，例如系统维护公告</div>
+    <div class="fv"><span class="rd dis"><em></em>仍计入当日条数</span><span class="rd dis"><em></em>不计入</span></div>
+    <div class="rw" style="grid-template-columns:auto minmax(0,1fr)"><span class="lb" style="color:var(--t4)"><i>*</i>原因</span><span class="ip dis">例：系统维护公告</span></div>
+   </div>
+  </div>
+ </div>
+</div>
+</div><aside class="sm"><div class="smc"><div class="smh"><b>发送摘要</b><span>随填写实时更新</span></div><dl class="kv"><dt>推送名称</dt><dd>回流任务开启</dd><dt>受众</dt><dd>回流 · <b>16,399</b> 人<small>群组 16,564</small></dd><dt>已排除</dt><dd>165 人<small>VIP 108、黑名单 15<br>机器人与测试账号 42</small></dd><dt>点击跳转</dt><dd>活动页面 · 回流任务</dd><dt>发送时间</dt><dd>定时 · 10/15 20:00<small>2026-10-15（周四）</small></dd></dl><div class="smt"><div class="h"><span>渠道</span><span>预计条数</span></div><div><span>快显</span><span>约 2,100 次</span></div><div><span>推播</span><span>8,609 条</span></div><div><span>短信</span><span>7,344 人 · 14,688 则</span></div><div><span>Facebook</span><span>4,016 条</span></div><div><span>LINE</span><span>3,205 条</span></div></div><dl class="kv"><dt>被上限排除</dt><dd>1,289 人<small>推播 1,203、短信 86</small></dd><dt>勿扰时段</dt><dd>00:00–08:00<small>命中时顺延到 08:00</small></dd><dt>频率上限</dt><dd>遵守</dd><dt>校验</dt><dd class="er">2 项未通过 ›</dd></dl><div class="smb"><span class="bt sm">存为草稿</span></div></div></aside></div></div><div class="nts"><div class="nt"><b>频率上限在这里只读</b>上限统一在「频率上限」页设定，这里只预估本条会被<span class="nb">挡掉</span>多少人，各条推送不能各自改上限。</div><div class="nt"><b>例外必须写原因</b>系统维护公告这类必须送达的消息可以不遵守上限，但须选择是否计入当日条数并填写原因，记入操作纪录。</div><div class="nt"><b>勿扰时段默认顺延</b>00:00–08:00 命中时默认顺延到 08:00 发送；快显只在<span class="nb">玩家</span>在线时出现，不受勿扰影响。</div></div></section><section class="scr"><div class="sh"><span class="no">4</span><h3>发送前核对文案、发给测试账号，校验通过后确认排程</h3><span class="r"><span class="ct nw">新增页面</span><span class="ct tr">统一操作档</span></span></div><div class="pf"><div class="pfh"><b>新建推送</b><span class="bc">推送管理 › 推送列表 › 新建推送</span><span class="bk">返回列表</span></div><div class="pfb"><nav class="anc"><a>① 受众<small class="ok">✓ 16,399 人</small></a><a>② 渠道与内容<small class="er">2 项待改</small></a><a>③ 时间与频率上限<small class="ok">✓ 10/15 20:00</small></a><a class="on">④ 确认并发送<small class="er">2 项未通过</small></a></nav><div class="mn">
+<div class="stt"><span class="n">4</span>确认并发送<span class="r er">2 项未通过</span></div>
+<div class="fi"><label>文案与校验<span class="sub">点击跳转：活动页面 · 回流任务（各渠道共用）</span><span class="ct c2">用现有组件新增</span></label>
+<table class="tb cp"><thead><tr><th class="l" style="width:92px">渠道</th><th class="l">玩家看到的文案（繁體）</th><th class="l" style="width:186px">校验</th></tr></thead>
+<tbody>
+<tr><td class="l">推播</td><td class="l"><b>回流任務開啟</b><br>歡迎回來！連續登入7天，每天都能領取獎勵，最高可領50萬老幣。</td><td class="l ok">✓ 通过</td></tr>
+<tr><td class="l">快显</td><td class="l">歡迎回來！連續登入7天，每天都能領取獎勵，最高可領50萬老幣。</td><td class="l er">✕ 超出 1 字　<a class="lk">去修改</a></td></tr>
+<tr><td class="l">短信</td><td class="l">歡迎回來！回流任務已開啟，連續登入7天每天都能領取獎勵，最高可領50萬老幣，活動至10/31止。立即前往：s.example.com/a8K2</td><td class="l ok">✓ 通过 · 79 字计 2 则</td></tr>
+<tr><td class="l">Facebook</td><td class="l">歡迎回來！連續登入7天，每天都能領取獎勵，最高可領50萬老幣。<span class="s">按钮「立即領取」→ 链接未填</span></td><td class="l er">✕ 未填按钮链接　<a class="lk">去修改</a></td></tr>
+<tr><td class="l">LINE</td><td class="l">歡迎回來！連續登入7天，每天都能領取獎勵，最高可領50萬老幣。<span class="s">按钮「立即領取」→ event.example.com/back7</span></td><td class="l ok">✓ 通过</td></tr>
+</tbody></table></div>
+<div class="g2 mt14" style="grid-template-columns:300px minmax(0,1fr)">
+ <div class="fi"><label>测试对象<span class="ct c2">用现有组件新增</span></label>
+  <div class="s2"><span class="sl on">运营测试组<em>6 人</em></span>
+   <div class="dd"><i class="on">运营测试组<em>6 人</em></i><i class="more">⋮　其他测试名单</i></div></div>
+  <div class="fv mt8" style="flex-wrap:nowrap"><span class="un">或</span><span class="ip" style="flex:1"><span class="ph">输入会员编号，多个用逗号分隔</span></span></div>
+ </div>
+ <div class="fi"><label>测试结果<span class="sub">10/12 14:32 发出，只发给测试对象</span></label>
+  <table class="tb"><tbody>
+  <tr><td class="l nw" style="width:84px">推播</td><td class="l">5 / 6 送达；1 个账号未开启推播通知</td></tr>
+  <tr><td class="l nw">短信</td><td class="l">6 / 6 送达</td></tr>
+  <tr><td class="l nw">LINE</td><td class="l">4 / 6 送达；2 个账号未加 LINE 好友</td></tr>
+  <tr><td class="l nw">快显、Facebook</td><td class="l" style="color:var(--t3)">有未通过项，未发测试</td></tr>
+  </tbody></table>
+ </div>
+</div>
+<div class="act">
+ <div><span class="bt">存为草稿</span><div class="hlp">保存为草稿，留在推送列表，可继续编辑</div></div>
+ <div><span class="bt">发送测试</span><div class="hlp">只发给上方测试对象，结果显示在右侧</div></div>
+ <div><span class="bt pd">确认排程</span><div class="hlp">校验通过后可点。进入推送列表，状态为已排程，可随时停止；选立即发送时按钮为确认发送，状态为发送中</div></div>
+</div>
+</div><aside class="sm"><div class="smc"><div class="smh"><b>发送摘要</b><span>随填写实时更新</span></div><dl class="kv"><dt>推送名称</dt><dd>回流任务开启</dd><dt>受众</dt><dd>回流 · <b>16,399</b> 人<small>群组 16,564</small></dd><dt>已排除</dt><dd>165 人<small>VIP 108、黑名单 15<br>机器人与测试账号 42</small></dd><dt>点击跳转</dt><dd>活动页面 · 回流任务</dd><dt>发送时间</dt><dd>定时 · 10/15 20:00<small>2026-10-15（周四）</small></dd></dl><div class="smt"><div class="h"><span>渠道</span><span>预计条数</span></div><div><span>快显</span><span>约 2,100 次</span></div><div><span>推播</span><span>8,609 条</span></div><div><span>短信</span><span>7,344 人 · 14,688 则</span></div><div><span>Facebook</span><span>4,016 条</span></div><div><span>LINE</span><span>3,205 条</span></div></div><dl class="kv"><dt>被上限排除</dt><dd>1,289 人<small>推播 1,203、短信 86</small></dd><dt>勿扰时段</dt><dd>00:00–08:00<small>命中时顺延到 08:00</small></dd><dt>频率上限</dt><dd>遵守</dd><dt>校验</dt><dd class="er">2 项未通过 ›</dd></dl><div class="smb"><span class="bt sm">存为草稿</span></div></div></aside></div></div><div class="nts"><div class="nt"><b>不设审批，靠核对与测试把关</b>确认区逐个渠道列出文案与校验结果，测试账号收不到时直接给出原因。</div><div class="nt"><b>未通过项一键跳回</b>点「去修改」定位到对应渠道面板，改完后右侧摘要的<span class="nb">校验</span>状态同步更新。</div><div class="nt"><b>确认后仍可停止</b>确认排程后进入推送列表，状态为已排程；发送中也能<span class="nb">停止</span>，所有操作记入操作纪录。</div></div></section><div style="height:40px"></div></div></body></html>

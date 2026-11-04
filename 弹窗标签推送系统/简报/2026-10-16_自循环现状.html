@@ -1,0 +1,434 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>自循环现状</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;--accent-soft:#f4ead6;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;--accent-soft:#33291a;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;--accent-soft:#33291a;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1280px;margin:0 auto;padding:48px 36px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.35;margin:0 0 8px}
+.sub{font-size:16px;color:var(--ink-2);margin:0 0 28px}
+h2{font-family:var(--serif);font-size:20px;margin:56px 0 16px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+h3{font-size:15.5px;margin:28px 0 10px;color:var(--ink)}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px}
+.kpi .n{font-size:38px;font-weight:700;line-height:1.1;color:var(--ink)}
+.kpi .n small{font-size:16px;font-weight:600;margin-left:4px;color:var(--ink-2)}
+.kpi .t{font-size:14.5px;color:var(--ink-2);margin-top:8px}
+.kpi.red .n{color:var(--red)}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px}
+.tag.red{background:var(--red-soft);color:var(--red)} .tag.blue{background:var(--blue-soft);color:var(--blue)} .tag.gray{background:var(--gray-soft);color:var(--gray)} .tag.green{background:var(--green-soft);color:var(--green)} .tag.gold{background:var(--accent-soft);color:var(--accent)}
+.kv{font-size:14px;color:var(--ink-2);margin:8px 0}
+.kv b{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:2px}
+.cause .h{font-size:16.5px;font-weight:700;margin:0 0 8px}
+.cause ul{margin:0;padding-left:18px;font-size:14.5px;color:var(--ink-2)}
+.cause li{margin:3px 0}
+.cause .e{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px;margin-top:12px}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14px}
+th,td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12.5px;color:var(--muted);font-weight:600;background:var(--ground)}
+tr:last-child td{border-bottom:none}
+td.w{color:var(--ink);font-weight:600} td.r{color:var(--ink-2)} td.d{color:var(--muted)}
+td.nw{white-space:nowrap}
+tr.grp td{background:var(--ground);font-size:12.5px;font-weight:700;color:var(--accent);padding:7px 14px}
+.legend{font-size:13px;color:var(--muted);margin:10px 0 0}
+.note{font-size:13px;color:var(--muted);margin:10px 0 0}
+.qt{border-left:3px solid var(--line);padding:2px 0 2px 10px;color:var(--ink);margin:4px 0}
+.qt.dk{border-left-color:var(--red)}
+.qt.rv{border-left-color:var(--green)}
+/* 流程条 */
+.flow{display:flex;align-items:stretch;gap:0;margin:6px 0 18px}
+.flow .st{flex:1;background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--gray);border-radius:6px;padding:10px 10px 12px;font-size:13.5px}
+.flow .st .n{font-size:12px;color:var(--muted);font-weight:700}
+.flow .st .h{font-weight:700;margin:2px 0 6px;font-size:14.5px}
+.flow .st.main{border-top-color:var(--accent)} .flow .st.sub{border-top-color:var(--blue)} .flow .st.rev{border-top-color:var(--green)} .flow .st.prog{border-top-color:var(--gray)}
+.flow .ar{display:flex;align-items:center;color:var(--muted);padding:0 4px;font-size:16px}
+.who{display:inline-block;font-size:11.5px;font-weight:700;padding:1px 6px;border-radius:3px;white-space:nowrap}
+.who.main{background:var(--accent-soft);color:var(--accent)} .who.sub{background:var(--blue-soft);color:var(--blue)} .who.rev{background:var(--green-soft);color:var(--green)} .who.prog{background:var(--gray-soft);color:var(--gray)}
+/* 时间线 */
+.tl{width:100%;height:auto;display:block}
+.tl .track{fill:var(--gray-soft)} .tl .work{fill:var(--blue)} .tl .wrapz{fill:var(--accent-soft)}
+.tl .fail{stroke:var(--red);stroke-width:3} .tl .conf{stroke:var(--gray);stroke-width:2}
+.tl .tick{stroke:var(--line);stroke-width:1}
+.tl .lb{fill:var(--muted);font-size:12px;font-family:var(--sans)}
+.tl .lbw{fill:#fff;font-size:12.5px;font-weight:700;font-family:var(--sans)}
+.tl .lbr{fill:var(--red);font-size:12px;font-weight:700;font-family:var(--sans)}
+.tl .lbg{fill:var(--accent);font-size:12px;font-weight:700;font-family:var(--sans)}
+/* 选项 */
+.q{font-size:17px;font-weight:700;margin:0 0 6px}
+.qd{font-size:14px;color:var(--ink-2);margin:0 0 14px}
+.opt .h{font-size:15.5px;font-weight:700;margin:0 0 8px}
+.opt ul{margin:0;padding-left:18px;font-size:14px;color:var(--ink-2)}
+.opt li{margin:4px 0}
+.qblock{margin:0 0 30px}
+.opt.pick{box-shadow:inset 0 0 0 2px var(--accent)}
+.rec{font-size:14.5px;margin:12px 0 0;padding:10px 14px;background:var(--accent-soft);border-radius:6px}
+.links{font-size:13px;color:var(--muted);margin-top:48px;line-height:2} a{color:var(--accent)}
+code{font-size:12.5px;background:var(--gray-soft);padding:1px 5px;border-radius:3px}
+</style></head><body><div class="wrap">
+
+<p class="meta">自循环现状 · 2026-10-16 · 依据：昨晚夜间日志、评审原文、两份检查清单、判例库与答复登记；每节注明哪些是原文、哪些是子任务自称、哪些是推断</p>
+<h1>循环能自己跑满一夜，但评审只拿作品、缺检查项和业务背景，它放行的东西你仍会推翻</h1>
+<p class="sub">昨晚实际工作约 9 小时；你推翻的 52 处里有 16 处要靠只有你掌握的业务信息才发现；循环昨晚还替你定了约 25 件事，晨间简报只把其中 11 件标成「可推翻」</p>
+
+<div class="grid g3">
+  <div class="card kpi"><div class="n">约 9<small>小时</small></div><div class="t">昨晚实际工作时长，夜间窗口 19:00–08:30 共 13.5 小时；2 次唤醒撞上用量上限没开工（已核实）</div></div>
+  <div class="card kpi red"><div class="n">18<small>／52 处</small></div><div class="t">你 10/01–10/16 实质推翻的 52 处里，评审事先已判通过的处数</div></div>
+  <div class="card kpi"><div class="n">约 25<small>件</small></div><div class="t">昨晚循环替你定下并写进交付物的事；另有 7 件留给你定</div></div>
+</div>
+
+<div class="grid g3" style="margin-top:14px">
+  <div class="card cause"><p class="h">怎么跑：主循环只派活，设计、评审、修订都交给子任务</p>
+    <ul><li>每 30 分钟唤醒，过闸门、占锁后开工</li><li>补设计 → 评审 → 修订 → 并入文档与原型 → 程序检查 → 简报</li><li>程序检查只查链接和禁用词，不查内容</li></ul>
+    <p class="e">例：弹窗配置条件从补法写完到按评审修订完，19:30–19:40 共 10 分钟</p></div>
+  <div class="card cause"><p class="h">为什么和你不一致：评审缺三样东西</p>
+    <ul><li>缺检查项：结构、设计本身、内容够不够，都是你推翻后才补的</li><li>缺业务背景：评审拿不到已定事项全文、你的原话和后台实情</li><li>判得松：同一项检查，评审的门槛比你低</li></ul>
+    <p class="e">例：原型两轮审核放行，你说「最严重的问题是结构不清晰」</p></div>
+  <div class="card cause"><p class="h">替你定了什么：命名、口径、范围都有</p>
+    <ul><li>「所属活动」改名「营销档期」，需求文档、原型共 137 处</li><li>迁入的系统推送不占营销每天 2 条</li><li>弹窗素材本期不做、VIP 默认仍排除：夜里先记「交你定」，后改为自定</li></ul>
+    <p class="e">晨间简报没写到的有 4 件，如「表现最好与最差按推送方式分别排」</p></div>
+</div>
+
+<!-- ============ 01 ============ -->
+<h2><span class="no">01</span>一晚上怎么跑：定时唤醒接力，每块按「补法 → 评审 → 修订 → 并入」走，评审只过一次</h2>
+
+<h3>调度：每 30 分钟唤醒一次，靠锁保证同一时间只有一轮在跑</h3>
+<div class="grid g3">
+  <div class="card"><span class="tag gray">唤醒与闸门</span>
+    <div class="kv"><b>频率</b>19:00–08:30 每 30 分钟唤醒</div>
+    <div class="kv"><b>每次先跑闸门脚本，得出四种结论之一</b>开工；另一轮在跑（直接退出，不写文件）；07:30 后只做收尾；不在夜间窗口（只自检）</div></div>
+  <div class="card"><span class="tag gray">锁</span>
+    <div class="kv"><b>占锁与续锁</b>开工即占锁，每做完一件续一次</div>
+    <div class="kv"><b>失效</b>超过 60 分钟没续，视为上一轮中断，下一次唤醒接手</div>
+    <div class="kv"><b>避让</b>白天对话近 30 分钟改过的文件，当晚先不碰</div></div>
+  <div class="card"><span class="tag gray">一轮何时结束</span>
+    <div class="kv"><b>上下文用到一半左右</b>写交接后退出（昨晚 22:32、05:25 两次）</div>
+    <div class="kv"><b>用量额度用完</b>昨晚 23:25、23:55 两次唤醒没开工</div>
+    <div class="kv"><b>到收尾时段</b>07:30 起只写总结、定稿简报</div></div>
+</div>
+
+<div class="card" style="margin-top:14px;padding:16px 18px 8px">
+<svg class="tl" viewBox="0 0 1040 120" role="img" aria-label="10/15 夜运行时间线">
+  <rect class="track" x="20" y="34" width="1000" height="28" rx="3"/>
+  <rect class="wrapz" x="945.9" y="34" width="74.1" height="28"/>
+  <rect class="work" x="42.2" y="34" width="239.5" height="28"/>
+  <rect class="work" x="310.1" y="34" width="30.9" height="28"/>
+  <rect class="work" x="421.2" y="34" width="370.4" height="28"/>
+  <rect class="work" x="828.6" y="34" width="8.7" height="28"/>
+  <rect class="work" x="865.7" y="34" width="6.2" height="28"/>
+  <rect class="work" x="902.7" y="34" width="3.7" height="28"/>
+  <line class="fail" x1="347.2" y1="28" x2="347.2" y2="68"/>
+  <line class="fail" x1="384.2" y1="28" x2="384.2" y2="68"/>
+  <line class="conf" x1="939.8" y1="30" x2="939.8" y2="66"/>
+  <line class="conf" x1="976.8" y1="30" x2="976.8" y2="66"/>
+  <line class="conf" x1="1013.8" y1="30" x2="1013.8" y2="66"/>
+  <text class="lbw" x="58" y="53">第一轮 19:18–22:32</text>
+  <text class="lbw" x="440" y="53">第三轮 00:25–05:25</text>
+  <text class="lbr" x="365.7" y="20" text-anchor="middle">撞用量上限 ×2</text>
+  <text class="lbg" x="983" y="20" text-anchor="middle">收尾时段</text>
+  <g>
+    <line class="tick" x1="20" y1="66" x2="20" y2="74"/><text class="lb" x="20" y="90" text-anchor="middle">19:00</text>
+    <line class="tick" x1="94.1" y1="66" x2="94.1" y2="74"/><text class="lb" x="94.1" y="90" text-anchor="middle">20</text>
+    <line class="tick" x1="168.1" y1="66" x2="168.1" y2="74"/><text class="lb" x="168.1" y="90" text-anchor="middle">21</text>
+    <line class="tick" x1="242.2" y1="66" x2="242.2" y2="74"/><text class="lb" x="242.2" y="90" text-anchor="middle">22</text>
+    <line class="tick" x1="316.3" y1="66" x2="316.3" y2="74"/><text class="lb" x="316.3" y="90" text-anchor="middle">23</text>
+    <line class="tick" x1="390.4" y1="66" x2="390.4" y2="74"/><text class="lb" x="390.4" y="90" text-anchor="middle">00</text>
+    <line class="tick" x1="464.4" y1="66" x2="464.4" y2="74"/><text class="lb" x="464.4" y="90" text-anchor="middle">01</text>
+    <line class="tick" x1="538.5" y1="66" x2="538.5" y2="74"/><text class="lb" x="538.5" y="90" text-anchor="middle">02</text>
+    <line class="tick" x1="612.6" y1="66" x2="612.6" y2="74"/><text class="lb" x="612.6" y="90" text-anchor="middle">03</text>
+    <line class="tick" x1="686.7" y1="66" x2="686.7" y2="74"/><text class="lb" x="686.7" y="90" text-anchor="middle">04</text>
+    <line class="tick" x1="760.7" y1="66" x2="760.7" y2="74"/><text class="lb" x="760.7" y="90" text-anchor="middle">05</text>
+    <line class="tick" x1="834.8" y1="66" x2="834.8" y2="74"/><text class="lb" x="834.8" y="90" text-anchor="middle">06</text>
+    <line class="tick" x1="908.9" y1="66" x2="908.9" y2="74"/><text class="lb" x="908.9" y="90" text-anchor="middle">07</text>
+    <line class="tick" x1="983" y1="66" x2="983" y2="74"/><text class="lb" x="983" y="90" text-anchor="middle">08</text>
+    <line class="tick" x1="1020" y1="66" x2="1020" y2="74"/><text class="lb" x="1020" y="108" text-anchor="end">08:30</text>
+  </g>
+</svg>
+<p class="legend">蓝＝在工作　红线＝唤醒撞用量上限　灰线＝收尾后唤醒、只确认已收尾　其余唤醒看到锁被占，直接退出</p>
+</div>
+
+<table style="margin-top:14px">
+<tr><th style="width:150px">时段</th><th>做了什么</th><th style="width:300px">为什么停</th></tr>
+<tr><td class="nw w">19:18–22:32</td><td class="r">七块能力各自补设计、评审、修订；七块之间统一口径；并入需求文档与原型</td><td class="d">上下文用到一半，写交接</td></tr>
+<tr><td class="nw w">22:55–23:20</td><td class="r">三件审视与评审（原型新增页运营走查、人群与标签、弹窗整体控制）；挖 Jira 历史工单</td><td class="d">中断，锁没放；00:25 下一次唤醒在锁失效后接手</td></tr>
+<tr><td class="nw w">23:25、23:55</td><td class="r">唤醒失败，未开工</td><td class="d">撞用量上限</td></tr>
+<tr><td class="nw w">00:25–05:25</td><td class="r">先建「这个后台应该有什么」的参照，再按任务、页面、字段、异常四层逐条对照交付物补缺口</td><td class="d">上下文用量较大，写交接</td></tr>
+<tr><td class="nw w">05:55–06:58</td><td class="r">三段短工作：简报第一屏复述检查、6 页原型截图复核、第三位同行补审参照、收尾写总结</td><td class="d">进入收尾；07:25、07:55、08:25 三次唤醒只确认已收尾</td></tr>
+</table>
+<p class="note">时段已核实。夜间日志流水在 23:25、23:35 仍各有一行子任务完成记录，第二轮实际结束时刻以日志为准可能晚于 23:20。</p>
+
+<h3>每一块怎么走：以「弹窗配置条件」为例，从补法到进简报</h3>
+<div class="flow">
+  <div class="st prog"><div class="n">1</div><div class="h">唤醒与闸门</div><span class="who prog">程序脚本</span></div><div class="ar">→</div>
+  <div class="st main"><div class="n">2</div><div class="h">定下一块</div><span class="who main">主循环 AI</span></div><div class="ar">→</div>
+  <div class="st sub"><div class="n">3</div><div class="h">写补法</div><span class="who sub">子任务 AI</span></div><div class="ar">→</div>
+  <div class="st rev"><div class="n">4</div><div class="h">评审</div><span class="who rev">评审 AI</span></div><div class="ar">→</div>
+  <div class="st sub"><div class="n">5</div><div class="h">按评审修订</div><span class="who sub">子任务 AI</span></div><div class="ar">→</div>
+  <div class="st sub"><div class="n">6</div><div class="h">跨块统一口径</div><span class="who sub">子任务 AI</span></div><div class="ar">→</div>
+  <div class="st sub"><div class="n">7</div><div class="h">并入文档与原型</div><span class="who sub">子任务 AI</span></div><div class="ar">→</div>
+  <div class="st prog"><div class="n">8</div><div class="h">程序检查</div><span class="who prog">程序脚本</span></div><div class="ar">→</div>
+  <div class="st main"><div class="n">9</div><div class="h">晨间简报</div><span class="who main">主循环 AI</span></div>
+</div>
+
+<table>
+<tr><th style="width:120px">步骤</th><th style="width:230px">看什么材料</th><th style="width:230px">产出 → 写到哪</th><th>弹窗配置条件这一次的实际经过（夜间日志原文整理）</th></tr>
+<tr><td class="w">1 唤醒与闸门</td><td class="r">时间、锁文件、其他对话近期改过的文件</td><td class="r">开工或退出；锁</td><td class="r">19:18 开工；原型、需求文档 19:14–19:18 刚被白天对话改过，当晚先不碰</td></tr>
+<tr><td class="w">2 定下一块</td><td class="r">入口文件、已定事项、你最近的原话、上一晚日志</td><td class="r">本块任务 → 夜间日志</td><td class="r">首轮选「数据」「弹窗配置条件」两块，因你 10/15 问「弹窗的配置条件目前都有哪些纬度？缺不缺？」</td></tr>
+<tr><td class="w">3 写补法</td><td class="r">白天整理的事实底稿、后台截图、同事规则草稿、需求文档相关节、行业产品文档</td><td class="r">设计稿 → <code>分析/内容补强_弹窗配置条件_夜间.md</code></td><td class="r">19:30 完成：现有 4 组 21 个维度；五类人群 14 个场景，现有能做 4、部分能做 6、做不了 4；缺口 16 条；不改「17 项」口径</td></tr>
+<tr><td class="w">4 评审</td><td class="r">只拿设计稿；自行核对 3 张后台截图，在需求文档里搜了两个词</td><td class="r">评审稿 → <code>分析/标准判卷/弹窗配置条件_夜间判卷.md</code></td><td class="r">19:33 完成：扮演每天配弹窗的运营，走 3 个场景；判「基本够用」，3 处不够；建议删 8 个维度、项名改为「弹窗总量与先后控制」</td></tr>
+<tr><td class="w">5 按评审修订</td><td class="r">评审稿</td><td class="r">同一设计稿就地改</td><td class="r">19:40 完成：每日上限按位置分账（大厅 6、破产 2）；互斥改按「本次有可弹项」让出；回流身份登入时实时判定；删 5 个维度；缺口增到 25 条。之后没有再评审</td></tr>
+<tr><td class="w">6 跨块统一口径</td><td class="r">七块设计稿、需求文档</td><td class="r"><code>分析/夜间设计_统一口径.md</code></td><td class="r">20:25 查出七块之间 24 处冲突；20:39 定案：弹窗先后改回需求文档原写法（同位置同类型只弹优先级最高的一条），评审后选定的「按位置分账」降为「建议改需求文档」</td></tr>
+<tr><td class="w">7 并入</td><td class="r">并入清单、需求文档、原型（先加文件锁）</td><td class="r">需求文档、原型就地改</td><td class="r">20:47 并入清单 120 条：白天已写 8、部分写了 44、没写 52、与白天写法冲突 12；21:15 弹窗投放条件 12 条并入；上限分账、叠加弹出等冲突项跳过，留给你；原型 21:48、22:14 两批同步</td></tr>
+<tr><td class="w">8 程序检查</td><td class="r">改过的文件</td><td class="r">每个文件一行结论</td><td class="r">「程序检查 0 错 0 提醒、链接 605 有效」：只说明链接和用词没问题，不涉及内容</td></tr>
+<tr><td class="w">9 晨间简报</td><td class="r">夜间日志、各设计稿</td><td class="r"><code>简报/2026-10-16_夜间推进.html</code></td><td class="r">这一块变成两件待你定：破产弹窗是否单设额度、项名是否改；公共活动能否叠加弹出。04:04 一周推演又印证：每天第 3 次破产时，额度已被大厅用掉</td></tr>
+</table>
+<p class="note">同一块白天也在改：你 10/15 晚提的四个问题由白天对话直接改原型，夜里另写一份设计；并入时 12 条与白天写法冲突，全部进了待你定的事。</p>
+
+<!-- ============ 02 ============ -->
+<h2><span class="no">02</span>评审是什么：无上下文 AI 扮演使用者审设计稿，拿不到已定事项全文、你的原话和推翻记录</h2>
+<p class="note" style="margin-top:-6px">评审：主循环派一个不带本项目对话背景的 AI，扮演产品的使用者，在作品上走几个任务，判够不够用（内部叫「判卷」）。下面两份是昨晚的原文。</p>
+
+<div class="grid g2" style="margin-top:12px">
+  <div class="card"><span class="tag green">评审一 · 弹窗配置条件</span>
+    <div class="kv"><b>扮演</b>每天配弹窗与礼包推送的运营，第一次看本项目</div>
+    <div class="kv"><b>拿到</b>补法设计稿；自行核对 3 张现有后台截图，在需求文档里搜「发财金」「快显测试」</div>
+    <div class="kv"><b>没拿到（推断，依据评审稿开头列出的材料）</b>已定事项全文，只从设计稿里看到「17 项口径不改」一句；你的原话与历来推翻记录；并入后的需求文档与原型——它判的是设计稿，不是交付物</div>
+    <div class="kv"><b>被问</b>在作品上走一遍：走得通吗、断在哪、还缺什么；另答「17 项要不要加一项」</div>
+    <div class="kv"><b>走了哪几个任务</b>回流玩家首次进大厅、新增玩家首储后弹通行证、当日多次破产</div>
+    <div class="kv"><b>结论原话</b><div class="qt rv">「基本够用——维度齐了，但「今天会看到哪几个」我预测不出来，跨请求的上限与互斥落空两处要先定」</div><div class="qt rv">「以上三条补清楚后可判「够用」。维度本身不缺大项」</div></div>
+  </div>
+  <div class="card"><span class="tag green">评审二 · 推送配置与操作</span>
+    <div class="kv"><b>扮演</b>每天用推送后台发推播、短信、Facebook、LINE 的运营，第一次看本项目</div>
+    <div class="kv"><b>拿到</b>补法设计稿，对照原型与需求文档</div>
+    <div class="kv"><b>没拿到（推断，同上）</b>已定事项全文、你的原话、历来推翻记录；它指出的「不设审批」冲突，出处是需求文档</div>
+    <div class="kv"><b>被问</b>走三个日常任务，判走不走得通、缺什么</div>
+    <div class="kv"><b>走了哪几个任务</b>全服维护公告推播；给潜在流失玩家发短信加 LINE 召回；每周一 10:00 固定活动预告</div>
+    <div class="kv"><b>结论原话</b><div class="qt rv">「基本够用，三个日常任务里有两个会在新增校验上卡住」</div><div class="qt rv">「改完这三处（都是改规则、不加功能）即可判「够用」。」</div></div>
+  </div>
+</div>
+<p class="note">昨晚前半夜七块能力的评审：5 块判「基本够用」，频控与写死项迁入判走不通；7 块都由子任务按评审意见修订后并入；评审提出的取舍多数随之写进设计（如删维度、换试点），少数转成待你定。</p>
+
+<div class="grid g2" style="margin-top:14px">
+  <div class="card"><span class="tag gold">派评审的规定（原文节选；逐次派单的指令原文没有留存）</span>
+    <div class="kv"><b>夜间任务说明</b><div class="qt">「派一位无上下文判卷人扮演参照里对应任务的使用者……只给参照中的那几条任务与能力行、作品本身，让他在作品上把任务走一遍，回答「走得通吗、断在哪、还缺什么」」</div></div>
+    <div class="kv"><b>标准体系</b><div class="qt">「用无上下文的子任务，只给产出和该项允许的背景（如产品计划原文）」</div></div>
+    <div class="kv"><b>标准体系</b><div class="qt">「判结构、取舍这类项时，还要给判卷人相关的约束。只给作品时，判卷人会判出与 Dk 已定事项相反的结论」</div>例：10/14 判呈交版正文取舍，没给约束的评审建议删章节分隔页、把现状页移到附录，两处都是你 10/12 定的</div>
+    <div class="kv"><b>标准体系「还没对齐的」</b><div class="qt">「42 条判例还没按新的判卷方法跑过」</div></div>
+  </div>
+  <div class="card"><span class="tag gray">程序检查：脚本，不是 AI 评审</span>
+    <div class="kv"><b>查</b>
+      <ul style="margin:4px 0 0;padding-left:18px"><li>网页和文档里的本地链接、锚点是否有效</li><li>演示稿里带逗号的句子列成清单，供人逐句判</li><li>呈交版禁用词：「主管」「判例」「子任务」「待核实」「排期」「阶段 N」等为必改</li><li>「付费」「活跃」「购买」「推荐、建议」为提醒，按意思判</li></ul></div>
+    <div class="kv"><b>不查</b>内容对不对、够不够、结构、版面、与已定事项是否冲突</div>
+    <div class="kv"><b>意味着</b>夜间日志里反复出现的「程序检查 0 错」，只说明链接和用词没问题</div>
+  </div>
+</div>
+
+<!-- ============ 03 ============ -->
+<h2><span class="no">03</span>检查清单：两份共 30 项，结构、设计本身、内容够不够都是你推翻后才补；方向取舍没有检查项</h2>
+
+<div class="grid g2">
+<div>
+<table>
+<tr><th colspan="3">推送后台清单：21 项，按「谁拿它做什么」分 5 组</th></tr>
+<tr><th style="width:150px">组</th><th style="width:44px">项数</th><th>原文举例</th></tr>
+<tr><td class="w">团队成员读设计概要判规则</td><td class="r">8</td><td class="r">「团队成员读设计概要，每条关键规则能在原型截图上指到位置，并说出为什么」</td></tr>
+<tr><td class="w">研发各团队用需求文档估工时</td><td class="r">4</td><td class="r">「需求文档、原型、方案设计三者在数字、规则、名称上不冲突」</td></tr>
+<tr><td class="w">运营用原型做日常推送</td><td class="r">6</td><td class="r">「给一个标签群组发推送并排除部分玩家，发送前看到预计人数」</td></tr>
+<tr><td class="w">读者读懂原型</td><td class="r">2</td><td class="r">「只看目录和章首，说得出后台分几块、每块做什么、在哪几页」（10/14 你退回原型结构后补）</td></tr>
+<tr><td class="w">内容充分</td><td class="r">1</td><td class="r">「每块能力……对照目标与做得好的产品，没有未处理的关键缺失」（10/15 晚补）</td></tr>
+</table>
+</div>
+<div>
+<table>
+<tr><th colspan="3">弹窗方案清单：9 项，按查什么归 3 类</th></tr>
+<tr><th style="width:150px">类</th><th style="width:44px">项数</th><th>原文举例</th></tr>
+<tr><td class="w">主管读得懂、对得上计划</td><td class="r">3</td><td class="r">「主管一眼看出推送分游戏内、游戏外两层」（10/13 你指出混写后补）</td></tr>
+<tr><td class="w">写法与事实</td><td class="r">5</td><td class="r">「每个数字有主语和分母，与出处一致；每条写「现在能／不能、有／没有」的句子有出处」</td></tr>
+<tr><td class="w">内容充分</td><td class="r">1</td><td class="r">「弹窗配置条件的维度（事件、状态、内容、频次）、五类人群各看什么、数量与顺序的整体控制，对照目标与行业做法没有未处理的关键缺失」（10/15 补）</td></tr>
+</table>
+</div>
+</div>
+<p class="note">两份清单都是 10/14 才建。10/13 原型两轮审核时还没有清单，审核人自定看什么。</p>
+
+<h3>对照你推翻的 52 处：措辞全覆盖，方向取舍和业务事实基本没覆盖</h3>
+<table>
+<tr><th style="width:150px">你推翻的类型</th><th style="width:70px">处数</th><th style="width:210px">只看交付物能发现／需业务信息／需参照</th><th>清单里对应的检查项</th><th style="width:250px">覆盖情况</th></tr>
+<tr><td class="w">结构与可读性</td><td class="r">21</td><td class="r">16／1／4</td><td class="r">原型「只看目录和章首说得出分几块」「任意一页 20 秒说得出做什么」；设计概要「一页只回答一个问题……」；呈交版复述、两层分法</td><td class="r">有，但都是被退回后补的（原型 10/14、设计概要 10/15）；原型版面与阅读负担没有检查项</td></tr>
+<tr><td class="w">方向或取舍</td><td class="r">12</td><td class="r">2／9／1</td><td class="r">没有单独的项；只有「约束」一节：违反已定事项即不通过</td><td class="r"><span class="tag red">未覆盖</span> 已定之外的方向判断没人查；9 处要业务信息</td></tr>
+<tr><td class="w">措辞</td><td class="r">8</td><td class="r">8／0／0</td><td class="r">标题与要点句无上下文复述；逗号句逐句判；禁用词</td><td class="r"><span class="tag green">覆盖</span> 全部只看交付物就能发现</td></tr>
+<tr><td class="w">事实错误</td><td class="r">6</td><td class="r">0／4／2</td><td class="r">数字有主语分母、与出处一致；现状句逐句溯源（10/14 夜补）</td><td class="r"><span class="tag gold">部分</span> 只能核到资料为止；4 处要资料之外的业务事实</td></tr>
+<tr><td class="w">内容缺失或不够深</td><td class="r">5</td><td class="r">1／2／2</td><td class="r">两份清单各一项「内容充分」</td><td class="r"><span class="tag gold">部分</span> 10/15 之前没有；补上后靠「应该有什么」参照逐条走查</td></tr>
+<tr><td class="w">合计</td><td class="r">52</td><td class="r">27／16／9</td><td class="r" colspan="2">一半能只看交付物发现；16 处无论清单怎么写，评审拿不到业务信息就判不出</td></tr>
+</table>
+<p class="note">52 处的归类由子任务完成，未逐条复核。两份清单的校准记录（你的结论对比评审结论）：推送后台 8 行，不一致 3、无评审或你未表态 5；弹窗方案 10 行，一致 3（都是拿你退回过的旧稿回测）、不一致 1、无评审或未表态 6。</p>
+
+<!-- ============ 04 ============ -->
+<h2><span class="no">04</span>评审和你判得不一样：18 处放行后被推翻，原因分三种</h2>
+
+<table>
+<tr><th style="width:90px">日期</th><th>评审已判通过、你仍推翻的内容（共 18 处）</th></tr>
+<tr><td class="w">10/08</td><td class="r">用具体配置修改代替通用能力建设；需求按成本预先删减</td></tr>
+<tr><td class="w">10/09</td><td class="r">短期、长期的差异写成待决取舍；自造概念「统一触达层」；目标写活跃、付费；呈交版第一版观感紧凑（复审已过）；建成标准写「购买」（复审判保留）；目标设「不经研发」条件；把五类人群写成后台圈不出</td></tr>
+<tr><td class="w">10/10</td><td class="r">潜在流失按储值判定；呈交版第四版清晰度（独立审查判「结构过关」）</td></tr>
+<tr><td class="w">10/14</td><td class="r">原型版面（审核只查内容）；原型结构不清（两轮无上下文审核通过）</td></tr>
+<tr><td class="w">10/15</td><td class="r">设计概要「还有很多问题」（设计概要检查项全过）；原型章标题不起作用；原型标签、数据看板、配置条件内容不足；写死的弹窗与推送要迁入后台；旧版本弹窗数据要保留</td></tr>
+</table>
+
+<h3>五处并排对照</h3>
+<table>
+<tr><th style="width:150px">产出</th><th>评审当时的原话</th><th>你的原话</th><th style="width:260px">差在哪</th><th style="width:96px">原因</th></tr>
+<tr><td class="w">推送后台原型结构<br><span class="d">10/13 审核 → 10/14 退回</span></td>
+  <td class="r"><div class="qt rv">第一轮结论：「数字与两层分法基本一致」</div>页序问题只列在「建议」里：<div class="qt rv">「页序与侧栏顺序不一致：快显（页 8）排在弹窗（页 9–10）前面」</div>第二轮修完两处严重问题后放行</td>
+  <td class="r"><div class="qt dk">「在我看来最严重的问题是结构不清晰，我看了几遍也不知道整体这个html到底是什么结构」</div></td>
+  <td class="r">当时没有清单，没人要求判整体结构；评审看见了页序问题但只当建议；主循环嫌改编号成本高没改</td>
+  <td><span class="tag red">缺检查项</span><br><span class="tag gold" style="margin-top:4px">判得松</span></td></tr>
+<tr><td class="w">设计概要<br><span class="d">10/14 夜放行 → 10/15 退回</span></td>
+  <td class="r"><div class="qt rv">「7 组规则在运营场景下都成立」</div>设计概要六项检查全部通过</td>
+  <td class="r"><div class="qt dk">「后台设计的交付物还需要再完善，还有很多问题」</div></td>
+  <td class="r">六项只查规则能否在截图上指到、与需求文档是否一致、数字、措辞复述；没查稿子结构和设计本身（校准记录原话）。之后补了两项</td>
+  <td><span class="tag red">缺检查项</span></td></tr>
+<tr><td class="w">呈交版「目标人群圈不出」<br><span class="d">10/09</span></td>
+  <td class="r">评审原话未留存。判例记录：同一判断自人群分析起沿用到呈交版第一版，「历次审查均通过」</td>
+  <td class="r"><div class="qt dk">「新增、回流、破产是肯定能判定的，剩下两个需要我们定义……总之是可以圈出来的。」</div></td>
+  <td class="r">依据是本地导出数据算不出人数、资料写「未确认」；评审只能看这些资料，不知道后台标签实际能做什么</td>
+  <td><span class="tag blue">缺业务背景</span></td></tr>
+<tr><td class="w">建成标准写「购买」<br><span class="d">10/09</span></td>
+  <td class="r">复审判为<div class="qt rv">「数据可查的能力」</div>不属于「把付费写成目标」一类，建议保留、加注</td>
+  <td class="r"><div class="qt dk">「不留」</div></td>
+  <td class="r">规则写的是「不设活跃、付费目标」；评审按字面认为「查得到购买」不算目标；你的口径更宽：建成标准里出现付费类字样就不行</td>
+  <td><span class="tag gold">判得松</span></td></tr>
+<tr><td class="w">呈交版第四版清晰度<br><span class="d">10/10</span></td>
+  <td class="r"><div class="qt rv">「总评：结构过关（只看标题读得出现状→目标→原因→做法→分期→验证）」</div></td>
+  <td class="r"><div class="qt dk">「阅读依旧困难，很杂乱，不清晰」「光说第二页就很乱，就看不下去 不清晰是最大的问题」</div></td>
+  <td class="r">评审用「只看标题能否读出顺序」判结构，门槛低；你按实际读下去的感受判</td>
+  <td><span class="tag gold">判得松</span></td></tr>
+</table>
+<p class="note">推断：前两种原因可以靠补检查项、提高门槛缩小差距；「缺业务背景」补检查项没用，评审必须拿到业务事实（已定事项全文、你的原话、后台实情）才判得出。</p>
+
+<!-- ============ 05 ============ -->
+<h2><span class="no">05</span>循环替你做的决定：约 25 件已按我方做法写进交付物，7 件留给你；晨间简报没写到 4 件</h2>
+<p class="note" style="margin-top:-6px">夜间任务说明的规定：「不问 Dk 问题；拿不准就按最保守的理解做或两种都做，记进对应清单「自行决定」。只有业务方向取舍、验收、需要 Dk 对外安排的事写进简报请 Dk 定」。</p>
+
+<h3>（a）已替你定了的：23 行、约 25 件</h3>
+<table>
+<tr><th style="width:280px">决定了什么</th><th style="width:220px">依据</th><th>若你不同意，要改回哪里</th><th style="width:200px">晨间简报里有没有</th></tr>
+<tr class="grp"><td colspan="4">弹窗规则</td></tr>
+<tr><td class="w">删 5 个配置维度：类型先后、每周上限、每次登录上限、规则总曝光上限、事件参数</td><td class="r">评审认为与其他字段重复、运营不会用</td><td class="r">补法设计稿维度全表（38 个减到 33 个）；需求文档是否含这几项未核</td><td class="r"><span class="tag red">未见</span></td></tr>
+<tr><td class="w">弹窗项弹出次数大厅、破产分开计</td><td class="r">与弹窗方案「破产位先取首储礼包」一致</td><td class="r">需求文档 4.1.3、4.1.7、4.2.1、5.10 等；原型弹窗规则页</td><td class="r"><span class="tag green">自行决定表</span></td></tr>
+<tr><td class="w">发财金按「终止型」统一：弹出后本次不再弹破产弹窗</td><td class="r">现行规格如此，两处写法矛盾</td><td class="r">需求文档 4.1.6、4.1.7、4.2.1、4.2.6、5.12（「终止型」19 处）；原型 9 处</td><td class="r"><span class="tag green">自行决定表</span></td></tr>
+<tr><td class="w">潜在付费的大厅内容与破产玩家相同，不另建规则</td><td class="r">弹窗方案已定沿用现有排序</td><td class="r">没改文件，改回即新增规则</td><td class="r"><span class="tag green">自行决定表</span></td></tr>
+<tr><td class="w">弹窗素材（换图）本期不做，跳转可在目录里改</td><td class="r">换图要客户端按下发素材渲染，属较大开发</td><td class="r">改回即新增素材字段与客户端改动</td><td class="r"><span class="tag green">自行决定表</span> 夜里 01:33、01:50 两次记「交你定」</td></tr>
+<tr><td class="w">弹窗对象保持单选，不改多选</td><td class="r">与需求文档一致</td><td class="r">需求文档 4.1.7、4.2.1、5.12</td><td class="r"><span class="tag gray">写在「已解决、不再要你定」</span></td></tr>
+<tr><td class="w">新手两项「不受上限、仍计入」</td><td class="r">与呈交版对齐</td><td class="r">需求文档 4.1.3、4.1.6、4.2.1、5.12、7.2</td><td class="r"><span class="tag gray">同上</span></td></tr>
+<tr><td class="w">不点的弹窗项每周按「项×人群」点击率人工调，逐人换项列后续</td><td class="r">评审：逐人换项首版做不到</td><td class="r">五类人群编排设计稿</td><td class="r"><span class="tag gray">编排卡里写了，未标替你定</span></td></tr>
+<tr class="grp"><td colspan="4">推送与频控</td></tr>
+<tr><td class="w">迁入的系统推送默认归「服务通知」，不占营销每人每天 2 条</td><td class="r">运营推播规范的 2 条指运营推播</td><td class="r">需求文档 4.1.7、4.2.6、7.2、8.1、第 9 章</td><td class="r"><span class="tag green">自行决定表</span></td></tr>
+<tr><td class="w">自动熔断与人工暂停并存时人工优先</td><td class="r">运营走查：两者谁说了算没写</td><td class="r">需求文档 4.1.1、8.2</td><td class="r"><span class="tag green">自行决定表</span></td></tr>
+<tr><td class="w">游戏外推送默认仍排除 VIP，发送确认处明示「VIP 108 人不会收到」、可一键包含</td><td class="r">不改已有默认值</td><td class="r">需求文档 4.1.1、4.2 多节、5.4（「VIP 名单」24 处）；原型发送确认</td><td class="r"><span class="tag gray">明细表写「仍默认排除」</span> 夜里 19:43 记「是否改默认值需你定」，未进 7 件</td></tr>
+<tr><td class="w">退订率、封锁率保留，标「诊断用，不作成效指标」</td><td class="r">我方判断属可触达健康度</td><td class="r">需求文档 4.1.8、5.14、8.2、第 9 章</td><td class="r"><span class="tag gray">明细表写「我方判断」</span></td></tr>
+<tr><td class="w">活动门槛提示改为「需确认」；排除前序推送最多 3 条；外赠快显延迟 60 秒（3 件）</td><td class="r">子任务自定、主循环接受；60 秒为暂定参数</td><td class="r">需求文档 4.1.1、4.1.6、5.4 等</td><td class="r"><span class="tag green">自行决定表</span></td></tr>
+<tr><td class="w">预计跨入勿扰超过 15 分钟才拦</td><td class="r">已定「提交时已跨入的照常发完」</td><td class="r">需求文档勿扰相关节、原型新建页</td><td class="r"><span class="tag gray">明细表写「改判」</span></td></tr>
+<tr><td class="w">短链计长暂定 20 字；「达任一上限」只列推播（2 件）</td><td class="r">子任务自定，待评审确认</td><td class="r">需求文档短信字数节、数据页</td><td class="r"><span class="tag red">未见</span></td></tr>
+<tr><td class="w">「表现最好与最差」按推送方式分别排</td><td class="r">消除原型与需求文档口径冲突</td><td class="r">需求文档 4.1.8、5.14；原型数据看板</td><td class="r"><span class="tag red">未见</span></td></tr>
+<tr class="grp"><td colspan="4">人群、标签与角色</td></tr>
+<tr><td class="w">标签配套 5 项并入现行需求文档新增一节，不另起标签需求</td><td class="r">便于一份文档评审</td><td class="r">需求文档 4.3 整节；设计概要第 5 页</td><td class="r"><span class="tag gray">明细写了内容，未标替你定</span></td></tr>
+<tr><td class="w">新增客服角色（只读＋处置）与值班附加权限</td><td class="r">走查：客服、值班无对应角色</td><td class="r">需求文档 4.1.2、4.1.11、5.2、5.11；原型权限页；设计概要第 17 页</td><td class="r"><span class="tag gray">「已解决」一行＋设计概要改动表</span></td></tr>
+<tr class="grp"><td colspan="4">命名、范围与文档</td></tr>
+<tr><td class="w">「所属活动」改名「营销档期」，「活动日历」「活动汇总」改为「推送日历」「档期汇总」</td><td class="r">新人走查把归类标签当成游戏内活动</td><td class="r">需求文档 62 处、原型 75 处，全文替换</td><td class="r"><span class="tag green">自行决定表</span></td></tr>
+<tr><td class="w">写死项迁入的试点改为限时加码礼包未购买提醒</td><td class="r">评审：原试点三项走不通</td><td class="r">需求文档 4.2.6 迁入节；原型迁入管理页</td><td class="r"><span class="tag gray">明细写了，未标替你定</span></td></tr>
+<tr><td class="w">「夜间补充」标记保留，另加补充索引</td><td class="r">你验收时按标记找改动</td><td class="r">标记约 1,100 处（需求文档）、约 600 处（原型）</td><td class="r"><span class="tag green">自行决定表</span></td></tr>
+<tr><td class="w">范围不自行砍：42 块标「本期必要／可延后／建议可延后」</td><td class="r">「往全面写、标成本层级」</td><td class="r">需求文档第 8 章范围分级总表</td><td class="r"><span class="tag gray">作为待你定的「本期范围」的背景</span></td></tr>
+<tr><td class="w">呈交版第 15、16 页各改一句</td><td class="r">与需求文档说法不一致</td><td class="r">弹窗方案演示稿与生成脚本</td><td class="r"><span class="tag gray">单独一节列出改前改后</span></td></tr>
+</table>
+<p class="note">「改回哪里」的章节由关键词检索得出，未逐处核对。处数为今天上午的文件状态。</p>
+
+<h3>（b）留给你定的：7 件</h3>
+<table>
+<tr><th style="width:44px"></th><th>要定什么</th><th style="width:300px">为什么只有你能定</th></tr>
+<tr><td class="d">1</td><td class="r">每人每日弹窗上限：破产弹窗是否单设额度（大厅 6、破产 2，合计仍 8），项名是否改为「每人每天弹窗数量与弹出顺序」</td><td class="r">业务取舍，且要改已定的 17 项项名与呈交版</td></tr>
+<tr><td class="d">2</td><td class="r">呈交版与需求文档两处冲突：快显能否定时；标签人数是否剔除机器人与测试账号</td><td class="r">要改已呈交的说法</td></tr>
+<tr><td class="d">3</td><td class="r">与需求文档现写冲突的规则怎么改（公共活动叠加弹出、拦下原因逐道记录、测试只发白名单、中奖播报迁法等）；同活动跨推送方式去重是否进本期</td><td class="r">业务取舍与本期范围</td></tr>
+<tr><td class="d">4</td><td class="r">潜在付费的注册天数边界，暂按注册第 7–60 天</td><td class="r">人群口径。夜里子任务曾把它改成「已定」，主循环 04:10 发现后改回</td></tr>
+<tr><td class="d">5</td><td class="r">本期范围：建议可延后的 9 块怎么取舍；call 客是否纳入本需求</td><td class="r">范围取舍</td></tr>
+<tr><td class="d">6</td><td class="r">验收需求文档、原型与呈交版第 15、16、30 页</td><td class="r">验收只能由你</td></tr>
+<tr><td class="d">7</td><td class="r">安排法务：确认退订与注销范围、需抑制推送的玩家状态、敏感词库由谁维护</td><td class="r">对外安排</td></tr>
+</table>
+
+<h3>晨间简报给你看到了什么</h3>
+<div class="grid g4">
+  <div class="card"><span class="tag green">标成可推翻</span><div class="kv" style="font-size:14.5px">「我自行决定的事」表 12 行：上表 11 件，另 1 行是按已定事项维持勿扰 00:00–08:00</div></div>
+  <div class="card"><span class="tag gray">写了但没标是替你定</span><div class="kv" style="font-size:14.5px">11 件散在明细表、「已解决」一行、改动对照节里，如 VIP 默认排除、标签并入需求文档、换试点</div></div>
+  <div class="card"><span class="tag red">没写</span><div class="kv" style="font-size:14.5px">4 件：删 5 个配置维度、短链 20 字、「达任一上限」只列推播、最好与最差分别排</div></div>
+  <div class="card"><span class="tag gold">从「交你定」改为自定</span><div class="kv" style="font-size:14.5px">2 件：弹窗素材本期不做、VIP 默认排除；简报没说明夜里曾列为待你定</div></div>
+</div>
+
+<!-- ============ 06 ============ -->
+<h2><span class="no">06</span>接下来要你定的四件事：每个选项落地后会变成什么样，推荐项已标出</h2>
+
+<div class="qblock">
+<p class="q">一、自循环怎样算实现</p>
+<div class="grid g3">
+  <div class="card opt pick"><p class="h">A　评审放行的东西，你不再实质修改 <span class="tag gold">推荐</span></p><ul><li>衡量看：你对评审放行稿的实质修改次数</li><li>要先做：检验题、给评审补业务材料、按类型放行（见三、四）</li><li>推断：夜里更多时间花在评审和停下等你，交付量少于昨晚</li></ul></div>
+  <div class="card opt"><p class="h">B　不用人催，白天夜里都在推进</p><ul><li>衡量看：无人值守的工作时长与产出</li><li>夜间已做到（昨晚约 9 小时）；还差白天定时推进</li><li>你仍逐件验收；推断：推翻量维持现在的量级（16 天 52 处）</li></ul></div>
+  <div class="card opt"><p class="h">C　两者都要</p><ul><li>A、B 的工作都要做</li><li>放行条件达标前，仍由你逐件看</li><li>推断：用量比昨晚更高，撞上限的次数会增加</li></ul></div>
+</div>
+<p class="rec"><b>推荐 A。</b>夜间无人值守已基本做到（昨晚约 9 小时）；差的是评审放行不算数——16 天你推翻 52 处，其中 18 处评审已放行。A 不成立时，循环跑得越多，你要看的越多。</p>
+</div>
+
+<div class="qblock">
+<p class="q">二、碰到要你定的事，是否先按推荐往下走</p>
+<div class="grid g3">
+  <div class="card opt pick"><p class="h">A　能改回来的先走；方向与对外安排停下 <span class="tag gold">推荐</span></p><ul><li>即昨晚的做法：约 25 件先走，7 件停下</li><li>你早上看到「已按推荐做、可推翻」清单，每件要写清改回哪里（如改名营销档期要改回 137 处）</li><li>本期范围、法务这类停在原处，循环转做别的块</li></ul></div>
+  <div class="card opt"><p class="h">B　全停等你</p><ul><li>约 25 件也变成待你定，昨晚会是 30 件以上</li><li>遇到就停在那一块，夜里能推进的块变少</li><li>交付物里不会有你没看过的取舍</li></ul></div>
+  <div class="card opt"><p class="h">C　全部先走，你事后改</p><ul><li>本期范围、口径冲突也先按推荐写进需求文档与原型</li><li>对外安排（如法务）循环做不了，只能把假设写进文档</li><li>你推翻时改回量最大，如 9 块范围的增删</li></ul></div>
+</div>
+<p class="rec"><b>推荐 A，并补两条：</b>先走的每一件都进晨间「已按推荐做、可推翻」清单，写清改回哪里；夜里已列为「交你定」的，不得改成自定。昨晚有 4 件没写进简报、2 件从「交你定」改成了自定，这两条就是堵这个口子。选 C 会把本期范围、口径冲突也先写进文档，你推翻时改回量最大；选 B 夜里大半块会停住。</p>
+</div>
+
+<div class="qblock">
+<p class="q">三、规则照加，每条配一道「检验题」（你推翻过的那一版），评审判得出才算生效</p>
+<div class="grid g2">
+  <div class="card opt pick"><p class="h">采用 <span class="tag gold">推荐</span></p><ul><li>你每推翻一次，被推翻的原稿存成检验题；新评审方法要在这道题上判出问题才启用</li><li>已有先例：措辞复述、两层分法、逗号句三种方法拿旧稿回测都判出来了；42 条旧判例还没跑</li><li>新规则生效变慢；判不出的题会暴露缺的是方法还是业务材料（需业务信息的 16 处多半属后者）</li></ul></div>
+  <div class="card opt"><p class="h">不采用（维持现状）</p><ul><li>规则加了即生效，不验证评审能否判出</li><li>例：原型「只看目录和章首说得出分几块」10/14 已加，10/15 你仍指出原型章标题不起作用</li></ul></div>
+</div>
+<p class="rec"><b>推荐采用。</b>规则加了不验证，就不知道评审有没有照着判，原型章标题那次就是这样。需要业务信息的 16 处，检验题判不出时，要补给评审的是业务材料，再加规则没用。</p>
+</div>
+
+<div class="qblock">
+<p class="q">四、评审何时能替你放行</p>
+<div class="grid g3">
+  <div class="card opt pick"><p class="h">A　按问题类型分别放行，连续 5 份与你一致即放 <span class="tag gold">推荐</span></p><ul><li>按 52 处的分布推断：措辞类 8 处都只看交付物就能发现，最可能先达标、先不用你看</li><li>方向取舍类 12 处有 9 处要业务信息，难连续一致，长期仍到你</li><li>每类要攒够 5 份你验收过的产出才能判断</li></ul></div>
+  <div class="card opt"><p class="h">B　全部类型达标才放</p><ul><li>方向取舍类达标前，所有产出都由你看</li><li>何时达标取决于给评审补业务材料的进度，无法预估</li></ul></div>
+  <div class="card opt"><p class="h">C　永远由你最终判</p><ul><li>评审只做预筛，所有产出都到你</li><li>循环的作用是减少你看到的错误，不减少你要看的量</li></ul></div>
+</div>
+<p class="rec"><b>推荐 A。</b>措辞、可读性这类最可能先达标，先减少你要看的量；方向取舍类仍到你。B 要等最慢的方向取舍类达标，时间无法预估；C 不减少你要看的量。5 份是初始值，可调。</p>
+</div>
+
+<p class="links">原文：
+<a href="../过程记录/夜间推进_1015夜.md">夜间日志 10/15 夜</a> ·
+<a href="../../../.claude/scheduled-tasks/popup-tag-push-night-global/SKILL.md">夜间任务说明</a> ·
+<a href="../_scripts/夜间_闸门.py">闸门脚本</a> ·
+<a href="../_scripts/judge_程序.py">程序检查脚本</a> ·
+<a href="../分析/内容补强_弹窗配置条件_夜间.md">弹窗配置条件补法</a> ·
+<a href="../分析/标准判卷/弹窗配置条件_夜间判卷.md">弹窗配置条件评审</a> ·
+<a href="../分析/标准判卷/推送配置与操作_夜间判卷.md">推送配置与操作评审</a> ·
+<a href="../分析/夜间设计_统一口径.md">夜间统一口径</a> ·
+<a href="../规则与交接/标准体系.md">标准体系</a> ·
+<a href="../规则与交接/标准_推送系统后台集成需求.md">推送后台检查清单</a> ·
+<a href="../规则与交接/标准_弹窗标签推送方案.md">弹窗方案检查清单</a> ·
+<a href="../规则与交接/判例库/索引.md">判例库</a> ·
+<a href="../分析/推送后台_原型/评审_整体审核.md">原型审核第一轮</a> ·
+<a href="../分析/推送后台_原型/评审_整体审核_第2轮.md">原型审核第二轮</a> ·
+<a href="../分析/标准判卷/推送后台_设计概要_第二轮团队评审_夜间.md">设计概要第二轮评审</a> ·
+<a href="../过程记录/V4审查_1010.md">呈交版第四版审查</a> ·
+<a href="../过程记录/任务清单.md">任务清单（答复登记）</a> ·
+<a href="2026-10-16_夜间推进.html">昨晚晨间简报</a>
+</p>
+</div></body></html>

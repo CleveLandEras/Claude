@@ -1,0 +1,161 @@
+[
+ {
+  "id": "U1_照章",
+  "mode": "照章",
+  "prompt": "/Users/decheng.huang/claude/弹窗标签推送系统/规则与交接/判例库/考试材料/改后2/题目/U1_照章.md",
+  "grade": [
+   "01"
+  ],
+  "fp": [
+   "02"
+  ]
+ },
+ {
+  "id": "U1_举一反三",
+  "mode": "举一反三",
+  "prompt": "/Users/decheng.huang/claude/弹窗标签推送系统/规则与交接/判例库/考试材料/改后2/题目/U1_举一反三.md",
+  "grade": [
+   "01"
+  ],
+  "fp": []
+ },
+ {
+  "id": "U2_照章",
+  "mode": "照章",
+  "prompt": "/Users/decheng.huang/claude/弹窗标签推送系统/规则与交接/判例库/考试材料/改后2/题目/U2_照章.md",
+  "grade": [
+   "02"
+  ],
+  "fp": []
+ },
+ {
+  "id": "U2_举一反三",
+  "mode": "举一反三",
+  "prompt": "/Users/decheng.huang/claude/弹窗标签推送系统/规则与交接/判例库/考试材料/改后2/题目/U2_举一反三.md",
+  "grade": [
+   "02"
+  ],
+  "fp": []
+ },
+ {
+  "id": "U3_照章",
+  "mode": "照章",
+  "prompt": "/Users/decheng.huang/claude/弹窗标签推送系统/规则与交接/判例库/考试材料/改后2/题目/U3_照章.md",
+  "grade": [
+   "08"
+  ],
+  "fp": []
+ },
+ {
+  "id": "U3_举一反三",
+  "mode": "举一反三",
+  "prompt": "/Users/decheng.huang/claude/弹窗标签推送系统/规则与交接/判例库/考试材料/改后2/题目/U3_举一反三.md",
+  "grade": [
+   "08"
+  ],
+  "fp": []
+ },
+ {
+  "id": "U4_照章",
+  "mode": "照章",
+  "prompt": "/Users/decheng.huang/claude/弹窗标签推送系统/规则与交接/判例库/考试材料/改后2/题目/U4_照章.md",
+  "grade": [
+   "10",
+   "11"
+  ],
+  "fp": []
+ },
+ {
+  "id": "U4_举一反三",
+  "mode": "举一反三",
+  "prompt": "/Users/decheng.huang/claude/弹窗标签推送系统/规则与交接/判例库/考试材料/改后2/题目/U4_举一反三.md",
+  "grade": [
+   "10",
+   "11"
+  ],
+  "fp": []
+ },
+ {
+  "id": "U5_照章",
+  "mode": "照章",
+  "prompt": "/Users/decheng.huang/claude/弹窗标签推送系统/规则与交接/判例库/考试材料/改后2/题目/U5_照章.md",
+  "grade": [
+   "03",
+   "05",
+   "06"
+  ],
+  "fp": []
+ },
+ {
+  "id": "U5_举一反三",
+  "mode": "举一反三",
+  "prompt": "/Users/decheng.huang/claude/弹窗标签推送系统/规则与交接/判例库/考试材料/改后2/题目/U5_举一反三.md",
+  "grade": [
+   "03",
+   "05",
+   "06"
+  ],
+  "fp": []
+ },
+ {
+  "id": "U6_照章",
+  "mode": "照章",
+  "prompt": "/Users/decheng.huang/claude/弹窗标签推送系统/规则与交接/判例库/考试材料/改后2/题目/U6_照章.md",
+  "grade": [
+   "03",
+   "04"
+  ],
+  "fp": []
+ },
+ {
+  "id": "U6_举一反三",
+  "mode": "举一反三",
+  "prompt": "/Users/decheng.huang/claude/弹窗标签推送系统/规则与交接/判例库/考试材料/改后2/题目/U6_举一反三.md",
+  "grade": [
+   "03",
+   "04"
+  ],
+  "fp": []
+ },
+ {
+  "id": "F1_修正稿",
+  "mode": "修正稿",
+  "prompt": "/Users/decheng.huang/claude/弹窗标签推送系统/规则与交接/判例库/考试材料/改后2/题目/F1_修正稿.md",
+  "grade": [],
+  "fp": [
+   "01",
+   "03",
+   "04"
+  ]
+ },
+ {
+  "id": "F3_修正稿",
+  "mode": "修正稿",
+  "prompt": "/Users/decheng.huang/claude/弹窗标签推送系统/规则与交接/判例库/考试材料/改后2/题目/F3_修正稿.md",
+  "grade": [],
+  "fp": [
+   "08"
+  ]
+ },
+ {
+  "id": "F4_修正稿",
+  "mode": "修正稿",
+  "prompt": "/Users/decheng.huang/claude/弹窗标签推送系统/规则与交接/判例库/考试材料/改后2/题目/F4_修正稿.md",
+  "grade": [],
+  "fp": [
+   "10",
+   "11"
+  ]
+ },
+ {
+  "id": "F5_修正稿",
+  "mode": "修正稿",
+  "prompt": "/Users/decheng.huang/claude/弹窗标签推送系统/规则与交接/判例库/考试材料/改后2/题目/F5_修正稿.md",
+  "grade": [],
+  "fp": [
+   "03",
+   "05",
+   "06"
+  ]
+ }
+]

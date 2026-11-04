@@ -1,0 +1,166 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>夜间推进</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1180px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.35;margin:0 0 8px}
+.sub{font-size:16px;color:var(--ink-2);margin:0 0 28px}
+h2{font-family:var(--serif);font-size:20px;margin:52px 0 16px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+h3{font-size:16px;margin:26px 0 10px}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px}
+.phase{border-top:4px solid var(--gray)}
+.phase.blue{border-top-color:var(--blue)} .phase.green{border-top-color:var(--green)} .phase.red{border-top-color:var(--red)}
+.phase .h{font-size:16.5px;font-weight:700;margin:2px 0 10px}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:10px}
+.tag.red{background:var(--red-soft);color:var(--red)} .tag.blue{background:var(--blue-soft);color:var(--blue)} .tag.green{background:var(--green-soft);color:var(--green)} .tag.gray{background:var(--gray-soft);color:var(--gray)}
+.kv{font-size:14px;color:var(--ink-2);margin:6px 0}
+.kv b{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:2px}
+ul.s{margin:0;padding-left:18px;color:var(--ink-2);font-size:14.5px} ul.s li{margin:3px 0}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14px}
+th,td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12.5px;color:var(--muted);font-weight:600;background:var(--ground)}
+tr:last-child td{border-bottom:none}
+td.p{color:var(--muted);white-space:nowrap;width:64px}
+td.b{color:var(--muted)} td.a{color:var(--ink)} td.w{color:var(--ink-2);font-size:13.5px}
+.opt .h{font-size:16px;font-weight:700;margin:0 0 6px}
+.opt .l{font-size:14.5px;color:var(--ink-2)}
+.opt.rec{border:2px solid var(--blue);position:relative}
+.opt .badge{position:absolute;top:-11px;right:16px;background:var(--blue);color:#fff;font-size:12px;font-weight:700;padding:2px 10px;border-radius:3px}
+.why{font-size:14.5px;color:var(--ink-2);margin:12px 0 0}
+.why b{color:var(--ink)}
+.note{font-size:13px;color:var(--muted);margin:10px 0 0}
+.links{font-size:13px;color:var(--muted);margin-top:44px;line-height:2} a{color:var(--accent)}
+</style></head><body><div class="wrap">
+
+<p class="meta">夜间推进 · 2026-10-14 夜 · 依据：不带背景的读者与研发评审角色判卷（结果文件见各节），渲染图与原文已逐页复核</p>
+<h1>两份材料都可以交给你看了：今晚改的是事实、规则和弹窗方案与推送后台之间的矛盾，不是措辞</h1>
+<p class="sub">弹窗方案待你验收；推送后台设计概要判卷全部通过，待你安排需求评审。</p>
+
+<div class="grid g3">
+  <div class="card phase green"><span class="tag green">待你验收</span><div class="h">弹窗方案</div>
+    <div class="kv"><b>今晚做了</b>正文描述现状的 125 句逐句对后台截图、盘点、你的原话，与出处矛盾或无出处的已改</div>
+    <div class="kv"><b>最重要的一处</b>第 29 页：现有后台里破产礼包排第 3 个，原稿写成第 2 个（后台截图）</div></div>
+  <div class="card phase green"><span class="tag green">判卷通过，待你安排评审</span><div class="h">推送后台设计概要</div>
+    <div class="kv"><b>今晚做了</b>两轮判卷（研发团队评审、需求覆盖、出处与数字、读者复述、弹窗方案、设计概要、需求文档三份说法一致），按结果改了规则与范围</div>
+    <div class="kv"><b>需求文档</b>同步到 v0.8.2：研发照文档会做错的 9 处前后矛盾已改（第 04 节）</div>
+    <div class="kv"><b>最重要的一处</b>原稿写本需求只开发弹窗方案 17 项改动中的 3 项，另 3 项只在本后台放链接；实际这 6 项都在本需求开发（其余 11 项不在本需求范围），研发按旧写法会少估工作量</div></div>
+  <div class="card phase"><span class="tag gray">你今天要做的</span><div class="h">两件事</div>
+    <ul class="s"><li>验收弹窗方案（附与 10/13 版的逐页对比）</li><li>安排设计概要的需求评审（推荐现在就安排，不必先改原型，见第 05 节）</li></ul></div>
+</div>
+
+<h2><span class="no">01</span>设计概要：查出 2 处会让评审返工的错，加上第一轮的 7 条规则缺口，都已改</h2>
+<h3>第二轮查出的（研发团队视角评审＋三稿核对）</h3>
+<table>
+<tr><th>页</th><th>改前</th><th>改后</th><th>为什么</th></tr>
+<tr><td class="p">4</td><td class="b">本后台承接弹窗方案 17 项中的 3 项；新手弹窗接入、每人每日弹窗上限、快显与 Facebook、LINE 数据记录 3 项在弹窗方案单列计数，本后台提供入口</td><td class="a">本需求开发覆盖弹窗方案 17 项改动中的 6 项；后 3 项在弹窗方案里按弹窗、数据分列计数，开发在本需求内</td><td class="w">需求文档第 8 章本就包含后 3 项的全部开发；「只提供入口」会让研发少估，评审时一定被追问。需求文档 3.4 补同一句作出处</td></tr>
+<tr><td class="p">18</td><td class="b">逐人明细里，超过当天上限的人数为 0（不计入上限的单条推送与迁移期例外除外）</td><td class="a">按上限判断后发出的推送，没有人超过当天上限；设为不遵守上限的单条推送、调低上限前已收的、迁移期例外除外</td><td class="w">反例：推播已收 2／2 的玩家再收一条「不遵守上限、仍计入」的维护公告，成 3／2；当天把上限从 3 调到 2。两者都是系统正确行为，旧写法会判不合格</td></tr>
+<tr><td class="p">9、16</td><td class="b">游戏外合计上限＝弹窗方案的方案外后续建议</td><td class="a">对应后续建议「跨推送方式每日上限」中游戏外的部分，本期只留开关、默认关闭；弹窗与推送合计上限也属后续建议，本期不做</td><td class="w">弹窗方案的后续建议有两条，旧写法只对上一条，读者会以为另一条被否定</td></tr>
+<tr><td class="p">5、17</td><td class="b">潜在流失 7,880 人 → 可触达 4,310 人；客户端依赖缺推播点击上报</td><td class="a">表头标「人数为示例」；客户端依赖补「推播点击上报与跳转」</td><td class="w">潜在流失标签还没建，弹窗方案写的是「新建标签后才能统计」；点击上报是需求文档列的客户端任务</td></tr>
+</table>
+<h3>第一轮查出的规则缺口（反例场景 → 改法；需求文档同步）</h3>
+<table>
+<tr><th>问题</th><th>反例场景</th><th>改成</th></tr>
+<tr><td class="a">维护公告发不出去</td><td class="w">凌晨 02:00 临时停机，「不受上限」绕不开勿扰，通知顺延到 08:00</td><td class="a">单条推送不遵守上限时，可另选「不受勿扰」，两项共用一条原因、记操作纪录</td></tr>
+<tr><td class="a">迁移期间超上限</td><td class="w">营销侧切换前已排程的短信照发、旧版客户端写死的快显照弹</td><td class="a">两类写明是迁移期例外，不计上限、不进看板；验收从切换完成、已排程的发完后起算</td></tr>
+<tr><td class="a">Facebook 绑定不等于能发</td><td class="w">Messenger 只允许在玩家最近一次互动后 24 小时内发营销消息</td><td class="a">可触达＝已绑定且平台允许发送；发送窗口列入「评审时请确认」</td></tr>
+<tr><td class="a">短信计费字数</td><td class="w">长短信串接后每则约 67 字，按 70 字算会少算则数</td><td class="a">超过 70 字按串接计费，350 字为 6 则；列为暂定值</td></tr>
+<tr><td class="a">弹窗对象「现在不能排除」</td><td class="w">与已定事项第 15 条相反</td><td class="a">现在排除要另建带排除条件的群组；保存前看不到人数与重叠</td></tr>
+</table>
+<p class="note">读者复述：改动的 9 页主旨把握都高；会读错事实的 6 句已改（如「须选计入方式」补出两种选项、「迁移期例外同上」写全起算点）；其余措辞级意见列在第 07 节，不再改。</p>
+
+<h2><span class="no">02</span>弹窗方案：现状句逐句对出处，改掉与事实相反、没有出处的说法</h2>
+<p class="note" style="margin-top:0">之前五轮判卷查的是写法和页间一致；今晚第一次逐句查「现在能／不能、有／没有」。125 句中 59 句出处直接支持，44 句部分支持或需推断（说法已保守，保留），17 句找不到出处，5 句与出处矛盾。改后的页再请无上下文读者读：15 页中 13 页把握高、2 页中，没有因改动产生新的误读。</p>
+<table>
+<tr><th>页</th><th>改前</th><th>改后</th><th>依据</th></tr>
+<tr><td class="p">29</td><td class="b">破产礼包：已储值玩家破产时第 2 个 → 第 1 个</td><td class="a">破产礼包：破产储值弹窗第 3 个 → 第 1 个（现排在首储礼包、独享礼包之后）</td><td class="w">后台「弹窗顺序设定」截图</td></tr>
+<tr><td class="p">6、11、12、15</td><td class="b">部分推送现在查不到数据；Facebook、LINE 现在查不到；快显数据现在查不到</td><td class="a">不在后台报表里；现有后台没有报表；没有后台页面可查</td><td class="w">你 10/10 说推播、弹窗「全都有记录」；缺的是报表，不是记录</td></tr>
+<tr><td class="p">13</td><td class="b">开启即点击；报表没有到达</td><td class="a">报表没有到达</td><td class="w">报表有「開啟數」「開啟次數」两个字段，哪个是点击没有出处</td></tr>
+<tr><td class="p">10</td><td class="b">每人每天弹窗上限：只写规则</td><td class="a">加：先在弹窗后台设；推送统一后台建成后，移到「频率上限」页与其他推送一起设</td><td class="w">与推送后台说的是两个时点，两稿现已一致</td></tr>
+<tr><td class="p">20、24、27、28、30</td><td class="b">新增玩家弹 6 个；活动类就可达 14 个；14 个都会看到</td><td class="a">最多 6 个；最多 14 个；最多可看到 14 个</td><td class="w">新手弹窗未必每次都弹；14 个要各活动都在开放期</td></tr>
+<tr><td class="p">9</td><td class="b">所以潜在流失、破产各分一半先试／比较两组人均点击后再调整</td><td class="a">所以潜在流失、破产玩家各分一半：／实验组用上面的新排法，对照组不变／比较两组人均点击，再定用哪种排法</td><td class="w">原句两位读者都读偏；改后两位都读对</td></tr>
+<tr><td class="p">12</td><td class="b">推播现在用于限时加码礼包，发给未购买的玩家</td><td class="a">……发给触发后未购买的玩家</td><td class="w">读者读成「从未付费的玩家」；盘点原文是触发后在设定时间内未购买</td></tr>
+<tr><td class="p">12、19、31</td><td class="b">算不出一名玩家一天收到几条；查不到谁改了条件；这些玩家收不到为所属人群设计的推送</td><td class="a">没有一处能看到一名玩家一天收到几条；标签表单没有变更记录；（后半句删去）</td><td class="w">原句没有出处，改为截图能证实的说法</td></tr>
+</table>
+<p class="note">核对后不改的：「营销侧」（你 10/10、10/13 用过的叫法）；iOS 推播没有到达、LINE 到达只有按日汇总（平台官方文档）。推播报表的「曝光次數」不是到达：1.3 萬等于「開啟數」，远小于「傳送次數」7.2 萬。</p>
+
+<h2><span class="no">03</span>两条线的共有事实已对齐：上限默认值、回传口径、叫法三份一致</h2>
+<ul class="s">
+<li>一致：「推送统一后台」叫法；默认上限（推播 2 条，短信、Facebook、LINE 各 1 条，弹窗 8 个，快显 3 次）；iOS 只回传点击、Android 回传到达；Facebook、LINE 由营销侧发送、现在没有后台报表；弹窗对象现在能排除</li>
+<li>今晚对齐：弹窗上限的设定时点（先在弹窗后台，统一后台建成后迁入）；开发范围 6 项；合计上限的归属；礼包推播能否按标签选对象，需求文档原写成「不能」，改为待查（与已定事项一致，弹窗方案第 13 页本就按两种情况写）</li>
+<li>未改：弹窗方案自身对三项改动的叫法前后不完全一样（如第 21 页「运营自设跳转与触发」、第 14 页「推送跳转与触发自助」），推送后台按已定事项的叫法写；列在第 07 节</li>
+</ul>
+
+<h2><span class="no">04</span>需求文档到 v0.8.2：研发照文档会做错的 9 处前后矛盾已改，估工时还要定的事全部列进「评审时请确认」</h2>
+<p class="why" style="margin-top:0"><b>怎么查的</b>　请五位研发团队角色（服务端、客户端、数据平台、营销侧、后台前端）各自只读本团队章节，列出估工时还缺什么；另请一位核对员逐章对照需求文档、原型、方案设计找冲突。改完再请一位复核员核对改动是否落地、有没有带出新矛盾。</p>
+<h3>会让研发做错的矛盾（改正文）</h3>
+<table>
+<tr><th>事项</th><th>改前</th><th>改后</th></tr>
+<tr><td class="w">列表「有失败可重试」</td><td class="b">一处写「有可重试条数且在窗口内」，字段表写「全部或部分失败」</td><td class="a">统一为前者：全部被当场拒绝、系统延迟超时的不算（按后者，没有可重试条数的推送也会被筛出来）</td></tr>
+<tr><td class="w">立即推送的「频率上限拦下」估算</td><td class="b">规则写按当前已收，表单字段写一律按近 7 天</td><td class="a">立即按当前已收，定时按近 7 天同一时刻，按行为按触发时刻</td></tr>
+<tr><td class="w">按行为推送的版本快照</td><td class="b">触发条件、生效期间可改，快照却不存</td><td class="a">快照补存触发条件、生效期间、图片，否则版本数据对不上当时设置</td></tr>
+<tr><td class="w">未送达原因</td><td class="b">规则里有「平台拒绝」，数据表枚举没有</td><td class="a">数据表补上「平台拒绝」（Facebook、LINE）</td></tr>
+<tr><td class="w">短信、Facebook、LINE 还在营销侧发时</td><td class="b">切换章写不能恢复、编辑；状态表照常允许，到时还会自动恢复</td><td class="a">状态表、恢复、确认等接口都补上「原处生效时不能确认、恢复、编辑，不自动恢复」</td></tr>
+<tr><td class="w">礼包快到期提醒</td><td class="b">改成「礼包出现时发事件、推送服务排提醒」后，切换前出现、切换后到点的礼包两边都不发</td><td class="a">推送进入运行中时，为已出现、未到期的礼包补排提醒；购买状态到点向礼包后台查询</td></tr>
+<tr><td class="w">弹窗每人每天上限</td><td class="b">建成前在原页面设，但没写回退后哪处可改</td><td class="a">只有一个值；当前生效的那一处可改，另一处只读</td></tr>
+<tr><td class="w">Facebook、LINE 按钮点击</td><td class="b">写「加追踪参数」，点击只有目标网站收得到</td><td class="a">与短信一样换成短链跳转，点击时记录</td></tr>
+<tr><td class="w">超过 30 天的查询</td><td class="b">逐人明细只留 30 天，短信发送后登录人数、快显不在线人数仍要求有数</td><td class="a">超过 30 天显示「—」并写原因，不估算，不扩大数据平台范围</td></tr>
+</table>
+<h3>估工时还要定的事：24 条列进「评审时请确认」，每条写明本文按什么估</h3>
+<div class="grid g3">
+  <div class="card"><p class="h" style="font-weight:700;margin:0 0 6px">服务端 9 条</p><p class="l" style="font-size:14.5px;color:var(--ink-2);margin:0">例：标签群组成员按标签系统已有接口读取，不另建快照；快显在线查询与下发由长连接所在服务提供</p></div>
+  <div class="card"><p class="h" style="font-weight:700;margin:0 0 6px">客户端 7 条</p><p class="l" style="font-size:14.5px;color:var(--ink-2);margin:0">例：按版本号判断是否支持服务端下发；推播目标失效时打开大厅；上报失败不补报</p></div>
+  <div class="card"><p class="h" style="font-weight:700;margin:0 0 6px">数据平台 4 条、营销侧 4 条</p><p class="l" style="font-size:14.5px;color:var(--ink-2);margin:0">例：汇总表粒度与指标；营销侧不读开关，按约定时刻人工停止新建；周期性排程切换时停掉、在本后台重建</p></div>
+</div>
+<p class="note">另：与原型、方案设计的差异新增 13 处登记进「待对齐」表（如原型写「顺延到 08:00」，需求文档按勿扰结束时刻），评审后改原型时一起改。尚有 3 处写得不全但不冲突（如短信、Facebook、LINE 字段表没重复写「原处生效时不能确认」），同样留到评审后。</p>
+<p class="note">「本文已按」一列是我按沿用现有、最小改动、可回退的原则定的默认做法，研发评审时可改；影响范围写在同一行。</p>
+
+<h2><span class="no">05</span>要你定：设计概要的需求评审，推荐判卷通过后直接安排</h2>
+<div class="grid g2">
+  <div class="card opt rec"><span class="badge">推荐</span><p class="h">甲　现在就安排需求评审</p><p class="l">用设计概要＋需求文档 v0.8.2 开会；原型待对齐的 13 处与评审意见一起改</p></div>
+  <div class="card opt"><p class="h">乙　先改完原型再评审</p><p class="l">原型与设计概要、需求文档完全一致后再开会；多一轮原型改稿与判卷，评审推迟</p></div>
+</div>
+<p class="why"><b>理由</b>　评审判的是需求是否合理；13 处差异是原型图上的用词与个别口径，设计概要与需求文档已经一致。唯一会被看出的是第 9 页截图里还没有「不受勿扰」选项，评审时口头说明即可。</p>
+
+<h2><span class="no">06</span>全局判断：两份材料都该交出去拿外部意见，不再加内部判卷轮次</h2>
+<div class="grid g3">
+  <div class="card"><p class="h" style="font-weight:700;margin:0 0 6px">为什么</p><p class="l" style="font-size:14.5px;color:var(--ink-2);margin:0">今晚有价值的发现全是事实、规则和稿间矛盾，都是第一次换角度查出来的；同一角度再查一轮只剩措辞，收益递减</p></div>
+  <div class="card"><p class="h" style="font-weight:700;margin:0 0 6px">弹窗方案</p><p class="l" style="font-size:14.5px;color:var(--ink-2);margin:0">你验收后交主管，看与他的期望有无出入；措辞按主管反馈再改</p></div>
+  <div class="card"><p class="h" style="font-weight:700;margin:0 0 6px">推送后台</p><p class="l" style="font-size:14.5px;color:var(--ink-2);margin:0">需求评审拿到团队意见后，一次改原型（含待对齐的全部差异）和需求文档，再进研发评审。今晚换新的研发角色重读需求文档，每次都能查出更细的问题；这类问题本就要研发评审当面定，已全部列进「评审时请确认」，不再靠内部判卷穷尽</p></div>
+</div>
+
+<h2><span class="no">07</span>留给你看的细节问题（不影响验收与评审，改与不改都行）</h2>
+<table>
+<tr><th>材料</th><th>位置</th><th>问题</th></tr>
+<tr><td class="p">弹窗方案</td><td class="w">第 14、21 页</td><td class="a">已改（10/15 凌晨）：同一改动两页叫法不同，统一为已定事项的叫法「推送跳转与触发自助」「快显与 Facebook、LINE 数据记录」。上限一项全稿都写「每种推送每人每天上限」，与已定事项「每种推送方式每日上限」只是字面不同，未改</td></tr>
+<tr><td class="p">弹窗方案</td><td class="w">第 6、12 页</td><td class="a">用「8/1–9/16 登录过的 74,480 人」，与全稿「近一月 62,292 人」口径不同，读者会以为数字前后不一；口径在第 31 页小字解释</td></tr>
+<tr><td class="p">弹窗方案</td><td class="w">第 9 页</td><td class="a">「这两种排法都没有现成依据」中「这两种」指代要猜；破产实验组怎么分没写</td></tr>
+<tr><td class="p">弹窗方案</td><td class="w">第 10 页</td><td class="a">左卡 10 行，末行离卡片底边很近</td></tr>
+<tr><td class="p">弹窗方案</td><td class="w">第 25 页</td><td class="a">「注册 7–14 天」按 9/16 数据复算，2,092 人对应 7–13 天；与已定事项第 17 条写法一致，未改</td></tr>
+<tr><td class="p">设计概要</td><td class="w">第 9 页</td><td class="a">原型截图里还没有「不受勿扰」选项（需求文档已列入原型待对齐）</td></tr>
+<tr><td class="p">设计概要</td><td class="w">第 13 页</td><td class="a">两张截图是不同例子（一张不重叠、一张重叠 4 条），没有标明</td></tr>
+<tr><td class="p">设计概要</td><td class="w">第 14 页</td><td class="a">Facebook 消息标签不能发促销，营销类推送实际可触达可能低于示例的 33%</td></tr>
+<tr><td class="p">设计概要</td><td class="w">第 18 页</td><td class="a">「不回传」与「无回执」的区别、「统计门槛」没有就地解释</td></tr>
+</table>
+
+<p class="links">原文：
+<a href="../弹窗标签推送方案/弹窗标签推送方案.pptx">弹窗方案</a> ·
+<a href="../分析/标准判卷/弹窗方案_对比1013_夜间.md">与 10/13 版逐页对比</a> ·
+<a href="../分析/标准判卷/弹窗方案_现状溯源_夜间.md">现状句溯源</a> ·
+<a href="../推送系统后台集成需求/5_设计概要.pptx">设计概要</a> ·
+<a href="../推送系统后台集成需求/4_需求文档.md">需求文档 v0.8.2</a> · <a href="../分析/标准判卷/推送后台_需求文档_改稿记录_夜间.md">需求文档改稿记录</a> · <a href="../分析/标准判卷/推送后台_C3重判_夜间.md">三份材料冲突核对</a> · <a href="../分析/标准判卷/推送后台_需求文档_第三轮复核_夜间.md">改后复核</a> ·
+<a href="../分析/标准判卷/推送后台_设计概要_第二轮团队评审_夜间.md">第二轮团队评审</a> ·
+<a href="../分析/标准判卷/跨线一致_三稿核对_夜间.md">弹窗方案、设计概要、需求文档一致核对</a> ·
+<a href="../分析/标准判卷/推送后台_设计概要_改稿记录_夜间.md">设计概要改稿记录</a> ·
+<a href="../过程记录/夜间推进_1014夜.md">夜间日志</a></p>
+</div></body></html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><title>新增玩家弹窗改前改后</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#fff;font-family:-apple-system,"PingFang SC","Helvetica Neue",sans-serif;color:#1b1d21}
+.fig{padding:24px 28px 28px;display:grid;grid-template-columns:118px 1fr 44px 1fr;column-gap:0}
+.col{display:flex;flex-direction:column}
+.lab .h,.panel .h{height:58px;display:flex;align-items:center}
+.lab .h{font-size:14px;color:#868b92;font-weight:600;line-height:1.4}
+.lab .r{height:202px;display:flex;align-items:center;font-size:17px;font-weight:700;color:#4a4f56;border-top:1px solid #e2e0db}
+.lab .t{height:78px;display:flex;align-items:center;font-size:17px;font-weight:700;color:#4a4f56;border-top:1px solid #e2e0db}
+.panel{border-radius:8px;padding:0 22px}
+.panel.now{background:#f5f4f1;border:1px solid #e2e0db}
+.panel.new{background:#eef4fb;border:1px solid #c6d9f1}
+.panel .h{font-size:22px;font-weight:700;margin:0 -22px;padding:0 22px}
+.panel.now .h{color:#4a4f56}
+.panel.new .h{color:#1f63a8}
+.panel .r{height:202px;border-top:1px solid #e2e0db;display:flex;flex-direction:column;justify-content:center}
+.panel.new .r,.panel.new .t{border-top-color:#c6d9f1}
+.cards{display:flex;gap:16px;align-items:flex-start}
+.panel .t{height:78px;border-top:1px solid #e2e0db;display:flex;align-items:center;font-size:34px;font-weight:800}
+.panel.now .t{color:#a8382b}
+.panel.new .t{color:#1f63a8}
+.arrow{display:flex;align-items:center;justify-content:center}
+.arrow i{display:block;width:0;height:0;border-top:16px solid transparent;border-bottom:16px solid transparent;border-left:18px solid #b9b6ad}
+.pop{width:128px;height:164px;border-radius:12px;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.10);position:relative;overflow:hidden;border:1px solid #d6d9de;flex:none}
+.pop .art{height:74px}
+.pop.act .art{background:radial-gradient(circle at 78% 30%,rgba(255,255,255,.28) 0 16px,transparent 17px),linear-gradient(135deg,#7f8ff0,#4757c9)}
+.pop.pay .art{background:radial-gradient(circle at 78% 30%,rgba(255,255,255,.30) 0 16px,transparent 17px),linear-gradient(135deg,#f3c25a,#d98a1c)}
+.pop.nov .art{background:radial-gradient(circle at 78% 30%,rgba(255,255,255,.28) 0 16px,transparent 17px),linear-gradient(135deg,#4cc0b2,#1f8579)}
+.pop .nm{font-size:15px;font-weight:700;color:#303133;text-align:center;margin-top:13px;white-space:nowrap}
+.pop .bt{margin:12px auto 0;width:74px;height:26px;border-radius:13px;color:#fff;font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:center}
+.pop.act .bt{background:#4757c9}.pop.pay .bt{background:#d98a1c}.pop.nov .bt{background:#1f8579}
+.pop .x{position:absolute;top:7px;right:7px;width:20px;height:20px;border-radius:50%;background:rgba(0,0,0,.30);color:#fff;font-size:14px;line-height:19px;text-align:center}
+.pop .no{position:absolute;top:7px;left:7px;width:24px;height:24px;border-radius:50%;background:#fff;color:#303133;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center}
+.pop.dash{border:2px dashed #7d828a;box-shadow:none}
+.note{margin-top:10px;font-size:14.5px;font-weight:700;height:22px}
+.note.red{color:#a8382b}
+.note.blue{color:#1f63a8}
+.note span{display:inline-block;width:272px;text-align:center}
+.note.blue span{width:auto;font-weight:700}
+.note.blue span{display:inline-flex;justify-content:center}
+.note .pl{background:#2b5ea8;color:#fff;font-size:13px;padding:2px 9px;border-radius:4px}
+</style></head><body>
+<div class="fig">
+  <div class="col lab">
+    <div class="h">新增玩家<br>每次进大厅</div>
+    <div class="r">活动类</div>
+    <div class="r">储值类</div>
+    <div class="r">新手弹窗</div>
+    <div class="t">合计</div>
+  </div>
+  <div class="col panel now">
+    <div class="h">现在</div>
+    <div class="r"><div class="cards">
+      <div class="pop act"><span class="no">1</span><span class="x">×</span><div class="art"></div><div class="nm">热门资讯</div><div class="bt">前往</div></div>
+      <div class="pop act"><span class="no">2</span><span class="x">×</span><div class="art"></div><div class="nm">发信送奖</div><div class="bt">前往</div></div>
+      <div class="pop act"><span class="no">3</span><span class="x">×</span><div class="art"></div><div class="nm">卡别直升活动</div><div class="bt">前往</div></div>
+    </div><div class="note"></div></div>
+    <div class="r"><div class="cards">
+      <div class="pop pay"><span class="no">4</span><span class="x">×</span><div class="art"></div><div class="nm">首储礼包</div><div class="bt">购买</div></div>
+    </div><div class="note"></div></div>
+    <div class="r"><div class="cards">
+      <div class="pop nov dash"><span class="no">5</span><span class="x">×</span><div class="art"></div><div class="nm">新手挑战</div><div class="bt">前往</div></div>
+      <div class="pop nov dash"><span class="no">6</span><span class="x">×</span><div class="art"></div><div class="nm">新手通行证</div><div class="bt">前往</div></div>
+    </div><div class="note red"><span>后台看不到</span></div></div>
+    <div class="t">共 6 个</div>
+  </div>
+  <div class="arrow"><i></i></div>
+  <div class="col panel new">
+    <div class="h">改后</div>
+    <div class="r"><div class="cards">
+      <div class="pop act"><span class="no">1</span><span class="x">×</span><div class="art"></div><div class="nm">热门资讯</div><div class="bt">前往</div></div>
+    </div><div class="note"></div></div>
+    <div class="r"><div class="cards">
+      <div class="pop pay"><span class="no">2</span><span class="x">×</span><div class="art"></div><div class="nm">首储礼包</div><div class="bt">购买</div></div>
+    </div><div class="note"></div></div>
+    <div class="r"><div class="cards">
+      <div class="pop nov dash"><span class="x">×</span><div class="art"></div><div class="nm">新手挑战</div><div class="bt">前往</div></div>
+      <div class="pop nov dash"><span class="x">×</span><div class="art"></div><div class="nm">新手通行证</div><div class="bt">前往</div></div>
+    </div><div class="note blue"><span>不变；接入后台后排最前（较大开发）</span></div></div>
+    <div class="t">共 4 个</div>
+  </div>
+</div>
+</body></html>

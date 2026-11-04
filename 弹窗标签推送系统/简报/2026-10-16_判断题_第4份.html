@@ -1,0 +1,589 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>新建推播判断题</title>
+<style>
+:root{--ground:#f4f3f0;--surface:#fff;--ink:#1b1d21;--ink-2:#3d4248;--muted:#4a4f56;--line:#e2e0db;--accent:#9a6f24;
+--yes:#2f6b52;--no:#a8382b;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#c9cdd2;--muted:#adb3ba;--line:#2e3339;--accent:#d6ab5c;
+--yes:#7dbb9c;--no:#e48e7f;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#c9cdd2;--muted:#adb3ba;--line:#2e3339;--accent:#d6ab5c;
+--yes:#7dbb9c;--no:#e48e7f;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.8}
+a{color:var(--accent)}
+.wrap{max-width:1600px;margin:0 auto;padding:48px 40px 96px}
+
+/* 页首 */
+.meta{font-size:14px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.5;margin:0 0 14px}
+.sub{font-size:16px;color:var(--ink);margin:0 0 4px}
+.legend{font-size:14px;color:var(--muted);margin:0}
+
+/* 节标题 */
+h2{font-family:var(--serif);font-size:21px;line-height:1.5;margin:56px 0 20px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:14px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+
+/* 标准卡片 */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:26px 32px 22px;margin:0 0 32px}
+.tag{font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.04em;margin:0 0 6px}
+.tag span{font-weight:400;color:var(--muted);letter-spacing:0;margin-left:8px}
+.std{font-size:18px;font-weight:700;line-height:1.65;margin:0;display:flex;gap:10px}
+.std .n{color:var(--accent);flex:none;width:14px}
+.std .eg{display:block;font-size:15px;font-weight:400;color:var(--ink-2);margin-top:4px}
+.info{font-size:14px;color:var(--muted);margin:6px 0 0 24px;line-height:1.7}
+.info b{font-weight:600;color:var(--ink-2)}
+.info i{font-style:normal;margin:0 10px;color:var(--line)}
+
+.cmp{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;margin:22px 0 0}
+.cmp h3{font-size:14px;font-weight:700;color:var(--muted);margin:0 0 10px;letter-spacing:.02em}
+ul.ind{margin:0;padding:0;list-style:none}
+ul.ind li{margin:0 0 12px;color:var(--ink-2)} ul.ind li:last-child{margin-bottom:0}
+ul.ind b{color:var(--ink)}
+ul.ind a{font-size:14px;white-space:nowrap;margin-left:4px}
+.none{color:var(--muted)}
+.uncheck{font-size:13px;font-weight:700;color:var(--no);white-space:nowrap}
+figure{margin:0 0 12px}
+figure img{display:block;max-width:100%;height:auto;border:1px solid var(--line);border-radius:4px;background:#fff}
+figcaption{font-size:13px;color:var(--muted);margin-top:4px;line-height:1.5}
+.txt{color:var(--ink-2);margin:0}
+.txt q{quotes:"「" "」"}
+
+.verdict{display:flex;align-items:center;justify-content:space-between;gap:32px;margin:24px 0 0;padding:16px 0 0;border-top:1px solid var(--line)}
+.ai{color:var(--ink-2);flex:1;min-width:0}
+.ai .lb{font-weight:600;color:var(--ink)}
+.ai b{font-size:17px;margin:0 2px}
+.ai b.yes{color:var(--yes)} .ai b.no{color:var(--no)}
+.you{flex:none;display:flex;align-items:center;gap:10px;font-size:15px;color:var(--ink)}
+.you .lb{font-weight:600}
+.you .opt{font-size:14px;color:var(--muted)}
+.dk{display:inline-block;width:150px;height:36px;border:1px solid var(--line);border-radius:4px}
+
+.note{font-size:14px;color:var(--muted);margin:-8px 0 0}
+.note.lead{margin:-8px 0 20px}
+ul.ind + figure{margin-top:18px}
+
+/* 参考案例 */
+.cases{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:start}
+.case{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:24px 28px}
+.case .h{font-size:17px;font-weight:700;margin:0 0 12px}
+.case dl{margin:0}
+.case dt{font-size:14px;font-weight:600;color:var(--muted);margin:0}
+.case dd{margin:0 0 12px;color:var(--ink-2)}
+.case dd.said{color:var(--ink);font-weight:600}
+.case figure{margin:16px 0 0}
+
+/* 怎么回 */
+.reply{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 28px;font-size:16px}
+.reply b{color:var(--accent)}
+.links{font-size:14px;color:var(--muted);margin-top:40px}
+</style><style id="dkjudge-css">
+.wrap{position:relative}
+.jstat{position:absolute;top:44px;right:40px;font-size:14px;line-height:1.8;color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:3px 12px}
+.jstat b{font-size:15px;color:var(--ink);margin:0 1px}
+.jstat.all b{color:var(--yes)}
+.jstat .d{color:var(--yes);font-weight:600}
+.verdict{flex-wrap:wrap;row-gap:12px}
+.you .jb{font-family:inherit;font-size:15px;line-height:1.2;padding:7px 18px;border:1px solid var(--line);border-radius:4px;background:var(--surface);color:var(--ink);cursor:pointer}
+.you .jb:hover{border-color:var(--muted)}
+.you .jb.on{font-weight:700;color:var(--surface)}
+.you .jb.on[data-v="同意"]{background:var(--yes);border-color:var(--yes)}
+.you .jb.on[data-v="不同意"]{background:var(--no);border-color:var(--no)}
+.why{flex:1 0 100%}
+.why[hidden]{display:none}
+.why input{display:block;width:100%;font-family:inherit;font-size:15px;line-height:1.5;padding:7px 12px;border:1px solid var(--line);border-left:3px solid var(--no);border-radius:4px;background:var(--surface);color:var(--ink)}
+.jend{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:22px 28px 20px}
+.jend .jlb{display:block;font-weight:600;margin:0 0 8px}
+.jend textarea{display:block;width:100%;min-height:180px;font-family:inherit;font-size:16px;line-height:1.7;padding:10px 14px;border:1px solid var(--line);border-radius:4px;background:var(--surface);color:var(--ink);resize:vertical}
+.jend textarea.jout{min-height:110px;margin-top:12px;font-size:15px}
+.jend textarea[hidden]{display:none}
+.jrow{display:flex;align-items:center;flex-wrap:wrap;gap:24px;margin:16px 0 0}
+.jdone{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:600;cursor:pointer}
+.jdone input{width:18px;height:18px;margin:0;accent-color:var(--yes);cursor:pointer}
+.jcopy{font-family:inherit;font-size:14px;line-height:1.2;padding:7px 14px;border:1px solid var(--line);border-radius:4px;background:var(--surface);color:var(--ink-2);cursor:pointer}
+.jcopy:hover{border-color:var(--muted)}
+.jmsg{font-size:14px;color:var(--yes)}
+.jnote{font-size:14px;color:var(--muted);margin:12px 0 0}
+</style></head><body><div class="wrap">
+<div class="jstat" id="dk-stat" aria-live="polite">已判 <b id="dk-x">0</b> / 14 条<span class="d" id="dk-statdone" hidden> · 判完了</span></div>
+
+<p class="meta">弹窗标签推送系统 · 2026-10-16 · 第 4 份产出 · 判断题</p>
+<h1>第 4 份｜运营每天用「新建推播」页发推播，这一页够不够用？不设审批，靠页上的校验和确认能不能防住发错？</h1>
+<p class="sub">按下面 14 条标准逐条看 AI 评审的结论（每条只答「符合」或「不符合」），你只判同意或不同意；也可补标准里缺的条目。</p>
+<p class="legend">不设审批是你 10/12 定的（改为发送前一页确认＋发给测试账号＋操作纪录），这里不再判要不要审批，只判这一页做得够不够。</p>
+
+<h2><span class="no">01</span>判断标准：6 条，按「日常发送 → 发前防错 → 发后止损」排</h2>
+
+<!-- 标准 1 -->
+<section class="card">
+  <p class="tag">功能覆盖<span>例行推播不重填</span></p>
+  <p class="std"><span class="n">1</span><span>每天、每周都要发的推播不用每次从头填：能从模板带入内容和发送设置、带入常用受众、设成每天或每周重复、复制旧推送再改</span></p>
+  <p class="info"><b>对应场景</b>　每日补给、回流召回这类例行推播<i>|</i><b>出处</b>　业内做法：Braze、OneSignal</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>Braze</b>：定时发送可选一次、每天、每周、每月 <a href="https://www.braze.com/docs/user_guide/messaging/campaigns/schedule_your_campaign/scheduled_delivery">Braze 文档</a></li>
+        <li><b>Braze</b>：活动列表可「复制」，复制件是草稿，改完再发 <a href="https://www.braze.com/docs/user_guide/engagement_tools/messaging_fundamentals/duplicating">Braze 文档</a></li>
+        <li><b>OneSignal</b>：控制台新建消息时可选「从模板开始」，模板按渠道分 <a href="https://documentation.onesignal.com/docs/en/templates">OneSignal 文档</a></li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第4份_1d_模板与常用受众.jpg" width="569" alt="从模板创建与常用受众"><figcaption>新建推播 › 推送内容「从模板创建」、发送对象「常用受众」</figcaption></figure>
+      <figure><img src="图/2026-10-16_判断题新格式/第4份_1c_重复每天.jpg" width="569" alt="重复每天"><figcaption>新建推播 › 发送时间「重复」选每天</figcaption></figure>
+      <p class="txt">模板带入内容、跳转、常用受众与发送设置，各字段仍可改；重复可选每天或每周几，「重复至」不超过 90 天，每期内容可设固定或每期更新；推播列表每行有「复制」。</p></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-1"><span class="lb">AI 评审：</span><b>是</b>　模板下拉、常用受众、重复每天/每周几、列表「复制」四项齐全</div>
+    <div class="you" id="dk-1" data-k="ai-1"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-1" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 1 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 2 -->
+<section class="card">
+  <p class="tag">状态与防错<span>发前看清发给谁、多少人</span></p>
+  <p class="std"><span class="n">2</span><span>点「确认排程」前看得到这条会发给多少人：人数从群组逐层算到预计发出；发全部玩家时须再确认一次</span></p>
+  <p class="info"><b>防的错</b>　选错群组、漏排除、误发全部玩家<i>|</i><b>出处</b>　你定的：10/12「发送前一页确认（受众人数、各渠道预计条数、文案预览）」；业内做法：Braze</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>Braze</b>：选受众时页脚显示各渠道预计可触达人数，可点「计算精确数字」；另有受众摘要 <a href="https://www.braze.com/docs/user_guide/engagement_tools/campaigns/building_campaigns/targeting_users">Braze 文档</a></li>
+        <li><b>Braze</b>：审批要在工作区设置里打开，默认关闭；审批与发送是两个权限 <a href="https://www.braze.com/docs/user_guide/messaging/governance/approvals">Braze 文档</a></li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第4份_2a_确认块人数.jpg" width="648" alt="确认块预计人数"><figcaption>新建推播 › 确认与测试</figcaption></figure>
+      <figure><img src="图/2026-10-16_判断题新格式/第4份_2b_高风险确认.jpg" width="639" alt="高风险确认框"><figcaption>新建推播 › 点「确认排程」后的高风险确认框</figcaption></figure>
+      <p class="txt">高风险确认在发送对象为全部玩家、消息类别为紧急、短信预计费用或 LINE 预计用量超过门槛时弹出，须输入预计发出人数的前两位。</p></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-2"><span class="lb">AI 评审：</span><b>是</b>　确认块群组至预计发出六层人数；全部玩家触发高风险确认输前两位</div>
+    <div class="you" id="dk-2" data-k="ai-2"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-2" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 2 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 3 -->
+<section class="card">
+  <p class="tag">状态与防错<span>发前在真机看效果</span></p>
+  <p class="std"><span class="n">3</span><span>正式发出前能先发给测试账号，在真机上看到实际效果，并按账号看到收没收到</span></p>
+  <p class="info"><b>防的错</b>　文案错字、图片被裁切、跳转打不开<i>|</i><b>出处</b>　你定的：10/12「发给测试账号」；业内做法：Braze、OneSignal、Firebase</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>Braze</b>：建议每次发送前先测试；可建「内容测试组」，在测试页签选人发测试 <a href="https://www.braze.com/docs/user_guide/messaging/messaging_fundamentals/sending_test_messages">Braze 文档</a></li>
+        <li><b>OneSignal</b>：把自己和同事设为测试用户，在编辑器「测试与预览」勾选后发测试推播 <a href="https://documentation.onesignal.com/docs/en/test-users">OneSignal 文档</a></li>
+        <li><b>Firebase</b>：编辑器右侧「发送测试消息」，填设备注册令牌即发 <a href="https://firebase.google.com/docs/cloud-messaging/js/first-message">Firebase 文档</a></li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第4份_3a_测试发送.jpg" width="648" alt="测试发送"><figcaption>新建推播 › 确认与测试 › 测试发送</figcaption></figure>
+      <figure><img src="图/2026-10-16_判断题新格式/第4份_3b_测试结果.jpg" width="639" alt="测试结果"><figcaption>新建推播 › 测试结果</figcaption></figure>
+      <p class="txt">测试对象为「运营测试组」加手填会员编号，最多 10 个；测试不计入每人每天上限与数据。</p></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-3"><span class="lb">AI 评审：</span><b>是</b>　测试发送选测试组加会员编号；结果按账号列，iOS只到已发出</div>
+    <div class="you" id="dk-3" data-k="ai-3"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-3" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 3 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 4 -->
+<section class="card">
+  <p class="tag">状态与防错<span>发前填错当场拦下</span></p>
+  <p class="std"><span class="n">4</span><span>常见填错在确认前被拦下：内容为空或超字数、发送时间不在有效范围、跳转目标到发送时还没上架、对象为 0 人时，「确认排程」都不可点</span></p>
+  <p class="info"><b>防的错</b>　漏填、超长、时间填错、跳到未上架的活动<i>|</i><b>出处</b>　你定的：10/12「不设审批，发送前一页确认」</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li class="none">本条按你定的「发送前一页确认」列，未找业内对照</li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第4份_4a_提示分三级.jpg" width="569" alt="确认块提示分三级"><figcaption>新建推播 › 确认与测试：阻断、需确认、提示三级</figcaption></figure>
+      <figure><img src="图/2026-10-16_判断题新格式/第4份_4b_多项未通过.jpg" width="569" alt="多项未通过"><figcaption>新建推播 › 多项未通过</figcaption></figure>
+      <p class="txt">阻断红字置顶，改好才能确认；需确认逐条勾选；提示只显示。出错字段标红，并逐项列在确认块。</p></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-4"><span class="lb">AI 评审：</span><b>是</b>　超字数、时间越界、跳转未上架均置灰；空内容与0人见原文</div>
+    <div class="you" id="dk-4" data-k="ai-4"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-4" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 4 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 5 -->
+<section class="card">
+  <p class="tag">状态与防错<span>发后停下与更正</span></p>
+  <p class="std"><span class="n">5</span><span>排程后或发送中发现错了，能停下还没发出的部分，并只给已收到的人发一条更正</span></p>
+  <p class="info"><b>防的错</b>　发出后才发现内容或对象错了<i>|</i><b>出处</b>　你定的：需求清单「发送状态可查，可停止」（10/13 通过）；业内做法：Braze、OneSignal</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>Braze</b>：在活动详情点「停止活动」，尚未发出的取消；分批限速的在下一批开始时取消 <a href="https://www.braze.com/docs/user_guide/messaging/campaigns/manage_campaigns/change_your_campaign_after_launch">Braze 文档</a></li>
+        <li><b>OneSignal</b>：消息送达前可在报告页「取消」 <a href="https://documentation.onesignal.com/docs/push">OneSignal 文档</a></li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第4份_5c_列表操作.jpg" width="616" alt="推播列表行内操作"><figcaption>推播列表 › 行内操作</figcaption></figure>
+      <figure><img src="图/2026-10-16_判断题新格式/第4份_5a_停止确认.jpg" width="632" alt="停止确认"><figcaption>推播列表 › 点「停止」</figcaption></figure>
+      <figure><img src="图/2026-10-16_判断题新格式/第4份_5b_更正通知.jpg" width="569" alt="更正通知"><figcaption>新建推播 › 发送对象选「前序推送已受理的人」</figcaption></figure>
+      <p class="txt">已排程、发送中的推播可在列表行内停止；更正通知只发给原收件人；总览另可一键暂停全部游戏外推送。</p></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-5"><span class="lb">AI 评审：</span><b>是</b>　列表停止加停止确认框；对象可选前序推送已受理的人</div>
+    <div class="you" id="dk-5" data-k="ai-5"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-5" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 5 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 6 -->
+<section class="card">
+  <p class="tag">状态与防错<span>发后替换错的通知</span></p>
+  <p class="std"><span class="n">6</span><span>更正推播能替换玩家手机通知栏里那条错的，而不是再多出一条</span></p>
+  <p class="info"><b>防的错</b>　错的那条仍留在通知栏，玩家同时看到两条说法不同的通知<i>|</i><b>出处</b>　业内做法：Braze、OneSignal</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>Braze</b>（Android）：推播可设「通知 ID」，之后发同一 ID 的推播即更新前一条 <a href="https://www.braze.com/docs/user_guide/channels/push/platform_specific_resources/android/advanced_campaign_settings">Braze 文档</a></li>
+        <li><b>OneSignal</b>：两条推播的 collapse_id 相同时，新的一条替换旧的；已送达的只有设了该 ID 才能替换（接口字段） <a href="https://documentation.onesignal.com/docs/push">OneSignal 文档</a></li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <p class="txt none">我们这里没有：更正推播是一条新通知，原来那条仍留在通知栏；新建推播表单与字段表都没有「替换前一条通知」的设置。</p></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-6"><span class="lb">AI 评审：</span><b>否</b>　更正是新通知，缺替换前一条的设置（如通知ID/collapse_id）</div>
+    <div class="you" id="dk-6" data-k="ai-6"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-6" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 6 不同意的理由"></div>
+  </div>
+</section>
+
+<p class="note">业内做法都已打开官方文档核对。</p>
+
+<h2><span class="no">02</span>按评审维度补齐的标准：8 条</h2>
+<p class="note lead">按评审维度表补齐其余维度；每条小标前半是所属维度。</p>
+
+<!-- 标准 7 -->
+<section class="card">
+  <p class="tag">信息结构与主次<span>五块按填写先后，少用的收起</span></p>
+  <p class="std"><span class="n">7</span><span>新建推播页的五块（推送内容、发送对象、发送时间、频率上限、确认与测试）按运营填写的先后排，每块有标题，选填和少用的设置收起</span></p>
+  <p class="info"><b>看哪里</b>　新建推播整页分块<i>|</i><b>出处</b>　写作标准「先交代边界再讲内容」；业内做法：NN/g</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>NN/g</b> 可用性启发式第 8 条「美观与极简」：界面不放无关或很少用到的信息；每多一个元素，都会和重要信息争夺注意力 <a href="https://www.nngroup.com/articles/ten-usability-heuristics/">NN/g 原文</a></li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第4份_补_步骤条.jpg" width="648" alt="页顶步骤条"><figcaption>新建推播 › 页顶步骤条</figcaption></figure>
+      <figure><img src="图/2026-10-16_判断题新格式/第4份_补_高级设置收起.jpg" width="648" alt="高级设置收起"><figcaption>新建推播 › 频率上限与高级设置（收起）</figcaption></figure>
+      <p class="txt">页顶步骤条列出五块及各块状态；五块各有带序号的标题，顺序同步骤条。收起的：高级设置（标题写「已设 1 项」，其余 12 项为默认值）、通知预览（折叠／展开）、群组组成（「展开查看」）、确认块「其他提示」。整页见下一条的图。</p></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-7"><span class="lb">AI 评审：</span><b>否</b>　五块顺序和标题对，但选填的图片、营销档期和少用的「本条不受勿扰」未收起</div>
+    <div class="you" id="dk-7" data-k="ai-7"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-7" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 7 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 8 -->
+<section class="card">
+  <p class="tag">视觉完成度<span>八个检查点逐项看</span></p>
+  <p class="std"><span class="n">8</span><span>新建推播页按视觉完成度八个检查点逐项看，没有一项不符合；其中通知预览里是繁體真实文案，不是占位文字</span></p>
+  <p class="info"><b>看哪里</b>　新建推播主图、通知预览、图下状态小图<i>|</i><b>出处</b>　你定的：10/16 要判原型设计是否粗糙；原型要求「玩家看到的文案用繁體」；业内做法：NN/g、Ant Design</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>1 对齐</b>：同一块的标题、正文、表单项共用一个左侧起点；表单标签冒号对齐；数字取相同位数并右对齐。Ant Design「对齐」 <a href="https://ant.design/docs/spec/alignment-cn">Ant Design 文档</a></li>
+        <li><b>2 间距分级</b>：组内、组与组、块与块的间距分三级，全页一致；关系越近间距越小（纵向 8／16／24px）。Ant Design「亲密性」 <a href="https://ant.design/docs/spec/proximity-cn">Ant Design 文档</a></li>
+        <li><b>3 字号与字重层级</b>：页标题、块标题、字段名、正文、辅助说明各一级，同级同样式，一眼看得出主次和阅读顺序。NN/g 视觉设计原则「比例」「视觉层级」 <a href="https://www.nngroup.com/articles/principles-visual-design/">NN/g 原文</a></li>
+        <li><b>4 对比</b>：主操作与次要操作、必填与选填、可用与禁用在外观上区分得出。NN/g 视觉设计原则「对比」 <a href="https://www.nngroup.com/articles/principles-visual-design/">NN/g 原文</a></li>
+        <li><b>5 组件一致</b>：同一种控件全页同一样式和用法，并与现有后台（Element UI 风格）一致；同一操作同一个词。NN/g 启发式第 4 条「一致性与标准」、Ant Design「重复」 <a href="https://www.nngroup.com/articles/ten-usability-heuristics/">NN/g 原文</a> <a href="https://ant.design/docs/spec/repetition-cn">Ant Design 文档</a></li>
+        <li><b>6 颜色与装饰</b>：一色一义、全页固定；没有不承载信息的边框、底色、图标。NN/g 启发式第 8 条「美观与极简」 <a href="https://www.nngroup.com/articles/ten-usability-heuristics/">NN/g 原文</a></li>
+        <li><b>7 示例数据</b>：字段里是真实形态的示例值（真实活动名、合理人数与日期），前后一致；玩家看到的文案用繁體；没有「xxx」「示例文字」「123」这类占位。原型要求</li>
+        <li><b>8 基础排版</b>：文字不截断、不溢出、不互相遮挡；折行在自然停顿处；并列几行前有符号，行间距大于行内。你 10/12：「这三行前面哪怕给打个点……这也太粗糙了吧」</li></ul>
+    </div>
+    <div><h3>我们原型对应的部分</h3>
+      <ul class="ind">
+        <li><b>1 对齐</b>：各块字段名一列与输入框左边缘；确认块六格人数；摘要表两列</li>
+        <li><b>2 间距分级</b>：块与块的分隔线、块内各行、通知预览两张卡片之间</li>
+        <li><b>3 字号层级</b>：块标题（1 推送内容……5 确认与测试）、字段名、灰色说明小字</li>
+        <li><b>4 对比</b>：底部「确认排程」与「存为模板」「存为草稿」「取消」；消息类别、发送时间的选中态；必填与「上传图片（选填）」</li>
+        <li><b>5 组件一致</b>：下拉（▾）、单选（发送对象）、按钮组（立即／定时／按行为）、可删标签（VIP 名单 ×）</li>
+        <li><b>6 颜色与装饰</b>：蓝色（选中、主按钮、链接）；预计人数框的边框；确认块提示框的灰底</li>
+        <li><b>7 示例数据</b>：推送名称「每日补给计划开启」、群组 7,880 人到预计发出 4,200 人、2026-10-15 20:00；通知预览文案「每日補給計畫開跑」</li>
+        <li><b>8 基础排版</b>：「当天已排」「高级设置」「勿扰时段」下的长说明折行；确认块「提示」三行；图下状态小图（高级设置展开、群组组成、测试结果）见第 2–5 条的图</li></ul>
+      <figure><img src="图/2026-10-16_判断题新格式/第4份_补_整页.jpg" width="631" alt="新建推播整页"><figcaption>新建推播 › 整页（去掉编号标注）</figcaption></figure>
+      <figure><img src="图/2026-10-16_判断题新格式/第4份_补_通知预览.jpg" width="240" alt="通知预览"><figcaption>新建推播 › 通知预览</figcaption></figure></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-8"><span class="lb">AI 评审：</span><b>否</b>　标题层级、必填标记、折叠控件样式、示例值、折行五个检查点不符</div>
+    <div class="you" id="dk-8" data-k="ai-8"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-8" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 8 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 9 -->
+<section class="card">
+  <p class="tag">改动可辨<span>新页面写明取代什么</span></p>
+  <p class="std"><span class="n">9</span><span>新建推播页页首写明是新页面，并写出现在推播在哪里建、迁入后哪个旧入口停用</span></p>
+  <p class="info"><b>看哪里</b>　新建推播页页首说明<i>|</i><b>出处</b>　写作标准「写清是现状还是改后」；原型要求</p>
+  <div class="cmp">
+    <div><h3>依据的标准怎么写</h3>
+      <ul class="ind">
+        <li><b>写作标准</b>：写清是现状还是改后——现状句写「现在」，做法句用「新建、加、改为」或写「改后」；单用「可」「能」会被读成已经能做</li>
+        <li><b>原型要求</b>：现有页面的改动标「新增」「改」；只看图和右侧说明，就说得出这页让运营做什么、和现状比改了什么</li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第4份_补_页首.jpg" width="645" alt="新建推播页首"><figcaption>新建推播 › 页首</figcaption></figure>
+      <p class="txt">页首写「新页面」和标题一句。页首、主图与右侧说明都没有写现在推播在哪里建（现在只能在礼包后台配，只用于限时加码礼包未购买提醒），也没有写迁入后哪个旧入口停用。</p></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-9"><span class="lb">AI 评审：</span><b>否</b>　页首只写「新页面」，没写现在推播在礼包后台建、迁入后停用哪个旧入口</div>
+    <div class="you" id="dk-9" data-k="ai-9"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-9" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 9 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 10 -->
+<section class="card">
+  <p class="tag">方向一致<span>不设审批</span></p>
+  <p class="std"><span class="n">10</span><span>新建推播页的发送流程不含审批或提交审核环节，防错只靠确认页、测试发送和操作纪录</span></p>
+  <p class="info"><b>看哪里</b>　「确认与测试」块与底部按钮<i>|</i><b>出处</b>　你定的：10/12「不设审批」</p>
+  <div class="cmp">
+    <div><h3>依据的标准怎么写</h3>
+      <ul class="ind">
+        <li><b>你定的</b>（10/12）：使用者是运营。不设审批：发送前一页确认（受众人数、各渠道预计条数、文案预览）＋发给测试账号＋操作纪录</li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第4份_补_无需审批.jpg" width="648" alt="底部按钮"><figcaption>新建推播 › 底部按钮</figcaption></figure>
+      <p class="txt">底部按钮为「取消」「存为模板」「存为草稿」「确认排程」，旁写「无需审批，确认后到时发送」；页标题写「无需审批」；字段表「审批」一行写「不设审批，由确认前核对、测试发送和操作纪录代替审批」。命中全部玩家、紧急等条件时另弹高风险确认框（见第 2 条）；每次测试发送记入操作纪录。</p></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-10"><span class="lb">AI 评审：</span><b>是</b>　按钮为「确认排程」并注明无需审批，防错靠确认块、高风险确认和测试发送</div>
+    <div class="you" id="dk-10" data-k="ai-10"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-10" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 10 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 11 -->
+<section class="card">
+  <p class="tag">事实与依据<span>限制值有出处</span></p>
+  <p class="std"><span class="n">11</span><span>新建推播页上的限制值（文案字数上限、可选发送时间范围、每人每天营销推播 2 条）都注明了出处（运营规范、推送服务商限制或已定事项）</span></p>
+  <p class="info"><b>看哪里</b>　「推送内容」「发送时间」「频率上限」三块的说明<i>|</i><b>出处</b>　写作标准「事实只写已证实的」「每处改动……写出推得出它的理由」</p>
+  <div class="cmp">
+    <div><h3>依据的标准怎么写</h3>
+      <ul class="ind">
+        <li><b>写作标准</b>：事实只写已证实的，不猜；推断可以写，须写明依据和边界</li>
+        <li><b>写作标准</b>：每处改动、每个目标或指标都写出推得出它的理由；门槛要说得出来源（数据分位或行业研究）</li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第4份_补_标题内文字数.jpg" width="384" alt="标题与内文字数"><figcaption>新建推播 › 推送内容：标题、内文</figcaption></figure>
+      <figure><img src="图/2026-10-16_判断题新格式/第4份_补_发送时间与上限.jpg" width="632" alt="发送时间与频率上限"><figcaption>新建推播 › 发送时间、频率上限</figcaption></figure>
+      <p class="txt">页上的值：标题 8/30、内文 24/60（上限 30 字、60 字）；发送时间「须在 3 分钟后、30 天内」；频率上限「推播每人每天 2 条（在『频率上限』页设置）」「最小间隔 30 分钟」。页上只写值和设置位置；字段表同样只写值，没有写这些值来自运营规范、服务商限制还是已定事项。</p></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-11"><span class="lb">AI 评审：</span><b>否</b>　字数上限、发送时间范围、每天 2 条上限都没注明出自哪项规范或已定事项</div>
+    <div class="you" id="dk-11" data-k="ai-11"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-11" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 11 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 12 -->
+<section class="card">
+  <p class="tag">措辞与指代<span>新名称当场说明</span></p>
+  <p class="std"><span class="n">12</span><span>新建推播页的字段名和按钮名沿用运营现有后台的叫法，新出现的名称（如「常用受众」「确认排程」）旁有一句说明</span></p>
+  <p class="info"><b>看哪里</b>　各字段名、按钮名<i>|</i><b>出处</b>　写作标准「后台功能名第一次出现说明它是什么」；你定的：新出现的名称当场写清它做什么</p>
+  <div class="cmp">
+    <div><h3>依据的标准怎么写</h3>
+      <ul class="ind">
+        <li><b>写作标准</b>：人群、功能、指标第一次出现写出具体名称；后台功能名第一次出现说明它是什么；不用项目内部简称，也不用读者所在地区不常用的行话</li>
+        <li><b>你定的</b>（10/9）：不用自造概念；新出现的名称当场写清它做什么</li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第4份_补_消息类别.jpg" width="384" alt="消息类别"><figcaption>新建推播 › 消息类别</figcaption></figure>
+      <figure><img src="图/2026-10-16_判断题新格式/第4份_补_发送对象.jpg" width="632" alt="发送对象"><figcaption>新建推播 › 发送对象</figcaption></figure>
+      <p class="txt">名称旁有说明的：「消息类别」旁写「决定上限与勿扰默认」；「＋排除前序推送」旁写「同档期内，可选多条」；标签群组下写「可多选，满足任一群组即发送」。名称旁没有说明的：「常用受众」「存为常用受众」「营销档期」「确认排程」；其中常用受众、营销档期的说明在右侧说明栏。字段表写发送对象、排除等字段旁有「?」悬停说明，主图上没有画出。现有推播在礼包后台配置，资料里没有那一页的截图，现有叫法无法逐项对照。</p></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-12"><span class="lb">AI 评审：</span><b>否</b>　「常用受众」「营销档期」旁无说明，只在图外说明栏解释；现有叫法无从对照</div>
+    <div class="you" id="dk-12" data-k="ai-12"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-12" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 12 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 13 -->
+<section class="card">
+  <p class="tag">无多余内容<span>编号与说明栏只放该放的</span></p>
+  <p class="std"><span class="n">13</span><span>新建推播页的主图和说明栏没有成本、来源标注；图上编号标注只标不显而易见的交互，不超过 6 处</span></p>
+  <p class="info"><b>看哪里</b>　主图编号与右侧说明栏<i>|</i><b>出处</b>　写作标准「辅助标注不夹进核心内容」；原型要求「图上编号标注 3–6 处」</p>
+  <div class="cmp">
+    <div><h3>依据的标准怎么写</h3>
+      <ul class="ind">
+        <li><b>写作标准</b>：辅助标注不夹进核心内容——成本、来源这类标注会分散读者看核心内容的注意力时，单开一节集中写</li>
+        <li><b>原型要求</b>：图上编号标注 3–6 处，只标不显而易见的交互和规则；说明放在图右侧一栏，每条一行（粗体短语＋一句）</li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第4份_补_说明栏5至12.jpg" width="486" alt="右侧说明第5至12条"><figcaption>新建推播 › 右侧说明第 5–12 条</figcaption></figure>
+      <p class="txt">主图上紫色编号 11 处，另 1 处在「高级设置」展开的状态图里，共 12 处；右侧说明 12 条，每条一个粗体短语加一至三行说明。12 条中 8 条末尾带版本号或「10/15 夜补充」这类补充日期；主图「勿扰时段」下的说明也带版本号。主图与说明栏没有成本标签。</p></div>
+  </div>
+  <figure style="margin:20px 0 0"><a href="图/2026-10-16_判断题新格式/第4份_补2_编号与说明栏_整页.jpg"><img src="图/2026-10-16_判断题新格式/第4份_补2_编号与说明栏_上半.jpg" width="1278" alt="带编号的主图与右侧说明栏（上半）"></a><figcaption>新建推播 › 原型页原样（上半）：主图紫色编号与右侧说明栏；点图看整页</figcaption></figure>
+  <div class="verdict">
+    <div class="ai" id="ai-13"><span class="lb">AI 评审：</span><b>否</b>　主图编号标注 11 处，超过 6 处；说明栏 8 条带修订版本或补充日期标注</div>
+    <div class="you" id="dk-13" data-k="ai-13"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-13" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 13 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 14 -->
+<section class="card">
+  <p class="tag">措辞与指代<span>整页句式：开头与主语</span></p>
+  <p class="std"><span class="n">14</span><span>新建推播页的说明栏和页上文字，没有成片以同一主语（如「运营」）或同一句式开头的句子，上下文已确定的主语没有逐句写出</span></p>
+  <p class="info"><b>看哪里</b>　新建推播整页与右侧说明栏<i>|</i><b>出处</b>　你 10/15：「永远是运营在开头，这三个字真的有必要？」；措辞审查「整稿通读」</p>
+  <div class="cmp">
+    <div><h3>依据的标准怎么写</h3>
+      <ul class="ind">
+        <li><b>措辞审查「整稿通读」</b>：逐句查完后通读全稿，同一开头、同一句式反复出现的删去或改写；全稿主体已经明确的不逐句写出，例如运营用的后台不写「运营在……」；补主语只补读者会读错或读不出的</li>
+        <li><b>你 10/15</b>（当时原型改稿后有 63 处以「运营」开头）：「永远是运营在开头，这三个字真的有必要？真的认真检查措辞了吗？」</li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <ul class="ind">
+        <li><b>以「运营」开头的句子</b>：没有；页上的「运营测试组」「运营02」是测试组名与账号名</li>
+        <li><b>说明栏 12 条的小标</b>：先选标签群组，再选排除群组；预计人数逐层算到可触达；发送对象在开始发送那一刻锁定；低频项收进「高级设置」，默认收起；确认前看到人数逐步减少；确认前可先发给测试账号；从模板创建、营销档期、存为模板；推播图片与渠道参数；点击跳转按发送时刻校验上架；常用受众与「＋排除前序推送」；消息类别放在内容块第一行；拦下按命中的子项拆开，VIP 单列一行。第 5、6 条都以「确认前」开头</li>
+        <li><b>页上的说明句（原文）</b>
+          <br>「标题、内文都必填；只有空格、换行的视为未填；无法显示的字符保存时去掉并提示」
+          <br>「黑名单、机器人与测试账号固定排除；VIP 名单默认排除，可删」
+          <br>「群组每 25 分钟刷新，开始发送时按群组当时的名单发」
+          <br>「可选每天或每周几；选后须填『重复至』日期」
+          <br>「频率上限拦下：按近 7 天每天截至同一时刻的每人已收条数估算」</li></ul></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-14"><span class="lb">AI 评审：</span><b>是</b>　无「运营」开头；说明栏仅两条以「确认前」开头，页上说明句开头各异</div>
+    <div class="you" id="dk-14" data-k="ai-14"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-14" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 14 不同意的理由"></div>
+  </div>
+</section>
+
+<p class="note">业内做法取自 NN/g、Ant Design 官方页面，已打开核对。</p>
+
+<h2><span class="no">03</span>参考案例：你推翻过的两份同类稿</h2>
+<div class="cases">
+  <div class="case">
+    <p class="h">例 1　操作界面简陋</p>
+    <dl>
+      <dt>你的原话</dt><dd class="said">「……目前只有数据看板和操作界面有一些简陋的内容」（10/14）</dd>
+      <dt>当时的稿</dt><dd>10/14 原型「新建推播」：五块与测试发送已有；没有模板、常用受众、重复发送、高风险确认、跳转上架校验、更正通知（下图）</dd>
+      <dt>改后</dt><dd>本题第 4 份：补了从模板创建与存为模板、常用受众、每天／每周重复、确认块三级提示、高风险确认框、跳转目标上架校验，发送对象加「名单」与「前序推送已受理的人」</dd>
+    </dl>
+    <figure><img src="图/2026-10-16_判断题新格式/第4份_例1_10月14日新建推播.jpg" width="812" alt="10月14日新建推播"><figcaption>10/14 原型 · 新建推播（当时版本）</figcaption></figure>
+  </div>
+  <div class="case">
+    <p class="h">例 2　没想到出问题后要能回头查</p>
+    <dl>
+      <dt>你的原话</dt><dd class="said">「对了，在版本更新后，仍需保留旧版本的弹窗数据。因为可能会出问题什么的」（10/14）</dd>
+      <dt>当时的稿</dt><dd>10/14 原型没有写改设置或游戏发版后，旧版本的弹窗数据怎么留</dd>
+      <dt>改后</dt><dd>弹窗规则改设置时存为新版本，每个版本的数据分开保留，改设置或游戏发版都不清除</dd>
+    </dl>
+  </div>
+</div>
+
+<h2><span class="no">04</span>怎么判</h2>
+<div class="reply">直接在页面上点：每条下面点「同意」或「不同意」（不同意可写一句理由），页面最下面可补还缺的标准；点完自动保存，判完在对话里说一声「判完了」即可。<b></b></div>
+
+<h2><span class="no">05</span>还缺什么，判完没有</h2>
+<div class="jend">
+  <label class="jlb" for="dk-missing">还缺的标准（想到什么写什么，一条一行）</label>
+  <textarea id="dk-missing" rows="6"></textarea>
+  <div class="jrow">
+    <label class="jdone"><input type="checkbox" id="dk-done">这一份判完了</label>
+    <button type="button" class="jcopy" id="dk-copy">复制我的判断</button>
+    <span class="jmsg" id="dk-copymsg" aria-live="polite"></span>
+  </div>
+  <textarea class="jout" id="dk-out" readonly hidden aria-label="本页判断的文字"></textarea>
+  <p class="jnote">每次点选和输入都随手存在这台电脑的浏览器里，刷新、关掉再开都还在。</p>
+</div>
+
+<p class="links">原文：<a href="../推送系统后台集成需求/3_原型.html#p3">原型 · 新建推播</a>　<a href="../推送系统后台集成需求/3_原型.html#p2">原型 · 推播列表</a>　<a href="../推送系统后台集成需求/4_需求文档.md#s5-4">字段表</a>　<a href="2026-10-16_请你判的10份产出.html">请你判的 10 份产出</a></p>
+</div><script>
+(function(){
+  var PAGE = '第4份', LABEL = '第 4 份', P = 'dkjudge:' + PAGE + ':';
+  function get(k){ try { return localStorage.getItem(P + k); } catch (e) { return null; } }
+  function put(k, v){ try { localStorage.setItem(P + k, v); } catch (e) {} }
+  function del(k){ try { localStorage.removeItem(P + k); } catch (e) {} }
+  function read(k){
+    var s = get(k); if (!s) return null;
+    try { var o = JSON.parse(s); return (o && (o.v === '同意' || o.v === '不同意')) ? o : null; } catch (e) { return null; }
+  }
+  var groups = [].slice.call(document.querySelectorAll('.you[data-k]'));
+  var total = groups.length;
+  var elX = document.getElementById('dk-x'), elStat = document.getElementById('dk-stat'), elStatDone = document.getElementById('dk-statdone');
+  var elMissing = document.getElementById('dk-missing'), elDone = document.getElementById('dk-done');
+  var elCopy = document.getElementById('dk-copy'), elMsg = document.getElementById('dk-copymsg'), elOut = document.getElementById('dk-out');
+
+  function whyBox(k){ return document.querySelector('.why[data-k="' + k + '"]'); }
+  function paint(g, v){
+    [].forEach.call(g.querySelectorAll('button.jb'), function(b){
+      var on = b.getAttribute('data-v') === v;
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    var w = whyBox(g.getAttribute('data-k'));
+    if (w) w.hidden = (v !== '不同意');
+  }
+  function stat(){
+    var x = 0;
+    groups.forEach(function(g){ if (read(g.getAttribute('data-k'))) x++; });
+    if (elX) elX.textContent = x;
+    if (elStat) elStat.classList.toggle('all', x === total);
+    if (elStatDone) elStatDone.hidden = get('done') !== 'true';
+  }
+
+  groups.forEach(function(g){
+    var k = g.getAttribute('data-k'), w = whyBox(k), inp = w ? w.querySelector('input') : null;
+    var o = read(k);
+    if (o && inp && o.why) inp.value = o.why;
+    paint(g, o ? o.v : null);
+    g.addEventListener('click', function(e){
+      var b = e.target.closest ? e.target.closest('button.jb') : null;
+      if (!b) return;
+      var v = b.getAttribute('data-v'), cur = read(k);
+      if (cur && cur.v === v) { del(k); paint(g, null); }
+      else {
+        put(k, JSON.stringify({ v: v, why: (v === '不同意' && inp) ? inp.value : '' }));
+        paint(g, v);
+        if (v === '不同意' && inp) { try { inp.focus({ preventScroll: true }); } catch (e2) { inp.focus(); } }
+      }
+      stat();
+    });
+    if (inp) inp.addEventListener('input', function(){
+      var cur = read(k);
+      if (cur && cur.v === '不同意') { cur.why = inp.value; put(k, JSON.stringify(cur)); }
+    });
+  });
+
+  if (elMissing) {
+    elMissing.value = get('missing') || '';
+    elMissing.addEventListener('input', function(){ if (elMissing.value) put('missing', elMissing.value); else del('missing'); });
+  }
+  if (elDone) {
+    elDone.checked = get('done') === 'true';
+    elDone.addEventListener('change', function(){ if (elDone.checked) put('done', 'true'); else del('done'); stat(); });
+  }
+  stat();
+
+  function summary(){
+    var parts = [], un = [];
+    groups.forEach(function(g){
+      var k = g.getAttribute('data-k'), o = read(k);
+      if (!o) { un.push(k); return; }
+      var s = k + ' ' + o.v, why = (o.why || '').replace(/\s+/g, ' ').trim();
+      if (o.v === '不同意' && why) s += '——' + why;
+      parts.push(s);
+    });
+    if (un.length) parts.push('未判 ' + un.join('、'));
+    var m = (get('missing') || '').split(/\n+/).map(function(t){ return t.trim(); }).filter(Boolean);
+    if (m.length) parts.push('还缺：' + m.join('；'));
+    return LABEL + (get('done') === 'true' ? '（判完了）' : '') + '：' + parts.join('；');
+  }
+  function say(t){ if (elMsg) { elMsg.textContent = t; clearTimeout(say.t); say.t = setTimeout(function(){ elMsg.textContent = ''; }, 4000); } }
+  function manual(text){
+    if (!elOut) return;
+    elOut.hidden = false; elOut.value = text; elOut.focus(); elOut.select();
+    if (elMsg) { clearTimeout(say.t); elMsg.textContent = '没能自动复制：下框文字已选中，请按 ⌘C 复制'; }
+  }
+  function fallback(text){
+    var t = document.createElement('textarea'), ok = false;
+    t.value = text; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.top = '0'; t.style.opacity = '0';
+    document.body.appendChild(t); t.select();
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    document.body.removeChild(t);
+    if (ok) say('已复制，可直接贴进对话'); else manual(text);
+  }
+  if (elCopy) elCopy.addEventListener('click', function(){
+    var text = summary();
+    if (elOut) { elOut.hidden = true; }
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(function(){ say('已复制，可直接贴进对话'); }, function(){ fallback(text); });
+    } else fallback(text);
+  });
+})();
+</script>
+</body></html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><title>推送现在与改后</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#fff;font-family:-apple-system,"PingFang SC","Helvetica Neue",sans-serif;color:#1b1d21}
+.fig{padding:24px 28px 28px}
+.grid{display:grid;grid-template-columns:92px 300px 44px 300px 44px 1fr;align-items:center}
+.ch{font-size:14px;font-weight:600;color:#868b92;padding-bottom:10px}
+.sec{border-top:1px solid #e2e0db;padding:18px 0}
+.sec.new{border-top:2px solid #c6d9f1}
+.rl{font-size:21px;font-weight:700;align-self:center}
+.now .rl{color:#4a4f56}
+.new .rl{color:#1f63a8}
+.box{border-radius:6px;padding:12px 16px;min-height:72px;display:flex;flex-direction:column;justify-content:center;position:relative}
+.box .k{font-size:13px;font-weight:700;color:#868b92;margin-bottom:3px}
+.box .m{font-size:16.5px;font-weight:700;line-height:1.45}
+.box .s{font-size:14.5px;color:#4a4f56;line-height:1.5;margin-top:2px}
+.g{background:#f1f0ec;border:1px solid #e2e0db}
+.b{background:#eaf1fb;border:1px solid #c6d9f1}
+.b .m{color:#1f4f8f}
+.pill{position:absolute;top:-11px;right:12px;background:#2b5ea8;color:#fff;font-size:12.5px;font-weight:700;padding:2px 9px;border-radius:4px}
+.ar{display:flex;align-items:center;justify-content:center}
+.ar i{display:block;width:24px;height:2px;background:#b9b6ad;position:relative}
+.ar i::after{content:"";position:absolute;right:-8px;top:-6px;border-top:7px solid transparent;border-bottom:7px solid transparent;border-left:10px solid #b9b6ad}
+.lanes{display:grid;grid-template-columns:92px 300px 44px 300px 44px 1fr;row-gap:12px;align-items:stretch}
+.lanes .rl{grid-row:1 / span 3;display:flex;align-items:center}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{background:#fff;border:1px solid #c9ccd2;border-radius:4px;font-size:15px;font-weight:600;padding:4px 10px;color:#303133}
+.big{min-height:118px}
+</style></head><body>
+<div class="fig">
+  <div class="grid">
+    <div></div><div class="ch">推送方式</div><div></div><div class="ch">在哪配置</div><div></div><div class="ch">在哪看记录</div>
+  </div>
+  <div class="sec now">
+    <div class="lanes">
+      <div class="rl">现在</div>
+      <div class="box g"><div class="m">推播</div></div>
+      <div class="ar"><i></i></div>
+      <div class="box g"><div class="m">礼包后台</div><div class="s">只在限时加码礼包未购买时发</div></div>
+      <div class="ar"><i></i></div>
+      <div class="box g"><div class="m">推播报表</div></div>
+
+      <div class="box g"><div class="m">快显</div></div>
+      <div class="ar"><i></i></div>
+      <div class="box g"><div class="m">客户端</div><div class="s">写死</div></div>
+      <div class="ar"><i></i></div>
+      <div class="box g"><div class="m">记录位置待核实</div></div>
+
+      <div class="box g"><div class="m">短信、Facebook、LINE</div></div>
+      <div class="ar"><i></i></div>
+      <div class="box g"><div class="m">营销侧</div><div class="s">按名单发送</div></div>
+      <div class="ar"><i></i></div>
+      <div class="box g"><div class="m">短信数据在 BI</div><div class="s">Facebook、LINE 待核实</div></div>
+    </div>
+  </div>
+  <div class="sec new">
+    <div class="lanes">
+      <div class="rl" style="grid-row:auto">改后</div>
+      <div class="box g big"><div class="chips"><span>快显</span><span>推播</span><span>短信</span><span>Facebook</span><span>LINE</span></div></div>
+      <div class="ar"><i></i></div>
+      <div class="box b big"><span class="pill">新建</span><div class="m">推送统一后台</div><div class="s">对象引用标签<br>跳转与触发自助配置</div></div>
+      <div class="ar"><i></i></div>
+      <div class="box b big"><span class="pill">新建</span><div class="m">一处查看</div><div class="s">发送量、到达、点击</div></div>
+    </div>
+  </div>
+</div>
+</body></html>

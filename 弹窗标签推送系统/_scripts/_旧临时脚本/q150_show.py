@@ -1,0 +1,13 @@
+base = '/Users/decheng.huang/claude/弹窗标签推送系统/'
+t = open(base + '过程记录/审查记录.md', encoding='utf-8').read()
+i = t.find('### R200')
+print(t[-1800:])
+s = open(base + '决策汇报.html', encoding='utf-8').read()
+a = s.find('id="to-boss"')
+b = s.find('<div class="dec" id="d1"')
+print('to-boss', a, 'd1', b)
+k = s.find('<h2', s.find('id="s5"'))
+print(s[s.find('id="s5"'):s.find('id="s5"') + 300])
+c = s.find('id="to-me"')
+print('to-me', c)
+print(s[c - 6200:c])

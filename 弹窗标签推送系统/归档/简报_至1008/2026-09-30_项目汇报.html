@@ -1,0 +1,42 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>项目汇报 9/30</title><style>
+:root{--ground:#f0efec;--surface:#fff;--ink:#191b1e;--ink-2:#484d53;--muted:#7d8289;--line:#dcdad5;--accent:#9a6f24;--ok:#3d6b58;--ok-soft:#dfeae5;--info:#1c6ea4;--info-soft:#e0ecf4;--warn:#8a6410;--warn-soft:#f5ead2;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1a1d21;--ink:#e9e8e4;--ink-2:#b7bbc0;--muted:#868c94;--line:#2d3238;--accent:#d6ab5c;--ok:#74b096;--ok-soft:#1d3129;--info:#6aa8d6;--info-soft:#1b2a36;--warn:#cfa44e;--warn-soft:#332a16;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1a1d21;--ink:#e9e8e4;--ink-2:#b7bbc0;--muted:#868c94;--line:#2d3238;--accent:#d6ab5c;--ok:#74b096;--ok-soft:#1d3129;--info:#6aa8d6;--info-soft:#1b2a36;--warn:#cfa44e;--warn-soft:#332a16;}
+*{box-sizing:border-box} body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.7}
+.wrap{max-width:760px;margin:0 auto;padding:30px 20px 60px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 4px}
+h1{font-family:var(--serif);font-size:22px;margin:0 0 12px}
+.lead{background:var(--surface);border-left:3px solid var(--accent);padding:12px 16px;margin:0 0 18px;font-size:15.5px;font-weight:600}
+.b{background:var(--surface);border:1px solid var(--line);padding:12px 16px;margin:0 0 10px}
+.b h2{font-size:15.5px;margin:0 0 4px} .b p{margin:3px 0;font-size:14px;color:var(--ink-2)} .b p b{color:var(--ink)}
+.tag{font-size:11px;font-weight:650;padding:0 6px;border-radius:2px;margin-left:6px;vertical-align:1px}
+.ok{background:var(--ok-soft);color:var(--ok)} .in{background:var(--info-soft);color:var(--info)} .wt{background:var(--warn-soft);color:var(--warn)}
+.todo{background:var(--surface);border:1px solid var(--accent);padding:12px 16px;margin:16px 0 10px}
+.todo h2{font-size:15.5px;margin:0 0 6px} .todo ol{margin:0;padding-left:1.3em;font-size:14px;color:var(--ink-2)} .todo li{margin:3px 0} .todo b{color:var(--ink)}
+.links{font-size:13px;color:var(--muted)} a{color:var(--accent)}
+</style></head><body><div class="wrap">
+<p class="meta">项目汇报 · 2026-09-30 · 状态来源：审查记录与推进计划（我已核对到审查 11:08）</p>
+<h1>02、03 第一批内容已齐，按新原则收尾一轮后交你验收</h1>
+<div class="lead">现在最能推动进度的，仍然是你那两件后台自查：礼包价格、标签条件。</div>
+
+<div class="b"><h2>方案线：02 方案稿、03 配置单第一批<span class="tag in">收尾中</span></h2>
+<p><b>02</b>：主管要的五张卡齐了，文末另附一节「盯住高卡」提案。两轮审查退回都已复核通过。</p>
+<p><b>03 第一批</b>：活动位三条（新增、回流各新建一条，原活动弹窗改对象）。</p>
+<p><b>下一步</b>：按新原则补上验证计划（上线后看什么、怎么判读、下一版怎么改），然后交你验收。</p></div>
+
+<div class="b"><h2>能力线：04 弹窗功能、05 标签、07 推送<span class="tag in">重排中</span></h2>
+<p>三份需求都已改回主管范围内的完整版本。<b>下一步</b>按能力的标准重排优先级：分组实验、弹窗曝光和点击数据单独评估，因为方案能不能用数据验证，就靠这两样。</p></div>
+
+<div class="b"><h2>补查出的三块<span class="tag ok">已写入诊断</span></h2>
+<p><b>输赢</b>：押注相近的高卡里，输得最多的那四分之一，8 天以上没来的比例高约 4–6 个百分点（控制得越细，差距越小），差距集中在卡 3–4。这只是相关，不能说明是输钱导致不来，写成了提案。</p>
+<p><b>大户</b>：02 上线后，前 134 名大户里只有 9 人的活动弹窗会变，影响很小。</p>
+<p><b>成本</b>：按押注算，普卡拿到的活动赠点比例是黑卡、至尊卡的约 9.3 倍，已写进诊断，作为 02 的成本参考。</p></div>
+
+<div class="todo"><h2>要你做的三件事</h2><ol>
+<li><b>查独享礼包、破产礼包的价格</b>（约 5 分钟）：决定破产位调序这张卡能不能上。</li>
+<li><b>查标签后台的五处条件</b>（约 15 分钟）：决定 02 里三张卡能不能直接配，还是要先找人写 SQL。</li>
+<li><b>把四个定时任务的权限改成 Auto</b>：防止再像昨晚那样卡住 17 小时。</li>
+</ol></div>
+<p class="links">每个问题卡在哪、答案不同方案怎么变：<a href="2026-09-30_待你回答.html">待你回答</a>　·　全部文件和状态：<a href="项目总览.html">项目总览</a></p>
+</div></body></html>

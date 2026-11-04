@@ -1,0 +1,118 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>规则理顺</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.35;margin:0 0 8px}
+.sub{font-size:16px;color:var(--ink-2);margin:0 0 28px}
+h2{font-family:var(--serif);font-size:20px;margin:48px 0 16px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px}
+.kpi .n{font-size:38px;font-weight:700;line-height:1.1;color:var(--ink)}
+.kpi .n small{font-size:16px;font-weight:600;margin-left:4px;color:var(--ink-2)}
+.kpi .t{font-size:14.5px;color:var(--ink-2);margin-top:8px}
+.kpi.red .n{color:var(--red)}
+.phase{border-top:4px solid var(--gray)}
+.phase.red{border-top-color:var(--red)} .phase.blue{border-top-color:var(--blue)}
+.phase .d{font-size:13px;color:var(--muted);font-weight:600}
+.phase .h{font-size:16.5px;font-weight:700;margin:4px 0 10px}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:12px}
+.tag.red{background:var(--red-soft);color:var(--red)} .tag.blue{background:var(--blue-soft);color:var(--blue)} .tag.gray{background:var(--gray-soft);color:var(--gray)} .tag.green{background:var(--green-soft);color:var(--green)}
+.kv{font-size:14px;color:var(--ink-2);margin:6px 0}
+.kv b{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:2px}
+.keep{display:flex;flex-wrap:wrap;gap:10px}
+.keep span{background:var(--green-soft);color:var(--green);font-size:14.5px;font-weight:600;padding:8px 14px;border-radius:4px}
+.cause .h{font-size:16.5px;font-weight:700;margin:0 0 6px}
+.cause .l{font-size:14.5px;color:var(--ink-2);margin:0 0 12px}
+.cause .e{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14.5px}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--line)}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--ground)}
+tr:last-child td{border-bottom:none}
+td.w{color:var(--ink)} td.r{color:var(--ink-2)} td.d{color:var(--muted);width:80px}
+tr.same td.w{color:var(--red);font-weight:600}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);margin-right:8px;vertical-align:1px}
+.legend{font-size:13px;color:var(--muted);margin:10px 0 0}
+.q{font-size:17px;font-weight:700;margin:0 0 14px}
+.opt{position:relative}
+.opt .h{font-size:16px;font-weight:700;margin:0 0 6px}
+.opt .l{font-size:14.5px;color:var(--ink-2)}
+.opt.rec{border:2px solid var(--blue)}
+.opt .badge{position:absolute;top:-11px;right:16px;background:var(--blue);color:#fff;font-size:12px;font-weight:700;padding:2px 10px;border-radius:3px}
+.why{font-size:14.5px;color:var(--ink-2);margin:14px 0 0}
+.why b{color:var(--ink)}
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.steps div{counter-increment:s;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 18px;font-size:14.5px;color:var(--ink-2)}
+.steps div::before{content:counter(s);display:block;font-size:22px;font-weight:700;color:var(--accent);margin-bottom:4px}
+.links{font-size:13px;color:var(--muted);margin-top:40px} a{color:var(--accent)}
+.li{margin:0;padding-left:18px}.li li{font-size:14.5px;color:var(--ink-2);margin:6px 0}.li b{color:var(--ink)}
+.steps div b{color:var(--ink);font-size:15.5px}
+.steps div b{display:block}
+</style></head><body><div class="wrap"><p class="meta">规则理顺 · 2026-10-14 · 依据：三份独立盘点＋一次独立复查，改动均已落到文件</p>
+<h1>规则已理顺：冲突按五级顺序裁定，你只管方向、验收和对外安排</h1>
+<p class="sub">查出的冲突和过时说法已全部改掉；原先挂在你名下的待定事项，已按这条线自行定掉。</p>
+
+<div class="grid g3">
+  <div class="card kpi"><div class="n">65<small>处</small></div><div class="t">冲突、过时或外推的规则（三份盘点 57 处＋复查 8 处，少量重叠），已全部改掉</div></div>
+  <div class="card kpi"><div class="n">15<small>件</small></div><div class="t">原先挂在你名下的待定事项，已自行定掉</div></div>
+  <div class="card kpi"><div class="n">0<small>行</small></div><div class="t">写作标准新增的规则行；判例里仍有效的 10 条并进已有的行</div></div>
+</div>
+
+<h2><span class="no">01</span>以后冲突时按这五级裁定，上面的赢</h2>
+<div class="steps" style="grid-template-columns:repeat(5,1fr)">
+  <div><b>你的原话</b><br>晚的优先；先登记进答复登记（已补登 10/13–10/14 共 21 条）</div>
+  <div><b>已定事项、工作原则甲</b><br>业务口径；你定的工作原则</div>
+  <div><b>写作标准</b><br>写作、版面、措辞，以「现行说法」为准</div>
+  <div><b>我方执行文件</b><br>标准体系、清单、观感标准、任务说明、汇报技能、记忆；只能细化上面三级</div>
+  <div><b>判例</b><br>校准材料，不是规则</div>
+</div>
+<p class="why"><b>另定</b>　一件事只在一处规定、别处只引用，对照表写在标准体系第〇节；新对话从「先看这里」进，再读标准体系第〇节。</p>
+
+<h2><span class="no">02</span>交给你的只剩三类事，其余我定了就记一行「自行决定」</h2>
+<div class="grid g2">
+  <div class="card"><span class="tag blue">交给你</span>
+    <ul class="li"><li>业务方向取舍</li><li>验收</li><li>只有你能对外安排的事：约主管、团队评审</li></ul></div>
+  <div class="card"><span class="tag gray">我自己定</span>
+    <ul class="li"><li>我方流程：判例要不要考、旧 agent 恢不恢复、旧表留不留</li><li>内容与方法取舍：验收写法、实验组怎么比</li><li>事实没查实时怎么写；材料怎么准备</li></ul></div>
+</div>
+
+<h2><span class="no">03</span>理顺的冲突分三类，最多的是「已停用的流程还写成现行」</h2>
+<div class="grid g3">
+  <div class="card cause"><p class="h">已停用仍当现行</p><p class="l">定时 agent、旧格式检查脚本、判例考试、八个阶段、「最多两轮」、统一程度「待定」</p><p class="e">处理：统一标为已停用；考试材料和三份旧任务说明移进归档</p></div>
+  <div class="card cause"><p class="h">两处说法相反</p><p class="l">结论页「只放一个主张」与「五类要写出成员」；记忆推荐「触达、圈选」，写作标准已否掉</p><p class="e">处理：按五级顺序保留上级一方，改掉下级</p></div>
+  <div class="card cause"><p class="h">把你的话外推、收紧</p><p class="l">「首屏必须放读者要做的事」「页数不设上限」「两件事必须分页」「推荐、建议一律删」</p><p class="e">处理：收回到你原话针对的情况</p></div>
+</div>
+
+<h2><span class="no">04</span>替你定掉的事</h2>
+<table>
+<tr><th>事项</th><th>定了什么</th></tr>
+<tr><td class="w">推播能否按标签发</td><td class="r">保留条件写法；17 项总数不变；放到研发评审时确认</td></tr>
+<tr><td class="w">标签页三行「现在」</td><td class="r">保留；标签需求进研发评审时确认现状</td></tr>
+<tr><td class="w">实验组怎么比</td><td class="r">比两组人均点击，不比曝光；第 9 页已改</td></tr>
+<tr><td class="w">正文取舍两项判卷方向相反</td><td class="r">以对照产品计划为准，标签三页留正文</td></tr>
+<tr><td class="w">推送后台交付三问</td><td class="r">做完交你；何时、怎么交给主管由你对外安排时定</td></tr>
+<tr><td class="w">统一程度</td><td class="r">统一入口已定，已定事项不再写「待定」</td></tr>
+<tr><td class="w">旧 agent、判例考试、九月验收表</td><td class="r">不恢复、停用、标为背景</td></tr>
+<tr><td class="w">人群门槛「数值未确认」</td><td class="r">写明依据：行业口径＋本平台数据核对；你验收时可改</td></tr>
+</table>
+
+<h2><span class="no">05</span>有两处顺带改到了交付物</h2>
+<div class="grid g2">
+  <div class="card"><span class="tag blue">呈交版第 9 页</span>
+    <ul class="li"><li>「比较两组曝光、点击后再调整」改为「比较两组人均点击后再调整」</li><li>已重新生成；程序检查 ✘ 0；这一句没有重跑复述判卷</li></ul></div>
+  <div class="card"><span class="tag red">推送后台设计概要</span>
+    <ul class="li"><li>状态由「待你看」改为「清单判卷通过后交你」</li><li>原因：它已做完、经独立审核，但清单 6 项一项还没判；按规则全部通过才交你</li></ul></div>
+</div>
+
+<p class="links">原文：<a href="../规则与交接/标准体系.md">标准体系（第〇节）</a> · <a href="../规则与交接/已定事项.md">已定事项</a> · <a href="../归档/规则_旧/写作标准_合并版.html">写作标准</a> · <a href="../规则与交接/标准_弹窗标签推送方案.md">弹窗方案清单</a> · <a href="../规则与交接/标准_推送系统后台集成需求.md">推送后台清单</a></p>
+</div></body></html>

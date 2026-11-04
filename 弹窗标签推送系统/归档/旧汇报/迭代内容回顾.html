@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>迭代内容回顾</title>
+<style>
+  :root{
+    --ground:#f0efec; --surface:#fff; --surface-2:#f7f6f3; --ink:#191b1e; --ink-2:#484d53; --muted:#7d8289;
+    --line:#dcdad5; --line-2:#e8e6e1; --accent:#9a6f24;
+    --ok:#3d6b58; --ok-soft:#dfeae5; --warn:#8a6410; --warn-soft:#f5ead2; --info:#1c6ea4; --info-soft:#e0ecf4; --must:#a63f38; --must-soft:#f4e3e1;
+    --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    --serif:"Songti SC","Noto Serif SC",Georgia,serif; --mono:ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+    --ground:#131518; --surface:#1a1d21; --surface-2:#20242a; --ink:#e9e8e4; --ink-2:#b7bbc0; --muted:#868c94;
+    --line:#2d3238; --line-2:#262b31; --accent:#d6ab5c;
+    --ok:#74b096; --ok-soft:#1d3129; --warn:#cfa44e; --warn-soft:#332a16; --info:#6aa8d6; --info-soft:#1b2a36; --must:#dd8078; --must-soft:#38231f; } }
+  :root[data-theme="dark"]{
+    --ground:#131518; --surface:#1a1d21; --surface-2:#20242a; --ink:#e9e8e4; --ink-2:#b7bbc0; --muted:#868c94;
+    --line:#2d3238; --line-2:#262b31; --accent:#d6ab5c;
+    --ok:#74b096; --ok-soft:#1d3129; --warn:#cfa44e; --warn-soft:#332a16; --info:#6aa8d6; --info-soft:#1b2a36; --must:#dd8078; --must-soft:#38231f; }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--ground); color:var(--ink); font-family:var(--sans); font-size:15px; line-height:1.7; -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:860px; margin:0 auto; padding:36px 22px 80px;}
+  .meta{font-size:12.5px; color:var(--muted); margin:0 0 6px;}
+  h1{font-family:var(--serif); font-size:24px; margin:0 0 14px;}
+  .verdict{background:var(--surface); border-left:3px solid var(--accent); padding:14px 18px; margin:0 0 12px;}
+  .verdict p{margin:0; font-size:16px; font-weight:600; max-width:40em;}
+  .bar{display:flex; height:26px; border-radius:3px; overflow:hidden; margin:6px 0 4px;}
+  .bar div{display:flex; align-items:center; justify-content:center; font-size:12px; color:#fff; font-weight:600;}
+  .lg{font-size:12.5px; color:var(--ink-2); margin:0 0 26px;}
+  h2{font-family:var(--serif); font-size:19px; margin:30px 0 12px; padding-bottom:8px; border-bottom:1px solid var(--line);}
+  ol.key{margin:0; padding-left:1.3em;}
+  ol.key li{margin:8px 0; background:var(--surface); border:1px solid var(--line); padding:10px 14px; list-style-position:outside;}
+  ol.key li b{display:block; font-size:15px;}
+  ol.key li span{font-size:13.5px; color:var(--ink-2);}
+  .file{background:var(--surface); border:1px solid var(--line); margin:0 0 10px;}
+  .file h3{margin:0; padding:10px 16px; font-size:15px; border-bottom:1px solid var(--line-2); display:flex; justify-content:space-between; gap:8px; flex-wrap:wrap;}
+  .file h3 small{font-weight:400; color:var(--muted); font-size:12.5px;}
+  table{border-collapse:collapse; width:100%; font-size:13.5px;}
+  td{padding:7px 12px; border-bottom:1px solid var(--line-2); vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  td.v{font-family:var(--mono); color:var(--muted); white-space:nowrap; width:1%;}
+  td.t{white-space:nowrap; width:1%;}
+  .tag{font-size:11px; font-weight:650; padding:0 6px; border-radius:2px; white-space:nowrap;}
+  .k1{background:var(--ok-soft); color:var(--ok);} .k2{background:var(--must-soft); color:var(--must);} .k3{background:var(--info-soft); color:var(--info);} .k4{background:var(--surface-2); color:var(--muted); border:1px solid var(--line);}
+  .note{font-size:13px; color:var(--muted); margin:6px 0 0;}
+  @media (max-width:600px){ .wrap{padding:24px 16px 60px} td{padding:6px 8px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+<p class="meta">2026-09-28 · 截至 11:40 · 来源：迭代记录.md、审查记录.md</p>
+<h1>之前到底迭代了什么</h1>
+
+<div class="verdict"><p>一共约 45 处改动，真正推进了方案理解的大约 10 处，集中在今天上午改原则以后；此前大部分是在「方案」这一环的附件（08 效果评估、09 取数表等）上反复细化口径，跳过了现状和诊断。</p></div>
+<div class="bar">
+  <div style="width:22%;background:var(--ok)">实质推进 10</div>
+  <div style="width:9%;background:var(--must)">纠错 4</div>
+  <div style="width:40%;background:var(--info)">口径细化 18</div>
+  <div style="width:29%;background:var(--muted)">同步、表述 13</div>
+</div>
+<p class="lg"><span class="tag k1">实质推进</span> 新发现，或者让方案更站得住的改动 · <span class="tag k2">纠错</span> 原来写错了 · <span class="tag k3">口径细化</span> 取数、计数规则写得更细，大多属于方案环节 · <span class="tag k4">同步、表述</span> 跨文件对齐、措辞</p>
+
+<h2>最有价值的 10 处（按对决策的影响排序）</h2>
+<ol class="key">
+  <li><b>发现价值高度集中：金卡以上 10.22% 的人贡献了 96.68% 的累计储值</b><span>以前只按人数看问题。这个发现意味着「潜在流失扩到金卡以上」可能比「回流」影响更大，但审查者也指出：这只说明这群人值钱，不代表弹窗能挽回他们。规划者据此把诊断排序改为三个维度：人数、储值、弹窗能不能干预。（决策汇报、环节1、分析 A1）</span></li>
+  <li><b>换掉了一条站不住的证据：「储值礼包对新用户偏贵」</b><span>原证据 55.07% 对 31.54% 来自两份时间窗口不同的数据，不能直接比较。改用同一份数据重算：普卡、银卡、金卡以上的付费者，累计储值中位数分别是 130、1,934、13,303，差了两个数量级。问题 3 的说法随之改为「礼包顺序不分人群，而三档卡别的付费能力差了两个数量级」。（分析 A2）</span></li>
+  <li><b>纠正了我在现状里的计算错误</b><span>9/16 当天登录的 11,807 人被漏算了。修正后，三群人的活跃程度并不相近：7 天内登录的比例，持续 61.6%、回流 48.4%、新增 44.6%。（环节1）</span></li>
+  <li><b>把月月抽的问题写进方案</b><span>普卡、银卡（占 89.78%）没有月月抽权益；如果系统不会自动跳过，ID5 和回流规则各会白白占掉一个名额。写成前置条件，等研发确认。（02）</span></li>
+  <li><b>「定向规则先弹」由「已定」改为「看后台能不能配置」</b><span>能配置就先弹定向规则；不能配置时，各人群弹出数量不变，只是先后顺序不受控。避免把不确定的事当成方案承诺。（02）</span></li>
+  <li><b>补齐弹窗总量上限的计数规则</b><span>原需求没说一次弹 2 个算几次、到上限时怎么截断。现在写明：按实际弹出个数计数，大厅和破产合并计数，到上限就截断。研发拿到后能直接评估工作量。（04）</span></li>
+  <li><b>潜在付费「44,027 人」不是潜在付费的人数</b><span>44,027 只是从未储值的人数，再叠加投注条件后会更少。原文写法会让主管误读。（02）</span></li>
+  <li><b>效果评估里 M5 只能当监测</b><span>潜在付费的弹窗在切换前后没有变化，它前后对比的差值不能算作这次改动的效果。（08）</span></li>
+  <li><b>身份没有历史记录时，给出替代取数方法</b><span>M1、M3、M7 要用到「当天的身份」，但库里可能只有当前值。补了替代口径，不然这几个指标可能取不出数。（08、09）</span></li>
+  <li><b>把发给数据组的询问补全</b><span>表名、字段、身份历史、机器人判定、埋点覆盖，合并成一条询问（a–e）。原先汇报附录里的版本漏了 3 项。（00、决策汇报）</span></li>
+</ol>
+
+<h2>4 处纠错</h2>
+<div class="file"><table>
+  <tr><td class="t"><span class="tag k2">05</span></td><td>标签需求的背景把「组合能力」写反了，写成了只支持 And 和排除，而盘点记载的是支持 And、排除、或。已改正。</td></tr>
+  <tr><td class="t"><span class="tag k2">环节1</span></td><td>我算错的「7 天内登录」比例和注册时长表（见上面第 3 条）。</td></tr>
+  <tr><td class="t"><span class="tag k2">02</span></td><td>凌晨一轮去重时删掉了「ID5 每日 1 次、无冷却」这条只出现一次的事实；早上我恢复了。</td></tr>
+  <tr><td class="t"><span class="tag k2">决策汇报</span></td><td>「金卡以上没有任何流失预警规则」说过头了，改为「没有弹窗规则」；弹窗以外有没有人在维护，待运营确认。</td></tr>
+</table></div>
+
+<h2>逐文件明细</h2>
+
+<div class="file"><h3>02 弹窗方案 <small>v1 → v4.1</small></h3><table>
+  <tr><td class="v">v2</td><td><span class="tag k1">实质</span> 月月抽前置条件 · <span class="tag k3">细化</span> 潜在付费写明用哪两个标签 · <span class="tag k4">表述</span> ID10 改名</td></tr>
+  <tr><td class="v">v3</td><td><span class="tag k1">实质</span> 定向先弹改为条件句；首储礼包开放期条件 · <span class="tag k4">表述</span> 目标限定为后台可配置部分</td></tr>
+  <tr><td class="v">v4</td><td><span class="tag k1">实质</span> 现有标签「已经先存储了」取反可能就够，不必新建 · <span class="tag k4">表述</span> 回流为什么保留月月抽</td></tr>
+  <tr><td class="v">v4.1</td><td><span class="tag k1">实质</span> 44,027 不是潜在付费的人数；潜在流失档位写成「暂沿用 50%，等人数确认」</td></tr>
+</table></div>
+
+<div class="file"><h3>08 效果评估 <small>v1 → v5 · 改得最多，大多是细化</small></h3><table>
+  <tr><td class="v">v2</td><td><span class="tag k3">细化</span> 储值类对比窗口两侧天数相等；M7 只计活动类；日期口径（台北时间、第 0 日）</td></tr>
+  <tr><td class="v">v3</td><td><span class="tag k3">细化</span> M4 参照组只取「其余」身份；回流任务、首储礼包开放期的判断条件；快照写法</td></tr>
+  <tr><td class="v">v4</td><td><span class="tag k3">细化</span> M5 两侧统一重算名单，不另建快照</td></tr>
+  <tr><td class="v">v5</td><td><span class="tag k1">实质</span> 身份无历史时的替代口径；M5 只作监测 · <span class="tag k3">细化</span> 窗口起点的歧义</td></tr>
+</table><p class="note" style="padding:0 16px 10px">凌晨 03:02 的监督轮就指出过：08 和 09 在互相派生新条件，越写越长，于是叫停了继续加条件。</p></div>
+
+<div class="file"><h3>09 基线取数表 <small>v1 → v2.2</small></h3><table>
+  <tr><td class="v">v2</td><td><span class="tag k3">细化</span> 没有快照时怎么重算名单；人群按登录当天判定、三类互斥；「其余」礼包列出名称</td></tr>
+  <tr><td class="v">v1.1–2.2</td><td><span class="tag k4">同步</span> 三次随 08 改口径</td></tr>
+</table></div>
+
+<div class="file"><h3>04 弹窗需求 · 05 标签需求 · 07 推送需求 <small>从 Cowork 接入后</small></h3><table>
+  <tr><td class="v">04 v2</td><td><span class="tag k1">实质</span> 总量上限的计数与截断规则 · <span class="tag k4">表述</span> 每项需求注明对应 02 的哪一条</td></tr>
+  <tr><td class="v">05 v2–3</td><td><span class="tag k2">纠错</span> 组合能力写反 · <span class="tag k3">细化</span> 机器人剔除口径 · <span class="tag k4">表述</span> 适用范围补上推送</td></tr>
+  <tr><td class="v">07 v2–2.1</td><td><span class="tag k3">细化</span> 通行证推送的跳转需求与验收；数据按日统计；事件触发类推送也计入每日上限 · <span class="tag k4">表述</span> 背景改成条件句</td></tr>
+</table></div>
+
+<div class="file"><h3>C1 卡点优先级 · C2 标签脚本 · 00 推进记录</h3><table>
+  <tr><td class="v">C1</td><td><span class="tag k1">实质</span> 指出取舍 13–21 你自己就能定、排第一 · <span class="tag k3">细化</span> 数据组空缺清单、排序规则统一</td></tr>
+  <tr><td class="v">C2</td><td><span class="tag k3">细化</span> 「从未储值」的口径说明；快照加身份列、改为每天写入、重跑不重复</td></tr>
+  <tr><td class="v">00</td><td><span class="tag k4">同步</span> 并入本机补充；写了提交主管的说明写法；对外询问补问首储开放期；新增数据组询问 a–e</td></tr>
+</table></div>
+
+<div class="file"><h3>决策汇报 · 环节1 现状盘点 <small>今天上午起</small></h3><table>
+  <tr><td class="v">汇报 v1–4</td><td><span class="tag k1">实质</span> 价值结构；问题 3 换成同一份数据的证据 · <span class="tag k2">纠错</span> 「没有规则」改为「没有弹窗规则」 · <span class="tag k4">同步</span> 进度表、附录原话对齐</td></tr>
+  <tr><td class="v">环节1 v1–3</td><td><span class="tag k1">实质</span> 价值结构、储值档位 · <span class="tag k2">纠错</span> 修正我的计算错误</td></tr>
+</table></div>
+
+<p class="note">从现在起，每一轮做了什么，都会用一行大白话记在「进展日志.md」里，不用再事后回顾。</p>
+</div>
+</body>
+</html>

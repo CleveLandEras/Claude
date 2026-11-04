@@ -1,0 +1,89 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><title>弹窗规则按人群</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#fff;font-family:-apple-system,"PingFang SC","Helvetica Neue",sans-serif;color:#606266;font-size:15px}
+.page{border:1px solid #dcdfe6;padding:18px 22px 22px}
+.tabs{display:flex;border-bottom:1px solid #e4e7ed;margin-bottom:18px}
+.tabs span{padding:10px 22px;font-size:15px;color:#303133;border:1px solid #e4e7ed;border-bottom:none;margin-bottom:-1px;background:#fff}
+.tabs span+span{border-left:none}
+.tabs span.on{color:#409eff;border-bottom:1px solid #fff}
+.body{display:flex;gap:18px}
+.menu{width:150px;flex:none;border-right:1px solid #e4e7ed;align-self:flex-start}
+.menu div{padding:10px 16px 10px 0;text-align:right;font-size:15px;color:#303133;margin-right:-1px;border-right:2px solid transparent}
+.menu div.on{color:#409eff;border-right-color:#409eff}
+.main{flex:1;min-width:0}
+.filters{display:flex;gap:10px;align-items:center}
+.ipt{height:38px;border:1px solid #dcdfe6;border-radius:4px;padding:0 12px;display:flex;align-items:center;justify-content:space-between;color:#a8abb2;font-size:14.5px;width:128px;background:#fff}
+.ipt.v{color:#303133}
+.chev{display:inline-block;width:7px;height:7px;border-right:1.5px solid #a8abb2;border-bottom:1.5px solid #a8abb2;transform:rotate(45deg);margin:-4px 2px 0 8px}
+.link .chev{border-color:#409eff;width:6px;height:6px}
+.btn{height:38px;padding:0 20px;border-radius:4px;color:#fff;font-weight:600;font-size:14.5px;display:inline-flex;align-items:center}
+.btn.blue{background:#409eff}.btn.green{background:#67c23a}
+.btn.sm{height:32px;padding:0 16px;font-size:14px}
+.pill{display:inline-flex;align-items:center;background:#2b5ea8;color:#fff;font-size:13px;font-weight:700;padding:3px 9px;border-radius:4px;line-height:1.3;white-space:nowrap}
+.newbar{display:flex;align-items:center;gap:12px;background:#eaf1fb;border:1px solid #c6d9f1;border-radius:4px;padding:11px 16px;margin:16px 0 14px}
+.newbar .lab{font-size:15px;color:#303133;font-weight:600;margin-left:4px}
+.newbar .num{width:64px;height:34px;border:1px solid #dcdfe6;border-radius:4px;background:#fff;color:#303133;font-size:15px;display:flex;align-items:center;justify-content:center}
+.newbar .unit{color:#303133}
+.newbar .btn{margin-left:8px}
+table{width:100%;border-collapse:collapse;border:1px solid #ebeef5;font-size:15px;table-layout:fixed}
+th{background:#f5f7fa;color:#909399;font-weight:600;height:48px;border:1px solid #ebeef5;text-align:center;font-size:14.5px}
+td{border:1px solid #ebeef5;padding:10px 8px;text-align:center;color:#606266;vertical-align:middle;line-height:1.6}
+tbody tr:nth-child(even) td{background:#fafafa}
+td.sort{text-align:left;padding-left:14px}
+td.sort .more{color:#909399}
+tbody td.hl{background:#eaf1fb;position:relative;color:#303133}
+td.hl .pill{position:absolute;top:8px;left:8px}
+td.hl .obj{padding-top:16px}
+.link{color:#409eff}
+.pager{display:flex;justify-content:center;gap:16px;align-items:center;margin-top:16px;font-size:14px;color:#606266}
+.pager .box{height:32px;border:1px solid #dcdfe6;border-radius:4px;padding:0 10px;display:flex;align-items:center}
+.pager .cur{color:#409eff;font-weight:700}
+.pager .arr{color:#c0c4cc}
+</style></head><body>
+<div class="page">
+  <div class="tabs"><span class="on">大厅弹窗顺序设定</span><span>操作纪录</span></div>
+  <div class="body">
+    <div class="menu"><div class="on">弹窗顺序设定</div><div>玩家弹窗顺序查询</div></div>
+    <div class="main">
+      <div class="filters">
+        <div class="ipt">弹窗名称</div>
+        <div class="ipt">弹窗类型<i class="chev"></i></div>
+        <div class="ipt">弹窗位置<i class="chev"></i></div>
+        <div class="ipt">对象<i class="chev"></i></div>
+        <div class="ipt v">上架中<i class="chev"></i></div>
+        <span class="btn blue">查询</span><span class="btn green">新增</span>
+      </div>
+      <div class="newbar"><span class="pill">新建</span><span class="lab">每人每日上限</span><span class="num">8</span><span class="unit">个（含各时机）</span><span class="btn blue sm">保存</span></div>
+      <table>
+        <colgroup><col style="width:88px"><col style="width:96px"><col style="width:142px"><col style="width:196px"><col style="width:68px"><col style="width:112px"><col style="width:226px"><col style="width:68px"><col style="width:70px"></colgroup>
+        <thead><tr><th>弹窗活动 ID</th><th>弹窗类型</th><th>弹窗名称</th><th>弹窗排序</th><th>弹出数量</th><th>弹窗位置</th><th>对象</th><th>标签状态</th><th>操作</th></tr></thead>
+        <tbody>
+          <tr><td>8</td><td>活动类弹窗</td><td>活动类·新增</td>
+            <td class="sort">1. 热门资讯<br>2. 发信送奖<br>3. 月月抽<br><span class="more">…共 14 项</span></td>
+            <td>1</td><td>大厅自动弹窗</td><td class="hl"><span class="pill">新建</span><div class="obj">标签：新增</div></td><td>启用</td><td><span class="link">操作<i class="chev"></i></span></td></tr>
+          <tr><td>9</td><td>活动类弹窗</td><td>活动类·回流</td>
+            <td class="sort">1. 回流任务<br>2. 热门资讯<br>3. 发信送奖<br><span class="more">…共 14 项</span></td>
+            <td>3</td><td>大厅自动弹窗</td><td class="hl"><span class="pill">新建</span><div class="obj">标签：回流<br>排除：新增</div></td><td>启用</td><td><span class="link">操作<i class="chev"></i></span></td></tr>
+          <tr><td>10</td><td>活动类弹窗</td><td><span style="white-space:nowrap">活动类·潜在流失</span><br>（实验组）</td>
+            <td class="sort">1. 每日补给计划<br>2. 热门资讯<br>3. 发信送奖<br><span class="more">…共 14 项</span></td>
+            <td>3</td><td>大厅自动弹窗</td><td class="hl"><span class="pill">新建</span><div class="obj">标签：潜在流失·实验组<br>排除：新增、回流</div></td><td>启用</td><td><span class="link">操作<i class="chev"></i></span></td></tr>
+          <tr><td>5</td><td>活动类弹窗</td><td>活动类·其余</td>
+            <td class="sort">1. 热门资讯<br>2. 发信送奖<br>3. 月月抽<br><span class="more">…共 14 项</span></td>
+            <td>3</td><td>大厅自动弹窗</td><td class="hl"><span class="pill">改</span><div class="obj">全部玩家<br>排除：新增、回流、<br>潜在流失·实验组</div></td><td>启用</td><td><span class="link">操作<i class="chev"></i></span></td></tr>
+          <tr><td>6</td><td>储值类弹窗</td><td>通用弹窗</td>
+            <td class="sort">1. 储值类礼包/首储礼包<br>2. 储值类礼包/独享礼包<br>3. 储值类礼包/惊喜三选一<br><span class="more">…共 7 项</span></td>
+            <td>1</td><td>大厅自动弹窗</td><td>全部玩家</td><td>-</td><td><span class="link">操作<i class="chev"></i></span></td></tr>
+          <tr><td>11</td><td>储值类弹窗</td><td>破产储值弹窗<br>（实验组）</td>
+            <td class="sort">1. 储值类礼包/首储礼包<br>2. 储值类礼包/破产礼包<br>3. 储值类礼包/独享礼包<br><span class="more">…共 8 项</span></td>
+            <td>1</td><td>游戏破产弹窗</td><td class="hl"><span class="pill">新建</span><div class="obj">标签：破产·实验组</div></td><td>启用</td><td><span class="link">操作<i class="chev"></i></span></td></tr>
+          <tr><td>7</td><td>储值类弹窗</td><td>破产储值弹窗</td>
+            <td class="sort">1. 储值类礼包/首储礼包<br>2. 储值类礼包/独享礼包<br>3. 储值类礼包/破产礼包<br><span class="more">…共 8 项</span></td>
+            <td>1</td><td>游戏破产弹窗</td><td class="hl"><span class="pill">改</span><div class="obj">全部玩家<br>排除：破产·实验组</div></td><td>-</td><td><span class="link">操作<i class="chev"></i></span></td></tr>
+        </tbody>
+      </table>
+      <div class="pager"><span class="box">10项/页<i class="chev"></i></span><span class="arr">‹</span><span class="cur">1</span><span class="arr">›</span><span>前往</span><span class="box">1</span><span>页</span><span>共 7 项</span></div>
+    </div>
+  </div>
+</div>
+</body></html>

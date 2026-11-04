@@ -1,0 +1,186 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>完善度审计</title><style>
+:root{--ground:#f0efec;--surface:#fff;--surface-2:#f7f6f3;--ink:#191b1e;--ink-2:#484d53;--muted:#7d8289;--line:#dcdad5;--line-2:#e8e6e1;--accent:#9a6f24;--ok:#3d6b58;--ok-soft:#dfeae5;--warn:#8a6410;--warn-soft:#f5ead2;--info:#1c6ea4;--info-soft:#e0ecf4;--must:#a63f38;--must-soft:#f4e3e1;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;--mono:ui-monospace,Menlo,monospace;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1a1d21;--surface-2:#20242a;--ink:#e9e8e4;--ink-2:#b7bbc0;--muted:#868c94;--line:#2d3238;--line-2:#262b31;--accent:#d6ab5c;--ok:#74b096;--ok-soft:#1d3129;--warn:#cfa44e;--warn-soft:#332a16;--info:#6aa8d6;--info-soft:#1b2a36;--must:#dd8078;--must-soft:#38231f;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1a1d21;--surface-2:#20242a;--ink:#e9e8e4;--ink-2:#b7bbc0;--muted:#868c94;--line:#2d3238;--line-2:#262b31;--accent:#d6ab5c;--ok:#74b096;--ok-soft:#1d3129;--warn:#cfa44e;--warn-soft:#332a16;--info:#6aa8d6;--info-soft:#1b2a36;--must:#dd8078;--must-soft:#38231f;}
+*{box-sizing:border-box} body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased}
+.wrap{max-width:960px;margin:0 auto;padding:34px 22px 80px} .meta{font-size:12.5px;color:var(--muted);margin:0 0 6px}
+h1{font-family:var(--serif);font-size:24px;margin:0 0 14px}
+.verdict{background:var(--surface);border-left:3px solid var(--accent);padding:14px 18px;margin:0 0 14px} .verdict p{margin:0 0 6px;font-size:16px;font-weight:600;max-width:48em} .verdict p:last-child{margin:0}
+.sum{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:0 0 28px}
+.sum div{background:var(--surface);border:1px solid var(--line);padding:10px 12px} .sum b{display:block;font-family:var(--mono);font-size:22px} .sum span{font-size:12.5px;color:var(--ink-2)} .sum .bad b{color:var(--must)} .sum .good b{color:var(--ok)}
+.no{font-family:var(--mono);font-size:12px;color:var(--accent);font-weight:600} h2{font-family:var(--serif);font-size:19px;margin:2px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+section{margin:0 0 36px} .card{background:var(--surface);border:1px solid var(--line);padding:14px 18px;margin:0 0 10px}
+.card h3{margin:0 0 6px;font-size:16px} .card p{margin:4px 0;font-size:14px;color:var(--ink-2);max-width:50em} .card p b,.card li b{color:var(--ink)}
+.card ul,.card ol{margin:6px 0 0;padding-left:1.3em;font-size:14px;color:var(--ink-2)} .card li{margin:3px 0}
+.card.ok{border-left:3px solid var(--ok)} .card.bad{border-left:3px solid var(--must)} .card.mid{border-left:3px solid var(--warn)}
+.ev{font-size:12.5px;color:var(--muted);margin:6px 0 0}
+.note{font-size:13px;color:var(--muted);margin:8px 0 0} a{color:var(--accent)}
+.tw{overflow-x:auto} table{border-collapse:collapse;width:100%;font-size:13.5px;background:var(--surface);border:1px solid var(--line)}
+th{text-align:left;font-size:12px;color:var(--muted);font-weight:650;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap} td{padding:8px 10px;border-bottom:1px solid var(--line-2);vertical-align:top} tr:last-child td{border-bottom:none}
+td.c{text-align:center;font-family:var(--mono)} td.src{font-size:12.5px;color:var(--muted)}
+.lv{font-size:11.5px;font-weight:650;padding:0 6px;border-radius:2px;white-space:nowrap}
+.g{background:var(--ok-soft);color:var(--ok)} .y{background:var(--warn-soft);color:var(--warn)} .r{background:var(--must-soft);color:var(--must)} .b{background:var(--info-soft);color:var(--info)}
+.flow{display:flex;gap:6px;flex-wrap:wrap;align-items:stretch;margin:6px 0 10px}
+.flow div{flex:1 1 150px;background:var(--surface);border:1px solid var(--line);padding:10px 12px;font-size:13px;color:var(--ink-2)} .flow b{display:block;color:var(--ink);font-size:14px;margin-bottom:2px}
+.flow .miss{border:1px dashed var(--must);background:var(--must-soft)} .flow .miss b{color:var(--must)}
+details.trace{background:var(--surface);border:1px solid var(--line);margin:0 0 8px;padding:0}
+details.trace summary{cursor:pointer;padding:12px 16px;font-weight:650;font-size:14.5px;list-style:none}
+details.trace summary::-webkit-details-marker{display:none}
+details.trace summary::before{content:"▸ ";color:var(--accent)} details.trace[open] summary::before{content:"▾ "}
+details.trace summary span{font-weight:400;color:var(--muted);font-size:13px;margin-left:6px}
+.steps{padding:0 16px 12px;margin:0}
+.steps li{list-style:none;display:grid;grid-template-columns:92px 74px 1fr;gap:10px;padding:6px 0;border-top:1px solid var(--line-2);font-size:13.5px;color:var(--ink-2)}
+.steps .t{font-family:var(--mono);font-size:12px;color:var(--muted)} .steps .w{font-size:12px}
+.steps b{color:var(--ink)}
+@media (max-width:640px){.wrap{padding:24px 16px 60px} .sum{grid-template-columns:1fr 1fr} table{font-size:12.5px} .steps li{grid-template-columns:1fr;gap:0}}
+</style></head><body><div class="wrap">
+<p class="meta">简报 · 2026-09-29 14:30 · 依据：环节2、环节3 完整文件逐节字段、设计卡（诊断问题清单的来源）、审查记录、进展日志、分析文件逐列使用情况、原始数据试算（见第三节）</p>
+<h1>完善度审计：挖得够深，但想得不够全</h1>
+<div class="verdict">
+<p>系统确实在按「完善度」迭代，但它理解的完善度，是完成标准里的每一格有没有填满、填得对不对。这保证了<b>深入</b>：每个问题都列了 1–6 种其他解释，每条结论都分了证据强度，数字都被重算过。</p>
+<p>但它不保证<b>全面</b>：诊断的问题清单几乎是从原来那份汇报照搬的，之后只按你的指正补了「机会」一侧。数据里现成就有、却从没被当成问题想过的至少有三块。我用 5 分钟试算了其中一块，就看到一个可能的高卡流失原因：输得最多的四分之一高卡，8 天以上没来的比例是其他人的约 1.7–2 倍。</p>
+</div>
+<div class="sum">
+<div class="good"><b>13 项</b><span>诊断项全部写了现象、规模、根因、其他解释、证据强度</span></div>
+<div class="bad"><b>10 / 11</b><span>诊断问题清单直接来自原汇报的问题 1–5</span></div>
+<div class="bad"><b>3 块</b><span>数据里就有、从没被当成问题考虑过</span></div>
+<div><b>6 条</b><span>关键结论的演变过程，见第四节</span></div>
+</div>
+
+<section><div class="no">一 · 系统实际按什么在迭代</div><h2>四个驱动都在回答「这一格填对了没有」，没有一个在问「还有什么没想到」</h2>
+<div class="flow">
+<div><b>① 闸门检查表</b>规划者把每环的完成标准拆成表格，逐格判「满足 / 不满足」。不满足的格子就排进队列。</div>
+<div><b>② 设计卡</b>动手之前先写好：要回答什么、有哪些其他解释、结果怎么判读、结论最多能说到哪一步。</div>
+<div><b>③ 审查退回</b>审查者回到原文逐条核，从原始数据重算，挑出说过头的地方。</div>
+<div><b>④ 你的指正</b>例如「按业绩排序」「月月抽不是问题」，会改变方向。</div>
+<div class="miss"><b>缺的一环：问题空间扫描</b>没有任何一个角色的职责是「问题清单里还缺什么」「数据里还有什么没用上」。</div>
+</div>
+<p class="note">所以只要清单里的问题是对的，系统能把它挖得很深；清单本身漏了什么，系统察觉不到。</p>
+</section>
+
+<section><div class="no">二 · 深入：每个问题挖到了哪一层</div><h2>其他解释列得很足，根因大多停在「推断」，因为没有行为数据</h2>
+<div class="tw"><table>
+<tr><th>诊断项</th><th>其他解释</th><th>根因到哪一步</th><th>最薄弱的一环</th></tr>
+<tr><td><b>在场付费者多付一点</b><br>（链首机会）</td><td class="c">2</td><td><span class="lv y">推断</span> 储值位对所有人同一排序，高卡没有专属规则（配置事实）</td><td>「底盘大 ≠ 能增长」只写成了其他解释，<b>可达幅度未知</b></td></tr>
+<tr><td><b>高卡流失 927 人</b></td><td class="c">6</td><td><span class="lv y">推断 / 待确认</span> 「对象只限普银」被判为表象；有没有专人待确认</td><td>只有「最后登录几天前」这一个信号；<b>输赢没被当成候选原因</b>（见第三节）</td></tr>
+<tr><td><b>沉默与离开 4 万人</b></td><td class="c">≥1</td><td><span class="lv y">推断</span> 被归为「渠道问题」：弹窗碰不到，只能靠推送</td><td>召回率本地为零数据</td></tr>
+<tr><td><b>回流在场者多付</b></td><td class="c">1</td><td><span class="lv y">推断</span> 没有专属规则</td><td>付费率差距可能是选择效应</td></tr>
+<tr><td><b>回流又走</b></td><td class="c">5</td><td><span class="lv y">推断</span> 做了分层对照，超出基线约 1,375 人</td><td>选择效应不可排除（报告自己写明）</td></tr>
+<tr><td><b>新增只来注册当天</b></td><td class="c">5</td><td><span class="lv g">做了反例检查</span> 约四成在开始玩之前就走；时段、平台无差异</td><td>新手流程和弹窗分不开</td></tr>
+<tr><td><b>从未储值者首付</b></td><td class="c">≥4</td><td><span class="lv y">推断</span> 触达不是问题（按配置推算）</td><td>没有曝光次数</td></tr>
+<tr><td><b>首储礼包占位</b></td><td class="c">4</td><td><span class="lv g">部分已证实</span> 3,677 名小额普卡不算错位；高卡错位只有上界</td><td>谁买过首储，本地判断不了</td></tr>
+<tr><td><b>破产位顺序</b></td><td class="c">3</td><td><span class="lv g">机制已证实</span> 按优先级链取第一个可买的礼包</td><td>破产频率、礼包价格未知</td></tr>
+<tr><td><b>弹窗总量</b></td><td class="c">4</td><td><span class="lv y">推断</span> 按配置推算上限</td><td>实际曝光、关闭率未知</td></tr>
+<tr><td><b>标签能力</b></td><td class="c">≥4</td><td><span class="lv y">推断</span> 缺定义，不缺能力</td><td>谁能写 SQL 未知</td></tr>
+<tr><td><b>推送能力</b></td><td class="c">1</td><td><span class="lv r">待确认</span> 各通路能不能定向</td><td>只列了 1 种其他解释</td></tr>
+</table></div>
+<p class="note">判断：<b>在拿到的数据范围内，深入这一项是合格的。</b>每一项都按「现象 → 规模 → 根因 → 其他解释 → 对业绩的影响 → 证据强度 → 现有配置能不能做」完整走了一遍，而且主动写出了自己证明不了的部分。根因停在推断，主要是因为没有行为数据，不是因为偷懒。</p>
+<p class="ev">来源：环节2_问题诊断.html 各节的「其他解释」「证据强度」字段。</p>
+</section>
+
+<section><div class="no">三 · 全面：覆盖了什么，漏了什么</div><h2>业绩驱动树的每一项都碰到了，但问题清单是照着旧汇报列的</h2>
+<div class="tw"><table>
+<tr><th>业绩驱动树</th><th>弹窗线</th><th>标签线</th><th>推送线</th></tr>
+<tr><td><b>新增</b></td><td>新增只来当天</td><td>新增标签的口径（机器人）</td><td>快显、通行证推送不跳转</td></tr>
+<tr><td><b>留存</b></td><td>高卡流失、回流又走</td><td>衰减标签的口径</td><td>—</td></tr>
+<tr><td><b>回流</b></td><td>回流在场者</td><td>回流候选标签</td><td>沉默与离开者的召回</td></tr>
+<tr><td><b>付费率</b></td><td>从未储值者首付、首储占位</td><td>「从未储值」标签</td><td>—</td></tr>
+<tr><td><b>客单价</b></td><td>在场付费者多付、破产位</td><td>—</td><td>—</td></tr>
+</table></div>
+
+<div class="card mid" style="margin-top:12px"><h3>问题清单是怎么来的：11 项里 10 项直接对应原汇报</h3>
+<p>诊断的第一张设计卡（9/28 19:4x）把候选清单写死成 11 项，每项都标了「对应原汇报第几问」；规则是「执行者可以加，但要写理由；不许删」。其中 10 项来自原汇报的问题 1–5 和决定 B，只有「新增只来当天」一项是新加的。「机会」那 4 项，是你提出「按业绩排序」之后才补进来的。</p>
+<p><b>这意味着诊断的范围，基本是由最早那份按五类人群写的方案框定的。</b>后来能跳出「五类人群」，靠的是按业绩重排和方案池重核，不是靠一开始就把问题想全。</p>
+<p class="ev">来源：过程记录/设计卡.md 中的 Q11 卡「S1 候选清单」。</p></div>
+
+<div class="card bad"><h3>数据里现成就有、从没被当成问题考虑过的三块</h3>
+<ol>
+<li><b>输赢（RTP、游戏总输赢），可能是高卡流失的原因。</b>这两列在 28 份分析里只出现过 2 次，都是用来核对账号，没有一次拿来解释流失。我刚试算了一下，剔除机器人、测试账号、VIP、黑名单，高卡共 6,299 人：
+<div class="tw" style="margin:6px 0"><table>
+<tr><th>RTP 四分位</th><th>人数</th><th>8 天以上没来</th></tr>
+<tr><td>最低 25%（相对押注输得最多）</td><td class="c">1,577</td><td class="c"><b>18.1%</b></td></tr>
+<tr><td>第 2 档</td><td class="c">1,573</td><td class="c">10.7%</td></tr>
+<tr><td>第 3 档</td><td class="c">1,579</td><td class="c">8.4%</td></tr>
+<tr><td>最高 25%</td><td class="c">1,570</td><td class="c">10.6%</td></tr>
+</table></div>
+卡 3 到卡 7 每一档里都是最低四分位最高，方向一致。<b>这还不能当结论</b>：玩得少的人 RTP 波动大，已经不来的人局数少，可能是反向因果。但它正是诊断应该列、却没有列出的「其他解释」。如果成立，「输多了的高卡」还在场的时候，弹窗是碰得到的。</li>
+<li><b>大户被整块移出了排序。</b>在场付费者 13,368 人里，前 134 名大户占累计储值的 <b>28.6%</b>、月均化储值的 <b>41.2%</b>。理由是「没有证据表明弹窗能影响他们」。作为弹窗排除，这说得通；但「专人维护大户」作为业绩手段，整个项目里没有被评估过。</li>
+<li><b>成本一侧没有进业绩。</b>9/28 下午规划者写过「活动咬分比是成本，留到诊断环节」，结果诊断、方案两个文件里一次都没出现，「活动赠点」也只在分析文件里出现过。现在的「业绩」只算储值，不算送出去的点数。一个方案能多收 1% 储值，但如果要多送 2% 的点，就不一定划算。</li>
+</ol>
+<p class="ev">试算脚本不在项目里，是我这次对 数据/近一月活跃_20260916.csv 直接跑的；如果要写进诊断，需要按设计卡的流程正式做一遍。</p></div>
+</section>
+
+<section><div class="no">四 · 过程依据：关键结论是怎么被改出来的</div><h2>六条关键结论，每条都至少被推翻或收窄过一次</h2>
+<p class="note" style="margin:0 0 10px">点开看每一步是谁、因为什么改的。</p>
+
+<details class="trace"><summary>「高卡流失是最大的问题」→ 最后变成排第二，并和第一名「两面都做」<span>被数据推翻 2 次，被审查收窄 2 次</span></summary><ol class="steps">
+<li><span class="t">9/28 上午</span><span class="w">旧汇报</span><span>「高卡占 97% 的储值，所以高卡流失最重要」</span></li>
+<li><span class="t">19:5x</span><span class="w">规划者</span><span>按「已经出了问题的人」算：只有 927 人，约占全部储值的 7.18%（后来按高卡口径为 8.6%）。<b>「占 97% 所以最重要」不成立</b></span></li>
+<li><span class="t">20:1x</span><span class="w">执行者</span><span>发现现有预警按「本月比上月少花」触发，圈不到「钱没少花、只是不来了」的 755 人</span></li>
+<li><span class="t">20:06</span><span class="w">审查者</span><span>退回：「多数人还会回来」是本地量不出的预测，改成「还在近一月名单里」</span></li>
+<li><span class="t">22:0x</span><span class="w">执行者</span><span>按「每改善 1% 值多少业绩」换算，两种算法下都是：高卡流失 &gt; 沉默老账号 &gt; 回流又走</span></li>
+<li><span class="t">22:1x</span><span class="w">执行者</span><span>补上「机会」一侧：<b>还在来的付费者多付 1%，比高卡流失的 1% 大 4.5–7.8 倍</b>，高卡流失退到第二</span></li>
+<li><span class="t">22:3x</span><span class="w">执行者</span><span>换算：在场多付 1% ≈ 流失名单前 168 人里多留住 8 人，两面同一量级，所以「两面都做」</span></li>
+</ol></details>
+
+<details class="trace"><summary>「弹窗按五类人群分开定制」→ 退出主线<span>被方案池重核推翻</span></summary><ol class="steps">
+<li><span class="t">9/27</span><span class="w">原方案</span><span>02 五张卡：新增、回流、破产、潜在付费、潜在流失</span></li>
+<li><span class="t">9/28 22:5x</span><span class="w">执行者</span><span>把 02–04 的 18 个动作逐条对照业绩链：只有「储值衰退扩到全部卡别」一张服务链首的高卡，而且照原写法，高卡每天的活动弹窗会从 12 个增加到 32 个</span></li>
+<li><span class="t">9/29 凌晨</span><span class="w">规划者</span><span>写成方向变更 1：主线改为「储值位按卡别分档 + 改过的储值下滑预警」，注明「审查推翻就撤回」</span></li>
+<li><span class="t">00:24</span><span class="w">审查者</span><span>从原始数据重算，没有推翻</span></li>
+<li><span class="t">09:4x</span><span class="w">执行者</span><span>写成第 1 件 A / B / C 三个选项（C 就是维持五类人群），交你和主管定</span></li>
+</ol></details>
+
+<details class="trace"><summary>「推送要建统一后台」→ 首期缩小<span>一次误读、一次撤回、一次被审查补上例外</span></summary><ol class="steps">
+<li><span class="t">9/28 15:15</span><span class="w">主对话</span><span><b>误读你的答复</b>，登记成「平台没有手机推送」；规划者随即把推送方向改成「从零建设」</span></li>
+<li><span class="t">15:25</span><span class="w">主对话</span><span>更正：平台有 5 种通路；方向撤回，已写进十几个文件的错误逐一改回</span></li>
+<li><span class="t">21:0x</span><span class="w">执行者</span><span>推送诊断：4 万沉默和离开者里，钱约 79% 在约 900 名高卡身上</span></li>
+<li><span class="t">22:5x</span><span class="w">执行者</span><span>推送选路：高卡流失那一面，名单前 168 人占八成，首选按名单联系；新推送后台「为了钱」的理由不成立</span></li>
+<li><span class="t">00:24</span><span class="w">审查者</span><span>退回：必须写出例外（没有专人、通路不能按名单发、主管又不设人时，新后台就是唯一出路）</span></li>
+</ol></details>
+
+<details class="trace"><summary>「标签能力够用」→「缺定义不缺能力」→「不挡首期」<span>被你的答复和审查各改一次</span></summary><ol class="steps">
+<li><span class="t">9/28 12:31</span><span class="w">执行者</span><span>按你对「交集」的答复，改掉汇报里「标签能力够用」「五类人群都有现成标签」</span></li>
+<li><span class="t">20:0x</span><span class="w">执行者</span><span>标签诊断：6 个人群里 5 个卡在口径或缺标签，都能用 SQL 补；「交集」其实是弹窗叠加时谁先弹</span></li>
+<li><span class="t">19:56</span><span class="w">审查者</span><span>退回：「不缺能力」说满了，前提是「有人会写 SQL」，改成带前提的说法</span></li>
+<li><span class="t">9/29 凌晨</span><span class="w">执行者</span><span>标签取舍：首期 9 项里只有 2 项要新写 SQL，都有退路</span></li>
+</ol></details>
+
+<details class="trace"><summary>「高卡被 NT$50 首储礼包占位」→ 前提待证实<span>口径被纠正一次，范围被收窄两次</span></summary><ol class="steps">
+<li><span class="t">9/28 14:4x</span><span class="w">执行者</span><span>用「储值回馈比」估算买过首储的人：下界 129 人</span></li>
+<li><span class="t">15:50</span><span class="w">主对话</span><span>从你的交接文档里查到首储是 16,800 点，与推断冲突，重算</span></li>
+<li><span class="t">20:2x</span><span class="w">执行者</span><span>能确定「付过费没买首储」的 3,677 人都是小额普卡，NT$50 对他们合适，<b>不算错位</b>；高卡那边只有上界</span></li>
+<li><span class="t">9/29 01:0x</span><span class="w">执行者</span><span>新主线的前提：本地只能确定 25 人，上界 5,145 人，标成「待确认」</span></li>
+<li><span class="t">00:44–01:20</span><span class="w">审查者</span><span>价格区间那句话前后改了 4 轮（审查退回 2 次、规划者自己补了 2 次），从「300 元以内」一路补到「74 元以下四档都偏低」</span></li>
+</ol></details>
+
+<details class="trace"><summary>「上线后可以评估效果」→ 1–3% 测不出<span>被分析推翻，形成方向变更 3</span></summary><ol class="steps">
+<li><span class="t">9/28 以前</span><span class="w">08 原方案</span><span>按会员编号末位分两组做对照</span></li>
+<li><span class="t">9/29 凌晨</span><span class="w">执行者</span><span>在场高卡即使随机对半分，也要多付约 9% 才测得出；1% 需要现有 76 倍的人数</span></li>
+<li><span class="t">00:34</span><span class="w">审查者</span><span>按原始字符串核对：编号末位是编号规则，不是随机的，「末位分组不能用」成立</span></li>
+<li><span class="t">9/29 凌晨</span><span class="w">规划者</span><span>方向变更 3：先做哪面改按成本和风险定，交主管时不承诺「用储值证明效果」</span></li>
+</ol></details>
+<p class="note">从这六条能看出：<b>结论是在被推翻、被收窄的过程中逐步变准的</b>，驱动力依次是新的分析、审查退回、你的答复。反过来也能看出：每一条的起点都是原来就在清单上的问题。没有哪一条是系统自己发现的全新问题。</p>
+</section>
+
+<section><div class="no">五 · 判断与建议</div><h2>深入合格，全面不合格；建议回到诊断补一次「问题空间扫描」</h2>
+<div class="card"><h3>判断</h3>
+<ul>
+<li><b>深入：合格。</b>在一次快照数据的范围内，能挖的都挖了，证明不了的也如实写了。</li>
+<li><b>全面：不合格。</b>问题清单锚定在旧方案上，数据里至少有三块（输赢、大户、成本）没被当成问题考虑过，其中「输赢」的试算已经显示出信号。</li>
+</ul></div>
+<div class="card"><h3>建议（这件事要你来决定）</h3>
+<ol>
+<li><b>回到诊断环节，补一次「问题空间扫描」</b>，只做三件事：
+  <ul>
+  <li>沿业绩驱动树从上往下，每一项列出所有可能的原因，不管原汇报里有没有；</li>
+  <li>逐列扫一遍数据，列出没用过的字段，并写明为什么不用；</li>
+  <li>先把输赢、大户、成本这三块正式分析一遍。</li>
+  </ul>
+  这会让已经过闸的诊断、方案重新打开一部分。按工作原则第四节，这属于「回头」，是允许的。</li>
+<li><b>以后每一环开工前都先做问题空间扫描，并由审查者检查「清单有没有漏」</b>，不再只检查「清单里的项做对了没有」。</li>
+</ol>
+<p>你同意的话，我把第 1 条写成回溯指令交给规划者，把第 2 条写进工作原则。自动运行现在是休眠状态，写好后规划者会自动接手。</p></div>
+</section>
+</div></body></html>

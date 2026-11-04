@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>后台结构展示 方案</title>
+<style>:root{
+  --bg:#f4f5f7; --card:#fff; --ink:#1f2933; --ink2:#52606d; --ink3:#7b8794;
+  --line:#e1e5ea; --soft:#f7f8fa; --accent:#1f5fa8; --accent-bg:#eef4fb;
+  --p1:#52606d; --p1bg:#eceff2;
+  --p2:#1f5fa8; --p2bg:#e6f0fb;
+  --p3:#2b7a4b; --p3bg:#e4f4ea;
+  --p4:#9a5b00; --p4bg:#fff1d6;
+  --p5:#7a3e9d; --p5bg:#f1e8f7;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.75 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif}
+.wrap{display:grid;grid-template-columns:244px minmax(0,1fr);gap:32px;max-width:1480px;margin:0 auto;padding:32px 32px 80px}
+nav{position:sticky;top:24px;align-self:start;max-height:calc(100vh - 48px);overflow:auto;font-size:14.5px;line-height:1.5}
+nav .nt{font-weight:700;font-size:15px;margin-bottom:4px}
+nav .ns{color:var(--ink3);font-size:13px;margin-bottom:10px}
+nav .grp{margin:16px 0 6px;font-size:13px;font-weight:700;padding-left:10px;border-left:4px solid var(--c)}
+nav .grp span{display:block;color:var(--ink3);font-weight:400}
+nav a{display:block;padding:5px 10px;border-left:2px solid var(--line);color:var(--ink2);text-decoration:none}
+nav a:hover{color:var(--accent);border-left-color:var(--accent);background:var(--accent-bg)}
+.g1{--c:var(--p1)}.g2{--c:var(--p2)}.g3{--c:var(--p3)}.g4{--c:var(--p4)}.g5{--c:var(--p5)}
+main{min-width:0}
+header.top{margin-bottom:30px}
+header.top h1{font-size:30px;line-height:1.35;margin:0 0 10px}
+header.top .lead{margin:0 0 14px;color:var(--ink2);max-width:62em}
+header.top .size{display:flex;align-items:baseline;gap:14px;margin:0 0 16px;padding:10px 18px;background:var(--ink);color:#fff;border-radius:8px;font-size:15px}
+header.top .size b{font-size:20px;white-space:nowrap}
+header.top .note{margin:10px 0 0;font-size:14px;color:var(--ink3)}
+table.map{background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:14.5px;line-height:1.55}
+table.map th{font-size:13.5px}
+table.map td{border-bottom:1px solid var(--line);padding:9px 14px}
+table.map tr:last-child td{border-bottom:none}
+table.map td.pt{white-space:nowrap;font-weight:700;border-left:6px solid var(--c);width:1%}
+table.map td.pt small{display:block;font-weight:400;color:var(--ink3);font-size:13px}
+table.map td.pg2{white-space:nowrap;color:var(--ink2);width:1%}
+table.map a{color:var(--ink);text-decoration:none;display:block}
+table.map a:hover{color:var(--accent)}
+table.map a i{font-style:normal;color:var(--ink3);display:inline-block;min-width:24px}
+.partband{background:var(--pbg);border:1px solid var(--line);border-left:10px solid var(--pc);border-radius:10px;padding:20px 30px 18px;margin:44px 0 22px;scroll-margin-top:20px}
+.partband .pn{font-size:14px;font-weight:700;color:var(--pc);letter-spacing:.06em}
+.partband .pm{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin:2px 0 6px}
+.partband .pm b{font-size:26px;line-height:1.4}
+.partband .pm span{color:var(--ink2);font-size:15px}
+.partband p{margin:0;color:var(--ink2)}
+.pt1{--pc:var(--p1);--pbg:var(--p1bg)}.pt2{--pc:var(--p2);--pbg:var(--p2bg)}.pt3{--pc:var(--p3);--pbg:var(--p3bg)}.pt4{--pc:var(--p4);--pbg:var(--p4bg)}.pt5{--pc:var(--p5);--pbg:var(--p5bg)}
+section.pg{background:var(--card);border:1px solid var(--line);border-top:5px solid var(--pc);border-radius:12px;padding:26px 40px 38px;margin-bottom:28px;scroll-margin-top:20px}
+.kick{display:flex;align-items:center;flex-wrap:wrap;gap:8px 14px;font-size:14px;color:var(--ink2);margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.kick .pchip{display:inline-block;padding:1px 12px;border-radius:12px;background:var(--pc);color:#fff;font-size:13.5px;font-weight:700;white-space:nowrap}
+.kick .pos b{color:var(--ink)}
+.kick .prog{margin-left:auto;display:flex;align-items:center;gap:3px}
+.kick .prog i{display:block;width:11px;height:11px;border-radius:2px;background:#e3e7ec}
+.kick .prog i.gs{margin-left:7px}
+.kick .prog i.past{background:#a9b4c0}
+.kick .prog i.on{background:var(--pc);outline:2px solid var(--pc);outline-offset:1px}
+h2{font-size:26px;line-height:1.45;margin:0 0 8px;font-weight:700}
+.kp{margin:0 0 18px;font-size:17px;color:var(--ink2)}
+.note2{margin:-12px 0 20px;font-size:14.5px;color:var(--ink3)}
+.judge{background:var(--accent-bg);border-left:4px solid var(--accent);padding:11px 18px;border-radius:0 8px 8px 0;margin:0 0 26px}
+.judge b{color:var(--accent);margin-right:8px}
+h3{font-size:18px;margin:30px 0 12px}
+p{margin:0 0 12px}
+table{border-collapse:collapse;width:100%;font-size:15px;line-height:1.65}
+th,td{border-bottom:1px solid var(--line);padding:10px 14px;text-align:left;vertical-align:top}
+th{background:var(--soft);font-weight:600;color:var(--ink2);font-size:14px;white-space:nowrap}
+table.rule th{width:100%}
+table.rule .why{display:block;margin-top:3px;color:var(--ink3);font-size:14px;line-height:1.6}
+.scn{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:24px 26px 26px;margin:0 0 26px}
+.scn h4{margin:0 0 4px;font-size:13px;letter-spacing:.06em;color:var(--ink3);font-weight:600}
+.scn .st{margin:0 0 16px;font-size:17px;font-weight:700;line-height:1.55}
+ol.steps{list-style:none;counter-reset:s;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+ol.steps.s4{grid-template-columns:repeat(2,minmax(0,1fr))}
+ol.steps li{counter-increment:s;position:relative;padding:12px 16px 12px 50px;background:#fff;border:1px solid var(--line);border-radius:8px}
+ol.steps li:before{content:counter(s);position:absolute;left:15px;top:13px;width:24px;height:24px;border-radius:50%;background:var(--ink);color:#fff;font-size:13px;line-height:24px;text-align:center}
+.figs{display:flex;flex-direction:column;gap:22px;min-width:0;margin-top:22px}
+figure{margin:0}
+figure img{display:block;width:100%;max-width:980px;height:auto;border:1px solid var(--line);border-radius:8px;background:#fff}
+figcaption{margin-top:6px;font-size:13.5px;color:var(--ink3);line-height:1.5}
+table.et{max-width:980px;background:#fff;border:1px solid var(--line);font-size:14px;line-height:1.55}
+table.et th,table.et td{padding:7px 10px}
+table.et td:nth-child(1){white-space:nowrap}
+.diag{display:grid;grid-template-columns:minmax(0,1fr) 54px minmax(0,1fr);gap:0;align-items:stretch;margin:6px 0 4px}
+.diag .col{border:1px solid var(--line);border-radius:10px;padding:16px 18px;background:var(--soft)}
+.diag .col.new{background:var(--accent-bg);border-color:#bcd3ec}
+.diag h4{margin:0 0 10px;font-size:15px}
+.diag .layer{font-size:13px;font-weight:700;color:var(--ink3);margin:10px 0 6px}
+.diag .box{background:#fff;border:1px solid var(--line);border-radius:7px;padding:6px 12px;margin-bottom:6px;font-size:14.5px;line-height:1.5}
+.diag .box small{display:block;color:var(--ink3);font-size:13px}
+.diag .ar{display:flex;align-items:center;justify-content:center;font-size:26px;color:var(--ink3)}
+.diag .sh{background:#fff;border:1px dashed #9db9d9;border-radius:7px;padding:8px 12px;font-size:14.5px;margin-top:10px}
+.diag .lay2{background:#fff;border:1px solid #bcd3ec;border-radius:7px;padding:10px 12px;margin-bottom:8px;font-size:15px}
+.diag .lay2 small{display:block;color:var(--ink3);font-size:13px}
+.dec{border:1px solid var(--line);border-radius:10px;padding:18px 24px 12px;margin:0 0 16px}
+.dec h3{margin:0 0 8px;font-size:17px}
+.dec h3 i{font-style:normal;display:inline-block;min-width:26px;text-align:center;border-radius:13px;background:var(--ink);color:#fff;font-size:13px;margin-right:8px;line-height:26px}
+.dec h3 a{font-size:13.5px;font-weight:400;margin-left:10px;color:var(--accent);text-decoration:none}
+.dec table td{border-bottom:none;padding:3px 0;vertical-align:top}
+.dec table td:first-child{width:56px;color:var(--ink3);font-weight:600;white-space:nowrap}
+.dec .rec td:last-child{font-weight:600}
+.dec .rec td:first-child{color:var(--accent)}
+.endbox{background:var(--card);border:1px solid var(--line);border-top:5px solid var(--ink);border-radius:12px;padding:26px 40px 30px;margin:44px 0 10px}
+.endbox h2{margin:0 0 10px}
+.endbox ol{margin:6px 0 0;padding-left:22px}
+.endbox li{margin:0 0 4px}
+.endbox li a{color:var(--ink);text-decoration:none}
+footer{color:var(--ink3);font-size:13px;margin-top:10px}
+
+/* ---- 小样外框 ---- */
+body{background:#dfe3e8}
+.stage{width:1280px;margin:0 auto;padding:44px 0 80px}
+.lab{display:flex;align-items:baseline;gap:12px;margin:0 0 12px;font-size:20px;font-weight:700;color:var(--ink)}
+.lab i{font-style:normal;display:inline-block;min-width:30px;height:30px;border-radius:15px;background:var(--ink);color:#fff;font-size:15px;line-height:30px;text-align:center}
+.scr{width:1280px;height:var(--h);overflow:hidden;background:var(--bg);box-shadow:0 1px 3px rgba(31,41,51,.18),0 8px 28px rgba(31,41,51,.10);margin:0 0 64px;border-radius:6px}
+.scr .wrap{max-width:none;margin:0;padding:32px 32px 0}
+.scr nav{position:static;max-height:none;overflow:visible}
+nav a small{display:block;font-size:12.5px;line-height:1.4;color:var(--ink3);margin-top:1px}
+nav a{line-height:1.5}
+
+/* ---- 方案一：菜单树 ---- */
+.tree{margin:6px 0 26px}
+.tree .th{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin:0 0 12px}
+.tree .th h2{font-size:21px;line-height:1.4;margin:0}
+.tree .th span{font-size:14px;color:var(--ink3)}
+.mcs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;align-items:start}
+.mc{background:var(--card);border:1px solid var(--line);border-top:5px solid var(--pc);border-radius:10px;padding:12px 16px 6px}
+.mc .mh{display:flex;align-items:baseline;justify-content:space-between;margin:0 0 4px;padding-bottom:9px;border-bottom:1px solid var(--line)}
+.mc .mh b{font-size:18px;color:var(--pc)}
+.mc .mh span{font-size:13px;color:var(--ink3)}
+.mc ul{list-style:none;margin:0;padding:0}
+.mc li{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:1px solid var(--line);font-size:15px;line-height:24px;min-height:38px}
+.mc li:last-child{border-bottom:none}
+.mc li.off .nm{color:var(--ink3)}
+.cs{display:flex;gap:5px;flex:none}
+.pgc{display:inline-block;padding:0 9px;border-radius:12px;background:var(--pbg);color:var(--pc);font-size:13px;line-height:24px;font-weight:700;text-decoration:none;white-space:nowrap}
+.pgc:hover{background:var(--pc);color:#fff}
+.none{display:inline-block;padding:0 9px;border-radius:12px;border:1px dashed #c3cad3;color:var(--ink3);font-size:13px;line-height:22px;white-space:nowrap}
+.oc{margin:16px 0 0;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 16px 12px}
+.oc .oh{font-size:13.5px;font-weight:700;color:var(--ink2);margin:0 0 8px}
+.ois{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0 16px}
+.oi{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:15px;line-height:24px;padding:2px 0}
+.oi .nm small{display:block;font-size:12.5px;line-height:18px;color:var(--ink3)}
+.oc .pgc{--pc:var(--p1);--pbg:var(--p1bg)}
+.tree + .note{margin-top:0}
+
+/* ---- 方案二：页头位置条 ---- */
+.pos2{margin:-2px 0 18px;background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:8px 14px 6px}
+.pos2 .path{font-size:13.5px;line-height:22px;color:var(--ink3);margin:0 0 4px}
+.pos2 .path i{font-style:normal;margin:0 4px;color:#a9b4c0}
+.pos2 .path b{color:var(--ink)}
+.pos2 .pr{display:grid;grid-template-columns:52px minmax(0,1fr);align-items:center;font-size:13.5px;line-height:22px;padding:2px 0}
+.pos2 .pr>b{font-weight:700;color:var(--ink3)}
+.pos2 .pi{display:flex;flex-wrap:wrap;gap:2px 2px}
+.pos2 .pi span{padding:0 9px;border-radius:4px;color:var(--ink3);white-space:nowrap}
+.pos2 .pr.on>b{display:inline-block;width:42px;text-align:center;border-radius:4px;background:var(--pc);color:#fff}
+.pos2 .pr.on .pi span{color:var(--ink2)}
+.pos2 .pr.on .pi span.cur{background:var(--pc);color:#fff;font-weight:600}
+
+@media print{.scr{box-shadow:none}}
+</style>
+</head>
+<body>
+<div class="stage">
+<div class="lab">方案一　开屏后台结构图</div>
+<div class="scr" style="--h:1010px"><div class="wrap"><nav>
+  <div class="nt">推送统一后台 需求评审</div>
+  <div class="grp g1">第一部分　整体结构<span>第 1 页</span></div>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p1">1 四种推送的划分</a>
+  <div class="grp g2">第二部分　推播<span>第 2–6 页</span></div>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p2">2 按用户分群推送</a>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p3">3 按玩家行为自动推送</a>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p4">4 推送频次与打扰控制</a>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p5">5 推送数据统计</a>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p6">6 服务端写死推送迁移</a>
+  <div class="grp g3">第三部分　弹窗<span>第 7–10 页</span></div>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p7">7 按用户分群配置弹窗</a>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p8">8 每人每天弹窗上限</a>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p9">9 弹窗数据统计</a>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p10">10 客户端写死内容迁移</a>
+  <div class="grp g4">第四部分　其他<span>第 11–15 页</span></div>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p11">11 短信</a>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p12">12 快显</a>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p13">13 项目目录与活动总览</a>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p14">14 玩家查询</a>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p15">15 操作纪录</a>
+  <div class="grp g5">第五部分　待定事项<span>第 16 页</span></div>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p16">16 待定事项</a>
+  
+</nav><main><header class="top" id="top"><h1>推送统一后台 需求评审</h1><p class="lead">在一个后台配置推播、短信、弹窗、快显四种推送，按玩家分群发送，控制每人每天收到的数量，并统计推送效果。以下均为本期；Facebook、LINE 后续开发。</p></header>
+<section class="tree">
+  <div class="th"><h2>后台菜单结构</h2><span>一级菜单 3 个 · 二级菜单 20 个 · 侧栏外页面 4 个</span></div>
+  <div class="mcs"><div class="mc pt2"><div class="mh"><b>推播</b><span>7 个二级菜单</span></div><ul><li class=""><span class="nm">推播列表</span><span class="cs"><a class="pgc" href="../推送系统后台集成需求/3_原型_需求评审版.html#p2">第 2 页</a><a class="pgc" href="../推送系统后台集成需求/3_原型_需求评审版.html#p3">第 3 页</a></span></li><li class=""><span class="nm">频率上限与勿扰</span><span class="cs"><a class="pgc" href="../推送系统后台集成需求/3_原型_需求评审版.html#p4">第 4 页</a></span></li><li class=""><span class="nm">概览</span><span class="cs"><a class="pgc" href="../推送系统后台集成需求/3_原型_需求评审版.html#p5">第 5 页</a></span></li><li class=""><span class="nm">游戏外推送数据</span><span class="cs"><a class="pgc" href="../推送系统后台集成需求/3_原型_需求评审版.html#p5">第 5 页</a></span></li><li class="off"><span class="nm">触达与打扰</span><span class="cs"><span class="none">未收录</span></span></li><li class=""><span class="nm">玩家查询</span><span class="cs"><a class="pgc" href="../推送系统后台集成需求/3_原型_需求评审版.html#p14">第 14 页</a></span></li><li class=""><span class="nm">迁入管理</span><span class="cs"><a class="pgc" href="../推送系统后台集成需求/3_原型_需求评审版.html#p6">第 6 页</a></span></li></ul></div><div class="mc pt3"><div class="mh"><b>弹窗</b><span>5 个二级菜单</span></div><ul><li class=""><span class="nm">弹窗列表</span><span class="cs"><a class="pgc" href="../推送系统后台集成需求/3_原型_需求评审版.html#p7">第 7 页</a></span></li><li class=""><span class="nm">每人每天弹窗上限</span><span class="cs"><a class="pgc" href="../推送系统后台集成需求/3_原型_需求评审版.html#p8">第 8 页</a></span></li><li class=""><span class="nm">游戏内推送数据</span><span class="cs"><a class="pgc" href="../推送系统后台集成需求/3_原型_需求评审版.html#p9">第 9 页</a></span></li><li class="off"><span class="nm">触达与打扰</span><span class="cs"><span class="none">未收录</span></span></li><li class=""><span class="nm">迁入管理</span><span class="cs"><a class="pgc" href="../推送系统后台集成需求/3_原型_需求评审版.html#p10">第 10 页</a></span></li></ul></div><div class="mc pt4"><div class="mh"><b>其他</b><span>8 个二级菜单</span></div><ul><li class=""><span class="nm">短信</span><span class="cs"><a class="pgc" href="../推送系统后台集成需求/3_原型_需求评审版.html#p11">第 11 页</a></span></li><li class=""><span class="nm">快显</span><span class="cs"><a class="pgc" href="../推送系统后台集成需求/3_原型_需求评审版.html#p12">第 12 页</a></span></li><li class=""><span class="nm">项目目录</span><span class="cs"><a class="pgc" href="../推送系统后台集成需求/3_原型_需求评审版.html#p13">第 13 页</a></span></li><li class=""><span class="nm">活动总览</span><span class="cs"><a class="pgc" href="../推送系统后台集成需求/3_原型_需求评审版.html#p13">第 13 页</a></span></li><li class="off"><span class="nm">档期汇总</span><span class="cs"><span class="none">未收录</span></span></li><li class="off"><span class="nm">总览</span><span class="cs"><span class="none">未收录</span></span></li><li class="off"><span class="nm">告警</span><span class="cs"><span class="none">未收录</span></span></li><li class=""><span class="nm">操作纪录</span><span class="cs"><a class="pgc" href="../推送系统后台集成需求/3_原型_需求评审版.html#p15">第 15 页</a></span></li></ul></div></div>
+  <div class="oc"><div class="oh">不在侧栏内的页</div><div class="ois"><div class="oi"><span class="nm">会员标签设定<small>其他后台</small></span><span class="cs"><a class="pgc" href="../推送系统后台集成需求/3_原型_需求评审版.html#p2">第 2 页</a></span></div><div class="oi"><span class="nm">礼包后台<small>其他后台</small></span><span class="cs"><a class="pgc" href="../推送系统后台集成需求/3_原型_需求评审版.html#p3">第 3 页</a><a class="pgc" href="../推送系统后台集成需求/3_原型_需求评审版.html#p6">第 6 页</a></span></div><div class="oi"><span class="nm">单条推送数据</span><span class="cs"><a class="pgc" href="../推送系统后台集成需求/3_原型_需求评审版.html#p5">第 5 页</a></span></div><div class="oi"><span class="nm">单条弹窗规则数据</span><span class="cs"><a class="pgc" href="../推送系统后台集成需求/3_原型_需求评审版.html#p9">第 9 页</a></span></div></div></div>
+</section>
+<p class="note">界面截图取自原型，截图中的人数与比率为示例数据。</p>
+<div class="partband pt1" id="part1">
+  <div class="pn">第一部分</div>
+  <div class="pm"><b>整体结构</b><span>第 1 页</span></div>
+</div>
+<section class="pg pt1" id="p1">
+  <div class="kick"><span class="pchip">整体结构</span><span class="pos">第 1 页 / 共 16 页</span></div>
+  <h2>四种推送的划分</h2>
+  <p class="kp">现在分散在多处配置 · 改后合到推送统一后台 · 分游戏外、游戏内两层</p>
+  <div class="diag">
+    <div class="col">
+      <h4>现在：配置分散在多处</h4>
+      <div class="layer">游戏外推送：玩家不在游戏里也收得到</div>
+      <div class="box">礼包后台<small>推播：限时加码礼包未购买提醒</small></div>
+      <div class="box">另一个推播工具<small>推播：每周固定推播、活动推播</small></div>
+      <div class="box">服务端代码<small>34 种系统推送，写死在代码里</small></div>
+      <div class="box">营销侧<small>短信</small></div>
+      <div class="layer">游戏内推送：玩家在游戏里才看得到</div>
+      <div class="box">弹窗后台<small>大厅弹窗顺序设定</small></div>
+      <div class="box">客户端代码<small>快显、新手弹窗，写死在代码里</small></div>
+    </div>
+    <div class="ar">→</div>
+    <div class="col new">
+      <h4>改后：推送统一后台</h4>
+      <div class="layer">游戏外推送</div>
+      <div class="lay2">推播、短信<small>推播是手机 App 的推送消息</small></div>
+      <div class="layer">游戏内推送</div>
+      <div class="lay2">弹窗、快显<small>弹窗是进入大厅或破产时弹出的画面；快显是游戏界面里的即时横幅，如通行证升级提示</small></div>
+      <div class="sh">两层共用：标签群组选发送对象、每人每天上限、数据统计、操作纪录；游戏外与游戏内的上限和数据分开计，不相加。</div>
+    </div>
+  </div>
+</section></main></div></div>
+
+<div class="lab">方案二　每页后台位置条</div>
+<div class="scr" style="--h:1010px"><div class="wrap"><nav>
+  <div class="nt">推送统一后台 需求评审</div>
+  <div class="grp g1">第一部分　整体结构<span>第 1 页</span></div>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p1">1 四种推送的划分</a>
+  <div class="grp g2">第二部分　推播<span>第 2–6 页</span></div>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p2">2 按用户分群推送</a>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p3">3 按玩家行为自动推送</a>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p4">4 推送频次与打扰控制</a>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p5">5 推送数据统计</a>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p6">6 服务端写死推送迁移</a>
+  <div class="grp g3">第三部分　弹窗<span>第 7–10 页</span></div>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p7">7 按用户分群配置弹窗</a>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p8">8 每人每天弹窗上限</a>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p9">9 弹窗数据统计</a>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p10">10 客户端写死内容迁移</a>
+  <div class="grp g4">第四部分　其他<span>第 11–15 页</span></div>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p11">11 短信</a>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p12">12 快显</a>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p13">13 项目目录与活动总览</a>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p14">14 玩家查询</a>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p15">15 操作纪录</a>
+  <div class="grp g5">第五部分　待定事项<span>第 16 页</span></div>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p16">16 待定事项</a>
+  
+</nav><main><div class="partband pt2" id="part2">
+  <div class="pn">第二部分</div>
+  <div class="pm"><b>推播</b><span>第 2–6 页</span></div>
+</div>
+<section class="pg pt2" id="p2">
+  <div class="kick"><span class="pchip">推播</span><span class="pos">第 2 页 / 共 16 页</span></div>
+  <div class="pos2"><div class="path"><span>推送统一后台</span> <i>›</i> <span>推播</span> <i>›</i> <span>推播列表</span> <i>›</i> <b>新建推播</b></div><div class="pr pt2 on"><b>推播</b><div class="pi"><span class="cur">推播列表</span><span class="">频率上限与勿扰</span><span class="">概览</span><span class="">游戏外推送数据</span><span class="">触达与打扰</span><span class="">玩家查询</span><span class="">迁入管理</span></div></div><div class="pr pt3"><b>弹窗</b><div class="pi"><span class="">弹窗列表</span><span class="">每人每天弹窗上限</span><span class="">游戏内推送数据</span><span class="">触达与打扰</span><span class="">迁入管理</span></div></div><div class="pr pt4"><b>其他</b><div class="pi"><span class="">短信</span><span class="">快显</span><span class="">项目目录</span><span class="">活动总览</span><span class="">档期汇总</span><span class="">总览</span><span class="">告警</span><span class="">操作纪录</span></div></div></div>
+  <h2>按用户分群推送</h2>
+  <p class="kp">选择标签群组 · 排除指定群组 · 预计发出人数</p>
+  <div class="scn">
+    <div>
+      <h4>场景</h4>
+      <p class="st">给「潜在流失」玩家发一条 10/15 20:00 的每日补给计划提醒</p>
+      <ol class="steps">
+        <li>在会员标签设定里建标签群组「潜在流失（两档）」。标签群组是用会员标签按「且」「或」「排除」组合出的一批玩家；这个群组取两档标签的「或」，再排除新增和回流，页面显示每个条件组的人数和最终人数。</li>
+        <li>新建推播时选这个群组，并排除 VIP 名单、黑名单、机器人与测试账号。页面逐层显示群组人数、排除后人数、推播可触达人数（装了 App 且开启通知）、被每人每天上限（界面写作「频率上限」）拦下的人数和预计发出人数。</li>
+        <li>先发测试账号，再确认排程。发给全部玩家时，确认前须输入预计发出人数的前两位数字。</li>
+      </ol>
+    </div>
+</section></main></div></div>
+
+<div class="lab">方案三　两层合一的目录</div>
+<div class="scr" style="--h:1010px"><div class="wrap"><nav><div class="nt">推送统一后台 需求评审</div>
+  <div class="grp g1">整体结构<span>第 1 页</span></div>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p1">1 四种推送的划分</a>
+  <div class="grp g2">推播<span>后台菜单 · 第 2–7 页</span></div>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p2">2 按用户分群推送<small>推播列表 · 新建推播</small></a>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p3">3 按玩家行为自动推送<small>推播列表 · 按行为</small></a>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p4">4 推送频次与打扰控制<small>频率上限与勿扰</small></a>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p5">5 推送数据统计<small>概览 · 游戏外推送数据</small></a>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p14">6 玩家查询</a>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p6">7 服务端写死推送迁移<small>迁入管理</small></a>
+  <div class="grp g3">弹窗<span>后台菜单 · 第 8–11 页</span></div>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p7">8 按用户分群配置弹窗<small>弹窗列表</small></a>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p8">9 每人每天弹窗上限</a>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p9">10 弹窗数据统计<small>游戏内推送数据</small></a>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p10">11 客户端写死内容迁移<small>迁入管理</small></a>
+  <div class="grp g4">其他<span>后台菜单 · 第 12–15 页</span></div>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p11">12 短信</a>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p12">13 快显</a>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p13">14 项目目录与活动总览</a>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p15">15 操作纪录</a>
+  <div class="grp g5">待定事项<span>第 16 页</span></div>
+  <a href="../推送系统后台集成需求/3_原型_需求评审版.html#p16">16 待定事项</a>
+</nav><main><header class="top" id="top"><h1>推送统一后台 需求评审</h1><p class="lead">在一个后台配置推播、短信、弹窗、快显四种推送，按玩家分群发送，控制每人每天收到的数量，并统计推送效果。以下均为本期；Facebook、LINE 后续开发。</p><p class="note">界面截图取自原型，截图中的人数与比率为示例数据。</p></header>
+<div class="partband pt1" id="part1">
+  <div class="pm"><b>整体结构</b><span>第 1 页</span></div>
+</div>
+<section class="pg pt1" id="p1">
+  <div class="kick"><span class="pchip">整体结构</span><span class="pos">第 1 页 / 共 16 页</span></div>
+  <h2>四种推送的划分</h2>
+  <p class="kp">现在分散在多处配置 · 改后合到推送统一后台 · 分游戏外、游戏内两层</p>
+  <div class="diag">
+    <div class="col">
+      <h4>现在：配置分散在多处</h4>
+      <div class="layer">游戏外推送：玩家不在游戏里也收得到</div>
+      <div class="box">礼包后台<small>推播：限时加码礼包未购买提醒</small></div>
+      <div class="box">另一个推播工具<small>推播：每周固定推播、活动推播</small></div>
+      <div class="box">服务端代码<small>34 种系统推送，写死在代码里</small></div>
+      <div class="box">营销侧<small>短信</small></div>
+      <div class="layer">游戏内推送：玩家在游戏里才看得到</div>
+      <div class="box">弹窗后台<small>大厅弹窗顺序设定</small></div>
+      <div class="box">客户端代码<small>快显、新手弹窗，写死在代码里</small></div>
+    </div>
+    <div class="ar">→</div>
+    <div class="col new">
+      <h4>改后：推送统一后台</h4>
+      <div class="layer">游戏外推送</div>
+      <div class="lay2">推播、短信<small>推播是手机 App 的推送消息</small></div>
+      <div class="layer">游戏内推送</div>
+      <div class="lay2">弹窗、快显<small>弹窗是进入大厅或破产时弹出的画面；快显是游戏界面里的即时横幅，如通行证升级提示</small></div>
+      <div class="sh">两层共用：标签群组选发送对象、每人每天上限、数据统计、操作纪录；游戏外与游戏内的上限和数据分开计，不相加。</div>
+    </div>
+  </div>
+</section></main></div></div>
+
+</div>
+</body>
+</html>

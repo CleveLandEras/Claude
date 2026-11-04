@@ -1,0 +1,106 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>迭代全过程复盘</title><style>
+:root{--ground:#f0efec;--surface:#fff;--surface-2:#f7f6f3;--ink:#191b1e;--ink-2:#484d53;--muted:#7d8289;--line:#dcdad5;--line-2:#e8e6e1;--accent:#9a6f24;--ok:#3d6b58;--ok-soft:#dfeae5;--warn:#8a6410;--warn-soft:#f5ead2;--info:#1c6ea4;--info-soft:#e0ecf4;--must:#a63f38;--must-soft:#f4e3e1;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;--mono:ui-monospace,Menlo,monospace;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1a1d21;--surface-2:#20242a;--ink:#e9e8e4;--ink-2:#b7bbc0;--muted:#868c94;--line:#2d3238;--line-2:#262b31;--accent:#d6ab5c;--ok:#74b096;--ok-soft:#1d3129;--warn:#cfa44e;--warn-soft:#332a16;--info:#6aa8d6;--info-soft:#1b2a36;--must:#dd8078;--must-soft:#38231f;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1a1d21;--surface-2:#20242a;--ink:#e9e8e4;--ink-2:#b7bbc0;--muted:#868c94;--line:#2d3238;--line-2:#262b31;--accent:#d6ab5c;--ok:#74b096;--ok-soft:#1d3129;--warn:#cfa44e;--warn-soft:#332a16;--info:#6aa8d6;--info-soft:#1b2a36;--must:#dd8078;--must-soft:#38231f;}
+*{box-sizing:border-box} body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased}
+.wrap{max-width:920px;margin:0 auto;padding:34px 22px 80px} .meta{font-size:12.5px;color:var(--muted);margin:0 0 6px}
+h1{font-family:var(--serif);font-size:24px;margin:0 0 14px}
+.verdict{background:var(--surface);border-left:3px solid var(--accent);padding:14px 18px;margin:0 0 14px} .verdict p{margin:0;font-size:16px;font-weight:600;max-width:46em}
+.sum{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:0 0 28px}
+.sum div{background:var(--surface);border:1px solid var(--line);padding:10px 12px} .sum b{display:block;font-family:var(--mono);font-size:22px} .sum span{font-size:12.5px;color:var(--ink-2)}
+.no{font-family:var(--mono);font-size:12px;color:var(--accent);font-weight:600} h2{font-family:var(--serif);font-size:19px;margin:2px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+section{margin:0 0 34px} .card{background:var(--surface);border:1px solid var(--line);padding:14px 18px;margin:0 0 10px}
+.card h3{margin:0 0 6px;font-size:16px} .card p{margin:4px 0;font-size:14px;color:var(--ink-2);max-width:48em} .card p b,.card li b{color:var(--ink)}
+.card ul{margin:6px 0 0;padding-left:1.2em;font-size:14px;color:var(--ink-2)} .card li{margin:3px 0}
+.note{font-size:13px;color:var(--muted);margin:8px 0 0} a{color:var(--accent)}
+.tw{overflow-x:auto} table{border-collapse:collapse;width:100%;font-size:13.5px;background:var(--surface);border:1px solid var(--line)}
+th{text-align:left;font-size:12px;color:var(--muted);font-weight:650;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap} td{padding:8px 10px;border-bottom:1px solid var(--line-2);vertical-align:top} tr:last-child td{border-bottom:none}
+td.t{font-family:var(--mono);font-size:12.5px;white-space:nowrap;color:var(--ink-2)}
+.tag{font-size:11.5px;font-weight:650;padding:0 6px;border-radius:2px;white-space:nowrap}
+.g{background:var(--ok-soft);color:var(--ok)} .y{background:var(--warn-soft);color:var(--warn)} .r{background:var(--must-soft);color:var(--must)} .b{background:var(--info-soft);color:var(--info)}
+tr.turn td{background:var(--warn-soft)}
+.chain{display:flex;flex-direction:column;gap:0}
+.step{display:grid;grid-template-columns:110px 1fr;gap:14px;background:var(--surface);border:1px solid var(--line);padding:12px 16px}
+.step+.step{border-top:none}
+.step .k{font-family:var(--serif);font-weight:700;font-size:15px}
+.step .k small{display:block;font-family:var(--mono);font-weight:400;font-size:11.5px;color:var(--muted)}
+.step p{margin:2px 0;font-size:14px;color:var(--ink-2)} .step p b{color:var(--ink)}
+.step .was{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--must)}
+.arrow{font-size:12.5px;color:var(--must);font-weight:650;margin:4px 0 0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+details{margin:8px 0 0} summary{cursor:pointer;font-size:13px;color:var(--accent)}
+@media (max-width:640px){.wrap{padding:24px 16px 60px} .sum{grid-template-columns:1fr 1fr} .two{grid-template-columns:1fr} .step{grid-template-columns:1fr;gap:4px} table{font-size:12.5px}}
+</style></head><body><div class="wrap">
+<p class="meta">简报 · 2026-09-29 11:55 · 范围：9/27 Cowork 交接 → 9/29 11:50 · 依据：进展日志（含归档的空转记录）、推进计划回溯记录、审查记录、项目交接、定时任务运行记录</p>
+<h1>迭代全过程复盘：从「打磨附件」到「四环过闸」，主线由五类人群换成了高卡</h1>
+<div class="verdict"><p>两天里，项目从「反复打磨 02、08 这些附件」走到了「现状、诊断、方案、决策四环全部过闸，决策汇报定稿」。真正的推进发生在 9/28 11:16 你定下「产出是决策汇报、按环节推进」之后。方向上最大的变化，是方案从「五类人群分开定制弹窗」换成了「高卡两面都做」：这是你要求「按业绩排序」之后，逻辑一步步推出来的。现在项目停着不是因为出了故障，而是本地能做的都做完了，在等你的决定和外部答复。</p></div>
+<div class="sum">
+<div><b>4 / 4</b><span>环节已过闸（最后一道 9/29 10:20）</span></div>
+<div><b>28 份</b><span>数据分析，每份都写明方法、分母、局限</span></div>
+<div><b>161 条</b><span>审查意见，多数是「结论说过头」</span></div>
+<div><b>13 件</b><span>待决事项：4 件归主管，9 件归你</span></div>
+</div>
+
+<section><div class="no">一 · 从哪里走到哪里</div><h2>前 11 小时在打磨附件，定下规则后 23 小时走完四环</h2>
+<div class="tw"><table>
+<tr><th>时间</th><th>阶段</th><th>做了什么</th><th>结果</th></tr>
+<tr><td class="t">9/27</td><td><span class="tag b">起点</span></td><td>Cowork 产出 00–07（推进记录、取数表、02 五类人群弹窗方案、配置单、需求文档）和 9/24 盘点；Claude Code 接手，建了第一个定时循环</td><td>方案已有，但现状、诊断没有做过</td></tr>
+<tr><td class="t">9/28 00:46–11:16</td><td><span class="tag r">按文件迭代</span></td><td>执行者每 20 分钟挑一份附件（02、08、09、C1、C2）打磨；10:05 接入 Cowork 文件；09:50 拆出独立审查者</td><td>约 45 处改动里只有约 10 处算实质推进。附件越改越规整，但现状、诊断一步没动（<b>偏离</b>）</td></tr>
+<tr class="turn"><td class="t">9/28 11:16–14:47</td><td><span class="tag y">转折</span></td><td>你定下工作原则：产出是决策汇报，推进的是方案完成度（11:16）；按环节闸门推进，新建进展日志（11:45）；加防偏离规则、取消「不能停」（13:40–13:54）；拆出规划者、设计者（14:00–14:47）</td><td>从「改文件」变成「按逻辑链一环环做透」，四个角色分工成形</td></tr>
+<tr><td class="t">9/28 11:45–19:24</td><td><span class="tag g">环节1 现状</span></td><td>用户价值结构、卡别与活跃、目标人群重叠、登录平台、首储、会员等级、8 月离开者等 13 份分析；登记你的答复和 Cowork 背景</td><td>核心事实：<b>金卡以上 10% 的人贡献 97% 的累计储值</b>。19:24 过闸</td></tr>
+<tr><td class="t">9/28 19:24–21:44</td><td><span class="tag g">环节2 诊断</span></td><td>11 个问题逐一诊断（标签、高卡流失、首储、回流、新增、推送、弹窗总量、破产位）；21:2x 按你的指正改成「按业绩排序」，补上「机会」一侧</td><td>影响最大的两件事都在高卡用户身上。21:44 过闸</td></tr>
+<tr><td class="t">9/28 21:44–9/29 01:20</td><td><span class="tag g">环节3 方案</span></td><td>改善幅度、方案池重核、推送选路、标签取舍、效果评估、储值位分档，共 6 份分析；02–09 附件按新主线改写</td><td>主线换成「高卡两面」，首期基本不用研发；1–3% 的改善测不出来。01:20 审查判定通过</td></tr>
+<tr><td class="t">9/29 01:20–09:17</td><td><span class="tag r">停摆</span></td><td>规划者 8 小时没被启动，没人把项目切到下一环；执行者空转 242 轮（23:15–00:10 另有一段额度用完）</td><td>白费一夜。之后加了空转熔断和值守，见<a href="2026-09-29_昨晚迭代回顾.html">昨晚迭代回顾</a></td></tr>
+<tr><td class="t">9/29 09:17–10:20</td><td><span class="tag g">环节4 决策</span></td><td>13 件待决事项逐条写成「问题 + 选项 + 利弊 + 推荐」；把决策汇报改写成大白话版；写好一段可以原样转发给主管的文字</td><td>10:20 最后一道闸通过，决策汇报定稿</td></tr>
+<tr><td class="t">9/29 10:51–</td><td><span class="tag b">等你</span></td><td>队列有意留空；执行者连续空转 3 次后自动休眠</td><td>见第四节</td></tr>
+</table></div>
+</section>
+
+<section><div class="no">二 · 逻辑是怎么走的</div><h2>每一环都推翻了上一环的一部分，结论是被数据逼着转向的</h2>
+<div class="chain">
+<div class="step"><div class="k">起点<small>主管短期规划</small></div><div><p>按新增、回流、破产、潜在付费、潜在流失<b>五类人群</b>分开定制弹窗，也就是 02 的五张卡。默认的前提是：每类人群各有问题，照顾到了就会好。</p></div></div>
+<div class="step"><div class="k">现状<small>环节1</small></div><div><p><b>业绩极度集中</b>：金卡以上 6,366 人，占活跃用户的 10%，贡献 97% 的累计储值；普卡、银卡 55,926 人只贡献 3%。高卡大多还在常来。标签主要缺的是「定义」，不是系统做不到。</p><p class="arrow">→ 动摇了起点：五类人群是按身份切的，而钱按卡别集中</p></div></div>
+<div class="step"><div class="k">诊断 第一版<small>按人数排</small></div><div><p class="was">按「已经出问题的人数、储值」排：第一档是 4 万沉默用户、927 名高卡流失、2 万从未储值、回流又走。</p><p class="arrow">→ 你指正：终极目的是业绩，解决问题只是过程指标</p></div></div>
+<div class="step"><div class="k">诊断 定稿<small>按业绩排</small></div><div><p>改成比较「<b>同样改善 1%，业绩能多多少</b>」，并且用两种偏向相反的算法，两种都成立才算结论：</p><p><b>还在来的付费者多付一点 &gt; 高卡流失 &gt; 沉默老账号 ≈ 回流用户多付一点 &gt; 回流又走</b>；新增只来注册当天的问题分量最小；从未储值者首付，排不出位置。</p><p class="arrow">→ 最大的一项（还在来的高卡）弹窗每次都碰得到；第二项（高卡流失）弹窗碰不到</p></div></div>
+<div class="step"><div class="k">方案<small>环节3</small></div><div><p>把 02–04 的 18 个动作按「碰到的是谁、服务业绩链哪一环」重新核一遍：<b>五张人群卡里只有「储值下滑预警」一张服务高卡</b>，而且照原写法会让高卡每天多看到 20 个弹窗，必须改。</p><p>于是主线换成：<b>还在来的高卡</b>，储值位按卡别分档，再加改过的预警；<b>不来的高卡</b>，按名单交专人或推送（名单前 168 人占这部分钱的八成）。推送后台「为了钱」的理由不成立（推断），首期缩小做。</p><p class="arrow">→ 接着问「能改善多少、测得出吗」：1–3% 在现有人数下测不出来</p></div></div>
+<div class="step"><div class="k">决策<small>环节4</small></div><div><p>既然测不出来，「先做哪面、做不做」就只能按<b>成本、风险和外部答复</b>来定，交给主管时也不能承诺「用储值证明效果」。最后收成 13 件待决事项：主管定 4 件（主线要不要换、开发项推后、要不要设专人跟高卡、推送首期做多大），其余 9 件你定。第 1 件推荐选 A。</p></div></div>
+</div>
+<p class="note">诊断和方案里的量级大多是换算出来的（推断），汇报里都已标明证据强度。能让结论更硬的，是运营、数据组的答复和你的两件自查（见第四节）。</p>
+</section>
+
+<section><div class="no">三 · 碰到了什么问题</div><h2>四类问题：方向偏、事实错、话说满、机制掉链子</h2>
+<div class="two">
+<div class="card"><h3>方向偏了，靠规则拉回来</h3><ul>
+<li><b>按文件打磨</b>：规则明确之前，约 45 处改动只有约 10 处是实质推进。修法：定义最终产出、加环节闸门、每项工作挂钩一条完成标准、审查者发偏离警报、取消「不能停」。</li>
+<li><b>诊断排序依据错了</b>：一开始按人数排，你指正后改成按业绩排，排序因此重做一遍。</li>
+<li><b>误判「月月抽排第 1 在空转」</b>：你指出不能参加的人会被跳过，这条诊断已撤掉。</li></ul></div>
+<div class="card"><h3>事实错了，会迅速扩散</h3><ul>
+<li><b>误读你的答复</b>：你说「这个不是手机推送」，只指通行证那条播报，我却写成了「平台没有手机推送」。10 分钟内就扩散进十几个文件，推送方向一度被改成「从零建设」，15:25 撤回。之后定了规矩：会推翻方向的答复，先向你复述确认。</li>
+<li><b>口径错</b>：首储礼包先按 15,000 点算，后来查到是 16,800 点，重算；9/16 当天登录的 11,807 人被漏算过一次，是审查者抓出来的。</li></ul></div>
+<div class="card"><h3>结论说过头，是最常见的毛病</h3><p>161 条审查意见，大多数是这一类：</p><ul>
+<li>「多数流失高卡还会回来」→ 本地量不出，改成「还在近一月名单里」</li>
+<li>「8,300 名老普卡可召回」→ 改成「召回有具体对象」</li>
+<li>把上界当成下限写、只报对自己有利的一种算法</li></ul>
+<p>为此加了<b>设计者</b>：分析之前先写清楚「要证明什么、用什么方法、结果怎么判读、结论能说到哪一步」，执行者照着做，审查者对照着查。</p></div>
+<div class="card"><h3>机制掉链子，白费了大把时间</h3><ul>
+<li><b>角色掉线</b>：审查者（9/28 16:28 起约 3 小时）、执行者（21 点前后）、规划者（9/29 01:15–09:17）都掉过线，原因都查不到。</li>
+<li><b>额度和电源</b>：Mac 睡眠导致连续认证失败（9/28 04–08 点）；5 小时额度用完（9/28 23:15–00:10）。</li>
+<li><b>空转</b>：没活可干时照样每 2 分钟醒一次、写一行「等待」，一夜 242 轮。</li>
+<li><b>无人值守卡死</b>：agent 一碰到需要人工批准的命令就会卡住；agent 自己也多次提前释放锁。</li></ul>
+<p>已加上的对策：空转 3 次就休眠、空转不写日志、执行者改用 Sonnet 5.5 省额度。</p></div>
+</div>
+</section>
+
+<section><div class="no">四 · 现在是完成了吗</div><h2>本地能做的都做完了，项目在等你；执行者是按设计自动休眠的</h2>
+<div class="card"><p><b>四环全部过闸，决策汇报已定稿。</b>规划者把状态记为「交 Dk 定稿；等外部答复」，队列有意留空。执行者之后又空转了 3 次，10:51 自动休眠。它现在每 2 分钟还会醒一次，但十几秒就结束，已经是用 Sonnet 5.5 在跑。</p>
+<p><b>等的是这几样</b>（原话都在<a href="../决策汇报.html">决策汇报</a>里，可以直接复制）：</p>
+<ul>
+<li><b>第 1 件，弹窗主线请你先选</b>：推荐 A「储值位按卡别分档 + 改过的储值下滑预警」。选完就可以把汇报第五节开头那段「交主管」原样转发。</li>
+<li><b>今天就能发出去的</b>：运营 4 句、数据组 2 项。其中运营第 3、4 句（高卡有没有专人跟进、现有通路能不能按名单发），决定推送要做多大。</li>
+<li><b>你自己几分钟能查的</b>：① 后台「储值品项设定」里独享礼包的价格，App、网页都看一下，它一次能定三件事；③ 标签后台三处条件的截图。</li>
+</ul>
+<p><b>之后怎么接上</b>：有任何答复或决定，你直接告诉我，我登记进答复登记。执行者会自动醒来，规划者会按答复重排，把汇报更新到位。</p></div>
+<div class="card"><p><b>建议：在等答复的这段时间，把自动运行暂停掉。</b>现在虽然没有活，四个角色合计每小时仍会醒约 100 次，每次都要占一点额度，而这周的额度已经用掉一半多。你的答复一到，我登记的时候顺手恢复运行，不会耽误。你说「暂停」，我就放上暂停文件。</p></div>
+</section>
+</div></body></html>

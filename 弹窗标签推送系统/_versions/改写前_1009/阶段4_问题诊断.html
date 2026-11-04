@@ -1,0 +1,225 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>问题诊断</title>
+<style>
+/* 阶段产出模板样式（2026-10-08）。各阶段产出把本文件内容整段放进 <style>，组件用法见 阶段产出格式规范.md */
+:root{--bg:#f5f4f1;--card:#ffffff;--ink:#1b1d20;--ink2:#4a4f56;--muted:#868b92;--line:#e3e1dc;--line2:#efede9;
+--accent:#8a6a2c;--accent-soft:#f3ecdd;--ok:#2f6b52;--ok-soft:#e2efe8;--info:#225f8f;--info-soft:#e3edf5;--warn:#8a5d10;--warn-soft:#f6ecd8;--sup:#6b4fa0;--sup-soft:#ece6f6;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#141619;--card:#1c1f23;--ink:#e8e7e3;--ink2:#b9bdc2;--muted:#8a9098;--line:#30353c;--line2:#262a30;
+--accent:#d4ac62;--accent-soft:#2e2717;--ok:#7bb59a;--ok-soft:#1d3029;--info:#7fb0d8;--info-soft:#1b2a36;--warn:#d6a85a;--warn-soft:#332917;--sup:#b39ce0;--sup-soft:#2a2338;}}
+:root[data-theme="dark"]{--bg:#141619;--card:#1c1f23;--ink:#e8e7e3;--ink2:#b9bdc2;--muted:#8a9098;--line:#30353c;--line2:#262a30;
+--accent:#d4ac62;--accent-soft:#2e2717;--ok:#7bb59a;--ok-soft:#1d3029;--info:#7fb0d8;--info-soft:#1b2a36;--warn:#d6a85a;--warn-soft:#332917;--sup:#b39ce0;--sup-soft:#2a2338;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:940px;margin:0 auto;padding:36px 20px 72px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px;letter-spacing:.2px}
+h1{font-family:var(--serif);font-size:24px;line-height:1.5;margin:0 0 18px;font-weight:700}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin:0 0 14px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+.kpi .n{font-size:24px;font-weight:700;line-height:1.2}
+.kpi .l{font-size:12.5px;color:var(--muted)}
+.kpi .d{font-size:12.5px;color:var(--ink2);margin-top:2px}
+.summary{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:14px 18px;margin:0 0 8px}
+.summary dl{display:grid;grid-template-columns:72px 1fr;gap:6px 12px;margin:0}
+.summary dt{font-weight:650;color:var(--ink2);font-size:14px}
+.summary dd{margin:0;font-size:14.5px}
+.sec{margin:40px 0 0}
+.sec-h{display:flex;gap:12px;align-items:baseline;margin:0 0 4px}
+.sec-no{flex:none;font-size:12px;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:4px;padding:1px 8px;letter-spacing:1px}
+.sec-h h2{font-family:var(--serif);font-size:19px;line-height:1.5;margin:0;font-weight:700}
+.sec-sub{font-size:13.5px;color:var(--muted);margin:0 0 12px 0}
+.tw{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:8px;margin:0 0 10px}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th{font-size:12.5px;font-weight:650;color:var(--muted);text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);white-space:nowrap;background:transparent}
+td{padding:10px 12px;border-bottom:1px solid var(--line2);vertical-align:top}
+tr:last-child td{border-bottom:none}
+tr.grp td{background:var(--bg);font-size:12.5px;font-weight:700;color:var(--ink2);padding:6px 12px;letter-spacing:1px}
+td.no{width:1%;white-space:nowrap;color:var(--muted);font-variant-numeric:tabular-nums}
+.src{display:block;font-size:12px;color:var(--muted);margin-top:2px}
+.tag{display:inline-block;font-size:11.5px;font-weight:650;line-height:1.6;padding:0 7px;border-radius:4px;white-space:nowrap;vertical-align:1px}
+.t-goal{background:var(--ok-soft);color:var(--ok)} .t-con{background:var(--warn-soft);color:var(--warn)} .t-sug{background:var(--info-soft);color:var(--info)}
+.t-inf{background:var(--line2);color:var(--muted)} .t-add{background:var(--sup-soft);color:var(--sup)}
+.chip{display:inline-block;font-size:12px;padding:0 7px;border:1px solid var(--line);border-radius:10px;color:var(--ink2);margin:1px 2px 1px 0;font-variant-numeric:tabular-nums}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin:0 0 10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px 16px}
+.card h3{font-size:16px;margin:0 0 4px}
+.card .what{font-size:14px;color:var(--ink);margin:0 0 8px}
+.card .val{font-size:13.5px;color:var(--ink2);margin:8px 0 0;padding-top:8px;border-top:1px dashed var(--line)}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 16px}
+.box h4{font-size:13px;color:var(--muted);margin:0 0 6px;font-weight:650;letter-spacing:.5px}
+.box ul{margin:0;padding-left:1.2em} .box li{margin:3px 0;font-size:14px}
+.note{font-size:12.5px;color:var(--muted);margin:6px 0 0}
+.links{font-size:13px;color:var(--muted);margin-top:40px;padding-top:12px;border-top:1px solid var(--line)}
+a{color:var(--accent)}
+@media (max-width:600px){h1{font-size:20px}.summary dl{grid-template-columns:1fr}.summary dt{margin-top:6px}}
+.tree{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin:0 0 10px}
+.tree .goal{font-weight:700;font-size:15.5px;margin:0 0 10px}
+.tree .goal small{display:block;font-weight:400;color:var(--ink2);font-size:13.5px;margin-top:2px}
+.tree ul{list-style:none;margin:0;padding:0 0 0 18px;border-left:2px solid var(--line)}
+.tree li{position:relative;margin:6px 0;padding-left:14px}
+.tree li:before{content:"";position:absolute;left:-2px;top:13px;width:12px;border-top:2px solid var(--line)}
+.tree li a{font-weight:650;text-decoration:none;color:var(--ink)}
+.tree li .d{color:var(--ink2);font-size:13.5px}
+.tree li ul{margin:4px 0 4px}.tree li>b{font-weight:700}
+</style></head><body><div class="wrap">
+<p class="meta">阶段 4 · 问题诊断 · 对象：需求分析的 25 个场景与现状盘点之间的缺口 · 2026-10-08 · 待审查</p>
+<h1>10 个做不到的场景归并为 5 个根因，首位指向推送侧，但只在现有归并标准下成立</h1>
+<div class="kpis">
+<div class="kpi"><div class="l">根因</div><div class="n">5 个</div><div class="d">仅 2 个缺口的原因出处明写 · 8 个理由弱</div></div>
+<div class="kpi"><div class="l">缺口场景</div><div class="n">10 个</div><div class="d">出处明写 2 · 推断 8</div></div>
+<div class="kpi"><div class="l">机制暴露面（合并）</div><div class="n">74,480 人</div><div class="d">按构造等于全体，不区分缺口；已证实的只是人群计数，8 个缺口是否成立为推断</div></div>
+<div class="kpi"><div class="l">可识别子集</div><div class="n">30,423–59,290 人</div><div class="d">占 40.85%–79.61%，推断</div></div>
+<div class="kpi"><div class="l">出处明写缺口暴露</div><div class="n">10,749 人</div><div class="d">新手弹窗，仅新增玩家</div></div>
+</div>
+<div class="tree">
+<p class="goal">问题诊断：25 个场景里做不到的 10 个，影响多少人，为什么做不到，补齐有多大空间，先处理什么<small>先量缺口（第一节），再归因（第二节），再算机会（第三节），最后排顺序（第四节）；本阶段不写解决方案。</small></p>
+<ul>
+<li><a href="#s1"><b>缺口</b></a>　<span class="d">10 个场景的暴露人群与累计储值（已成稿）</span></li>
+<li><a href="#s2"><b>根因</b></a>　<span class="d">5 个根因，8 个缺口的归因缺一环（已成稿）</span></li>
+<li><a href="#s3"><b>机会</b></a>　<span class="d">只能给理论上限，客单价与月度金额不可知（已成稿）</span></li>
+<li><a href="#s4"><b>优先级</b></a>　<span class="d">三个梯队，无硬依赖；首位对缺口取舍、归并粒度、验证依赖的认定敏感（已成稿）</span></li>
+<li><a href="#s5"><b>关键假设</b></a>　<span class="d">14 项推断，其中 7 项推错会改变根因个数或位次；要新增 7 项数据收集（已成稿）</span></li>
+</ul>
+</div>
+
+<div class="summary"><dl>
+<dt>缺口</dt><dd>阶段 3 判为做不到的 10 个场景中，出处明写 2 个（统一推送入口、新手弹窗纳入后台），推断 8 个。它们作用到的人群：第一层（机制暴露面）合并后是全体 74,480 人，因为在场与离线加起来就是全体；第二层（本地能圈出的子集）合并后最多 59,290 人，去掉召回名单为 30,423 人。</dd>
+<dt>根因</dt><dd>10 个缺口归并为 5 个根因：推送随功能分别实现、部分弹窗与快显写死在客户端、弹窗规则层没有跨规则先后与总量字段、推送数据没有汇总或留存、弹窗频次不支持负反馈。只有统一推送入口和新手弹窗纳入后台 2 个缺口的原因有出处明写，其余 8 个缺一环，标理由弱；6 个缺口来自本文补充的场景。</dd>
+<dt>机会</dt><dd>活跃和付费率可以给人数的理论上限（离线 ≥ 8 天 40,117 人全部回来；合并口径无储值者 54,343 人全部转付费），客单价与月度金额不可知。6 个直接型缺口里 5 个下限符号未知、可能为负，1 个下限为 0，没有一个有正向证据；4 个使能型缺口不单列增量。控制类缺口的作用若为正或为负，机会都不区分缺口。</dd>
+<dt>优先级</dt><dd>5 个根因之间没有硬依赖，位次由主管明确缺口数决定：推送随各功能分别实现居首；弹窗规则层无跨规则先后与总量字段、推送数据未汇总或未留存并列第二；部分弹窗与快显写死在客户端、弹窗频次不支持负反馈并列第三。首位只在现有归并标准下居首：按机制拆分根因时变为多方并列，仅按主管明确缺口计且取消单人日推送条数上限时变为三方并列，位次靠缺口个数，合并多、拆分少，不是缺口之间有差别，所以不能读成「更重要」。规模与机会不参与排序。</dd>
+<dt>边界</dt><dd>数字是暴露面，不是损失：暴露人群占累计储值的比例只说明这批人本来就重要，不说明缺口压低了他们的储值；金额为账号累计值，8/1 以前最后登录者不在数据内，规模均为下界。</dd>
+</dl></div>
+
+<section class="sec" id="s1"><div class="sec-h"><span class="sec-no">一</span><h2>缺口：10 个缺口的机制暴露面合并后是全体 74,480 人，不能区分缺口大小；可识别子集为 30,423–59,290 人</h2></div>
+<p class="sec-sub">分母：合并口径 74,480（近一月活跃 62,292 ＋ 八月流失名单独有 12,188）；储值占比为暴露人群累计储值占合并口径 312,715,876。</p>
+<div class="tw"><table>
+<tr><th>场景</th><th>暴露人群（第一层，机制暴露面）</th><th>可识别子集（第二层）</th></tr>
+<tr class="grp"><td colspan="3">出处明写（2 个）</td></tr>
+<tr><td>新手弹窗纳入后台<span class="src">阶段 3 第七节：写死在客户端</span></td><td>新增 10,749 人（占 14.43%，储值占 0.25%）<span class="tag t-inf">对象为推断</span></td><td>其中在场 4,789 人（6.43%，储值占 0.19%）</td></tr>
+<tr><td>统一推送入口<span class="src">阶段 3 第七节：每个功能各一套推送</span></td><td>运营侧缺口，没有独立用户规模</td><td>—</td></tr>
+<tr class="grp"><td colspan="3">推断（8 个，若实际具备该能力则不是缺口）</td></tr>
+<tr><td>跨规则先后</td><td>在场 34,363 人（46.14%，储值占 90.94%）</td><td>可能命中储值下滑规则的在场者 8,104 人（10.88%，储值占 2.13%）</td></tr>
+<tr><td>关闭后当日不再弹</td><td>在场 34,363 人（46.14%，储值占 90.94%）</td><td>同上 8,104 人；同日多次进大厅的人数不可知</td></tr>
+<tr><td>弹窗与推送合计上限</td><td>在场 34,363 人（46.14%，储值占 90.94%）</td><td>在场且累计押注 ≥ 10,000 者 27,876 人（37.43%，储值占 81.40%）</td></tr>
+<tr><td>单人日推送条数上限</td><td>推送可达上端 74,480 人（100%）</td><td>同上 27,876 人</td></tr>
+<tr><td>看发送量与到达量</td><td>同单人日推送条数上限：74,480 人</td><td>同上 27,876 人</td></tr>
+<tr><td>推送跳转</td><td>推送可达上端 74,480 人（100%）</td><td>不可知</td></tr>
+<tr><td>行为触发推送</td><td>在场 34,363 人（46.14%，储值占 90.94%）</td><td>同上 27,876 人</td></tr>
+<tr><td>看推送点击与召回后回流</td><td>最后登录 ≥ 8 天 40,117 人（53.86%，储值占 9.06%）</td><td>召回名单 28,894 人（38.79%，储值占 4.43%）<span class="tag t-inf">推断</span></td></tr>
+<tr class="grp"><td colspan="3">合并（去重，不是各场景人数相加）</td></tr>
+<tr><td>仅出处明写</td><td>新手弹窗纳入后台为 10,749 人；若统一推送入口取推送类缺口的并集则为 74,480 人</td><td>—</td></tr>
+<tr><td>含推断</td><td>74,480 人（100%，储值占 100%）</td><td>59,290 人（79.61%，储值占 85.89%）；不含召回名单 30,423 人（40.85%，储值占 81.46%）</td></tr>
+</table></div>
+<div class="cols">
+<div class="box"><h4>第一层不区分缺口</h4><ul><li>在场与离线相加即全体，第一层按构造等于全体</li><li>已证实的只是人群计数，8 个推断缺口是否成立仍是推断</li></ul></div>
+<div class="box"><h4>推送类三项的上端取法</h4><ul><li>范围：单人日推送条数上限、看发送量与到达量、推送跳转</li><li>含快显通路时为在场加离线 74,480 人，仅离线通路时为 40,117 人</li><li>两种取法并集都是 74,480：40,117 加上弹窗类缺口作用的在场 34,363 人仍合成全体</li></ul></div>
+<div class="box"><h4>第二层区分度有限</h4><ul><li>区分度主要来自召回名单和「累计押注 ≥ 10,000」这一很宽的上界口径（覆盖在场的 81.12%），尚不足以排序</li><li>破产是触发时刻，不进矩阵，暴露上界为在场 34,363 人</li></ul></div>
+</div>
+<p class="note">暴露面不是损失。分档、五类拆分、缺数据的两套见<a href="分析/A57_缺口规模.md">缺口规模</a>。</p></section>
+
+<section class="sec" id="s2"><div class="sec-h"><span class="sec-no">二</span><h2>根因：10 个缺口归并为 5 个根因，其中只有 2 个缺口的原因有出处明写，其余 8 个理由弱</h2></div>
+<p class="sec-sub">归并标准：两个缺口共享一个根因，当且仅当同一个机制是两者因果句的前提，且去掉它后两者都不再成立。根因的证据等级取其下缺口的最低等级，括号内为最高等级。</p>
+<div class="tw"><table>
+<tr><th>根因</th><th>因果句</th><th>涉及缺口</th><th>证据等级</th><th>已排除的替代解释</th><th>无法排除的替代解释</th></tr>
+<tr><td>推送随各功能分别实现，没有统一层</td><td>出处明写：因为限时加码推播挂在推荐礼包后台，升级条与快显写死在客户端，所以推送各功能各一套，没有单一入口。推断：若各套内部没有共享计数，则没有跨套的单人上限<span class="tag t-inf">推断</span><span class="src">盘点第五节；答复登记第 9 项</span></td><td>统一推送入口、单人日推送条数上限、行为触发推送，弹窗与推送合计上限的推送侧<span class="src">次因：推送跳转、看发送量与到达量、看推送点击与回流</span></td><td>三级（一级）</td><td>统一推送入口：资料没覆盖、运营没配置<span class="src">盘点明写没有统一入口</span></td><td>其余缺口：资料没覆盖、运营没配置</td></tr>
+<tr><td>部分弹窗与快显写死在客户端</td><td>因为新手挑战、新手通行证弹窗和快显写死在客户端，所以后台不能配置，调整需走开发<span class="src">盘点第二节；答复登记第 9 项</span></td><td>新手弹窗纳入后台、推送跳转（快显用例）<span class="src">次因：统一推送入口</span></td><td>二级（一级）</td><td>新手弹窗纳入后台：资料没覆盖、运营没配置<span class="src">盘点明写写死在客户端</span></td><td>新手弹窗纳入后台是本文补充的场景，主管未提该需求</td></tr>
+<tr><td>弹窗规则层只定对象、位置、弹出数量，没有跨规则先后和总量字段</td><td>因为规则层只定对象、位置、弹出数量，多条规则命中时叠加触发，所以若规则层没有先后与总量字段，先后不可设、也没有合计上限<span class="src">盘点第一节；背景汇总第 5 题</span></td><td>跨规则先后，弹窗与推送合计上限的弹窗侧</td><td>三级（二级）</td><td>无</td><td>资料没覆盖、运营没配置</td></tr>
+<tr><td>推送的发送、到达、点击数据没有汇总或没有留存</td><td>事实：整体层面没有发送量与到达率数据，点击无记载。为何没有（没有记录、有记录未汇总、没取到数）无记载，所以本行只复述缺口，不构成独立原因<span class="tag t-inf">理由弱</span><span class="src">盘点第五节；缺：各通路单独有无记录</span></td><td>看发送量与到达量、看推送点击与召回后回流</td><td>三级（二级）</td><td>无</td><td>可能是没取到数，或需数据组参与</td></tr>
+<tr><td>弹窗频次只有单项每日次数与冷却，不支持负反馈</td><td>因为频次只能限单项每日次数与冷却，不支持连续关闭后静默，所以若最轻版本同样不支持，关闭后当日不再弹不可设<span class="src">盘点第一节、第六节</span></td><td>关闭后当日不再弹</td><td>二级（二级）</td><td>无</td><td>最轻版本可能支持</td></tr>
+</table></div>
+<div class="cols">
+<div class="box"><h4>已排除的替代解释</h4><ul><li>弹窗规则层、推送数据、弹窗频次三个根因下没有可排除项：这些缺口都没有出处明写能力存在或不存在，「资料没覆盖」与「运营没配置」无法证伪</li><li>只有统一推送入口和新手弹窗纳入后台，因盘点明写限制存在而排除了这两条</li><li>关闭后当日不再弹下，把某项每日次数设为 1 次只能近似，不等于关闭后不再弹，也不能排除</li></ul></div>
+<div class="box"><h4>缺口来源</h4><ul><li>6 个是本文补充的场景：关闭后当日不再弹、新手弹窗纳入后台、弹窗与推送合计上限、推送跳转、行为触发推送、看推送点击与召回后回流</li><li>4 个为主管明确缺口：跨规则先后、统一推送入口、单人日推送条数上限、看发送量与到达量</li><li>补充场景说明系统与理想状态的差距，不说明主管已提出该需求</li></ul></div>
+<div class="box"><h4>证据等级</h4><ul><li>一级＝出处明写该限制存在；二级＝出处写了机制、缺口由机制推出；三级＝仅无记载</li><li>缺口层面：一级 2 个、二级 5 个、二三级混合 1 个、三级 2 个</li></ul></div>
+</div>
+<p class="note">逐缺口因果句、缺的一环和替代解释见<a href="分析/A58_缺口根因.md">缺口根因</a>。缺口成立与否按「成立」往下做，阶段 5 发现能力存在时回头改对应缺口，不是写根因的前提。</p></section>
+<section class="sec" id="s3"><div class="sec-h"><span class="sec-no">三</span><h2>机会：补齐缺口只能给人数理论上限，6 个直接型缺口无一有正向证据</h2></div>
+<p class="sec-sub">单位：人数或累计单位（账号累计储值，非月度，非客单价）；上限均为理论上限，不是预测；下限一列写作用方向的证据。</p>
+<div class="tw"><table>
+<tr><th>缺口</th><th>作用的因子</th><th>上限</th><th>下限与符号</th><th>强度</th></tr>
+<tr class="grp"><td colspan="5">直接型：机制上可能改变玩家行为（6 个）</td></tr>
+<tr><td>跨规则先后</td><td>付费率（曝光顺序）</td><td>不给：只重排，不增减曝光</td><td>符号未知，可能为负</td><td><span class="tag t-inf">理由弱</span></td></tr>
+<tr><td>单人日推送条数上限</td><td>活跃（保护体验）</td><td>不可知</td><td>符号未知，可能为负</td><td><span class="tag t-inf">理由弱</span></td></tr>
+<tr><td>关闭后当日不再弹</td><td>活跃（保护体验）</td><td>不可知</td><td>符号未知，可能为负</td><td><span class="tag t-inf">理由弱</span></td></tr>
+<tr><td>弹窗与推送合计上限</td><td>活跃（保护体验）</td><td>不可知</td><td>符号未知，可能为负</td><td><span class="tag t-inf">理由弱</span></td></tr>
+<tr><td>行为触发推送</td><td>活跃、付费率</td><td>离线 ≥ 8 天 40,117 人；在场无储值者 20,914 人</td><td>符号未知，可能为负</td><td><span class="tag t-inf">理由弱</span></td></tr>
+<tr><td>推送跳转</td><td>活跃、付费率</td><td>已知用例（快显）：离线者 0，在场无储值者 20,914 人；其他通路无记载，若有则最多离线 40,117 人、无储值 54,343 人（推断）</td><td>0</td><td><span class="tag t-inf">理由弱</span></td></tr>
+<tr class="grp"><td colspan="5">使能型：只让其他改动可管、可测（4 个）</td></tr>
+<tr><td>统一推送入口、新手弹窗纳入后台、看发送量与到达量、看推送点击与召回后回流</td><td>无直接作用</td><td colspan="2">不单列增量，价值是使其他改动可配置、可验证</td><td>—</td></tr>
+</table></div>
+<div class="cols">
+<div class="box"><h4>上限的含义</h4><ul><li>假设全部离线者回来、全部无储值者付费；真离开、已卸载或无授权的人不在可召回之内</li><li>不同缺口的暴露人群互相重叠，上限不相加</li></ul></div>
+<div class="box"><h4>本地基准差</h4><ul><li>新增的有储值率比全体低 19.08 个百分点（未标准化）、7.49 个百分点（按卡别标准化），含选择效应，不是可达成的提升</li><li>它只代表新增人群的付费率空间，不是新手弹窗纳入后台的增量：该缺口不改变玩家看到的内容，只让新手内容可随运营调整，故归使能型</li><li>回流的差来自卡别构成，不对应任何缺口</li></ul></div>
+<div class="box"><h4>不可知的部分</h4><ul><li>客单价缺订单明细，月度金额缺每人月度储值</li><li>控制类缺口在在场玩家上的留存效应缺打扰与流失的对照，上限写不可知</li></ul></div>
+</div>
+<p class="note">基线、敏感度、缺的数据见<a href="分析/A59_机会.md">机会</a>。</p>
+<div class="cols">
+<div class="box"><h4>若控制类缺口对活跃的作用为正</h4><ul><li>减少重复打扰，保护在场玩家的活跃；作用人群是暴露的在场玩家（弹窗类 34,363 人，推送类至多 74,480 人），幅度本地不可知</li></ul></div>
+<div class="box"><h4>若控制类缺口对活跃的作用为负</h4><ul><li>限量与重排减少曝光，降低转化；补齐的价值只剩事前可控、事后可测，与使能型同类，不计增量</li></ul></div>
+<div class="box"><h4>两种读法下整体方向相同</h4><ul><li>因为没有任何前后对照，给不出带符号的估计，所以机会只给人数上限与方向，不区分根因；位次仍由主管明确缺口数决定，阶段 5 不把控制类缺口计作增量来源，除非补到对照数据</li></ul></div>
+</div></section>
+<section class="sec" id="s4"><div class="sec-h"><span class="sec-no">四</span><h2>优先级：5 个根因无硬依赖，「推送随各功能分别实现」只在现有归并标准下居首，阶段 5 先对着推送侧（含其成员）展开，理由弱</h2></div>
+<p class="sec-sub">位次依据限于：依赖，主管明确缺口数，所阻挡的中目标分项数（分项数按全部主因缺口计，含本文补充缺口）；规模、储值占比、机会、成本、难度均不参与。首位对缺口取舍、归并粒度、验证依赖的认定三类变化敏感，见表后。</p>
+<div class="tw"><table>
+<tr><th>位次</th><th>根因</th><th>因为……所以……</th><th>稳健性</th></tr>
+<tr><td class="no">1</td><td>推送随各功能分别实现</td><td>因为其下有 2 个主管明确缺口（统一推送入口、单人日推送条数上限），且阻挡按人群配置、控制数量与顺序两个分项，所以在现有归并标准下排在其他根因之前</td><td>单项取消不变；叠加取消单人日推送条数上限，或按机制拆分，变为多方并列</td></tr>
+<tr><td class="no">2（并列）</td><td>弹窗规则层无跨规则先后与总量字段</td><td>因为其下有 1 个主管明确缺口（跨规则先后），阻挡控制数量与顺序，所以与推送数据并列第二</td><td>取消跨规则先后则降到第三梯队</td></tr>
+<tr><td class="no">2（并列）</td><td>推送数据未汇总或未留存</td><td>因为其下有 1 个主管明确缺口（看发送量与到达量），阻挡看效果，所以与规则层并列第二</td><td>取消看发送量与到达量则降到第三梯队</td></tr>
+<tr><td class="no">3（并列）</td><td>部分弹窗与快显写死在客户端</td><td>因为其主因缺口没有主管明确缺口、只有 2 个本文补充缺口（统一推送入口仅作次因计入），所以主键为 0，与弹窗频次并列第三；计入次因后主键为 1，升入第二梯队</td><td>计入次因或本文补充缺口，升入第二梯队</td></tr>
+<tr><td class="no">3（并列）</td><td>弹窗频次不支持负反馈</td><td>因为其下没有主管明确缺口，只有 1 个本文补充缺口，所以与写死在客户端并列第三</td><td>取消关闭后当日不再弹则该根因消失</td></tr>
+</table></div>
+<div class="tw"><table>
+<tr><th>依赖关系</th><th>类型</th><th>范围</th></tr>
+<tr><td>部分弹窗与快显写死在客户端 → 推送随各功能分别实现</td><td><span class="tag t-con">部分依赖</span></td><td>只涉及统一入口里的快显通路，其余四条通路不受影响</td></tr>
+<tr><td>推送随各功能分别实现 ∧ 弹窗规则层无总量字段 → 弹窗与推送合计上限</td><td><span class="tag t-con">部分依赖</span></td><td>只涉及这一个缺口，两个根因下的其他缺口互不依赖</td></tr>
+<tr><td>推送随各功能分别实现 → 推送数据未汇总或未留存</td><td><span class="tag t-con">部分依赖</span> <span class="tag t-inf">理由弱</span></td><td>若各套自带记录但未汇总，汇总要先有统一层</td></tr>
+<tr><td>推送数据未汇总或未留存 → 推送随各功能分别实现</td><td><span class="tag t-sug">验证依赖</span></td><td>只覆盖推送侧改动的发送、到达、点击，不覆盖弹窗曝光与点击</td></tr>
+</table></div>
+<div class="cols">
+<div class="box"><h4>对缺口取舍敏感</h4><ul><li>去掉理由弱缺口、去掉本文补充缺口、逐个取消缺口，首位均不变</li><li>主键与次键都只计主管明确缺口时，再取消单人日推送条数上限（二级、理由弱），首位变为三方并列：推送随各功能分别实现、弹窗规则层、推送数据各只剩 1 个缺口、1 个分项</li><li>次键含本文补充缺口（本表口径）时仍 2 对 1 居首，余量小</li></ul></div>
+<div class="box"><h4>对归并粒度敏感</h4><ul><li>5 种粒度中，按机制拆分「推送随各功能分别实现」、拆到逐个缺口，首位变为多方并列；并粗不变</li><li>位次靠缺口个数，合并多、拆分少，这是键的性质，不是缺口之间有差别；主管明确缺口总数在任何粒度下都是 4</li><li>按机制拆分不符合现有归并标准：统一推送入口、单人日推送条数上限、行为触发推送共用「各套推送独立」这一前提</li></ul></div>
+<div class="box"><h4>对验证依赖的认定敏感</h4><ul><li>若把推送数据对推送侧改动的验证依赖当成硬依赖，推送数据先于推送随各功能分别实现；本文不采用，因为它只覆盖推送侧</li><li>查证各通路单独是否有发送、到达、点击记录，可消除这一敏感</li></ul></div>
+</div>
+<div class="cols">
+<div class="box"><h4>计入次因后的位次</h4><ul><li>部分弹窗与快显写死在客户端因统一推送入口有 1 个主管明确缺口，与规则层、推送数据并列第二，首位不变</li><li>硬依赖 0 个，所以位次不受依赖强制</li></ul></div>
+<div class="box"><h4>位次的读法</h4><ul><li>位次只说明阶段 5 先对着哪一侧展开，不说明价值大小或实施顺序，不含成本；不能把「居首」读成「更重要」</li><li>因为最粗粒度下推送侧唯一居首、并粗不变、拆细后其成员仍占并列首位的 1–2 席，所以首位指向推送侧这一方向<span class="tag t-inf">理由弱</span>：位次靠个数键，缺各通路单独的记录与上级对拆并的看法；若阶段 5 发现不该先动推送侧，改按依赖层（推送数据对推送侧的验证依赖）重判先后</li><li>机会不区分根因：6 个直接型缺口的下限均为 0 或符号未知，不是机会不大</li></ul></div>
+</div>
+<p class="note">依赖逐对检验和稳健性见<a href="分析/A60_根因优先级.md">根因优先级</a>，归并粒度的逐种重排见<a href="分析/A61_归并粒度敏感性.md">归并粒度敏感性</a>。</p></section>
+<section class="sec" id="s5"><div class="sec-h"><span class="sec-no">五</span><h2>关键假设：本阶段有 14 项推断，其中 7 项推错会改变根因个数或位次，其余 7 项只改数字；要新增 7 项数据收集</h2></div>
+<p class="sec-sub">按节分组；「往下按」指没有证据时本阶段采用的处理；<span class="tag t-con">改根因或位次</span>标出推错会改变根因个数或位次的 7 项。理由弱与缺什么集中写在此处，正文只用推断标签。</p>
+<div class="tw"><table>
+<tr><th>假设</th><th>依据</th><th>推错影响</th></tr>
+<tr class="grp"><td colspan="3">缺口（第一节）</td></tr>
+<tr><td>8 个推断缺口按成立处理<span class="tag t-inf">推断</span><span class="tag t-con">改根因或位次</span></td><td>无记载既推不出能做，也推不出做不到；往下按缺口成立</td><td>能力实际存在时对应缺口取消，第二层缩小，位次可能变（见第四节）；第一层合并仍是全体</td></tr>
+<tr><td>推送可达上端含快显取在场加离线 74,480 人<span class="tag t-inf">推断</span></td><td>快显在平台内展示，离线者受众为零；无通路可达字段</td><td>仅离线通路时为 40,117 人，两种取法并集都是 74,480 人</td></tr>
+<tr><td>新手弹窗的对象取全体新增 10,749 人<span class="tag t-inf">推断</span></td><td>新手弹窗按名称面向新账号，对象无记载</td><td>对象更窄时，仅出处明写的缺口规模缩小，其他不变</td></tr>
+<tr><td>限时加码资格上界取累计押注 ≥ 10,000<span class="tag t-inf">推断</span></td><td>盘点记载累计押注是资格之一，8–31 日、购买冷却本地算不出</td><td>真实资格更严时，第二层并集 79.61% 偏高；不含召回名单的 40.85% 不受影响</td></tr>
+<tr><td>召回名单取八月流失名单<span class="tag t-inf">推断</span></td><td>数据说明推断为营销召回名单</td><td>不是时，看推送点击与召回后回流的第二层与第二层并集需重算</td></tr>
+<tr class="grp"><td colspan="3">根因（第二节）</td></tr>
+<tr><td>8 个缺口的归因各缺一环<span class="tag t-inf">理由弱</span><span class="tag t-con">改根因或位次</span></td><td>缺：规则层先后字段、各套推送内部上限与记录、触发条件清单、「当日不再弹」是否支持</td><td>补齐后对应缺口取消或改归因，根因数可能减少，推送随各功能分别实现保留统一推送入口这一出处明写的成员</td></tr>
+<tr><td>6 个缺口来自本文补充的场景<span class="tag t-add">本文补充</span><span class="tag t-con">改根因或位次</span></td><td>阶段 1 的来源标注；只有 4 个为主管明确缺口</td><td>上级不认补充场景时，写死在客户端与弹窗频次两个根因失去全部或大部分成员</td></tr>
+<tr class="grp"><td colspan="3">机会（第三节）</td></tr>
+<tr><td>所有作用链是机制推断<span class="tag t-inf">理由弱</span></td><td>缺：弹窗个数与登录留存的对照、专属内容前后对照、推送召回的发送与回流记录</td><td>作用方向可能为负；机会只给理论上限，不给预测</td></tr>
+<tr><td>理论上限假设全部离线者回来、全部无储值者付费<span class="tag t-inf">推断</span></td><td>结构天花板，不是估计；离线者含已卸载、无授权、已被营销侧召回的人</td><td>现实比例远低于上限，上限只用于量级判断</td></tr>
+<tr><td>金额只用累计单位，客单价不可知</td><td>本地只有账号累计储值，没有订单明细与月度储值</td><td>月度金额增量与客单价变化始终无法回答</td></tr>
+<tr class="grp"><td colspan="3">优先级（第四节）</td></tr>
+<tr><td>位次主键用主管明确缺口数，次键用阻挡的中目标分项数<span class="tag t-inf">推断</span><span class="tag t-con">改根因或位次</span></td><td>中目标是主管这一期要的能力；规模和机会不区分根因</td><td>上级认同补充场景时，写死在客户端升入第二梯队，首位不变</td></tr>
+<tr><td>根因按第二节的归并标准归并，位次主键为缺口个数<span class="tag t-inf">推断</span><span class="tag t-con">改根因或位次</span></td><td>归并标准事先写死（同一前提、去掉后两者皆不成立）；个数由归并粒度决定</td><td>按机制拆分或拆到逐个缺口时，首位变为多方并列；并粗不变</td></tr>
+<tr><td>根因之间无硬依赖<span class="tag t-inf">推断</span><span class="tag t-con">改根因或位次</span></td><td>反事实检验与逐对依赖检验；写死在客户端对统一入口只是快显通路的部分依赖</td><td>快显通路被认定为统一入口的必要部分时，首位需重判</td></tr>
+<tr><td>推送数据对推送侧改动只构成验证依赖<span class="tag t-inf">推断</span><span class="tag t-con">改根因或位次</span></td><td>它只覆盖推送的发送、到达、点击，不覆盖弹窗曝光与点击</td><td>当成硬依赖时，推送数据未汇总或未留存先于推送随各功能分别实现</td></tr>
+</table></div>
+<h3 style="margin:18px 0 6px;font-size:15px">要新增的数据收集</h3>
+<div class="tw"><table>
+<tr><th>收什么</th><th>解开哪一环</th></tr>
+<tr><td>各推送通路单独的发送、到达、点击记录及所在位置</td><td>看发送量与到达量、看推送点击与召回后回流的归因；首位对验证依赖的敏感</td></tr>
+<tr><td>弹窗规则层字段完整列表与排序列含义；推送触发条件清单与可配置范围</td><td>跨规则先后、弹窗与推送合计上限、行为触发推送、推送跳转的归因</td></tr>
+<tr><td>「当日不再弹」最轻版本能否配置，关闭事件是否记录</td><td>关闭后当日不再弹的归因与符号</td></tr>
+<tr><td>每人月度储值（近 3 个月）</td><td>累计到月度，使金额增量可写；储值下滑规则的真实命中人数</td></tr>
+<tr><td>订单明细</td><td>客单价</td></tr>
+<tr><td>弹窗个数与登录、留存的对照</td><td>控制类缺口的作用方向与下限符号</td></tr>
+<tr><td>推送召回的发送与回流记录，以及个人逐日登录</td><td>离线上限与现实之间的差；同日多次进大厅的人数</td></tr>
+</table></div>
+<p class="note">以上均不阻塞本阶段：未知项按推断往下做，答案不同时改动的位置见各行。逐项依据见<a href="分析/A57_缺口规模.md">缺口规模</a>、<a href="分析/A58_缺口根因.md">缺口根因</a>、<a href="分析/A59_机会.md">机会</a>、<a href="分析/A60_根因优先级.md">根因优先级</a>、<a href="分析/A61_归并粒度敏感性.md">归并粒度敏感性</a>。</p></section>
+
+<p class="links">依据与素材：<a href="分析/A57_缺口规模.md">缺口规模</a> · <a href="阶段3_现状盘点.html">现状盘点</a> · <a href="阶段2_人群分析.html">人群分析</a> · <a href="分析/A48_推送受众.md">推送受众</a> · <a href="分析/A51_人群触达现状.md">人群触达现状</a></p>
+</div></body></html>
