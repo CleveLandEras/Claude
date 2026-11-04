@@ -1,0 +1,116 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>设计概要完善</title>
+<!--
+  Dk 汇报简报模板（2026-10-10 改版：汇报不是文章）。复制整页，只替换 body 里的内容。
+  组件：.kpi 数字卡（一般不超过 3 张；没有能说明结论的数字就不用）· .phase 时间线卡（red 否决 / blue 当前 / 默认灰）· .keep 标签清单 · .cause 原因卡 · table 短语表（.same 行标红）· .opt 选项卡（.rec 推荐）· .steps 编号短条目。组件按内容选，不必都用。
+  规则：不写成段落，结构用版面表达；条目尽量短（一两行为宜，不是上限）；表格格子写短语。
+-->
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.35;margin:0 0 8px}
+.sub{font-size:16px;color:var(--ink-2);margin:0 0 28px}
+h2{font-family:var(--serif);font-size:20px;margin:48px 0 16px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px}
+.kpi .n{font-size:38px;font-weight:700;line-height:1.1;color:var(--ink)}
+.kpi .n small{font-size:16px;font-weight:600;margin-left:4px;color:var(--ink-2)}
+.kpi .t{font-size:14.5px;color:var(--ink-2);margin-top:8px}
+.kpi.red .n{color:var(--red)}
+.phase{border-top:4px solid var(--gray)}
+.phase.red{border-top-color:var(--red)} .phase.blue{border-top-color:var(--blue)}
+.phase .d{font-size:13px;color:var(--muted);font-weight:600}
+.phase .h{font-size:16.5px;font-weight:700;margin:4px 0 10px}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:12px}
+.tag.red{background:var(--red-soft);color:var(--red)} .tag.blue{background:var(--blue-soft);color:var(--blue)} .tag.gray{background:var(--gray-soft);color:var(--gray)} .tag.green{background:var(--green-soft);color:var(--green)}
+.kv{font-size:14px;color:var(--ink-2);margin:6px 0}
+.kv b{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:2px}
+.keep{display:flex;flex-wrap:wrap;gap:10px}
+.keep span{background:var(--green-soft);color:var(--green);font-size:14.5px;font-weight:600;padding:8px 14px;border-radius:4px}
+.cause .h{font-size:16.5px;font-weight:700;margin:0 0 6px}
+.cause .l{font-size:14.5px;color:var(--ink-2);margin:0 0 12px}
+.cause .e{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14.5px}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--line)}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--ground)}
+tr:last-child td{border-bottom:none}
+td.w{color:var(--ink)} td.r{color:var(--ink-2)} td.d{color:var(--muted);width:80px}
+tr.same td.w{color:var(--red);font-weight:600}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);margin-right:8px;vertical-align:1px}
+.legend{font-size:13px;color:var(--muted);margin:10px 0 0}
+.q{font-size:17px;font-weight:700;margin:0 0 14px}
+.opt{position:relative}
+.opt .h{font-size:16px;font-weight:700;margin:0 0 6px}
+.opt .l{font-size:14.5px;color:var(--ink-2)}
+.opt.rec{border:2px solid var(--blue)}
+.opt .badge{position:absolute;top:-11px;right:16px;background:var(--blue);color:#fff;font-size:12px;font-weight:700;padding:2px 10px;border-radius:3px}
+.why{font-size:14.5px;color:var(--ink-2);margin:14px 0 0}
+.why b{color:var(--ink)}
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.steps div{counter-increment:s;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 18px;font-size:14.5px;color:var(--ink-2)}
+.steps div::before{content:counter(s);display:block;font-size:22px;font-weight:700;color:var(--accent);margin-bottom:4px}
+.links{font-size:13px;color:var(--muted);margin-top:40px} a{color:var(--accent)}
+</style></head><body><div class="wrap">
+<p class="meta">推送后台 · 设计概要 · 2026-10-15 · 依据：主对话逐页通读、8 位不带背景的判卷人（两轮）、程序检查</p>
+<h1>设计概要已重写，后台设计补上 14 处缺口，待你看</h1>
+<p class="sub">问题分两类：稿子本身讲得重复、一页多事；后台设计本身有会被评审追问的缺口。两类都改了，原型与需求文档同步到 v0.9。</p>
+
+<div class="grid g3">
+  <div class="card kpi"><div class="n">22<small>页</small></div><div class="t">正文 17 页、附录 3 页；12 个模块每页一事</div></div>
+  <div class="card kpi"><div class="n">14<small>处</small></div><div class="t">后台设计补的缺口，原型与需求文档已同步</div></div>
+  <div class="card kpi"><div class="n">1<small>件</small></div><div class="t">给你参考：破产弹窗是否保留额度（不影响推进）</div></div>
+</div>
+
+<h2><span class="no">01</span>稿子：重复和一页多事的页删掉或拆开，每页只讲一件事</h2>
+<table>
+<tr><th>改前</th><th>改后</th></tr>
+<tr><td class="w">「11 项取舍」页：11 行都在模块页讲过，还带「没选」列</td><td class="r">删除；理由留在各自的模块页</td></tr>
+<tr><td class="w">模块索引页：标题是页数说明，内容抄后面 9 页标题</td><td class="r">删除；模块名并入目录</td></tr>
+<tr><td class="w">第 4 页一页五件事：现状、能力、标准、关键决定、开发范围</td><td class="r">拆成「现在的问题 → 后台怎么做到」和「范围与配合改动」两页</td></tr>
+<tr><td class="w">第 17 页一页两件事；同一个值一处写定论、一处写「评审时定」</td><td class="r">配合改动并入范围页；暂定值在模块页就地标「暂定」</td></tr>
+<tr><td class="w">9 个模块，排序中途换依据；频率上限与勿扰、玩家查询与纪录挤在一页</td><td class="r">12 个模块：先各推送页，再共用规则，再查看，最后迁移；每页一事</td></tr>
+<tr><td class="w">截图手工裁、标注栏压住原型、编号压字；数据看板页没有看板截图</td><td class="r">按原型元素自动裁图，编号放在留白处；补看板、操作纪录、只读角色截图</td></tr>
+</table>
+
+<h2><span class="no">02</span>设计：补的是评审一定会问、且不扩大已定范围的缺口</h2>
+<table>
+<tr><th>补了什么</th><th>为什么（反例）</th></tr>
+<tr><td class="w">弹窗保存前确认改动、预计人数与重叠，可先测试预览</td><td class="r">原来点保存就对下一位进大厅的玩家生效，不设审批时没有任何事前检查</td></tr>
+<tr><td class="w">发送对象可选「名单」（上传会员编号）；定时可设每天、每周重复</td><td class="r">短信现在按名单发、营销侧有周期排程；不补，切换后这些只能留在营销侧，统一入口就不成立</td></tr>
+<tr><td class="w">弹窗引用别的规则排除时，被引用规则不生效则排除也不生效；停用、下架、设结束日期都提示影响</td><td class="r">回流规则过期后，别的规则仍排除回流玩家，16,564 人一条活动类弹窗都看不到</td></tr>
+<tr><td class="w">黑名单、机器人与测试账号固定排除；VIP 默认排除可删</td><td class="r">原来三项都能删，误删会发到封禁账号</td></tr>
+<tr><td class="w">待处理加「按行为异常」：24 小时没触发，或 1 小时内全部未受理</td><td class="r">迁入的礼包提醒是唯一线上的按行为推送，事件断了或证书过期没人会发现</td></tr>
+<tr><td class="w">快显可定时；按行为的结束日期可不填；勿扰整条顺延、重试不拆批；改勿扰前列出会被顺延的已排程推送</td><td class="r">20:00 的活动横幅要人守着点；礼包提醒到期会自动停；一条推送被拆成两批到</td></tr>
+</table>
+<p class="legend">不做、评审时这样答：快显「时段」发送、活动归组与跨推送排程视图、弹窗项目级汇总、额度与则数看板、大额二次确认、例外原因类别——都是新能力，首版上线后按使用情况排；同一活动多渠道发时打开「游戏外合计上限」。</p>
+
+<h2><span class="no">03</span>判卷：两轮查出的问题都已改，终版只做了程序检查和我逐页看</h2>
+<table>
+<tr><th>查什么</th><th>第二轮结果</th><th>处理</th></tr>
+<tr><td class="w">稿子结构（标题、重复、一页多事）</td><td class="r">甲 4、乙 12、丙 12</td><td class="r">全部按建议改：第 4、9、15 页标题，编号错位，范围页集合</td></tr>
+<tr><td class="w">设计本身（懂运营后台的人评）</td><td class="r">甲 2</td><td class="r">补进设计：过期规则的排除、周期定时</td></tr>
+<tr><td class="w">规则能否在截图上指到、理由成不成立</td><td class="r">47 条中 9 条有问题</td><td class="r">编号重放；6 条理由重写；2 条规则改设计（结束日期选填、改勿扰前列出影响）</td></tr>
+<tr><td class="w">无背景读者复述</td><td class="r">22 页：高 18、中 4</td><td class="r">会读错的句子都已改</td></tr>
+<tr><td class="w">与需求文档、原型一致，数字</td><td class="r">实质 7 处</td><td class="r">以需求文档为准改掉；数字逐个核过一致</td></tr>
+</table>
+<p class="legend">终版没有再派判卷人重判：上一轮的问题都按原文定位改了，终版跑过程序检查（无错）并逐页看过渲染图。截图里的原型字约 6.5–8.6 磅，全屏放映看得清。</p>
+
+<h2><span class="no">04</span>给你参考：破产弹窗会被当天的大厅弹窗挤掉</h2>
+<div class="grid g2">
+  <div class="card opt rec"><span class="badge">我的判断</span><p class="h">给破产弹窗保留 2 个额度</p><p class="l">大厅弹窗用到 6 个就停，留 2 个给破产时的储值弹窗；看板上破产弹窗点击率 12.1%，高于大厅的 7.2%</p></div>
+  <div class="card opt"><p class="h">暂按：沿用弹窗方案的合计 8 个</p><p class="l">大厅与破产合计 8 个，达到后当天都不再弹；你若要保留额度，弹窗方案与推送后台两份稿一起改</p></div>
+</div>
+<p class="why"><b>为什么给你</b>　这是打扰与储值机会之间的取舍，而且弹窗方案在等你验收，改了会动到那份稿。</p>
+
+<p class="links">原文：<a href="../推送系统后台集成需求/5_设计概要.pptx">设计概要（22 页）</a> · <a href="../推送系统后台集成需求/3_原型.html">原型</a> · <a href="../推送系统后台集成需求/4_需求文档.md">需求文档 v0.9</a> · <a href="../分析/标准判卷/推送后台_设计概要_1015_改稿决定.md">改稿决定</a> · <a href="../分析/标准判卷/推送后台_原型_1015_改稿记录.md">原型改稿记录</a> · <a href="../分析/标准判卷/推送后台_需求文档_1015_改稿记录.md">需求文档改稿记录</a></p>
+</div></body></html>

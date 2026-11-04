@@ -1,0 +1,322 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style></head><body>
+<title>新手通行证重构方案</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&display=swap">
+<style>
+  :root{
+    --ground:#F6F4F9;
+    --surface:#FFFFFF;
+    --surface-2:#EFECF5;
+    --ink:#1B1A22;
+    --ink-2:#4A4655;
+    --muted:#726D80;
+    --rule:#DEDAE7;
+    --rule-strong:#C6C0D6;
+    --accent:#4A3B8C;
+    --accent-soft:#EBE7F7;
+    --gold:#9A6D18;
+    --gold-soft:#F7EFDD;
+    --gold-rule:#E2CFA4;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#15141B;
+      --surface:#1E1C26;
+      --surface-2:#262332;
+      --ink:#EFECF4;
+      --ink-2:#C9C4D4;
+      --muted:#9C96AC;
+      --rule:#332F3E;
+      --rule-strong:#443F53;
+      --accent:#AA9AEC;
+      --accent-soft:#2A2540;
+      --gold:#E2B461;
+      --gold-soft:#302716;
+      --gold-rule:#5C4A22;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#15141B;
+    --surface:#1E1C26;
+    --surface-2:#262332;
+    --ink:#EFECF4;
+    --ink-2:#C9C4D4;
+    --muted:#9C96AC;
+    --rule:#332F3E;
+    --rule-strong:#443F53;
+    --accent:#AA9AEC;
+    --accent-soft:#2A2540;
+    --gold:#E2B461;
+    --gold-soft:#302716;
+    --gold-rule:#5C4A22;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--ground);
+    color:var(--ink);
+    font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+    font-size:16px;
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:840px;margin:0 auto;padding:44px 24px 72px}
+
+  /* ---------- header ---------- */
+  .eyebrow{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--muted);margin:0 0 10px;
+  }
+  h1{
+    font-family:"Noto Serif SC",Georgia,serif;font-weight:700;
+    font-size:34px;line-height:1.3;letter-spacing:.01em;
+    margin:0 0 6px;text-wrap:balance;
+  }
+  .subtitle{font-size:17px;color:var(--ink-2);margin:0 0 18px}
+  .meta{
+    display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;
+    padding-bottom:26px;border-bottom:1px solid var(--rule);
+  }
+  .tag{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12px;
+    letter-spacing:.04em;padding:3px 9px;border-radius:3px;
+    background:var(--surface-2);color:var(--ink-2);
+  }
+  .tag.pending{background:var(--gold-soft);color:var(--gold);border:1px solid var(--gold-rule)}
+
+  /* ---------- section head ---------- */
+  .sec-head{margin:40px 0 4px}
+  .sec-head h2{
+    font-family:"Noto Serif SC",Georgia,serif;font-weight:600;
+    font-size:21px;margin:0;letter-spacing:.01em;
+  }
+  .sec-note{color:var(--muted);font-size:14px;margin:4px 0 22px}
+
+  .mainline{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:13px;letter-spacing:.06em;color:var(--accent);
+    background:var(--accent-soft);border-radius:4px;
+    padding:11px 14px;margin:0 0 30px;
+    overflow-x:auto;white-space:nowrap;
+  }
+
+  /* ---------- track ---------- */
+  .track{position:relative}
+  .track::before{
+    content:"";position:absolute;left:20px;top:22px;bottom:26px;
+    width:2px;background:var(--rule-strong);border-radius:2px;
+  }
+  .step{
+    position:relative;display:grid;grid-template-columns:42px 1fr;
+    gap:20px;align-items:start;
+  }
+  .node{width:42px;height:42px;display:grid;place-items:center;position:relative}
+  .dia{
+    width:28px;height:28px;transform:rotate(45deg);border-radius:5px;
+    background:var(--surface);border:2px solid var(--rule-strong);
+  }
+  .num{
+    position:absolute;font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:14px;font-weight:500;color:var(--muted);
+  }
+  .step.on .dia{border-color:var(--accent);background:var(--surface)}
+  .step.on .num{color:var(--accent)}
+  .step.gate .dia{border-color:var(--gold);background:var(--gold-soft)}
+  .step.gate .num{color:var(--gold)}
+
+  .card{
+    background:var(--surface);border:1px solid var(--rule);
+    border-radius:6px;padding:16px 18px;flex:1;
+  }
+  .step.gate .card{border-color:var(--gold-rule)}
+  .ch-title{
+    display:flex;flex-wrap:wrap;gap:8px 12px;align-items:baseline;margin-bottom:6px;
+  }
+  .ch-title b{
+    font-family:"Noto Serif SC",Georgia,serif;font-weight:600;
+    font-size:18px;letter-spacing:.01em;
+  }
+  .q{color:var(--ink-2);font-size:15px;margin:0}
+  .out{
+    font-size:14px;color:var(--muted);margin:9px 0 0;
+    padding-top:9px;border-top:1px dashed var(--rule);
+  }
+  .out b{color:var(--ink-2);font-weight:500}
+
+  .badge{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;
+    letter-spacing:.05em;padding:2px 8px;border-radius:3px;white-space:nowrap;
+    background:var(--gold-soft);color:var(--gold);border:1px solid var(--gold-rule);
+  }
+  .badge.key{background:var(--accent-soft);color:var(--accent);border-color:transparent}
+
+  .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+  .chip{
+    font-size:13px;padding:2px 10px;border-radius:12px;
+    background:var(--surface-2);color:var(--ink-2);
+  }
+
+  .rel{
+    display:grid;grid-template-columns:42px 1fr;gap:20px;
+    padding:9px 0;
+  }
+  .rel span{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:12px;letter-spacing:.1em;color:var(--muted);
+  }
+
+  /* ---------- callout ---------- */
+  .callout{
+    margin-top:34px;background:var(--gold-soft);
+    border:1px solid var(--gold-rule);border-radius:6px;
+    padding:16px 18px;
+  }
+  .callout .lab{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12px;
+    letter-spacing:.12em;color:var(--gold);margin:0 0 6px;
+  }
+  .callout p{margin:0;font-size:15px;color:var(--ink-2)}
+  .callout p + p{margin-top:8px}
+  .callout strong{color:var(--ink);font-weight:700}
+
+  .foot{
+    margin-top:34px;padding-top:20px;border-top:1px solid var(--rule);
+    font-size:14px;color:var(--muted);
+  }
+  .foot p{margin:0 0 6px}
+
+  @media (max-width:560px){
+    .wrap{padding:32px 16px 56px}
+    h1{font-size:27px}
+    .step,.rel{grid-template-columns:34px 1fr;gap:12px}
+    .node{width:34px;height:34px}
+    .dia{width:24px;height:24px}
+    .track::before{left:16px}
+  }
+</style>
+
+<div class="wrap">
+
+  <p class="eyebrow">新手通行证 · 重构方案</p>
+  <h1>框架目录</h1>
+  <p class="subtitle">七章一条主线：每章回答一个问题，上一章的产出是下一章的输入。</p>
+  <div class="meta">
+    <span class="tag">v1 · 框架</span>
+    <span class="tag">2026-09-04</span>
+    <span class="tag pending">正文待填充</span>
+  </div>
+
+  <div class="sec-head">
+    <h2>一眼看结构</h2>
+    <p class="sec-note">左侧菱形是章序，节点之间的小字是上一章交给下一章的东西。</p>
+  </div>
+
+  <p class="mainline">现状 → 现象 → 归因 → 深挖 → 判定 → 方案 → 落地</p>
+
+  <div class="track">
+
+    <div class="step gate">
+      <div class="node"><div class="dia"></div><div class="num">0</div></div>
+      <div class="card">
+        <div class="ch-title"><b>零 · 目标与定位</b><span class="badge">◆ 待判定</span></div>
+        <p class="q">通行证做给谁？候选已收敛到两个：<strong>C 常驻全员赛季证</strong> ↔ <strong>C′ 常驻赛季证 · 回流／资深友好</strong>。</p>
+        <p class="out"><b>产出：全篇锚点。</b>后面每一章的「该不该」都以这里为基准。</p>
+      </div>
+    </div>
+
+    <div class="rel"><span></span><span>↓ 全篇锚点</span></div>
+
+    <div class="step on">
+      <div class="node"><div class="dia"></div><div class="num">1</div></div>
+      <div class="card">
+        <div class="ch-title"><b>一 · 现状</b></div>
+        <p class="q">通行证现在是怎么运作的？对象、周期、双轨、进度来源、奖励、触达方式，一页说清，只写机制不带评价。</p>
+        <p class="out"><b>产出：机制基准。</b>后面每个「异常」都是相对这套机制而言的。</p>
+      </div>
+    </div>
+
+    <div class="rel"><span></span><span>↓ 对照基准</span></div>
+
+    <div class="step on">
+      <div class="node"><div class="dia"></div><div class="num">2</div></div>
+      <div class="card">
+        <div class="ch-title"><b>二 · 现象</b></div>
+        <p class="q">出了什么问题？数据异常一组、体验问题一组，只摆事实不作解释。</p>
+        <p class="out"><b>产出：问题清单。</b>逐条交给第三章归因。</p>
+      </div>
+    </div>
+
+    <div class="rel"><span></span><span>↓ 逐条归因</span></div>
+
+    <div class="step on">
+      <div class="node"><div class="dia"></div><div class="num">3</div></div>
+      <div class="card">
+        <div class="ch-title"><b>三 · 归因</b></div>
+        <p class="q">每条问题出在哪一层？</p>
+        <div class="chips"><span class="chip">目标层 · 做给谁</span><span class="chip">设计层 · 奖励与进度</span><span class="chip">曝光层 · 触达</span></div>
+        <p class="out"><b>产出：现象 × 归因对照表。</b>哪一层最重，由表本身说了算。</p>
+      </div>
+    </div>
+
+    <div class="rel"><span></span><span>↓ 沿最重的一层下钻</span></div>
+
+    <div class="step gate">
+      <div class="node"><div class="dia"></div><div class="num">4</div></div>
+      <div class="card">
+        <div class="ch-title"><b>四 · 深挖</b><span class="badge">◆ 待判定</span></div>
+        <p class="q">奖励的价值到底怎么了？拆开看，<strong>74%–98% 的价值在卡上</strong>，而卡的核销率无任何数据 —— 活动实际发出多少价值，目前不可知。</p>
+        <p class="out"><b>产出：待验证假设 + 验证所需取数。</b>这一章给的是假设，不是结论。</p>
+      </div>
+    </div>
+
+    <div class="rel"><span></span><span>↓ 数据回来，套判定规则</span></div>
+
+    <div class="step gate">
+      <div class="node"><div class="dia"></div><div class="num">5</div></div>
+      <div class="card">
+        <div class="ch-title"><b>五 · 判定</b><span class="badge key">全方案唯一闸门</span></div>
+        <p class="q">优化，还是重构？先立规则再套结论：仅曝光层有问题 → 触达优化即可；设计层假设证实 → 重构奖励与进度结构；目标层有问题 → 重新定位。</p>
+        <p class="out"><b>产出：推荐路径 + 理由。</b>数据未回之前，这里只有规则、没有结论。</p>
+      </div>
+    </div>
+
+    <div class="rel"><span></span><span>↓ 路径既定</span></div>
+
+    <div class="step on">
+      <div class="node"><div class="dia"></div><div class="num">6</div></div>
+      <div class="card">
+        <div class="ch-title"><b>六 · 方案</b></div>
+        <p class="q">怎么做、为什么这么做？竞品对比（星城 Online／豪神娛樂城）→ 我们的做法 → 理由与边界。</p>
+        <p class="out"><b>产出：各分支下的候选方向。</b>是方向，不是拍板。</p>
+      </div>
+    </div>
+
+    <div class="rel"><span></span><span>↓ 转成可执行的事</span></div>
+
+    <div class="step on">
+      <div class="node"><div class="dia"></div><div class="num">7</div></div>
+      <div class="card">
+        <div class="ch-title"><b>七 · 落地与验证</b></div>
+        <p class="q">缺什么、怎么验证？待确认清单（必须／建议，各标明不回答的后果）、补埋点、分流实验、衡量指标。</p>
+        <p class="out"><b>产出：可直接派发的清单。</b>每条写清找谁、问什么。</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="callout">
+    <p class="lab">◆ 两处待判定，靠同一份数据解开</p>
+    <p><strong>體驗卡核销率，按人群拆</strong>（D0–3 买家／其他买家／非买家）—— 它同时判定第零章的<strong>定位</strong>和第五章的<strong>路径</strong>，是全方案第一优先取数项。</p>
+    <p>在它回来之前，零章和五章都只写规则与分支、不写结论；三、四章的推进不依赖它，可先行。</p>
+  </div>
+
+  <div class="foot">
+    <p>三 → 四 是归因收敛后的连续下钻，不是并列的两章。</p>
+    <p>五 是全篇唯一的判定闸门：它之前都在收集依据，它之后才谈做法。</p>
+  </div>
+
+</div>
+
+</body></html>

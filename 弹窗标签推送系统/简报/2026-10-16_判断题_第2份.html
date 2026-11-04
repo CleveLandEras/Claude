@@ -1,0 +1,528 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>判断题样例</title>
+<style>
+:root{--ground:#f4f3f0;--surface:#fff;--ink:#1b1d21;--ink-2:#3d4248;--muted:#4a4f56;--line:#e2e0db;--accent:#9a6f24;
+--yes:#2f6b52;--no:#a8382b;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#c9cdd2;--muted:#adb3ba;--line:#2e3339;--accent:#d6ab5c;
+--yes:#7dbb9c;--no:#e48e7f;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#c9cdd2;--muted:#adb3ba;--line:#2e3339;--accent:#d6ab5c;
+--yes:#7dbb9c;--no:#e48e7f;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.8}
+a{color:var(--accent)}
+.wrap{max-width:1600px;margin:0 auto;padding:48px 40px 96px}
+
+/* 页首 */
+.meta{font-size:14px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.5;margin:0 0 14px}
+.sub{font-size:16px;color:var(--ink);margin:0 0 4px}
+.legend{font-size:14px;color:var(--muted);margin:0}
+
+/* 节标题 */
+h2{font-family:var(--serif);font-size:21px;line-height:1.5;margin:56px 0 20px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:14px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+
+/* 标准卡片 */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:26px 32px 22px;margin:0 0 32px}
+.tag{font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.04em;margin:0 0 6px}
+.tag span{font-weight:400;color:var(--muted);letter-spacing:0;margin-left:8px}
+.std{font-size:18px;font-weight:700;line-height:1.65;margin:0;display:flex;gap:10px}
+.std .n{color:var(--accent);flex:none;width:14px}
+.std .eg{display:block;font-size:15px;font-weight:400;color:var(--ink-2);margin-top:4px}
+.info{font-size:14px;color:var(--muted);margin:6px 0 0 24px;line-height:1.7}
+.info b{font-weight:600;color:var(--ink-2)}
+.info i{font-style:normal;margin:0 10px;color:var(--line)}
+
+.cmp{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;margin:22px 0 0}
+.cmp h3{font-size:14px;font-weight:700;color:var(--muted);margin:0 0 10px;letter-spacing:.02em}
+ul.ind{margin:0;padding:0;list-style:none}
+ul.ind li{margin:0 0 12px;color:var(--ink-2)} ul.ind li:last-child{margin-bottom:0}
+ul.ind b{color:var(--ink)}
+ul.ind a{font-size:14px;white-space:nowrap;margin-left:4px}
+.none{color:var(--muted)}
+.uncheck{font-size:13px;font-weight:700;color:var(--no);white-space:nowrap}
+figure{margin:0 0 12px}
+figure img{display:block;max-width:100%;height:auto;border:1px solid var(--line);border-radius:4px;background:#fff}
+figcaption{font-size:13px;color:var(--muted);margin-top:4px;line-height:1.5}
+.txt{color:var(--ink-2);margin:0}
+.txt q{quotes:"「" "」"}
+
+.verdict{display:flex;align-items:center;justify-content:space-between;gap:32px;margin:24px 0 0;padding:16px 0 0;border-top:1px solid var(--line)}
+.ai{color:var(--ink-2);flex:1;min-width:0}
+.ai .lb{font-weight:600;color:var(--ink)}
+.ai b{font-size:17px;margin:0 2px}
+.ai b.yes{color:var(--yes)} .ai b.no{color:var(--no)}
+.you{flex:none;display:flex;align-items:center;gap:10px;font-size:15px;color:var(--ink)}
+.you .lb{font-weight:600}
+.you .opt{font-size:14px;color:var(--muted)}
+.dk{display:inline-block;width:150px;height:36px;border:1px solid var(--line);border-radius:4px}
+
+.note{font-size:14px;color:var(--muted);margin:-8px 0 0}
+.lead{font-size:14px;color:var(--muted);margin:-8px 0 20px}
+
+/* 参考案例 */
+.cases{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:start}
+.case{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:24px 28px}
+.case .h{font-size:17px;font-weight:700;margin:0 0 12px}
+.case dl{margin:0}
+.case dt{font-size:14px;font-weight:600;color:var(--muted);margin:0}
+.case dd{margin:0 0 12px;color:var(--ink-2)}
+.case dd.said{color:var(--ink);font-weight:600}
+.case figure{margin:16px 0 0}
+
+/* 怎么回 */
+.reply{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 28px;font-size:16px}
+.reply b{color:var(--accent)}
+.links{font-size:14px;color:var(--muted);margin-top:40px}
+</style><style id="dkjudge-css">
+.wrap{position:relative}
+.jstat{position:absolute;top:44px;right:40px;font-size:14px;line-height:1.8;color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:3px 12px}
+.jstat b{font-size:15px;color:var(--ink);margin:0 1px}
+.jstat.all b{color:var(--yes)}
+.jstat .d{color:var(--yes);font-weight:600}
+.verdict{flex-wrap:wrap;row-gap:12px}
+.you .jb{font-family:inherit;font-size:15px;line-height:1.2;padding:7px 18px;border:1px solid var(--line);border-radius:4px;background:var(--surface);color:var(--ink);cursor:pointer}
+.you .jb:hover{border-color:var(--muted)}
+.you .jb.on{font-weight:700;color:var(--surface)}
+.you .jb.on[data-v="同意"]{background:var(--yes);border-color:var(--yes)}
+.you .jb.on[data-v="不同意"]{background:var(--no);border-color:var(--no)}
+.why{flex:1 0 100%}
+.why[hidden]{display:none}
+.why input{display:block;width:100%;font-family:inherit;font-size:15px;line-height:1.5;padding:7px 12px;border:1px solid var(--line);border-left:3px solid var(--no);border-radius:4px;background:var(--surface);color:var(--ink)}
+.jend{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:22px 28px 20px}
+.jend .jlb{display:block;font-weight:600;margin:0 0 8px}
+.jend textarea{display:block;width:100%;min-height:180px;font-family:inherit;font-size:16px;line-height:1.7;padding:10px 14px;border:1px solid var(--line);border-radius:4px;background:var(--surface);color:var(--ink);resize:vertical}
+.jend textarea.jout{min-height:110px;margin-top:12px;font-size:15px}
+.jend textarea[hidden]{display:none}
+.jrow{display:flex;align-items:center;flex-wrap:wrap;gap:24px;margin:16px 0 0}
+.jdone{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:600;cursor:pointer}
+.jdone input{width:18px;height:18px;margin:0;accent-color:var(--yes);cursor:pointer}
+.jcopy{font-family:inherit;font-size:14px;line-height:1.2;padding:7px 14px;border:1px solid var(--line);border-radius:4px;background:var(--surface);color:var(--ink-2);cursor:pointer}
+.jcopy:hover{border-color:var(--muted)}
+.jmsg{font-size:14px;color:var(--yes)}
+.jnote{font-size:14px;color:var(--muted);margin:12px 0 0}
+</style></head><body><div class="wrap">
+<div class="jstat" id="dk-stat" aria-live="polite">已判 <b id="dk-x">0</b> / 11 条<span class="d" id="dk-statdone" hidden> · 判完了</span></div>
+
+<p class="meta">弹窗标签推送系统 · 2026-10-16 · 第 2 份产出 · 判断题新格式样例</p>
+<h1>第 2 份｜每天配弹窗的运营，用这些投放条件，够不够给新增、回流、破产、潜在付费、潜在流失五类人群配出各自要的弹窗？</h1>
+<p class="sub">按下面 11 条标准逐条看 AI 评审的结论（每条只答「符合」或「不符合」），你只判同意或不同意；也可补标准里缺的条目。</p>
+<p class="legend">「框架」＝你认可的一条规则的组成「事件＋状态＋内容＋频次」；「主管计划」＝你 10/10 转来的主管产品计划原文。</p>
+
+<h2><span class="no">01</span>判断标准：6 条，按「事件＋状态＋内容＋频次」排</h2>
+
+<!-- 标准 1 -->
+<section class="card">
+  <p class="tag">功能覆盖<span>事件：做完某事后弹</span></p>
+  <p class="std"><span class="n">1</span><span>能在玩家刚做完某件事时弹出，不只限登录、进大厅（如破产时、首储完成后、升级后）</span></p>
+  <p class="info"><b>对应人群</b>　破产、新增、潜在付费<i>|</i><b>出处</b>　你定的：框架中的「事件」；业内做法：Braze、Firebase、Appcharge</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>Braze</b>：触发动作三选一——开始会话、购买、自定义事件 <a href="https://www.braze.com/docs/user_guide/message_building_by_channel/in-app_messages/create/">Braze 文档</a></li>
+        <li><b>Firebase</b>：至少设一个触发事件，可设多个，任一发生即弹 <a href="https://firebase.google.com/docs/in-app-messaging/compose-campaign">Firebase 文档</a></li>
+        <li><b>Appcharge</b>（游戏商店弹窗）：购买完成后弹，可设第 N 次购买才弹 <a href="https://docs.appcharge.com/guides/webstore/offers/triggered-popups/create-a-triggered-popup">Appcharge 文档</a></li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/1_触发时机.png" width="408" alt="触发时机"><figcaption>编辑弹窗规则 › 高级设置</figcaption></figure>
+      <p class="txt">「指定行为」下拉现有：玩家升级、完成任务、通行证升级、中奖、限时加码礼包快到期；首储完成、完成新手挑战<q>事件来源确认前不列出</q>。破产位置的触发固定为「破产时」。</p></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-1"><span class="lb">AI 评审：</span><b class="yes">是</b> — 触发时机有「指定行为后」及破产时；首储完成待事件来源暂未列出</div>
+    <div class="you" id="dk-1" data-k="ai-1"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-1" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 1 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 2 -->
+<section class="card">
+  <p class="tag">功能覆盖<span>状态：第一次登录就命中</span></p>
+  <p class="std"><span class="n">2</span><span>回流、新增玩家在回来或注册后的第一次登录，当下就能命中给他们的弹窗</span></p>
+  <p class="info"><b>对应人群</b>　回流、新增<i>|</i><b>出处</b>　你定的：框架中的「状态」；业内做法：Braze</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>Braze</b>：可勾「显示前重新判断资格」，弹出前再查一次用户当下是否符合条件 <a href="https://www.braze.com/docs/user_guide/message_building_by_channel/in-app_messages/create/">Braze 文档</a></li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/2_回流新增身份.png" width="535" alt="回流身份与新增身份"><figcaption>编辑弹窗规则 › 高级设置</figcaption></figure>
+      <p class="txt">页底说明原文：<q>回流身份：登录当下判定，刚回来的第一次登录就命中；标签群组「回流」每 25 分钟刷新，第一次登录可能还不在群组里</q></p></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-2"><span class="lb">AI 评审：</span><b class="yes">是</b> — 回流/新增身份「登入时判定」，页底注明第一次登录当下即命中</div>
+    <div class="you" id="dk-2" data-k="ai-2"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-2" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 2 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 3 -->
+<section class="card">
+  <p class="tag">功能覆盖<span>内容：各类人群的项目选得到</span></p>
+  <p class="std"><span class="n">3</span><span>五类人群各自要弹的项目都能在规则里选到并排先后，包括原来写死在客户端的新手挑战、新手通行证
+    <span class="eg">例：新增→新手挑战、新手通行证；回流→回流任务；潜在付费→首储礼包；破产→破产礼包；潜在流失→每日补给计划</span></span></p>
+  <p class="info"><b>对应人群</b>　五类<i>|</i><b>出处</b>　你定的：主管计划「按五类人群定制内容」；你 10/15「客户端写死的弹窗……需要规整到后台里」；业内做法：Appcharge、Braze</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>Appcharge</b>：弹窗内容就是礼包，按玩家分群给不同分群配不同礼包 <a href="https://docs.appcharge.com/guides/webstore/offers/triggered-popups/create-a-triggered-popup">Appcharge 文档</a></li>
+        <li><b>Braze</b>：每条站内信各自设受众（分群＋过滤条件） <a href="https://www.braze.com/docs/user_guide/message_building_by_channel/in-app_messages/create/">Braze 文档</a></li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/3_弹窗排序.png" width="568" alt="弹窗排序"><figcaption>编辑弹窗规则 › 主表单「弹窗排序」</figcaption></figure>
+      <p class="txt">项目从「活动与事件目录」选；目录含新手挑战、新手通行证（原写死在客户端）、回流任务、每日补给计划、储值类礼包各项。</p></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-3"><span class="lb">AI 评审：</span><b class="yes">是</b> — 弹窗排序拖动排先后，目录含新手挑战、新手通行证、回流任务等</div>
+    <div class="you" id="dk-3" data-k="ai-3"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-3" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 3 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 4 -->
+<section class="card">
+  <p class="tag">功能覆盖<span>频次：每日以外的周期</span></p>
+  <p class="std"><span class="n">4</span><span>每个弹窗项的次数能按每日以外的周期计：终身 1 次、每次回流 1 次、每周 N 次</span></p>
+  <p class="info"><b>对应人群</b>　新增（新手引导终身 1 次）、回流、潜在流失<i>|</i><b>出处</b>　你定的：框架中的「频次」；业内做法：Firebase、OneSignal、CleverTap</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>Firebase</b>：默认每人看过一次即不再显示，可改为按天数设频次 <a href="https://firebase.google.com/docs/in-app-messaging/compose-campaign">Firebase 文档</a></li>
+        <li><b>OneSignal</b>：只一次（默认）／每次满足条件都显示／多次，如 2 次间隔 1 小时、12 次间隔 30 天 <a href="https://documentation.onesignal.com/docs/in-app-messages-setup">OneSignal 文档</a></li>
+        <li><b>CleverTap</b>：站内信可设每次会话最多几条 <a href="https://docs.clevertap.com/docs/advanced-frequency-caps">CleverTap 文档</a></li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/4_项级高级.png" width="603" alt="排序项高级设置"><figcaption>编辑弹窗规则 › 排序项行尾「高级」（默认收起）</figcaption></figure>
+      <p class="txt">「周期次数」可选：每日／每周／每 N 天／生效期间内／终身／每回流周期。规则级「每人总次数」可按累计、每日、每周计。</p></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-4"><span class="lb">AI 评审：</span><b class="yes">是</b> — 项级「周期次数」可选每周、终身、每回流周期</div>
+    <div class="you" id="dk-4" data-k="ai-4"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-4" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 4 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 5 -->
+<section class="card">
+  <p class="tag">功能覆盖<span>频次：弹过、关掉后冷却</span></p>
+  <p class="std"><span class="n">5</span><span>弹过或被玩家关掉后，能设一段时间内不再弹</span></p>
+  <p class="info"><b>对应人群</b>　潜在付费（首储礼包反复被关）、全体<i>|</i><b>出处</b>　你定的：框架中的「频次」；业内做法：Braze、Appcharge</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>Braze</b>：默认每人只收一次；开「允许再次收到」后设间隔，最长 720 天 <a href="https://www.braze.com/docs/user_guide/messaging/messaging_fundamentals/re_eligibility">Braze 文档</a></li>
+        <li><b>Appcharge</b>：设冷却（分钟），弹过后须过这么久才能再弹 <a href="https://docs.appcharge.com/guides/webstore/offers/triggered-popups/create-a-triggered-popup">Appcharge 文档</a></li>
+        <li class="none">按「被玩家关闭」另设停弹：上列几家文档都没写</li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/5_总次数与关闭冷却.png" width="323" alt="每人总次数与关闭后冷却"><figcaption>编辑弹窗规则 › 高级设置</figcaption></figure>
+      <p class="txt">关闭后冷却：玩家没点、直接关掉后，冷却期内本规则不再弹（1–720 小时）。另有项的「冷却时间」（0–86,400 秒）、项级「曝光无点击静默」（连续曝光 N 次没点 → M 天不弹该项）。</p></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-5"><span class="lb">AI 评审：</span><b class="yes">是</b> — 规则级关闭后冷却 1–720 小时，项级冷却时间与曝光无点击静默</div>
+    <div class="you" id="dk-5" data-k="ai-5"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-5" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 5 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 6 -->
+<section class="card">
+  <p class="tag">功能覆盖<span>频次：同属几类时谁先</span></p>
+  <p class="std"><span class="n">6</span><span>一个玩家同时属于几类人群时，能指定只弹哪一条、谁先弹</span></p>
+  <p class="info"><b>对应人群</b>　五类交叉（如回流又是潜在付费）<i>|</i><b>出处</b>　你定的：主管计划「整体控制数量、内容、顺序」；业内做法：Braze、Appcharge、MoEngage</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>Braze</b>：优先级分高、中、低三档，还可拖动排出精确顺序 <a href="https://www.braze.com/docs/user_guide/message_building_by_channel/in-app_messages/create/">Braze 文档</a></li>
+        <li><b>Appcharge</b>：同类弹窗同时可弹时，数字小的先弹 <a href="https://docs.appcharge.com/guides/webstore/offers/triggered-popups/create-a-triggered-popup">Appcharge 文档</a></li>
+        <li><b>MoEngage</b>：同一触发只弹优先级最高的一条，同级弹最新建的 <span class="uncheck">未核对</span> <a href="https://www.moengage.com/docs/user-guide/campaigns-and-channels/in-app-message/analyze/campaign-delivery-mechanism-for-in-app-messages">MoEngage 文档</a></li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/6a_优先级.png" width="468" alt="优先级"><figcaption>编辑弹窗规则 › 主表单</figcaption></figure>
+      <figure><img src="图/2026-10-16_判断题新格式/6b_互斥组.png" width="435" alt="互斥组"><figcaption>编辑弹窗规则 › 高级设置</figcaption></figure></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-6"><span class="lb">AI 评审：</span><b class="yes">是</b> — 优先级「同类型只弹最高一条」，互斥组覆盖不同类型只弹一条</div>
+    <div class="you" id="dk-6" data-k="ai-6"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-6" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 6 不同意的理由"></div>
+  </div>
+</section>
+
+<p class="note">业内做法都已打开官方文档核对，标「未核对」的除外（MoEngage 官网连不上，内容取自此前对标记录）。</p>
+
+<h2><span class="no">02</span>按评审维度补齐的标准：5 条</h2>
+<p class="lead">按评审维度表补齐上面没覆盖到的维度；每条小标前半是所属维度。</p>
+
+<!-- 标准 7 -->
+<section class="card">
+  <p class="tag">状态与防错<span>条件矛盾或 0 人时当场提示</span></p>
+  <p class="std"><span class="n">7</span><span>投放条件互相矛盾或配出 0 人时（如冷却长于规则有效期、每日时段为空、对象群组为 0 人），保存前页上当场提示并指出是哪一项</span></p>
+  <p class="info"><b>看哪里</b>　高级设置里的投放条件与底部「保存」<i>|</i><b>出处</b>　业内做法：NN/g 启发式第 5、9 条</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>NN/g 启发式第 5 条「防错」</b>：先防代价高的错误；在使用者提交之前提醒，不等出错后再报 <a href="https://www.nngroup.com/articles/ten-usability-heuristics/">NN/g 文章</a></li>
+        <li><b>NN/g 启发式第 9 条「错误信息」</b>：用平实的话说清问题在哪，并给出解决办法 <a href="https://www.nngroup.com/articles/ten-usability-heuristics/">NN/g 文章</a></li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第1份_保存确认.png" width="388" alt="保存确认框"><figcaption>点「保存」后的确认框</figcaption></figure>
+      <ul class="ind">
+        <li><b>已写的提示</b>：实验分流按尾数分、对象又已按尾数分组时，旁注「再按尾数分流会有一组为 0 人」，字段表写任一组 0 人不能保存；触发时机与各项弹窗时机对不上时不能保存；排序项排在弹出数量之后时确认框提示；每日时段重叠的段保存时合并</li>
+        <li><b>人数</b>：右侧预计人数随改动重算；确认框列改前 → 改后人数</li>
+        <li><b>其余几种</b>：关闭后冷却长于生效期间、对象群组为 0 人，页上与字段表没有写提示；每日时段不填即全天</li></ul></div>
+  </div>
+  <figure style="margin:20px 0 0"><img src="图/2026-10-16_判断题新格式/第2份_补2_投放条件下半.jpg" width="960" alt="投放条件下半"><figcaption>编辑弹窗规则 › 高级设置（下半）</figcaption></figure>
+  <div class="verdict">
+    <div class="ai" id="ai-7"><span class="lb">AI 评审：</span><b>否</b>　冷却长于生效期间、对象群组 0 人都没有当场提示，只有尾数分流一项有</div>
+    <div class="you" id="dk-7" data-k="ai-7"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-7" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 7 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 8 -->
+<section class="card">
+  <p class="tag">方向一致<span>五类人群按已定口径选</span></p>
+  <p class="std"><span class="n">8</span><span>五类人群在规则里按已定口径选取：新增、回流、破产用现有标签，潜在付费、潜在流失用新建标签，投放条件里没有另设一套人群判定</span></p>
+  <p class="info"><b>看哪里</b>　「对象」与高级设置里的投放条件；字段表<i>|</i><b>出处</b>　你定的：已定事项「五类目标人群都能圈出」</p>
+  <div class="cmp">
+    <div><h3>依据的标准怎么写</h3>
+      <ul class="ind">
+        <li><b>你定的</b>（已定事项「五类目标人群都能圈出」）：新增、回流、破产可直接判定；潜在付费、潜在流失由方案定义并新建标签，不再写成「圈不出」</li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第2份_补_对象.jpg" width="710" alt="对象与标签群组"><figcaption>编辑弹窗规则 ›「对象」一块</figcaption></figure>
+      <figure><img src="图/2026-10-16_判断题新格式/第2份_补_身份勾选.jpg" width="650" alt="回流身份与新增身份"><figcaption>编辑弹窗规则 › 高级设置（上半）</figcaption></figure>
+      <ul class="ind">
+        <li><b>对象</b>：选「标签群组」，下拉列群组与人数（字段表例：新增 10,749、回流 16,564、潜在流失·实验组 3,950）</li>
+        <li><b>高级设置另有两项勾选</b>：「回流身份（登入时判定）」离开不少于 7 天回来即命中，登录当下判定，不等每 25 分钟刷新的「回流」群组；「新增身份（登入时判定）」注册不满 30 天即命中</li></ul></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-8"><span class="lb">AI 评审：</span><b>否</b>　高级设置另设「回流身份」「新增身份」，按登录、注册时间判定，可绕开标签</div>
+    <div class="you" id="dk-8" data-k="ai-8"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-8" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 8 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 9 -->
+<section class="card">
+  <p class="tag">事实与依据<span>默认值与上限有出处</span></p>
+  <p class="std"><span class="n">9</span><span>投放条件中带默认值或上限的项（每人每天弹窗上限、关闭后冷却的默认时长、实验分流比例）都注明了数值的出处</span></p>
+  <p class="info"><b>看哪里</b>　需求文档字段表「规则说明」列；高级设置里的投放条件<i>|</i><b>出处</b>　写作标准：「每处改动、每个目标或指标都写出推得出它的理由」</p>
+  <div class="cmp">
+    <div><h3>依据的标准怎么写</h3>
+      <ul class="ind">
+        <li><b>写作标准</b>：每处改动、每个目标或指标都写出推得出它的理由，写不出理由即不符合；门槛要说得出来源（数据分位或行业研究）</li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/5_总次数与关闭冷却.png" width="323" alt="每人总次数与关闭后冷却"><figcaption>编辑弹窗规则 › 高级设置</figcaption></figure>
+      <ul class="ind">
+        <li><b>弹出数量</b>：「1 至每人每天弹窗上限（当前 8）的整数」；上限本身不在本表单设，在「频率上限」页</li>
+        <li><b>关闭后冷却</b>：「小时，1–720 整数」；建议默认值「活动类 24、储值类不设」</li>
+        <li><b>实验分流</b>：建议默认不分流，分流时默认按会员编号哈希；实验组尾数例「1、3、5、7、9（约 50%）」</li>
+        <li><b>每人总次数</b>：「1–9,999；不填不限」，例 20 次</li>
+        <li><b>承接推送时效</b>：「1–14 天，建议默认值 3」</li></ul>
+      <p class="txt">以上各行的规则说明没有附数值来源。</p></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-9"><span class="lb">AI 评审：</span><b>否</b>　关闭后冷却默认 24 小时、承接 3 天、上限 8 个等数值都没写出处</div>
+    <div class="you" id="dk-9" data-k="ai-9"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-9" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 9 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 10 -->
+<section class="card">
+  <p class="tag">措辞与指代<span>条件名旁有一句说明</span></p>
+  <p class="std"><span class="n">10</span><span>触发时机、实验分流、互斥、关闭后冷却等条件名，每个旁边有一句说明它管什么，运营不经解释就能读懂</span></p>
+  <p class="info"><b>看哪里</b>　高级设置里各条件名与旁边的灰字<i>|</i><b>出处</b>　写作标准：「后台功能名第一次出现说明它是什么」；业内做法：NN/g 启发式第 2 条</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>NN/g 启发式第 2 条「系统与现实世界匹配」</b>：用使用者熟悉的词和概念，不用系统内部的行话 <a href="https://www.nngroup.com/articles/ten-usability-heuristics/">NN/g 文章</a></li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <ul class="ind">
+        <li><b>营销档期</b>：「与推送同一下拉；档期汇总把推送与承接弹窗合并看」</li>
+        <li><b>回流身份、新增身份</b>：「离开不少于 7 天回来即命中」「注册不满 30 天即命中」，另有「?」</li>
+        <li><b>触发时机</b>：「登录、进入大厅时按各项弹窗时机取项目」</li>
+        <li><b>平台、客户端版本</b>：「暂无版本分布，人数未按版本扣除」</li>
+        <li><b>每日时段、每人总次数、关闭后冷却</b>：旁边没有灰字</li>
+        <li><b>互斥组</b>：「同一位置不同弹窗类型放进同一组后只弹一条」</li>
+        <li><b>实验分流</b>：「本规则的对象已按会员编号尾数分组（潜在流失·实验组），再按尾数分流会有一组为 0 人」</li>
+        <li><b>承接推送</b>：旁边没有灰字</li></ul>
+      <p class="txt">右侧说明栏第 4–8、15、17、18 条另有解释；说明栏是原型注释，不在后台界面上。</p></div>
+  </div>
+  <figure style="margin:20px 0 0"><img src="图/2026-10-16_判断题新格式/第2份_补2_高级设置展开.jpg" width="1160" alt="高级设置展开"><figcaption>编辑弹窗规则 › 高级设置展开</figcaption></figure>
+  <div class="verdict">
+    <div class="ai" id="ai-10"><span class="lb">AI 评审：</span><b>否</b>　每日时段、每人总次数、关闭后冷却、承接推送旁没有说明文字</div>
+    <div class="you" id="dk-10" data-k="ai-10"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-10" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 10 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 11 -->
+<section class="card">
+  <p class="tag">措辞与指代<span>整页句式：说明文字的开头</span></p>
+  <p class="std"><span class="n">11</span><span>投放条件各项的说明文字，没有成片以同一主语（如「运营」）或同一句式开头的句子，上下文已确定的主语没有逐句写出</span></p>
+  <p class="info"><b>看哪里</b>　高级设置展开里各条件旁的灰字与页底说明；右侧说明栏讲投放条件的各条<i>|</i><b>出处</b>　你 10/15：「永远是运营在开头，这三个字真的有必要？」；措辞审查「整稿通读」</p>
+  <div class="cmp">
+    <div><h3>依据的标准怎么写</h3>
+      <ul class="ind">
+        <li><b>措辞审查「整稿通读」</b>：逐句查完后通读全稿，同一开头、同一句式反复出现的删去或改写；全稿主体已经明确的不逐句写出，例如运营用的后台不写「运营在……」；补主语只补读者会读错或读不出的</li>
+        <li><b>你 10/15</b>（当时原型改稿后有 63 处以「运营」开头）：「永远是运营在开头，这三个字真的有必要？真的认真检查措辞了吗？」</li></ul></div>
+    <div><h3>我们原型对应的部分</h3>
+      <ul class="ind">
+        <li><b>以「运营」开头的句子</b>：没有</li>
+        <li><b>各条件旁的灰字（原文，自上而下）</b>
+          <br>营销档期「与推送同一下拉；档期汇总把推送与承接弹窗合并看」
+          <br>回流身份「离开不少于 7 天回来即命中；与『回流』群组的区别见『?』」
+          <br>新增身份「注册不满 30 天即命中；规则 12 已勾」
+          <br>触发时机「登录、进入大厅时按各项弹窗时机取项目」
+          <br>客户端版本「暂无版本分布，人数未按版本扣除」
+          <br>互斥组「同一位置不同弹窗类型放进同一组后只弹一条」
+          <br>实验分流「本规则的对象已按会员编号尾数分组（潜在流失·实验组），再按尾数分流会有一组为 0 人」</li>
+        <li><b>页底说明</b>：「回流身份：登录当下判定，刚回来的第一次登录就命中；标签群组『回流』每 25 分钟刷新，第一次登录可能还不在群组里」</li>
+        <li><b>说明栏讲投放条件的各条</b>：小标为新增触发时机、新增平台与客户端版本、新增每日时段、每人总次数、关闭后冷却、新增优先级与互斥组、新增实验分流（连续 5 条以「新增」开头），以及固定排除与回流身份（登入时判定）、营销档期、承接推送；正文句例「时段外不弹本规则；总次数从上架起累计；玩家未点击、直接关闭后，冷却时间内本规则不再弹出」</li></ul>
+      <p class="txt" style="margin-top:12px">灰字所在的截图见第 10 条。</p></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-11"><span class="lb">AI 评审：</span><b>否</b>　灰字开头各异，但说明栏讲投放条件的连续五条小标都以「新增」开头</div>
+    <div class="you" id="dk-11" data-k="ai-11"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-11" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 11 不同意的理由"></div>
+  </div>
+</section>
+
+<p class="note">业内做法都已打开官方文档核对。信息结构与主次、视觉完成度、改动可辨、无多余内容四个维度与第 1 份是同一页，在第 1 份判。</p>
+
+<h2><span class="no">03</span>参考案例：你推翻过的两份同类稿</h2>
+<div class="cases">
+  <div class="case">
+    <p class="h">例 1　只列了对象、时机、次数、冷却</p>
+    <dl>
+      <dt>你的原话</dt><dd class="said">「弹窗的配置条件目前都有哪些纬度？缺不缺？」（10/15）</dd>
+      <dt>当时的稿</dt><dd>10/14 原型「编辑弹窗规则」：对象、排除、生效期间、排序；每项只有弹窗时机、次数、冷却（下图）</dd>
+      <dt>改后</dt><dd>本题第 2 份：加了触发时机（含指定行为后）、回流／新增身份、平台与版本、每日时段、每人总次数、关闭后冷却、优先级、互斥组；每项加周期次数等</dd>
+    </dl>
+    <figure><img src="图/2026-10-16_判断题新格式/例1_10月14日规则编辑.png" width="715" alt="10月14日编辑弹窗规则"><figcaption>10/14 原型 · 编辑弹窗规则（当时版本）</figcaption></figure>
+  </div>
+  <div class="case">
+    <p class="h">例 2　把后台已有的说成没有</p>
+    <dl>
+      <dt>你的原话</dt><dd class="said">「为什么说先后不可控呢？」（10/10）</dd>
+      <dt>当时的稿</dt><dd>方案第二版写「弹窗数量与先后不可控」；后台实际已有「大厅弹窗顺序设定」（每条的排序、弹出个数）和玩家弹窗顺序查询</dd>
+      <dt>改后</dt><dd>第三版写明后台已有排序与弹出个数，跨规则先后由系统给定、可查</dd>
+    </dl>
+  </div>
+</div>
+
+<h2><span class="no">04</span>怎么判</h2>
+<div class="reply">直接在页面上点：每条下面点「同意」或「不同意」（不同意可写一句理由），页面最下面可补还缺的标准；点完自动保存，判完在对话里说一声「判完了」即可。<b></b></div>
+
+<h2><span class="no">05</span>还缺什么，判完没有</h2>
+<div class="jend">
+  <label class="jlb" for="dk-missing">还缺的标准（想到什么写什么，一条一行）</label>
+  <textarea id="dk-missing" rows="6"></textarea>
+  <div class="jrow">
+    <label class="jdone"><input type="checkbox" id="dk-done">这一份判完了</label>
+    <button type="button" class="jcopy" id="dk-copy">复制我的判断</button>
+    <span class="jmsg" id="dk-copymsg" aria-live="polite"></span>
+  </div>
+  <textarea class="jout" id="dk-out" readonly hidden aria-label="本页判断的文字"></textarea>
+  <p class="jnote">每次点选和输入都随手存在这台电脑的浏览器里，刷新、关掉再开都还在。</p>
+</div>
+
+<p class="links">原文：<a href="../推送系统后台集成需求/3_原型.html#p9">原型 · 编辑弹窗规则</a>　<a href="../推送系统后台集成需求/4_需求文档.md#s5-12">字段表</a>　<a href="2026-10-16_请你判的10份产出.html">请你判的 10 份产出</a></p>
+</div><script>
+(function(){
+  var PAGE = '第2份', LABEL = '第 2 份', P = 'dkjudge:' + PAGE + ':';
+  function get(k){ try { return localStorage.getItem(P + k); } catch (e) { return null; } }
+  function put(k, v){ try { localStorage.setItem(P + k, v); } catch (e) {} }
+  function del(k){ try { localStorage.removeItem(P + k); } catch (e) {} }
+  function read(k){
+    var s = get(k); if (!s) return null;
+    try { var o = JSON.parse(s); return (o && (o.v === '同意' || o.v === '不同意')) ? o : null; } catch (e) { return null; }
+  }
+  var groups = [].slice.call(document.querySelectorAll('.you[data-k]'));
+  var total = groups.length;
+  var elX = document.getElementById('dk-x'), elStat = document.getElementById('dk-stat'), elStatDone = document.getElementById('dk-statdone');
+  var elMissing = document.getElementById('dk-missing'), elDone = document.getElementById('dk-done');
+  var elCopy = document.getElementById('dk-copy'), elMsg = document.getElementById('dk-copymsg'), elOut = document.getElementById('dk-out');
+
+  function whyBox(k){ return document.querySelector('.why[data-k="' + k + '"]'); }
+  function paint(g, v){
+    [].forEach.call(g.querySelectorAll('button.jb'), function(b){
+      var on = b.getAttribute('data-v') === v;
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    var w = whyBox(g.getAttribute('data-k'));
+    if (w) w.hidden = (v !== '不同意');
+  }
+  function stat(){
+    var x = 0;
+    groups.forEach(function(g){ if (read(g.getAttribute('data-k'))) x++; });
+    if (elX) elX.textContent = x;
+    if (elStat) elStat.classList.toggle('all', x === total);
+    if (elStatDone) elStatDone.hidden = get('done') !== 'true';
+  }
+
+  groups.forEach(function(g){
+    var k = g.getAttribute('data-k'), w = whyBox(k), inp = w ? w.querySelector('input') : null;
+    var o = read(k);
+    if (o && inp && o.why) inp.value = o.why;
+    paint(g, o ? o.v : null);
+    g.addEventListener('click', function(e){
+      var b = e.target.closest ? e.target.closest('button.jb') : null;
+      if (!b) return;
+      var v = b.getAttribute('data-v'), cur = read(k);
+      if (cur && cur.v === v) { del(k); paint(g, null); }
+      else {
+        put(k, JSON.stringify({ v: v, why: (v === '不同意' && inp) ? inp.value : '' }));
+        paint(g, v);
+        if (v === '不同意' && inp) { try { inp.focus({ preventScroll: true }); } catch (e2) { inp.focus(); } }
+      }
+      stat();
+    });
+    if (inp) inp.addEventListener('input', function(){
+      var cur = read(k);
+      if (cur && cur.v === '不同意') { cur.why = inp.value; put(k, JSON.stringify(cur)); }
+    });
+  });
+
+  if (elMissing) {
+    elMissing.value = get('missing') || '';
+    elMissing.addEventListener('input', function(){ if (elMissing.value) put('missing', elMissing.value); else del('missing'); });
+  }
+  if (elDone) {
+    elDone.checked = get('done') === 'true';
+    elDone.addEventListener('change', function(){ if (elDone.checked) put('done', 'true'); else del('done'); stat(); });
+  }
+  stat();
+
+  function summary(){
+    var parts = [], un = [];
+    groups.forEach(function(g){
+      var k = g.getAttribute('data-k'), o = read(k);
+      if (!o) { un.push(k); return; }
+      var s = k + ' ' + o.v, why = (o.why || '').replace(/\s+/g, ' ').trim();
+      if (o.v === '不同意' && why) s += '——' + why;
+      parts.push(s);
+    });
+    if (un.length) parts.push('未判 ' + un.join('、'));
+    var m = (get('missing') || '').split(/\n+/).map(function(t){ return t.trim(); }).filter(Boolean);
+    if (m.length) parts.push('还缺：' + m.join('；'));
+    return LABEL + (get('done') === 'true' ? '（判完了）' : '') + '：' + parts.join('；');
+  }
+  function say(t){ if (elMsg) { elMsg.textContent = t; clearTimeout(say.t); say.t = setTimeout(function(){ elMsg.textContent = ''; }, 4000); } }
+  function manual(text){
+    if (!elOut) return;
+    elOut.hidden = false; elOut.value = text; elOut.focus(); elOut.select();
+    if (elMsg) { clearTimeout(say.t); elMsg.textContent = '没能自动复制：下框文字已选中，请按 ⌘C 复制'; }
+  }
+  function fallback(text){
+    var t = document.createElement('textarea'), ok = false;
+    t.value = text; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.top = '0'; t.style.opacity = '0';
+    document.body.appendChild(t); t.select();
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    document.body.removeChild(t);
+    if (ok) say('已复制，可直接贴进对话'); else manual(text);
+  }
+  if (elCopy) elCopy.addEventListener('click', function(){
+    var text = summary();
+    if (elOut) { elOut.hidden = true; }
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(function(){ say('已复制，可直接贴进对话'); }, function(){ fallback(text); });
+    } else fallback(text);
+  });
+})();
+</script>
+</body></html>

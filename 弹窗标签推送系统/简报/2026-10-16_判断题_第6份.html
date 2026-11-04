@@ -1,0 +1,526 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>群组交集判断题</title>
+<style>
+:root{--ground:#f4f3f0;--surface:#fff;--ink:#1b1d21;--ink-2:#3d4248;--muted:#4a4f56;--line:#e2e0db;--accent:#9a6f24;
+--yes:#2f6b52;--no:#a8382b;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#c9cdd2;--muted:#adb3ba;--line:#2e3339;--accent:#d6ab5c;
+--yes:#7dbb9c;--no:#e48e7f;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#c9cdd2;--muted:#adb3ba;--line:#2e3339;--accent:#d6ab5c;
+--yes:#7dbb9c;--no:#e48e7f;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.8}
+a{color:var(--accent)}
+.wrap{max-width:1600px;margin:0 auto;padding:48px 40px 96px}
+
+/* 页首 */
+.meta{font-size:14px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.5;margin:0 0 14px}
+.sub{font-size:16px;color:var(--ink);margin:0 0 4px}
+.legend{font-size:14px;color:var(--muted);margin:0}
+
+/* 节标题 */
+h2{font-family:var(--serif);font-size:21px;line-height:1.5;margin:56px 0 20px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:14px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+
+/* 标准卡片 */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:26px 32px 22px;margin:0 0 32px}
+.tag{font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.04em;margin:0 0 6px}
+.tag span{font-weight:400;color:var(--muted);letter-spacing:0;margin-left:8px}
+.std{font-size:18px;font-weight:700;line-height:1.65;margin:0;display:flex;gap:10px}
+.std .n{color:var(--accent);flex:none;width:14px}
+.std .eg{display:block;font-size:15px;font-weight:400;color:var(--ink-2);margin-top:4px}
+.info{font-size:14px;color:var(--muted);margin:6px 0 0 24px;line-height:1.7}
+.info b{font-weight:600;color:var(--ink-2)}
+.info i{font-style:normal;margin:0 10px;color:var(--line)}
+
+.cmp{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;margin:22px 0 0}
+.cmp h3{font-size:14px;font-weight:700;color:var(--muted);margin:0 0 10px;letter-spacing:.02em}
+ul.ind{margin:0;padding:0;list-style:none}
+ul.ind li{margin:0 0 12px;color:var(--ink-2)} ul.ind li:last-child{margin-bottom:0}
+ul.ind b{color:var(--ink)}
+ul.ind a{font-size:14px;white-space:nowrap;margin-left:4px}
+.none{color:var(--muted)}
+.uncheck{font-size:13px;font-weight:700;color:var(--no);white-space:nowrap}
+figure{margin:0 0 12px}
+figure img{display:block;max-width:100%;height:auto;border:1px solid var(--line);border-radius:4px;background:#fff}
+figcaption{font-size:13px;color:var(--muted);margin-top:4px;line-height:1.5}
+.txt{color:var(--ink-2);margin:0}
+.txt q{quotes:"「" "」"}
+
+.verdict{display:flex;align-items:center;justify-content:space-between;gap:32px;margin:24px 0 0;padding:16px 0 0;border-top:1px solid var(--line)}
+.ai{color:var(--ink-2);flex:1;min-width:0}
+.ai .lb{font-weight:600;color:var(--ink)}
+.ai b{font-size:17px;margin:0 2px}
+.ai b.yes{color:var(--yes)} .ai b.no{color:var(--no)}
+.you{flex:none;display:flex;align-items:center;gap:10px;font-size:15px;color:var(--ink)}
+.you .lb{font-weight:600}
+.you .opt{font-size:14px;color:var(--muted)}
+.dk{display:inline-block;width:150px;height:36px;border:1px solid var(--line);border-radius:4px}
+
+.note{font-size:14px;color:var(--muted);margin:-8px 0 0}
+
+/* 参考案例 */
+.cases{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:start}
+.case{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:24px 28px}
+.case .h{font-size:17px;font-weight:700;margin:0 0 12px}
+.case dl{margin:0}
+.case dt{font-size:14px;font-weight:600;color:var(--muted);margin:0}
+.case dd{margin:0 0 12px;color:var(--ink-2)}
+.case dd.said{color:var(--ink);font-weight:600}
+.case figure{margin:16px 0 0}
+
+/* 怎么回 */
+.reply{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 28px;font-size:16px}
+.reply b{color:var(--accent)}
+.links{font-size:14px;color:var(--muted);margin-top:40px}
+</style><style id="dkjudge-css">
+.wrap{position:relative}
+.jstat{position:absolute;top:44px;right:40px;font-size:14px;line-height:1.8;color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:3px 12px}
+.jstat b{font-size:15px;color:var(--ink);margin:0 1px}
+.jstat.all b{color:var(--yes)}
+.jstat .d{color:var(--yes);font-weight:600}
+.verdict{flex-wrap:wrap;row-gap:12px}
+.you .jb{font-family:inherit;font-size:15px;line-height:1.2;padding:7px 18px;border:1px solid var(--line);border-radius:4px;background:var(--surface);color:var(--ink);cursor:pointer}
+.you .jb:hover{border-color:var(--muted)}
+.you .jb.on{font-weight:700;color:var(--surface)}
+.you .jb.on[data-v="同意"]{background:var(--yes);border-color:var(--yes)}
+.you .jb.on[data-v="不同意"]{background:var(--no);border-color:var(--no)}
+.why{flex:1 0 100%}
+.why[hidden]{display:none}
+.why input{display:block;width:100%;font-family:inherit;font-size:15px;line-height:1.5;padding:7px 12px;border:1px solid var(--line);border-left:3px solid var(--no);border-radius:4px;background:var(--surface);color:var(--ink)}
+.jend{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:22px 28px 20px}
+.jend .jlb{display:block;font-weight:600;margin:0 0 8px}
+.jend textarea{display:block;width:100%;min-height:180px;font-family:inherit;font-size:16px;line-height:1.7;padding:10px 14px;border:1px solid var(--line);border-radius:4px;background:var(--surface);color:var(--ink);resize:vertical}
+.jend textarea.jout{min-height:110px;margin-top:12px;font-size:15px}
+.jend textarea[hidden]{display:none}
+.jrow{display:flex;align-items:center;flex-wrap:wrap;gap:24px;margin:16px 0 0}
+.jdone{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:600;cursor:pointer}
+.jdone input{width:18px;height:18px;margin:0;accent-color:var(--yes);cursor:pointer}
+.jcopy{font-family:inherit;font-size:14px;line-height:1.2;padding:7px 14px;border:1px solid var(--line);border-radius:4px;background:var(--surface);color:var(--ink-2);cursor:pointer}
+.jcopy:hover{border-color:var(--muted)}
+.jmsg{font-size:14px;color:var(--yes)}
+.jnote{font-size:14px;color:var(--muted);margin:12px 0 0}
+</style></head><body><div class="wrap">
+<div class="jstat" id="dk-stat" aria-live="polite">已判 <b id="dk-x">0</b> / 11 条<span class="d" id="dk-statdone" hidden> · 判完了</span></div>
+
+<p class="meta">弹窗标签推送系统 · 2026-10-16 · 第 6 份产出 · 判断题</p>
+<h1>第 6 份｜标签群组取交集的规则，和「且、或、排除」混用时的运算顺序，够不够交给研发照着做？</h1>
+<p class="sub">按下面 11 条标准逐条看 AI 评审的结论（每条只答「是」或「否」），你只判同意或不同意；也可补标准里缺的条目。</p>
+<p class="legend">背景：推送和弹窗都按标签群组选人；群组现有组合方式「且」「或」「排除」，本期新增在条件里引用群组（群组交集），由标签系统实现，推送后台只读取和显示。</p>
+
+<h2><span class="no">01</span>判断标准：6 条，先看算法，再看引用边界与编辑时可见，最后看现状核对</h2>
+
+<!-- 标准 1 -->
+<section class="card">
+  <p class="tag">规则唯一确定<span>「且」「或」混用</span></p>
+  <p class="std"><span class="n">1</span><span>「且」「或」混在一个群组里时只有一种算法：写明谁先算，并配了算例</span></p>
+  <p class="info"><b>涉及</b>　运营在一个群组里混用「且」「或」；研发按此实现群组计算<i>|</i><b>出处</b>　业内做法：Braze、GA4、Amplitude、Mixpanel</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>Braze</b>：组内、组与组之间都可选「且」或「或」，用分组表示括号，例「(A 且 B 且 C) 或 (C 且 E 且 F)」；不分组时谁先算，文档未写 <a href="https://www.braze.com/docs/user_guide/engagement_tools/segments/creating_a_segment/">Braze 文档</a></li>
+        <li><b>GA4</b>：组内每个条件可选「且」或「或」，组与组之间固定为「且」 <a href="https://support.google.com/analytics/answer/9304353">GA4 文档</a></li>
+        <li><b>Amplitude</b>：用「+ Add」加的条件之间为「且」，用「Or」加的为「或」；混用时谁先算，文档未写 <a href="https://amplitude.com/docs/analytics/define-cohort">Amplitude 文档</a></li>
+        <li><b>Mixpanel</b>：分群可用「且」「或」串联；混用时谁先算，文档未写 <a href="https://docs.mixpanel.com/docs/users/cohorts">Mixpanel 文档</a></li></ul></div>
+    <div><h3>我们需求文档与原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第6份_运算顺序示例.jpg" width="400" alt="运算顺序示例"><figcaption>会员标签设定 › 标签群组设定 › 运算顺序示例</figcaption></figure>
+      <p class="txt">需求文档原文：<q>首行与组合方式为「且」「或」的行为纳入条件；「且」优先于「或」</q>。验收用例：条件依次为「A；或 B；且 C」，保存后名单等于 A ∪ (B ∩ C)，编辑区计算式与结果一致。</p></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-1"><span class="lb">AI 评审：</span><b>是</b>　需求文档「运算顺序」一节写明且优先于或，配A；或B；且C＝A∪(B∩C)算例与验收用例</div>
+    <div class="you" id="dk-1" data-k="ai-1"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-1" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 1 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 2 -->
+<section class="card">
+  <p class="tag">规则唯一确定<span>「排除」放在哪一行</span></p>
+  <p class="std"><span class="n">2</span><span>「排除」不论写在第几行，都在最后从纳入的人里扣掉，不会被后面的「或」加回来</span></p>
+  <p class="info"><b>涉及</b>　潜在流失（两档）排除新增、回流<i>|</i><b>出处</b>　业内做法：Braze、GA4、Amplitude</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>Braze</b>：排除组与筛选组之间恒为「且非」；命中排除组的用户，即使满足筛选条件也被排除 <a href="https://www.braze.com/docs/user_guide/engagement_tools/segments/creating_a_segment/">Braze 文档</a></li>
+        <li><b>GA4</b>：先算全部纳入条件，再套用排除条件；排除可选「暂时排除」或「永久排除」 <a href="https://support.google.com/analytics/answer/9304353">GA4 文档</a></li>
+        <li><b>Amplitude</b>：满足排除条件的用户，即使满足其他全部条件也不进分群 <a href="https://amplitude.com/docs/analytics/define-cohort">Amplitude 文档</a></li></ul></div>
+    <div><h3>我们需求文档与原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第6份_排除与计算式.jpg" width="695" alt="排除行与计算式"><figcaption>会员标签设定 › 标签群组设定 › 组合条件（群组「潜在流失（两档）」）</figcaption></figure>
+      <p class="txt">需求文档原文：<q>组合方式为「排除」的行合成排除集，最后统一从纳入结果中扣除，与行的位置无关</q>。验收用例：条件依次为「A；排除 B；或 C」，结果＝(A ∪ C) − B，名单不含 B 的任何成员。</p></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-2"><span class="lb">AI 评审：</span><b>是</b>　「运算顺序」一节写明排除集最后统一扣除、与行位置无关；算例(A∪C)−B及验收用例</div>
+    <div class="you" id="dk-2" data-k="ai-2"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-2" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 2 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 3 -->
+<section class="card">
+  <p class="tag">需求覆盖<span>交叉人群不写 SQL 也能配</span></p>
+  <p class="std"><span class="n">3</span><span>运营要的交叉人群，在标签群组设定页就能配出，不用请数据人员另写 SQL
+    <span class="eg">例：回流且潜在付费；潜在流失两档取「或」，再排除新增、回流；(A 或 B) 且 C</span></span></p>
+  <p class="info"><b>涉及</b>　回流且潜在付费、潜在流失（两档）<i>|</i><b>出处</b>　你定的：「交集是重点，是必经之路」（9/28）；主管计划：标签补「or」，后续增加「交集」；业内做法：Braze、GA4、MoEngage</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>Braze</b>：「分群成员」筛选可把另一个分群当条件；用分组可直接写出 (A 或 B) 且 C <a href="https://www.braze.com/docs/user_guide/engagement_tools/segments/creating_a_segment/">Braze 文档</a></li>
+        <li><b>GA4</b>：组内用「或」、组与组之间为「且」，(A 或 B) 且 C 分两组即可配出 <a href="https://support.google.com/analytics/answer/9304353">GA4 文档</a></li>
+        <li><b>MoEngage</b>：已有分群可与其他条件按「且」「或」「排除」组合；用嵌套筛选可写出「(A 或 B) 且 C 且 D」 <a href="https://www.moengage.com/docs/user-guide/segment/segment-operations/create-segments">MoEngage 文档</a></li></ul></div>
+    <div><h3>我们需求文档与原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第6份_群组交集.jpg" width="520" alt="群组交集"><figcaption>会员标签设定 › 标签群组设定 › 另一个群组「回流且潜在付费」</figcaption></figure>
+      <p class="txt">每行可选标签或群组：群组放在「且」处取交集，「或」处取并集，「排除」处排除整个群组。编辑区没有括号：要 (A 或 B) 且 C，先另建群组「A 或 B」，再在新群组里引用它「且 C」。</p></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-3"><span class="lb">AI 评审：</span><b>是</b>　「群组交集」一节写明群组可作条件；三例原型均可配，(A或B)且C先建群组再引用</div>
+    <div class="you" id="dk-3" data-k="ai-3"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-3" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 3 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 4 -->
+<section class="card">
+  <p class="tag">边界、异常与存量<span>群组引用群组的边界与名单时点</span></p>
+  <p class="std"><span class="n">4</span><span>群组引用群组时，可嵌套几层、最多引用几个、怎样防止互相引用、上层群组用哪一批名单，都已写定</span></p>
+  <p class="info"><b>涉及</b>　引用了群组的群组；读取名单的推送、弹窗<i>|</i><b>出处</b>　业内做法：Braze、MoEngage</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>Braze</b>：已经引用了其他分群的分群，不能再被引用，以免循环；官方建议能重写条件就不嵌套，嵌套会变慢 <a href="https://www.braze.com/docs/user_guide/engagement_tools/segments/creating_a_segment/">Braze 文档</a></li>
+        <li><b>Braze</b>：分群随用户数据变化实时更新 <a href="https://www.braze.com/docs/user_guide/engagement_tools/segments/creating_a_segment/">Braze 文档</a></li>
+        <li><b>MoEngage</b>：一个分群最多引用 10 个已有分群，最多嵌套 3 层 <span class="uncheck">未核对</span> <a href="https://help.moengage.com/hc/en-us/articles/206169646">MoEngage 帮助中心</a></li></ul></div>
+    <div><h3>我们需求文档与原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第6份_依赖过期.jpg" width="680" alt="被引用群组未按时刷新"><figcaption>会员标签设定 › 标签群组设定 › 被引用群组未按时刷新</figcaption></figure>
+      <p class="txt">只嵌套 1 层：有群组条件的群组不能被引用，已被引用的群组不能再加群组条件，保存时校验并提示相关群组名；一个群组最多引用 5 个群组（系统配置，可改）。每 25 分钟一个批次，先算没有群组条件的群组，再算引用群组的群组，读同一批次的名单；被引用群组本批失败时沿用上一批并标黄，连续 2 批未刷新标红并告警维护人，超过 24 小时引用它的排程推送自动暂停。</p></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-4"><span class="lb">AI 评审：</span><b>是</b>　「群组交集」一节写定嵌套1层、引用上限5个、保存校验防互引、同批次读取与依赖过期处理</div>
+    <div class="you" id="dk-4" data-k="ai-4"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-4" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 4 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 5 -->
+<section class="card">
+  <p class="tag">需求覆盖<span>编辑时保存前看出写错</span></p>
+  <p class="std"><span class="n">5</span><span>运营编辑群组时，能看到系统将按什么式子算、每一段剩多少人，保存前就能发现顺序写错</span></p>
+  <p class="info"><b>涉及</b>　配群组的运营<i>|</i><b>出处</b>　业内做法：Braze、MoEngage、GA4</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>Braze</b>：「查看漏斗统计」逐个筛选显示到这一步为止的估算人数与占比；排除组另显示排除后「预计可触达人数」；估算按随机样本，可点「计算精确统计」 <a href="https://www.braze.com/docs/user_guide/engagement_tools/segments/creating_a_segment/">Braze 文档</a></li>
+        <li><b>MoEngage</b>：点「显示人数」看分群总人数与可触达人数 <a href="https://www.moengage.com/docs/user-guide/segment/segment-operations/create-segments">MoEngage 文档</a></li>
+        <li class="none">把组合逻辑显示成一行算式：Braze、GA4 文档都没写；GA4 分群编辑器说明也未写编辑时的人数预览</li></ul></div>
+    <div><h3>我们需求文档与原型对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第6份_组合条件与人数.jpg" width="695" alt="组合条件、计算式与人数预览"><figcaption>会员标签设定 › 标签群组设定 › 组合条件与人数预览</figcaption></figure>
+      <p class="txt">编辑区下方实时显示计算式；纳入条件每段显示累计人数，排除集显示扣除人数；改任一条件后 2 秒内出估算、15 秒内出准确值。</p></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-5"><span class="lb">AI 评审：</span><b>是</b>　「运算顺序」一节有编辑区实时计算式，「人数预览」一节写明改条件2秒出估算、逐段累计与排除扣除人数</div>
+    <div class="you" id="dk-5" data-k="ai-5"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-5" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 5 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 6 -->
+<section class="card">
+  <p class="tag">事实与依据<span>现有系统怎么算</span></p>
+  <p class="std"><span class="n">6</span><span>现有标签群组设定里「或」「排除」混用时实际怎么算已经查明，算法改动后人数会变的现有群组已列出</span></p>
+  <p class="info"><b>涉及</b>　已在用、混用「或」「排除」的现有群组<i>|</i><b>出处</b>　写作标准：「事实只写已证实的……推断不同会导致方案不同时，按推断分支写方案」；「没查实的能力，既不写成已能做，也不写成做不到」</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li class="none">本条核对的是我们现有系统，业内文档没有对应做法</li></ul></div>
+    <div><h3>我们需求文档与原型对应的部分</h3>
+      <ul class="ind">
+        <li class="none">我们这里没有：现有页面混用「或」「排除」时的实测结果；算法改动后人数会变的现有群组清单</li></ul>
+      <p class="txt" style="margin-top:12px">需求文档只写了安排：<q>评审前运营……在现有标签群组设定实测「或」「排除」与混合顺序并截图；不支持或顺序不同时按本节改，改前列出现有混用群组并核对人数变化</q>。「或」已上线是 9/28 按推断定下的；混用时的顺序没有资料。</p></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-6"><span class="lb">AI 评审：</span><b>否</b>　现状只写评审前由运营实测，缺混用实测结果和人数会变的现有群组清单</div>
+    <div class="you" id="dk-6" data-k="ai-6"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-6" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 6 不同意的理由"></div>
+  </div>
+</section>
+
+<p class="note">业内做法都已打开官方文档核对，标「未核对」的除外（MoEngage 引用上限与嵌套层数取自此前对标记录，其帮助中心连不上）。</p>
+
+<h2><span class="no">02</span>按评审维度补齐的标准：5 条，补上验收用例、字段、方向、用词与多余内容</h2>
+<p class="note" style="margin:-8px 0 24px">按评审维度表补齐，每条小标写所属维度。</p>
+
+<!-- 标准 7 -->
+<section class="card">
+  <p class="tag">可验证<span>每条规则都有验收用例</span></p>
+  <p class="std"><span class="n">7</span><span>4.3.1、4.3.2 的每条规则（交集、嵌套 1 层、引用上限 5 个、「且」先于「或」、排除最后扣除）在验收用例 T214–T228 里都有对应用例，用例写了输入群组和预期结果</span></p>
+  <p class="info"><b>看哪里</b>　4.3 引言「验收 T214–T228」；4.3.2「示例」行；原型页验收用例表<i>|</i><b>出处</b>　业内做法：ISO/IEC/IEEE 29148「可验证」（转述）；Anthropic「定义成功标准」</p>
+  <div class="cmp">
+    <div><h3>业内公认做法</h3>
+      <ul class="ind">
+        <li><b>ISO/IEC/IEEE 29148</b>（需求工程国际标准）：单条需求须「可验证」，能证明是否满足，最好能度量 <a href="https://arxiv.org/html/2408.10886v1">转述来源</a>（标准原文收费，未读）</li>
+        <li><b>Anthropic「定义成功标准」</b>：好标准要可度量，用量化指标或定义清楚的定性尺度；常见维度含任务完成度，包括边界情况 <a href="https://platform.claude.com/docs/en/test-and-evaluate/define-success">Anthropic 文档</a></li></ul></div>
+    <div><h3>我们需求文档与原型对应的部分</h3>
+      <p class="txt" style="margin-bottom:10px">需求文档 4.3 只写编号范围<q>验收 T214–T228</q>；用例正文在原型页验收用例表，五栏：编号、条件、操作、预期结果、对应原型页。按规则摘录：</p>
+      <ul class="ind">
+        <li><b>交集</b>　T214：「回流」16,564 人、「潜在付费」4,860 人，新建「回流且潜在付费」→ 人数等于同一批次两群组的交集（例 1,320 人），批次号相同</li>
+        <li><b>嵌套 1 层</b>　T215：「回流」已被引用，编辑时加群组条件 → 保存被拒，列出引用它的群组</li>
+        <li><b>引用上限 5 个</b>　T216：打开群组下拉 → 只列没有群组条件的启用群组；已引用 5 个时不能再加</li>
+        <li><b>「且」先于「或」</b>　T220：「A；或 B；且 C」→ A ∪ (B ∩ C)，计算式与结果一致</li>
+        <li><b>排除最后扣除</b>　T219：「A；排除 B；或 C」→ (A ∪ C) − B，不含 B 的任何成员</li>
+        <li><b>依赖过期</b>　T217、T218：被引用群组刷新失败、超过 24 小时 → 标黄、标红、排程推送暂停</li></ul></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-7"><span class="lb">AI 评审：</span><b>是</b>　交集、嵌套、上限、且先于或、排除最后扣都有验收用例，上限一条写得偏弱</div>
+    <div class="you" id="dk-7" data-k="ai-7"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-7" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 7 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 8 -->
+<section class="card">
+  <p class="tag">格式与粒度<span>规则都落到字段</span></p>
+  <p class="std"><span class="n">8</span><span>4.3.1、4.3.2 的规则在 5.23 字段表里都有对应字段（字段名、数据类型、必填、规则说明），研发不用再问字段</span></p>
+  <p class="info"><b>看哪里</b>　4.3.1、4.3.2；5.23「标签群组设定新增字段」<i>|</i><b>出处</b>　写作标准「需求文档：读者为研发，写到字段级」；业内做法：ISO/IEC/IEEE 29148「符合模板」（转述）</p>
+  <div class="cmp">
+    <div><h3>依据的标准怎么写</h3>
+      <ul class="ind">
+        <li><b>写作标准·需求文档</b>：读者为研发，写到字段级；评审细节需求时逐条列出每一条需求</li>
+        <li><b>ISO/IEC/IEEE 29148</b>：单条需求「符合模板」，抽象层次恰当、不含实现细节 <a href="https://arxiv.org/html/2408.10886v1">转述来源</a>（标准原文收费，未读）</li></ul></div>
+    <div><h3>我们需求文档对应的部分</h3>
+      <p class="txt" style="margin-bottom:10px">5.23 共 21 个字段，每个写程序命名、数据类型、必填、规则说明、备注。两节规则与字段的对应：</p>
+      <ul class="ind">
+        <li><b>每行选标签或群组；且／或／排除</b>　序号 1 条件项类型（Enum，必填）、2 条件项（Int，必填）、3 组合方式（Enum，第二行起必填，说明写「运算顺序见 4.3.2」）</li>
+        <li><b>嵌套 1 层</b>　序号 2 规则说明：下拉只列没有群组条件的启用群组；已被引用的群组「群组」类型置灰</li>
+        <li><b>引用上限</b>　序号 12 引用群组上限（Int，默认 5）</li>
+        <li><b>批次与读取</b>　序号 4 名单批次号（String）</li>
+        <li><b>依赖过期</b>　序号 5 最近成功批次时间（DateTime）</li>
+        <li><b>标签计算状态、失败隔离与脚本校验</b>　序号 13、14、21</li>
+        <li><b>编辑区显示计算式</b>　5.23 未单列字段</li></ul></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-8"><span class="lb">AI 评审：</span><b>是</b>　组合条件、嵌套、上限、批次、计算状态均有字段；计算式由条件实时拼出</div>
+    <div class="you" id="dk-8" data-k="ai-8"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-8" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 8 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 9 -->
+<section class="card">
+  <p class="tag">方向一致<span>交集是本期要做的能力</span></p>
+  <p class="std"><span class="n">9</span><span>群组交集写成本期要做的能力，没有降为可选功能或列入后续</span></p>
+  <p class="info"><b>看哪里</b>　4.3 引言「范围」；3.4 适用范围、3.5 排除项<i>|</i><b>出处</b>　你定的：「交集是重点，是必经之路」（9/28）；已定的改动口径：群组交集列为小改动</p>
+  <div class="cmp">
+    <div><h3>依据的标准怎么写</h3>
+      <ul class="ind">
+        <li><b>你 9/28</b>：「交集是重点，是必经之路；只要把人群圈选想清楚，自然会得出需要交集的结论」</li>
+        <li><b>已定的改动口径</b>：17 项改动中需开发 11 项，群组交集是其中 7 项小改动之一</li></ul></div>
+    <div><h3>我们需求文档对应的部分</h3>
+      <ul class="ind">
+        <li><b>4.3 引言</b>：「范围：本需求含群组交集、人数预览、条件说明、变更记录、引用清单 5 项，以及配套的运算顺序……」</li>
+        <li><b>3.5 排除项</b>：「本需求含 4.3 全部 8 小节，由标签系统实现：群组交集、运算顺序……」</li>
+        <li><b>3.4 适用范围</b>：涉及标签群组的只有一行，「标签群组不分游戏维度」</li>
+        <li><b>范围分级总表</b>：群组交集所在的「标签系统配套」块，建议「本期必要」，理由「按人群发依赖群组算对」</li>
+        <li><b>追溯表</b>：需求项「标签群组设定配套改动」分级「本期必要」</li></ul></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-9"><span class="lb">AI 评审：</span><b>是</b>　范围写明含群组交集，范围分级总表列为本期必要，没有列入后续</div>
+    <div class="you" id="dk-9" data-k="ai-9"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-9" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 9 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 10 -->
+<section class="card">
+  <p class="tag">措辞与指代<span>群组、批次、引用各用一个名字</span></p>
+  <p class="std"><span class="n">10</span><span>4.3 里「群组」「标签群组」「批次」「引用」各只用一个名字，第一次出现时写明指什么</span></p>
+  <p class="info"><b>看哪里</b>　4.3 引言与 4.3.1 表<i>|</i><b>出处</b>　写作标准「同一事物全文只用一个名字」「概念第一次出现就交代它是什么」</p>
+  <div class="cmp">
+    <div><h3>依据的标准怎么写</h3>
+      <ul class="ind">
+        <li><b>写作标准</b>：同一事物全文只用一个名字；同一页、相邻页出现两个说法（如玩家群与群组、标签人群与标签群组），读者会当成两样东西</li>
+        <li><b>写作标准</b>：概念第一次出现就交代它是什么</li></ul></div>
+    <div><h3>我们需求文档对应的部分</h3>
+      <p class="txt" style="margin-bottom:10px">4.3 引言至 4.3.2 的用词：</p>
+      <ul class="ind">
+        <li><b>群组</b>　38 处；「标签群组」3 处，都在页名「标签群组设定」里。定义在前文 4.1.1 名词表：「用几个会员标签按且、或、排除组合出的玩家群……名单每 25 分钟刷新」</li>
+        <li><b>批次</b>　12 处，另有「刷新批次」「批次号」「同一批次」。首次出现在引言「同批次刷新」；定义在 4.3.1「批次」行：「每 25 分钟一个刷新批次，名单带批次号」。4.2 另有「迁移批次」，指客户端发版分批</li>
+        <li><b>引用</b>　16 处（含「被引用」4 处）。首次出现在引言功能名「引用清单」；4.3.1「定义」行写「每一行可选标签或群组」，未用「引用」二字</li>
+        <li><b>同一对象的其他叫法</b>　「上层群组」「依赖群组」各 1 处，见「依赖过期」行</li></ul></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-10"><span class="lb">AI 评审：</span><b>否</b>　引用他组的群组另称「上层群组」，被引用的另称「依赖群组」；「引用」首现未解释</div>
+    <div class="you" id="dk-10" data-k="ai-10"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-10" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 10 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 11 -->
+<section class="card">
+  <p class="tag">无多余内容<span>只写规则与例子</span></p>
+  <p class="std"><span class="n">11</span><span>4.3.1、4.3.2 只写规则与例子，没有论证要不要做的段落和工作过程用语（如「请评审定」）</span></p>
+  <p class="info"><b>看哪里</b>　4.3.1、4.3.2 全文<i>|</i><b>出处</b>　写作标准「需求文档：不写成论证要不要做的稿子」；你 10/14：「请评审定四个字是你我对话的内容，不是实际要给读者看的内容」</p>
+  <div class="cmp">
+    <div><h3>依据的标准怎么写</h3>
+      <ul class="ind">
+        <li><b>写作标准·需求文档</b>：评审细节需求时逐条列出每一条需求，不写成论证要不要做的稿子</li>
+        <li><b>写作标准·要删掉的内容</b>：过程痕迹与元信息，如评审、上级、版本沿革、编排说明、与研发的沟通过程</li>
+        <li><b>你 10/14</b>：「请评审定四个字是你我对话的内容，不是实际要给读者看的内容」</li></ul></div>
+    <div><h3>我们需求文档对应的部分</h3>
+      <p class="txt" style="margin-bottom:10px">两节都是规则表。行名：4.3.1 定义、嵌套、引用上限、批次、读取、依赖过期、标签计算状态、失败隔离与脚本校验；4.3.2 纳入、排除、显示、示例、现状核对。表内规则之外的文字（原文）：</p>
+      <ul class="ind">
+        <li><b>补充标记</b>　「（10/16 夜补充）」4 处；4.3 标题「（10/15 夜补充）」</li>
+        <li><b>成本与指引</b>　「成本：小改动」；「成本：中等（标签系统）；做法见第 9 章研发 72」</li>
+        <li><b>事故出处</b>　括注一起事故单：一个标签脚本不合法，重启时其余标签的初始化被中止</li>
+        <li><b>现状核对行</b>　「评审前运营（第 9 章运营 16）在现有标签群组设定实测「或」「排除」与混合顺序并截图」</li>
+        <li><b>「请评审定」「主管」</b>　两节中没有</li></ul></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-11"><span class="lb">AI 评审：</span><b>否</b>　表内留有「夜补充」标记、成本标注和评审前让运营实测的工作安排</div>
+    <div class="you" id="dk-11" data-k="ai-11"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-11" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 11 不同意的理由"></div>
+  </div>
+</section>
+
+<p class="note">ISO/IEC/IEEE 29148 原文收费，按已核对的论文转述；其余业内做法已打开官方文档核对。</p>
+
+<h2><span class="no">03</span>参考案例：你推翻过的两份同类稿</h2>
+<div class="cases">
+  <div class="case">
+    <p class="h">例 1　没核实的现状，写成了系统做不到</p>
+    <dl>
+      <dt>你的原话</dt><dd class="said">「目标人群圈不出这个问题需要核实」（10/9）</dd>
+      <dt>当时的稿</dt><dd>呈交版第二版问题一「1／5：五类目标人群中可直接圈出的只有新增」；依据是本地导出数据算不出人数，不是后台标签的能力</dd>
+      <dt>改后</dt><dd>删去问题一；新增、回流、破产沿用现有判定，潜在付费、潜在流失给出定义并新建标签</dd>
+    </dl>
+  </div>
+  <div class="case">
+    <p class="h">例 2　需求按现有后台能不能做，先删掉了交集</p>
+    <dl>
+      <dt>你的原话</dt><dd class="said">「我们写需求肯定是往好了写往全面了写」（10/8）</dd>
+      <dt>当时的稿</dt><dd>需求分析 15 个场景，范围「优先基于现有后台配置」；场景表里没有人群交集与排除、弹窗与推送合计上限、推送跳转等</dd>
+      <dt>改后</dt><dd>按理想状态写全，场景补到 25 个；成本分层放到方案设计，另列短期快速提升</dd>
+    </dl>
+  </div>
+</div>
+
+<h2><span class="no">04</span>怎么判</h2>
+<div class="reply">直接在页面上点：每条下面点「同意」或「不同意」（不同意可写一句理由），页面最下面可补还缺的标准；点完自动保存，判完在对话里说一声「判完了」即可。<b></b></div>
+
+<h2><span class="no">05</span>还缺什么，判完没有</h2>
+<div class="jend">
+  <label class="jlb" for="dk-missing">还缺的标准（想到什么写什么，一条一行）</label>
+  <textarea id="dk-missing" rows="6"></textarea>
+  <div class="jrow">
+    <label class="jdone"><input type="checkbox" id="dk-done">这一份判完了</label>
+    <button type="button" class="jcopy" id="dk-copy">复制我的判断</button>
+    <span class="jmsg" id="dk-copymsg" aria-live="polite"></span>
+  </div>
+  <textarea class="jout" id="dk-out" readonly hidden aria-label="本页判断的文字"></textarea>
+  <p class="jnote">每次点选和输入都随手存在这台电脑的浏览器里，刷新、关掉再开都还在。</p>
+</div>
+
+<p class="links">原文：<a href="../推送系统后台集成需求/3_原型.html#p19">原型 · 标签群组设定</a>　<a href="../推送系统后台集成需求/4_需求文档.md#s4-3-1">需求文档 · 群组交集与运算顺序</a>　<a href="2026-10-16_请你判的10份产出.html">请你判的 10 份产出</a></p>
+</div><script>
+(function(){
+  var PAGE = '第6份', LABEL = '第 6 份', P = 'dkjudge:' + PAGE + ':';
+  function get(k){ try { return localStorage.getItem(P + k); } catch (e) { return null; } }
+  function put(k, v){ try { localStorage.setItem(P + k, v); } catch (e) {} }
+  function del(k){ try { localStorage.removeItem(P + k); } catch (e) {} }
+  function read(k){
+    var s = get(k); if (!s) return null;
+    try { var o = JSON.parse(s); return (o && (o.v === '同意' || o.v === '不同意')) ? o : null; } catch (e) { return null; }
+  }
+  var groups = [].slice.call(document.querySelectorAll('.you[data-k]'));
+  var total = groups.length;
+  var elX = document.getElementById('dk-x'), elStat = document.getElementById('dk-stat'), elStatDone = document.getElementById('dk-statdone');
+  var elMissing = document.getElementById('dk-missing'), elDone = document.getElementById('dk-done');
+  var elCopy = document.getElementById('dk-copy'), elMsg = document.getElementById('dk-copymsg'), elOut = document.getElementById('dk-out');
+
+  function whyBox(k){ return document.querySelector('.why[data-k="' + k + '"]'); }
+  function paint(g, v){
+    [].forEach.call(g.querySelectorAll('button.jb'), function(b){
+      var on = b.getAttribute('data-v') === v;
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    var w = whyBox(g.getAttribute('data-k'));
+    if (w) w.hidden = (v !== '不同意');
+  }
+  function stat(){
+    var x = 0;
+    groups.forEach(function(g){ if (read(g.getAttribute('data-k'))) x++; });
+    if (elX) elX.textContent = x;
+    if (elStat) elStat.classList.toggle('all', x === total);
+    if (elStatDone) elStatDone.hidden = get('done') !== 'true';
+  }
+
+  groups.forEach(function(g){
+    var k = g.getAttribute('data-k'), w = whyBox(k), inp = w ? w.querySelector('input') : null;
+    var o = read(k);
+    if (o && inp && o.why) inp.value = o.why;
+    paint(g, o ? o.v : null);
+    g.addEventListener('click', function(e){
+      var b = e.target.closest ? e.target.closest('button.jb') : null;
+      if (!b) return;
+      var v = b.getAttribute('data-v'), cur = read(k);
+      if (cur && cur.v === v) { del(k); paint(g, null); }
+      else {
+        put(k, JSON.stringify({ v: v, why: (v === '不同意' && inp) ? inp.value : '' }));
+        paint(g, v);
+        if (v === '不同意' && inp) { try { inp.focus({ preventScroll: true }); } catch (e2) { inp.focus(); } }
+      }
+      stat();
+    });
+    if (inp) inp.addEventListener('input', function(){
+      var cur = read(k);
+      if (cur && cur.v === '不同意') { cur.why = inp.value; put(k, JSON.stringify(cur)); }
+    });
+  });
+
+  if (elMissing) {
+    elMissing.value = get('missing') || '';
+    elMissing.addEventListener('input', function(){ if (elMissing.value) put('missing', elMissing.value); else del('missing'); });
+  }
+  if (elDone) {
+    elDone.checked = get('done') === 'true';
+    elDone.addEventListener('change', function(){ if (elDone.checked) put('done', 'true'); else del('done'); stat(); });
+  }
+  stat();
+
+  function summary(){
+    var parts = [], un = [];
+    groups.forEach(function(g){
+      var k = g.getAttribute('data-k'), o = read(k);
+      if (!o) { un.push(k); return; }
+      var s = k + ' ' + o.v, why = (o.why || '').replace(/\s+/g, ' ').trim();
+      if (o.v === '不同意' && why) s += '——' + why;
+      parts.push(s);
+    });
+    if (un.length) parts.push('未判 ' + un.join('、'));
+    var m = (get('missing') || '').split(/\n+/).map(function(t){ return t.trim(); }).filter(Boolean);
+    if (m.length) parts.push('还缺：' + m.join('；'));
+    return LABEL + (get('done') === 'true' ? '（判完了）' : '') + '：' + parts.join('；');
+  }
+  function say(t){ if (elMsg) { elMsg.textContent = t; clearTimeout(say.t); say.t = setTimeout(function(){ elMsg.textContent = ''; }, 4000); } }
+  function manual(text){
+    if (!elOut) return;
+    elOut.hidden = false; elOut.value = text; elOut.focus(); elOut.select();
+    if (elMsg) { clearTimeout(say.t); elMsg.textContent = '没能自动复制：下框文字已选中，请按 ⌘C 复制'; }
+  }
+  function fallback(text){
+    var t = document.createElement('textarea'), ok = false;
+    t.value = text; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.top = '0'; t.style.opacity = '0';
+    document.body.appendChild(t); t.select();
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    document.body.removeChild(t);
+    if (ok) say('已复制，可直接贴进对话'); else manual(text);
+  }
+  if (elCopy) elCopy.addEventListener('click', function(){
+    var text = summary();
+    if (elOut) { elOut.hidden = true; }
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(function(){ say('已复制，可直接贴进对话'); }, function(){ fallback(text); });
+    } else fallback(text);
+  });
+})();
+</script>
+</body></html>

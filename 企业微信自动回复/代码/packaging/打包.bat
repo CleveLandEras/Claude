@@ -11,17 +11,17 @@ set "VPY=%VENV%\Scripts\python.exe"
 echo [1/4] 查找 Python
 where py >nul 2>&1
 if errorlevel 1 goto :try_python
-py -3 --version >nul 2>&1
+py -3.11 --version >nul 2>&1
 if errorlevel 1 goto :try_python
-set "PY=py -3"
+set "PY=py -3.11"
 goto :check_python
 :try_python
 python --version >nul 2>&1
 if errorlevel 1 goto :no_python
 set "PY=python"
 :check_python
-%PY% -c "import sys; sys.exit(0 if sys.version_info >= (3, 9) else 1)"
-if errorlevel 1 goto :old_python
+%PY% -c "import sys; sys.exit(0 if sys.version_info[:2] == (3, 11) else 1)"
+if errorlevel 1 goto :wrong_python
 %PY% -c "import tkinter"
 if errorlevel 1 goto :no_tkinter
 
@@ -50,10 +50,10 @@ start "" explorer "%PKG%\dist\autoreply"
 goto :end
 
 :no_python
-echo 没找到 Python。请先装 Python，安装时勾选 Add python.exe to PATH，再双击这个文件。
+echo 没找到 Python。请先装 Python 3.11.9，安装时勾选 Add python.exe to PATH，再双击这个文件。
 goto :end
-:old_python
-echo Python 版本太旧，至少要 3.9。请装新版 Python 后再双击这个文件。
+:wrong_python
+echo 这台电脑的 Python 不是 3.11。请按说明第 2 步装 Python 3.11.9，再双击这个文件。
 goto :end
 :no_tkinter
 echo 这个 Python 缺界面组件 tkinter。请从 python.org 重新装一次，选默认选项。

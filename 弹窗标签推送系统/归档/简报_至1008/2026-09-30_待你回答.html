@@ -1,0 +1,114 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>待你回答</title><style>
+:root{--ground:#f0efec;--surface:#fff;--surface-2:#f7f6f3;--ink:#191b1e;--ink-2:#484d53;--muted:#7d8289;--line:#dcdad5;--line-2:#e8e6e1;--accent:#9a6f24;--ok:#3d6b58;--ok-soft:#dfeae5;--warn:#8a6410;--warn-soft:#f5ead2;--info:#1c6ea4;--info-soft:#e0ecf4;--must:#a63f38;--must-soft:#f4e3e1;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;--mono:ui-monospace,Menlo,monospace;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1a1d21;--surface-2:#20242a;--ink:#e9e8e4;--ink-2:#b7bbc0;--muted:#868c94;--line:#2d3238;--line-2:#262b31;--accent:#d6ab5c;--ok:#74b096;--ok-soft:#1d3129;--warn:#cfa44e;--warn-soft:#332a16;--info:#6aa8d6;--info-soft:#1b2a36;--must:#dd8078;--must-soft:#38231f;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1a1d21;--surface-2:#20242a;--ink:#e9e8e4;--ink-2:#b7bbc0;--muted:#868c94;--line:#2d3238;--line-2:#262b31;--accent:#d6ab5c;--ok:#74b096;--ok-soft:#1d3129;--warn:#cfa44e;--warn-soft:#332a16;--info:#6aa8d6;--info-soft:#1b2a36;--must:#dd8078;--must-soft:#38231f;}
+*{box-sizing:border-box} body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased}
+.wrap{max-width:920px;margin:0 auto;padding:32px 22px 80px} .meta{font-size:12.5px;color:var(--muted);margin:0 0 6px}
+h1{font-family:var(--serif);font-size:24px;margin:0 0 14px}
+.verdict{background:var(--surface);border-left:3px solid var(--accent);padding:14px 18px;margin:0 0 22px} .verdict p{margin:0 0 6px;font-size:15.5px;font-weight:600;max-width:48em} .verdict p:last-child{margin:0}
+.no{font-family:var(--mono);font-size:12px;color:var(--accent);font-weight:600} h2{font-family:var(--serif);font-size:19px;margin:2px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+section{margin:0 0 32px}
+.q{background:var(--surface);border:1px solid var(--line);padding:14px 18px;margin:0 0 12px}
+.q .h{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin:0 0 6px} .q .id{font-family:var(--mono);font-weight:700;color:var(--accent)} .q .t{font-weight:700;font-size:16px}
+.q p{margin:5px 0;font-size:14px;color:var(--ink-2);max-width:50em} .q p b{color:var(--ink)}
+.lab{display:inline-block;font-size:12px;font-weight:650;color:var(--muted);min-width:5.5em}
+.tw{overflow-x:auto;margin:6px 0} table{border-collapse:collapse;width:100%;font-size:13.5px;background:var(--surface-2);border:1px solid var(--line-2)}
+th{text-align:left;font-size:12px;color:var(--muted);font-weight:650;padding:6px 10px;border-bottom:1px solid var(--line);white-space:nowrap} td{padding:6px 10px;border-bottom:1px solid var(--line-2);vertical-align:top} tr:last-child td{border-bottom:none}
+.no-ans{background:var(--must-soft);color:var(--must);font-size:13px;padding:5px 10px;border-radius:3px;margin:6px 0 0}
+.lv{font-size:11.5px;font-weight:650;padding:0 6px;border-radius:2px;white-space:nowrap} .must{background:var(--must-soft);color:var(--must)} .try{background:var(--warn-soft);color:var(--warn)}
+pre{white-space:pre-wrap;font-family:var(--sans);font-size:14px;background:var(--surface-2);border:1px solid var(--line-2);padding:10px 12px;margin:8px 0 4px}
+button.cp{font:inherit;font-size:12.5px;padding:2px 12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;border-radius:3px}
+details{margin:6px 0 0} summary{cursor:pointer;font-size:13.5px;color:var(--accent)}
+.note{font-size:13px;color:var(--muted);margin:8px 0 0} a{color:var(--accent)}
+@media (max-width:640px){.wrap{padding:22px 16px 60px}}
+</style></head><body><div class="wrap">
+<p class="meta">2026-09-30 · 取代 9/29 的「待你回答」· 所有东西都只交给你，你验收通过后，由你决定给不给别人、什么时候给</p>
+<h1>待你回答：每个问题卡住了方案里的哪一处，答案不同方案怎么变</h1>
+<div class="verdict">
+<p>02 方案稿和 03 配置单的内容基本都写完了，剩下的空格都是本地数据查不出来、只有你或你的同事知道的事实。</p>
+<p>下面每个问题都写了四样：卡在哪一处、不同的答案会让方案怎么变、不答会怎样、大概要花多久。最值钱的是前两个，都是你自己在后台看一眼就能答的。</p>
+</div>
+
+<section><div class="no">一 · 你自己在后台能查的</div><h2>两个问题，决定 02 里四张卡能不能照现在的写法配</h2>
+
+<div class="q"><div class="h"><span class="id">Q1</span><span class="t">独享礼包、破产礼包各卖多少钱</span><span class="lv must">必需</span></div>
+<p><span class="lab">怎么查</span>后台「储值品项设定」页截图，App 和网页两个通路都看。约 5 分钟。</p>
+<p><span class="lab">卡在哪</span><b>02 第四张卡「破产位排序」</b>：方案是把破产礼包从第 3 位调到第 2 位，排到独享礼包前面。调了之后，买过首储的玩家破产时，先看到的就从独享礼包变成破产礼包。这样调好不好，取决于两个礼包哪个便宜。同时也卡着文末「盯住高卡」提案里，储值位分档怎么切。</p>
+<div class="tw"><table>
+<tr><th>答案</th><th>方案怎么变</th></tr>
+<tr><td>破产礼包比独享礼包便宜</td><td>破产位调序有依据，这张卡照写，03 里破产位那一行可以进验收</td></tr>
+<tr><td>破产礼包比独享礼包贵</td><td>这张卡不上，破产位维持现在的顺序</td></tr>
+<tr><td>独享礼包约 160 元以下</td><td>提案的分档切成「卡 3」「卡 4–7」两档</td></tr>
+<tr><td>独享礼包约 160–300 元</td><td>分档切成「卡 3–4」「卡 5–7」</td></tr>
+<tr><td>独享礼包约 300–690 元</td><td>分档切成「卡 3–5」「卡 6–7」</td></tr>
+<tr><td>独享礼包约 690 元以上</td><td>没有哪一档有依据往上调价，提案的分档部分首期没有作用</td></tr>
+</table></div>
+<p class="no-ans">不答：破产位这张卡只能写成「等价格」，03 里这一行进不了验收；提案只能以条件句的形式放在 02 里。</p></div>
+
+<div class="q"><div class="h"><span class="id">Q2</span><span class="t">标签后台的五处条件</span><span class="lv must">必需</span></div>
+<p><span class="lab">怎么查</span>在标签后台逐个看，截图。约 10–15 分钟。</p>
+<div class="tw"><table>
+<tr><th>看什么</th><th>卡在 02 哪一处</th><th>答案不同，方案怎么变</th></tr>
+<tr><td>① 群组能不能用「排除」，这种群组能不能选作弹窗对象</td><td><b>第一张卡「活动位拆三条」</b>，也就是 03 第一批：原来的活动弹窗 ID5 要改成「全部玩家，排除新增、回流」</td><td>能：直接建群组就能配。<br>不能：要新建一个「身份非新增、非回流」的标签，得有人写 SQL，第一批就要等</td></tr>
+<tr><td>② 「当月储值额小于上月 50%」这个标签，是按完整月比、滚动 30 天比，还是「本月 1 号到今天」比「上月全月」</td><td><b>第二张卡「潜在流失扩到全部卡别」</b>里新建的「高卡储值下滑」规则</td><td>完整月或滚动 30 天：照写上线。<br>本月 1 号到今天：每个月初，几乎所有上个月付过费的高卡都会被当成「储值下滑」，高卡这一条先不上，要改口径、新建标签</td></tr>
+<tr><td>③ 「当前卡别」类里，金卡到至尊卡五项能不能一起圈，能不能和上面那个 50% 标签放进同一个群组，能不能放进排除栏</td><td><b>第二张卡</b>：把通用弹窗拆成「普卡银卡」「金卡以上」两条</td><td>都能：照写。<br>不能：要新建 1–2 个标签，同样得有人写 SQL</td></tr>
+<tr><td>④ 「已经先存储了」这个标签的条件</td><td><b>第三张卡「潜在付费」</b>：要把从来没付过费的人圈出来，用来算人数、做效果评估</td><td>如果条件是「累计储值大于 0」：排除它就能圈出来，不用新建。<br>如果不是：要新建「从未储值」标签</td></tr>
+<tr><td>⑤ 「新增」「回流」标签，看的是账号身份，还是注册日期</td><td><b>第一张卡</b>：新增、回流两条新规则的对象</td><td>看身份：照写。<br>看注册日期：近 30 天注册的 583 个机器人账号会被新增弹窗圈进去，要加排除</td></tr>
+</table></div>
+<p class="no-ans">不答：上面每一处都只能写成「若 A 则……，若 B 则……」两套配法，03 里对应的行进不了验收；也没法判断到底要不要找人写 SQL。</p></div>
+</section>
+
+<section><div class="no">二 · 要问同事的（草稿，给你用，发不发、什么时候发由你定）</div><h2>运营 4 句、数据组 2 项，每一句都写了它在决定什么</h2>
+
+<div class="q"><div class="h"><span class="id">Q3</span><span class="t">问运营的 4 句</span><span class="lv must">必需</span></div>
+<div class="tw"><table>
+<tr><th>问什么</th><th>它决定什么</th></tr>
+<tr><td>1. 有没有代理、推广、内部账号没有标成测试账号？</td><td>所有人数和「高卡占 97% 储值」这类占比准不准。如果有大量内部账号没排除，这些数字要重算</td></tr>
+<tr><td>2. 卡别会不会降级？升级、保级看的储值和押注，是算最近多长时间的累计？</td><td>「高卡」这群人稳不稳定：会降级的话，一部分「高卡流失」其实是「降卡」，第二张卡和提案的圈人方式要跟着调整</td></tr>
+<tr><td>3. 金卡以上的玩家储值明显下降时，现在有没有人跟进？</td><td>提案里「高卡流失名单交专人」有没有人接；也决定 07 推送需求要不要承担召回高卡这件事</td></tr>
+<tr><td>4. 推播、短信、LINE、Facebook 现在能不能只发给一份会员名单或某个标签群组？发出去后能不能看到发了几人、送达几人、点开几人？</td><td>07 推送需求写多大：现在就能按名单发、有数据，07 可以往后放；不能，07 首期就要把「定向 + 数据」做出来</td></tr>
+</table></div>
+<pre id="m1">想确认四件事：
+1. 有没有代理、推广、内部账号没有标成测试账号？
+2. 卡别会不会降级？升级、保级看的储值和押注，是算最近多长时间的累计？
+3. 金卡以上的玩家储值明显下降时，现在有没有人跟进？
+4. 推播、短信、LINE、Facebook 这几种通路，现在能不能只发给我们给的一份会员编号名单，或者后台的某个标签群组？发出去以后，能不能看到发了几人、送达几人、点开几人？</pre>
+<button class="cp" onclick="cp('m1',this)">复制</button>
+<p class="no-ans">不问：第 1 句不影响方案结构，只影响数字准不准；第 3、4 句不答，提案的「交专人」和 07 的范围都只能写成条件句。</p></div>
+
+<div class="q"><div class="h"><span class="id">Q4</span><span class="t">请数据组导的 2 项</span><span class="lv try">尽量</span></div>
+<div class="tw"><table>
+<tr><th>要什么</th><th>它决定什么</th></tr>
+<tr><td>1. 近一月活跃玩家里，买过首储礼包的会员编号名单</td><td>提案的前提成不成立：高卡在储值位上先看到的，是不是 NT$50 的首储礼包。本地现在只能确定 5,146 人里有 25 人没买过、1 人买过，其余都不知道</td></tr>
+<tr><td>2. 过去 12 个月每月的全平台储值总额</td><td>上线后做前后对比，要多大的变化才看得出来（取决于每月自然波动有多大），08 评估方案要用</td></tr>
+</table></div>
+<pre id="m2">想请数据组导两样东西：
+1. 近一月活跃玩家里，买过首储礼包的会员编号名单（只要会员编号一列）。
+2. 过去 12 个月，按台北时间自然月的全平台储值总额（剔除机器人、测试账号），每月一个数。</pre>
+<button class="cp" onclick="cp('m2',this)">复制</button>
+<p class="no-ans">不问：五张卡照样能交，只影响提案的说服力和上线后的评估。所以标「尽量」，不是「必需」。</p>
+<p class="note">另外，09 取数表里还有「每人近两个月的月储值」等几项。09 正在按五张卡调整，调整完会交你验收，验收通过后再由你决定要不要给数据组。</p></div>
+</section>
+
+<section><div class="no">三 · 验收时你要定的</div><h2>02 审查通过后交你验收，那时要定两件事</h2>
+<div class="q"><div class="h"><span class="id">Q5</span><span class="t">02 文末的「盯住高卡」提案，要不要随 02 一起给主管</span></div>
+<p>02 正文就是主管要的五张卡，一张没少。文末附了一节提案：数据显示钱集中在高卡，可以再往高卡倾斜。提案有三个选项：甲，只按五张卡交；乙，五张卡加储值位按卡别分档；丙，乙再加高卡流失名单交专人。</p>
+<p><b>我的建议：</b>先只交甲。等 Q1 礼包价格和 Q4 首储名单回来，确认前提成立了，再把提案单独给主管。原因是提案的核心前提现在只证实了 25 人，你拿去讲，主管一问就会卡住。</p></div>
+<div class="q"><div class="h"><span class="id">Q6</span><span class="t">向主管汇报时，效果怎么说</span></div>
+<p>1–3% 的提升在现有人数下测不出来，在场的高卡要多付约 8.7% 才看得出差别。</p>
+<p><b>我的建议：</b>只承诺「按机制和成本上线、护栏指标不变差、过程指标可追踪」，不承诺「上线后用储值证明提升 x%」。</p></div>
+</section>
+
+<section><div class="no">四 · 系统设置</div><h2>两件事，防止它再像昨晚那样卡 17 个小时</h2>
+<div class="q"><div class="h"><span class="id">Q7</span><span class="t">四个定时任务的权限模式，从 Manual 改成 Auto</span></div>
+<p><b>意义：</b>在 Manual 模式下，agent 一碰到没提前放行的命令就停下来等人批准，没人在就一直等，昨晚就是这样卡了 17 小时。改成 Auto 后，系统自动判断放行还是拒绝，被拒绝的只是报一个错，agent 会接着干。</p>
+<p><b>怎么改：</b>左侧栏「定时任务」→ 逐个编辑 → 指令框左下角「Manual」改成「Auto」→ 保存。这是安全设置，只能你来改。</p></div>
+<div class="q"><div class="h"><span class="id">Q8</span><span class="t">允许执行者在发现别的角色掉线时，自动把它重新启动</span></div>
+<p><b>意义：</b>9/29 凌晨，规划者 8 小时没被启动，项目一直空转到早上。有了这一条，执行者发现规划者、审查者或设计者掉线，就自己把它拉起来，不用等你发现。需要你明确说一句「同意」，因为这属于「让 agent 能启动别的任务」，系统的安全检查要你本人授权。</p></div>
+</section>
+
+<p class="note">最省事的回法：把 Q1、Q2 的截图发给我；Q5、Q6 回「按建议」；Q8 回「同意」；Q7 在应用里改完告诉我一声。</p>
+</div>
+<script>function cp(id,b){navigator.clipboard.writeText(document.getElementById(id).innerText).then(()=>{b.textContent='已复制';setTimeout(()=>b.textContent='复制',1500)})}</script>
+</body></html>

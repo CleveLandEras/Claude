@@ -1,0 +1,72 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>工作计划总览</title><style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.35;margin:0 0 8px}
+.sub{font-size:16px;color:var(--ink-2);margin:0 0 28px}
+h2{font-family:var(--serif);font-size:20px;margin:48px 0 16px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px}
+.kpi .n{font-size:38px;font-weight:700;line-height:1.1;color:var(--ink)}
+.kpi .n small{font-size:16px;font-weight:600;margin-left:4px;color:var(--ink-2)}
+.kpi .t{font-size:14.5px;color:var(--ink-2);margin-top:8px}
+.kpi.red .n{color:var(--red)}
+.phase{border-top:4px solid var(--gray)}
+.phase.red{border-top-color:var(--red)} .phase.blue{border-top-color:var(--blue)}
+.phase .d{font-size:13px;color:var(--muted);font-weight:600}
+.phase .h{font-size:16.5px;font-weight:700;margin:4px 0 10px}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:12px}
+.tag.red{background:var(--red-soft);color:var(--red)} .tag.blue{background:var(--blue-soft);color:var(--blue)} .tag.gray{background:var(--gray-soft);color:var(--gray)} .tag.green{background:var(--green-soft);color:var(--green)}
+.kv{font-size:14px;color:var(--ink-2);margin:6px 0}
+.kv b{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:2px}
+.keep{display:flex;flex-wrap:wrap;gap:10px}
+.keep span{background:var(--green-soft);color:var(--green);font-size:14.5px;font-weight:600;padding:8px 14px;border-radius:4px}
+.cause .h{font-size:16.5px;font-weight:700;margin:0 0 6px}
+.cause .l{font-size:14.5px;color:var(--ink-2);margin:0 0 12px}
+.cause .e{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14.5px}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--line)}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--ground)}
+tr:last-child td{border-bottom:none}
+td.w{color:var(--ink)} td.r{color:var(--ink-2)} td.d{color:var(--muted);width:80px}
+tr.same td.w{color:var(--red);font-weight:600}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);margin-right:8px;vertical-align:1px}
+.legend{font-size:13px;color:var(--muted);margin:10px 0 0}
+.q{font-size:17px;font-weight:700;margin:0 0 14px}
+.opt{position:relative}
+.opt .h{font-size:16px;font-weight:700;margin:0 0 6px}
+.opt .l{font-size:14.5px;color:var(--ink-2)}
+.opt.rec{border:2px solid var(--blue)}
+.opt .badge{position:absolute;top:-11px;right:16px;background:var(--blue);color:#fff;font-size:12px;font-weight:700;padding:2px 10px;border-radius:3px}
+.why{font-size:14.5px;color:var(--ink-2);margin:14px 0 0}
+.why b{color:var(--ink)}
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.steps div{counter-increment:s;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 18px;font-size:14.5px;color:var(--ink-2)}
+.steps div::before{content:counter(s);display:block;font-size:22px;font-weight:700;color:var(--accent);margin-bottom:4px}
+.links{font-size:13px;color:var(--muted);margin-top:40px} a{color:var(--accent)}
+</style><style>
+.st{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;white-space:nowrap}
+.st.done{background:var(--green-soft);color:var(--green)} .st.wait{background:var(--blue-soft);color:var(--blue)} .st.todo{background:var(--gray-soft);color:var(--gray)}
+td.n{width:34%} td.s{width:110px} td.f{font-size:13.5px;color:var(--muted)}
+.grp{font-size:13px;font-weight:700;color:var(--muted);margin:22px 0 8px}
+</style></head><body><div class="wrap">
+<p class="meta">弹窗标签推送系统 · 2026-10-14 · 依据产品计划原文、阶段产出规划、推送后台需求文件第八节、项目交接</p>
+<h1>全部工作分五块：短期三项的方案与推送后台需求在做，弹窗与标签的需求文档、中期计划还没开始</h1>
+<p class="sub">待你看或定的：呈交版验收与 3 项内容、推送后台原型、安排需求评审</p>
+<h2><span class="no">01</span>弹窗、推送、标签方案（产品计划短期三项）</h2><table><tr><th>工作</th><th>状态</th><th>产出与说明</th></tr><tr><td class="w n">阶段产出（五份：现状盘点、目标、原因、做法、验证）</td><td class="s"><span class="st done">已完成</span></td><td class="r f">阶段1_现状盘点～阶段5_验证.html；旧八阶段版（含人群分析）已归档</td></tr><tr><td class="w n">呈交版 pptx</td><td class="s"><span class="st wait">待你看／定</span></td><td class="r f">弹窗标签推送方案.pptx：进度汇报版，正文 19 页＋附录 13 页；措辞审查、全稿复查已做</td></tr><tr><td class="w n">全稿复查留下的 3 项方案内容</td><td class="s"><span class="st wait">待你看／定</span></td><td class="r f">推播能否按标签发；标签页三行「现在」的依据；附录「怎么验收」三行（见 分析/A89 末尾）</td></tr><tr><td class="w n">呈交版定稿后的收尾</td><td class="s"><span class="st todo">未开始</span></td><td class="r f">V3 移入归档；阶段产出与呈交版口径对齐（17＝6＋11）</td></tr></table>
+<h2><span class="no">02</span>推送系统的后台集成需求：已到需求评审前</h2><table><tr><th>工作</th><th>状态</th><th>产出与说明</th></tr><tr><td class="w n">1 需求定义：需求清单</td><td class="s"><span class="st done">已完成</span></td><td class="r f">简报/2026-10-13_推送后台需求清单.html；你 10/13 通过，统一入口定案</td></tr><tr><td class="w n">2 方案设计：11 条设计决定</td><td class="s"><span class="st done">已完成</span></td><td class="r f">推送系统后台集成_方案设计.html；你 10/13 通过</td></tr><tr><td class="w n">3 原型设计</td><td class="s"><span class="st wait">待你看／定</span></td><td class="r f">推送系统后台集成_原型.html：三部分、六章，含按任务走一遍与 81 条验收用例；结构与阅读负担刚改完</td></tr><tr><td class="w n">4 需求文档</td><td class="s"><span class="st done">已完成</span></td><td class="r f">推送系统后台集成需求文档.md v0.7，按公司模板，两轮研发视角审核通过</td></tr><tr><td class="w n">评审材料</td><td class="s"><span class="st done">已完成</span></td><td class="r f">推送系统后台集成_评审要点.html：四方各自的关键确认、其余确认、估工时任务</td></tr><tr><td class="w n">5 需求评审</td><td class="s"><span class="st wait">待你看／定</span></td><td class="r f">研发、客户端、营销侧、数据平台确认并估工时，等你安排</td></tr><tr><td class="w n">6 定稿</td><td class="s"><span class="st todo">未开始</span></td><td class="r f">按评审意见修改并冻结</td></tr></table>
+<h2><span class="no">03</span>按同一流程还需要、尚未安排的</h2><table><tr><th>工作</th><th>状态</th><th>产出与说明</th></tr><tr><td class="w n">弹窗的后台需求文档</td><td class="s"><span class="st todo">未开始</span></td><td class="r f">呈交版里弹窗要开发的两项（每人每天弹窗上限、新手弹窗接入后台）还没有研发用的需求文档</td></tr><tr><td class="w n">标签的后台需求文档</td><td class="s"><span class="st todo">未开始</span></td><td class="r f">呈交版里标签要开发的五项小改动（群组交集、人数预览、条件说明、变更记录、引用清单）同上</td></tr></table>
+<h2><span class="no">04</span>支撑工作：写作标准、判例与审查体系</h2><table><tr><th>工作</th><th>状态</th><th>产出与说明</th></tr><tr><td class="w n">写作标准合并版</td><td class="s"><span class="st done">已完成</span></td><td class="r f">规则与交接/写作标准_合并版.md，10/14 补了「阅读体验优先于精简」等</td></tr><tr><td class="w n">判例库</td><td class="s"><span class="st wait">待你看／定</span></td><td class="r f">已记 40 条；第 13 条起尚未考试，是否恢复审查体系由你定</td></tr><tr><td class="w n">定时 agent 审查体系</td><td class="s"><span class="st wait">待你看／定</span></td><td class="r f">10/12 已停用；恢复前要先改 check_format.py 第 9、10、12、13 项</td></tr><tr><td class="w n">规则文件清理</td><td class="s"><span class="st todo">未开始</span></td><td class="r f">工作原则乙·1 等处仍有「八个阶段」等过时说法；任务清单第五节去留待你定</td></tr></table>
+<h2><span class="no">05</span>产品计划中期项</h2><table><tr><th>工作</th><th>状态</th><th>产出与说明</th></tr><tr><td class="w n">外赠（掉落）、好康活动、成就、银行功能改版（商城方向）、裂变＋回流、功能梳理、每日任务框架</td><td class="s"><span class="st todo">未开始</span></td><td class="r f">产品计划的中期项，成就与银行优先；不在本项目范围，尚未安排</td></tr></table>
+<p class="links">原文：<a href="../来源资料/产品计划原文_1010.md">产品计划原文</a>　·　<a href="../弹窗标签推送方案/阶段产出/阶段产出规划.html">阶段产出规划</a>　·　<a href="../规则与交接/推送系统后台集成需求.md">推送后台需求文件</a>　·　<a href="../归档/规则_旧/项目交接_对话要点.md">项目交接</a></p>
+</div></body></html>

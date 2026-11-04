@@ -1,0 +1,146 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>七天工作复盘</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.35;margin:0 0 8px}
+.sub{font-size:16px;color:var(--ink-2);margin:0 0 28px}
+h2{font-family:var(--serif);font-size:20px;margin:48px 0 16px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px}
+.kpi .n{font-size:38px;font-weight:700;line-height:1.1;color:var(--ink)}
+.kpi .n small{font-size:16px;font-weight:600;margin-left:4px;color:var(--ink-2)}
+.kpi .t{font-size:14.5px;color:var(--ink-2);margin-top:8px}
+.kpi.red .n{color:var(--red)}
+.phase{border-top:4px solid var(--gray)}
+.phase.red{border-top-color:var(--red)} .phase.blue{border-top-color:var(--blue)}
+.phase .d{font-size:13px;color:var(--muted);font-weight:600}
+.phase .h{font-size:16.5px;font-weight:700;margin:4px 0 10px}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:12px}
+.tag.red{background:var(--red-soft);color:var(--red)} .tag.blue{background:var(--blue-soft);color:var(--blue)} .tag.gray{background:var(--gray-soft);color:var(--gray)} .tag.green{background:var(--green-soft);color:var(--green)}
+.kv{font-size:14px;color:var(--ink-2);margin:6px 0}
+.kv b{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:2px}
+.keep{display:flex;flex-wrap:wrap;gap:10px}
+.keep span{background:var(--green-soft);color:var(--green);font-size:14.5px;font-weight:600;padding:8px 14px;border-radius:4px}
+.cause .h{font-size:16.5px;font-weight:700;margin:0 0 6px}
+.cause .l{font-size:14.5px;color:var(--ink-2);margin:0 0 12px}
+.cause .e{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14.5px}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--line)}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--ground)}
+tr:last-child td{border-bottom:none}
+td.w{color:var(--ink)} td.r{color:var(--ink-2)} td.d{color:var(--muted);width:80px}
+tr.same td.w{color:var(--red);font-weight:600}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);margin-right:8px;vertical-align:1px}
+.legend{font-size:13px;color:var(--muted);margin:10px 0 0}
+.q{font-size:17px;font-weight:700;margin:0 0 14px}
+.opt{position:relative}
+.opt .h{font-size:16px;font-weight:700;margin:0 0 6px}
+.opt .l{font-size:14.5px;color:var(--ink-2)}
+.opt.rec{border:2px solid var(--blue)}
+.opt .badge{position:absolute;top:-11px;right:16px;background:var(--blue);color:#fff;font-size:12px;font-weight:700;padding:2px 10px;border-radius:3px}
+.why{font-size:14.5px;color:var(--ink-2);margin:14px 0 0}
+.why b{color:var(--ink)}
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.steps div{counter-increment:s;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 18px;font-size:14.5px;color:var(--ink-2)}
+.steps div::before{content:counter(s);display:block;font-size:22px;font-weight:700;color:var(--accent);margin-bottom:4px}
+.links{font-size:13px;color:var(--muted);margin-top:40px} a{color:var(--accent)}
+</style></head><body><div class="wrap">
+
+<p class="meta">项目复盘 · 2026-10-10 · 依据：进展日志、答复登记、归档文件、V3</p>
+<h1>7 个工作日做了三版方案，前两版用了 6 天、都被否决</h1>
+<p class="sub">留下来的是今天的 V3；主要原因是现状判断没对后台、结构没对主管计划。</p>
+
+<div class="grid g3">
+  <div class="card kpi"><div class="n">7<small>个工作日</small></div><div class="t">9 月底到今天，国庆假期不计</div></div>
+  <div class="card kpi red"><div class="n">6<small>／7 天</small></div><div class="t">花在被否决的两版方案上；V3 待你验收</div></div>
+  <div class="card kpi red"><div class="n">8<small>处</small></div><div class="t">判断被你纠正，3 处是把「资料没写」当成「做不到」</div></div>
+</div>
+
+<h2><span class="no">01</span>三版方案的经过</h2>
+<div class="grid g3">
+  <div class="card phase red">
+    <div class="d">9/27–9/30 · 4 天</div><div class="h">配置方案</div><span class="tag red">否决</span>
+    <div class="kv"><b>做了</b>弹窗、标签、推送的配置方案与需求；决策汇报</div>
+    <div class="kv"><b>结果</b>只有具体修改，没讲清为什么改</div>
+  </div>
+  <div class="card phase red">
+    <div class="d">10/8–10/9 · 2 天</div><div class="h">八阶段论证、V1、V2</div><span class="tag red">推翻</span>
+    <div class="kv"><b>做了</b>八份阶段产出；V1 网页；V2 演示文稿</div>
+    <div class="kv"><b>结果</b>V2 版式你认可；四个问题有三个不成立</div>
+  </div>
+  <div class="card phase blue">
+    <div class="d">10/10 · 1 天</div><div class="h">V3</div><span class="tag blue">待验收</span>
+    <div class="kv"><b>做了</b>按主管弹窗、推送、标签三项计划重做</div>
+    <div class="kv"><b>内容</b>五类人群首版内容；24 项改动</div>
+  </div>
+</div>
+
+<h2><span class="no">02</span>留下来、能用的内容</h2>
+<div class="keep">
+  <span>近一月活跃 62,292 人的清洗口径与人群规模</span>
+  <span>五类人群的定义与圈法</span>
+  <span>弹窗、推送的现状事实</span>
+  <span>三条验收与评估方式</span>
+  <span>V3 的 24 项改动</span>
+</div>
+
+<h2><span class="no">03</span>慢在哪：三个原因</h2>
+<div class="grid g3">
+  <div class="card cause">
+    <p class="h">现状没对后台</p>
+    <p class="l">资料没写、本地算不出，就写成「系统做不到」</p>
+    <p class="e">例：人群圈不出、效果查不到、先后不可控</p>
+  </div>
+  <div class="card cause">
+    <p class="h">结构没对主管计划</p>
+    <p class="l">按自己诊断的问题排，不按主管的三项要求</p>
+    <p class="e">例：V2 的三个问题与弹窗、推送、标签对不上</p>
+  </div>
+  <div class="card cause">
+    <p class="h">流程重，审查不查实际</p>
+    <p class="l">四个 agent 轮转，审查只核写法与一致性</p>
+    <p class="e">例：「人群圈不出」过审后一路沿用到 V1</p>
+  </div>
+</div>
+
+<h2><span class="no">04</span>被你纠正的 8 处判断</h2>
+<table>
+<tr><th>我们写的</th><th>实际</th><th>日期</th></tr>
+<tr><td class="w">平台没有推送</td><td class="r">有 5 种推送方式</td><td class="d">9/28</td></tr>
+<tr><td class="w">弹窗方案可以验收</td><td class="r">改动理由推不出</td><td class="d">10/8</td></tr>
+<tr><td class="w">目标：提升活跃与付费</td><td class="r">方案只对能力建成负责</td><td class="d">10/9</td></tr>
+<tr><td class="w">目标：不经研发</td><td class="r">不该设这个条件</td><td class="d">10/9</td></tr>
+<tr class="same"><td class="w"><span class="dot"></span>五类人群只有新增能圈出</td><td class="r">五类都能圈出</td><td class="d">10/9</td></tr>
+<tr class="same"><td class="w"><span class="dot"></span>弹窗与推送效果查不到</td><td class="r">都有记录，部分不全</td><td class="d">10/10</td></tr>
+<tr><td class="w">潜在付费门槛 14 万</td><td class="r">改为 2 万</td><td class="d">10/10</td></tr>
+<tr class="same"><td class="w"><span class="dot"></span>弹窗数量与先后不可控</td><td class="r">规则内可设，有顺序查询</td><td class="d">10/10</td></tr>
+</table>
+<p class="legend"><span class="dot"></span>同一类错误：资料没写，当成系统做不到</p>
+
+<h2><span class="no">05</span>已定：阶段产出重做，最后出 V4</h2>
+<div class="grid g3">
+  <div class="card kpi"><div class="n">1</div><div class="t">你先看 V3，指出严重问题</div></div>
+  <div class="card kpi"><div class="n">2</div><div class="t">按反馈重做阶段产出，先出大纲给你确认</div></div>
+  <div class="card kpi"><div class="n">3</div><div class="t">阶段产出定稿后，出 V4</div></div>
+</div>
+
+<h2><span class="no">06</span>之后的做法</h2>
+<div class="steps">
+  <div>写「做不到」之前，先要你的截图或负责人确认</div>
+  <div>每一版先对照主管原文的三项要求</div>
+  <div>修改由我直接改、直接渲染核对</div>
+</div>
+
+<p class="links">原文：<a href="../../归档/呈交版旧稿/弹窗标签推送方案_V3.pptx">弹窗标签推送方案_V3.pptx</a>　·　<a href="2026-10-10_V2复核_先后可控与主管计划对照.html">V2 复核</a>　·　<a href="../../过程记录/进展日志.md">进展日志</a></p>
+</div></body></html>

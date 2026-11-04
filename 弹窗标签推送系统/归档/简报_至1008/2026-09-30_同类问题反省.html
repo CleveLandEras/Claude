@@ -1,0 +1,110 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>同类问题反省</title><style>
+:root{--ground:#f0efec;--surface:#fff;--surface-2:#f7f6f3;--ink:#191b1e;--ink-2:#484d53;--muted:#7d8289;--line:#dcdad5;--line-2:#e8e6e1;--accent:#9a6f24;--ok:#3d6b58;--ok-soft:#dfeae5;--warn:#8a6410;--warn-soft:#f5ead2;--info:#1c6ea4;--info-soft:#e0ecf4;--must:#a63f38;--must-soft:#f4e3e1;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;--mono:ui-monospace,Menlo,monospace;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1a1d21;--surface-2:#20242a;--ink:#e9e8e4;--ink-2:#b7bbc0;--muted:#868c94;--line:#2d3238;--line-2:#262b31;--accent:#d6ab5c;--ok:#74b096;--ok-soft:#1d3129;--warn:#cfa44e;--warn-soft:#332a16;--info:#6aa8d6;--info-soft:#1b2a36;--must:#dd8078;--must-soft:#38231f;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1a1d21;--surface-2:#20242a;--ink:#e9e8e4;--ink-2:#b7bbc0;--muted:#868c94;--line:#2d3238;--line-2:#262b31;--accent:#d6ab5c;--ok:#74b096;--ok-soft:#1d3129;--warn:#cfa44e;--warn-soft:#332a16;--info:#6aa8d6;--info-soft:#1b2a36;--must:#dd8078;--must-soft:#38231f;}
+*{box-sizing:border-box} body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased}
+.wrap{max-width:940px;margin:0 auto;padding:32px 22px 80px} .meta{font-size:12.5px;color:var(--muted);margin:0 0 6px}
+h1{font-family:var(--serif);font-size:24px;margin:0 0 14px}
+.verdict{background:var(--surface);border-left:3px solid var(--accent);padding:14px 18px;margin:0 0 22px} .verdict p{margin:0 0 6px;font-size:15.5px;font-weight:600;max-width:48em} .verdict p:last-child{margin:0}
+.no{font-family:var(--mono);font-size:12px;color:var(--accent);font-weight:600} h2{font-family:var(--serif);font-size:19px;margin:2px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+section{margin:0 0 30px}
+.pat{background:var(--surface);border:1px solid var(--line);padding:14px 18px;margin:0 0 12px}
+.pat h3{margin:0 0 4px;font-size:16.5px} .pat .root{font-size:13.5px;color:var(--muted);margin:0 0 8px}
+.tw{overflow-x:auto} table{border-collapse:collapse;width:100%;font-size:13.5px;background:var(--surface-2);border:1px solid var(--line-2)}
+th{text-align:left;font-size:12px;color:var(--muted);font-weight:650;padding:6px 10px;border-bottom:1px solid var(--line);white-space:nowrap} td{padding:6px 10px;border-bottom:1px solid var(--line-2);vertical-align:top} tr:last-child td{border-bottom:none}
+.st{font-size:11.5px;font-weight:650;padding:1px 7px;border-radius:2px;white-space:nowrap}
+.fixed{background:var(--ok-soft);color:var(--ok)} .open{background:var(--must-soft);color:var(--must)} .part{background:var(--warn-soft);color:var(--warn)}
+.fix{font-size:13.5px;color:var(--ink-2);margin:8px 0 0;padding:6px 10px;border-left:3px solid var(--accent);background:var(--surface-2)} .fix b{color:var(--ink)}
+.card{background:var(--surface);border:1px solid var(--line);padding:14px 18px;margin:0 0 10px} .card ol,.card ul{margin:4px 0 0;padding-left:1.3em;font-size:14px;color:var(--ink-2)} .card li{margin:4px 0} .card li b{color:var(--ink)}
+.ev{font-size:12.5px;color:var(--muted)}
+a{color:var(--accent)}
+@media (max-width:640px){.wrap{padding:22px 16px 60px} table{font-size:12.5px}}
+</style></head><body><div class="wrap">
+<p class="meta">反省 · 2026-09-30 · 对照你这几天的四次纠正（只盯远目标、未验收就外流、问题不讲意义、方案和能力混在一起），把项目文件和我自己的做法重新过了一遍</p>
+<h1>同类问题反省：五种模式、十五处实例，还有七处没修</h1>
+<div class="verdict">
+<p>你这几次纠正，背后是同一类毛病：<b>把性质不同的东西当成一样的来处理，用一把尺子量所有事</b>。</p>
+<p>顺着这个查下去，一共找到五种模式、十五处实例。其中八处已经修了或正在修，七处还没修。最要紧的是两处：一是「短期 = 现有功能迭代」这条约束被拿来推后能力需求；二是我把 agent 的自我汇报当成事实转述给你，没有核实。</p>
+</div>
+
+<section><div class="no">模式 1</div>
+<div class="pat"><h3>用错尺子：拿一个标准衡量性质不同的事</h3>
+<p class="root">根因：原则里只有一把尺子（先是「方案完成度」，后来是「业绩」），没有规定什么事该用什么尺子量。</p>
+<div class="tw"><table>
+<tr><th>实例</th><th>证据</th><th>状态</th></tr>
+<tr><td>只看远目标（业绩），把主管要的交付一件件论证掉了</td><td>02 五张卡被判「退出主线」</td><td><span class="st fixed">已修</span> 原则 v2</td></tr>
+<tr><td>拿短期业绩衡量能力需求</td><td>04 的三项研发功能「建议推到第二期」；07「首期缩小」</td><td><span class="st part">待你同意</span> 方案、能力分两条线</td></tr>
+<tr><td><b>拿「测不出来」否定数据和实验能力</b></td><td>A29 和决策汇报：「为了测 1–3% 先开发分流，理由弱」。可恰恰是因为没有分流和数据，方案才永远没法验证</td><td><span class="st open">未修</span></td></tr>
+<tr><td>把「事实要准」和「方案要准」当成一回事</td><td>储值位分档用代理指标打磨了四轮。方案的「准」本该靠上线后的数据来证明</td><td><span class="st part">待你同意</span></td></tr>
+</table></div>
+<p class="fix"><b>改法：</b>按事情的性质各用各的尺子。事实和分析要准；方案是待验证的假设，看上线后的数据；能力看它解开了多少方案和运营动作。三者写进原则，审查者按事情的类型选尺子。</p></div>
+</section>
+
+<section><div class="no">模式 2</div>
+<div class="pat"><h3>把约束和前提用错了地方</h3>
+<p class="root">根因：一条约束写下来时是有适用范围的，传给 agent 以后，范围丢了，变成了通用规则。</p>
+<div class="tw"><table>
+<tr><th>实例</th><th>证据</th><th>状态</th></tr>
+<tr><td><b>「短期 = 现有功能迭代」被拿来推后能力需求</b></td><td>制作人这句话说的是短期方案优先用配置；主管的目标里本来就写了「不能实现的进入研发排期」。可交主管的那段写的是「三项研发功能建议推到第二期」</td><td><span class="st open">未修</span></td></tr>
+<tr><td>把主管的五类人群框架当成问题空间</td><td>诊断清单 11 项里 10 项照搬原汇报。主管的框架定的是交付范围，不该拿来框定「有哪些问题」</td><td><span class="st part">在补</span> 问题空间扫描（队列 Q122）</td></tr>
+<tr><td>标签、推送两条线套用了方案的四环逻辑链</td><td>标签、推送基本是能力建设，该走「现有能力 → 缺口卡住了什么 → 需求 → 优先级」，却按「现状 → 诊断 → 方案」去找「业绩问题」，结论自然是「对业绩贡献估不出、先不做」</td><td><span class="st open">未修</span></td></tr>
+</table></div>
+<p class="fix"><b>改法：</b>原则里每条约束都写明适用范围，例如「现有功能迭代」只约束方案线。能力线单独用一条逻辑链。</p></div>
+</section>
+
+<section><div class="no">模式 3</div>
+<div class="pat"><h3>把过程当结果</h3>
+<p class="root">根因：过程指标看得见、好统计，结果（有没有做准、能不能用）要费力去核实。</p>
+<div class="tw"><table>
+<tr><th>实例</th><th>证据</th><th>状态</th></tr>
+<tr><td>过闸就等于做完</td><td>四环全过，但三道闸的核心标准是靠「已写成缺口」放行的</td><td><span class="st fixed">已修</span> 原则 v2 第五、六节</td></tr>
+<tr><td>系统在运转就等于在推进</td><td>空转 242 轮；执行者卡了 17 小时，没有任何角色察觉</td><td><span class="st part">部分修</span> 空转熔断已加；「执行者自己卡住」还要靠你改 Auto 权限</td></tr>
+<tr><td><b>我把 agent 的自我汇报当成事实转述给你</b></td><td>项目总览里写「02 修正了 5 处已知错误」，是照着日志抄的，没有核对。后来我自己读 02 时，才发现提案里有一句写反了（「确定 25 人买过首储」其实是「确定 25 人没买过」）</td><td><span class="st open">未修</span></td></tr>
+<tr><td>拿数量说进度</td><td>我在总览里写「44 份结果文件」，你要的是每份做到哪、能不能用</td><td><span class="st part">部分</span> 总览已写状态，但开头仍在报数</td></tr>
+</table></div>
+<p class="fix"><b>改法：</b>我给你的任何状态，都分成「agent 自称」「审查通过」「我已核实」三级标清楚。进总览的关键结论，我先自己抽查原文再写。</p></div>
+</section>
+
+<section><div class="no">模式 4</div>
+<div class="pat"><h3>把不同的对象、角色当成一个</h3>
+<p class="root">根因：想省一道手续，把「给你判断的材料」和「给别人的交付」做成了同一份。</p>
+<div class="tw"><table>
+<tr><th>实例</th><th>证据</th><th>状态</th></tr>
+<tr><td>决策汇报被设计成「可原样转发给主管」</td><td>绕过了你的验收</td><td><span class="st fixed">已修</span> 验收规则</td></tr>
+<tr><td>给同事的问句写成「今天就能发」</td><td>9/29 版待你回答</td><td><span class="st fixed">已修</span></td></tr>
+<tr><td>给你的问题只列不讲意义</td><td>你没法判断先答哪个、答了有什么用</td><td><span class="st fixed">已修</span> 9/30 版每题写了卡在哪、答案怎么改方案</td></tr>
+</table></div></div>
+</section>
+
+<section><div class="no">模式 5</div>
+<div class="pat"><h3>前提变了，下游没跟着改</h3>
+<p class="root">根因：改原则时只改了原则本身，没有回头清点「按旧原则产出的东西」。</p>
+<div class="tw"><table>
+<tr><th>实例</th><th>证据</th><th>状态</th></tr>
+<tr><td>决策汇报的 13 件待决事项，是按旧原则（业绩优先、主线换高卡）拆出来的</td><td>其中几件在新原则下已经不成立或要改写，例如「三项研发推后行不行」是按方案的尺子提出的</td><td><span class="st open">未修</span></td></tr>
+<tr><td>分析结论里还带着旧原则下的判断</td><td>A26「五张卡退出主线」、A29「分流理由弱」，都被决策汇报和环节3 引用着</td><td><span class="st open">未修</span></td></tr>
+<tr><td>误读答复一次，扩散进十几个文件</td><td>9/28「没有手机推送」事件</td><td><span class="st fixed">已修</span> 会推翻方向的答复先复述确认</td></tr>
+</table></div>
+<p class="fix"><b>改法：</b>每次原则或前提改动之后，规划者先做一次「旧结论清点」：列出哪些结论、决策项、分析是在旧前提下得出的，逐条标明「仍成立 / 要改写 / 作废」，再排队列。</p></div>
+</section>
+
+<section><div class="no">小结</div><h2>还没修的七处，按影响排</h2>
+<div class="card"><ol>
+<li><b>「现有功能迭代」被拿来推后能力需求</b>：直接影响 04、07 能不能按主管范围进研发排期。</li>
+<li><b>「测不出」被用来否定数据和实验能力</b>：没有这些能力，方案永远没法用数据验证，你说的「数据验证迭代」就做不起来。</li>
+<li><b>标签、推送套用了方案的逻辑链</b>：要改成能力线的逻辑链。</li>
+<li><b>我转述 agent 自评、不核实</b>：会让你基于错误信息做判断。</li>
+<li><b>13 件待决事项按旧原则拆的</b>：你验收、做决定时会被带偏。</li>
+<li><b>A26、A29 的旧判断仍在被引用</b>：同上。</li>
+<li>总览开头还在报数量：小问题，我马上改。</li>
+</ol></div>
+<div class="card"><p style="margin:0 0 6px;font-size:14px"><b>第 4、7 两处是我自己的做法，现在就改</b>，不需要你批准。其余五处要改工作原则，我打算和上一条「方案、能力分两条线」合成一次改动：</p>
+<ul>
+<li>中目标拆成方案线、能力线，各有各的逻辑链和尺子；</li>
+<li>每条约束写明适用范围，「现有功能迭代」只约束方案线；</li>
+<li>原则改动之后，规划者先做「旧结论清点」，再重排队列。</li>
+</ul>
+<p style="margin:8px 0 0;font-size:14px">你回「同意」，我起草这一版，照例先给你过目。</p></div>
+</section>
+</div></body></html>

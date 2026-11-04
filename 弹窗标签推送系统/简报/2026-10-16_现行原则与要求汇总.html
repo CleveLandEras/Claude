@@ -1,0 +1,778 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>现行原则汇总</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;--accent-soft:#f5ecd9;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;--accent-soft:#33291a;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;--accent-soft:#33291a;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.65}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.4;margin:0 0 14px}
+.sub{font-size:15.5px;color:var(--ink-2);margin:0 0 10px}
+.says{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 30px}
+.says span{background:var(--blue-soft);color:var(--blue);font-size:14.5px;font-weight:600;padding:7px 14px;border-radius:4px}
+.kick{font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.08em;margin:72px 0 6px}
+h2{font-family:var(--serif);font-size:21px;line-height:1.45;margin:0 0 20px}
+h3{font-size:17px;line-height:1.5;margin:44px 0 14px}
+h4{font-size:15px;line-height:1.5;margin:24px 0 10px;color:var(--ink-2)}
+.note{font-size:14px;color:var(--muted);margin:12px 0 0}
+.note div{margin:2px 0}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(2,1fr)} .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g5{grid-template-columns:repeat(5,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px}
+.kpi .n{font-size:38px;font-weight:700;line-height:1.1}
+.kpi .n small{font-size:15px;font-weight:600;margin-left:6px;color:var(--ink-2)}
+.kpi .t{font-size:14.5px;color:var(--ink-2);margin-top:12px}
+.kpi .t div{margin:2px 0}
+.kpi .t2{font-size:13.5px;color:var(--muted);margin-top:10px;border-top:1px solid var(--line);padding-top:8px}
+.kpi.red .n{color:var(--red)}
+.lines>div{position:relative;padding-left:14px;margin:3px 0}
+.lines>div::before{content:"";position:absolute;left:2px;top:.75em;width:5px;height:5px;border-radius:50%;background:var(--muted)}
+.ladder{background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.ladder .grp{font-size:12.5px;font-weight:700;color:var(--muted);padding:8px 20px;background:var(--ground);border-bottom:1px solid var(--line)}
+.lv{display:grid;grid-template-columns:48px 280px 1fr;gap:16px;padding:14px 20px;border-bottom:1px solid var(--line);align-items:start}
+.lv:last-child{border-bottom:none}
+.lv .k{font-size:22px;font-weight:700;line-height:1.2;color:var(--green)}
+.lv.mine .k{color:var(--gray)}
+.lv .h{font-weight:700;font-size:15.5px}
+.lv .lines{font-size:14.5px;color:var(--ink-2)}
+.phase{border-top:4px solid var(--gray)}
+.phase .d{font-size:13px;color:var(--muted);font-weight:700;margin-bottom:8px}
+.phase .lines{font-size:14px;color:var(--ink-2)}
+.phase ol{margin:0;padding-left:20px;font-size:14px;color:var(--ink-2)}
+.phase ol li{margin:3px 0}
+.phase .x{font-size:13px;color:var(--muted);border-top:1px solid var(--line);margin-top:10px;padding-top:8px}
+.bound{display:grid;gap:10px;margin:0 0 6px}
+.bound.b5{grid-template-columns:repeat(5,1fr)} .bound.b4{grid-template-columns:repeat(4,1fr)}
+.bound div{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px 16px}
+.bound b{display:block;font-size:22px;line-height:1.2}
+.bound span{font-size:13.5px;color:var(--ink-2)}
+.rules{list-style:none;margin:0;padding:0;background:var(--surface);border:1px solid var(--line);border-radius:6px}
+.rules>li{padding:11px 20px;border-bottom:1px solid var(--line)}
+.rules>li:last-child{border-bottom:none}
+.rules ul{list-style:none;margin:5px 0 0;padding:0}
+.rules ul li{position:relative;padding-left:16px;font-size:14.5px;color:var(--ink-2);margin:3px 0}
+.rules ul li::before{content:"";position:absolute;left:3px;top:.75em;width:5px;height:5px;border-radius:50%;background:var(--muted)}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14.5px}
+th,td{padding:10px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--ground)}
+tr:last-child td{border-bottom:none}
+tr.grp td{background:var(--ground);font-size:13px;font-weight:700;color:var(--ink-2);padding:7px 16px}
+td.r{color:var(--ink-2)} td.m{color:var(--muted);font-size:13.5px}
+.issue{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 22px;margin:0 0 14px}
+.issue .h{font-size:16px;font-weight:700;margin:0 0 12px}
+.cmp{display:grid;gap:12px;grid-template-columns:repeat(2,1fr)}
+.cmp.c3{grid-template-columns:repeat(3,1fr)}
+.cmp>div{background:var(--ground);border-radius:4px;padding:12px 14px;font-size:14.5px;color:var(--ink-2)}
+.cmp b{display:block;font-size:12.5px;color:var(--muted);font-weight:600;margin-bottom:4px}
+.pairs{border:none;border-radius:0;background:transparent;font-size:14px}
+.pairs th{background:transparent;padding:6px 12px 6px 0;border-bottom:1px solid var(--line)}
+.pairs td{padding:7px 12px 7px 0;color:var(--ink-2)}
+.pairs td:first-child,.pairs th:first-child{width:50%}
+.fx{display:grid;grid-template-columns:80px 1fr;gap:10px;margin-top:10px;font-size:14.5px}
+.fx>b{font-size:12.5px;color:var(--muted);font-weight:600;padding-top:2px}
+.fx.fix>b{color:var(--green)}
+.lab{font-size:13px;font-weight:700;color:var(--muted);margin:18px 0 8px}
+.q{font-size:17px;font-weight:700;margin:44px 0 4px}
+.opt{position:relative}
+.opt .h{font-size:16px;font-weight:700;margin:0 0 10px}
+.opt .k{font-size:12.5px;color:var(--muted);font-weight:600;margin:10px 0 2px}
+.opt .lines{font-size:14.5px;color:var(--ink-2)}
+.opt.rec{border:2px solid var(--blue)}
+.opt .badge{position:absolute;top:-11px;right:16px;background:var(--blue);color:#fff;font-size:12px;font-weight:700;padding:2px 10px;border-radius:3px}
+.why{font-size:14.5px;color:var(--ink-2);margin:14px 0 0}
+.why b{color:var(--ink);margin-right:10px}
+details{background:var(--surface);border:1px solid var(--line);border-radius:6px}
+summary{cursor:pointer;padding:14px 20px;font-weight:600;font-size:15px}
+details[open] summary{border-bottom:1px solid var(--line)}
+details table{border:none;border-radius:0}
+.links{font-size:13.5px;color:var(--muted);margin-top:24px;line-height:2}
+.links b{color:var(--ink-2);font-weight:600;margin-right:6px}
+a{color:var(--accent)}
+</style></head><body><div class="wrap">
+
+<p class="meta">现行原则与要求汇总 · 2026-10-16 · 读过 43 条记忆、汇报格式技能、14 份项目规则文件、42 条判例；每处问题都对照原文核过</p>
+<h1>现行规则 81 条，问题集中在两处：26 条掺了我补的内容，10/15 以后的新说法没写进旧文件</h1>
+<p class="sub">问题大多出自 10/15 起你新说的这四条：</p>
+<div class="says"><span>拿不准的可以列给你补</span><span>可以开多个对话并行</span><span>主对话只做调度</span><span>要控制 token</span></div>
+
+<div class="grid g3">
+  <div class="card kpi"><div class="n">81<small>条现行规则</small></div>
+    <div class="t"><div>你的原话 55 条</div><div>掺了我补的、推断的或自定的内容 26 条</div></div>
+    <div class="t2">这 26 条要你逐条看留不留</div></div>
+  <div class="card kpi red"><div class="n">19<small>处要改</small></div>
+    <div class="t"><div>说法冲突 9 处</div><div>状态过时 6 处</div><div>依据不足或遗漏 4 处</div></div>
+    <div class="t2">其中 2 处要你定，17 处我来改</div></div>
+  <div class="card kpi"><div class="n">2<small>件要你定</small></div>
+    <div class="t"><div>其他项目是否也不等你说「开始」</div><div>推送后台的需求评审拿原型还是设计概要</div></div></div>
+</div>
+
+<!-- 01 -->
+<div class="kick">01</div>
+<h2>规则冲突时你的原话最高，我整理的文件只能细化、不能更严</h2>
+<div class="ladder">
+  <div class="grp">你定的</div>
+  <div class="lv"><div class="k">1</div><div class="h">你的原话</div>
+    <div class="lines"><div>晚说的覆盖早说的</div><div>先登记进任务清单的「答复登记」，再写进其他文件</div></div></div>
+  <div class="lv"><div class="k">2</div><div class="h">已定事项；工作原则中你定的部分</div>
+    <div class="lines"><div>已定事项管本项目的业务口径</div><div>工作原则的这部分管你定的工作方式</div></div></div>
+  <div class="lv"><div class="k">3</div><div class="h">写作标准</div>
+    <div class="lines"><div>管写作、版面和措辞</div><div>同一条有前后两种说法时，以「现行说法」为准</div></div></div>
+  <div class="grp">我方整理的</div>
+  <div class="lv mine"><div class="k">4</div><div class="h">执行文件</div>
+    <div class="lines"><div>包括标准体系、两份待通过清单、措辞审查流程、观感标准、版面设计摘录、各任务说明、汇报技能和记忆</div><div>只能细化上面三级，不能更严，适用范围也不能更大</div></div></div>
+  <div class="lv mine"><div class="k">5</div><div class="h">判例</div>
+    <div class="lines"><div>用来校准判卷，不当规则执行</div></div></div>
+</div>
+<p class="note">10/14 理顺时定的这个顺序，到现在不变。</p>
+
+<h3>每次对话都会读到的是记忆索引，它一过时影响最大</h3>
+<div class="grid g4">
+  <div class="card phase"><div class="d">每次对话自动加载</div>
+    <div class="lines"><div>记忆索引，共 43 行，每条记忆一行摘要</div><div>汇报格式技能的说明</div></div>
+    <div class="x">记忆正文和技能全文按需打开</div></div>
+  <div class="card phase"><div class="d">本项目开工先读</div>
+    <ol><li>先看这里</li><li>标准体系「规则以哪份为准」一节</li><li>对应清单的「进度」一节</li></ol>
+    <div class="x">项目交接开头也写着「新对话先读」，但那一节停在 10/14</div></div>
+  <div class="card phase"><div class="d">写作、审查时读</div>
+    <div class="lines"><div>写作标准</div><div>已定事项</div><div>工作原则</div></div>
+    <div class="x">三者冲突时按上面的顺序</div></div>
+  <div class="card phase"><div class="d">做特定任务时读</div>
+    <div class="lines"><div>呈交版交付前：措辞审查流程</div><div>做版面时：观感标准、版面设计摘录</div><div>校准判卷时：判例</div><div>做推送后台对应任务时：三份任务说明</div></div></div>
+</div>
+<div class="note"><div>观感标准和版面设计摘录是我整理的参考，里面的数字是默认值。</div><div>已停用、只作背景：阶段产出格式规范；旧的定时任务和判例考试；项目交接的旧节。</div></div>
+
+<!-- 02 -->
+<div class="kick">02</div>
+<h2>现行规则 81 条：你定方向、做验收，其余由我判断、推进</h2>
+<div class="bound b5">
+  <div><b>12</b><span>理解与沟通</span></div>
+  <div><b>15</b><span>推进方式</span></div>
+  <div><b>29</b><span>写作与版面</span></div>
+  <div><b>13</b><span>汇报与交付</span></div>
+  <div><b>12</b><span>项目业务口径</span></div>
+</div>
+<div class="note"><div>其中 21 条我补了细节，这里只写你说的核心。</div><div>另有 5 条整条是我推断或自定的。</div><div>这两类都在下一节逐条列出。</div></div>
+
+<h3>理解与沟通：都为了不增加你的工作量</h3>
+<h4>你的话按原意理解、按原文引用，不自行放大</h4>
+<ul class="rules">
+  <li>按你的话针对的情况理解，不照字面、不照搬例子、不外推、不收紧。</li>
+  <li>回复你时先写「你的意思是：……」复述理解，接着动手，不等你确认。</li>
+  <li>你的话是参考信息，不当圣经；先有自己的判断。</li>
+  <li>只把你确认过的写成原则。
+    <ul><li>一次纠正记成案例，写明当时情况、你的原话、针对的问题和改法，只用于相似情况</li><li>数字门槛只作默认值，同类问题复发再收紧</li></ul></li>
+  <li>引用你以前说的话，先回原始会话记录核对，包括你在我执行中途插入的消息。</li>
+</ul>
+<h4>能自己定的不找你，拿不准的也不停下</h4>
+<ul class="rules">
+  <li>不事事找你确认，不增加你的工作量。</li>
+  <li>能自行解决的问题不挂给你，自己定，并在清单里记一行「自行决定」。</li>
+  <li>拿不准的可以列成「待你补」，每条写明我方判断和暂按的做法；你补了作参考，不补也不影响推进。</li>
+  <li>未知的事不阻塞推进。
+    <ul><li>按名称、机制和常见做法推出最可能的答案，并写明依据</li><li>推断不同会改变做法时，按「若 A 则……，若 B 则……」分开写</li><li>重要又拿不到的数据，写成要新增的数据收集</li></ul></li>
+  <li>你定了方向以后按能做来写，不再写可行性分支，也不给你派对外核实的事。</li>
+  <li>你邀请提问时，只问一轮真正改变决定的问题；推进中碰到的问题攒到一起再问。</li>
+  <li>问格式、方法类问题之前，先查以前的项目有没有答过。</li>
+</ul>
+
+<h3>推进方式：靠清单和子任务，不靠你逐条下指令</h3>
+<h4>上一阶段通过才进下一阶段，有初稿先给你看</h4>
+<ul class="rules">
+  <li>核心先行，不跳阶段：上一阶段没通过，就不做下一阶段的产出。
+    <ul><li>「通过」指你说「通过」，或你授权的无上下文审核通过</li><li>「继续完善」指深化当前阶段</li></ul></li>
+  <li>开始自动推进之前，先做完整的阶段产出规划，写明每份产出的目录、每节回答什么和完成标准。</li>
+  <li>先写清单再动手。
+    <ul><li>每条工作线写清谁用、做成什么、怎么检验</li><li>下一件事是优先级最高的未通过项</li><li>「通过」要有判卷证据，不能只自称做完</li></ul></li>
+  <li>整体推进优先，不在细枝末节上雕刻。</li>
+  <li>不靠你逐条指令串行推进。
+    <ul><li>你不在时按清单继续，夜里由定时任务推进</li><li>一项通过了就往下走，可以提醒你，不停工</li></ul></li>
+  <li>一种做法还没过标准时，先做最小的一块验证，再铺开；你说「直接全跑一遍」就整份做。</li>
+  <li>有可用的初稿就先给你看，评审和打磨同时进行；子任务的打磨要限时。</li>
+</ul>
+<h4>评审和检查要发现真问题，不止于形式上通过</h4>
+<ul class="rules">
+  <li>评审、验收、判卷都看作品本身，例如原型和规则原文，不看对作品的描述。</li>
+  <li>检查全通过不等于做完。
+    <ul><li>交付前先查是否服务目标、每处改动的理由推不推得出</li><li>再拿真实任务和行业做法当参照逐条走一遍，找该有而没有的内容</li></ul></li>
+  <li>评审和判卷的方法参考顶尖 AI 公司的做法，不盲目自创。
+    <ul><li>精力多放在判得准这个核心上</li></ul></li>
+</ul>
+<h4>主对话只调度，具体工作交给子任务，同时控制 token</h4>
+<ul class="rules">
+  <li>主对话只做调度。
+    <ul><li>主对话只做复述、定方向、派活、核对和汇报</li><li>渲染、截图、看图、改脚本、读大文件交给子任务</li></ul></li>
+  <li>控制 token 消耗。</li>
+  <li>设计类工作反复被退回时，交给不带上下文的新子任务，只给原始材料重做。</li>
+  <li>多个对话可以并行做互不冲突的事。</li>
+  <li>改文件和渲染都不新开位置。
+    <ul><li>文件直接在原处改，不另存副本</li><li>pptx 只在固定文件夹里渲染</li></ul></li>
+</ul>
+
+<h3>写作与版面：读者不费力就能看懂、复述、拍板</h3>
+<h4>先给边界和全貌，相关的内容放在一起</h4>
+<ul class="rules">
+  <li>结构清晰排第一，不设字数上限。
+    <ul><li>每节只回答一个问题</li><li>标题写结论</li><li>只读标题就能读出全篇的论证</li></ul></li>
+  <li>先交代边界：开头让读者看见一共多大、分几块、各块是什么，再展开内容。</li>
+  <li>现状和它的做法紧挨着放；有对应关系的内容放在相邻位置，不考验读者的记忆。</li>
+  <li>用数量或名称指代一组内容时，例如「五类人群」「三处」，当场写出成员。</li>
+  <li>讲改动之前，先给改完以后的全貌，再讲新增和调整。</li>
+  <li>篇幅按用途定。
+    <ul><li>正文只放读者做当前判断要用的内容</li><li>其余内容进附录，附录默认收起、带目录</li><li>首层约 3 分钟读完，正文约 5 分钟读完；需求文档和附录不受时长限制</li></ul></li>
+  <li>内容按什么顺序排，要让读者看得出。</li>
+</ul>
+<h4>措辞要让无上下文的读者复述得出本意</h4>
+<ul class="rules">
+  <li>标题写结论。
+    <ul><li>同页已有分开的小标题时，大标题不把它们连成一句，改写它们合起来的结果</li><li>清晰是底线；清晰的前提下，标题承载最大的变化</li></ul></li>
+  <li>措辞专业、简洁、直接，用行业通用术语，不像在给小学生解释。
+    <ul><li>简洁但不缺信息：关键概念能用一句话转述给别人</li></ul></li>
+  <li>不造概念，不用内部代号、简称和地区行话，例如触达、口径、圈选。
+    <ul><li>新名称第一次出现时，当场写清它做什么</li></ul></li>
+  <li>措辞要经得起无上下文读者复述。
+    <ul><li>句子成分完整</li><li>用词不误导</li><li>标点按句间关系用，两件无关的事不用逗号连</li><li>并列项同类、同层</li><li>写清是现状还是改后</li><li>同一事物只用一个名字</li></ul></li>
+  <li>不解释不言自明的内容，也不写元信息，例如阅读时间、读法提示、过程痕迹、「按你的要求」这类话。</li>
+  <li>上下文已经确定的主语不逐句重复，例如运营用的后台不写「运营在……」。</li>
+  <li>不用 AI 腔，例如前后对仗的短句、「不是……而是……」、用破折号点题、「本质上」、比喻与拟人。</li>
+</ul>
+<h4>每个结论都写出依据，方案写到能直接拍板</h4>
+<ul class="rules">
+  <li>每处改动、每个目标或指标，都写出推得出它的理由。
+    <ul><li>正文每句带数字、机制或因果之一</li></ul></li>
+  <li>数字要让读者一眼看懂。
+    <ul><li>比例写分母，分母写进数字的标签</li><li>典型值用中位数</li><li>放大的数字要让读者一眼看出它是什么、证明了标题的什么</li></ul></li>
+  <li>事实只写已证实的；推断写明依据和边界。
+    <ul><li>不逐条贴「推断」「待确认」标签</li><li>上界不当下界说</li><li>本地数据算不出，不等于系统做不到</li></ul></li>
+  <li>流失、活跃、付费转化、送达率这类行业有通用口径的定义，先查行业资料和本平台数据再定。
+    <ul><li>门槛要在产品机制下够得着，并说得出来源</li></ul></li>
+  <li>需求按理想状态写全，不因成本预先删减。
+    <ul><li>成本按开发量分层标注</li><li>短期低成本的操作单独列出</li></ul></li>
+  <li>方案写到可以直接拍板。
+    <ul><li>要拍板的写成封闭选项，附推荐和理由</li><li>不单列利弊，代价只在影响决策时写</li><li>不冲突的事不列为待决</li><li>不写被否决的选项</li></ul></li>
+  <li>参考别的文件只借它的展示方式，不照抄结构、说法和目标。</li>
+</ul>
+<h4>观感是过关条件，标准由我自己带</h4>
+<ul class="rules">
+  <li>观感是过关条件。
+    <ul><li>不挤、不花哨、留白充足</li><li>正文栏不收窄</li><li>只按电脑宽屏判断，不考虑手机</li></ul></li>
+  <li>阅读体验优先于精简篇幅。
+    <ul><li>成本、来源这类辅助标注不夹进核心内容，单开一节写</li></ul></li>
+  <li>观感标准由我自己带、自己查，不等你逐条说明。
+    <ul><li>信息密度从首页到正文由轻到重递增，这是节奏问题，不是主要问题</li></ul></li>
+  <li>观感标准里的数字，例如密度分级、块数、字号、边距，都是参考默认值，不作过审的硬线。</li>
+</ul>
+<h4>排法跟着内容的关系和结构走</h4>
+<ul class="rules">
+  <li>排法要和内容的关系一致。
+    <ul><li>左右并排读作对比，标题与副标题读作主从，同一个框读作一组</li><li>两件独立的事不并排，也不分主从</li></ul></li>
+  <li>先看内容是什么结构，再选展示形式。
+    <ul><li>有先后或因果的用图表达</li><li>数字只放能证明标题的</li></ul></li>
+  <li>基础排版要做到位。
+    <ul><li>并列的几句各占一行，行前加符号</li><li>条与条的间距大于行距</li><li>只在自然停顿处折行</li></ul></li>
+  <li>后台界面在需求里用静态、信息完整、好读的形式展示，不做可点击原型。
+    <ul><li>原型要比文字读起来更轻松</li></ul></li>
+</ul>
+
+<h3>汇报与交付：你拿到的是能直接判断的内容，对外的出口只有你的验收</h3>
+<h4>汇报给内容本身，结论先行；要你定的事先给关键信息，再附推荐</h4>
+<ul class="rules">
+  <li>汇报给内容本身，不给「去哪看」的清单。
+    <ul><li>结论先行，按核心结论、观点、数据、观察的顺序排</li></ul></li>
+  <li>汇报不是文章：结构用数字卡、并排卡片、短表这类版面表达，不堆段落。</li>
+  <li>请你决策之前，先给出决策要用的关键信息，不让你在信息不全时做决定。</li>
+  <li>要你定的事写背景、封闭选项、推荐和理由，推荐必须有。
+    <ul><li>能自己判断的直接判断，不平铺问题</li></ul></li>
+  <li>讲进度只讲改了什么内容、发现了什么，不报轮数和次数。
+    <ul><li>你问到过程时，讲每一步实际做了什么、依据是什么</li></ul></li>
+  <li>按内容选载体。
+    <ul><li>长内容用好读的文件展示</li><li>向你要信息时，用对话里的 md</li><li>内容是解释或你要求直接介绍时，用平实的对话文字</li></ul></li>
+</ul>
+<h4>交付最多写到「待你验收」，呈交版只写方案本身</h4>
+<ul class="rules">
+  <li>交付状态最多写到「待你验收」：你验收是唯一出口，不写「可以直接交」「可以上线」。</li>
+  <li>呈交版只写方案本身。
+    <ul><li>不出现指称读者的词，例如主管、上级</li><li>不出现你我之间的工作用语，例如待核实、请评审定</li><li>已定的事不写成建议或待选项</li></ul></li>
+  <li>给主管的内容以清晰简洁、减少主管工作量为核心。
+    <ul><li>文中要回答主管要决定什么，不要求放在首屏</li></ul></li>
+  <li>呈交版交付前做专门的措辞审查：先自查，再让无上下文的读者复述，对照本意改到一致。</li>
+  <li>交付前除了审内容，还要审版面和阅读负担。
+    <ul><li>结果不准确就不交</li></ul></li>
+</ul>
+<h4>关键信息记进文件，日志最新的放最上面</h4>
+<ul class="rules">
+  <li>长日志最新的放在最上面。</li>
+  <li>对话里的关键信息记进文件，换对话也能接上。
+    <ul><li>用到以前的内容时完整重给，不让你回翻聊天记录</li></ul></li>
+</ul>
+
+<h3>项目业务口径：方案只建能力，按已定的边界写</h3>
+<h4>活跃、付费不作目标，方案不写排期</h4>
+<ul class="rules">
+  <li>方案建的是能力，不是具体的配置修改；每处改动说清为什么。</li>
+  <li>活跃、付费、业绩、购买不作目标、指标、评估或假设。
+    <ul><li>建成标准、验收、衡量、对照只看弹窗的曝光与点击，以及推送的发送、到达与点击</li><li>例外：短信看发送对象在一段时间内的登录人数</li><li>何时扩建只看能力类事实</li></ul></li>
+  <li>目标与验收不设「不经研发」的条件。</li>
+  <li>方案不写排期，只写做什么、为什么、怎么做和开发量。</li>
+  <li>短期、中期、长期是同一方案的先后，只写按层推进，不写成二选一。</li>
+  <li>不使用、不传播玩家的个人身份或联系方式。</li>
+</ul>
+<h4>已核实、已定的内容直接写，不再论证</h4>
+<ul class="rules">
+  <li>五类人群都能圈出。
+    <ul><li>新增、回流、破产沿用现有判定</li><li>潜在付费、潜在流失按行业口径和本平台数据定义，并新建标签</li></ul></li>
+  <li>推送分游戏内和游戏外两层，不混在一起说。
+    <ul><li>游戏内：弹窗、快显</li><li>游戏外：推播、短信、Facebook、LINE</li></ul></li>
+  <li>17 项改动中，现有功能可做 6 项，需开发 11 项；需开发的里面，小改动 7 项，较大开发 4 项。</li>
+  <li>呈交版是进度汇报。
+    <ul><li>顺序是封面、结论、目录、目标、弹窗、推送、标签</li><li>每个现状页后紧跟它的做法页，不设「原因」页</li><li>附录单独成节，可折叠，带目录</li></ul></li>
+  <li>推送后台要建，统一入口已定，不论证要不要做。
+    <ul><li>一个入口，按功能分页</li><li>使用者是运营，不设审批</li><li>原型做成静态页，最终呈交用 pptx</li></ul></li>
+  <li>已核实的事实不再写成问题。
+    <ul><li>系统会跳过不能参加的人</li><li>平台有 5 种推送：快显、推播、短信、Facebook、LINE</li><li>弹窗和推送的效果数据都有记录</li><li>交集的含义由方案推导</li><li>108 个 VIP 账号单列</li><li>总充值就是付费</li></ul></li>
+</ul>
+
+<!-- 03 -->
+<div class="kick">03</div>
+<h2>我补的多是做法细节和门槛，要你逐条看留不留</h2>
+<p class="note">不同意哪条，告诉我删掉我补的那部分。</p>
+
+<h3>21 条的核心是你说的，我补了做法和门槛</h3>
+<h4>理解与沟通：影响最大的是把交给你的事归纳成三类</h4>
+<table>
+<tr><th style="width:24%">规则</th><th style="width:40%">你说的</th><th>我补的</th></tr>
+<tr><td>回复先复述理解</td><td class="r">10/14：「你违背了原则，我说话的时候你要先复述你的理解」</td><td class="r">用中文回复</td></tr>
+<tr><td>能自行解决的问题不挂给你</td><td class="r">10/14：「挂了很多问题，但这些问题根本就不需要我回答，根本是可以自行解决的」</td><td class="r">把交给你的事归纳为三类：业务方向的取舍、验收、只有你能对外安排的事</td></tr>
+<tr><td>提问只问一轮，其余攒着问</td><td class="r">10/12：「这一轮问的问题价值相比第一轮已经低很多了。之后推进时碰到问题再统一问吧」</td><td class="r">命名、措辞、成本标注这类细节自己定，不问你</td></tr>
+</table>
+<h4>推进方式：补的是门槛和操作步骤，你定的方向没改</h4>
+<table>
+<tr><th style="width:24%">规则</th><th style="width:40%">你说的</th><th>我补的</th></tr>
+<tr><td>整体推进优先</td><td class="r">10/8：「先确保工作的整体推进不出问题，不要明天我一看推的很歪，又在细枝末节上使劲雕刻」</td><td class="r">阶段通过后，不再回头打磨措辞和排版</td></tr>
+<tr><td>评审看作品本身</td><td class="r">10/14：「肯定是让人家看具体的需求，直接去看原型图之类的内容，来直接判定，而不是通过这种抽象描述的方式」</td><td class="r">判结构、取舍类的项时，把你已定的约束一并交给判卷人</td></tr>
+<tr><td>主对话只调度</td><td class="r">10/15：「你这个对话上下文已经76%，马上满了，我只能新开对话，但实际上你只是运行了我的一条指令」</td><td class="r lines"><div>上下文用到约一半就移交新对话</div><div>主对话自己写的补丁不超过约 30 行</div><div>子任务回报不超过 200 字</div></td></tr>
+<tr><td>控制 token</td><td class="r">10/15：「你需要控制token消耗了，这速度太快就到限制了」</td><td class="r lines"><div>一个任务只派一个子任务</div><div>用搜索代替整份读文件</div><div>机械活用便宜的模型</div><div>不做可选的第二轮</div></td></tr>
+<tr><td>设计反复被退回时交给新子任务重做</td><td class="r">10/10：「这种设计我建议你单开无上下文污染的AGENT直接设计，效果可能比你反复思考好的多」</td><td class="r">让新子任务出几个方案，再自评</td></tr>
+<tr><td>多个对话并行</td><td class="r">10/15：「一个项目同一时间只留一个对话做事不是很好，这样效率低，有时候有些事是可以同时做不冲突的」</td><td class="r lines"><div>开工时登记分工</div><div>改共享文件前先加锁</div><div>动手前重读规则入口</div></td></tr>
+<tr><td>改文件和渲染不新开位置</td><td class="r lines"><div>10/10：「不用复制，别太浪费token了，直接改动就好」</div><div>10/10：「因为你总是要新位置的权限，我每次都要重新给你授予」</div></td><td class="r lines"><div>暂停时停用定时任务本身</div><div>无人值守时，由时钟脚本写时间</div></td></tr>
+</table>
+<h4>写作结构与措辞：补的是你没说到的情形和查法</h4>
+<table>
+<tr><th style="width:24%">规则</th><th style="width:40%">你说的</th><th>我补的</th></tr>
+<tr><td>当场写出成员</td><td class="r">10/13：「对于读者来说不要让他有存疑，这里就要把五类是什么写出来，而不是让他记住有五类然后之后再看是哪五类」</td><td class="r">成员太多放不下时，写出构成，并注明完整清单在哪页</td></tr>
+<tr><td>顺序要让读者看得出</td><td class="r">10/14：「我看了几遍也不知道整体这个html到底是什么结构……下面那十几页是按什么顺序，这些我都不知道」</td><td class="r">有读者已知的结构时，例如后台菜单，顺序跟着它走</td></tr>
+<tr><td>主语不逐句重复</td><td class="r">10/15：「永远是运营在开头，这三个字真的有必要？真的认真检查措辞了吗？」</td><td class="r">逐句查完后，再通读全稿找重复的句式</td></tr>
+</table>
+<h4>写作版面：补的是具体数值和排版细节</h4>
+<table>
+<tr><th style="width:24%">规则</th><th style="width:40%">你说的</th><th>我补的</th></tr>
+<tr><td>正文栏不收窄，只按宽屏判断</td><td class="r lines"><div>「更挤了是因为宽度变窄了」</div><div>10/9：「我们不考虑手机端的显示」</div></td><td class="r">栏宽约 1000–1080 像素</td></tr>
+<tr><td>排法和内容的关系一致</td><td class="r">10/13：「明明是两件独立的问题，又没有隔开，隔开又更像是要对比」</td><td class="r">组内间距小于组间间距</td></tr>
+<tr><td>先看结构再选展示形式</td><td class="r">10/10：「这个四结构明显可以用好得多的方式展示，而不是像表格一样平铺」</td><td class="r">默认先比较两三种形式</td></tr>
+<tr><td>基础排版</td><td class="r">10/12：「这三行前面哪怕给打个点，间隙稍微大点呢？这也太粗糙了吧」</td><td class="r lines"><div>行首不放标点</div><div>不留孤字</div><div>中英文间距统一</div></td></tr>
+<tr><td>后台界面静态展示</td><td class="r lines"><div>10/12：「不用可点击的原型……把信息展示全，主要是为了提升阅读而不是互动性」</div><div>「原型图应该更轻松」</div></td><td class="r lines"><div>一页一张整图</div><div>编号标注</div><div>细节折叠</div></td></tr>
+</table>
+<h4>汇报与交付：补的是载体和「关键信息」具体指什么</h4>
+<table>
+<tr><th style="width:24%">规则</th><th style="width:40%">你说的</th><th>我补的</th></tr>
+<tr><td>按内容选载体</td><td class="r">「长内容用高可读性的文件展示」</td><td class="r lines"><div>实质汇报写成 HTML 简报，放在「简报/」</div><div>对话里给 3–5 行摘要</div></td></tr>
+<tr><td>决策前先给关键信息</td><td class="r">10/16：「现在最大的问题是，我信息不全无法做出决策，你也没给我提供相关的关键信息」</td><td class="r lines"><div>现状怎么运作，用一个真实例子走一遍</div><div>原话证据</div><div>已经替你定了什么</div><div>每个选项实际会改变什么</div></td></tr>
+</table>
+<h4>项目业务口径：两类新标签的取值是我定的</h4>
+<table>
+<tr><th style="width:24%">规则</th><th style="width:40%">你说的</th><th>我补的</th></tr>
+<tr><td>五类人群都能圈出</td><td class="r lines"><div>10/9：「新增、回流、破产是肯定能判定的……总之是可以圈出来的」</div><div>10/10：「潜在流失应该是按活跃度来判定的吧」</div></td><td class="r">两类新标签的具体取值由我定，你验收时可改</td></tr>
+</table>
+
+<h3>5 条整条是我定的：2 条从你的纠正推出，3 条是我定的做法</h3>
+<table>
+<tr><th style="width:52%">规则</th><th>起因</th></tr>
+<tr class="grp"><td colspan="2">从你的纠正推出</td></tr>
+<tr><td>问格式、方法类问题之前，先查以前的项目有没有答过。</td><td class="r">10/12 你说「不用可点击的原型，这个问题你之前问过我」</td></tr>
+<tr><td class="lines"><div>检查全通过不等于做完，交付前先查是否服务目标、每处改动的理由推不推得出</div><div>再拿真实任务和行业做法当参照逐条走一遍，找该有而没有的内容</div></td><td class="r lines"><div>10/15 你说「完全没做任何事的宁静的夜晚过去，你却没有去思考文件是否足够好」</div><div>问题是你指出的，查法是我定的</div></td></tr>
+<tr class="grp"><td colspan="2">我定的做法</td></tr>
+<tr><td class="lines"><div>先写清单再动手：每条工作线写清谁用、做成什么、怎么检验</div><div>下一件事是优先级最高的未通过项</div><div>「通过」要有判卷证据，不能只自称做完</div></td><td class="r">10/14 你说「那么我们现在就对齐标准」，清单是我按顶尖 AI 公司的通行做法建的</td></tr>
+<tr><td>观感标准里的数字，例如密度分级、块数、字号、边距，都是参考默认值，不作过审的硬线。</td><td class="r">10/12 你说「我不想一条一条的说明观感到底怎么样才算好，你自己应该有标准的」，标准由我整理</td></tr>
+<tr><td>引用你以前说的话，先回原始会话记录核对，包括你在我执行中途插入的消息。</td><td class="r">10/9 整理写作标准时，只导出你的消息，漏了你的 4 句话</td></tr>
+</table>
+
+<!-- 04 -->
+<div class="kick">04</div>
+<h2>两件事都建议按你最近的说法统一，不再留两套做法</h2>
+
+<p class="q">其他项目还要等你说「开始」才产出、只交最终稿吗？</p>
+<p class="lab">现在怎么运作</p>
+<div class="cmp">
+  <div><b>写作标准「协作与交付」：九月的项目定的，适用所有项目</b>
+    <div class="lines"><div>你明确说「开始」后才产出交付物，此前只调研、读文件、做计划</div><div>说「开始」后只交最终产出，不交分块草稿或中间版本</div><div>第一条加注了本项目 10/14 起自行推进，第二条没有加注</div></div></div>
+  <div><b>本项目现在：按你 10/13–10/15 的话</b>
+    <div class="lines"><div>按清单自行推进，不等你说「开始」</div><div>有可用的初稿就先给你看</div></div></div>
+</div>
+<p class="lab">你说过的话</p>
+<div class="lines" style="font-size:14.5px;color:var(--ink-2)">
+  <div>10/13：「不要什么事情都确认，不要增加我的工作量」</div>
+  <div>10/14：「最大化效率肯定不是你我串行工作」</div>
+  <div>10/14：「有些事情是可以并行的吧？我是不是能提前先看呢？」</div>
+  <div>10/15：「调整好立刻给我看……不要等全部工作完成才给我看」</div>
+</div>
+<div class="fx"><b>不定的话</b><div>下一个项目开始时，会回到等你说「开始」、只交最终稿。</div></div>
+<div class="fx"><b>无论选哪个</b><div>本项目照你晚说的话办：写作标准这两条补上现行说法，子任务不再把初稿压到最后才交。</div></div>
+<div class="grid g2" style="margin-top:22px">
+  <div class="card opt rec"><span class="badge">推荐</span><p class="h">甲　所有项目统一</p>
+    <div class="k">做法</div>
+    <div class="lines"><div>按清单自行推进，不等你说「开始」</div><div>有可用的初稿就先给你看</div><div>方向未定的新项目，先在对话里给方案，同时动手</div></div>
+    <div class="k">选了以后会变</div>
+    <div class="lines"><div>写作标准这两条改写成所有项目适用的现行说法</div><div>新项目开工不再等你说「开始」</div><div>多步骤任务给出方案后直接动手，不等批准</div></div></div>
+  <div class="card opt"><p class="h">乙　只本项目这样</p>
+    <div class="k">做法</div>
+    <div class="lines"><div>其他项目仍等你说「开始」再产出</div><div>其他项目只交最终稿</div></div>
+    <div class="k">选了以后会变</div>
+    <div class="lines"><div>写作标准这两条保留原文，加注本项目除外</div><div>新项目开工时，先等你说「开始」</div></div></div>
+</div>
+<p class="why"><b>理由</b>你说的「不要什么事情都确认」「最大化效率肯定不是你我串行工作」讲的是我们怎么协作，跟哪个项目无关；选乙，新项目一开始就回到串行等待。</p>
+
+<p class="q" style="margin-top:56px">推送后台的需求评审，拿原型还是设计概要？</p>
+<p class="lab">现在怎么运作：三处规则给了三个答案</p>
+<div class="cmp c3">
+  <div><b>写作标准、判例：10/14 上午</b>
+    <div class="lines"><div>评审细节需求时，逐条列出每一条需求</div></div></div>
+  <div><b>推送后台清单、阶段表、记忆：10/14 晚</b>
+    <div class="lines"><div>需求评审看设计概要</div><div>逐条需求表留给研发评审</div><div>依据你 10/14 的话：「我们现在最需要的是一个给自己人看的东西……只是没有那些冗长的细致要求和说明」</div></div></div>
+  <div><b>你 10/15 晚看过设计概要后</b>
+    <div class="lines"><div>「这个表述形式本身就不是那么好，还是原型那个文件更清晰一些。但是原型的内容问题依然很大」</div><div>之后改为以原型为主，设计概要暂停</div></div></div>
+</div>
+<p class="lab">文件现状</p>
+<div class="lines" style="font-size:14.5px;color:var(--ink-2)">
+  <div>先看这里仍写着设计概要用于需求评审、在等你看</div>
+  <div>10/16 凌晨的夜间任务仍同步改了设计概要 6 处</div>
+</div>
+<div class="fx"><b>不定的话</b><div>白天和夜里的对话会继续同时维护两份材料。</div></div>
+<div class="grid g2" style="margin-top:22px">
+  <div class="card opt rec"><span class="badge">推荐</span><p class="h">甲　以原型为主</p>
+    <div class="k">做法</div>
+    <div class="lines"><div>需求评审看原型，包括全景、各页和关键规则</div><div>设计概要停止维护，总图由原型的全景页承担</div></div>
+    <div class="k">选了以后会变</div>
+    <div class="lines"><div>先看这里、阶段表、推送后台清单和记忆统一写成「需求评审看原型」</div><div>夜间任务不再改设计概要</div></div></div>
+  <div class="card opt"><p class="h">乙　两份都交</p>
+    <div class="k">做法</div>
+    <div class="lines"><div>原型为主</div><div>设计概要作为给自己人看的总览，随原型同步改</div></div>
+    <div class="k">选了以后会变</div>
+    <div class="lines"><div>上述文件统一写成「原型为主、设计概要为辅」</div><div>每次改原型，都要同步改设计概要</div></div></div>
+</div>
+<p class="why"><b>理由</b>你 10/15 说原型更清晰；两份并行时，每次改动都要同步两处，10/16 凌晨的夜间任务为此改过设计概要 6 处。</p>
+
+<!-- 05 -->
+<div class="kick">05</div>
+<h2>其余 17 处不涉及方向，按优先顺序和现状由我来改</h2>
+<div class="bound b4">
+  <div><b>7</b><span>处说法冲突</span></div>
+  <div><b>6</b><span>处状态过时</span></div>
+  <div><b>4</b><span>处依据不足或遗漏</span></div>
+  <div><b>8</b><span>组重复，可合并</span></div>
+</div>
+
+<h3>说法冲突：按你晚说的话或上级文件统一，最先改的是没事可做时停不停</h3>
+
+<div class="issue"><p class="h">没事可做时停不停，三处说法不一致</p>
+  <div class="cmp c3">
+    <div><b>工作原则</b>没有实质工作就停下，写明在等什么。</div>
+    <div><b>项目状态记忆</b>不允许「无事可做」。</div>
+    <div><b>你 10/15</b><div class="lines"><div>先问「为什么会判定为无事可做」</div><div>后说「不再允许无事可做这条规则毫无意义……要从实际出发」</div></div></div>
+  </div>
+  <div class="fx"><b>影响</b><div>夜间任务和新对话读到哪条就照哪条做，可能再次空转，也可能去做无用功。</div></div>
+  <div class="fx fix"><b>改法</b><div class="lines"><div>统一为：检查全通过后，先拿参照走查有没有缺口；走查不出缺口才停，并写明走查了什么</div><div>删去记忆里不允许「无事可做」那句</div></div></div>
+</div>
+
+<div class="issue"><p class="h">token 要不要收紧：标准体系和你 10/15 的话相反</p>
+  <div class="cmp">
+    <div><b>标准体系</b>记着 10/14「这个星期先不用收紧token」。</div>
+    <div><b>你 10/15</b>「你需要控制token消耗了」</div>
+  </div>
+  <div class="fx"><b>影响</b><div>照标准体系做，会继续大量并行派子任务。</div></div>
+  <div class="fx fix"><b>改法</b><div>按你 10/15 的话改写标准体系这一节。</div></div>
+</div>
+
+<div class="issue"><p class="h">数据分析报告交什么形式：写作标准和汇报技能不一致</p>
+  <div class="cmp">
+    <div><b>写作标准</b>对话里给全部结论句，完整内容存成 markdown。</div>
+    <div><b>汇报技能</b>实质汇报写成 HTML 简报，数据分析也算在内。</div>
+  </div>
+  <div class="fx"><b>影响</b><div>数据分析有两套交付形式。</div></div>
+  <div class="fx fix"><b>改法</b><div>按「文档类型规则优先于通用标准」，以写作标准为准，改汇报技能。</div></div>
+</div>
+
+<div class="issue"><p class="h">拿不准的事能不能列给你：标准体系已更新，汇报技能和记忆没跟上</p>
+  <div class="cmp">
+    <div><b>标准体系：10/15</b>拿不准的可以列给你补，每条带我方判断和暂按的做法。</div>
+    <div><b>汇报技能、记忆索引：停在 10/14</b>只有三类事交给你，其余不挂给你。</div>
+  </div>
+  <div class="fx"><b>影响</b><div>汇报技能和记忆比你 10/15 的话更严，会漏掉该给你参考的事。</div></div>
+  <div class="fx fix"><b>改法</b><div>汇报技能和记忆索引补上 10/15 这句。</div></div>
+</div>
+
+<div class="issue"><p class="h">产出规划要不要等你确认：记忆说要等，工作原则和标准体系说不停工</p>
+  <div class="cmp">
+    <div><b>记忆</b>规划先给你确认，再执行或自动化。</div>
+    <div><b>工作原则、标准体系</b><div class="lines"><div>工作原则记着你 10/8「我主动来确认就行了，可以提醒我，但不要停止工作」</div><div>标准体系已改为按清单自行推进</div></div></div>
+  </div>
+  <div class="fx"><b>影响</b><div>新工作线开工时会停下来等你。</div></div>
+  <div class="fx fix"><b>改法</b><div>改记忆：规划写好后发给你看，不等你确认。</div></div>
+</div>
+
+<div class="issue"><p class="h">设计缺口能不能写「本期不做」：推送后台清单允许，工作原则和记忆不允许</p>
+  <div class="cmp">
+    <div><b>推送后台清单「后台设计经得起追问」一项</b>缺口要么补进设计，要么写明本期不做的理由。</div>
+    <div><b>工作原则、记忆</b>需求往全面写，不因成本写「本期不做」，成本放进分层标注。</div>
+  </div>
+  <div class="fx"><b>影响</b><div>判卷会推动按成本删需求。</div></div>
+  <div class="fx fix"><b>改法</b><div class="lines"><div>推送后台清单改成「补进设计，或列入需求并标成本层级」</div><div>本期范围由你定，10/16 已在等你答复</div></div></div>
+</div>
+
+<div class="issue"><p class="h">购买数据能不能出现：你 10/16 已列入采集，已定事项还写着不出现</p>
+  <div class="cmp">
+    <div><b>你 10/16</b>弹窗点击后的领取、购买列入数据采集需求。</div>
+    <div><b>已定事项、项目状态记忆</b>仍写「不出现购买」。</div>
+  </div>
+  <div class="fx"><b>影响</b><div>判卷人会把原型数据漏斗里的「点击后领取、购买」判为违规。</div></div>
+  <div class="fx fix"><b>改法</b><div class="lines"><div>已定事项补上边界：后台给运营看的数据，可以统计点击后的领取、购买</div><div>方案的目标、建成标准、验收、对照仍只看曝光、点击</div></div></div>
+</div>
+
+<h3>状态过时：都没跟上 10/15 以后的变化</h3>
+
+<div class="issue"><p class="h">项目状态记忆每次对话都会加载，内容却停在 10/15 以前</p>
+  <table class="pairs">
+    <tr><th>记忆里写的</th><th>实际情况</th></tr>
+    <tr><td>呈交版正文 19 页</td><td>正文 20 页，10/15 加了「规则组成」页</td></tr>
+    <tr><td>推送后台正在做设计概要</td><td>10/15 晚起以原型为主，设计概要暂停；10/16 本期范围在等你定</td></tr>
+    <tr><td>python 环境在某次会话的临时目录</td><td>那个环境已失效</td></tr>
+  </table>
+  <div class="fx fix"><b>改法</b><div>状态移出记忆，只留一行指路：先看这里 → 标准体系 → 清单进度。</div></div>
+</div>
+
+<div class="issue"><p class="h">标准体系还说夜间任务没建，实际已经在跑</p>
+  <table class="pairs">
+    <tr><th>标准体系「还没对齐的」里写的</th><th>实际情况</th></tr>
+    <tr><td>按清单自动取下一项的定时任务还没建</td><td>每晚 19:00–08:30 的夜间任务，10/15 起已在跑</td></tr>
+  </table>
+  <div class="fx fix"><b>改法</b><div>改成现状，写明夜间任务做什么。</div></div>
+</div>
+
+<div class="issue"><p class="h">先看这里的暂停开关和设计概要状态都过时了</p>
+  <table class="pairs">
+    <tr><th>先看这里写的</th><th>实际情况</th></tr>
+    <tr><td>「暂停.txt」是旧定时任务的开关，定时任务已于 10/12 停用</td><td>夜间任务在跑，要暂停得停用定时任务本身</td></tr>
+    <tr><td>设计概要在等你看</td><td>设计概要已暂停</td></tr>
+  </table>
+  <div class="fx fix"><b>改法</b><div>更新这两处。</div></div>
+</div>
+
+<div class="issue"><p class="h">项目交接的最新状态停在 10/14，旧节还留着已经改掉的做法</p>
+  <table class="pairs">
+    <tr><th>项目交接写的</th><th>实际情况</th></tr>
+    <tr><td>开头的「最新状态」停在 10/14</td><td>最新进度记在清单的「进度」一节</td></tr>
+    <tr><td>旧节：决策点讲利弊</td><td>10/9 起不单列利弊</td></tr>
+    <tr><td>旧节：答复按字面理解</td><td>10/13 起不照字面理解</td></tr>
+    <tr><td>旧节：没有实质工作就停下</td><td>你 10/15 追问「为什么会判定为无事可做」</td></tr>
+    <tr><td>旧节：单轮最长做 50 分钟</td><td>10/15 起要求控制上下文和 token</td></tr>
+  </table>
+  <div class="fx fix"><b>改法</b><div class="lines"><div>旧节整段标为背景</div><div>「最新状态」改为指向清单的进度</div></div></div>
+</div>
+
+<div class="issue"><p class="h">目标脑图的页数和推送后台进度都过时了</p>
+  <table class="pairs">
+    <tr><th>目标脑图写的</th><th>实际情况</th></tr>
+    <tr><td>呈交版正文 19 页</td><td>正文 20 页</td></tr>
+    <tr><td>推送后台「设计概要制作中」</td><td>以原型为主，设计概要暂停</td></tr>
+  </table>
+  <div class="fx fix"><b>改法</b><div>更新内容，标题标上日期。</div></div>
+</div>
+
+<div class="issue"><p class="h">判例库止于 10/14，10/15 的几次退回没记进去</p>
+  <table class="pairs">
+    <tr><th>工作原则要求的</th><th>实际情况</th></tr>
+    <tr><td>你退回已产出的内容时，当天新增一条判例</td><td class="lines"><div>设计概要「还有很多问题」只记在记忆里</div><div>原型「内容问题依然很大」只记在记忆里</div><div>主语「运营在」重复只记在记忆里</div><div>「无事可做」只记在记忆里</div></td></tr>
+  </table>
+  <div class="fx fix"><b>改法</b><div class="lines"><div>项目内容类的纠正进判例库，跨项目的工作方式进记忆</div><div>补上 10/15 的这几条</div></div></div>
+</div>
+<p class="note">另有两处顺序乱了，顺手重排：</p>
+<div class="note lines"><div>已定事项的编号乱序</div><div>措辞审查流程有两条前后倒置</div></div>
+
+<h3>依据不足或遗漏：三处是我补的内容比你的原话更硬，一处是你的原话漏收</h3>
+
+<div class="issue"><p class="h">主对话的几个门槛是我定的，却写成了最高优先级的绝对规则</p>
+  <div class="cmp">
+    <div><b>文件里写的</b><div class="lines"><div>主对话不看图片</div><div>补丁不超过约 30 行</div><div>子任务回报不超过 200 字</div><div>上下文用到一半就移交</div><div>记忆索引把这一条标为「最高优先级」</div></div></div>
+    <div><b>依据</b><div class="lines"><div>你 10/15 的话针对的是一条指令用掉 76% 上下文</div><div>几个门槛是我定的</div><div>「最高优先级」你只用在理解你的话这件事上</div></div></div>
+  </div>
+  <div class="fx fix"><b>改法</b><div class="lines"><div>门槛改为默认值</div><div>「最高优先级」只留给理解你的话</div></div></div>
+</div>
+
+<div class="issue"><p class="h">写作标准里有 8 处我的补充，借了你的标准的优先级</p>
+  <div class="cmp">
+    <div><b>文件里写的</b><div class="lines"><div>顺序跟随读者已知的结构</div><div>组内间距小于组间间距</div><div>选展示形式前先比较两三种</div><div>成员太多时写构成，并注明清单位置</div><div>没查实的能力不写成做不到，用数字前先核对系统机制</div><div>方案稿正文只放要判断的设计决定</div><div>正文 12pt 只适用于文档类</div><div>已写出构成、再注明清单位置的，不算指路句</div></div></div>
+    <div><b>依据</b>每处都标了「主对话理解」，但写在你的标准里，就拿到了你的标准的优先级。</div>
+  </div>
+  <div class="fx fix"><b>改法</b><div class="lines"><div>保留标注</div><div>判卷时这 8 处按我方默认用</div><div>你不同意的，告诉我删</div></div></div>
+</div>
+
+<div class="issue"><p class="h">工作原则「你定的原则」里夹了一条我的理解</p>
+  <div class="cmp">
+    <div><b>文件里写的</b>用于圈人的属性，例如是否买过首储礼包、回流身份，不受活跃付费的限制。</div>
+    <div><b>依据</b><div class="lines"><div>这部分只收你的原话</div><div>已定事项的「不管」栏已有同样内容</div></div></div>
+  </div>
+  <div class="fx fix"><b>改法</b><div>从工作原则移出，只留已定事项一处。</div></div>
+</div>
+
+<div class="issue"><p class="h">你 9/29 定的「目标分三层」没进工作原则</p>
+  <div class="cmp">
+    <div><b>你 9/29 说的</b><div class="lines"><div>近：本期要交的东西</div><div>中：主管这一期的交付</div><div>远：平台业绩</div><div>冲突时按近、中、远的顺序判断</div><div>起因是你说「只盯最远的目标、不管近的目标就容易走歪」</div></div></div>
+    <div><b>现在记在哪</b><div class="lines"><div>只记在项目交接的旧节里</div><div>没有被推翻的记录</div><div>也没进现行的工作原则</div></div></div>
+  </div>
+  <div class="fx fix"><b>改法</b><div class="lines"><div>收回工作原则</div><div>你认为已不适用的话，告诉我删</div></div></div>
+</div>
+
+<h3>重复：同一条在记忆和规则文件里各写一遍，记忆可从 43 条并成约 20 条</h3>
+<h4>理解与沟通：「交给你什么」只留标准体系一处</h4>
+<table>
+<tr><th style="width:15%">主题</th><th style="width:52%">现在分散在</th><th>改法</th></tr>
+<tr><td>交给你什么</td><td class="r lines"><div>记忆 2 条：未知不阻塞、给主管的内容</div><div>标准体系、工作原则、汇报技能</div></td><td class="r">并成一条，指向标准体系讲哪些事交给你的那一节</td></tr>
+</table>
+<h4>推进方式：11 条记忆可并成 4 条</h4>
+<table>
+<tr><th style="width:15%">主题</th><th style="width:52%">现在分散在</th><th>改法</th></tr>
+<tr><td>阶段推进</td><td class="r lines"><div>记忆 4 条：不跳阶段、规划先行、小块验证、初稿先给</div><div>工作原则、标准体系</div></td><td class="r">并成一条</td></tr>
+<tr><td>检查够不够好</td><td class="r">记忆 2 条：先查目标与理由、查该有的有没有</td><td class="r lines"><div>并成一条</div><div>删去造句模板「我们认为改动会让人群的指标变化」，它容易引出本项目禁用的效果指标</div></td></tr>
+<tr><td>上下文与 token</td><td class="r">记忆 3 条：主对话只调度、控制 token、暂停要停用定时任务</td><td class="r">并成一条</td></tr>
+<tr><td>渲染与改文件</td><td class="r">记忆 2 条：直接改不复制、固定文件夹渲染</td><td class="r">并成一条</td></tr>
+</table>
+<h4>写作与版面：写法以写作标准为准，其他文件不再重写</h4>
+<table>
+<tr><th style="width:15%">主题</th><th style="width:52%">现在分散在</th><th>改法</th></tr>
+<tr><td>写作与版面</td><td class="r lines"><div>记忆 14 条，全文都已写进写作标准或观感标准</div><div>14 条是：写作标准指路、结构清晰与边界、现状与做法成对、先写成员、标题、措辞审查、主语、措辞专业、阅读体验、排版、版面关系、展示形式、密度与观感、无元信息</div></td><td class="r">并成一条「写作与版面以写作标准为准」，下面每条一行要点</td></tr>
+<tr><td>多处共有的写法</td><td class="r lines"><div>结论先行、措辞专业、不设字数上限、不考虑手机、日志最新在上</div><div>这几条在工作原则、写作标准、汇报技能各写一遍</div></td><td class="r">按「一件事只在一处规定」：工作原则只留你的原话和出处，写法以写作标准为准</td></tr>
+</table>
+<h4>汇报与交付：3 条记忆并进汇报技能</h4>
+<table>
+<tr><th style="width:15%">主题</th><th style="width:52%">现在分散在</th><th>改法</th></tr>
+<tr><td>汇报写法</td><td class="r lines"><div>记忆 3 条：汇报给内容、汇报不是文章、决策前先给关键信息</div><div>汇报技能「要你定的事」部分已写背景和选项，没写先给现状和证据</div></td><td class="r lines"><div>并成一条，指向汇报技能</div><div>汇报技能「要你定的事」补上：先给现状、证据和每个选项会改变什么</div></td></tr>
+</table>
+
+<!-- 出处 -->
+<div class="kick" style="margin-top:80px">附</div>
+<h2>每条规则的出处与原文</h2>
+<details>
+<summary>81 条规则各出自哪份文件、哪天</summary>
+<table>
+<tr><th style="width:44%">规则</th><th style="width:40%">出自</th><th>日期</th></tr>
+<tr class="grp"><td colspan="3">理解与沟通：按原意理解、按原文引用</td></tr>
+<tr><td>按你针对的情况理解</td><td class="r">工作原则、记忆、判例</td><td class="m">10/13</td></tr>
+<tr><td>回复先复述理解</td><td class="r">工作原则、记忆</td><td class="m">10/14</td></tr>
+<tr><td>你的话作参考，先有自己的判断</td><td class="r">工作原则</td><td class="m">10/15</td></tr>
+<tr><td>只把你确认过的写成原则</td><td class="r">记忆、写作标准、工作原则</td><td class="m">10/8–10/13</td></tr>
+<tr><td>引用前先核对原始记录</td><td class="r">记忆</td><td class="m">10/9</td></tr>
+<tr class="grp"><td colspan="3">理解与沟通：不找你、不停下</td></tr>
+<tr><td>不事事找你确认</td><td class="r">工作原则、判例</td><td class="m">10/13</td></tr>
+<tr><td>能自行解决的问题不挂给你</td><td class="r">标准体系、记忆</td><td class="m">10/14</td></tr>
+<tr><td>拿不准的列「待你补」</td><td class="r">标准体系、记忆</td><td class="m">10/15</td></tr>
+<tr><td>未知的事不阻塞推进</td><td class="r">工作原则、写作标准、记忆</td><td class="m">10/8</td></tr>
+<tr><td>方向定了按能做来写</td><td class="r">记忆、推送后台清单</td><td class="m">10/13</td></tr>
+<tr><td>提问只问一轮</td><td class="r">记忆、推送后台需求说明</td><td class="m">10/12</td></tr>
+<tr><td>提问前先查以前答过没有</td><td class="r">记忆</td><td class="m">10/12</td></tr>
+<tr class="grp"><td colspan="3">推进方式：阶段</td></tr>
+<tr><td>核心先行，不跳阶段</td><td class="r">工作原则、写作标准、记忆、判例</td><td class="m">10/8、10/13</td></tr>
+<tr><td>先做阶段产出规划</td><td class="r">工作原则、写作标准、记忆</td><td class="m">10/8</td></tr>
+<tr><td>先写清单再动手</td><td class="r">标准体系</td><td class="m">10/14</td></tr>
+<tr><td>整体推进优先</td><td class="r">工作原则</td><td class="m">10/8</td></tr>
+<tr><td>不靠逐条指令串行推进</td><td class="r">工作原则</td><td class="m">10/8、10/14</td></tr>
+<tr><td>先做最小一块验证再铺开</td><td class="r">记忆</td><td class="m">10/10</td></tr>
+<tr><td>有初稿先给你看</td><td class="r">记忆、推送后台清单</td><td class="m">10/14、10/15</td></tr>
+<tr class="grp"><td colspan="3">推进方式：评审与检查</td></tr>
+<tr><td>评审看作品本身</td><td class="r">工作原则、标准体系</td><td class="m">10/14</td></tr>
+<tr><td>检查全通过不等于做完</td><td class="r">记忆</td><td class="m">10/8、10/15</td></tr>
+<tr><td>判卷方法参考顶尖 AI 公司</td><td class="r">记忆</td><td class="m">10/16</td></tr>
+<tr class="grp"><td colspan="3">推进方式：分工与资源</td></tr>
+<tr><td>主对话只调度</td><td class="r">标准体系、记忆</td><td class="m">10/15</td></tr>
+<tr><td>控制 token</td><td class="r">记忆</td><td class="m">10/15</td></tr>
+<tr><td>设计反复被退回时交给新子任务</td><td class="r">记忆</td><td class="m">10/10</td></tr>
+<tr><td>多个对话并行</td><td class="r">标准体系、记忆</td><td class="m">10/15</td></tr>
+<tr><td>改文件和渲染不新开位置</td><td class="r">记忆</td><td class="m">10/8–10/12</td></tr>
+<tr class="grp"><td colspan="3">写作：结构</td></tr>
+<tr><td>结构清晰排第一</td><td class="r">工作原则、写作标准、记忆</td><td class="m">10/8</td></tr>
+<tr><td>先交代边界</td><td class="r">写作标准、记忆</td><td class="m">10/14</td></tr>
+<tr><td>现状和做法紧挨着放</td><td class="r">写作标准、已定事项、记忆</td><td class="m">10/12</td></tr>
+<tr><td>当场写出成员</td><td class="r">写作标准、记忆</td><td class="m">10/13</td></tr>
+<tr><td>先给改完以后的全貌</td><td class="r">写作标准、判例</td><td class="m">9/30</td></tr>
+<tr><td>篇幅按用途定</td><td class="r">写作标准、判例</td><td class="m">10/10、10/12</td></tr>
+<tr><td>顺序要让读者看得出</td><td class="r">写作标准</td><td class="m">10/14</td></tr>
+<tr class="grp"><td colspan="3">写作：标题与措辞</td></tr>
+<tr><td>标题写结论</td><td class="r">写作标准、记忆</td><td class="m">10/13</td></tr>
+<tr><td>措辞专业、简洁、直接</td><td class="r">工作原则、写作标准、记忆</td><td class="m">10/8</td></tr>
+<tr><td>不造概念，不用代号和行话</td><td class="r">写作标准、已定事项</td><td class="m">10/9、10/12</td></tr>
+<tr><td>经得起无上下文读者复述</td><td class="r">写作标准、措辞审查流程、记忆</td><td class="m">10/12–10/13</td></tr>
+<tr><td>不写元信息</td><td class="r">写作标准、记忆</td><td class="m">10/9、10/12</td></tr>
+<tr><td>主语不逐句重复</td><td class="r">措辞审查流程、记忆</td><td class="m">10/15</td></tr>
+<tr><td>不用 AI 腔</td><td class="r">写作标准中你采纳的整理条</td><td class="m">10/10</td></tr>
+<tr class="grp"><td colspan="3">写作：论证与内容</td></tr>
+<tr><td>写出推得出它的理由</td><td class="r">写作标准、工作原则</td><td class="m">10/8</td></tr>
+<tr><td>数字一眼看懂</td><td class="r">写作标准、判例</td><td class="m">10/10</td></tr>
+<tr><td>事实只写已证实的</td><td class="r">写作标准、判例</td><td class="m">10/9–10/10</td></tr>
+<tr><td>行业口径先查资料和数据</td><td class="r">写作标准、记忆、判例</td><td class="m">10/10</td></tr>
+<tr><td>需求按理想状态写全</td><td class="r">工作原则、写作标准、记忆</td><td class="m">10/8</td></tr>
+<tr><td>方案写到可以直接拍板</td><td class="r">写作标准、判例</td><td class="m">10/9–10/10</td></tr>
+<tr><td>参考只借展示方式</td><td class="r">工作原则、已定事项</td><td class="m">10/9</td></tr>
+<tr class="grp"><td colspan="3">写作：观感</td></tr>
+<tr><td>观感是过关条件</td><td class="r">写作标准、记忆</td><td class="m">10/9–10/10</td></tr>
+<tr><td>阅读体验优先，辅助标注单开一节</td><td class="r">写作标准、记忆</td><td class="m">10/12</td></tr>
+<tr><td>观感标准自己带，密度逐级递增</td><td class="r">写作标准、记忆</td><td class="m">10/12</td></tr>
+<tr><td>观感标准的数字是默认值</td><td class="r">观感标准、记忆</td><td class="m">10/12</td></tr>
+<tr class="grp"><td colspan="3">写作：排法</td></tr>
+<tr><td>排法和内容的关系一致</td><td class="r">写作标准、记忆</td><td class="m">10/13</td></tr>
+<tr><td>先看结构再选展示形式</td><td class="r">写作标准、记忆</td><td class="m">10/10</td></tr>
+<tr><td>基础排版</td><td class="r">写作标准、观感标准、记忆</td><td class="m">10/12</td></tr>
+<tr><td>后台界面静态展示</td><td class="r">记忆、推送后台需求说明</td><td class="m">9/21、10/12、10/13</td></tr>
+<tr class="grp"><td colspan="3">汇报与交付：汇报</td></tr>
+<tr><td>汇报给内容本身</td><td class="r">汇报技能、写作标准、记忆</td><td class="m">9/8、10/8</td></tr>
+<tr><td>汇报不是文章</td><td class="r">汇报技能、记忆</td><td class="m">10/10</td></tr>
+<tr><td>决策前先给关键信息</td><td class="r">记忆</td><td class="m">10/16</td></tr>
+<tr><td>要你定的事附推荐</td><td class="r">汇报技能、写作标准</td><td class="m">10/9</td></tr>
+<tr><td>讲进度讲内容，不报轮数</td><td class="r">工作原则、汇报技能</td><td class="m">9/28、9/29</td></tr>
+<tr><td>按内容选载体</td><td class="r">写作标准、汇报技能</td><td class="m">10/8</td></tr>
+<tr class="grp"><td colspan="3">汇报与交付：交付</td></tr>
+<tr><td>最多写到「待你验收」</td><td class="r">已定事项、汇报技能、写作标准</td><td class="m">9/30</td></tr>
+<tr><td>呈交版只写方案本身</td><td class="r">已定事项、判例</td><td class="m">10/10、10/14</td></tr>
+<tr><td>给主管的内容减少主管工作量</td><td class="r">工作原则、写作标准、记忆</td><td class="m">10/9</td></tr>
+<tr><td>呈交版做措辞审查</td><td class="r">措辞审查流程、写作标准、记忆</td><td class="m">10/12</td></tr>
+<tr><td>审版面，不准确不交</td><td class="r">写作标准、判例</td><td class="m">10/14</td></tr>
+<tr class="grp"><td colspan="3">汇报与交付：记录</td></tr>
+<tr><td>日志最新的放最上面</td><td class="r">工作原则、写作标准、记忆</td><td class="m">10/8</td></tr>
+<tr><td>关键信息记进文件</td><td class="r">写作标准</td><td class="m">9 月</td></tr>
+<tr class="grp"><td colspan="3">项目业务口径：目标与写法</td></tr>
+<tr><td>方案建能力</td><td class="r">工作原则、判例</td><td class="m">10/8</td></tr>
+<tr><td>活跃、付费不作目标</td><td class="r">已定事项、工作原则</td><td class="m">10/9–10/10</td></tr>
+<tr><td>不设「不经研发」条件</td><td class="r">已定事项</td><td class="m">10/9</td></tr>
+<tr><td>不写排期</td><td class="r">已定事项</td><td class="m">10/10</td></tr>
+<tr><td>短中长期是先后</td><td class="r">已定事项</td><td class="m">10/9</td></tr>
+<tr><td>不使用玩家个人信息</td><td class="r">工作原则</td><td class="m">9/28</td></tr>
+<tr class="grp"><td colspan="3">项目业务口径：已定内容</td></tr>
+<tr><td>五类人群都能圈出</td><td class="r">已定事项</td><td class="m">10/9–10/10</td></tr>
+<tr><td>推送分两层</td><td class="r">已定事项</td><td class="m">10/13</td></tr>
+<tr><td>17 项改动的构成</td><td class="r">已定事项</td><td class="m">10/10–10/12</td></tr>
+<tr><td>呈交版的结构</td><td class="r">已定事项</td><td class="m">10/12</td></tr>
+<tr><td>推送后台已定事项</td><td class="r">已定事项、推送后台需求说明</td><td class="m">10/12–10/14</td></tr>
+<tr><td>已核实的事实不再写成问题</td><td class="r">已定事项</td><td class="m">9/28–10/10</td></tr>
+</table>
+</details>
+
+<div class="links">
+<div><b>项目规则</b><a href="../先看这里.md">先看这里</a> · <a href="../规则与交接/标准体系.md">标准体系</a> · <a href="../规则与交接/已定事项.md">已定事项</a> · <a href="../规则与交接/工作原则.md">工作原则</a> · <a href="../归档/规则_旧/写作标准_合并版.html">写作标准</a> · <a href="../规则与交接/措辞审查流程.md">措辞审查流程</a> · <a href="../规则与交接/演示稿观感标准.md">演示稿观感标准</a> · <a href="../规则与交接/版面设计指导_外部技能摘录.md">版面设计摘录</a></div>
+<div><b>工作线</b><a href="../规则与交接/标准_弹窗标签推送方案.md">弹窗方案清单</a> · <a href="../规则与交接/标准_推送系统后台集成需求.md">推送后台清单</a> · <a href="../规则与交接/推送系统后台集成需求.md">推送后台需求说明</a> · <a href="../归档/规则_旧/目标脑图.md">目标脑图</a> · <a href="../归档/规则_旧/项目交接_对话要点.md">项目交接</a></div>
+<div><b>其他</b><a href="../规则与交接/判例库/索引.md">判例库索引</a> · <a href="../归档/规则_旧/阶段产出格式规范.md">已停用的阶段产出格式规范</a> · <a href="2026-10-14_规则理顺.html">10/14 规则理顺</a> · <a href="file:///Users/decheng.huang/.claude/projects/-Users-decheng-huang-claude---------/memory/MEMORY.md">记忆索引</a> · <a href="file:///Users/decheng.huang/.claude/skills/report-format/SKILL.md">汇报格式技能</a></div>
+<div><b>任务说明</b><a href="../归档/规则_旧/推送后台_原型任务说明.md">原型</a> · <a href="../归档/规则_旧/推送后台_设计概要任务说明.md">设计概要</a> · <a href="../归档/规则_旧/推送后台_需求评审稿任务说明.md">需求评审稿</a></div>
+<div><b>汇总范围</b></div>
+<div class="lines"><div>项目业务口径只列主干，已定事项全文共 24 条</div><div>三份任务说明属具体任务，本次未展开</div><div>追问类的两个技能不含对你的规则，未列入</div></div>
+</div>
+</div></body></html>

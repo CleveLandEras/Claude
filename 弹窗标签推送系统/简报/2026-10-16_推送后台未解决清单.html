@@ -1,0 +1,118 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>未解决清单</title>
+<!--
+  Dk 汇报简报模板（2026-10-10 改版：汇报不是文章）。复制整页，只替换 body 里的内容。
+  组件：.kpi 数字卡（一般不超过 3 张；没有能说明结论的数字就不用）· .phase 时间线卡（red 否决 / blue 当前 / 默认灰）· .keep 标签清单 · .cause 原因卡 · table 短语表（.same 行标红）· .opt 选项卡（.rec 推荐）· .steps 编号短条目。组件按内容选，不必都用。
+  规则：不写成段落，结构用版面表达；条目尽量短（一两行为宜，不是上限）；表格格子写短语。
+-->
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.35;margin:0 0 8px}
+.sub{font-size:16px;color:var(--ink-2);margin:0 0 28px}
+h2{font-family:var(--serif);font-size:20px;margin:48px 0 16px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px}
+.kpi .n{font-size:38px;font-weight:700;line-height:1.1;color:var(--ink)}
+.kpi .n small{font-size:16px;font-weight:600;margin-left:4px;color:var(--ink-2)}
+.kpi .t{font-size:14.5px;color:var(--ink-2);margin-top:8px}
+.kpi.red .n{color:var(--red)}
+.phase{border-top:4px solid var(--gray)}
+.phase.red{border-top-color:var(--red)} .phase.blue{border-top-color:var(--blue)}
+.phase .d{font-size:13px;color:var(--muted);font-weight:600}
+.phase .h{font-size:16.5px;font-weight:700;margin:4px 0 10px}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:12px}
+.tag.red{background:var(--red-soft);color:var(--red)} .tag.blue{background:var(--blue-soft);color:var(--blue)} .tag.gray{background:var(--gray-soft);color:var(--gray)} .tag.green{background:var(--green-soft);color:var(--green)}
+.kv{font-size:14px;color:var(--ink-2);margin:6px 0}
+.kv b{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:2px}
+.keep{display:flex;flex-wrap:wrap;gap:10px}
+.keep span{background:var(--green-soft);color:var(--green);font-size:14.5px;font-weight:600;padding:8px 14px;border-radius:4px}
+.cause .h{font-size:16.5px;font-weight:700;margin:0 0 6px}
+.cause .l{font-size:14.5px;color:var(--ink-2);margin:0 0 12px}
+.cause .e{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14.5px}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--line)}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--ground)}
+tr:last-child td{border-bottom:none}
+td.w{color:var(--ink)} td.r{color:var(--ink-2)} td.d{color:var(--muted);width:80px}
+tr.same td.w{color:var(--red);font-weight:600}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);margin-right:8px;vertical-align:1px}
+.legend{font-size:13px;color:var(--muted);margin:10px 0 0}
+.q{font-size:17px;font-weight:700;margin:0 0 14px}
+.opt{position:relative}
+.opt .h{font-size:16px;font-weight:700;margin:0 0 6px}
+.opt .l{font-size:14.5px;color:var(--ink-2)}
+.opt.rec{border:2px solid var(--blue)}
+.opt .badge{position:absolute;top:-11px;right:16px;background:var(--blue);color:#fff;font-size:12px;font-weight:700;padding:2px 10px;border-radius:3px}
+.why{font-size:14.5px;color:var(--ink-2);margin:14px 0 0}
+.why b{color:var(--ink)}
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.steps div{counter-increment:s;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 18px;font-size:14.5px;color:var(--ink-2)}
+.steps div::before{content:counter(s);display:block;font-size:22px;font-weight:700;color:var(--accent);margin-bottom:4px}
+.links{font-size:13px;color:var(--muted);margin-top:40px} a{color:var(--accent)}
+td.s{white-space:nowrap;color:var(--muted);width:56px}
+</style></head><body><div class="wrap">
+
+<p class="meta">推送统一后台原型与需求文档 · 2026-10-16 · 子任务按当前版本（需求文档 v0.9.27）逐条核对，只读未改；我抽看了各组第一条</p>
+<h1>还有 48 项没解决，39 项是小改；最要紧的是测试发送、查不出没收到的原因、频率上限没有优先级</h1>
+<p class="sub">10/15 列出的 77 条问题里，23 条已被后来的改动解决，其余合并成 48 项，分 8 组列在下面。要你定一件：游戏外推送要不要统计发送后的登录和付费。</p>
+
+<div class="grid g3">
+  <div class="card kpi"><div class="n">48<small>项</small></div><div class="t">未解决或部分解决（77 条旧问题合并后）</div></div>
+  <div class="card kpi"><div class="n">39<small>／48</small></div><div class="t">小改：改一处文字、数字或一条规则；其余 9 项改一个区块，不用加页</div></div>
+  <div class="card kpi red"><div class="n">1<small>件</small></div><div class="t">要你定：游戏外推送的效果统计到哪一步</div></div>
+</div>
+
+<h2><span class="no">01</span>最要紧的 6 项：评审会被直接问到，运营实际用时会出错</h2>
+<div class="grid g3">
+  <div class="card cause"><p class="h">测试发送没有约束</p><p class="l">可输入任意会员编号，不受上限与勿扰限制，也不记操作纪录</p><p class="e">改法：只能从测试账号白名单选，每次测试记入操作纪录</p></div>
+  <div class="card cause"><p class="h">查不出没收到的原因</p><p class="l">游戏外推送里，不在发送对象、被排除群组排掉、按行为条件不成立的都不留记录</p><p class="e">改法：发送时给这几种情况记原因，玩家查询能直接显示</p></div>
+  <div class="card cause"><p class="h">频率上限先到先得</p><p class="l">营销推送之间没有优先级，早上的日常提醒占满名额，晚上的重要活动发不出</p><p class="e">改法：分「重要／普通」，重要的可以占用预留名额</p></div>
+  <div class="card cause"><p class="h">同一活动多渠道重复发</p><p class="l">推播、短信、Facebook、LINE 各建一条，补位要手选，复制时不会自动带上</p><p class="e">改法：复制到其他推送方式时自动带上补位设置</p></div>
+  <div class="card cause"><p class="h">排队中的发送用哪个版本没写</p><p class="l">勿扰顺延、间隔期满的提醒、自动重试中的，改文案后可能仍按旧版发出</p><p class="e">改法：排队中的发送一律按发送时的最新版本</p></div>
+  <div class="card cause"><p class="h">数字三处对不上</p><p class="l">页 2 状态计数合计 56，底部写共 28 条，附录写共 26 条</p><p class="e">改法：三处统一，示例行数与每页条数一致</p></div>
+</div>
+<h2><span class="no">02</span>测试与防错：6 项</h2>
+<table><tr><th>问题</th><th>影响</th><th>建议改法</th><th>改动</th></tr><tr><td class="w">测试发送可输入任意会员编号（合计最多 10 个），不受上限与勿扰限制，且不记操作纪录。例：凌晨 3 点向任一真实玩家发任意内容，事后查不到是谁</td><td class="r">审计与安全评审必问；输错编号会把测试文案发给真实玩家</td><td class="r">会员编号只能从「测试账号白名单」选择，白名单单独维护；每次测试发送记入操作纪录（操作人、账号、内容）。涉及页 3、6、7、10 与需求 4.1.5、5.9、4.1.11</td><td class="s">小</td></tr><tr><td class="w">Facebook 可触达仍含「超出 24 小时但有消息标签」的人，而消息标签不能含促销。示例可触达 2,580 人（33%）偏高；定时到点时窗口已变</td><td class="r">预计发出与实际差距大，评审会追问口径</td><td class="r">确认块注明「可触达按发送时刻计算，预计值可能大幅下降」；标准消息下，窗口外的人单列为不可发</td><td class="s">小</td></tr><tr><td class="w">重复触发检查只比较「同一推送方式＋同一触发行为」。例：只限回流与只限新增的两条升级提醒（正常拆分）被警告；推播与短信用同一触发，玩家同一刻收两条却不提示</td><td class="r">误报让提示失去作用，漏报造成重复打扰</td><td class="r">检查时把只限群组的重叠一起算；跨推送方式同触发也提示</td><td class="s">小</td></tr><tr><td class="w">待处理里「全部被当场拒绝」的发送失败只有「查看原因」「标为已处理」，不能直接复制修改后重发（例：内容格式错误）</td><td class="r">要改一下马上重发，只能从头重填</td><td class="r">该行加「复制」，复制时带上原因提示（列表页已有复制）</td><td class="s">小</td></tr><tr><td class="w">页 2 暂停、停止确认框没有原因输入框，而操作纪录示例有「暂停：礼包准入规则调整」</td><td class="r">按界面实现则记不到原因</td><td class="r">两个确认框画出「原因（选填）」</td><td class="s">小</td></tr><tr><td class="w">文案变量的字数按示例值计算，不按变量最大长度；原型未画替代文字输入框。例：昵称很长时标题超过 30 字被截断</td><td class="r">带变量的推送实际内容可能超长</td><td class="r">字数按变量最大长度校验；画出替代文字输入框</td><td class="s">小</td></tr></table>
+<h2><span class="no">03</span>玩家查询与客诉答复：4 项</h2>
+<table><tr><th>问题</th><th>影响</th><th>建议改法</th><th>改动</th></tr><tr><td class="w">游戏外推送的不在受众、被排除群组排掉、按行为条件不成立仍不留记录。例：「为什么没收到 ID 42」，该玩家被 VIP 名单排除，查询只显示「不在本次发送对象内，或不可触达」</td><td class="r">客服最常见问题答不出原因；名单每 25 分钟刷新，事后看当前群组也对不上</td><td class="r">发送时对被排除的人记「被哪个排除群组排除／不在群组」的原因码（可只记抽样或按需计算）；按推送查的空状态给出具体原因。附录对应用例同步改</td><td class="s">中</td></tr><tr><td class="w">单人查询的收到记录筛选把「已发出：该渠道不回传／无回执」算入「已收到」</td><td class="r">客服可能据此答复「已送达」，高估收到</td><td class="r">与批量查询一致，单列「已发出·无法确认到达」，不并入已收到</td><td class="s">小</td></tr><tr><td class="w">玩家信息的「标签名称」「标签状态」（现有字段）未定义，新增「所属群组」后易混淆</td><td class="r">客服分不清玩家的标签与所属群组</td><td class="r">4.2.3、5.16 写明两项含义</td><td class="s">小</td></tr><tr><td class="w">示例玩家 180820055306761 属「近 14 天登录 1 天」组，记录却显示 10/11、10/12 两天都在线</td><td class="r">页面本用来演示「按所属群组判断是否在发送对象内」，示例自相矛盾</td><td class="r">示例改为「近 14 天登录 2–3 天」组，或删 10/11 的记录</td><td class="s">小</td></tr></table>
+<h2><span class="no">04</span>频率上限、勿扰与发送优先级：7 项</h2>
+<table><tr><th>问题</th><th>影响</th><th>建议改法</th><th>改动</th></tr><tr><td class="w">营销推送之间仍按发送先后占用名额，无优先级。例：玩家 09:30 收到按行为提醒、12:30 收到任务提醒，15:00 的开奖提醒被拦；确认块只给重叠人数，不列占满名额的是哪几条</td><td class="r">早上的日常提醒占满名额，晚上的重要活动发不出；只能靠「本条不受频率上限」，用多了上限失效</td><td class="r">给营销推送加「重要／普通」，重要的可占用普通的名额或预留名额；确认块列出占满名额的推送。若本期不做，在 3.5 明确写入后续</td><td class="s">中</td></tr><tr><td class="w">发送对象选「名单」时（例：中奖补偿名单）仍默认排除 VIP，只在预计人数下小字写「已排除 VIP N 人」</td><td class="r">最重要的玩家收不到补偿通知，发送前不易察觉</td><td class="r">名单发送时 VIP 默认不排除，或确认块用黄字写「名单中有 N 人被 VIP 名单排除」并带「包含 VIP」按钮</td><td class="s">小</td></tr><tr><td class="w">定时快显只发到点那一刻在线的玩家，之后上线不显示；快显与大厅弹窗同时出现的先后未写。例：19:56 上线的玩家看不到 20:00 BOSS 战横幅</td><td class="r">预计显示次数与实际曝光偏差大</td><td class="r">定时快显改为「显示时段」，时段内上线的玩家也显示；写明快显与弹窗同时触发的顺序。若保持现状，在表单旁写明限制</td><td class="s">中</td></tr><tr><td class="w">不能只突破勿扰：须先勾「本条不受频率上限」，再勾子项「同时不受勿扰」</td><td class="r">23:30 的维护公告只需突破勿扰，却连上限一起突破</td><td class="r">「不受勿扰」改为独立勾选，同样要求填原因</td><td class="s">小</td></tr><tr><td class="w">勿扰顺延的人是否从「预计发出」扣除，4.1.1 逐步减少链仍列「勿扰时段顺延（或放弃）」一步；页 3 已写顺延照常发出</td><td class="r">研发可能把顺延的人扣掉，与页面不符</td><td class="r">4.1.1 写明：顺延不扣、放弃扣；与间隔未到的写法一致</td><td class="s">小</td></tr><tr><td class="w">勿扰时段内确认的立即推送，顺延期间一直显示「发送中」</td><td class="r">容易被当成卡住</td><td class="r">状态写为「已排程（勿扰顺延至 08:00）」并允许停止</td><td class="s">小</td></tr><tr><td class="w">快显示例矛盾：ID 32 设为「每次最多 1 次、间隔 24 小时」，页 10、11、12a 却显示每天拦下约 210 人次（近 7 天 1,480）</td><td class="r">评审会问上限到底怎么算</td><td class="r">示例改为有多条快显同时运行，或把拦下改为 0，或缩短 ID 32 的间隔</td><td class="s">小</td></tr></table>
+<h2><span class="no">05</span>跨推送方式与迁移：3 项</h2>
+<table><tr><th>问题</th><th>影响</th><th>建议改法</th><th>改动</th></tr><tr><td class="w">同一活动在多渠道同时发，补位要手选「排除前序推送」，复制到其他推送方式时不自动带；同档期去重与跨渠道合计上限列为后续，合计上限默认关。例：同一内容 20:00 在推播、短信、Facebook、LINE 各发一条，短信按则计费，示例 13,380 则</td><td class="r">同一玩家可能收到多条重复内容，短信费用偏高</td><td class="r">复制到其他推送方式时，默认在后发的几条带上「排除前序已受理」；至少在确认块提示「同档期另有 N 条推送发给同一批人」</td><td class="s">中</td></tr><tr><td class="w">礼包提醒（ID 31）被暂停或结束后，只在推荐礼包设定页提示，总览待处理与告警没有对应类型，「按行为异常」只查运行中</td><td class="r">与付费直接相关的提醒停发而无人知道</td><td class="r">待处理加「迁移提醒当前不发送」一类，进入条件为关联推播非运行中且开关为统一后台</td><td class="s">小</td></tr><tr><td class="w">总览无「未来 24 小时待发」清单；页 2 只能按 ID 倒序；总览「今日各推送方式」把当前状态数与今日数据同表</td><td class="r">发送前核对「今晚 20:00 发什么」要翻多页；表名写今日却含非今日数</td><td class="r">总览加待发清单（时间、名称、人数）；列表加按发送时间排序；状态列改名「当前」</td><td class="s">中</td></tr></table>
+<h2><span class="no">06</span>数据与指标：5 项</h2>
+<table><tr><th>问题</th><th>影响</th><th>建议改法</th><th>改动</th></tr><tr><td class="w">游戏外推送只算到点击，发送后登录只有短信，付费、活跃、回流明确不作指标。例：召回推播（ID 36）、储值提醒的效果看不到</td><td class="r">评审问「召回效果怎么看」时只能答点击率</td><td class="r">发送后登录扩展到推播、Facebook、LINE；储值类推送加「发送后付费人数、金额」，与弹窗点击后领取、购买同口径（建议 24 小时）。需数据平台配合</td><td class="s">中</td></tr><tr><td class="w">推播 Android 的到达依赖客户端回执，App 未运行时系统托盘通知不触发 App 代码，可能做不到；文档只写「沿用现有上报方式」</td><td class="r">到达率、曝光可能长期缺数，研发评审会指出</td><td class="r">注明「需研发确认实现方式」，如改用 data message 由 App 弹通知；确认前到达率标「待确认」</td><td class="s">小（先确认；若需改发送方式则为大）</td></tr><tr><td class="w">导出含会员编号的名单：只读角色仍可导出；页 12、13 的名单与逐人明细导出不记操作纪录</td><td class="r">名单外泄时查不到是谁导出的，合规评审会问</td><td class="r">导出一律记操作纪录；只读角色只能导出汇总，不能导出逐人名单</td><td class="s">小</td></tr><tr><td class="w">页 12「拦下与未送达原因」第一行把无联系方式、已退订、已封锁、平台限制合并，与页 6、7「分别记录」不符</td><td class="r">短信退订数、LINE 封锁数是渠道健康的关键指标，该表看不到趋势（页 12c 有）</td><td class="r">拆成四行，或在该行加链接指向页 12c</td><td class="s">小</td></tr><tr><td class="w">LINE 写法不一致：概览表仍「无回执 247」，游戏外推送数据表为「按日汇总」；推播 Android 行差 2,610 条未标无回执；4.1.8「无回执」定义只举短信</td><td class="r">同一数字两处写法不同，读者无法对账</td><td class="r">概览表 LINE 改「按日汇总」；Android 行补标无回执；4.1.8 定义补 LINE</td><td class="s">小</td></tr></table>
+<h2><span class="no">07</span>编辑、状态与重试：7 项</h2>
+<table><tr><th>问题</th><th>影响</th><th>建议改法</th><th>改动</th></tr><tr><td class="w">已排队的发送（勿扰顺延到 08:00 的、间隔期满的第 N 次提醒、自动重试中的）用哪个版本未写。例：改文案是为了修正错误，排队那批若仍按旧版发出，错的内容还会发出去</td><td class="r">改错文案后仍有一批错误内容继续发出</td><td class="r">规则定为「排队中的发送一律用发送时的最新版本」（或保存时让选择），写入 4.1.3.3 与页 5 提示条</td><td class="s">小</td></tr><tr><td class="w">编辑运行中、已排程推送无并发保护：两人同时编辑后保存的会覆盖先保存的；编辑中被他人停止的未写；页 2 列表无最后修改人与时间</td><td class="r">先保存者的改动被无声冲掉，多人值班时易出错</td><td class="r">保存时校验版本，被他人改过则提示并显示差异；列表加「最后修改」列；编辑中状态变化时提示</td><td class="s">中</td></tr><tr><td class="w">定时手动重试不检查内容时效，也不能改内容。例：「限时挑战开启」14:00 的推送，第二天 08:00 才重发，内容已过期</td><td class="r">重发过期内容，玩家体验差</td><td class="r">重试确认框写「原定 14:00，现在重发将在 X 时发出」，并允许先复制、改内容再发</td><td class="s">小</td></tr><tr><td class="w">「复制并改受众」沿用已过期的发送时间，按钮只提「改受众」</td><td class="r">改完受众点确认被时间校验拦住</td><td class="r">复制时清空发送时间，或按钮改名「复制并重新设置」</td><td class="s">小</td></tr><tr><td class="w">重复定时只能整条停止。例：每天发、连续 31 天的签到提醒，遇维护日要跳过一次，只能停掉重建</td><td class="r">误操作成本高，历史数据被拆开</td><td class="r">加「暂停至」「跳过下一次」</td><td class="s">中</td></tr><tr><td class="w">状态无流转图；术语表无状态词条；弹窗「停用」与「下架」能否恢复未定义</td><td class="r">研发与测试只能从示例拼状态机，使用者分不清停用与下架</td><td class="r">补推送、弹窗各一张状态流转图；术语表加各状态定义与是否可恢复</td><td class="s">中</td></tr><tr><td class="w">页 2 状态计数分组口径不一：按行为组无草稿，而状态表和快显有草稿；操作纪录列 10 种，页 16 列 11 种</td><td class="r">计数口径不一致，测试用例无依据</td><td class="r">按行为组加「草稿」；页 2 操作纪录行与页 16 对齐</td><td class="s">小</td></tr></table>
+<h2><span class="no">08</span>需求文档规则与同步：10 项</h2>
+<table><tr><th>问题</th><th>影响</th><th>建议改法</th><th>改动</th></tr><tr><td class="w">5.6、5.7 字段表没写「原处生效时不能确认」（只在 4.2.5 状态表）</td><td class="r">开发按字段表做，会漏掉切换前不能确认的校验</td><td class="r">5.6、5.7 各加一行：开关为「由原后台发送」时确认按钮不可点，可存草稿与测试</td><td class="s">小</td></tr><tr><td class="w">5.15 快显曝光没有「不在线」字段（只在 5.18 与原型页 12a）</td><td class="r">单条数据页接口缺字段，快显触达率无法评估</td><td class="r">5.15 漏斗字段加「触发时不在线」</td><td class="s">小</td></tr><tr><td class="w">礼包延时任务集中到点的峰值没单独估：礼包出现时按 expireAt−N 排任务，同一时段大量礼包到期、或勿扰顺延到 08:00 会同时触发</td><td class="r">研发评审容量估算缺口，可能出现延迟</td><td class="r">第 9 章研发项补「到点集中」峰值估算（取近 30 天礼包到期的每分钟峰值），并写入非功能要求</td><td class="s">小</td></tr><tr><td class="w">原型改过但需求文档未跟改：4.1.7 确认框例句（原型为「23:00–24:00 开始的立即、定时推送改为顺延到 08:00」）、4.1.8「破产玩家看破产弹窗一行」、4.1.9「返回」回到来源页（原型：按钮写来源页名称）、5.15 序号 16 例句、5.17 序号 3</td><td class="r">文档与原型两处说法不同，测试无依据</td><td class="r">按原型写法逐处改</td><td class="s">小</td></tr><tr><td class="w">现有表单（页 9）与现有页面（页 18）的字段是按列表推断，无截图</td><td class="r">与现有后台对不上时，评审会被现有系统负责人当场指出</td><td class="r">评审前对照现有后台截图逐项核对，核对后去掉「推断」字样</td><td class="s">小</td></tr><tr><td class="w">规则 13「回流，排除新增」预计 16,564＝回流全员，成立前提（新增与回流互斥）未写</td><td class="r">评审核对群组定义时会问</td><td class="r">写明两群组互斥，或调整示例</td><td class="s">小</td></tr><tr><td class="w">4.1.2「有失败」写作「今日发送中有失败条数的推送数」，与状态名「发送中」同字；「统计」未写日期归属</td><td class="r">读者把「发送中」读成状态；今日与统计至发送后 5 天读来冲突</td><td class="r">改为「今日发送的推送中，有失败条数的推送数」；「统计」补「按发送日期归属，同 4.1.8」</td><td class="s">小</td></tr><tr><td class="w">4.1.3.1、4.1.3.3 写「已完成、发送失败等只读」，同节又有「重试失败部分」</td><td class="r">读者看不出例外</td><td class="r">表中补「已完成、发送失败有可重试条数时另有重试失败部分」</td><td class="s">小</td></tr><tr><td class="w">4.1.3.3「开关为『由原后台发送』时的已排程、运行中、已暂停」读成营销侧的推送</td><td class="r">与 4.2.5 指回退前在本后台的推送冲突</td><td class="r">改为「回退后，本后台已有的…」</td><td class="s">小</td></tr><tr><td class="w">礼包后台左菜单「操作纪录」（现有）是否也记切换开关，4.2.2、5.13 未写</td><td class="r">开发不知道要不要在两处都记</td><td class="r">4.2.2 写明只记入推送统一后台的操作纪录</td><td class="s">小</td></tr></table>
+<h2><span class="no">09</span>原型文字与数字：6 项</h2>
+<table><tr><th>问题</th><th>影响</th><th>建议改法</th><th>改动</th></tr><tr><td class="w">页 2 状态计数合计 56（按行为 35＋一次性 21），底部写「共 28 条」，附录写「共 26 条」；每页 10 条却画 11 行</td><td class="r">评审拿计数核对总数，当场对不上</td><td class="r">统一三处数字（例：改已结束的计数，或改总数）；示例行数与每页条数一致</td><td class="s">小</td></tr><tr><td class="w">「其余」两义（页 8 规则 5 含潜在付费与对照组；页 12 指不属于四类的玩家）；「受众」两义（页 2 列为群组名＋当前人数，术语表为排除后发送时名单）</td><td class="r">看板按「其余」看效果会误读成规则 5 的效果；已完成推送的人数随群组刷新变化</td><td class="r">页 12 改称「未归类」；页 2 列改称「发送对象」，已发送的显示发送时受众人数</td><td class="s">小</td></tr><tr><td class="w">弹窗规则 ID 与推送 ID 两套编号混列，页 16 对象列无前缀。例：搜「5」同时出弹窗规则 5 与推送 5</td><td class="r">操作纪录与玩家查询易混</td><td class="r">加前缀（「弹窗 5」「推送 5」）或弹窗用独立号段</td><td class="s">小</td></tr><tr><td class="w">页 1 重试确认框「短信重发按则计费，本次 1,870 则」把条当成则；页 6 示例 77 字每条 2 则</td><td class="r">费用被低估</td><td class="r">写成「1,870 条 × 每条 N 则＝M 则」</td><td class="s">小</td></tr><tr><td class="w">页 4 主图实为 ID 31 在 10/02 创建时的状态，页 10 新建的是已运行的 ID 32，与 10/12 15:30 的统一快照时间对不上</td><td class="r">读者以为与「其他状态」里 ID 31 正在运行矛盾</td><td class="r">图上标「10/02 创建时」，或换一条新推送做示例</td><td class="s">小</td></tr><tr><td class="w">页 6 短信列表有永远为「该渠道不回传」的曝光列，缺受众列；页 13 运行中的推送无「编辑」入口</td><td class="r">多一列无用的、少一列有用的；看完数据要多走一步才能改文案</td><td class="r">短信列表去曝光列、加受众列；页 13 加「编辑」链接</td><td class="s">小</td></tr></table>
+<h2><span class="no">10</span>已定（10/16）：游戏外推送与弹窗同口径统计发送后的登录和付费</h2>
+<p class="q">现在推播、Facebook、LINE 只算到点击，只有短信有「发送后登录」；需求文档按已定事项第 2 条「方案不设活跃、付费类目标」，把付费、回流写成了不作指标。</p>
+<div class="grid g2">
+  <div class="card opt"><p class="h">甲　维持只算到点击</p><p class="l">短信保留「发送后登录」，其余推送方式不加；召回、储值类推送的效果只能看点击率</p></div>
+  <div class="card opt rec"><span class="badge">已定</span><p class="h">乙　与弹窗同口径统计</p><p class="l">「发送后登录」扩到推播、Facebook、LINE；储值类推送加「发送后 24 小时内付费人数、金额」，只作后台数据，不写成方案目标</p></div>
+</div>
+<p class="why"><b>理由</b>　你已定弹窗统计点击后 24 小时内的领取、购买，游戏外推送同口径才能放在一起比较；已定事项第 2 条管的是方案不设付费目标，后台展示这些数据不改变方案目标（这是我的理解，选乙即按此执行）。</p>
+
+<h2><span class="no">11</span>接下来：你看完就按组改，先改最要紧的几项</h2>
+<div class="steps">
+  <div>先改上面 6 项和「需求文档规则与同步」一组（都是小改），一个子任务做完</div>
+  <div>再改其余各组；你选甲或乙后，「数据与指标」一组按你的决定改</div>
+  <div>改完程序检查，并把改前改后列成对照给你</div>
+</div>
+
+<p class="links">原文：<a href="../分析/标准判卷/推送后台_未解决清单_1016.md">逐条核对表（含已解决的 23 条及依据）</a> · <a href="../推送系统后台集成需求/3_原型.html">原型</a> · <a href="../推送系统后台集成需求/4_需求文档.md">需求文档</a></p>
+
+</div></body></html>

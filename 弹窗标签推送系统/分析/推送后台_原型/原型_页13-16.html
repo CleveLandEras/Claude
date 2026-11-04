@@ -1,0 +1,994 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>推送后台原型 页12–15</title>
+<style>
+:root{
+  --ink:#1F2329; --ink2:#4E5560; --mute:#868D96; --line:#D5D8DD; --line2:#E6E8EB; --fill:#F4F5F7; --page:#F7F8FA;
+  --acc:#1F63E0; --acc-bg:#EBF2FE; --acc-mid:#A9C6F6;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--ink);font:14px/1.5 -apple-system,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif}
+.page{max-width:1200px;margin:0 auto;padding:22px 40px 60px}
+h1{font-size:17px;font-weight:600;color:var(--ink2);margin:0 0 22px}
+section{margin-bottom:64px}
+.eyebrow{font-size:13px;color:var(--mute);margin-bottom:2px}
+h2{font-size:22px;line-height:1.35;font-weight:600;margin:0 0 14px}
+.row{display:flex;gap:30px;align-items:flex-start}
+.fig{position:relative;flex:none;width:760px;background:#fff;border:1px solid var(--line2);border-radius:8px;overflow:visible}
+.notes{position:relative;flex:1;min-width:0}
+.note{position:absolute;left:0;right:0;display:flex;gap:10px;align-items:flex-start}
+.note b{display:block;font-size:15px;line-height:22px;font-weight:600}
+.note p{margin:2px 0 0;font-size:14px;line-height:21px;color:var(--ink2)}
+.nb,.co{flex:none;width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;line-height:1}
+.nb,.co{background:#2B3038;color:#fff}
+.co{position:absolute;z-index:5;box-shadow:0 0 0 2px #fff}
+.co.il{position:relative;left:auto;top:auto;margin-left:8px}
+.rel{position:relative}
+
+/* 折叠区 */
+details{margin-top:14px;width:760px}
+details[open]{width:auto}
+summary{display:inline-block;cursor:pointer;font-size:14px;color:var(--ink2);padding:6px 14px;border:1px solid var(--line);border-radius:6px;background:#fff;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"▸ ";color:var(--mute)}
+details[open] summary::before{content:"▾ "}
+table.full{margin-top:12px;width:100%;border-collapse:collapse;background:#fff;font-size:14px;border:1px solid var(--line2)}
+table.full th,table.full td{border-bottom:1px solid var(--line2);padding:8px 12px;text-align:left;vertical-align:top}
+table.full thead th{background:var(--fill);color:var(--ink2);font-weight:600}
+table.full td:first-child{width:190px;color:var(--ink);font-weight:500}
+table.full tr.g td{background:#FAFBFC;font-weight:600;color:var(--ink);padding-top:10px}
+table.full.c3 td:nth-child(3){width:280px;color:var(--ink2)}
+
+/* 后台外壳（样稿沿用） */
+.side{position:absolute;left:0;top:0;bottom:0;width:112px;background:var(--fill);border-right:1px solid var(--line2);border-radius:8px 0 0 8px}
+.side .hd{height:38px;display:flex;align-items:center;padding-left:10px;font-weight:600;font-size:13px;border-bottom:1px solid var(--line2)}
+.side .it{height:26px;display:flex;align-items:center;padding-left:12px;font-size:13px;color:var(--ink2)}
+.side .it.sub{padding-left:20px}
+.side .it.on{background:#E4E7EB;color:var(--ink);font-weight:600;box-shadow:inset 3px 0 0 #3A4049}
+.side .gl{height:22px;margin-top:4px;display:flex;align-items:flex-end;padding:0 0 3px 12px;font-size:13px;color:var(--mute)}
+.side .dv{height:1px;background:var(--line);margin:6px 10px}
+.main{position:absolute;left:112px;top:0;right:0;bottom:0}
+.top{height:38px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;border-bottom:1px solid var(--line2);font-size:13px;color:var(--mute)}
+.top .cur{color:var(--ink);font-weight:600}
+.sec{position:relative;padding:9px 16px 10px;border-bottom:1px solid var(--line2)}
+.sec:last-child{border-bottom:0}
+.f{display:flex;align-items:center;height:28px;font-size:13px;color:var(--ink)}
+.f>label{flex:none;width:66px;color:var(--ink2);text-align:right;padding-right:8px}
+.in{height:24px;border:1px solid var(--line);border-radius:3px;padding:0 8px;display:inline-flex;align-items:center;background:#fff;font-size:13px;white-space:nowrap}
+.in .dn{color:#A0A6AE;margin-left:auto;padding-left:8px;font-size:13px}
+.ph{color:#A0A6AE}
+.seg{display:inline-flex}
+.seg>span:not(.co){height:26px;display:inline-flex;align-items:center;padding:0 12px;border:1px solid var(--line);margin-left:-1px;font-size:13px;color:var(--ink2);background:#fff}
+.seg>span:first-child{border-radius:3px 0 0 3px;margin-left:0}
+.seg>span:nth-last-child(2){border-radius:0 3px 3px 0}
+.seg>span.on{position:relative;z-index:1;border-color:#4E5560;background:#4E5560;color:#fff;font-weight:600}
+.btn2{display:inline-flex;align-items:center;height:28px;padding:0 12px;border:1px solid var(--line);border-radius:4px;font-size:13px;color:var(--ink2);background:#fff;margin-left:8px;white-space:nowrap}
+.btn2.p{background:#646B75;border-color:#646B75;color:#fff;font-weight:600}
+
+/* ===== 现有后台（Element UI 风格，与页 6–11、16 同一套） ===== */
+.ew{font-size:13px;color:#606266}
+.ein{height:28px;border:1px solid #DCDFE6;border-radius:4px;padding:0 8px;display:inline-flex;align-items:center;color:#A8ABB2;background:#fff;font-size:13px;white-space:nowrap}
+.ein.v{color:#606266}
+.ein .dn{margin-left:auto;padding-left:8px;color:#A8ABB2;font-size:12px}
+.ebtn{height:28px;display:inline-flex;align-items:center;padding:0 14px;border-radius:4px;font-size:13px;font-weight:600;color:#fff;white-space:nowrap}
+.ebtn.b{background:#409EFF}
+.ebtn.w{background:#fff;border:1px solid #DCDFE6;color:#606266;font-weight:400}
+table.et{width:100%;border-collapse:collapse;table-layout:fixed;font-size:13px;color:#606266}
+table.et th{color:#909399;font-weight:600;padding:7px 3px;border:1px solid #EBEEF5;border-width:0 1px 1px 0;line-height:17px;text-align:center;vertical-align:middle}
+table.et td{padding:6px 4px;border:1px solid #EBEEF5;border-width:0 1px 1px 0;text-align:center;line-height:18px;vertical-align:middle}
+table.et th:last-child,table.et td:last-child{border-right:0}
+table.et .l{text-align:left}
+table.et tr.mkr th{border:0;padding:0 2px 3px;height:24px;text-align:center;vertical-align:bottom;box-shadow:none}
+.elink{color:#409EFF;white-space:nowrap}
+.epg{display:flex;align-items:center;justify-content:center;gap:12px;padding:11px 0 12px;font-size:13px;color:#606266}
+.epg .pc{color:#409EFF;font-weight:600}
+
+/* 现有页面上的改动标注（与页 6–11、16 同一套） */
+.mk{display:inline-flex;align-items:center;height:20px;padding:0 6px;border-radius:3px;font-size:13px;font-weight:600;line-height:1;margin-left:5px;vertical-align:1px;white-space:nowrap}
+.mk.n,.mk.c{background:var(--acc);color:#fff}
+.nc{background:var(--acc-bg)!important}
+
+/* ===== 页 12–15 增补（pd- 前缀，合并时不与其他页冲突） ===== */
+.fig.pd-flow{display:flex;align-items:stretch}
+.fig.pd-flow .side{position:relative;left:auto;top:auto;bottom:auto;flex:none}
+.fig.pd-flow .main{position:relative;left:auto;top:auto;right:auto;bottom:auto;flex:1;min-width:0}
+.seg.pd-segs>span:not(.co){height:24px;padding:0 10px}
+.seg.pd-segs>span:last-child:not(.co){border-radius:0 3px 3px 0}
+.pd-tabs{display:flex;align-items:flex-end;height:38px;padding:0 16px;border-bottom:1px solid var(--line2)}
+.pd-tabs>span:not(.co){height:36px;display:inline-flex;align-items:center;padding:0 14px;font-size:13px;color:var(--ink2)}
+.pd-tabs>span.pd-on{color:var(--ink);font-weight:600;box-shadow:inset 0 -2px 0 #3A4049}
+.pd-bt{display:flex;align-items:center;gap:10px;min-height:26px;margin:0 0 6px}
+.pd-h{font-size:14px;font-weight:600;color:var(--ink)}
+.pd-m{font-size:13px;color:var(--mute)}
+.pd-sp{flex:1}
+table.pd-dt{width:100%;border-collapse:collapse;font-size:13px;line-height:19px;background:#fff}
+table.pd-dt th{background:var(--fill);color:var(--ink2);font-weight:600;text-align:left;padding:5px 7px;border-bottom:1px solid var(--line2);white-space:nowrap;vertical-align:bottom}
+table.pd-dt td{padding:5px 7px;border-bottom:1px solid var(--line2);vertical-align:middle;white-space:nowrap}
+table.pd-dt .pd-r{text-align:right}
+table.pd-dt .pd-c{text-align:center}
+table.pd-dt th i{display:block;font-style:normal;font-weight:400;font-size:12px;color:var(--ink2)}
+table.pd-dt tr.pd-gr td{background:#FAFBFC;font-weight:600;color:var(--ink2);padding:3px 7px}
+table.pd-dt tr.pd-tot td{font-weight:600;background:#FAFBFC}
+table.pd-dt tr.pd-more td{color:var(--mute);padding:3px 7px}
+.pd-s2{display:block;font-size:12px;color:var(--mute);line-height:16px;font-weight:400}
+.pd-na{display:inline-block;padding:0 5px;border-radius:3px;background:#F0F1F3;color:var(--ink2);line-height:20px;white-space:nowrap;font-weight:400}
+.pd-an{font-size:12px;color:var(--mute);margin-left:5px;white-space:nowrap;font-weight:400}
+.pd-st{display:inline-block;padding:0 6px;border:1px solid var(--line);border-radius:3px;font-size:12px;line-height:18px;color:var(--ink2);background:#fff;white-space:nowrap;font-weight:400}
+.pd-st.pd-bad{color:#B42318;border-color:#F0B4AE;background:#FEF3F2}
+.pd-bad{color:#B42318}
+.pd-lk{color:var(--ink);text-decoration:underline;text-decoration-color:#AEB4BC;text-underline-offset:3px}
+.pd-lg{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12px;color:var(--ink2);margin-top:8px;line-height:20px}
+.pd-lg .pd-na{margin-right:4px}
+.pd-chips{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:13px;color:var(--ink2);margin-bottom:6px}
+.pd-chip{height:22px;display:inline-flex;align-items:center;padding:0 8px;border-radius:11px;background:#F0F1F3}
+.pd-chip.pd-on{background:#4E5560;color:#fff;font-weight:600}
+.pd-pg{display:flex;justify-content:flex-end;gap:14px;font-size:13px;color:var(--mute);margin-top:6px}
+.pd-ttl{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:600}
+.pd-meta{font-size:13px;color:var(--ink2);margin-top:4px;line-height:20px}
+/* 漏斗 */
+.pd-fn{display:grid;grid-template-columns:34px 160px 118px 1fr;column-gap:10px;row-gap:6px;align-items:center;font-size:13px}
+.pd-fk{color:var(--ink2)}
+.pd-fbar{height:14px;background:#BFC5CD;border-radius:2px}
+.pd-fv{font-weight:700;font-size:14px;white-space:nowrap}
+.pd-flo{color:var(--ink2);font-size:13px;line-height:20px}
+/* 拦下与失败卡片 */
+.pd-cards{display:flex;gap:12px}
+.pd-cd{position:relative;flex:1;border:1px solid var(--line);border-radius:6px;padding:7px 12px 8px;background:#fff}
+.pd-ct{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;font-weight:600;margin-bottom:2px}
+.pd-ct .pd-m{font-weight:400;font-size:12px}
+.pd-cl{display:flex;align-items:center;gap:8px;height:24px;font-size:13px;border-bottom:1px dashed var(--line2)}
+.pd-cn{margin-left:auto;font-weight:600}
+.pd-cq{width:52px;text-align:right;color:var(--ink2);font-size:12px}
+.pd-cf{display:flex;align-items:center;gap:8px;margin-top:7px;font-size:12px;color:var(--ink2)}
+.pd-cf .btn2{margin-left:0}
+/* 玩家查询 */
+.pd-lt{font-size:13px;color:#303133;margin-bottom:5px;font-weight:600}
+.pd-pinfo{background:#DCDCDA;padding:9px 12px;display:grid;row-gap:5px;font-size:13px;color:#303133}
+.pd-blk{border:1px solid #A9C6F6;border-radius:6px;padding:8px 10px}
+.pd-pill{display:inline-flex;align-items:center;height:22px;padding:0 8px;margin:5px 6px 0 0;border:1px solid #A9C6F6;border-radius:3px;background:#fff;font-size:13px;color:#303133}
+.pd-ok::before{content:"✓ ";color:#4E5560;font-weight:700}
+.pd-no::before{content:"✕ ";color:#B42318;font-weight:700}
+.pd-el{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* 改前改后 */
+.pd-diff{margin:2px 0 4px;border:1px solid var(--line);border-radius:4px;background:#fff;text-align:left}
+.pd-dr{display:grid;grid-template-columns:56px 1fr;font-size:13px;border-bottom:1px solid var(--line2)}
+.pd-dr:last-child{border-bottom:0}
+.pd-dr>*{padding:4px 8px}
+.pd-lb{color:var(--mute);background:var(--fill)}
+.pd-del{background:#FCEDEC}
+.pd-ins{background:#E9F5EC}
+/* 状态小图 */
+.pd-states{display:flex;gap:20px;margin-top:20px;align-items:flex-start}
+.pd-state{flex:1;min-width:0}
+.pd-box{position:relative;background:#fff;border:1px solid var(--line2);border-radius:8px;padding:10px 12px;font-size:13px}
+.pd-cap{margin-top:8px;font-size:14px;line-height:21px;color:var(--ink2)}
+.pd-cap b{color:var(--ink);font-weight:600;margin-right:6px}
+.pd-banner{border:1px solid #F0B4AE;background:#FEF3F2;border-radius:4px;padding:6px 10px;font-size:13px;line-height:20px}
+.pd-empty{border:1px dashed var(--line);border-radius:4px;padding:16px 12px;text-align:center;color:var(--ink2);font-size:13px;line-height:20px;background:#FCFCFD}
+</style>
+</head>
+<body>
+<div class="page">
+<h1>推送统一后台原型 · 页 12–15：数据看板、单条推送数据、玩家查询、操作纪录</h1>
+
+<!-- ================= 13 数据看板 ================= -->
+<section id="p12">
+  <div class="eyebrow">页 12 · 数据看板（新页面）</div>
+  <h2>运营按推送、人群、日期查看两层推送的数据并导出，拿不到的数写明原因</h2>
+  <div class="row">
+    <div class="fig pd-flow" style="width:920px">
+      <div class="side">
+        <div class="hd">推送统一后台</div>
+        <div class="it">总览</div>
+        <div class="gl">游戏外推送</div>
+        <div class="it sub">推播</div>
+        <div class="it sub">短信</div>
+        <div class="it sub">Facebook</div>
+        <div class="it sub">LINE</div>
+        <div class="gl">游戏内推送</div>
+        <div class="it sub">弹窗</div>
+        <div class="it sub">快显</div>
+        <div class="dv"></div>
+        <div class="it">频率上限</div>
+        <div class="it on">数据看板</div>
+        <div class="it">玩家查询</div>
+        <div class="it">操作纪录</div>
+      </div>
+      <div class="main">
+        <div class="top"><span>推送统一后台 › <span class="cur">数据看板</span></span><span>数据更新于 15:30</span></div>
+        <div class="sec" style="padding:8px 16px">
+          <div class="f"><label style="width:40px;text-align:left">日期</label><span class="seg pd-segs"><span>今日</span><span class="on">近 7 天</span><span>近 30 天</span><span>自定义</span></span><span class="in" style="margin-left:8px;width:196px">2026-10-06　至　2026-10-12</span></div>
+          <div class="f" style="margin-top:4px"><label style="width:40px;text-align:left">人群</label><span class="in" style="width:110px">全部<span class="dn">▾</span></span><label style="width:52px">推送</label><span class="in" style="width:110px">全部<span class="dn">▾</span></span><span style="flex:1"></span><span class="mute" style="font-size:12px;margin-right:6px">导出两层汇总、按人群、按日期、推送明细</span><span class="btn2" style="margin-left:0">导出 Excel</span></div>
+        </div>
+        <div class="pd-tabs"><span class="pd-on">各推送</span><span>按人群、按日期</span><span>未送达原因</span><span class="co il" data-n="1" style="margin:0 0 7px 4px">1</span></div>
+        <div class="sec" style="padding-top:10px">
+          <div class="pd-bt"><span class="pd-h">游戏外推送 · 从发送算起</span><span class="co il" data-n="2" style="margin-left:-2px">2</span><span class="pd-sp"></span><span class="pd-m">近 7 天 · 全部人群 · 到达、点击统计至发送后 5 天，LINE 14 天</span></div>
+          <table class="pd-dt">
+            <thead><tr><th style="width:112px">推送</th><th class="pd-r">发送</th><th class="pd-r">到达</th><th class="pd-r">到达率<i>到达÷发送</i></th><th class="pd-r">曝光</th><th class="pd-r">点击</th><th class="pd-r">点击率<i>点击÷发送</i></th></tr></thead>
+            <tbody>
+              <tr><td>推播 · Android</td><td class="pd-r">31,850</td><td class="pd-r">29,240</td><td class="pd-r">91.8%</td><td class="pd-r">24,610</td><td class="pd-r">1,980</td><td class="pd-r">6.2%</td></tr>
+              <tr><td>推播 · iOS</td><td class="pd-r">16,420</td><td class="pd-c" colspan="2"><span class="pd-na">该渠道不回传</span><span class="co il" data-n="3">3</span></td><td class="pd-r"><span class="pd-na">该渠道不回传</span></td><td class="pd-r">1,150</td><td class="pd-r">7.0%</td></tr>
+              <tr><td>短信</td><td class="pd-r">19,490</td><td class="pd-r">18,392<span class="pd-an">无回执 1,002</span></td><td class="pd-r">94.4%</td><td class="pd-r"><span class="pd-na">该渠道不回传</span></td><td class="pd-r">642</td><td class="pd-r">3.3%</td></tr>
+              <tr><td>Facebook</td><td class="pd-r">6,520</td><td class="pd-r">6,143<span class="pd-an">无回执 165</span></td><td class="pd-r">94.2%</td><td class="pd-r">3,890</td><td class="pd-r">405</td><td class="pd-r">6.2%</td></tr>
+              <tr><td>LINE</td><td class="pd-r">6,808</td><td class="pd-r">6,561<span class="pd-an">无回执 247</span></td><td class="pd-r">96.4%</td><td class="pd-r">3,600<span class="pd-an">1 条推送低于统计门槛，未计入</span></td><td class="pd-r">335</td><td class="pd-r">4.9%</td></tr>
+            </tbody>
+          </table>
+          <div class="pd-bt" style="margin-top:14px"><span class="pd-h">游戏内推送 · 从曝光算起</span></div>
+          <table class="pd-dt" style="width:440px">
+            <thead><tr><th style="width:112px">推送</th><th class="pd-r">曝光</th><th class="pd-r">点击</th><th class="pd-r rel">点击率<i>点击÷曝光</i><span class="co" data-n="4" style="right:-30px;top:6px">4</span></th></tr></thead>
+            <tbody>
+              <tr><td>大厅弹窗</td><td class="pd-r">302,460</td><td class="pd-r">21,780</td><td class="pd-r">7.2%</td></tr>
+              <tr><td>破产弹窗</td><td class="pd-r">38,920</td><td class="pd-r">4,710</td><td class="pd-r">12.1%</td></tr>
+              <tr><td>快显</td><td class="pd-r">13,860</td><td class="pd-r">1,470</td><td class="pd-r">10.6%</td></tr>
+            </tbody>
+          </table>
+          <div class="pd-lg"><span><span class="pd-na">该渠道不回传</span>服务商不提供这一步</span><span><span class="pd-na">无回执</span>发出了但没收到回执，不算失败</span><span><span class="pd-na">低于统计门槛</span>LINE 不足 20 人不返回</span><span><span class="pd-na">不适用</span>游戏内推送没有发送、到达</span></div>
+        </div>
+        <div class="sec">
+          <div class="pd-bt"><span class="pd-h">推送明细</span><span class="seg pd-segs"><span class="on">游戏外推送 17</span><span>游戏内推送 8</span></span><span class="pd-sp"></span><span class="in ph" style="width:150px">推送名称或 ID</span><span class="btn2" style="margin-left:0">查询</span></div>
+          <div class="pd-chips">状态<span class="pd-chip pd-on">全部 17</span><span class="pd-chip">运行中 2</span><span class="pd-chip">已暂停 1</span><span class="pd-chip">发送中 1</span><span class="pd-chip">已完成 9</span><span class="pd-chip">已停止 2</span><span class="pd-chip">发送失败 1</span><span class="pd-chip">无可发送对象 1</span></div>
+          <table class="pd-dt" style="table-layout:fixed">
+            <colgroup><col style="width:116px"><col style="width:136px"><col style="width:88px"><col style="width:48px"><col style="width:62px"><col style="width:58px"><col style="width:84px"><col style="width:38px"><col style="width:58px"><col></colgroup>
+            <thead><tr><th>推送名称</th><th>发送方式与受众</th><th>状态</th><th class="pd-r">发送</th><th class="pd-r">到达</th><th class="pd-r">到达率<i>到达÷发送</i></th><th class="pd-r">曝光</th><th class="pd-r">点击</th><th class="pd-r">点击率<i>点击÷发送</i></th><th>操作</th></tr></thead>
+            <tbody>
+              <tr><td><span class="pd-lk">限时挑战开启</span><span class="co il" data-n="5" style="margin-left:6px;vertical-align:-5px">5</span><span class="pd-s2">ID 44 · 推播</span></td><td>定时 10/12 14:00<span class="pd-s2">回流 16,564</span></td><td><span class="pd-st pd-bad">发送失败</span></td><td class="pd-c" colspan="6" style="white-space:normal;color:var(--ink2)">9,120 条全部失败：推送服务接口超时（服务商未受理）</td><td><span class="pd-lk">重试失败部分</span></td></tr>
+              <tr><td><span class="pd-lk">月月抽开奖提醒</span><span class="pd-s2">ID 43 · 推播</span></td><td>立即 10/12 15:00<span class="pd-s2">全部玩家 74,480</span></td><td><span class="pd-st">已停止</span></td><td class="pd-r">1,050</td><td class="pd-r">576<span class="pd-s2">仅 Android</span></td><td class="pd-r">90.0%</td><td class="pd-r">530<span class="pd-s2">仅 Android</span></td><td class="pd-r">30</td><td class="pd-r">2.9%</td><td><span class="pd-lk">查看数据</span></td></tr>
+              <tr><td><span class="pd-lk">首储加赠提醒</span><span class="pd-s2">ID 41 · Facebook</span></td><td>立即 10/12 15:20<span class="pd-s2">潜在付费 4,860</span></td><td><span class="pd-st">发送中</span></td><td class="pd-r">920</td><td class="pd-r">871</td><td class="pd-r">94.7%</td><td class="pd-r">540</td><td class="pd-r">61</td><td class="pd-r">6.6%</td><td><span class="pd-lk">查看数据</span></td></tr>
+              <tr><td><span class="pd-lk">天天敲蛋礼提醒</span><span class="pd-s2">ID 39 · LINE</span></td><td>定时 10/12 12:00<span class="pd-s2">敲蛋礼未参与 0</span></td><td><span class="pd-st pd-bad">无可发送对象</span></td><td class="pd-c" colspan="6" style="color:var(--ink2)">群组发送时为 0 人：名单刷新后无人符合</td><td><span class="pd-lk">复制并改受众</span></td></tr>
+              <tr><td><span class="pd-lk">每日补给计划提醒</span><span class="pd-s2">ID 38 · 短信</span></td><td>定时 10/12 10:00<span class="pd-s2">潜在流失（两档）7,880</span></td><td><span class="pd-st">已完成</span><span class="pd-s2 pd-bad">部分失败 1,870</span></td><td class="pd-r">4,820</td><td class="pd-r">4,412<span class="pd-s2">无回执 408</span></td><td class="pd-r">91.5%</td><td class="pd-r"><span class="pd-na" style="font-size:12px">该渠道不回传</span></td><td class="pd-r">96</td><td class="pd-r">2.0%</td><td><span class="pd-lk">重试失败部分</span></td></tr>
+              <tr class="pd-more"><td colspan="10">⋮ 本页其余 5 条</td></tr>
+            </tbody>
+          </table>
+          <div class="pd-pg"><span>共 17 条</span><span>10 项／页</span><span>‹ 1 2 ›</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <div class="note" data-n="1"><span class="nb">1</span><div><b>三个页签共用筛选</b><p>其余两个页签见图下小图</p></div></div>
+      <div class="note" data-n="2"><span class="nb">2</span><div><b>两层各一张表</b><p>游戏外从发送算起；<br>游戏内从曝光算起</p></div></div>
+      <div class="note" data-n="3"><span class="nb">3</span><div><b>拿不到的写原因</b><p>不估算；iOS 到达不用发送数代填</p></div></div>
+      <div class="note" data-n="4"><span class="nb">4</span><div><b>比率分母写在表头</b><p>游戏外点击率÷发送；<br>游戏内点击率÷曝光</p></div></div>
+      <div class="note" data-n="5"><span class="nb">5</span><div><b>点名称看单条数据</b><p>有失败的行可直接重试</p></div></div>
+    </div>
+  </div>
+
+  <div class="pd-states">
+    <div class="pd-state">
+      <div class="pd-box">
+        <div class="pd-bt"><span class="seg pd-segs"><span class="on">按人群</span><span>按日期</span></span><span class="pd-sp"></span><span class="pd-m">指标</span><span class="in" style="width:92px">点击率<span class="dn">▾</span></span></div>
+        <div class="pd-h" style="font-size:13px;margin:2px 0 4px">游戏外推送 · 点击率＝点击÷发送</div>
+        <table class="pd-dt">
+          <thead><tr><th>人群</th><th class="pd-r">推播</th><th class="pd-r">短信</th><th class="pd-r">Facebook</th><th class="pd-r">LINE</th></tr></thead>
+          <tbody>
+            <tr><td>新增</td><td class="pd-r">7.4%</td><td class="pd-r"><span style="color:var(--mute)">未发送</span></td><td class="pd-r">5.4%</td><td class="pd-r">4.2%</td></tr>
+            <tr><td>回流</td><td class="pd-r">7.8%</td><td class="pd-r">3.7%</td><td class="pd-r">5.8%</td><td class="pd-r">5.3%</td></tr>
+            <tr><td>潜在付费</td><td class="pd-r">6.9%</td><td class="pd-r">3.2%</td><td class="pd-r">6.6%</td><td class="pd-r">5.1%</td></tr>
+            <tr><td>潜在流失</td><td class="pd-r">4.8%</td><td class="pd-r">2.0%</td><td class="pd-r">5.2%</td><td class="pd-r">3.9%</td></tr>
+            <tr><td>其余</td><td class="pd-r">5.6%</td><td class="pd-r"><span style="color:var(--mute)">未发送</span></td><td class="pd-r">6.3%</td><td class="pd-r">4.6%</td></tr>
+          </tbody>
+        </table>
+        <div class="pd-h" style="font-size:13px;margin:12px 0 4px">游戏内推送 · 点击率＝点击÷曝光</div>
+        <table class="pd-dt">
+          <thead><tr><th>人群</th><th class="pd-r">大厅弹窗</th><th class="pd-r">破产弹窗</th><th class="pd-r">快显</th></tr></thead>
+          <tbody>
+            <tr><td>新增</td><td class="pd-r">8.1%</td><td class="pd-r">13.0%</td><td class="pd-r">11.2%</td></tr>
+            <tr><td>回流</td><td class="pd-r">7.9%</td><td class="pd-r">12.6%</td><td class="pd-r">10.9%</td></tr>
+            <tr><td>潜在付费</td><td class="pd-r">6.8%</td><td class="pd-r">14.2%</td><td class="pd-r">10.1%</td></tr>
+            <tr><td>潜在流失</td><td class="pd-r">5.9%</td><td class="pd-r">10.4%</td><td class="pd-r">9.6%</td></tr>
+            <tr><td>其余</td><td class="pd-r">6.6%</td><td class="pd-r">11.5%</td><td class="pd-r">10.3%</td></tr>
+          </tbody>
+        </table>
+        <div class="pd-lg" style="margin-top:6px">一人可属多个人群，各行不相加；人群按发送时所在群组归属</div>
+      </div>
+      <div class="pd-cap"><b>按人群、按日期</b>两层各一张表，分母写在表头；没有发送写「未发送」，不写 0%</div>
+    </div>
+    <div class="pd-state">
+      <div class="pd-box">
+        <div class="pd-bt"><span class="seg pd-segs"><span class="on">游戏外推送</span><span>游戏内推送</span></span><span class="pd-sp"></span><span class="pd-m">近 7 天 · 人次</span></div>
+        <table class="pd-dt">
+          <thead><tr><th>原因</th><th class="pd-r">推播</th><th class="pd-r">短信</th><th class="pd-r">Facebook</th><th class="pd-r">LINE</th><th class="pd-r">合计</th><th>名单</th></tr></thead>
+          <tbody>
+            <tr class="pd-gr"><td colspan="7">发送前拦下 · 不计入发送；自上而下判断，每人次只计一个</td></tr>
+            <tr><td>无联系方式、已退订、<br>已封锁、平台限制</td><td class="pd-r">14,620</td><td class="pd-r">3,064</td><td class="pd-r">29,088</td><td class="pd-r">9,798</td><td class="pd-r">56,570</td><td><span class="pd-lk">导出</span></td></tr>
+            <tr><td>通知关闭</td><td class="pd-r">6,204</td><td class="pd-r" style="color:var(--mute)">—</td><td class="pd-r" style="color:var(--mute)">—</td><td class="pd-r" style="color:var(--mute)">—</td><td class="pd-r">6,204</td><td><span class="pd-lk">导出</span></td></tr>
+            <tr><td>勿扰时段放弃</td><td class="pd-r">1,382</td><td class="pd-r">0</td><td class="pd-r">0</td><td class="pd-r">0</td><td class="pd-r">1,382</td><td><span class="pd-lk">导出</span></td></tr>
+            <tr><td>频率上限拦下</td><td class="pd-r">6,920</td><td class="pd-r">0</td><td class="pd-r">0</td><td class="pd-r">0</td><td class="pd-r">6,920</td><td><span class="pd-lk">导出</span></td></tr>
+            <tr class="pd-gr"><td colspan="7">服务商未受理 · 不计入发送</td></tr>
+            <tr><td>超时、临时错误</td><td class="pd-r">11,127</td><td class="pd-r">1,870</td><td class="pd-r">0</td><td class="pd-r">0</td><td class="pd-r">12,997</td><td><span class="pd-lk">导出</span></td></tr>
+            <tr><td>服务商当场拒绝</td><td class="pd-r">403</td><td class="pd-r">0</td><td class="pd-r">0</td><td class="pd-r">0</td><td class="pd-r">403</td><td><span class="pd-lk">导出</span></td></tr>
+            <tr class="pd-gr"><td colspan="7">受理后退回 · 计入发送，不计入到达</td></tr>
+            <tr><td>受理后退回</td><td class="pd-r">214</td><td class="pd-r">96</td><td class="pd-r">212</td><td class="pd-r">0</td><td class="pd-r">522</td><td><span class="pd-lk">导出</span></td></tr>
+          </tbody>
+        </table>
+        <div class="pd-lg" style="margin-top:6px">单位：人次，按行为推送一人触发几次计几次<br>—：该推送没有这一项；导出的名单按玩家去重</div>
+        <div class="pd-bt" style="margin-top:14px"><span class="seg pd-segs"><span>游戏外推送</span><span class="on">游戏内推送</span></span><span class="pd-sp"></span><span class="pd-m">近 7 天 · 人次</span></div>
+        <table class="pd-dt">
+          <thead><tr><th>原因</th><th class="pd-r">大厅弹窗＋破产弹窗</th><th class="pd-r">快显</th><th>名单</th></tr></thead>
+          <tbody>
+            <tr><td>频率上限拦下</td><td class="pd-r" style="color:var(--mute)">不适用</td><td class="pd-r">1,480</td><td><span class="pd-lk">导出</span></td></tr>
+          </tbody>
+        </table>
+        <div class="pd-lg" style="margin-top:6px">弹窗写「不适用」：超出每人每天 8 个后按排序截断，一次进大厅可能只少弹几个，不按人次统计<br>今日被拦下人数见弹窗页、频率上限页</div>
+      </div>
+      <div class="pd-cap"><b>未送达原因</b>游戏外推送分发送前拦下、服务商未受理、受理后退回三组，每行名单可导出<br>游戏内推送只有「频率上限拦下」一行</div>
+    </div>
+    <div class="pd-state">
+      <div class="pd-box">
+        <div class="pd-bt"><span class="pd-h">推送明细</span><span class="seg pd-segs"><span>游戏外推送 17</span><span class="on">游戏内推送 8</span></span><span class="pd-sp"></span><span class="pd-m">近 7 天</span></div>
+        <table class="pd-dt">
+          <thead><tr><th>弹窗规则或快显</th><th>位置</th><th class="pd-r">曝光</th><th class="pd-r">点击</th><th class="pd-r">点击率<i>点击÷曝光</i></th></tr></thead>
+          <tbody>
+            <tr><td>12 活动类·新增</td><td>大厅弹窗</td><td class="pd-r">42,770</td><td class="pd-r">4,876</td><td class="pd-r">11.4%</td></tr>
+            <tr><td>13 活动类·回流</td><td>大厅弹窗</td><td class="pd-r">53,170</td><td class="pd-r">4,732</td><td class="pd-r">8.9%</td></tr>
+            <tr><td>14 活动类·潜在流失（实验组）</td><td>大厅弹窗</td><td class="pd-r">8,730<span class="pd-an">10/10 起</span></td><td class="pd-r">663</td><td class="pd-r">7.6%</td></tr>
+            <tr><td>5 活动类·其余</td><td>大厅弹窗</td><td class="pd-r">125,410</td><td class="pd-r">8,277</td><td class="pd-r">6.6%</td></tr>
+            <tr><td>6 通用弹窗</td><td>大厅弹窗</td><td class="pd-r">72,380</td><td class="pd-r">3,232</td><td class="pd-r">4.5%</td></tr>
+            <tr><td>15 破产储值弹窗（实验组）</td><td>破产弹窗</td><td class="pd-r">19,840</td><td class="pd-r">2,421</td><td class="pd-r">12.2%</td></tr>
+            <tr><td>7 破产储值弹窗</td><td>破产弹窗</td><td class="pd-r">19,080</td><td class="pd-r">2,289</td><td class="pd-r">12.0%</td></tr>
+            <tr><td>32 通行证升级提示</td><td>快显</td><td class="pd-r">13,860</td><td class="pd-r">1,470</td><td class="pd-r">10.6%</td></tr>
+          </tbody>
+        </table>
+        <div class="pd-lg">大厅弹窗 5 条合计 302,460，破产弹窗 2 条合计 38,920，与上方游戏内推送表一致</div>
+      </div>
+      <div class="pd-cap"><b>游戏内推送明细</b>弹窗按规则逐条列，快显按推送列；没有发送、到达两列</div>
+    </div>
+  </div>
+
+  <details>
+    <summary>展开：全部字段与可选值</summary>
+    <table class="full c3">
+      <thead><tr><th>字段</th><th>可选值或格式</th><th>规则</th></tr></thead>
+      <tbody>
+        <tr class="g"><td colspan="3">筛选与导出（三个页签共用）</td></tr>
+        <tr><td>日期</td><td>今日／近 7 天／近 30 天／自定义；例：2026-10-06 至 2026-10-12</td><td>默认近 7 天；按发送日期归属：10/09 发出的短信，之后几天的点击仍计入 10/09</td></tr>
+        <tr><td>人群</td><td>全部／新增／回流／潜在付费／潜在流失／其余</td><td>按发送时玩家所在群组归属；不属于前四类的计入「其余」；破产玩家看破产弹窗一行</td></tr>
+        <tr><td>推送</td><td>游戏外推送：推播、短信、Facebook、LINE；游戏内推送：大厅弹窗、破产弹窗、快显；可多选</td><td>默认全部</td></tr>
+        <tr><td>导出 Excel</td><td>按钮，旁边写明导出内容</td><td>按当前筛选导出四张工作表：两层汇总（游戏外、游戏内两张表）、按人群、按日期、推送明细（两层分列，含发送、到达、点击等绝对数）；缺数格子的写法与页面相同</td></tr>
+        <tr><td>页签</td><td>各推送／按人群、按日期／未送达原因</td><td>默认各推送</td></tr>
+        <tr><td>数据更新时间</td><td>例：数据更新于 15:30</td><td>建议每 15 分钟内更新一次；写在页面右上</td></tr>
+        <tr><td>统计窗口</td><td>到达、点击统计至发送后 5 天；LINE 14 天</td><td>窗口内的数字还会增长；写在表格右上方</td></tr>
+        <tr><td>只读角色</td><td>—</td><td>数据照常显示；不显示「重试失败部分」「复制并改受众」</td></tr>
+
+        <tr class="g"><td colspan="3">各推送 · 两张表</td></tr>
+        <tr><td>游戏外推送表</td><td>行：推播 · Android、推播 · iOS、短信、Facebook、LINE<br>列：发送、到达、到达率（到达÷发送）、曝光、点击、点击率（点击÷发送）</td><td>从发送算起；推播按设备分两行，因为 iOS 不回传到达与曝光</td></tr>
+        <tr><td>游戏内推送表</td><td>行：大厅弹窗、破产弹窗、快显<br>列：曝光、点击、点击率（点击÷曝光）</td><td>从曝光算起，没有发送、到达两列；被频率上限拦下的不弹出、不显示</td></tr>
+        <tr><td>发送</td><td>整数</td><td>服务商受理的条数，含受理后退回的；服务商未受理的（超时、临时错误、当场拒绝）不计入；不代表到达；测试发送不计入</td></tr>
+        <tr><td>到达</td><td>整数</td><td>推播 Android：客户端回执；短信：运营商回执，没收到的计「无回执」；Facebook：送达回调；LINE：只有按日汇总的送达数</td></tr>
+        <tr><td>曝光</td><td>整数</td><td>游戏外推送：推播 Android 显示通知时由客户端上报；Facebook 为已读；LINE 为官方统计，不足 20 人不返回。游戏内推送：弹窗、快显显示时由客户端上报</td></tr>
+        <tr><td>点击</td><td>整数</td><td>游戏外推送：推播由客户端上报；短信、Facebook、LINE 按追踪链接的点击。游戏内推送：弹窗、快显由客户端上报</td></tr>
+        <tr><td>表头 ⓘ</td><td>悬停显示</td><td>显示上面四行怎么算；人群：按发送时玩家所在群组归属</td></tr>
+        <tr><td>拿不到的数据</td><td>该渠道不回传／无回执／低于统计门槛／不适用</td><td>只在服务商或这一层本身拿不到时用：<br>该渠道不回传：服务商不提供这一步，如 iOS 推播的到达、曝光，短信的曝光<br>无回执：发出了但没收到这一条的回执，不算失败，如短信 1,002 条<br>低于统计门槛：LINE 曝光不足 20 人不返回<br>不适用：游戏内推送没有发送、到达<br>不估算，也不用上一步的数代填：iOS 推播的到达用发送数顶替，到达率会显示成 100%</td></tr>
+        <tr><td>表下说明</td><td>四种写法各一句</td><td>常驻在两张表下方</td></tr>
+
+        <tr class="g"><td colspan="3">各推送 · 推送明细</td></tr>
+        <tr><td>层</td><td>游戏外推送（17）／游戏内推送（8：弹窗规则 7 条、快显 1 条）</td><td>两层分开列。游戏内推送按弹窗规则、快显推送逐条列曝光、点击、点击率（点击÷曝光），例：ID 32 通行证升级提示，曝光 13,860，点击 1,470，点击率 10.6%；所选日期内没有曝光的弹窗规则不列</td></tr>
+        <tr><td>推送名称或 ID</td><td>文本，配查询按钮</td><td>只筛推送明细</td></tr>
+        <tr><td>状态</td><td>全部 17／运行中 2／已暂停 1／发送中 1／已完成 9／已停止 2／发送失败 1／无可发送对象 1</td><td>点数字即筛选；列出所选日期内发送过或开始发送过的推送，草稿、未到时间的已排程不列（在各推送页和总览看）；部分失败仍为已完成，全部失败才是发送失败</td></tr>
+        <tr><td>列 · 游戏外推送</td><td>推送名称（下附 ID 与推送）、发送方式与受众、状态、发送、到达、到达率（到达÷发送）、曝光、点击、点击率（点击÷发送）、操作</td><td>推播的到达、曝光下写「仅 Android」，到达率随到达只算 Android；LINE 单条的到达写「该渠道不回传」（只有按日汇总）；发出不足 20 人的 LINE 推送曝光写「低于统计门槛」</td></tr>
+        <tr><td>列 · 游戏内推送</td><td>弹窗规则或快显推送、位置、曝光、点击、点击率（点击÷曝光）</td><td>没有发送、到达两列</td></tr>
+        <tr><td>没有发出的行</td><td>整行写原因</td><td>例：「9,120 条全部失败：推送服务接口超时（服务商未受理）」「群组发送时为 0 人：名单刷新后无人符合」；不写 0</td></tr>
+        <tr><td>部分失败</td><td>状态下写「部分失败 N 条」</td><td>例：ID 38 部分失败 1,870 条（服务商接口超时，服务商未受理）；ID 36 部分失败 1,970 条（推送服务超时，服务商未受理）；未受理的不计入发送；仍可重试的同时列入总览待处理「部分失败·可重试」</td></tr>
+        <tr><td>推送名称</td><td>链接</td><td>进入单条推送数据（页 13）</td></tr>
+        <tr><td>操作</td><td>查看数据；有可重试的失败：重试失败部分；无可发送对象：复制并改受众</td><td>重试在自动重试结束后 24 小时内可点；编辑、暂停、停止在各推送页</td></tr>
+        <tr><td>排序与分页</td><td>按 ID 倒序；10 项／页</td><td>例：共 17 条，2 页</td></tr>
+        <tr><td>本页其余示例行</td><td>ID 36 潜在流失召回 · 推播，定时 10/11 20:00，潜在流失（两档）7,880，已完成（部分失败 1,970 条，未受理），发送 2,340，到达 1,362（仅 Android），到达率 92.0%（仅 Android），点击 91，点击率 3.9%<br>ID 35 回流任务开启 · 推播，立即 10/09 15:00，回流 16,564，已完成，发送 9,120，到达 4,984（仅 Android），到达率 89.0%（仅 Android），点击 347，点击率 3.8%<br>ID 34 生日礼领取提醒 · LINE，立即 10/08 15:30，钻石卡生日名单 42，已完成，发送 18，到达「该渠道不回传」，曝光「低于统计门槛」，点击 1，点击率 5.6%<br>ID 33 卡别直升活动开启 · Facebook，定时 10/06 20:00，回流 16,564，已停止，发送 1,880，到达 1,769，到达率 94.1%，曝光 1,060，点击 102，点击率 5.4%<br>ID 31 限时加码礼包未购买提醒 · 推播，按行为：礼包剩 2 小时，触发的玩家，运行中，发送 3,617，到达 2,430（仅 Android），到达率 95.5%（仅 Android），曝光 2,031（仅 Android），点击 290，点击率 8.0%</td><td>LINE 汇总行的曝光注明不含 ID 34 这一条</td></tr>
+
+        <tr class="g"><td colspan="3">按人群、按日期（两层各一张表）</td></tr>
+        <tr><td>视图</td><td>按人群／按日期</td><td>每个视图都是两张表，都随上方日期、人群、推送筛选</td></tr>
+        <tr><td>游戏外推送表 · 列</td><td>推播、短信、Facebook、LINE</td><td>表头写分母：点击率＝点击÷发送，到达率＝到达÷发送</td></tr>
+        <tr><td>游戏外推送表 · 指标</td><td>受众人数／发送／到达率／曝光／点击／点击率</td><td>默认点击率</td></tr>
+        <tr><td>游戏内推送表 · 列</td><td>大厅弹窗、破产弹窗、快显</td><td>表头写分母：点击率＝点击÷曝光</td></tr>
+        <tr><td>游戏内推送表 · 指标</td><td>曝光／点击／点击率</td><td>默认点击率；没有发送、到达</td></tr>
+        <tr><td>按人群 · 行</td><td>新增、回流、潜在付费、潜在流失、其余</td><td>表下写当前人数：新增 10,749，回流 16,564，潜在付费 4,860，潜在流失 7,880；一人可属多个人群，各行不相加（回流且潜在付费的玩家同时计入两行）</td></tr>
+        <tr><td>按日期 · 行</td><td>每天一行；当天写「截至 15:30」</td><td>按发送日期归属；没有推送的日子写「未发送」，不写 0%</td></tr>
+        <tr><td>按日期 · 游戏外推送示例（点击率＝点击÷发送）</td><td>10/06：6.1%、未发送、5.4%、未发送<br>10/07：6.9%、未发送、未发送、未发送<br>10/08：6.3%、未发送、未发送、5.6%<br>10/09：6.6%、3.7%、6.5%、未发送<br>10/10：6.4%、未发送、未发送、4.9%<br>10/11：5.9%、未发送、未发送、未发送<br>10/12：6.5%、2.0%、6.6%、未发送</td><td>列序：推播、短信、Facebook、LINE</td></tr>
+        <tr><td>按日期 · 游戏内推送示例（点击率＝点击÷曝光）</td><td>10/06：7.0%、11.8%、10.2%<br>10/07：7.3%、12.4%、10.9%<br>10/08：7.1%、12.0%、10.4%<br>10/09：7.4%、12.3%、10.8%<br>10/10：7.2%、11.9%、10.5%<br>10/11：7.3%、12.2%、10.7%<br>10/12：7.2%、11.9%、10.7%</td><td>列序：大厅弹窗、破产弹窗、快显</td></tr>
+
+        <tr class="g"><td colspan="3">未送达原因</td></tr>
+        <tr><td>层</td><td>游戏外推送／游戏内推送</td><td>默认游戏外推送</td></tr>
+        <tr><td>发送前拦下</td><td>无联系方式（未装 App、无手机号、未绑定 Facebook、未加 LINE 好友）、已退订、已封锁、平台限制（Facebook 已绑定但平台不允许发送）→ 通知关闭 → 勿扰时段放弃 → 频率上限拦下</td><td>本后台按规则拦下，不计入发送，也不占每人每天上限；改规则或受众处理；每人次只计第一个命中的原因，按此顺序判断</td></tr>
+        <tr><td>服务商未受理</td><td>超时、临时错误／服务商当场拒绝（令牌失效、号码无效）</td><td>不计入发送，也不占每人每天上限；一条推送全部未受理时状态为「发送失败」。前者系统 30 分钟内自动重试 3 次，自动重试结束后 24 小时内可手动重试；后者不重试，记原因。例：推播 11,530 人次＝超时 11,127（ID 44 全部失败 9,120、ID 36 部分失败 1,970、ID 31 37）＋当场拒绝 403（ID 31 125、ID 22 令牌失效 278）</td></tr>
+        <tr><td>受理后退回</td><td>服务商受理后又退回</td><td>计入发送和每人每天上限，不计入到达；例：推播 214（含 ID 31 的 25）、短信 96、Facebook 212</td></tr>
+        <tr><td>列</td><td>推播、短信、Facebook、LINE、合计、名单</td><td>单位：人次；某推送没有这一项时写「—」，如短信、Facebook、LINE 没有「通知关闭」</td></tr>
+        <tr><td>名单</td><td>导出</td><td>按玩家去重；例：推播通知关闭 6,204 人次，导出去重后的玩家名单，用于核对或改用其他推送</td></tr>
+        <tr><td>游戏内推送</td><td>只有「频率上限拦下」一行；列：大厅弹窗＋破产弹窗、快显、名单</td><td>快显写人次，例：近 7 天 1,480 人次；弹窗一格写「不适用」：超出每人每天 8 个后按排序截断，一次进大厅可能只少弹几个，不按人次统计；今日被拦下人数见弹窗页、频率上限页；被拦下的不弹出、不显示</td></tr>
+      </tbody>
+    </table>
+  </details>
+</section>
+
+<!-- ================= 14 单条推送数据 ================= -->
+<section id="p13">
+  <div class="eyebrow">页 13 · 单条推送数据（新页面，从数据看板或各推送列表进入）</div>
+  <h2>运营看一条推送从受众到点击每一步少在哪，并在自动重试结束后 24 小时内重试失败部分</h2>
+  <div class="row">
+    <div class="fig pd-flow" style="width:880px">
+      <div class="side">
+        <div class="hd">推送统一后台</div>
+        <div class="it">总览</div>
+        <div class="gl">游戏外推送</div>
+        <div class="it sub">推播</div>
+        <div class="it sub">短信</div>
+        <div class="it sub">Facebook</div>
+        <div class="it sub">LINE</div>
+        <div class="gl">游戏内推送</div>
+        <div class="it sub">弹窗</div>
+        <div class="it sub">快显</div>
+        <div class="dv"></div>
+        <div class="it">频率上限</div>
+        <div class="it on">数据看板</div>
+        <div class="it">玩家查询</div>
+        <div class="it">操作纪录</div>
+      </div>
+      <div class="main">
+        <div class="top"><span>推送统一后台 › 数据看板 › <span class="cur">单条推送数据</span></span><span>‹ 返回数据看板</span></div>
+        <div class="sec" style="padding:10px 16px">
+          <div style="display:flex;align-items:flex-start">
+            <div style="flex:1">
+              <div class="pd-ttl">限时加码礼包未购买提醒<span class="pd-st">运行中</span><span class="pd-st">推播 · ID 31</span></div>
+              <div class="pd-meta">按行为：限时加码礼包剩 2 小时，且尚未购买 ｜ 生效 2026-10-02 至 2026-12-31<br>触发的玩家；排除 VIP 名单、黑名单、机器人与测试账号 ｜ 运营01 10/02 10:12 由礼包后台迁入</div>
+            </div>
+            <div class="rel" style="display:flex;padding-top:2px"><span class="btn2">复制</span><span class="btn2">暂停</span><span class="btn2">结束</span><span class="co" data-n="1" style="right:-10px;top:-10px">1</span></div>
+          </div>
+        </div>
+        <div class="sec">
+          <div class="pd-bt"><span class="seg pd-segs"><span>今日</span><span class="on">近 7 天</span><span>自生效起</span><span>自定义</span></span><span class="pd-m">10/06–10/12</span><span class="pd-m" style="margin-left:6px">设置版本</span><span class="in" style="width:96px">全部版本<span class="dn">▾</span></span><span class="pd-sp"></span><span class="pd-m">统计至发送后 5 天｜更新于 15:30</span></div>
+          <div class="pd-fn" style="margin-top:8px">
+            <span class="pd-fk">受众</span><span class="pd-fbar" style="width:160px"></span><span class="pd-fv">8,652<span class="pd-an">触发人次</span></span><span class="pd-flo"><span class="co il" data-n="2" style="margin-left:0;vertical-align:-6px">2</span></span>
+            <span class="pd-fk">发送</span><span class="pd-fbar" style="width:67px"></span><span class="pd-fv">3,617<span class="pd-an">占受众 41.8%</span></span><span class="pd-flo">少 5,035：发送前拦下 4,873 · 服务商未受理 162</span>
+            <span class="pd-fk">到达</span><span class="pd-fbar" style="width:45px"></span><span class="pd-fv">2,430<span class="pd-an">仅 Android</span></span><span class="pd-flo">少 1,187：受理后退回 25 · 无回执 89 · iOS 1,073 <span class="pd-na">该渠道不回传</span></span>
+            <span class="pd-fk">曝光</span><span class="pd-fbar" style="width:38px"></span><span class="pd-fv">2,031<span class="pd-an">仅 Android</span></span><span class="pd-flo"></span>
+            <span class="pd-fk">点击</span><span class="pd-fbar" style="width:6px"></span><span class="pd-fv">290<span class="pd-an">点击率 8.0%</span></span><span class="pd-flo" style="color:var(--mute)">点击率＝点击÷发送；点击含 iOS 94</span>
+          </div>
+        </div>
+        <div class="sec">
+          <div class="pd-cards rel">
+            <div class="pd-cd">
+              <div class="pd-ct"><span>发送前拦下 4,873 人次</span><span class="pd-m">自上而下判断，每人次只计一个</span></div>
+              <div class="pd-cl">无联系方式（未装 App）<span class="pd-cn">1,946</span></div>
+              <div class="pd-cl">通知关闭<span class="pd-cn">1,127</span></div>
+              <div class="pd-cl">勿扰时段放弃<span class="pd-cn">1,382</span></div>
+              <div class="pd-cl">频率上限拦下<span class="pd-cn">418</span></div>
+              <div class="pd-cf"><span class="btn2">导出名单</span>改规则或受众处理</div>
+            </div>
+            <div class="pd-cd">
+              <div class="pd-ct"><span>服务商未受理 162 人次</span><span class="pd-m">不计入发送</span></div>
+              <div class="pd-cl">推送服务超时（已自动重试 3 次）<span class="pd-cn">37</span><span class="pd-cq">可重试</span></div>
+              <div class="pd-cl">当场拒绝：令牌失效<span class="pd-cn">118</span><span class="pd-cq">不可重试</span></div>
+              <div class="pd-cl">当场拒绝：内容格式错误<span class="pd-cn">7</span><span class="pd-cq">不可重试</span></div>
+              <div class="pd-cf"><span class="rel" style="display:inline-flex"><span class="btn2 p">重试失败部分</span><span class="co" data-n="4" style="left:-12px;top:-12px">4</span></span>近 24 小时超时、礼包未到期的 9 人次</div>
+              <div class="pd-cf" style="border-top:1px dashed var(--line2);padding-top:6px">受理后退回 25 人次：设备长期离线，消息过期；计入发送，不计入到达</div>
+            </div>
+            <span class="co" data-n="3" style="left:-14px;top:-10px">3</span>
+          </div>
+        </div>
+        <div class="sec">
+          <div class="pd-bt"><span class="pd-m">拆分</span><span class="seg pd-segs"><span class="on">按设备</span><span>按人群</span><span>按小时</span></span><span class="pd-sp"></span><span class="btn2">导出逐人明细</span><span class="pd-m">保留 30 天</span></div>
+          <table class="pd-dt">
+            <thead><tr><th>设备</th><th class="pd-r">受众</th><th class="pd-r">发送前拦下</th><th class="pd-r">未受理</th><th class="pd-r">发送</th><th class="pd-r">到达</th><th class="pd-r">到达率<i>到达÷发送</i></th><th class="pd-r">曝光</th><th class="pd-r">点击</th><th class="pd-r">点击率<i>点击÷发送</i></th></tr></thead>
+            <tbody>
+              <tr><td>Android</td><td class="pd-r">4,260</td><td class="pd-r">1,612</td><td class="pd-r">104</td><td class="pd-r">2,544</td><td class="pd-r">2,430<span class="pd-s2">退回 25 · 无回执 89</span></td><td class="pd-r">95.5%</td><td class="pd-r">2,031</td><td class="pd-r">196</td><td class="pd-r">7.7%</td></tr>
+              <tr><td>iOS</td><td class="pd-r">2,446</td><td class="pd-r">1,315</td><td class="pd-r">58</td><td class="pd-r">1,073</td><td class="pd-c" colspan="2"><span class="pd-na">该渠道不回传</span><span class="co il" data-n="5">5</span></td><td class="pd-r"><span class="pd-na">该渠道不回传</span></td><td class="pd-r">94</td><td class="pd-r">8.8%</td></tr>
+              <tr><td>未装 App</td><td class="pd-r">1,946</td><td class="pd-r">1,946</td><td class="pd-r">0</td><td class="pd-r">0</td><td class="pd-c" colspan="5" style="color:var(--ink2)">没有设备令牌，发送前拦下</td></tr>
+              <tr class="pd-tot"><td>合计</td><td class="pd-r">8,652</td><td class="pd-r">4,873</td><td class="pd-r">162</td><td class="pd-r">3,617</td><td class="pd-r">2,430<span class="pd-s2">仅 Android</span></td><td class="pd-r">95.5%<span class="pd-s2">仅 Android</span></td><td class="pd-r">2,031<span class="pd-s2">仅 Android</span></td><td class="pd-r">290</td><td class="pd-r">8.0%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="sec" style="padding:8px 16px 10px">
+          <div class="pd-bt" style="margin:0"><span class="pd-h">设置版本</span><span class="co il" data-n="6" style="margin-left:-4px">6</span><span class="pd-st" style="border-color:#4E5560;color:var(--ink)">版本 2 · 10/09 16:12 起（当前）· 改了内文</span><span class="pd-st">版本 1 · 10/02 10:12–10/09 16:12</span><span class="pd-sp"></span><span class="pd-lk" style="font-size:13px">本条操作纪录 5 条 ›</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <div class="note" data-n="1"><span class="nb">1</span><div><b>操作按状态开放</b><p>运行中可暂停、结束；已发出的不撤回</p></div></div>
+      <div class="note" data-n="2"><span class="nb">2</span><div><b>从受众算到点击</b><p>每一步少了多少、少在哪写在同一行</p></div></div>
+      <div class="note" data-n="3"><span class="nb">3</span><div><b>拦下与失败分开列</b><p>拦下改规则或受众，失败查服务商</p></div></div>
+      <div class="note" data-n="4"><span class="nb">4</span><div><b>只重试会成功的部分</b><p>超时可重试；令牌失效、内容被拒不重试</p></div></div>
+      <div class="note" data-n="5"><span class="nb">5</span><div><b>iOS 写「该渠道不回传」</b><p>合计只含 Android，不用发送数代填</p></div></div>
+      <div class="note" data-n="6"><span class="nb">6</span><div><b>每次修改生成一个版本</b><p>数据可按版本看，对得上当时的设置</p></div></div>
+    </div>
+  </div>
+
+  <div class="pd-states">
+    <div class="pd-state">
+      <div class="pd-box">
+        <div class="pd-bt" style="margin-bottom:4px"><span class="pd-h">设置版本</span><span class="in" style="width:236px">版本 1 · 10/02 10:12–10/09 16:12<span class="dn">▾</span></span></div>
+        <div class="pd-diff">
+          <div class="pd-dr"><span class="pd-lb">版本 1</span><span class="pd-del">加碼禮包即將下架，打開就能看到專屬加碼內容，別錯過！</span></div>
+          <div class="pd-dr"><span class="pd-lb">版本 2</span><span class="pd-ins">你的幸運加碼禮包將在 2 小時後到期，點擊立即查看</span></div>
+        </div>
+        <div style="font-size:12px;color:var(--mute);margin:2px 0 6px">只改了内文；标题、触发条件、受众、提醒频次、点击跳转、勿扰、频率上限两版相同</div>
+        <table class="pd-dt">
+          <thead><tr><th>时间</th><th>操作人</th><th>操作</th></tr></thead>
+          <tbody>
+            <tr><td>10/09 16:12</td><td>运营02</td><td>编辑：内文改为写明到期时间</td></tr>
+            <tr><td>10/05 18:02</td><td>运营01</td><td>恢复</td></tr>
+            <tr><td>10/05 09:40</td><td>运营01</td><td>暂停：礼包准入规则调整</td></tr>
+            <tr><td>10/02 10:12</td><td>运营01</td><td>切换启用：推荐礼包设定切到本后台生效</td></tr>
+            <tr><td>10/02 10:08</td><td>运营01</td><td>新建草稿：保存，去切换</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pd-cap"><b>选版本</b>看当时的设置与本条改动记录；改过的字段标出改前改后</div>
+    </div>
+    <div class="pd-state">
+      <div class="pd-box">
+        <div class="pd-ttl" style="font-size:14px">潜在流失召回<span class="pd-st">已完成</span><span class="pd-st">推播 · ID 36</span></div>
+        <div class="pd-meta" style="margin-bottom:8px">定时 10/11 20:00 ｜ 潜在流失（两档）7,880</div>
+        <div class="pd-banner"><b>部分失败 1,970 条：推送服务超时（服务商未受理）</b><br>已发送 2,340 条；系统已自动重试 3 次；自动重试结束后 24 小时内（10/12 20:30 前）可手动重试</div>
+        <div style="display:flex;align-items:center;margin-top:8px"><span class="btn2 p" style="margin-left:0">重试失败部分</span><span class="btn2">复制</span></div>
+        <div style="font-size:12px;color:var(--ink2);margin-top:8px">只重发这 1,970 条；重发规则：同一条推送对同一人只计一次上限，勿扰时段内顺延；超过窗口按钮不可点</div>
+      </div>
+      <div class="pd-cap"><b>部分失败</b>状态仍为已完成，顶部写失败条数、原因和可重试截止时间</div>
+    </div>
+    <div class="pd-state">
+      <div class="pd-box">
+        <div class="pd-ttl" style="font-size:14px">限时挑战开启<span class="pd-st">已完成</span><span class="pd-st">推播 · ID 44</span></div>
+        <div class="pd-meta" style="margin-bottom:8px">定时 10/12 14:00 ｜ 回流 16,564 ｜ 点「重试失败部分」之后</div>
+        <div class="pd-fn" style="grid-template-columns:96px 1fr">
+          <span class="pd-fk">重发</span><span>9,120 条</span>
+          <span class="pd-fk">服务商受理</span><span><b>9,040 条</b>，计入发送；到达、点击随回执累加</span>
+          <span class="pd-fk">仍未受理</span><span class="pd-bad">80 条：推送服务接口超时，可再重试至 10/13 14:30</span>
+        </div>
+        <div style="font-size:12px;color:var(--ink2);margin-top:8px">状态由「发送失败」变为「已完成 · 部分失败 80 条」；总览待处理里这一行改列「部分失败·可重试」；重试记入操作纪录</div>
+      </div>
+      <div class="pd-cap"><b>重试之后</b>失败数与状态当场更新，仍失败的可在窗口内再重试</div>
+    </div>
+    <div class="pd-state">
+      <div class="pd-box">
+        <div class="pd-ttl" style="font-size:14px">通行证升级提示<span class="pd-st">运行中</span><span class="pd-st">快显 · ID 32</span></div>
+        <div class="pd-meta" style="margin-bottom:8px">按行为：通行证升级 ｜ 近 7 天</div>
+        <table class="pd-dt">
+          <tbody>
+            <tr><td>受众</td><td class="pd-r">15,340<span class="pd-an">排除后触发人次</span></td></tr>
+            <tr><td>可触达</td><td class="pd-r">15,340<span class="pd-an">触发时在线</span></td></tr>
+            <tr><td>发送</td><td class="pd-r"><span class="pd-na">不适用</span></td></tr>
+            <tr><td>到达</td><td class="pd-r"><span class="pd-na">不适用</span></td></tr>
+            <tr><td>曝光</td><td class="pd-r">13,860<span class="pd-an">被频率上限拦下 1,480</span></td></tr>
+            <tr><td>点击</td><td class="pd-r">1,470<span class="pd-an">点击率 10.6%（点击÷曝光）</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pd-cap"><b>游戏内推送</b>从曝光算起，发送、到达写「不适用」</div>
+    </div>
+    <div class="pd-state">
+      <div class="pd-box">
+        <div style="display:flex;align-items:flex-start;gap:10px">
+          <div style="flex:1;min-width:0"><div class="pd-ttl" style="font-size:14px">限时加码礼包未购买提醒<span class="pd-st">已暂停</span><span class="pd-st">推播 · ID 31</span></div>
+            <div class="pd-meta">切回原处生效之后：推荐礼包设定在发送这条提醒</div></div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end"><div style="display:flex"><span class="btn2">复制</span><span class="btn2 dis">恢复</span><span class="btn2">结束</span></div>
+            <div class="tip2">推荐礼包设定仍在发送此提醒；<br>在该页切换后本推送才会运行</div></div>
+        </div>
+      </div>
+      <div class="pd-cap"><b>礼包后台原处生效时「恢复」不可点</b>悬停提示原因；到时自动恢复也不执行</div>
+    </div>
+  </div>
+
+  <details>
+    <summary>展开：全部字段与可选值</summary>
+    <table class="full c3">
+      <thead><tr><th>字段</th><th>可选值或格式</th><th>规则</th></tr></thead>
+      <tbody>
+        <tr class="g"><td colspan="3">进入与顶部</td></tr>
+        <tr><td>入口</td><td>数据看板推送明细的推送名称或「查看数据」；各推送列表的「数据」；总览待处理的「查看数据」</td><td>「返回」回到来源页</td></tr>
+        <tr><td>标题行</td><td>推送名称、状态、推送与 ID</td><td>例：限时加码礼包未购买提醒，运行中，推播 · ID 31</td></tr>
+        <tr><td>设置摘要</td><td>发送方式、生效期间、受众与排除、创建人与时间</td><td>例：按行为：限时加码礼包剩 2 小时，且尚未购买；2026-10-02 至 2026-12-31；触发的玩家，排除 VIP 名单、黑名单、机器人与测试账号；运营01 10/02 10:12，由礼包后台迁入</td></tr>
+        <tr><td>操作</td><td>运行中：复制、暂停、结束<br>已暂停：复制、恢复、结束<br>已排程：复制、停止<br>发送中：复制、停止<br>已完成（有可重试的失败）：复制、重试失败部分<br>发送失败（有可重试条数）：复制、重试失败部分<br>发送失败（全部当场拒绝）及其余已完成、已停止、已结束、无可发送对象：复制</td><td>「重试失败部分」只在有可重试条数时显示；触发为「限时加码礼包快到期」且推荐礼包设定为原处生效时「恢复」不可点，悬停提示「推荐礼包设定仍在发送此提醒；在该页切换后本推送才会运行」；暂停可设恢复时间或手动恢复，暂停期间触发的不发、恢复后不补发；结束后不能恢复；停止后已发出的不撤回；编辑在各推送页；只读角色不显示操作</td></tr>
+
+        <tr class="g"><td colspan="3">统计范围</td></tr>
+        <tr><td>统计期间</td><td>今日／近 7 天／自生效起／自定义</td><td>默认近 7 天；例：10/06–10/12，平均每天触发约 1,236 人次</td></tr>
+        <tr><td>设置版本</td><td>全部版本／版本 2 · 10/09 16:12 起（当前）／版本 1 · 10/02 10:12–10/09 16:12</td><td>选某个版本时，只统计该版本有效期间发出的</td></tr>
+        <tr><td>统计窗口与更新</td><td>到达、点击统计至发送后 5 天（LINE 14 天）；数据更新于 15:30</td><td>窗口内的数字还会增长</td></tr>
+
+        <tr class="g"><td colspan="3">漏斗</td></tr>
+        <tr><td>步骤（游戏外推送）</td><td>受众 → 发送 → 到达 → 曝光 → 点击</td><td>受众＝符合发送对象条件的玩家：按行为推送按触发人次算，立即、定时按开始发送那一刻的群组名单、去重后计；每一步写比上一步少多少、少在哪</td></tr>
+        <tr><td>步骤（游戏内推送）</td><td>受众 → 曝光 → 点击</td><td>发送、到达写「不适用」；点击率＝点击÷曝光</td></tr>
+        <tr><td>示例（ID 31，近 7 天）</td><td>受众 8,652 触发人次；发送 3,617（占受众 41.8%）；到达 2,430（仅 Android）；曝光 2,031（仅 Android）；点击 290</td><td>受众 → 发送少 5,035：发送前拦下 4,873、服务商未受理 162；发送 → 到达少 1,187：受理后退回 25、Android 无回执 89、iOS 1,073 该渠道不回传；点击率 8.0%＝点击÷发送，点击含 iOS 94</td></tr>
+        <tr><td>长条</td><td>按受众等比</td><td>只示意，以数字为准</td></tr>
+        <tr><td>测试发送</td><td>—</td><td>不计入本页任何数字</td></tr>
+
+        <tr class="g"><td colspan="3">发送前拦下与服务商未受理</td></tr>
+        <tr><td>发送前拦下</td><td>无联系方式（含已退订、已封锁、平台限制）→ 通知关闭 → 勿扰时段放弃 → 频率上限拦下</td><td>不计入发送，也不占每人每天上限；每人次只计第一个命中的原因，四项相加等于拦下总数；可导出名单。例：1,946／1,127／1,382／418，合计 4,873</td></tr>
+        <tr><td>服务商未受理</td><td>原因、人次、可重试</td><td>不计入发送，也不占每人每天上限。例：推送服务超时 37（Android 23、iOS 14），可重试<br>服务商当场拒绝：令牌失效 118（Android 76、iOS 42），不可重试<br>服务商当场拒绝：内容格式错误 7（Android 5、iOS 2），不可重试</td></tr>
+        <tr><td>受理后退回</td><td>原因、人次</td><td>计入发送和每人每天上限，不计入到达。例：设备长期离线、消息过期 25（Android）</td></tr>
+        <tr><td>自动重试</td><td>系统执行</td><td>超时、服务商临时错误：30 分钟内自动重试 3 次；服务商当场拒绝的（令牌失效、号码无效）不重试；未装 App、已退订、已封锁、平台限制在发送前拦下，不进失败</td></tr>
+        <tr><td>重试失败部分</td><td>按钮</td><td>只在有可重试条数时显示；自动重试后仍失败的，自动重试结束后 24 小时内可手动重试，超过 24 小时按钮不可点、失败数与原因仍可查；只重发可重试的；按行为推送只发给条件仍成立的玩家：例 37 人次超时中，近 24 小时内且礼包未到期的 9 人次，其余 28 人次礼包已到期；重发规则：同一条推送对同一人只计一次上限，勿扰时段内顺延，短信重发按则计费；重试记入操作纪录</td></tr>
+        <tr><td>部分失败与发送失败</td><td>状态</td><td>部分失败仍为已完成，顶部写「部分失败 N 条」、原因、已发送条数与可重试截止时间，仍可重试时列入总览待处理「部分失败·可重试」；全部失败为发送失败，列入总览待处理。例：ID 36 部分失败 1,970 条（推送服务超时），已发送 2,340 条，10/12 20:30 前可重试</td></tr>
+
+        <tr class="g"><td colspan="3">拆分</td></tr>
+        <tr><td>拆分方式</td><td>按设备／按人群／按小时</td><td>默认按设备；按人群、按小时可叠加（选填）</td></tr>
+        <tr><td>列</td><td>受众、发送前拦下、未受理、发送、到达、到达率（到达÷发送）、曝光、点击、点击率（点击÷发送）</td><td>发送前拦下悬停显示四项：Android 无联系方式 0、通知关闭 498、勿扰时段放弃 852、频率上限拦下 262；iOS 0、629、530、156；未装 App 1,946、0、0、0</td></tr>
+        <tr><td>示例（按设备）</td><td>Android：4,260／1,612／104／2,544／2,430（退回 25、无回执 89）／95.5%／2,031／196／7.7%<br>iOS：2,446／1,315／58／1,073／该渠道不回传／该渠道不回传／该渠道不回传／94／8.8%<br>未装 App：1,946／1,946／0／0／发送前拦下<br>合计：8,652／4,873／162／3,617／2,430 仅 Android／95.5% 仅 Android／2,031 仅 Android／290／8.0%</td><td>合计行的到达、到达率、曝光只含 Android 并写明；Android 89 人次无回执，不算失败</td></tr>
+        <tr><td>导出逐人明细</td><td>按钮</td><td>逐人明细保留 30 天；汇总长期保留</td></tr>
+
+        <tr class="g"><td colspan="3">设置版本与改动记录</td></tr>
+        <tr><td>版本条</td><td>每个版本一个标签：版本号、起止时间、改了什么</td><td>运行中的按行为推送每次修改生成一个版本，只对之后的触发生效；之前的触发仍按旧版本统计</td></tr>
+        <tr><td>版本快照</td><td>发送方式、受众、提醒频次、标题、内文、点击跳转、勿扰、频率上限<br>例：版本 2 只改内文，由「加碼禮包即將下架，打開就能看到專屬加碼內容，別錯過！」改为「你的幸運加碼禮包將在 2 小時後到期，點擊立即查看」；两版其余相同：标题「最後提醒⚠️幸運加碼禮包」、剩余 2 小时触发且只发给尚未购买的玩家、每次触发最多 1 次且间隔至少 24 小时、点击跳转 礼包 / 限时加码礼包、勿扰 00:00–08:00 命中时放弃、遵守推播每人每天 2 条</td><td>改过的字段标出改前改后，其余照常显示</td></tr>
+        <tr><td>本条操作纪录</td><td>时间、操作人、操作、内容</td><td>与「操作纪录」页同源；点「本条操作纪录」跳到操作纪录页并按本条筛选。例：10/09 16:12 运营02 编辑，内文改为写明到期时间；10/05 18:02 运营01 恢复，暂停期间不触发提醒；10/05 09:40 运营01 暂停，原因：礼包准入规则调整；10/02 10:12 运营01 切换启用，推荐礼包设定切到本后台生效，本条由草稿变为运行中；10/02 10:08 运营01 新建草稿，由礼包后台迁入，沿用原标题与提醒时间</td></tr>
+
+        <tr class="g"><td colspan="3">其他推送的单条数据</td></tr>
+        <tr><td>快显（游戏内推送）</td><td>受众、可触达、发送、到达、曝光、点击</td><td>受众为排除后的名单（含不在线），可触达为发送时在线；例：ID 32 通行证升级提示，近 7 天受众 15,340 触发人次，可触达 15,340（触发时都在线），被频率上限拦下 1,480，曝光 13,860，点击 1,470，点击率 10.6%（点击÷曝光）；发送、到达写「不适用」</td></tr>
+        <tr><td>短信、Facebook、LINE</td><td>同推播的结构</td><td>拆分按人群、按小时（没有设备）；短信到达为运营商回执，没收到的写「无回执」，曝光写「该渠道不回传」；LINE 单条到达写「该渠道不回传」，曝光不足 20 人写「低于统计门槛」</td></tr>
+      </tbody>
+    </table>
+  </details>
+</section>
+
+<!-- ================= 15 玩家查询 ================= -->
+<section id="p14">
+  <div class="eyebrow">页 14 · 玩家查询（现有「玩家弹窗顺序查询」扩展）</div>
+  <h2>运营查一个玩家能收到哪些推送、今天收了几条、哪条被拦下及原因</h2>
+  <div class="row">
+    <div class="fig pd-flow" style="width:880px">
+      <div class="side">
+        <div class="hd">推送统一后台</div>
+        <div class="it">总览</div>
+        <div class="gl">游戏外推送</div>
+        <div class="it sub">推播</div>
+        <div class="it sub">短信</div>
+        <div class="it sub">Facebook</div>
+        <div class="it sub">LINE</div>
+        <div class="gl">游戏内推送</div>
+        <div class="it sub">弹窗</div>
+        <div class="it sub">快显</div>
+        <div class="dv"></div>
+        <div class="it">频率上限</div>
+        <div class="it">数据看板</div>
+        <div class="it on">玩家查询</div>
+        <div class="it">操作纪录</div>
+      </div>
+      <div class="main">
+        <div class="top"><span>推送统一后台 › <span class="cur">玩家查询</span><span class="mk c">改</span><span style="margin-left:6px">原弹窗页的「玩家弹窗顺序查询」整页移到这里</span><span class="co il" data-n="1">1</span></span><span></span></div>
+        <div class="ew" style="padding:12px 16px 14px">
+          <div style="display:flex;gap:8px;align-items:center"><span class="ein v" style="width:170px">180820055306761</span><span class="ein" style="width:150px">会员昵称</span><span class="ein" style="width:150px">手机号码</span><span class="ebtn b">查询</span></div>
+          <div style="display:flex;gap:14px;margin-top:12px;align-items:flex-start">
+            <div style="width:224px;flex:none">
+              <div class="pd-lt">玩家信息</div>
+              <div class="pd-pinfo"><span>会员编号: 180820055306761</span><span>标签名称: 潜在流失·实验组</span><span>会员昵称: 我来称王260134709</span><span>手机号码: 0912***678</span><span>标签状态: 启用</span></div>
+              <div class="pd-blk nc rel" style="margin-top:10px">
+                <span class="mk n mkc">新增</span><div class="pd-lt" style="margin:0">所属群组<span class="co il" data-n="4" style="margin-left:6px">4</span></div>
+                <div style="font-size:12px;color:#909399;margin-top:3px">按当前名单，每 25 分钟刷新</div>
+                <span class="pd-pill">潜在流失·近 14 天登录 1 天</span><span class="pd-pill">潜在流失（两档）</span><span class="pd-pill">潜在流失·实验组</span>
+              </div>
+            </div>
+            <div class="pd-blk nc rel" style="flex:1;min-width:0"><span class="mk n mkc">新增</span>
+              <div class="pd-lt">各推送能否收到</div>
+              <table class="et">
+                <colgroup><col style="width:66px"><col style="width:204px"><col style="width:116px"><col></colgroup>
+                <thead><tr><th class="l">推送</th><th class="l">能否收到</th><th>今日已收／上限</th><th>最近一次收到</th></tr></thead>
+                <tbody>
+                  <tr><td colspan="4" class="l" style="background:#FAFAFA;color:#909399;padding:3px 4px">游戏外推送</td></tr>
+                  <tr><td class="l">推播</td><td class="l pd-ok">已开启通知（Android）</td><td class="rel"><b class="pd-bad" style="white-space:nowrap">2／2 条 已达上限</b><span class="co" data-n="2" style="right:-12px;top:-12px">2</span></td><td>10/12 12:30</td></tr>
+                  <tr><td class="l">短信</td><td class="l pd-ok">有手机号</td><td>0／1 条</td><td>10/09 19:00</td></tr>
+                  <tr><td class="l">Facebook</td><td class="l pd-no">未绑定 Facebook<span class="co il" data-n="3">3</span></td><td>0／1 条</td><td>—</td></tr>
+                  <tr><td class="l">LINE</td><td class="l pd-no">未加 LINE 好友</td><td>0／1 条</td><td>—</td></tr>
+                  <tr><td colspan="4" class="l" style="background:#FAFAFA;color:#909399;padding:3px 4px">游戏内推送</td></tr>
+                  <tr><td class="l">弹窗</td><td class="l">在线时按规则弹出（大厅＋破产）</td><td>5／8 个</td><td>10/12 14:05</td></tr>
+                  <tr><td class="l">快显</td><td class="l">当前在线</td><td>1／3 次</td><td>10/12 12:00</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="pd-blk nc rel" style="margin-top:14px"><span class="mk n mkc">新增</span>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;white-space:nowrap"><span class="pd-lt" style="margin:0;white-space:nowrap">收到记录</span><span class="co il" data-n="5" style="margin-left:0">5</span><span style="font-size:12px;color:#909399">近 30 天</span><span class="pd-sp"></span><span class="ein v" style="width:90px">推送：全部<span class="dn">▾</span></span><span class="ein v" style="width:90px">结果：全部<span class="dn">▾</span></span><span class="ein v" style="width:198px">2026-10-06　至　2026-10-12</span><span class="ebtn w">导出</span></div>
+            <table class="et">
+              <colgroup><col style="width:86px"><col style="width:66px"><col style="width:140px"><col style="width:160px"><col></colgroup>
+              <thead><tr><th>时间</th><th>推送</th><th class="l">推送名称或弹窗规则</th><th class="l">玩家看到的内容</th><th class="l">结果</th></tr></thead>
+              <tbody>
+                <tr><td>10/12 15:00</td><td>推播</td><td class="l pd-el"><span class="pd-lk">月月抽开奖提醒</span></td><td class="l pd-el">月月抽今晚開獎，快來看看你的號碼</td><td class="l pd-bad">频率上限拦下：推播今日已收 <span style="white-space:nowrap">2／2</span></td></tr>
+                <tr><td>10/12 14:05</td><td>大厅弹窗</td><td class="l pd-el">活动类·潜在流失（实验组）＋通用弹窗</td><td class="l pd-el">每日补给计划、热门资讯、发信送奖、每日礼包</td><td class="l">已曝光 4 个，点击：每日补给计划</td></tr>
+                <tr><td>10/12 13:42</td><td>破产弹窗</td><td class="l pd-el">破产储值弹窗（实验组）</td><td class="l pd-el">破产礼包</td><td class="l">已曝光</td></tr>
+                <tr><td>10/12 12:30</td><td>推播</td><td class="l pd-el"><span class="pd-lk">任务完成奖励提醒</span></td><td class="l pd-el">任務完成！獎勵已發放，點擊立即領取</td><td class="l">已点击</td></tr>
+                <tr><td>10/12 12:00</td><td>快显</td><td class="l pd-el"><span class="pd-lk">通行证升级提示</span></td><td class="l pd-el">恭喜升級！通行證獎勵已可領取</td><td class="l">已曝光</td></tr>
+                <tr><td>10/12 10:00</td><td>短信</td><td class="l pd-el"><span class="pd-lk">每日补给计划提醒</span></td><td class="l pd-el">【會員通知】每日補給計畫加碼，登入即領…</td><td class="l pd-bad">未送达：服务商接口超时</td></tr>
+                <tr><td colspan="5" class="l" style="color:#909399;padding:3px 4px">⋮ 共 46 条，向下滚动加载更早的记录</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="rel" style="display:flex;gap:14px;margin-top:14px">
+            <div style="flex:1;min-width:0">
+              <div class="pd-lt" style="font-weight:400">自动弹窗顺序</div>
+              <table class="et">
+                <colgroup><col style="width:40px"><col style="width:90px"><col style="width:64px"><col style="width:80px"><col></colgroup>
+                <thead><tr><th>顺序</th><th>类型</th><th>礼包名称</th><th>弹窗活动 ID</th><th>弹窗名称</th></tr></thead>
+                <tbody>
+                  <tr><td>1</td><td>每日补给计划</td><td>-</td><td>14</td><td class="pd-el">活动类·潜在流失（实验组）</td></tr>
+                  <tr><td colspan="5" class="l" style="color:#909399;padding:3px 4px">⋮ 第 2–21 项，第 15–21 项为通用弹窗（ID 6）</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div style="flex:1;min-width:0">
+              <div class="pd-lt" style="font-weight:400">游戏破产弹窗顺序</div>
+              <table class="et">
+                <colgroup><col style="width:40px"><col style="width:90px"><col style="width:64px"><col style="width:80px"><col></colgroup>
+                <thead><tr><th>顺序</th><th>类型</th><th>礼包名称</th><th>弹窗活动 ID</th><th>弹窗名称</th></tr></thead>
+                <tbody>
+                  <tr><td>1</td><td>首储礼包</td><td>首储1.2</td><td>15</td><td class="pd-el">破产储值弹窗（实验组）</td></tr>
+                  <tr><td colspan="5" class="l" style="color:#909399;padding:3px 4px">⋮ 第 2–8 项</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <span class="co" data-n="6" style="right:-8px;top:-6px">6</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <div class="note" data-n="1"><span class="nb">1</span><div><b>改：移入推送统一后台</b><p>查询条件和玩家信息照旧</p></div></div>
+      <div class="note" data-n="2"><span class="nb">2</span><div><b>今日已收与上限并列</b><p>达上限标红；今天余下的推播不再发给他</p></div></div>
+      <div class="note" data-n="3"><span class="nb">3</span><div><b>新增各推送能否收到</b><p>收不到的写原因，如未绑定 Facebook</p></div></div>
+      <div class="note" data-n="4"><span class="nb">4</span><div><b>新增所属群组</b><p>判断玩家在不在推送对象里</p></div></div>
+      <div class="note" data-n="5"><span class="nb">5</span><div><b>新增收到记录</b><p>收到、被拦下、未送达的每一条都写结果；<br>点推送名称进入该推送的单条数据，可在那里重试</p></div></div>
+      <div class="note" data-n="6"><span class="nb">6</span><div><b>两张弹窗顺序表不变</b><p>按玩家命中的规则列出全部排序项</p></div></div>
+    </div>
+  </div>
+
+  <div class="pd-states">
+    <div class="pd-state">
+      <div class="pd-box ew">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span class="pd-lt" style="margin:0">收到记录</span><span class="pd-sp"></span><span class="ein v" style="width:96px">推送：全部<span class="dn">▾</span></span><span class="ein v" style="width:104px;border-color:#409EFF">结果：未收到<span class="dn">▾</span></span></div>
+        <table class="et">
+          <colgroup><col style="width:86px"><col style="width:66px"><col style="width:150px"><col></colgroup>
+          <thead><tr><th>时间</th><th>推送</th><th class="l">名称</th><th class="l">结果</th></tr></thead>
+          <tbody>
+            <tr><td>10/12 15:00</td><td>推播</td><td class="l pd-el"><span class="pd-lk">月月抽开奖提醒</span></td><td class="l pd-bad">频率上限拦下：推播今日已收 <span style="white-space:nowrap">2／2</span></td></tr>
+            <tr><td>10/12 10:00</td><td>短信</td><td class="l pd-el"><span class="pd-lk">每日补给计划提醒</span></td><td class="l pd-bad">未送达：服务商接口超时</td></tr>
+            <tr><td>10/11 22:30</td><td>大厅弹窗</td><td class="l pd-el">活动类·潜在流失（实验组）</td><td class="l pd-bad">频率上限拦下：弹窗今日已收 8／8</td></tr>
+            <tr><td>10/11 20:00</td><td>推播</td><td class="l pd-el"><span class="pd-lk">潜在流失召回</span></td><td class="l pd-bad">未送达：推送服务超时</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pd-cap"><b>只看未收到</b>被拦下与未送达逐条写原因，排查不用再查日志</div>
+    </div>
+    <div class="pd-state">
+      <div class="pd-box ew">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span class="pd-lt" style="margin:0">收到记录</span><span class="pd-sp"></span><span class="ein v" style="width:126px;border-color:#409EFF">推送：Facebook<span class="dn">▾</span></span><span class="ein v" style="width:96px">结果：全部<span class="dn">▾</span></span></div>
+        <div class="pd-empty">近 30 天没有 Facebook 记录<br>原因：未绑定 Facebook，不在任何 Facebook 推送的可发送名单内</div>
+      </div>
+      <div class="pd-cap"><b>没有记录</b>写明是收不到、不在受众内，还是当天未发送</div>
+    </div>
+    <div class="pd-state">
+      <div class="pd-box ew">
+        <div style="display:flex;gap:8px;align-items:center"><span class="ein v" style="width:150px">180820055399999</span><span class="ein" style="width:90px">会员昵称</span><span class="ebtn b">查询</span></div>
+        <div class="pd-empty" style="margin-top:10px">查无此玩家<br>请确认会员编号、昵称或手机号码；手机号码需输入完整号码</div>
+      </div>
+      <div class="pd-cap"><b>查无此玩家</b>写明没有查到，并提示核对查询条件</div>
+    </div>
+  </div>
+
+  <details>
+    <summary>展开：全部字段与可选值</summary>
+    <table class="full c3">
+      <thead><tr><th>字段</th><th>可选值或格式</th><th>规则</th></tr></thead>
+      <tbody>
+        <tr class="g"><td colspan="3">现有，照旧</td></tr>
+        <tr><td>页面位置</td><td>改：由弹窗页左侧「玩家弹窗顺序查询」移到推送统一后台侧栏「玩家查询」</td><td>整页移入，原有内容不变</td></tr>
+        <tr><td>查询条件</td><td>会员编号／会员昵称／手机号码，配查询按钮</td><td>任填一项查询，三种方式查到同一玩家</td></tr>
+        <tr><td>玩家信息</td><td>会员编号、标签名称、会员昵称、手机号码、标签状态</td><td>例：180820055306761、潜在流失·实验组、我来称王260134709、0912***678、启用；手机号码中间打码</td></tr>
+        <tr><td>自动弹窗顺序</td><td>顺序、类型、礼包名称、弹窗活动 ID、弹窗名称</td><td>按玩家命中的规则列出全部排序项。例：规则 14 与通用弹窗（ID 6）共 21 项，第 1 项每日补给计划、第 2 项热门资讯，第 15–21 项为通用弹窗</td></tr>
+        <tr><td>游戏破产弹窗顺序</td><td>同上</td><td>例：规则 15 共 8 项，第 1 项首储礼包（首储1.2）、第 2 项破产礼包</td></tr>
+
+        <tr class="g"><td colspan="3">新增 · 玩家信息旁</td></tr>
+        <tr><td>所属群组</td><td>标签群组名称，逐个列出</td><td>按当前名单，每 25 分钟刷新。例：潜在流失·近 14 天登录 1 天、潜在流失（两档）、潜在流失·实验组</td></tr>
+        <tr><td>各推送能否收到 · 行</td><td>游戏外推送：推播、短信、Facebook、LINE<br>游戏内推送：弹窗、快显</td><td>两层分组列出；8 天以上未登录的玩家只收得到游戏外推送</td></tr>
+        <tr><td>能否收到</td><td>能：✓ 加依据，如已开启通知（Android）、有手机号<br>不能：✕ 加原因，如未装 App、通知关闭、无有效手机号、已退订、未绑定 Facebook、平台限制（Facebook）、未加 LINE 好友、已封锁<br>游戏内推送：在线时按规则弹出（大厅＋破产）；当前在线／当前离线</td><td>与各推送「可触达」同一判断：推播＝装了 App 且开启通知；短信＝有有效手机号且未退订；Facebook＝已绑定且可发；LINE＝已加好友且未封锁</td></tr>
+        <tr><td>今日已收／上限</td><td>例：游戏外推送：推播 2／2 条、短信 0／1 条、Facebook 0／1 条、LINE 0／1 条；游戏内推送：弹窗 5／8 个、快显 1／3 次</td><td>上限取自「频率上限」页；游戏外推送按服务商受理计 1 条，游戏内推送按显示计；两层与四种游戏外推送各自计数；达上限标红并写「已达上限」，今天余下的这种推送不再发给他，次日 00:00 重新计数；短信 0／1：10:00 那条未被受理，不计入；测试发送与「不计入」的推送不计入</td></tr>
+        <tr><td>最近一次收到</td><td>月/日 时:分，或「—」</td><td>例：游戏外推送：推播 10/12 12:30、短信 10/09 19:00，Facebook、LINE 写「—」；游戏内推送：弹窗 10/12 14:05、快显 10/12 12:00</td></tr>
+
+        <tr class="g"><td colspan="3">新增 · 收到记录</td></tr>
+        <tr><td>推送</td><td>全部；游戏外推送：推播、短信、Facebook、LINE；游戏内推送：大厅弹窗、破产弹窗、快显</td><td>默认全部</td></tr>
+        <tr><td>结果</td><td>全部／已收到（已到达、已曝光、已点击、顺延后到达）／未收到（被拦下、未送达）</td><td>默认全部</td></tr>
+        <tr><td>日期</td><td>日期范围</td><td>可查近 30 天；逐条保留 30 天，更早的看数据看板的汇总</td></tr>
+        <tr><td>导出</td><td>按钮</td><td>导出当前筛选的记录</td></tr>
+        <tr><td>列</td><td>时间、推送、推送名称或弹窗规则、玩家看到的内容、结果</td><td>按时间倒序；滚动加载更早的记录。名称与内容过长时截断，悬停看全文。例：共 46 条。推送名称是链接，进入该推送的单条推送数据（页 13），未送达的可在那里重试；弹窗规则链接到弹窗页</td></tr>
+        <tr><td>结果写法</td><td>已到达／已曝光／已点击／频率上限拦下：当时计数／未送达：服务商返回的原因／勿扰时段顺延：实际到达时间</td><td>被拦下写原因与当时计数：游戏外推送如「频率上限拦下：推播今日已收 2／2」；游戏内推送如「频率上限拦下：弹窗今日已收 8／8」；未送达写服务商返回的原因，如「服务商接口超时」；顺延如「勿扰时段，08:00 已到达」；被拦下的次日不补发，记录里没有补发的一行</td></tr>
+        <tr><td>弹窗怎么记</td><td>一次进大厅或一次破产记一行</td><td>列出弹出的项目和点了哪一个。例：10/12 大厅 14:05 弹出 4 个，加 13:42 破产 1 个，与「今日已收 5／8」一致</td></tr>
+        <tr><td>没有记录时</td><td>空状态写原因</td><td>写明是收不到（如未绑定 Facebook）、不在受众内，还是当天未发送</td></tr>
+        <tr><td>示例记录（更早）</td><td>10/12 09:30 推播 限时加码礼包未购买提醒，「最後提醒⚠️幸運加碼禮包」，已到达<br>10/11 22:30 大厅弹窗 活动类·潜在流失（实验组），热门资讯，频率上限拦下：弹窗今日已收 8／8<br>10/11 20:00 推播 潜在流失召回，「好久不見！回來就送你專屬補給，點擊領取」，未送达：推送服务超时<br>10/11 07:40 推播 任务完成奖励提醒，「任務完成！獎勵已發放，點擊立即領取」，勿扰时段顺延：08:00 已到达</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </details>
+</section>
+
+<!-- ================= 16 操作纪录 ================= -->
+<section id="p15">
+  <div class="eyebrow">页 15 · 操作纪录（现有页签扩到推送）</div>
+  <h2>运营查谁在何时对哪条推送做了什么，编辑的改前改后逐项可查</h2>
+  <div class="row">
+    <div class="fig pd-flow" style="width:880px">
+      <div class="side">
+        <div class="hd">推送统一后台</div>
+        <div class="it">总览</div>
+        <div class="gl">游戏外推送</div>
+        <div class="it sub">推播</div>
+        <div class="it sub">短信</div>
+        <div class="it sub">Facebook</div>
+        <div class="it sub">LINE</div>
+        <div class="gl">游戏内推送</div>
+        <div class="it sub">弹窗</div>
+        <div class="it sub">快显</div>
+        <div class="dv"></div>
+        <div class="it">频率上限</div>
+        <div class="it">数据看板</div>
+        <div class="it">玩家查询</div>
+        <div class="it on">操作纪录</div>
+      </div>
+      <div class="main">
+        <div class="top"><span>推送统一后台 › <span class="cur">操作纪录</span><span class="mk c">改</span><span style="margin-left:6px">原弹窗页顶部的「操作纪录」页签移到这里</span><span class="co il" data-n="1">1</span></span><span></span></div>
+        <div class="ew" style="padding:12px 16px 14px">
+          <div style="display:flex;gap:8px;align-items:center">
+            <span class="ein v" style="width:200px">2026-09-13　至　2026-10-12</span>
+            <span class="ein" style="width:100px">操作人<span class="dn">▾</span></span>
+            <span class="ein" style="width:150px">对象名称或 ID</span>
+            <span class="ebtn b">查询</span><span class="ebtn w">导出</span>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;margin-top:8px">
+            <span class="nc rel" style="display:inline-flex;gap:8px;align-items:center;padding:4px 6px;border-radius:4px"><span class="ein v" style="width:118px;border-color:#409EFF">推送：推播<span class="dn">▾</span></span><span class="ein v" style="width:118px">操作：全部<span class="dn">▾</span></span><span class="mk n mkc">新增</span></span><span class="co il" data-n="2" style="margin-left:2px">2</span>
+          </div>
+          <table class="et" style="margin-top:10px">
+            <colgroup><col style="width:86px"><col style="width:60px"><col style="width:56px"><col style="width:170px"><col style="width:76px"><col></colgroup>
+            <thead>
+              <tr class="mkr"><th></th><th></th><th><span class="mk n" style="margin:0">新增</span></th><th></th><th></th><th class="rel"><span class="mk n" style="margin:0">新增</span><span class="co" data-n="3" style="left:calc(50% + 30px);top:0">3</span></th></tr>
+              <tr><th>时间</th><th>操作人</th><th class="nc">推送</th><th class="l">对象</th><th>操作</th><th class="l nc">改动内容</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>10/12 15:04</td><td>运营01</td><td class="nc">推播</td><td class="l">43 月月抽开奖提醒</td><td>停止</td><td class="l nc rel">已发出 1,050 条，不撤回；其余不再发送<span class="co" data-n="4" style="right:4px;top:4px">4</span></td></tr>
+              <tr><td>10/12 15:00</td><td>运营01</td><td class="nc">推播</td><td class="l">43 月月抽开奖提醒</td><td>确认发送</td><td class="l nc">新建：立即；全部玩家 74,480</td></tr>
+              <tr><td>10/12 14:30</td><td>系统</td><td class="nc">推播</td><td class="l">44 限时挑战开启</td><td>状态变化</td><td class="l nc">自动重试 3 次后仍未受理：发送中 → 发送失败（9,120 条）</td></tr>
+              <tr><td>10/12 11:45</td><td>运营02</td><td class="nc">推播</td><td class="l">44 限时挑战开启</td><td>确认排程</td><td class="l nc">新建：定时 10/12 14:00；回流 16,564</td></tr>
+              <tr><td>10/12 11:20</td><td>运营01</td><td class="nc">推播</td><td class="l">42 每日补给计划开启</td><td>确认排程</td><td class="l nc">新建：定时 10/15 20:00；潜在流失（两档）</td></tr>
+              <tr><td>10/11 16:40</td><td>运营03</td><td class="nc">推播</td><td class="l">37 首储礼包提醒</td><td>新建草稿</td><td class="l nc">定时 10/20 12:00；新增 10,749</td></tr>
+              <tr><td>10/10 17:30</td><td>运营03</td><td class="nc">推播</td><td class="l">36 潜在流失召回</td><td>确认排程</td><td class="l nc">新建：定时 10/11 20:00；潜在流失（两档）</td></tr>
+              <tr style="background:#FAFAFA"><td>10/09 16:12</td><td>运营02</td><td class="nc">推播</td><td class="l">31 限时加码礼包未购买提醒</td><td>编辑 ▴</td><td class="l nc">改了内文；生成版本 2</td></tr>
+              <tr style="background:#FAFAFA"><td colspan="6" class="l rel" style="padding:4px 10px 8px 152px">
+                <div class="pd-diff">
+                  <div class="pd-dr" style="grid-template-columns:56px 1fr 1fr"><span class="pd-lb">字段</span><span class="pd-lb">改前（版本 1）</span><span class="pd-lb">改后（版本 2）</span></div>
+                  <div class="pd-dr" style="grid-template-columns:56px 1fr 1fr"><span>内文</span><span class="pd-del">加碼禮包即將下架，打開就能看到專屬加碼內容，別錯過！</span><span class="pd-ins">你的幸運加碼禮包將在 2 小時後到期，點擊立即查看</span></div>
+                </div>
+                <div style="font-size:12px;color:#606266">运行中的按行为推送：新版本只对之后的触发生效　<span class="elink">查看单条推送数据 ›</span></div>
+                <span class="co" data-n="5" style="left:122px;top:6px">5</span>
+              </td></tr>
+              <tr><td>10/09 15:00</td><td>运营02</td><td class="nc">推播</td><td class="l">35 回流任务开启</td><td>确认发送</td><td class="l nc">新建：立即；回流 16,564</td></tr>
+              <tr><td>10/05 18:02</td><td>运营01</td><td class="nc">推播</td><td class="l">31 限时加码礼包未购买提醒</td><td>恢复</td><td class="l nc">暂停期间不触发提醒</td></tr>
+              <tr><td>10/05 09:40</td><td>运营01</td><td class="nc">推播</td><td class="l">31 限时加码礼包未购买提醒</td><td>暂停</td><td class="l nc">原因：礼包准入规则调整</td></tr>
+              <tr><td>10/02 10:12</td><td>运营01</td><td class="nc">推播</td><td class="l">31 限时加码礼包未购买提醒</td><td>切换启用</td><td class="l nc">推荐礼包设定切到本后台生效：草稿 → 运行中；由礼包后台迁入，沿用原标题与提醒时间</td></tr>
+              <tr><td colspan="6" class="l" style="color:#909399;padding:3px 4px">⋮ 本页其余 8 条</td></tr>
+            </tbody>
+          </table>
+          <div style="margin-top:6px;font-size:12px;color:#909399">每个写操作都记一条，含删除草稿、复制、标为已处理，以及五个切换开关（礼包推播、短信、Facebook、LINE、快显）；系统引起的状态变化（如发送失败、到期结束）操作人写「系统」</div>
+          <div class="epg"><span>‹</span><span class="pc">1</span><span>2</span><span>›</span><span>20 条／页</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <div class="note" data-n="1"><span class="nb">1</span><div><b>改：从弹窗页移到侧栏</b><p>原有的弹窗规则纪录保留</p></div></div>
+      <div class="note" data-n="2"><span class="nb">2</span><div><b>新增按推送、操作筛选</b><p>推送也可选频率上限与勿扰</p></div></div>
+      <div class="note" data-n="3"><span class="nb">3</span><div><b>新增改动内容一列</b><p>新建写摘要；暂停写原因；停止写结果</p></div></div>
+      <div class="note" data-n="4"><span class="nb">4</span><div><b>停止写清结果</b><p>已发出的条数不撤回</p></div></div>
+      <div class="note" data-n="5"><span class="nb">5</span><div><b>编辑展开看改前改后</b><p>改运行中的推送生成新版本</p></div></div>
+    </div>
+  </div>
+
+  <div class="pd-states">
+    <div class="pd-state">
+      <div class="pd-box ew">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span class="ein v" style="width:118px;border-color:#409EFF">对象：31<span class="dn">×</span></span><span style="font-size:12px;color:#909399">从单条推送数据进入</span></div>
+        <table class="et">
+          <colgroup><col style="width:84px"><col style="width:56px"><col></colgroup>
+          <thead><tr><th>时间</th><th>操作人</th><th class="l">操作与改动内容</th></tr></thead>
+          <tbody>
+            <tr><td>10/09 16:12</td><td>运营02</td><td class="l">编辑：改了内文，生成版本 2 ▾</td></tr>
+            <tr><td>10/05 18:02</td><td>运营01</td><td class="l">恢复：暂停期间不触发提醒</td></tr>
+            <tr><td>10/05 09:40</td><td>运营01</td><td class="l">暂停：礼包准入规则调整</td></tr>
+            <tr><td>10/02 10:12</td><td>运营01</td><td class="l">切换启用：推荐礼包设定切到本后台生效</td></tr>
+            <tr><td>10/02 10:08</td><td>运营01</td><td class="l">新建草稿：礼包后台仍原处生效，保存，去切换</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pd-cap"><b>按对象筛选</b>从单条推送数据进入时自动带入</div>
+    </div>
+    <div class="pd-state">
+      <div class="pd-box ew">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span class="ein v" style="width:178px;border-color:#409EFF">推送：频率上限与勿扰<span class="dn">▾</span></span></div>
+        <table class="et">
+          <colgroup><col style="width:88px"><col></colgroup>
+          <thead><tr><th>时间与操作人</th><th class="l">修改：改前 → 改后</th></tr></thead>
+          <tbody>
+            <tr><td>10/05 10:20<br>运营01</td><td class="l">推播每人每天：3 条 → 2 条<br>勿扰时段：23:00–08:00 → 00:00–08:00</td></tr>
+          </tbody>
+        </table>
+        <div style="font-size:12px;color:#909399;margin-top:6px">保存后对之后的发送生效</div>
+      </div>
+      <div class="pd-cap"><b>上限与勿扰的修改</b>逐项写改前改后，例：10/05 那次改动</div>
+    </div>
+    <div class="pd-state">
+      <div class="pd-box ew">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span class="ein v" style="width:160px;border-color:#409EFF">操作：重试失败部分<span class="dn">▾</span></span></div>
+        <table class="et">
+          <colgroup><col style="width:88px"><col></colgroup>
+          <thead><tr><th>时间与操作人</th><th class="l">对象与改动内容</th></tr></thead>
+          <tbody>
+            <tr><td>10/12 11:05<br>运营03</td><td class="l">短信 · 38 每日补给计划提醒<br>重试失败部分：重发 2,300 条，受理 430 条</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pd-cap"><b>重试也记一条</b>写重发与受理条数；结果更新到单条推送数据</div>
+    </div>
+    <div class="pd-state">
+      <div class="pd-box ew">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span class="ein v" style="width:118px;border-color:#409EFF">推送：弹窗<span class="dn">▾</span></span></div>
+        <table class="et">
+          <colgroup><col style="width:88px"><col></colgroup>
+          <thead><tr><th>时间与操作人</th><th class="l">操作与改动内容</th></tr></thead>
+          <tbody>
+            <tr><td>10/12 14:36<br>运营02</td><td class="l">编辑规则 13 活动类·回流<br>弹窗排序：回流任务 第 7 → 第 1</td></tr>
+            <tr><td>10/09 18:05<br>运营02</td><td class="l">新建规则 14 活动类·潜在流失（实验组）<br>对象：潜在流失·实验组，排除新增、回流</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pd-cap"><b>弹窗规则的纪录照旧</b>与推送在同一张表；改排序写出改前改后的位置</div>
+    </div>
+  </div>
+
+  <details>
+    <summary>展开：全部字段与可选值</summary>
+    <table class="full c3">
+      <thead><tr><th>字段</th><th>可选值或格式</th><th>规则</th></tr></thead>
+      <tbody>
+        <tr class="g"><td colspan="3">页面</td></tr>
+        <tr><td>位置</td><td>改：原弹窗页顶部「大厅弹窗顺序设定｜操作纪录」中的操作纪录页签，移到推送统一后台侧栏</td><td>原有弹窗规则的纪录保留，与推送的纪录在同一张表</td></tr>
+        <tr><td>记录范围</td><td>每个写操作：新建、编辑（改前与改后）、确认、停止、暂停、恢复、结束、重试失败部分、删除草稿、复制、标为已处理；五个切换开关的每次切换（礼包推播由运营在推荐礼包设定页切；短信、Facebook、LINE、快显由研发在系统配置里切），记开关、改前与改后、关联推播；频率上限与勿扰的修改；系统引起的状态变化（如发送失败、无可发送对象、到期结束、到时自动恢复），操作人写「系统」</td><td>每条记操作人、时间、对象；不设审批，确认页、测试发送、操作纪录三者代替；测试发送不记</td></tr>
+
+        <tr class="g"><td colspan="3">筛选</td></tr>
+        <tr><td>时间</td><td>日期范围</td><td>默认近 30 天</td></tr>
+        <tr><td>操作人</td><td>后台账号下拉</td><td>默认全部</td></tr>
+        <tr><td>对象名称或 ID</td><td>文本</td><td>从单条推送数据页「本条操作纪录」进入时自动带入该推送 ID</td></tr>
+        <tr><td>推送（新增）</td><td>全部；游戏外推送：推播、短信、Facebook、LINE；游戏内推送：弹窗、快显；频率上限与勿扰</td><td>默认全部；图中选了推播</td></tr>
+        <tr><td>操作（新增）</td><td>全部／新建草稿／确认（发送、排程、启用）／编辑／停止／暂停／恢复／结束／重试失败部分／删除草稿／复制／切换开关（礼包推播、短信、Facebook、LINE、快显）／标为已处理／修改上限与勿扰／系统状态变化</td><td>默认全部</td></tr>
+        <tr><td>查询、导出</td><td>按钮</td><td>导出当前筛选的纪录</td></tr>
+
+        <tr class="g"><td colspan="3">列</td></tr>
+        <tr><td>时间</td><td>月/日 时:分</td><td>按时间倒序；20 条／页</td></tr>
+        <tr><td>操作人</td><td>后台账号，如运营01</td><td>—</td></tr>
+        <tr><td>推送（新增）</td><td>同筛选的推送</td><td>—</td></tr>
+        <tr><td>对象</td><td>推送 ID 与名称；弹窗规则 ID 与名称；频率上限写「频率上限与勿扰」</td><td>点对象进入该推送的单条推送数据或弹窗规则</td></tr>
+        <tr><td>操作</td><td>新建草稿／确认发送／确认排程／确认启用／编辑／停止／暂停／恢复／结束／重试失败部分／删除草稿／复制／切换启用、切回原处生效／标为已处理／新建（弹窗规则）／修改／状态变化（系统）</td><td>新建后直接确认的记一条「确认…」，改动内容以「新建：」开头；草稿之后再确认的另记一条</td></tr>
+        <tr><td>改动内容（新增）</td><td>新建：发送方式与受众摘要<br>编辑：改了哪些字段，展开看改前改后<br>暂停、停止：原因（选填）与结果<br>不遵守频率上限：计入方式与原因（必填），如「不遵守上限 · 不计入 · 原因：系统维护公告」<br>重试失败部分：重发条数</td><td>例：停止「已发出 1,050 条，不撤回；其余不再发送」；暂停「原因：礼包准入规则调整」；恢复「暂停期间不触发提醒」</td></tr>
+        <tr><td>编辑展开</td><td>字段｜改前｜改后</td><td>运行中的按行为推送：改后生成新版本，只对之后的触发生效，附「查看单条推送数据」；已排程的推送：改后须重新确认，另记一条「确认排程」；发送中的不能编辑</td></tr>
+        <tr><td>频率上限与勿扰</td><td>每项一行：改前 → 改后</td><td>如 10/05「推播每人每天：3 条 → 2 条」「勿扰时段：23:00–08:00 → 00:00–08:00」；保存后对之后的发送生效</td></tr>
+        <tr><td>没有纪录时</td><td>「所选条件下没有操作纪录」</td><td>—</td></tr>
+
+        <tr class="g"><td colspan="3">权限</td></tr>
+        <tr><td>角色</td><td>运营：全部操作；只读：只看页面与数据</td><td>两种角色都能查看与导出操作纪录</td></tr>
+      </tbody>
+    </table>
+  </details>
+</section>
+</div>
+<script>
+function alignNotes(){
+  document.querySelectorAll('.row').forEach(function(row){
+    var fig=row.querySelector('.fig'), notes=row.querySelector('.notes');
+    var fr=fig.getBoundingClientRect(), prev=-1e9;
+    notes.querySelectorAll('.note').forEach(function(n){
+      var co=fig.querySelector('.co[data-n="'+n.dataset.n+'"]');
+      var y=co?co.getBoundingClientRect().top-fr.top:0;
+      y=Math.max(y,prev+18);
+      n.style.top=y+'px';
+      prev=y+n.offsetHeight;
+    });
+    notes.style.height=Math.max(fig.offsetHeight,prev)+'px';
+  });
+}
+window.addEventListener('load',alignNotes);
+window.addEventListener('resize',alignNotes);
+</script>
+</body>
+</html>

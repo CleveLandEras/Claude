@@ -1,0 +1,1747 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>粘贴即脑图</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&display=swap&text=%E7%B2%98%E8%B4%B4%E5%8D%B3%E8%84%91%E5%9B%BE">
+<style>
+/* Layout: 顶部工具条 + 左侧代码栏（可拖宽、可收起）+ 右侧点阵画布；窄屏时代码栏在上、画布在下 */
+:root {
+  --bg: #ECEEEA;
+  --panel: #FBFBF9;
+  --panel-2: #F2F4F0;
+  --ink: #1C221F;
+  --muted: #646E68;
+  --line: #D6DAD3;
+  --accent: #17695A;
+  --accent-soft: #DCEBE5;
+  --on-accent: #FFFFFF;
+  --canvas: #FAFBF8;
+  --dot: #D3D8D0;
+  --warn: #B4361F;
+  --shadow: 0 1px 2px rgba(28, 34, 31, .06), 0 10px 28px rgba(28, 34, 31, .08);
+
+  --map-ink: #1C221F;
+  --map-ink2: #3A4540;
+  --map-root-bg: #1E2A26;
+  --map-root-fg: #F7F8F5;
+  --map-hl: #FFE07A;
+  --map-code: #8A3B12;
+  --map-link: #1D5FC4;
+  --b0: #D9480F; --b1: #1971C2; --b2: #2B8A3E; --b3: #9C36B5; --b4: #E67700;
+  --b5: #0B7285; --b6: #C2255C; --b7: #5F3DC4; --b8: #5C940D; --b9: #A61E4D;
+
+  --font-ui: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", "Segoe UI", sans-serif;
+  --font-code: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, "PingFang SC", monospace;
+  --font-mark: "Noto Serif SC", "Songti SC", "STSong", serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111513; --panel: #181D1A; --panel-2: #1E2421; --ink: #E3E9E5; --muted: #93A099;
+    --line: #2C3430; --accent: #4CC2A5; --accent-soft: #1B3730; --on-accent: #0B1C17;
+    --canvas: #141916; --dot: #29312D; --warn: #F2836B;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .35), 0 10px 28px rgba(0, 0, 0, .3);
+    --map-ink: #E3E9E5; --map-ink2: #B7C2BC; --map-root-bg: #E3EBE6; --map-root-fg: #111513;
+    --map-hl: #6E5A12; --map-code: #F0A372; --map-link: #7CB3FF;
+    --b0: #FF8A4C; --b1: #5AA9F0; --b2: #5CC46E; --b3: #CF7EE8; --b4: #FFB547;
+    --b5: #3EC1D3; --b6: #F06595; --b7: #9D86F5; --b8: #A3D54B; --b9: #F783AC;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111513; --panel: #181D1A; --panel-2: #1E2421; --ink: #E3E9E5; --muted: #93A099;
+  --line: #2C3430; --accent: #4CC2A5; --accent-soft: #1B3730; --on-accent: #0B1C17;
+  --canvas: #141916; --dot: #29312D; --warn: #F2836B;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .35), 0 10px 28px rgba(0, 0, 0, .3);
+  --map-ink: #E3E9E5; --map-ink2: #B7C2BC; --map-root-bg: #E3EBE6; --map-root-fg: #111513;
+  --map-hl: #6E5A12; --map-code: #F0A372; --map-link: #7CB3FF;
+  --b0: #FF8A4C; --b1: #5AA9F0; --b2: #5CC46E; --b3: #CF7EE8; --b4: #FFB547;
+  --b5: #3EC1D3; --b6: #F06595; --b7: #9D86F5; --b8: #A3D54B; --b9: #F783AC;
+  color-scheme: dark;
+}
+
+[hidden] { display: none !important; }
+html, body { height: 100%; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-ui); overflow: hidden; }
+button, input, select, textarea { font: inherit; color: inherit; }
+
+.app {
+  height: 100%; box-sizing: border-box;
+  display: grid; grid-template-rows: auto minmax(0, 1fr); gap: 10px;
+  padding-block: 10px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+/* 顶栏 */
+.bar { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 16px; min-width: 0; }
+.brand { display: flex; align-items: baseline; gap: 12px; margin-right: auto; min-width: 0; }
+.brand h1 { margin: 0; font-family: var(--font-mark); font-weight: 900; font-size: 22px; letter-spacing: .04em; white-space: nowrap; }
+.brand h1 b { color: var(--accent); font-weight: 900; }
+.brand .formats { font-size: 12px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.tools { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; min-width: 0; }
+
+.btn {
+  height: 32px; padding: 0 11px; display: inline-flex; align-items: center; gap: 6px;
+  border: 1px solid var(--line); border-radius: 8px; background: var(--panel);
+  font-size: 13px; cursor: pointer; white-space: nowrap;
+}
+.btn:hover { background: var(--panel-2); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); font-weight: 600; }
+.btn.primary:hover { filter: brightness(1.06); background: var(--accent); }
+.btn.ghost { background: transparent; border-color: transparent; }
+.btn.ghost:hover { background: var(--panel-2); }
+.btn.sm { height: 28px; padding: 0 8px; font-size: 12.5px; }
+.btn.icon { width: 32px; padding: 0; justify-content: center; }
+.btn svg { width: 16px; height: 16px; flex: none; }
+.btn[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent-soft); color: var(--accent); font-weight: 600; }
+:where(button, input, select, textarea, [tabindex]):focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+.seg { display: inline-flex; align-items: center; gap: 2px; padding: 2px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); }
+.seg-label { font-size: 12px; color: var(--muted); padding: 0 4px 0 6px; }
+.seg button { height: 26px; min-width: 28px; padding: 0 9px; border: 0; border-radius: 6px; background: transparent; color: var(--muted); font-size: 12.5px; cursor: pointer; }
+.seg button:hover { color: var(--ink); }
+.seg button[aria-pressed="true"] { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+
+.search {
+  display: inline-flex; align-items: center; gap: 6px; height: 32px; width: 210px; box-sizing: border-box;
+  padding: 0 9px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel);
+}
+.search:focus-within { border-color: var(--accent); }
+.search svg { width: 15px; height: 15px; color: var(--muted); flex: none; }
+.search input { flex: 1; min-width: 0; border: 0; outline: none; background: transparent; font-size: 13px; }
+.search input::-webkit-search-cancel-button { display: none; }
+.search .count { font-size: 11.5px; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+.menu-wrap { position: relative; }
+.menu {
+  position: absolute; top: calc(100% + 6px); right: 0; z-index: 30; min-width: 220px;
+  display: grid; gap: 2px; padding: 6px; background: var(--panel);
+  border: 1px solid var(--line); border-radius: 10px; box-shadow: var(--shadow);
+}
+.menu.left { left: 0; right: auto; }
+.menu button {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+  padding: 8px 10px; border: 0; border-radius: 6px; background: transparent; text-align: left; font-size: 13px; cursor: pointer;
+}
+.menu button:hover, .menu button:focus-visible { background: var(--panel-2); }
+.menu small { color: var(--muted); font-size: 11.5px; }
+.menu .sep { height: 1px; background: var(--line); margin: 4px 4px; }
+
+/* 主区域：画布占满；「记录 · 原代码」面板按需在右侧打开 */
+.work { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; min-height: 0; min-width: 0; }
+.work.drawer-open { grid-template-columns: minmax(0, 1fr) 340px; }
+
+.drawer {
+  display: grid; grid-template-rows: auto minmax(0, 1fr); min-width: 0; min-height: 0;
+  background: var(--panel); border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
+}
+.dr-head { display: flex; align-items: center; gap: 6px; padding: 7px 8px 7px 14px; border-bottom: 1px solid var(--line); }
+.dr-head h2 { margin: 0 auto 0 0; font-size: 13px; font-weight: 600; }
+.dr-body { overflow: auto; padding: 12px 10px 16px; display: grid; gap: 18px; align-content: start; }
+.dr-sec { display: grid; gap: 8px; min-width: 0; }
+.dr-sec > h3 { margin: 0; padding: 0 4px; display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; color: var(--muted); letter-spacing: .04em; }
+.dr-sec > h3 .btn { margin-left: auto; letter-spacing: 0; }
+.tag { padding: 1px 7px; border-radius: 999px; background: var(--panel-2); border: 1px solid var(--line); font-size: 11px; font-weight: 500; letter-spacing: 0; }
+
+.history { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.history li { display: flex; align-items: stretch; gap: 2px; border-radius: 8px; }
+.history li[aria-current="true"] { background: var(--accent-soft); }
+.h-item { flex: 1; min-width: 0; display: grid; gap: 2px; padding: 8px 10px; border: 0; border-radius: 8px; background: transparent; text-align: left; cursor: pointer; }
+.history li:not([aria-current="true"]) .h-item:hover { background: var(--panel-2); }
+.h-title { font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.history li[aria-current="true"] .h-title { color: var(--accent); }
+.h-meta { font-size: 11.5px; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.h-del { width: 30px; flex: none; border: 0; border-radius: 8px; background: transparent; color: var(--muted); font-size: 16px; cursor: pointer; opacity: 0; }
+.history li:hover .h-del, .h-del:focus-visible { opacity: 1; }
+.h-del:hover { color: var(--warn); }
+.h-empty { padding: 8px 10px; font-size: 12.5px; line-height: 1.6; color: var(--muted); }
+
+.src {
+  margin: 0; max-height: 38vh; overflow: auto; padding: 10px 12px; border-radius: 8px;
+  background: var(--panel-2); color: var(--ink); font-family: var(--font-code); font-size: 12px; line-height: 1.6; white-space: pre; tab-size: 4;
+}
+.stat { margin: 0; padding: 0 4px; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.stat.warn { color: var(--warn); }
+.fmt-row { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 8px; padding: 0 4px; font-size: 12px; color: var(--muted); }
+.fmt-row select { height: 28px; padding: 0 4px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); font-size: 12.5px; }
+.sample-row { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 4px; }
+
+/* 手机上没有 ⌘V，给一个长按粘贴的地方 */
+.paste-box { display: none; }
+@media (hover: none) and (pointer: coarse) {
+  .paste-box {
+    display: block; width: 100%; box-sizing: border-box; height: 48px; resize: none; padding: 12px;
+    border: 1.5px dashed var(--accent); border-radius: 10px; background: var(--accent-soft); color: var(--ink); font-size: 14px;
+  }
+  .paste-box::placeholder { color: var(--accent); }
+  .h-del { opacity: 1; }
+}
+
+.stage {
+  position: relative; min-width: 0; min-height: 0; overflow: hidden;
+  border: 1px solid var(--line); border-radius: 12px;
+  background-color: var(--canvas);
+  background-image: radial-gradient(circle, var(--dot) 1.1px, transparent 1.5px);
+  background-size: 22px 22px;
+  cursor: grab; touch-action: none;
+}
+.stage.panning { cursor: grabbing; }
+.stage > svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; user-select: none; -webkit-user-select: none; }
+.mm-node.has-kids { cursor: pointer; }
+.mm-node .hit { transition: fill-opacity .12s; }
+.mm-node.has-kids:hover .hit { fill-opacity: .07; }
+.fold-hint { opacity: 0; transition: opacity .12s; }
+.mm-node:hover .fold-hint { opacity: 1; }
+.mm-node a { cursor: pointer; }
+.enter { animation: mm-in .28s ease-out; }
+@keyframes mm-in { from { opacity: 0; } }
+
+.badge {
+  position: absolute; top: 12px; left: 12px; margin: 0;
+  padding: 5px 11px; border-radius: 999px; font-size: 12px; font-weight: 500;
+  background: var(--accent-soft); color: var(--accent);
+}
+.hint { position: absolute; left: 12px; bottom: 12px; margin: 0; font-size: 11.5px; color: var(--muted); pointer-events: none; }
+.zoom {
+  position: absolute; right: 12px; bottom: 12px; display: flex; align-items: center; gap: 2px;
+  padding: 3px; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; box-shadow: var(--shadow);
+}
+.zoom .btn { height: 30px; }
+.zoom .btn.icon { width: 30px; }
+.zoom-pct { min-width: 52px; justify-content: center; font-size: 12px; font-variant-numeric: tabular-nums; }
+
+.overlay { position: absolute; inset: 0; display: grid; place-items: center; padding: 20px; overflow: auto; cursor: default; }
+.card {
+  max-width: 440px; display: grid; gap: 10px; padding: 24px 24px 20px;
+  background: var(--panel); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow);
+}
+.card h3 { margin: 0; font-size: 17px; text-wrap: balance; }
+.card p { margin: 0; font-size: 13px; line-height: 1.65; color: var(--muted); }
+.keys { display: flex; gap: 6px; }
+kbd {
+  font-family: var(--font-code); font-size: 15px; font-weight: 500; padding: 3px 10px;
+  border: 1px solid var(--line); border-bottom-width: 3px; border-radius: 7px; background: var(--panel-2); color: var(--ink);
+}
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 2px 0 4px; padding: 0; list-style: none; }
+.chips li { font-size: 12px; padding: 3px 9px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
+.card .row { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.toast {
+  position: fixed; left: 50%; bottom: calc(22px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); z-index: 60;
+  display: flex; align-items: center; gap: 14px; max-width: calc(100vw - 32px); box-sizing: border-box;
+  padding: 10px 14px; border-radius: 10px; background: var(--ink); color: var(--bg); font-size: 13px; box-shadow: var(--shadow);
+}
+.toast button { border: 0; padding: 0; background: transparent; color: inherit; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.drop {
+  position: fixed; inset: 0; z-index: 50; display: grid; place-items: center;
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+  border: 3px dashed var(--accent); box-sizing: border-box; pointer-events: none;
+}
+.drop p { margin: 0; padding: 14px 20px; border-radius: 12px; background: var(--panel); color: var(--accent); font-size: 16px; font-weight: 600; box-shadow: var(--shadow); }
+
+@media (max-width: 760px) {
+  .brand .formats, .hint { display: none; }
+  .search { flex: 1 1 160px; width: auto; }
+  .work.drawer-open { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) minmax(0, 55%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .enter { animation: none; }
+  * { transition: none !important; }
+}
+</style>
+
+<div class="app" id="app">
+  <header class="bar">
+    <div class="brand">
+      <h1>粘贴即<b>脑图</b></h1>
+      <span class="formats">Markdown · Mermaid · PlantUML · 缩进文本 · JSON · OPML</span>
+    </div>
+    <div class="tools">
+      <label class="search" for="q">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="m10.4 10.4 3.4 3.4" stroke-linecap="round"/></svg>
+        <input id="q" type="search" placeholder="搜索节点" autocomplete="off" aria-label="搜索节点">
+        <span class="count" id="qCount"></span>
+      </label>
+      <div class="seg" role="group" aria-label="布局">
+        <button type="button" data-layout="both" aria-pressed="true">左右分布</button>
+        <button type="button" data-layout="right" aria-pressed="false">向右展开</button>
+      </div>
+      <div class="seg" role="group" aria-label="展开到第几层">
+        <span class="seg-label">展开</span>
+        <button type="button" data-level="1" aria-pressed="false">1</button>
+        <button type="button" data-level="2" aria-pressed="false">2</button>
+        <button type="button" data-level="3" aria-pressed="false">3</button>
+        <button type="button" data-level="all" aria-pressed="true">全部</button>
+      </div>
+      <div class="menu-wrap">
+        <button type="button" class="btn primary" id="exportBtn" aria-haspopup="menu" aria-expanded="false">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5v8M4.8 7.4 8 10.6l3.2-3.2M3 13.5h10"/></svg>导出
+        </button>
+        <div class="menu" id="exportMenu" role="menu" hidden>
+          <button type="button" role="menuitem" data-export="png">PNG 图片 <small>2 倍清晰度</small></button>
+          <button type="button" role="menuitem" data-export="svg">SVG 矢量图 <small>可无限放大</small></button>
+          <button type="button" role="menuitem" data-export="md">Markdown 文件 <small>.md</small></button>
+          <div class="sep" role="separator"></div>
+          <button type="button" role="menuitem" data-export="copy-md">复制为 Markdown</button>
+          <button type="button" role="menuitem" data-export="copy-mermaid">复制为 Mermaid</button>
+        </div>
+      </div>
+      <button type="button" class="btn" id="drawerBtn" aria-pressed="false" aria-controls="drawer">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M5.5 4h8M5.5 8h8M5.5 12h8"/><circle cx="2.6" cy="4" r=".6" fill="currentColor"/><circle cx="2.6" cy="8" r=".6" fill="currentColor"/><circle cx="2.6" cy="12" r=".6" fill="currentColor"/></svg>记录 · 原代码
+      </button>
+    </div>
+  </header>
+
+  <main class="work" id="work">
+    <section class="stage" id="stage" aria-label="脑图画布">
+      <svg id="svg" role="img" aria-label="脑图"><g id="content"></g></svg>
+      <p class="badge stage-ui" id="sampleBadge" hidden></p>
+      <p class="hint" id="hint"></p>
+
+      <div class="overlay stage-ui" id="empty" hidden>
+        <div class="card">
+          <div class="keys" id="keys"></div>
+          <h3>粘贴脑图代码，马上出图</h3>
+          <p>在页面任意位置直接粘贴就行，不用点任何输入框。也可以把 .md、.txt、.mmd、.puml、.opml、.mm、.json 文件拖进来。</p>
+          <textarea class="paste-box" aria-label="长按这里粘贴" placeholder="长按这里，选「粘贴」"></textarea>
+          <ul class="chips">
+            <li>Markdown 标题 / 列表</li><li>Mermaid mindmap</li><li>Mermaid 流程图</li>
+            <li>PlantUML</li><li>缩进文本</li><li>JSON</li><li>OPML / FreeMind</li>
+          </ul>
+          <div class="row" data-samples></div>
+        </div>
+      </div>
+
+      <div class="overlay stage-ui" id="errorBox" hidden>
+        <div class="card">
+          <h3>这段代码没能画成脑图</h3>
+          <p id="errMsg"></p>
+          <p>常见原因：只复制了一部分代码，或者自动识别的格式不对。可以打开原代码核对一下，再手动选一个格式试试。</p>
+          <div class="row"><button type="button" class="btn" id="errFmtBtn">打开原代码，手动选格式</button></div>
+        </div>
+      </div>
+
+      <div class="zoom stage-ui">
+        <button type="button" class="btn ghost icon" id="zoomOut" title="缩小 (-)" aria-label="缩小">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M3.5 8h9"/></svg>
+        </button>
+        <button type="button" class="btn ghost zoom-pct" id="zoomPct" title="缩放到 100%">100%</button>
+        <button type="button" class="btn ghost icon" id="zoomIn" title="放大 (+)" aria-label="放大">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M3.5 8h9M8 3.5v9"/></svg>
+        </button>
+        <button type="button" class="btn ghost icon" id="fitBtn" title="适应窗口 (0)" aria-label="适应窗口">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 6V2.5H6M10 2.5h3.5V6M13.5 10v3.5H10M6 13.5H2.5V10"/></svg>
+        </button>
+        <button type="button" class="btn ghost icon" id="fsBtn" title="全屏" aria-label="全屏">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2.5H2.5V6M13.5 6V2.5H10M10 13.5h3.5V10M2.5 10v3.5H6M2.5 2.5l4 4M13.5 2.5l-4 4M13.5 13.5l-4-4M2.5 13.5l4-4"/></svg>
+        </button>
+      </div>
+    </section>
+
+    <aside class="drawer" id="drawer" aria-label="记录与原代码" hidden>
+      <div class="dr-head">
+        <h2>记录 · 原代码</h2>
+        <button type="button" class="btn ghost icon" id="drawerClose" title="收起" aria-label="收起面板">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="m4 4 8 8M12 4l-8 8"/></svg>
+        </button>
+      </div>
+      <div class="dr-body">
+        <section class="dr-sec">
+          <h3>最近粘贴</h3>
+          <textarea class="paste-box" aria-label="长按这里粘贴新的脑图" placeholder="长按这里，选「粘贴」"></textarea>
+          <ol class="history" id="history"></ol>
+        </section>
+        <section class="dr-sec">
+          <h3>当前脑图的原代码 <span class="tag">只读</span>
+            <button type="button" class="btn ghost sm" id="copySrc">复制</button>
+          </h3>
+          <p class="stat" id="stat"></p>
+          <pre class="src" id="srcView"></pre>
+          <div class="fmt-row">
+            <label for="fmt">识别得不对时，手动选格式</label>
+            <select id="fmt">
+              <option value="auto">自动识别</option>
+              <option value="markdown">Markdown</option>
+              <option value="text">缩进文本</option>
+              <option value="mermaid">Mermaid 脑图</option>
+              <option value="flowchart">Mermaid 流程图</option>
+              <option value="plantuml">PlantUML</option>
+              <option value="json">JSON</option>
+              <option value="xml">OPML / FreeMind</option>
+            </select>
+          </div>
+        </section>
+        <section class="dr-sec">
+          <h3>示例</h3>
+          <div class="sample-row" data-samples></div>
+        </section>
+      </div>
+    </aside>
+  </main>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+<div class="drop" id="drop" hidden><p>松开即可导入文件</p></div>
+
+<script>
+(() => {
+'use strict';
+
+const $ = (s) => document.querySelector(s);
+const work = $('#work'), stage = $('#stage'), svg = $('#svg'), content = $('#content'), drawer = $('#drawer');
+const fmtSel = $('#fmt'), qInput = $('#q');
+
+const SANS = "-apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', 'Segoe UI', sans-serif";
+const MONO = "ui-monospace, 'SF Mono', Menlo, Consolas, monospace";
+const IS_MAC = /Mac|iPhone|iPad|iPod/.test(navigator.platform || navigator.userAgent);
+const MOD = IS_MAC ? '⌘' : 'Ctrl';
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
+content.setAttribute('font-family', SANS);
+
+const store = {
+  get(k, d) { try { const v = localStorage.getItem('pastemind.' + k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem('pastemind.' + k, JSON.stringify(v)); } catch (e) { /* 存不了就算了 */ } },
+};
+
+/* ---------- 示例 ---------- */
+const SAMPLES = [
+  { id: 'md', name: 'Markdown 标题和列表', text: `# 用户增长策略
+
+## 获客
+- 渠道投放
+  - 信息流广告
+  - 应用商店优化 ASO
+  - KOL 合作
+- 内容营销
+  - 公众号 / 小红书
+  - 短视频
+- **裂变活动**
+  - 邀请有礼
+  - 拼团
+
+## 激活
+- 新手引导
+  - 3 步完成首次使用
+  - 引导卡片
+- 首单激励
+- 推送与弹窗
+  - 按用户标签分组推送
+  - 频控：每人每天最多 2 次
+
+## 留存
+- 会员体系
+  - 等级与权益
+  - 积分商城
+- 流失召回
+  - 7 日未活跃发短信
+  - 30 日流失用户发券包
+- 社区运营
+
+## 变现
+- 订阅会员
+- 增值服务
+- 广告位
+
+## 关键指标
+- 北极星指标：周活跃用户数
+- 次日留存 ≥ 40%
+- 获客成本 \`CAC\`
+- 用户生命周期价值 \`LTV\`
+` },
+  { id: 'mermaid', name: 'Mermaid mindmap', text: `mindmap
+  root((项目复盘))
+    目标
+      上线新版推送系统
+      点击率提升 15%
+    结果
+      按期上线
+      点击率提升 11%
+    做得好的
+      每日站会同步风险
+      灰度发布
+    问题
+      需求变更 3 次
+      测试环境不稳定
+    改进
+      设定需求冻结节点
+      补齐自动化回归测试
+` },
+  { id: 'puml', name: 'PlantUML @startmindmap', text: `@startmindmap
+* 出差准备
+** 证件
+*** 身份证
+*** 工牌
+** 行程
+*** 机票 / 高铁票
+*** 酒店确认
+** 物品
+*** 笔记本电脑和充电器
+*** 转换插头
+*** 雨伞
+-- 工作
+--- 打印会议资料
+--- 带上客户名片
+@endmindmap
+` },
+  { id: 'indent', name: '缩进文本', text: `周会议程
+    上周回顾
+        2.3 版本已发布
+        崩溃率降到 0.2%
+    本周重点
+        推送标签体系评审
+        弹窗频控方案
+    风险
+        设计资源紧张
+    其他
+        团建时间投票
+` },
+];
+
+const FORMAT_LABEL = {
+  markdown: 'Markdown', text: '缩进文本', mermaid: 'Mermaid 脑图', flowchart: 'Mermaid 流程图',
+  plantuml: 'PlantUML', json: 'JSON', xml: 'OPML / FreeMind',
+};
+
+/* ---------- 解析：各种格式 → 统一的树 ---------- */
+let uid = 0;
+function tidy(s) {
+  return String(s ?? '')
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/&nbsp;/g, ' ').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, '&')
+    .split('\n').map((l) => l.trim()).join('\n').trim();
+}
+const mk = (raw, extra) => Object.assign({ id: ++uid, raw: tidy(raw), children: [], collapsed: false }, extra);
+
+function unwrap(kids, title) {
+  kids = kids.filter(Boolean);
+  if (title) { const r = mk(title); r.children = kids; return r; }
+  if (!kids.length) return null;
+  if (kids.length === 1) return kids[0];
+  const r = mk('中心主题', { virtual: true });
+  r.children = kids;
+  return r;
+}
+
+function normalize(s) {
+  return s.replace(/^﻿/, '').replace(/\r\n?/g, '\n').replace(/ /g, ' ').replace(/[​-‍⁠]/g, '');
+}
+
+function leading(line) {
+  const m = /^[ \t　]*/.exec(line)[0];
+  let w = 0;
+  for (const ch of m) w += ch === '\t' ? 4 : ch === '　' ? 2 : 1;
+  return { indent: w, rest: line.slice(m.length) };
+}
+
+// 从 ```代码块``` 里取出脑图代码（AI 回答里常见）
+function extractFence(text) {
+  const re = /^[ \t]*(`{3,}|~{3,})[ \t]*([^\s`]*)[^\n]*\n([\s\S]*?)\n?[ \t]*\1[ \t]*$/gm;
+  const blocks = [];
+  let m;
+  while ((m = re.exec(text))) blocks.push({ lang: m[2].toLowerCase(), body: m[3], start: m.index, end: re.lastIndex });
+  if (!blocks.length) {
+    const open = text.match(/^\s*(`{3,}|~{3,})[ \t]*([^\s`]*)[^\n]*\n([\s\S]*)$/);
+    if (open) return { body: open[3].replace(/\n[ \t]*(`{3,}|~{3,})[ \t]*$/, ''), hint: open[2].toLowerCase() };
+    return { body: text, hint: '' };
+  }
+  const PRIORITY = [['mermaid'], ['plantuml', 'puml', 'uml'], ['markmap', 'mindmap'], ['markdown', 'md'], ['opml', 'xml', 'json'], ['text', 'txt', 'plain', '']];
+  for (const group of PRIORITY) {
+    const b = blocks.find((x) => group.includes(x.lang) && x.body.trim());
+    if (b) return { body: b.body, hint: b.lang };
+  }
+  let outside = text;
+  for (const b of blocks.slice().reverse()) outside = outside.slice(0, b.start) + outside.slice(b.end);
+  const structured = outside.split('\n').filter((l) => /^\s*(#{1,6}\s|[-*+]\s|\d+[.)]\s)/.test(l)).length >= 3;
+  if (structured) return { body: text, hint: '' };
+  const longest = blocks.reduce((a, b) => (b.body.length > a.body.length ? b : a));
+  return { body: longest.body, hint: longest.lang };
+}
+
+function firstLine(t) {
+  const ls = t.split('\n');
+  let i = 0;
+  if (/^\s*---\s*$/.test(ls[0] || '')) {
+    const e = ls.findIndex((l, j) => j > 0 && /^\s*---\s*$/.test(l));
+    if (e > 0) i = e + 1;
+  }
+  for (; i < ls.length; i++) {
+    const s = ls[i].trim();
+    if (s && !s.startsWith('%%')) return s;
+  }
+  return '';
+}
+
+function detect(body, hint) {
+  const t = body.trim();
+  if (hint === 'json' || /^[[{]/.test(t)) { try { JSON.parse(t); return 'json'; } catch (e) { /* 不是 JSON */ } }
+  if (hint === 'opml' || /^<(\?xml|opml|map|outline|node|xmap-content)\b/i.test(t)) return 'xml';
+  if (/^\s*@start(mindmap|wbs)\b/im.test(t) || ['plantuml', 'puml', 'uml'].includes(hint)) return 'plantuml';
+  const first = firstLine(t);
+  if (/^mindmap\b/i.test(first)) return 'mermaid';
+  if (/^(graph|flowchart)\b/i.test(first)) return 'flowchart';
+  if (hint === 'mermaid') return 'mermaid';
+  const lines = t.split('\n');
+  const starLines = lines.filter((l) => /^\s*(\*{2,}|\+{2,}|-{2,})(\[[^\]]*\])?[_<>]?(\s+\S|:)/.test(l.trimEnd())).length;
+  const mdNested = lines.some((l) => /^\s+[-*+]\s/.test(l));
+  if (starLines && !mdNested) return 'plantuml';
+  if (lines.some((l) => /^\s{0,3}#{1,6}\s/.test(l) || /^\s*([-*+•·]\s|\d{1,3}[.)]\s)/.test(l))) return 'markdown';
+  return 'text';
+}
+
+// Markdown 标题 + 列表，以及任意缩进文本
+function parseOutline(t) {
+  const lines = t.split('\n');
+  let i = 0, title = '';
+  if (/^\s*---\s*$/.test(lines[0] || '')) {
+    const end = lines.findIndex((l, j) => j > 0 && /^\s*---\s*$/.test(l));
+    if (end > 0 && end < 60) {
+      for (const l of lines.slice(1, end)) {
+        const m = l.match(/^\s*title\s*:\s*(.+)$/);
+        if (m) title = m[1].trim().replace(/^["']|["']$/g, '');
+      }
+      i = end + 1;
+    }
+  }
+  const top = { children: [] };
+  const heads = [{ level: 0, node: top }];
+  let list = [];
+  let fence = null, inComment = false;
+  for (; i < lines.length; i++) {
+    let line = lines[i];
+    if (inComment) { if (line.includes('-->')) inComment = false; continue; }
+    const fm = line.match(/^\s*(`{3,}|~{3,})/);
+    if (fence) { if (fm && fm[1][0] === fence[0] && fm[1].length >= fence.length) fence = null; continue; }
+    if (fm) { fence = fm[1]; continue; }
+    line = line.replace(/<!--[\s\S]*?-->/g, '');
+    if (line.includes('<!--')) { inComment = true; line = line.replace(/<!--.*$/, ''); }
+    if (!line.trim()) continue;
+    const { indent, rest } = leading(line);
+    let s = rest.trim();
+    if (/^([-*_])(\s*\1){2,}$/.test(s)) continue;
+    if (/^\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)*\|?$/.test(s)) continue;
+    const h = indent < 4 && s.match(/^(#{1,6})\s+(.*?)(\s+#+)?\s*$/);
+    if (h) {
+      const level = h[1].length;
+      while (heads.length > 1 && heads[heads.length - 1].level >= level) heads.pop();
+      const node = mk(h[2], { kind: 'h' });
+      heads[heads.length - 1].node.children.push(node);
+      heads.push({ level, node });
+      list = [];
+      continue;
+    }
+    s = s.replace(/^(>\s?)+/, '');
+    let kind = 'p';
+    const b = s.match(/^([-*+]|\d{1,3}[.)])\s+/) || s.match(/^[•·▪◦○●■□➢►▶✦]\s*/);
+    if (b) { kind = 'li'; if (!/^\d/.test(b[0])) s = s.slice(b[0].length); }
+    s = s.replace(/^\[( |x|X)\]\s+/, (m0, c) => (c === ' ' ? '☐ ' : '☑ '));
+    if (!s.trim()) continue;
+    while (list.length && list[list.length - 1].indent >= indent) list.pop();
+    const parent = list.length ? list[list.length - 1].node : heads[heads.length - 1].node;
+    const node = mk(s, { kind });
+    parent.children.push(node);
+    list.push({ indent, node });
+  }
+  const kids = top.children;
+  // 第一行是普通文字、后面是列表/标题：把第一行当中心主题
+  if (!title && kids.length > 1 && kids[0].kind === 'p' && !kids[0].children.length) {
+    const r = kids[0];
+    r.children = kids.slice(1);
+    return r;
+  }
+  return unwrap(kids, title);
+}
+
+function unquote(s) {
+  s = s.trim();
+  let m = s.match(/^"([\s\S]*)"$/);
+  if (m) s = m[1].trim();
+  m = s.match(/^`([\s\S]*)`$/);
+  if (m) s = m[1];
+  return s;
+}
+
+const MERMAID_SHAPES = [['(((', ')))'], ['((', '))'], ['))', '(('], ['{{', '}}'], ['(-', '-)'], ['[', ']'], ['(', ')'], [')', '(']];
+function mermaidText(s) {
+  s = s.replace(/\s*:::[\w\s-]+$/, '').trim();
+  for (const [o, c] of MERMAID_SHAPES) {
+    const i = s.indexOf(o);
+    if (i >= 0 && s.endsWith(c) && s.length >= i + o.length + c.length) {
+      const id = s.slice(0, i);
+      if (/^[^\s()[\]{}]*$/.test(id)) return unquote(s.slice(i + o.length, s.length - c.length));
+    }
+  }
+  return unquote(s);
+}
+
+function parseMermaid(t) {
+  const lines = t.split('\n');
+  let start = lines.findIndex((l) => /^\s*mindmap\b/i.test(l));
+  start = start < 0 ? 0 : start + 1;
+  const top = { children: [] };
+  const stack = [{ indent: -1, node: top }];
+  for (let i = start; i < lines.length; i++) {
+    if (!lines[i].trim()) continue;
+    const { indent, rest } = leading(lines[i]);
+    const s = rest.trim();
+    if (s.startsWith('%%') || /^::icon\(/i.test(s) || s.startsWith(':::')) continue;
+    while (stack.length > 1 && stack[stack.length - 1].indent >= indent) stack.pop();
+    const node = mk(mermaidText(s));
+    stack[stack.length - 1].node.children.push(node);
+    stack.push({ indent, node });
+  }
+  return unwrap(top.children);
+}
+
+// Mermaid graph / flowchart：沿着连线还原成树
+function parseFlowchart(t) {
+  const label = new Map(), order = [], edges = new Map(), indeg = new Map();
+  const ensure = (id) => { if (!label.has(id)) { label.set(id, id); order.push(id); edges.set(id, []); indeg.set(id, 0); } };
+  const shapeText = (r) => unquote(r.replace(/:::[\w-]+$/, '').trim().replace(/^[[\](){}>/\\]+/, '').replace(/[[\](){}/\\]+$/, ''));
+  const ref = (p) => {
+    const m = p.trim().match(/^([^\s[\](){}<>"|&]+)\s*(.*)$/);
+    if (!m) return null;
+    ensure(m[1]);
+    if (m[2]) { const txt = shapeText(m[2]); if (txt && label.get(m[1]) === m[1]) label.set(m[1], txt); }
+    return m[1];
+  };
+  for (let s of t.split('\n').flatMap((l) => l.split(';'))) {
+    s = s.trim();
+    if (!s || s.startsWith('%%')) continue;
+    if (/^(graph|flowchart|subgraph|end\b|style\b|classDef\b|class\b|click\b|linkStyle\b|direction\b)/i.test(s)) continue;
+    s = s.replace(/\|[^|]*\|/g, '')
+      .replace(/--\s+[^-<>]+?\s+-->/g, '-->').replace(/==\s+[^=<>]+?\s+==>/g, '-->')
+      .replace(/-\.\s+[^.]+?\s+\.->/g, '-->').replace(/--\s+[^-<>]+?\s+---/g, '---');
+    const parts = s.split(/\s*<?(?:-{2,}|={2,}|-\.+-)>?\s*/);
+    let prev = null;
+    for (const p of parts) {
+      const ids = p.split(/\s*&\s*/).map(ref).filter(Boolean);
+      if (prev && ids.length) for (const a of prev) for (const b of ids) { edges.get(a).push(b); indeg.set(b, indeg.get(b) + 1); }
+      if (ids.length) prev = ids;
+    }
+  }
+  const seen = new Set();
+  const build = (id) => {
+    seen.add(id);
+    const n = mk(label.get(id));
+    for (const c of edges.get(id)) if (!seen.has(c)) n.children.push(build(c));
+    return n;
+  };
+  const tops = order.filter((id) => indeg.get(id) === 0).map(build);
+  for (const id of order) if (!seen.has(id)) tops.push(build(id));
+  return unwrap(tops);
+}
+
+function parsePlantUML(t) {
+  const lines = t.split('\n');
+  const hasStart = lines.some((l) => /^\s*@start(mindmap|wbs)/i.test(l));
+  let inside = !hasStart, block = null, side = 'R';
+  const kept = [];
+  const top = { children: [] };
+  const stack = [{ level: 0, node: top }];
+  const nodes = [];
+  for (let i = 0; i < lines.length; i++) {
+    const s = lines[i].trim();
+    if (/^@start/i.test(s)) { inside = true; continue; }
+    if (/^@end/i.test(s)) { inside = false; continue; }
+    if (!inside || !s) continue;
+    if (block) { if (block.test(s)) block = null; continue; }
+    if (/^<style>/i.test(s)) { if (!/<\/style>/i.test(s)) block = /<\/style>/i; continue; }
+    if (/^legend\b/i.test(s)) { block = /^endlegend\b/i; continue; }
+    if (/^\/'/.test(s)) { if (!/'\/\s*$/.test(s)) block = /'\/\s*$/; continue; }
+    if (s.startsWith("'")) continue;
+    if (/^left\s+side$/i.test(s)) { side = 'L'; continue; }
+    if (/^right\s+side$/i.test(s)) { side = 'R'; continue; }
+    const m = s.match(/^([*+-]+)(\[[^\]]*\])?([_<>]*)\s*(.*)$/);
+    if (!m) continue;
+    kept.push(lines[i]);
+    let text = m[4];
+    if (text.startsWith(':')) {
+      let buf = text.slice(1);
+      while (!/;\s*$/.test(buf) && i + 1 < lines.length) buf += '\n' + lines[++i].trim();
+      text = buf.replace(/;\s*$/, '');
+    }
+    nodes.push({ level: m[1].length, mark: m[1][0], text, side, indent: leading(lines[i]).indent });
+  }
+  // PlantUML 的 “Markdown 写法”：只用一个 * 加缩进
+  if (nodes.length > 1 && nodes.every((n) => n.level === 1) && nodes.some((n) => n.indent > 0)) return parseOutline(kept.join('\n'));
+  for (const n of nodes) {
+    const node = mk(n.text);
+    if (n.level === 2) node.side = n.mark === '-' ? 'L' : n.mark === '+' ? 'R' : n.side;
+    while (stack.length > 1 && stack[stack.length - 1].level >= n.level) stack.pop();
+    stack[stack.length - 1].node.children.push(node);
+    stack.push({ level: n.level, node });
+  }
+  return unwrap(top.children);
+}
+
+const TEXT_KEYS = ['topic', 'title', 'name', 'text', 'label', 'content', 'value', 'caption'];
+const KID_KEYS = ['children', 'child', 'items', 'nodes', 'subtopics', 'subTopics', 'topics', 'sub', 'list', 'branches'];
+function parseJSON(t) {
+  const conv = (x, key) => {
+    if (x == null) return key != null ? mk(key) : null;
+    if (typeof x !== 'object') return mk(key != null ? `${key}：${x}` : x);
+    if (Array.isArray(x)) {
+      const kids = x.map((y) => conv(y)).filter(Boolean);
+      if (key != null) { const n = mk(key); n.children = kids; return n; }
+      return unwrap(kids);
+    }
+    if (x.rootTopic) return conv(x.rootTopic, key);
+    if (x.data && typeof x.data === 'object' && !Array.isArray(x.data) && (x.format || x.meta)) return conv(x.data, key);
+    const tk = TEXT_KEYS.find((k) => typeof x[k] === 'string' || typeof x[k] === 'number');
+    const kk = KID_KEYS.find((k) => x[k] && typeof x[k] === 'object');
+    if (tk || kk) {
+      const n = mk(tk ? x[tk] : (key ?? ''));
+      let kv = kk ? x[kk] : [];
+      if (!Array.isArray(kv)) kv = Object.values(kv).flat();
+      n.children = kv.map((y) => conv(y)).filter(Boolean);
+      return n;
+    }
+    const kids = Object.entries(x).map(([k, y]) => conv(y, k)).filter(Boolean);
+    if (key != null) { const n = mk(key); n.children = kids; return n; }
+    return unwrap(kids);
+  };
+  return conv(JSON.parse(t));
+}
+
+function parseXML(t) {
+  const doc = new DOMParser().parseFromString(t, 'application/xml');
+  if (doc.querySelector('parsererror')) throw new Error('XML 写法有误');
+  const isNode = (el) => /^(outline|node|topic)$/i.test(el.localName);
+  const label = (el) => {
+    for (const a of ['text', 'TEXT', 'title', 'name', 'label']) if (el.hasAttribute(a)) return el.getAttribute(a);
+    for (const c of el.children) if (/^(title|richcontent)$/i.test(c.localName)) return c.textContent;
+    return '';
+  };
+  const SKIP = /^(head|title|richcontent|attribute|icon|font|edge|hook|arrowlink|notes|labels|marker-refs|style|extensions)$/i;
+  const walk = (el) => {
+    const out = [];
+    for (const c of el.children) {
+      if (isNode(c)) { const n = mk(label(c)); n.children = walk(c); out.push(n); }
+      else if (!SKIP.test(c.localName)) out.push(...walk(c));
+    }
+    return out;
+  };
+  const de = doc.documentElement;
+  if (isNode(de)) { const n = mk(label(de)); n.children = walk(de); return n; }
+  const title = doc.querySelector('head > title')?.textContent?.trim();
+  const kids = walk(doc.querySelector('body') || de);
+  return kids.length === 1 ? kids[0] : unwrap(kids, title);
+}
+
+const PARSERS = { markdown: parseOutline, text: parseOutline, mermaid: parseMermaid, flowchart: parseFlowchart, plantuml: parsePlantUML, json: parseJSON, xml: parseXML };
+
+function prune(n) {
+  if (!n) return null;
+  n.children = n.children.map(prune).filter(Boolean);
+  if (!n.raw && !n.children.length) return null;
+  if (!n.raw) n.raw = '…';
+  return n;
+}
+
+function parseAny(src, forced) {
+  const { body, hint } = extractFence(normalize(src));
+  const format = forced !== 'auto' ? forced : detect(body, hint);
+  let root;
+  try { root = PARSERS[format](body); }
+  catch (e) {
+    if (forced !== 'auto') throw e;
+    root = parseOutline(body);
+    return { root: prune(root), format: 'text' };
+  }
+  return { root: prune(root), format };
+}
+
+/* ---------- 行内格式：**粗体** `代码` [链接](url) ---------- */
+const INLINE = /`([^`]+)`|\*\*(.+?)\*\*|__(.+?)__|~~(.+?)~~|==(.+?)==|\[([^\]]+)\]\(([^)\s]+)(?:\s+["'][^)]*["'])?\)|(https?:\/\/[^\s<>()（）[\]，。、]+)|(^|[^\w*])\*([^\s*](?:[^*]*?[^\s*])?)\*(?![\w*])/g;
+function inline(raw) {
+  const s = raw
+    .replace(/<\/?(?:b|strong)\b[^>]*>/gi, '**').replace(/<\/?(?:i|em)\b[^>]*>/gi, '*').replace(/<\/?code\b[^>]*>/gi, '`')
+    .replace(/<\/?(?:u|span|font|p|div|sub|sup|mark|s|del|small|big|center|size|color)\b[^>]*>/gi, '')
+    .replace(/!\[([^\]]*)\]\([^)]*\)/g, '$1');
+  const runs = [];
+  let last = 0, m;
+  INLINE.lastIndex = 0;
+  while ((m = INLINE.exec(s))) {
+    if (m.index > last) runs.push({ t: s.slice(last, m.index) });
+    if (m[1] != null) runs.push({ t: m[1], code: 1 });
+    else if (m[2] != null || m[3] != null) runs.push({ t: (m[2] ?? m[3]).replace(/\*\*|__|`/g, ''), b: 1 });
+    else if (m[4] != null) runs.push({ t: m[4], del: 1 });
+    else if (m[5] != null) runs.push({ t: m[5], mark: 1 });
+    else if (m[6] != null) runs.push({ t: m[6], href: m[7] });
+    else if (m[8] != null) runs.push({ t: m[8], href: m[8] });
+    else if (m[10] != null) { if (m[9]) runs.push({ t: m[9] }); runs.push({ t: m[10], i: 1 }); }
+    last = INLINE.lastIndex;
+  }
+  if (last < s.length) runs.push({ t: s.slice(last) });
+  return runs.filter((r) => r.t);
+}
+
+/* ---------- 文字测量与折行 ---------- */
+const STY = [
+  { size: 20, weight: 700, padX: 22, padY: 12, maxW: 300, lh: 1.4, box: true },
+  { size: 15.5, weight: 600, padX: 14, padY: 8, maxW: 250, lh: 1.45, box: true },
+  { size: 14, weight: 400, padX: 3, padY: 5, maxW: 240, lh: 1.5, box: false },
+  { size: 13, weight: 400, padX: 3, padY: 4, maxW: 220, lh: 1.5, box: false },
+];
+const sty = (d) => STY[Math.min(d, 3)];
+const mctx = document.createElement('canvas').getContext('2d');
+const mcache = new Map();
+function textW(str, font) {
+  const k = font + '\u0001' + str;
+  let v = mcache.get(k);
+  if (v == null) {
+    mctx.font = font;
+    v = mctx.measureText(str).width;
+    if (mcache.size > 30000) mcache.clear();
+    mcache.set(k, v);
+  }
+  return v;
+}
+const fontOf = (st, r) => `${r.i ? 'italic ' : ''}${r.b ? 700 : st.weight} ${r.code ? st.size * 0.9 : st.size}px ${r.code ? MONO : SANS}`;
+const CJK = '\\u2E80-\\u9FFF\\uF900-\\uFAFF\\uFE30-\\uFE4F\\uFF00-\\uFFEF\\u3000-\\u303F\\uAC00-\\uD7AF';
+const TOK = new RegExp(`\\n|[${CJK}]|[^\\S\\n]+|[^\\s${CJK}]+`, 'g');
+const CLOSE = /^[，。、；：！？）》」』】,.;:!?)\]}%]/;
+
+function wrap(runs, st) {
+  const lines = [{ toks: [], w: 0 }];
+  let L = lines[0];
+  const nl = () => { L = { toks: [], w: 0 }; lines.push(L); };
+  for (const r of runs) {
+    const font = fontOf(st, r);
+    for (const tk of r.t.match(TOK) || []) {
+      if (tk === '\n') { nl(); continue; }
+      const space = /^\s+$/.test(tk);
+      if (space && !L.toks.length) continue;
+      const w = textW(tk, font);
+      if (L.w + w > st.maxW && L.toks.length && !space && !CLOSE.test(tk)) nl();
+      if (w > st.maxW) {
+        for (const ch of Array.from(tk)) {
+          const cw = textW(ch, font);
+          if (L.w + cw > st.maxW && L.toks.length) nl();
+          L.toks.push({ t: ch, r, w: cw });
+          L.w += cw;
+        }
+        continue;
+      }
+      L.toks.push({ t: tk, r, w });
+      L.w += w;
+    }
+  }
+  let maxW = 0;
+  const out = lines.map((ln) => {
+    while (ln.toks.length && /^\s+$/.test(ln.toks[ln.toks.length - 1].t)) ln.w -= ln.toks.pop().w;
+    const segs = [];
+    for (const t of ln.toks) {
+      const prev = segs[segs.length - 1];
+      if (prev && prev.r === t.r) prev.t += t.t; else segs.push({ t: t.t, r: t.r });
+    }
+    maxW = Math.max(maxW, ln.w);
+    return { segs, w: ln.w };
+  });
+  while (out.length > 1 && !out[out.length - 1].segs.length) out.pop();
+  return { lines: out, w: maxW };
+}
+
+/* ---------- 状态 ---------- */
+let root = null, stats = null, fmtUsed = '';
+const byId = new Map();
+let mode = store.get('layout', 'both') === 'right' ? 'right' : 'both';
+let C = null;
+let current = null;
+const fresh = new Set();
+let matches = [], mi = -1, curId = null;
+const matchSet = new Set();
+
+function finalize(r) {
+  byId.clear();
+  let count = 0, maxD = 0;
+  const go = (n, d, parent, ci) => {
+    n.depth = d; n.parent = parent; n.ci = ci; n.m = null;
+    n.runs = inline(n.raw);
+    n.plain = n.runs.map((x) => x.t).join('');
+    byId.set(n.id, n);
+    count++; maxD = Math.max(maxD, d);
+    let desc = 0;
+    n.children.forEach((c, i) => { desc += 1 + go(c, d + 1, n, d === 0 ? i % 10 : ci); });
+    n.desc = desc;
+    return desc;
+  };
+  go(r, 0, null, -1);
+  stats = { count, maxD };
+}
+
+const isOpen = (n) => n.children.length > 0 && (n.depth === 0 || !n.collapsed);
+
+function measure(n) {
+  if (n.m) return;
+  const st = sty(n.depth);
+  n.m = wrap(n.runs, st);
+  const minW = n.depth === 0 ? 48 : n.depth === 1 ? 24 : 12;
+  n.w = Math.ceil(Math.max(n.m.w, minW) + st.padX * 2);
+  n.h = Math.ceil(n.m.lines.length * st.size * st.lh + st.padY * 2);
+}
+
+/* ---------- 布局 ---------- */
+const gapX = (p) => (p.depth === 0 ? 64 : p.depth === 1 ? 38 : 30);
+const gapY = (p) => (p.depth === 0 ? 18 : p.depth === 1 ? 8 : 4);
+
+function layout() {
+  const prep = (n) => { measure(n); if (isOpen(n)) n.children.forEach(prep); };
+  prep(root);
+  const sh = (n) => {
+    if (!isOpen(n)) { n.kh = 0; return (n.sh = n.h); }
+    let s = 0;
+    for (const c of n.children) s += sh(c);
+    s += gapY(n) * (n.children.length - 1);
+    n.kh = s;
+    return (n.sh = Math.max(n.h, s));
+  };
+  const place = (n, edge, top, dir) => {
+    n.dir = dir;
+    n.x = dir > 0 ? edge : edge - n.w;
+    n.y = top + (n.sh - n.h) / 2;
+    if (!isOpen(n)) return;
+    let y = top + (n.sh - n.kh) / 2;
+    const cx = dir > 0 ? n.x + n.w + gapX(n) : n.x - gapX(n);
+    for (const c of n.children) { place(c, cx, y, dir); y += c.sh + gapY(n); }
+  };
+  const kids = root.children;
+  kids.forEach(sh);
+  root.dir = 1;
+  root.x = -root.w / 2;
+  root.y = -root.h / 2;
+  const column = (list, dir) => {
+    if (!list.length) return;
+    const total = list.reduce((a, c) => a + c.sh, 0) + gapY(root) * (list.length - 1);
+    let y = -total / 2;
+    const edge = dir > 0 ? root.x + root.w + gapX(root) : root.x - gapX(root);
+    for (const c of list) { place(c, edge, y, dir); y += c.sh + gapY(root); }
+  };
+  if (mode === 'right') { column(kids, 1); return; }
+  let right, left;
+  if (kids.some((c) => c.side === 'L')) {
+    right = kids.filter((c) => c.side !== 'L');
+    left = kids.filter((c) => c.side === 'L');
+  } else {
+    // 顺时针：前一半放右边（从上到下），后一半放左边（从下到上）
+    const total = kids.reduce((a, c) => a + c.sh, 0);
+    let acc = 0;
+    right = [];
+    for (const c of kids) {
+      if (!right.length || acc + c.sh / 2 <= total / 2) { right.push(c); acc += c.sh; } else break;
+    }
+    left = kids.slice(right.length).reverse();
+  }
+  column(right, 1);
+  column(left, -1);
+}
+
+function eachVisible(fn) {
+  const go = (n) => { fn(n); if (isOpen(n)) n.children.forEach(go); };
+  if (root) go(root);
+}
+
+function mapBounds() {
+  let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+  eachVisible((n) => {
+    x0 = Math.min(x0, n.x); y0 = Math.min(y0, n.y);
+    x1 = Math.max(x1, n.x + n.w); y1 = Math.max(y1, n.y + n.h);
+  });
+  return { x: x0 - 22, y: y0 - 10, w: x1 - x0 + 44, h: y1 - y0 + 20 };
+}
+
+/* ---------- 绘制 ---------- */
+function hexRGB(h) {
+  const m = /^#?([0-9a-f]{6})$/i.exec(h.trim());
+  if (!m) return null;
+  const v = parseInt(m[1], 16);
+  return [(v >> 16) & 255, (v >> 8) & 255, v & 255];
+}
+function mix(a, b, t) {
+  const A = hexRGB(a), B = hexRGB(b);
+  if (!A || !B) return a;
+  return '#' + A.map((v, i) => Math.round(v * t + B[i] * (1 - t)).toString(16).padStart(2, '0')).join('');
+}
+function readColors() {
+  const cs = getComputedStyle(document.documentElement);
+  const g = (k) => cs.getPropertyValue(k).trim();
+  C = {
+    ink: g('--map-ink'), ink2: g('--map-ink2'), rootBg: g('--map-root-bg'), rootFg: g('--map-root-fg'),
+    hl: g('--map-hl'), code: g('--map-code'), link: g('--map-link'), canvas: g('--canvas'), accent: g('--accent'),
+    b: Array.from({ length: 10 }, (_, i) => g('--b' + i)),
+  };
+}
+const colorOf = (n) => (n.ci < 0 ? C.accent : C.b[n.ci]);
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const f = (v) => Math.round(v * 10) / 10;
+
+function outPt(n, dir) {
+  if (n.depth === 0) return { x: dir > 0 ? n.x + n.w : n.x, y: n.y + n.h / 2 };
+  const y = sty(n.depth).box ? n.y + n.h / 2 : n.y + n.h;
+  return { x: n.dir > 0 ? n.x + n.w : n.x, y };
+}
+function inPt(n) {
+  const y = sty(n.depth).box ? n.y + n.h / 2 : n.y + n.h;
+  return { x: n.dir > 0 ? n.x : n.x + n.w, y };
+}
+
+function linkSVG(p, c) {
+  const a = outPt(p, c.dir), b = inPt(c);
+  const mx = (a.x + b.x) / 2;
+  const w = c.depth === 1 ? 2.6 : c.depth === 2 ? 2 : 1.5;
+  return `<path${fresh.has(c.id) ? ' class="enter"' : ''} d="M${f(a.x)} ${f(a.y)}C${f(mx)} ${f(a.y)} ${f(mx)} ${f(b.y)} ${f(b.x)} ${f(b.y)}" fill="none" stroke="${colorOf(c)}" stroke-width="${w}" stroke-linecap="round"/>`;
+}
+
+function segSVG(seg, st, n) {
+  const r = seg.r;
+  let a = '';
+  if (r.b) a += ' font-weight="700"';
+  if (r.i) a += ' font-style="italic"';
+  if (r.del) a += ' text-decoration="line-through"';
+  if (r.code) a += ` font-family="${MONO}" font-size="${f(st.size * 0.9)}" fill="${n.depth === 0 ? C.rootFg : C.code}"`;
+  if (r.mark) a += ` fill="${colorOf(n)}" font-weight="700"`;
+  if (r.href && /^https?:\/\//i.test(r.href)) {
+    a += ` fill="${n.depth === 0 ? C.rootFg : C.link}" text-decoration="underline"`;
+    return `<a href="${esc(r.href)}" target="_blank" rel="noopener noreferrer"><tspan${a}>${esc(seg.t)}</tspan></a>`;
+  }
+  return a ? `<tspan${a}>${esc(seg.t)}</tspan>` : esc(seg.t);
+}
+
+function nodeSVG(n) {
+  const st = sty(n.depth), c = colorOf(n);
+  const kids = n.children.length > 0 && n.depth > 0;
+  let s = `<g class="mm-node${kids ? ' has-kids' : ''}${fresh.has(n.id) ? ' enter' : ''}" data-id="${n.id}" transform="translate(${f(n.x)} ${f(n.y)})">`;
+  s += `<rect class="hit ui-only" x="-5" y="-4" width="${n.w + 10}" height="${n.h + 8}" rx="7" fill="${C.ink}" fill-opacity="0"/>`;
+  if (matchSet.has(n.id)) {
+    s += `<rect class="ui-only" x="-5" y="-4" width="${n.w + 10}" height="${n.h + 8}" rx="8" fill="${C.hl}"${n.id === curId ? ` stroke="${C.accent}" stroke-width="2.5"` : ''}/>`;
+  }
+  if (n.depth === 0) s += `<rect width="${n.w}" height="${n.h}" rx="12" fill="${C.rootBg}"/>`;
+  else if (n.depth === 1) s += `<rect x="0.75" y="0.75" width="${n.w - 1.5}" height="${n.h - 1.5}" rx="8" fill="${mix(c, C.canvas, 0.14)}" stroke="${c}" stroke-width="1.5"/>`;
+  else s += `<line x1="0" y1="${n.h}" x2="${n.w}" y2="${n.h}" stroke="${c}" stroke-width="${n.depth === 2 ? 2 : 1.5}" stroke-linecap="round"/>`;
+
+  const fill = n.depth === 0 ? C.rootFg : n.depth >= 3 ? C.ink2 : C.ink;
+  const lh = st.size * st.lh;
+  let anchor = 'start', x = st.padX;
+  if (st.box) { anchor = 'middle'; x = n.w / 2; }
+  else if (n.dir < 0) { anchor = 'end'; x = n.w - st.padX; }
+  s += `<text font-size="${st.size}" font-weight="${st.weight}" fill="${fill}" text-anchor="${anchor}" xml:space="preserve">`;
+  n.m.lines.forEach((ln, i) => {
+    const y = st.padY + i * lh + lh / 2 + st.size * 0.36;
+    s += `<tspan x="${f(x)}" y="${f(y)}">${ln.segs.map((seg) => segSVG(seg, st, n)).join('')}</tspan>`;
+  });
+  s += '</text>';
+
+  if (kids) {
+    const ay = st.box ? n.h / 2 : n.h;
+    const cx = n.dir > 0 ? n.w + 9 : -9;
+    if (n.collapsed) {
+      const label = n.desc > 99 ? '99+' : String(n.desc);
+      s += `<g><circle cx="${cx}" cy="${ay}" r="9" fill="${C.canvas}" stroke="${c}" stroke-width="1.5"/><text x="${cx}" y="${f(ay + 3.5)}" font-size="${label.length > 2 ? 8.5 : 10}" font-weight="700" text-anchor="middle" fill="${c}">${label}</text></g>`;
+    } else {
+      s += `<g class="fold-hint ui-only"><circle cx="${cx}" cy="${ay}" r="7" fill="${C.canvas}" stroke="${c}" stroke-width="1.5"/><line x1="${cx - 3.5}" y1="${ay}" x2="${cx + 3.5}" y2="${ay}" stroke="${c}" stroke-width="1.5" stroke-linecap="round"/></g>`;
+    }
+  }
+  return s + '</g>';
+}
+
+function renderMap() {
+  if (!root) { content.innerHTML = ''; return; }
+  readColors();
+  layout();
+  const links = [], nodes = [];
+  const walk = (n) => {
+    nodes.push(nodeSVG(n));
+    if (isOpen(n)) for (const c of n.children) { links.push(linkSVG(n, c)); walk(c); }
+  };
+  walk(root);
+  content.innerHTML = `<g>${links.join('')}</g><g>${nodes.join('')}</g>`;
+  svg.setAttribute('aria-label', '脑图：' + root.plain);
+  fresh.clear();
+}
+
+/* ---------- 视图：平移与缩放 ---------- */
+const view = { k: 1, tx: 0, ty: 0 };
+let userMoved = false, anim = 0;
+const zoomPct = $('#zoomPct');
+const clampK = (k) => Math.min(4, Math.max(0.08, k));
+
+function applyView() {
+  content.setAttribute('transform', `translate(${view.tx.toFixed(2)} ${view.ty.toFixed(2)}) scale(${view.k.toFixed(4)})`);
+  let g = 22 * view.k;
+  while (g < 11) g *= 2;
+  stage.style.backgroundSize = `${g}px ${g}px`;
+  stage.style.backgroundPosition = `${view.tx.toFixed(1)}px ${view.ty.toFixed(1)}px`;
+  zoomPct.textContent = Math.round(view.k * 100) + '%';
+}
+
+function animateTo(t, dur = 260) {
+  cancelAnimationFrame(anim);
+  if (!dur || reduceMotion.matches) { Object.assign(view, t); applyView(); return; }
+  const s = { ...view }, t0 = performance.now();
+  const step = (now) => {
+    const p = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+    view.k = s.k + (t.k - s.k) * e;
+    view.tx = s.tx + (t.tx - s.tx) * e;
+    view.ty = s.ty + (t.ty - s.ty) * e;
+    applyView();
+    if (p < 1) anim = requestAnimationFrame(step);
+  };
+  anim = requestAnimationFrame(step);
+}
+
+function fit(animate = true) {
+  if (!root) return;
+  const r = stage.getBoundingClientRect();
+  if (!r.width || !r.height) return;
+  const b = mapBounds();
+  const pad = r.width < 500 ? 14 : 36;
+  const k = clampK(Math.min((r.width - pad * 2) / b.w, (r.height - pad * 2) / b.h, 1.2));
+  userMoved = false;
+  animateTo({ k, tx: r.width / 2 - k * (b.x + b.w / 2), ty: r.height / 2 - k * (b.y + b.h / 2) }, animate ? 280 : 0);
+}
+
+function zoomAt(factor, px, py, animate) {
+  const k = clampK(view.k * factor);
+  const t = { k, tx: px - (px - view.tx) * (k / view.k), ty: py - (py - view.ty) * (k / view.k) };
+  userMoved = true;
+  if (animate) animateTo(t, 180); else { cancelAnimationFrame(anim); Object.assign(view, t); applyView(); }
+}
+const stageCenter = () => { const r = stage.getBoundingClientRect(); return [r.width / 2, r.height / 2]; };
+
+function centerOn(n) {
+  const r = stage.getBoundingClientRect();
+  const k = view.k < 0.7 ? 1 : view.k;
+  userMoved = true;
+  animateTo({ k, tx: r.width / 2 - k * (n.x + n.w / 2), ty: r.height / 2 - k * (n.y + n.h / 2) }, 300);
+}
+
+/* ---------- 折叠 / 展开 ---------- */
+function markFresh(n) { for (const c of n.children) { fresh.add(c.id); if (!c.collapsed) markFresh(c); } }
+
+function toggle(n, deep) {
+  if (!n || n.depth === 0 || !n.children.length) return;
+  const sx = view.tx + view.k * n.x, sy = view.ty + view.k * n.y;
+  const next = !n.collapsed;
+  n.collapsed = next;
+  if (deep) { const all = (x) => x.children.forEach((c) => { if (c.children.length) c.collapsed = next; all(c); }); all(n); }
+  if (!next) markFresh(n);
+  setLevelPressed(null);
+  renderMap();
+  cancelAnimationFrame(anim);
+  view.tx = sx - view.k * n.x;
+  view.ty = sy - view.k * n.y;
+  applyView();
+}
+
+function setLevelPressed(level) {
+  document.querySelectorAll('[data-level]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.level === level)));
+}
+function applyLevel(level) {
+  const L = level === 'all' ? Infinity : Number(level);
+  byId.forEach((n) => { if (n.children.length && n.depth > 0) n.collapsed = n.depth >= L; });
+  setLevelPressed(level);
+}
+
+/* ---------- 搜索 ---------- */
+const qCount = $('#qCount');
+function runSearch(q, jump) {
+  q = q.trim().toLowerCase();
+  matchSet.clear(); matches = []; mi = -1; curId = null;
+  if (q && root) {
+    byId.forEach((n) => { if (n.plain.toLowerCase().includes(q)) matches.push(n); });
+    for (const m of matches) { matchSet.add(m.id); for (let p = m.parent; p; p = p.parent) p.collapsed = false; }
+  }
+  qCount.textContent = q ? (matches.length ? `${matches.length} 个` : '无结果') : '';
+  if (jump && matches.length) gotoMatch(0); else renderMap();
+}
+function gotoMatch(i) {
+  if (!matches.length) return;
+  mi = (i + matches.length) % matches.length;
+  curId = matches[mi].id;
+  renderMap();
+  qCount.textContent = `${mi + 1}/${matches.length}`;
+  centerOn(matches[mi]);
+}
+let qTimer = 0;
+qInput.addEventListener('input', () => { clearTimeout(qTimer); qTimer = setTimeout(() => runSearch(qInput.value, true), 160); });
+qInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') { e.preventDefault(); clearTimeout(qTimer); if (mi < 0) runSearch(qInput.value, true); else gotoMatch(mi + (e.shiftKey ? -1 : 1)); }
+  if (e.key === 'Escape') { qInput.value = ''; runSearch('', false); qInput.blur(); }
+});
+
+/* ---------- 解析 + 绘制入口 ---------- */
+const statEl = $('#stat');
+function setStat(t, warn) { statEl.textContent = t; statEl.classList.toggle('warn', !!warn); }
+function showOverlay(which) {
+  $('#empty').hidden = which !== 'empty';
+  $('#errorBox').hidden = which !== 'error';
+}
+
+function parseAndRender() {
+  const src = current ? current.text : '';
+  $('#sampleBadge').hidden = !(current && current.sample);
+  showOverlay(null);
+  if (!src.trim()) {
+    root = null; byId.clear(); renderMap(); setStat('');
+    showOverlay('empty');
+    return;
+  }
+  let res = null, err = '';
+  try { res = parseAny(src, fmtSel.value); } catch (e) { err = (e && e.message) || String(e); }
+  if (!res || !res.root) {
+    root = null; byId.clear(); renderMap();
+    setStat(fmtSel.value === 'auto' ? '没有识别出节点' : `按 ${FORMAT_LABEL[fmtSel.value]} 没解析出节点`, true);
+    $('#errMsg').textContent = err ? `解析时出错：${err}` : '这段内容里没有找到能画成脑图的层级结构。';
+    showOverlay('error');
+    return;
+  }
+  root = res.root;
+  fmtUsed = res.format;
+  finalize(root);
+  applyLevel(stats.count > 300 ? '2' : 'all');
+  setStat(`${fmtSel.value === 'auto' ? '识别为 ' : ''}${FORMAT_LABEL[fmtUsed]} · ${stats.count} 个节点 · ${stats.maxD + 1} 层`);
+  if (qInput.value.trim()) runSearch(qInput.value, false); else renderMap();
+  fit(false);
+}
+
+/* ---------- 最近粘贴：每次粘贴存一条，点一下切回去 ---------- */
+const MAX_HISTORY = 20;
+let history = store.get('history', []);
+if (!Array.isArray(history)) history = [];
+history = history.filter((h) => h && typeof h.text === 'string' && h.id);
+
+function saveHistory() {
+  for (;;) {
+    try { localStorage.setItem('pastemind.history', JSON.stringify(history)); return; }
+    catch (e) { if (history.length <= 1) return; history.pop(); }
+  }
+}
+const newId = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+const sampleEntry = (id) => {
+  const s = SAMPLES.find((x) => x.id === id) || SAMPLES[0];
+  return { id: 'sample:' + s.id, sample: true, text: s.text, fmt: 'auto' };
+};
+
+function fmtTime(t) {
+  const d = new Date(t), now = new Date();
+  const hm = `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`;
+  return d.toDateString() === now.toDateString() ? hm : `${d.getMonth() + 1}/${d.getDate()} ${hm}`;
+}
+
+function renderHistory() {
+  const ol = $('#history');
+  if (!history.length) { ol.innerHTML = '<li class="h-empty">还没有记录。粘贴过的脑图会留在这里，最多留 20 条。</li>'; return; }
+  ol.innerHTML = history.map((h) => {
+    const meta = [h.format ? FORMAT_LABEL[h.format] : '没识别出来', h.count ? `${h.count} 个节点` : '', fmtTime(h.time)].filter(Boolean).join(' · ');
+    return `<li${current && h.id === current.id ? ' aria-current="true"' : ''}>`
+      + `<button type="button" class="h-item" data-open="${h.id}"><span class="h-title">${esc(h.title || '（没有标题）')}</span><span class="h-meta">${esc(meta)}</span></button>`
+      + `<button type="button" class="h-del" data-del="${h.id}" title="删除这条记录" aria-label="删除这条记录">×</button></li>`;
+  }).join('');
+}
+
+function show(entry) {
+  current = entry;
+  fmtSel.value = (entry && entry.fmt) || 'auto';
+  parseAndRender();
+  if (entry && !entry.sample) {
+    entry.title = root ? oneLine(root.plain).slice(0, 80) : oneLine(entry.text.trim()).slice(0, 40);
+    entry.format = root ? fmtUsed : '';
+    entry.count = root ? stats.count : 0;
+  }
+  store.set('current', entry ? entry.id : null);
+  $('#srcView').textContent = entry ? entry.text : '';
+  $('#copySrc').disabled = !entry;
+  renderHistory();
+}
+
+function addPaste(text, msg) {
+  if (!text.trim()) return;
+  let entry;
+  const i = history.findIndex((h) => h.text === text);
+  if (i >= 0) { entry = history.splice(i, 1)[0]; entry.time = Date.now(); }
+  else entry = { id: newId(), text, fmt: 'auto', time: Date.now() };
+  history.unshift(entry);
+  history.length = Math.min(history.length, MAX_HISTORY);
+  show(entry);
+  saveHistory();
+  renderHistory();
+  if (root) toast(msg || `已生成脑图 · ${stats.count} 个节点`);
+}
+
+$('#history').addEventListener('click', (e) => {
+  const open = e.target.closest('[data-open]'), del = e.target.closest('[data-del]');
+  if (open) { const h = history.find((x) => x.id === open.dataset.open); if (h && h !== current) show(h); }
+  if (del) {
+    const i = history.findIndex((x) => x.id === del.dataset.del);
+    if (i < 0) return;
+    const [gone] = history.splice(i, 1);
+    saveHistory();
+    if (current && gone.id === current.id) show(history[Math.min(i, history.length - 1)] || null);
+    else renderHistory();
+  }
+});
+
+fmtSel.addEventListener('change', () => {
+  if (!current) return;
+  current.fmt = fmtSel.value;
+  show(current);
+  if (!current.sample) saveHistory();
+});
+
+$('#copySrc').addEventListener('click', () => { if (current) copyText(current.text, '原代码'); });
+
+/* 粘贴：在页面任何位置粘贴，就是一张新脑图 */
+document.addEventListener('paste', (e) => {
+  if (e.target === qInput) return;
+  const dt = e.clipboardData;
+  if (!dt) return;
+  const file = dt.files && dt.files[0];
+  const text = dt.getData('text/plain');
+  if (!text && file) { e.preventDefault(); readFile(file); return; }
+  if (!text) return;
+  e.preventDefault();
+  if (e.target.classList && e.target.classList.contains('paste-box')) { e.target.value = ''; e.target.blur(); }
+  addPaste(text);
+});
+
+/* 拖入文件 */
+const drop = $('#drop');
+let dragDepth = 0;
+const hasFiles = (e) => Array.from(e.dataTransfer?.types || []).includes('Files');
+window.addEventListener('dragenter', (e) => { if (!hasFiles(e)) return; e.preventDefault(); dragDepth++; drop.hidden = false; });
+window.addEventListener('dragover', (e) => { if (hasFiles(e)) e.preventDefault(); });
+window.addEventListener('dragleave', (e) => { if (!hasFiles(e)) return; dragDepth = Math.max(0, dragDepth - 1); if (!dragDepth) drop.hidden = true; });
+window.addEventListener('drop', (e) => {
+  if (!hasFiles(e)) return;
+  e.preventDefault(); dragDepth = 0; drop.hidden = true;
+  const file = e.dataTransfer.files[0];
+  if (file) readFile(file);
+});
+function readFile(file) {
+  if (/\.xmind$/i.test(file.name)) { toast('.xmind 是压缩包，请在 XMind 里导出为 Markdown 或 OPML 再拖进来'); return; }
+  if (file.size > 8 * 1024 * 1024) { toast('文件太大了（超过 8 MB）'); return; }
+  const fr = new FileReader();
+  fr.onload = () => addPaste(String(fr.result || ''), `已导入 ${file.name}`);
+  fr.onerror = () => toast('文件读不出来，请确认是文本文件');
+  fr.readAsText(file);
+}
+
+/* ---------- 画布交互 ---------- */
+const pts = new Map();
+let drag = null, pinch = null, lastEmptyTap = 0;
+const dist = () => { const [a, b] = [...pts.values()]; return Math.hypot(a.x - b.x, a.y - b.y); };
+const mid = () => { const [a, b] = [...pts.values()]; return { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 }; };
+
+stage.addEventListener('pointerdown', (e) => {
+  if (e.pointerType === 'mouse' && e.button !== 0) return;
+  if (e.target.closest('a, .stage-ui')) return;
+  stage.setPointerCapture(e.pointerId);
+  pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
+  cancelAnimationFrame(anim);
+  if (pts.size === 1) {
+    drag = { x0: e.clientX, y0: e.clientY, tx: view.tx, ty: view.ty, moved: false, target: e.target };
+  } else if (pts.size === 2) {
+    const r = stage.getBoundingClientRect(), m = mid();
+    pinch = { d: dist(), k: view.k, mx: m.x - r.left, my: m.y - r.top, tx: view.tx, ty: view.ty };
+    if (drag) drag.moved = true;
+  }
+});
+stage.addEventListener('pointermove', (e) => {
+  if (!pts.has(e.pointerId)) return;
+  pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
+  if (pinch && pts.size >= 2) {
+    const r = stage.getBoundingClientRect(), m = mid();
+    const k = clampK(pinch.k * dist() / pinch.d);
+    const mx = m.x - r.left, my = m.y - r.top;
+    view.k = k;
+    view.tx = mx - (pinch.mx - pinch.tx) * (k / pinch.k);
+    view.ty = my - (pinch.my - pinch.ty) * (k / pinch.k);
+    userMoved = true;
+    applyView();
+    return;
+  }
+  if (!drag) return;
+  const dx = e.clientX - drag.x0, dy = e.clientY - drag.y0;
+  if (!drag.moved && Math.hypot(dx, dy) > 4) { drag.moved = true; stage.classList.add('panning'); }
+  if (drag.moved) { view.tx = drag.tx + dx; view.ty = drag.ty + dy; userMoved = true; applyView(); }
+});
+function endPointer(e) {
+  if (!pts.has(e.pointerId)) return;
+  pts.delete(e.pointerId);
+  if (pts.size === 1) {
+    pinch = null;
+    const [p] = [...pts.values()];
+    drag = { x0: p.x, y0: p.y, tx: view.tx, ty: view.ty, moved: true, target: null };
+    return;
+  }
+  if (pts.size === 0) {
+    if (drag && !drag.moved && e.type === 'pointerup') {
+      const g = drag.target && drag.target.closest && drag.target.closest('.mm-node');
+      if (g) toggle(byId.get(Number(g.dataset.id)), e.altKey || e.shiftKey);
+      else {
+        const now = performance.now();
+        if (now - lastEmptyTap < 350) { fit(); lastEmptyTap = 0; } else lastEmptyTap = now;
+      }
+    }
+    drag = null; pinch = null;
+    stage.classList.remove('panning');
+  }
+}
+stage.addEventListener('pointerup', endPointer);
+stage.addEventListener('pointercancel', endPointer);
+
+stage.addEventListener('wheel', (e) => {
+  if (e.target.closest('.overlay')) return;
+  e.preventDefault();
+  let dx = e.deltaX, dy = e.deltaY;
+  if (e.deltaMode === 1) { dx *= 16; dy *= 16; }
+  if (e.ctrlKey || e.metaKey) {
+    const r = stage.getBoundingClientRect();
+    zoomAt(Math.min(1.6, Math.max(0.6, Math.exp(-dy * 0.01))), e.clientX - r.left, e.clientY - r.top, false);
+  } else {
+    cancelAnimationFrame(anim);
+    view.tx -= dx; view.ty -= dy; userMoved = true; applyView();
+  }
+}, { passive: false });
+
+$('#zoomIn').addEventListener('click', () => zoomAt(1.25, ...stageCenter(), true));
+$('#zoomOut').addEventListener('click', () => zoomAt(0.8, ...stageCenter(), true));
+zoomPct.addEventListener('click', () => zoomAt(1 / view.k, ...stageCenter(), true));
+$('#fitBtn').addEventListener('click', () => fit());
+
+const fsBtn = $('#fsBtn');
+if (!document.fullscreenEnabled || !stage.requestFullscreen) fsBtn.hidden = true;
+fsBtn.addEventListener('click', () => {
+  if (document.fullscreenElement) { document.exitFullscreen().catch(() => {}); return; }
+  stage.requestFullscreen().catch(() => toast('这里不支持全屏'));
+});
+
+let lastSize = null;
+new ResizeObserver(() => {
+  const r = stage.getBoundingClientRect();
+  if (!r.width || !r.height) return;
+  if (!userMoved || !lastSize) fit(false);
+  else { view.tx += (r.width - lastSize.w) / 2; view.ty += (r.height - lastSize.h) / 2; applyView(); }
+  lastSize = { w: r.width, h: r.height };
+}).observe(stage);
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeMenus();
+  if (e.target.closest('input, textarea, select') || e.metaKey || e.ctrlKey || e.altKey) return;
+  if (e.key === '0' || e.key === 'f') { e.preventDefault(); fit(); }
+  else if (e.key === '=' || e.key === '+') { e.preventDefault(); zoomAt(1.25, ...stageCenter(), true); }
+  else if (e.key === '-') { e.preventDefault(); zoomAt(0.8, ...stageCenter(), true); }
+  else if (e.key === '/') { e.preventDefault(); qInput.focus(); }
+});
+
+/* ---------- 工具条 ---------- */
+document.querySelectorAll('[data-layout]').forEach((b) => {
+  b.setAttribute('aria-pressed', String(b.dataset.layout === mode));
+  b.addEventListener('click', () => {
+    mode = b.dataset.layout;
+    store.set('layout', mode);
+    document.querySelectorAll('[data-layout]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    renderMap(); fit();
+  });
+});
+document.querySelectorAll('[data-level]').forEach((b) => b.addEventListener('click', () => {
+  if (!root) return;
+  applyLevel(b.dataset.level);
+  renderMap(); fit();
+}));
+
+function closeMenus() {
+  document.querySelectorAll('.menu').forEach((m) => { m.hidden = true; });
+  document.querySelectorAll('[aria-haspopup]').forEach((b) => b.setAttribute('aria-expanded', 'false'));
+}
+function setupMenu(btn, menu) {
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const willOpen = menu.hidden;
+    closeMenus();
+    menu.hidden = !willOpen;
+    btn.setAttribute('aria-expanded', String(willOpen));
+    if (willOpen) menu.querySelector('button')?.focus();
+  });
+}
+document.addEventListener('click', (e) => { if (!e.target.closest('.menu')) closeMenus(); });
+
+document.querySelectorAll('[data-samples]').forEach((box) => {
+  box.innerHTML = SAMPLES.map((s) => `<button type="button" class="btn sm" data-sample="${s.id}">${esc(s.name)}</button>`).join('');
+  box.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-sample]');
+    if (b) show(sampleEntry(b.dataset.sample));
+  });
+});
+
+/* 「记录 · 原代码」面板 */
+const drawerBtn = $('#drawerBtn');
+function setDrawer(open) {
+  drawer.hidden = !open;
+  work.classList.toggle('drawer-open', open);
+  drawerBtn.setAttribute('aria-pressed', String(open));
+  store.set('drawer', open);
+}
+drawerBtn.addEventListener('click', () => setDrawer(drawer.hidden));
+$('#drawerClose').addEventListener('click', () => { setDrawer(false); drawerBtn.focus(); });
+$('#errFmtBtn').addEventListener('click', () => { setDrawer(true); fmtSel.focus(); });
+
+/* ---------- 导出 ---------- */
+let dlPromise = null;
+function downloadsAPI() {
+  if (!window.claude || typeof window.claude.use !== 'function') return Promise.resolve(undefined);
+  if (!dlPromise) dlPromise = window.claude.use('downloads').catch(() => null);
+  return dlPromise;
+}
+downloadsAPI();
+
+async function saveFile(name, data, mime) {
+  const dl = await downloadsAPI();
+  if (dl) {
+    try { await dl.save({ filename: name, data }); toast(`已保存 ${name}`); }
+    catch (e) {
+      const c = e && e.code;
+      if (c === 'declined') toast('已取消保存');
+      else if (c === 'rate_limited') toast('上一个保存还没处理完，稍后再试');
+      else toast('这里保存不了文件，可以改用「复制为 Markdown」');
+    }
+    return;
+  }
+  if (dl === undefined) {
+    const blob = data instanceof Blob ? data : new Blob([data], { type: mime });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = name;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 5000);
+    toast(`已下载 ${name}`);
+    return;
+  }
+  toast('这里保存不了文件，可以改用「复制为 Markdown」');
+}
+
+async function copyText(text, what) {
+  try { await navigator.clipboard.writeText(text); toast(`已复制${what}`); return; } catch (e) { /* 走备用方案 */ }
+  const ta = document.createElement('textarea');
+  ta.value = text; ta.setAttribute('readonly', ''); ta.style.cssText = 'position:fixed;left:-9999px;top:0;opacity:0';
+  document.body.appendChild(ta); ta.select();
+  let ok = false;
+  try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+  ta.remove();
+  toast(ok ? `已复制${what}` : '浏览器拦截了复制，请改用导出文件');
+}
+
+const baseName = () => (root.plain.replace(/[\\/:*?"<>|\n\r\t]+/g, ' ').trim().slice(0, 40) || '脑图');
+const oneLine = (s) => s.replace(/\s*\n\s*/g, ' ');
+
+function toMarkdown() {
+  const out = [`# ${oneLine(root.raw)}`];
+  for (const c of root.children) {
+    out.push('', `## ${oneLine(c.raw)}`);
+    const li = (n, d) => { out.push(`${'  '.repeat(d)}- ${oneLine(n.raw)}`); n.children.forEach((x) => li(x, d + 1)); };
+    c.children.forEach((x) => li(x, 0));
+  }
+  return out.join('\n') + '\n';
+}
+function toMermaid() {
+  const text = (n) => oneLine(n.plain).trim() || '…';
+  const node = (n) => { const s = text(n); return /[()[\]{}"`]|^(::|%%)/.test(s) ? `n${n.id}["${s.replace(/"/g, "'")}"]` : s; };
+  const out = ['mindmap', `  root((${text(root).replace(/[()]/g, ' ')}))`];
+  const go = (n, d) => { out.push('  '.repeat(d) + node(n)); n.children.forEach((c) => go(c, d + 1)); };
+  root.children.forEach((c) => go(c, 2));
+  return out.join('\n') + '\n';
+}
+
+function buildSVG() {
+  const b = mapBounds(), pad = 28;
+  const x = f(b.x - pad), y = f(b.y - pad), w = Math.ceil(b.w + pad * 2), h = Math.ceil(b.h + pad * 2);
+  const g = content.cloneNode(true);
+  g.removeAttribute('transform');
+  g.querySelectorAll('.ui-only').forEach((el) => el.remove());
+  g.querySelectorAll('.enter').forEach((el) => el.classList.remove('enter'));
+  const inner = new XMLSerializer().serializeToString(g);
+  const svgText = `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="${x} ${y} ${w} ${h}"><rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${C.canvas}"/>${inner}</svg>`;
+  return { svgText, w, h };
+}
+
+async function toPNG() {
+  const { svgText, w, h } = buildSVG();
+  const img = new Image();
+  await new Promise((res, rej) => { img.onload = res; img.onerror = () => rej(new Error('图片生成失败')); img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgText); });
+  const scale = Math.max(0.25, Math.min(2, 16000 / w, 16000 / h, Math.sqrt(30e6 / (w * h))));
+  const cv = document.createElement('canvas');
+  cv.width = Math.round(w * scale); cv.height = Math.round(h * scale);
+  const ctx = cv.getContext('2d');
+  ctx.drawImage(img, 0, 0, cv.width, cv.height);
+  const blob = await new Promise((res) => cv.toBlob(res, 'image/png'));
+  if (!blob) throw new Error('图片太大，生成失败');
+  return blob;
+}
+
+const exportMenu = $('#exportMenu');
+setupMenu($('#exportBtn'), exportMenu);
+exportMenu.addEventListener('click', async (e) => {
+  const b = e.target.closest('[data-export]');
+  if (!b) return;
+  closeMenus();
+  if (!root) { toast('先粘贴脑图代码'); return; }
+  const kind = b.dataset.export;
+  try {
+    if (kind === 'copy-md') return copyText(toMarkdown(), ' Markdown');
+    if (kind === 'copy-mermaid') return copyText(toMermaid(), ' Mermaid');
+    if (kind === 'md') return saveFile(baseName() + '.md', toMarkdown(), 'text/markdown');
+    if (kind === 'svg') return saveFile(baseName() + '.svg', buildSVG().svgText, 'image/svg+xml');
+    if (kind === 'png') { toast('正在生成图片…'); const blob = await toPNG(); return saveFile(baseName() + '.png', blob, 'image/png'); }
+  } catch (err) { toast((err && err.message) || '导出失败'); }
+});
+
+/* ---------- 提示 ---------- */
+const toastEl = $('#toast');
+let toastTimer = 0;
+function toast(msg, actionLabel, action) {
+  toastEl.textContent = '';
+  const span = document.createElement('span');
+  span.textContent = msg;
+  toastEl.appendChild(span);
+  if (actionLabel) {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.textContent = actionLabel;
+    btn.addEventListener('click', () => { toastEl.hidden = true; action(); });
+    toastEl.appendChild(btn);
+  }
+  toastEl.hidden = false;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { toastEl.hidden = true; }, actionLabel ? 6000 : 2600);
+}
+
+/* ---------- 主题切换时重画 ---------- */
+const rerender = () => { if (root) renderMap(); };
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change', rerender);
+new MutationObserver(rerender).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme', 'class'] });
+
+/* ---------- 启动 ---------- */
+$('#keys').innerHTML = `<kbd>${MOD}</kbd><kbd>V</kbd>`;
+$('#hint').textContent = `${MOD}V 粘贴新脑图 · 拖动平移 · ${MOD} + 滚轮缩放 · 点节点折叠，按住 ⇧ 连同子级`;
+$('#sampleBadge').textContent = `这是示例 · 按 ${MOD}V 粘贴你的脑图代码`;
+
+// 旧版本存过一段代码：搬进记录里
+const oldText = store.get('text', null);
+if (!history.length && typeof oldText === 'string' && oldText.trim() && !store.get('sample', false)) {
+  history.push({ id: newId(), text: oldText, fmt: 'auto', time: Date.now() });
+  saveHistory();
+}
+try { ['text', 'sample', 'editorW', 'codeHidden'].forEach((k) => localStorage.removeItem('pastemind.' + k)); } catch (e) { /* 忽略 */ }
+
+if (store.get('drawer', false)) setDrawer(true);
+const savedCur = store.get('current', null);
+if (typeof savedCur === 'string' && savedCur.startsWith('sample:')) show(sampleEntry(savedCur.slice(7)));
+else show(history.find((h) => h.id === savedCur) || history[0] || sampleEntry('md'));
+if (history.length) saveHistory();
+})();
+</script>
+
+</body></html>

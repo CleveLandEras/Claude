@@ -1,0 +1,66 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>进度 15:30</title><style>
+:root{--ground:#f0efec;--surface:#fff;--surface-2:#f7f6f3;--ink:#191b1e;--ink-2:#484d53;--muted:#7d8289;--line:#dcdad5;--line-2:#e8e6e1;--accent:#9a6f24;--ok:#3d6b58;--ok-soft:#dfeae5;--warn:#8a6410;--warn-soft:#f5ead2;--info:#1c6ea4;--info-soft:#e0ecf4;--must:#a63f38;--must-soft:#f4e3e1;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;--mono:ui-monospace,Menlo,monospace;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1a1d21;--surface-2:#20242a;--ink:#e9e8e4;--ink-2:#b7bbc0;--muted:#868c94;--line:#2d3238;--line-2:#262b31;--accent:#d6ab5c;--ok:#74b096;--ok-soft:#1d3129;--warn:#cfa44e;--warn-soft:#332a16;--info:#6aa8d6;--info-soft:#1b2a36;--must:#dd8078;--must-soft:#38231f;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1a1d21;--surface-2:#20242a;--ink:#e9e8e4;--ink-2:#b7bbc0;--muted:#868c94;--line:#2d3238;--line-2:#262b31;--accent:#d6ab5c;--ok:#74b096;--ok-soft:#1d3129;--warn:#cfa44e;--warn-soft:#332a16;--info:#6aa8d6;--info-soft:#1b2a36;--must:#dd8078;--must-soft:#38231f;}
+*{box-sizing:border-box} body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased}
+.wrap{max-width:900px;margin:0 auto;padding:34px 22px 80px} .meta{font-size:12.5px;color:var(--muted);margin:0 0 6px}
+h1{font-family:var(--serif);font-size:24px;margin:0 0 14px}
+.verdict{background:var(--surface);border-left:3px solid var(--accent);padding:14px 18px;margin:0 0 10px} .verdict p{margin:0;font-size:16px;font-weight:600;max-width:42em}
+.sum{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:0 0 26px}
+.sum div{background:var(--surface);border:1px solid var(--line);padding:10px 12px} .sum b{display:block;font-family:var(--mono);font-size:22px} .sum span{font-size:12.5px;color:var(--ink-2)}
+.no{font-family:var(--mono);font-size:12px;color:var(--accent);font-weight:600} h2{font-family:var(--serif);font-size:19px;margin:2px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+section{margin:0 0 32px} .card{background:var(--surface);border:1px solid var(--line);padding:14px 18px;margin:0 0 10px}
+.card h3{margin:0 0 6px;font-size:16px} .card p{margin:4px 0;font-size:14px;color:var(--ink-2);max-width:44em} .card p b{color:var(--ink)}
+.tw{overflow-x:auto} table{border-collapse:collapse;width:100%;font-size:13.5px;background:var(--surface);border:1px solid var(--line)}
+th{text-align:left;font-size:12px;color:var(--muted);font-weight:650;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap} td{padding:8px 10px;border-bottom:1px solid var(--line-2);vertical-align:top} tr:last-child td{border-bottom:none}
+td.q{font-weight:600;min-width:9em} td.r{color:var(--ink-2);font-size:13px}
+.lv{font-size:11.5px;font-weight:650;padding:0 6px;border-radius:2px;white-space:nowrap} .lo{background:var(--ok-soft);color:var(--ok)} .mid{background:var(--warn-soft);color:var(--warn)} .hi{background:var(--must-soft);color:var(--must)}
+pre{white-space:pre-wrap;font-family:var(--sans);font-size:13.5px;background:var(--surface-2);border:1px solid var(--line-2);padding:10px 12px;margin:8px 0}
+button{font:inherit;font-size:12.5px;padding:3px 12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;border-radius:3px}
+.note{font-size:13px;color:var(--muted);margin:8px 0 0} a{color:var(--accent)}
+@media (max-width:640px){.wrap{padding:24px 16px 60px} .sum{grid-template-columns:1fr 1fr} table{font-size:12.5px}}
+</style></head><body><div class="wrap">
+<p class="meta">简报 · 2026-09-28 15:30 · 依据：过程记录/推进计划.md、审查记录.md、进展日志.md</p>
+<h1>现在到哪一步、还剩什么、你要做什么</h1>
+<div class="verdict"><p>还在环节1 现状的收尾阶段：本地分析已经做完，剩下 5 项纠错和整合，做完就申请过闸、进入问题诊断。你这边只需要做两件事：发一条运营消息，在后台查 3 样东西。</p></div>
+
+<section><div class="no">一 · 这一段新推进了什么</div><h2>补上了「已经离开的人」，还纠正了几处数字</h2>
+<div class="card"><h3>8 月离开的 12,188 人，和「近一月 15–31 天没来的人」是同一副样子</h3>
+<p>8/1–8/15 最后一次登录、到 9/16 已经 32–46 天没来的 <b>12,188 人</b>：卡别、储值率、押注、平台的构成，都和近一月里 15–31 天没来的人差不到 5 个百分点。其中 <b>97% 是普卡</b>，金卡以上只有 <b>173 人</b>，历史累计储值合计约为还在的人的 <b>1.92%</b>。</p>
+<p>其中 <b>27.34%</b> 是 8 月上半月才注册的，这批注册者有 <b>46.49%</b> 只来了注册当天。「一半新增只来当天」这个发现，在更早一批注册者身上又出现了一次，可信度更高了。（分析/A13）</p></div>
+<div class="card"><h3>审查者拦下并已改正的几处</h3>
+<p>回流参与率的口径；一个「最多漏 201 人」的假上界；「84% 只来当天」的口径；「押注为 0 的 VIP」改成「押注、输赢两列都记为 0」，不再推断他们是什么性质。</p></div>
+</section>
+
+<section><div class="no">二 · 离过闸还差什么</div><h2>5 项，都是纠错和整合，不再新增分析</h2>
+<div class="tw"><table>
+<tr><th>#</th><th>工作</th><th>是什么</th></tr>
+<tr><td>1</td><td>R64 推送事实更正</td><td>把我 15:15 的误读（「没有手机推送」）从现状盘点、决策汇报、A9、A13 里改掉，换成 5 种通路：快显、推播、短信、Facebook、LINE</td></tr>
+<tr><td>2</td><td>R65 降卡推断说过头</td><td>「高卡离开人数按储值画像约 236 人」把所有高储值普卡都当成被降卡的人，说过头了，要改成有边界的写法</td></tr>
+<tr><td>3</td><td>Q46 对外问题精简版落地</td><td>把你认可的精简版替换进 00 和决策汇报附录</td></tr>
+<tr><td>4</td><td>Q47 收口</td><td>核对前几条退回意见（R60、R62、R63）有没有改到位</td></tr>
+<tr><td>5</td><td>Q44 整合</td><td>把现状盘点从头理一遍：首屏关键发现变成一条主线，不再是逐轮追加的拼接</td></tr>
+</table></div>
+<p class="note">完成后：规划者申请过闸 → 审查者逐条核对 → 通过后进入<b>环节2 问题诊断</b>。</p>
+</section>
+
+<section><div class="no">三 · 你需要做的</div><h2>两件事，都不需要做决定</h2>
+<div class="card"><h3>① 发给运营（3 句）</h3>
+<pre id="m2">想确认三件事：
+1. 后台「总充值金额」有没有包含代储或转帐进来的币？有没有代理、推广、内部账号没有标成测试账号？
+2. 卡别是怎么升的，会不会降？看累计储值，还是看最近一段时间（多长）？
+3. 金卡以上的玩家储值明显下降时，现在有没有人跟进？</pre><button onclick="cp('m2',this)">复制</button>
+<p class="note">第 1 句决定「从未储值」「价值集中」这些数字能不能信；第 2 句决定离开的高卡人数会不会被低估（就是上面 R65 在处理的问题）；第 3 句决定诊断里能不能说「高卡流失没人管」。</p></div>
+<div class="card"><h3>② 在后台查 3 样东西，截图给我</h3>
+<p>1. <b>储值品项设定页</b>：礼包价格和首储礼包给多少点（决定储值位按什么价位排）。</p>
+<p>2. <b>用一个普卡账号进大厅</b>：第一个活动弹窗是不是月月抽（如果是，近九成用户会浪费一个活动名额）。</p>
+<p>3. <b>标签后台</b>：「已经先存储了」「新增」「回流」这 3 个标签的条件（决定「从未储值」要不要新建标签）。</p></div>
+<p class="note">再导数据你说稍后发，先不用管。决定 A、B、C 和取舍 13–21 属于方案环节，到时再以完整的形式请你拍板。</p>
+</section>
+</div>
+<script>
+function cp(id,btn){const t=document.getElementById(id).innerText;const d=()=>{btn.textContent='已复制';setTimeout(()=>btn.textContent='复制',1500)};
+if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(d).catch(()=>fb(t,d))}else fb(t,d)}
+function fb(t,d){const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');d()}catch(e){}a.remove()}
+</script></body></html>

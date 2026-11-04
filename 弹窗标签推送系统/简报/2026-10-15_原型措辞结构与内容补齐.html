@@ -1,0 +1,141 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>原型修改</title>
+<!--
+  Dk 汇报简报模板（2026-10-10 改版：汇报不是文章）。复制整页，只替换 body 里的内容。
+  组件：.kpi 数字卡（一般不超过 3 张；没有能说明结论的数字就不用）· .phase 时间线卡（red 否决 / blue 当前 / 默认灰）· .keep 标签清单 · .cause 原因卡 · table 短语表（.same 行标红）· .opt 选项卡（.rec 推荐）· .steps 编号短条目。组件按内容选，不必都用。
+  规则：不写成段落，结构用版面表达；条目尽量短（一两行为宜，不是上限）；表格格子写短语。
+-->
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.35;margin:0 0 8px}
+.sub{font-size:16px;color:var(--ink-2);margin:0 0 28px}
+h2{font-family:var(--serif);font-size:20px;margin:48px 0 16px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px}
+.kpi .n{font-size:38px;font-weight:700;line-height:1.1;color:var(--ink)}
+.kpi .n small{font-size:16px;font-weight:600;margin-left:4px;color:var(--ink-2)}
+.kpi .t{font-size:14.5px;color:var(--ink-2);margin-top:8px}
+.kpi.red .n{color:var(--red)}
+.phase{border-top:4px solid var(--gray)}
+.phase.red{border-top-color:var(--red)} .phase.blue{border-top-color:var(--blue)}
+.phase .d{font-size:13px;color:var(--muted);font-weight:600}
+.phase .h{font-size:16.5px;font-weight:700;margin:4px 0 10px}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:12px}
+.tag.red{background:var(--red-soft);color:var(--red)} .tag.blue{background:var(--blue-soft);color:var(--blue)} .tag.gray{background:var(--gray-soft);color:var(--gray)} .tag.green{background:var(--green-soft);color:var(--green)}
+.kv{font-size:14px;color:var(--ink-2);margin:6px 0}
+.kv b{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:2px}
+.keep{display:flex;flex-wrap:wrap;gap:10px}
+.keep span{background:var(--green-soft);color:var(--green);font-size:14.5px;font-weight:600;padding:8px 14px;border-radius:4px}
+.cause .h{font-size:16.5px;font-weight:700;margin:0 0 6px}
+.cause .l{font-size:14.5px;color:var(--ink-2);margin:0 0 12px}
+.cause .e{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14.5px}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--line)}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--ground)}
+tr:last-child td{border-bottom:none}
+td.w{color:var(--ink)} td.r{color:var(--ink-2)} td.d{color:var(--muted);width:80px}
+tr.same td.w{color:var(--red);font-weight:600}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);margin-right:8px;vertical-align:1px}
+.legend{font-size:13px;color:var(--muted);margin:10px 0 0}
+.q{font-size:17px;font-weight:700;margin:0 0 14px}
+.opt{position:relative}
+.opt .h{font-size:16px;font-weight:700;margin:0 0 6px}
+.opt .l{font-size:14.5px;color:var(--ink-2)}
+.opt.rec{border:2px solid var(--blue)}
+.opt .badge{position:absolute;top:-11px;right:16px;background:var(--blue);color:#fff;font-size:12px;font-weight:700;padding:2px 10px;border-radius:3px}
+.why{font-size:14.5px;color:var(--ink-2);margin:14px 0 0}
+.why b{color:var(--ink)}
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.steps div{counter-increment:s;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 18px;font-size:14.5px;color:var(--ink-2)}
+.steps div::before{content:counter(s);display:block;font-size:22px;font-weight:700;color:var(--accent);margin-bottom:4px}
+.links{font-size:13px;color:var(--muted);margin-top:40px} a{color:var(--accent)}
+</style></head><body><div class="wrap">
+
+<p class="meta">推送统一后台原型 · 2026-10-15 · 程序检查无违规、链接全部有效；读者复述测试做过一轮，读偏与读不出的句子已改</p>
+<h1>原型改用后台侧栏说明结构，措辞重新改过，四块缺的内容已补上</h1>
+<p class="sub">需求文档已与原型同步（现为 v0.9.27，含之后夜间推进的补充）。弹窗点击后的领取、购买已定列入数据采集需求（10/16）。</p>
+
+<div class="grid g3">
+  <div class="card cause"><p class="h">结构跟侧栏走</p><p class="l">删掉自造的六个章节；全景就是侧栏结构图，各页页眉写侧栏路径</p><p class="e">例：游戏外推送 › 推播 › 新建（定时）</p></div>
+  <div class="card cause"><p class="h">措辞改到读得懂</p><p class="l">主体是运营的不再写「运营在……」；名称按需求文档统一；读者读偏、读不出的句子已改</p><p class="e">例：「系统延迟超时」改为「系统延迟未开始」，与可重试的「推送服务超时」分开</p></div>
+  <div class="card cause"><p class="h">补齐四块内容</p><p class="l">标签与群组说明、弹窗数据、弹窗配置条件、写死项迁入</p><p class="e">新增 3 页：单条弹窗规则数据、迁入管理、标签群组设定</p></div>
+</div>
+
+<h2><span class="no">01</span>侧栏就是原型的目录：四段 12 项对应页 1–17，侧栏外的两页单独标出</h2>
+<table>
+<tr><th>侧栏分段</th><th>菜单项（括号内为该项下的页）</th><th>原型页</th></tr>
+<tr><td class="w">总览</td><td class="r">总览</td><td class="d">页 1</td></tr>
+<tr><td class="w">游戏外推送</td><td class="r">推播（列表、定时、按行为、编辑运行中的推播）、短信、Facebook 与 LINE</td><td class="d">页 2–7</td></tr>
+<tr><td class="w">游戏内推送</td><td class="r">弹窗（列表、新增与编辑）、快显</td><td class="d">页 8–10</td></tr>
+<tr><td class="w">两层共用</td><td class="r">频率上限、数据看板（含单条推送数据、单条弹窗规则数据）、玩家查询、操作纪录、迁入管理</td><td class="d">页 11–17</td></tr>
+<tr><td class="w">不在侧栏里</td><td class="r">礼包后台「推荐礼包设定」、会员标签设定「标签群组设定」，单独标出边界</td><td class="d">页 18、19</td></tr>
+</table>
+<p class="legend">每页界面里画的侧栏都高亮当前项；页序与侧栏从上到下一致。页 20–27 与验收用例的扩充是 10/16 夜间推进所加，见<a href="2026-10-16_夜间推进.html">夜间推进简报</a>。</p>
+
+<h2><span class="no">02</span>措辞：去掉多余主语，同一事物一个名字，读不通的句子改写</h2>
+<table>
+<tr><th>改前</th><th>改后</th><th>为什么</th></tr>
+<tr><td class="r">运营在推播列表按状态找到推送，并在每行看到该状态能做的操作</td><td class="w">按状态找到推播，在行内停止、暂停、重试</td><td class="r">页 2 标题；主体默认是运营，写出能做什么</td></tr>
+<tr><td class="r">「系统延迟超时」（不可重试）、「推送服务超时」（可重试）</td><td class="w">「系统延迟未开始」、「推送服务超时」</td><td class="r">读者分不清哪种超时能重试</td></tr>
+<tr><td class="r">同一条推送对同一人只计 1 条上限</td><td class="w">只计入每人每天上限 1 条</td><td class="r">读者不确定是哪个上限</td></tr>
+<tr><td class="r">礼包后台开关：本后台生效／原处生效</td><td class="w">由推送统一后台发送／由礼包后台发送</td><td class="r">在礼包后台页上「本后台」会读成礼包后台</td></tr>
+<tr><td class="r">渠道一层叫「推送」，与「一条推送」同名</td><td class="w">「推送方式」：推播、短信、Facebook、LINE、弹窗、快显</td><td class="r">按需求文档统一，全文一个名字</td></tr>
+</table>
+<p class="legend">逐句改前、改后见「改动对照」；定名见「术语表」（链接在文末）。</p>
+
+<h2><span class="no">03</span>四块内容：你问的四个问题，原型上都有了答案</h2>
+<div class="grid g2">
+  <div class="card phase blue"><div class="h">标签与标签群组</div>
+    <div class="kv"><b>原来</b>原型没讲推送怎么用标签，只在选群组的下拉框里出现</div>
+    <div class="kv"><b>现在</b>全景加「标签 → 标签群组 → 推送与弹窗」关系图；页 19 画出标签群组设定：十个大类标签、一个群组怎么用且、或、排除组合、五类人群对应哪些标签；页 3 选群组时可展开看组成</div>
+    <div class="kv"><b>待补</b>标签约 100 个，现有资料只有约 67 个名称；完整清单从会员标签设定导出，列入需求评审确认项</div></div>
+  <div class="card phase blue"><div class="h">弹窗数据</div>
+    <div class="kv"><b>原来</b>散在列表、看板、玩家查询、提示条四处，只有曝光、点击、点击率</div>
+    <div class="kv"><b>现在</b>页 14 单条弹窗规则数据：漏斗同时显示人数与次数，按日、小时、平台、客户端版本、实验组拆分，可导出明细；页 12 看板重做：与上一周期比较、趋势、按推送方式与人群对比、表现最好与最差</div>
+    <div class="kv"><b>旧版本</b>改设置存为新版本，各版本数据分开保留、可并排对比、可恢复旧版本；曝光与点击记客户端版本号，游戏发版不清旧数据</div></div>
+  <div class="card phase blue"><div class="h">弹窗配置条件</div>
+    <div class="kv"><b>原来</b>只有群组、排除、位置、类型、生效期间等，缺触发、频率、优先级、平台等维度</div>
+    <div class="kv"><b>现在</b>页 9「投放条件」：触发时机、平台与客户端版本、每日时段、每人总次数与关闭后冷却、优先级与互斥、实验分流；等级、卡别、储值等人的属性仍通过标签群组选</div>
+    <div class="kv"><b>规则</b>同一位置、同一弹窗类型只弹优先级最高的一条；渠道、语言地区、首储、金币水位现在没有数据，列为数据采集需求</div></div>
+  <div class="card phase blue"><div class="h">写死项迁入后台</div>
+    <div class="kv"><b>原来</b>没有写死清单；原型只收了快显与礼包提醒</div>
+    <div class="kv"><b>现在</b>需求文档新增「写死项清点与迁入」：客户端、服务器各出写死清单，作为研发前置任务，逐项迁入，用切换开关上线、可切回；页 17 迁入管理列出全部写死项与切换状态</div>
+    <div class="kv"><b>不纳入</b>常驻入口、红点、活动入口不是推送，本期不迁入；先列进清单，下期再评估</div></div>
+</div>
+
+<h2><span class="no">04</span>需求文档与原型一致：冲突处以需求文档为准，文档自身的错一并改正</h2>
+<div class="steps">
+  <div>原型按需求文档改正事实写法，如按行为推送的预计数量单位改为「人次」</div>
+  <div>需求文档自身错漏改正，如短信示例 1,830 改为 1,320；名称改动两边同步</div>
+  <div>新增功能的字段、计算口径、各团队任务、评审确认项、验收用例都已写进需求文档；10/16 已按你的决定加「来源弹窗规则」字段与「点击后 24 小时内领取、购买」</div>
+</div>
+
+<h2><span class="no">05</span>已定（10/16）：弹窗点击后的领取、购买列入数据采集需求</h2>
+<p class="q">现在礼包购买、活动领取记在礼包后台和各活动里，没有记是哪条弹窗带来的；不统计的话，弹窗效果只能看到点击。</p>
+<div class="grid g2">
+  <div class="card opt"><p class="h">甲　本期不统计</p><p class="l">页 14 写明「本期不统计」及原因，维持现写法</p></div>
+  <div class="card opt rec"><span class="badge">已定</span><p class="h">乙　列入数据采集需求</p><p class="l">礼包购买、活动领取记录加「来源弹窗规则」字段；页 14 漏斗加「点击后 24 小时内领取、购买」</p></div>
+</div>
+<p class="why"><b>理由</b>　弹窗推的多是礼包和活动，只看点击率无法比较哪条规则带来购买；研发改动是礼包后台与活动记录各加一个字段（推断，评审时由研发确认）。</p>
+
+<h2><span class="no">06</span>接下来：处理原型剩余的内容问题</h2>
+<div class="grid g3">
+  <div class="card cause"><p class="h">查不出没收到的原因</p><p class="l">玩家查询只记勿扰、频率上限和发送失败；不在发送对象里、被排除、不满足触发条件时没有记录</p></div>
+  <div class="card cause"><p class="h">频率上限先到先得</p><p class="l">推送之间没有优先级，白天收满上限后，下午的重要提醒会被拦下</p></div>
+  <div class="card cause"><p class="h">其余问题</p><p class="l">无背景审读列出的其余问题，按严重程度逐条处理，处理前先把清单给你</p></div>
+</div>
+
+<p class="links">原文：<a href="../推送系统后台集成需求/3_原型.html">原型</a> · <a href="../推送系统后台集成需求/4_需求文档.md">需求文档</a> · <a href="../分析/标准判卷/推送后台_原型措辞/改动对照.html">改动对照（措辞逐句）</a> · <a href="../分析/标准判卷/推送后台_原型措辞/术语表.md">术语表</a> · <a href="../分析/标准判卷/推送后台_原型措辞/Dk四问_事实.md">四个问题的事实依据</a> · <a href="../分析/标准判卷/推送后台_原型内容问题_1015.md">原型内容问题清单</a></p>
+
+</div></body></html>

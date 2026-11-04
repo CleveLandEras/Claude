@@ -1,10 +1,10 @@
-# 需求评审版拼装：把 推送系统后台集成需求/需求评审版源.html 里引用的 需求评审版_图/*.jpg 转成 base64 内嵌，
-# 生成单文件 推送系统后台集成需求/3_原型_需求评审版.html（样式已在源文件内嵌）。
+# 需求评审版拼装：把 评审版_定稿改_1027/推送系统后台集成需求/需求评审版源.html 里引用的 需求评审版_图/*.jpg 转成 base64 内嵌，
+# 生成单文件 评审版_定稿改_1027/推送系统后台集成需求/3_原型_需求评审版.html（样式已在源文件内嵌）。
 # 用法：python3 _scripts/an_需求评审版拼装.py
 import os as _os; _ROOT = _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))
 import re, base64, os
 
-BASE = _ROOT + '/推送系统后台集成需求/'
+BASE = _ROOT + '/评审版_定稿改_1027/推送系统后台集成需求/'
 src = open(BASE + '需求评审版源.html', encoding='utf-8').read()
 
 

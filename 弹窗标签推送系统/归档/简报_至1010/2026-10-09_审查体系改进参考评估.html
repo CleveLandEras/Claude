@@ -1,0 +1,98 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>审查改进评估</title>
+<style>
+:root{--ground:#f0efec;--surface:#fff;--ink:#191b1e;--ink-2:#484d53;--muted:#7d8289;--line:#dcdad5;--accent:#9a6f24;--ok:#3d6b58;--ok-soft:#dfeae5;--info:#1c6ea4;--info-soft:#e0ecf4;--warn:#8a6410;--warn-soft:#f5ead2;--chg:#e6f0e9;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1a1d21;--ink:#e9e8e4;--ink-2:#b7bbc0;--muted:#868c94;--line:#2d3238;--accent:#d6ab5c;--ok:#74b096;--ok-soft:#1d3129;--info:#6aa8d6;--info-soft:#1b2a36;--warn:#cfa44e;--warn-soft:#332a16;--chg:#1d3129;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1a1d21;--ink:#e9e8e4;--ink-2:#b7bbc0;--muted:#868c94;--line:#2d3238;--accent:#d6ab5c;--ok:#74b096;--ok-soft:#1d3129;--info:#6aa8d6;--info-soft:#1b2a36;--warn:#cfa44e;--warn-soft:#332a16;--chg:#1d3129;}
+*{box-sizing:border-box} body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:30px 16px 60px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 4px}
+h1{font-family:var(--serif);font-size:22px;margin:0 0 12px;line-height:1.45}
+h2.sec{font-family:var(--serif);font-size:18px;margin:28px 0 4px}
+.sub{font-size:13.5px;color:var(--muted);margin:0 0 10px}
+.lead{background:var(--surface);border-left:3px solid var(--accent);padding:12px 16px;margin:0 0 18px;font-size:15px}
+.lead p{margin:4px 0}
+.b{background:var(--surface);border:1px solid var(--line);padding:12px 16px;margin:0 0 10px}
+.b h3{font-size:15.5px;margin:0 0 4px} .b p{margin:3px 0;font-size:14px;color:var(--ink-2)} .b p b{color:var(--ink)}
+.tag{font-size:11px;font-weight:650;padding:0 6px;border-radius:2px;margin-left:6px;vertical-align:1px;white-space:nowrap}
+.ok{background:var(--ok-soft);color:var(--ok)} .in{background:var(--info-soft);color:var(--info)} .wt{background:var(--warn-soft);color:var(--warn)}
+.tw{overflow-x:auto;background:var(--surface);border:1px solid var(--line);margin:0 0 8px}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{border-bottom:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{font-weight:650;color:var(--ink-2);background:var(--ground);white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td.c{background:var(--chg)}
+.note{font-size:12.5px;color:var(--muted);margin:4px 0 0}
+.todo{background:var(--surface);border:1px solid var(--accent);padding:12px 16px;margin:16px 0 10px}
+.todo h3{font-size:15.5px;margin:0 0 6px} .todo ol{margin:0;padding-left:1.3em;font-size:14px;color:var(--ink-2)} .todo li{margin:4px 0} .todo b{color:var(--ink)}
+.links{font-size:13px;color:var(--muted)} a{color:var(--accent)}
+</style></head><body><div class="wrap">
+
+<p class="meta">审查体系改进 · 2026-10-09 · 参考稿取自你给的《审查体系改进参考》；对照的证据取自审查记录、进展日志和 10/9 的两份备份，我已逐条核过</p>
+<h1>参考稿的方向对，大部分采纳：先补状态、交付出口、已定事项三道流程，再一次改完审查方法；其中一个判断与实测不符，一项成本过高暂缓</h1>
+<div class="lead">
+<p><b>判断</b>：参考稿指出的问题都真实存在：状态没人管、交付没有唯一出口、原则一外推就没边界、审查者判了通过却又预判你会挑哪里。最后一条刚被 12:19 的复审印证：审查者判通过，同时预判你会挑 3 处，其中 2 处它自己就能改，或者应该交给你定。</p>
+<p><b>不采纳的</b>：参考稿说现稿 6 处问题里 5 处是「审查被绕过」，实测是 3 处，另有 1 处是审查查漏了，所以审查本身也要补。「每条判例单独查 3 次」先暂缓，原因是每次审查要多约 36 次调用，而支撑它的证据只有 1 道题。</p>
+<p><b>要你做</b>：一是验收核心，二是定第五节的 4 件事。复审已在 12:19 通过，四个 agent 已停；你没有反对的话，我现在就按第四节动手，这些改动不碰产出内容。</p>
+</div>
+
+<h2 class="sec">一、参考稿说中的 7 处，实测都有证据，全部采纳</h2>
+<div class="tw"><table>
+<tr><th>参考稿指出的缺口</th><th>实测证据</th><th>采纳后的做法</th></tr>
+<tr><td>过审结论没跟文件版本绑定</td><td>10/9 上午我改过阶段 1、2、4–8，没经复核，状态仍显示「已过审」</td><td class="c">状态由脚本按文件内容算：内容与过审时一致才显示「已过审」，否则一律「待复核」；agent 不再手写状态</td></tr>
+<tr><td>交付没有唯一出口</td><td>呈交版不在阶段产出规划表里，没经审查就交给了你</td><td class="c">呈交版写进规划表（要你同意）；交付前用脚本核对两件事：在不在表里、当前版本有没有过审记录</td></tr>
+<tr><td>你已定的事项没有核对清单</td><td>你 09:53 说了不用抉择，推进计划里仍写「建议 Dk 确认规则顺序」</td><td class="c">从答复登记整理出一份「已定事项」，每条写成能核对的话，审查时逐条查；它只管本项目，和工作原则分开放</td></tr>
+<tr><td>同一事项前后说法不一致，没人专门查</td><td>结论汇总里合规默认值写「按无限制写」，同一节又写「核实前按保守的一套写」</td><td class="c">审查加一项一致性检查：同一默认值、口径、数字、状态在全文里必须一致</td></tr>
+<tr><td>原则用到字面范围以外时，没有边界</td><td>13 次举一反三里有 12 次要求补业绩；我和审查者也把「不写成目标」延伸成了「不能当开工依据」，你没这样说过</td><td class="c">原则外推一律标「推断」、转成「要你定」，不能据此退回；以后每加一条原则，都写明它不管什么</td></tr>
+<tr><td>预判和过审结论互相矛盾</td><td>12:19 判了通过，又预判你会挑「衡量层还有购买」「不冲突的事列成待决」，这两处本该先改掉，或者先交给你定</td><td class="c">预判逐条分类：能改的先退回去改，改完才给过审；改不了的写进「要你定」。衡量指标换成两个计数：你提了、审查者事先没覆盖到的意见数，以及判例库里已有、你又挑出来的复发数</td></tr>
+<tr><td>首屏能不能读懂，没有专门测</td><td>三轮考试都指出呈交版首屏读不出要建成什么能力</td><td class="c">交给你或主管的文件，交付前我用全新的子 agent，按「没参与过的主管」身份只读首屏，测 3 次</td></tr>
+</table></div>
+
+<h2 class="sec">二、参考稿有一个判断与实测不符，执行顺序也已经过时</h2>
+<div class="b"><h3>1. 「6 处问题里 5 处是审查被绕过」不准，实测是 3 处<span class="tag ok">已核实</span></h3>
+<p>合规默认值前后矛盾这处，10/8 阶段 8 过审时就已经在稿里了：10/9 的两份备份都同时有「按无限制写」和「按保守的一套写」。所以它是审查查漏了，不是审查没发生。准确的分法是：3 处流程问题（状态、出口、已定事项没核对），1 处审查漏判，2 处内容判断。采纳的结论不变，只是说明一致性检查这一项必须做。</p></div>
+<div class="b"><h3>2. 「正式复审之前先完成流程约束」的顺序已经过时<span class="tag ok">已核实</span></h3>
+<p>复审已在 12:19 通过：阶段 8、呈交版，连同回溯修改的阶段 1、5、6、7。核心现在等你验收，四个 agent 已停。现在改流程和审查方法，不会和改稿互相干扰。</p></div>
+
+<h2 class="sec">三、「每条判例单独查 3 次」暂缓，先用低成本做法验证</h2>
+<div class="b">
+<p><b>参考稿的做法</b>：开放审查不读判例库；每条判例单独调用 3 次，取多数结论。</p>
+<p><b>暂缓理由</b>：12 条判例每条 3 次，每次审查要多约 36 次调用，粗估多出约 100 万 token<span class="tag wt">推断</span>。定时任务里能不能调用子 agent 还没验证过。而且这项依据只有「配置代替能力」1 道题的两次结果。</p>
+<p><b>先做低成本版</b>：现在审查者是先读判例库、再做主管视角，顺序反了，改成先写下开放审查的结论，再读判例库。每条判例补两项：「适用位置」（首屏、目标部分、推进计划队列或全文）和「判定问题」（一句能答「是」或「否」的问题）。判例里的「可泛化的一层」只能用来提「要你定」，不能据此退回。</p>
+<p><b>验收</b>：重跑「配置代替能力」那道题，看能不能重新抓到「改动没说为什么」。抓不到再上逐条检查。</p>
+</div>
+
+<h2 class="sec">四、改动方案：流程三项先做，审查方法一次改完，只做一次全量考</h2>
+<div class="tw"><table>
+<tr><th>改什么</th><th>怎么改</th><th>验收</th></tr>
+<tr><td>1. 状态按文件内容计算</td><td>新增脚本：过审时记录文件内容哈希，读状态时现算；规划者、审查者的说明改成只认脚本给出的状态</td><td>重算后，10/9 改过、没复核的文件显示「待复核」；对任一已过审文件改一个字，状态立即变「待复核」</td></tr>
+<tr><td>2. 交付出口</td><td>呈交版写进规划表，并写完成标准（要你同意）；我交付前跑核对</td><td>对没有过审记录的版本跑核对，会被拦下</td></tr>
+<tr><td>3. 已定事项清单</td><td>新建 <code>规则与交接/已定事项.md</code>，四个 agent 只读，我维护</td><td>对改前的推进计划跑一遍，能检出「建议 Dk 确认规则顺序」</td></tr>
+<tr><td>4. 审查方法</td><td>一次改完：一致性检查、外推规则、预判先改再过审、先开放审查再读判例、判例补两项</td><td>照章考保持 10/10，修正稿保持 0 误报；「配置代替能力」重跑结果；记下单次审查的 token 消耗</td></tr>
+<tr><td>5. 首屏读者测试</td><td>只用于交给你或主管的文件；我在交付前测 3 次</td><td>3 次里至少 2 次能完整说出要解决什么、要建成什么、要主管定什么</td></tr>
+</table></div>
+<p class="note">成本：全量考 16 题约 170 万 token；读者测试每份文件约 30 万<span class="tag wt">推断</span>。改审查者说明前，旧版先备份到归档；改动期间放暂停文件。</p>
+
+<h2 class="sec">五、要你定的事</h2>
+<div class="b"><h3>1. 「购买」在场景和衡量层要不要一并去掉</h3>
+<p><b>背景</b>：建成标准和验收句里的「购买」已按你「不留」去掉了。还留着的有：场景 15「看弹窗曝光、点击、购买」；数据项「弹窗曝光、点击、购买汇总」；呈交版问题五的指标定义「购买：点击后购买的玩家数」；分组对照「比较曝光、点击、购买」。这一项规划者也在问；审查者 12:19 也预判你会挑这里。</p>
+<p><b>选项</b>：甲，一并去掉，衡量和对照只看曝光、点击。乙，保留为「查得到的数据」，但不作衡量。</p>
+<p><b>推荐</b>：甲。<b>理由</b>：和建成标准的处理保持一致，以后不会再被反复挑出来。</p></div>
+<div class="b"><h3>2. 活跃、付费类数据，能不能作为「后续要不要扩建」的依据</h3>
+<p><b>背景</b>：原稿里推送统一后台写的是「据召回回流结果再定」。我和审查者把「不写成目标」延伸成了「不能当开工依据」，但你没这样说过，参考稿也指出了这一点。</p>
+<p><b>选项</b>：甲，不能作为依据，扩建只看能力类事实（例如各推送通路有没有发送记录、能不能按标签发送）。乙，可以作为依据，只是不写成目标。</p>
+<p><b>推荐</b>：甲。<b>理由</b><span class="tag wt">推断</span>：你否定过「活跃付费降为上线后观察」，拿回流结果决定建不建，实际上就是在上线后观察它。</p></div>
+<div class="b"><h3>3. 呈交版写不写进阶段产出规划表</h3>
+<p><b>背景</b>：规划表要改，得你同意。不写进去，呈交版就没有完成标准，第四节第 2 项的交付核对也做不了。</p>
+<p><b>推荐</b>：写进去，完成标准用工作原则「甲」、判例库和格式规范，再加首屏读者测试。</p></div>
+<div class="b"><h3>4. 工作原则那条业绩的改写准不准</h3>
+<p><b>现在的写法</b>：「平台业绩是做这件事的最终原因；方案本身只对能力建成负责，不承诺业绩结果。」后面保留了你 9/28 的原话。按参考稿的建议，这条下面还要写明它不管什么，就是上面第 1、2 件的答案。</p></div>
+
+<div class="todo"><h3>你现在能做的</h3><ol>
+<li><b>验收核心</b>：先看 <a href="../../归档/呈交版旧稿/弹窗标签推送方案_V1.html">呈交版</a> 和 <a href="../../归档/阶段产出_八阶段版_至1010/阶段8_结论汇总.html">阶段 8 结论汇总</a>。审查者预判你会挑这 3 处：衡量层还有「购买」；「弹窗控制留在规则里还是移入统一后台」被列成了待决；第三节标题「价值主要是先拿到数据」。你的意见回来后，我拿它们对照。</li>
+<li><b>回复第五节 4 件事</b>（约 3 分钟），例如「1 甲，2 甲，3 写，4 准」。</li>
+<li><b>你回复后我就开工</b>：先做第四节第 1、3 项，只加脚本和清单，不动 agent 说明和产出；第 4、5 项和全量考按第五节第 1、2 件的答案一起改，第 2 项等第 3 件的答复。</li>
+</ol></div>
+
+<p class="links">原文：<a href="../../归档/判例考试_至1014/考试记录.md">考试记录</a>　·　<a href="../../过程记录/审查记录.md">审查记录（12:19、12:23 两节）</a>　·　<a href="../../归档/判例考试_至1014/预判命中记录.md">预判命中记录</a>　·　<a href="2026-10-09_判例库建成与考试结果.html">上一份简报</a></p>
+</div></body></html>

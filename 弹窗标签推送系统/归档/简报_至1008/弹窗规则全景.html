@@ -1,0 +1,108 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>弹窗规则全景</title><style>
+:root{--ground:#f0efec;--surface:#fff;--surface-2:#f7f6f3;--ink:#191b1e;--ink-2:#484d53;--muted:#7d8289;--line:#dcdad5;--accent:#9a6f24;--ok:#3d6b58;--ok-soft:#dfeae5;--info:#1c6ea4;--info-soft:#e0ecf4;--warn:#8a6410;--warn-soft:#f5ead2;--must:#a63f38;--must-soft:#f4e3e1;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1a1d21;--surface-2:#20242a;--ink:#e9e8e4;--ink-2:#b7bbc0;--muted:#868c94;--line:#2d3238;--accent:#d6ab5c;--ok:#74b096;--ok-soft:#1d3129;--info:#6aa8d6;--info-soft:#1b2a36;--warn:#cfa44e;--warn-soft:#332a16;--must:#dd8078;--must-soft:#38231f;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1a1d21;--surface-2:#20242a;--ink:#e9e8e4;--ink-2:#b7bbc0;--muted:#868c94;--line:#2d3238;--accent:#d6ab5c;--ok:#74b096;--ok-soft:#1d3129;--info:#6aa8d6;--info-soft:#1b2a36;--warn:#cfa44e;--warn-soft:#332a16;--must:#dd8078;--must-soft:#38231f;}
+*{box-sizing:border-box} body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:860px;margin:0 auto;padding:28px 18px 60px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 4px}
+h1{font-family:var(--serif);font-size:22px;margin:0 0 6px}
+.sub{font-size:15px;color:var(--ink-2);margin:0 0 20px}
+.pick{background:var(--surface);border:1px solid var(--line);padding:14px 16px;margin:0 0 14px}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 8px} .row:last-child{margin:0}
+.row .k{width:6em;font-size:13.5px;color:var(--muted)}
+.opt{all:unset;cursor:pointer;padding:5px 14px;border:1px solid var(--line);border-radius:16px;font-size:14px;background:var(--surface)}
+.opt.on{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.col{background:var(--surface);border:1px solid var(--line);padding:14px 16px}
+.col h2{font-size:14px;margin:0 0 10px;color:var(--muted);font-weight:650} .col.after h2{color:var(--ok)}
+.pop{display:flex;gap:10px;align-items:flex-start;margin:0 0 8px;padding:8px 10px;border-radius:4px;background:var(--surface-2)}
+.pop .n{flex:none;width:22px;height:22px;border-radius:50%;background:var(--ink);color:var(--surface);font-size:12px;display:flex;align-items:center;justify-content:center;font-weight:700;margin-top:1px}
+.pop b{display:block;font-size:14.5px} .pop span{font-size:12.5px;color:var(--muted)}
+.pop.chg{background:var(--ok-soft)} .pop.chg .n{background:var(--ok)}
+.pop.gone{background:var(--must-soft);opacity:.8} .pop.gone b{text-decoration:line-through}
+.total{font-size:14px;margin:10px 0 0;padding-top:8px;border-top:1px solid var(--line)} .total b{font-size:18px}
+.why{background:var(--warn-soft);color:var(--ink);padding:10px 14px;margin:12px 0 0;font-size:14px;border-radius:3px}
+h3{font-family:var(--serif);font-size:17px;margin:28px 0 10px}
+table{border-collapse:collapse;width:100%;font-size:14px;background:var(--surface);border:1px solid var(--line)}
+th{text-align:left;font-size:12px;color:var(--muted);font-weight:650;padding:7px 10px;border-bottom:1px solid var(--line)} td{padding:7px 10px;border-bottom:1px solid var(--line)} tr:last-child td{border-bottom:none}
+.st{font-size:11.5px;font-weight:650;padding:1px 7px;border-radius:2px;white-space:nowrap}
+.snew{background:var(--ok-soft);color:var(--ok)} .smod{background:var(--info-soft);color:var(--info)} .ssame{color:var(--muted)}
+.note{font-size:13px;color:var(--muted);margin:8px 0 0}
+@media (max-width:620px){.cmp{grid-template-columns:1fr}}
+</style></head><body><div class="wrap">
+<p class="meta">改完以后的弹窗规则 · 2026-09-30 · 现状取自 9/24 盘点，改动取自 02、03，我已逐项核对</p>
+<h1>选一类玩家，看他进大厅会弹出什么</h1>
+<p class="sub">左边是现在，右边是改完以后。绿色是变了的。</p>
+
+<div class="pick">
+<div class="row"><span class="k">身份</span><span id="g1"></span></div>
+<div class="row"><span class="k">卡别</span><span id="g2"></span></div>
+<div class="row"><span class="k">储值下滑</span><span id="g3"></span></div>
+<div class="row"><span class="k">时机</span><span id="g4"></span></div>
+</div>
+
+<div class="cmp">
+<div class="col"><h2>现在</h2><div id="before"></div></div>
+<div class="col after"><h2>改完以后</h2><div id="after"></div></div>
+</div>
+<div class="why" id="why"></div>
+
+<h3>一共 9 条规则</h3>
+<table>
+<tr><th>规则</th><th>给谁</th><th>弹几个</th><th></th></tr>
+<tr><td>新增用户活动弹窗</td><td>新增</td><td>1</td><td><span class="st snew">新建</span></td></tr>
+<tr><td>回流用户活动弹窗</td><td>回流</td><td>2</td><td><span class="st snew">新建</span></td></tr>
+<tr><td>活动类弹窗（ID5）</td><td>其余玩家</td><td>2</td><td><span class="st smod">只改对象</span></td></tr>
+<tr><td>通用礼包弹窗（ID6）</td><td>普卡、银卡</td><td>1</td><td><span class="st smod">只改对象</span></td></tr>
+<tr><td>通用礼包弹窗·金卡以上</td><td>金卡以上，储值没下滑</td><td>1</td><td><span class="st snew">新建</span></td></tr>
+<tr><td>高卡储值下滑</td><td>金卡以上，储值下滑</td><td>1</td><td><span class="st snew">新建</span></td></tr>
+<tr><td>普卡储值衰退（ID10）</td><td>普卡，储值下滑</td><td>1</td><td><span class="st ssame">不变</span></td></tr>
+<tr><td>银卡储值衰退（ID11）</td><td>银卡，储值下滑</td><td>1</td><td><span class="st ssame">不变</span></td></tr>
+<tr><td>破产礼包弹窗（ID7）</td><td>所有人，破产时</td><td>1</td><td><span class="st smod">只改顺序</span></td></tr>
+</table>
+<p class="note">「储值下滑」＝这个月储值不到上个月的一半。「金卡以上」＝金卡、白金、钻石、黑卡、至尊。礼包弹窗每次弹出排在最前面、而且这个玩家还能买的那一个。上面的对比按「当天第一次进大厅、各活动都在开放期」来算。</p>
+</div>
+<script>
+const S={id:'其余',card:'普银',drop:'否',when:'进大厅'};
+const G=[['g1','id',['新增','回流','其余']],['g2','card',['普银','金卡以上']],['g3','drop',['否','是']],['g4','when',['进大厅','破产']]];
+const LBL={普银:'普卡、银卡',金卡以上:'金卡以上'};
+G.forEach(([el,k,opts])=>{const box=document.getElementById(el);opts.forEach(o=>{const b=document.createElement('button');b.className='opt'+(S[k]===o?' on':'');b.textContent=LBL[o]||o;b.onclick=()=>{S[k]=o;[...box.children].forEach(x=>x.classList.toggle('on',x===b));draw()};box.appendChild(b)})});
+const GIFT='首储礼包（没买过的人），买过就是独享礼包';
+function lobby(after){
+  const L=[];const gold=S.card==='金卡以上';
+  // 活动位
+  if(!after||S.id==='其余'){
+    const first=gold?['月月抽','限时挑战']:['限时挑战','卡别直升活动'];
+    first.forEach(x=>L.push({t:x,s:'活动弹窗 · 原规则',c:false}));
+  }else if(S.id==='新增'){
+    L.push({t:'限时挑战',s:'新增用户活动弹窗 · 只弹 1 个',c:true});
+  }else{
+    L.push({t:'回流任务',s:'回流用户活动弹窗 · 回流任务排第 1',c:true});
+    L.push({t:gold?'月月抽':'限时挑战',s:'回流用户活动弹窗',c:true});
+  }
+  // 储值位
+  if(after&&gold&&S.drop==='是') L.push({t:'储值下滑相关礼包',s:'高卡储值下滑 · 运营指定的一项礼包',c:true});
+  else L.push({t:GIFT,s:after&&gold?'通用礼包弹窗·金卡以上（内容和原来一样）':'通用礼包弹窗',c:false});
+  // 衰退定向
+  if(!gold&&S.drop==='是') L.push({t:'每日补给计划',s:'储值衰退规则 · 现状就有',c:false});
+  return L;
+}
+function bankrupt(after){
+  return [{t:after?'首储礼包 → 破产礼包 → 独享礼包 …':'首储礼包 → 独享礼包 → 破产礼包 …',s:after?'破产礼包弹窗 · 破产礼包提到独享礼包前面':'破产礼包弹窗',c:after}];
+}
+function render(el,L){document.getElementById(el).innerHTML=L.map((p,i)=>`<div class="pop${p.c?' chg':''}"><div class="n">${i+1}</div><div><b>${p.t}</b><span>${p.s}</span></div></div>`).join('')+`<div class="total">一次最多弹 <b>${L.length}</b> 个</div>`}
+function draw(){
+  const bank=S.when==='破产';
+  const B=bank?bankrupt(false):lobby(false), A=bank?bankrupt(true):lobby(true);
+  render('before',B);render('after',A);
+  const gold=S.card==='金卡以上';let w='';
+  if(bank) w='只有买过首储礼包、独享礼包还能买的人会感觉到变化：破产时先看到破产礼包。前提是破产礼包比独享礼包便宜，否则这一条不上。';
+  else if(S.id==='新增') w='新增用户的活动弹窗从 2 个减到 1 个，第一次进大厅少一个打扰；去掉了他们多半参加不了的月月抽和回流任务。';
+  else if(S.id==='回流') w='回流用户最先看到回流任务（原来排第 7，常常轮不到）。数量不变。';
+  else w='其余玩家的活动弹窗不变。';
+  if(!bank&&gold&&S.drop==='是') w+=' 储值在下滑的高卡，礼包弹窗换成一项和储值下滑相关的礼包，之前没有任何规则照顾他们。数量不增加。';
+  document.getElementById('why').textContent=w;
+}
+draw();
+</script></body></html>

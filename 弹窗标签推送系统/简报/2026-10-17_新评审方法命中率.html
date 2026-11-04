@@ -1,0 +1,299 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>新评审方法命中率</title>
+<style>
+:root{--ground:#f4f3f0;--surface:#fff;--ink:#1b1d21;--ink-2:#3d4248;--muted:#4a4f56;--line:#e2e0db;--accent:#9a6f24;
+--yes:#2f6b52;--yes-soft:#e2efe8;--no:#a8382b;--no-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;
+--mid:#8a5a12;--mid-soft:#f6ead2;--gray:#4a4f56;--gray-soft:#ecebe7;
+--c-hit:#2f6b52;--c-hit-t:#fff;--c-part:#e0b25c;--c-part-t:#1b1d21;--c-miss:#d9d6cf;--c-miss-t:#3d4248;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#c9cdd2;--muted:#adb3ba;--line:#2e3339;--accent:#d6ab5c;
+--yes:#7dbb9c;--yes-soft:#1c3128;--no:#e48e7f;--no-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;
+--mid:#e3b867;--mid-soft:#352a16;--gray:#c2c7cd;--gray-soft:#2a2e33;
+--c-hit:#6fb393;--c-hit-t:#0f1714;--c-part:#d6a24c;--c-part-t:#17130b;--c-miss:#3a3f45;--c-miss-t:#d0d4d9;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#c9cdd2;--muted:#adb3ba;--line:#2e3339;--accent:#d6ab5c;
+--yes:#7dbb9c;--yes-soft:#1c3128;--no:#e48e7f;--no-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;
+--mid:#e3b867;--mid-soft:#352a16;--gray:#c2c7cd;--gray-soft:#2a2e33;
+--c-hit:#6fb393;--c-hit-t:#0f1714;--c-part:#d6a24c;--c-part-t:#17130b;--c-miss:#3a3f45;--c-miss-t:#d0d4d9;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.75}
+a{color:var(--accent)}
+.wrap{max-width:1360px;margin:0 auto;padding:48px 40px 96px}
+.meta{font-size:14px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:29px;line-height:1.5;margin:0 0 12px}
+.sub{font-size:17px;color:var(--ink-2);margin:0 0 30px}
+h2{font-family:var(--serif);font-size:22px;line-height:1.5;margin:72px 0 22px;display:flex;align-items:baseline;gap:14px}
+h2 .no{font-family:var(--sans);font-size:14px;font-weight:700;color:var(--accent);letter-spacing:.06em;flex:none}
+h3.sh{font-size:17px;margin:36px 0 14px}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(2,1fr)} .g3{grid-template-columns:repeat(3,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:20px 24px}
+.kpi .k{font-size:14px;font-weight:700;color:var(--accent);margin:0 0 8px;letter-spacing:.02em}
+.kpi .n{font-size:40px;font-weight:700;line-height:1.1;margin:0 0 10px}
+.kpi .n small{font-size:17px;font-weight:600;margin-left:6px;color:var(--ink-2)}
+.kpi .t{font-size:16px;color:var(--ink);margin:0 0 12px}
+.kpi .e{font-size:15px;color:var(--ink-2);border-top:1px solid var(--line);padding-top:12px;margin:0}
+.kpi ul{margin:0 0 12px;padding:0;list-style:none}
+.kpi li{position:relative;padding-left:18px;margin:0 0 10px;font-size:16px}
+.kpi li::before{content:"";position:absolute;left:2px;top:.72em;width:7px;height:7px;border-radius:50%;background:var(--accent)}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:15.5px}
+th,td{padding:12px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+th{font-size:14px;color:var(--muted);font-weight:600;background:var(--ground)}
+tr:last-child td{border-bottom:none}
+.how .h{font-size:16px;font-weight:700;margin:0 0 6px}
+.how .l{font-size:15.5px;color:var(--ink-2);margin:0}
+.how ol{margin:0;padding-left:20px;font-size:15.5px;color:var(--ink-2)}
+.how ol li{margin:0 0 4px}
+.legend{display:flex;flex-wrap:wrap;gap:10px 28px;font-size:15px;color:var(--ink-2);margin:16px 0 14px}
+.legend span{display:inline-flex;align-items:baseline;gap:8px}
+.sw{display:inline-block;width:12px;height:12px;border-radius:2px;flex:none;transform:translateY(1px)}
+.sw.hit{background:var(--c-hit)} .sw.part{background:var(--c-part)} .sw.miss{background:var(--c-miss)}
+.cmp td.sc{width:34%} .cmp td.sc b{display:block;font-size:16px} .cmp td.sc span{display:block;font-size:14.5px;color:var(--ink-2);line-height:1.6}
+.cmp td.qn{width:70px;font-weight:700;font-size:17px}
+.cmp td.bc{width:24%}
+.cmp td.dl{font-weight:700}
+.cmp td.dl span{display:block;font-weight:400;font-size:14.5px;color:var(--ink-2)}
+.bar{display:flex;height:30px;border-radius:4px;overflow:hidden;font-size:14px;font-weight:700}
+.bar i{font-style:normal;display:flex;align-items:center;justify-content:center;min-width:26px}
+.bar .h{background:var(--c-hit);color:var(--c-hit-t)} .bar .p{background:var(--c-part);color:var(--c-part-t)} .bar .m{background:var(--c-miss);color:var(--c-miss-t)}
+.bl{font-size:14px;color:var(--ink-2);margin:6px 0 0}
+.obs{margin:18px 0 0;padding:16px 22px;border-left:4px solid var(--accent);background:var(--surface);border-radius:0 6px 6px 0}
+.obs ul{margin:0;padding:0;list-style:none}
+.obs li{position:relative;padding-left:18px;margin:0 0 6px}
+.obs li:last-child{margin:0}
+.obs li::before{content:"";position:absolute;left:2px;top:.72em;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.q{font-size:15px}
+.q td.n{width:44px;font-weight:700;color:var(--accent);text-align:center}
+.q th:first-child{text-align:center}
+.q td.w{width:180px}
+.q td.w b{display:block;font-size:15px}
+.q td.w span{display:block;font-size:14px;color:var(--ink-2);line-height:1.6}
+.q td.p{width:22%}
+.q td.v{width:132px}
+.q td.hint{width:110px}
+.q td.why{color:var(--ink-2)}
+.q tr.sep td{background:var(--ground);font-size:14.5px;font-weight:700;color:var(--ink);padding:9px 16px;border-top:2px solid var(--line)}
+.q tr.sep td span{font-weight:400;color:var(--ink-2);margin-left:14px}
+.vd{display:inline-block;font-size:13.5px;font-weight:700;padding:1px 9px;border-radius:3px;white-space:nowrap}
+.vd.hit{background:var(--yes-soft);color:var(--yes)} .vd.part{background:var(--mid-soft);color:var(--mid)} .vd.miss{background:var(--gray-soft);color:var(--gray)}
+.vn{display:block;font-size:13.5px;color:var(--ink-2);line-height:1.5;margin-top:4px}
+.up{display:inline-block;font-size:12.5px;font-weight:700;color:var(--blue);background:var(--blue-soft);padding:0 6px;border-radius:3px;margin-left:6px}
+.tg{display:inline-block;font-size:13px;padding:1px 8px;border-radius:3px;background:var(--ground);color:var(--ink);border:1px solid var(--line);margin:0 4px 4px 0;white-space:nowrap}
+.tg.none{background:transparent;color:var(--muted);border-style:dashed}
+.ex .h{font-size:16.5px;font-weight:700;margin:0 0 4px}
+.ex .s{font-size:14.5px;color:var(--muted);margin:0 0 14px}
+.ex dl{margin:0}
+.ex dt{font-size:13.5px;font-weight:700;color:var(--accent);margin:12px 0 2px;letter-spacing:.02em}
+.ex dt:first-child{margin-top:0}
+.ex dd{margin:0;font-size:15.5px}
+.ex dd.r{color:var(--no)}
+.unk .h{font-size:17px;font-weight:700;margin:0 0 12px}
+.unk ul{margin:0;padding:0;list-style:none}
+.unk li{position:relative;padding-left:18px;margin:0 0 8px;font-size:15.5px}
+.unk li::before{content:"";position:absolute;left:2px;top:.72em;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.unk li.inf{color:var(--ink-2)}
+.unk .e{font-size:15.5px;font-weight:700;border-top:1px solid var(--line);padding-top:12px;margin:12px 0 0}
+.nx td.g{width:150px;font-weight:700;border-right:1px solid var(--line)}
+.nx td.d{width:34%}
+.nx td.d b{display:block;font-size:15.5px;margin-bottom:2px}
+.nx td.b{color:var(--ink-2)}
+.nx td.r{width:24%;color:var(--ink-2)}
+.nx tr.gs td{border-top:2px solid var(--line)}
+.reply{margin:24px 0 0;padding:16px 22px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:0 6px 6px 0;font-size:16px;font-weight:700}
+.links{font-size:15px;color:var(--ink-2);margin-top:56px;border-top:1px solid var(--line);padding-top:16px}
+.links a{margin-right:20px}
+.nw{white-space:nowrap}
+</style></head><body><div class="wrap">
+
+<p class="meta">评审题库 · 2026-10-17 · 命中与否由我方逐题对照你当时指出的问题判定，你还没核对</p>
+<h1>新评审方法在 20 道题上命中 9 道、比旧方法多 3 道，多出的都是维度表已写下的教训；没有任何提示的 7 道仍只命中 1 道。新方法 20 道全判不通过、六成条目判否，会不会误拦合格稿还没测</h1>
+<p class="sub">题库是 20 份你判过「不通过」、原稿留存的稿件。两种方法拿到的材料、评审身份、约束都相同，只换了查法。</p>
+
+<div class="grid g3">
+  <div class="card kpi">
+    <p class="k">结果</p>
+    <p class="n">9／20<small>道命中，旧方法 6／20</small></p>
+    <p class="t">部分命中 6 道、未命中 5 道（旧方法 7、7）；没有一道比旧方法差。</p>
+    <p class="e">没有任何提示的 7 道：新方法命中 1、部分命中 3；旧方法命中 1、部分命中 1。</p>
+  </div>
+  <div class="card kpi">
+    <p class="k">说明了什么</p>
+    <p class="n">8／13<small>答案事先写下的题中命中</small></p>
+    <p class="t">答案已写进约束、维度表或标准的 13 道命中 8 道，没写到的 7 道只命中 1 道。评审能照标准判；标准没写到的问题，它基本找不出。</p>
+    <p class="e">关键仍在把标准补全，和你看完判断题后的判断一致。</p>
+  </div>
+  <div class="card kpi">
+    <p class="k">接下来（我方已定，可推翻）</p>
+    <ul>
+      <li>用你对第 3–10 份判断题的回答，算 AI 与你一致的比例</li>
+      <li>收集你判通过的稿，测新方法会不会误拦</li>
+      <li>修三处方法问题；维度表定稿后用你新推翻的稿再测</li>
+    </ul>
+    <p class="e">不需要你做决定；不同意哪条直接说。</p>
+  </div>
+</div>
+
+<h2><span class="no">01</span>逐层去掉有提示的题，新方法的领先从多 3 道命中缩到 0：没有任何提示的 7 道，两种方法都只命中 1 道</h2>
+
+<div class="grid g3">
+  <div class="card how"><p class="h">旧方法</p><p class="l">评审按一份通用清单开放地查，列出发现的问题。</p></div>
+  <div class="card how"><p class="h">新方法</p>
+    <ol>
+      <li>写标准的 AI 按维度表，给每份稿逐维度写 21–42 条是非标准</li>
+      <li>评审逐条先写推理，再判「是」或「否」</li>
+      <li>判完再列标准之外的问题</li>
+    </ol>
+  </div>
+  <div class="card how"><p class="h">两种方法相同的部分</p><p class="l">材料、评审身份、约束（已定事项）相同；评审看不到维度表和题库。任一条判「否」，整份即不通过。</p></div>
+</div>
+
+<div class="legend">
+  <span><i class="sw hit"></i>命中：指出了你指出的同一处、同一个问题</span>
+  <span><i class="sw part"></i>部分命中：同一处、同类毛病，但说偏或只说中一半</span>
+  <span><i class="sw miss"></i>未命中：只泛泛说，或在同一处挑了别的毛病</span>
+</div>
+
+<table class="cmp">
+<thead><tr><th>范围</th><th>题数</th><th>旧方法：命中／部分／未命中</th><th>新方法：命中／部分／未命中</th><th>变化</th></tr></thead>
+<tbody>
+<tr>
+  <td class="sc"><b>全部</b><span>20 份你判不通过的稿</span></td>
+  <td class="qn">20</td>
+  <td class="bc"><div class="bar"><i class="h" style="flex:6">6</i><i class="p" style="flex:7">7</i><i class="m" style="flex:7">7</i></div></td>
+  <td class="bc"><div class="bar"><i class="h" style="flex:9">9</i><i class="p" style="flex:6">6</i><i class="m" style="flex:5">5</i></div></td>
+  <td class="dl">命中 +3<span>未命中 −2</span></td>
+</tr>
+<tr>
+  <td class="sc"><b>去掉约束原文就是答案的 5 道</b><span>短期与长期写成二选一、目标写活跃付费、建成标准写购买等，评审拿到的约束直接写着结论</span></td>
+  <td class="qn">15</td>
+  <td class="bc"><div class="bar"><i class="h" style="flex:3">3</i><i class="p" style="flex:5">5</i><i class="m" style="flex:7">7</i></div></td>
+  <td class="bc"><div class="bar"><i class="h" style="flex:5">5</i><i class="p" style="flex:5">5</i><i class="m" style="flex:5">5</i></div></td>
+  <td class="dl">命中 +2<span>未命中 −2</span></td>
+</tr>
+<tr>
+  <td class="sc"><b>再去掉维度表或标准已点名答案的 8 道</b><span>剩下的 7 道，约束、维度表、标准都没写到答案</span></td>
+  <td class="qn">7</td>
+  <td class="bc"><div class="bar"><i class="h" style="flex:1">1</i><i class="p" style="flex:1">1</i><i class="m" style="flex:5">5</i></div></td>
+  <td class="bc"><div class="bar"><i class="h" style="flex:1">1</i><i class="p" style="flex:3">3</i><i class="m" style="flex:3">3</i></div></td>
+  <td class="dl">命中不变<span>部分命中 +2</span></td>
+</tr>
+</tbody></table>
+
+<div class="obs"><ul>
+  <li>多命中的 3 道，标准原文就写着答案：标签现状页「左右并排读作对比」；需求分析「没有因成本或现有后台能力先删」；标签章「标签群组／群组」要交代。维度表里也写着同样的话。</li>
+  <li>没有提示的 7 道里，多出的 2 道部分命中都排在问题清单末尾（12 条中第 11 条、23 条中第 20 条）；唯一命中的一道，旧方法本来就命中。</li>
+</ul></div>
+
+<h2><span class="no">02</span>逐题看：多命中的 3 道答案都写在标准里；事实错误、内容缺失两类与旧方法完全相同</h2>
+
+<table class="q">
+<thead><tr><th>#</th><th>稿件与位置</th><th>你指出的问题</th><th>旧方法</th><th>新方法</th><th>答案事先写在</th><th>新方法靠什么拦下／为什么没拦下</th></tr></thead>
+<tbody>
+<tr class="sep"><td colspan="7">结构与可读性　6 道<span>旧 2／2／2　→　新 3／2／1（命中／部分／未命中）</span></td></tr>
+<tr><td class="n">1</td><td class="w"><b>呈交版第 2 页</b><span>10/10 稿，结论页</span></td><td class="p">现在、目标、原因、做法这条因果链按四行表格平铺；右侧放大数字与结论看不出关系</td><td class="v"><span class="vd part">部分命中</span></td><td class="v"><span class="vd part">部分命中</span></td><td class="hint"><span class="tg">维度表</span></td><td class="why">说中「数字不支撑左侧短句」；维度表写着「有因果、先后的内容画成图，不平铺成表」，标准没带上，评审对四行上下排法判「是」</td></tr>
+<tr><td class="n">2</td><td class="w"><b>呈交版前 16 页</b><span>10/12 稿，全稿节奏</span></td><td class="p">从第 2 页起每页信息量一样，没有由疏到密的缓冲</td><td class="v"><span class="vd miss">未命中</span></td><td class="v"><span class="vd miss">未命中</span></td><td class="hint"><span class="tg">维度表</span><span class="tg">标准</span></td><td class="why">标准直接问「章内页的内容量逐步增加」；评审写下「第一章各页是并列的现状项，密度大致相当」，仍判「是」</td></tr>
+<tr><td class="n">3</td><td class="w"><b>呈交版第 3 页</b><span>10/12 稿，目录页</span></td><td class="p">每章后附说明；章名已说清，说明是重复篇幅</td><td class="v"><span class="vd miss">未命中</span></td><td class="v"><span class="vd part">部分命中</span><span class="up">↑</span></td><td class="hint"><span class="tg none">无提示</span></td><td class="why">问题清单 12 条中第 11 条说「说明多是把章名改成问句」，但没判该删；标准反把「该章回答的问题」列为目录该有的内容</td></tr>
+<tr><td class="n">4</td><td class="w"><b>呈交版第 4 页</b><span>10/12 稿，分隔页</span></td><td class="p">三条并列要点只排两行，没有项目符号</td><td class="v"><span class="vd hit">命中</span><span class="vn">排在最轻一档</span></td><td class="v"><span class="vd hit">命中</span><span class="vn">升到中间一档</span></td><td class="hint"><span class="tg">维度表</span><span class="tg">标准</span></td><td class="why">维度表样例写着「并列的行有符号」；标准问「三件现状的并列关系在版面上看得出」</td></tr>
+<tr><td class="n">5</td><td class="w"><b>呈交版第 2 页</b><span>10/12 稿，结论页</span></td><td class="p">只写「5 类人群」，没写是哪五类</td><td class="v"><span class="vd hit">命中</span></td><td class="v"><span class="vd hit">命中</span></td><td class="hint"><span class="tg">维度表</span><span class="tg">标准</span></td><td class="why">维度表样例几乎原句写着「页上『五类人群』这类说法在同处写出了成员」</td></tr>
+<tr><td class="n">6</td><td class="w"><b>呈交版第 10 页</b><span>10/12 稿，标签现状页</span></td><td class="p">两件不相关的问题左右并排，排法暗示对比和主次</td><td class="v"><span class="vd part">部分命中</span></td><td class="v"><span class="vd hit">命中</span><span class="up">↑</span></td><td class="hint"><span class="tg">维度表</span><span class="tg">标准</span></td><td class="why">标准原文「左右并排读作对比」；评审写出两块「是并列关系，不是对比关系」</td></tr>
+
+<tr class="sep"><td colspan="7">方向或取舍　5 道<span>旧 3／2／0　→　新 4／1／0</span></td></tr>
+<tr><td class="n">7</td><td class="w"><b>弹窗分人群定制方案</b><span>9/30 稿，整份</span></td><td class="p">主体是五处配置调整，没回答要建成什么通用能力；改动推不出「应该这样改」</td><td class="v"><span class="vd part">部分命中</span></td><td class="v"><span class="vd part">部分命中</span></td><td class="hint"><span class="tg">约束（点到）</span></td><td class="why">指到同一条目标，理由却是违反后定的规则和产品计划；通用能力、改动理由仍没说</td></tr>
+<tr><td class="n">8</td><td class="w"><b>需求分析第五节</b><span>10/8 稿，本期范围</span></td><td class="p">按现有后台能否做、成本高低先删需求，删掉了合理需求</td><td class="v"><span class="vd part">部分命中</span></td><td class="v"><span class="vd hit">命中</span><span class="up">↑</span></td><td class="hint"><span class="tg">约束（点到）</span><span class="tg">维度表</span><span class="tg">标准</span></td><td class="why">标准原文「没有因成本或现有后台能力先删」；维度表写着「成本取舍不在需求里先删」</td></tr>
+<tr><td class="n">9</td><td class="w"><b>结论汇总</b><span>10/8 稿</span></td><td class="p">把短期与长期两条路径写成二选一，请你判断</td><td class="v"><span class="vd hit">命中</span></td><td class="v"><span class="vd hit">命中</span></td><td class="hint"><span class="tg">约束</span></td><td class="why">约束原文就是答案，两种方法都靠它</td></tr>
+<tr><td class="n">10</td><td class="w"><b>需求分析与呈交版的目标</b><span>10/8 稿</span></td><td class="p">把方案保证不了的活跃、付费写成目标和指标</td><td class="v"><span class="vd hit">命中</span></td><td class="v"><span class="vd hit">命中</span></td><td class="hint"><span class="tg">约束</span></td><td class="why">约束原文就是答案，两种方法都靠它</td></tr>
+<tr><td class="n">11</td><td class="w"><b>呈交版建成标准</b><span>10/9 稿</span></td><td class="p">建成标准写进了「购买」</td><td class="v"><span class="vd hit">命中</span></td><td class="v"><span class="vd hit">命中</span></td><td class="hint"><span class="tg">约束</span></td><td class="why">约束就是你对这份稿的答复，两种方法都靠它</td></tr>
+
+<tr class="sep"><td colspan="7">措辞　3 道<span>旧 0／1／2　→　新 1／1／1</span></td></tr>
+<tr><td class="n">12</td><td class="w"><b>呈交版第 2 页</b><span>改版设计</span></td><td class="p">「待核实　资料没写或未确认」「核实后定」是你和作者之间的工作用语</td><td class="v"><span class="vd miss">未命中</span></td><td class="v"><span class="vd part">部分命中</span><span class="up">↑</span></td><td class="hint"><span class="tg none">无提示</span></td><td class="why">问题清单 23 条中第 20 条说中「资料没写或未确认」是过程用语；「待核实」仍当正当内容，还要求标题写出 5 项待核实</td></tr>
+<tr><td class="n">13</td><td class="w"><b>呈交版第 3 页</b><span>10/12 稿，目录页</span></td><td class="p">最后一列数字没有表头或单位，看不出是页码</td><td class="v"><span class="vd miss">未命中</span></td><td class="v"><span class="vd miss">未命中</span></td><td class="hint"><span class="tg">维度表</span></td><td class="why">维度表写着「看不懂的数字加标签、单位或删掉」；标准却直接叫它「页码列」，评审只核页码对不对</td></tr>
+<tr><td class="n">14</td><td class="w"><b>呈交版第 10、14 页</b><span>10/12 稿，标签章</span></td><td class="p">标题和要点句压成缩写、用内部简称，两件独立的事被读成因果</td><td class="v"><span class="vd part">部分命中</span></td><td class="v"><span class="vd hit">命中</span><span class="up">↑</span></td><td class="hint"><span class="tg">维度表</span><span class="tg">标准</span></td><td class="why">标准点名「标签群组／群组」要交代，并问标题两个分句是不是同一个结论</td></tr>
+
+<tr class="sep"><td colspan="7">事实错误　3 道<span>旧 1／1／1　→　新 1／1／1</span></td></tr>
+<tr><td class="n">15</td><td class="w"><b>呈交版问题一</b><span>10/9 稿，第 2、4、5 页</span></td><td class="p">把五类人群写成后台圈不出，其实是本地数据算不出</td><td class="v"><span class="vd hit">命中</span></td><td class="v"><span class="vd hit">命中</span></td><td class="hint"><span class="tg none">无提示</span></td><td class="why">两种方法都拦下；新方法另有一条把「破产圈不出」当成事实，与你的判断相反</td></tr>
+<tr><td class="n">16</td><td class="w"><b>呈交版第 4 页</b><span>10/10 稿，人群定义</span></td><td class="p">潜在流失按储值判，没参照行业按活跃度判；潜在付费门槛没用本平台数据检验</td><td class="v"><span class="vd miss">未命中</span></td><td class="v"><span class="vd miss">未命中</span></td><td class="hint"><span class="tg none">无提示</span></td><td class="why">材料里没有行业定义和押注分布；标准没有「业内对照」一条，评审只核出处</td></tr>
+<tr><td class="n">17</td><td class="w"><b>呈交版问题「弹窗数量与先后不可控」</b><span>10/10 稿</span></td><td class="p">与后台实际不符：后台可设排序与弹出个数，玩家弹窗顺序可查</td><td class="v"><span class="vd part">部分命中</span></td><td class="v"><span class="vd part">部分命中</span></td><td class="hint"><span class="tg none">无提示</span></td><td class="why">说中问题名夸大、每条规则可设个数与排序；仍认为跨规则先后不可控，没拿后台截图推翻</td></tr>
+
+<tr class="sep"><td colspan="7">内容缺失或不够深　3 道<span>旧 0／1／2　→　新 0／1／2</span></td></tr>
+<tr><td class="n">18</td><td class="w"><b>推送后台原型</b><span>10/14 截图</span></td><td class="p">没说明推送怎么用标签、标签包含什么；弹窗数据简陋；弹窗配置条件的维度没列</td><td class="v"><span class="vd miss">未命中</span><span class="vn">判通过</span></td><td class="v"><span class="vd miss">未命中</span><span class="vn">判不通过，理由与你的问题无关</span></td><td class="hint"><span class="tg none">无提示</span></td><td class="why">30 条标准没有一条问这三件事；评审以推送运营的身份只走推送任务</td></tr>
+<tr><td class="n">19</td><td class="w"><b>推送后台原型</b><span>10/14 截图</span></td><td class="p">没把客户端写死的弹窗、服务器写死的活动推送、快显迁进后台</td><td class="v"><span class="vd part">部分命中</span><span class="vn">判通过</span></td><td class="v"><span class="vd part">部分命中</span><span class="vn">判不通过</span></td><td class="hint"><span class="tg">标准（快显一半）</span></td><td class="why">标准只列了快显等旧入口；说中快显迁入后原做法没写，写死的弹窗和活动推送没提</td></tr>
+<tr><td class="n">20</td><td class="w"><b>推送后台原型</b><span>10/14 截图</span></td><td class="p">没写版本更新后保留旧版本的弹窗数据</td><td class="v"><span class="vd miss">未命中</span></td><td class="v"><span class="vd miss">未命中</span></td><td class="hint"><span class="tg none">无提示</span></td><td class="why">这是你新提的需求；原型页的维度里没有「旧版本数据」，标准没有对应项</td></tr>
+</tbody></table>
+
+<div class="obs"><ul>
+  <li>5 处提升（<span class="up" style="margin-left:0">↑</span>）有 4 处在结构与可读性、措辞两类，正是维度表和标准写得最具体的两类：并列符号、成员当场写出、左右并排、内部简称。</li>
+  <li>事实错误、内容缺失两类要业务信息或对照，标准只能写成「有出处」「功能覆盖」这类检查方法；评审仍只核出处、只走给定任务。</li>
+  <li>推送后台原型的两道由「判通过」改为「判不通过」，不能算拦下：每份 30 条标准、任一条否即不通过，拦下的理由基本不是你指出的问题。</li>
+</ul></div>
+
+<h2><span class="no">03</span>有标准也没拦下的三道：一道评审看到了现象仍判「是」，两道是维度表写到了、标准没照着出题</h2>
+
+<div class="grid g3">
+  <div class="card ex">
+    <p class="h">信息密度没有由疏到密</p>
+    <p class="s">呈交版前 16 页，10/12 稿</p>
+    <dl>
+      <dt>你指出的</dt><dd>从第 2 页起每页信息量一样，没有缓冲</dd>
+      <dt>标准怎么写</dt><dd>直接问「章内页的内容量逐步增加」</dd>
+      <dt>评审判了什么</dt><dd class="r">写下「第一章各页是并列的现状项，密度大致相当」，却以「没有出现先繁后简的倒置」判「是」，把没有倒置当成了有递增</dd>
+    </dl>
+  </div>
+  <div class="card ex">
+    <p class="h">因果链按表格平铺</p>
+    <p class="s">呈交版第 2 页，10/10 稿</p>
+    <dl>
+      <dt>你指出的</dt><dd>现在、目标、原因、做法四行平铺，没比较过更好的展示形式</dd>
+      <dt>标准怎么写</dt><dd>维度表写着「有因果、先后的内容画成图，不平铺成表」，标准没带上这句</dd>
+      <dt>评审判了什么</dt><dd class="r">认为四行是「『问题→目标→差距的原因→行动』的推进顺序，与四行内容的逻辑关系一致」，判「是」</dd>
+    </dl>
+  </div>
+  <div class="card ex">
+    <p class="h">目录页数字没有单位</p>
+    <p class="s">呈交版第 3 页，10/12 稿</p>
+    <dl>
+      <dt>你指出的</dt><dd>最后一列 4、11、15、24、27 没有表头或单位，看不出是页码</dd>
+      <dt>标准怎么写</dt><dd>维度表写着「读者看不懂的数字加标签、单位或删掉」；标准却直接把这一列叫「页码列」</dd>
+      <dt>评审判了什么</dt><dd class="r">只核页码对不对，没问读者认不认得出这是页码</dd>
+    </dl>
+  </div>
+</div>
+
+<h2><span class="no">04</span>这次测不出两件事：会不会误拦合格稿，以及换一批新稿还能拦下多少</h2>
+
+<div class="grid g2">
+  <div class="card unk">
+    <p class="h">会不会误拦合格稿：没有你判通过的稿，测不出</p>
+    <ul>
+      <li>新方法 20 道全判不通过：585 条标准中 366 条判否或判不了，占 62.6%</li>
+      <li>每份 21–42 条，任一条否即整份不通过</li>
+      <li class="inf">推断：照这个比例，你判通过的稿大概率也会被拦。推送后台原型那道，就是因为与你的三个问题都无关的理由被拦下</li>
+    </ul>
+    <p class="e">补上通过稿之前，新方法判「不通过」不能当作拦下了问题。</p>
+  </div>
+  <div class="card unk">
+    <p class="h">换一批新稿还能拦下多少：这次成绩偏高</p>
+    <ul>
+      <li>维度表是参照你推翻过的稿补出来的，这 20 份也在其中</li>
+      <li>例：结论页「5 类人群」那道，答案几乎原句写成了维度表的样例</li>
+      <li>写标准的 AI 没读题库，但维度表本身已吸收题库的教训，两者这次分不开</li>
+    </ul>
+    <p class="e">这次的 9／20 只能当上限。</p>
+  </div>
+</div>
+
+<h2><span class="no">05</span>接下来：先用判断题和通过稿测误拦，同时修三处方法问题，维度表定稿后用新稿再测</h2>
+
+<table class="nx">
+<thead><tr><th>要解决的</th><th>我方的做法</th><th>依据</th><th>你不同意时改回</th></tr></thead>
+<tbody>
+<tr><td class="g" rowspan="2">测误拦与漏拦</td><td class="d"><b>用判断题算 AI 与你的一致率</b>用你对第 3–10 份判断题回的同意／不同意逐条算：你判否、AI 判是记漏拦；你判是、AI 判否记误拦。作为第一批数据</td><td class="b">题库只有你判不通过的稿，只能测漏拦；判断题里 AI 判「是」和判「否」的条目都有，你一回就有两边的数据</td><td class="r">判断题只用来改标准，不算一致率</td></tr>
+<tr><td class="d"><b>收集你判通过的稿进题库</b>用新方法重判，看合格稿被拦下几份；第一批 10 份候选已整理好</td><td class="b">这次 20 道全判不通过，误拦率无从算起</td><td class="r">题库只收不通过稿，误拦率暂不测</td></tr>
+<tr class="gs"><td class="g" rowspan="3">修三处方法问题</td><td class="d"><b>维度表里的具体检查原样带进每份标准</b>写标准时不改写、不省略维度表的检查句</td><td class="b">第 2 页因果链、目录页数字两道：维度表写到的那一点，标准没带上或改了说法，评审也就没查</td><td class="r">写标准的 AI 照现在，按维度自行改写</td></tr>
+<tr><td class="d"><b>评审判「是」必须引原文证明</b>引不出原文的，不能判「是」</td><td class="b">信息密度那道，评审写下「密度大致相当」仍判「是」；目录说明那道，「无多余内容」一条判「是」，问题清单里却又说说明只是把章名改成问句</td><td class="r">只要求先写推理再判</td></tr>
+<tr><td class="d"><b>判旧稿只给当时已定的约束</b>稿子写成之后才定的规则，不进那份稿的材料和标准</td><td class="b">3 份稿（第 2 页工作用语、目录页数字、弹窗先后不可控）的标准引了后定的规则，评审据此判否；另有 4 份稿最严重的一条仍是与后定规则的冲突</td><td class="r">照现在给全部现行约束，即用今天的规则审旧稿</td></tr>
+<tr class="gs"><td class="g">去掉样本内偏高</td><td class="d"><b>维度表定稿后，你新推翻的稿作为样本外测试</b>单独算命中率，和这次的 9／20 分开报</td><td class="b">这 20 份的教训已写进维度表，这次成绩只能当上限</td><td class="r">继续只用现有题库测</td></tr>
+</tbody></table>
+
+<div class="reply">不同意哪条直接说。</div>
+
+<p class="links">原文：<a href="../规则与交接/评审题库/基线/新格式_第1轮.md">新方法逐题判分</a><a href="../规则与交接/评审题库/基线/基线_第1轮.md">旧方法逐题判分</a><a href="../规则与交接/评审题库/评审维度表.md">评审维度表</a></p>
+
+</div></body></html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>对外问题的判断与建议</title>
+<style>
+:root{--ground:#f0efec;--surface:#fff;--surface-2:#f7f6f3;--ink:#191b1e;--ink-2:#484d53;--muted:#7d8289;--line:#dcdad5;--line-2:#e8e6e1;--accent:#9a6f24;--ok:#3d6b58;--ok-soft:#dfeae5;--warn:#8a6410;--warn-soft:#f5ead2;--info:#1c6ea4;--info-soft:#e0ecf4;--must:#a63f38;--must-soft:#f4e3e1;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;--mono:ui-monospace,Menlo,monospace;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1a1d21;--surface-2:#20242a;--ink:#e9e8e4;--ink-2:#b7bbc0;--muted:#868c94;--line:#2d3238;--line-2:#262b31;--accent:#d6ab5c;--ok:#74b096;--ok-soft:#1d3129;--warn:#cfa44e;--warn-soft:#332a16;--info:#6aa8d6;--info-soft:#1b2a36;--must:#dd8078;--must-soft:#38231f;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1a1d21;--surface-2:#20242a;--ink:#e9e8e4;--ink-2:#b7bbc0;--muted:#868c94;--line:#2d3238;--line-2:#262b31;--accent:#d6ab5c;--ok:#74b096;--ok-soft:#1d3129;--warn:#cfa44e;--warn-soft:#332a16;--info:#6aa8d6;--info-soft:#1b2a36;--must:#dd8078;--must-soft:#38231f;}
+*{box-sizing:border-box} body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased}
+.wrap{max-width:900px;margin:0 auto;padding:34px 22px 80px} .meta{font-size:12.5px;color:var(--muted);margin:0 0 6px}
+h1{font-family:var(--serif);font-size:24px;margin:0 0 14px}
+.verdict{background:var(--surface);border-left:3px solid var(--accent);padding:14px 18px;margin:0 0 10px} .verdict p{margin:0;font-size:16px;font-weight:600;max-width:42em}
+.sum{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:0 0 26px}
+.sum div{background:var(--surface);border:1px solid var(--line);padding:10px 12px} .sum b{display:block;font-family:var(--mono);font-size:22px} .sum span{font-size:12.5px;color:var(--ink-2)}
+.no{font-family:var(--mono);font-size:12px;color:var(--accent);font-weight:600} h2{font-family:var(--serif);font-size:19px;margin:2px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+section{margin:0 0 32px} .card{background:var(--surface);border:1px solid var(--line);padding:14px 18px;margin:0 0 10px}
+.card h3{margin:0 0 6px;font-size:16px} .card p{margin:4px 0;font-size:14px;color:var(--ink-2);max-width:44em} .card p b{color:var(--ink)}
+.tw{overflow-x:auto} table{border-collapse:collapse;width:100%;font-size:13.5px;background:var(--surface);border:1px solid var(--line)}
+th{text-align:left;font-size:12px;color:var(--muted);font-weight:650;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap} td{padding:8px 10px;border-bottom:1px solid var(--line-2);vertical-align:top} tr:last-child td{border-bottom:none}
+td.q{font-weight:600;min-width:9em} td.r{color:var(--ink-2);font-size:13px}
+.lv{font-size:11.5px;font-weight:650;padding:0 6px;border-radius:2px;white-space:nowrap} .lo{background:var(--ok-soft);color:var(--ok)} .mid{background:var(--warn-soft);color:var(--warn)} .hi{background:var(--must-soft);color:var(--must)}
+pre{white-space:pre-wrap;font-family:var(--sans);font-size:13.5px;background:var(--surface-2);border:1px solid var(--line-2);padding:10px 12px;margin:8px 0}
+button{font:inherit;font-size:12.5px;padding:3px 12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;border-radius:3px}
+.note{font-size:13px;color:var(--muted);margin:8px 0 0} a{color:var(--accent)}
+@media (max-width:640px){.wrap{padding:24px 16px 60px} .sum{grid-template-columns:1fr 1fr} table{font-size:12.5px}}
+</style></head><body><div class="wrap">
+<p class="meta">简报 · 2026-09-28 15:02 · 替代上一份简报里的「待你回答」部分</p>
+<h1>对外问题：我们的判断与建议</h1>
+<div class="verdict"><p>原来列出的 20 多个问题，逐个想过之后，现在真正需要问人的只剩 2 条短消息；3 件事你自己在后台几分钟就能查到；其余的要么可以先按推断推进，要么到后面的环节自然会有答案。</p></div>
+<div class="sum">
+  <div><b>1</b><span>条消息现在发（运营 3 句）；研发那条已由 Dk 答复</span></div>
+  <div><b>3</b><span>件你自己几分钟能查到，比问人快</span></div>
+  <div><b>6</b><span>个先按推断推进，不用问</span></div>
+  <div><b>5</b><span>个推迟到后面环节，到时自然有答案</span></div>
+</div>
+
+<section><div class="no">一 · 已经查清的两件事</div><h2>那份文件是流失召回名单；押注为 0 的 VIP 更像代储或币商，不是「没押注的玩家」</h2>
+<div class="card"><h3>1. 那份 29,242 行的文件：8 月流失召回名单</h3>
+<p>全部是 8 月登录过、到 9/16 已有 <b>15–46 天</b>没来的人；配套的「行销汇出」是同一批人的邮箱和电话，看得出是营销召回用的。其中 <b>12,269 人</b>最后一次登录在 8/1–8/15，不在「近一月活跃」数据里，是我们之前看不到的<b>已经离开的人</b>。</p>
+<p><b>已处理</b>：删掉昵称后放进了 <code>数据/八月登录流失名单_20260916.csv</code>，用来补「流失的人是谁」这个缺口。邮箱、电话那份不使用。</p></div>
+<div class="card"><h3>2. 押注为 0 的 83 个 VIP：疑似代储或币商账号</h3>
+<p>你的理解「他们就是没押注」是对的。但他们不像普通玩家：其中 <b>60 人有储值，中位数 6 万，合计占全部累计储值的 8.49%</b>；输赢为 0；会员等级中位数只有 153（有押注的 VIP 是 16,533），而会员等级是随押注累积的；52 人最后一次在网页登录。<b>大额储值、从不押注</b>，最合理的解释是储值买币再转给别的玩家（VIP 权益里本来就有转出手续费、转帐额度）。</p>
+<p><b>影响</b>：剔除这 83 人后，金卡以上的储值占比从 96.68% 变为 96.40%，<b>「价值高度集中」的结论不变</b>。</p>
+<p><b>建议</b>：分析里把他们单列为「非玩家账号（推断）」，不作为弹窗对象。用下面运营那条消息里的一句话确认性质。</p></div>
+</section>
+
+<section><div class="no">二 · 逐个判断</div><h2>多数问题我们能判断出最可能的答案，而且判断错了影响也不大</h2>
+<div class="tw"><table>
+<tr><th>问题</th><th>我们的判断（依据）</th><th>建议</th><th>判断错了的影响</th></tr>
+<tr><td colspan="4" style="background:var(--surface-2);font-weight:700;font-size:12.5px;color:var(--muted)">A · 先按推断推进，不用问</td></tr>
+<tr><td class="q">2 限时加码礼包会不会被跳过</td><td class="r">会。盘点里的机制是「排序是优先级链，不可购买就跳过、往下取」；这个礼包不满足条件时就不可购买</td><td>按「会跳过」写进方案</td><td><span class="lv lo">小</span> 只影响储值位第 4 位</td></tr>
+<tr><td class="q">4 弹窗对象能否用排除</td><td class="r">能。标签组合支持排除，弹窗对象填的就是群组</td><td>按「能」设计；备选是新建一个标签（C2 已有草稿）</td><td><span class="lv lo">小</span> 有现成的备选</td></tr>
+<tr><td class="q">5 多条规则的弹出先后</td><td class="r">不确定，但方案已经写成两种情况都能用</td><td>不问，上线后观察</td><td><span class="lv lo">小</span> 只影响先后，不影响数量</td></tr>
+<tr><td class="q">7 「或」是否已上线</td><td class="r">已上线。盘点明确写着「支持 And、排除、or」</td><td>当作已有，从 05 标签需求里删掉这一项</td><td><span class="lv lo">小</span></td></tr>
+<tr><td class="q">8 每日补给计划两处设置不同</td><td class="r">原因不重要：方案本来就要把两条规则合并，停用 ID11</td><td>在方案里直接定一个统一的设置，不问历史原因</td><td><span class="lv lo">小</span></td></tr>
+<tr><td class="q">首储礼包有没有开放期</td><td class="r">多半没有。首储礼包按惯例是买过就不再出现</td><td>顺带在下面的「自查 ①」里看一眼</td><td><span class="lv lo">小</span></td></tr>
+<tr><td colspan="4" style="background:var(--surface-2);font-weight:700;font-size:12.5px;color:var(--muted)">B · 你自己几分钟能查到，比问人快</td></tr>
+<tr><td class="q">1 礼包价格；首储礼包给多少点</td><td class="r">后台「储值品项设定」页有全部礼包的价格和点数</td><td><b>自查 ①</b>：把这一页截图给我</td><td><span class="lv mid">中</span> 储值位排序要按价位定</td></tr>
+<tr><td class="q">3 月月抽对普卡、银卡会不会跳过</td><td class="r">多半会跳过（同 2 的机制），但影响 89.78% 的人，值得亲眼确认</td><td><b>自查 ②</b>：用一个普卡账号进大厅，看第一个活动弹窗是不是月月抽</td><td><span class="lv hi">大</span> 不跳过的话，近九成人会浪费一个名额</td></tr>
+<tr><td class="q">11 标签口径</td><td class="r">每个标签都是后台可以查看的脚本</td><td><b>自查 ③</b>：在标签后台看「已经先存储了」「新增」「回流」这 3 个标签的条件，截图给我</td><td><span class="lv mid">中</span> 决定「从未储值」要不要新建</td></tr>
+<tr><td colspan="4" style="background:var(--surface-2);font-weight:700;font-size:12.5px;color:var(--muted)">C · 推迟到后面的环节，现在问了也用不上</td></tr>
+<tr><td class="q">6 开发工作量</td><td class="r">04 功能缺口需求交研发评估时，自然会拿到</td><td>方案环节再说</td><td>—</td></tr>
+<tr><td class="q">10 推送配置的易用性</td><td class="r">07 推送需求给运营过目时顺带问</td><td>方案环节再说</td><td>—</td></tr>
+<tr><td class="q">22 ID7 排序当初的考虑</td><td class="r">02 方案给运营过目时顺带问</td><td>方案环节再说</td><td>—</td></tr>
+<tr><td class="q">23 表名、字段</td><td class="r">只有真正取数时才用得上</td><td>和「再导一次数据」一起，稍后发</td><td>—</td></tr>
+<tr><td class="q">再导一次数据</td><td class="r">收益最大，但你说稍后发</td><td>稍后和 23 合并成一条</td><td>—</td></tr>
+<tr><td colspan="4" style="background:var(--surface-2);font-weight:700;font-size:12.5px;color:var(--muted)">D · 必须现在问（见下一节，两条短消息）</td></tr>
+<tr><td class="q">9 推送是哪个系统发的</td><td class="r">没法推断，而且推送这条线完全卡在这里</td><td>问研发或通行证对接人，一句话</td><td><span class="lv hi">大</span></td></tr>
+<tr><td class="q">25 数据口径（精简），并入 24</td><td class="r">VIP 押注为 0 的账号是什么、总充值含不含代储、卡别怎么升降。这三件事决定「潜在付费 25,972」「价值集中」这些数字怎么读；再加问题 24「高卡用户有没有专人跟进」，它决定诊断里「高卡流失没人管」能不能成立</td><td>问运营，合并成 4 句</td><td><span class="lv hi">大</span></td></tr>
+</table></div>
+</section>
+
+<section><div class="no">三 · 现在就发的两条消息</div><h2>从 20 多个问题压缩到 5 句话</h2>
+<div class="card"><h3>发给研发，或新手通行证对接人</h3>
+<pre id="m1">新手通行证升级时会给玩家发一条推送，这条推送是哪个系统发出去的？配置在哪个后台？除了它，平台上还有哪些功能在发推送？这些推送能覆盖哪些登录平台（App、手机网页、电脑网页）？</pre>
+<button onclick="cp('m1',this)">复制</button></div>
+<div class="card"><h3>发给运营</h3>
+<pre id="m2">想确认三件事：
+1. 后台「总充值金额」有没有包含代储或转帐进来的币？有没有代理、推广、内部账号没有标成测试账号？
+2. 卡别是怎么升的，会不会降？看累计储值，还是看最近一段时间（多长）？
+3. 金卡以上的玩家储值明显下降时，现在有没有人跟进？</pre>
+<button onclick="cp('m2',this)">复制</button></div>
+<p class="note">15:15 更新：Dk 已认可本页判断，已登记给 agent。推送问题由 Dk 直接答复：平台有 5 种推送通路（快显、推播、短信、Facebook、LINE），其中快显目前写死。（15:15 曾误写为「没有手机推送」，已于 15:24 更正。）VIP 性质不再追问。</p>
+</section>
+</div>
+<script>
+function cp(id,btn){const t=document.getElementById(id).innerText;const d=()=>{btn.textContent='已复制';setTimeout(()=>btn.textContent='复制',1500)};
+if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(d).catch(()=>fb(t,d))}else fb(t,d)}
+function fb(t,d){const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');d()}catch(e){}a.remove()}
+</script></body></html>

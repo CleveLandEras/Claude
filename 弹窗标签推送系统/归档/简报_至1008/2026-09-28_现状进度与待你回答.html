@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>现状进度与待你回答</title>
+<style>
+:root{--ground:#f0efec;--surface:#fff;--surface-2:#f7f6f3;--ink:#191b1e;--ink-2:#484d53;--muted:#7d8289;--line:#dcdad5;--line-2:#e8e6e1;--accent:#9a6f24;--ok:#3d6b58;--ok-soft:#dfeae5;--warn:#8a6410;--warn-soft:#f5ead2;--info:#1c6ea4;--info-soft:#e0ecf4;--must:#a63f38;--must-soft:#f4e3e1;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;--mono:ui-monospace,Menlo,monospace;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1a1d21;--surface-2:#20242a;--ink:#e9e8e4;--ink-2:#b7bbc0;--muted:#868c94;--line:#2d3238;--line-2:#262b31;--accent:#d6ab5c;--ok:#74b096;--ok-soft:#1d3129;--warn:#cfa44e;--warn-soft:#332a16;--info:#6aa8d6;--info-soft:#1b2a36;--must:#dd8078;--must-soft:#38231f;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1a1d21;--surface-2:#20242a;--ink:#e9e8e4;--ink-2:#b7bbc0;--muted:#868c94;--line:#2d3238;--line-2:#262b31;--accent:#d6ab5c;--ok:#74b096;--ok-soft:#1d3129;--warn:#cfa44e;--warn-soft:#332a16;--info:#6aa8d6;--info-soft:#1b2a36;--must:#dd8078;--must-soft:#38231f;}
+*{box-sizing:border-box} body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding:34px 22px 80px} .meta{font-size:12.5px;color:var(--muted);margin:0 0 6px}
+h1{font-family:var(--serif);font-size:24px;margin:0 0 14px}
+.verdict{background:var(--surface);border-left:3px solid var(--accent);padding:14px 18px;margin:0 0 24px} .verdict p{margin:0;font-size:16px;font-weight:600;max-width:40em}
+.no{font-family:var(--mono);font-size:12px;color:var(--accent);font-weight:600} h2{font-family:var(--serif);font-size:19px;margin:2px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+section{margin:0 0 34px} .card{background:var(--surface);border:1px solid var(--line);padding:14px 18px;margin:0 0 10px}
+table{border-collapse:collapse;width:100%;font-size:14px} th{text-align:left;font-size:12px;color:var(--muted);font-weight:650;padding:7px 8px;border-bottom:1px solid var(--line)} td{padding:7px 8px;border-bottom:1px solid var(--line-2);vertical-align:top} tr:last-child td{border-bottom:none}
+.tw{overflow-x:auto} .s{font-size:12px;font-weight:650;padding:0 7px;border-radius:2px;white-space:nowrap} .ok{background:var(--ok-soft);color:var(--ok)} .wt{background:var(--warn-soft);color:var(--warn)} .na{background:var(--surface-2);color:var(--muted);border:1px solid var(--line)}
+.steps{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:8px 0 0;font-size:13.5px} .steps span{background:var(--surface-2);border:1px solid var(--line);padding:3px 10px;border-radius:14px} .steps b{color:var(--muted);font-weight:400}
+ol.facts{margin:0;padding-left:1.3em} ol.facts li{margin:6px 0} ol.facts li b{font-family:var(--mono)}
+.ask{background:var(--surface);border:1px solid var(--line);margin:0 0 10px} .ask .hd{padding:12px 16px;display:flex;gap:10px;flex-wrap:wrap;align-items:baseline} .ask .hd h3{margin:0;font-size:16px;flex:1 1 16em}
+.tag{font-size:11.5px;font-weight:650;padding:0 7px;border-radius:2px} .t1{background:var(--must-soft);color:var(--must)} .t2{background:var(--info-soft);color:var(--info)} .t3{background:var(--surface-2);color:var(--muted);border:1px solid var(--line)}
+.ask .why{padding:0 16px 8px;font-size:13.5px;color:var(--ink-2);margin:0} details{border-top:1px solid var(--line-2)} summary{cursor:pointer;list-style:none;padding:9px 16px;font-size:13.5px;font-weight:600;color:var(--accent)} summary::-webkit-details-marker{display:none}
+details .body{padding:0 16px 12px} pre{white-space:pre-wrap;font-family:var(--sans);font-size:13.5px;background:var(--surface-2);border:1px solid var(--line-2);padding:10px 12px;margin:0 0 8px}
+button{font:inherit;font-size:12.5px;padding:3px 12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;border-radius:3px}
+.note{font-size:13px;color:var(--muted);margin:6px 0 0} a{color:var(--accent)}
+@media (max-width:600px){.wrap{padding:24px 16px 60px} table{font-size:13px}}
+</style></head><body><div class="wrap">
+<p class="meta">简报 · 2026-09-28 14:55 · 依据：过程记录/推进计划.md（14:5x 规划）、环节1_现状盘点.html</p>
+<h1>现状盘点进度与待你回答</h1>
+<div class="verdict"><p>现状盘点接近完成：五条完成标准在三条线上都已满足或待审查确认，本地数据能做的分析已经用尽，还剩三步收尾就申请进入诊断。你现在最该做的一件事，是请数据组按新口径再导一次数据。</p></div>
+
+<section><div class="no">一 · 进度</div><h2>五条完成标准都已满足或待审查确认，只差收尾</h2>
+<div class="card tw"><table>
+<tr><th>完成标准</th><th>弹窗</th><th>标签</th><th>推送</th></tr>
+<tr><td>① 配置有描述</td><td><span class="s ok">满足</span></td><td><span class="s ok">满足</span></td><td><span class="s ok">满足</span></td></tr>
+<tr><td>② 用户结构有描述</td><td><span class="s wt">满足·待审查</span></td><td><span class="s ok">满足</span></td><td><span class="s ok">满足</span></td></tr>
+<tr><td>③ 实际表现有描述</td><td><span class="s wt">满足·待审查</span><br><span class="note">曝光、点击本地没有，已列为缺口</span></td><td><span class="s na">不适用</span></td><td><span class="s ok">以缺口形式满足</span></td></tr>
+<tr><td>④ 数字有分母、口径、出处</td><td><span class="s wt">还差一处补注</span></td><td><span class="s ok">满足</span></td><td><span class="s ok">满足</span></td></tr>
+<tr><td>⑤ 缺口写清影响和由谁来补</td><td><span class="s wt">满足·待审查</span></td><td><span class="s ok">满足</span></td><td><span class="s ok">满足</span></td></tr>
+</table>
+<div class="steps"><span>补一处口径说明</span><b>→</b><span><strong>整合</strong>：首屏 13 条发现理成一条主线</span><b>→</b><span>过闸前自查</span><b>→</b><span>审查复核</span><b>→</b><span>申请进入<strong>环节2 诊断</strong></span></div></div>
+</section>
+
+<section><div class="no">二 · 已确认的事实</div><h2>现状这一环最重要的 7 条发现</h2>
+<div class="card"><ol class="facts">
+<li><strong>价值高度集中</strong>：金卡以上 <b>10.22%</b> 的人贡献 <b>96.68%</b> 的累计储值；回流占人数的 26.59%，只贡献 2.31%；新增占 17.26%，只贡献 0.26%。</li>
+<li><strong>一半新增只来了注册当天</strong>：注册满 8 天的新增 7,714 人中，<b>3,893 人（50.47%）</b>注册当天之后再没来过。这是第一个不受「只看活跃用户」偏差影响的留存数字。</li>
+<li><strong>回流最冷</strong>：<b>94.9%</b> 是普卡，储值率 15.3%；注册多久储值率都在 14%–17%，说明很多人玩了多年都没付过费。回流的累计储值有 80.5% 来自其中 411 名金卡以上。</li>
+<li><strong>付费能力按卡别断层</strong>：付费者累计储值的中位数，普卡 <b>130</b>，银卡 <b>1,934</b>，金卡以上 <b>13,303</b>。</li>
+<li><strong>潜在付费上限 25,972 人</strong>，其中 56% 近 7 天登录过。但押注过百万却从未储值的 1,904 人很可疑，数据口径要问运营。</li>
+<li><strong>推送可能漏掉浏览器用户</strong>：<b>22.68%</b> 的人最后一次用浏览器登录，推送如果只发 App，这部分人可能收不到（推断）。</li>
+<li><strong>最缺的数据</strong>：弹窗曝光和点击、按月储值、礼包购买记录、留存、礼包价格。缺了它们，弹窗效果目前无法量化。</li>
+</ol><p class="note">完整版：<a href="../环节1_现状盘点.html">环节1_现状盘点.html</a></p></div>
+</section>
+
+<section><div class="no">三 · 你需要回答的</div><h2>现阶段只需要你提供事实，不需要做决定</h2>
+<p class="note" style="margin:-4px 0 12px">决定 A、B、C 和取舍 13–21 属于方案环节。等方案做完整后，再以完整的形式请你拍板。</p>
+
+<div class="ask"><div class="hd"><h3>① 请数据组按新口径再导一次数据</h3><span class="tag t1">只有你能推动 · 收益最大</span></div>
+<p class="why">有了它，下面这些都能从「上限或推断」变成实数：潜在流失三档的人数、金卡以上的储值衰退人数、潜在付费和「交集」的真实人数、次日和 7 日留存。</p>
+<details open><summary>消息原话（本简报新起草）</summary><div class="body"><pre id="m0">想请帮忙再导一份近一月活跃用户的数据（口径与 9/16 那份相同：按最后登录时间取 8/16–9/16），在原有字段基础上加几列：
+1. 6 月、7 月、8 月的逐月储值额（三列分开，不要合计）
+2. 近 4 个月的游戏押注额
+3. 是否买过首储礼包（是 / 否）
+4. 最近 30 天的登录天数；如果方便，给登录日期列表更好
+另外想确认：VIP 身份的玩家，押注是不是记在别的地方？（现有数据里 108 个 VIP 有 83 个押注为 0）</pre><button onclick="cp('m0',this)">复制</button></div></details></div>
+
+<div class="ask"><div class="hd"><h3>② 「下载」里那份 29,242 行的取数表是什么口径？</h3><span class="tag t1">只有你能答</span></div>
+<p class="why">文件名 20260916182332_捞资料.xlsx，含会员昵称，所以暂未使用。告诉我它是哪一类用户，如果有分析价值，我去掉昵称后再放进 数据/。</p></div>
+
+<div class="ask"><div class="hd"><h3>③ 发给研发（问题 2–7、9）</h3><span class="tag t2">转发 · 现在就可以发</span></div>
+<p class="why">推送这条线只能靠它推进（问题 9）；弹窗的曝光和点击数据、方案能不能只靠配置落地，也在这条里。</p>
+<details><summary>消息原话</summary><div class="body"><pre id="m1">有几个弹窗和标签后台的机制问题想确认一下：
+
+2. 限时加码礼包在弹窗后台 ID6、ID7 的排序里排第 4 位。它会不会弹，是否取决于推荐礼包后台那套条件（每月 8–31 日才出现、累计押注满 1 万、冷却时间）？条件不满足时，弹窗是不是会跳过它，往下取下一个？另外，首储礼包对还没买过的玩家有没有设开放期？如果有，开放日期是怎么定的？
+
+3. ID5 活动类弹窗的排序第 1 位是月月抽，但普卡和银卡没有月月抽权益。普卡、银卡玩家进大厅时，这一项会被跳过、往下取，还是照样弹出？
+
+4. 弹窗规则的「对象」能不能填一个带排除条件的群组？比如「全部玩家，排除回流用户」。
+
+5. 一个玩家同时命中多条弹窗规则时，这些弹窗按什么顺序弹？这个顺序能在后台配置吗？
+
+6. 下面几项现在能不能做？如果要开发，大概是什么量级的工作量：
+  a. 设置单个玩家每天最多弹几个弹窗（所有规则合计）
+  b. 玩家点 X 关掉某个弹窗后，这个弹窗当天不再出现
+  c. 把同一人群随机分成两组，分别看到不同的弹窗内容
+  d. 新手挑战弹窗、新手通行证弹窗目前写在客户端，能否改成在弹窗后台配置
+
+7. 标签组合里的「或」现在已经能用了吗？
+
+9. 新手通行证升级时会给玩家发一条推送，这条推送是哪个系统发出去的？配置在哪个后台？各推送通路分别能覆盖哪些登录平台（App、mweb、web、h5）？</pre><button onclick="cp('m1',this)">复制</button></div></details></div>
+
+<div class="ask"><div class="hd"><h3>④ 发给运营（问题 8、10、22、24、25）和礼包负责人（问题 1）</h3><span class="tag t2">转发 · 建议等审查复核后再发</span></div>
+<p class="why">问题 25 决定「从未储值 44,027」「潜在付费上限 25,972」这两个数可不可信；问题 24 决定诊断时能不能说「高卡用户没人跟进」。问题 25 可能还会补一句，所以等审查者复核完最新几项再发。</p>
+<details><summary>消息原话</summary><div class="body"><pre id="m2">8. 每日补给计划在 ID5（全部玩家）里设的是每日 1 次、无冷却，在 ID10、ID11（普卡、银卡储值衰退 50%）里设的是每日 20 次、冷却 1800 秒。这两处设置不同是有意安排的吗？符合条件的玩家两条规则都会命中，实际一天最多会弹几次？
+
+10. 平时配置推送时，哪一步最麻烦？有没有想发、但现有功能发不了的推送？
+
+22. 弹窗后台 ID7（破产时弹出）现在的礼包排序，当初是按什么考虑排的？如果把破产礼包调到第 2 位，有没有需要避开的情况？
+
+24. 金卡以上、尤其至尊卡的玩家，储值明显下降时，现在有没有客服或专属经理跟进？如果有，是按什么条件触发的？身份字段里标为 VIP 的 108 人（占累计储值约 13%），是不是就是这类有专人维护的名单？
+
+25. 有几件事想确认：
+  a. 后台「总充值金额」是否涵盖全部储值通路（包括其他渠道、代储等）？有没有不记入这个字段的储值？
+  b. 有没有代理、推广、内部账号没有标成「測試帳號」？
+  c. 卡别升级除了储值，还看押注或其他条件吗？是按累计金额还是按最近一段时间（多长）评定？会不会降卡，降卡条件是什么？
+  d. 「充值赠点」是不是每次储值实际拿到的点数？1 元换 100 点（回馈比 100）是不是就是没有加赠？首储礼包（NT$50）是不是给 15,000 点？数据里另有一批人 NT$50 拿到 16,800 点、多在网页登录，这是首储礼包在网页上的版本，还是另一个礼包？70 元（14,000 点）、30 元与 33 元（都是 10,000 点）这几个常见档位分别是哪个礼包？另外，「会员等级」这一列从 0 到一百多万，它是什么、按什么累积（押注、登录天数还是别的）、会不会下降？数据里卡别 5、6、7 的人会员等级分别都不低于约 750、5,000、10,000，这是升卡门槛之一吗？弹窗或标签有没有用到它？还有，「游戏总押注」和「总充值金额」统计了哪些游戏、哪些通路（App / 网页）、哪段时间？为什么有账号两列都是 0？例如：VIP 的 108 人里 83 人「游戏总押注」是 0，另有 25 人「总充值金额」也是 0（其中 23 人两列都是 0）；VIP 之外还有 247 个老账号押注是 0，却有储值或会员等级超过 100；另有 23 个银卡押注恰好都是 6,000。「活动赠点」里是否含新手礼包？金额是不是 1,000 点、从什么时候开始发、网页端注册的玩家有没有？另外很多回流玩家的活动赠点恰好是 500，这是回流礼还是别的赠送？
+
+1. 弹窗排序里这几个礼包分别卖多少钱：独享礼包、惊喜三选一、限时加码礼包、生涯限购、每日礼包、平台限量/专属礼包、破产礼包？如果一个名称下有多个价位档，把档位列出来就行。</pre><button onclick="cp('m2',this)">复制</button></div></details></div>
+
+<div class="ask"><div class="hd"><h3>⑤ 发给标签维护人（问题 11）、数据组（问题 23）</h3><span class="tag t3">转发</span></div>
+<p class="why">决定新标签能否上线，以及效果评估要用的表名和字段。</p>
+<details><summary>标签维护人 · 消息原话</summary><div class="body"><pre id="m3">11. 有两件事想确认：
+  a. 新建标签的 BigQuery 脚本由谁来写？是产品提口径、由你们写，还是产品可以自己写？
+  b. 有几条标签的口径看不懂：「赌注条件」里的「于中位数」具体指什么？「当前卡别」里的「目前，该卡比金卡更优越」「目前的卡等级高于铂金卡」「目前的卡大小比钻卡还要大一些」，是不是指「金卡及以上」这类区间标签？另外「已经先存储了」这个标签是什么口径？「新增」「回流」这两个标签是不是直接读会员表的身份字段？</pre><button onclick="cp('m3',this)">复制</button></div></details>
+<details><summary>数据组 · 消息原话（可以和 ① 合并成一条发）</summary><div class="body"><pre id="m4">23. 另外有几项库表信息想确认（数据集都在 prod-439407.o8richonline_cdc）：
+  a. 会员表是哪张？会员编号、累计储值金额、身份、当前卡别、最后登录时间这五列的字段名分别是什么？会员编号、当前卡别、身份是什么字段类型？身份字段里持续、VIP、黑名单分别存的是什么值？
+  b. 会员登录记录、回流任务参与记录、储值订单、投注记录分别在哪张表？储值订单里有没有记录是从哪个入口购买的？
+  c. 会员身份有没有按日保存的历史，或者身份变更记录？标签「当月储值额小于上月储值额 50%」每天圈出的名单有没有按日留存？如果要每天另存一份名单，表建在哪个数据集合适？
+  d. 近一月活跃用户统计里剔除机器人和测试账号，是按什么条件判断的？
+  e. 弹窗的曝光、点击埋点数据在哪张表？目前覆盖了哪些弹窗？</pre><button onclick="cp('m4',this)">复制</button></div></details></div>
+
+<p class="note">收到答复后，把原话转给我，或者填进 过程记录/任务清单.md 第四节「答复登记」，agent 会自动接着推进。</p>
+</section>
+</div>
+<script>
+function cp(id,btn){const t=document.getElementById(id).innerText;const d=()=>{btn.textContent='已复制';setTimeout(()=>btn.textContent='复制',1500)};
+if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(d).catch(()=>fb(t,d))}else fb(t,d)}
+function fb(t,d){const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');d()}catch(e){}a.remove()}
+</script></body></html>

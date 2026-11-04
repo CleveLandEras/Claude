@@ -1,0 +1,527 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>判断题第8份</title>
+<style>
+:root{--ground:#f4f3f0;--surface:#fff;--ink:#1b1d21;--ink-2:#3d4248;--muted:#4a4f56;--line:#e2e0db;--accent:#9a6f24;
+--yes:#2f6b52;--no:#a8382b;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#c9cdd2;--muted:#adb3ba;--line:#2e3339;--accent:#d6ab5c;
+--yes:#7dbb9c;--no:#e48e7f;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#c9cdd2;--muted:#adb3ba;--line:#2e3339;--accent:#d6ab5c;
+--yes:#7dbb9c;--no:#e48e7f;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.8}
+a{color:var(--accent)}
+.wrap{max-width:1600px;margin:0 auto;padding:48px 40px 96px}
+
+/* 页首 */
+.meta{font-size:14px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.5;margin:0 0 14px}
+.sub{font-size:16px;color:var(--ink);margin:0 0 4px}
+.legend{font-size:14px;color:var(--muted);margin:0}
+
+/* 节标题 */
+h2{font-family:var(--serif);font-size:21px;line-height:1.5;margin:56px 0 20px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:14px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+
+/* 标准卡片 */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:26px 32px 22px;margin:0 0 32px}
+.tag{font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.04em;margin:0 0 6px}
+.tag span{font-weight:400;color:var(--muted);letter-spacing:0;margin-left:8px}
+.std{font-size:18px;font-weight:700;line-height:1.65;margin:0;display:flex;gap:10px}
+.std .n{color:var(--accent);flex:none;width:14px}
+.std .eg{display:block;font-size:15px;font-weight:400;color:var(--ink-2);margin-top:4px}
+.info{font-size:14px;color:var(--muted);margin:6px 0 0 24px;line-height:1.7}
+.info b{font-weight:600;color:var(--ink-2)}
+.info i{font-style:normal;margin:0 10px;color:var(--line)}
+
+.cmp{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;margin:22px 0 0}
+.cmp h3{font-size:14px;font-weight:700;color:var(--muted);margin:0 0 10px;letter-spacing:.02em}
+ul.ind{margin:0;padding:0;list-style:none}
+ul.ind li{margin:0 0 12px;color:var(--ink-2)} ul.ind li:last-child{margin-bottom:0}
+ul.ind b{color:var(--ink)}
+ul.ind a{font-size:14px;white-space:nowrap;margin-left:4px}
+.none{color:var(--muted)}
+.uncheck{font-size:13px;font-weight:700;color:var(--no);white-space:nowrap}
+figure{margin:0 0 12px}
+figure img{display:block;max-width:100%;height:auto;border:1px solid var(--line);border-radius:4px;background:#fff}
+figcaption{font-size:13px;color:var(--muted);margin-top:4px;line-height:1.5}
+.txt{color:var(--ink-2);margin:0}
+.txt q{quotes:"「" "」"}
+
+.verdict{display:flex;align-items:center;justify-content:space-between;gap:32px;margin:24px 0 0;padding:16px 0 0;border-top:1px solid var(--line)}
+.ai{color:var(--ink-2);flex:1;min-width:0}
+.ai .lb{font-weight:600;color:var(--ink)}
+.ai b{font-size:17px;margin:0 2px}
+.ai b.yes{color:var(--yes)} .ai b.no{color:var(--no)}
+.you{flex:none;display:flex;align-items:center;gap:10px;font-size:15px;color:var(--ink)}
+.you .lb{font-weight:600}
+.you .opt{font-size:14px;color:var(--muted)}
+.dk{display:inline-block;width:150px;height:36px;border:1px solid var(--line);border-radius:4px}
+
+.note{font-size:14px;color:var(--muted);margin:-8px 0 0}
+
+/* 参考案例 */
+.cases{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:start}
+.case{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:24px 28px}
+.case .h{font-size:17px;font-weight:700;margin:0 0 12px}
+.case dl{margin:0}
+.case dt{font-size:14px;font-weight:600;color:var(--muted);margin:0}
+.case dd{margin:0 0 12px;color:var(--ink-2)}
+.case dd.said{color:var(--ink);font-weight:600}
+.case figure{margin:16px 0 0}
+
+/* 怎么回 */
+.reply{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 28px;font-size:16px}
+.reply b{color:var(--accent)}
+.links{font-size:14px;color:var(--muted);margin-top:40px}
+</style><style id="dkjudge-css">
+.wrap{position:relative}
+.jstat{position:absolute;top:44px;right:40px;font-size:14px;line-height:1.8;color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:3px 12px}
+.jstat b{font-size:15px;color:var(--ink);margin:0 1px}
+.jstat.all b{color:var(--yes)}
+.jstat .d{color:var(--yes);font-weight:600}
+.verdict{flex-wrap:wrap;row-gap:12px}
+.you .jb{font-family:inherit;font-size:15px;line-height:1.2;padding:7px 18px;border:1px solid var(--line);border-radius:4px;background:var(--surface);color:var(--ink);cursor:pointer}
+.you .jb:hover{border-color:var(--muted)}
+.you .jb.on{font-weight:700;color:var(--surface)}
+.you .jb.on[data-v="同意"]{background:var(--yes);border-color:var(--yes)}
+.you .jb.on[data-v="不同意"]{background:var(--no);border-color:var(--no)}
+.why{flex:1 0 100%}
+.why[hidden]{display:none}
+.why input{display:block;width:100%;font-family:inherit;font-size:15px;line-height:1.5;padding:7px 12px;border:1px solid var(--line);border-left:3px solid var(--no);border-radius:4px;background:var(--surface);color:var(--ink)}
+.jend{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:22px 28px 20px}
+.jend .jlb{display:block;font-weight:600;margin:0 0 8px}
+.jend textarea{display:block;width:100%;min-height:180px;font-family:inherit;font-size:16px;line-height:1.7;padding:10px 14px;border:1px solid var(--line);border-radius:4px;background:var(--surface);color:var(--ink);resize:vertical}
+.jend textarea.jout{min-height:110px;margin-top:12px;font-size:15px}
+.jend textarea[hidden]{display:none}
+.jrow{display:flex;align-items:center;flex-wrap:wrap;gap:24px;margin:16px 0 0}
+.jdone{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:600;cursor:pointer}
+.jdone input{width:18px;height:18px;margin:0;accent-color:var(--yes);cursor:pointer}
+.jcopy{font-family:inherit;font-size:14px;line-height:1.2;padding:7px 14px;border:1px solid var(--line);border-radius:4px;background:var(--surface);color:var(--ink-2);cursor:pointer}
+.jcopy:hover{border-color:var(--muted)}
+.jmsg{font-size:14px;color:var(--yes)}
+.jnote{font-size:14px;color:var(--muted);margin:12px 0 0}
+</style></head><body><div class="wrap">
+<div class="jstat" id="dk-stat" aria-live="polite">已判 <b id="dk-x">0</b> / 11 条<span class="d" id="dk-statdone" hidden> · 判完了</span></div>
+<style>.ai .ph{color:var(--muted)} ul.ind .src{font-size:14px;color:var(--muted)}</style>
+</head><body><div class="wrap">
+
+<p class="meta">弹窗标签推送系统 · 2026-10-16 · 第 8 份产出 · 取舍类</p>
+<h1>第 8 份｜运营要换弹窗图片和跳转，本期只开放在活动与事件目录里改跳转、换图列为后续，这个取舍可以吗？</h1>
+<p class="sub">按下面 11 条依据逐条看 AI 评审的结论（每条只答「是」或「否」），你只判同意或不同意；也可补依据里缺的条目。</p>
+<p class="legend">现状：弹窗图片和跳转写在客户端或「游戏设定」参数里，每次开单请研发改。</p>
+
+<h2><span class="no">01</span>判断依据：6 条，先看需求与替代，再看业内、成本、改回代价，最后对照你的原则</h2>
+
+<!-- 标准 1 -->
+<section class="card">
+  <p class="tag">影响面与程度<span>推后影响多大</span></p>
+  <p class="std"><span class="n">1</span><span>换图需求的出处和频次已查清，能说明推到后续对运营的影响有多大（多常遇到、每次要等多久）</span></p>
+  <p class="info"><b>对象</b>　每次上活动配弹窗的运营<i>|</i><b>出处</b>　你定的：10/15「客户端写死的弹窗……需要规整到后台里」；业内做法：Unity</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>Unity 云内容分发</b>（游戏后台）：定位为不重装 App 就能更新内容的服务，最适合需要定期更新内容的内容型在线游戏 <a href="https://docs.unity.com/ugs/en-us/manual/ccd/manual/UnityCCD">Unity 文档</a></li></ul></div>
+    <div><h3>我们对应的部分</h3>
+      <ul class="ind">
+        <li><b>出处</b>：Jira 工单两张（2026-09），原话「弹窗显示的资源、跳转的 url 都需要可以通过后台配置……目前客端写死了」</li>
+        <li><b>频次</b>：走查参照记为「每次活动」；周年庆导航页靠「游戏设定」里的参数加字段</li>
+        <li><b>每次要等多久</b>：<span class="none">我们这里没有</span></li></ul></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-1"><span class="lb">AI 评审：</span><span class="ph"><b>否</b>　有出处和频次「每次活动」，缺每次要等多久</span></div>
+    <div class="you" id="dk-1" data-k="ai-1"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-1" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 1 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 2 -->
+<section class="card">
+  <p class="tag">影响面与程度<span>不做换图时怎么办</span></p>
+  <p class="std"><span class="n">2</span><span>运营的这项需求本期有替代做法：跳转本期确实能自助改，换图有写明的现行路径（走哪、找谁）</span></p>
+  <p class="info"><b>对象</b>　运营（周年庆导航页这类换图、换跳转）<i>|</i><b>出处</b>　你定的：10/8「我们有什么短期快速提升的低成本操作也写清楚」；业内做法：Firebase</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>Firebase 远程配置</b>：先在 App 里建好默认值，之后在控制台改值，不发版即可改 App 的行为和外观 <a href="https://firebase.google.com/docs/remote-config">Firebase 文档</a></li></ul></div>
+    <div><h3>我们对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第8份_项目编辑_跳转目标.jpg" width="575" alt="项目编辑：跳转目标可改，弹窗图片不在此换"><figcaption>原型 › 活动与事件目录 › 项目行「编辑」</figcaption></figure>
+      <ul class="ind">
+        <li><b>跳转</b>：期次跳转运营可改，下拉选目录中的项目或已登记页面，不可手输，改后引用处一起变；但在范围分级总表里，「期次跳转可改」所在一块标「可延后」</li>
+        <li><b>现在</b>：周年庆导航页靠研发在「游戏设定」参数里加字段</li>
+        <li><b>换图</b>：需求文档 3.5 写「换图走活动配置或礼包后台」「周年庆导航页这类本期仍按现有方式开单」；活动配置、礼包后台有没有图片字段<span class="none">我们这里没有核实</span>；「热门资讯」能否承载导航页写为待核</li></ul></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-2"><span class="lb">AI 评审：</span><span class="ph"><b>否</b>　改跳转所在的「配置提效」一块，在需求文档范围分级总表里标为可延后；换图没写找谁，图片字段未核</span></div>
+    <div class="you" id="dk-2" data-k="ai-2"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-2" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 2 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 3 -->
+<section class="card">
+  <p class="tag">业内对照<span>换图算基础还是扩展</span></p>
+  <p class="std"><span class="n">3</span><span>把弹窗换图推到后续，与业内同类产品的做法一致（业内也把运营自助换图当作可后置的扩展，而非基础能力）</span></p>
+  <p class="info"><b>对象</b>　弹窗项目的内容字段<i>|</i><b>出处</b>　业内做法：Braze、Firebase、OneSignal</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>Braze</b>：站内信编辑时直接「添加图片」或填图片地址，从媒体库选已传或新传 <a href="https://www.braze.com/docs/user_guide/message_building_by_channel/in-app_messages/create/">Braze 文档</a></li>
+        <li><b>Firebase</b>：每条站内信填一个 HTTPS 图片地址；按钮可填网页链接或 App 内深链 <a href="https://firebase.google.com/docs/in-app-messaging/compose-campaign">Firebase 文档</a></li>
+        <li><b>OneSignal</b>：拖拽编辑器的图片块填图片地址或上传，JPG、PNG、GIF，最大 5 MB；图片可设点击跳转 <a href="https://documentation.onesignal.com/docs/design-your-in-app-message">OneSignal 文档</a></li>
+        <li><b>实现方式</b>：SDK 自带几种弹窗模板，按后台下发的图片和链接显示；要自定义样式，客户端自己实现显示类 <a href="https://firebase.google.com/docs/in-app-messaging/customize-messages?platform=android">Firebase 文档</a></li>
+        <li class="none">业内把运营换图明确列为后续的做法：未找到</li></ul></div>
+    <div><h3>我们对应的部分</h3>
+      <ul class="ind">
+        <li><b>弹窗项目</b>：从活动与事件目录选，目录里没有图片字段；图片随活动、礼包本身的配置</li>
+        <li><b>需求文档 3.5</b>：「自定义公告弹窗、弹窗项素材与跳转覆写」一行写「后续，不进本期」，与自定义公告弹窗（图文＋跳转）一起评估</li></ul></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-3"><span class="lb">AI 评审：</span><span class="ph"><b>否</b>　Braze/Firebase/OneSignal均把图片作基础字段；后置做法未找到</span></div>
+    <div class="you" id="dk-3" data-k="ai-3"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-3" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 3 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 4 -->
+<section class="card">
+  <p class="tag">成本依据<span>「较大开发」写没写原因</span></p>
+  <p class="std"><span class="n">4</span><span>「换图」写明需开发、属较大开发，并写出定为较大开发的原因（如要改客户端渲染与下发协议）；人周与分端任务留研发评审</span></p>
+  <p class="info"><b>对象</b>　客户端、服务端、后台<i>|</i><b>出处</b>　你定的：方案写明「每项改动是现有功能可做还是需开发、开发量多大」，开发量分层（现有配置、小改动、较大开发）照常写；10/8「与上级讨论后会考虑成本」；业内做法：Firebase、Braze</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>Firebase</b>：开发量在客户端显示——SDK 自带默认显示；自定义要写一个显示类并注册给 SDK <a href="https://firebase.google.com/docs/in-app-messaging/customize-messages?platform=android">Firebase 文档</a></li>
+        <li><b>Braze</b>：图片规格校验较轻——站内信图片 PNG、JPEG、GIF，建议 500 KB 内、最大 5 MB，按类型给推荐尺寸；比例不符只提示、不拦上传 <a href="https://www.braze.com/docs/user_guide/engagement_tools/templates_and_media/media_library/">Braze 文档</a></li>
+        <li class="none">本项目的写法：当前阶段只标开发量层级并写原因，人周粗估与分端任务拆分是研发评审的产出</li></ul></div>
+    <div><h3>我们对应的部分</h3>
+      <ul class="ind">
+        <li><b>需求文档「排除项」一表</b>：「在弹窗项上换图、换跳转需客户端按下发的素材渲染，并校验图片规格与跳转目标已上架，属较大开发」</li>
+        <li><b>夜间简报「我自行决定的事」一表</b>：「换图要客户端按下发素材渲染，属较大开发，会推迟迁移批次」</li>
+        <li><b>范围分级总表</b>（42 块，每块标成本层级）：没有换图这一块，没有为换图单标层级</li>
+        <li><b>相关的已写部分</b>：「下发协议按展示模板类型渲染」所在的「目录扩展」一块，成本层级「大」、建议可延后，理由写「服务端＋三端客户端」</li></ul></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-4"><span class="lb">AI 评审：</span><b>是</b>　排除项写明换图要客户端按下发素材渲染并校验，属较大开发</div>
+    <div class="you" id="dk-4" data-k="ai-4"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-4" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 4 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 5 -->
+<section class="card">
+  <p class="tag">可逆性<span>可逆、不返工</span></p>
+  <p class="std"><span class="n">5</span><span>这个取舍改回来的代价可控：改为本期做时要动哪几处已写明；放到后续再补，本期的下发协议和客户端不用返工</span></p>
+  <p class="info"><b>对象</b>　下发协议、客户端版本<i>|</i><b>出处</b>　你定的：10/16 夜里先按推荐做的事进简报、写明改回哪里；业内做法：Firebase、Unity</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>Firebase 远程配置</b>：先在 App 里建好默认值，之后控制台随时改，上线前后都可以 <a href="https://firebase.google.com/docs/remote-config">Firebase 文档</a></li>
+        <li><b>Unity 云内容分发</b>：新内容上传成新版本即可下发、不用重装；客户端须配合资源加载组件 <a href="https://docs.unity.com/ugs/en-us/manual/ccd/manual/UnityCCD">Unity 文档</a></li></ul></div>
+    <div><h3>我们对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第8份_补齐清单.jpg" width="555" alt="补齐清单：展示模板类型与期次参数由研发填"><figcaption>原型 › 活动与事件目录 › 草稿项的补齐清单</figcaption></figure>
+      <ul class="ind">
+        <li><b>下发协议</b>：每项带参数，键由研发按展示模板类型定，例 {"boardId":"MAF26","theme":"midautumn"}；没有约定图片键</li>
+        <li><b>客户端版本</b>：新渲染能力要新客户端版本，低于门槛版本的玩家不显示新项目</li>
+        <li><b>改回哪里</b>：夜间简报「自行决定」表这一行只写了做法和理由，没写你不同意时改哪几处</li></ul></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-5"><span class="lb">AI 评审：</span><span class="ph"><b>否</b>　没写改回哪几处；协议无图片键，后续是否返工未说明</span></div>
+    <div class="you" id="dk-5" data-k="ai-5"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-5" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 5 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 6 -->
+<section class="card">
+  <p class="tag">方向一致<span>往全面写、标成本</span></p>
+  <p class="std"><span class="n">6</span><span>换图按理想状态写进了需求并标了成本层级，本期做不做留给与上级讨论，没有在需求里先删掉</span></p>
+  <p class="info"><b>对象</b>　推送后台需求文档<i>|</i><b>出处</b>　你定的：10/8「我们写需求肯定是往好了写往全面了写……」</p>
+  <div class="cmp">
+    <div><h3>理想状态应写到哪（走查参照）</h3>
+      <ul class="ind">
+        <li>① 在弹窗项目上换图片、跳转</li>
+        <li>② 校验图片规格与跳转目标已上架</li>
+        <li>③ 测试账号预览</li>
+        <li>④ 保存为新版本</li></ul></div>
+    <div><h3>我们对应的部分</h3>
+      <ul class="ind">
+        <li><b>弹窗方案需求分析</b>：有场景「自助改弹窗图文与点击去向」</li>
+        <li><b>推送后台需求文档</b>：只在 3.5 排除项写一行；正文没有换图的字段、流程、校验；范围分级总表里没有这一块</li>
+        <li><b>谁定的</b>：夜里 01:33、01:50 两次记为「交你定」，之后改记「自行决定」</li></ul></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-6"><span class="lb">AI 评审：</span><span class="ph"><b>否</b>　需求文档「排除项」一节只有一行排除，正文和范围分级总表里都没有；交你定改成了自行决定</span></div>
+    <div class="you" id="dk-6" data-k="ai-6"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-6" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 6 不同意的理由"></div>
+  </div>
+</section>
+
+<p class="note">业内做法都已打开官方文档核对。这几家是通用站内信与游戏后台工具，不是棋牌游戏的自建弹窗。</p>
+
+<h2><span class="no">02</span>按评审维度补齐的 5 条依据：选项与推荐、现状核实、名称、多余内容、理由按目标三层</h2>
+<p class="note" style="margin:-8px 0 20px">按评审维度表补齐；每条小标前半是所属维度。</p>
+
+<!-- 标准 7 -->
+<section class="card">
+  <p class="tag">取舍成立<span>写没写出可选的做法和推荐</span></p>
+  <p class="std"><span class="n">7</span><span>这个决定写出了至少两个有实质差别的选项（本期做换图／本期只开放改跳转、换图后续做），并写明推荐哪个、为什么</span></p>
+  <p class="info"><b>对象</b>　需求文档 3.5 排除项该行；夜间简报「我自行决定的事」表<i>|</i><b>出处</b>　写作标准「候选方案之间等权并列，且须有实质差别」；汇报格式「推荐：必须有」</p>
+  <div class="cmp">
+    <div><h3>依据的标准怎么写</h3>
+      <ul class="ind">
+        <li><b>写作标准 · 方案与决策</b>：给出几个方案，由决策者拍板；候选方案之间等权并列，且须有实质差别</li>
+        <li><b>写作标准 · 方案与决策</b>：不冲突的事不列为待决；短期与长期是同一方案的两部分</li>
+        <li><b>汇报格式 · 要你定的事</b>：选项写成封闭选项，每个写清具体做法；推荐必须有，先自己想清楚答案；附理由</li></ul></div>
+    <div><h3>我们对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第8份_补_自行决定表.jpg" width="635" alt="自行决定表：弹窗素材一行"><figcaption>夜间简报 › 我自行决定的事 › 弹窗素材</figcaption></figure>
+      <ul class="ind">
+        <li><b>需求文档 3.5</b>：说明栏写「后续，不进本期」；理由「在弹窗项上换图、换跳转需客户端按下发的素材渲染，并校验图片规格与跳转目标已上架，属较大开发」</li>
+        <li><b>「本期做换图」这一选项的做法与代价</b>：<span class="none">我们这里没有</span></li></ul></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-7"><span class="lb">AI 评审：</span><span class="ph"><b>否</b>　只写了「本期不做换图」一个做法，本期做换图没有作为并列选项写出做法和代价</span></div>
+    <div class="you" id="dk-7" data-k="ai-7"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-7" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 7 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 8 -->
+<section class="card">
+  <p class="tag">事实与依据<span>换图现状核实没有</span></p>
+  <p class="std"><span class="n">8</span><span>「换图现在怎么做」的现状（谁换、走什么流程、多久生效）已向运营或研发核实，并写明核实来源</span></p>
+  <p class="info"><b>对象</b>　换图的现行路径<i>|</i><b>出处</b>　写作标准「事实只写已证实的，不猜」；业内做法：Intercom</p>
+  <div class="cmp">
+    <div><h3>业内顶尖产品怎么做</h3>
+      <ul class="ind">
+        <li><b>Intercom RICE 排序法</b>：每个待排需求估一个「信心」百分比：100% 高、80% 中、50% 低，再低算「登月」；用来压住诱人但定义不清的想法，原文要求自问「估计到底有多少依据」 <a href="https://www.intercom.com/blog/rice-simple-prioritization-for-product-managers/">Intercom 文章</a></li></ul></div>
+    <div><h3>我们对应的部分</h3>
+      <ul class="ind">
+        <li><b>需求文档 3.5</b>：「图片随活动、礼包本身的配置，换图走活动配置或礼包后台」「周年庆导航页这类换图、换跳转本期仍按现有方式开单」；两句没写向谁核实</li>
+        <li><b>需求文档 3.5</b>：「先核现有『热门资讯』能否承载公告与导航页」</li>
+        <li><b>Jira 工单</b>（2026-09）原话：「弹窗显示的资源、跳转的 url 都需要可以通过后台配置……目前客端写死了」</li>
+        <li><b>谁换、多久生效</b>：<span class="none">我们这里没有</span>；需求文档的待确认清单里也没有这一项</li></ul></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-8"><span class="lb">AI 评审：</span><span class="ph"><b>否</b>　换图现状没有注来源，谁换、多久生效也没写，与 Jira「客端写死」说法不一致</span></div>
+    <div class="you" id="dk-8" data-k="ai-8"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-8" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 8 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 9 -->
+<section class="card">
+  <p class="tag">措辞与指代<span>两个名称读不读得懂</span></p>
+  <p class="std"><span class="n">9</span><span>「自定义公告弹窗」「弹窗项素材与跳转覆写」第一次出现时写明指什么，不了解项目的读者读得懂</span></p>
+  <p class="info"><b>对象</b>　需求文档 3.5 该行的名称<i>|</i><b>出处</b>　写作标准「后台功能名第一次出现说明它是什么」</p>
+  <div class="cmp">
+    <div><h3>依据的标准怎么写</h3>
+      <ul class="ind">
+        <li><b>写作标准 · 措辞</b>：人群、功能、指标第一次出现写出具体名称；后台功能名第一次出现说明它是什么；不用项目内部简称</li>
+        <li><b>写作标准 · 结构</b>：概念第一次出现就交代它是什么，不让读者先记住一个空名字、往后翻才知道指什么</li></ul></div>
+    <div><h3>我们对应的部分</h3>
+      <ul class="ind">
+        <li><b>正文第一次出现</b>：需求文档 3.5「不在本需求」栏「自定义公告弹窗、弹窗项素材与跳转覆写（10/16 夜补充）」</li>
+        <li><b>同行说明里的相关句</b>：「不做的是在单条弹窗规则的排序项上覆写图片或跳转」；「与自定义公告弹窗（图文＋跳转）一起评估」</li>
+        <li><b>需求文档术语表</b>：没有这两个名称</li></ul></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-9"><span class="lb">AI 评审：</span><span class="ph"><b>否</b>　自定义公告弹窗只有「图文＋跳转」括注；弹窗项、排序项没解释，术语表也没有</span></div>
+    <div class="you" id="dk-9" data-k="ai-9"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-9" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 9 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 10 -->
+<section class="card">
+  <p class="tag">无多余内容<span>说明里有没有过程话</span></p>
+  <p class="std"><span class="n">10</span><span>这条取舍的说明里没有已被否定的推导、工作过程用语和与决定无关的背景</span></p>
+  <p class="info"><b>对象</b>　需求文档 3.5 该行<i>|</i><b>出处</b>　写作标准「要删掉的内容」</p>
+  <div class="cmp">
+    <div><h3>依据的标准怎么写</h3>
+      <ul class="ind">
+        <li><b>要删</b>：已被决策者否定或经论证不成立的选项与推导；等待决策的候选项（包括不推荐的）保留并等权呈现</li>
+        <li><b>要删</b>：过程痕迹与元信息，如评审、上级、版本沿革、与研发的沟通过程</li>
+        <li><b>不在此列</b>：给读者的推荐、需求文档的修改记录</li></ul></div>
+    <div><h3>我们对应的部分</h3>
+      <ul class="ind">
+        <li><b>名称栏</b>：「自定义公告弹窗、弹窗项素材与跳转覆写（10/16 夜补充）」</li>
+        <li><b>说明栏全文</b>：「后续，不进本期：本期弹窗项目从项目目录选（5.12 序号 18），图片随活动、礼包本身的配置，换图走活动配置或礼包后台；（10/16 夜补充）边界：跳转可在项目目录由运营改期次的跳转目标（4.1.20「期次跳转与批量加入弹窗规则」），改的是项目本身、引用处一起变；不做的是在单条弹窗规则的排序项上覆写图片或跳转；在弹窗项上换图、换跳转需客户端按下发的素材渲染，并校验图片规格与跳转目标已上架，属较大开发。与自定义公告弹窗（图文＋跳转）一起评估，先核现有「热门资讯」能否承载公告与导航页；周年庆导航页这类换图、换跳转本期仍按现有方式开单」</li></ul></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-10"><span class="lb">AI 评审：</span><span class="ph"><b>否</b>　该行有两处「（10/16 夜补充）」过程标注，还有「先核热门资讯」这类待办语</span></div>
+    <div class="you" id="dk-10" data-k="ai-10"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-10" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 10 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 11 -->
+<section class="card">
+  <p class="tag">取舍成立<span>推后理由按近、中、远三层</span></p>
+  <p class="std"><span class="n">11</span><span>推荐把换图放到后续的理由按近→中→远判断：写明了换图是否属于主管这一期要的交付，没有用平台业绩去否定本期要交的东西或主管这一期要的交付</span></p>
+  <p class="info"><b>看哪里</b>　需求文档「排除项」一表换图一行；夜间简报「我自行决定的事」一表「弹窗素材」一行；范围分级总表开头的目标<i>|</i><b>出处</b>　你定的：工作原则「目标分三层，冲突时按近 → 中 → 远判断」</p>
+  <div class="cmp">
+    <div><h3>依据的标准怎么写</h3>
+      <ul class="ind">
+        <li><b>工作原则</b>：目标分三层，冲突时按近 → 中 → 远判断。近＝本期要交的东西；中＝主管这一期的交付；远＝平台业绩。远目标对范围的异议写成提案交主管，主管定之前照常做完主管要的交付</li>
+        <li><b>起因</b>（9/29）：早先的方案用业绩把主管要的五类人群、标签需求、推送需求一件件论证掉了</li>
+        <li><b>主管这一期的交付</b>（产品计划原文，弹窗一条）：「彈窗功能：滿足不同用戶下的彈窗內容，并整體控制彈窗 數量/內容/順序等」「優先進行已有功能滿足內容，功能不滿足部分，排期補充」</li>
+</ul></div>
+    <div><h3>我们对应的部分</h3>
+      <ul class="ind">
+        <li><b>夜间简报「弹窗素材」一行的理由</b>：「换跳转是走查里最常见的诉求，已可自助；换图要客户端按下发素材渲染，属较大开发，会推迟迁移批次」</li>
+        <li><b>需求文档「排除项」的理由</b>：「本期弹窗项目从项目目录选……图片随活动、礼包本身的配置，换图走活动配置或礼包后台」；「属较大开发」；「与自定义公告弹窗（图文＋跳转）一起评估」</li>
+        <li><b>范围分级总表开头写的目标</b>：「推送统一后台（统一入口、易用、发送量与到达率等数据，弹窗纳入同一后台）与弹窗按人群差异化」；表里没有换图这一块</li>
+        <li><b>换图是否属于主管这一期要的交付</b>：<span class="none">我们这里没有写明</span></li>
+        <li><b>理由里的平台业绩</b>（活跃、付费、营收）：没有</li></ul></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-11"><span class="lb">AI 评审：</span><b>否</b>　未用业绩作理由，但各处都没写换图算不算主管这一期要的弹窗内容</div>
+    <div class="you" id="dk-11" data-k="ai-11"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-11" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 11 不同意的理由"></div>
+  </div>
+</section>
+
+<p class="note">业内做法已打开原文核对。</p>
+
+<h2><span class="no">03</span>参考案例：你推翻过的两份同类稿</h2>
+<div class="cases">
+  <div class="case">
+    <p class="h">例 1　需求按成本和现有后台先删</p>
+    <dl>
+      <dt>你的原话</dt><dd class="said">「我们写需求肯定是往好了写往全面了写，写完之后可能与上级讨论后会考虑成本后发现这个不要那个也不要……」（10/8）</dd>
+      <dt>当时的稿</dt><dd>10/8 需求分析「本期范围：……优先基于现有后台配置」「本期不做：……客户端写死的新手弹窗改造（仅记录缺口）」；场景里没有自助改图文</dd>
+      <dt>改后</dt><dd>按理想状态写全，场景从 15 个补到 25 个，补回「自助改弹窗图文与点击去向」；成本分短期、中期、长期放到方案设计</dd>
+    </dl>
+  </div>
+  <div class="case">
+    <p class="h">例 2　客户端写死的没有规整进后台</p>
+    <dl>
+      <dt>你的原话</dt><dd class="said">「然后有很多客户端写死的弹窗以及服务器写死的活动推送，以及快显。这些东西都需要规整到后台里。」（10/15）</dd>
+      <dt>当时的稿</dt><dd>10/15 原型：没有写死项迁入的入口与说明</dd>
+      <dt>改后</dt><dd>需求文档加「写死项清点与迁入」：客户端、服务端各出写死清单，每项迁入后成为一条规则或推送，每项一个切换开关；原型加迁入管理页</dd>
+    </dl>
+  </div>
+</div>
+
+<h2><span class="no">04</span>怎么判</h2>
+<div class="reply">直接在页面上点：每条下面点「同意」或「不同意」（不同意可写一句理由），页面最下面可补还缺的标准；点完自动保存，判完在对话里说一声「判完了」即可。<b></b></div>
+
+<h2><span class="no">05</span>还缺什么，判完没有</h2>
+<div class="jend">
+  <label class="jlb" for="dk-missing">还缺的标准（想到什么写什么，一条一行）</label>
+  <textarea id="dk-missing" rows="6"></textarea>
+  <div class="jrow">
+    <label class="jdone"><input type="checkbox" id="dk-done">这一份判完了</label>
+    <button type="button" class="jcopy" id="dk-copy">复制我的判断</button>
+    <span class="jmsg" id="dk-copymsg" aria-live="polite"></span>
+  </div>
+  <textarea class="jout" id="dk-out" readonly hidden aria-label="本页判断的文字"></textarea>
+  <p class="jnote">每次点选和输入都随手存在这台电脑的浏览器里，刷新、关掉再开都还在。</p>
+</div>
+
+<p class="links">原文：<a href="../推送系统后台集成需求/4_需求文档.md#s3-5">需求文档 3.5 排除项</a>　<a href="../推送系统后台集成需求/4_需求文档.md#s4-1-20">4.1.20 活动与事件目录</a>　<a href="../推送系统后台集成需求/4_需求文档.md#s8-1">8.1 范围分级总表</a>　<a href="../推送系统后台集成需求/3_原型.html#p16a">原型 · 活动与事件目录</a>　<a href="2026-10-16_请你判的10份产出.html">请你判的 10 份产出</a></p>
+</div><script>
+(function(){
+  var PAGE = '第8份', LABEL = '第 8 份', P = 'dkjudge:' + PAGE + ':';
+  function get(k){ try { return localStorage.getItem(P + k); } catch (e) { return null; } }
+  function put(k, v){ try { localStorage.setItem(P + k, v); } catch (e) {} }
+  function del(k){ try { localStorage.removeItem(P + k); } catch (e) {} }
+  function read(k){
+    var s = get(k); if (!s) return null;
+    try { var o = JSON.parse(s); return (o && (o.v === '同意' || o.v === '不同意')) ? o : null; } catch (e) { return null; }
+  }
+  var groups = [].slice.call(document.querySelectorAll('.you[data-k]'));
+  var total = groups.length;
+  var elX = document.getElementById('dk-x'), elStat = document.getElementById('dk-stat'), elStatDone = document.getElementById('dk-statdone');
+  var elMissing = document.getElementById('dk-missing'), elDone = document.getElementById('dk-done');
+  var elCopy = document.getElementById('dk-copy'), elMsg = document.getElementById('dk-copymsg'), elOut = document.getElementById('dk-out');
+
+  function whyBox(k){ return document.querySelector('.why[data-k="' + k + '"]'); }
+  function paint(g, v){
+    [].forEach.call(g.querySelectorAll('button.jb'), function(b){
+      var on = b.getAttribute('data-v') === v;
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    var w = whyBox(g.getAttribute('data-k'));
+    if (w) w.hidden = (v !== '不同意');
+  }
+  function stat(){
+    var x = 0;
+    groups.forEach(function(g){ if (read(g.getAttribute('data-k'))) x++; });
+    if (elX) elX.textContent = x;
+    if (elStat) elStat.classList.toggle('all', x === total);
+    if (elStatDone) elStatDone.hidden = get('done') !== 'true';
+  }
+
+  groups.forEach(function(g){
+    var k = g.getAttribute('data-k'), w = whyBox(k), inp = w ? w.querySelector('input') : null;
+    var o = read(k);
+    if (o && inp && o.why) inp.value = o.why;
+    paint(g, o ? o.v : null);
+    g.addEventListener('click', function(e){
+      var b = e.target.closest ? e.target.closest('button.jb') : null;
+      if (!b) return;
+      var v = b.getAttribute('data-v'), cur = read(k);
+      if (cur && cur.v === v) { del(k); paint(g, null); }
+      else {
+        put(k, JSON.stringify({ v: v, why: (v === '不同意' && inp) ? inp.value : '' }));
+        paint(g, v);
+        if (v === '不同意' && inp) { try { inp.focus({ preventScroll: true }); } catch (e2) { inp.focus(); } }
+      }
+      stat();
+    });
+    if (inp) inp.addEventListener('input', function(){
+      var cur = read(k);
+      if (cur && cur.v === '不同意') { cur.why = inp.value; put(k, JSON.stringify(cur)); }
+    });
+  });
+
+  if (elMissing) {
+    elMissing.value = get('missing') || '';
+    elMissing.addEventListener('input', function(){ if (elMissing.value) put('missing', elMissing.value); else del('missing'); });
+  }
+  if (elDone) {
+    elDone.checked = get('done') === 'true';
+    elDone.addEventListener('change', function(){ if (elDone.checked) put('done', 'true'); else del('done'); stat(); });
+  }
+  stat();
+
+  function summary(){
+    var parts = [], un = [];
+    groups.forEach(function(g){
+      var k = g.getAttribute('data-k'), o = read(k);
+      if (!o) { un.push(k); return; }
+      var s = k + ' ' + o.v, why = (o.why || '').replace(/\s+/g, ' ').trim();
+      if (o.v === '不同意' && why) s += '——' + why;
+      parts.push(s);
+    });
+    if (un.length) parts.push('未判 ' + un.join('、'));
+    var m = (get('missing') || '').split(/\n+/).map(function(t){ return t.trim(); }).filter(Boolean);
+    if (m.length) parts.push('还缺：' + m.join('；'));
+    return LABEL + (get('done') === 'true' ? '（判完了）' : '') + '：' + parts.join('；');
+  }
+  function say(t){ if (elMsg) { elMsg.textContent = t; clearTimeout(say.t); say.t = setTimeout(function(){ elMsg.textContent = ''; }, 4000); } }
+  function manual(text){
+    if (!elOut) return;
+    elOut.hidden = false; elOut.value = text; elOut.focus(); elOut.select();
+    if (elMsg) { clearTimeout(say.t); elMsg.textContent = '没能自动复制：下框文字已选中，请按 ⌘C 复制'; }
+  }
+  function fallback(text){
+    var t = document.createElement('textarea'), ok = false;
+    t.value = text; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.top = '0'; t.style.opacity = '0';
+    document.body.appendChild(t); t.select();
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    document.body.removeChild(t);
+    if (ok) say('已复制，可直接贴进对话'); else manual(text);
+  }
+  if (elCopy) elCopy.addEventListener('click', function(){
+    var text = summary();
+    if (elOut) { elOut.hidden = true; }
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(function(){ say('已复制，可直接贴进对话'); }, function(){ fallback(text); });
+    } else fallback(text);
+  });
+})();
+</script>
+</body></html>

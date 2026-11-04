@@ -1,0 +1,519 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>规则组成页判断</title>
+<style>
+:root{--ground:#f4f3f0;--surface:#fff;--ink:#1b1d21;--ink-2:#3d4248;--muted:#4a4f56;--line:#e2e0db;--accent:#9a6f24;
+--yes:#2f6b52;--no:#a8382b;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#c9cdd2;--muted:#adb3ba;--line:#2e3339;--accent:#d6ab5c;
+--yes:#7dbb9c;--no:#e48e7f;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#c9cdd2;--muted:#adb3ba;--line:#2e3339;--accent:#d6ab5c;
+--yes:#7dbb9c;--no:#e48e7f;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.8}
+a{color:var(--accent)}
+.wrap{max-width:1600px;margin:0 auto;padding:48px 40px 96px}
+
+/* 页首 */
+.meta{font-size:14px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.5;margin:0 0 14px}
+.sub{font-size:16px;color:var(--ink);margin:0 0 4px}
+.legend{font-size:14px;color:var(--muted);margin:0}
+
+/* 节标题 */
+h2{font-family:var(--serif);font-size:21px;line-height:1.5;margin:56px 0 20px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:14px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+
+/* 标准卡片 */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:26px 32px 22px;margin:0 0 32px}
+.tag{font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.04em;margin:0 0 6px}
+.tag span{font-weight:400;color:var(--muted);letter-spacing:0;margin-left:8px}
+.std{font-size:18px;font-weight:700;line-height:1.65;margin:0;display:flex;gap:10px}
+.std .n{color:var(--accent);flex:none;width:14px}
+.std .eg{display:block;font-size:15px;font-weight:400;color:var(--ink-2);margin-top:4px}
+.info{font-size:14px;color:var(--muted);margin:6px 0 0 24px;line-height:1.7}
+.info b{font-weight:600;color:var(--ink-2)}
+.info i{font-style:normal;margin:0 10px;color:var(--line)}
+
+.cmp{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;margin:22px 0 0}
+.cmp h3{font-size:14px;font-weight:700;color:var(--muted);margin:0 0 10px;letter-spacing:.02em}
+ul.ind{margin:0;padding:0;list-style:none}
+ul.ind li{margin:0 0 12px;color:var(--ink-2)} ul.ind li:last-child{margin-bottom:0}
+ul.ind b{color:var(--ink)}
+ul.ind a{font-size:14px;white-space:nowrap;margin-left:4px}
+.none{color:var(--muted)}
+.uncheck{font-size:13px;font-weight:700;color:var(--no);white-space:nowrap}
+figure{margin:0 0 12px}
+figure img{display:block;max-width:100%;height:auto;border:1px solid var(--line);border-radius:4px;background:#fff}
+figcaption{font-size:13px;color:var(--muted);margin-top:4px;line-height:1.5}
+.txt{color:var(--ink-2);margin:0}
+.txt q{quotes:"「" "」"}
+
+.verdict{display:flex;align-items:center;justify-content:space-between;gap:32px;margin:24px 0 0;padding:16px 0 0;border-top:1px solid var(--line)}
+.ai{color:var(--ink-2);flex:1;min-width:0}
+.ai .lb{font-weight:600;color:var(--ink)}
+.ai b{font-size:17px;margin:0 2px}
+.ai b.yes{color:var(--yes)} .ai b.no{color:var(--no)}
+.you{flex:none;display:flex;align-items:center;gap:10px;font-size:15px;color:var(--ink)}
+.you .lb{font-weight:600}
+.you .opt{font-size:14px;color:var(--muted)}
+.dk{display:inline-block;width:150px;height:36px;border:1px solid var(--line);border-radius:4px}
+
+.note{font-size:14px;color:var(--muted);margin:-8px 0 0}
+
+/* 参考案例 */
+.cases{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:start}
+.case{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:24px 28px}
+.case .h{font-size:17px;font-weight:700;margin:0 0 12px}
+.case dl{margin:0}
+.case dt{font-size:14px;font-weight:600;color:var(--muted);margin:0}
+.case dd{margin:0 0 12px;color:var(--ink-2)}
+.case dd.said{color:var(--ink);font-weight:600}
+.case figure{margin:16px 0 0}
+
+/* 怎么回 */
+.reply{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 28px;font-size:16px}
+.reply b{color:var(--accent)}
+.links{font-size:14px;color:var(--muted);margin-top:40px}
+figure.wide{margin:22px 0 0}
+</style><style id="dkjudge-css">
+.wrap{position:relative}
+.jstat{position:absolute;top:44px;right:40px;font-size:14px;line-height:1.8;color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:3px 12px}
+.jstat b{font-size:15px;color:var(--ink);margin:0 1px}
+.jstat.all b{color:var(--yes)}
+.jstat .d{color:var(--yes);font-weight:600}
+.verdict{flex-wrap:wrap;row-gap:12px}
+.you .jb{font-family:inherit;font-size:15px;line-height:1.2;padding:7px 18px;border:1px solid var(--line);border-radius:4px;background:var(--surface);color:var(--ink);cursor:pointer}
+.you .jb:hover{border-color:var(--muted)}
+.you .jb.on{font-weight:700;color:var(--surface)}
+.you .jb.on[data-v="同意"]{background:var(--yes);border-color:var(--yes)}
+.you .jb.on[data-v="不同意"]{background:var(--no);border-color:var(--no)}
+.why{flex:1 0 100%}
+.why[hidden]{display:none}
+.why input{display:block;width:100%;font-family:inherit;font-size:15px;line-height:1.5;padding:7px 12px;border:1px solid var(--line);border-left:3px solid var(--no);border-radius:4px;background:var(--surface);color:var(--ink)}
+.jend{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:22px 28px 20px}
+.jend .jlb{display:block;font-weight:600;margin:0 0 8px}
+.jend textarea{display:block;width:100%;min-height:180px;font-family:inherit;font-size:16px;line-height:1.7;padding:10px 14px;border:1px solid var(--line);border-radius:4px;background:var(--surface);color:var(--ink);resize:vertical}
+.jend textarea.jout{min-height:110px;margin-top:12px;font-size:15px}
+.jend textarea[hidden]{display:none}
+.jrow{display:flex;align-items:center;flex-wrap:wrap;gap:24px;margin:16px 0 0}
+.jdone{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:600;cursor:pointer}
+.jdone input{width:18px;height:18px;margin:0;accent-color:var(--yes);cursor:pointer}
+.jcopy{font-family:inherit;font-size:14px;line-height:1.2;padding:7px 14px;border:1px solid var(--line);border-radius:4px;background:var(--surface);color:var(--ink-2);cursor:pointer}
+.jcopy:hover{border-color:var(--muted)}
+.jmsg{font-size:14px;color:var(--yes)}
+.jnote{font-size:14px;color:var(--muted);margin:12px 0 0}
+</style></head><body><div class="wrap">
+<div class="jstat" id="dk-stat" aria-live="polite">已判 <b id="dk-x">0</b> / 11 条<span class="d" id="dk-statdone" hidden> · 判完了</span></div>
+
+<p class="meta">弹窗标签推送系统 · 2026-10-16 · 第 7 份产出</p>
+<h1>第 7 份｜主管读弹窗方案演示稿第 5 页，能不能看懂弹窗与推送的一条规则由哪几部分组成？</h1>
+<p class="sub">按下面 11 条标准逐条看 AI 评审的结论（每条只答「符合」或「不符合」），你只判同意或不同意；也可补标准里缺的条目。</p>
+<p class="legend">这页 10/15 新增，放在人群页之前；读者是主管，全稿用途是汇报工作进度，让主管看出与他的期望有无出入。「框架」＝你认可的一条规则的组成「事件＋状态＋内容＋频次」，原称「触达规则」，写作标准不用「触达」，页上写「弹窗与推送」「一条规则」。</p>
+
+<h2><span class="no">01</span>判断标准：6 条，按主管读这一页的顺序排</h2>
+
+<!-- 标准 1 -->
+<section class="card">
+  <p class="tag">一页一断言<span>只读标题就知道规则怎么运作</span></p>
+  <p class="std"><span class="n">1</span><span>只读标题，能说出一条规则怎么运作：几部分按什么先后、在什么条件下起作用</span></p>
+  <p class="info"><b>看哪里</b>　页眉与标题<i>|</i><b>出处</b>　写作标准「标题是结论，不是元描述」「大标题写小标题之外的信息（彼此什么关系）」；业内做法：金字塔原理、断言＋证据式幻灯片</p>
+  <div class="cmp">
+    <div><h3>业内公认的汇报做法</h3>
+      <ul class="ind">
+        <li><b>金字塔原理（Barbara Minto）</b>：观点排成金字塔，顶端是一个主要观点，支撑归在下面 <a href="https://www.barbaraminto.com/">Minto 官网</a></li>
+        <li><b>断言＋证据式幻灯片（宾州州立大学 Michael Alley）</b>：标题写成一句完整的断言，不写短语式主题；正文用图示作证据，不用要点列表 <a href="https://www.assertion-evidence.com/">assertion-evidence.com</a></li></ul></div>
+    <div><h3>我们这页对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第7份_1_标题.jpg" width="1080" alt="第 5 页页眉与标题"><figcaption>第 5 页 · 页眉与标题</figcaption></figure>
+      <p class="txt">标题写出事件、状态、内容三部分及其先后：事件发生 → 查玩家状态 → 符合就给内容。「频次」不在标题里。</p></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-1"><span class="lb">AI 评审：</span><b>否</b>　标题只含事件→状态→内容三部分，缺频次及「不超上限」条件</div>
+    <div class="you" id="dk-1" data-k="ai-1"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-1" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 1 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 2 -->
+<section class="card">
+  <p class="tag">分组与版面关系<span>几部分一眼数得出</span></p>
+  <p class="std"><span class="n">2</span><span>版面上一眼数得出一条规则共几部分、各叫什么、按什么先后</span></p>
+  <p class="info"><b>看哪里</b>　「一条规则」一行<i>|</i><b>出处</b>　你认可的框架「事件＋状态＋内容＋频次」；写作标准「先交代边界再讲内容」「版面的排法要和内容之间的关系一致」；业内做法：Microsoft 图示分类、Duarte 一瞥测试</p>
+  <div class="cmp">
+    <div><h3>业内公认的汇报做法</h3>
+      <ul class="ind">
+        <li><b>Microsoft PowerPoint 图示（SmartArt）</b>：按信息关系选图——有先后的步骤用「流程」，没有先后的并列用「列表」，部分与整体的关系用「矩阵」 <a href="https://support.microsoft.com/en-US/Office/graphics-visuals/choose-a-smartart-graphic">Microsoft 文档</a></li>
+        <li><b>Duarte 一瞥测试</b>：观众 3 秒内看得出一页的意思 <a href="https://www.duarte.com/resources/slide-glance-test/">Duarte 官网</a></li></ul></div>
+    <div><h3>我们这页对应的部分</h3>
+      <p class="txt">三张卡由箭头连接，依次为「事件　什么时候动手」›「状态　那一刻谁符合」›「内容　给他看什么」；「频次　最多几次」是内容卡里的灰底块。四个部分名称都是加粗大字（下图）。</p></div>
+  </div>
+  <figure class="wide"><img src="图/2026-10-16_判断题新格式/第7份_2_一条规则.jpg" width="1182" alt="一条规则一行"><figcaption>第 5 页 ·「一条规则」一行</figcaption></figure>
+  <div class="verdict">
+    <div class="ai" id="ai-2"><span class="lb">AI 评审：</span><b>否</b>　频次是内容卡里的灰底块，与状态分类块同样式，一眼数成三部分</div>
+    <div class="you" id="dk-2" data-k="ai-2"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-2" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 2 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 3 -->
+<section class="card">
+  <p class="tag">措辞与指代<span>名词当场说清是什么</span></p>
+  <p class="std"><span class="n">3</span><span>四个部分各有一句说明它是什么；页上其余名词（标签、卡别、群组、推送）在本页或之前的页交代过是什么</span></p>
+  <p class="info"><b>看哪里</b>　四张卡的副标；状态卡、例行、「本方案补」行<i>|</i><b>出处</b>　写作标准「概念第一次出现就交代它是什么」「后台功能名第一次出现说明它是什么」；你定的：新出现的名称当场写清它做什么（10/9），写「推送」时说清是游戏内还是游戏外（10/13）；业内做法：美国政府平实语言指南</p>
+  <div class="cmp">
+    <div><h3>业内公认的汇报做法</h3>
+      <ul class="ind">
+        <li><b>美国政府平实语言指南（digital.gov）</b>：不得不用专业词时要给出定义；不要把定义集中放在文档开头或结尾 <a href="https://digital.gov/guides/plain-language/principles/avoid-jargon">digital.gov</a></li></ul></div>
+    <div><h3>我们这页对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第7份_3_状态.jpg" width="432" alt="状态卡"><figcaption>第 5 页 · 状态卡</figcaption></figure>
+      <ul class="ind">
+        <li><b>四部分</b>：副标依次为什么时候动手、那一刻谁符合、给他看什么、最多几次</li>
+        <li><b>标签</b>：第 2、4 页已出现，没有解释；本页写「事先算好，存成标签，定时更新」；第 6 页底写「弹窗按标签选择发给谁」</li>
+        <li><b>卡别</b>：本页第一次出现；例行写「金卡、普卡要看不同礼包时，再加卡别标签」</li>
+        <li><b>群组</b>：「本方案补」行写「标签组成的群组之间可取交集」</li>
+        <li><b>推送</b>：前 5 页没有列出包括哪几种，也没写是游戏内还是游戏外</li></ul></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-3"><span class="lb">AI 评审：</span><b>否</b>　四部分副标齐；但第1–5页未写推送有哪几种、游戏内还是游戏外</div>
+    <div class="you" id="dk-3" data-k="ai-3"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-3" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 3 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 4 -->
+<section class="card">
+  <p class="tag">证据支撑<span>一个例子走完四部分</span></p>
+  <p class="std"><span class="n">4</span><span>有完整例子把四部分串起来，每部分填实际的值；标题说的弹窗与推送各有一例</span></p>
+  <p class="info"><b>看哪里</b>　「例：破产」一行<i>|</i><b>出处</b>　写作标准「正文每句带数字、机制或因果之一，不写空概念」；业内做法：具体例子</p>
+  <div class="cmp">
+    <div><h3>业内公认的汇报做法</h3>
+      <ul class="ind">
+        <li><b>The Learning Scientists（认知心理学研究者）</b>：抽象概念含糊、难把握；把概念和生动具体的例子连起来，更容易记住 <a href="https://www.learningscientists.org/blog/2016/8/25-1">Learning Scientists</a></li></ul></div>
+    <div><h3>我们这页对应的部分</h3>
+      <ul class="ind">
+        <li><b>弹窗</b>：四格齐全——事件「刚破产」› 状态「余额不足」，变得快、当场查 › 内容「破产礼包」› 频次「不超过每人每天弹窗上限」（下图）</li>
+        <li><b>推送</b>：<span class="none">我们这里没有</span>完整例子；事件卡里有一句「状态变化最适合触发推送」，例为「刚变成潜在流失」</li></ul></div>
+  </div>
+  <figure class="wide"><img src="图/2026-10-16_判断题新格式/第7份_4_例破产.jpg" width="1182" alt="例：破产一行"><figcaption>第 5 页 ·「例：破产」一行</figcaption></figure>
+  <div class="verdict">
+    <div class="ai" id="ai-4"><span class="lb">AI 评审：</span><b>否</b>　弹窗有「例：破产」完整四部分；推送只有一句话，无完整例</div>
+    <div class="you" id="dk-4" data-k="ai-4"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-4" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 4 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 5 -->
+<section class="card">
+  <p class="tag">一页一断言<span>改动行不成为第二件事</span></p>
+  <p class="std"><span class="n">5</span><span>这一页只讲「一条规则由哪几部分组成」；「本方案补」一行读得出是各部分对应的改动，不让人以为这页还在讲第二件事</span></p>
+  <p class="info"><b>看哪里</b>　整页三行；「本方案补」一行<i>|</i><b>出处</b>　写作标准「一页只讲一个结论」；你定的：全稿用途是让主管看出与他的期望有无出入（10/12）；业内做法：Duarte 一瞥测试、断言＋证据式幻灯片</p>
+  <div class="cmp">
+    <div><h3>业内公认的汇报做法</h3>
+      <ul class="ind">
+        <li><b>Duarte 一瞥测试</b>：每页只聚焦一个明确的点，避免讯息混杂 <a href="https://www.duarte.com/resources/slide-glance-test/">Duarte 官网</a></li>
+        <li><b>断言＋证据式幻灯片</b>：正文是支撑标题那句断言的证据 <a href="https://www.assertion-evidence.com/">assertion-evidence.com</a></li></ul></div>
+    <div><h3>我们这页对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第7份_5_整页.jpg" width="2688" alt="第 5 页整页"><figcaption>第 5 页 · 整页</figcaption></figure>
+      <p class="txt">整页三行：「一条规则」写四部分各是什么；「例：破产」写一条弹窗规则怎么填；「本方案补」列 6 项改动，与上面三栏对齐（下图）。</p></div>
+  </div>
+  <figure class="wide"><img src="图/2026-10-16_判断题新格式/第7份_5_本方案补.jpg" width="1182" alt="本方案补一行"><figcaption>第 5 页 ·「本方案补」一行</figcaption></figure>
+  <div class="verdict">
+    <div class="ai" id="ai-5"><span class="lb">AI 评审：</span><b>是</b>　「本方案补」三栏与事件/状态/内容·频次对齐，读作各部分改动</div>
+    <div class="you" id="dk-5" data-k="ai-5"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-5" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 5 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 6 -->
+<section class="card">
+  <p class="tag">措辞与指代<span>不了解项目的人复述不走样</span></p>
+  <p class="std"><span class="n">6</span><span>标题和卡片短句单独拿给不了解项目的人读，复述出的意思与本意一致：不缺主语和对象，不用内部简称和「触达」，没有工作过程的话</span></p>
+  <p class="info"><b>看哪里</b>　标题、卡片短句、行名<i>|</i><b>出处</b>　写作标准「措辞须经得起无上下文读者复述」「全文统一用词，不用触达」；你定的：呈交版只写方案本身，不出现工作过程用语（10/10）；业内做法：平实语言复述测试</p>
+  <div class="cmp">
+    <div><h3>业内公认的汇报做法</h3>
+      <ul class="ind">
+        <li><b>复述测试（digital.gov 平实语言指南）</b>：请读者用自己的话说出一段的意思，记下原话不纠正；读错的地方就是要改的地方 <a href="https://digital.gov/guides/plain-language/test/paraphrase-testing">digital.gov</a></li></ul></div>
+    <div><h3>我们这页对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第7份_6_事件.jpg" width="295" alt="事件卡"><figcaption>第 5 页 · 事件卡</figcaption></figure>
+      <p class="txt">页上的短句：<q>状态变化最适合触发推送</q><q>变得慢的　事先算好，存成标签，定时更新</q><q>变得快的　事件发生时当场查</q><q>按人统一计数，各条规则合在一起算</q><q>弹窗、每种推送各有上限</q>；行名<q>一条规则</q><q>本方案补</q>；改动<q>推送跳转与触发自助</q>。页上没有「触达」，也没有待核实、阶段这类工作过程用语。</p></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-6"><span class="lb">AI 评审：</span><b>否</b>　「推送跳转与触发自助」压缩成简称，缺主语对象，难以复述</div>
+    <div class="you" id="dk-6" data-k="ai-6"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-6" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 6 不同意的理由"></div>
+  </div>
+</section>
+
+<p class="note">业内做法都已打开原始页面核对。</p>
+
+<h2><span class="no">02</span>按评审维度补齐的标准：5 条，补上全稿位置、观感、方向、现状依据与多余内容</h2>
+<p class="note" style="margin:-8px 0 24px">按评审维度表补齐，每条小标写所属维度。</p>
+
+<!-- 标准 7 -->
+<section class="card">
+  <p class="tag">全稿位置与密度<span>在本章里的位置与内容量</span></p>
+  <p class="std"><span class="n">7</span><span>第 5 页的页眉标出所在章，内容量与它在该章中的位置相称（章首页只放结论和少量支撑块，细节留给后页）</span></p>
+  <p class="info"><b>看哪里</b>　第 5 页页眉与整页；第 4、6 页<i>|</i><b>出处</b>　演示稿观感标准「密度递增」（你 10/12：「要有个递增的感觉，让读者适应适应」）</p>
+  <div class="cmp">
+    <div><h3>依据的标准怎么写</h3>
+      <ul class="ind">
+        <li><b>章内逐步加密</b>：每章大致「分隔页 → 第一页 → 中间页 → 最后的细节页」；重页尽量放在每章后半和附录</li>
+        <li><b>密度分级</b>：轻＝结论页、每章第一页，结论加少量支撑块；中＝章内主体，一个主视觉配少量辅助块；重＝章内最后的细节页、附录</li>
+        <li><b>你 10/12</b>：「要有个递增的感觉，让读者适应适应，不然一下密度太大直接就失去阅读欲望了」</li></ul></div>
+    <div><h3>我们这页对应的部分</h3>
+      <ul class="ind">
+        <li><b>页眉</b>：顶部章导航五项，「一 目标」下为蓝色粗线；章名行「一 目标 · 规则组成」</li>
+        <li><b>「一 目标」一章共 4 页</b>（下图）：第 4 页章分隔页，深色底，章名加四条目标；第 5 页即本页，分隔页后的第一页，三行：「一条规则」三张卡、「例：破产」、「本方案补」；第 6 页五类人群五张卡加两行说明；第 7 页三项目标三张卡加三行补充</li></ul></div>
+  </div>
+  <figure class="wide"><img src="图/2026-10-16_判断题新格式/第7份_补_第4至7页.jpg" width="1368" alt="第 4 至 7 页"><figcaption>「一 目标」一章：第 4 页（左上）、第 5 页（右上）、第 6 页（左下）、第 7 页（右下）</figcaption></figure>
+  <div class="verdict">
+    <div class="ai" id="ai-7"><span class="lb">AI 评审：</span><b>否</b>　页眉标了所属章，但作为章内第一页放了三行九块，比后两页还密</div>
+    <div class="you" id="dk-7" data-k="ai-7"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-7" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 7 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 8 -->
+<section class="card">
+  <p class="tag">视觉完成度<span>对齐、间距、符号、字号、留白</span></p>
+  <p class="std"><span class="n">8</span><span>第 5 页的卡片等宽对齐、间距一致，并列的行有符号，标题字号明显大于正文，留白充足不挤</span></p>
+  <p class="info"><b>看哪里</b>　第 5 页整页<i>|</i><b>出处</b>　演示稿观感标准「留白与网格」「基础排版」（你 10/12：「这也太粗糙了吧」）；业内做法：NN/g 视觉设计原则、Ant Design 设计原则</p>
+  <div class="cmp">
+    <div><h3>业内公认的版面做法</h3>
+      <ul class="ind">
+        <li><b>NN/g 视觉设计原则</b>：比例，用相对大小表示重要程度；视觉层级，用大小、颜色、间距引导先看什么；对比，不同的元素差别要明显 <a href="https://www.nngroup.com/articles/principles-visual-design/">NN/g 文章</a></li>
+        <li><b>Ant Design·对齐</b>：文案左对齐，形成一个视觉起点 <a href="https://ant.design/docs/spec/alignment-cn">Ant Design</a></li>
+        <li><b>Ant Design·亲密性</b>：关联越高距离越近；纵向间距按 8／16／24 三档或 8 的倍数 <a href="https://ant.design/docs/spec/proximity-cn">Ant Design</a></li>
+        <li><b>演示稿观感标准</b>：边距 0.5–0.6 英寸以上（36–43 磅），块间距 0.3–0.5 英寸（22–36 磅）；并列的几行单独成行时，行前加项目符号，行间距明显大于行内</li></ul></div>
+    <div><h3>我们这页对应的部分</h3>
+      <p class="txt" style="margin-bottom:10px">检查点与实测（取自演示稿文件，单位：磅；页面 960 × 540）：</p>
+      <ul class="ind">
+        <li><b>卡片等宽对齐</b>　「一条规则」三张卡宽 205／302／194，顶边同在 140、高同为 189；下面两行各三格与三张卡同列同宽</li>
+        <li><b>间距</b>　三张卡之间 31、30（中间放箭头）；三行之间 12、11；末行底边到页脚 26</li>
+        <li><b>并列的行</b>　事件卡「游戏里／按时间／状态变化」三行、「例：破产」中格三行：无项目符号；「本方案补」六项：前有蓝色小方块；状态卡两项：各占一个灰底块</li>
+        <li><b>字号</b>　标题 32；四部分名称 20；卡内正文 12.5–14；行名 14.5；页眉章名 13</li>
+        <li><b>留白</b>　左右边距各 65；卡内文字距卡边约 15</li></ul></div>
+  </div>
+  <figure class="wide"><img src="图/2026-10-16_判断题新格式/第7份_5_整页.jpg" width="1344" alt="第 5 页整页"><figcaption>第 5 页 · 整页</figcaption></figure>
+  <div class="verdict">
+    <div class="ai" id="ai-8"><span class="lb">AI 评审：</span><b>否</b>　三张卡宽度不一，事件卡并列三行无符号，三行卡片间距约 0.17 英寸偏挤</div>
+    <div class="you" id="dk-8" data-k="ai-8"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-8" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 8 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 9 -->
+<section class="card">
+  <p class="tag">方向一致<span>四部分与你认可的框架一致</span></p>
+  <p class="std"><span class="n">9</span><span>第 5 页的规则组成就是你认可的「事件＋状态＋内容＋频次」四部分，没有增减部分或换用别的名称</span></p>
+  <p class="info"><b>看哪里</b>　「一条规则」一行与四张卡<i>|</i><b>出处</b>　你定的：规则框架「事件＋状态＋内容＋频次」</p>
+  <div class="cmp">
+    <div><h3>依据的标准怎么写</h3>
+      <ul class="ind">
+        <li><b>你认可的规则框架</b>：一条规则＝事件＋状态＋内容＋频次；本页按这个框架于 10/15 新增</li>
+        <li><b>用词</b>：框架原称「触达规则」；写作标准不用「触达」，页上写「弹窗与推送」「一条规则」</li></ul></div>
+    <div><h3>我们这页对应的部分</h3>
+      <p class="txt">行名<q>一条规则</q>；三张卡依次<q>事件　什么时候动手</q><q>状态　那一刻谁符合</q><q>内容　给他看什么</q>，第四部分<q>频次　最多几次</q>是内容卡里的灰底块（下图）。「例：破产」一行按事件、状态、内容三格写，频次写在内容格<q>不超过每人每天弹窗上限</q>。</p></div>
+  </div>
+  <figure class="wide"><img src="图/2026-10-16_判断题新格式/第7份_2_一条规则.jpg" width="1182" alt="一条规则一行"><figcaption>第 5 页 ·「一条规则」一行</figcaption></figure>
+  <div class="verdict">
+    <div class="ai" id="ai-9"><span class="lb">AI 评审：</span><b>是</b>　事件、状态、内容、频次四部分齐全且名称一致，频次放在内容卡里</div>
+    <div class="you" id="dk-9" data-k="ai-9"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-9" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 9 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 10 -->
+<section class="card">
+  <p class="tag">事实与依据<span>关于现有后台的说法都核对过</span></p>
+  <p class="std"><span class="n">10</span><span>第 5 页「本方案补」一行里说现有后台能做或不能做的每一处，都与现有后台截图核对过</span></p>
+  <p class="info"><b>看哪里</b>　「本方案补」一行；现有后台截图<i>|</i><b>出处</b>　写作标准「没查实的能力，既不写成已能做，也不写成做不到」（你：「为什么说先后不可控呢？」）</p>
+  <div class="cmp">
+    <div><h3>依据的标准怎么写</h3>
+      <ul class="ind">
+        <li><b>写作标准·不误导</b>：没查实的能力，既不写成已能做，也不写成做不到；资料没写、本地数据算不出，不等于系统没有这个能力</li>
+        <li><b>你推翻过的同类说法</b>：早先稿件写弹窗「先后不可控」，与后台实际不符，你问「为什么说先后不可控呢？」</li></ul></div>
+    <div><h3>我们这页对应的部分</h3>
+      <p class="txt" style="margin-bottom:10px">现有后台截图 6 张，都是「大厅弹窗顺序设定」「玩家弹窗顺序查询」两页。「本方案补」六项与截图的对应：</p>
+      <ul class="ind">
+        <li><b>每人每天弹窗上限</b>　弹窗顺序设定列表有「弹出数量」栏（三条规则为 1、1、3），各活动写「弹窗次数」「冷却时间」；没有每人每天合计栏</li>
+        <li><b>新手弹窗接入后台</b>　弹窗顺序设定列表（上架中）共 3 条：破产储值弹窗、通用弹窗、活动类弹窗</li>
+        <li><b>推送跳转与触发自助；每种推送每人每天上限</b>　截图里没有推送页面</li>
+        <li><b>新建潜在付费、潜在流失标签；群组交集</b>　截图里没有会员标签设定、标签群组设定页面</li></ul></div>
+  </div>
+  <figure class="wide"><img src="图/2026-10-16_判断题新格式/第7份_5_本方案补.jpg" width="1182" alt="本方案补一行"><figcaption>第 5 页 ·「本方案补」一行</figcaption></figure>
+  <div class="verdict">
+    <div class="ai" id="ai-10"><span class="lb">AI 评审：</span><b>否</b>　后台截图只有弹窗顺序两页，推送和标签相关的说法无从核对</div>
+    <div class="you" id="dk-10" data-k="ai-10"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-10" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 10 不同意的理由"></div>
+  </div>
+</section>
+
+<!-- 标准 11 -->
+<section class="card">
+  <p class="tag">无多余内容<span>没有读法、导语、标注和过程用语</span></p>
+  <p class="std"><span class="n">11</span><span>第 5 页没有读法提示、方法论导语、成本或来源标注和工作过程用语</span></p>
+  <p class="info"><b>看哪里</b>　第 5 页整页<i>|</i><b>出处</b>　写作标准「要删掉的内容」；你定的：呈交版只写方案本身</p>
+  <div class="cmp">
+    <div><h3>依据的标准怎么写</h3>
+      <ul class="ind">
+        <li><b>写作标准·要删掉的内容</b>：过程痕迹与元信息，如评审、上级、版本沿革、文档自指、读者是谁、编排说明、方法论导语、图注里的绘制说明；不承载内容的说明性信息，如阅读时间</li>
+        <li><b>已定</b>：呈交版只写方案本身，不出现「主管、上级、请…定」，不出现工作过程用语和内部清单页</li></ul></div>
+    <div><h3>我们这页对应的部分</h3>
+      <figure><img src="图/2026-10-16_判断题新格式/第7份_5_整页.jpg" width="2688" alt="第 5 页整页"><figcaption>第 5 页 · 整页</figcaption></figure>
+      <ul class="ind">
+        <li><b>页眉与页脚</b>　章导航；「一 目标 · 规则组成」；「精细化运营能力方案 · 第 5 页」</li>
+        <li><b>卡片里的说明句</b>　「状态变化最适合触发推送」「不另建破产标签：提前算成标签会过时」</li>
+        <li><b>标注</b>　「（需新建）」1 处，在状态卡「潜在流失」后；页上没有成本标签和来源标注</li></ul></div>
+  </div>
+  <div class="verdict">
+    <div class="ai" id="ai-11"><span class="lb">AI 评审：</span><b>是</b>　整页只有导航、标题、卡片内容与页脚，无读法、导语、成本或来源标注</div>
+    <div class="you" id="dk-11" data-k="ai-11"><span class="lb">你判：</span><button type="button" class="jb" data-v="同意" aria-pressed="false">同意</button><button type="button" class="jb" data-v="不同意" aria-pressed="false">不同意</button></div>
+    <div class="why" data-k="ai-11" hidden><input type="text" placeholder="理由（可不填）" aria-label="标准 11 不同意的理由"></div>
+  </div>
+</section>
+
+<p class="note">补齐部分的业内做法均取自已核对的官方页面；第 5 页的尺寸、字号从演示稿文件读出。</p>
+
+<h2><span class="no">03</span>参考案例：你推翻过的两份同类稿</h2>
+<div class="cases">
+  <div class="case">
+    <p class="h">例 1　四个部分平铺成表格</p>
+    <dl>
+      <dt>你的原话</dt><dd class="said">「四个关键结构及内容是很好的内容，但数字和结论的意义我看不到，而且这个四结构明显可以用好得多的方式展示，而不是像表格一样平铺」（10/10）</dd>
+      <dt>当时的稿</dt><dd>10/10 版第 2 页：现在、目标、原因、做法四行按表格平铺，右侧各配一个放大数字（下图上）</dd>
+      <dt>改后</dt><dd>改为「现在 › 目标 › 做法」三张卡，从左到右、箭头相连；每张一个主数字直接说明本栏：62,292 人用同一套弹窗规则、5 类目标人群、17 项改动（下图下）</dd>
+    </dl>
+    <figure><img src="图/2026-10-16_判断题新格式/第7份_例1_当时.jpg" width="1396" alt="10月10日版第2页"><figcaption>10/10 版 · 第 2 页（当时）</figcaption></figure>
+    <figure><img src="图/2026-10-16_判断题新格式/第7份_例1_改后.jpg" width="1344" alt="现行第2页"><figcaption>现行 · 第 2 页（改后）</figcaption></figure>
+  </div>
+  <div class="case">
+    <p class="h">例 2　短句压成缩写，主管反复看不懂</p>
+    <dl>
+      <dt>你的原话</dt><dd class="said">「这几句话分别让无上下文的agent去读，看看他们理解的意思是什么，如果理解的不准确，说明表述不清晰，这几句话被主管反复了说了好几遍看不懂」（10/12）</dd>
+      <dt>当时的稿</dt><dd>10/12 版标签章：「两类人群没有标签，群组不能取交集」「且✅、排除✅、或✅、群组交集❌」「推送、效果、对照共用同一套人群标签」。不了解项目的读者 8 人次全部读偏，例如「效果」读成转化付费，两件独立的事读成因果</dd>
+      <dt>改后</dt><dd>补全主语、对象、动作，去掉内部简称，例：「潜在付费、潜在流失两类人群在后台没有标签」；全稿措辞经四轮共 36 人次无上下文读者复述后定稿</dd>
+    </dl>
+  </div>
+</div>
+
+<h2><span class="no">04</span>怎么判</h2>
+<div class="reply">直接在页面上点：每条下面点「同意」或「不同意」（不同意可写一句理由），页面最下面可补还缺的标准；点完自动保存，判完在对话里说一声「判完了」即可。<b></b></div>
+
+<h2><span class="no">05</span>还缺什么，判完没有</h2>
+<div class="jend">
+  <label class="jlb" for="dk-missing">还缺的标准（想到什么写什么，一条一行）</label>
+  <textarea id="dk-missing" rows="6"></textarea>
+  <div class="jrow">
+    <label class="jdone"><input type="checkbox" id="dk-done">这一份判完了</label>
+    <button type="button" class="jcopy" id="dk-copy">复制我的判断</button>
+    <span class="jmsg" id="dk-copymsg" aria-live="polite"></span>
+  </div>
+  <textarea class="jout" id="dk-out" readonly hidden aria-label="本页判断的文字"></textarea>
+  <p class="jnote">每次点选和输入都随手存在这台电脑的浏览器里，刷新、关掉再开都还在。</p>
+</div>
+
+<p class="links">原文：<a href="../弹窗标签推送方案/弹窗标签推送方案.pptx">弹窗标签推送方案.pptx</a>（第 5 页）　<a href="图/2026-10-16_请你判/07_演示稿第5页_规则组成.jpg">第 5 页页面图</a>　<a href="2026-10-16_请你判的10份产出.html">请你判的 10 份产出</a></p>
+</div><script>
+(function(){
+  var PAGE = '第7份', LABEL = '第 7 份', P = 'dkjudge:' + PAGE + ':';
+  function get(k){ try { return localStorage.getItem(P + k); } catch (e) { return null; } }
+  function put(k, v){ try { localStorage.setItem(P + k, v); } catch (e) {} }
+  function del(k){ try { localStorage.removeItem(P + k); } catch (e) {} }
+  function read(k){
+    var s = get(k); if (!s) return null;
+    try { var o = JSON.parse(s); return (o && (o.v === '同意' || o.v === '不同意')) ? o : null; } catch (e) { return null; }
+  }
+  var groups = [].slice.call(document.querySelectorAll('.you[data-k]'));
+  var total = groups.length;
+  var elX = document.getElementById('dk-x'), elStat = document.getElementById('dk-stat'), elStatDone = document.getElementById('dk-statdone');
+  var elMissing = document.getElementById('dk-missing'), elDone = document.getElementById('dk-done');
+  var elCopy = document.getElementById('dk-copy'), elMsg = document.getElementById('dk-copymsg'), elOut = document.getElementById('dk-out');
+
+  function whyBox(k){ return document.querySelector('.why[data-k="' + k + '"]'); }
+  function paint(g, v){
+    [].forEach.call(g.querySelectorAll('button.jb'), function(b){
+      var on = b.getAttribute('data-v') === v;
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    var w = whyBox(g.getAttribute('data-k'));
+    if (w) w.hidden = (v !== '不同意');
+  }
+  function stat(){
+    var x = 0;
+    groups.forEach(function(g){ if (read(g.getAttribute('data-k'))) x++; });
+    if (elX) elX.textContent = x;
+    if (elStat) elStat.classList.toggle('all', x === total);
+    if (elStatDone) elStatDone.hidden = get('done') !== 'true';
+  }
+
+  groups.forEach(function(g){
+    var k = g.getAttribute('data-k'), w = whyBox(k), inp = w ? w.querySelector('input') : null;
+    var o = read(k);
+    if (o && inp && o.why) inp.value = o.why;
+    paint(g, o ? o.v : null);
+    g.addEventListener('click', function(e){
+      var b = e.target.closest ? e.target.closest('button.jb') : null;
+      if (!b) return;
+      var v = b.getAttribute('data-v'), cur = read(k);
+      if (cur && cur.v === v) { del(k); paint(g, null); }
+      else {
+        put(k, JSON.stringify({ v: v, why: (v === '不同意' && inp) ? inp.value : '' }));
+        paint(g, v);
+        if (v === '不同意' && inp) { try { inp.focus({ preventScroll: true }); } catch (e2) { inp.focus(); } }
+      }
+      stat();
+    });
+    if (inp) inp.addEventListener('input', function(){
+      var cur = read(k);
+      if (cur && cur.v === '不同意') { cur.why = inp.value; put(k, JSON.stringify(cur)); }
+    });
+  });
+
+  if (elMissing) {
+    elMissing.value = get('missing') || '';
+    elMissing.addEventListener('input', function(){ if (elMissing.value) put('missing', elMissing.value); else del('missing'); });
+  }
+  if (elDone) {
+    elDone.checked = get('done') === 'true';
+    elDone.addEventListener('change', function(){ if (elDone.checked) put('done', 'true'); else del('done'); stat(); });
+  }
+  stat();
+
+  function summary(){
+    var parts = [], un = [];
+    groups.forEach(function(g){
+      var k = g.getAttribute('data-k'), o = read(k);
+      if (!o) { un.push(k); return; }
+      var s = k + ' ' + o.v, why = (o.why || '').replace(/\s+/g, ' ').trim();
+      if (o.v === '不同意' && why) s += '——' + why;
+      parts.push(s);
+    });
+    if (un.length) parts.push('未判 ' + un.join('、'));
+    var m = (get('missing') || '').split(/\n+/).map(function(t){ return t.trim(); }).filter(Boolean);
+    if (m.length) parts.push('还缺：' + m.join('；'));
+    return LABEL + (get('done') === 'true' ? '（判完了）' : '') + '：' + parts.join('；');
+  }
+  function say(t){ if (elMsg) { elMsg.textContent = t; clearTimeout(say.t); say.t = setTimeout(function(){ elMsg.textContent = ''; }, 4000); } }
+  function manual(text){
+    if (!elOut) return;
+    elOut.hidden = false; elOut.value = text; elOut.focus(); elOut.select();
+    if (elMsg) { clearTimeout(say.t); elMsg.textContent = '没能自动复制：下框文字已选中，请按 ⌘C 复制'; }
+  }
+  function fallback(text){
+    var t = document.createElement('textarea'), ok = false;
+    t.value = text; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.top = '0'; t.style.opacity = '0';
+    document.body.appendChild(t); t.select();
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    document.body.removeChild(t);
+    if (ok) say('已复制，可直接贴进对话'); else manual(text);
+  }
+  if (elCopy) elCopy.addEventListener('click', function(){
+    var text = summary();
+    if (elOut) { elOut.hidden = true; }
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(function(){ say('已复制，可直接贴进对话'); }, function(){ fallback(text); });
+    } else fallback(text);
+  });
+})();
+</script>
+</body></html>

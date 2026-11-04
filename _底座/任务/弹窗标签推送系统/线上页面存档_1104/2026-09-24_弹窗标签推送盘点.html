@@ -1,0 +1,602 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>弹窗 标签 推送 盘点</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --ground:#f0efec; --surface:#ffffff; --surface-2:#f7f6f3; --surface-3:#eceae5;
+    --ink:#191b1e; --ink-2:#484d53; --muted:#7d8289; --line:#dcdad5; --line-2:#e8e6e1;
+    --accent:#9a6f24; --accent-soft:#f1e7d3;
+    --must:#a63f38; --must-soft:#f4e3e1;
+    --sug:#8a6410; --sug-soft:#f5ead2;
+    --info:#1c6ea4; --info-soft:#e0ecf4;
+    --ok:#3d6b58; --ok-soft:#dfeae5;
+    --s1:#1c6ea4; --s2:#a8741c;
+    --serif:"Noto Serif SC",Georgia,serif;
+    --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Source Han Sans SC",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#131518; --surface:#1a1d21; --surface-2:#20242a; --surface-3:#272c32;
+      --ink:#e9e8e4; --ink-2:#b7bbc0; --muted:#868c94; --line:#2d3238; --line-2:#262b31;
+      --accent:#d6ab5c; --accent-soft:#372d1b;
+      --must:#dd8078; --must-soft:#38231f;
+      --sug:#cfa44e; --sug-soft:#332a16;
+      --info:#6aa8d6; --info-soft:#1b2a36;
+      --ok:#74b096; --ok-soft:#1d3129;
+      --s1:#3f82b8; --s2:#b07f22;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#131518; --surface:#1a1d21; --surface-2:#20242a; --surface-3:#272c32;
+    --ink:#e9e8e4; --ink-2:#b7bbc0; --muted:#868c94; --line:#2d3238; --line-2:#262b31;
+    --accent:#d6ab5c; --accent-soft:#372d1b;
+    --must:#dd8078; --must-soft:#38231f;
+    --sug:#cfa44e; --sug-soft:#332a16;
+    --info:#6aa8d6; --info-soft:#1b2a36;
+    --ok:#74b096; --ok-soft:#1d3129;
+    --s1:#3f82b8; --s2:#b07f22;
+  }
+
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--ground); color:var(--ink);
+    font-family:var(--sans); font-size:16px; line-height:1.78; -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:880px; margin:0 auto; padding:48px 26px 90px;}
+  .m38{max-width:38em;}
+
+  .masthead{border-bottom:2px solid var(--ink); padding-bottom:18px; margin-bottom:28px;}
+  .kicker{font-family:var(--mono); font-size:11px; font-weight:500; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--accent); margin:0 0 12px;}
+  h1{font-family:var(--serif); font-weight:700; font-size:34px; line-height:1.28; margin:0 0 10px;}
+  .meta{font-family:var(--mono); font-size:11.5px; color:var(--muted); margin:0;}
+
+  .goal{background:var(--surface); border-left:3px solid var(--ok); padding:20px 24px; margin:0 0 18px;}
+  .goal h3{font-family:var(--sans); font-size:16px; font-weight:650; margin:0 0 7px;}
+  .goal p{margin:0; font-size:16px; line-height:1.72; max-width:38em;}
+  .goal p + p{margin-top:9px;}
+  .goal b{background:var(--ok-soft); padding:1px 4px;}
+
+  .slots{display:grid; grid-template-columns:repeat(auto-fit,minmax(178px,1fr)); gap:1px;
+    background:var(--line); border:1px solid var(--line); margin:0 0 42px;}
+  .slot{background:var(--surface); padding:15px 17px;}
+  .slot h4{font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--accent); margin:0 0 4px; font-weight:600;}
+  .slot .big{font-family:var(--mono); font-size:25px; font-weight:600; line-height:1.1;
+    font-variant-numeric:tabular-nums;}
+  .slot .big s{text-decoration:none; font-size:12.5px; color:var(--muted); margin-left:5px;}
+  .slot p{margin:4px 0 0; font-size:13px; color:var(--ink-2); line-height:1.55;}
+
+  section{margin:0 0 46px;}
+  .sec-head{display:flex; align-items:baseline; gap:12px; border-bottom:1px solid var(--line);
+    padding-bottom:9px; margin-bottom:8px;}
+  .sec-num{font-family:var(--mono); font-size:12px; font-weight:600; color:var(--accent); letter-spacing:.1em;}
+  h2{font-family:var(--serif); font-weight:700; font-size:22px; margin:0;}
+  .sec-sub{font-size:13.5px; color:var(--muted); margin:0 0 20px; max-width:40em;}
+
+  h3.blk{font-family:var(--sans); font-size:16.5px; font-weight:650; margin:30px 0 8px;
+    padding-left:11px; border-left:3px solid var(--info);}
+  h3.blk:first-of-type{margin-top:0;}
+  h4.lbl{font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--accent); font-weight:600; margin:22px 0 8px;}
+
+  ul.f{list-style:none; padding:0; margin:0; border-top:1px solid var(--line-2);}
+  ul.f li{padding:9px 0; border-bottom:1px solid var(--line-2); font-size:14.5px;
+    color:var(--ink-2); max-width:44em;}
+  ul.f li b{color:var(--ink); font-weight:600;}
+  ul.f li em{font-style:normal; color:var(--muted); font-size:13px;}
+  ul.f li.hi{background:var(--ok-soft); padding-left:11px; padding-right:11px; border-bottom-color:transparent;}
+
+  code{font-family:var(--mono); font-size:12.5px; font-weight:500; background:var(--surface-2);
+    border:1px solid var(--line-2); padding:1px 5px; border-radius:2px; color:var(--ink-2); white-space:nowrap;}
+  pre{font-family:var(--mono); font-size:11.5px; line-height:1.6; background:var(--surface-2);
+    border:1px solid var(--line-2); padding:12px 14px; overflow-x:auto; margin:10px 0 0; color:var(--ink-2);}
+
+  .tablewrap{overflow-x:auto; background:var(--surface); border:1px solid var(--line); margin:8px 0 0;}
+  table{border-collapse:collapse; width:100%; min-width:560px; font-size:13.5px;}
+  th{text-align:left; font-family:var(--mono); font-size:11px; font-weight:600; color:var(--muted);
+    letter-spacing:.05em; padding:12px 12px 7px; border-bottom:1px solid var(--line); white-space:nowrap;}
+  th.n,td.n{text-align:right; font-variant-numeric:tabular-nums;}
+  th.c,td.c{text-align:center;}
+  td{padding:8px 12px; border-bottom:1px solid var(--line-2); vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  td.n{font-family:var(--mono); font-size:13px;}
+  td.id{font-family:var(--mono); font-weight:600; color:var(--accent);}
+  td.c{font-family:var(--mono); font-size:13px; color:var(--ok); font-weight:600;}
+  td.c.no{color:var(--line);}
+
+  /* charts */
+  figure{margin:14px 0 0; background:var(--surface); border:1px solid var(--line); padding:18px 20px;}
+  figcaption{font-size:13px; color:var(--muted); margin:0 0 14px; line-height:1.6; max-width:42em;}
+  figcaption b{color:var(--ink); font-weight:600;}
+  .legend{display:flex; gap:18px; flex-wrap:wrap; margin:0 0 14px; font-size:12.5px; color:var(--ink-2);}
+  .legend span{display:flex; align-items:center; gap:6px;}
+  .legend i{width:11px; height:11px; border-radius:2px; display:block; flex:none;}
+  .brow{display:grid; grid-template-columns:5.5em 1fr; gap:11px; align-items:center;
+    padding:5px 0; font-size:13px;}
+  .brow .lab{color:var(--ink-2); text-align:right; font-size:12.5px; line-height:1.35;}
+  .bars{display:flex; flex-direction:column; gap:2px; min-width:0;}
+  .bline{display:flex; align-items:center; gap:7px;}
+  .bline .fill{height:11px; border-radius:0 3px 3px 0; flex:none;}
+  .bline .v{font-family:var(--mono); font-size:11.5px; color:var(--muted);
+    font-variant-numeric:tabular-nums; white-space:nowrap;}
+  .single .fill{height:13px;}
+
+  /* gaps */
+  .who{display:flex; align-items:center; gap:10px; margin:28px 0 12px;}
+  .who span{font-family:var(--mono); font-size:11.5px; letter-spacing:.12em; font-weight:600;
+    color:var(--surface); background:var(--ink); padding:4px 11px;}
+  .who i{font-style:normal; font-size:13px; color:var(--muted);}
+  .gap{background:var(--surface); border:1px solid var(--line); padding:17px 19px; margin:0 0 11px;}
+  .gap-top{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:3px;}
+  .gid{font-family:var(--mono); font-size:11.5px; font-weight:600; color:var(--muted);}
+  .gap h5{font-family:var(--sans); font-size:15.5px; font-weight:650; margin:0; flex:1; min-width:13em;}
+  .tag{font-family:var(--mono); font-size:10.5px; font-weight:600; letter-spacing:.1em; padding:2px 8px;}
+  .t-must{background:var(--must-soft); color:var(--must);}
+  .t-sug{background:var(--sug-soft); color:var(--sug);}
+  .t-opt{background:var(--surface-3); color:var(--muted);}
+  .say{background:var(--surface-2); border-left:2px solid var(--info); padding:11px 14px;
+    margin:11px 0 9px; font-size:14.5px; color:var(--ink); line-height:1.75; max-width:40em;}
+  .say b{display:block; font-family:var(--mono); font-size:10.5px; letter-spacing:.1em;
+    color:var(--info); margin-bottom:4px; font-weight:600;}
+  .say + .say{margin-top:0;}
+  .unlock{font-size:13.5px; color:var(--ink-2); margin:0; max-width:42em;}
+  .unlock b{font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; color:var(--muted);
+    font-weight:600; margin-right:7px;}
+
+  /* appendix */
+  .apxtoc{background:var(--surface); border:1px solid var(--line); padding:16px 20px; margin:0 0 12px;}
+  .apxtoc h4{font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--accent); margin:0 0 9px; font-weight:600;}
+  .apxtoc ol{margin:0; padding-left:1.3em; font-size:14px; color:var(--ink-2); line-height:1.85;}
+  details.apx{border:1px solid var(--line); background:var(--surface); margin-top:9px;}
+  details.apx summary{cursor:pointer; padding:12px 18px; font-size:14.5px; font-weight:600;
+    list-style:none; display:flex; justify-content:space-between; align-items:center; gap:12px;}
+  details.apx summary::-webkit-details-marker{display:none;}
+  details.apx summary::after{content:"展开"; font-family:var(--mono); font-size:11px;
+    letter-spacing:.1em; color:var(--muted); font-weight:500; flex:none;}
+  details.apx[open] summary::after{content:"收起";}
+  details.apx .body{padding:6px 18px 18px; border-top:1px solid var(--line-2);}
+  .tg dt{font-family:var(--mono); font-size:11px; letter-spacing:.1em; color:var(--accent);
+    font-weight:600; margin:14px 0 3px;}
+  .tg dd{margin:0; font-size:13.5px; color:var(--ink-2); line-height:1.7; max-width:44em;}
+  .kv{display:grid; grid-template-columns:auto 1fr; gap:6px 16px; font-size:13.5px; margin:10px 0 0;}
+  .kv dt{color:var(--muted); white-space:nowrap;}
+  .kv dd{margin:0; color:var(--ink-2);}
+
+  a{color:var(--accent);}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+  @media (max-width:600px){
+    .wrap{padding:32px 16px 70px} h1{font-size:27px} .gap{padding:14px 14px}
+    .brow{grid-template-columns:4.6em 1fr; gap:8px}
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="kicker">精细化运营 · 基础能力盘点</p>
+    <h1>弹窗 标签 推送 盘点</h1>
+    <p class="meta">2026-09-24 · 系统机制 / 线上配置 / 用户结构 / 待补齐清单</p>
+  </header>
+
+  <div class="goal">
+    <h3>要做的事</h3>
+    <p>按<b>新增 / 回流 / 破产 / 潜在付费 / 潜在流失</b>分人群定制弹窗内容，总控弹窗的数量、内容与顺序；优先用现有功能满足，不满足的部分再排期开发。</p>
+    <p>交付物是一套按人群分的弹窗规则配置，可直接在后台配置。已确认的机制条件下<b>不需要开发介入</b>：排序是优先级链、多条规则叠加触发、标签排程最快 25 分钟、标签为可自行编写的独立脚本。</p>
+  </div>
+
+  <div class="slots">
+    <div class="slot">
+      <h4>大厅 · 活动类名额</h4>
+      <div class="big">2<s>／10 项在排</s></div>
+      <p>每次进大厅弹 2 个。</p>
+    </div>
+    <div class="slot">
+      <h4>大厅 · 储值类名额</h4>
+      <div class="big">1<s>／7 项在排</s></div>
+      <p>每次进大厅弹 1 个。</p>
+    </div>
+    <div class="slot">
+      <h4>破产位 · 储值类名额</h4>
+      <div class="big">1<s>／8 项在排</s></div>
+      <p>破产时弹 1 个。</p>
+    </div>
+  </div>
+
+  <!-- ============ 一 · 系统机制 ============ -->
+  <section>
+    <div class="sec-head"><span class="sec-num">一</span><h2>系统机制</h2></div>
+
+    <h3 class="blk">弹窗</h3>
+    <ul class="f">
+      <li class="hi"><b>排序列表是优先级链。</b>第 1 位该玩家当前不可购买（已购买、不在开放期）时，系统跳过往下取，直到取满「弹出数量」。</li>
+      <li class="hi"><b>多条规则命中时叠加触发。</b>做定向不必重配全量内容，在现有规则之外增加定向规则即可。</li>
+      <li><b>两层结构</b>：规则层定「对象 + 位置 + 弹出数量」，排序列表里每一项自带「时机 / 形式 / 每日次数 / 冷却」。</li>
+      <li><b>有效时机 4 个</b>：活动开启 / 首次登入 / 大厅 / 破产。后台的「进入大厅」与「返回大厅」不做区分。金币水位、连败次数、当日下注量这类状态不能作为时机，只能作为人群圈选条件。</li>
+      <li><b>频次与限制</b>：可限单个弹窗每日次数上限与冷却时间；不支持负反馈降权（无法做到连续关闭 N 次后自动静默）；实验分流支持，开发成本未评估。</li>
+    </ul>
+
+    <h3 class="blk">标签</h3>
+    <ul class="f">
+      <li class="hi"><b>每个标签是独立的 BigQuery 脚本</b>，不是统一刷新的系统。新建标签时排程频率可自行指定，<b>最快 25 分钟</b>一次。</li>
+      <li><b>组合能力</b>：支持 And、排除、or，计划增加交集。群组标签可任选、不受限。</li>
+      <li><b>规模</b>：约 100 个，分十个大类——历史最高卡别 / 身份状态 / 游戏偏好 / 广告 / 当前卡别 / 支付平台 / 当月存款金额 / 指定活动 / 存储价值条件 / 赌注条件。</li>
+      <li><b>在弹窗里的用法</b>：对象列填「标签名称 + 群组ID」，带「标签状态」启用字段。</li>
+      <li><b>五类人群都有现成标签</b>：新增 →「新增」；回流 →「回流」「7–30 天内回流」「30 天未登入」；破产 → 走破产位；潜在流失 → 衰减型「当月储值额小于上月 70% / 50% / 25%」；潜在付费 → 阈值型「该月储值 ≥ 1 元 / ≥ 200 / ≥ 1000」配合未首储。</li>
+    </ul>
+  </section>
+
+  <!-- ============ 二 · 线上现状 ============ -->
+  <section>
+    <div class="sec-head"><span class="sec-num">二</span><h2>线上配置现状</h2></div>
+    <p class="sec-sub">后台共 5 条规则，ID 1–4、8、9 不存在。其中 3 条对象为「全部玩家」。</p>
+
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>ID</th><th>类型 / 名称</th><th>位置</th><th>对象</th><th class="n">弹出数量</th><th class="n">排序条数</th></tr></thead>
+        <tbody>
+          <tr><td class="id">5</td><td>活动类 · 活动类弹窗</td><td>大厅</td><td>全部玩家</td><td class="n">2</td><td class="n">10</td></tr>
+          <tr><td class="id">6</td><td>储值类 · 通用弹窗</td><td>大厅</td><td>全部玩家</td><td class="n">1</td><td class="n">7</td></tr>
+          <tr><td class="id">7</td><td>储值类 · 破产储值弹窗</td><td>破产</td><td>全部玩家</td><td class="n">1</td><td class="n">8</td></tr>
+          <tr><td class="id">10</td><td>活动类 · 普卡储值衰退50%</td><td>大厅</td><td>普卡 · 当月储值额小于上月 50%</td><td class="n">1</td><td class="n">1</td></tr>
+          <tr><td class="id">11</td><td>活动类 · 银卡储值衰退50%</td><td>大厅</td><td>银卡 · 当月储值额小于上月 50%</td><td class="n">1</td><td class="n">1</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4 class="lbl">各条的排序内容</h4>
+    <ul class="f">
+      <li><b>ID 5</b>　月月抽 → 限时挑战 → 卡别直升活动 → 发信送奖 → 天天敲蛋礼V2 → BOSS战 → 回流任务 → 每日补给计划 → 连线格格送 → 活动排行榜</li>
+      <li><b>ID 6</b>　首储礼包 → 独享礼包 → 惊喜三选一 → 限时加码礼包 → 生涯限购 → 每日礼包 → 平台限量/专属礼包</li>
+      <li><b>ID 7</b>　首储礼包 → 独享礼包 → 破产礼包 → 限时加码礼包 → 惊喜三选一 → 生涯限购 → 每日礼包 → 平台限量/专属礼包</li>
+      <li><b>ID 10 / 11</b>　每日补给计划（单条），每日 20 次、冷却 1800 秒</li>
+    </ul>
+
+    <h4 class="lbl">时机占用 · 活动类各项自己勾的时机</h4>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>弹窗项</th><th>所属</th><th class="c">活动开启</th><th class="c">首次登入</th><th class="c">大厅</th><th class="n">每日次数</th><th class="n">冷却</th></tr></thead>
+        <tbody>
+          <tr><td>月月抽</td><td class="n">ID5</td><td class="c">●</td><td class="c">●</td><td class="c">●</td><td class="n">1</td><td class="n">0</td></tr>
+          <tr><td>限时挑战</td><td class="n">ID5</td><td class="c no">—</td><td class="c">●</td><td class="c">●</td><td class="n">2</td><td class="n">1800</td></tr>
+          <tr><td>卡别直升活动</td><td class="n">ID5</td><td class="c no">—</td><td class="c">●</td><td class="c">●</td><td class="n">2</td><td class="n">1800</td></tr>
+          <tr><td>发信送奖</td><td class="n">ID5</td><td class="c no">—</td><td class="c">●</td><td class="c">●</td><td class="n">1</td><td class="n">0</td></tr>
+          <tr><td>天天敲蛋礼V2</td><td class="n">ID5</td><td class="c">●</td><td class="c">●</td><td class="c">●</td><td class="n">1</td><td class="n">0</td></tr>
+          <tr><td>BOSS战</td><td class="n">ID5</td><td class="c">●</td><td class="c">●</td><td class="c">●</td><td class="n">1</td><td class="n">0</td></tr>
+          <tr><td>回流任务</td><td class="n">ID5</td><td class="c">●</td><td class="c">●</td><td class="c">●</td><td class="n">1</td><td class="n">0</td></tr>
+          <tr><td>每日补给计划</td><td class="n">ID5</td><td class="c">●</td><td class="c">●</td><td class="c">●</td><td class="n">1</td><td class="n">0</td></tr>
+          <tr><td>连线格格送</td><td class="n">ID5</td><td class="c">●</td><td class="c">●</td><td class="c">●</td><td class="n">1</td><td class="n">0</td></tr>
+          <tr><td>活动排行榜</td><td class="n">ID5</td><td class="c no">—</td><td class="c">●</td><td class="c">●</td><td class="n">1</td><td class="n">0</td></tr>
+          <tr><td>每日补给计划</td><td class="n">ID10/11</td><td class="c no">—</td><td class="c">●</td><td class="c">●</td><td class="n">20</td><td class="n">1800</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ul class="f" style="margin-top:13px">
+      <li><b>储值类不单独勾时机</b>：ID 6 的时机即「大厅」，ID 7 即「破产」。</li>
+      <li><b>四个时机全部有占用</b>，没有空时机。定向要靠叠加规则实现。</li>
+      <li><b>同一活动在两条规则里配置不同</b>：每日补给计划在 ID 5 是每日 1 次、无冷却，在 ID 10 / 11 是每日 20 次、冷却 1800 秒；叠加触发之下，普卡且衰退 50% 的玩家两条都会命中。</li>
+      <li><b>首储弹窗在后台</b>，是 ID 6 与 ID 7 排序列表的第 1 位，不是独立规则。</li>
+      <li><b>不在后台的三项</b>：新手挑战弹窗与新手通行证弹窗写死在客户端，调整需走开发；新手礼包（初始 1000 金币）直接发放，没有弹窗。</li>
+    </ul>
+  </section>
+
+  <!-- ============ 三 · 用户结构 ============ -->
+  <section>
+    <div class="sec-head"><span class="sec-num">三</span><h2>用户结构</h2></div>
+    <p class="sec-sub">近一个月活跃口径：按最后登录时间取 2026-08-16 至 09-16，剔除机器人 599 与测试账号 141，有效 62,292 人。</p>
+
+    <h3 class="blk">卡别分布</h3>
+    <figure>
+      <figcaption>近一个月活跃用户按当前卡别（分母 62,292）。右侧为该卡别内的储值率——<b>普卡 17.77%，银卡以上全部落在 92–96% 之间</b>，卡别本身即是付费状态的代理。</figcaption>
+      <div class="single">
+        <div class="brow"><div class="lab">普卡</div><div class="bars"><div class="bline"><span class="fill" style="width:84.92%;background:var(--s1)"></span><span class="v">52,897 · 84.92%　储值率 17.77%</span></div></div></div>
+        <div class="brow"><div class="lab">银卡</div><div class="bars"><div class="bline"><span class="fill" style="width:4.86%;background:var(--s1)"></span><span class="v">3,029 · 4.86%　储值率 92.47%</span></div></div></div>
+        <div class="brow"><div class="lab">金卡</div><div class="bars"><div class="bline"><span class="fill" style="width:3.43%;background:var(--s1)"></span><span class="v">2,134 · 3.43%　储值率 95.31%</span></div></div></div>
+        <div class="brow"><div class="lab">白金卡</div><div class="bars"><div class="bline"><span class="fill" style="width:3.26%;background:var(--s1)"></span><span class="v">2,030 · 3.26%　储值率 94.53%</span></div></div></div>
+        <div class="brow"><div class="lab">钻石卡</div><div class="bars"><div class="bline"><span class="fill" style="width:2.22%;background:var(--s1)"></span><span class="v">1,383 · 2.22%　储值率 95.81%</span></div></div></div>
+        <div class="brow"><div class="lab">黑卡</div><div class="bars"><div class="bline"><span class="fill" style="width:0.71%;background:var(--s1)"></span><span class="v">441 · 0.71%　储值率 96.15%</span></div></div></div>
+        <div class="brow"><div class="lab">至尊卡</div><div class="bars"><div class="bline"><span class="fill" style="width:0.61%;background:var(--s1)"></span><span class="v">378 · 0.61%　储值率 95.77%</span></div></div></div>
+      </div>
+    </figure>
+
+    <h3 class="blk">付费分布：新用户与活跃全量是两个分布</h3>
+    <figure>
+      <figcaption>累计储值金额分档，仅计有储值者。<b>新用户 55.07% 花不到 200，活跃全量只有 31.54%；新用户超过 3,000 的仅 10.39%，活跃全量有 33.86%。</b>两份数据的累计时间窗口不同（新用户最长 3 个月，活跃全量含多年老账号），方向可信、幅度不可直接引用。</figcaption>
+      <div class="legend">
+        <span><i style="background:var(--s2)"></i>近三月新用户 · 分母 4,803</span>
+        <span><i style="background:var(--s1)"></i>近一月活跃全量 · 分母 18,265</span>
+      </div>
+      <div class="brow"><div class="lab">1–50</div><div class="bars">
+        <div class="bline"><span class="fill" style="width:36.94%;background:var(--s2)"></span><span class="v">36.94%</span></div>
+        <div class="bline"><span class="fill" style="width:15.66%;background:var(--s1)"></span><span class="v">15.66%</span></div></div></div>
+      <div class="brow"><div class="lab">51–200</div><div class="bars">
+        <div class="bline"><span class="fill" style="width:18.13%;background:var(--s2)"></span><span class="v">18.13%</span></div>
+        <div class="bline"><span class="fill" style="width:15.88%;background:var(--s1)"></span><span class="v">15.88%</span></div></div></div>
+      <div class="brow"><div class="lab">201–500</div><div class="bars">
+        <div class="bline"><span class="fill" style="width:11.89%;background:var(--s2)"></span><span class="v">11.89%</span></div>
+        <div class="bline"><span class="fill" style="width:10.81%;background:var(--s1)"></span><span class="v">10.81%</span></div></div></div>
+      <div class="brow"><div class="lab">501–1,000</div><div class="bars">
+        <div class="bline"><span class="fill" style="width:8.2%;background:var(--s2)"></span><span class="v">8.20%</span></div>
+        <div class="bline"><span class="fill" style="width:8.4%;background:var(--s1)"></span><span class="v">8.40%</span></div></div></div>
+      <div class="brow"><div class="lab">1,001–3,000</div><div class="bars">
+        <div class="bline"><span class="fill" style="width:14.45%;background:var(--s2)"></span><span class="v">14.45%</span></div>
+        <div class="bline"><span class="fill" style="width:15.4%;background:var(--s1)"></span><span class="v">15.40%</span></div></div></div>
+      <div class="brow"><div class="lab">3,001–10,000</div><div class="bars">
+        <div class="bline"><span class="fill" style="width:6.29%;background:var(--s2)"></span><span class="v">6.29%</span></div>
+        <div class="bline"><span class="fill" style="width:13.9%;background:var(--s1)"></span><span class="v">13.90%</span></div></div></div>
+      <div class="brow"><div class="lab">10,001 以上</div><div class="bars">
+        <div class="bline"><span class="fill" style="width:4.1%;background:var(--s2)"></span><span class="v">4.10%</span></div>
+        <div class="bline"><span class="fill" style="width:19.96%;background:var(--s1)"></span><span class="v">19.96%</span></div></div></div>
+    </figure>
+    <p class="m38" style="font-size:14.5px;color:var(--ink-2);margin:14px 0 0">储值类弹窗每次只弹 1 个，排序第 1 位基本决定结果。同一条排序给全部玩家，对新用户偏贵、对高卡用户偏便宜。</p>
+
+    <h3 class="blk">身份、押注与 RTP</h3>
+    <ul class="f">
+      <li><b>身份分布</b>（分母 62,292）：持续 34,856（55.96%）、<b>回流 16,564（26.59%）</b>、新增 10,749（17.26%）、VIP 108（0.17%）、黑名单 15（0.02%）。口径：新增＝注册 30 天以内，持续＝注册超过 30 天，两者与回流互斥。</li>
+      <li><b>回流是第二大人群，目前没有任何一条针对它的规则</b>，只有 ID 5 排序第 7 位的「回流任务」对全部玩家生效。</li>
+      <li><b>押注分布</b>（分母 62,292）：0 占 8.56%、1–10,000 占 20.85%、10,001–100,000 占 25.04%、100,001–1,000,000 占 25.27%、1,000,001 以上占 20.22%。<b>累计押注 ≥ 10,000 的有 43,944 人（70.55%）</b>，同口径下新用户只有约 48.6%。</li>
+      <li><b>RTP 分布</b>（分母 62,292，中位数 87.21%）：大于 100% 占 8.58%、100–96.5% 占 9.65%、96.5–80% 占 45.3%、80% 及以下占 27.41%、等于 0 占 9.06%。</li>
+      <li><b>注册时长与卡别</b>：近三个月注册的 16,031 人中 95.8% 是普卡、储值率 16.5%；三个月以前注册的 46,226 人储值率 33.78%，卡别分散。卡别这一维度只在存量用户里可用。</li>
+    </ul>
+  </section>
+
+  <!-- ============ 四 · 礼包 ============ -->
+  <section>
+    <div class="sec-head"><span class="sec-num">四</span><h2>礼包与限时加码礼包</h2></div>
+
+    <h3 class="blk">价格带</h3>
+    <ul class="f">
+      <li><b>上架中的礼包共几十个</b>：最低是首储礼包 NT$50，最高 NT$30,000，大多数集中在几百到三千。</li>
+      <li>弹窗排序中出现的七个礼包（独享礼包、惊喜三选一、限时加码礼包、生涯限购、每日礼包、平台限量/专属礼包、破产礼包）各自售价未取得，是排储值类顺序的直接输入。</li>
+    </ul>
+
+    <h3 class="blk">限时加码礼包</h3>
+    <p class="m38" style="font-size:14.5px;color:var(--ink-2);margin:12px 0 0">该礼包同时出现在弹窗后台 ID 6、ID 7 排序的第 4 位，以及推荐礼包管理后台的一整套独立机制中。推荐礼包后台界面无弹窗位置、时机、弹出数量字段，决定的是资格与加码幅度；弹出由弹窗后台负责，推播则是它自身独立的一条通路。</p>
+    <ul class="f" style="margin-top:14px">
+      <li><b>准入门槛为累计押注 10,000 以上</b>，近一月活跃用户中 70.55% 达标，新用户约 48.6% 达标。</li>
+      <li><b>每月 1–7 日不出现</b>：出现时间设定为每月 8–31 日，这 7 天排序会跳过它取下一位。</li>
+      <li><b>排除名单中的「VIP 名单」是身份字段的一个值，共 108 人</b>（0.17%），不是按卡别自动判定，不影响中高卡用户的排序。</li>
+      <li><b>加码是普惠的</b>：按个人 RTP 分五档给 2%–12%，72.71% 的活跃用户落在 6% 以上的档位。</li>
+    </ul>
+  </section>
+
+  <!-- ============ 五 · 推送 ============ -->
+  <section>
+    <div class="sec-head"><span class="sec-num">五</span><h2>推送现状</h2></div>
+    <ul class="f">
+      <li><b>已有推送能力，但每个功能各一套，没有统一入口。</b></li>
+      <li><b>实例一</b>：限时加码礼包——用户触发后在设定时间内未购买，剩 2 小时时发推播，标题「最後提醒⚠️幸運加碼禮包」。</li>
+      <li><b>实例二</b>：新手通行证——前几级升级时有推送条，内容只说明升级，不说明有奖可领，点击不跳转。</li>
+      <li><b>其他触达通路</b>：游戏内侧边栏常驻入口、红点、大厅活动中心二级入口。</li>
+      <li><b>发送量与到达率无数据。</b></li>
+    </ul>
+  </section>
+
+  <!-- ============ 六 · 待补齐 ============ -->
+  <section>
+    <div class="sec-head"><span class="sec-num">六</span><h2>待补齐清单</h2></div>
+    <p class="sec-sub">分级：必须＝不补齐无法出方案；建议＝影响效果不影响定稿；可选＝整理时顺带。组内 P0 最先。</p>
+
+    <div class="who"><span>必须</span><i>3 条</i></div>
+
+    <div class="gap">
+      <div class="gap-top"><span class="gid">P0</span><h5>各礼包的价格带</h5><span class="tag t-must">必须</span></div>
+      <div class="say"><b>可照发</b>弹窗排序里这几个礼包分别卖多少钱？独享礼包、惊喜三选一、限时加码礼包、生涯限购、每日礼包、平台限量 / 专属礼包、破产礼包。如果一个名称下有多个价位档，把档位列出来就行。</div>
+      <p class="unlock"><b>补齐后</b>储值类排序可直接重排。储值类每次只弹 1 个，排序即「先推哪个价位」。已知首储礼包 NT$50，其余七项未知。</p>
+    </div>
+
+    <div class="gap">
+      <div class="gap-top"><span class="gid">P1</span><h5>人群分布交叉表 · 含首储标记与月度储值</h5><span class="tag t-must">必须</span></div>
+      <div class="say"><b>可照发</b>想要一张人群分布表，取当前时点快照，不用算比率也不用做汇总：近一个月活跃用户，按【当前卡别，普卡至至尊卡七档】分组，每组给本月储值额、上月储值额、上上月储值额（三列分开，不要合计），并加一列是否购买过首储礼包。</div>
+      <p class="unlock"><b>补齐后</b>潜在流失（本月低于上月 70% / 50% / 25%）与潜在付费两类人群的规模可自行计算，不必逐个索取标签人数。现有两份数据均为累计口径，且都没有首储字段。</p>
+    </div>
+
+    <div class="gap">
+      <div class="gap-top"><span class="gid">P2</span><h5>限时加码礼包与弹窗后台的取值关系</h5><span class="tag t-must">必须</span></div>
+      <div class="say"><b>可照发</b>限时加码礼包在弹窗后台 ID 6 排第 4 位。它到底会不会弹出，是否取决于推荐礼包后台那套条件（每月出现日期、RTP 准入、冷却）——条件不满足时弹窗就跳过它往下取下一个？</div>
+      <p class="unlock"><b>补齐后</b>确定它在排序中应排第几位，或是否应从排序中移除。</p>
+    </div>
+
+    <div class="who"><span>建议</span><i>3 条</i></div>
+
+    <div class="gap">
+      <div class="gap-top"><span class="gid">P0</span><h5>推送现状 · 分三步追问</h5><span class="tag t-sug">建议</span></div>
+      <div class="say"><b>第一步 · 研发或通行证对接人</b>新手通行证升级时会给用户发一条推送，内容是「通行证升级了」。这条推送是哪个系统发出去的？配置在哪个后台？</div>
+      <div class="say"><b>第二步 · 该系统的维护人</b>除了通行证，还有哪些功能在用这套推送？平台上是不是所有推送都走这一套，还是各功能有各自的？</div>
+      <div class="say"><b>第三步 · 对每一套系统</b>这套推送能不能按用户标签定向发送？有没有限制一个用户一天最多收几条？发送量和到达率有没有记录，在哪里看？</div>
+      <p class="unlock"><b>补齐后</b>推送形成可操作的现状底稿。直接询问系统总数通常无人能答，从一个已知实例往回追更可行。这一项与弹窗并行，不构成弹窗方案的前置。</p>
+    </div>
+
+    <div class="gap">
+      <div class="gap-top"><span class="gid">P1</span><h5>弹窗埋点现状与补埋点工作量</h5><span class="tag t-sug">建议</span></div>
+      <div class="say"><b>可照发</b>弹窗埋点现在有的有、有的没有。想确认两件事：一是已经有埋点的部分，数据在哪里看，能不能按弹窗项查到曝光人数和点击率；二是给还没埋点的弹窗补上曝光、点击、关闭三个事件，大概是什么量级的工作量。</div>
+      <p class="unlock"><b>补齐后</b>方案上线后可衡量效果；总控弹窗数量也需要人均曝光数。第一版的人群与内容来自标签清单与现有活动，不依赖历史效果数据。</p>
+    </div>
+
+    <div class="gap">
+      <div class="gap-top"><span class="gid">P2</span><h5>最轻一档负反馈与实验分流成本</h5><span class="tag t-sug">建议</span></div>
+      <div class="say"><b>可照发 · 负反馈</b>能不能做到：用户点 X 关掉某个弹窗之后，这个弹窗当天就不再出现？不需要连续关几次自动静默那种逻辑，就最简单的当日不再弹。</div>
+      <div class="say"><b>可照发 · 实验分流</b>如果要把同一个人群随机切成两组、分别看到不同的弹窗内容，现在配置上能做吗？如果要开发，大概是什么量级的工作量？</div>
+      <p class="unlock"><b>补齐后</b>负反馈能做则可降低弹窗疲劳；分流做不了则效果判断只能用前后对比，需在方案中说明归因限制。</p>
+    </div>
+
+    <div class="who"><span>可选</span><i>2 条</i></div>
+
+    <div class="gap">
+      <div class="gap-top"><span class="gid">P0</span><h5>几组标签的口径</h5><span class="tag t-opt">可选</span></div>
+      <div class="say"><b>可照发</b>有几组标签的口径想确认：一是「赌注条件」那组（钻卡 / 黑卡 / 至尊卡近 30 天押注于中位数），「于中位数」具体指什么？二是「当前卡别」里有几条看不懂的——「目前，该卡比金卡更优越」「目前的卡等级高于铂金卡」「目前的卡大小比钻卡还要大一些」，这些是不是「金卡及以上」这种区间标签？</div>
+      <p class="unlock"><b>补齐后</b>这几组标签可投入使用。不确认也能用其他标签推进。</p>
+    </div>
+
+    <div class="gap">
+      <div class="gap-top"><span class="gid">P1</span><h5>弹窗对象是否排除机器人与测试账号</h5><span class="tag t-opt">可选</span></div>
+      <div class="say"><b>可照发</b>弹窗规则的对象里有没有排除机器人和测试账号的机制？推荐礼包后台是有「排除名单」这一项的，弹窗这边有没有同样的设置？</div>
+      <p class="unlock"><b>补齐后</b>人群规模的统计口径可统一。近一月活跃样本中机器人与测试账号共 740 人，占 1.17%。</p>
+    </div>
+  </section>
+
+  <!-- ============ 附录 ============ -->
+  <section style="margin-bottom:0">
+    <div class="sec-head"><span class="sec-num">附</span><h2>附录</h2></div>
+
+    <div class="apxtoc">
+      <h4>附录目录</h4>
+      <ol>
+        <li>标签全清单 · 十个大类</li>
+        <li>VIP 卡别权益</li>
+        <li>推荐礼包管理后台 · 完整参数</li>
+        <li>同事草稿表的结构</li>
+        <li>数据文件与口径</li>
+      </ol>
+    </div>
+
+    <details class="apx">
+      <summary>一 · 标签全清单</summary>
+      <div class="body">
+        <p style="font-size:13px;color:var(--muted);margin:10px 0 0;max-width:42em">原文含繁体与机翻痕迹，此处保留原样以便在后台对得上。</p>
+        <dl class="tg">
+          <dt>历史最高卡别</dt><dd>历史最高卡别</dd>
+          <dt>身份 / 状态</dt><dd>新增；尚未开始游戏的玩家；回流；在两个月内累计储值金额超过 50；已经先存储了；回流普卡直升；7 到 30 天内回流的用户；越南用户；skin1+skin2 可见；本月有用户登录；近 90 天有登入；7–30 天未登入；30 天未登入</dd>
+          <dt>游戏偏好</dt><dd>游戏偏好</dd>
+          <dt>广告</dt><dd>ad 广告（其他）- 游戏偏好；adset 广告（谷歌）—— 游戏类偏好</dd>
+          <dt>当前卡别</dt><dd>非普卡；银卡；金卡；白金卡；钻卡；黑卡；至尊卡；以及语义不明的五条——「目前的卡中，信用卡的份额超过了借记卡」「目前，该卡比金卡更优越」「目前的卡等级高于铂金卡」「目前的卡大小比钻卡还要大一些」「目前的卡比黑卡要大一些」</dd>
+          <dt>支付平台</dt><dd>H5 支付</dd>
+          <dt>当月存款金额 · 区间型</dt><dd>700 &lt; 储值金额 &lt; 999；3500 &lt; 储值额度 &lt; 4999；7000 &lt; 储值金额 &lt; 9999；20000 &lt; 储值额度 &lt; 29999</dd>
+          <dt>当月存款金额 · 阈值型</dt><dd>当月储值额大于 1w；当月储值额大于 4w；该月储值 ≥ 200 / ≥ 1000 / ≥ 2000 / ≥ 4000 / ≥ 1 元</dd>
+          <dt>当月存款金额 · 衰减型</dt><dd>当月储值额小于上月储值额 70% / 50% / 25%。线上 ID 10 / 11 用的是 50% 这一档，且只覆盖普卡与银卡。</dd>
+          <dt>当月存款金额 · 跨月累计型</dt><dd>700 &lt; 上月+当月累计储值金额 &lt; 999；上月+当月储值额 &lt; 2999；上月+当月储值金额在 6000 到 7999 之间；上月+当月储值金额小于 19999；上月+当月累计储值金额在 40000 到 49999 之间；8 万 &lt; 上月+当月存款金额 &lt; 99999</dd>
+          <dt>指定活动</dt><dd>购买破冰升银卡享受直升优惠；普卡轻微掉线（7–30 天未登录）；银卡轻微退赔（7–30 天未登入）；金卡用户出现轻微余额不足的情况（7–30 天内未登录）；白金卡轻微退流（7–30 天内未登录）；钻卡轻回流（7–30 天未登录）；黑卡轻微逾期（7–30 天内未登录）；至尊卡轻回流功能（7–30 天未登录）；卡别直升-近 40 天购买过的用户；回归聚宝 CD 中；可购买爵位的名单</dd>
+          <dt>根据存储价值的条件</dt><dd>按照上个月的充值条件</dd>
+          <dt>赌注条件</dt><dd>钻卡近 30 天押注于中位数；黑卡近 30 天的赌注中位数；至尊卡近 30 天的投注中位数；钻卡上个月的赌注集中在中位数上；黑卡上月在中位数上进行了押注；至尊卡上个月的赌注集中在中位数上；近 4 个月来的投资总额超过 10000</dd>
+        </dl>
+      </div>
+    </details>
+
+    <details class="apx">
+      <summary>二 · VIP 卡别权益</summary>
+      <div class="body">
+        <p style="font-size:13px;color:var(--muted);margin:10px 0 12px;max-width:42em">游戏内实际为 7 档。手上的权益表只列到黑卡、缺至尊卡一行，升级门槛数值以游戏内配置为准，此处只记权益项。</p>
+        <div class="tablewrap">
+          <table>
+            <thead><tr><th>卡别</th><th>转出手续费</th><th class="n">保留座时间</th><th class="n">保留座数量</th><th>每日发财金</th><th>月月抽</th><th>专属机台</th><th>不定期登入礼</th></tr></thead>
+            <tbody>
+              <tr><td>普卡</td><td class="n">2%</td><td class="n">60 分</td><td class="n">1</td><td>少量</td><td>—</td><td>一般</td><td>小礼包</td></tr>
+              <tr><td>银卡</td><td class="n">2%</td><td class="n">60 分</td><td class="n">2</td><td>少量</td><td>—</td><td>一般</td><td>小礼包</td></tr>
+              <tr><td>金卡</td><td class="n">1.5%</td><td class="n">240 分</td><td class="n">2</td><td>少量</td><td>小礼包</td><td>一般黄金</td><td>小礼包</td></tr>
+              <tr><td>白金卡</td><td class="n">1.5%</td><td class="n">720 分</td><td class="n">2</td><td>增量</td><td>大礼包</td><td>一般黄金</td><td>大礼包</td></tr>
+              <tr><td>钻石卡</td><td class="n">1%</td><td class="n">1440 分</td><td class="n">3</td><td>超量</td><td>特大礼包</td><td>一般黄金钻石</td><td>特大礼包</td></tr>
+              <tr><td>黑卡</td><td class="n">1%</td><td class="n">1440 分</td><td class="n">3</td><td>超量</td><td>至尊卡礼包</td><td>一般黄金钻石</td><td>超大礼包</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:13.5px;color:var(--ink-2);margin:14px 0 0;max-width:42em">转帐额度按玩家等级分两段：LV1–49 与 LV50 及以上。普卡 LV1–49 为 80,000/日，银卡 50 万/日，金卡 200 万/日，白金卡 500 万/日，钻石卡与黑卡无上限；LV50 及以上普卡至白金卡统一 2,000 万/日。押注上限各档均为 9,999,999,999。</p>
+        <p style="font-size:13.5px;color:var(--ink-2);margin:10px 0 0;max-width:42em"><b>月月抽自金卡起才有</b>，普卡与银卡无此权益——ID 5 排序第 1 位是月月抽，而普卡占活跃用户 84.92%。</p>
+      </div>
+    </details>
+
+    <details class="apx">
+      <summary>三 · 推荐礼包管理后台 · 完整参数</summary>
+      <div class="body">
+        <p style="font-size:13px;color:var(--muted);margin:10px 0 0;max-width:42em">界面顶部 tab：储值品项设定 / 储值活动设定 / 产包设定 / 推荐礼包管理。左侧菜单：推荐礼包设定 / 限时加码礼包玩家触发明细 / 限时加码订单明细 / 操作纪录。</p>
+        <h4 class="lbl">推荐礼包基础设定</h4>
+        <dl class="kv">
+          <dt>推荐码礼包开关</dt><dd>开</dd>
+          <dt>排除名单</dt><dd>黑名单、VIP 名单（两项均勾选）</dd>
+          <dt>玩家储值订单天数</dt><dd>30 天 —— 取用户设定天数内的储值面额</dd>
+          <dt>限时礼包出现时间</dt><dd>8 ~ 31 天 —— 按月的日期计算</dd>
+          <dt>限时加码礼包重置时间</dt><dd>24 —— 触发后可以展示的时间</dd>
+          <dt>限时礼包冷却时间</dt><dd>有购买 4 天，未购买 2 天</dd>
+          <dt>限时礼包未购买推播时间</dt><dd>还剩 2 小时</dd>
+          <dt>标题</dt><dd>最後提醒⚠️幸運加碼禮包</dd>
+        </dl>
+        <h4 class="lbl">触发 RTP 加码条件 · 准入</h4>
+        <dl class="kv">
+          <dt>累计几日 RTP 天数</dt><dd>前 7 天</dd>
+          <dt>累计总押注额</dt><dd>10000 以上</dd>
+        </dl>
+        <h4 class="lbl">触发 RTP 加码条件 · 加码幅度</h4>
+        <p style="font-size:13.5px;color:var(--ink-2);margin:8px 0 0">RTP =（押注 + 总输赢）/ 押注。加码老币数量 = 礼包售价 × 100 × 加码百分比（区间档取随机百分比）。</p>
+        <div class="tablewrap">
+          <table style="min-width:340px">
+            <thead><tr><th>条件</th><th class="n">加码</th></tr></thead>
+            <tbody>
+              <tr><td>未达到 RTP 下滑加码（仅未达标用户）</td><td class="n">2%</td></tr>
+              <tr><td>个人 RTP &gt; 100%</td><td class="n">3%</td></tr>
+              <tr><td>100% &gt; 个人 RTP ≥ 96.5%</td><td class="n">3% – 5%</td></tr>
+              <tr><td>96.5% &gt; 个人 RTP ≥ 80%</td><td class="n">6% – 8%</td></tr>
+              <tr><td>80% &gt; 个人 RTP</td><td class="n">9% – 12%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </details>
+
+    <details class="apx">
+      <summary>四 · 同事草稿表的结构</summary>
+      <div class="body">
+        <p style="font-size:13px;color:var(--muted);margin:10px 0 0;max-width:42em"><code>活动弹窗规则.xlsx</code>，两个 sheet 加一张流程图。其中的人群分层线上均未配置，定位为内容素材来源。</p>
+        <h4 class="lbl">工作表1 · A1:G101</h4>
+        <ul class="f">
+          <li>第 10–15 行　优先级 P0–P4，按内容性质分：强制引导 / 核心付费 / 核心活动 / 成长激励 / 一般推荐</li>
+          <li>第 16–23 行　全局弹出规则：单次弹窗最大数量 ≤ 3 次；弹出间隔 1800 秒，破产礼包与发财金除外；普通礼包 24 小时 ≤ 1 次；活动 24 小时 ≤ 1 次。第 21 行类型名漏填，规则为 24 小时 ≤ 2 次</li>
+          <li>第 25–37 行　玩家身份＝新增，权重 2，总弹窗数量 1，排 9 条</li>
+          <li>第 41–53 行　玩家身份＝回流，权重 3，总弹窗数量 3，排 9 条</li>
+          <li>第 56–69 行　未首储用户，权重 1，总弹窗数量 3，排 10 条。第 60 行第 1 位为月月抽</li>
+          <li>第 73–101 行　与第 25–53 行完全重复</li>
+        </ul>
+        <h4 class="lbl">工作表2 · A1:AB86</h4>
+        <ul class="f">
+          <li>第 2–14 行　弹窗策略总表，P1–P5 按弹出顺序分，与工作表1 的 P0–P4 含义不同。第 8–10 行写明小 V 高性价比礼包、中 V 兼顾、高 V 高价值限时包</li>
+          <li>第 19–40 行　新用户，未首储与已首储并排。第 25–29 行未首储活动类排序全填「空」；第 36 行未首储储值类第 1 位为首储礼包</li>
+          <li>第 42–63 行　全部用户按卡别三档并排，第 48–51 行与第 59–63 行三档内容完全相同</li>
+          <li>第 65–86 行　回流用户，轻回流与回流并排。第 86 行回流储值类第 5 位为限时加码礼包</li>
+          <li>权重量级：工作表1 为 1 / 2 / 3，工作表2 为 1 / 10 / 20 / 30 / 40</li>
+        </ul>
+        <h4 class="lbl">流程图</h4>
+        <p style="font-size:13.5px;color:var(--ink-2);margin:8px 0 0;max-width:42em">登入大厅后分四条主路径：首次登入 / 未完成新手挑战 / 持续用户 / 回流用户。持续用户再按非付费与小中大 V 分四列，回流按轻回流与回流分两列。「新手挑战弹窗引导」「新手挑战关卡进度」两个节点标灰并注明去除。</p>
+      </div>
+    </details>
+
+    <details class="apx">
+      <summary>五 · 数据文件与口径</summary>
+      <div class="body">
+        <h4 class="lbl">20260902192220_撈資料.xlsx</h4>
+        <ul class="f">
+          <li><b>口径</b>：2026-04-01 至 06-30 注册的全部新用户，31,645 行；剔除机器人 173 与测试账号 77 后为 31,395 人</li>
+          <li><b>列</b>：會員編號 / 註冊時間 / 最後登入時間 / 卡別 / 會員等級 / 總儲值金額 / 遊戲總押注 / 遊戲總輸贏 / RTP / 活動贈點 / 儲值贈點 / 儲值回饋比 / 活動咬分比 / 身份</li>
+          <li><b>关键结果</b>：卡别 1 占 98.23%；有储值 4,803 人（15.30%）；押注为 0 的 5,822 人（18.54%），其中仅 36 人有储值；月度储值率稳定在 14–16%，月均新增约 1 万人</li>
+        </ul>
+        <h4 class="lbl">20260916201703_捞资料.xlsx</h4>
+        <ul class="f">
+          <li><b>口径</b>：按最后登录时间取近一个月（2026-08-16 至 09-16）的全量用户，63,032 行；剔除机器人 599 与测试账号 141 后为 62,292 人。注册时间最早到 2011-08-24</li>
+          <li><b>列</b>：与上一份同义，另新增「登入平台」（mweb / ios / android / web / h5 / apk / bo）</li>
+          <li><b>关键结果</b>：见正文第三节</li>
+        </ul>
+        <h4 class="lbl">共同的口径限制</h4>
+        <p style="font-size:13.5px;color:var(--ink-2);margin:8px 0 0;max-width:42em">两份的「总储值金额」均为账号累计值，时间窗口不同——新用户那份最长 3 个月，活跃全量那份可跨多年。两者的付费分布对比方向可信，幅度不可直接引用。两份均无「是否购买过首储礼包」字段，亦无法按月拆分，衰减型人群规模无法从中计算。</p>
+        <h4 class="lbl">标签脚本样例</h4>
+        <p style="font-size:13.5px;color:var(--ink-2);margin:8px 0 0;max-width:42em">限时加码礼包的触发名单，按周取、每周四切：</p>
+<pre>WITH active_activity AS (
+  SELECT store_activity_id, condition
+  FROM `prod-439407.o8richonline_cdc.store_activity`
+  WHERE category = "premium_bag" AND status = "active"
+  LIMIT 1
+)
+SELECT DISTINCT elem.user_id
+FROM active_activity, UNNEST(condition.buy_count_users) AS elem
+UNION DISTINCT
+SELECT DISTINCT b.user_id
+FROM `prod-439407.o8richonline_cdc.user_premium_bag` b
+JOIN active_activity a ON b.store_activity_id = a.store_activity_id
+WHERE b.date = DATE_TRUNC(CURRENT_DATE('Asia/Taipei'), WEEK(THURSDAY));</pre>
+      </div>
+    </details>
+  </section>
+
+</div>
+
+</body></html>

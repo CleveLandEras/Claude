@@ -1,0 +1,98 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>项目汇报 09-29</title><style>
+:root{--ground:#f0efec;--surface:#fff;--surface-2:#f7f6f3;--ink:#191b1e;--ink-2:#484d53;--muted:#7d8289;--line:#dcdad5;--line-2:#e8e6e1;--accent:#9a6f24;--ok:#3d6b58;--ok-soft:#dfeae5;--warn:#8a6410;--warn-soft:#f5ead2;--info:#1c6ea4;--info-soft:#e0ecf4;--must:#a63f38;--must-soft:#f4e3e1;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;--mono:ui-monospace,Menlo,monospace;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1a1d21;--surface-2:#20242a;--ink:#e9e8e4;--ink-2:#b7bbc0;--muted:#868c94;--line:#2d3238;--line-2:#262b31;--accent:#d6ab5c;--ok:#74b096;--ok-soft:#1d3129;--warn:#cfa44e;--warn-soft:#332a16;--info:#6aa8d6;--info-soft:#1b2a36;--must:#dd8078;--must-soft:#38231f;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1a1d21;--surface-2:#20242a;--ink:#e9e8e4;--ink-2:#b7bbc0;--muted:#868c94;--line:#2d3238;--line-2:#262b31;--accent:#d6ab5c;--ok:#74b096;--ok-soft:#1d3129;--warn:#cfa44e;--warn-soft:#332a16;--info:#6aa8d6;--info-soft:#1b2a36;--must:#dd8078;--must-soft:#38231f;}
+*{box-sizing:border-box} body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased}
+.wrap{max-width:900px;margin:0 auto;padding:34px 22px 80px} .meta{font-size:12.5px;color:var(--muted);margin:0 0 6px}
+h1{font-family:var(--serif);font-size:24px;margin:0 0 14px}
+.verdict{background:var(--surface);border-left:3px solid var(--accent);padding:14px 18px;margin:0 0 10px} .verdict p{margin:0;font-size:16px;font-weight:600;max-width:42em}
+.sum{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:0 0 26px}
+.sum div{background:var(--surface);border:1px solid var(--line);padding:10px 12px} .sum b{display:block;font-family:var(--mono);font-size:22px} .sum span{font-size:12.5px;color:var(--ink-2)}
+.no{font-family:var(--mono);font-size:12px;color:var(--accent);font-weight:600} h2{font-family:var(--serif);font-size:19px;margin:2px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+section{margin:0 0 32px} .card{background:var(--surface);border:1px solid var(--line);padding:14px 18px;margin:0 0 10px}
+.card h3{margin:0 0 6px;font-size:16px} .card p{margin:4px 0;font-size:14px;color:var(--ink-2);max-width:44em} .card p b{color:var(--ink)}
+.tw{overflow-x:auto} table{border-collapse:collapse;width:100%;font-size:13.5px;background:var(--surface);border:1px solid var(--line)}
+th{text-align:left;font-size:12px;color:var(--muted);font-weight:650;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap} td{padding:8px 10px;border-bottom:1px solid var(--line-2);vertical-align:top} tr:last-child td{border-bottom:none}
+td.q{font-weight:600;min-width:9em} td.r{color:var(--ink-2);font-size:13px}
+.lv{font-size:11.5px;font-weight:650;padding:0 6px;border-radius:2px;white-space:nowrap} .lo{background:var(--ok-soft);color:var(--ok)} .mid{background:var(--warn-soft);color:var(--warn)} .hi{background:var(--must-soft);color:var(--must)}
+pre{white-space:pre-wrap;font-family:var(--sans);font-size:13.5px;background:var(--surface-2);border:1px solid var(--line-2);padding:10px 12px;margin:8px 0}
+button{font:inherit;font-size:12.5px;padding:3px 12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;border-radius:3px}
+.note{font-size:13px;color:var(--muted);margin:8px 0 0} a{color:var(--accent)}
+@media (max-width:640px){.wrap{padding:24px 16px 60px} .sum{grid-template-columns:1fr 1fr} table{font-size:12.5px}}
+.stage{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 24px}.stage span{padding:5px 12px;border-radius:14px;font-size:13.5px;border:1px solid var(--line);background:var(--surface)}.stage .done{background:var(--ok-soft);color:var(--ok);border-color:var(--ok)}.stage .now{background:var(--warn-soft);color:var(--warn);border-color:var(--warn);font-weight:700}.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}@media(max-width:640px){.two{grid-template-columns:1fr}}</style></head><body><div class="wrap">
+<p class="meta">简报 · 2026-09-29 09:35 · 依据：决策汇报、环节1–3 完整文件、推进计划（第十六次规划）、审查记录</p>
+<h1>项目汇报：三环已过，方案主线改到了高卡用户身上</h1>
+<div class="verdict"><p>现状、诊断、方案三环都已通过闸门，现在是最后一环：把决策点写清楚。按业绩重排后，最大的机会都在高卡用户身上，所以方案主线从「五类人群分开定制」改成了「高卡储值位分档 + 高卡流失预警」，而且首期基本不用研发。这个方向变化需要主管来定。你现在要做两件自查，发两条消息。</p></div>
+<div class="stage"><span class="done">✓ 环节1 现状</span><span class="done">✓ 环节2 诊断</span><span class="done">✓ 环节3 方案</span><span class="now">▶ 环节4 决策汇报</span></div>
+
+<section><div class="no">一 · 诊断</div><h2>对业绩影响最大的两件事，都在高卡用户身上</h2>
+<div class="card"><p><b>业绩高度集中</b>：金卡以上 6,366 人（占活跃 10%），贡献了 <b>97%</b> 的累计储值；普卡、银卡 55,926 人（90%）只贡献 3%。</p>
+<p>按「同样改善 1%，业绩增加多少」来排，先后是：</p></div>
+<div class="tw"><table>
+<tr><th>排序</th><th>机会或问题</th><th>规模</th><th>弹窗碰得到吗</th></tr>
+<tr><td>1</td><td><b>还在来的付费者多付一点</b>（主要是高卡）</td><td>13,234 人（已去掉 134 名大户）</td><td>碰得到</td></tr>
+<tr><td>2</td><td><b>高卡流失风险</b></td><td>927 人：755 人近期没来，172 人已离开</td><td>碰不到，要靠专人或推送</td></tr>
+<tr><td>3</td><td>沉默的老账号召回；在场回流用户多付一点</td><td>2.7 万人；8,022 人</td><td>召回碰不到；回流碰得到</td></tr>
+<tr><td>靠后</td><td>新增只来注册当天</td><td>3,893 人</td><td>注册当天已经过去</td></tr>
+<tr><td>定不了</td><td>从未储值的人首次付费</td><td>约 2 万人</td><td>碰得到</td></tr>
+</table></div>
+<p class="note">这些都是「每改善 1% 相当于多少」的换算（推断）。每一项实际能改善多少，本地估不出来，所以排序只说明哪边分量大，不说明哪边容易。完整版见 <a href="../环节2_问题诊断.html">环节2_问题诊断.html</a>。</p>
+</section>
+
+<section><div class="no">二 · 方案</div><h2>弹窗主线从「五类人群」换成「高卡两面都做」，首期基本不用研发</h2>
+<div class="two">
+<div class="card"><h3>原计划（主管的短期规划）</h3><p>按新增、回流、破产、潜在付费、潜在流失五类人群分开定制弹窗（02 的五张卡）。</p></div>
+<div class="card"><h3>现在的方案</h3><p><b>在场的高卡</b>：储值位按卡别分档，给高卡看更合适价位的礼包；加一个改过的「高卡储值下滑预警」。<br><b>不来的高卡</b>：按名单交专人或推送（其中 168 人占这一块八成的钱）。<br>回流在场者的付费内容作为次线。</p></div>
+</div>
+<div class="tw" style="margin-top:10px"><table>
+<tr><th>线</th><th>结论</th></tr>
+<tr><td>弹窗</td><td>02 的五张卡退出主线，只保留「储值衰退规则扩到全部卡别」一张，而且要改：按原写法，高卡每天的活动弹窗会从 12 个增加到 32 个。储值位分几档，取决于独享礼包的价格（你的自查 ①）</td></tr>
+<tr><td>推送</td><td>高卡流失这一面，首选按名单联系，不一定需要 07 统一推送。07 的价值改为：召回沉默老账号，加上数据可查。首期建议缩小为「按标签群组定向的推播 + 数据」</td></tr>
+<tr><td>标签</td><td>首期基本不用新建标签，现成标签或名单导出就够。「谁写 SQL」是次要卡点，取决于你的自查 ③</td></tr>
+<tr><td>研发</td><td>首期基本不用。04 的三个开发项（总量上限、关闭后不弹、新手弹窗进后台）建议推后，符合「短期 = 现有功能迭代」</td></tr>
+<tr><td>评估</td><td>改善 1–3% 的效果，在现有人数下用储值测不出来。交主管时<b>不能承诺「上线后用储值证明」</b>，只能按机制和成本上线，做护栏监测、追踪过程指标</td></tr>
+</table></div>
+<p class="note">完整版见 <a href="../环节3_方案.html">环节3_方案.html</a>。</p>
+</section>
+
+<section><div class="no">三 · 决策点</div><h2>13 件事要定：4 件归主管，其余归你；选项和推荐正在写</h2>
+<div class="two">
+<div class="card"><h3>主管定（4 件）</h3>
+<p>1. 弹窗首期主线从「五类人群」改为「高卡两面」（你先认可口径）</p>
+<p>2. 04 的三个开发项推后，是否可以接受</p>
+<p>3. 高卡要不要设专人跟进</p>
+<p>4. 07 推送首期做多大：全部统一，还是只做「定向推播 + 数据」</p></div>
+<div class="card"><h3>你定（主要几件）</h3>
+<p>· 03 配置单首期上哪几条</p>
+<p>· 储值位分几档（等独享礼包价格）</p>
+<p>· 潜在付费的定义，以及首储礼包覆盖够不够</p>
+<p>· 标签和 SQL 交不交研发</p>
+<p>· 交主管时的承诺口径（不承诺用储值证明）</p></div>
+</div>
+<p class="note">现在先不用定：环节4 正在把每一项写成「问题 + 选项 + 推荐 + 理由」，写好后我再发给你。</p>
+</section>
+
+<section><div class="no">四 · 你现在要做的</div><h2>两件自查、两条消息，都是事实类，不用做决定</h2>
+<div class="card"><h3>自查 ①　后台「储值品项设定」页截图</h3><p>全部礼包的价格和点数，重点看<b>独享礼包的价格和限购</b>：买过首储的高卡在储值位第一个看到的就是它，它的价格决定储值位分几档。顺便看首储礼包有没有开放期。</p></div>
+<div class="card"><h3>自查 ③　标签后台截图</h3><p>「已经先存储了」「新增」「回流」3 个标签的条件；「当月储值额小于上月 50%」是按自然月比，还是按滚动 30 天比；「当前卡别」类里有没有能圈出金卡以上的标签；标签群组能不能用排除。</p></div>
+<div class="card"><h3>发给运营（4 句）</h3><pre id="m1">想确认四件事：
+1. 有没有代理、推广、内部账号没有标成测试账号？
+2. 卡别会不会降级？升级、保级看的储值和押注，是算最近多长时间的累计？
+3. 金卡以上的玩家储值明显下降时，现在有没有人跟进？
+4. 推播、短信、LINE、Facebook 这几种通路，现在能不能只发给我们给的一份会员编号名单，或者后台的某个标签群组？发出去以后，能不能看到发了几人、送达几人、点开几人？</pre><button onclick="cp('m1',this)">复制</button><p class="note">第 3 句决定高卡流失有没有人管；第 4 句决定推送要不要急着做。</p></div>
+<div class="card"><h3>发给数据组（2 项）</h3><pre id="m2">想请数据组导两样东西：
+1. 近一月活跃玩家里，买过首储礼包的会员编号名单（只要会员编号一列）。
+2. 过去 12 个月，按台北时间自然月的全平台储值总额（剔除机器人、测试账号），每月一个数。</pre><button onclick="cp('m2',this)">复制</button></div>
+</section>
+
+<section><div class="no">五 · 我的看法</div><h2>内容已经做深了，但还有两处要注意</h2>
+<div class="card"><p><b>1. 决策汇报读不下去，已要求改写。</b>内容很深，但开头结论是 800 字的一整段，满篇内部代号，比如「两把尺子」「N1」「P4」「A26」。我已把改写可读版定为环节4 的首要任务（审查记录 R142）：首屏 3–5 句大白话，正文不出现代号，决策点按「主管定 / 你定」分组。</p>
+<p><b>2. 方向变化大，先和主管对齐口径。</b>方案不再以五类人群为主线，这和主管的短期规划不一样。依据是业绩数据，但每项能改善多少都只是推断。建议你先拿第一、二节的结论和主管口头对一下方向，再让我们把决策点写细。</p></div>
+</section>
+</div>
+<script>
+function cp(id,btn){const t=document.getElementById(id).innerText;const d=()=>{btn.textContent='已复制';setTimeout(()=>btn.textContent='复制',1500)};
+if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(d).catch(()=>fb(t,d))}else fb(t,d)}
+function fb(t,d){const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');d()}catch(e){}a.remove()}
+</script></body></html>

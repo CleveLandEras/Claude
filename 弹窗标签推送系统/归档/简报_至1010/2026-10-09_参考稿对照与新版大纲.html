@@ -1,0 +1,101 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>参考稿对照与新版大纲</title>
+<style>
+:root{--ground:#f0efec;--surface:#fff;--ink:#191b1e;--ink-2:#484d53;--muted:#7d8289;--line:#dcdad5;--accent:#9a6f24;--red:#b03a2e;--blue:#2a63a6;--ok:#3d6b58;--ok-soft:#dfeae5;--info:#1c6ea4;--info-soft:#e0ecf4;--warn:#8a6410;--warn-soft:#f5ead2;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1a1d21;--ink:#e9e8e4;--ink-2:#b7bbc0;--muted:#868c94;--line:#2d3238;--accent:#d6ab5c;--red:#e0806f;--blue:#7fb0e6;--ok:#74b096;--ok-soft:#1d3129;--info:#6aa8d6;--info-soft:#1b2a36;--warn:#cfa44e;--warn-soft:#332a16;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1a1d21;--ink:#e9e8e4;--ink-2:#b7bbc0;--muted:#868c94;--line:#2d3238;--accent:#d6ab5c;--red:#e0806f;--blue:#7fb0e6;--ok:#74b096;--ok-soft:#1d3129;--info:#6aa8d6;--info-soft:#1b2a36;--warn:#cfa44e;--warn-soft:#332a16;}
+*{box-sizing:border-box} body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.75}
+.wrap{max-width:1080px;margin:0 auto;padding:44px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 6px}
+h1{font-family:var(--serif);font-size:24px;margin:0 0 16px;line-height:1.5}
+h2.sec{font-family:var(--serif);font-size:19px;margin:48px 0 6px;line-height:1.5}
+.sub{font-size:13.5px;color:var(--muted);margin:0 0 14px}
+.lead{background:var(--surface);border-left:3px solid var(--accent);padding:14px 20px;margin:0 0 20px}
+.lead p{margin:6px 0}
+.tw{background:var(--surface);border:1px solid var(--line);border-radius:8px;overflow:hidden;margin:0 0 8px}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{border-bottom:1px solid var(--line);padding:11px 14px;text-align:left;vertical-align:top;line-height:1.7}
+th{font-weight:650;color:var(--ink-2);background:var(--ground);white-space:nowrap;font-size:12.5px}
+tr:last-child td{border-bottom:none}
+td.k{font-weight:650;color:var(--ink)}
+td.n{color:var(--muted);font-weight:650;white-space:nowrap}
+tr.grp td{background:var(--ground);font-weight:700;font-size:13px;color:var(--ink)}
+.kr{color:var(--red);font-weight:650;font-size:12px;white-space:nowrap}
+.kb{color:var(--blue);font-weight:650;font-size:12px;white-space:nowrap}
+.kg{color:var(--muted);font-weight:650;font-size:12px;white-space:nowrap}
+.ex{display:block;color:var(--muted);font-size:12.5px;margin-top:4px}
+.note{font-size:12.5px;color:var(--muted);margin:6px 0 0}
+.b{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px 20px;margin:0 0 12px}
+.b h3{font-size:15.5px;margin:0 0 6px} .b p{margin:4px 0;font-size:14px;color:var(--ink-2)} .b p b{color:var(--ink)}
+.b ul{margin:4px 0 0;padding-left:1.2em;font-size:14px;color:var(--ink-2)} .b li{margin:3px 0}
+.todo{background:var(--surface);border:1px solid var(--accent);border-radius:8px;padding:14px 20px;margin:20px 0 12px}
+.todo h3{font-size:15.5px;margin:0 0 6px} .todo ol{margin:0;padding-left:1.3em;font-size:14px;color:var(--ink-2)} .todo li{margin:5px 0} .todo b{color:var(--ink)}
+.links{font-size:13px;color:var(--muted);margin-top:28px} a{color:var(--accent)}
+</style></head><body><div class="wrap">
+
+<p class="meta">新手通行证重构方案（22 页）对照呈交版 V1 · 2026-10-09 · 参考稿 22 页已逐页渲染查看；对照依据为《报告与方案写作标准（合并版）》</p>
+<h1>参考稿好在一页只讲一个判断：问题页只证明问题，方案页写清每项改在哪、改成什么、依据是什么。我们的方案按这个写法重做为 20 页左右</h1>
+
+<div class="lead">
+<p><b>差在哪</b>：呈交版把证据、改动、折叠明细放在同一张卡里，改动按短期、中期、长期排列，读者得自己拼出「这个问题怎么解决」。甲、乙两稿又加了根因表和路线对比，方向错了：被否决的路线按标准不应出现，根因应作为问题页的机制事实出现。</p>
+<p><b>怎么改</b>：沿用参考稿的层序：结论 → 目标与评估 → 五个问题各一页支撑、一页方案 → 实施分层 → 改动明细。正文不再出现推断标注；后台能力是否已存在，改写成方案卡里的前置条件。</p>
+<p><b>要你做的</b>：看第二节大纲，说「开始」后我出完整稿。页面示意需要三页后台截图；没有截图也不影响开工，这三页先做成字段表。</p>
+</div>
+
+<h2 class="sec">一、参考稿比呈交版好在六处</h2>
+<p class="sub">按对阅读的影响排序。</p>
+<div class="tw"><table>
+<tr><th style="width:150px">写法</th><th>参考稿</th><th>呈交版 V1</th><th style="width:250px">重做时</th></tr>
+<tr><td class="k">一页一个判断</td><td>22 页，每页一个结论标题；问题页与方案页分开<span class="ex">问题一 · 支撑「可领奖励没有被明确提示」→ 问题一 · 方案「可领奖励在出现时与未领时均有明确提示」</span></td><td>一页长文，每张问题卡里同时放证据、改动和折叠明细</td><td>每个问题拆成支撑页、方案页</td></tr>
+<tr><td class="k">问题页只证明问题</td><td>一个主数字带分母，再列三条机制事实，配截图<span class="ex">33.5%：发生过押注的玩家中从未领取奖励，8,326／24,836 人</span></td><td>证据旁边紧跟改动清单；多个数字并列，多处标「推断」</td><td>主数字一个，机制事实不超过三条，只写观察到的事实</td></tr>
+<tr><td class="k">改动写成规格</td><td>每项改动：名称、改在哪（客户端／后台／会员标签）、具体改成什么、一句依据<span class="ex">「每日挑战完成后显示『领取』｜客户端｜领取后显示『已领取』，与其他任务一致｜依据：现状完成后仍显示『前往』」</span></td><td>改动一行说明，按短期、中期、长期分组；依据藏在折叠区<span class="ex">「每人单次上限：弹窗规则增加单次进大厅合计上限，并可汇总查看」</span></td><td>每项改动写位置、规格、依据；开发量作为标签，不再作为分组</td></tr>
+<tr><td class="k">用图讲清机制</td><td>主数字配环图或两三根对比条；现状配游戏界面截图；方案配示意稿与「如何运作」四步图（玩家状态 → 本次新增 → 建议配置 → 玩家）；后台页面用真实截图，新增字段蓝底标出</td><td>有比例条，没有界面截图、运作图和后台页面</td><td>支撑页一图一数；弹窗分组、合计上限各画一张运作图；后台页面用截图标新增字段</td></tr>
+<tr><td class="k">改动清单按位置</td><td>后台五处页面、客户端五处界面、三项建议配置；每行写对应哪个问题</td><td>34 项按开发量列在附录</td><td>按后台页面、客户端、数据、建议配置列，开发量单独一列</td></tr>
+<tr><td class="k">标题短、颜色固定</td><td>问题标题以名词开头，只写判断：「奖励价值不直观」「奖励兑现链路长」；红＝问题，蓝＝本次改动，灰＝后续；表格里现状用红字、用途用蓝字；支撑页底部一条蓝带写「对应方案」，问题与方案一眼对上</td><td>标题夹带机制与数字：「弹窗数量与先后控制不住：规则命中即叠加，关闭后仍会再弹」；颜色用于区分开发档位</td><td>问题标题改为名词开头的判断句；颜色只表达问题与改动</td></tr>
+</table></div>
+
+<h2 class="sec">二、新版大纲：21 页，只看标题即可读完整个论证</h2>
+<p class="sub">问题按运营的动作顺序排：先圈人，再配内容、控数量，经弹窗或推送触达，最后看效果。数字均取自已过审的呈交版。</p>
+<div class="tw"><table>
+<tr><th style="width:44px">页</th><th style="width:110px">版块</th><th>标题（结论）</th><th>内容与图</th></tr>
+<tr><td class="n">1</td><td>封面</td><td class="k">弹窗 · 标签 · 推送 精细化运营能力方案</td><td>五个问题 · 方案与改动</td></tr>
+<tr><td class="n">2</td><td>结论</td><td class="k">五个问题与对应方案</td><td>五行表：问题｜支撑（主数字与分母）｜对应方案</td></tr>
+<tr><td class="n">3</td><td>目标与评估</td><td class="k">运营不经研发即可为一类人群单独配置、事前限定每人数量、事后查到效果</td><td>三条验收各配现状值：只有新增、破产可单独配置；每人上限靠手工推算；推送没有发送与到达数据。五类目标人群规模</td></tr>
+<tr class="grp"><td colspan="4">五个问题：每个问题一页支撑、一页方案</td></tr>
+<tr><td class="n">4</td><td><span class="kr">问题一 · 支撑</span></td><td class="k">目标人群圈不出</td><td>主数字 1／5：五类目标人群中只能直接圈出新增（10,749 人）。机制：缺回流时间点、首储购买标记与每人月度储值；新增标签写 30 天、取数为 29 天，差 358 人；押注阈值从 1,000 调到 100,000，潜在付费从 36,028 人降到 11,803 人，上线前看不到。图：五类人群规模条</td></tr>
+<tr><td class="n">5</td><td><span class="kb">问题一 · 方案</span></td><td class="k">五类目标人群都能用标签圈出，上线前看得到规模与口径</td><td>三张改动卡：事件标签（回流时间点、首储购买标记）｜人群交集与排除｜上线前显示规模与口径</td></tr>
+<tr><td class="n">6</td><td><span class="kr">问题二 · 支撑</span></td><td class="k">弹窗不分人群</td><td>主数字 43.85%：新增与回流 27,313／62,292 人看到的弹窗与其余玩家相同。机制：5 条弹窗规则中 3 条面向全部玩家；回流任务排在活动类第 7 位；四个弹窗时机都已占用，分人群只能叠加规则。图：人群占比条</td></tr>
+<tr><td class="n">7</td><td><span class="kb">问题二 · 方案</span></td><td class="k">同一弹窗位置按人群分组，每人只命中一组</td><td>三张改动卡：活动类弹窗按新增、回流、其余分组｜图文与点击去向自助编辑｜新手弹窗接入后台。运作图：标签人群 → 规则分组 → 每人只命中一组 → 玩家看到本组内容</td></tr>
+<tr><td class="n">8</td><td><span class="kr">问题三 · 支撑</span></td><td class="k">每人弹窗数量与先后不可控</td><td>主数字 4 个：储值下滑的普卡、银卡单次进大厅最多弹出数（配置上限）。机制：规则只设对象、位置与个数，命中多条即叠加；只能限单项每日次数，关闭后仍会再弹；新手弹窗写死在客户端。图：三类玩家单次最多弹出数</td></tr>
+<tr><td class="n">9</td><td><span class="kb">问题三 · 方案</span></td><td class="k">每人单次、单日弹出数与先后在后台设定，上线前可读出</td><td>三张改动卡：单次与单日上限｜先后顺序｜关闭后当日不再弹。另列现有配置即可做的改规则前测算</td></tr>
+<tr><td class="n">10</td><td><span class="kr">问题四 · 支撑</span></td><td class="k">推送入口分散</td><td>主数字 53.86%：最后登录 ≥ 8 天、弹窗够不到的玩家 40,117／74,480 人。机制：5 种推送各自配置（推播在礼包后台，快显写死在客户端，短信等在营销侧）；没有跨推送方式的每人每日上限；升级提示点击不跳转。图：离线占比环</td></tr>
+<tr><td class="n">11</td><td><span class="kb">问题四 · 方案</span></td><td class="k">五种推送在一个后台按标签发送，弹窗与推送按人合计上限</td><td>三张改动卡：推送按标签发送（现有方式）｜推送并入同一后台｜按人合计上限。依据写正向理由：合计上限要把弹窗与推送条数放在一起计数。运作图：当日已收弹窗 → 发送前合计 → 未超上限才发</td></tr>
+<tr><td class="n">12</td><td><span class="kr">问题五 · 支撑</span></td><td class="k">触达效果查不到</td><td>主数字 6／8：效果查看所需的 8 个数据项本地没有 6 个。机制：推送发送与到达整体没有数据；弹窗曝光、点击未取出，关闭未记录；没有分组对照</td></tr>
+<tr><td class="n">13</td><td><span class="kb">问题五 · 方案</span></td><td class="k">弹窗与推送的效果可查，改动有对照</td><td>三张改动卡：弹窗曝光、点击按人群汇总｜随机分组对照｜推送发送、到达、点击汇总</td></tr>
+<tr class="grp"><td colspan="4">实施与改动明细</td></tr>
+<tr><td class="n">14</td><td>实施分层</td><td class="k">34 项按开发量分三层推进：做完中期，弹窗侧三条验收达成；推送侧在长期达成</td><td>表：短期、中期、长期 × 三条验收；写明主管要决定的是各层排期</td></tr>
+<tr><td class="n">15</td><td>改动明细</td><td class="k">后台配套能力与改动清单</td><td>分隔页</td></tr>
+<tr><td class="n">16</td><td>后台配套能力</td><td class="k">标签、弹窗、推送三处后台要补的能力</td><td>表：能力｜现状｜用途</td></tr>
+<tr><td class="n">17–19</td><td>页面示意</td><td class="k">会员标签设定｜大厅自动弹窗管理｜推送设置</td><td>真实后台截图，新增字段蓝底标出，附使用方式。没有截图时改为字段表：新增字段｜规则｜现状</td></tr>
+<tr><td class="n">20</td><td>改动清单</td><td class="k">后台、客户端、数据与建议配置的全部改动</td><td>表：类型｜位置｜改动｜开发量｜对应问题。含要新增的数据收集</td></tr>
+<tr><td class="n">21</td><td>数据来源</td><td class="k">样本与口径</td><td>近一月活跃 62,292 人（2026-08-16 至 09-16，已剔除机器人与测试账号）；八月登录流失名单</td></tr>
+</table></div>
+<p class="note">不再进入呈交版的内容：25 个场景覆盖图、根因与路线比较、推断标注、各卡折叠明细。场景与根因留在阶段产出文件中；后台能力是否已存在，写成方案卡里的前置条件，例如「弹窗对象需支持排除条件；不支持时多建 2 个标签」。</p>
+
+<h2 class="sec">三、版面约定</h2>
+<div class="b"><ul>
+<li>载体：16:9 演示文稿（.pptx），与参考稿一致；一页一个判断，最容易守住结构</li>
+<li>每页：小标签（问题N · 支撑／方案）＋结论标题＋不超过三张内容卡；浅灰底、白卡片、大留白；页脚写方案名与页码</li>
+<li>支撑页：左卡一个主数字配图，右卡三条机制事实，底部蓝带写对应方案；方案页：每张改动卡右上角标位置（标签后台／弹窗后台／推送／客户端／数据），卡内写改什么与依据</li>
+<li>字号三级：标题 26pt，卡片标题 14pt，正文 12pt；并列项不超过 5 条</li>
+<li>颜色：红＝问题，蓝＝改动，灰＝说明；开发量（现有配置／小改动／较大开发）用中性标签，不占用颜色</li>
+<li>每个比例写分母；正文不写「详见附录」这类指路句，不写「推断」</li>
+</ul></div>
+
+<div class="todo"><h3>你现在能做的</h3><ol>
+<li><b>看第二节大纲，说「开始」</b>：我按大纲出完整稿；大纲要调哪一页，直接指出页码即可。</li>
+<li><b>提供截图（可选）</b>：后台三页（会员标签设定、大厅自动弹窗管理、推播设置），以及新增玩家进大厅时连续弹出的弹窗。有后台截图，第 17–19 页按参考稿标出新增字段；有弹窗截图，问题二、三的支撑页可配现状图。没有也不影响开工：后台页改为字段表，支撑页只用数据图。</li>
+</ol></div>
+
+<p class="links">原文：<a href="../../归档/呈交版旧稿/弹窗标签推送方案_V1.html">呈交版 V1</a>　·　<a href="../../规则与交接/写作标准_合并版.md">写作标准（合并版）</a></p>
+</div></body></html>

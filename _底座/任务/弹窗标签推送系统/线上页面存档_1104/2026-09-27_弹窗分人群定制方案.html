@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>弹窗分人群定制方案</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+  :root{
+    --ground:#f0efec; --surface:#ffffff; --surface-2:#f7f6f3; --surface-3:#eceae5;
+    --ink:#191b1e; --ink-2:#484d53; --muted:#7d8289; --line:#dcdad5; --line-2:#e8e6e1;
+    --accent:#9a6f24; --must:#a63f38; --must-soft:#f4e3e1;
+    --warn:#8a6410; --warn-soft:#f5ead2;
+    --info:#1c6ea4; --info-soft:#e0ecf4; --ok:#3d6b58; --ok-soft:#dfeae5;
+    --serif:"Noto Serif SC",Georgia,"Songti SC",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Source Han Sans SC",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#131518; --surface:#1a1d21; --surface-2:#20242a; --surface-3:#272c32;
+      --ink:#e9e8e4; --ink-2:#b7bbc0; --muted:#868c94; --line:#2d3238; --line-2:#262b31;
+      --accent:#d6ab5c; --must:#dd8078; --must-soft:#38231f; --warn:#cfa44e; --warn-soft:#332a16;
+      --info:#6aa8d6; --info-soft:#1b2a36; --ok:#74b096; --ok-soft:#1d3129;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#131518; --surface:#1a1d21; --surface-2:#20242a; --surface-3:#272c32;
+    --ink:#e9e8e4; --ink-2:#b7bbc0; --muted:#868c94; --line:#2d3238; --line-2:#262b31;
+    --accent:#d6ab5c; --must:#dd8078; --must-soft:#38231f; --warn:#cfa44e; --warn-soft:#332a16;
+    --info:#6aa8d6; --info-soft:#1b2a36; --ok:#74b096; --ok-soft:#1d3129;
+  }
+  html{scroll-padding-top:env(safe-area-inset-top,0px);}
+  *,*::before,*::after{box-sizing:border-box}
+  body{margin:0; background:var(--ground); color:var(--ink); font-family:var(--sans);
+    font-size:16px; line-height:1.78; -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:880px; margin:0 auto; padding:48px 26px 90px;}
+  .masthead{border-bottom:2px solid var(--ink); padding-bottom:16px; margin-bottom:26px;}
+  h1{font-family:var(--serif); font-size:34px; line-height:1.28; margin:0 0 6px;}
+  .meta{font-size:13px; color:var(--muted); margin:0;}
+
+  .goal{background:var(--surface); border-left:3px solid var(--ok); padding:18px 22px; margin:0 0 30px;}
+  .goal h2{font-size:16px; font-weight:650; margin:0 0 6px; font-family:var(--sans);}
+  .goal ul{margin:0; padding-left:1.2em; max-width:38em;}
+  .goal li{margin:2px 0;}
+
+  h2.sec{font-family:var(--serif); font-size:22px; margin:0 0 6px; padding-bottom:8px; border-bottom:1px solid var(--line);}
+  .sub{font-size:13.5px; color:var(--muted); margin:0 0 16px; max-width:42em;}
+  section{margin:0 0 44px;}
+
+  figure{margin:0; background:var(--surface); border:1px solid var(--line); padding:18px 18px 14px;}
+  .figscroll{overflow-x:auto;}
+  .figscroll svg{display:block; min-width:640px; width:100%; height:auto;}
+  .legend{display:flex; gap:20px; flex-wrap:wrap; margin:12px 0 0; font-size:12.5px; color:var(--ink-2);}
+  .legend span{display:flex; align-items:center; gap:6px;}
+  .legend i{width:12px; height:12px; border-radius:2px; display:block; border:1px solid;}
+  svg text{font-family:var(--sans);}
+  .n-src{fill:var(--surface-2); stroke:var(--ink-2);}
+  .n-slot{fill:var(--surface-3); stroke:var(--line);}
+  .n-chg{fill:var(--info-soft); stroke:var(--info);}
+  .n-same{fill:var(--surface-2); stroke:var(--line);}
+  .t-main{fill:var(--ink); font-size:14px; font-weight:600;}
+  .t-sub{fill:var(--ink-2); font-size:12px;}
+  .edge{fill:none; stroke:var(--muted); stroke-width:1.2;}
+
+  .card{background:var(--surface); border:1px solid var(--line); margin:0 0 14px;}
+  .card-head{padding:16px 20px 4px; display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 12px;}
+  .card h3{font-size:17px; font-weight:650; margin:0; flex:1 1 16em;}
+  .chips{display:flex; gap:6px; flex-wrap:wrap;}
+  .chip{font-size:12px; padding:1px 8px; background:var(--info-soft); color:var(--info); border-radius:2px;}
+  .card-body{padding:4px 20px 14px;}
+  .fld{font-size:12.5px; font-weight:650; color:var(--muted); margin:8px 0 4px;}
+  .card ul{margin:0; padding-left:1.2em; max-width:38em;}
+  .card li{margin:3px 0; font-size:15px;}
+  .card li .note{color:var(--muted); font-size:13.5px;}
+  details.more{border-top:1px solid var(--line-2);}
+  details.more summary{cursor:pointer; list-style:none; padding:10px 20px; font-size:14px; font-weight:600; color:var(--ink-2);
+    display:flex; justify-content:space-between; align-items:center;}
+  details.more summary::-webkit-details-marker{display:none;}
+  details.more summary::after{content:"展开"; font-size:12px; color:var(--muted); font-weight:500;}
+  details.more[open] summary::after{content:"收起";}
+  details.more .inner{padding:0 20px 14px;}
+  details.more .fld:first-child{margin-top:0;}
+  details.more li{font-size:14.5px;}
+  .pre li::marker{color:var(--warn);}
+  .risk li::marker{color:var(--must);}
+
+  .tablewrap{overflow-x:auto; margin:6px 0 4px;}
+  table{border-collapse:collapse; width:100%; min-width:520px; font-size:14px;}
+  th{text-align:left; font-size:12.5px; font-weight:650; color:var(--muted); padding:8px 10px; border-bottom:1px solid var(--line); white-space:nowrap;}
+  td{padding:7px 10px; border-bottom:1px solid var(--line-2); vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  td.n,th.n{text-align:right; font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap;}
+  td.n b{color:var(--info);}
+
+  .apxtoc{background:var(--surface); border:1px solid var(--line); padding:14px 20px; margin:0 0 10px;}
+  .apxtoc p{margin:0 0 4px; font-size:13px; font-weight:650; color:var(--muted);}
+  .apxtoc ol{margin:0; padding-left:1.3em; font-size:14px; color:var(--ink-2);}
+  details.apx{border:1px solid var(--line); background:var(--surface); margin-top:8px;}
+  details.apx summary{cursor:pointer; list-style:none; padding:12px 18px; font-size:14.5px; font-weight:600;
+    display:flex; justify-content:space-between; align-items:center;}
+  details.apx summary::-webkit-details-marker{display:none;}
+  details.apx summary::after{content:"展开"; font-size:12px; color:var(--muted); font-weight:500;}
+  details.apx[open] summary::after{content:"收起";}
+  details.apx .body{padding:4px 18px 16px; border-top:1px solid var(--line-2); font-size:14px; color:var(--ink-2);}
+  .seq{margin:8px 0 0; padding-left:1.5em; max-width:38em;}
+  .seq li{margin:1px 0;}
+  h4{font-size:14px; font-weight:650; color:var(--ink); margin:14px 0 4px;}
+
+  :focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+  @media (max-width:600px){ .wrap{padding:30px 16px 70px} h1{font-size:27px} .card-head,.card-body,details.more summary,details.more .inner{padding-left:14px;padding-right:14px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <h1>弹窗分人群定制方案</h1>
+    <p class="meta">2026-09-27</p>
+  </header>
+
+  <div class="goal">
+    <h2>目标</h2>
+    <ul>
+      <li>新增、回流、破产、潜在付费、潜在流失五类人群各有对应的弹窗内容</li>
+      <li>弹窗的数量、内容、顺序按人群整体可控</li>
+      <li>全部以现有后台配置实现，无需开发介入</li>
+    </ul>
+  </div>
+
+  <section>
+    <h2 class="sec">规则结构</h2>
+    <p class="sub">活动位按玩家身份拆为三条互斥规则，每位玩家只命中其中一条。人数为近一月活跃用户，分母 62,292。</p>
+    <figure>
+      <div class="figscroll">
+      <svg viewBox="0 0 760 336" role="img" aria-labelledby="st sd">
+        <title id="st">调整后的弹窗规则结构</title>
+        <desc id="sd">进入大厅触发活动位、储值位与储值衰退定向；破产触发破产位。活动位按身份分为新增、回流、其余三条规则。</desc>
+        <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="var(--muted)"/></marker></defs>
+        <rect class="n-src" x="1" y="118" width="108" height="44" rx="4"/>
+        <text class="t-main" x="55" y="145" text-anchor="middle">进入大厅</text>
+        <rect class="n-src" x="1" y="286" width="108" height="44" rx="4"/>
+        <text class="t-main" x="55" y="313" text-anchor="middle">破产</text>
+
+        <path class="edge" d="M110 140 H135 V72 H158" marker-end="url(#ah)"/>
+        <path class="edge" d="M135 140 V190 H158" marker-end="url(#ah)"/>
+        <path class="edge" d="M135 190 V246 H158" marker-end="url(#ah)"/>
+        <path class="edge" d="M110 308 H158" marker-end="url(#ah)"/>
+
+        <rect class="n-slot" x="160" y="52" width="110" height="40" rx="4"/>
+        <text class="t-main" x="215" y="77" text-anchor="middle">活动位</text>
+        <rect class="n-slot" x="160" y="170" width="110" height="40" rx="4"/>
+        <text class="t-main" x="215" y="195" text-anchor="middle">储值位</text>
+        <rect class="n-slot" x="160" y="226" width="110" height="40" rx="4"/>
+        <text class="t-main" x="215" y="251" text-anchor="middle">衰退定向位</text>
+        <rect class="n-slot" x="160" y="288" width="110" height="40" rx="4"/>
+        <text class="t-main" x="215" y="313" text-anchor="middle">破产位</text>
+
+        <path class="edge" d="M271 72 H295 V22 H318" marker-end="url(#ah)"/>
+        <path class="edge" d="M271 72 H318" marker-end="url(#ah)"/>
+        <path class="edge" d="M295 72 V122 H318" marker-end="url(#ah)"/>
+        <path class="edge" d="M271 190 H318" marker-end="url(#ah)"/>
+        <path class="edge" d="M271 246 H318" marker-end="url(#ah)"/>
+        <path class="edge" d="M271 308 H318" marker-end="url(#ah)"/>
+
+        <rect class="n-chg" x="320" y="1" width="438" height="42" rx="4"/>
+        <text class="t-main" x="334" y="19">新增用户活动弹窗　新建，弹 1 个</text>
+        <text class="t-sub" x="334" y="36">新增 10,749 人，17.26%</text>
+        <rect class="n-chg" x="320" y="51" width="438" height="42" rx="4"/>
+        <text class="t-main" x="334" y="69">回流用户活动弹窗　新建，弹 2 个</text>
+        <text class="t-sub" x="334" y="86">回流 16,564 人，26.59%</text>
+        <rect class="n-chg" x="320" y="101" width="438" height="42" rx="4"/>
+        <text class="t-main" x="334" y="119">ID5 活动类弹窗　改对象，弹 2 个</text>
+        <text class="t-sub" x="334" y="136">其余 34,979 人，56.15%</text>
+        <rect class="n-same" x="320" y="169" width="438" height="42" rx="4"/>
+        <text class="t-main" x="334" y="187">ID6 通用弹窗　不变，弹 1 个</text>
+        <text class="t-sub" x="334" y="204">未购买首储礼包的玩家固定取到首储礼包，覆盖潜在付费</text>
+        <rect class="n-chg" x="320" y="225" width="438" height="42" rx="4"/>
+        <text class="t-main" x="334" y="243">ID10 储值衰退 50%　扩至全部卡别，弹 1 个</text>
+        <text class="t-sub" x="334" y="260">覆盖潜在流失；ID11 停用</text>
+        <rect class="n-chg" x="320" y="287" width="438" height="42" rx="4"/>
+        <text class="t-main" x="334" y="305">ID7 破产储值弹窗　调整排序，弹 1 个</text>
+        <text class="t-sub" x="334" y="322">破产礼包调至第 2 位</text>
+      </svg>
+      </div>
+      <div class="legend">
+        <span><i style="background:var(--info-soft);border-color:var(--info)"></i>新建或调整</span>
+        <span><i style="background:var(--surface-2);border-color:var(--line)"></i>不变</span>
+      </div>
+    </figure>
+  </section>
+
+  <section>
+    <h2 class="sec">决策项</h2>
+
+    <article class="card">
+      <div class="card-head"><h3>活动位按玩家身份拆分</h3><div class="chips"><span class="chip">新增</span><span class="chip">回流</span></div></div>
+      <div class="card-body">
+        <p class="fld">主要改动</p>
+        <ul>
+          <li>ID5 对象由全部玩家改为全部玩家排除新增、回流，排序与各项设置不变</li>
+          <li>新建新增用户活动弹窗，弹 1 个，排序为 ID5 原顺序去除月月抽与回流任务 <span class="note">月月抽自金卡起才有，近三个月注册用户 95.8% 为普卡（分母 16,031）</span></li>
+          <li>新建回流用户活动弹窗，弹 2 个，回流任务置第 1 位，其余沿用 ID5 原顺序 <span class="note">回流 16,564 人，此前无针对规则，回流任务排 ID5 第 7 位</span></li>
+          <li>各弹窗项的时机、每日次数、冷却沿用 ID5 现有设置</li>
+        </ul>
+      </div>
+      <details class="more"><summary>前置条件、主要风险、评估重点</summary><div class="inner">
+        <p class="fld">前置条件</p>
+        <ul class="pre">
+          <li>弹窗对象支持带排除条件的群组；不支持时，新建标签「身份非新增、非回流」作为 ID5 对象（BigQuery 脚本，最快 25 分钟刷新）</li>
+        </ul>
+        <p class="fld">主要风险</p>
+        <ul class="risk">
+          <li>新增用户单次进大厅的活动弹窗由 2 个降为 1 个；新增用户另有客户端写死的新手挑战、新手通行证弹窗</li>
+          <li>回流用户中，原排第 1–6 位的活动曝光顺延一位</li>
+        </ul>
+        <p class="fld">评估重点</p>
+        <ul>
+          <li>回流用户的回流任务参与人数</li>
+          <li>新增、回流用户切换前后 7 日留存</li>
+        </ul>
+      </div></details>
+    </article>
+
+    <article class="card">
+      <div class="card-head"><h3>潜在流失定向覆盖全部卡别</h3><div class="chips"><span class="chip">潜在流失</span></div></div>
+      <div class="card-body">
+        <p class="fld">主要改动</p>
+        <ul>
+          <li>ID10 对象改为「当月储值额小于上月储值额 50%」，不再限普卡；ID11 停用</li>
+          <li>内容维持每日补给计划，每日 20 次，冷却 1800 秒 <span class="note">金卡至至尊卡活跃 6,366 人（10.22%，分母 62,292），此前无对应规则</span></li>
+        </ul>
+      </div>
+      <details class="more"><summary>前置条件、主要风险、评估重点</summary><div class="inner">
+        <p class="fld">前置条件</p>
+        <ul class="pre">
+          <li>各卡别在 70% / 50% / 25% 三档下的人数，用于确定档位</li>
+          <li>每日补给计划在 ID5（每日 1 次、无冷却）与 ID10（每日 20 次、冷却 1800 秒）的两套设置由运营确定保留方式</li>
+        </ul>
+        <p class="fld">主要风险</p>
+        <ul class="risk">
+          <li>标签若以当月 1 日起的累计储值与上月全月比较，月初多数付费用户会被圈入</li>
+        </ul>
+        <p class="fld">评估重点</p>
+        <ul>
+          <li>被圈入用户下月储值额相对当月的变化</li>
+        </ul>
+      </div></details>
+    </article>
+
+    <article class="card">
+      <div class="card-head"><h3>潜在付费沿用储值位首储礼包</h3><div class="chips"><span class="chip">潜在付费</span></div></div>
+      <div class="card-body">
+        <p class="fld">主要改动</p>
+        <ul>
+          <li>人群定义：从未储值，且近 4 个月投注总额超过 10,000 <span class="note">近一月活跃中从未储值 44,027 人（70.68%，分母 62,292）</span></li>
+          <li>不新增规则：该人群未购买首储礼包，ID6、ID7 排序第 1 位的首储礼包（NT$50）对其始终处于可购买状态，储值位优先取到首储礼包</li>
+        </ul>
+      </div>
+      <details class="more"><summary>前置条件、主要风险、评估重点</summary><div class="inner">
+        <p class="fld">前置条件</p>
+        <ul class="pre">
+          <li>新建标签「从未储值」，用于人群规模统计与效果评估</li>
+        </ul>
+        <p class="fld">主要风险</p>
+        <ul class="risk">
+          <li>首储礼包为该人群储值位的唯一内容，其每日次数与冷却决定该人群每日看到首储礼包的次数</li>
+        </ul>
+        <p class="fld">评估重点</p>
+        <ul>
+          <li>该人群中购买首储礼包的人数占比</li>
+        </ul>
+      </div></details>
+    </article>
+
+    <article class="card">
+      <div class="card-head"><h3>破产位排序以破产礼包优先</h3><div class="chips"><span class="chip">破产</span></div></div>
+      <div class="card-body">
+        <p class="fld">主要改动</p>
+        <ul>
+          <li>ID7 排序中破产礼包由第 3 位调至第 2 位，位于首储礼包之后、独享礼包之前 <span class="note">现状下已购买首储礼包的玩家破产时，独享礼包可购买即优先取到，破产礼包仅在前两位均不可购买时出现</span></li>
+        </ul>
+      </div>
+      <details class="more"><summary>前置条件、主要风险、评估重点</summary><div class="inner">
+        <p class="fld">前置条件</p>
+        <ul class="pre">
+          <li>破产礼包与独享礼包的售价</li>
+          <li>ID7 现有排序的设置意图由运营确认</li>
+        </ul>
+        <p class="fld">主要风险</p>
+        <ul class="risk">
+          <li>独享礼包在破产位的曝光减少</li>
+        </ul>
+        <p class="fld">评估重点</p>
+        <ul>
+          <li>破产位储值转化率切换前后对比</li>
+        </ul>
+      </div></details>
+    </article>
+
+    <article class="card">
+      <div class="card-head"><h3>弹出总量按人群控制</h3><div class="chips"><span class="chip">五类人群</span></div></div>
+      <div class="card-body">
+        <p class="fld">主要改动</p>
+        <div class="tablewrap"><table>
+          <thead><tr><th>人群</th><th class="n">单次进大厅最多弹出</th><th class="n">活动类每日次数上限</th></tr></thead>
+          <tbody>
+            <tr><td>新增</td><td class="n">3 → <b>2</b></td><td class="n">12 → <b>10</b></td></tr>
+            <tr><td>回流</td><td class="n">3 → 3</td><td class="n">12 → 12</td></tr>
+            <tr><td>其余</td><td class="n">3 → 3</td><td class="n">12 → 12</td></tr>
+            <tr><td>潜在流失（在所属人群上叠加）</td><td class="n">+1</td><td class="n">+20</td></tr>
+            <tr><td>破产（每次破产）</td><td class="n">1 → 1</td><td class="n">—</td></tr>
+          </tbody>
+        </table></div>
+        <ul>
+          <li>多条规则同时命中时，定向规则先于全量规则弹出</li>
+        </ul>
+      </div>
+      <details class="more"><summary>前置条件、主要风险、评估重点</summary><div class="inner">
+        <p class="fld">前置条件</p>
+        <ul class="pre">
+          <li>多条规则同时命中时的弹出先后可在后台配置</li>
+        </ul>
+        <p class="fld">主要风险</p>
+        <ul class="risk">
+          <li>大厅时机在每次返回大厅时触发，同一玩家当日多次返回大厅会持续弹出，直至各项每日次数用尽</li>
+        </ul>
+        <p class="fld">评估重点</p>
+        <ul>
+          <li>各人群人均每日弹窗曝光数</li>
+        </ul>
+      </div></details>
+    </article>
+  </section>
+
+  <section style="margin-bottom:0">
+    <h2 class="sec">附录</h2>
+    <div class="apxtoc">
+      <p>目录</p>
+      <ol><li>新建规则排序明细</li><li>人群口径</li><li>活动类每日次数上限的计算</li></ol>
+    </div>
+
+    <details class="apx"><summary>一　新建规则排序明细</summary><div class="body">
+      <h4>新增用户活动弹窗（弹 1 个）</h4>
+      <ol class="seq"><li>限时挑战</li><li>卡别直升活动</li><li>发信送奖</li><li>天天敲蛋礼V2</li><li>BOSS战</li><li>每日补给计划</li><li>连线格格送</li><li>活动排行榜</li></ol>
+      <h4>回流用户活动弹窗（弹 2 个）</h4>
+      <ol class="seq"><li>回流任务</li><li>月月抽</li><li>限时挑战</li><li>卡别直升活动</li><li>发信送奖</li><li>天天敲蛋礼V2</li><li>BOSS战</li><li>每日补给计划</li><li>连线格格送</li><li>活动排行榜</li></ol>
+      <h4>ID7 破产储值弹窗（弹 1 个）</h4>
+      <ol class="seq"><li>首储礼包</li><li>破产礼包</li><li>独享礼包</li><li>限时加码礼包</li><li>惊喜三选一</li><li>生涯限购</li><li>每日礼包</li><li>平台限量/专属礼包</li></ol>
+    </div></details>
+
+    <details class="apx"><summary>二　人群口径</summary><div class="body">
+      <div class="tablewrap"><table>
+        <thead><tr><th>人群</th><th>圈选条件</th><th class="n">近一月活跃人数</th></tr></thead>
+        <tbody>
+          <tr><td>新增</td><td>标签「新增」：注册 30 天以内</td><td class="n">10,749</td></tr>
+          <tr><td>回流</td><td>标签「回流」：身份字段为回流</td><td class="n">16,564</td></tr>
+          <tr><td>其余</td><td>身份为持续、VIP、黑名单</td><td class="n">34,979</td></tr>
+          <tr><td>破产</td><td>弹窗系统「破产」时机，无需标签</td><td class="n">—</td></tr>
+          <tr><td>潜在付费</td><td>从未储值，且近 4 个月投注总额超过 10,000</td><td class="n">—</td></tr>
+          <tr><td>潜在流失</td><td>标签「当月储值额小于上月储值额 50%」</td><td class="n">—</td></tr>
+        </tbody>
+      </table></div>
+      <p style="margin:8px 0 0;max-width:42em">分母 62,292：按最后登录时间取 2026-08-16 至 09-16，剔除机器人 599 与测试账号 141。新增、回流、持续三种身份互斥。</p>
+    </div></details>
+
+    <details class="apx"><summary>三　活动类每日次数上限的计算</summary><div class="body">
+      <p style="margin:6px 0 0;max-width:42em">上限为规则内各弹窗项每日次数之和，前提是各项均在开放期且可参与。</p>
+      <div class="tablewrap"><table>
+        <thead><tr><th>规则</th><th>各项每日次数</th><th class="n">合计</th></tr></thead>
+        <tbody>
+          <tr><td>ID5 与回流用户活动弹窗</td><td>限时挑战 2、卡别直升活动 2，其余 8 项各 1</td><td class="n">12</td></tr>
+          <tr><td>新增用户活动弹窗</td><td>限时挑战 2、卡别直升活动 2，其余 6 项各 1</td><td class="n">10</td></tr>
+          <tr><td>ID10 储值衰退 50%</td><td>每日补给计划 20</td><td class="n">20</td></tr>
+        </tbody>
+      </table></div>
+    </div></details>
+  </section>
+
+</div>
+</body>
+</html>

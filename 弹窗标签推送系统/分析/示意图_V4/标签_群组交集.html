@@ -1,0 +1,60 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><title>标签群组交集</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#fff;font-family:-apple-system,"PingFang SC","Helvetica Neue",sans-serif;color:#606266;font-size:15px}
+.page{border:1px solid #dcdfe6;padding:18px 22px 24px}
+.tabs{display:flex;border-bottom:1px solid #e4e7ed;margin-bottom:18px}
+.tabs span{padding:10px 22px;font-size:15px;color:#303133;border:1px solid #e4e7ed;border-bottom:none;margin-bottom:-1px;background:#fff}
+.tabs span+span{border-left:none}
+.tabs span.on{color:#409eff;border-bottom:1px solid #fff}
+.card{border:1px solid #ebeef5;border-radius:4px}
+.card .hd{padding:12px 18px;border-bottom:1px solid #ebeef5;font-size:16px;font-weight:700;color:#303133;background:#f5f7fa}
+.card .bd{padding:22px 18px 18px}
+.row{display:grid;grid-template-columns:120px 1fr;gap:14px;align-items:start;margin-bottom:18px}
+.row>label{text-align:right;color:#303133;font-size:15px;line-height:38px;white-space:nowrap}
+.row>label i{color:#f56c6c;font-style:normal;margin-right:3px}
+.ipt{height:38px;border:1px solid #dcdfe6;border-radius:4px;padding:0 12px;display:flex;align-items:center;justify-content:space-between;color:#303133;font-size:15px;background:#fff}
+.ipt.focus{border-color:#409eff}
+.chev{display:inline-block;width:7px;height:7px;border-right:1.5px solid #a8abb2;border-bottom:1.5px solid #a8abb2;transform:rotate(45deg);margin:-4px 2px 0 10px}
+.chev.up{transform:rotate(-135deg);margin-top:4px;border-color:#409eff}
+.cond{display:flex;align-items:center;gap:12px;position:relative}
+.cond .t{color:#606266;font-size:15px;white-space:nowrap}
+.dd{position:absolute;top:46px;background:#fff;border:1px solid #e4e7ed;border-radius:4px;box-shadow:0 4px 14px rgba(0,0,0,.12);padding:6px 0;width:150px;z-index:2}
+.dd div{height:40px;display:flex;align-items:center;padding:0 16px;font-size:15px;color:#606266;gap:10px}
+.dd div.sel{background:#eaf1fb;color:#1f4f8f;font-weight:700}
+.dd::before{content:"";position:absolute;top:-7px;left:28px;width:12px;height:12px;background:#fff;border-left:1px solid #e4e7ed;border-top:1px solid #e4e7ed;transform:rotate(45deg)}
+.pill{display:inline-flex;align-items:center;background:#2b5ea8;color:#fff;font-size:12.5px;font-weight:700;padding:2px 8px;border-radius:4px;line-height:1.3;white-space:nowrap}
+.gap{height:186px}
+.pill.gray{background:#8a909b}
+.newrow{display:flex;align-items:center;gap:14px;background:#eaf1fb;border:1px solid #c6d9f1;border-radius:4px;padding:12px 16px;margin:0 0 18px}
+.newrow .v{font-size:15.5px;color:#303133}
+.newrow .v b{font-size:18px;margin:0 4px}
+.newrow .v span{color:#606266}
+.btns{display:flex;gap:10px;padding-left:134px}
+.btn{height:38px;padding:0 22px;border-radius:4px;font-weight:600;font-size:15px;display:inline-flex;align-items:center}
+.btn.blue{background:#409eff;color:#fff}.btn.plain{border:1px solid #dcdfe6;color:#606266;background:#fff}
+</style></head><body>
+<div class="page">
+  <div class="tabs"><span>标签设定</span><span class="on">标签群组设定</span></div>
+  <div class="card">
+    <div class="hd">编辑标签群组</div>
+    <div class="bd">
+      <div class="row"><label><i>*</i>群组名称</label><div class="ipt" style="width:420px">回流且潜在付费</div></div>
+      <div class="row"><label><i>*</i>条件</label>
+        <div>
+          <div class="cond">
+            <span class="t">选择群组</span><div class="ipt" style="width:170px">回流<i class="chev"></i></div>
+            <div style="position:relative"><div class="ipt focus" style="width:150px">交集<i class="chev up"></i></div>
+              <div class="dd"><div>且</div><div>或</div><div>排除</div><div class="sel">交集<span class="pill">新建</span></div></div>
+            </div>
+            <span class="t">选择群组</span><div class="ipt" style="width:170px">潜在付费<i class="chev"></i></div>
+          </div>
+          <div class="gap"></div>
+        </div>
+      </div>
+      <div class="newrow"><span class="pill gray">核实后定</span><span class="v">当前人数：<b>X</b>人<span>（已剔除机器人、测试账号）</span></span></div>
+      <div class="btns"><span class="btn blue">保存</span><span class="btn plain">取消</span></div>
+    </div>
+  </div>
+</div>
+</body></html>

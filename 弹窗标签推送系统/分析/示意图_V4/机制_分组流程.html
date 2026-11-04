@@ -1,0 +1,37 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><title>分组机制流程</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#fff;font-family:-apple-system,"PingFang SC","Helvetica Neue",sans-serif;color:#1b1d21}
+.fig{padding:24px 28px 26px}
+.flow{display:grid;grid-template-columns:110px 36px 1fr 36px 240px 36px 190px;align-items:stretch}
+.box{border-radius:6px;padding:16px 18px;display:flex;flex-direction:column;justify-content:center;min-height:128px}
+.box .k{font-size:14px;font-weight:700;color:#868b92;margin-bottom:8px}
+.box .m{font-size:18px;font-weight:700;line-height:1.45}
+.box .s{font-size:15px;color:#4a4f56;margin-top:6px}
+.p{background:#fff;border:1px solid #e2e0db}
+.b{background:#eaf1fb;border:1px solid #c6d9f1}
+.b .k{color:#2b5ea8}
+.g{background:#f1f0ec;border:1px solid #e2e0db}
+.ar{display:flex;align-items:center;justify-content:center}
+.ar i{display:block;width:22px;height:3px;background:#b9b6ad;position:relative;margin-right:8px}
+.ar i::after{content:"";position:absolute;right:-10px;top:-6px;border-top:7.5px solid transparent;border-bottom:7.5px solid transparent;border-left:11px solid #b9b6ad}
+.seq{display:flex;align-items:center;gap:5px;margin-top:2px;flex-wrap:nowrap}
+.seq span{background:#fff;border:1px solid #9dbbe3;color:#1f4f8f;border-radius:4px;font-size:15px;font-weight:700;padding:5px 8px;white-space:nowrap}
+.seq b{color:#7c9cc8;font-size:15px;font-weight:700}
+.note{margin-top:16px;padding-top:14px;border-top:1px solid #e2e0db;font-size:15.5px;color:#4a4f56}
+.note b{color:#1b1d21}
+</style></head><body>
+<div class="fig">
+  <div class="flow">
+    <div class="box p"><div class="k">起点</div><div class="m">玩家</div></div>
+    <div class="ar"><i></i></div>
+    <div class="box b"><div class="k">按先后判定属于哪一组</div>
+      <div class="seq"><span>新增</span><b>→</b><span>回流</span><b>→</b><span>潜在流失·实验组</span><b>→</b><span>其余（含对照组）</span></div></div>
+    <div class="ar"><i></i></div>
+    <div class="box b"><div class="k">命中规则</div><div class="m">本组那一条活动类规则</div><div class="s">组间用排除互斥</div></div>
+    <div class="ar"><i></i></div>
+    <div class="box g"><div class="k">大厅弹窗</div><div class="m">看到本组内容</div></div>
+  </div>
+  <div class="note"><b>储值类：</b>排序会跳过买不了的礼包，从未储值者先取到首储礼包</div>
+</div>
+</body></html>

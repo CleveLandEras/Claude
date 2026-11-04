@@ -1,0 +1,193 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>需求分析</title>
+<style>
+/* 阶段产出模板样式（2026-10-08）。各阶段产出把本文件内容整段放进 <style>，组件用法见 阶段产出模板说明.md */
+:root{--bg:#f5f4f1;--card:#ffffff;--ink:#1b1d20;--ink2:#4a4f56;--muted:#868b92;--line:#e3e1dc;--line2:#efede9;
+--accent:#8a6a2c;--accent-soft:#f3ecdd;--ok:#2f6b52;--ok-soft:#e2efe8;--info:#225f8f;--info-soft:#e3edf5;--warn:#8a5d10;--warn-soft:#f6ecd8;--sup:#6b4fa0;--sup-soft:#ece6f6;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#141619;--card:#1c1f23;--ink:#e8e7e3;--ink2:#b9bdc2;--muted:#8a9098;--line:#30353c;--line2:#262a30;
+--accent:#d4ac62;--accent-soft:#2e2717;--ok:#7bb59a;--ok-soft:#1d3029;--info:#7fb0d8;--info-soft:#1b2a36;--warn:#d6a85a;--warn-soft:#332917;--sup:#b39ce0;--sup-soft:#2a2338;}}
+:root[data-theme="dark"]{--bg:#141619;--card:#1c1f23;--ink:#e8e7e3;--ink2:#b9bdc2;--muted:#8a9098;--line:#30353c;--line2:#262a30;
+--accent:#d4ac62;--accent-soft:#2e2717;--ok:#7bb59a;--ok-soft:#1d3029;--info:#7fb0d8;--info-soft:#1b2a36;--warn:#d6a85a;--warn-soft:#332917;--sup:#b39ce0;--sup-soft:#2a2338;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:940px;margin:0 auto;padding:36px 20px 72px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px;letter-spacing:.2px}
+h1{font-family:var(--serif);font-size:24px;line-height:1.5;margin:0 0 18px;font-weight:700}
+/* 概览数字 */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin:0 0 14px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+.kpi .n{font-size:24px;font-weight:700;line-height:1.2}
+.kpi .l{font-size:12.5px;color:var(--muted)}
+.kpi .d{font-size:12.5px;color:var(--ink2);margin-top:2px}
+/* 首屏摘要 */
+.summary{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:14px 18px;margin:0 0 8px}
+.summary dl{display:grid;grid-template-columns:72px 1fr;gap:6px 12px;margin:0}
+.summary dt{font-weight:650;color:var(--ink2);font-size:14px}
+.summary dd{margin:0;font-size:14.5px}
+/* 节 */
+.sec{margin:40px 0 0}
+.sec-h{display:flex;gap:12px;align-items:baseline;margin:0 0 4px}
+.sec-no{flex:none;font-size:12px;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:4px;padding:1px 8px;letter-spacing:1px}
+.sec-h h2{font-family:var(--serif);font-size:19px;line-height:1.5;margin:0;font-weight:700}
+.sec-sub{font-size:13.5px;color:var(--muted);margin:0 0 12px 0}
+/* 表格 */
+.tw{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:8px;margin:0 0 10px}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th{font-size:12.5px;font-weight:650;color:var(--muted);text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);white-space:nowrap;background:transparent}
+td{padding:10px 12px;border-bottom:1px solid var(--line2);vertical-align:top}
+tr:last-child td{border-bottom:none}
+tr.grp td{background:var(--bg);font-size:12.5px;font-weight:700;color:var(--ink2);padding:6px 12px;letter-spacing:1px}
+td.no{width:1%;white-space:nowrap;color:var(--muted);font-variant-numeric:tabular-nums}
+.src{display:block;font-size:12px;color:var(--muted);margin-top:2px}
+/* 标签 */
+.tag{display:inline-block;font-size:11.5px;font-weight:650;line-height:1.6;padding:0 7px;border-radius:4px;white-space:nowrap;vertical-align:1px}
+.t-goal{background:var(--ok-soft);color:var(--ok)} .t-con{background:var(--warn-soft);color:var(--warn)} .t-sug{background:var(--info-soft);color:var(--info)}
+.t-inf{background:var(--line2);color:var(--muted)} .t-add{background:var(--sup-soft);color:var(--sup)}
+.chip{display:inline-block;font-size:12px;padding:0 7px;border:1px solid var(--line);border-radius:10px;color:var(--ink2);margin:1px 2px 1px 0;font-variant-numeric:tabular-nums}
+/* 卡片 */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin:0 0 10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px 16px}
+.card h3{font-size:16px;margin:0 0 4px}
+.card .what{font-size:14px;color:var(--ink);margin:0 0 8px}
+.card .val{font-size:13.5px;color:var(--ink2);margin:8px 0 0;padding-top:8px;border-top:1px dashed var(--line)}
+/* 两栏 */
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 16px}
+.box h4{font-size:13px;color:var(--muted);margin:0 0 6px;font-weight:650;letter-spacing:.5px}
+.box ul{margin:0;padding-left:1.2em} .box li{margin:3px 0;font-size:14px}
+.note{font-size:12.5px;color:var(--muted);margin:6px 0 0}
+.links{font-size:13px;color:var(--muted);margin-top:40px;padding-top:12px;border-top:1px solid var(--line)}
+a{color:var(--accent)}
+@media (max-width:600px){h1{font-size:20px}.summary dl{grid-template-columns:1fr}.summary dt{margin-top:6px}}
+
+</style></head><body><div class="wrap">
+
+<p class="meta">阶段 1 · 需求分析 · 对象：弹窗、标签、推送三项能力的需求 · 2026-10-08 · 已过审（14:57）；25 场景版待审查复核，Dk 可随时确认或反馈</p>
+<h1>运营可自主按人群配置弹窗与推送、控制单人触达量、查看效果：拆解为 25 个运营场景、5 项能力</h1>
+
+<div class="kpis">
+<div class="kpi"><div class="l">需求</div><div class="n">11 条</div><div class="d">目标 8 · 约束 2 · 建议 1</div></div>
+<div class="kpi"><div class="l">运营场景</div><div class="n">25 个</div><div class="d">15 个对应需求 · 10 个本文补充</div></div>
+<div class="kpi"><div class="l">能力</div><div class="n">5 项</div><div class="d">互斥，覆盖全部场景</div></div>
+<div class="kpi"><div class="l">关键假设</div><div class="n">7 项</div><div class="d">不成立也不改能力划分</div></div>
+</div>
+
+<div class="summary"><dl>
+<dt>需求</dt><dd>五类人群各有定制弹窗，数量、内容、顺序可控；人群均可由标签圈选；推送统一入口、数据可查。约束：本期基于现有功能。需求按理想状态写全，成本取舍留到方案设计与讨论。</dd>
+<dt>验收</dt><dd>运营为一类新人群单独配置内容，无需研发、不影响其他人群；事前可算出单人触达上限，事后可查曝光、点击、购买。</dd>
+<dt>业绩作用</dt><dd>圈选是前提；内容配置作用于活跃与付费，触达控制保护活跃，推送召回作用于活跃，效果查看用于检验。均为推断，见第六节。</dd>
+</dl></div>
+
+<section class="sec">
+<div class="sec-h"><span class="sec-no">一</span><h2>需求来源：11 条需求中目标 8 条、约束 2 条、建议 1 条；「交集」仅为同事预期</h2></div>
+<p class="sec-sub">主管需求取自目标清单记录的短期计划（记录口径，非逐字原话）。</p>
+<div class="tw"><table>
+<tr><th></th><th>需求原文</th><th>理解：运营需能够</th><th>类型</th></tr>
+<tr class="grp"><td colspan="4">主管 · 弹窗</td></tr>
+<tr><td class="no">弹窗1</td><td>新增、回流、破产、潜在付费、潜在流失五类人群，各有定制内容<span class="src">出处：目标清单；背景汇总</span></td><td>为任一类人群单独配置弹窗内容，不影响其他人群</td><td><span class="tag t-goal">目标</span></td></tr>
+<tr><td class="no">弹窗2</td><td>数量、内容、顺序整体可控<span class="src">出处：目标清单；工作脑图补充：单次进大厅有上限</span></td><td>事前确定任一玩家进大厅的弹窗数量上限与展示顺序</td><td><span class="tag t-goal">目标</span></td></tr>
+<tr><td class="no">弹窗3</td><td>现有功能能实现的全部上线，不能实现的进入研发排期<span class="src">出处：目标清单</span></td><td>优先用现有后台配置；确认无法实现的再提开发需求</td><td><span class="tag t-con">约束</span></td></tr>
+<tr class="grp"><td colspan="4">主管 · 标签</td></tr>
+<tr><td class="no">标签1</td><td>弹窗、推送所需人群，都能用标签圈出<span class="src">出处：目标清单</span></td><td>以已有或新建标签圈选目标人群，口径明确</td><td><span class="tag t-goal">目标</span></td></tr>
+<tr><td class="no">标签2</td><td>补充并按产品侧使用情况持续优化<span class="src">出处：背景汇总（主管原话）</span></td><td>标签使用问题（如多条件组合）有反馈渠道并持续迭代，不要求一次到位</td><td><span class="tag t-goal">目标</span></td></tr>
+<tr class="grp"><td colspan="4">主管 · 推送</td></tr>
+<tr><td class="no">推送1</td><td>全部推送在一个入口配置<span class="src">出处：目标清单</span></td><td>在单一入口查看并配置全部推送</td><td><span class="tag t-goal">目标</span></td></tr>
+<tr><td class="no">推送2</td><td>配置流程易用<span class="src">出处：目标清单；工作脑图补充：按标签定向、每人每日上限</span></td><td>按标签定向推送，并设置单人日触达上限</td><td><span class="tag t-goal">目标</span></td></tr>
+<tr><td class="no">推送3</td><td>发送量、到达率等数据可查<span class="src">出处：目标清单；工作脑图「推送数据」</span></td><td>自助查看发送量与到达量</td><td><span class="tag t-goal">目标</span></td></tr>
+<tr class="grp"><td colspan="4">其他来源</td></tr>
+<tr><td class="no">制作人</td><td>短期计划＝现有功能迭代，直接排期<span class="src">出处：背景汇总（记录的定调）</span></td><td>本期优先现有后台配置；必须开发的单列并说明理由</td><td><span class="tag t-con">约束</span></td></tr>
+<tr><td class="no">同事</td><td>标签「支持 And、排除、or，计划增加交集」<span class="src">出处：同事盘点（经背景汇总），非主管本人表述</span></td><td>多条件组合圈选为同事预期；含义与场景无人明确，由本文推导</td><td><span class="tag t-sug">建议</span></td></tr>
+<tr><td class="no">Dk</td><td>推送五种通路统一：统一入口、按人群定向、每日上限、数据可查；快显由写死改为可配置<span class="src">出处：答复登记</span></td><td>同推送1–3；快显可配置为新增一项</td><td><span class="tag t-goal">目标</span></td></tr>
+</table></div>
+<p class="note">主管未提弹窗效果数据，仅推送要求数据可查。弹窗内容均为假设，没有点击、购买数据无法验证，补充为场景 15。</p>
+</section>
+
+<section class="sec">
+<div class="sec-h"><span class="sec-no">二</span><h2>相关方：主管定目标、制作人定范围；运营是后台使用方，研发承接后台做不到的部分</h2></div>
+<div class="tw"><table>
+<tr><th>角色</th><th>诉求</th><th>在本能力中的职责</th><th>依据</th></tr>
+<tr><td><b>主管</b></td><td>第一节各项目标</td><td>提出目标；方案决策</td><td><span class="tag t-goal">目标：记载</span> <span class="tag t-inf">决策：推断</span></td></tr>
+<tr><td><b>制作人</b></td><td>短期基于现有功能</td><td>确定范围</td><td><span class="tag t-goal">记载</span></td></tr>
+<tr><td><b>Dk</b></td><td>各阶段产出成立</td><td>验收产出；无法判断的事项上报主管</td><td><span class="tag t-inf">推断</span></td></tr>
+<tr><td><b>运营</b></td><td>无需研发即可配置弹窗、圈选人群、发送推送</td><td>后台使用方；第三节场景即其日常操作</td><td><span class="tag t-inf">推断</span></td></tr>
+<tr><td><b>研发</b></td><td>需求明确</td><td>开发后台无法实现的功能及客户端写死的部分</td><td><span class="tag t-inf">推断</span></td></tr>
+<tr><td><b>数据组</b></td><td>取数需求明确</td><td>提供人群规模与效果数据；标签脚本责任方无记载，推断为数据或 BI 人员</td><td><span class="tag t-inf">推断</span></td></tr>
+</table></div>
+</section>
+
+<section class="sec">
+<div class="sec-h"><span class="sec-no">三</span><h2>运营场景：25 个场景覆盖弹窗、标签、推送、数据；15 个对应需求，10 个为本文补充</h2></div>
+<p class="sec-sub">场景只描述运营要做到的动作，不判断现状能否实现，也不因成本预先删减；场景 1–15 为首版，16–25 按理想状态补全。选取依据、被删候选的复核与覆盖检查见 <a href="分析/A44_运营场景清单.md">场景清单分析</a>。</p>
+<div class="tw"><table>
+<tr><th></th><th>场景</th><th>对应需求</th></tr>
+<tr class="grp"><td colspan="3">弹窗</td></tr>
+<tr><td class="no">1</td><td>为新增玩家单独配置进大厅的弹窗项与展示顺序</td><td><span class="chip">弹窗1</span></td></tr>
+<tr><td class="no">2</td><td>为回流玩家单独配置回流后首次进大厅的弹窗内容</td><td><span class="chip">弹窗1</span></td></tr>
+<tr><td class="no">3</td><td>为破产玩家单独配置破产弹窗的弹窗项、数量与顺序</td><td><span class="chip">弹窗1</span></td></tr>
+<tr><td class="no">4</td><td>为潜在付费玩家（达储值阈值、未首储）单独配置进大厅的弹窗内容</td><td><span class="chip">弹窗1</span></td></tr>
+<tr><td class="no">5</td><td>为潜在流失玩家（储值衰减）按衰减程度分档，各档配置独立弹窗内容</td><td><span class="chip">弹窗1</span></td></tr>
+<tr><td class="no">6</td><td>设定任一玩家单次进大厅的弹窗数量上限，事前可确定</td><td><span class="chip">弹窗2</span></td></tr>
+<tr><td class="no">7</td><td>为同时命中多项弹窗的玩家设定展示先后</td><td><span class="chip">弹窗2</span></td></tr>
+<tr><td class="no">8</td><td>新增或修改规则前，测算受影响人群及其弹窗数量、顺序的变化（大厅、破产弹窗）</td><td><span class="chip">弹窗2</span></td></tr>
+<tr><td class="no">16</td><td>为任一玩家设定：关闭某个弹窗后，当日不再出现该弹窗</td><td><span class="tag t-add">本文补充</span><span class="src">依据：盘点待补清单的「最轻一档负反馈」；服务弹窗2 的数量可控</span></td></tr>
+<tr><td class="no">17</td><td>把新手挑战弹窗、新手通行证弹窗纳入后台统一配置（时机、次数、冷却、对象）</td><td><span class="tag t-add">本文补充</span><span class="src">依据：弹窗1、2 要求五类人群的弹窗整体可控，新手弹窗属新增人群的弹窗</span></td></tr>
+<tr><td class="no">18</td><td>自助修改弹窗项的图片、文案与点击去向，无需研发</td><td><span class="tag t-add">本文补充</span><span class="src">依据：弹窗1「各有定制内容」的另一种读法：内容由运营直接调整</span></td></tr>
+<tr><td class="no">19</td><td>设定单个玩家每日收到的弹窗与推送合计上限，事前可确定</td><td><span class="tag t-add">本文补充</span><span class="src">依据：弹窗2、推送2 各自要求限量，两者叠加后的总量也需可控</span></td></tr>
+<tr class="grp"><td colspan="3">标签</td></tr>
+<tr><td class="no">9</td><td>以已有或新建标签圈选任一目标人群，支持标签条件之间的「且」「或」组合（条件层）；可查看各标签的圈选规模与口径（已剔除机器人和测试账号）</td><td><span class="chip">标签1</span></td></tr>
+<tr><td class="no">10</td><td>反馈标签使用问题（如多条件组合方式；标签用于大厅弹窗与推送），并看到后续迭代</td><td><span class="chip">标签2</span></td></tr>
+<tr><td class="no">20</td><td>对已圈出的两个人群（群组）之间做交集或排除运算，得到新的人群（人群层，区别于场景 9 的标签条件层）</td><td><span class="chip">标签1</span><span class="chip">Dk</span><span class="src">出处：答复登记第 12 项（交集是重点，含义由本文推导）</span></td></tr>
+<tr><td class="no">21</td><td>自助新建标签，并在上线前预估圈选规模</td><td><span class="tag t-add">本文补充</span><span class="src">依据：标签1「都能用标签圈出」，运营自主新建并先看规模</span></td></tr>
+<tr class="grp"><td colspan="3">推送</td></tr>
+<tr><td class="no">11</td><td>在单一入口查看并配置全部推送通路（快显、推播、短信、Facebook、LINE），快显由写死改为可配置</td><td><span class="chip">推送1</span><span class="chip">Dk</span></td></tr>
+<tr><td class="no">12</td><td>按标签定向发送推送</td><td><span class="chip">推送2</span></td></tr>
+<tr><td class="no">13</td><td>为收到推送的玩家设定单人日推送条数上限</td><td><span class="chip">推送2</span></td></tr>
+<tr><td class="no">22</td><td>为推送配置点击后的跳转去向</td><td><span class="tag t-add">本文补充</span><span class="src">依据：推送2「配置流程易用」；盘点记载升级推送点击不跳转</span></td></tr>
+<tr><td class="no">23</td><td>按玩家行为自动触发推送（如升级、任务完成、限时礼包将到期）</td><td><span class="tag t-add">本文补充</span><span class="src">依据：现有限时加码提醒即行为触发，推送2 要求按人群与事件配置易用</span></td></tr>
+<tr class="grp"><td colspan="3">数据</td></tr>
+<tr><td class="no">14</td><td>查看单次推送的发送量与到达量</td><td><span class="chip">推送3</span></td></tr>
+<tr><td class="no">15</td><td>查看看到弹窗的玩家在改动后的曝光、点击、购买（大厅与破产弹窗）</td><td><span class="tag t-add">本文补充</span></td></tr>
+<tr><td class="no">24</td><td>对同一人群随机分组，对比不同弹窗内容的曝光、点击、购买，判断改动本身的效果</td><td><span class="tag t-add">本文补充</span><span class="src">依据：弹窗内容均为假设，需要能把改动效果与活动排期区分开</span></td></tr>
+<tr><td class="no">25</td><td>查看推送的点击，以及被召回玩家此后的回流情况</td><td><span class="tag t-add">本文补充</span><span class="src">依据：推送3 的数据可查延伸到点击与召回结果</span></td></tr>
+</table></div>
+<p class="note">场景 16–25 是按理想状态补全的需求，来源见各行小字，不因成本或现有后台能力预先删减，取舍留到方案设计与讨论；场景 12、13 的动作取自工作脑图；场景 2 的「回流」、场景 5 的「衰减」沿用脑图圈选口径，档位未定。「弹窗3」是范围约束，不是运营动作，列入第五节。</p>
+</section>
+
+<section class="sec">
+<div class="sec-h"><span class="sec-no">四</span><h2>能力清单：25 个场景归为 5 项能力，按动作划分，互斥且覆盖全部场景</h2></div>
+<p class="sec-sub">业绩 = 活跃 × 付费率 × 客单价。业绩作用均为推断，依据与缺口见第六节。</p>
+<div class="cards">
+<div class="card"><h3>人群圈选</h3><p class="what">运营可以：用标签圈出任一目标人群，并看到规模与口径</p><div><span class="chip">场景 9</span><span class="chip">场景 10</span><span class="chip">场景 20</span><span class="chip">场景 21</span></div><p class="val">业绩作用：因为内容与推送均依赖先圈准人群，所以本身不直接增收，但决定其余能力的精准度；场景 20、21 使交集与新建标签的规模事前可知，减少圈错范围。 <span class="tag t-inf">推断</span></p></div>
+<div class="card"><h3>分人群内容配置</h3><p class="what">运营可以：为五类人群分别配置弹窗内容</p><div><span class="chip">场景 1</span><span class="chip">场景 2</span><span class="chip">场景 3</span><span class="chip">场景 4</span><span class="chip">场景 5</span><span class="chip">场景 17</span><span class="chip">场景 18</span></div><p class="val">业绩作用：因为回流占活跃 26.59%、新增占 17.26%（分母：近一月活跃 62,292 人），所以场景 1、2 的内容配置影响面大；内容有效性无数据。场景 3–5 的规模见<a href="阶段2_人群分析.html">人群分析</a>（破产 0—34,363、潜在付费 5,976—25,972、潜在流失不可知），其对内容的反应无数据。场景 17、18：因为新手弹窗和弹窗图文也是内容假设的一部分，纳入运营自助配置后才能随效果调整，作用是缩短内容迭代周期。 <span class="tag t-inf">推断</span></p></div>
+<div class="card"><h3>触达量与顺序控制</h3><p class="what">运营可以：事前限定单人弹窗与推送的数量和先后，改动前可测算影响</p><div><span class="chip">场景 6</span><span class="chip">场景 7</span><span class="chip">场景 8</span><span class="chip">场景 13</span><span class="chip">场景 16</span><span class="chip">场景 19</span></div><p class="val">业绩作用：因为多条规则同时命中时弹出个数会增加，推送同样会叠加触达（场景 13），所以事前限定单人触达量，作用是保护活跃；叠加是否造成打扰无数据，场景 7、8 的价值取决于该推断。场景 16、19：因为关闭后仍重复弹出、弹窗与推送各自限量后叠加仍可能过量，所以补上当日不再弹与合计上限，作用同样是保护活跃。 <span class="tag t-inf">推断</span></p></div>
+<div class="card"><h3>统一推送</h3><p class="what">运营可以：在单一入口配置全部推送，并按标签定向发送</p><div><span class="chip">场景 11</span><span class="chip">场景 12</span><span class="chip">场景 22</span><span class="chip">场景 23</span></div><p class="val">业绩作用：场景 11 的统一入口本身不增收，使运营全局可见、可管，是触达控制与效果查看的前提；场景 12：因为离线用户无法被弹窗触达，所以推送是召回手段，作用于活跃，缺推送召回效果数据，推断有误仅需调整本行表述。场景 22、23：因为带跳转、按行为触发的推送能把玩家带回对应入口，所以提高召回与转化，作用于活跃与付费率。 <span class="tag t-inf">推断</span></p></div>
+<div class="card"><h3>效果查看</h3><p class="what">运营可以：查看推送到达与弹窗曝光、点击、购买</p><div><span class="chip">场景 14</span><span class="chip">场景 15</span><span class="chip">场景 24</span><span class="chip">场景 25</span></div><p class="val">业绩作用：因为各人群的内容均为假设，所以本身不直接增收，但使其余能力得以依据数据修正；场景 24、25：因为没有对照就分不清效果来自改动还是活动排期，没有点击与回流数据就看不到召回是否有效，所以用它们修正内容假设。 <span class="tag t-inf">推断</span></p></div>
+</div>
+<p class="note">检查：25 个场景各归入一项能力（圈选 4、内容配置 7、触达控制 6、统一推送 4、效果查看 4），每项至少覆盖 4 个场景；场景 1–5、12 另依赖人群圈选。新增场景均能归入已有 5 项能力，不需要新增能力。五项按动作划分（圈选对象、配置内容、控制数量、发送通路、查看结果），互不重叠。</p>
+</section>
+
+<section class="sec">
+<div class="sec-h"><span class="sec-no">五</span><h2>验收标准与需求边界：新人群单独配置无需研发、事前可测算、事后可查看；25 个场景按理想状态写全，成本取舍留到方案设计与讨论</h2></div>
+<div class="cols">
+<div class="box"><h4>验收标准</h4><ul><li>运营为一类新人群单独配置内容，无需研发介入，不影响其他人群</li><li>事前可算出单人触达上限</li><li>事后可查曝光、点击、购买人数</li></ul></div>
+<div class="box"><h4>需求范围</h4><ul><li>25 个场景对应的 5 项能力，不因成本或现有后台能力预先删减</li><li>「短期＝现有功能迭代」（制作人）约束短期执行，不约束需求范围</li><li>实施分层（短期、中期、长期）及成本、依赖，在方案设计给出，供讨论取舍</li></ul></div>
+<div class="box"><h4>不属于能力需求</h4><ul><li>具体弹窗内容与排序</li><li>礼包定价与文案</li><li>各推送通路的逐一配置细节</li><li>给主管的汇报（核心结论确定后另行规划）</li></ul></div>
+</div>
+</section>
+
+<section class="sec">
+<div class="sec-h"><span class="sec-no">六</span><h2>关键假设：7 项推断，任一不成立都只调整场景表述、范围或优先级，能力划分不变</h2></div>
+<div class="tw"><table>
+<tr><th></th><th style="width:30%">假设</th><th style="width:36%">依据</th><th>若不成立</th></tr>
+<tr><td class="no">1</td><td>内容配置、推送召回、触达控制对活跃或付费有作用</td><td>无对照数据。缺：专属内容上线前后对照；弹窗个数与登录、留存对照；推送召回效果数据。破产、潜在付费、潜在流失三类的规模已由<a href="阶段2_人群分析.html">人群分析</a>第一、二节给出（区间，见第四节分人群内容配置）</td><td>能力结构不变；只影响问题诊断的优先级和方案选型的收益排序。补数据只能在问题诊断、方案验证中部分检验</td></tr>
+<tr><td class="no">2</td><td>目标清单表述即主管短期计划原意</td><td>记录口径，非逐字原话；背景汇总的记录与之一致</td><td>调整场景 1–14 的表述，结构不变；场景 16–25 不受影响</td></tr>
+<tr><td class="no">3</td><td>「顺序可控」指弹窗展示先后</td><td>另一读法为活动内容内的排序，两种均成立</td><td>仅调整场景 7</td></tr>
+<tr><td class="no">4</td><td>主管的「数据可查」仅指推送</td><td>原文仅在推送项写明数据</td><td>场景 15、24 改标原文出处</td></tr>
+<tr><td class="no">5</td><td>工作脑图的人群圈选口径可作五类人群的圈选方式</td><td>脑图为内部整理，非主管表述；潜在流失的衰减档位未定</td><td>场景 2、4、5 调整口径，人群分析重新界定</td></tr>
+<tr><td class="no">6</td><td>制作人「现有功能迭代」指本期优先配置，并非不做开发</td><td>主管目标写明「不能实现的进入研发排期」</td><td>若指不做开发，方案设计中的中期、长期项不进本期；需求本身不删</td></tr>
+<tr><td class="no">7</td><td>场景 16–25 属运营在理想状态下应具备的能力</td><td>Dk 的原则：需求往好了、全面了写，成本取舍留给与上级的讨论；场景依据见各行小字，其中除场景 20 外均非主管原话</td><td>讨论后删去某些场景，只影响对应能力的覆盖场景数与方案设计的实施分层，不改能力划分</td></tr>
+</table></div>
+</section>
+
+<p class="links">依据：<a href="分析/A44_运营场景清单.md">场景清单分析</a>　·　<a href="阶段产出规划.html">阶段产出规划</a>　·　素材：<a href="归档/阶段1_核心论证_一页稿_1008.html">上午的一页稿</a></p>
+</div></body></html>

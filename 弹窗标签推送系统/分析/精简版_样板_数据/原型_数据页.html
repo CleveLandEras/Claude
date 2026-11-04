@@ -1,0 +1,634 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>推送统一后台原型</title>
+<link rel="stylesheet" href="../../推送系统后台集成需求/原型样式.css">
+<style>
+.fig.pd-flow{width:880px}
+.sm-note{font-size:12px;color:var(--mute);margin-top:6px;line-height:18px}
+.alertbar{padding:6px 10px;border-radius:4px;background:#FFF8E6;border:1px solid #F2D58A;color:#8A5A00;font-size:13px;display:flex;justify-content:space-between;gap:12px}
+.alertbar.bad{background:#FEF3F2;border-color:#F0B4AE;color:#B42318}
+.tb-gr td{background:#FAFBFC;color:var(--ink2);font-weight:600}
+.dim{color:var(--mute)}
+.bestworst{display:flex;gap:12px}
+.bestworst>div{flex:1;border:1px solid var(--line);border-radius:6px;padding:6px 10px;font-size:13px;line-height:21px}
+.bestworst b{font-weight:600}
+.ver{display:flex;gap:8px;align-items:center;font-size:13px;flex-wrap:wrap}
+.ver .pd-st.on{border-color:#4E5560;color:var(--ink);font-weight:600}
+.pd-bt{flex-wrap:wrap;row-gap:6px}
+.pd-m,.seg>span,.in{white-space:nowrap}
+.subh2{font-size:17px;font-weight:600;margin:28px 0 10px}
+</style>
+</head>
+<body>
+<div class="page">
+<header class="doc-hd">
+  <div class="eyebrow">推送系统的后台集成需求 · 原型（精简版样板：数据，页 15–22）· 示例数据截至 2026-10-12（周一）15:30</div>
+  <div class="doc-key"><span class="co il" style="margin-left:0">1</span> 紫色编号对应右侧说明，只写看画面看不出的规则；「不适用」＝该推送方式没有这项指标</div>
+</header>
+
+<!-- ============ 页 15 概览 ============ -->
+<section id="p15">
+  <div class="crumb">数据 › 概览 · <b>页 15</b></div>
+  <h2>先看两层推送的关键数字和较上一周期的变化，再按推送方式、五类人群比较</h2>
+  <div class="pst"><span class="pk n">新页面</span>现在推播报表没有到达数，短信数据在数据平台上查；Facebook、LINE、弹窗、快显在后台都看不到数据</div>
+  <div class="row">
+    <div class="win"><div class="win-in"><div class="win-bar"><i></i><i></i><i></i><span>推送统一后台 › 数据 › 概览</span></div><div class="fig pd-flow">
+      <div class="main">
+        <div class="top"><span>推送统一后台 › 数据 › <span class="cur">概览</span></span><span>数据更新于 15:30</span></div>
+        <div class="sec">
+          <div class="pd-bt"><span class="seg pd-segs"><span>今日</span><span class="on">近 7 天</span><span>近 30 天</span><span>自定义</span></span><span class="pd-m">10/06–10/12</span><span class="pd-m">对比</span><span class="in">上一周期 09/29–10/05<span class="dn">⌵</span></span><span class="pd-m">人群</span><span class="in">全部<span class="dn">⌵</span></span><span class="pd-m">平台</span><span class="in">全部<span class="dn">⌵</span></span><span class="pd-sp"></span><span class="btn2 sm">导出 Excel</span></div>
+          <div class="alertbar"><span>未处理告警 1 条：大厅弹窗在 App 3.8.3（Android，10/12 14:00 发版）有请求、曝光为 0</span><span class="pd-lk">去告警 ›</span></div>
+        </div>
+        <div class="sec">
+          <div class="pd-kr">
+            <div class="pd-kl">游戏外推送<small>从发送算起</small></div>
+            <div class="pd-kc rel"><div class="pd-kn">发送</div><div class="pd-kv">81,088</div><div class="pd-kd">不比较</div><span class="co" data-n="2" style="right:-10px;top:-10px">2</span></div>
+            <div class="pd-kc"><div class="pd-kn">到达<span class="pd-an">确认送达的条数</span></div><div class="pd-kv">70,134</div><div class="pd-kd">另列收不到回传的 5,748 条</div></div>
+            <div class="pd-kc"><div class="pd-kn">点击</div><div class="pd-kv">4,512</div><div class="pd-kd">不比较</div></div>
+            <div class="pd-kc"><div class="pd-kn">到达人数<span class="pd-an">按玩家去重</span></div><div class="pd-kv">41,260</div><div class="pd-kd">不比较</div></div>
+            <div class="pd-kc" style="background:#FAFBFC"><div class="pd-kn">人均收到<span class="pd-an pd-lk">触达与打扰 ›</span></div><div class="pd-kv">1.6 条／天</div><div class="pd-kd">达推播上限 9.3%</div></div>
+          </div>
+          <div class="pd-kr" style="margin-bottom:0">
+            <div class="pd-kl rel">游戏内推送<small>从曝光算起</small><span class="co il" data-n="1" style="margin:4px 0 0">1</span></div>
+            <div class="pd-kc"><div class="pd-kn">曝光</div><div class="pd-kv">355,240</div><div class="pd-kd">较上一周期 ▲ 3.9%</div></div>
+            <div class="pd-kc"><div class="pd-kn">曝光人数<span class="pd-an">按玩家去重</span></div><div class="pd-kv">51,370</div><div class="pd-kd">▲ 2.2%</div></div>
+            <div class="pd-kc"><div class="pd-kn">点击</div><div class="pd-kv">27,960</div><div class="pd-kd">▲ 7.6%</div></div>
+            <div class="pd-kc"><div class="pd-kn">点击率<span class="pd-an">点击÷曝光</span></div><div class="pd-kv">7.9%</div><div class="pd-kd">▲ 0.3 个百分点</div></div>
+            <div class="pd-kc" style="background:#FAFBFC"><div class="pd-kn">人均弹窗曝光</div><div class="pd-kv">4.8 个／天</div><div class="pd-kd">达弹窗上限 9.6%</div></div>
+          </div>
+          <div class="alertbar" style="margin-top:8px"><span>缺数：10/08 推播 Android 客户端回执可能缺，当天到达率偏低不一定是通道问题</span><span class="co il" data-n="7" style="margin:0">7</span></div>
+        </div>
+        <div class="sec rel">
+          <div class="pd-bt"><span class="pd-h">按日趋势</span><span class="in">点击率<span class="dn">⌵</span></span><span class="co il" data-n="3">3</span></div>
+          <svg viewBox="0 0 840 190" width="100%" role="img" aria-label="按日点击率趋势，游戏外与游戏内两张图，竖线标出切换、发版与规则改版" style="display:block">
+            <g font-size="11" fill="#6B7280" font-family="-apple-system,PingFang SC,sans-serif">
+              <text x="40" y="14" font-size="12" fill="#303133" font-weight="600">游戏外推送 · 点击率（点击÷发送）</text>
+              <line x1="40" y1="150" x2="390" y2="150" stroke="#D5D8DD"/>
+              <text x="12" y="153">0%</text><text x="12" y="98">4%</text><text x="12" y="43">8%</text>
+              <line x1="40" y1="95" x2="390" y2="95" stroke="#EEF0F2"/><line x1="40" y1="40" x2="390" y2="40" stroke="#EEF0F2"/>
+              <text x="30" y="168">10/06</text><text x="140" y="168">10/08</text><text x="250" y="168">10/10</text><text x="358" y="168">10/12</text>
+              <line x1="150" y1="30" x2="150" y2="150" stroke="#1F63E0" stroke-dasharray="2 3"/><text x="154" y="186" fill="#1F63E0">10/08 短信切换到本后台</text>
+              <line x1="205" y1="30" x2="205" y2="150" stroke="#1F63E0" stroke-dasharray="2 3"/>
+              <polyline fill="none" stroke="#3A4049" stroke-width="2" points="40,70 95,66 150,67 205,62 260,59 315,63 370,61"/>
+              <polyline fill="none" stroke="#9AA3AE" stroke-width="2" points="150,107 205,103"/><polyline fill="none" stroke="#9AA3AE" stroke-width="2" points="315,106 370,105"/>
+              <circle cx="150" cy="107" r="2.5" fill="#9AA3AE"/><circle cx="205" cy="103" r="2.5" fill="#9AA3AE"/><circle cx="315" cy="106" r="2.5" fill="#9AA3AE"/><circle cx="370" cy="105" r="2.5" fill="#9AA3AE"/>
+              <text x="296" y="54" fill="#3A4049">推播</text><text x="296" y="122" fill="#9AA3AE">短信（只在发送日有点）</text>
+              <text x="470" y="14" font-size="12" fill="#303133" font-weight="600">游戏内推送 · 点击率（点击÷曝光）</text>
+              <line x1="470" y1="150" x2="820" y2="150" stroke="#D5D8DD"/>
+              <text x="440" y="153">0%</text><text x="440" y="98">7%</text><text x="440" y="43">14%</text>
+              <line x1="470" y1="95" x2="820" y2="95" stroke="#EEF0F2"/><line x1="470" y1="40" x2="820" y2="40" stroke="#EEF0F2"/>
+              <text x="460" y="168">10/06</text><text x="570" y="168">10/08</text><text x="680" y="168">10/10</text><text x="788" y="168">10/12</text>
+              <line x1="580" y1="30" x2="580" y2="150" stroke="#D97706"/><text x="520" y="186" fill="#D97706">10/08 发版 3.8.2</text>
+              <line x1="635" y1="30" x2="635" y2="150" stroke="#6B7280" stroke-dasharray="4 3"/><text x="640" y="186" fill="#6B7280">10/09 规则改版 ID 15</text>
+              <line x1="800" y1="30" x2="800" y2="150" stroke="#D97706"/><text x="748" y="186" fill="#D97706">发版 3.8.3</text>
+              <polyline fill="none" stroke="#3A4049" stroke-width="2" points="470,64 525,62 580,64 635,51 690,48 745,48 800,53"/>
+              <polyline fill="none" stroke="#7C8693" stroke-width="2" points="470,71 525,70 580,69 635,71 690,69 745,69 800,68"/>
+              <polyline fill="none" stroke="#B0B7C1" stroke-width="2" points="470,92 525,91 580,93 635,91 690,91 745,91 800,90"/>
+              <text x="476" y="46" fill="#3A4049">破产弹窗</text><text x="476" y="82" fill="#7C8693">快显</text><text x="476" y="108" fill="#9AA3AE">大厅弹窗</text>
+            </g>
+          </svg>
+        </div>
+        <div class="sec rel">
+          <div class="pd-bt"><span class="pd-h">按推送方式</span><span class="pd-m">到达、点击统计至发送后 5 天，LINE 14 天</span></div>
+          <table class="pd-dt">
+            <thead><tr><th>推送方式</th><th class="pd-r">发送</th><th class="pd-r">到达率<i>到达÷可确认发送</i></th><th class="pd-r">曝光</th><th class="pd-r">点击</th><th class="pd-r">点击率</th><th>较上一周期</th></tr></thead>
+            <tbody>
+              <tr><td>推播 · Android</td><td class="pd-r">31,850</td><td class="pd-r">91.8%</td><td class="pd-r dim">不适用</td><td class="pd-r">1,980</td><td class="pd-r">6.2%</td><td class="dim">切换前不比较</td></tr>
+              <tr><td>推播 · iOS</td><td class="pd-r">16,420</td><td class="pd-r">92.0%<span class="pd-s2">另列 iOS 未接入 5,360 条</span></td><td class="pd-r dim">不适用</td><td class="pd-r">1,150</td><td class="pd-r">7.0%</td><td class="dim">切换前不比较</td></tr>
+              <tr><td>短信</td><td class="pd-r">19,490</td><td class="pd-r">94.4%</td><td class="pd-r dim">不适用</td><td class="pd-r">642</td><td class="pd-r">3.3%<span class="pd-s2">效果看登录：27.4%</span></td><td class="dim">切换前不比较</td></tr>
+              <tr><td>大厅弹窗</td><td class="pd-r dim">不适用</td><td class="pd-r dim">不适用</td><td class="pd-r">302,460</td><td class="pd-r">21,780</td><td class="pd-r">7.2%</td><td>+0.2 个百分点</td></tr>
+              <tr><td>快显</td><td class="pd-r dim">不适用</td><td class="pd-r dim">不适用</td><td class="pd-r">13,860</td><td class="pd-r">1,470</td><td class="pd-r">10.6%</td><td>+0.5 个百分点</td></tr>
+              <tr class="pd-more"><td colspan="7">⋮ Facebook、LINE、破产弹窗各一行</td></tr>
+            </tbody>
+          </table>
+          <span class="co" data-n="4" style="right:6px;top:4px">4</span>
+        </div>
+        <div class="sec rel">
+          <div class="pd-bt"><span class="pd-h">五类人群对比</span><span class="pd-m">一位玩家可同属多类，各行不相加</span><span class="co il" data-n="5">5</span></div>
+          <table class="pd-dt">
+            <thead><tr><th>人群</th><th class="pd-r">游戏外 · 发送</th><th class="pd-r">游戏外 · 点击</th><th class="pd-r">游戏内 · 曝光</th><th class="pd-r">游戏内 · 点击率</th></tr></thead>
+            <tbody>
+              <tr><td>新增</td><td class="pd-r">9,840</td><td class="pd-r">649</td><td class="pd-r">63,120</td><td class="pd-r">8.8%</td></tr>
+              <tr><td>回流</td><td class="pd-r">21,370</td><td class="pd-r">1,304</td><td class="pd-r">78,450</td><td class="pd-r">8.6%</td></tr>
+              <tr><td>破产</td><td class="pd-r">12,680</td><td class="pd-r">659</td><td class="pd-r">96,340</td><td class="pd-r">9.4%</td></tr>
+              <tr><td>潜在付费</td><td class="pd-r">8,960</td><td class="pd-r">502</td><td class="pd-r">21,880</td><td class="pd-r">7.9%</td></tr>
+              <tr><td>潜在流失</td><td class="pd-r">14,120</td><td class="pd-r">508</td><td class="pd-r">34,560</td><td class="pd-r">6.6%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="sec rel">
+          <div class="pd-bt"><span class="pd-h">表现最好与最差</span><span class="pd-m">与同推送方式（游戏内为同位置）的均值比</span><span class="co il" data-n="6">6</span></div>
+          <div class="bestworst">
+            <div><b>推播 · 点击率</b>（均值 5.9%）<br>最好：限时加码礼包未购买提醒 7.6%<br>最差：回流任务开启 3.5%</div>
+            <div><b>大厅弹窗 · 点击率</b>（均值 7.2%）<br>最好：活动类·新增 11.4%<br>最差：通用弹窗 4.5%</div>
+          </div>
+        </div>
+      </div>
+    </div></div></div>
+    <div class="aside"><div class="notes">
+      <div class="note"><span class="nb">1</span><div><b>两层分开统计，不相加</b><p>游戏外推送（推播、短信、Facebook、LINE）从发送算起，点击率＝点击÷发送；游戏内推送（弹窗、快显）没有发送和到达，从曝光算起，点击率＝点击÷曝光。两层口径不同，所以关键数字分两行，也不出两层合计。</p></div></div>
+      <div class="note"><span class="nb">2</span><div><b>切换前的日期不比较</b><p>短信、Facebook、LINE 和推播是逐种从原来的工具切换到本后台的，切换前的数据不导入。对比期含某推送方式切换前的日期时，该推送方式写「不比较」，免得把迁移造成的差额当成效果变化。</p></div></div>
+      <div class="note"><span class="nb">3</span><div><b>竖线标出同一天的改动</b><p>趋势图上标游戏发版、弹窗规则改版、上限改动和推送方式切换。数字突变时，先看同一天有没有这些改动。</p></div></div>
+      <div class="note"><span class="nb">4</span><div><b>到达率只算能确认到达的发送</b><p>iOS 旧版本 App 不能上报到达，发给它们的条数单列，不进分母。五种推送方式的到达和点击来源不同，所以比率只按推送方式给，不出五种合计的到达率、点击率。短信玩家多直接打开游戏、不点链接，短信效果看发送后 24 小时内登录的占比。</p></div></div>
+      <div class="note"><span class="nb">5</span><div><b>按发送当时所在的人群归属</b><p>游戏外按发送时、弹窗按请求时玩家所在的标签群组算。破产按标签「近 7 天发生过破产」，与另外四类一样取当时的名单。</p></div></div>
+      <div class="note"><span class="nb">6</span><div><b>样本够大才参与排名</b><p>发送（游戏内为曝光）不少于 1,000、且发送已满 24 小时的才参与，避免小样本和还没统计完的推送排到前面。点名称进入单条数据。</p></div></div>
+      <div class="note"><span class="nb">7</span><div><b>数据缺了会标出</b><p>某天某推送方式的回传没到齐时标「缺数」，比率不含这一天，免得把缺数当成下降。</p></div></div>
+    </div></div>
+  </div>
+</section>
+
+<!-- ============ 页 16 游戏外推送数据 ============ -->
+<section id="p16">
+  <div class="crumb">数据 › 游戏外推送数据 · <b>页 16</b></div>
+  <h2>推送少发、没到达，按原因列出并可导出名单；没发出的推送在明细里直接重试</h2>
+  <div class="pst"><span class="pk n">新页面</span>现在推播报表只有发送数，「推了 729 人、后台显示 345」这类差额查不到原因</div>
+  <div class="row">
+    <div class="win"><div class="win-in"><div class="win-bar"><i></i><i></i><i></i><span>推送统一后台 › 数据 › 游戏外推送数据</span></div><div class="fig pd-flow">
+      <div class="main">
+        <div class="top"><span>推送统一后台 › 数据 › <span class="cur">游戏外推送数据</span></span><span>数据更新于 15:30</span></div>
+        <div class="sec">
+          <div class="pd-bt" style="margin:0"><span class="seg pd-segs"><span>今日</span><span class="on">近 7 天</span><span>近 30 天</span><span>自定义</span></span><span class="pd-m">10/06–10/12</span><span class="pd-m">推送方式</span><span class="in">全部<span class="dn">⌵</span></span><span class="pd-m">人群</span><span class="in">全部<span class="dn">⌵</span></span><span class="pd-sp"></span><span class="btn2 sm">导出 Excel</span></div>
+        </div>
+        <div class="sec">
+          <div class="pd-bt"><span class="pd-h">按人群 · 点击率</span><span class="seg pd-segs"><span class="on">五类人群</span><span>任选标签群组</span><span>按日期</span></span><span class="pd-m">比率只在同一推送方式内比较</span></div>
+          <table class="pd-dt">
+            <thead><tr><th>人群</th><th class="pd-r">推播</th><th class="pd-r">短信</th><th class="pd-r">Facebook</th><th class="pd-r">LINE</th></tr></thead>
+            <tbody>
+              <tr><td>新增</td><td class="pd-r">7.4%</td><td class="pd-r dim">未发送</td><td class="pd-r">5.4%</td><td class="pd-r">4.2%</td></tr>
+              <tr><td>回流</td><td class="pd-r">7.8%</td><td class="pd-r">3.7%</td><td class="pd-r">5.8%</td><td class="pd-r">5.3%</td></tr>
+              <tr><td>潜在流失</td><td class="pd-r">4.8%</td><td class="pd-r">2.0%</td><td class="pd-r">5.2%</td><td class="pd-r">3.9%</td></tr>
+              <tr class="pd-more"><td colspan="5">⋮ 破产、潜在付费各一行</td></tr>
+            </tbody>
+          </table>
+          <div class="pd-bt" style="margin-top:12px"><span class="pd-h" style="font-size:13px">选「任选标签群组」：实验组与对照组并排</span><span class="co il" data-n="3">3</span></div>
+          <table class="pd-dt">
+            <thead><tr><th>群组</th><th class="pd-r">推播点击率<i>发送条数</i></th><th class="pd-r">短信点击率<i>发送条数</i></th><th class="pd-r">1 日内登录<i>占群组人数</i></th></tr></thead>
+            <tbody>
+              <tr><td>潜在流失 · 实验组<span class="pd-s2">3,968 人</span></td><td class="pd-r">4.9%<span class="pd-s2">3,000</span></td><td class="pd-r">2.1%<span class="pd-s2">2,880</span></td><td class="pd-r">36.0%</td></tr>
+              <tr><td>潜在流失 · 对照组<span class="pd-s2">3,944 人</span></td><td class="pd-r">4.7%<span class="pd-s2">3,340</span></td><td class="pd-r">1.9%<span class="pd-s2">3,100</span></td><td class="pd-r">33.0%</td></tr>
+              <tr class="pd-tot"><td>实验组较对照组</td><td class="pd-r">+0.2 · 差异不显著</td><td class="pd-r">+0.2 · 差异不显著</td><td class="pd-r">+3.0 · 差异显著</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="sec rel">
+          <div class="pd-bt"><span class="pd-h">拦下与未送达原因</span><span class="pd-m">近 7 天 · 人次</span><span class="co il" data-n="1">1</span></div>
+          <table class="pd-dt">
+            <thead><tr><th>原因</th><th class="pd-r">推播</th><th class="pd-r">短信</th><th class="pd-r">Facebook</th><th class="pd-r">LINE</th><th>名单</th></tr></thead>
+            <tbody>
+              <tr class="pd-gr"><td colspan="6">发送前拦下 · 不计入发送</td></tr>
+              <tr><td>无联系方式（未装 App、无手机号、未绑定）</td><td class="pd-r">14,620</td><td class="pd-r">2,512</td><td class="pd-r">22,410</td><td class="pd-r">8,860</td><td class="pd-lk">导出</td></tr>
+              <tr><td>频率上限拦下</td><td class="pd-r">6,920</td><td class="pd-r">0</td><td class="pd-r">0</td><td class="pd-r">0</td><td class="pd-lk">导出</td></tr>
+              <tr class="pd-gr"><td colspan="6">服务商未受理 · 不计入发送</td></tr>
+              <tr><td>超时、临时错误</td><td class="pd-r">11,090</td><td class="pd-r">1,870</td><td class="pd-r">0</td><td class="pd-r">0</td><td class="pd-lk">导出</td></tr>
+              <tr class="pd-gr"><td colspan="6">受理后未确认到达 · 计入发送、不计入到达，不算失败</td></tr>
+              <tr><td>无回执（窗口已满仍没收到）</td><td class="pd-r">1,424</td><td class="pd-r">482</td><td class="pd-r">227</td><td class="pd-r dim">不适用</td><td class="pd-lk">导出</td></tr>
+              <tr><td>iOS 未接入</td><td class="pd-r">5,360</td><td class="pd-r dim">不适用</td><td class="pd-r dim">不适用</td><td class="pd-r dim">不适用</td><td class="pd-lk">导出</td></tr>
+              <tr class="pd-more"><td colspan="6">⋮ 其余原因：通知关闭、勿扰时段放弃、服务商当场拒绝、结果不明、受理后退回、待回执</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="sec">
+          <div style="font-size:13px;line-height:24px">
+            <div><b>按发送小时 ▸</b>　点击率最高 20 时 9.3%；0–7 时每小时发送少于 500，置灰</div>
+            <div><b>按跳转类型 ▸</b>　跳转礼包的点击率 7.4% 最高；不跳转（只打开 App）0.8%</div>
+            <div><b>按客户端版本 ▸</b>　推播 Android App 3.8.3 发送 124 条、到达回执 0，其他版本正常：疑似该版本回执上报缺失，不是通道故障</div>
+          </div>
+        </div>
+        <div class="sec rel">
+          <div class="pd-bt"><span class="pd-h">推送明细</span><span class="pd-m">近 7 天共 18 条</span><span class="co il" data-n="2">2</span></div>
+          <table class="pd-dt">
+            <thead><tr><th>推送</th><th>发送方式与对象</th><th>状态</th><th class="pd-r">发送</th><th class="pd-r">到达率</th><th class="pd-r">点击率</th><th>操作</th></tr></thead>
+            <tbody>
+              <tr><td>限时挑战开启<span class="pd-s2">推播 · ID 44</span></td><td>定时 10/12 14:00<span class="pd-s2">回流</span></td><td><span class="pd-st pd-bad">发送失败</span></td><td colspan="3" style="white-space:normal">9,120 条全部失败：推送服务超时（服务商未受理）</td><td class="pd-lk">重试失败部分</td></tr>
+              <tr><td>每日补给计划提醒<span class="pd-s2">短信 · ID 38</span></td><td>定时 10/12 10:00<span class="pd-s2">潜在流失</span></td><td>已完成<span class="pd-s2">部分失败 1,870 条</span></td><td class="pd-r">4,820</td><td class="pd-r">91.5%</td><td class="pd-r">2.0%</td><td class="pd-lk">重试失败部分</td></tr>
+              <tr><td>首储加赠提醒<span class="pd-s2">Facebook · ID 41</span></td><td>立即 10/12 15:20<span class="pd-s2">潜在付费</span></td><td>发送中</td><td class="pd-r">920</td><td class="pd-r">94.7%</td><td class="pd-r">6.6%</td><td class="pd-lk">查看数据</td></tr>
+              <tr><td>天天敲蛋礼提醒<span class="pd-s2">LINE · ID 39</span></td><td>定时 10/12 12:00<span class="pd-s2">敲蛋礼未参与</span></td><td>无可发送对象</td><td colspan="3" style="white-space:normal">开始发送时群组为 0 人：名单刷新后无人符合</td><td class="pd-lk">复制并改发送对象</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div></div></div>
+    <div class="aside"><div class="notes">
+      <div class="note"><span class="nb">1</span><div><b>每一类损失都有归处，数字对得上</b><p>原因分五组：发送前拦下、服务商未受理、结果不明（已提交、服务商未返回，可能已送达）、受理后退回、受理后未确认到达。五组相加正好等于受众与到达之差。</p><p>发送前拦下按固定顺序判断，一人次只记第一个命中的原因，所以各行可以相加；按行为推送一人触发几次就计几次。导出的名单按玩家去重。</p></div></div>
+      <div class="note"><span class="nb">2</span><div><b>没发出的推送整行写原因</b><p>发送失败、部分失败的可在这里直接「重试失败部分」，不必进单条页；无可发送对象的给「复制并改发送对象」。点推送名称进入单条推送数据。</p></div></div>
+      <div class="note"><span class="nb">3</span><div><b>实验组与对照组怎么比</b><p>同一推送方式内逐列比点击率，写两组的发送条数；任一组少于 1,000 条写「样本不足」。对照组如果不发，点击率没法比，所以另看整组的 1 日、7 日内登录占群组人数，不论是否收到推送。差值做 95% 置信的两比例检验，不显著的不据此下结论。</p></div></div>
+    </div></div>
+  </div>
+</section>
+
+<!-- ============ 页 17 游戏内推送数据 ============ -->
+<section id="p17">
+  <div class="crumb">数据 › 游戏内推送数据 · <b>页 17</b></div>
+  <h2>弹窗与快显的曝光、点击按位置和规则列出；改规则、游戏发版都不清除旧数据</h2>
+  <div class="pst"><span class="pk n">新页面</span>弹窗现在有曝光、点击记录，但后台不显示；快显写死在客户端，没有记录</div>
+  <div class="row">
+    <div class="win"><div class="win-in"><div class="win-bar"><i></i><i></i><i></i><span>推送统一后台 › 数据 › 游戏内推送数据</span></div><div class="fig pd-flow">
+      <div class="main">
+        <div class="top"><span>推送统一后台 › 数据 › <span class="cur">游戏内推送数据</span></span><span>数据更新于 15:30</span></div>
+        <div class="sec">
+          <div class="pd-bt"><span class="seg pd-segs"><span>今日</span><span class="on">近 7 天</span><span>近 30 天</span><span>自定义</span></span><span class="pd-m">位置</span><span class="in">全部<span class="dn">⌵</span></span><span class="pd-m">规则状态</span><span class="in">上架中、已下架<span class="dn">⌵</span></span><span class="pd-m">客户端版本</span><span class="in">全部<span class="dn">⌵</span></span></div>
+          <div class="alertbar bad"><span>App 3.8.3（Android，10/12 14:00 发版）返回弹窗 7,900 项、收到上报 0：该版本的曝光不可信，下表未计入的部分不要按 0 解读（已触发告警「游戏内上报中断」）</span><span class="pd-lk">看按客户端版本 ›</span></div>
+        </div>
+        <div class="sec">
+          <div class="pd-bt"><span class="pd-h">按位置</span></div>
+          <table class="pd-dt">
+            <thead><tr><th>位置</th><th class="pd-r">曝光人数</th><th class="pd-r">曝光</th><th class="pd-r">点击</th><th class="pd-r">点击率</th><th>较上一周期</th></tr></thead>
+            <tbody>
+              <tr><td>大厅弹窗</td><td class="pd-r">48,900</td><td class="pd-r">302,460</td><td class="pd-r">21,780</td><td class="pd-r">7.2%</td><td>+0.2 个百分点</td></tr>
+              <tr><td>破产弹窗</td><td class="pd-r">12,910</td><td class="pd-r">38,920</td><td class="pd-r">4,710</td><td class="pd-r">12.1%</td><td>+0.6 个百分点</td></tr>
+              <tr><td>快显</td><td class="pd-r">8,620</td><td class="pd-r">13,860</td><td class="pd-r">1,470</td><td class="pd-r">10.6%</td><td>+0.5 个百分点</td></tr>
+              <tr class="pd-tot"><td>合计</td><td class="pd-r">51,370</td><td class="pd-r">355,240</td><td class="pd-r">27,960</td><td class="pd-r">7.9%</td><td>+0.3 个百分点</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="sec rel">
+          <div class="pd-bt"><span class="pd-h">按位次</span><span class="pd-m">本次进入该位置实际第几个显示</span><span class="co il" data-n="1">1</span></div>
+          <table class="pd-dt">
+            <thead><tr><th>位置</th><th>第几个显示</th><th class="pd-r">曝光</th><th class="pd-r">点击率</th><th>较上一周期</th></tr></thead>
+            <tbody>
+              <tr><td>大厅弹窗</td><td>第 1 个</td><td class="pd-r">118,300</td><td class="pd-r">9.5%</td><td>+0.3 个百分点</td></tr>
+              <tr><td>大厅弹窗</td><td>第 2 个</td><td class="pd-r">92,600</td><td class="pd-r">6.5%</td><td>+0.2 个百分点</td></tr>
+              <tr><td>大厅弹窗</td><td>第 3 个</td><td class="pd-r">58,400</td><td class="pd-r">5.3%</td><td>0.0</td></tr>
+              <tr><td>大厅弹窗</td><td>第 4 个及以后</td><td class="pd-r">33,160</td><td class="pd-r">4.3%</td><td>−0.1 个百分点</td></tr>
+            </tbody>
+          </table>
+          <div class="pd-bt" style="margin-top:14px"><span class="pd-h">改动前后对比</span><span class="in">10/09 11:30 ID 15 版本 2：改了弹窗排序<span class="dn">⌵</span></span><span class="in">前后各 1 天<span class="dn">⌵</span></span><span class="co il" data-n="2">2</span></div>
+          <table class="pd-dt">
+            <thead><tr><th>位置 · 项目</th><th>排第几</th><th class="pd-r">改动前<i>10/08 曝光 · 点击率</i></th><th class="pd-r">改动后<i>10/10 曝光 · 点击率</i></th><th class="pd-r">点击率变化</th></tr></thead>
+            <tbody>
+              <tr><td>破产弹窗 · 整个位置</td><td>—</td><td class="pd-r">6,090 · 12.0%</td><td class="pd-r">6,230 · 11.9%</td><td class="pd-r">−0.1 个百分点</td></tr>
+              <tr><td>储值类礼包 / 破产礼包</td><td>第 3 → 第 2</td><td class="pd-r">1,060 · 12.5%</td><td class="pd-r">1,960 · 13.6%</td><td class="pd-r">+1.1 个百分点</td></tr>
+              <tr><td>储值类礼包 / 独享礼包</td><td>第 2 → 第 3</td><td class="pd-r">1,010 · 9.0%</td><td class="pd-r">270 · 9.6%</td><td class="pd-r">+0.6 个百分点</td></tr>
+            </tbody>
+          </table>
+          <div class="alertbar" style="margin-top:6px"><span>同期有发版（10/08 App 3.8.2），变化不能全算在排序上；要确定效果，用实验组与对照组（页 22）</span></div>
+        </div>
+        <div class="sec rel">
+          <div class="pd-bt"><span class="pd-h">项目 × 五类人群 · 点击率</span><span class="pd-m">曝光少于 500 写「样本不足」</span><span class="co il" data-n="3">3</span></div>
+          <table class="pd-dt">
+            <thead><tr><th>大厅弹窗项目</th><th class="pd-r">新增</th><th class="pd-r">回流</th><th class="pd-r">破产</th><th class="pd-r">潜在付费</th><th class="pd-r">潜在流失</th></tr></thead>
+            <tbody>
+              <tr><td>揪友同乐邀请</td><td class="pd-r">5.1%</td><td class="pd-r">6.3%</td><td class="pd-r">5.8%</td><td class="pd-r">4.9%</td><td class="pd-r">7.4%</td></tr>
+              <tr><td>发信送奖</td><td class="pd-r">8.2%</td><td class="pd-r">9.1%</td><td class="pd-r">8.6%</td><td class="pd-r">7.7%</td><td class="pd-r">10.9%</td></tr>
+              <tr><td>储值类礼包 / 首储礼包</td><td class="pd-r">9.7%</td><td class="pd-r">6.1%</td><td class="pd-r">8.3%</td><td class="pd-r">12.6%</td><td class="pd-r dim">样本不足</td></tr>
+              <tr class="pd-more"><td colspan="6">⋮ 每个位置默认列曝光最多的 4 项，可展开全部</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="sec rel">
+          <div class="pd-bt"><span class="pd-h">规则与快显</span><span class="co il" data-n="4">4</span></div>
+          <table class="pd-dt">
+            <thead><tr><th>名称</th><th>位置</th><th>状态</th><th>当前版本</th><th class="pd-r">曝光</th><th class="pd-r">点击率</th><th>操作</th></tr></thead>
+            <tbody>
+              <tr><td>活动类·新增<span class="pd-s2">ID 12</span></td><td>大厅弹窗</td><td>上架中</td><td>版本 2（共 2 版）</td><td class="pd-r">42,770</td><td class="pd-r">11.4%</td><td class="pd-lk">查看数据</td></tr>
+              <tr><td>破产储值弹窗（实验组）<span class="pd-s2">ID 15</span></td><td>破产弹窗</td><td>上架中</td><td>版本 2（共 2 版）</td><td class="pd-r">19,840</td><td class="pd-r">12.2%</td><td class="pd-lk">查看数据</td></tr>
+              <tr><td>通行证升级提示<span class="pd-s2">ID 32</span></td><td>快显</td><td>运行中</td><td>版本 1</td><td class="pd-r">13,860</td><td class="pd-r">10.6%</td><td class="pd-lk">查看数据</td></tr>
+              <tr><td>中秋活动弹窗<span class="pd-s2">ID 10</span></td><td>大厅弹窗</td><td>已下架 10/01</td><td>版本 2（共 2 版）</td><td colspan="2" class="dim" style="white-space:normal">所选期间无曝光；上架期间的数据照常可查</td><td class="pd-lk">查看数据</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="sec rel">
+          <div class="pd-bt"><span class="pd-h">按客户端版本</span><span class="pd-m">全部位置</span><span class="co il" data-n="5">5</span></div>
+          <table class="pd-dt">
+            <thead><tr><th>客户端版本</th><th class="pd-r">请求弹窗</th><th class="pd-r">返回项目</th><th class="pd-r">曝光</th><th class="pd-r">点击率</th><th>判断</th></tr></thead>
+            <tbody>
+              <tr class="pd-red"><td>App 3.8.3 · Android<span class="pd-s2">10/12 14:00 发版</span></td><td class="pd-r">3,830</td><td class="pd-r">7,900</td><td class="pd-r">未收到上报</td><td class="pd-r">—</td><td style="white-space:normal">有返回、没有任何上报，曝光不可信</td></tr>
+              <tr><td>App 3.8.2<span class="pd-s2">10/08 发版</span></td><td class="pd-r">92,600</td><td class="pd-r">203,420</td><td class="pd-r">201,300</td><td class="pd-r">8.2%</td><td class="dim">—</td></tr>
+              <tr><td>App 3.8.1</td><td class="pd-r">50,800</td><td class="pd-r">110,935</td><td class="pd-r">109,800</td><td class="pd-r">7.8%</td><td class="dim">—</td></tr>
+              <tr><td>网页</td><td class="pd-r">12,400</td><td class="pd-r">26,865</td><td class="pd-r">26,600</td><td class="pd-r">6.4%</td><td class="dim">—</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div></div></div>
+    <div class="aside"><div class="notes">
+      <div class="note"><span class="nb">1</span><div><b>排第几个显示，点击率差多少</b><p>位次是玩家这次进入大厅实际第几个看到，跨规则计，不是规则里的排序号。用来判断排在前面值多少。</p></div></div>
+      <div class="note"><span class="nb">2</span><div><b>排序改了以后有没有效果</b><p>从操作纪录里的一次改动取改动前后各 1、3 或 7 个完整日的日均，改动当天不计；列位置整体和本次改动涉及的项目。同期有发版或其他改动时提示不能单独归因。</p></div></div>
+      <div class="note"><span class="nb">3</span><div><b>哪个弹窗项目对哪类人有效</b><p>按请求时玩家所在的人群归属；用来决定同一项目要不要给不同人群配不同的弹窗规则。</p></div></div>
+      <div class="note"><span class="nb">4</span><div><b>旧数据一直可查</b><p>弹窗规则每次确认保存生成一个版本，曝光、点击按规则版本和客户端版本记录，改设置、游戏发版都不覆盖旧数据。已下架的规则默认列出，已删除的在「规则状态」选「已删除」可查。</p></div></div>
+      <div class="note"><span class="nb">5</span><div><b>分清「没弹出」还是「没上报」</b><p>每个客户端版本列请求、返回、曝光。有返回却收不到任何上报时写「未收到上报」，不写 0，并触发告警「游戏内上报中断」。</p></div></div>
+      <div class="note"><span class="nb">6</span><div><b>快显的数据</b><p>快显按显示次数算曝光。一条快显从受众、可触达、已下发到曝光、点击每步少在哪，在单条推送数据页看。</p></div></div>
+    </div></div>
+  </div>
+</section>
+
+<!-- ============ 页 18 档期汇总 ============ -->
+<section id="p18">
+  <div class="crumb">数据 › 档期汇总 · <b>页 18</b></div>
+  <h2>一个活动在六种推送方式上合计发了多少、覆盖多少人，活动复盘在一处看</h2>
+  <div class="pst"><span class="pk n">新页面</span>现在一个活动的推播、短信、弹窗数据分在几处，覆盖人数要手工去重</div>
+  <div class="row">
+    <div class="win"><div class="win-in"><div class="win-bar"><i></i><i></i><i></i><span>推送统一后台 › 数据 › 档期汇总</span></div><div class="fig pd-flow">
+      <div class="main">
+        <div class="top"><span>推送统一后台 › 数据 › <span class="cur">档期汇总</span></span><span>数据更新于 15:30</span></div>
+        <div class="sec">
+          <div class="pd-bt" style="margin:0"><span class="seg pd-segs"><span>今日</span><span class="on">近 7 天</span><span>近 30 天</span><span>自定义</span></span><span class="pd-m">10/06–10/12</span><span class="pd-m">活动</span><span class="in">全部<span class="dn">⌵</span></span><span class="pd-m">人群</span><span class="in">全部<span class="dn">⌵</span></span><span class="pd-sp"></span><span class="btn2 sm">导出 Excel</span></div>
+        </div>
+        <div class="sec rel">
+          <table class="pd-dt">
+            <thead><tr><th></th><th colspan="4" style="text-align:center">游戏外推送（推播、短信、Facebook、LINE）</th><th colspan="3" style="text-align:center">游戏内推送（弹窗、快显）</th></tr>
+            <tr><th>活动</th><th class="pd-r">发送</th><th class="pd-r">到达</th><th class="pd-r">点击</th><th class="pd-r">覆盖<i>发送去重</i></th><th class="pd-r">曝光</th><th class="pd-r">点击</th><th class="pd-r">覆盖<i>曝光去重</i></th></tr></thead>
+            <tbody>
+              <tr><td>回流任务 ⌵<span class="pd-s2">推播 1 条、LINE 1 条、大厅弹窗 1 项</span></td><td class="pd-r">12,220</td><td class="pd-r">10,516</td><td class="pd-r">487</td><td class="pd-r">10,480</td><td class="pd-r">6,240</td><td class="pd-r">512</td><td class="pd-r">3,980</td></tr>
+              <tr><td style="padding-left:22px">推播 · ID 35</td><td class="pd-r">9,120</td><td class="pd-r">7,526<span class="pd-s2">另列 iOS 未接入 940</span></td><td class="pd-r">347</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td style="padding-left:22px">LINE · ID 40</td><td class="pd-r">3,100</td><td class="pd-r">2,990</td><td class="pd-r">140</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td style="padding-left:22px">大厅弹窗 · ID 13 的「回流任务」项</td><td></td><td></td><td></td><td></td><td class="pd-r">6,240</td><td class="pd-r">512</td><td></td></tr>
+              <tr><td>每日补给计划 ▸<span class="pd-s2">短信 1 条</span></td><td class="pd-r">4,820</td><td class="pd-r">4,412</td><td class="pd-r">96</td><td class="pd-r">4,700</td><td class="pd-r dim">—</td><td class="pd-r dim">—</td><td class="pd-r dim">—</td></tr>
+              <tr><td>未归属活动 ▸<span class="pd-s2">其余推送 16 条、弹窗规则 7 条、快显 1 条</span></td><td class="pd-r">64,048</td><td class="pd-r">55,206</td><td class="pd-r">3,929</td><td class="pd-r">38,900</td><td class="pd-r">349,000</td><td class="pd-r">27,448</td><td class="pd-r">51,290</td></tr>
+            </tbody>
+          </table>
+          <span class="co" data-n="1" style="right:8px;top:4px">1</span>
+          <div class="sm-note">各行发送、到达、点击、曝光相加等于概览合计；覆盖人数跨活动不相加，游戏外与游戏内也不相加<span class="co il" data-n="2">2</span></div>
+        </div>
+      </div>
+    </div></div></div>
+    <div class="aside"><div class="notes">
+      <div class="note"><span class="nb">1</span><div><b>一行一个活动</b><p>推送、快显和弹窗排序项按新建时选的「所属活动」归入；没选的归「未归属活动」。点开先按推送方式小计，再到每条推送或弹窗项；点名称进入单条数据。</p></div></div>
+      <div class="note"><span class="nb">2</span><div><b>覆盖人数按玩家去重</b><p>一个活动发了几条推送，覆盖人数是收到其中至少一条的玩家数，不是各条相加。活动一行跨了推送方式，只给数量，比率在展开后的推送方式小计里看。</p></div></div>
+    </div></div>
+  </div>
+</section>
+
+<!-- ============ 页 19 触达与打扰 ============ -->
+<section id="p19">
+  <div class="crumb">数据 › 触达与打扰 · <b>页 19</b></div>
+  <h2>能发到多少人、为什么少了；每人每天收到几条、多少人碰到上限，据此判断上限设得合不合适</h2>
+  <div class="pst"><span class="pk n">新页面</span>现在看不到可触达人数的变化，也不知道玩家一天实际收到几条</div>
+  <div class="row">
+    <div class="win"><div class="win-in"><div class="win-bar"><i></i><i></i><i></i><span>推送统一后台 › 数据 › 触达与打扰</span></div><div class="fig pd-flow">
+      <div class="main">
+        <div class="top"><span>推送统一后台 › 数据 › <span class="cur">触达与打扰</span></span><span>数据更新于 15:30</span></div>
+        <div class="sec rel">
+          <div class="pd-bt"><span class="pd-h">可触达人数</span><span class="pd-m">10/12 00:00 快照 · 全部玩家 74,480（不含已注销、机器人、测试账号）</span><span class="co il" data-n="1">1</span></div>
+          <div class="pd-kr" style="margin-bottom:0">
+            <div class="pd-kc"><div class="pd-kn">推播</div><div class="pd-kv">41,280</div><div class="pd-kd">占 55.4% · 较 30 天前 −1,060</div></div>
+            <div class="pd-kc"><div class="pd-kn">短信</div><div class="pd-kv">52,350</div><div class="pd-kd">占 70.3% · 较 30 天前 −640</div></div>
+            <div class="pd-kc"><div class="pd-kn">Facebook</div><div class="pd-kv">24,460</div><div class="pd-kd">占 32.8% · 较 30 天前 +360</div></div>
+            <div class="pd-kc"><div class="pd-kn">LINE</div><div class="pd-kv">21,600</div><div class="pd-kd">占 29.0% · 较 30 天前 +380</div></div>
+          </div>
+        </div>
+        <div class="sec rel">
+          <div class="pd-bt"><span class="pd-h">不可触达的原因</span><span class="co il" data-n="2">2</span></div>
+          <table class="pd-dt">
+            <thead><tr><th>推送方式 · 原因</th><th class="pd-r">人数</th><th class="pd-r">较 30 天前</th><th>怎么知道的</th></tr></thead>
+            <tbody>
+              <tr><td>推播 · 未装 App</td><td class="pd-r">24,860</td><td class="pd-r">+820</td><td>没有推播令牌</td></tr>
+              <tr><td>推播 · 通知关闭</td><td class="pd-r">7,420</td><td class="pd-r">+180</td><td>客户端上报通知权限</td></tr>
+              <tr><td>短信 · 已退订</td><td class="pd-r">3,960</td><td class="pd-r">+410</td><td>退订回复或退订链接</td></tr>
+              <tr><td>LINE · 已封锁</td><td class="pd-r">1,940</td><td class="pd-r">+80</td><td>LINE 封锁通知</td></tr>
+              <tr class="pd-more"><td colspan="4">⋮ 令牌失效、无手机号、号码无效、Facebook 未绑定、LINE 未加好友等</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="sec rel">
+          <div class="pd-bt"><span class="pd-h">每人每天收到几条</span><span class="pd-m">近 7 天日均，按台湾时间自然日</span><span class="co il" data-n="3">3</span></div>
+          <div style="font-size:13px;line-height:22px;margin-bottom:8px">游戏外人均收到 <b>1.6 条／天</b>，玩家·天按当天收到条数：1 条 57% · 2 条 30% · 3 条 10% · 4 条及以上 3%<br>游戏内人均弹窗曝光 <b>4.8 个／天</b></div>
+          <table class="pd-dt">
+            <thead><tr><th>推送方式</th><th class="pd-r">每人每天上限</th><th class="pd-r">达上限人数／天</th><th class="pd-r">占当天收到的人</th><th class="pd-r">上限拦下（近 7 天）</th></tr></thead>
+            <tbody>
+              <tr><td>推播</td><td class="pd-r">2 条</td><td class="pd-r">520</td><td class="pd-r">9.3%</td><td class="pd-r">6,920 人次</td></tr>
+              <tr><td>弹窗（大厅＋破产）</td><td class="pd-r">8 个</td><td class="pd-r">975</td><td class="pd-r">9.6%</td><td class="pd-r">截掉 15,260 个</td></tr>
+              <tr><td>快显</td><td class="pd-r">3 次</td><td class="pd-r">150</td><td class="pd-r">7.9%</td><td class="pd-r">1,480 人次</td></tr>
+              <tr class="pd-more"><td colspan="5">⋮ 短信、Facebook、LINE 上限都是 1 条，收到即达上限，不列占比</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div></div></div>
+    <div class="aside"><div class="notes">
+      <div class="note"><span class="nb">1</span><div><b>每天 00:00 拍一次快照</b><p>汇总每位玩家各推送方式的状态，长期保留，所以能看 30 天前后的增减；某天快照失败时趋势断开，不补估。</p></div></div>
+      <div class="note"><span class="nb">2</span><div><b>原因按怎么知道的归类</b><p>令牌失效、号码无效、已封锁要发过才知道，没发过的玩家查不出来。某天退订突增时，到游戏外推送数据的推送明细看当天发了什么。</p></div></div>
+      <div class="note"><span class="nb">3</span><div><b>收到条数按人算</b><p>含服务通知和不计入上限的推送。营销侧切换前已排程、仍由营销侧发出的不计入，迁移期间玩家实际收到的可能更多。</p></div></div>
+    </div></div>
+  </div>
+</section>
+
+<!-- ============ 页 20 告警 ============ -->
+<section id="p20">
+  <div class="crumb">数据 › 告警 · <b>页 20</b></div>
+  <h2>发送失败、到达骤降、新版本弹窗不显示、数据停更时系统自动提醒，不用等玩家或客服反映</h2>
+  <div class="pst"><span class="pk n">新页面</span>现在发送异常要等线上通报才发现</div>
+  <div class="row">
+    <div class="win"><div class="win-in"><div class="win-bar"><i></i><i></i><i></i><span>推送统一后台 › 数据 › 告警</span></div><div class="fig pd-flow">
+      <div class="main">
+        <div class="top"><span>推送统一后台 › 数据 › <span class="cur">告警</span></span><span>最近检测 15:30</span></div>
+        <div class="sec rel">
+          <div class="pd-bt"><span class="pd-h">告警记录</span><span class="pd-chips" style="margin:0"><span class="pd-chip pd-on">全部 4</span><span class="pd-chip">未处理 1</span><span class="pd-chip">已处理 2</span><span class="pd-chip">已恢复 1</span></span><span class="co il" data-n="1">1</span></div>
+          <table class="pd-dt">
+            <thead><tr><th>首次触发</th><th>规则</th><th>对象</th><th class="pd-r">当前值</th><th>状态</th><th>处理</th></tr></thead>
+            <tbody>
+              <tr><td>10/12 14:45</td><td>新客户端版本曝光异常</td><td style="white-space:normal">大厅弹窗 · App 3.8.3（Android）发版后请求 3,420 次</td><td class="pd-r">曝光 0</td><td><span class="pd-st pd-bad">未处理</span></td><td class="pd-lk">标为已处理</td></tr>
+              <tr><td>10/12 14:15</td><td>服务商未受理占比高</td><td style="white-space:normal">推播 · 当天累计，ID 44 未受理 9,120 条</td><td class="pd-r">78%</td><td>已处理</td><td style="white-space:normal">运营01：推送服务恢复后已重试</td></tr>
+              <tr><td>10/11 20:00</td><td>到达率低于同龄均值</td><td style="white-space:normal">推播 ID 46 · 10/10 20:00 这一批</td><td class="pd-r">77.2%</td><td>已处理</td><td style="white-space:normal">运营01：Android 通道波动，已恢复</td></tr>
+              <tr><td>10/10 12:00</td><td>回执中断</td><td style="white-space:normal">短信 · 10:00 发送的一批，2 小时后无回执占比</td><td class="pd-r">62%</td><td>已恢复（自动）</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="sec rel">
+          <div class="pd-bt"><span class="pd-h">告警规则</span><span class="pd-m">阈值可改、可单条停用</span><span class="co il" data-n="2">2</span></div>
+          <table class="pd-dt">
+            <thead><tr><th>规则</th><th>什么时候告警</th><th>样本够了才判断</th><th>适用</th></tr></thead>
+            <tbody>
+              <tr><td>到达率低于同龄均值</td><td style="white-space:normal">发送后 2 小时、24 小时各查一次，比近 7 天同龄均值低 5 个百分点</td><td>该批发送 ≥ 1,000</td><td style="white-space:normal">推播、短信、Facebook、LINE</td></tr>
+              <tr><td>服务商未受理占比高</td><td style="white-space:normal">按推送方式当天累计，未受理占提交超过 5%</td><td>提交 ≥ 1,000</td><td style="white-space:normal">游戏外四种</td></tr>
+              <tr><td>回执中断</td><td style="white-space:normal">发送后 2 小时到达回执为 0；短信为无回执占比超过 50%</td><td>发送 ≥ 500</td><td style="white-space:normal">推播、短信、Facebook</td></tr>
+              <tr><td>新客户端版本曝光异常</td><td style="white-space:normal">新版本有弹窗请求但曝光为 0，或曝光人数占比低于请求占比的一半</td><td>该版本请求 ≥ 100 次</td><td style="white-space:normal">弹窗、快显</td></tr>
+              <tr><td>游戏内上报中断</td><td style="white-space:normal">请求、下发正常，但曝光、点击的上报量比近 7 天同时段低一半以上；或某版本有返回、上报为 0</td><td>该版本返回 ≥ 100 项</td><td style="white-space:normal">弹窗、快显</td></tr>
+              <tr><td>数据汇总停更</td><td style="white-space:normal">数据汇总超过 60 分钟没有更新；停更时其余规则都不会触发，所以单独检测</td><td>—</td><td style="white-space:normal">全部</td></tr>
+              <tr class="pd-more"><td colspan="4">⋮ 迁入项 4 条（量级骤降、重复显示、开关读取失败、影子比对差异）随迁入管理一起做，规则写在迁入一节</td></tr>
+            </tbody>
+          </table>
+          <div class="pd-bt" style="margin-top:10px"><span class="pd-m">收件人</span><span class="pd-chip">运营01 ✕</span><span class="pd-chip">运营02 ✕</span><span class="pd-chip">数据01 ✕</span><span class="pd-m">＋ 添加</span></div>
+        </div>
+        <div class="sec rel">
+          <div class="pd-bt"><span class="pd-h">发版登记</span><span class="btn2 sm" style="margin-left:auto">＋ 手动登记</span><span class="co il" data-n="3">3</span></div>
+          <table class="pd-dt">
+            <thead><tr><th>版本号</th><th>平台</th><th>发版时间</th><th>来源</th><th>备注</th></tr></thead>
+            <tbody>
+              <tr><td>App 3.8.3</td><td>Android</td><td>10/12 14:00</td><td>自动识别</td><td class="dim">—</td></tr>
+              <tr><td>App 3.8.2</td><td>iOS</td><td>10/08 15:40</td><td>运营01 手动修正</td><td>商店审核延迟，按上架时间修正</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div></div></div>
+    <div class="aside"><div class="notes">
+      <div class="note"><span class="nb">1</span><div><b>怎么通知、什么时候结束</b><p>每 15 分钟检测一次。首次触发时，总览和概览顶部出现告警条，同时发邮件给收件人。条件持续时不重复通知；连续两次检测不再满足，自动转「已恢复」。</p></div></div>
+      <div class="note"><span class="nb">2</span><div><b>为什么用同龄均值和样本门槛</b><p>刚发出的推送到达还在增长，所以与过去比时两边都只取发送后同样时长的数（同龄）。样本不够不判断；某推送方式在本后台的数据不足 7 天时也先不判断，避免误报。</p></div></div>
+      <div class="note"><span class="nb">3</span><div><b>发版时间自动识别</b><p>某平台首次收到新版本号的弹窗请求、且当天该版本请求不少于 100 次时记为发版时间。可手动修正，修正记入操作纪录。告警「新客户端版本曝光异常」和趋势图的发版竖线都用它。</p></div></div>
+    </div></div>
+  </div>
+</section>
+
+<!-- ============ 页 21 单条推送数据 ============ -->
+<section id="p21">
+  <div class="crumb">数据 › 单条推送数据 · <b>页 21</b></div>
+  <h2>一条推送从受众到点击每一步少了多少、少在哪；失败的部分在这里重试</h2>
+  <div class="pst"><span class="pk n">新页面</span>取代现有推播报表里的单条数据（没有到达数）。从推送列表、数据看板、总览或玩家查询进入</div>
+  <div class="row">
+    <div class="win"><div class="win-in"><div class="win-bar"><i></i><i></i><i></i><span>推送统一后台 › 数据 › 单条推送数据</span></div><div class="fig pd-flow">
+      <div class="main">
+        <div class="top"><span>推送统一后台 › 数据 › <span class="cur">单条推送数据</span></span><span>‹ 返回推播列表</span></div>
+        <div class="sec" style="padding:10px 16px">
+          <div style="display:flex;align-items:flex-start">
+            <div style="flex:1">
+              <div class="pd-ttl">限时加码礼包未购买提醒<span class="pd-st">运行中</span><span class="pd-st">推播 · ID 31</span></div>
+              <div class="pd-meta">按行为：限时加码礼包剩 2 小时且尚未购买 ｜ 排除 VIP 名单、黑名单、机器人与测试账号 ｜ 10/02 由礼包后台迁入</div>
+            </div>
+            <div style="display:flex;padding-top:2px"><span class="btn2">编辑</span><span class="btn2">复制</span><span class="btn2">暂停</span><span class="btn2">结束</span></div>
+          </div>
+        </div>
+        <div class="sec rel">
+          <div class="pd-bt"><span class="seg pd-segs"><span>今日</span><span class="on">近 7 天</span><span>自生效起</span><span>自定义</span></span><span class="pd-m">10/06–10/12</span><span class="pd-m">设置版本</span><span class="in">全部版本<span class="dn">⌵</span></span><span class="pd-sp"></span><span class="pd-m">到达、点击统计至发送后 5 天</span></div>
+          <div class="pd-fn" style="margin-top:6px;grid-template-columns:34px 160px 140px 1fr">
+            <span class="pd-fk">受众</span><span class="pd-fbar" style="width:160px"></span><span class="pd-fv">8,652<span class="pd-an">触发人次</span></span><span class="pd-flo">排除后触发本推送的人次</span>
+            <span class="pd-fk">发送</span><span class="pd-fbar" style="width:67px"></span><span class="pd-fv">3,617<span class="pd-an">占受众 41.8%</span></span><span class="pd-flo">少 5,035：发送前拦下 4,873 · 服务商未受理 125 · 结果不明 37</span>
+            <span class="pd-fk">到达</span><span class="pd-fbar" style="width:58px"></span><span class="pd-fv">3,133<span class="pd-an">到达率 94.8%</span></span><span class="pd-flo">少 484：受理后退回 25 · 无回执 67 · 待回执 79 · iOS 未接入 313（不进到达率分母）</span>
+            <span class="pd-fk">点击</span><span class="pd-fbar" style="width:6px"></span><span class="pd-fv">290<span class="pd-an">点击率 8.0%</span></span><span class="pd-flo">点击÷发送</span>
+            <span class="pd-fk">登录</span><span class="pd-fbar" style="width:28px;background:#D5DAE0"></span><span class="pd-fv">1,520<span class="pd-an">占发送人数 44.6%</span></span><span class="pd-flo">受理后 <span class="in" style="height:22px">24 小时<span class="dn">⌵</span></span> 内登录游戏的人数；推播只作参考<span class="co il" data-n="4" style="vertical-align:-6px">4</span></span>
+          </div>
+          <span class="co" data-n="1" style="right:8px;top:40px">1</span>
+          <div class="sm-note" style="font-size:13px;color:var(--ink2)">参考：受理后 24 小时内付费 186 人、NT$93,400（只有跳转礼包或商城的推送才有，不论是否经推送进入）</div>
+        </div>
+        <div class="sec rel">
+          <div class="pd-cards">
+            <div class="pd-cd">
+              <div class="pd-ct"><span>发送前拦下 4,873 人次</span><span class="pd-lk">导出名单</span></div>
+              <div class="pd-cl">无联系方式（未装 App）<span class="pd-cn">1,946</span></div>
+              <div class="pd-cl">通知关闭<span class="pd-cn">1,127</span></div>
+              <div class="pd-cl">勿扰时段放弃<span class="pd-cn">1,382</span></div>
+              <div class="pd-cl">频率上限拦下<span class="pd-cn">418</span></div>
+            </div>
+            <div class="pd-cd">
+              <div class="pd-ct"><span>服务商未受理 125 · 结果不明 37</span></div>
+              <div class="pd-cl">当场拒绝：令牌失效<span class="pd-cn">118 · 不重试</span></div>
+              <div class="pd-cl">当场拒绝：内容格式错误<span class="pd-cn">7 · 不重试</span></div>
+              <div class="pd-cl">结果不明：已提交、服务商未返回<span class="pd-cn">37 · 可重试一次</span></div>
+              <div style="margin-top:8px;display:flex;align-items:center"><span class="btn2 p" style="margin-left:0">重试失败部分</span><span class="pd-m" style="margin-left:8px">可重发 9 人次</span><span class="co il" data-n="2">2</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="sec rel">
+          <div class="pd-bt"><span class="pd-h">拆分</span><span class="seg pd-segs"><span class="on">按设备</span><span>按人群</span><span>按小时</span></span><span class="co il" data-n="3">3</span><span class="pd-sp"></span><span class="pd-lk pd-m">导出逐人明细（保留 30 天）</span></div>
+          <table class="pd-dt">
+            <thead><tr><th>设备</th><th class="pd-r">受众</th><th class="pd-r">发送</th><th class="pd-r">到达</th><th class="pd-r">到达率</th><th class="pd-r">点击率</th></tr></thead>
+            <tbody>
+              <tr><td>Android</td><td class="pd-r">4,260</td><td class="pd-r">2,544</td><td class="pd-r">2,430</td><td class="pd-r">95.5%</td><td class="pd-r">7.7%</td></tr>
+              <tr><td>iOS</td><td class="pd-r">2,446</td><td class="pd-r">1,073</td><td class="pd-r">703<span class="pd-s2">另列 iOS 未接入 313</span></td><td class="pd-r">92.5%</td><td class="pd-r">8.8%</td></tr>
+              <tr><td>未装 App</td><td class="pd-r">1,946</td><td class="pd-r">0</td><td class="pd-r dim">—</td><td class="pd-r dim">—</td><td class="pd-r dim">—</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="sec rel">
+          <div class="ver"><span class="pd-m">设置版本</span><span class="pd-st on">版本 2 · 10/09 16:12 起（当前）· 改了内文</span><span class="pd-st">版本 1 · 10/02–10/09</span><span class="btn2 sm">版本对比</span><span class="pd-sp"></span><span class="pd-lk">本条操作纪录 5 条 ›</span><span class="co il" data-n="5">5</span></div>
+        </div>
+      </div>
+    </div></div></div>
+    <div class="aside"><div class="notes">
+      <div class="note"><span class="nb">1</span><div><b>每一步写少多少、少在哪</b><p>受众到发送之差固定拆成发送前拦下、服务商未受理、结果不明、待提交四项，合计等于差额；发送到到达之差拆成受理后退回和未确认到达。运营据此判断是改发送对象和规则，还是找服务商。</p></div></div>
+      <div class="note"><span class="nb">2</span><div><b>只重发能重发的部分</b><p>超时等临时错误系统先自动重试 3 次，结束后 24 小时内可手动重试。令牌失效、内容格式错误这类当场拒绝的不重试。结果不明的可能已经送达，推播只允许手动重试一次。重发的同一人只计入每人每天上限一次，落在勿扰时段的顺延。</p></div></div>
+      <div class="note"><span class="nb">3</span><div><b>iOS 到达只来自新版本</b><p>新版本 App 在设备收到推播时上报，旧版本没有这个上报，发给旧版本的条数单列「iOS 未接入」，不进到达率的分母，也不用发送数代替。</p></div></div>
+      <div class="note"><span class="nb">4</span><div><b>短信看登录，其余看点击</b><p>玩家收到短信多直接打开游戏、不点链接，所以短信用「受理后 N 小时内登录」看效果；推播、Facebook、LINE 的登录只作参考。</p></div></div>
+      <div class="note"><span class="nb">5</span><div><b>数据跟着设置版本走</b><p>每次修改生成一个版本，可按版本筛选，看到的数据与当时的设置对应；「版本对比」把两个版本并排，看改文案后点击率有没有变。</p></div></div>
+      <div class="note"><span class="nb">6</span><div><b>快显也用这一页</b><p>漏斗换成受众 → 可触达 → 已下发 → 曝光 → 点击，没有发送、到达。</p></div></div>
+    </div></div>
+  </div>
+  <h3 class="subh">立即、定时推送另有：预计人数和实际发出对不上时，逐层看差在哪</h3>
+  <div class="row">
+    <div class="win"><div class="win-in"><div class="win-bar"><i></i><i></i><i></i><span>单条推送数据 · 预计与实际对照</span></div><div class="fig pd-flow">
+      <div class="main">
+        <div class="sec rel">
+          <div class="pd-ttl" style="font-size:14px">国庆回流礼包上线<span class="pd-st">已完成</span><span class="pd-st">推播 · ID 61</span><span class="pd-m" style="font-weight:400">定时 10/25 10:00 ｜ 回流 ｜ 10/11 16:40 确认排程</span></div>
+          <table class="pd-dt" style="margin-top:8px">
+            <thead><tr><th>层</th><th class="pd-r">确认排程时<i>10/11 16:40</i></th><th class="pd-r">开始发送时<i>10/25 10:00</i></th><th class="pd-r">差额</th></tr></thead>
+            <tbody>
+              <tr><td>群组人数</td><td class="pd-r">16,564</td><td class="pd-r">11,240</td><td class="pd-r">−5,324</td></tr>
+              <tr><td>受众（排除后）</td><td class="pd-r">16,500</td><td class="pd-r">11,190</td><td class="pd-r">−5,310</td></tr>
+              <tr><td>可触达</td><td class="pd-r">12,010</td><td class="pd-r">7,920</td><td class="pd-r">−4,090</td></tr>
+              <tr><td>预计发出／实际发出</td><td class="pd-r">12,000</td><td class="pd-r">7,800</td><td class="pd-r">−4,200</td></tr>
+            </tbody>
+          </table>
+          <div style="font-size:13px;line-height:21px;margin-top:8px">少 4,200 ＝ 群组名单变了 −3,857 ＋ 可触达变化 −225 ＋ 发送失败 −90 ＋ 频率上限 −23 ＋ 排除变化 −5<span class="co il" data-n="7">7</span></div>
+        </div>
+      </div>
+    </div></div></div>
+    <div class="aside"><div class="notes">
+      <div class="note"><span class="nb">7</span><div><b>确认时和开始发送时各存一份快照</b><p>两份快照记下当时的群组批次和各层人数，逐层对照，差额拆到群组名单、排除、可触达、上限、发送失败各项，相加等于总差额。原来人数对不上时要开单问研发。按行为推送没有确认时快照，不显示这一块。</p></div></div>
+    </div></div>
+  </div>
+</section>
+
+<!-- ============ 页 22 单条弹窗规则数据 ============ -->
+<section id="p22">
+  <div class="crumb">数据 › 单条弹窗规则数据 · <b>页 22</b></div>
+  <h2>一条弹窗规则从目标人数到点击每一步少在哪；每个设置版本的数据分开保留，可并排比较</h2>
+  <div class="pst"><span class="pk n">新页面</span>现有后台看不到单条规则的数据。从弹窗列表的「查看数据」或数据看板进入</div>
+  <div class="row">
+    <div class="win"><div class="win-in"><div class="win-bar"><i></i><i></i><i></i><span>推送统一后台 › 数据 › 单条弹窗规则数据</span></div><div class="fig pd-flow">
+      <div class="main">
+        <div class="top"><span>推送统一后台 › 数据 › <span class="cur">单条弹窗规则数据</span></span><span>‹ 返回弹窗列表</span></div>
+        <div class="sec" style="padding:10px 16px">
+          <div style="display:flex;align-items:flex-start">
+            <div style="flex:1">
+              <div class="pd-ttl">破产储值弹窗（实验组）<span class="pd-st">上架中</span><span class="pd-st">弹窗 · ID 15</span></div>
+              <div class="pd-meta">储值类弹窗 ｜ 游戏破产弹窗 ｜ 弹出数量 1 ｜ 对象：实验组·分桶 0–49（37,240 人）｜ 版本 2 由运营02 保存于 10/09 11:30</div>
+            </div>
+            <div style="padding-top:2px"><span class="btn2">编辑规则</span></div>
+          </div>
+        </div>
+        <div class="sec rel">
+          <div class="pd-bt"><span class="seg pd-segs"><span>今日</span><span class="on">近 7 天</span><span>近 30 天</span><span>自定义</span></span><span class="pd-m">10/06–10/12</span><span class="pd-m">设置版本</span><span class="in">全部版本<span class="dn">⌵</span></span><span class="btn2 sm">版本对比</span></div>
+          <div class="pd-fn" style="margin-top:6px;grid-template-columns:96px 120px 150px 1fr">
+            <span class="pd-fk">目标人数</span><span class="pd-fbar" style="width:120px"></span><span class="pd-fv">37,240 人</span><span class="pd-flo">统计期间内属于对象群组的玩家</span>
+            <span class="pd-fk">进入弹窗位置</span><span class="pd-fbar" style="width:22px"></span><span class="pd-fv">6,850 人<span class="pd-an">24,290 次</span></span><span class="pd-flo">少 30,390 人：期间内没有破产</span>
+            <span class="pd-fk">符合条件</span><span class="pd-fbar" style="width:21px"></span><span class="pd-fv">6,540 人<span class="pd-an">20,270 次</span></span><span class="pd-flo">请求少 4,020 次：频率上限拦下 3,110 · 项目全部跳过 910</span>
+            <span class="pd-fk">曝光</span><span class="pd-fbar" style="width:21px"></span><span class="pd-fv">6,490 人<span class="pd-an">19,840 次</span></span><span class="pd-flo">少 430 项：显示失败 120 · 返回后未上报 310</span>
+            <span class="pd-fk">点击</span><span class="pd-fbar" style="width:6px"></span><span class="pd-fv">1,980 人<span class="pd-an">2,421 次</span></span><span class="pd-flo">点击率 12.2%（点击÷曝光）</span>
+          </div>
+          <span class="co" data-n="1" style="right:8px;top:40px">1</span>
+          <div class="rel" style="margin-top:10px;padding:6px 10px;border:1px solid var(--line2);border-radius:4px;background:#FAFBFC;font-size:13px;line-height:21px">
+            <b>点击后 24 小时内</b><span class="pd-m">（按来源弹窗规则计，只作参考）</span>　领取 232 人、238 次　·　购买 296 人、310 笔、NT$89,900<span class="co il" data-n="2">2</span>
+          </div>
+        </div>
+        <div class="sec rel">
+          <div class="pd-tabs" style="padding:0;margin:-6px 0 8px"><span class="pd-on">按日</span><span>按小时</span><span>按平台与设备</span><span>按客户端版本</span><span>按人群</span><span>实验组与对照组</span><span>按排序项</span></div>
+          <table class="pd-dt">
+            <thead><tr><th>日期</th><th>版本</th><th class="pd-r">曝光</th><th class="pd-r">点击</th><th class="pd-r">点击率</th></tr></thead>
+            <tbody>
+              <tr><td>10/08</td><td>1</td><td class="pd-r">3,090</td><td class="pd-r">352</td><td class="pd-r">11.4%</td></tr>
+              <tr><td>10/09</td><td>1 → 2</td><td class="pd-r">3,100</td><td class="pd-r">392</td><td class="pd-r">12.6%</td></tr>
+              <tr><td>10/10</td><td>2</td><td class="pd-r">3,210</td><td class="pd-r">418</td><td class="pd-r">13.0%</td></tr>
+              <tr><td>10/11</td><td>2</td><td class="pd-r">3,250</td><td class="pd-r">424</td><td class="pd-r">13.0%</td></tr>
+            </tbody>
+          </table>
+          <span class="co" data-n="3" style="right:8px;top:4px">3</span>
+        </div>
+        <div class="sec rel">
+          <div class="pd-bt"><span class="pd-h">版本对比</span><span class="pd-m">两个版本生效时长不同，只比日均和比率</span><span class="co il" data-n="4">4</span><span class="pd-sp"></span><span class="btn2 sm">恢复版本 1 的设置</span></div>
+          <table class="pd-dt">
+            <thead><tr><th>指标</th><th class="pd-r">版本 1<i>10/06–10/09 11:30</i></th><th class="pd-r">版本 2<i>10/09 11:30 起</i></th><th class="pd-r">变化</th></tr></thead>
+            <tbody>
+              <tr><td>日均曝光</td><td class="pd-r">2,891</td><td class="pd-r">3,038</td><td class="pd-r">+5.1%</td></tr>
+              <tr><td>点击率</td><td class="pd-r">11.5%</td><td class="pd-r">12.9%</td><td class="pd-r">+1.4 个百分点</td></tr>
+              <tr><td>破产礼包 · 排第几 · 点击率</td><td class="pd-r">第 3 · 13.0%</td><td class="pd-r">第 2 · 13.5%</td><td class="pd-r">+0.5 个百分点</td></tr>
+              <tr><td>独享礼包 · 排第几 · 点击率</td><td class="pd-r">第 2 · 9.0%</td><td class="pd-r">第 3 · 9.4%</td><td class="pd-r">+0.4 个百分点</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div></div></div>
+    <div class="aside"><div class="notes">
+      <div class="note"><span class="nb">1</span><div><b>人数和次数都写</b><p>人数按玩家去重；次数按请求、返回项目、显示、点击计。每一步写比上一步少在哪，例如被每人每天弹窗上限拦下、项目全部跳过、显示失败。</p></div></div>
+      <div class="note"><span class="nb">2</span><div><b>领取、购买按「来源弹窗规则」记</b><p>玩家从弹窗点进礼包或活动时，客户端带上规则 ID，购买、领取记录记下来源弹窗规则。这两个数只作参考，不画进漏斗、不算转化率；字段上线前的记录不回算。</p></div></div>
+      <div class="note"><span class="nb">3</span><div><b>七种拆分</b><p>实验组与对照组默认对照同一位置、排除了本规则对象群组的那条规则，两组取同一时段并排；按排序项看每个弹窗项目各自的曝光和点击率；两组差值旁写是否显著。</p></div></div>
+      <div class="note"><span class="nb">4</span><div><b>版本分开保留</b><p>新增规则为版本 1，之后每次确认保存加 1；上架、下架、删除不生成版本。曝光、点击按服务端返回时生效的版本记录，改设置、游戏发版都不清除旧数据。版本对比逐项列排第几和点击率，回答「排序改了有没有效果」；效果变差时可恢复旧版本的设置，存成新版本，不改写旧版本。</p></div></div>
+    </div></div>
+  </div>
+</section>
+
+</div>
+</body>
+</html>

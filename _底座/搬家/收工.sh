@@ -5,6 +5,7 @@
 # 用法：
 #   bash 收工.sh --批 1        第一批：除 抖音号/videos/ 大文件外的全部。
 #   bash 收工.sh --批 视频     只在第一批的 L 上加 抖音号/videos/（父是第一批的 L）。
+#   bash 收工.sh --批 补带     全量重算，接在视频批之后（11/04 弹窗放开 .gitignore 后多带的那批）。
 #   bash 收工.sh --批 收工     全量重算（Dk 说「收工」后用）；上一批做过「视频」就含 videos/。
 #   --基 <ref>      合并目标（M 的第一父）。默认：--批 1 用 origin/main（旧仓库的，本地有）；--批 视频 用 refs/banjia/M1；
 #                   --批 收工 用 refs/banjia/M视频（没有就 M1）。这样第二次推送对新仓库是快进。
@@ -116,9 +117,9 @@ while i < len(ARGS):
             UPTO = v
         i += 2
     else:
-        die(f'不认识的参数：{a}\n用法：bash 收工.sh --批 <1|视频|收工> [--基 <ref>] [--到 复制|快照|合并]')
-if BATCH not in ('1', '视频', '收工'):
-    die('用法：bash 收工.sh --批 <1|视频|收工> [--基 <ref>]')
+        die(f'不认识的参数：{a}\n用法：bash 收工.sh --批 <1|视频|补带|收工> [--基 <ref>] [--到 复制|快照|合并]')
+if BATCH not in ('1', '视频', '补带', '收工'):
+    die('用法：bash 收工.sh --批 <1|视频|补带|收工> [--基 <ref>]')
 if UPTO not in (None, '复制', '快照', '合并'):
     die('--到 只能是 复制｜快照｜合并')
 RUN_DIR = tempfile.mkdtemp(prefix='收工_')
@@ -683,6 +684,7 @@ def write_notcarried(idx, excl, batch, with_videos, originals):
         L.append(f'- `竞品跟踪分析/{name}`：{mb(size)}，原件不进库，分片在 `竞品跟踪分析/录屏分片/`，还原见 `竞品跟踪分析/先看这里.md`')
     L += ['']
     # 7 家目录其余
+    L += ['## 线上页面', '- claude.ai 上 18 个页面：线上原页面不在仓库里，存档已带，在 `_底座/任务/弹窗标签推送系统/线上页面存档_1104/`。', '']
     L += ['## 7. 本机家目录里没带的（只列名字和大小，没读内容）']
     docs = os.path.join(HOME, 'Documents')
     for f in sorted(os.listdir(docs)) if os.path.isdir(docs) else []:
@@ -710,7 +712,8 @@ def write_excl_file(excl):
 def resolve_base():
     global BASE_REF
     if not BASE_REF:
-        BASE_REF = {'1': 'origin/main', '视频': f'{REFB}/M1', '收工': f'{REFB}/M视频' if rev(f'{REFB}/M视频') else f'{REFB}/M1'}[BATCH]
+        BASE_REF = {'1': 'origin/main', '视频': f'{REFB}/M1', '补带': f'{REFB}/M视频',
+                    '收工': next((f'{REFB}/{x}' for x in ('M补带', 'M视频') if rev(f'{REFB}/{x}')), f'{REFB}/M1')}[BATCH]
         if BASE_REF.startswith(REFB + '/') and not rev(BASE_REF):
             raise Stop(f'{BASE_REF} 还不存在（上一批没通过检查或没跑过），要么先跑上一批，要么用 --基 指定')
     remotes = gs('remote').split()
@@ -1047,8 +1050,12 @@ def main():
         if not rev(f'{REFB}/L1'):
             raise Stop('还没有第一批的 L（refs/banjia/L1），先跑 --批 1')
     # 收工批的父：上一个 L，保证第二次不回退第一次
-    if BATCH == '收工':
-        parent_L = rev(f'{REFB}/L视频') or rev(f'{REFB}/L1')
+    if BATCH == '补带':
+        parent_L = rev(f'{REFB}/L视频')
+        if not parent_L:
+            raise Stop('还没有视频批的 L（refs/banjia/L视频），先跑 --批 视频')
+    elif BATCH == '收工':
+        parent_L = rev(f'{REFB}/L补带') or rev(f'{REFB}/L视频') or rev(f'{REFB}/L1')
     else:
         parent_L = prev
     P(f'本批：快照 {mode}，树基 {prev[:10]}，L 的父 {parent_L[:10]}，{"含" if with_videos else "不含"} 抖音号/videos/ 大文件')

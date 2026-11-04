@@ -1,0 +1,268 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>人群分析</title>
+<style>
+/* 阶段产出模板样式（2026-10-08）。各阶段产出把本文件内容整段放进 <style>，组件用法见 阶段产出格式规范.md */
+:root{--bg:#f5f4f1;--card:#ffffff;--ink:#1b1d20;--ink2:#4a4f56;--muted:#868b92;--line:#e3e1dc;--line2:#efede9;
+--accent:#8a6a2c;--accent-soft:#f3ecdd;--ok:#2f6b52;--ok-soft:#e2efe8;--info:#225f8f;--info-soft:#e3edf5;--warn:#8a5d10;--warn-soft:#f6ecd8;--sup:#6b4fa0;--sup-soft:#ece6f6;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#141619;--card:#1c1f23;--ink:#e8e7e3;--ink2:#b9bdc2;--muted:#8a9098;--line:#30353c;--line2:#262a30;
+--accent:#d4ac62;--accent-soft:#2e2717;--ok:#7bb59a;--ok-soft:#1d3029;--info:#7fb0d8;--info-soft:#1b2a36;--warn:#d6a85a;--warn-soft:#332917;--sup:#b39ce0;--sup-soft:#2a2338;}}
+:root[data-theme="dark"]{--bg:#141619;--card:#1c1f23;--ink:#e8e7e3;--ink2:#b9bdc2;--muted:#8a9098;--line:#30353c;--line2:#262a30;
+--accent:#d4ac62;--accent-soft:#2e2717;--ok:#7bb59a;--ok-soft:#1d3029;--info:#7fb0d8;--info-soft:#1b2a36;--warn:#d6a85a;--warn-soft:#332917;--sup:#b39ce0;--sup-soft:#2a2338;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:940px;margin:0 auto;padding:36px 20px 72px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px;letter-spacing:.2px}
+h1{font-family:var(--serif);font-size:24px;line-height:1.5;margin:0 0 18px;font-weight:700}
+/* 概览数字 */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin:0 0 14px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+.kpi .n{font-size:24px;font-weight:700;line-height:1.2}
+.kpi .l{font-size:12.5px;color:var(--muted)}
+.kpi .d{font-size:12.5px;color:var(--ink2);margin-top:2px}
+/* 首屏摘要 */
+.summary{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:14px 18px;margin:0 0 8px}
+.summary dl{display:grid;grid-template-columns:72px 1fr;gap:6px 12px;margin:0}
+.summary dt{font-weight:650;color:var(--ink2);font-size:14px}
+.summary dd{margin:0;font-size:14.5px}
+/* 节 */
+.sec{margin:40px 0 0}
+.sec-h{display:flex;gap:12px;align-items:baseline;margin:0 0 4px}
+.sec-no{flex:none;font-size:12px;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:4px;padding:1px 8px;letter-spacing:1px}
+.sec-h h2{font-family:var(--serif);font-size:19px;line-height:1.5;margin:0;font-weight:700}
+.sec-sub{font-size:13.5px;color:var(--muted);margin:0 0 12px 0}
+/* 表格 */
+.tw{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:8px;margin:0 0 10px}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th{font-size:12.5px;font-weight:650;color:var(--muted);text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);white-space:nowrap;background:transparent}
+td{padding:10px 12px;border-bottom:1px solid var(--line2);vertical-align:top}
+tr:last-child td{border-bottom:none}
+tr.grp td{background:var(--bg);font-size:12.5px;font-weight:700;color:var(--ink2);padding:6px 12px;letter-spacing:1px}
+td.no{width:1%;white-space:nowrap;color:var(--muted);font-variant-numeric:tabular-nums}
+.src{display:block;font-size:12px;color:var(--muted);margin-top:2px}
+/* 标签 */
+.tag{display:inline-block;font-size:11.5px;font-weight:650;line-height:1.6;padding:0 7px;border-radius:4px;white-space:nowrap;vertical-align:1px}
+.t-goal{background:var(--ok-soft);color:var(--ok)} .t-con{background:var(--warn-soft);color:var(--warn)} .t-sug{background:var(--info-soft);color:var(--info)}
+.t-inf{background:var(--line2);color:var(--muted)} .t-add{background:var(--sup-soft);color:var(--sup)}
+.chip{display:inline-block;font-size:12px;padding:0 7px;border:1px solid var(--line);border-radius:10px;color:var(--ink2);margin:1px 2px 1px 0;font-variant-numeric:tabular-nums}
+/* 卡片 */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin:0 0 10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px 16px}
+.card h3{font-size:16px;margin:0 0 4px}
+.card .what{font-size:14px;color:var(--ink);margin:0 0 8px}
+.card .val{font-size:13.5px;color:var(--ink2);margin:8px 0 0;padding-top:8px;border-top:1px dashed var(--line)}
+/* 两栏 */
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 16px}
+.box h4{font-size:13px;color:var(--muted);margin:0 0 6px;font-weight:650;letter-spacing:.5px}
+.box ul{margin:0;padding-left:1.2em} .box li{margin:3px 0;font-size:14px}
+.note{font-size:12.5px;color:var(--muted);margin:6px 0 0}
+.links{font-size:13px;color:var(--muted);margin-top:40px;padding-top:12px;border-top:1px solid var(--line)}
+a{color:var(--accent)}
+@media (max-width:600px){h1{font-size:20px}.summary dl{grid-template-columns:1fr}.summary dt{margin-top:6px}}
+.tree{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin:0 0 10px}
+.tree .goal{font-weight:700;font-size:15.5px;margin:0 0 10px}
+.tree .goal small{display:block;font-weight:400;color:var(--ink2);font-size:13.5px;margin-top:2px}
+.tree ul{list-style:none;margin:0;padding:0 0 0 18px;border-left:2px solid var(--line)}
+.tree li{position:relative;margin:6px 0;padding-left:14px}
+.tree li:before{content:"";position:absolute;left:-2px;top:13px;width:12px;border-top:2px solid var(--line)}
+.tree li a{font-weight:650;text-decoration:none;color:var(--ink)}
+.tree li .d{color:var(--ink2);font-size:13.5px}
+.cap{background:var(--card);border:1px solid var(--line);border-radius:10px;margin:0 0 16px;overflow:hidden}
+.cap-h{padding:14px 18px 10px;border-bottom:1px solid var(--line2)}
+.cap-h .t{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.cap-h h3{font-size:17px;margin:0}
+.cap-h .def{font-size:14.5px;color:var(--ink);margin:4px 0 6px}
+.cap table{font-size:14px}
+.cap td,.cap th{padding-left:18px}
+.cap-v{padding:10px 18px 14px;font-size:13.8px;color:var(--ink2);background:var(--bg);border-top:1px solid var(--line2)}
+.cap-v b{color:var(--ink)}
+.tree li ul{margin:4px 0 4px}.tree li>b{font-weight:700}
+</style></head><body><div class="wrap">
+
+<p class="meta">阶段 2 · 人群分析 · 对象：五类目标人群及五类之外的人群 · 2026-10-08 · 已过审，待 Dk 确认 · 分母：近一月活跃 62,292 人（已剔除機器人、測試帳號），金额均为账号累计值</p>
+<h1>五类人群中仅新增可直接圈出</h1>
+
+<div class="kpis">
+<div class="kpi"><div class="l">近一月活跃</div><div class="n">62,292</div><div class="d">已剔除機器人、測試帳號</div></div>
+<div class="kpi"><div class="l">可直接圈出</div><div class="n">1 类</div><div class="d">新增 10,749（17.26%）</div></div>
+<div class="kpi"><div class="l">在场五类以外</div><div class="n">1,059—20,768</div><div class="d">占在场 34,363 的 3.08%—60.44%</div></div>
+<div class="kpi"><div class="l">在场同时命中 2 类</div><div class="n">7,572</div><div class="d">占在场 22.04%，占全体 12.16%</div></div>
+<div class="kpi"><div class="l">最后登录 ≥ 8 天</div><div class="n">40,117</div><div class="d">下界；真离开者更少（推断）</div></div>
+</div>
+
+<div class="tree">
+<p class="goal">人群分析：弹窗与推送面向的五类目标人群，以及五类以外的人群<small>分母：近一月活跃 62,292 人（已剔除機器人、測試帳號）；每类人群的口径、画像、重叠见第一至三节，覆盖与可达见第四、五节。</small></p>
+<ul>
+<li><b>五类目标人群</b>　<span class="d">口径→<a href="#s1">第一节</a> · 画像→<a href="#s2">第二节</a> · 重叠→<a href="#s3">第三节</a></span>
+<ul>
+<li><b>新增</b>　<span class="d">10,749 人（17.26%）· 口径已证实</span></li>
+<li><b>回流</b>　<span class="d">存量 16,564 人、在场 8,022 人 · 回来后首次登录的事件口径不可知</span></li>
+<li><b>潜在付费</b>　<span class="d">5,976 人（可核实）—25,972 人（上界）· 推断</span></li>
+<li><b>潜在流失</b>　<span class="d">规模不可知，参照 13,449—18,265 人 · 推断</span></li>
+<li><b>破产</b>　<span class="d">规模不可知，暴露范围 0—34,363 人 · 推断</span></li>
+</ul></li>
+<li><a href="#s4">五类以外的人群</a>　<span class="d">在场用户中 1,059—20,768 人（占在场 34,363 的 3.08%—60.44%）</span></li>
+<li><a href="#s5">弹窗够不到的离线人群</a>　<span class="d">最后登录 ≥ 8 天 40,117 人（下界；真离开者更少，推断）</span></li>
+<li><a href="#s6">关键假设</a>　<span class="d">10 项推断，推错时改规模与重叠，五类划分不变</span></li>
+</ul>
+</div>
+
+<div class="summary"><dl>
+<dt>五类以外</dt><dd>在场用户（34,363 人）中不属于五类的有 1,059—20,768 人，占在场 3.08%—60.44%，区间来自潜在流失与潜在付费的圈法。</dd>
+<dt>弹窗够不到</dt><dd>最后登录 ≥ 8 天的 40,117 人（近一月活跃加八月流失名单）要等其自行回来才触达，其中真离开者更少 <span class="tag t-inf">推断</span>。</dd>
+<dt>口径</dt><dd>新增已证实（身份＝新增 ⇔ 注册 ≤ 29 天，10,749 人）。回流 16,564 人是带时间窗的存量，其中 51.57% 已 ≥ 8 天没来。潜在付费最多 25,972 人（可核实 5,976）。潜在流失、破产本地算不出，只给上界与替代口径。</dd>
+<dt>画像</dt><dd>付费储值整体集中在少数高卡：全体有储值者 18,265 人中，金卡以上 6,064 人占累计储值 96.67%。回流（金卡以上占其储值 80.43%）和新增（49.10%）的集中度低于全体。新增在行为上没有区分度，需求由处境推出。</dd>
+<dt>重叠与覆盖</dt><dd>潜在付费按读法甲时，任何人最多同时命中 2 类（读法乙下可能命中 3 类）。五类以外的用户，宽口径 4,166 人（下界）、窄口径 40,988 人（上界）。在场的 34,363 人中不属于任何一类的为 1,059 人（宽口径，占在场 3.08%）—20,768 人（窄口径，占在场 60.44%）；区间来自潜在流失与潜在付费的圈法，在场用户内宽、窄口径差额 19,709 人中，潜在流失 11,119 人、占 56%，潜在付费 8,590 人、占 44%。</dd>
+<dt>推送受众</dt><dd>最后登录 ≥ 8 天的有 40,117 人（数据覆盖范围内），弹窗要等其自行回来才触达；其中真离开者低于此数 <span class="tag t-inf">推断</span>，依据是玩家有每周或隔周登录的周期。若 8–14 天档多为低频玩家，则 ≥ 15 天的 30,103 人更接近真离开者。各通路最多够到多少本地算不出。</dd>
+</dl></div>
+
+<section class="sec" id="s1"><div class="sec-h"><span class="sec-no">一</span><h2>人群口径：新增可直接圈出，回流只能圈存量，潜在付费仅有上界，潜在流失与破产在现有数据里圈不出</h2></div>
+<p class="sec-sub">规模分母 62,292；在场＝最后登录距 9/16 为 0–7 天。<span class="tag t-goal">已证实</span> 能用字段直接复算（限本快照）；<span class="tag t-inf">推断</span> 依赖后台标签 SQL、时间窗或阈值。口径推导见<a href="分析/A45_人群口径.md">人群口径分析</a>。</p>
+<div class="tw"><table>
+<tr><th>人群</th><th>数据口径（字段、阈值）</th><th>规模（下界—上界）</th><th>与后台标签的对应</th><th>强度</th></tr>
+<tr><td><b>新增</b></td><td>身份＝新增 ⇔ 注册距 9/16 ≤ 29 天，全部吻合，非新增为 0。<span class="src">目标口径：「新增」标签；位置：大厅弹窗</span></td><td>10,749（17.26%）</td><td>后台有「新增」标签，是否直接读身份字段、是否含注册第 30 天（多 358 人）<span class="tag t-inf">推断</span></td><td><span class="tag t-goal">已证实</span>（本快照）</td></tr>
+<tr><td><b>回流</b></td><td>存量：身份＝回流；在场：身份＝回流且 0–7 天；事件（回来后首次登录）：无字段。<span class="src">目标口径：三个回流标签；位置：大厅弹窗，离线部分见第五节</span></td><td>存量 16,564（26.59%）；在场 8,022（12.88%）；事件不可知</td><td>「回流」「回流普卡直升」「7 到 30 天内回流的用户」均只有名称、没有条件原文，用哪个 <span class="tag t-inf">推断</span></td><td>存量、在场 <span class="tag t-goal">已证实</span>；事件无数据</td></tr>
+<tr><td><b>潜在付费</b></td><td>读法甲：累计储值 ≤ 0 且累计押注 &gt; 10,000；读法乙：付过费但没买首储礼包。<span class="src">目标口径：脑图「储值阈值＋未首储」；方案口径「近 4 个月押注 &gt; 10,000 且从未储值」；位置：大厅弹窗</span></td><td>甲：5,976（可核实）—25,972（41.69%）；乙：0—18,265，其中确定子集 3,677</td><td>甲对应「近 4 个月投资总额超过 10000」「从未储值」（后者须新建）；乙对应「已经先存储了」取反 <span class="tag t-inf">推断</span></td><td><span class="tag t-inf">推断</span>（上界）</td></tr>
+<tr><td><b>潜在流失</b></td><td>需要每人月度储值，现有导出只有累计值（数仓可算，推断）。<span class="src">目标口径：储值衰减 70%／50%／25%；现有标签名「当月储值额小于上月储值额 50%」；位置：大厅弹窗</span></td><td><b>不可知</b>；参照：有储值 18,265（上界），有储值且在场 13,449</td><td>标签名可对上 50% 档，SQL 未见 <span class="tag t-inf">推断</span></td><td><span class="tag t-inf">推断</span>；规模不可知</td></tr>
+<tr><td><b>破产</b></td><td>触发条件与余额字段本地没有；它是触发时刻，不产生名单。<span class="src">目标口径：破产弹窗（触发位）</span></td><td><b>不可知</b>；暴露范围 0—34,363（在场全体），更窄上界 32,550（在场且累计押注 &gt; 0）</td><td>不需要标签，走破产触发位；触发条件原文未见 <span class="tag t-inf">推断</span></td><td><span class="tag t-inf">推断</span>；规模不可知</td></tr>
+</table></div>
+<p class="note"><b>回流三层口径</b>：存量 16,564 不得写成「每次回流要触达的人数」，因为最后登录 ≥ 8 天的占 51.57%（8,542 人），超过三成，身份＝回流是带时间窗的标记，不等于刚回来；场景按在场口径 8,022 估规模，事件口径靠新增数据收集补。</p>
+<div class="cols">
+<div class="box"><h4>潜在付费规模对押注阈值敏感</h4><ul><li>阈值 1,000／5,000／10,000／50,000／100,000 时分别为 36,028／29,569／25,972／16,399／11,803，变化超过一倍</li><li>本阶段按 10,000 沿用并列出区间</li></ul></div>
+<div class="box"><h4>25,972 是上界</h4><ul><li>只有累计押注，没有「近 4 个月」押注，注册满 4 个月以上的 19,988 人只能算上界</li><li>注册 ≤ 120 天的 5,976 人判定精确（可核实）</li></ul></div>
+<div class="box"><h4>两种读法下的人群</h4><ul><li>若甲：押注多、没付过费的普卡为主（普卡占 97.96%），与潜在流失互斥</li><li>若乙：付过费、没买首储的人群，与潜在流失重叠</li><li>五类划分方向不变，差别在规模与重叠</li></ul></div>
+</div>
+<p class="note"><b>潜在流失、破产</b>：不用累计储值、累计押注造一个「下滑」或「易破产」；破产暴露范围不是破产人数，「调序影响面」14,505 也不是。档位两种读法（当月／上月 &lt; 比例，或降幅 ≥ 比例）只有 50% 档一致，其余档规模不同。</p></section>
+
+<section class="sec" id="s2"><div class="sec-h"><span class="sec-no">二</span><h2>人群画像：付费储值整体集中在少数高卡，回流和新增比全体更分散；新增与潜在付费在行为上没有独立特征，需求由处境推出</h2></div>
+<p class="sec-sub">储值占比分母为累计储值总额 306,813,869；各类人数、占比不相加（类间有重叠）。区分度判定线事先写死：比例类差 ≥ 10 个百分点、连续类中位数之比 ≥ 1.5 倍或 ≤ 2/3，且在卡别内也达线（至少两档）才计入；定义字段与受账龄牵连的累计量不计。详见<a href="分析/A46_人群画像.md">人群画像分析</a>。</p>
+<div class="tw"><table>
+<tr><th>人群</th><th>规模与储值占比</th><th>区分度特征</th><th>储值集中度</th><th>需求：因为……所以……</th></tr>
+<tr><td><b>新增</b></td><td>10,749（17.26%）；占累计储值 0.26%</td><td><b>0 项</b>：在场率、有储值率的差异方向在卡别内不一致。<span class="src">在场率受注册天数牵连：注册 8–29 天的新增在场率 22.7%，低于注册 30–59 天账号的 33.6%，不据以判留存差；押注、活动赠点差异大，但注册不足 30 天累计量必然小，不计</span></td><td>有储值 1,101 人，头部 10% 占 68.7%</td><td>因为占活跃 17.26%、占储值 0.26%，押注为 0 的 1,698 人中 82.51%（1,401 人）恰领 1,000 活动赠点而未使用，这 1,698 人中 71.50%（1,214 人）注册已 ≥ 7 天，所以需要<b>留下并开始玩</b>。<span class="chip">活跃（再到付费率）</span><span class="tag t-inf">机制推断</span></td></tr>
+<tr><td><b>回流</b></td><td>存量 16,564（26.59%）；在场 8,022；占累计储值 2.31%</td><td>整体 <b>4 项</b>，卡别内至少两档仍达线 <b>3 项</b>：当天登录率低 11.9 点、累计押注中位 0.13 倍、活动赠点中位 0.23 倍。<span class="src">有储值率低 19.1 点，但卡别内只差 2–9 点（一半以上来自卡别构成），不作区分度</span></td><td>头部 10% 占 76.6%；金卡以上 383 个有储值者占其储值 80.43%。<span class="src">全体基准：头部 10% 占 82.9%，金卡以上占其储值 96.67%，回流更分散</span></td><td>因为回流身份仍在、但 51.57% 已 ≥ 8 天没来，有储值率 15.32%（全体 29.32%），所以需要<b>被召回并继续玩</b>。<span class="chip">活跃</span><span class="chip">客单价（高卡部分）</span><span class="tag t-inf">机制推断</span></td></tr>
+<tr><td><b>破产</b></td><td>不可知；暴露上界 34,363</td><td>不画像，不凭其他字段猜特征</td><td>不适用</td><td>因为余额耗尽无法继续游戏，所以需要<b>破产后继续玩</b>。<span class="chip">活跃</span><span class="chip">付费率</span><span class="tag t-inf">机制推断</span></td></tr>
+<tr><td><b>潜在付费</b></td><td>最多 25,972（可核实 5,976）；占累计储值 0（定义）</td><td><b>仅 2 项且均受账龄牵连</b>：注册天数中位 1.92 倍、活动赠点中位 2.91 倍；押注、储值为定义字段不计</td><td>不适用</td><td>因为上界 25,972 人累计押注超过 10,000 却没付过费，97.96% 是普卡，其中持續老账号（注册 ≥ 365 天、在场）7,181 人长期在场未付费，所以需要<b>首次付费</b>。<span class="chip">付费率</span><span class="tag t-inf">机制推断</span></td></tr>
+<tr><td><b>潜在流失</b></td><td>不可知；参照 13,449—18,265；参照占累计储值：有储值者 100%</td><td>无目标口径的画像；替代口径（有储值且在场）构成：普卡 44.2%、银卡 16.0%、金卡以上 39.7%</td><td>上界即全体有储值者：头部 10% 占 <b>82.9%</b>，金卡以上占 96.67%（全体付费用户的共性，非本类独有）</td><td>因为付费用户的储值高度集中在高卡，高卡少花一点即影响大，但下滑本身本地看不到，所以需要<b>恢复或加深付费</b>。<span class="chip">客单价</span><span class="chip">付费率</span><span class="tag t-inf">机制推断</span></td></tr>
+</table></div>
+<p class="note">钱集中是全体付费用户的共性，只支撑「高卡重要」，需求由处境推出，不由贡献推出；「应优先服务头部」推不出。替代口径下的构成不是目标人群的画像。五类的规模区间回填需求分析的场景 3–5：破产 0—34,363、潜在付费 5,976—25,972、潜在流失不可知（参照 13,449）。各类需求的依据强度与另一种可能见第六节。</p></section>
+
+<section class="sec" id="s3"><div class="sec-h"><span class="sec-no">三</span><h2>人群重叠：重叠只发生在身份类与付费状态类之间，潜在付费按读法甲时任何人最多同时命中 2 类（读法乙下可能命中 3 类）；在场口径下 7,572 人（占在场 34,363 的 22.04%，占全体 62,292 的 12.16%）同时命中 2 类</h2></div>
+<p class="sec-sub">三套口径：宽（各类取最大，最多）、窄（各类取可核实，人数为下界、占比不是下界；潜在流失窄口径为空，是「无法确认」而非「没有重叠」）、在场（宽口径各类与在场的交集，弹窗此刻碰得到）。括号内为占行类比例；「同时命中 2 类」行括号内为占全体 62,292 的比例（在场口径另注占在场 34,363 的比例）。破产是触发时刻，叠加在任一类之上，不进矩阵。详见<a href="分析/A47_人群重叠与未覆盖.md">重叠与未覆盖分析</a>。</p>
+<div class="tw"><table>
+<tr><th>交集</th><th>宽口径（最多）</th><th>窄口径（人数为下界）</th><th>在场口径</th></tr>
+<tr><td>新增 ∩ 回流</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>新增 ∩ 潜在付费</td><td>3,154（29.34%）</td><td>3,154（29.34%）</td><td>1,660（34.66%）</td></tr>
+<tr><td>新增 ∩ 潜在流失</td><td>1,101（10.24%）</td><td>空</td><td>719（15.01%）</td></tr>
+<tr><td>回流 ∩ 潜在付费</td><td>6,632（40.04%）</td><td>289（3.60%）</td><td>3,582（44.65%）</td></tr>
+<tr><td>回流 ∩ 潜在流失</td><td>2,537（15.32%）</td><td>空</td><td>1,611（20.08%）</td></tr>
+<tr><td>潜在付费 ∩ 潜在流失（读法甲）</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td><b>同时命中 2 类的人数</b></td><td>13,424（21.55%）</td><td>3,443（5.53%）</td><td>7,572（占在场 22.04%；占全体 12.16%）</td></tr>
+<tr><td>命中 3 类</td><td>0</td><td>0</td><td>0</td></tr>
+</table></div>
+<div class="tw"><table>
+<tr><th>判断</th><th>内容</th></tr>
+<tr><td>事实支持什么</td><td>身份三类互斥、潜在付费与潜在流失在读法甲下互斥，所以最多 2 类；重叠规模占全体 62,292 的比例随口径为 5.53%（窄）、12.16%（在场口径 7,572 人；占在场 34,363 为 22.04%）、21.55%（宽），优先级能否忽略取决于口径，本阶段不设判线。</td></tr>
+<tr><td>互斥加优先级会压住多少人</td><td>新增优先时（读法甲），被压的潜在付费至少 3,154 人，占潜在付费 12.14%（上界口径）—52.78%（仅注册 ≤ 120 天的可核实口径，分母被口径截成新账号，不作「至少」），取决于潜在付费的圈法。</td></tr>
+<tr><td></td><td>潜在付费优先时被压的回流，窄口径占回流在场 8,022 的 3.60%、宽口径占回流存量 16,564 的 40.04%。</td></tr>
+<tr><td></td><td>回流优先时被压的潜在付费，窄口径占可核实 5,976 的 4.84%（分母被截小）、宽口径占上界 25,972 的 25.54%，结果取决于口径。</td></tr>
+<tr><td></td><td>新增或回流优先时被压的潜在流失，占潜在流失人数的 5.35%（在场，分母 13,449）—13.89%（宽，分母 18,265），但只占其储值 0.21%—2.31%。</td></tr>
+<tr><td>不支持什么</td><td>事实既不能推出「必须有交集」，也不能推出「不需要交集」：要不要交集取决于重叠人群是否需要与单独属于任一类时不同的内容，缺重叠人群对内容的反应（见第六节），该推导放到后面阶段。</td></tr>
+<tr><td>读法乙下</td><td>付过费但没买首储的人必然落在有储值者里，潜在付费 ∩ 潜在流失不再为 0（确定子集 3,677 人全部在宽口径潜在流失里），命中 3 类变得可能。</td></tr>
+<tr><td>破产暴露范围</td><td>在场且累计押注 &gt; 0 的 32,550 人里，44.90% 属潜在付费、40.96% 属潜在流失、21.98% 属回流、12.89% 属新增（可属多类）。</td></tr>
+</table></div></section>
+
+<section class="sec" id="s4"><div class="sec-h"><span class="sec-no">四</span><h2>未覆盖人群：五类以外的用户宽口径下 4,166 人（下界）、窄口径下 40,988 人（上界），在场用户中为 1,059—20,768 人，区间取决于潜在流失和潜在付费怎么圈（回流圈法只影响离线部分）</h2></div>
+<p class="sec-sub">覆盖核对：四类并集 ＋ 未覆盖 ＝ 62,292，宽、窄两个口径均成立；VIP、黑名單不从分母扣除。宽口径并集偏大，其未覆盖是下界；窄口径并集偏小，其未覆盖是上界。离线的新增、回流是五类成员、只是弹窗够不到，属可达性问题，放第五节，不计入未覆盖。</p>
+<div class="tw"><table>
+<tr><th>口径</th><th>并集</th><th>五类以外（未覆盖）</th><th>占 62,292</th><th>占累计储值</th><th>其中在场用户（占在场 34,363）</th></tr>
+<tr><td>宽口径</td><td>58,126</td><td>4,166（下界）</td><td>6.69%</td><td>≈ 0</td><td>1,059（3.08%），全部无储值</td></tr>
+<tr><td>窄口径</td><td>21,304</td><td>40,988（上界）</td><td>65.80%</td><td>98.06%（持續、有储值、在场的 11,038 人占 77.79%）</td><td>20,768（60.44%），其中有储值 11,119</td></tr>
+</table></div>
+<div class="cols">
+<div class="box"><h4>宽、窄口径的未覆盖差额 36,822 人</h4><ul><li>宽口径下被潜在付费覆盖 16,703 人（窄口径只认注册 ≤ 120 天的可核实子集）</li><li>被潜在流失覆盖 15,553 人（窄口径一个都不认）</li><li>被回流覆盖 8,262 人（窄口径只认在场）</li><li>三者有重叠</li></ul></div>
+<div class="box"><h4>在场用户内的差额 19,709 人</h4><ul><li>潜在流失 11,119（56%），潜在付费 8,590（44%），回流为 0</li><li>补上月度储值能收窄前者，补上近 4 个月押注能收窄后者</li></ul></div>
+</div>
+<div class="tw"><table>
+<tr><th>五类以外的分组</th><th>人数（占 62,292）</th><th>占累计储值</th><th>处理建议</th><th>因为……所以……</th></tr>
+<tr><td>在场、无储值、押注 ≤ 10,000 的持續（宽、窄口径均未覆盖）</td><td>1,029（1.65%）</td><td>0</td><td><b>保持默认</b></td><td>因为没付过费、押注量小、非新非回，处境与默认人群没有可证的区别，押注超过阈值后自动进入潜在付费，所以不需另设归属。</td></tr>
+<tr><td>持續、有储值、在场（窄口径未覆盖的主体；宽口径下属潜在流失）</td><td>11,038（窄口径）</td><td>77.79%</td><td><b>保持默认</b></td><td>因为圈选上可并入潜在流失，但「是否在衰减」本地看不到，不满足「处境相同」；不能因储值占比高就并入，按在场口径的潜在流失上界 13,449 作候选池，拿到月度储值后再判。</td></tr>
+<tr><td>VIP 108、黑名單 15</td><td>123（0.20%）</td><td>VIP 13.09%；黑名單 0</td><td><b>单列，不深挖</b></td><td>因为 VIP 已按 Dk 答复单列，本阶段只报规模与储值占比。</td></tr>
+</table></div>
+<p class="note">没有「并入某类」的建议：候选（持續有储值在场并入潜在流失）不满足「处境相同有依据」。VIP 108 人占累计储值 13.09%，只陈述事实，不据此推结论。</p></section>
+
+<section class="sec" id="s5"><div class="sec-h"><span class="sec-no">五</span><h2>推送受众：最后登录 ≥ 8 天的 40,117 人弹窗要等其自行回来，其中真离开者更少（推断；若 8–14 天档多为低频玩家，则 ≥ 15 天的 30,103 人更接近）；各通路最多够到多少本地算不出，推播另有 31,260 的 App 登录参照数</h2></div>
+<p class="sec-sub">三套分母不混用：活跃口径 62,292；合并口径 74,480（再加八月流失名单中不在近一月活跃里的已离开者 12,188）；已离开者 12,188。在场 34,363 ＋ 活跃内离线 27,929 ＋ 仅名单 12,188 ＝ 74,480。合并口径占比的分母只含近一月活跃加 8/1–8/15 登录的流失名单，更早离开者不在内，占比随窗口变化，仅作参照。详见<a href="分析/A48_推送受众.md">推送受众分析</a>。</p>
+<div class="tw"><table>
+<tr><th>层（最后登录距 9/16）</th><th>人数</th><th>占合并 74,480（仅作参照）</th><th>身份（持續／回流／新增）</th><th>有储值</th><th>累计储值（占合并）</th></tr>
+<tr><td>在场 0–7 天</td><td>34,363</td><td>46.14%</td><td>—</td><td>—</td><td>—</td></tr>
+<tr><td>8–14 天</td><td>10,014</td><td>13.45%</td><td>4,385／3,452／2,173</td><td>2,024（20.21%）</td><td>3.89%</td></tr>
+<tr><td>15–31 天</td><td>17,915</td><td>24.05%</td><td>9,031／5,090／3,787</td><td>2,792（15.58%）</td><td>3.29%</td></tr>
+<tr><td>32–46 天（已离开者）</td><td>12,188</td><td>16.36%</td><td>12,185／0／0</td><td>1,872（15.36%）</td><td>1.89%</td></tr>
+<tr><td><b>离线 ≥ 8 天</b></td><td><b>40,117</b></td><td>53.86%</td><td>25,601／8,542／5,960</td><td>6,688（16.67%）</td><td>9.06%（活跃口径 7.31%；分母同样只含窗口内，仅作参照）</td></tr>
+<tr><td>其中 ≥ 15 天</td><td>30,103</td><td>40.42%</td><td colspan="3">逐日人数无拐点（相邻两日降幅 ≥ 30% 的不存在）：阈值是约定，8 天与 15 天并列，不合并成「流失数」</td></tr>
+</table></div>
+<p class="note">40,117 是「≥ 8 天没来」的人数，最后登录在 8/1 以前的人不在两份数据里，所以作为该人数是下界；真离开者低于此数 <span class="tag t-inf">推断</span>：依据是玩家有每周或隔周登录的周期（一般性假设），这类玩家下次登录弹窗就碰得到，无法直接验证；8 天与 15 天的阈值只是约定，8–14 天各日人数 1,132—1,659，逐日无拐点。</p>
+<div class="cols">
+<div class="box"><h4>离线人群的卡别构成</h4><ul><li>95.4% 是普卡，金卡以上（非 VIP、黑名單）927 人</li><li>储值占比低既推不出「不值得推」，也推不出「该优先推」</li></ul></div>
+<div class="box"><h4>离线中的五类成员</h4><ul><li>新增 5,960（占新增 55.45%），回流 8,542（占回流存量 51.57%），潜在付费上界 11,356，潜在流失宽口径 4,816</li><li>新增、回流是五类成员，只是弹窗够不到，属可达性分组，不计入第四节的未覆盖</li></ul></div>
+<div class="box"><h4>活跃内离线者与已离开者</h4><ul><li>活跃内离线者 27,929 人：新增 5,960、回流 8,542、持續 13,416、VIP 与黑名單 11</li><li>已离开者 12,188 人不属于任何一类在场人群，不写成潜在流失</li></ul></div>
+</div>
+<div class="tw"><table>
+<tr><th>通路</th><th>前提</th><th>区间下端</th><th>参照数</th><th>区间上端</th><th>强度</th></tr>
+<tr><td>快显</td><td>在平台内展示，需在线</td><td>0</td><td>—</td><td>0（离线者受众＝0）</td><td><span class="tag t-inf">推断</span></td></tr>
+<tr><td>推播</td><td>安装 App 且授权推播</td><td>0</td><td>31,260（离线者中最后一次登录为 App，占 77.92%），<b>不是上界也不是下界</b></td><td>40,117</td><td>未知</td></tr>
+<tr><td>短信</td><td>有手机号（是否须绑定未知）</td><td>0</td><td>无</td><td>40,117</td><td>未知</td></tr>
+<tr><td>Facebook</td><td>有绑定账号 <span class="tag t-inf">推断</span></td><td>0</td><td>无</td><td>40,117</td><td>未知</td></tr>
+<tr><td>LINE</td><td>有绑定账号 <span class="tag t-inf">推断</span></td><td>0</td><td>无</td><td>40,117</td><td>未知</td></tr>
+</table></div>
+<p class="note">区间上端是全部离线者都可达的理论上限，不是估计；浏览器登录者也可能装了 App、装了不等于授权、离开者可能已卸载。<b>若可达比例高</b>，推送是离线人群的主要触达手段；<b>若比例低</b>，仅靠推送补不全，在线期的授权与绑定收集要同时做。两种情况整体方向相同（离线部分只能靠推送类通路），差别在能补多少与是否需要在线期动作。要新增的数据收集见第六节；通路的定向能力、每日上限、到达率属现状盘点。</p></section>
+
+<section class="sec" id="s6"><div class="sec-h"><span class="sec-no">六</span><h2>关键假设：10 项推断，推错时改的是规模与重叠的估计，五类划分与后续各阶段方向不变</h2></div>
+<p class="sec-sub">需求分析留下的待界定项（场景 2 回流、场景 4 潜在付费、场景 5 衰减档位）已在第一节给出口径；补数据不能消除全部推断，其中部分只在后面阶段检验。</p>
+<div class="tw"><table>
+<tr><th>#</th><th>推断</th><th>依据</th><th>推错影响</th></tr>
+<tr><td class="no">1</td><td>回流存量不等于刚回来，场景按在场口径 8,022 估规模</td><td>最后登录 ≥ 8 天占 51.57%；回流标签条件无原文</td><td>若回流标记窗口很短，存量更接近「刚回来」，规模偏向 16,564；人群划分不变</td></tr>
+<tr><td class="no">2</td><td>潜在付费按「累计押注 &gt; 10,000 且从未储值」（读法甲）沿用，阈值待定</td><td>方案口径；脑图「储值阈值」原文歧义；阈值敏感性 11,803—36,028</td><td>若为读法乙，规模变为 0—18,265 并与潜在流失重叠；五类划分方向不变，差别在规模与重叠</td></tr>
+<tr><td class="no">3</td><td>潜在付费 25,972 是上界</td><td>只有累计押注，无「近 4 个月」押注</td><td>真实规模落在 5,976（可核实）与 25,972 之间</td></tr>
+<tr><td class="no">4</td><td>衰减档位按「当月／上月 &lt; 比例」（读法甲）理解，三档嵌套</td><td>与现有标签名同构</td><td>若为「降幅 ≥ 比例」，70%、25% 档圈的人不同；规模估计变，划分不变</td></tr>
+<tr><td class="no">5</td><td>破产按触发时刻处理，不产生名单；暴露范围不是破产人数</td><td>盘点：走破产触发位、不需要标签；触发条件无原文</td><td>若运营按「人群」理解（经常破产的人），需另定圈选，但现有字段仍圈不出</td></tr>
+<tr><td class="no">6</td><td>「新增」标签读身份字段，窗口为注册 ≤ 29 天</td><td>身份与注册天数完全吻合；无研发确认</td><td>若含第 30 天，多 358 人（3.33%）</td></tr>
+<tr><td class="no">7</td><td>离线阈值取 8 天与 15 天并列；真离开者低于 40,117</td><td>阈值是约定，逐日人数无拐点；「8–14 天档含低频玩家」为一般性假设，<span class="tag t-con">理由弱</span>，缺个人登录日志</td><td>取 15 天时离线由 40,117 变为 30,103，其余各节不变；40,117 是「≥ 8 天没来」的人数</td></tr>
+<tr><td class="no">8</td><td>推播的 App 类 31,260 只作参照</td><td>无授权、卸载、浏览器端装 App 的数据</td><td>实际授权率高或低都不改规模结论，只改推播上端</td></tr>
+<tr><td class="no">9</td><td>短信、Facebook、LINE 的受众上端取全部离线者 40,117</td><td>本地无手机号、第三方账号信息</td><td>绑定比例低则这三条通路只能补一部分；方向不变</td></tr>
+<tr><td class="no">10</td><td>「推送补离线」：离线部分只能靠推送类通路</td><td>弹窗、快显依赖在线；其余通路能否按人群定向属现状盘点</td><td>若某通路只能按名单发，受众范围收窄，不改离线规模</td></tr>
+</table></div>
+
+<div class="tw"><table>
+<tr><th>人群</th><th>需求判断的依据强度</th><th>缺什么</th><th>另一种可能</th></tr>
+<tr><td>新增</td><td><span class="tag t-inf">机制推断</span> 处境读数直接，「需要被区别对待」由推断得出</td><td>—</td><td>留不下可能是流量质量问题，不是进大厅看到什么的问题</td></tr>
+<tr><td>回流</td><td><span class="tag t-inf">机制推断</span>；「召回有效」无对照数据，<span class="tag t-con">理由弱</span></td><td>召回前后对照</td><td>周期性玩家回来又走，需求是留存</td></tr>
+<tr><td>破产</td><td><span class="tag t-inf">机制推断</span> 定义本身推出需求，规模不可知</td><td>破产事件与触发阈值</td><td>破产也可能是「该走了」的自然结束，继续玩不一定是需求</td></tr>
+<tr><td>潜在付费</td><td><span class="tag t-inf">机制推断</span>，<span class="tag t-con">理由弱</span></td><td>转化率、近 4 个月押注、首储礼包曝光次数</td><td>靠活动赠点就能玩，缺的是付费的理由，不在价位</td></tr>
+<tr><td>潜在流失</td><td><span class="tag t-con">理由弱</span>，按机制推断往下做</td><td>月度储值（下滑人数与幅度）</td><td>高卡只是玩得少，并未下滑；或下滑是正常波动</td></tr>
+<tr><td>未覆盖：持續有储值在场并入潜在流失</td><td><span class="tag t-con">理由弱</span>，按保持默认往下做</td><td>月度储值</td><td>圈选上可并入，但是否在衰减看不到；占储值高不能当并入的理由</td></tr>
+<tr><td>是否需要交集</td><td><span class="tag t-con">理由弱</span></td><td>重叠人群对内容的反应</td><td>—</td></tr>
+</table></div>
+
+<p class="sec-sub" style="margin-top:14px"><b>要新增的数据收集（汇总）</b>：圈不出或区间过宽的判断，靠下表数据收窄；不收则按区间往下做，不作阻塞。</p>
+<div class="tw"><table>
+<tr><th>收什么</th><th>解开哪个类的哪条判断</th><th>不收的后果</th></tr>
+<tr><td>每人月度储值（现有导出没带，数仓可算：线上已有按「当月储值额」运行的标签，推断；需出一张快照）</td><td>潜在流失：圈出真正下滑者，收窄未覆盖区间（持續有储值在场 11,038 人是否并入）</td><td>取到前规模只有参照 13,449—18,265，无法圈选；圈法不变</td></tr>
+<tr><td>破产触发的余额阈值或破产事件</td><td>破产：由暴露范围 0—34,363 收窄到破产人数</td><td>只有暴露范围，规模不可知</td></tr>
+<tr><td>近 4 个月押注、首储礼包领取标记</td><td>潜在付费：读法甲的规模（5,976—25,972）与读法甲、乙的取舍；同时收窄在场未覆盖区间（8,590 人来自潜在付费的圈法）</td><td>规模停在区间，读法不能定</td></tr>
+<tr><td>回流事件日期（回来后首次登录）</td><td>回流：事件口径的规模</td><td>只能按存量 16,564、在场 8,022 估</td></tr>
+<tr><td>离线用户的通路可达字段汇总：推播授权率、手机号非空率、Facebook／LINE 绑定率，按离线分档拆</td><td>推送受众：各通路最多够到多少，收窄区间 [0, 40,117]</td><td>受众范围停在区间，「离线部分靠推送补」能补多少不可知</td></tr>
+<tr><td>按个人的登录日志（登录日期序列）</td><td>推送受众：8–14 天档里低频正常玩家占多少，区分低频与真离开</td><td>阈值只能 8 天与 15 天并列</td></tr>
+<tr><td>营销侧历次召回名单的发送日期与此后回流结果（可选）</td><td>回流、推送受众：召回有没有用</td><td>不写「推送能召回多少」</td></tr>
+<tr><td>推送发送量与到达量，按通路（可选）</td><td>推送受众：各通路触达上界</td><td>到达率仍无数据</td></tr>
+</table></div>
+
+<div class="cols"><div class="box"><h4>可以顺手核实的事（推进不依赖，答案不同时选哪一套）</h4><ul>
+<li><b>破产弹窗触发的余额阈值是多少？</b>数值明确时，只改破产暴露范围的上界；五类划分不变。</li>
+<li><b>储值衰减按自然月还是滚动 30 天、档位按「&lt; 比例」还是「降幅 ≥ 比例」？</b>读法甲、乙在 70%、25% 档规模不同；方向不变。</li>
+<li><b>脑图「储值阈值＋未首储」的「储值阈值」是押注阈值还是储值门槛？</b>决定潜在付费用读法甲或乙，以及它是否与潜在流失重叠。</li>
+<li><b>账号注册时是否必须绑定手机？</b>「是」则短信受众上端接近 40,117；「否」则取区间，需通路可达字段汇总。</li>
+</ul></div></div></section>
+
+<p class="links">分析底稿：<a href="分析/A45_人群口径.md">人群口径</a>｜<a href="分析/A46_人群画像.md">人群画像</a>｜<a href="分析/A47_人群重叠与未覆盖.md">重叠与未覆盖</a>｜<a href="分析/A48_推送受众.md">推送受众</a>｜<a href="分析/A49_阶段2自查.md">自查记录</a>｜上一阶段：<a href="阶段1_需求分析.html">需求分析</a>　·　排版：<a href="规则与交接/阶段产出格式规范.md">阶段产出格式规范</a></p>
+</div></body></html>

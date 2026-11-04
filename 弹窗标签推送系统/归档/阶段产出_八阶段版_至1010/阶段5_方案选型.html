@@ -1,0 +1,291 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>方案选型</title>
+<style>
+/* 阶段产出模板样式（2026-10-08）。各阶段产出把本文件内容整段放进 <style>，组件用法见 阶段产出模板说明.md */
+:root{--bg:#f5f4f1;--card:#ffffff;--ink:#1b1d20;--ink2:#4a4f56;--muted:#868b92;--line:#e3e1dc;--line2:#efede9;
+--accent:#8a6a2c;--accent-soft:#f3ecdd;--ok:#2f6b52;--ok-soft:#e2efe8;--info:#225f8f;--info-soft:#e3edf5;--warn:#8a5d10;--warn-soft:#f6ecd8;--sup:#6b4fa0;--sup-soft:#ece6f6;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#141619;--card:#1c1f23;--ink:#e8e7e3;--ink2:#b9bdc2;--muted:#8a9098;--line:#30353c;--line2:#262a30;
+--accent:#d4ac62;--accent-soft:#2e2717;--ok:#7bb59a;--ok-soft:#1d3029;--info:#7fb0d8;--info-soft:#1b2a36;--warn:#d6a85a;--warn-soft:#332917;--sup:#b39ce0;--sup-soft:#2a2338;}}
+:root[data-theme="dark"]{--bg:#141619;--card:#1c1f23;--ink:#e8e7e3;--ink2:#b9bdc2;--muted:#8a9098;--line:#30353c;--line2:#262a30;
+--accent:#d4ac62;--accent-soft:#2e2717;--ok:#7bb59a;--ok-soft:#1d3029;--info:#7fb0d8;--info-soft:#1b2a36;--warn:#d6a85a;--warn-soft:#332917;--sup:#b39ce0;--sup-soft:#2a2338;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:940px;margin:0 auto;padding:36px 20px 72px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px;letter-spacing:.2px}
+h1{font-family:var(--serif);font-size:24px;line-height:1.5;margin:0 0 18px;font-weight:700}
+/* 概览数字 */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin:0 0 14px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+.kpi .n{font-size:24px;font-weight:700;line-height:1.2}
+.kpi .l{font-size:12.5px;color:var(--muted)}
+.kpi .d{font-size:12.5px;color:var(--ink2);margin-top:2px}
+/* 首屏摘要 */
+.summary{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:14px 18px;margin:0 0 8px}
+.summary dl{display:grid;grid-template-columns:72px 1fr;gap:6px 12px;margin:0}
+.summary dt{font-weight:650;color:var(--ink2);font-size:14px}
+.summary dd{margin:0;font-size:14.5px}
+/* 节 */
+.sec{margin:40px 0 0}
+.sec-h{display:flex;gap:12px;align-items:baseline;margin:0 0 4px}
+.sec-no{flex:none;font-size:12px;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:4px;padding:1px 8px;letter-spacing:1px}
+.sec-h h2{font-family:var(--serif);font-size:19px;line-height:1.5;margin:0;font-weight:700}
+.sec-sub{font-size:13.5px;color:var(--muted);margin:0 0 12px 0}
+/* 表格 */
+.tw{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:8px;margin:0 0 10px}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th{font-size:12.5px;font-weight:650;color:var(--muted);text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);white-space:nowrap;background:transparent}
+td{padding:10px 12px;border-bottom:1px solid var(--line2);vertical-align:top}
+tr:last-child td{border-bottom:none}
+tr.grp td{background:var(--bg);font-size:12.5px;font-weight:700;color:var(--ink2);padding:6px 12px;letter-spacing:1px}
+td.no{width:1%;white-space:nowrap;color:var(--muted);font-variant-numeric:tabular-nums}
+.src{display:block;font-size:12px;color:var(--muted);margin-top:2px}
+/* 标签 */
+.tag{display:inline-block;font-size:11.5px;font-weight:650;line-height:1.6;padding:0 7px;border-radius:4px;white-space:nowrap;vertical-align:1px}
+.t-goal{background:var(--ok-soft);color:var(--ok)} .t-con{background:var(--warn-soft);color:var(--warn)} .t-sug{background:var(--info-soft);color:var(--info)}
+.t-inf{background:var(--line2);color:var(--muted)} .t-add{background:var(--sup-soft);color:var(--sup)}
+.chip{display:inline-block;font-size:12px;padding:0 7px;border:1px solid var(--line);border-radius:10px;color:var(--ink2);margin:1px 2px 1px 0;font-variant-numeric:tabular-nums}
+/* 卡片 */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin:0 0 10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px 16px}
+.card h3{font-size:16px;margin:0 0 4px}
+.card .what{font-size:14px;color:var(--ink);margin:0 0 8px}
+.card .val{font-size:13.5px;color:var(--ink2);margin:8px 0 0;padding-top:8px;border-top:1px dashed var(--line)}
+/* 两栏 */
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 16px}
+.box h4{font-size:13px;color:var(--muted);margin:0 0 6px;font-weight:650;letter-spacing:.5px}
+.box ul{margin:0;padding-left:1.2em} .box li{margin:3px 0;font-size:14px}
+.note{font-size:12.5px;color:var(--muted);margin:6px 0 0}
+.links{font-size:13px;color:var(--muted);margin-top:40px;padding-top:12px;border-top:1px solid var(--line)}
+a{color:var(--accent)}
+@media (max-width:600px){h1{font-size:20px}.summary dl{grid-template-columns:1fr}.summary dt{margin-top:6px}}
+
+
+.tree{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin:0 0 10px}
+.tree .goal{font-weight:700;font-size:15.5px;margin:0 0 10px}
+.tree .goal small{display:block;font-weight:400;color:var(--ink2);font-size:13.5px;margin-top:2px}
+.tree ul{list-style:none;margin:0;padding:0 0 0 18px;border-left:2px solid var(--line)}
+.tree li{position:relative;margin:6px 0;padding-left:14px}
+.tree li:before{content:"";position:absolute;left:-2px;top:13px;width:12px;border-top:2px solid var(--line)}
+.tree li a{font-weight:650;text-decoration:none;color:var(--ink)}
+.tree li .d{color:var(--ink2);font-size:13.5px}
+.cap{background:var(--card);border:1px solid var(--line);border-radius:10px;margin:0 0 16px;overflow:hidden}
+.cap-h{padding:14px 18px 10px;border-bottom:1px solid var(--line2)}
+.cap-h .t{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.cap-h h3{font-size:17px;margin:0}
+.cap-h .def{font-size:14.5px;color:var(--ink);margin:4px 0 6px}
+.cap table{font-size:14px}
+.cap td,.cap th{padding-left:18px}
+.cap-v{padding:10px 18px 14px;font-size:13.8px;color:var(--ink2);background:var(--bg);border-top:1px solid var(--line2)}
+.cap-v b{color:var(--ink)}
+.reqgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.req{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+.req h4{margin:0 0 6px;font-size:14px;color:var(--ink2)}
+.req .it{padding:7px 0;border-top:1px dashed var(--line2)} .req .it:first-of-type{border-top:none}
+.req .o{font-size:14px} .req .u{font-size:13px;color:var(--ink2);margin-top:2px}
+
+
+.core{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:0 0 12px}
+.core h2{font-family:var(--serif);font-size:17px;margin:0 0 10px}
+.core table{font-size:13.8px}
+.core td{padding:9px 10px}
+.core td.cn{white-space:nowrap}
+.sc{display:inline-block;font-size:12.5px;background:var(--bg);border:1px solid var(--line2);border-radius:5px;padding:0 6px;margin:2px 3px 2px 0;line-height:1.7}
+.sc i{font-style:normal;color:var(--muted);margin-right:4px;font-variant-numeric:tabular-nums}
+.sc em{font-style:normal;color:var(--sup);font-size:11px;margin-left:3px}
+.must{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin:0 0 6px}
+.must .box p{margin:0;font-size:14px}
+details.more{margin:6px 0 0}
+details.more>summary{cursor:pointer;font-size:13px;color:var(--accent);margin:2px 0 10px;list-style:none}
+details.more>summary::before{content:"▸ ";} details.more[open]>summary::before{content:"▾ ";}
+.readtime{font-size:12.5px;color:var(--muted);margin:0 0 14px}
+h1{margin-bottom:6px}
+.h1sub{font-size:15px;color:var(--ink2);margin:0 0 14px}
+.chain{display:flex;align-items:stretch;gap:6px;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;margin:0 0 8px}
+.chain .nd{flex:1 1 120px;background:var(--bg);border:1px solid var(--line2);border-radius:8px;padding:8px 10px;font-weight:650;font-size:14px}
+.chain .nd small{display:block;font-weight:400;font-size:12px;color:var(--muted)}
+.chain .nd span{display:inline-block;font-size:11px;color:var(--accent);background:var(--accent-soft);border-radius:4px;padding:0 5px;margin-right:6px}
+.chain .nd.two{display:flex;flex-direction:column;gap:6px;background:transparent;border:none;padding:0}
+.chain .nd.two>div{background:var(--bg);border:1px solid var(--line2);border-radius:8px;padding:8px 10px}
+.chain .ar{align-self:center;color:var(--muted);font-size:16px}
+@media (max-width:640px){.chain{flex-direction:column}.chain .ar{transform:rotate(90deg);align-self:center;line-height:1}}
+.cc-now{margin:0 0 4px;font-size:13px;color:var(--ink2)}
+.cc-now b,.cc-v b{font-size:11.5px;color:var(--muted);margin-right:6px;font-weight:650}
+.ccs{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px}
+.cc{border:1px solid var(--line2);border-radius:8px;padding:11px 13px;background:var(--card)}
+.cc-h{display:flex;align-items:baseline;gap:8px;margin:0 0 4px}
+.cc-h b{font-size:15px}
+.cc-no{font-size:11.5px;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:4px;padding:0 6px}
+.cc-n{margin-left:auto;font-size:12px;color:var(--muted)}
+.cc-d{margin:0 0 6px;font-size:13.8px}
+.cc-s{margin:0 0 6px}
+.cc-v{margin:0;font-size:13px;color:var(--ink2);border-top:1px dashed var(--line);padding-top:6px}
+
+</style></head><body><div class="wrap">
+<p class="meta">阶段 5 · 方案选型 · 对象：弹窗、标签、推送能力建设的备选方案 · 2026-10-09 · 回溯修订：「消除」改口径为「有对应改动」，推荐不变，已过审（2026-10-09 18:08）；2026-10-10 按效果数据已有记录回溯修订，待审查</p>
+<h1>推荐把推送接入同一个后台统一配置，并按人合计弹窗与推送条数、超过上限不再发：唯一对 4 个根因都有对应改动的方案</h1>
+<p class="h1sub">代价是开发最大、最难验证和回退，所以作为长期部分；短期在现有后台内重组并补数据收集，两部分属同一方案，整体交主管审核</p>
+<p class="readtime">首屏为核心内容；各节明细默认折叠，点「展开」查看。</p>
+
+<div class="core">
+<h2>3 个方案：改什么、对应哪些根因、代价多大</h2>
+<p class="note" style="margin:-4px 0 10px">根因＝阶段 4 归纳的 4 个缺口原因；缺口场景＝现有后台做不到的 7 个需求场景加跨位置先后，共 8 个缺口。有对应改动＝方案含针对该原因的改动，是否消除由阶段 7 验证；绕开＝原因仍在，用其他手段近似。</p>
+<div class="tw"><table>
+<tr><th style="min-width:10em"></th><th>方案一　现有后台内重组</th><th>方案二　分侧补强</th><th>方案三　推送统一后台与弹窗推送合计限量 <span class="tag t-goal">推荐</span></th></tr>
+<tr><td><b>做什么</b></td><td>不开发，用现有后台配齐已能做的 16 个场景</td><td>弹窗、推送各自补功能，不建统一后台</td><td>推送接入同一个后台，统一配置定向、频控和记录；按人合计弹窗与推送条数，超过上限不再发；弹窗自身的先后、个数、关闭后不再弹在弹窗规则里补字段（同方案二）</td></tr>
+<tr class="grp"><td colspan="4">4 个根因</td></tr>
+<tr><td>推送随各功能分别实现</td><td>不涉及</td><td>不涉及</td><td><b>有对应改动</b></td></tr>
+<tr><td>部分弹窗与快显写死在客户端</td><td>不涉及</td><td>有对应改动（仅新手弹窗）</td><td><b>有对应改动</b></td></tr>
+<tr><td>弹窗规则没有跨规则先后与总量</td><td>绕开</td><td>有对应改动</td><td><b>有对应改动</b></td></tr>
+<tr><td>弹窗不支持关闭后不再弹</td><td>绕开</td><td>有对应改动</td><td><b>有对应改动</b></td></tr>
+<tr class="grp"><td colspan="4">结果与代价</td></tr>
+<tr><td>解决的缺口场景</td><td>0 个</td><td>3 个</td><td><b>8 个</b>，其中 5 个只有它能做</td></tr>
+<tr><td>改动成本</td><td>无需开发</td><td>小改动至较大开发</td><td>较大开发</td></tr>
+<tr><td>可验证、可回退</td><td>最好</td><td>居中</td><td>最差，依赖的未知最多</td></tr>
+</table></div>
+</div>
+
+<div class="must">
+<div class="box"><h4>推荐与依据</h4><p>方案三（推送统一后台与弹窗推送合计限量）是唯一对 4 个根因都有对应改动的方案；方案验证的结果是全部消除 1 个、部分消除 3 个。另两个方案并入其中：方案一的 16 个场景是起步部分，方案二要补的弹窗字段仍留在弹窗规则里，推送部分改由统一后台承担（阶段 6 细化）。7 项推断任一不成立，推荐都不变。</p></div>
+<div class="box"><h4>短期与长期：同一方案的两部分，整体交主管审核</h4><p>短期在现有后台内重组、补数据收集，无需开发或小改动，可验证、可回退；长期把推送接入统一后台、按人合计弹窗与推送条数等较大开发，对全部 4 个根因都有对应改动。覆盖与可验证、回退分属长期与短期，不冲突，不需抉择。</p></div>
+<div class="box"><h4>推断与边界</h4><p>有对应改动不等于一定消除或做得到。行业参照无公开出处，成本只作对比，都不作推荐或排除依据。</p></div>
+</div>
+
+<section class="sec" id="s1"><div class="sec-h"><span class="sec-no">一</span><h2>候选方案：3 条路线，前两条是第三条的子集，区别在是否开发、推送是否并入同一后台</h2></div>
+<details class="more"><summary>展开：三个方案的内容、各含哪些改动、逐层多出什么、未纳入的路线</summary>
+<p class="sec-sub">方案＝一条建设路线，对每个根因说明是否包含针对它的改动；前两条的改动都包含在第三条中，区别只在最终形态上推送是否并入同一后台。三个方案合起来覆盖 4 个根因与 8 个缺口场景。本阶段只比方案，不写设计细节（属阶段 6）。</p>
+<div class="cards">
+<div class="card"><h3>方案一　现有后台内重组</h3><p class="what">不新增能力，用现有后台把已能做的 16 个场景做完，8 个缺口场景仍做不到；这 16 个场景也是另两个方案共同的起步部分。</p><p class="val">配置方式有两种：按人群分层，让同一位置各规则圈选的人群互不重叠；或一类人群一条规则，靠排除去重（依赖规则对象设置里的排除栏，<span class="tag t-inf">推断</span>）。</p></div>
+<div class="card"><h3>方案二　分侧补强</h3><p class="what">弹窗、推送各自补功能：弹窗规则补先后、总量、关闭后当日不再弹，新手弹窗纳入后台；推送各通路仍各自发送；记录已有（Dk 10/10，可能部分不全），不另补。</p><p class="val">不建推送统一入口，不按人合计弹窗与推送条数，快显仍写死在客户端。</p></div>
+<div class="card"><h3>方案三　推送统一后台与弹窗推送合计限量</h3><p class="what">五条推送通路、新手弹窗、快显都接入同一个后台：统一配置入口、定向、频控和记录；按人合计弹窗与推送条数，超过上限不再发；弹窗自身的先后、个数、关闭后不再弹在弹窗规则里补字段（阶段 6 细化）。</p><p class="val">短信、Facebook、LINE 在后台之外，接入方式与营销侧是否配合均未知。</p></div>
+</div>
+<div class="tw"><table>
+<tr><th>根因</th><th>方案一</th><th>方案二</th><th>方案三</th></tr>
+<tr><td>推送随各功能分别实现（各功能各一套推送）</td><td>不含</td><td>不含</td><td>含</td></tr>
+<tr><td>部分弹窗与快显写死在客户端</td><td>不含</td><td>含（仅新手弹窗）</td><td>含</td></tr>
+<tr><td>弹窗规则没有跨规则先后与总量设置</td><td>不含<span class="src">靠各规则人群互不重叠绕开先后</span></td><td>含</td><td>含</td></tr>
+<tr><td>弹窗频次不支持负反馈（关闭后仍会再弹）</td><td>不含<span class="src">每日次数设为 1 次只能近似</span></td><td>含</td><td>含</td></tr>
+<tr class="grp"><td colspan="4">8 个缺口场景</td></tr>
+<tr><td>能解决的缺口场景</td><td>0 个</td><td>3 个：跨规则先后、关闭后当日不再弹、新手弹窗纳入后台</td><td>全部 8 个；其中统一推送入口、单人日推送条数上限、弹窗与推送合计上限、推送跳转、行为触发推送只有此方案能做</td></tr>
+</table></div>
+<p class="note">阶段产出规划原举三例，这里改为三条路线：前两例（按人群分层、按内容配置加排除去重）在 4 个根因上改动相同，是方案一的两种配置方式；第三例（待总控功能上线后实施）是时机而非路线，且「总控」只在主管原话里指控制这一动作、无排期记载，改作方案二、三的前置条件<span class="tag t-inf">推断</span>。</p>
+<div class="cols" style="margin-top:10px">
+<div class="box"><h4>三条路线逐层多出什么</h4><ul><li>方案一→方案二，多出：弹窗规则字段、新手弹窗接入</li><li>方案二→方案三，多出：推送统一后台与弹窗推送合计上限</li><li>真正被否掉的只有一处：停在方案二、推送不并入同一后台；先做二、再到三是阶段 6 的实施分层，此处不选</li></ul></div>
+<div class="box"><h4>未纳入的路线</h4><ul><li>外购第三方触达平台：本地资料无任何相关记载，无从对比</li><li>只做数据与观测、只做弹窗侧、只做推送侧：是方案二或三的实施范围，属阶段 6</li><li>弹窗侧选方案二、推送侧选方案三的混合：合计上限仍需把弹窗与推送条数合在一起计数，实际退化为方案三的一部分</li></ul></div>
+</div>
+<p class="note">三个方案只在上述两项选择内是完整的，不代表穷尽了所有可能路线。逐方案的边界、依赖见<a href="分析/A62_候选方案.md">候选方案</a>。</p>
+</details>
+</section>
+
+<section class="sec" id="s2"><div class="sec-h"><span class="sec-no">二</span><h2>方案对比：覆盖越全，开发越大、依赖的未知越多</h2></div>
+<details class="more"><summary>展开：逐根因的覆盖、可行性与成本、逐层多出的根因与代价、7 项推断的影响</summary>
+<p class="sec-sub">覆盖分三档：有对应改动＝方案含针对该根因的改动（是否真正消除见阶段 7）；绕开＝根因仍在，用其他手段近似实现；不涉及＝方案不含针对该根因的改动。</p>
+<div class="tw"><table>
+<tr><th>根因</th><th>方案一　现有后台内重组</th><th>方案二　分侧补强</th><th>方案三　推送统一后台与弹窗推送合计限量</th></tr>
+<tr><td>推送随各功能分别实现</td><td>不涉及：不含针对「各功能各一套推送」的改动，统一入口、跨功能的每日上限、自助配置行为触发仍没有</td><td>不涉及：只补弹窗侧设置与推送记录，不建统一后台，遗留问题同方案一</td><td>有对应改动：推送统一后台建成后，「各功能各一套」设计上不再成立</td></tr>
+<tr><td>部分弹窗与快显写死在客户端</td><td>不涉及：新手弹窗与快显仍须研发调整</td><td>有对应改动（仅新手弹窗）：迁入后台后调整不再需要开发；快显仍写死</td><td>有对应改动：新手弹窗与快显都改为后台配置</td></tr>
+<tr><td>弹窗规则没有跨规则先后与总量设置</td><td>绕开：各规则人群互不重叠，先后不必设置；总量设置仍没有，单人合计只能手算</td><td>有对应改动：补先后与总量设置；弹窗与推送合计上限的推送侧不在内</td><td>有对应改动：弹窗规则补先后与总量字段（同方案二），另加弹窗与推送合计上限</td></tr>
+<tr><td>弹窗频次不支持负反馈</td><td>绕开：把某项每日次数设为 1 次可近似，但不看玩家是否关闭，与场景含义不同</td><td>有对应改动：补关闭后当日不再弹</td><td>有对应改动：弹窗规则补关闭后当日不再弹（同方案二）</td></tr>
+</table></div>
+<p class="sec-sub" style="margin-top:14px">现有后台可行性 · 改动成本 · 最大风险（成本只作对比项，不据此排除任何方案）</p>
+<div class="tw"><table>
+<tr><th>方案</th><th>推送分散</th><th>写死在客户端</th><th>规则先后与总量</th><th>关闭后不再弹</th></tr>
+<tr><td>一</td><td>不适用</td><td>不适用</td><td>已记载可做 · 无需开发 · 影响其他人群</td><td>已记载可做 · 无需开发 · 影响其他人群</td></tr>
+<tr><td>二</td><td>不适用</td><td>需新开发 · 较大开发 · 依赖他人</td><td>需新开发 · 小改动 · 依赖他人</td><td>需新开发 · 小改动 · 依赖他人</td></tr>
+<tr><td>三</td><td>需新开发 · 较大开发 · 依赖他人或不可验证</td><td>需新开发 · 较大开发 · 依赖他人</td><td>需新开发 · 较大开发 · 依赖他人</td><td>需新开发 · 较大开发 · 依赖他人</td></tr>
+</table></div>
+<p class="note">成本为相对档位（<span class="tag t-inf">推断</span>，依据改动性质）：无需开发＝仅后台配置；小改动＝现有后台增加字段、开关或汇总；较大开发＝新建统一后台、改造客户端或新建数据管线。方案三的统一后台一次建成，各格成本共享，不可相加。</p>
+<div class="cols" style="margin-top:10px">
+<div class="box"><h4>方案一→方案二：多出哪些根因的对应改动、多付什么代价</h4><ul><li>方案一成本全为无需开发，但没有一个根因有对应改动，8 个缺口场景都不解决</li><li>方案二多出 3 个根因的对应改动，代价是可行性全为需新开发</li></ul></div>
+<div class="box"><h4>方案二→方案三：多出哪些根因的对应改动、多付什么代价</h4><ul><li>方案二在弹窗规则、频次上与方案三同样有对应改动，成本更低、依赖更少</li><li>方案三多出推送分散、快显写死以及弹窗与推送合计上限，代价是依赖的未知最多</li></ul></div>
+</div>
+<p class="note">方案三包含方案二，方案二包含方案一的起步部分；差别只在多出的改动带来的成本与可回退性。</p>
+<p class="sec-sub" style="margin-top:14px">7 项推断：结论不同时对比表哪些格会变</p>
+<div class="tw"><table>
+<tr><th>推断</th><th>影响</th><th>对比结论</th></tr>
+<tr><td>弹窗规则的对象设置有排除栏<span class="tag t-inf">推断</span></td><td>有：方案一的第二种配置方式可用；无：只剩按人群分层或新建互斥标签</td><td>不变</td></tr>
+<tr><td>跨规则先后已可设置<span class="tag t-inf">推断</span></td><td>已可设置：方案二、三在弹窗规则上补先后的改动取消，对应缺口取消</td><td>不变</td></tr>
+<tr><td>总量设置已存在<span class="tag t-inf">推断</span></td><td>已存在：方案二、三在弹窗规则上补总量的改动缩小，合计上限仍缺推送侧计数</td><td>不变</td></tr>
+<tr><td>各通路可按标签发送<span class="tag t-inf">推断</span></td><td>有：推送可直接共用弹窗的人群，方案二、三成本下降；只能按名单：每次导名单，不随标签更新</td><td>不变</td></tr>
+<tr><td>关闭后当日不再弹的最轻版本已支持<span class="tag t-inf">推断</span></td><td>已支持：该缺口取消，方案二、三的对应改动取消</td><td>不变</td></tr>
+<tr><td>主管提到的「总控」功能已排期<span class="tag t-inf">推断</span></td><td>已排期：依赖他人的风险下调；未排期：「等它上线」退化为先提开发需求</td><td>不变</td></tr>
+<tr><td>新手弹窗写死的原因（无记载）</td><td>若只是历史遗留：成本可降为小改动；若与客户端逻辑耦合：按表中成本</td><td>不变</td></tr>
+</table></div>
+<p class="note">逐格因果与风险分类见<a href="分析/A63_方案对比.md">方案对比</a>。</p>
+</details>
+</section>
+
+<section class="sec" id="s3"><div class="sec-h"><span class="sec-no">三</span><h2>行业参照：只有通识、无公开出处，各类做法并存，不作推荐依据</h2></div>
+<details class="more"><summary>展开：四个主题的通行做法、对应方案与本平台的不适配</summary>
+<p class="sec-sub">未联网检索，16 条做法中有公开出处 0 条、通识 15 条、推断 1 条；对应方案为推断。四个主题下通行做法并存，不指向唯一方案，只作可行性旁证。不出现公司名与效果数字。</p>
+<div class="tw"><table>
+<tr><th>主题</th><th>并存的通行做法</th><th>对应方案</th><th>与本平台的不适配</th></tr>
+<tr><td>弹窗优先级与总量</td><td>固定优先级链；全局展示上限加冷却；规则竞争或评分仲裁；靠运营日历避让<span class="tag t-inf">通识</span></td><td>一：优先级链、日历避让；二：全局上限；三：仲裁（弱推断）、全局上限</td><td>大厅四个时机全被占用；弹窗规则无总量设置（推断）；评分仲裁需要曝光、点击汇总</td></tr>
+<tr><td>人群圈选</td><td>标签的与、或、排除；群组交集与差集；名单上传；按行为实时入群<span class="tag t-inf">通识</span></td><td>与方案无对应，圈选能力属三个方案共同的起步部分</td><td>标签刷新最快 25 分钟，不能即时入群；无交集；破产没有对应标签</td></tr>
+<tr><td>多通路统一管理与频控</td><td>集中编排、全局频控；各通路自管；两级频控；负反馈降频<span class="tag t-inf">通识</span></td><td>一：各通路自管；二：两级频控、负反馈降频；三：集中编排</td><td>短信、Facebook、LINE 在后台之外；通路定向与回传、统一用户标识均未知；授权与合规待阶段 6</td></tr>
+<tr><td>触达数据回收</td><td>发送、到达、点击漏斗；曝光、点击埋点加订单关联；对照组或保留组；只看整体指标<span class="tag t-inf">通识</span></td><td>一：只看整体、数据组取数；二：漏斗、埋点；三：统一留存、对照组</td><td>推播已有发送、到达、点击记录（Dk 10/10，可能部分不全）；无分组标记、无历史快照，对照组没有现成基础</td></tr>
+</table></div>
+<p class="note">通行做法只说明这类做法在业内存在，不说明有效，也不说明本平台应当照做；推荐不引用本节。联网可用时补查公开出处，只作可行性旁证。逐条做法、反面做法见<a href="分析/A64_行业参照.md">行业参照</a>。</p>
+</details>
+</section>
+
+<section class="sec" id="s4"><div class="sec-h"><span class="sec-no">四</span><h2>推荐方案：短期在现有后台内重组并补数据收集，长期建推送统一后台与弹窗推送合计限量，整体交主管审核</h2></div>
+<details class="more"><summary>展开：推荐依据、判断标准、什么情况下推荐会变</summary>
+<div class="summary"><dl>
+<dt>推荐</dt><dd>因为方案一、二的改动都包含在方案三（推送统一后台与弹窗推送合计限量）中，被否掉的只是「停在方案二、推送不并入同一后台」，它留下「推送随各功能分别实现」这一根因，而方案三对 4 个根因都有对应改动，所以推荐一个分短期、长期的完整方案：短期在现有后台内重组并补数据收集，长期把推送接入同一个后台统一配置，并按人合计弹窗与推送条数、超过上限不再发。强度为推断：推荐来自判断取舍，不是数据证明。</dd>
+<dt>另两个</dt><dd>现有后台内重组的 16 个场景是方案三的起步部分；分侧补强在弹窗规则里补的字段原样保留在方案三中，只有推送侧改由统一后台承担（阶段 6 细化）。</dd>
+<dt>依据不足</dt><dd>方案三只由第 1 条标准（覆盖）推出，这条标准天然偏向覆盖广的方案；它在可验证、可回退上最差，依赖的未知最多，所以放在长期，由短期的重组与数据收集先行验证。</dd>
+<dt>二与三</dt><dd>方案三胜过方案二的差距几乎全在「推送随各功能分别实现」一个根因，而它在阶段 4 居首本身依据不足。第 2 条标准三个方案打平，又排在第 1 条之后，不参与决出推荐。先做二、再迁到三是阶段 6 的分层，不影响推荐三。</dd>
+</dl></div>
+<p class="sec-sub" style="margin-top:14px">判断标准在看对比结果之前定好，不打总分；标准本身是取舍，不是证据。第 1 条（覆盖）决定长期建什么，第 3、4 条（可验证、可回退）决定短期先做什么，两者分属长期与短期，不冲突。</p>
+<div class="tw"><table>
+<tr><th>判断标准</th><th>方案一</th><th>方案二</th><th>方案三</th></tr>
+<tr><td>1 覆盖：有对应改动的根因多者优先</td><td>劣：0 个</td><td>劣：3 个</td><td><b>优：4 个</b></td></tr>
+<tr><td>2 约束：现有后台已记载可做的改动排在起步部分</td><td>平</td><td>平</td><td>平</td></tr>
+<tr><td>3 可验证：依赖的推断少、能先行验证者优先</td><td>优</td><td>平</td><td>劣</td></tr>
+<tr><td>4 可回退：改动能撤回者优先</td><td>优</td><td>平</td><td>劣</td></tr>
+<tr><td>5 成本：仅在前几条全部打平时用来决出</td><td>未用</td><td>未用</td><td>未用</td></tr>
+</table></div>
+<div class="tw"><table>
+<tr><th>若……</th><th>则推荐</th><th>推荐是否改变</th></tr>
+<tr><td>7 项单项推断中任一不成立：排除栏、跨规则先后、总量设置、通路定向、关闭后当日不再弹、弹窗总控功能排期、补充场景是否认可</td><td>仍为方案三；有对应改动的根因数差距最多由 4 比 3 缩到 3 比 2 或 2 比 1，不会反超</td><td>不变</td></tr>
+<tr><td>看可验证、可回退（第 3、4 条）</td><td>已纳入短期：现有后台内重组并补数据收集，再据结果推进长期</td><td>不变：与覆盖分属短期、长期，不冲突</td></tr>
+<tr><td>上级不认可需求分析中本文补充的场景（只剩 3 个主管明确的缺口场景）</td><td>方案三，有对应改动的主因 2 个（推送分散、弹窗规则），仍居首</td><td>不变</td></tr>
+</table></div>
+<div class="cols">
+<div class="box"><h4>与阶段 4 优先级的关系</h4><ul><li>阶段 4 把推送侧排在首位，依据不足；本推荐是对全部 4 个根因都有对应改动的整体方案，先做哪一侧属阶段 6</li><li>两者不冲突：推荐依据是第 1 条标准（覆盖），不是缺口个数，也不能据此说推送侧居首得到证实</li></ul></div>
+<div class="box"><h4>仍未解决的</h4><ul><li>4 个根因、8 个缺口场景都有对应改动；这只说明方案包含这些改动，不等于做得到，也不等于都被消除（阶段 7：全部消除 1、部分消除 3）</li><li>若短信、Facebook、LINE 无法接入统一后台，这几条通路仍各自独立，交阶段 6 的约束与风险处理</li></ul></div>
+</div>
+<p class="note">不推荐的是停在方案二、推送不并入同一后台，不是其中的改动。短期、长期两部分整体交主管审核。推导与推断不成立时的检验见<a href="分析/A65_推荐方案.md">推荐方案</a>。</p>
+</details>
+</section>
+
+<section class="sec" id="s5"><div class="sec-h"><span class="sec-no">五</span><h2>关键假设：6 项推断任一不成立，推荐方向都不变；推荐前需补 4 项数据</h2></div>
+<details class="more"><summary>展开：6 项假设的依据与影响、推荐前要补的数据、可顺手核实的事</summary>
+<p class="sec-sub">依据不足之处与缺什么数据集中写在此处；其他各节只标「推断」。</p>
+<div class="tw"><table>
+<tr><th>假设</th><th>依据</th><th>推错影响</th></tr>
+<tr><td>判断标准的内容是取舍<span class="tag t-inf">依据不足</span></td><td>标准在对比前定好；覆盖与可验证、可回退分属长期与短期，不需排先后；缺：主管对整体方案的审核</td><td>主管审核调整某一部分时，只改该部分的范围或节奏，推荐方向不变</td></tr>
+<tr><td>分侧补强在「写死在客户端」上只算新手弹窗有对应改动<span class="tag t-inf">推断</span></td><td>新手弹窗迁入后台后调整不再需要开发；快显仍写死</td><td>按一半计也不改变推荐</td></tr>
+<tr><td>三个方案的起步部分相同（现有后台可做的 16 个场景）<span class="tag t-inf">推断</span></td><td>阶段 7 的场景验证，其中 11 个为推断可做</td><td>某场景实际做不到，三个方案同时受影响，推荐不变</td></tr>
+<tr><td>改动成本只分相对档位<span class="tag t-inf">推断</span></td><td>档位依据是改动性质；缺：工期与人力估算</td><td>实际工期不同不改推荐（成本未用于决出推荐）</td></tr>
+<tr><td>推送统一后台与合计限量的可行性依赖多项未知<span class="tag t-inf">依据不足</span></td><td>缺：通路定向与接入方式、各通路现有记录能否并入、快显客户端改造量</td><td>任一不成立，对应根因的成本与可行性改变，推荐方向不变</td></tr>
+<tr><td>行业做法全部为通识<span class="tag t-inf">依据不足</span></td><td>缺：公开出处；本阶段不作推荐依据</td><td>补到出处后只增强可行性旁证</td></tr>
+</table></div>
+<p class="sec-sub" style="margin-top:14px"><b>推荐前要补的数据（沿用阶段 4 的 4 项）</b></p>
+<div class="tw"><table>
+<tr><th>收什么</th><th>解开哪一环</th></tr>
+<tr><td>推播、弹窗、短信记录缺哪些字段、哪些时段不全；快显、Facebook、LINE 有无记录、在哪里</td><td>记录能否支撑按人群汇总；统一后台能否接入各通路</td></tr>
+<tr><td>弹窗规则的完整字段列表与排序列含义；推送触发条件清单与可配置范围</td><td>跨规则先后、总量是否已有；行为触发推送能否自助</td></tr>
+<tr><td>「当日不再弹」最轻版本能否配置</td><td>关闭后当日不再弹是否仍是缺口</td></tr>
+<tr><td>个人逐日登录（近 28 天）</td><td>潜在流失（登录天数下降）的圈选与两档人数；回流事件口径；同日多次进大厅的人数；短信发送后登录口径的数据来源</td></tr>
+</table></div>
+<div class="cols">
+<div class="box"><h4>可以顺手核实的事（不阻塞）</h4><ul><li>Facebook、LINE 是否有记录；各通路可否按标签发送：能按标签则推送共用弹窗的人群、统一后台成本下降，推荐不变</li><li>弹窗总控功能是否已排期：已排期则依赖他人的风险下调，推荐不变</li></ul></div>
+</div>
+<p class="note">以上均不阻塞本阶段：未知项按推断往下做，答案不同时改动的位置见各行。</p>
+</details>
+</section>
+
+<p class="links">依据与素材：<a href="分析/A62_候选方案.md">候选方案</a> · <a href="分析/A63_方案对比.md">方案对比</a> · <a href="分析/A64_行业参照.md">行业参照</a> · <a href="分析/A65_推荐方案.md">推荐方案</a> · <a href="阶段4_问题诊断.html">问题诊断</a> · <a href="阶段3_现状盘点.html">现状盘点</a> · <a href="阶段1_需求分析.html">需求分析</a></p>
+</div></body></html>
