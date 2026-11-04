@@ -4,4 +4,4 @@
 - [团队工作模式文件夹](team-working-mode-folder.md) — 团队分工、需求链路、版本、Jira 用法统一放 团队工作模式/
 - [Dk 是产品部新人](dk-product-newcomer.md) — 产品部只有 Dk 和崔峰龙（主管）；产品部交功能设计、不画原型图，落地归 EP；主管要结构化汇报（PPT 或流程图）
 - [用 Claude 的体检与新框架 10/29](claude-usage-diagnosis-1029.md) — 报告在 用好Claude/；另一条对话同日装了 开工/验收官/整理纠正 框架（_底座/）；两套已合并，总报告在 _底座/简报/
-- [旧本地环境 11/04 结束](local-env-ends-1104.md) — 之后只有 GitHub `Clarelive/Claude` 的内容保留，旧对话都没了；接手靠 先看这里.md 和 _底座/任务/
+- [旧本地环境 11/04 结束](local-env-ends-1104.md) — 之后只有 GitHub `CleveLandEras/Claude` 的内容保留，旧对话都没了；接手靠 先看这里.md 和 _底座/任务/

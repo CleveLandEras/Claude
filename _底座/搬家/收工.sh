@@ -633,7 +633,7 @@ def write_notcarried(idx, excl, batch, with_videos, originals):
         g[1] += du(os.path.join(REPO, pth))
     rows = sorted(groups.items(), key=lambda kv: -kv[1][1])
     L += ['## 3. 被各项目 `.gitignore` 挡掉的（按大小，路径取前三级）',
-          '原因：弹窗 `.gitignore` 写明只传接着干活要用的上下文（10/20）；根 `.gitignore` 挡运行环境、构建产物、缓存、锁文件和录屏原件。',
+          '原因：根 `.gitignore` 挡运行环境、构建产物、缓存、锁文件和录屏原件；弹窗 `.gitignore` 只挡系统文件和本机设置（11/04 起旧版本、归档、分析、简报都带）。',
           '| 路径 | 项数 | 大小 |', '|---|---|---|']
     for k, (c, sz) in rows[:60]:
         L.append(f'| `{k}` | {c} | {mb(sz)} |')

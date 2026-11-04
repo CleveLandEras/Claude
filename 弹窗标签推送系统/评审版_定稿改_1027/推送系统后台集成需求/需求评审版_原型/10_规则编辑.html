@@ -70,7 +70,6 @@ tr.ovr td{background:#F7FAFF}
 <body>
 <div class="shot bk" data-page="弹窗" data-crumb="回流">
   <div class="eh"><h3>回流 <span class="id">编号 83</span></h3><span class="pill on">上架中</span><span class="sp"></span><span class="btno">复制</span><span class="btno">暂停</span><span class="btno">结束</span></div>
-  <div style="margin:8px 0;padding:10px 14px;border:1px solid #F5DAB1;background:#FDF6EC;border-radius:4px;color:#7A4B00"><b>优先级被改的提醒</b>　丙 在 10/30 15:20 调了进大厅优先级，你的「回流」被挡住的人数从约 1,200 变成约 4,290　<span class="lk">去看顺序</span>　<span class="lk">知道了</span></div>
   <div class="ed">
     <div>
       <div class="sec">
@@ -79,20 +78,20 @@ tr.ovr td{background:#F7FAFF}
         <div class="row"><label>群组</label><span class="inp v" style="width:380px"><span class="tgs"><em class="tg g"><b>群组</b>回流</em></span><span class="dn">⌵</span></span><span class="m2">可多选，如普卡、银卡等卡别群组；可选实验组、对照组群组</span></div>
         <div class="row dis"><label>多个群组的关系</label><span class="radio on"><i></i>满足任一个</span><span class="radio"><i></i>同时满足全部</span><span class="m2">选 2 个以上群组才出现</span></div>
         <div class="row"><label>排除群组</label><span class="inp ph" style="width:380px">不排除（可多选）<span class="dn">⌵</span></span></div>
-        <div class="fixed">弹窗固定不弹：黑名单、停权、自我限制、注销处理中，机器人和测试账号（上传名单时除外）</div>
+        <div class="row"><label>更多</label><span class="lk">更多 ▾</span><span class="m2">包含测试账号（默认否）</span></div>
+        <div class="fixed">弹窗固定不弹：黑名单、停权、自我限制、注销处理中，机器人；测试账号默认不弹</div>
         <table class="cnt"><tr><td>符合发送对象</td><td class="v">16,580 人</td></tr><tr><td>扣除排除后</td><td class="v">16,580 人</td></tr></table>
       </div>
       <div class="sec">
         <div class="sh"><span class="n">2</span><span><i style="color:#F56C6C;font-style:normal;margin-right:2px">*</i>场景</span></div>
         <div class="row"><span class="radio on"><i></i>进大厅</span><span class="radio"><i></i>破产时</span><span class="radio"><i></i>首次登录</span><span class="radio"><i></i>第二次登录</span></div>
-        <div class="m2">可多选，每选一个场景，下面「弹哪些活动或礼包」就有一格；上架后场景可改。首次登录、第二次登录指当天第一次、第二次登录</div>
+        <div class="m2">可多选，每选一个场景，下面「弹哪些活动或礼包」就有一格；上架后场景可改。首次登录、第二次登录指当天第一次、第二次登录；那次进大厅先用这个场景的规则，没有才落回进大厅</div>
       </div>
       <div class="sec">
         <div class="sh"><span class="n">3</span><span><i style="color:#F56C6C;font-style:normal;margin-right:2px">*</i>名称</span></div>
         <span class="inp v" style="width:100%">回流</span>
-        <div class="m2" style="margin-top:4px">默认「场景·发送对象群组名」，可改</div>
-        <div class="row"><label>负责人</label><span class="inp v" style="width:150px">甲<span class="dn">⌵</span></span><span class="m2">默认创建人；交接在列表「按人交接」</span></div>
-        <div class="row"><label>备注</label><span class="inp v" style="width:100%">配合 11 月回流计划：惊喜三选一在本规则另设每 1 天 1 次</span></div>
+        <div class="m2" style="margin-top:4px">默认「发送对象群组名·场景」，可改</div>
+        <div class="row"><label>备注</label><span class="inp v" style="width:100%">配合 11 月回流计划：惊喜三选一在本规则另设每人每天 1 次</span></div>
       </div>
       <div class="sec">
         <div class="sh"><span class="n">4</span><span><i style="color:#F56C6C;font-style:normal;margin-right:2px">*</i>生效期间（台湾时间）</span></div>
@@ -116,7 +115,13 @@ tr.ovr td{background:#F7FAFF}
         <div class="k2"><span>固定／轮换池每次弹几个</span><b>2／1</b></div>
         <hr>
         <div class="k2"><span>弹窗</span><b>4 个</b></div>
-        <div class="m2">固定 2 个，轮换池 2 个，轮换池每次弹 1 个</div><div class="m2">→ 每次最多 3 个，固定的实际最多弹 2 个</div>
+        <div class="m2">固定 2 个，轮换池 2 个，轮换池每次弹 1 个</div>
+        <hr>
+        <div class="h" style="font-size:13px">冷却一览</div>
+        <div class="k2"><span>惊喜三选一 每人每天几次</span><b>1 次，本规则另设</b></div>
+        <div class="k2"><span>储值优惠礼包 冷却时间</span><b>不限，活动或礼包默认</b></div>
+        <div class="k2"><span>每日补给计划 弹出时机</span><b>每次进大厅，活动或礼包默认</b></div>
+        <div class="m2"><span class="lk">展开全部 14 项</span></div><div class="m2">→ 每次最多 3 个，固定的实际最多弹 2 个</div>
       </div>
     </div>
     <div class="sec acts">
@@ -134,6 +139,7 @@ tr.ovr td{background:#F7FAFF}
   <div class="ro2"><span>宣传图、跳转页面</span><span class="mth">惊喜三选一</span><span>惊喜三选一礼包页</span><span class="m2">不能在规则里另设</span><span class="lk">去改</span></div>
 </div></td></tr><tr><td class="hd">⠿</td><td class="ix">2</td><td><span class="an"><span class="lk">储值优惠礼包</span><span class="kind pay">礼包</span></span></td><td><span class="seg2 sm"><span>否</span><span class="on">是</span></span></td><td>是<em class="fy">沿用</em></td><td>只在从游戏返回时<em class="fy">沿用</em></td><td>2 次<em class="fy">沿用</em></td><td>不限<em class="fy">沿用</em></td><td class="op"><span class="lk">另设 ▾</span><span class="lk">移除</span></td></tr>
       </tbody></table>
+      <div class="row" style="margin-top:8px"><label style="width:auto">规则里的项都弹不了时</label><span class="radio on"><i></i>让给下一条（默认）</span><span class="radio"><i></i>这次不弹</span><span class="m2">选「让给下一条」，这个人这次由同场景下一条能弹的规则接着弹</span></div>
       <div class="addc"><span class="lk">＋ 加入活动或礼包</span><span class="m2">可选范围：未结束的活动和礼包，搜名称或编号、可多选；第一次进弹窗的当场配一次弹窗设置，已有的直接沿用</span></div>
     </div>
     <div class="sec full">
@@ -144,6 +150,7 @@ tr.ovr td{background:#F7FAFF}
         <tr><td>普卡已首储　编号 81</td><td>2</td><td>约 3,050</td><td>普卡已首储</td></tr>
         <tr><td>潜在流失　编号 84</td><td>5</td><td>约 2,180</td><td>本规则</td></tr>
       </tbody></table>
+      <div class="m2" style="margin-top:6px">其余 2 条无重叠。轮换池每项大约轮到多少人：惊喜三选一约 4,800 人（50%），储值优惠礼包约 4,800 人（50%），按每人各自的轮换位置，约数</div>
       <div class="m2" style="margin-top:6px">本规则 16,580 人里约 4,290 人会被排在前面的规则接走；预计每天弹给约 9,600 人</div>
     </div>
     <div class="sec full">

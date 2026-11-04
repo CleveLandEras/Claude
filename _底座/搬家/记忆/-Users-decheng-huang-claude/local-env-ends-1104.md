@@ -8,7 +8,7 @@ metadata:
   modified: 2026-11-04T02:40:23.279Z
 ---
 
-2026-11-04 是 Dk 使用旧 Mac（用户名 decheng.huang）本地环境的最后一天。换环境后只有 GitHub 仓库 `Clarelive/Claude` 里的内容保留。
+2026-11-04 是 Dk 使用旧 Mac（用户名 decheng.huang）本地环境的最后一天。换环境后只有 GitHub 仓库 `CleveLandEras/Claude` 里的内容保留。
 
 **Why:** Dk 11/04 上午明说的。之前定的「本机不切换、换环境时带压缩包」里，压缩包这半条因此作废。
 

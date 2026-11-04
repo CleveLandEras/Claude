@@ -1,0 +1,497 @@
+[
+ {
+  "t": 0.25,
+  "frame": 8,
+  "name": "震动",
+  "beat": "S01",
+  "key": true,
+  "duck": true,
+  "label": "手机响 buzz0：震"
+ },
+ {
+  "t": 0.25,
+  "frame": 8,
+  "name": "提示音",
+  "beat": "S01",
+  "key": true,
+  "duck": true,
+  "label": "手机响 buzz0：提示音"
+ },
+ {
+  "t": 0.95,
+  "frame": 29,
+  "name": "点击",
+  "beat": "S01",
+  "key": false,
+  "duck": false,
+  "label": "点“班级群” tapRow"
+ },
+ {
+  "t": 1.1,
+  "frame": 33,
+  "name": "嗖",
+  "beat": "S01",
+  "key": false,
+  "duck": false,
+  "label": "群聊滑进来 chatIn"
+ },
+ {
+  "t": 1.35,
+  "frame": 41,
+  "name": "气泡",
+  "beat": "S01",
+  "key": false,
+  "duck": false,
+  "label": "消息气泡 msgs[0]"
+ },
+ {
+  "t": 1.75,
+  "frame": 53,
+  "name": "气泡",
+  "beat": "S01",
+  "key": false,
+  "duck": false,
+  "label": "消息气泡 msgs[1]"
+ },
+ {
+  "t": 2.15,
+  "frame": 65,
+  "name": "气泡",
+  "beat": "S01",
+  "key": false,
+  "duck": false,
+  "label": "消息气泡 msgs[2]"
+ },
+ {
+  "t": 2.85,
+  "frame": 86,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "duck": false,
+  "label": "贴纸“没开免打扰” tagNo"
+ },
+ {
+  "t": 3.1,
+  "frame": 93,
+  "name": "震动",
+  "beat": "S02",
+  "key": true,
+  "duck": true,
+  "label": "手机响 rings[0]：震"
+ },
+ {
+  "t": 3.1,
+  "frame": 93,
+  "name": "提示音",
+  "beat": "S02",
+  "key": true,
+  "duck": true,
+  "label": "手机响 rings[0]：提示音"
+ },
+ {
+  "t": 4.4,
+  "frame": 132,
+  "name": "震动",
+  "beat": "S02",
+  "key": true,
+  "duck": true,
+  "label": "手机响 rings[1]：震"
+ },
+ {
+  "t": 4.4,
+  "frame": 132,
+  "name": "提示音",
+  "beat": "S02",
+  "key": true,
+  "duck": true,
+  "label": "手机响 rings[1]：提示音"
+ },
+ {
+  "t": 5.65,
+  "frame": 170,
+  "name": "啵",
+  "beat": "S02b",
+  "key": false,
+  "duck": false,
+  "label": "贴纸“开了免打扰” tagMute"
+ },
+ {
+  "t": 6.6,
+  "frame": 198,
+  "name": "嗒",
+  "beat": "S03",
+  "key": false,
+  "duck": false,
+  "label": "锁屏时间跳 clock1"
+ },
+ {
+  "t": 7.05,
+  "frame": 212,
+  "name": "布料",
+  "beat": "S03",
+  "key": false,
+  "duck": false,
+  "label": "手伸过去 reach1"
+ },
+ {
+  "t": 7.5,
+  "frame": 225,
+  "name": "点击",
+  "beat": "S03",
+  "key": false,
+  "duck": false,
+  "label": "轻轻点开 open1"
+ },
+ {
+  "t": 9.1,
+  "frame": 273,
+  "name": "叹气",
+  "beat": "S04",
+  "key": false,
+  "duck": false,
+  "label": "人泄气 slump"
+ },
+ {
+  "t": 9.85,
+  "frame": 296,
+  "name": "嗒",
+  "beat": "S04",
+  "key": false,
+  "duck": false,
+  "label": "放下手机 close1"
+ },
+ {
+  "t": 10.4,
+  "frame": 312,
+  "name": "嗒",
+  "beat": "S05",
+  "key": false,
+  "duck": false,
+  "label": "锁屏时间跳 clock2"
+ },
+ {
+  "t": 10.75,
+  "frame": 323,
+  "name": "布料",
+  "beat": "S05",
+  "key": false,
+  "duck": false,
+  "label": "手伸过去 reach2"
+ },
+ {
+  "t": 11.05,
+  "frame": 332,
+  "name": "点击",
+  "beat": "S05",
+  "key": false,
+  "duck": false,
+  "label": "轻轻点开 open2"
+ },
+ {
+  "t": 11.55,
+  "frame": 347,
+  "name": "嗒",
+  "beat": "S05",
+  "key": false,
+  "duck": false,
+  "label": "放下手机 close2"
+ },
+ {
+  "t": 11.7,
+  "frame": 351,
+  "name": "嗒",
+  "beat": "S05b",
+  "key": false,
+  "duck": false,
+  "label": "锁屏时间跳 clock3"
+ },
+ {
+  "t": 11.85,
+  "frame": 356,
+  "name": "布料",
+  "beat": "S05b",
+  "key": false,
+  "duck": false,
+  "label": "手伸过去 reach3"
+ },
+ {
+  "t": 12.2,
+  "frame": 366,
+  "name": "线",
+  "beat": "S06",
+  "key": false,
+  "duck": false,
+  "label": "一根线拉出来 thread"
+ },
+ {
+  "t": 13.1,
+  "frame": 393,
+  "name": "气泡",
+  "beat": "S06",
+  "key": false,
+  "duck": false,
+  "label": "气泡冒出 1/14"
+ },
+ {
+  "t": 13.344,
+  "frame": 400,
+  "name": "气泡",
+  "beat": "S06",
+  "key": false,
+  "duck": false,
+  "label": "气泡冒出 2/14"
+ },
+ {
+  "t": 13.525,
+  "frame": 406,
+  "name": "气泡",
+  "beat": "S06",
+  "key": false,
+  "duck": false,
+  "label": "气泡冒出 3/14"
+ },
+ {
+  "t": 13.688,
+  "frame": 411,
+  "name": "气泡",
+  "beat": "S06",
+  "key": false,
+  "duck": false,
+  "label": "气泡冒出 4/14"
+ },
+ {
+  "t": 13.84,
+  "frame": 415,
+  "name": "气泡",
+  "beat": "S06",
+  "key": false,
+  "duck": false,
+  "label": "气泡冒出 5/14"
+ },
+ {
+  "t": 13.985,
+  "frame": 420,
+  "name": "气泡",
+  "beat": "S06",
+  "key": false,
+  "duck": false,
+  "label": "气泡冒出 6/14"
+ },
+ {
+  "t": 14.124,
+  "frame": 424,
+  "name": "气泡",
+  "beat": "S06",
+  "key": false,
+  "duck": false,
+  "label": "气泡冒出 7/14"
+ },
+ {
+  "t": 14.258,
+  "frame": 428,
+  "name": "气泡",
+  "beat": "S06",
+  "key": false,
+  "duck": false,
+  "label": "气泡冒出 8/14"
+ },
+ {
+  "t": 14.388,
+  "frame": 432,
+  "name": "气泡",
+  "beat": "S06",
+  "key": false,
+  "duck": false,
+  "label": "气泡冒出 9/14"
+ },
+ {
+  "t": 14.516,
+  "frame": 435,
+  "name": "气泡",
+  "beat": "S06",
+  "key": false,
+  "duck": false,
+  "label": "气泡冒出 10/14"
+ },
+ {
+  "t": 14.64,
+  "frame": 439,
+  "name": "气泡",
+  "beat": "S06",
+  "key": false,
+  "duck": false,
+  "label": "气泡冒出 11/14"
+ },
+ {
+  "t": 14.762,
+  "frame": 443,
+  "name": "气泡",
+  "beat": "S06",
+  "key": false,
+  "duck": false,
+  "label": "气泡冒出 12/14"
+ },
+ {
+  "t": 14.882,
+  "frame": 446,
+  "name": "气泡",
+  "beat": "S06",
+  "key": false,
+  "duck": false,
+  "label": "气泡冒出 13/14"
+ },
+ {
+  "t": 15.0,
+  "frame": 450,
+  "name": "气泡",
+  "beat": "S06",
+  "key": false,
+  "duck": false,
+  "label": "气泡冒出 14/14"
+ },
+ {
+  "t": 15.3,
+  "frame": 459,
+  "name": "嗖",
+  "beat": "S06",
+  "key": false,
+  "duck": false,
+  "label": "气泡一下散开 bubblesOut"
+ },
+ {
+  "t": 15.75,
+  "frame": 473,
+  "name": "重击",
+  "beat": "S07",
+  "key": true,
+  "duck": true,
+  "label": "大字“怕漏”落下 fear"
+ },
+ {
+  "t": 18.35,
+  "frame": 551,
+  "name": "叮",
+  "beat": "S08",
+  "key": false,
+  "duck": false,
+  "label": "虚线卡暖音 cardA"
+ },
+ {
+  "t": 19.2,
+  "frame": 576,
+  "name": "叮",
+  "beat": "S08",
+  "key": false,
+  "duck": false,
+  "label": "虚线卡暖音 cardB"
+ },
+ {
+  "t": 20.25,
+  "frame": 608,
+  "name": "啵",
+  "beat": "S08",
+  "key": false,
+  "duck": false,
+  "label": "贴纸“没看到？” unseen"
+ },
+ {
+  "t": 22.3,
+  "frame": 669,
+  "name": "铃",
+  "beat": "S09",
+  "key": false,
+  "duck": false,
+  "label": "大静音铃（闷） bellBig"
+ },
+ {
+  "t": 23.4,
+  "frame": 702,
+  "name": "布料",
+  "beat": "S09",
+  "key": false,
+  "duck": false,
+  "label": "手慢慢伸过去 reach4"
+ },
+ {
+  "t": 25.1,
+  "frame": 753,
+  "name": "落字",
+  "beat": "S10",
+  "key": false,
+  "duck": false,
+  "label": "大字落下 line1"
+ },
+ {
+  "t": 25.7,
+  "frame": 771,
+  "name": "落字",
+  "beat": "S10",
+  "key": false,
+  "duck": false,
+  "label": "大字落下 line2"
+ },
+ {
+  "t": 26.3,
+  "frame": 789,
+  "name": "落字",
+  "beat": "S10",
+  "key": false,
+  "duck": true,
+  "label": "大字落下 line3"
+ },
+ {
+  "t": 29.05,
+  "frame": 872,
+  "name": "嗖",
+  "beat": "S11",
+  "key": false,
+  "duck": false,
+  "label": "“办法放在简介”进来 hintIn"
+ },
+ {
+  "t": 31.0,
+  "frame": 930,
+  "name": "嗖",
+  "beat": "S12",
+  "key": false,
+  "duck": false,
+  "label": "结尾页进来 endIn"
+ },
+ {
+  "t": 32.1,
+  "frame": 963,
+  "name": "嗒",
+  "beat": "S12",
+  "key": false,
+  "duck": false,
+  "label": "空框闪过 guess[0]"
+ },
+ {
+  "t": 32.8,
+  "frame": 984,
+  "name": "嗒",
+  "beat": "S12",
+  "key": false,
+  "duck": false,
+  "label": "空框闪过 guess[1]"
+ },
+ {
+  "t": 33.5,
+  "frame": 1005,
+  "name": "嗒",
+  "beat": "S12",
+  "key": false,
+  "duck": false,
+  "label": "空框闪过 guess[2]"
+ },
+ {
+  "t": 34.2,
+  "frame": 1026,
+  "name": "嗒",
+  "beat": "S12",
+  "key": false,
+  "duck": false,
+  "label": "空框闪过 guess[3]"
+ }
+]

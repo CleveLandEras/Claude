@@ -149,8 +149,8 @@ export const StatusBar: React.FC<{s: Box; light?: boolean}> = ({s, light = true}
 };
 
 // App 图标：圆角方块 + 白色图形（不画任何真实 App 的商标）
-export const AppIcon: React.FC<{x: number; y: number; size: number; kind: 'bag' | 'chat' | 'flame'}> = ({x, y, size, kind}) => {
-  const bg = kind === 'bag' ? '#F2683A' : kind === 'chat' ? '#3CC27A' : '#E8434F';
+export const AppIcon: React.FC<{x: number; y: number; size: number; kind: 'bag' | 'chat' | 'flame'; tint?: string}> = ({x, y, size, kind, tint}) => {
+  const bg = tint ?? (kind === 'bag' ? '#F2683A' : kind === 'chat' ? '#3CC27A' : '#E8434F');
   const k = size / 60;
   return (
     <g transform={`translate(${x} ${y}) scale(${k})`}>
