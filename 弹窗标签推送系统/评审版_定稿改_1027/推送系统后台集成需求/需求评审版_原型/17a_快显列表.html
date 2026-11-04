@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>17a 快显列表</title>
+<link rel="stylesheet" href="_后台框.css">
+<link rel="stylesheet" href="_弹窗.css">
+<link rel="stylesheet" href="_推送.css">
+<style>td.ops{white-space:nowrap;padding-right:6px}table.rl td .g{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}table.rl td .m2{white-space:nowrap}</style>
+<style>table.rl .sub .pill.on{color:#1F2329;font-weight:500}table.rl .sub .pill::before{content:"";display:inline-block;width:6px;height:6px;margin-right:6px;border-radius:50%;background:#C0C4CC}table.rl .sub .pill.on::before{display:inline-block;background:#409EFF;margin-right:6px}table.rl .sub .pill.pend{color:#1F2329;font-weight:600}table.rl td.ops{text-align:left;color:#2F6FCC}table.rl .ops span{margin-left:8px}table.rl .ops span:first-child{margin-left:0}table.rl .ops .a1{display:inline-block;min-width:26px}table.rl .ops .dots{color:#2F6FCC;letter-spacing:0}.ronly{border-style:solid;border-color:#E4E7ED}.kpi .m2.blk{color:#C47B2B}.ronly b.nlk{color:#2F6FCC;cursor:pointer}</style>
+</head>
+<body>
+<div class="shot bk" data-page="快显" data-tabs="*快显|操作纪录"><div class="pw">
+  <div class="ttl"><h3>快显</h3><span class="sp"></span><span class="btnp">＋ 新建快显</span></div>
+
+  <div class="ronly">
+    <span class="k">每人每天上限</span>
+    <span><b class="num">3</b> 次</span>
+    <span class="div"></span>
+    <span>不受勿扰 · 只显示给在线玩家</span>
+    <span class="div"></span>
+    <span>今天达到上限 <b class="num nlk">0</b> 人</span>
+    <span class="lk">修改</span>
+  </div>
+
+  <div class="fbar">
+    <span class="inp srch">名称、编号或所属活动</span>
+    <span class="inp" style="width:96px">所属活动<span class="dn">⌵</span></span>
+    <span class="inp" style="width:84px">对象<span class="dn">⌵</span></span>
+    <span class="inp" style="width:84px">创建人<span class="dn">⌵</span></span>
+    <span class="lk" style="margin-left:4px">更多筛选</span>
+  </div>
+  <div class="chips">
+    <span class="c">发送中 <b>1</b></span><span class="c">生效中 <b>1</b></span><span class="c">未开始 <b>1</b></span><span class="c">已暂停 <b>0</b></span><span class="c">草稿 <b>0</b></span><span class="c">已结束 <b>2</b></span>
+    <span class="upd m2">数据更新于 15:30</span>
+  </div>
+
+  <div class="zone">
+    <h4>大厅顶部横幅<span class="m2">玩家在大厅时显示 · 按下次显示时间排</span></h4>
+    <div class="grp">
+      <table class="rl">
+        <colgroup><col style="width:118px"><col style="width:148px"><col style="width:238px"><col style="width:96px"><col><col style="width:128px"></colgroup>
+        <tr><th>下次显示／触发</th><th>快显</th><th>对象</th><th>停留</th><th style="text-align:right">数据</th><th></th></tr>
+        <tr><td class="num">10/22 12:00<div class="m2">每天 · 第 8/30 次</div></td><td><div class="nm" title="创建 运营02 · 10/02 15:00 ／ 最后修改 运营02 · 10/03 11:20"><span style="white-space:nowrap">每日补给计划开启</span> <span class="id">#32</span></div><div class="sub"><span class="pill on">发送中</span><span>·</span>每日补给计划</div></td>
+          <td><div class="g" title="近 7 天登录 · 排除 VIP 名单">近 7 天登录</div><div class="m2">排除 VIP 名单 · 扣除后 14,520 人</div><div class="m2">到点起 30 分钟内上线的</div></td><td class="m">5 秒</td>
+          <td class="kpi">今天显示 <b class="num">8,420</b> 次</td>
+          <td class="ops"><span class="a1">暂停</span><span>编辑</span><span>数据</span><span class="dots">⋯</span></td></tr>
+        <tr><td class="num">10/22 23:00</td><td><div class="nm" title="创建 运营02 · 10/16 14:00 ／ 最后修改 运营02 · 10/16 14:00"><span style="white-space:nowrap">秋季排名赛最后 1 小时</span> <span class="id">#57</span></div><div class="sub"><span class="pill pend">未开始</span><span>·</span>秋季排名赛</div></td>
+          <td><div class="g" title="秋季排名赛参与者 · 排除 VIP 名单">秋季排名赛参与者</div><div class="m2">排除 VIP 名单 · 扣除后 10,120 人</div><div class="m2">到点起 60 分钟内上线的</div></td><td class="m">5 秒</td>
+          <td class="kpi m2">未显示</td>
+          <td class="ops"><span class="a1">暂停</span><span>编辑</span><span>数据</span><span class="dots">⋯</span></td></tr>
+      </table>
+      <div class="fold">▸ 草稿与已结束 2 条<span class="m2">草稿 0 · 已结束 2（已发完 2）</span></div>
+    </div>
+  </div>
+
+  <div class="zone">
+    <h4>局内右上角横幅<span class="m2">玩家在牌桌内时显示</span></h4>
+    <div class="grp">
+      <table class="rl">
+        <colgroup><col style="width:118px"><col style="width:148px"><col style="width:238px"><col style="width:96px"><col><col style="width:128px"></colgroup>
+        <tr><th>下次显示／触发</th><th>快显</th><th>对象</th><th>停留</th><th style="text-align:right">数据</th><th></th></tr>
+        <tr><td>通行证升级<div class="m2">1–20 级每升一级</div><div class="m2">10/03 起</div></td><td><div class="nm" title="创建 运营01 · 10/02 16:00 ／ 最后修改 运营01 · 10/02 16:00"><span style="white-space:nowrap">通行证升级提示</span> <span class="id">#35</span></div><div class="sub"><span class="pill on">生效中</span><span>·</span>通行证</div></td>
+          <td><div class="g" title="触发的玩家 · 不限群组 · 不排除">触发的玩家 · 不限群组</div><div class="m2">不排除</div></td><td class="m">5 秒<div class="m2">旧版本回退大厅</div></td>
+          <td class="kpi">今天显示 <b class="num">1,860</b> 次<div class="m2 blk">不计入上限</div></td>
+          <td class="ops"><span class="a1">暂停</span><span>编辑</span><span>数据</span><span class="dots">⋯</span></td></tr>
+      </table>
+      <div class="fold"><span class="m2">草稿与已结束 0 条</span></div>
+    </div>
+  </div>
+</div></div>
+<script src="_后台框.js"></script>
+</body>
+</html>

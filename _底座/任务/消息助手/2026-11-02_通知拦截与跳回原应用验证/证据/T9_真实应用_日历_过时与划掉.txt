@@ -1,0 +1,38 @@
+建了日程 cal-age-x，提醒时间 15:08:18
+建了日程 cal-age-y，提醒时间 15:08:48
+== 拦下：X=#4 Y=#5 15:09:11
+11-02 15:08:18.817 I/RELAY   ( 4108): 11-02 15:08:18.816 | 已收起 | 0|com.samsung.android.calendar|1|376|10
+11-02 15:08:18.831 I/RELAY   ( 4108): 11-02 15:08:18.830 | 已收起 | 0|com.samsung.android.calendar|1|214748
+11-02 15:08:48.559 I/RELAY   ( 4108): 11-02 15:08:48.558 | 已收起 | 0|com.samsung.android.calendar|1|377|10
+11-02 15:08:48.636 I/RELAY   ( 4108): 11-02 15:08:48.636 | 已收起 | 0|com.samsung.android.calendar|1|214748
+== 过 1 分钟：X #4 做法A 15:09:59
+已点：#4 做法A
+前台页面：com.samsung.android.calendar/com.samsung.android.app.calendar.activity.DetailActivity
+屏幕文字：cal-age-x / 11月 2日 周一 / 15:08 / 15:38
+== 过 1 分钟：Y #5 做法B 15:10:13
+已点：#5 做法B
+前台页面：com.samsung.android.calendar/com.samsung.android.app.calendar.activity.DetailActivity
+屏幕文字：cal-age-y / 11月 2日 周一 / 15:08 / 15:38
+== 过 10 分钟：X #4 做法B 15:19:14
+已点：#4 做法B
+前台页面：com.samsung.android.calendar/com.samsung.android.app.calendar.activity.DetailActivity
+屏幕文字：cal-age-x / 11月 2日 周一 / 15:08 / 15:38
+== 过 10 分钟：Y #5 做法A 15:19:27
+已点：#5 做法A
+前台页面：com.samsung.android.calendar/com.samsung.android.app.calendar.activity.DetailActivity
+屏幕文字：cal-age-y / 11月 2日 周一 / 15:08 / 15:38
+== 划掉日历前：进程=10232
+日历卡片位置：539 1003
+== 划掉日历后：进程=不在 最近任务里还有=0
+== 日历被划掉后：X #4 做法A 15:19:49
+已点：#4 做法A
+前台页面：com.samsung.android.calendar/com.samsung.android.app.calendar.activity.DetailActivity
+屏幕文字：cal-age-x / 11月 2日 周一 / 15:08 / 15:38
+== 日历被划掉后：Y #5 做法B 15:20:02
+已点：#5 做法B
+前台页面：com.samsung.android.calendar/com.samsung.android.app.calendar.activity.DetailActivity
+屏幕文字：cal-age-y / 11月 2日 周一 / 15:08 / 15:38
+11-02 15:10:17.901 I/RELAY   ( 4108): 11-02 15:10:17.901 | B 已发出原入口 | #5 | 日历 | cal-
+11-02 15:19:18.925 I/RELAY   ( 4108): 11-02 15:19:18.925 | B 已发出原入口 | #4 | 日历 | cal-
+11-02 15:20:07.317 I/RELAY   ( 4108): 11-02 15:20:07.317 | B 已发出原入口 | #5 | 日历 | cal-
+测试日程已删：剩余 0 个

@@ -1,0 +1,137 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>汇报学习对照</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.35;margin:0 0 8px}
+.sub{font-size:16px;color:var(--ink-2);margin:0 0 28px}
+h2{font-family:var(--serif);font-size:20px;margin:48px 0 16px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+.grid{display:grid;gap:14px;margin:14px 0}
+.g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px}
+.kpi .n{font-size:38px;font-weight:700;line-height:1.1;color:var(--ink)}
+.kpi .n small{font-size:16px;font-weight:600;margin-left:4px;color:var(--ink-2)}
+.kpi .t{font-size:14.5px;color:var(--ink-2);margin-top:8px}
+.kpi.red .n{color:var(--red)}
+.phase{border-top:4px solid var(--gray)}
+.phase.red{border-top-color:var(--red)} .phase.blue{border-top-color:var(--blue)} .phase.green{border-top-color:var(--green)}
+.phase .h{font-size:16.5px;font-weight:700;margin:0 0 6px}
+.phase .l{font-size:14.5px;color:var(--ink-2)}
+.cause .h{font-size:16.5px;font-weight:700;margin:0 0 6px}
+.cause .l{font-size:14.5px;color:var(--ink-2);margin:0 0 12px}
+.cause .e{font-size:13.5px;color:var(--ink-2);border-top:1px solid var(--line);padding-top:10px;margin:0}
+.cause .e b{color:var(--green)}
+.cause.red .h{color:var(--red)}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14.5px}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--ground);white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td.w{color:var(--ink);font-weight:600;white-space:nowrap} td.r{color:var(--ink-2)}
+tr.hit td{background:var(--green-soft)}
+.opt{position:relative}
+.opt .h{font-size:16px;font-weight:700;margin:0 0 6px}
+.opt .l{font-size:14.5px;color:var(--ink-2)}
+.opt.rec{border:2px solid var(--blue)}
+.opt .badge{position:absolute;top:-11px;right:16px;background:var(--blue);color:#fff;font-size:12px;font-weight:700;padding:2px 10px;border-radius:3px}
+.why{font-size:14.5px;color:var(--ink-2);margin:14px 0 0}
+.why b{color:var(--ink)}
+.note{font-size:13.5px;color:var(--muted);margin:10px 0 0}
+.ba .h{font-size:13px;font-weight:700;color:var(--muted);margin:0 0 8px}
+.ba .l{font-size:14.5px;color:var(--ink-2);margin:0}
+.ba.after{border:2px solid var(--green)}
+.ba.after .h{color:var(--green)}
+.links{font-size:13px;color:var(--muted);margin-top:40px} a{color:var(--accent)}
+@media (max-width:760px){.wrap{padding:28px 16px 64px}.g2,.g3,.g4{grid-template-columns:1fr}td.w{white-space:normal}}
+</style></head><body><div class="wrap">
+
+<p class="meta">汇报能力 · 2026-10-28 · 依据：两份抖音内容（图文 11 张图、视频全部字幕均已读完）＋你之前对我汇报的纠正记录</p>
+<h1>要学的核心：替你把判断做完，让你只需要点头；视频里「挑数据」那套不学</h1>
+<p class="sub">9 条做法可以直接用，其中 6 条正对着我之前被你指出的毛病；另有 3 条和你要的准确性冲突，不学。</p>
+
+<div class="grid g3">
+  <div class="card kpi"><div class="n">9<small>条</small></div><div class="t">直接能用；6 条对着我犯过的错</div></div>
+  <div class="card kpi red"><div class="n">3<small>条</small></div><div class="t">不学：会让你拿到不准的信息</div></div>
+  <div class="card kpi"><div class="n">已定</div><div class="t">10/28 你定：写进汇报规范</div></div>
+</div>
+
+<h2><span class="no">01</span>最该学的：每条发现都写到「决策层」，你读完只需说好或不好</h2>
+<table>
+<tr><th>层级</th><th>写到什么</th><th>你读完还要做什么</th></tr>
+<tr><td class="w">事实层</td><td class="r">我做了什么、结果是什么</td><td class="r">自己判断、自己想办法</td></tr>
+<tr><td class="w">分析层</td><td class="r">再加上原因和关键因素</td><td class="r">还得自己拿主意</td></tr>
+<tr class="hit"><td class="w">决策层</td><td class="r">再加上我的判断（不做会怎样）和建议，或我已经做了什么</td><td class="r">说「好」或「不好」</td></tr>
+</table>
+
+<div class="grid g3">
+  <div class="card cause"><p class="h">把能定的事挂给你</p><p class="l">10/14 你说这些问题根本不需要你回答</p><p class="e"><b>以后</b>　我能定的直接定，写明「已替你定，可推翻」</p></div>
+  <div class="card cause"><p class="h">给了选项，没给判断依据</p><p class="l">10/16 你说信息不全，没法决策</p><p class="e"><b>以后</b>　每件要你定的事先给关键信息，再写不定会怎样，能估数就估数</p></div>
+  <div class="card cause"><p class="h">把检查推回给你</p><p class="l">10/28 我写了「有问题你指出来」</p><p class="e"><b>以后</b>　交付时只写确定的话：查了什么、结论是什么</p></div>
+</div>
+
+<p class="note">用今天的真实情况做个示范：</p>
+<div class="grid g4">
+  <div class="card phase"><p class="h">事实</p><p class="l">视频字幕自动截取漏了 10:35–11:35 这一分钟</p></div>
+  <div class="card phase"><p class="h">原因</p><p class="l">这一段换成了横屏幻灯片，字幕位置变了</p></div>
+  <div class="card phase red"><p class="h">判断</p><p class="l">不补的话，总结会少掉整个「三套公式」章节</p></div>
+  <div class="card phase green"><p class="h">已做</p><p class="l">单独截了幻灯片和字幕，已补进总结</p></div>
+</div>
+
+<h2><span class="no">02</span>怎么说：按场景套固定句式，第一句先选定基调</h2>
+<table>
+<tr><th>场景</th><th>句式</th><th>例子</th></tr>
+<tr><td class="w">小事、小改动完成</td><td class="r">结果 ＋ 做到哪 ＋ 在哪看 ＋ 要你做什么；对话里不超过 3 行（附简报的汇报，摘要仍是 3–5 行）</td><td class="r">见下方改写对比</td></tr>
+<tr><td class="w">要你拍板</td><td class="r">照汇报规范原有写法：关键信息、背景、选项、推荐、理由，代价只在影响决策时写；结尾加一句「你选了我马上做」</td><td class="r">见汇报规范第二节第 4 条</td></tr>
+<tr><td class="w">阶段或项目总结</td><td class="r">结果 ＋ 数据 ＋ 不足与已做的补救 ＋ 亮点 ＋ 想听你意见的点</td><td class="r">总结完成；11 张图、627 条字幕全读完；不足：2 处字幕没显示全，已标注</td></tr>
+<tr><td class="w">坏消息</td><td class="r">出了什么问题 ＋ 原因 ＋ 我怎么补 ＋ 需要你什么；第一时间说</td><td class="r">第 01 节的字幕例子</td></tr>
+</table>
+
+<p class="note">第一句话先选一种基调（视频里的四种），这样一开口你就知道这件事处在什么状态：</p>
+<div class="grid g4">
+  <div class="card phase green"><p class="h">成果型</p><p class="l">做完了，带来的价值是什么</p></div>
+  <div class="card phase blue"><p class="h">改进型</p><p class="l">落地了，发现了什么问题，已经改了</p></div>
+  <div class="card phase red"><p class="h">攻坚型</p><p class="l">卡在哪里，已经做了什么，下一步做什么</p></div>
+  <div class="card phase"><p class="h">规划型</p><p class="l">准备做什么，为了什么</p></div>
+</div>
+
+<p class="note">拿我上一条回复做改写对比：</p>
+<div class="grid g2">
+  <div class="card ba"><p class="h">改前　约 15 行</p><p class="l">先写两份各讲什么（各一段、带列表），再写两份的立场差异，最后一段讲内容来源、截取方法和准确度。</p></div>
+  <div class="card ba after"><p class="h">改后　3 行</p><p class="l">两份总结已写好，在「抖音总结」文件夹：图文讲汇报是交付判断，视频讲四个思维和三套句式。11 张图和全部字幕都已读完，视频有 2 处字幕没显示全，文件里已标注。不需要你定什么。</p></div>
+</div>
+
+<h2><span class="no">03</span>说什么、什么时候说：四条具体改法</h2>
+<table>
+<tr><th>做法</th><th>我之前</th><th>以后</th></tr>
+<tr><td class="w">用你关心的语言</td><td class="r">满篇内部叫法（必需档、尽量档、第二批），你说新读者看不懂</td><td class="r">先说对目标、进度、风险、要你投入什么的影响，再说具体做法</td></tr>
+<tr><td class="w">不用「大概、可能、应该」</td><td class="r">规范只要求推断要标出来，没要求少用模糊词</td><td class="r">查得清就写查到的数；查不清就写成「如果…就…」，附上我暂按的做法</td></tr>
+<tr><td class="w">按节点汇报，不按时间播报</td><td class="r">子任务一回来就转述，你说全是过程</td><td class="r">只在 4 种时候开口：出了结果；发现会改方向的风险；需要你的决定或资源；之前答不上的问题查清了</td></tr>
+<tr><td class="w">讲工作只讲三件事</td><td class="r">列做了 A、B、C、D，你问我是不是在写论文</td><td class="r">替你做了哪些关键取舍；解决了什么难题；留下了什么能复用的东西</td></tr>
+</table>
+<p class="note">「结论先行」「花我的时间省你的时间」这两条我的规范里已经有了，两份内容只是印证，这里不再列。</p>
+
+<h2><span class="no">04</span>不学的三条：它们是为了说服上级争资源，而你要靠我给的信息做判断</h2>
+<div class="grid g3">
+  <div class="card cause red"><p class="h">结论不合适就换数据、换口径</p><p class="l">你会按我给的数做决定，口径一换，结论就变了</p><p class="e"><b>我的做法</b>　口径固定、带分母；要换口径，写明为什么换</p></div>
+  <div class="card cause red"><p class="h">没提到的短板就不存在</p><p class="l">你验收时会自己发现（10/28 PPT 底色跳色），藏着只会更伤信任</p><p class="e"><b>我的做法</b>　已知问题放在第一屏、写在亮点之前，并附上补救</p></div>
+  <div class="card cause red"><p class="h">先定结论，再找素材</p><p class="l">用在分析阶段，就是拿结论去挑证据</p><p class="e"><b>我的做法</b>　分析时先看证据再下结论；写的时候才结论先行</p></div>
+</div>
+<p class="why"><b>依据</b>　你 9/29 说过：给的不准确还不如不给。</p>
+
+<h2><span class="no">05</span>已定：这 9 条已写进汇报规范，3 条不学的列为禁止项</h2>
+<div class="grid g3">
+  <div class="card phase green"><p class="h">写在哪</p><p class="l">汇报规范新增「三点七、写到决策层，按场景套句式」，自查清单补了 4 条；注明来源是外部材料，不是你的标准</p></div>
+  <div class="card phase blue"><p class="h">和原规范对齐</p><p class="l">拍板沿用原写法（关键信息、代价只在影响决策时写）；「3 行」只管小事，附简报的摘要仍是 3–5 行</p></div>
+  <div class="card phase"><p class="h">怎么改回</p><p class="l">备份在「抖音总结/规范备份/」：撤掉整节用改前版；只撤对齐时改的几处，用三点七首版或按说明逐条改回</p></div>
+</div>
+
+<p class="links">来源：<a href="2026-10-28_图文_结构化汇报.html">图文总结</a> · <a href="2026-10-28_视频_拿资源能晋升的汇报逻辑.html">视频总结</a></p>
+</div></body></html>

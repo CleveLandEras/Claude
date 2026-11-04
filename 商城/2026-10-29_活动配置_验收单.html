@@ -1,0 +1,163 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>活动配置验收单</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.35;margin:0 0 8px}
+.sub{font-size:16px;color:var(--ink-2);margin:0 0 28px}
+h2{font-family:var(--serif);font-size:20px;margin:48px 0 16px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+h3{font-size:16.5px;margin:28px 0 10px}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px}
+.kpi .n{font-size:38px;font-weight:700;line-height:1.1;color:var(--ink)}
+.kpi .n small{font-size:16px;font-weight:600;margin-left:4px;color:var(--ink-2)}
+.kpi .t{font-size:14.5px;color:var(--ink-2);margin-top:8px}
+.kpi.red .n{color:var(--red)}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;margin-right:6px}
+.tag.red{background:var(--red-soft);color:var(--red)} .tag.blue{background:var(--blue-soft);color:var(--blue)} .tag.gray{background:var(--gray-soft);color:var(--gray)} .tag.green{background:var(--green-soft);color:var(--green)}
+.kv{font-size:14px;color:var(--ink-2);margin:6px 0}
+.kv b{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:2px}
+.keep{display:flex;flex-wrap:wrap;gap:10px}
+.keep span{background:var(--green-soft);color:var(--green);font-size:14.5px;font-weight:600;padding:8px 14px;border-radius:4px}
+.cause .h{font-size:16px;font-weight:700;margin:0 0 6px}
+.cause .l{font-size:14.5px;color:var(--ink-2);margin:0 0 10px}
+.cause .e{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px;margin:0}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14.5px}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--ground)}
+tr:last-child td{border-bottom:none}
+td.w{color:var(--ink)} td.r{color:var(--ink-2)} td.d{color:var(--muted)}
+.q{font-size:17px;font-weight:700;margin:0 0 6px}
+.ctx{font-size:14px;color:var(--ink-2);margin:0 0 14px}
+.ctx b{color:var(--ink)}
+.opt{position:relative}
+.opt .h{font-size:16px;font-weight:700;margin:0 0 6px}
+.opt .l{font-size:14.5px;color:var(--ink-2)}
+.opt.rec{border:2px solid var(--blue)}
+.opt .badge{position:absolute;top:-11px;right:16px;background:var(--blue);color:#fff;font-size:12px;font-weight:700;padding:2px 10px;border-radius:3px}
+.why{font-size:14.5px;color:var(--ink-2);margin:12px 0 0}
+.why b{color:var(--ink)}
+.decide{margin-bottom:30px}
+.links{font-size:13px;color:var(--muted);margin-top:40px;line-height:2} a{color:var(--accent)}
+@media (max-width:720px){.wrap{padding:28px 16px 64px}.g3,.g2{grid-template-columns:1fr}table{font-size:13.5px}th,td{padding:9px 10px}}
+</style></head><body><div class="wrap">
+
+<p class="meta">活动配置工具 · 2026-10-29 凌晨 · 我已核实：PPT 新旧两版逐页比对；草稿规则抽查过原文。没核实：PPT 没用 PowerPoint 导出看过；主管反馈未知</p>
+<h1>评审 PPT 已按后台实看改完，会后同步和研发评审的草稿也备好了；待你验收，4 件事要你定</h1>
+<p class="sub">两处没验证：PPT 这次没用 PowerPoint 导出核对；你和主管对没对过方案、有没有反馈，我不知道。</p>
+
+<div class="grid g3">
+  <div class="card kpi"><div class="n">5<small>／12 页</small></div><div class="t">PPT 按后台实看改过的页：第 2、4、8、9、10 页</div></div>
+  <div class="card kpi"><div class="n">4<small>件</small></div><div class="t">要你定：储值活动放哪、入口名称、三项竞品借鉴、两个日期</div></div>
+  <div class="card kpi red"><div class="n">2<small>处</small></div><div class="t">没验证：PowerPoint 导出、主管反馈</div></div>
+</div>
+
+<h2><span class="no">01</span>要你定的 4 件：前两件影响 PPT，后两件不影响</h2>
+
+<div class="decide">
+<p class="q">① 累充、满减这类要先储值才能参加的活动，放银行还是放活动入口？</p>
+<p class="ctx"><b>影响</b> PPT 第 1、7 页；需求文档 4.1.5、4.2.2 节；银行页或活动窗口储值页签的原型图。<br><b>关键信息</b> 两种放法的后台、工具、规则完全一样，只差客户端把列表放在哪。三款竞品都放在活动窗口，豪神单开一个「消费活动」页签。<br><b>不定会怎样</b> 银行和活动窗口的页签结构定不下来。最晚需求评审前要定，问不到就按 A 写。</p>
+<div class="grid g2">
+  <div class="card opt rec"><span class="badge">推荐</span><p class="h">A　银行加「储值活动」页签</p><p class="l">玩家付款时就看到优惠；不开银行的玩家靠角标、Banner、弹窗看到。要银行改版配合加页签。</p></div>
+  <div class="card opt"><p class="h">B　活动入口加第三个页签</p><p class="l">和豪神一样；不付费的玩家也看得到。页签从两个变三个。</p></div>
+</div>
+<p class="why"><b>理由</b>　优惠在付款的地方最有用；B 的长处（不付费的玩家也能看到）靠曝光位也能补上。</p>
+</div>
+
+<div class="decide">
+<p class="q">② 两个入口合并后，右下的入口叫「限时活动」还是「活动」？</p>
+<p class="ctx"><b>影响</b> PPT 第 1、5 页，第 6 页图里的窗口名；设计稿、需求文档全文的用词；大厅入口和活动窗口的原型图。<br><b>关键信息</b> 合并后入口里有签到这类常驻活动。三款竞品窗口名分别是「活动公告」「活动快讯」「最新活动」。现在设计稿、需求文档正文写「限时活动」，原型图写「活動」，两处不一致。<br><b>不定会怎样</b> 不影响结构，但文档用词统一不了，评审时容易被问。</p>
+<div class="grid g2">
+  <div class="card opt"><p class="h">保留「限时活动」</p><p class="l">玩家熟悉，不用重新认。</p></div>
+  <div class="card opt rec"><span class="badge">推荐</span><p class="h">改为「活动」</p><p class="l">能涵盖常驻和限时两类活动；和竞品叫法一致。</p></div>
+</div>
+<p class="why"><b>理由</b>　合并后「限时」两个字已经盖不住签到这类常驻活动。</p>
+</div>
+
+<div class="decide">
+<p class="q">③ 三项竞品借鉴留不留？</p>
+<p class="ctx"><b>影响</b> PPT 不受影响，PPT 里没放这三项；只影响设计稿 1.3 节和需求文档要不要写进去。现在的文档里都没写。</p>
+<table>
+<tr><th>借鉴的做法（出处）</th><th>推荐</th><th>理由</th></tr>
+<tr><td class="w">活动窗口页签第一项放「当期总览」（豪神「豪神嘉年华」）</td><td class="w">留，并进庆典专题页，放第二批</td><td class="r">庆典期间玩家一眼看到整期安排；两次庆典的 6 个模块各重做过一遍</td></tr>
+<tr><td class="w">底栏常驻入口，带剩余天数（豪神「欢乐券」带「22天」角标）</td><td class="w">挪到第二批</td><td class="r">底栏空位怎么用归银行改版定；首批先用银行按钮的角标提醒储值活动</td></tr>
+<tr><td class="w">活动窗口「今日不再显示」（星城）</td><td class="w">不做</td><td class="r">只在整个窗口自动弹出时有用；现在的弹窗方案是按单个活动弹</td></tr>
+</table>
+</div>
+
+<div class="decide">
+<p class="q">④ 需求表上 12/11、1/21 两个日期各指什么？</p>
+<p class="ctx"><b>影响</b> PPT 不受影响，PPT 不写日期；影响分档和研发评审的时间。<br><b>关键信息</b> 原文没有列名，1/21 是红字。你猜的是开始开发和开发全部结束，按这个算开发期约 6 周，需求评审、研发评审要在 12/11 前过完。<br><b>推荐</b> 下次和主管对方案时顺带问一句；问到之前文档按你猜的写。</p>
+</div>
+
+<h2><span class="no">02</span>先验 PPT：五页改成后台实看到的样子，原来说过头的收回</h2>
+<p class="ctx">文件：需求评审材料.pptx（12 页，10/29 00:34 版），主管只看这一份。另有一份带备注的自用版，页面和它逐字一致，每页备注里写了可能被问的问题和答法，不发主管。</p>
+<table>
+<tr><th>页</th><th>原来</th><th>现在</th><th>为什么改</th></tr>
+<tr><td class="d">2</td><td class="r">限时活动长处「图标一屏看全；剩余天数」</td><td class="w">「图标入口；剩余天数」</td><td class="r">后台列表有 40 笔，「一屏看全」核实不了</td></tr>
+<tr><td class="d">4</td><td class="r">依据二「两套后台，同一活动各配一次」</td><td class="w">「一个活动要在约 8 个后台页各配一次」</td><td class="r">后台实看：分布在 3 个一级菜单、约 8 个配置页</td></tr>
+<tr><td class="d">8</td><td class="r">原因写成一行</td><td class="w">分两行，加上「活动管理下 21 个子菜单，一个玩法一个页签」</td><td class="r">后台实看</td></tr>
+<tr><td class="d">9</td><td class="r">没写后台放哪、成本预警怎么办</td><td class="w">加「『活动管理』下新增『活动配置』；现有 21 个子菜单照常用，不迁移」「成本预警沿用现有『奖励成本预警设定』」</td><td class="r">回答「新后台放哪」；「照常用，不迁移」避免和第 12 页「抽奖工具以抽奖大厅后台为基础」冲突</td></tr>
+<tr><td class="d">10</td><td class="r">标题「运营在一个后台管理全部活动」</td><td class="w">「新增『活动配置』，用工具配置的活动在一张列表里管理」</td><td class="r">原标题说过头：现有玩法不在这张表里</td></tr>
+</table>
+
+<h2><span class="no">03</span>再验两份会后同步草稿：只写你已定的口径和后台实看，原件没动</h2>
+<p class="ctx">设计稿、需求文档原件都还是 10/28 13:44 的版本。主管反馈到了以后改草稿，你同意了再替换原件。</p>
+<div class="keep">
+  <span>公告「活动」类保留大图</span><span>后台位置：活动管理下新增「活动配置」</span><span>成本上限和现有预警并存</span><span>现状：约 8 个配置页、21 个子菜单</span><span>节庆 6 个模块的初步思路</span><span>入口名称、储值活动放哪标「待讨论」</span>
+</div>
+<h3>同步时发现三处，处理如下</h3>
+<div class="grid g3">
+  <div class="card cause"><p class="h">入口名称两处写法不一致</p><p class="l">正文写「限时活动」，原型和 PPT 示意图写「活動」。</p><p class="e">草稿标「名称待讨论」，等第 ② 件定了统一改</p></div>
+  <div class="card cause"><p class="h">第 9 页和第 12 页字面冲突</p><p class="l">「玩法本期不动」对不上「抽奖工具以抽奖大厅为基础」。</p><p class="e">已改成「照常用，不迁移」，PPT 和草稿一起改了</p></div>
+  <div class="card cause"><p class="h">节庆后三项没有分档</p><p class="l">人数活动、大厅换装、活动日历在原稿里不属于任何一档。</p><p class="e">草稿只写「研发评估后再定」，没替你定档</p></div>
+</div>
+
+<h2><span class="no">04</span>最后两份新草稿：研发评审要问什么，上线以后怎么收口、运营怎么配</h2>
+<div class="grid g2">
+  <div class="card"><p class="q">研发评审问题清单</p>
+    <div class="kv"><b>内容</b>按研发、金流和其他角色分，共 16 条；每条写了问不到时先按什么写，其中 7 条是我推断的，标了「推断」</div>
+    <div class="kv"><b>会前必问 3 条</b>必需档估时；旧版本客户端看到什么；全服限量和团购人数的并发计数</div>
+    <div class="kv"><b>待你补</b>每条该找谁问</div></div>
+  <div class="card"><p class="q">上线与运营上手</p>
+    <div class="kv"><b>开关与试点</b>文档里没写，这部分全是推断，待研发确认：先给小名单试点，再复制给全部玩家</div>
+    <div class="kv"><b>旧活动</b>现有礼包、累储、储优等配置停止新建，已有的跑到期，不做迁移</div>
+    <div class="kv"><b>周五储值活动</b>以周五累充为例，写了从选工具到复制下周再上的 10 步</div></div>
+</div>
+
+<h2><span class="no">05</span>你不在时我按推荐做的事都能撤回</h2>
+<table>
+<tr><th>做了什么</th><th>怎么改回</th></tr>
+<tr><td class="w">改了 PPT 第 9 页一句（00:34），带备注版跟着重出</td><td class="r">用旧版文件夹里的「2129版」覆盖回来</td></tr>
+<tr><td class="w">另存带备注版、两份同步草稿、两份新草稿</td><td class="r">删掉对应文件；原件没动</td></tr>
+<tr><td class="w">归档 21:29 改动前的 PPT（17:10 版，主管看的可能是它）</td><td class="r">删掉归档文件</td></tr>
+<tr><td class="w">更新交接文件（先看这里），加了「反馈→改哪里」对照表</td><td class="r">用旧版文件夹里的备份覆盖</td></tr>
+</table>
+<p class="why">完整清单和每项理由在「先看这里」第十一节。没做、等你的：发给主管、替换原件、再进后台。</p>
+
+<h2><span class="no">06</span>没验证的两处：一处要你点一下，一处要你告诉我</h2>
+<div class="grid g2">
+  <div class="card cause"><p class="h">PPT 没用 PowerPoint 导出看过</p><p class="l">00:34 只改了一句，字数相同。我用程序逐页比对过文字和图形位置，和 21:29 版一致；21:29 版用 PowerPoint 导出看过。</p><p class="e">这次读写 PowerPoint 的文件夹会卡住，可能是系统弹了权限提示没人点。你在电脑前时点一下允许，我补导出核对</p></div>
+  <div class="card cause"><p class="h">主管反馈未知</p><p class="l">对过的话，把主管的意见告诉我。</p><p class="e">我按「先看这里」第十二节的对照表，一次把 PPT、草稿、原型改全</p></div>
+</div>
+
+<p class="links">文件（都在 商城/）：
+<a href="需求评审材料.pptx">需求评审材料.pptx</a> ·
+<a href="需求评审材料_带备注_自用.pptx">需求评审材料_带备注_自用.pptx</a> ·
+<a href="资料/方案设计稿_会后同步草稿_1028.md">方案设计稿_会后同步草稿</a> ·
+<a href="需求文档_会后同步草稿_1028.md">需求文档_会后同步草稿</a> ·
+<a href="资料/研发评审问题清单_草稿_1029.md">研发评审问题清单</a> ·
+<a href="资料/上线与运营上手_草稿_1029.md">上线与运营上手</a> ·
+<a href="资料/后台菜单结构_实看_1028.md">后台菜单结构（实看）</a> ·
+<a href="先看这里.md">先看这里</a></p>
+</div></body></html>

@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>10m 按玩家预览</title>
+<link rel="stylesheet" href="_后台框.css">
+<link rel="stylesheet" href="_弹窗.css">
+<style>
+.eh .pill.on{background:#ECF5FF;color:#2F6FCC}.eh .pill.on::before{background:#409EFF}
+.ed .row{flex-wrap:wrap;row-gap:6px;min-height:30px}
+.ed .row>label{width:96px;white-space:nowrap}
+.ed>.sec.full{grid-column:1/-1}
+.ed>.sec.full.last{border-bottom:0}
+.dis{opacity:.5}
+.btno.sm{height:24px;padding:0 9px;font-size:12.5px}
+.inp.ph{color:#A8ABB2}
+.fixed{margin-top:4px}
+.sh .r{margin-left:auto;font-weight:400;font-size:13px}
+.seg2.sm{height:22px}.seg2.sm span{padding:0 8px;font-size:12px}
+table.rt{width:100%;border-collapse:collapse;table-layout:fixed;font-size:12.5px;color:#303133}
+table.rt th{font-weight:500;font-size:12px;color:#9AA0A6;text-align:left;padding:4px 6px;border-bottom:1px solid #E4E7ED;white-space:nowrap}
+table.rt td{padding:7px 6px;border-bottom:1px solid #F0F1F3;vertical-align:top;line-height:20px}
+table.rt td.hd{color:#C0C4CC;text-align:center;padding-left:0;padding-right:0}
+table.rt td.ix{color:#9AA0A6;text-align:right;padding-right:2px}
+table.rt tr.grp td{background:#F7F8FA;color:#4E5560;padding:5px 8px;border-bottom:1px solid #E4E7ED;vertical-align:middle}
+table.rt tr.grp b{color:#1F2329}
+table.rt tr.grp .inp{height:22px;margin:0 3px}
+table.rt tr.hl td{background:#FFF8E8}
+table.rt .an{display:flex;align-items:center;gap:6px;font-weight:600;color:#1F2329}
+table.rt .an .kind{margin-left:0;flex:none}
+table.rt .an{white-space:nowrap}
+.ovp .it>label{white-space:nowrap}
+table.rt .nt{display:block;font-size:12px;color:#9AA0A6;font-weight:400}
+table.rt td.op{text-align:right;white-space:nowrap}
+table.rt td.op .lk+.lk{margin-left:10px}
+table.rt .todo{color:#A9671A}
+em.fy,em.fo{display:inline-block;margin-left:4px;padding:0 4px;border-radius:3px;font-size:11px;font-style:normal;line-height:16px;vertical-align:1px}
+em.fy{background:#F2F3F5;color:#909399}
+em.fo{background:#ECF5FF;color:#2F6FCC;font-weight:600}
+tr.ovr td{background:#F7FAFF}
+.ovp{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 18px;padding:2px 0 4px}
+.ovp .it{display:flex;align-items:center;gap:6px;flex-wrap:wrap;color:#4E5560}
+.ovp .it>label{width:118px;color:#606266;flex:none}
+.ovp .it .inp{height:24px;font-size:12.5px}
+.ovp .was{font-size:11.5px;color:#9AA0A6}
+.ovp .ro2{grid-column:1/-1;display:flex;align-items:center;gap:8px;color:#606266;padding-top:7px;border-top:1px dashed #DCE3EE}
+.mth{width:54px;height:30px;border-radius:3px;background:linear-gradient(135deg,#7A3E2E,#C58B3A);color:#F5D7A1;font-size:10px;font-weight:700;display:inline-flex;align-items:center;justify-content:center}
+.ckl{display:inline-flex;align-items:center;gap:5px;margin-right:12px;color:#303133}
+.pvr{margin-top:8px;border:1px solid #E4E7ED;border-radius:6px;background:#FAFBFC;padding:10px 12px}
+.pvr .ln1{font-size:12.5px;color:#4E5560;line-height:20px}
+.pvr .ln1 b{color:#1F2329}
+.pvr .q{margin-top:8px;font-weight:600;color:#1F2329;font-size:12.5px}
+.pvr .q .m2{font-weight:400;margin-left:6px}
+.pvst{display:inline-block;padding:0 7px;border-radius:3px;font-size:12px;white-space:nowrap}
+.pvst.ok{background:#F0F9EB;color:#3F7A1E}.pvst.no{background:#F4F4F5;color:#606266}.pvst.wait{background:#FDF6EC;color:#A9671A}
+.pvr .ft2{display:flex;align-items:center;gap:10px;margin-top:10px}
+.foot .btno.dis,.foot .btnp.dis{opacity:.45}
+.cf ul.rl{list-style:none;margin:10px 0 0;padding:0;border-top:1px solid #E4E7ED}
+.cf ul.rl li{display:grid;grid-template-columns:1fr 64px 56px 1.25fr;gap:8px;padding:5px 2px;border-bottom:1px solid #F0F2F5;font-size:12.5px;color:#4E5560}
+.cf ul.rl li.h{color:#909399;font-size:12px}
+.cf ul.rl li b{font-weight:500;color:#1F2329}
+.cf ul.rl li i{font-style:normal;color:#909399;font-size:12px;margin-left:4px}
+.cf ul.rl li .keep{color:#A9671A}
+.cf .imp+.imp{margin-top:8px}
+.cf .when{margin-top:10px;font-size:12.5px;color:#4E5560}
+.drawer .fr>label{width:124px;white-space:nowrap;line-height:20px;padding-top:4px}
+.ed>.sec.acts{border-bottom:1px solid #EBEEF5}
+</style>
+</head>
+<body>
+<div class="shot bk" data-page="弹窗" data-crumb="金卡未首储">
+  <div class="eh"><h3>金卡未首储 <span class="id">编号 90</span></h3><span class="pill draft">草稿</span><span class="sp"></span><span class="btno">复制</span></div>
+  <div class="ed">
+    <div class="sec full">
+      <div class="sh"><span class="n">6</span>弹哪些活动或礼包<span class="r"><span class="lk">＋ 加入活动或礼包</span></span></div>
+      <div class="m2" style="margin:-4px 0 6px">宣传图、跳转页面、点击后是否跳转、弹出时机、次数按活动或礼包存一份，各规则共用，点名称打开它的弹窗设置；规则里默认沿用，可在「本规则另设」里改，只在这条规则生效。先弹固定的，再弹轮换池的。例：活动 2 个＋礼包 1 个＝每次最多弹 3 个、礼包进轮换池每次 1 个。固定＝按先后检查，名额用完、没到时机、今天次数用完就不弹，不等于每次一定弹</div>
+      <table class="rt"><colgroup><col style="width:16px"><col style="width:18px"><col><col style="width:84px"><col style="width:96px"><col style="width:166px"><col style="width:92px"><col style="width:120px"><col style="width:116px"></colgroup><thead><tr><th></th><th></th><th>活动或礼包</th><th>是否进轮换池</th><th>点击后是否跳转</th><th>弹出时机</th><th>每人每天几次</th><th>每人两次至少隔多久</th><th></th></tr></thead><tbody>
+        <tr class="grp"><td colspan="9"><b>固定</b> · 2 个 · 按先后弹；固定的先后：拖动排序，默认新加入的排最后</td></tr>
+        <tr><td class="hd">⠿</td><td class="ix">1</td><td><span class="an"><span class="lk">每日补给计划</span><span class="kind act">活动</span></span></td><td><span class="seg2 sm"><span class="on">否</span><span>是</span></span></td><td>是<em class="fy">沿用</em></td><td>每次进大厅，含从游戏返回<em class="fy">沿用</em></td><td>1 次<em class="fy">沿用</em></td><td>不限<em class="fy">沿用</em></td><td class="op"><span class="lk">另设 ▾</span><span class="lk">移除</span></td></tr><tr><td class="hd">⠿</td><td class="ix">2</td><td><span class="an"><span class="lk">热门资讯</span><span class="kind act">活动</span></span></td><td><span class="seg2 sm"><span class="on">否</span><span>是</span></span></td><td>是<em class="fy">沿用</em></td><td>每次进大厅，含从游戏返回<em class="fy">沿用</em></td><td>2 次<em class="fy">沿用</em></td><td>不限<em class="fy">沿用</em></td><td class="op"><span class="lk">另设 ▾</span><span class="lk">移除</span></td></tr>
+        <tr class="grp"><td colspan="9"><b>轮换池</b> · 2 个 · 每次弹<span class="inp v n1" style="width:36px;justify-content:center">1</span>个，按顺序轮流、每次换下一个；轮换池内顺序：拖动排序，默认按进池先后</td></tr>
+        <tr><td class="hd">⠿</td><td class="ix">1</td><td><span class="an"><span class="lk">储值优惠礼包</span><span class="kind pay">礼包</span></span></td><td><span class="seg2 sm"><span>否</span><span class="on">是</span></span></td><td>是<em class="fy">沿用</em></td><td>只在从游戏返回时<em class="fy">沿用</em></td><td>2 次<em class="fy">沿用</em></td><td>不限<em class="fy">沿用</em></td><td class="op"><span class="lk">另设 ▾</span><span class="lk">移除</span></td></tr><tr><td class="hd">⠿</td><td class="ix">2</td><td><span class="an"><span class="lk">首储加码礼包</span><span class="kind pay">礼包</span></span></td><td><span class="seg2 sm"><span>否</span><span class="on">是</span></span></td><td>是<em class="fy">沿用</em></td><td>只在从游戏返回时<em class="fy">沿用</em></td><td>2 次<em class="fy">沿用</em></td><td>不限<em class="fy">沿用</em></td><td class="op"><span class="lk">另设 ▾</span><span class="lk">移除</span></td></tr>
+      </tbody></table>
+      <div class="addc"><span class="lk">＋ 加入活动或礼包</span><span class="m2">可选范围：未结束的活动和礼包，搜名称或编号、可多选；第一次进弹窗的当场配一次弹窗设置，已有的直接沿用</span></div>
+    </div>
+    <div class="sec full">
+      <div class="sh"><span class="n">7</span>发送测试<span class="m2" style="font-weight:400;margin-left:6px">测试对象下一次进入本场景时，把勾选的按先后全弹一遍；不受次数和间隔限制，不计次数、不进弹窗数据</span></div>
+      <div class="row"><label>测试对象</label><span class="inp v" style="width:214px">测试群组：QA 测试组（3 人）<span class="dn">⌵</span></span><span class="inp v" style="width:318px">会员编号：180820077188801、180820077188802</span><span class="m2">默认上次用过的；每次最多 50 人</span></div>
+      <div class="row"><label>测哪些</label><span class="ckl"><span class="ck">✓</span>每日补给计划</span><span class="ckl"><span class="ck">✓</span>热门资讯</span><span class="ckl"><span class="ck">✓</span>首储加码礼包</span><span class="ckl"><span class="ck">✓</span>储值优惠礼包</span><span class="m2">默认全选</span></div>
+      <div class="row"><label></label><span class="btno">发送测试</span><span class="m2">用编辑中这一版，没保存的改动也算</span></div>
+    </div>
+    <div class="sec full last">
+      <div class="sh"><span class="n">8</span><span style="white-space:nowrap">按玩家预览</span><span class="m2" style="font-weight:400;margin-left:6px">预览场景（只读）：本规则的场景，进大厅；按哪一版算（只读）：编辑中这一版，草稿或新规则按默认排位算；<span style="white-space:nowrap">所有场景到玩家查询看</span></span></div>
+      <div class="row"><label>会员编号</label><span class="inp v" style="width:220px">180820077112345</span><label style="width:auto;margin-left:6px">按哪种进入算</label><span class="inp v" style="width:152px">重新登录进大厅<span class="dn">⌵</span></span><span class="btno">预览</span></div>
+      <div class="pvr">
+        <div class="ln1">按 10/21 15:30 此刻、编辑中这一版算，本规则当作已上架。这个人今天在进大厅已弹 <b>3/8</b> 个；本场景上次弹出 15:22，弹出间隔 30 分钟，<b>15:52 以后</b>进入才弹下面这些</div>
+        <div class="q">下次进入时轮到哪条规则<span class="m2">本规则（金卡未首储 编号 90）。这个人还符合「其余」编号 85，进大厅为轮流。再下一次轮到「其余」。</span></div>
+        <div class="q">下次进入时会弹哪几个、没弹的原因</div>
+        <table class="rt" style="margin-top:4px"><colgroup><col style="width:30px"><col style="width:150px"><col style="width:84px"><col style="width:96px"><col></colgroup>
+          <thead><tr><th></th><th>活动或礼包</th><th>固定或轮换池</th><th>结果</th><th>原因</th></tr></thead><tbody>
+          <tr><td class="ix">1</td><td>每日补给计划</td><td>固定</td><td><span class="pvst ok">会弹</span></td><td></td></tr>
+          <tr><td class="ix">2</td><td>热门资讯</td><td>固定</td><td><span class="pvst no">不弹</span></td><td>已到每人每天几次：本场景各规则合计 2/2，明天 0 点起可弹</td></tr>
+          <tr><td class="ix">3</td><td>储值优惠礼包</td><td>轮换池</td><td><span class="pvst no">不弹</span></td><td>弹出时机不符：只在从游戏返回时弹（本次按重新登录进大厅算）</td></tr>
+          <tr><td class="ix">4</td><td>首储加码礼包</td><td>轮换池</td><td><span class="pvst no">不弹</span></td><td>弹出时机不符：只在从游戏返回时弹（本次按重新登录进大厅算）</td></tr>
+        </tbody></table>
+        <div class="q">轮换池轮到哪个<span class="m2">按池内顺序先看储值优惠礼包、再看首储加码礼包，两个都只在从游戏返回时弹，这次进入都弹不出，轮换指针不动</span></div>
+        <div class="ft2"><span class="btno">在玩家查询中打开</span><span class="m2">看这个人在所有场景会弹什么</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="dirty">有未保存的改动：4 处</span><span class="sp"></span><span class="btno">取消</span><span class="btno">保存为草稿</span><span class="btnp">上架</span></div>
+</div>
+<script src="_后台框.js"></script>
+</body>
+</html>

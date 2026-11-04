@@ -1,0 +1,72 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>弹窗位置设置</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.35;margin:0 0 8px}
+.sub{font-size:16px;color:var(--ink-2);margin:0 0 28px}
+h2{font-family:var(--serif);font-size:20px;margin:56px 0 16px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px}
+.kpi .n{font-size:38px;font-weight:700;line-height:1.1;color:var(--ink)}
+.kpi .n small{font-size:16px;font-weight:600;margin-left:4px;color:var(--ink-2)}
+.kpi .t{font-size:14.5px;color:var(--ink-2);margin-top:8px}
+.f{margin-bottom:22px}
+.f .h{font-size:17px;font-weight:700;margin:0 0 6px}
+.f .l{font-size:14.5px;color:var(--ink-2);margin:0 0 10px}
+.f .l li{margin:2px 0}
+.f ul{margin:0 0 10px;padding-left:20px}
+.shot img{width:100%;display:block;border:1px solid var(--line);border-radius:4px;background:#fff}
+.shot .c{font-size:12.5px;color:var(--muted);margin-top:6px}
+.shot.mid img{max-width:760px}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14.5px}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--ground);white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td.p{color:var(--muted);width:64px;white-space:nowrap}
+td.w{color:var(--ink);width:36%} td.r{color:var(--ink-2)}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:1px 7px;border-radius:3px;margin-right:6px;vertical-align:1px}
+.tag.red{background:var(--red-soft);color:var(--red)} .tag.blue{background:var(--blue-soft);color:var(--blue)} .tag.gray{background:var(--gray-soft);color:var(--gray)}
+.note{font-size:14.5px;color:var(--ink-2)}
+.note li{margin:4px 0}
+.links{font-size:13px;color:var(--muted);margin-top:48px;line-height:1.9} a{color:var(--accent)}
+@media (max-width:760px){.wrap{padding:32px 16px 72px}.g3,.g2{grid-template-columns:1fr}td.p{white-space:normal}td.w{width:auto}}
+.cmp td.b{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--line)} .cmp td.a{color:var(--ink);font-weight:600}
+</style></head>
+<body><div class="wrap">
+<p class="meta">推送系统后台 · 需求评审版 · 2026-10-28</p>
+<h1>命中方式改成「位置设置」：列表上只读显示，点「修改」在对话框里改，改前写出影响</h1>
+<p class="sub">原来做成列表上方的切换按钮，看起来像筛选，点一下就对全部玩家生效。全稿同类的控件问题也一起改了。</p>
+
+<h2><span class="no">01</span>位置页签下一行只读显示这个位置的设置，命中方式和每人每天上限放在一起</h2>
+<div class="shot"><img src="图/2026-10-28_弹窗位置设置/10a_弹窗列表.jpg" alt="弹窗规则列表"><div class="c">弹窗规则列表：页签下一行是「位置设置」，右侧「修改」；原来顶部单独的大厅上限条已并进这一行</div></div>
+
+<h2><span class="no">02</span>点「修改」：单选加保存，每个选项一句说明，写明只影响之后的弹出和会影响多少人</h2>
+<div class="shot"><img src="图/2026-10-28_弹窗位置设置/10n_位置设置.jpg" alt="位置设置对话框"><div class="c">位置设置对话框：改成「优先级最高」前，写出同时符合多条规则的玩家里有多少人下一次弹出的规则会变</div></div>
+<ul class="note">
+  <li>依据：Google Ad Manager 的轮换设置放在投放项自己的设置页里，点编辑改，每个选项配说明、写明只影响之后的投放；IBM Carbon 规范要确认的设置用单选加保存，不用即点即生效的切换。</li>
+  <li>依据我们 10/28 定的原则：做决定的那一刻看到后果；一件事只设一次。「将影响 N 人」业界官方文档里没见到，是按这条原则多做的。</li>
+</ul>
+
+<h2><span class="no">03</span>按「控件样子要和作用一致」查了全稿，同类的一起改了</h2>
+<ul class="note">
+  <li>调整优先级、修改上限：保存前也写出影响。</li>
+  <li>每人每天上限原来有四种写法，统一叫法；「今天达到上限 N 人」能点进去看是谁。</li>
+  <li>短信、快显列表上方的「全部｜定时｜条件触发」分段筛选去掉（列表已经分好段）；新建页「满足任一｜同时满足」从分段控件改成单选钮。</li>
+  <li>状态（上架、生效中）原来是链接蓝，像按钮，改成状态样式；发布后不能改的（弹窗位置、发送方式、消息类别）显示成只读文字。</li>
+  <li>快显重复定时行上第一个操作改成「暂停」，「停止」收进更多操作；按钮统一叫「发送测试」。</li>
+</ul>
+<p class="note">以上改完后，由没参与修改的设计评审逐张复核，确信问题清零。</p>
+
+<div class="links">成品：评审版_定稿改_1027/推送系统后台集成需求/3_原型_需求评审版.html（30 张图，第 4 页弹窗）</div>
+</div></body></html>

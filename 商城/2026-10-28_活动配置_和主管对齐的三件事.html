@@ -1,0 +1,163 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>活动配置方案对齐</title>
+<style>
+:root{--ground:#f4f3f0;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e3e1dc;--accent:#9a6f24;--red:#a8382b;--red-soft:#f7e7e3;--blue:#1f63a8;--blue-soft:#e4eef8;--green:#2f6b52;--green-soft:#e3efe8;--amber:#8a5a00;--amber-soft:#f6ecd6;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--green:#7dbb9c;--green-soft:#1c3128;--amber:#e0b866;--amber-soft:#33291a;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--green:#7dbb9c;--green-soft:#1c3128;--amber:#e0b866;--amber-soft:#33291a;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.75}
+.wrap{max-width:960px;margin:0 auto;padding:56px 28px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 14px}
+h1{font-family:var(--serif);font-size:26px;line-height:1.5;margin:0}
+.lead{margin:12px 0 0;font-size:15px;color:var(--ink-2)}
+h2{font-family:var(--serif);font-size:21px;line-height:1.5;margin:64px 0 8px;display:flex;gap:12px;align-items:baseline}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);white-space:nowrap}
+.h2sub{margin:0 0 18px;font-size:15px;color:var(--ink-2)}
+h3{font-size:16.5px;margin:28px 0 12px;line-height:1.6}
+.sec{font-size:13px;font-weight:700;color:var(--muted);letter-spacing:.05em;margin:28px 0 10px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 20px;display:flex;flex-direction:column}
+.card .k{font-size:12.5px;font-weight:700;color:var(--accent);letter-spacing:.04em}
+.card .h{font-size:16px;font-weight:700;line-height:1.55;margin:4px 0 8px}
+.card .d{margin:0;font-size:14.5px;color:var(--ink-2);line-height:1.75}
+.card ul{margin:0;padding-left:18px;font-size:14.5px;color:var(--ink-2);line-height:1.75}
+.card li{margin:4px 0}
+.card li b,.card .d b{color:var(--ink)}
+.card .ask{margin-top:auto;padding-top:10px;border-top:1px dashed var(--line);font-size:14px;color:var(--ink)}
+.card .ask::before{content:"想问你　";font-weight:700;color:var(--blue)}
+.card.rec{border-left:4px solid var(--green)}
+.card.alt{border-left:4px solid var(--line)}
+.pill{display:inline-block;font-size:12px;font-weight:700;padding:1px 8px;border-radius:4px;margin-left:6px;vertical-align:1px}
+.pill.g{background:var(--green-soft);color:var(--green)}.pill.k{background:var(--ground);color:var(--muted);border:1px solid var(--line)}
+figure{margin:12px 0 0}
+figure img{display:block;width:100%;border-radius:6px;border:1px solid var(--line)}
+figcaption{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.6}
+.figs{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:14.5px}
+th,td{padding:11px 15px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.7}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--ground);white-space:nowrap}
+td.w{font-weight:600;min-width:7em}
+td{color:var(--ink-2)} td.w{color:var(--ink)}
+td .sm{display:block;font-weight:400;color:var(--muted);font-size:13px}
+tr:last-child td{border-bottom:none}
+.inf{font-size:11.5px;font-weight:700;color:var(--amber);background:var(--amber-soft);border-radius:3px;padding:0 5px;margin-left:4px;white-space:nowrap}
+.why{list-style:none;margin:0;padding:0}
+.why li{display:grid;grid-template-columns:30px minmax(0,1fr);gap:10px;padding:12px 0;border-bottom:1px solid var(--line);font-size:15px;color:var(--ink-2);line-height:1.75}
+.why li:last-child{border-bottom:none}
+.why li .n{font-family:var(--serif);font-weight:700;color:var(--accent);font-size:17px;line-height:1.5}
+.why li b{color:var(--ink)}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:4px 20px}
+.askbox{margin-top:16px;background:var(--blue-soft);border-radius:10px;padding:14px 20px;font-size:15px;color:var(--ink)}
+.askbox b{color:var(--blue)}
+.askbox ol{margin:6px 0 0;padding-left:20px;color:var(--ink-2)}
+.askbox li{margin:4px 0}
+.note{margin:12px 0 0;font-size:14px;color:var(--ink-2)}
+.note b{color:var(--ink)}
+.foot{margin-top:48px;font-size:13px;color:var(--muted);line-height:1.9}
+a{color:var(--accent)}
+@media (max-width:780px){.wrap{padding:32px 16px 64px}h1{font-size:22px}.grid3,.grid4,.two,.figs{grid-template-columns:1fr}}
+</style></head><body><div class="wrap">
+
+<p class="meta">活动配置（需求名「入口调整」）· 方案对齐 · 2026-10-28</p>
+<h1>大厅只留一个活动入口，好康的位置给银行；第一批先做四个储值工具，节庆排第二批</h1>
+<p class="lead">目标按需求原文：运营想上活动时（如周五做一个储值活动），在后台复制上期、改时间和档位、审核后就上线，不再每次排开发。近一年 148 个储值、商城类开发需求里，有 52 个是同样的东西重复开发。</p>
+
+<div class="sec">方案全貌</div>
+<div class="grid4">
+  <div class="card"><span class="k">运营后台</span><p class="d">选工具 → 填规则 → 对象与时间 → 成本上限 → 素材 → 另一人审核 → 到点上线；可复制上期；每个活动一张数据页</p></div>
+  <div class="card"><span class="k">大厅入口</span><p class="d">左下银行管花钱；右下限时活动管玩，分游戏、平台；公告只放消息</p></div>
+  <div class="card"><span class="k">工具</span><p class="d">礼包、累充、满减、折扣、抽奖、团购、一元夺宝；第一批前四个</p></div>
+  <div class="card"><span class="k">归属</span><p class="d">系统按规则定活动放哪：要先付费的进银行，指定游戏的进游戏活动，其余进平台活动</p></div>
+</div>
+
+<div class="sec">想跟你对齐的三点</div>
+<div class="grid3">
+  <div class="card"><span class="k">一 · 好康和限时活动</span><p class="h">合并成一个活动入口</p><p class="d">好康不再放活动，左下给银行；要先储值才能参加的活动跟银行走</p><p class="ask">「好康改为金流／商城」是这个意思吗？银行能加一个「储值活动」页签吗？</p></div>
+  <div class="card"><span class="k">二 · 本期范围</span><p class="h">第一批做后台、入口、四个储值工具</p><p class="d">节庆专题页和抽奖第二批，赶在明年庆典季前；团购、一元夺宝最后</p><p class="ask">1/21 是开发完成还是上线？节庆、一元夺宝要本期就有吗？</p></div>
+  <div class="card"><span class="k">三 · 工具做法</span><p class="h">满减、折扣做成多送，不直接减价</p><p class="d">团购做全服阶梯返利；一元夺宝的券只用老币买或储值送</p><p class="ask">这三个做法符合你写这几个工具时的预期吗？</p></div>
+</div>
+
+<!-- ============ 一 ============ -->
+<h2><span class="no">一</span>好康和限时活动：建议合并成一个活动入口，好康的位置给银行</h2>
+<p class="h2sub">从两个入口的定位和价值看：好康作为活动入口已经没有自己的价值，它最值钱的是大厅左下的位置，这个位置给付费入口更能带业绩。</p>
+
+<h3>两个入口原本各管什么，现在实际怎样</h3>
+<div class="tw"><table>
+<tr><th>入口</th><th>原定位</th><th>现在实际放的</th><th>还剩的独有价值</th></tr>
+<tr><td class="w">好康活动<span class="sm">大厅左下大按钮</span></td><td>新手的活动聚合入口，「承載部分活動和功能」</td><td>排行榜、外赠、庆典、抽奖大厅、黄金百万、储值优惠；产品自评「淪為活動展示」</td><td>大厅最显眼的位置；大图展示</td></tr>
+<tr><td class="w">限时活动<span class="sm">大厅右下大按钮</span></td><td>老玩家的快捷入口：图标、剩余天数、红点</td><td>月月抽、发财金、新手挑战、通行证、抽奖大厅、排行榜等；新手类活动已并进它的列表</td><td>当期活动一览和到期提醒</td></tr>
+</table></div>
+<p class="note"><b>结果</b>：两个入口争同一批活动，玩家按「新手／老玩家」分不出该去哪；每个活动要在两套后台各配一次；「祈福财神庙」同时挂在 7 处。</p>
+
+<h3>为什么合并</h3>
+<div class="box"><ul class="why">
+  <li><span class="n">1</span><span><b>好康的两样独有价值，合并后都留得住。</b>大图展示：限时活动改用好康现在的左列表＋右大图；左下位置：给银行，用在更值钱的地方。好康放的每类内容都有去处：免费活动进限时活动，储值优惠进银行，宣传图进公告或 Banner。</span></li>
+  <li><span class="n">2</span><span><b>左下位置给银行，直接作用于付费。</b>业绩＝活跃 × 付费率 × 客单价：活动窗口主要拉活跃，银行直接决定付费率和客单价。现在银行只是底栏 7 个小按钮之一，换到左下后是最显眼的入口。<span class="inf">推断，上线后用银行打开人数和储值验证</span></span></li>
+  <li><span class="n">3</span><span><b>和需求原文一致。</b>好康「改為 金流／商城（入口載體）」，限时活动「活動（遊戲活動 和 平台活動的區分）」：活动只留给限时活动。</span></li>
+  <li><span class="n">4</span><span><b>竞品都这样做。</b>金好运、星城、豪神每款只有一个汇总活动窗口，没有两个并列的活动入口。</span></li>
+</ul></div>
+
+<h3>合并后剩一处要定：累充、满减这类「要先储值才能参加」的活动放哪</h3>
+<div class="two">
+  <div class="card rec"><span class="k">A · 放银行最上方「储值活动」页签<span class="pill g">建议</span></span>
+    <ul>
+      <li><b>定位一致</b>：左下管花钱、右下管玩，玩家想花钱时一处看全</li>
+      <li><b>转化时机好</b>：储值优惠出现在付款那一刻，付款页能显示「再储 X 到下一档」</li>
+      <li><b>原文</b>：「增加工具屬性：滿減／累充／團購／折扣…」写在好康改金流／商城那一行</li>
+      <li><b>代价</b>：不开银行的玩家看不到 → 银行按钮在有活动时显示红点和剩余天数，重点活动用 Banner、弹窗、推播引流</li>
+      <li><b>依赖</b>：银行要加一个页签，要和银行改版的计划对上</li>
+    </ul>
+    <figure><img src="需求评审材料_图/01_商城_储值活动页签.jpg" alt="A 银行储值活动页签"><figcaption>A：银行最上方「储值活动」，原六个页签不变</figcaption></figure>
+  </div>
+  <div class="card alt"><span class="k">B · 放活动窗口第三个页签（竞品做法）</span>
+    <ul>
+      <li><b>曝光更广</b>：不打算花钱的玩家逛活动也会看到</li>
+      <li><b>不动银行</b>：和银行改版互不牵制</li>
+      <li><b>代价</b>：活动窗口混进要花钱的内容；原文的游戏、平台两类变三类</li>
+      <li><b>多一步</b>：每个储值活动要「前往银行」才能付款</li>
+    </ul>
+    <figure><img src="两版原型_图/合并版_4_活动中心_好康.jpg" alt="B 活动窗口第三个页签"><figcaption>B 示意：活动窗口第三个页签放储值活动，右下「前往银行」</figcaption></figure>
+  </div>
+</div>
+<p class="note"><b>两种做法后台、工具、规则完全一样</b>，只差客户端放哪，不卡后台开发；最晚需求评审（12/11 前）定。不选「保留两个活动入口」：银行仍是底栏小按钮，重叠问题也没解决。</p>
+<p class="note"><b>上线风险</b>：习惯点左下找活动的玩家会进到银行。建议改版后头几次打开银行时提示「活动移到右下限时活动」。</p>
+<div class="askbox"><b>想问你</b><ol>
+  <li>你写「好康改为金流／商城、增加工具属性」，是希望这些储值活动出现在银行里吗？是就选 A；你更想要「所有活动一处看全」就选 B。</li>
+  <li>银行改版能在最上方加「储值活动」页签吗、什么时候上？加不了就选 B。</li>
+</ol></div>
+
+<!-- ============ 二 ============ -->
+<h2><span class="no">二</span>本期范围：先做最常用、直接带储值的；节庆排第二批，赶在明年庆典季前</h2>
+<p class="h2sub">开发期按 12/11 至 1/21 算约 6 周，研发还没估时，七个工具和节庆装不下，只能分批。排法按「哪类重复开发最多、哪类直接带储值」。</p>
+<div class="tw"><table>
+<tr><th>批次</th><th>做什么</th><th>解决什么</th><th>为什么排这里</th></tr>
+<tr><td class="w">第一批<span class="sm">1/21 前</span></td><td>运营后台（审核、数据页）；三个入口改版；礼包、累充、满减、折扣</td><td>礼包每出一包做一页（重复开发 12 个）；日常储值优惠每轮重做；新活动挂不上入口</td><td>储值活动每周都能用、直接带储值；节庆里的储值优惠也靠这几个工具，第一批就能配</td></tr>
+<tr><td class="w">第二批<span class="sm">明年 8 月前</span></td><td>庆典专题页（一页汇总本期活动）、抽奖工具；现有玩法接入新入口</td><td>两次庆典把活动大页、抽奖大厅、储值优惠页等 6 块各做一遍（重复开发 22 个）</td><td>专题页要汇总的是用工具配出的活动，得先有第一批。今年两次庆典在 8/17、9/10 建单，晚于明年 8 月中就会再做一遍</td></tr>
+<tr><td class="w">最后</td><td>团购、一元夺宝</td><td>新玩法，过去一年没有对应需求</td><td>价值未验证；一元夺宝要先过法务</td></tr>
+</table></div>
+<p class="note"><b>本期解决不了的</b>：新增「至尊卡」这类改动要各活动各改一遍（18 个），落在扭蛋机、转盘等玩法自己的后台；人数活动、大厅换装；全新玩法。<b>春节</b>：2027 年春节（2/6）离 1/21 只有 16 天，春节活动仍按现在的方式开发，会和本项目抢研发。<span class="inf">推断</span></p>
+<div class="askbox"><b>想问你</b><ol>
+  <li>需求表上的 12/11、1/21 是开发开始和开发完成，还是开发完成和上线？如果 1/21 要上线，第一批只能留后台、礼包、累充和银行入口。</li>
+  <li>节庆和一元夺宝，你期望本期就有吗？要的话第一批得让出折扣或满减，或者加人。</li>
+</ol></div>
+
+<!-- ============ 三 ============ -->
+<h2><span class="no">三</span>工具做法：三处和字面不同，先对一下</h2>
+<p class="h2sub">需求写了满减、累充、团购、折扣、礼包、抽奖、一元夺宝。下面三处我们的做法和字面意思不一样，各有原因。</p>
+<div class="tw"><table>
+<tr><th>工具</th><th>我们的做法</th><th>原因</th><th>例子</th></tr>
+<tr><td class="w">满减、折扣</td><td>做成「多送」，不直接减价。满减＝单笔满额加赠；折扣＝同价加赠，商品上显示「加赠 X%」</td><td>App 内购的价格档固定，活动不能临时改实付金额；三款竞品也都是多送（「UP 20%」「超值加贈 566%」）</td><td>单笔满 1,000 加赠 10%；500 档加赠 30%</td></tr>
+<tr><td class="w">团购</td><td>全服阶梯返利：全服一起买同一商品，人数越多每人返越多</td><td>邀请好友拼团属于拉新玩法，另立需求</td><td>100 人返 5%，300 人返 10%</td></tr>
+<tr><td class="w">一元夺宝</td><td>每期一个大奖，卖券凑满开奖；券只能用老币买或储值赠送</td><td>台币直接买券、抽实物奖，接近博彩，合规风险高；上线前法务确认</td><td>原文两例都能配：全服本期储值满 10 万台币开奖；售券满 1.1 万开奖、奖品价值 1 万</td></tr>
+</table></div>
+<p class="note">官网渠道能不能真打折要问金流；即使能，同一个活动在 App 和官网就成了两套规则，不建议。</p>
+<div class="askbox"><b>想问你</b><ol>
+  <li>满减你要的是「真减价」，还是「多送」也可以？</li>
+  <li>团购、一元夺宝这样做，和你写的时候想的一样吗？</li>
+</ol></div>
+
+<p class="foot">依据：重复开发数据来自 Jira 开发需求单（2025-11-01 至 2026-10-26 建单），按标题归类后逐个核对子任务，52 个是下限、按需求个数；入口现状来自产品 idea 页、2025-12 好康改版草案和客户端截图；竞品来自金好运、星城、豪神各一个新账号的录屏。完整界面和规则见《需求评审材料》。</p>
+</div></body></html>

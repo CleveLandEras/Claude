@@ -1,0 +1,9 @@
+{"_存法": "MCP 结果直接返回在对话里，用 Write 存下。去掉了头像、self、iconUrl、邮箱、类型说明；其余原样。关键词：刮刮樂。",
+"_jql": "project = RICH AND issuetype in (Epic, Requirement) AND summary ~ \"刮刮樂\" AND created >= -365d ORDER BY created DESC",
+"issues":{"nodes":[
+{"key":"RICH-25851","fields":{"summary":"「活動優化」刮刮樂重構需求","issuetype":{"name":"Requirement"},"assignee":{"displayName":"Fury Cui(崔峰龙)"},"fixVersions":[],"created":"2026-10-28T10:23:20.834+0800","status":{"name":"待办","statusCategory":{"key":"new"}}}},
+{"key":"RICH-16674","fields":{"summary":"【至尊刮刮樂】跑馬燈優化需求","issuetype":{"name":"长篇故事"},"assignee":{"displayName":"Ke Zheng(郑柯)"},"fixVersions":[{"name":"08_V17_2.12","released":true,"releaseDate":"2026-02-12"}],"created":"2026-01-22T17:19:30.496+0800","status":{"name":"已完成","statusCategory":{"key":"done"}}}},
+{"key":"RICH-16516","fields":{"summary":"至尊刮刮樂、瘋狂扭蛋機關聯「代幣」道具優化需求","issuetype":{"name":"长篇故事"},"assignee":{"displayName":"Jiayang Xu(徐佳洋)"},"fixVersions":[{"name":"08_V21_3.26","released":true,"releaseDate":"2026-03-26"}],"created":"2026-01-19T18:05:40.270+0800","status":{"name":"已完成","statusCategory":{"key":"done"}}}},
+{"key":"RICH-16051","fields":{"summary":"至尊刮刮樂優化需求補充","issuetype":{"name":"长篇故事"},"assignee":{"displayName":"Jiayang Xu(徐佳洋)"},"fixVersions":[{"name":"08_V15_1.29","released":true,"releaseDate":"2026-01-29"}],"created":"2026-01-08T14:06:48.240+0800","status":{"name":"已完成","statusCategory":{"key":"done"}}}},
+{"key":"RICH-15688","fields":{"summary":"至尊刮刮樂優化需求","issuetype":{"name":"长篇故事"},"assignee":{"displayName":"Jiayang Xu(徐佳洋)"},"fixVersions":[{"name":"08_V13_1.15","released":true,"releaseDate":"2026-01-15"}],"created":"2025-12-26T17:55:41.033+0800","status":{"name":"已完成","statusCategory":{"key":"done"}}}}
+],"pageInfo":{"hasNextPage":false,"endCursor":null}}}

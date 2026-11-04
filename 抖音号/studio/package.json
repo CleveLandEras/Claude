@@ -1,0 +1,20 @@
+{
+  "name": "dy-studio",
+  "private": true,
+  "description": "人间旁听生的视频工程（Remotion）",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "render": "remotion render src/index.ts"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.539",
+    "@remotion/noise": "^4.0.539",
+    "@remotion/paths": "^4.0.539",
+    "@types/react": "^19.3.0",
+    "perfect-freehand": "^1.2.3",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "remotion": "^4.0.539",
+    "typescript": "^7.0.2"
+  }
+}

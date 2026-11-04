@@ -1,0 +1,70 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>活动配置问题与解决</title>
+<style>
+:root{--ground:#f4f3f0;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e3e1dc;--accent:#9a6f24;--accent-soft:#f5ecdc;--red:#a8382b;--blue:#1f63a8;--green:#2f6b52;--green-soft:#e3efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;--accent-soft:#2f2718;--red:#e48e7f;--blue:#7ab0e0;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;--accent-soft:#2f2718;--red:#e48e7f;--blue:#7ab0e0;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.75}
+.wrap{max-width:920px;margin:0 auto;padding:60px 28px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 14px}
+h1{font-family:var(--serif);font-size:27px;line-height:1.5;margin:0}
+/* 问题-原因-解决 */
+.map{display:grid;grid-template-columns:72px 1fr 1fr;gap:12px;margin-top:40px;align-items:stretch}
+.colh{font-size:14px;font-weight:700;color:var(--accent);padding:0 4px}
+.rowh{font-family:var(--serif);font-size:19px;font-weight:700;display:flex;align-items:center;justify-content:center;border-radius:10px}
+.rowh.p{color:var(--red)} .rowh.c{color:var(--blue)} .rowh.s{color:var(--green)}
+.cell{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 20px}
+.cell .h{font-size:16px;font-weight:700;line-height:1.55}
+.cell p{margin:6px 0 0;font-size:14px;color:var(--ink-2);line-height:1.7}
+.cell b.n{color:var(--ink)}
+.arrow{grid-column:2 / span 2;text-align:center;color:var(--muted);font-size:14px;line-height:1;margin:-4px 0}
+.mlab{display:none}
+/* 结论 */
+h2{font-family:var(--serif);font-size:20px;margin:56px 0 14px}
+.concl{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:6px 24px}
+.concl .row{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+.concl .row:last-child{border-bottom:none}
+.concl .k{font-weight:700;font-size:15px}
+.concl .k small{display:block;font-weight:400;color:var(--muted);font-size:12.5px}
+.concl .v{font-size:15px;color:var(--ink-2)}
+.concl .v b{color:var(--ink)}
+.foot{margin-top:48px;font-size:13px;color:var(--muted)}
+a{color:var(--accent)}
+@media (max-width:700px){.wrap{padding:32px 16px 64px}h1{font-size:22px}
+.map{grid-template-columns:1fr;gap:10px}.colh,.arrow{display:none}.rowh{justify-content:flex-start;margin-top:14px;font-size:18px}
+.mlab{display:block;font-size:12.5px;font-weight:700;color:var(--accent);margin-bottom:2px}
+.concl .row{grid-template-columns:1fr;gap:4px}}
+</style></head><body><div class="wrap">
+
+<p class="meta">活动配置项目（需求名「入口调整」）· 2026-10-28</p>
+<h1>本期先让储值活动不用开发就能上线；节庆活动要在明年 8 月前做到</h1>
+
+<div class="map">
+  <div></div><div class="colh">① 活动上线</div><div class="colh">② 大厅入口</div>
+
+  <div class="rowh p">问题</div>
+  <div class="cell"><span class="mlab">① 活动上线</span><div class="h">上活动要靠开发，同样的内容反复做</div><p>过去一年 148 个储值、商城类开发需求，<b class="n">52 个是重复开发</b>：节庆 22、礼包 12、同一改动在各活动各改一遍 18。</p></div>
+  <div class="cell"><span class="mlab">② 大厅入口</span><div class="h">好康、限时活动、公告用途重叠</div><p>同一个活动最多挂在 7 处，每处分别配置；新活动还要研发加进入口选项才挂得上。</p></div>
+
+  <div class="arrow">↓</div>
+  <div class="rowh c">原因</div>
+  <div class="cell"><span class="mlab">① 活动上线</span><div class="h">没有通用模板，每个活动单独做</div><p>扭蛋机、每日补给、抽奖大厅各有一套后台；超值礼包每出一个包做一页；新增至尊卡要每个活动各改一遍。</p></div>
+  <div class="cell"><span class="mlab">② 大厅入口</span><div class="h">没定清楚各管什么，三个入口三套后台</div><p>产品自己的评估：好康原本要承载活动和功能，「淪為活動展示」。</p></div>
+
+  <div class="arrow">↓</div>
+  <div class="rowh s">解决</div>
+  <div class="cell"><span class="mlab">① 活动上线</span><div class="h">做活动配置后台</div><p>常用玩法做成模板：运营选模板、填时间和奖励、另一人审核后上线；下次复制改时间即可。</p></div>
+  <div class="cell"><span class="mlab">② 大厅入口</span><div class="h">三个入口各管一件事，活动配一次自动归位</div><p>银行（搬到左下原好康位置）管花钱；限时活动管免费活动，分游戏、平台；公告只放消息，分官方、活动、其他。</p></div>
+</div>
+
+<h2>结论</h2>
+<div class="concl">
+  <div class="row"><div class="k">本期<small>预计 12 月中至 1 月下旬</small></div><div class="v">配置后台，加礼包、累计储值送奖励、单笔满额加赠、限时加赠四种模板，加三个入口分工。<br><b>效果：想做储值活动不用排开发；重复开发最多减少 12 个（礼包类）。</b></div></div>
+  <div class="row"><div class="k">第二批<small>明年 8 月前</small></div><div class="v">节庆用的活动汇总页和抽奖。<br><b>原因：节庆是重复开发最多的（22 个），今年庆典的开发从 8 月开始。</b></div></div>
+  <div class="row"><div class="k">需要你</div><div class="v">找研发评估工作量，确认本期做得完；问一下银行改版的计划，确认储值活动放银行不冲突。</div></div>
+</div>
+
+<p class="foot">依据明细：<a href="2026-10-27_活动配置工具_现状盘点.html">现状盘点</a>　<a href="2026-10-27_活动配置工具_整体方案.html">整体方案</a></p>
+
+</div></body></html>

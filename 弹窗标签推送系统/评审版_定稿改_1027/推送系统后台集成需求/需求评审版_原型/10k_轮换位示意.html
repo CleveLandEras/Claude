@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>10k 命中方式对比</title>
+<link rel="stylesheet" href="_后台框.css">
+<link rel="stylesheet" href="_弹窗.css">
+<style>
+.takebar{display:flex;align-items:center;gap:12px;margin:10px 0 0;padding:9px 14px;border:1px solid #E4E7ED;border-radius:6px;background:#FAFBFC;font-size:12.5px;color:#4E5560}
+.takebar .k{font-weight:600;color:#303133;white-space:nowrap}
+.takebar .seg2{margin-left:2px}
+.takebar .seg2 span.on{background:#ECF5FF;color:#2F6FCC;font-weight:600}
+.takebar .hint{margin-left:4px;color:#909399;font-size:12px}
+.takebar .lk{margin-left:auto;white-space:nowrap}
+</style>
+<style>
+.qtable th{padding-left:12px;padding-right:12px}
+.qtable td.st.on{color:#2F6FCC;font-weight:700}
+
+.ronly{display:flex;align-items:center;gap:14px;font-size:12.5px;margin-top:12px;padding:9px 14px;border:1px solid #E4E7ED;border-radius:6px;background:#FAFBFC;color:#4E5560;flex-wrap:wrap}
+.ronly .k{font-weight:600;color:#303133}
+.ronly b{font-size:15px;color:#1F2329}
+.ronly .div{width:1px;align-self:stretch;background:#E4E7ED}
+.ronly .lk{margin-left:auto}
+.qtable .clist .pz{margin-left:4px;font-size:12px;color:#9AA0A6}
+.pw.plain>.fbar{margin-top:12px}
+.pw.plain>.chips{margin-top:10px;margin-bottom:8px}
+</style>
+<style>
+.bk-pop.rot{width:848px;background:#fff;border-radius:8px;padding:0;font-size:13px;color:#303133;overflow:hidden}
+.shot.bk .bk-ov>.bk-pop.rot{box-shadow:0 14px 36px rgba(0,0,0,.24)}
+.rot .phd{display:flex;align-items:center;gap:10px;padding:14px 18px 10px;border-bottom:1px solid #E8EAED}
+.rot .phd h4{margin:0;font-size:16px;font-weight:700;color:#1F2329}
+.rot .phd .sub{font-size:13px;color:#4E5560}
+.rot .phd .x{margin-left:auto;width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;border-radius:4px;color:#909399;font-size:18px;line-height:1}
+.rot .pb{padding:14px 18px 8px}
+
+.who{margin:0 0 12px;padding:10px 12px;border:1px solid #E4E7ED;border-radius:6px;background:#FAFBFC;font-size:12.5px;color:#4E5560;line-height:1.5}
+.who b{color:#1F2329;font-weight:650}
+
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.cmp .col{border:1px solid #E4E7ED;border-radius:6px;overflow:hidden}
+.cmp .col .h{padding:8px 12px;background:#FAFBFC;border-bottom:1px solid #E8EAED;font-size:13px;font-weight:700;color:#1F2329}
+.cmp .col .h em{font-style:normal;font-weight:500;font-size:12px;color:#909399;margin-left:6px}
+.cmp .col.on .h{background:#EEF5FF;color:#2F6FCC}
+.cmp .slot{display:flex;align-items:flex-start;gap:8px;padding:8px 12px;border-bottom:1px solid #F0F1F3;font-size:12.5px}
+.cmp .slot:last-child{border-bottom:0}
+.cmp .slot .n{flex:none;width:28px;height:20px;display:inline-flex;align-items:center;justify-content:center;border-radius:3px;background:#F2F3F5;color:#606266;font-weight:700;font-size:11px}
+.cmp .slot.ok .n{background:#E8F6EC;color:#2F8A4C}
+.cmp .slot.miss .n{background:#F2F3F5;color:#C0C4CC}
+.cmp .slot .body{min-width:0;flex:1}
+.cmp .slot .body b{display:block;font-weight:650;color:#1F2329;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cmp .slot.miss .body b{color:#9AA0A6;font-weight:500}
+.cmp .slot .body span{display:block;margin-top:1px;font-size:11.5px;color:#9AA0A6}
+.cmp .col.dim .slot.miss{opacity:.85}
+
+.steps{margin:0;padding:10px 12px;border:1px solid #E4E7ED;border-radius:6px;background:#fff;font-size:12.5px;color:#4E5560;line-height:1.55}
+.steps b{color:#1F2329}
+
+.rot .ft{display:flex;justify-content:flex-end;align-items:center;gap:8px;padding:10px 18px;border-top:1px solid #E8EAED;background:#FAFBFC}
+.rot .ft .note{margin-right:auto;font-size:12px;color:#9AA0A6}
+.btno{display:inline-flex;align-items:center;height:30px;padding:0 14px;border:1px solid #DCDFE6;border-radius:4px;background:#fff;color:#606266}
+.cmp .eh{display:flex;align-items:baseline;gap:8px;padding:8px 12px 4px;border-top:1px solid #F0F1F3;font-size:12px;color:#909399}
+.cmp .col .h + .eh{border-top:0}
+.cmp .eh b{color:#1F2329;font-size:12.5px;font-weight:650}
+.cmp .slot{padding:6px 12px}
+.shot.bk{height:830px}
+.cmp .nx{padding:8px 12px;border-top:1px solid #F0F1F3;background:#FAFBFC;font-size:12px;color:#73767A}
+
+.steps b{display:inline-block;width:72px}
+.cmp .col{display:flex;flex-direction:column}
+.cmp .col .nx{margin-top:auto}
+.cmp .slot .body b .pz{display:inline;margin:0 0 0 6px;font-size:11.5px;font-weight:400;color:#9AA0A6}
+.cmp .col .h{display:flex;align-items:baseline}
+.cmp .col .h .pv{margin-left:auto;font-size:12px;font-weight:400;color:#909399}
+</style>
+</head>
+<body>
+<div class="shot bk" data-page="弹窗" data-tabs="*弹窗规则|弹窗内容|操作纪录"><div class="pw plain">
+  <div class="ttl"><h3>弹窗</h3><span class="sp"></span><span class="btnp">＋ 新建弹窗规则</span></div>
+  <div class="ronly">
+    <span class="k">每人每天上限</span>
+    <span>大厅自动弹窗 <b class="num">8</b> 个 · 破产等位置不计入</span>
+    <span class="div"></span>
+    <span>今天达到上限 <b class="num">420</b> 人</span>
+    <span class="lk">修改</span>
+  </div>
+  <div class="frow"><div class="subsc"><span class="on">大厅自动弹窗 <b>8</b></span><span>破产 <b>2</b></span><span>购买指定礼包 <b>1</b></span><span>押注达到指定金额 <b>1</b></span></div><div class="sidebtns"><span class="btno pvb">按玩家预览</span><span class="btno">调整优先级</span></div></div>
+  <div class="takebar">
+    <span class="k">命中方式</span>
+    <span class="seg2"><span>优先级最高</span><span class="on">轮流</span></span>
+    <span class="hint">玩家符合多条规则时，每次进入大厅自动弹窗轮到下一条</span>
+  </div>
+  <div class="fbar"><span class="inp srch">名称或 ID</span></div>
+  <div class="chips"><span class="c">草稿 <b>1</b></span><span class="c">未开始 <b>0</b></span><span class="c">上架 <b>6</b></span><span class="c">已暂停 <b>0</b></span><span class="c">已结束 <b>1</b></span></div>
+  <table class="qtable">
+    <colgroup><col style="width:52px"><col style="width:132px"><col><col style="width:88px"><col style="width:80px"><col style="width:64px"><col style="width:88px"></colgroup>
+    <tr><th class="r">优先级</th><th>弹窗规则</th><th>弹窗内容</th><th class="r">对象人数</th><th class="r">弹出数量</th><th>状态</th><th class="r">操作</th></tr>
+    <tr>
+      <td class="ord">1</td>
+      <td><div class="nm" title="创建 运营02 · 修改 运营02 10/20 16:10">银卡已首储</div><div class="meta">ID 80</div></td>
+      <td class="clist" title="储值优惠礼包　进入大厅 · 每天 1 次&#10;热门资讯　每周 2 次，冷却 600 秒&#10;每日补给计划　每 3 天 1 次"><span class="lk">储值优惠礼包</span>、<span class="lk">热门资讯</span>、<span class="lk">每日补给计划</span></td>
+      <td class="cnt">8,200</td>
+      <td class="cnt">3</td>
+      <td class="st on">上架</td>
+      <td class="ops"><span class="lk">编辑</span><span class="lk" style="margin-left:12px">数据</span></td>
+    </tr>
+    <tr>
+      <td class="ord">2</td>
+      <td><div class="nm" title="创建 运营02 · 修改 运营01 10/08 11:00">普卡已首储</div><div class="meta">ID 81</div></td>
+      <td class="clist" title="储值优惠礼包　进入大厅 · 每天 1 次&#10;热门资讯　每周 2 次，冷却 600 秒&#10;每日补给计划　每 3 天 1 次"><span class="lk">储值优惠礼包</span>、<span class="lk">热门资讯</span>、<span class="lk">每日补给计划</span></td>
+      <td class="cnt">22,400</td>
+      <td class="cnt">3</td>
+      <td class="st on">上架</td>
+      <td class="ops"><span class="lk">编辑</span><span class="lk" style="margin-left:12px">数据</span></td>
+    </tr>
+    <tr>
+      <td class="ord">3</td>
+      <td><div class="nm" title="创建 运营02 · 修改 运营02 09/23 11:20">新增玩家</div><div class="meta">ID 82</div></td>
+      <td class="clist" title="新手七日签到　每天 1 次&#10;热门资讯　每周 2 次，冷却 600 秒&#10;每日补给计划　每 3 天 1 次"><span class="lk">新手七日签到</span>、<span class="lk">热门资讯</span>、<span class="lk">每日补给计划</span></td>
+      <td class="cnt">10,749</td>
+      <td class="cnt">3</td>
+      <td class="st on">上架</td>
+      <td class="ops"><span class="lk">编辑</span><span class="lk" style="margin-left:12px">数据</span></td>
+    </tr>
+    <tr>
+      <td class="ord">4</td>
+      <td><div class="nm" title="创建 运营02 · 修改 运营02 10/12 14:36">回流</div><div class="meta">ID 83</div></td>
+      <td class="clist" title="每日补给计划　每 3 天 1 次&#10;回流礼包 B　每天 1 次&#10;热门资讯　每周 2 次，冷却 600 秒&#10;回流任务　每天 1 次"><span class="lk">每日补给计划</span>、<span class="lk">回流礼包 B</span>、<span class="lk">热门资讯</span><span class="etc">等 4 个</span></td>
+      <td class="cnt">16,564</td>
+      <td class="cnt">4</td>
+      <td class="st on">上架</td>
+      <td class="ops"><span class="lk">编辑</span><span class="lk" style="margin-left:12px">数据</span></td>
+    </tr>
+    <tr>
+      <td class="ord">5</td>
+      <td><div class="nm" title="创建 运营01 · 修改 运营01 09/30 11:20">潜在流失</div><div class="meta">ID 84</div></td>
+      <td class="clist" title="每日补给计划　每 3 天 1 次&#10;热门资讯　每周 2 次，冷却 600 秒&#10;储值返利活动　每周 1 次"><span class="lk">每日补给计划</span>、<span class="lk">热门资讯</span>、<span class="lk">储值返利活动</span></td>
+      <td class="cnt">6,230</td>
+      <td class="cnt">3</td>
+      <td class="st on">上架</td>
+      <td class="ops"><span class="lk">编辑</span><span class="lk" style="margin-left:12px">数据</span></td>
+    </tr>
+    <tr>
+      <td class="ord">6</td>
+      <td><div class="nm" title="创建 运营01 · 修改 运营01 09/18 11:00">其余</div><div class="meta">ID 85</div></td>
+      <td class="clist" title="热门资讯　每周 2 次，冷却 600 秒&#10;发信送奖　活动期间 1 次"><span class="lk">热门资讯</span>、<span class="lk">发信送奖</span></td>
+      <td class="cnt">25,917</td>
+      <td class="cnt">2</td>
+      <td class="st on">上架</td>
+      <td class="ops"><span class="lk">编辑</span><span class="lk" style="margin-left:12px">数据</span></td>
+    </tr>
+    <tr>
+      <td class="ord">—</td>
+      <td><div class="nm" title="创建 运营02 · 修改 运营02 10/18 16:20">金卡未首储</div><div class="meta">ID 90</div></td>
+      <td class="clist">—</td>
+      <td class="cnt">1,200</td>
+      <td class="cnt">—</td>
+      <td class="st">草稿</td>
+      <td class="ops"><span class="lk">编辑</span><span class="lk" style="margin-left:12px">数据</span></td>
+    </tr>
+    <tr>
+      <td class="ord">—</td>
+      <td><div class="nm" title="创建 运营01 · 修改 运营01 09/30 23:59">上期签到</div><div class="meta">ID 91</div></td>
+      <td class="clist">—</td>
+      <td class="cnt">—</td>
+      <td class="cnt">—</td>
+      <td class="st">已结束</td>
+      <td class="ops"><span class="lk">编辑</span><span class="lk" style="margin-left:12px">数据</span></td>
+    </tr>
+  </table>
+  <div class="bk-pop rot" style="--pop-top:84px">
+    <div class="phd">
+      <h4>命中方式对比</h4>
+      <span class="sub">大厅自动弹窗</span>
+      <span class="x">×</span>
+    </div>
+    <div class="pb">
+      <div class="who">示例玩家同时符合 <b>银卡已首储</b>（优先级 1）与 <b>新增玩家</b>（优先级 3），当天进入大厅两次：</div>
+
+      <div class="cmp">
+        <div class="col dim">
+          <div class="h">优先级最高</div>
+          <div class="eh"><b>第 1 次进入</b>命中银卡已首储</div>
+          <div class="slot ok"><span class="n">1</span><div class="body"><b>储值优惠礼包</b><span>首次登录 · 每天 1 次</span></div></div>
+          <div class="slot miss"><span class="n">—</span><div class="body"><b>热门资讯<span class="pz">已暂停</span></b><span>本规则内跳过</span></div></div>
+          <div class="slot ok"><span class="n">2</span><div class="body"><b>每日补给计划</b><span>进入大厅 · 每 3 天 1 次</span></div></div>
+          <div class="eh"><b>第 2 次进入</b>命中银卡已首储</div>
+          <div class="slot miss"><span class="n">—</span><div class="body"><b>本次不弹</b><span>储值优惠礼包只在首次登录弹，每日补给计划 3 天内已弹</span></div></div>
+          <div class="nx">新增玩家一直不生效</div>
+        </div>
+        <div class="col on">
+          <div class="h">轮流<em>当前</em><span class="pv">前一次进入轮到新增玩家</span></div>
+          <div class="eh"><b>第 1 次进入</b>轮到银卡已首储</div>
+          <div class="slot ok"><span class="n">1</span><div class="body"><b>储值优惠礼包</b><span>首次登录 · 每天 1 次</span></div></div>
+          <div class="slot miss"><span class="n">—</span><div class="body"><b>热门资讯<span class="pz">已暂停</span></b><span>本规则内跳过</span></div></div>
+          <div class="slot ok"><span class="n">2</span><div class="body"><b>每日补给计划</b><span>进入大厅 · 每 3 天 1 次</span></div></div>
+          <div class="eh"><b>第 2 次进入</b>轮到新增玩家</div>
+          <div class="slot ok"><span class="n">1</span><div class="body"><b>新手七日签到</b><span>进入大厅 · 每天 1 次</span></div></div>
+          <div class="slot ok"><span class="n">2</span><div class="body"><b>热门资讯</b><span>进入大厅 · 每周 2 次</span></div></div>
+          <div class="slot miss"><span class="n">—</span><div class="body"><b>每日补给计划</b><span>第 1 次进入已弹，两条规则合计，3 天内跳过</span></div></div>
+          <div class="nx">第 3 次进入回到银卡已首储</div>
+        </div>
+      </div>
+
+      <div class="steps">
+        <div><b>优先级最高</b>　只命中优先级最高的一条上架规则；较低的符合规则不生效。</div>
+        <div style="margin-top:6px"><b>轮流</b>　符合的上架规则按优先级排成一轮，每次进入轮到下一条；轮到的规则没有可弹的，就轮到再下一条。</div>
+        <div style="margin-top:6px"><b>次数合计</b>　同一弹窗内容不管在哪条规则里弹过，次数和冷却都合在一起算，各规则按自己设的弹出频率判断。</div>
+      </div>
+    </div>
+    <div class="ft">
+      <span class="note">命中方式在规则列表按弹窗位置设置</span>
+      <span class="btno">关闭</span>
+    </div>
+  </div>
+</div></div>
+<script src="_后台框.js"></script>
+</body>
+</html>

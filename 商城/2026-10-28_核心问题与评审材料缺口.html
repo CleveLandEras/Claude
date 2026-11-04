@@ -1,0 +1,275 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>核心问题与评审缺口</title>
+<style>
+:root{--ground:#f4f3f0;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e3e1dc;--accent:#9a6f24;--red:#a8382b;--red-soft:#f7e7e3;--blue:#1f63a8;--green:#2f6b52;--green-soft:#e3efe8;--amber:#8a5a00;--amber-soft:#f6ecd6;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--green:#7dbb9c;--green-soft:#1c3128;--amber:#e0b866;--amber-soft:#33291a;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--green:#7dbb9c;--green-soft:#1c3128;--amber:#e0b866;--amber-soft:#33291a;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.75}
+.wrap{max-width:940px;margin:0 auto;padding:60px 28px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 14px}
+h1{font-family:var(--serif);font-size:26px;line-height:1.5;margin:0}
+.lead{margin:14px 0 0;font-size:15px;color:var(--ink-2)}
+h2{font-family:var(--serif);font-size:21px;line-height:1.5;margin:64px 0 16px;display:flex;gap:12px;align-items:baseline}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);white-space:nowrap}
+h3{font-size:16.5px;margin:30px 0 12px;color:var(--ink);line-height:1.6}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:26px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 22px;display:flex;flex-direction:column}
+.card .k{font-size:13px;font-weight:700;color:var(--accent)}
+.card .h{font-size:16.5px;font-weight:700;line-height:1.55;margin:4px 0 8px}
+.card .d{margin:0;font-size:14.5px;color:var(--ink-2);line-height:1.75}
+.card ul{margin:0;padding-left:18px;font-size:14.5px;color:var(--ink-2);line-height:1.75}
+.card li{margin:4px 0}
+.card li b,.card .d b{color:var(--ink)}
+.card.rec{border-left:4px solid var(--green)}
+.card.wide{grid-column:1 / -1}
+figure{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px}
+figure img{display:block;width:100%;border-radius:6px;border:1px solid var(--line)}
+figcaption{font-size:13.5px;color:var(--ink-2);margin-top:10px;line-height:1.65}
+figcaption b{color:var(--ink)}
+.figs{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.figs3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:14.5px}
+th,td{padding:11px 15px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.7}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--ground);white-space:nowrap}
+td.w{font-weight:600;min-width:8.5em}
+td.r{color:var(--ink-2)}
+td.grp{background:var(--ground);font-weight:700;color:var(--accent);font-size:13.5px}
+tr:last-child td{border-bottom:none}
+.tag{display:inline-block;font-size:12.5px;font-weight:700;padding:1px 8px;border-radius:4px;white-space:nowrap}
+.tag.y{background:var(--green-soft);color:var(--green)} .tag.m{background:var(--amber-soft);color:var(--amber)} .tag.x{background:var(--red-soft);color:var(--red)}
+.inf{font-size:12px;font-weight:700;color:var(--amber);background:var(--amber-soft);border-radius:3px;padding:0 5px;margin-left:4px;white-space:nowrap}
+.note{margin:12px 0 0;font-size:14px;color:var(--ink-2)}
+.note b{color:var(--ink)}
+.concl{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:14px 22px;font-size:15px;color:var(--ink-2);margin-top:14px}
+.concl b{color:var(--ink)}
+.flow{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 4px}
+.flow span{background:var(--ground);border:1px solid var(--line);border-radius:6px;padding:4px 10px;font-size:13.5px;font-weight:600}
+.src{font-size:12.5px;color:var(--muted);margin-top:8px;line-height:1.6}
+.foot{margin-top:48px;font-size:13px;color:var(--muted);line-height:1.9}
+a{color:var(--accent)}
+@media (max-width:760px){.wrap{padding:32px 16px 64px}h1{font-size:22px}.grid3,.two,.figs,.figs3{grid-template-columns:1fr}td.w{min-width:6em}}
+</style></head><body><div class="wrap">
+
+<p class="meta">活动配置（需求表项目名「入口调整」）· 核心问题与评审材料缺口 · 2026-10-28 · 待 Dk 验收</p>
+<h1>这个需求要回答四个问题；评审材料只讲了「改成什么样」，没讲「为什么这样改」和依据</h1>
+<p class="lead">需求背景：主管要求重新规划大厅「好康、限时活动、公告」三个入口的「價值和用途」，并让活动靠后台配置上线。原文最终目标是「活動靈活配置使用，通過配置滿足各情況下『營運需求』」，例子是周五要不要做一个储值活动、节庆活动。</p>
+
+<div class="grid3">
+  <div class="card"><span class="k">核心问题</span><p class="h">四个，前两个是主体</p><p class="d">① 好康和限时活动怎么分工，要不要合并<br>② 运营后台要解决什么<br>③ 公告只放什么<br>④ 节庆活动怎么靠配置上线</p></div>
+  <div class="card"><span class="k">评审材料现状</span><p class="h">界面和功能讲了，定位、价值、原因、依据都缺</p><p class="d">9 页里「竞品」「定位」「价值」都出现 0 次；后台和工具两页没有一张界面图；节庆的问题没提。</p></div>
+  <div class="card"><span class="k">原因与改法</span><p class="h">原因在我：取舍标准偏离了需求原文</p><p class="d">改法：按这四个问题重建评审材料，每页对应一个问题的一项；交付前逐项对表，缺一项不交。</p></div>
+</div>
+
+<!-- ===================== 一 ===================== -->
+<h2><span class="no">问题一</span>好康和限时活动：合并成一个活动入口，好康的位置给银行</h2>
+
+<h3>现状：两个入口都在放活动，内容重叠，好康没有自己的价值</h3>
+<div class="tw"><table>
+<tr><th>入口</th><th>现在放什么</th><th>产品文档里的原定位</th><th>实际情况</th></tr>
+<tr><td class="w">好康活动<br><span style="font-weight:400;color:var(--muted);font-size:13px">大厅左下大按钮</span></td><td class="r">排行榜、外赠、十月庆典、抽奖大厅、黄金百万、储值优惠；左列表＋右大图</td><td class="r">2025-12 改版草案：给新手的活动聚合入口；产品 idea 页：原目标「承載部分活動和功能」</td><td class="r">产品自评「淪為活動展示」</td></tr>
+<tr><td class="w">限时活动<br><span style="font-weight:400;color:var(--muted);font-size:13px">大厅右下大按钮</span></td><td class="r">月月抽、发财金、新手挑战、新手通行证、抽奖大厅、祈福财神庙、扭蛋机、排行榜；图标格子，最多 20 个</td><td class="r">同一草案：给老玩家的快捷入口</td><td class="r">抽奖大厅、排行榜两处都有</td></tr>
+</table></div>
+<p class="note"><b>重叠的证据</b>：产品 idea 页原话「好康/限時/公告 功能重疊」；改版草案原话「同一活動於多個位置重複展示，資訊冗餘」；「祈福财神庙」同时挂在限时活动、好康、推播、快显、热门资讯、游戏内悬浮、背包 7 处。</p>
+<div class="figs" style="margin-top:14px">
+  <figure><img src="截图/大厅首页.webp" alt="现在的大厅"><figcaption><b>现在的大厅</b>：左下好康活动、右下限时活动两个大按钮都通向活动；银行只是底栏的小按钮。</figcaption></figure>
+  <figure><img src="截图/好康活动面板.webp" alt="现在的好康面板"><figcaption><b>现在的好康面板</b>：排行榜、外赠、庆典、抽奖大厅、黄金百万，和限时活动放的是同一类东西。</figcaption></figure>
+</div>
+
+<h3>为什么合并：四条依据指向同一个结论</h3>
+<div class="two">
+  <div class="card"><span class="k">需求原文</span><p class="d">好康「改為 金流／商城（入口載體）」；限时活动「活動（遊戲活動 和 平台活動的區分）」。主管已经把活动只留给限时活动，好康改做付费入口。你也说过「规划银行会换到好康的位置」。</p></div>
+  <div class="card"><span class="k">产品自评</span><p class="d">好康「淪為活動展示」，三处「功能重疊」。两个入口按新手、老玩家分，放的却是同一批活动，玩家分不出该去哪一个。</p></div>
+  <div class="card"><span class="k">竞品</span><p class="d">金好运、星城、豪神每款都只有一个汇总活动窗口，没有两个并列的活动入口（个别活动另在底栏单放入口）。</p></div>
+  <div class="card"><span class="k">玩家和运营</span><p class="d">玩家找活动只去一处；运营一个活动只配一个主入口，不再好康、限时活动两套后台各配一次。</p></div>
+</div>
+<div class="concl"><b>之前文件里「合并版／不合并版」的叫法起错了。</b>两版里好康都不再放活动、左下都换成银行，差别只在「要先储值才能参加的活动」（累计储值送奖励、单笔满额加赠等）放银行还是放活动窗口。真正的合并问题，答案是「合并」；剩下的那一处差别见本节最后。</div>
+
+<h3>合并后，好康现有的每样东西都有去处，不丢功能</h3>
+<div class="tw"><table>
+<tr><th>好康现在的</th><th>去哪</th></tr>
+<tr><td class="w">排行榜、外赠</td><td class="r">限时活动 · 游戏活动</td></tr>
+<tr><td class="w">庆典、抽奖大厅、黄金百万</td><td class="r">限时活动 · 平台活动</td></tr>
+<tr><td class="w">储值金好康、储值优惠</td><td class="r">银行：用累充、折扣工具重做</td></tr>
+<tr><td class="w">左列表＋右大图的展示方式</td><td class="r">限时活动改用这套组件，大图宣传保留</td></tr>
+<tr><td class="w">赠礼序号、活动查询</td><td class="r">赠礼序号到银行「序号储值」旁；活动查询到限时活动窗口底部</td></tr>
+<tr><td class="w">宣传图链接</td><td class="r">公告 · 活动，或大厅 Banner</td></tr>
+</table></div>
+
+<h3>改后三个入口：按「玩家来做什么」分，各管一件事</h3>
+<div class="tw"><table>
+<tr><th>入口</th><th>定位</th><th>放什么</th><th>对业绩的作用</th><th>怎么衡量</th></tr>
+<tr><td class="w">银行<br><span style="font-weight:400;color:var(--muted);font-size:13px">左下，原好康位置</span></td><td class="r">花钱：买币、买礼包、看储值优惠</td><td class="r">原六个页签不变，最上方加「储值活动」</td><td class="r">付费率和客单价：付费入口从底栏小按钮升到最显眼的位置；储值优惠出现在付款那一刻<span class="inf">推断</span></td><td class="r">银行打开人数；打开后储值人数、金额</td></tr>
+<tr><td class="w">限时活动<br><span style="font-weight:400;color:var(--muted);font-size:13px">右下，不变</span></td><td class="r">玩：找当期能参加的活动</td><td class="r">不用先花钱就能参加的活动，分游戏活动、平台活动</td><td class="r">活跃和留存：排行、外赠、签到、回归带动押注和登入；承接 Banner、弹窗、推播（发到玩家手机通知栏的消息）的引流<span class="inf">推断</span></td><td class="r">打开人数；各活动参与人数</td></tr>
+<tr><td class="w">公告<br><span style="font-weight:400;color:var(--muted);font-size:13px">右上菜单</span></td><td class="r">看消息</td><td class="r">官方、活动、其他三类</td><td class="r">维护、规则变更讲清楚，少客诉；活动公告把人带到活动<span class="inf">推断</span></td><td class="r">已读率；「前往活动」点击数</td></tr>
+</table></div>
+<p class="note">作用一栏是推断：现在拿不到三个入口各有多少人打开、带来多少储值。要有数据权限的人导出一次当基线；上线后用每个活动的数据页（曝光、打开、储值）看。</p>
+
+<h3>竞品怎么做：都只有一个活动窗口，付费活动也放在里面；商城卖币和礼包</h3>
+<div class="figs3">
+  <figure><img src="竞品参考图/竞品_活动中心结构_金好运_t0006.0.jpg" alt="金好运活动窗口"><figcaption><b>金好运「活動公告」</b>：左侧三个图标页签（活动、公告、爆分记录）；储值活动和排行、签到混在一个列表。</figcaption></figure>
+  <figure><img src="竞品参考图/竞品_活动中心结构_星城_t0003.5.jpg" alt="星城活动快讯"><figcaption><b>星城「活動快訊」</b>：活动、推荐、公告三个页签；储值活动、回馈卡和排行同窗口。</figcaption></figure>
+  <figure><img src="竞品参考图/竞品_付费活动位置_豪神_t0042.0.jpg" alt="豪神消费活动"><figcaption><b>豪神「最新活動」</b>：特别活动、消费活动、好康功能三个页签；付费类单放「消费活动」（新手助力包、平安礼包、储值满额彩轮转）。</figcaption></figure>
+</div>
+<div class="tw" style="margin-top:14px"><table>
+<tr><th></th><th>竞品做法</th><th>我们</th></tr>
+<tr><td class="w">照做</td><td class="r">一个活动窗口；顶部分类页签；左列表＋右大图＋前往按钮；红点</td><td class="r">限时活动改成同样版式，另加剩余天数</td></tr>
+<tr><td class="w">不照做</td><td class="r">三款都把付费活动放在活动窗口</td><td class="r">放银行：需求原文给限时活动只定了游戏、平台两类；银行搬到左下后本身就是最显眼的入口</td></tr>
+<tr><td class="w">不照做</td><td class="r">金好运、星城把公告做成活动窗口的一个页签</td><td class="r">公告单独放：需求原文把公告单列，分官方、活动、其他</td></tr>
+</table></div>
+<p class="src">口径：10/09 三款各一个新账号的录屏所见，没录到不等于没有。</p>
+
+<h3>界面：改后的大厅、限时活动、银行</h3>
+<div class="figs3">
+  <figure><img src="需求评审材料_图/01_商城_大厅入口.jpg" alt="改后大厅"><figcaption><b>大厅</b>：左下银行（原好康位置），右下限时活动；公告从右上菜单进；底栏原银行按钮移除。</figcaption></figure>
+  <figure><img src="需求评审材料_图/02_限时活动_平台活动.jpg" alt="改后限时活动"><figcaption><b>限时活动</b>：游戏活动｜平台活动两个页签；左列表带剩余天数、角标、红点；右侧大图、活动期间、立即前往；列表可滚动，取消 20 个上限。</figcaption></figure>
+  <figure><img src="需求评审材料_图/01_商城_储值活动页签.jpg" alt="银行储值活动页签"><figcaption><b>银行 · 储值活动</b>：最上方新页签，放累计储值、单笔满额加赠等；右侧是该活动的进度和领取。原六个页签不变。</figcaption></figure>
+</div>
+
+<h3>要你定一件：要先储值才能参加的活动，推荐放银行</h3>
+<div class="two">
+  <div class="card rec"><span class="k">推荐 · 放银行「储值活动」页签</span><ul><li>和定位一致：花钱的事都在银行，付款时看得到下一档奖励</li><li>和需求原文一致：限时活动只有游戏、平台两类</li><li>补曝光：银行按钮在有储值活动时显示红点和剩余时间；重点活动用 Banner、弹窗、推播引流</li><li>要做：银行加一个页签，和银行改版负责人对齐页签计划</li></ul></div>
+  <div class="card"><span class="k">另一选 · 放限时活动，加第三个页签</span><ul><li>竞品做法：没打算花钱的玩家在活动窗口也看得到</li><li>和需求原文的两类不一致，要主管认可</li><li>要做：活动窗口加页签和「前往银行」按钮；银行不加页签</li><li>后台、工具、规则两种做法完全一样</li></ul></div>
+</div>
+<p class="note">最晚需求评审前定；问不到主管就按推荐做。评审材料第 9 页现在把它列成「待产品确认」、没有推荐，要改。</p>
+
+<!-- ===================== 二 ===================== -->
+<h2><span class="no">问题二</span>运营后台：上活动从「排开发」改成「选工具、填规则、审核上线」</h2>
+
+<h3>运营要什么：五条，前两条是原文，后三条从原文和业绩目标推出</h3>
+<div class="tw"><table>
+<tr><th>需求</th><th>说明</th><th>来源</th></tr>
+<tr><td class="w">想上就上</td><td class="r">决定做一个活动，当天配好上线，不排开发</td><td class="r">原文例子「週五要不要做一個儲值活動」</td></tr>
+<tr><td class="w">常用玩法有现成工具</td><td class="r">满减、累充、团购、折扣、礼包、抽奖、一元夺宝</td><td class="r">原文「增加工具屬性」</td></tr>
+<tr><td class="w">配一次处处能用</td><td class="r">入口、Banner、弹窗、推播都能直接选到新活动</td><td class="r">从原文「現狀」推出</td></tr>
+<tr><td class="w">风险可控</td><td class="r">对象、时间、成本上限、上线前审核、多种优惠怎么叠加</td><td class="r">推出：活动容易上以后，发错、多发的风险变大</td></tr>
+<tr><td class="w">看得到效果</td><td class="r">每个活动带来多少储值、花了多少奖励</td><td class="r">推出：业绩目标是储值人数和金额</td></tr>
+</table></div>
+
+<h3>现在的问题和原因</h3>
+<div class="tw"><table>
+<tr><th>问题</th><th>证据</th><th>原因</th></tr>
+<tr><td class="w">上活动要排开发，同样的东西反复做</td><td class="r">一年 148 个储值、商城类开发需求里 52 个是重复开发（下限，按个数不是工时）；超值礼包每出一包做一页，做了 9 次</td><td class="r">活动页面靠开发，没有固定版式</td></tr>
+<tr><td class="w">能配的主要是礼包内容，常用玩法没有工具</td><td class="r">满减、团购、一元夺宝没有；累充散在 4 处各做；折扣由储优、优惠券、限时加码分别承担；抽奖有 5 套以上后台</td><td class="r">每种玩法一套后台，规则不能复用</td></tr>
+<tr><td class="w">新活动挂不上入口</td><td class="r">「至尊回归」上线时，限时活动、大厅弹窗、好康三处都选不到它</td><td class="r">入口的链接选项是写死的清单，要研发补</td></tr>
+<tr><td class="w">同一活动多处各配一次</td><td class="r">好康、限时活动、公告三套后台，连活动标签都是三套</td><td class="r">各入口不读同一份活动数据</td></tr>
+<tr><td class="w">活动时间写错</td><td class="r">10 月庆典活动大页开了 14 张问题单，多是时间写错、错字漏字</td><td class="r">时间画在宣传图上，靠美术手改</td></tr>
+<tr><td class="w">一个改动要各活动各改一遍</td><td class="r">新增「至尊卡」后礼包、转盘、补给站、抽奖大厅、排行榜等各开一单，共 12 个</td><td class="r">对象、卡别等设置每个活动各写一份</td></tr>
+<tr><td class="w">看不到每个活动的效果</td><td class="r">现有后台没查到按活动看储值和发奖成本的页面</td><td class="r">数据按渠道、按玩法分散<span class="inf">推断</span></td></tr>
+</table></div>
+<p class="src">依据：Jira 开发需求单（2025-11-01 至 2026-10-26 建单），按标题归类后逐个核对子任务；各玩法和入口的后台需求页。</p>
+
+<h3>怎么解决：一个活动 = 工具 ＋ 规则 ＋ 素材 ＋ 投放；玩法只开发一次</h3>
+<div class="flow"><span>1 选工具</span><span>2 基本信息</span><span>3 工具规则</span><span>4 对象与时间</span><span>5 预算与上限</span><span>6 展示与素材</span><span>7 预览</span><span>8 另一人审核</span><span>9 到点自动上架</span></div>
+<div class="tw" style="margin-top:10px"><table>
+<tr><th>问题</th><th>解决</th></tr>
+<tr><td class="w">排开发、反复做</td><td class="r">每个工具一套固定版式，运营只上传主图；下次复制上期，改时间和档位就能上</td></tr>
+<tr><td class="w">没有工具</td><td class="r">七个工具。本期必做礼包、累充、满减、折扣；抽奖有时间再做；团购、一元夺宝可选（一元夺宝先过法务）。满减、折扣都做成「多送」，因为 App 内购价格档固定，不能直接减价</td></tr>
+<tr><td class="w">挂不上入口</td><td class="r">配好的活动自动出现在入口、Banner、弹窗、推播的可选列表里</td></tr>
+<tr><td class="w">多处各配</td><td class="r">系统定主入口：要先付费的进银行；指定了游戏的进限时活动 · 游戏活动；其余进平台活动。别处只引流，点了跳主入口</td></tr>
+<tr><td class="w">时间写错</td><td class="r">时间、档位、奖励由系统按配置显示，不画在图上</td></tr>
+<tr><td class="w">各改一遍</td><td class="r">对象、卡别、排除名单所有新活动共用一套</td></tr>
+<tr><td class="w">看不到效果</td><td class="r">每个活动一张数据页：曝光、打开、参与、储值人数与金额、发奖成本</td></tr>
+<tr><td class="w">风险</td><td class="r">上线前另一人审核；到成本上限自动结束；进行中不能改规则、对象、奖励；同一笔碰上多种优惠只给对玩家最多的一个</td></tr>
+</table></div>
+
+<h3>界面：活动列表、选工具、填规则、看数据</h3>
+<div class="figs">
+  <figure><img src="需求评审材料_图/04_活动列表.jpg" alt="活动列表"><figcaption><b>活动列表</b>：每个活动显示工具、系统定的主入口、状态、储值金额、成本占上限；可编辑、看数据、复制、下架。</figcaption></figure>
+  <figure><img src="需求评审材料_图/05_新建活动_选工具.jpg" alt="选工具"><figcaption><b>新建第 1 步 · 选工具</b>：九步流程固定在顶部；七个工具各带一句说明和例子。</figcaption></figure>
+  <figure><img src="需求评审材料_图/11_累充_后台配置.jpg" alt="累充规则"><figcaption><b>第 3 步 · 工具规则（以累充为例）</b>：统计方式、储值渠道、门槛档位与奖励、领取方式。</figcaption></figure>
+  <figure><img src="需求评审材料_图/09_活动数据.jpg" alt="活动数据"><figcaption><b>活动数据页</b>：曝光到储值的各层人数、储值金额、发奖成本、储值额与成本之比，按日趋势，可导出名单。</figcaption></figure>
+</div>
+
+<h3>顶尖做法：同一路数，先选类型再填门槛、对象、时间</h3>
+<div class="tw"><table>
+<tr><th>谁</th><th>怎么做</th><th>我们</th></tr>
+<tr><td class="w">Shopify 折扣后台</td><td class="r">先选折扣类型，再填最低消费门槛、适用客户（全部／客户分群／指定客户）、生效起止时间；折扣要逐个设成「可叠加」才会叠加</td><td class="r">选工具 → 规则 → 对象与时间；同一笔默认不叠加，只给多的</td></tr>
+<tr><td class="w">Metaplay 游戏运营后台</td><td class="r">新活动的全部配置在运营后台填；建好后还能改，改动同步到玩家端</td><td class="r">工具开发一次，之后上活动只在后台配</td></tr>
+</table></div>
+<p class="src">出处：<a href="https://help.shopify.com/manual/discounts/discount-types/percentage-fixed-amount">Shopify 折扣类型</a>、<a href="https://help.shopify.com/manual/discounts/discount-combinations">Shopify 折扣叠加</a>、<a href="https://docs.metaplay.io/feature-cookbooks/in-game-events/configuring-liveops-events">Metaplay 配置运营活动</a>。</p>
+
+<h3>本期解决不了的</h3>
+<p class="note">「至尊卡」这类跨活动改动（18 个）落在扭蛋机、转盘、补给站等玩法自己的后台，本项目不改这些后台；全新玩法仍要开发。</p>
+
+<!-- ===================== 三 ===================== -->
+<h2><span class="no">问题三、四</span>公告只放消息；节庆活动本期只接住一半，要给第二步定时间</h2>
+<div class="two">
+  <div class="card"><span class="k">问题三 · 公告</span>
+    <ul>
+      <li><b>问题</b>：「最新活动」是活动大图推广位（如老子翻倍包），和好康、限时活动重复放活动；维护通知和活动宣传不分类</li>
+      <li><b>原因</b>：后台「热门资讯」被当成推广位用，没有分类字段</li>
+      <li><b>方案</b>：官方｜活动｜其他三个页签；每行日期＋标题、未读红点；右侧正文不放大图；只有活动类带「前往活动」</li>
+      <li><b>竞品</b>：星城每行是标签、日期、标题；金好运左标题右正文</li>
+      <li><b>待查</b>：「最新活动」弹层登录时会不会自动弹出。会弹就保留大图</li>
+    </ul>
+    <figure style="margin-top:12px;padding:0;border:none"><img src="需求评审材料_图/03_公告_活动页签.jpg" alt="公告活动页签"></figure>
+  </div>
+  <div class="card"><span class="k">问题四 · 节庆活动</span>
+    <ul>
+      <li><b>问题</b>：原文最终目标点名节庆。10 月庆典（8/17 建单）和 16 周年庆（9/10 建单）把活动大页、抽奖大厅、储值优惠页、人数活动、导航弹窗、大厅换装各做了一遍；每期重做的 34 个需求里庆典占 22 个</li>
+      <li><b>原因</b>：活动大页每次网页开发；抽奖每次规则不同；人数活动、换装没有通用做法</li>
+      <li><b>方案</b>：储值优惠页由折扣、累充替代（本期必做）；庆典专题页（一页汇总本期多个活动，配置生成）和抽奖工具排「有时间再做」；人数活动、换装不在本项目</li>
+      <li><b>建议</b>：给专题页和抽奖定时间，赶在 2027 年庆典季建单（按今年是 8 月中）前上线，否则同一组再做一遍。2027 春节（2/6）离需求表上的 1/21 只有 16 天，新工具赶不上</li>
+    </ul>
+    <figure style="margin-top:12px;padding:0;border:none"><img src="需求评审材料_图/17_庆典专题页_玩家聚合页.jpg" alt="庆典专题页"></figure>
+  </div>
+</div>
+
+<!-- ===================== 四 ===================== -->
+<h2><span class="no">评审材料</span>界面讲了；定位、价值、原因、依据、竞品、后台界面、节庆都没讲</h2>
+<div class="tw"><table>
+<tr><th>核心问题</th><th>要讲的</th><th>9 页评审材料里</th></tr>
+<tr><td class="grp" colspan="3">问题一 · 好康和限时活动</td></tr>
+<tr><td class="w">现在的定位与价值</td><td class="r">两个入口各管什么、为什么重叠</td><td><span class="tag x">没讲</span></td></tr>
+<tr><td class="w">合不合并、依据</td><td class="r">结论＋四条依据</td><td><span class="tag m">只有结论</span> <span class="r" style="font-size:13.5px">第 2 页「左下的好康换成银行」；第 9 页把储值活动放哪列成待确认，没推荐</span></td></tr>
+<tr><td class="w">改后定位与价值</td><td class="r">各管什么、对业绩的作用、怎么衡量</td><td><span class="tag m">只有用途</span> <span class="r" style="font-size:13.5px">第 1 页三条归属规则</span></td></tr>
+<tr><td class="w">界面</td><td class="r">大厅、限时活动、银行</td><td><span class="tag y">讲了</span> <span class="r" style="font-size:13.5px">第 2、3、4 页</span></td></tr>
+<tr><td class="w">竞品</td><td class="r">三款怎么做、我们照做和不照做的</td><td><span class="tag x">没讲</span></td></tr>
+<tr><td class="grp" colspan="3">问题二 · 运营后台</td></tr>
+<tr><td class="w">运营要什么</td><td class="r">五条需求</td><td><span class="tag x">没讲</span> <span class="r" style="font-size:13.5px">原文最终目标没引</span></td></tr>
+<tr><td class="w">现在的问题和原因</td><td class="r">七个问题、证据、原因</td><td><span class="tag m">一行</span> <span class="r" style="font-size:13.5px">第 1 页「52 个重复开发、多处各配一次」，没原因</span></td></tr>
+<tr><td class="w">怎么解决</td><td class="r">流程、工具、问题与方案对应</td><td><span class="tag y">讲了</span> <span class="r" style="font-size:13.5px">第 6、7 页，但没和问题对上</span></td></tr>
+<tr><td class="w">界面</td><td class="r">列表、新建、规则、数据</td><td><span class="tag x">没讲</span> <span class="r" style="font-size:13.5px">第 6、7 页只有文字</span></td></tr>
+<tr><td class="w">顶尖做法</td><td class="r">同类后台怎么做</td><td><span class="tag x">没讲</span></td></tr>
+<tr><td class="grp" colspan="3">问题三、四</td></tr>
+<tr><td class="w">公告</td><td class="r">问题、原因、方案、界面</td><td><span class="tag m">只有方案和界面</span> <span class="r" style="font-size:13.5px">第 5 页</span></td></tr>
+<tr><td class="w">节庆</td><td class="r">问题、本期接住多少、第二步时间</td><td><span class="tag x">没讲</span> <span class="r" style="font-size:13.5px">只在第 9 页范围里出现「庆典专题页」</span></td></tr>
+</table></div>
+<p class="note">第 8 页对接系统、第 9 页范围与确认是开工的卡点，保留。</p>
+
+<!-- ===================== 五 ===================== -->
+<h2><span class="no">原因</span>规则都写着，我没照做：拿最近一条意见和自己定的标准代替了需求原文</h2>
+<div class="two">
+  <div class="card"><span class="k">1 · 没先列出要回答的问题</span><p class="d">我从设计稿的模块往下写（银行、限时活动、公告、后台、工具），评审材料就成了「改成什么样」的清单。原文第一句要的是「價值和用途」，「价值」一直没写；10/28 我自己在分析页里写过「现有方案只写了用途」，也没回头补。</p></div>
+  <div class="card"><span class="k">2 · 用自己定的标准代替目标</span><p class="d">压缩时我定的取舍标准是「会上不讲，研发会不会做错或估不准」。研发要的是改什么，于是定位、价值、依据、竞品都被当成背景删掉。这条标准我没拿需求原文验证过。</p></div>
+  <div class="card"><span class="k">3 · 把一次意见外推成通用规则</span><p class="d">你说给你的那份汇报抓不住重点，我记成「入口放哪的争论、竞品是旁支，不进这页」，之后连评审材料也照删。这违反了「你的话按它针对的情况理解，不外推」。</p></div>
+  <div class="card"><span class="k">4 · 该下结论的事挂起来</span><p class="d">合不合并本该按定位、价值、依据给出结论。我把它缩成「储值活动放哪」，又列成待产品确认，等于把判断推回给你和主管。</p></div>
+</div>
+<div class="concl"><b>为什么不稳定</b>：写的时候我优先照最近一条意见改（被说长就删、被说像论文就压），每次只修被点到的那处；交付前没有一步逼我回到需求原文和工作模式对一遍。所以每版都是局部改对、整体偏离，一天改到第七版也没发现缺的是核心。</div>
+
+<h3>怎么改</h3>
+<div class="tw"><table>
+<tr><th>改什么</th><th>具体做法</th></tr>
+<tr><td class="w">先列问题再写</td><td class="r">动笔前从需求原文逐句列出要回答的问题和每个问题必须有的项（问题、原因、方案、界面、依据与竞品）。本页四个问题就是这张清单，写进《先看这里》第一节，评审材料和汇报都拿它当目录</td></tr>
+<tr><td class="w">交付前逐项对表</td><td class="r">每页标明回答哪个问题的哪一项；四个问题的每一项都在页面上才交；回答不了任何问题的内容移到需求文档</td></tr>
+<tr><td class="w">意见只在它针对的地方生效</td><td class="r">先判断你的意见针对哪份文件、哪种情况；要变成通用做法，先拿需求原文和工作模式验证。记忆里两条外推出来的规则已改掉</td></tr>
+<tr><td class="w">难题自己先下结论</td><td class="r">先给推荐和依据，再列给你或主管确认，不挂成「待确认」</td></tr>
+<tr><td class="w">下一步</td><td class="r">按四个问题重建评审材料：本页第一到三节就是内容，细则留在需求文档；同步《先看这里》</td></tr>
+</table></div>
+
+<!-- ===================== 六 ===================== -->
+<h2><span class="no">要你定</span>一件要定，四样要对外拿</h2>
+<div class="tw"><table>
+<tr><th>事</th><th>我的判断</th><th>结果不同，方案怎么变</th></tr>
+<tr><td class="w">要先储值才能参加的活动放哪</td><td class="r">放银行「储值活动」页签（推荐）</td><td class="r">放限时活动：活动窗口加第三个页签和「前往银行」，银行不加页签；后台、工具不变</td></tr>
+<tr><td class="w">研发估时</td><td class="r">开发期约 6 周（按 12/11 至 1/21 推测），必做项可能放不下</td><td class="r">放不下就按顺序砍：通用设置 → 礼包 → 银行 → 累充 → 满减 → 限时活动与公告 → 折扣</td></tr>
+<tr><td class="w">三个入口的打开人数和带来的储值</td><td class="r">用来给第一题的「价值」定基线</td><td class="r">好康按钮打开人数远少于限时活动：左下不够显眼，储值活动改放限时活动更稳；不少：放银行够</td></tr>
+<tr><td class="w">银行改版的页签计划</td><td class="r">问主管或银行改版负责人</td><td class="r">银行不想加页签：储值活动改放限时活动</td></tr>
+<tr><td class="w">「最新活动」弹层是否登录自动弹出</td><td class="r">不确定</td><td class="r">会弹：公告活动类保留大图</td></tr>
+</table></div>
+
+<p class="foot">依据：<a href="资料/方案设计稿.md">方案设计稿</a> · <a href="2026-10-27_活动配置工具_现状盘点.html">现状盘点</a> · <a href="资料/重复开发与储值活动明细.md">重复开发明细</a> · <a href="资料/入口后台配置明细.md">入口后台明细</a> · <a href="资料/竞品对照_入口与工具.md">竞品对照</a> · <a href="2026-10-27_竞品活动中心设计拆解.html">竞品活动中心拆解</a> · <a href="2026-10-28_入口调整_深入想一遍.html">入口调整深入想一遍</a> · <a href="需求评审材料.html">现评审材料（9 页）</a></p>
+</div></body></html>

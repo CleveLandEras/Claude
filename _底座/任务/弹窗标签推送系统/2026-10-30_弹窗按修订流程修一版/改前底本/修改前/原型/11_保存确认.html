@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>11 保存确认</title>
+<link rel="stylesheet" href="_后台框.css">
+<link rel="stylesheet" href="_弹窗.css">
+<style>
+.eh .pill.on{background:#ECF5FF;color:#2F6FCC}.eh .pill.on::before{background:#409EFF}
+.ed .row{flex-wrap:wrap;row-gap:6px;min-height:30px}
+.ed .row>label{width:96px;white-space:nowrap}
+.ed>.sec.full{grid-column:1/-1}
+.ed>.sec.full.last{border-bottom:0}
+.dis{opacity:.5}
+.btno.sm{height:24px;padding:0 9px;font-size:12.5px}
+.inp.ph{color:#A8ABB2}
+.fixed{margin-top:4px}
+.sh .r{margin-left:auto;font-weight:400;font-size:13px}
+.seg2.sm{height:22px}.seg2.sm span{padding:0 8px;font-size:12px}
+table.rt{width:100%;border-collapse:collapse;table-layout:fixed;font-size:12.5px;color:#303133}
+table.rt th{font-weight:500;font-size:12px;color:#9AA0A6;text-align:left;padding:4px 6px;border-bottom:1px solid #E4E7ED;white-space:nowrap}
+table.rt td{padding:7px 6px;border-bottom:1px solid #F0F1F3;vertical-align:top;line-height:20px}
+table.rt td.hd{color:#C0C4CC;text-align:center;padding-left:0;padding-right:0}
+table.rt td.ix{color:#9AA0A6;text-align:right;padding-right:2px}
+table.rt tr.grp td{background:#F7F8FA;color:#4E5560;padding:5px 8px;border-bottom:1px solid #E4E7ED;vertical-align:middle}
+table.rt tr.grp b{color:#1F2329}
+table.rt tr.grp .inp{height:22px;margin:0 3px}
+table.rt tr.hl td{background:#FFF8E8}
+table.rt .an{display:flex;align-items:center;gap:6px;font-weight:600;color:#1F2329}
+table.rt .an .kind{margin-left:0;flex:none}
+table.rt .an{white-space:nowrap}
+.ovp .it>label{white-space:nowrap}
+table.rt .nt{display:block;font-size:12px;color:#9AA0A6;font-weight:400}
+table.rt td.op{text-align:right;white-space:nowrap}
+table.rt td.op .lk+.lk{margin-left:10px}
+table.rt .todo{color:#A9671A}
+em.fy,em.fo{display:inline-block;margin-left:4px;padding:0 4px;border-radius:3px;font-size:11px;font-style:normal;line-height:16px;vertical-align:1px}
+em.fy{background:#F2F3F5;color:#909399}
+em.fo{background:#ECF5FF;color:#2F6FCC;font-weight:600}
+tr.ovr td{background:#F7FAFF}
+.ovp{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 18px;padding:2px 0 4px}
+.ovp .it{display:flex;align-items:center;gap:6px;flex-wrap:wrap;color:#4E5560}
+.ovp .it>label{width:118px;color:#606266;flex:none}
+.ovp .it .inp{height:24px;font-size:12.5px}
+.ovp .was{font-size:11.5px;color:#9AA0A6}
+.ovp .ro2{grid-column:1/-1;display:flex;align-items:center;gap:8px;color:#606266;padding-top:7px;border-top:1px dashed #DCE3EE}
+.mth{width:54px;height:30px;border-radius:3px;background:linear-gradient(135deg,#7A3E2E,#C58B3A);color:#F5D7A1;font-size:10px;font-weight:700;display:inline-flex;align-items:center;justify-content:center}
+.ckl{display:inline-flex;align-items:center;gap:5px;margin-right:12px;color:#303133}
+.pvr{margin-top:8px;border:1px solid #E4E7ED;border-radius:6px;background:#FAFBFC;padding:10px 12px}
+.pvr .ln1{font-size:12.5px;color:#4E5560;line-height:20px}
+.pvr .ln1 b{color:#1F2329}
+.pvr .q{margin-top:8px;font-weight:600;color:#1F2329;font-size:12.5px}
+.pvr .q .m2{font-weight:400;margin-left:6px}
+.pvst{display:inline-block;padding:0 7px;border-radius:3px;font-size:12px;white-space:nowrap}
+.pvst.ok{background:#F0F9EB;color:#3F7A1E}.pvst.no{background:#F4F4F5;color:#606266}.pvst.wait{background:#FDF6EC;color:#A9671A}
+.pvr .ft2{display:flex;align-items:center;gap:10px;margin-top:10px}
+.foot .btno.dis,.foot .btnp.dis{opacity:.45}
+.cf ul.rl{list-style:none;margin:10px 0 0;padding:0;border-top:1px solid #E4E7ED}
+.cf ul.rl li{display:grid;grid-template-columns:1fr 64px 56px 1.25fr;gap:8px;padding:5px 2px;border-bottom:1px solid #F0F2F5;font-size:12.5px;color:#4E5560}
+.cf ul.rl li.h{color:#909399;font-size:12px}
+.cf ul.rl li b{font-weight:500;color:#1F2329}
+.cf ul.rl li i{font-style:normal;color:#909399;font-size:12px;margin-left:4px}
+.cf ul.rl li .keep{color:#A9671A}
+.cf .imp+.imp{margin-top:8px}
+.cf .when{margin-top:10px;font-size:12.5px;color:#4E5560}
+.drawer .fr>label{width:124px;white-space:nowrap;line-height:20px;padding-top:4px}
+.ed>.sec.acts{border-bottom:1px solid #EBEEF5}
+</style>
+</head>
+<body>
+<div class="shot bk" data-page="弹窗" data-crumb="回流">
+  <div class="eh"><h3>回流 <span class="id">编号 83</span></h3><span class="pill on">上架中</span><span class="sp"></span><span class="btno">复制</span><span class="btno">暂停</span><span class="btno">结束</span></div>
+  <div class="ed">
+    <div>
+      <div class="sec">
+        <div class="sh"><span class="n">1</span><span><i style="color:#F56C6C;font-style:normal;margin-right:2px">*</i>场景</span></div>
+        <div class="row"><span class="radio on dis"><i></i>进大厅</span><span class="radio dis"><i></i>破产时</span><span class="radio dis"><i></i>买了指定礼包后</span><span class="inp dis" style="width:132px">礼包（可多选）<span class="dn">⌵</span></span><span class="radio dis"><i></i>押注达到指定金额</span><span class="inp dis" style="width:72px">金额</span></div>
+        <div class="m2">上架后只读；要换场景，复制这条规则后改</div>
+      </div>
+      <div class="sec">
+        <div class="sh"><span class="n">2</span><span><i style="color:#F56C6C;font-style:normal;margin-right:2px">*</i>名称</span></div>
+        <span class="inp v" style="width:100%">回流</span>
+        <div class="m2" style="margin-top:4px">默认「场景·发送对象群组名」，可改</div>
+      </div>
+      <div class="sec">
+        <div class="sh"><span class="n">3</span><span><i style="color:#F56C6C;font-style:normal;margin-right:2px">*</i>发送对象</span></div>
+        <div class="row"><span class="radio"><i></i>全部玩家</span><span class="radio on"><i></i>群组</span><span class="radio"><i></i>上传名单</span><span class="btno sm dis">上传名单文件</span></div>
+        <div class="row"><label>群组</label><span class="inp v" style="width:380px"><span class="tgs"><em class="tg g"><b>群组</b>回流</em></span><span class="dn">⌵</span></span><span class="m2">可多选，如普卡、银卡等卡别群组；可选实验组、对照组群组</span></div>
+        <div class="row dis"><label>多个群组的关系</label><span class="radio on"><i></i>满足任一个</span><span class="radio"><i></i>同时满足全部</span><span class="m2">选 2 个以上群组才出现</span></div>
+        <div class="row"><label>排除群组</label><span class="inp ph" style="width:380px">不排除（可多选）<span class="dn">⌵</span></span></div>
+        <div class="fixed">弹窗固定不弹：黑名单、停权、自我限制、注销处理中，机器人和测试账号（上传名单时除外）</div>
+        <table class="cnt"><tr><td>符合发送对象</td><td class="v">16,580 人</td></tr><tr><td>扣除排除后</td><td class="v">16,580 人</td></tr></table>
+      </div>
+      <div class="sec">
+        <div class="sh"><span class="n">4</span><span><i style="color:#F56C6C;font-style:normal;margin-right:2px">*</i>生效期间</span></div>
+        <div class="row"><span class="radio on"><i></i>长期</span><span class="radio"><i></i>指定起止</span><span class="inp dis" style="width:220px">开始时间 — 结束时间<span class="dn">⌵</span></span></div>
+      </div>
+      <div class="sec">
+        <div class="sh"><span class="n">5</span><span><i style="color:#F56C6C;font-style:normal;margin-right:2px">*</i>每次最多弹几个</span></div>
+        <div class="row"><span class="inp v num" style="width:48px;justify-content:center">3</span><span class="m2">个；进大厅默认 3、其他场景默认 1。轮换池先留走它每次弹的个数，其余给固定的</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="sum">
+        <div class="h">这条规则</div>
+        <div class="big num">16,580<small>人</small></div>
+        <div class="m2">扣除排除后人数</div>
+        <hr>
+        <div class="k2"><span>发送对象</span><b>回流</b></div>
+        <div class="k2"><span>场景</span><b>进大厅</b></div>
+        <div class="k2"><span>多条规则都符合时</span><b>轮流</b></div>
+        <div class="k2"><span>优先级</span><b>4（本场景 6 条上架中）</b></div>
+        <div class="k2"><span>每次最多弹几个</span><b>3</b></div>
+        <hr>
+        <div class="k2"><span>弹窗</span><b>5 个</b></div>
+        <div class="m2">固定 3 个，轮换池 2 个，轮换池每次弹 1 个</div>
+      </div>
+    </div>
+    <div class="sec acts">
+      <div class="sh"><span class="n">6</span>弹哪些活动或礼包<span class="r"><span class="lk">＋ 加入活动或礼包</span></span></div>
+      <div class="m2" style="margin:-4px 0 6px">宣传图、跳转页面、点击后是否跳转、弹出时机、次数按活动或礼包存一份，各规则共用，点名称打开它的弹窗设置；规则里默认沿用，可在「本规则另设」里改，只在这条规则生效。先弹固定的，再弹轮换池的。例：活动 2 个＋礼包 1 个＝每次最多弹 3 个、礼包进轮换池每次 1 个</div>
+      <table class="rt"><colgroup><col style="width:16px"><col style="width:18px"><col><col style="width:84px"><col style="width:96px"><col style="width:166px"><col style="width:92px"><col style="width:120px"><col style="width:116px"></colgroup><thead><tr><th></th><th></th><th>活动或礼包</th><th>是否进轮换池</th><th>点击后是否跳转</th><th>弹出时机</th><th>每人每天几次</th><th>每人两次至少隔多久</th><th></th></tr></thead><tbody>
+        <tr class="grp"><td colspan="9"><b>固定</b> · 3 个 · 按先后弹；固定的先后：拖动排序，默认新加入的排最后</td></tr>
+        <tr><td class="hd">⠿</td><td class="ix">1</td><td><span class="an"><span class="lk">每日补给计划</span><span class="kind act">活动</span></span></td><td><span class="seg2 sm"><span class="on">否</span><span>是</span></span></td><td>是<em class="fy">沿用</em></td><td>每次进大厅，含从游戏返回<em class="fy">沿用</em></td><td>1 次<em class="fy">沿用</em></td><td>不限<em class="fy">沿用</em></td><td class="op"><span class="lk">本规则另设 ▾</span><span class="lk">移除</span></td></tr><tr class="hl"><td class="hd">⠿</td><td class="ix">2</td><td><span class="an"><span class="lk">热门资讯</span><span class="kind act">活动</span></span></td><td><span class="seg2 sm"><span class="on">否</span><span>是</span></span></td><td>是<em class="fy">沿用</em></td><td>当天首次登录<em class="fo">本规则另设</em></td><td>2 次<em class="fy">沿用</em></td><td>不限<em class="fy">沿用</em></td><td class="op"><span class="lk">本规则另设 ▾</span><span class="lk">移除</span></td></tr><tr class="hl"><td class="hd">⠿</td><td class="ix">3</td><td><span class="an"><span class="lk">回流任务</span><span class="kind act">活动</span></span><span class="nt">新加入</span></td><td><span class="seg2 sm"><span class="on">否</span><span>是</span></span></td><td>是<em class="fy">沿用</em></td><td>当天首次登录<em class="fy">沿用</em></td><td>1 次<em class="fy">沿用</em></td><td>不限<em class="fy">沿用</em></td><td class="op"><span class="lk">本规则另设 ▾</span><span class="lk">移除</span></td></tr>
+        <tr class="grp"><td colspan="9"><b>轮换池</b> · 2 个 · 每次弹<span class="inp v n1" style="width:36px;justify-content:center">1</span>个，按顺序轮流、每次换下一个；轮换池内顺序：拖动排序，默认按进池先后</td></tr>
+        <tr><td class="hd">⠿</td><td class="ix">1</td><td><span class="an"><span class="lk">惊喜三选一</span><span class="kind pay">礼包</span></span></td><td><span class="seg2 sm"><span>否</span><span class="on">是</span></span></td><td>是<em class="fy">沿用</em></td><td>只在从游戏返回时<em class="fy">沿用</em></td><td>1 次<em class="fo">本规则另设</em></td><td>不限<em class="fy">沿用</em></td><td class="op"><span class="lk">本规则另设 ▾</span><span class="lk">移除</span></td></tr><tr><td class="hd">⠿</td><td class="ix">2</td><td><span class="an"><span class="lk">储值优惠礼包</span><span class="kind pay">礼包</span></span></td><td><span class="seg2 sm"><span>否</span><span class="on">是</span></span></td><td>是<em class="fy">沿用</em></td><td>只在从游戏返回时<em class="fy">沿用</em></td><td>2 次<em class="fy">沿用</em></td><td>不限<em class="fy">沿用</em></td><td class="op"><span class="lk">本规则另设 ▾</span><span class="lk">移除</span></td></tr>
+      </tbody></table>
+      <div class="addc"><span class="lk">＋ 加入活动或礼包</span><span class="m2">可选范围：未结束的活动和礼包，搜名称或编号、可多选；第一次进弹窗的当场配一次弹窗设置，已有的直接沿用</span></div>
+    </div>
+
+  </div>
+  <div class="foot"><span class="dirty">有未保存的改动：2 处</span><span class="sp"></span><span class="btno">取消</span><span class="btnp">保存</span></div>
+  <div class="bk-pop cf" style="--pop-top:42px;width:540px">
+    <div class="t">保存「回流」？</div>
+    <div class="t2">上架中。确认后，玩家下一次进入场景起按新设置；今天已弹的次数不清零。</div>
+    <table class="dif">
+      <tr><th style="width:150px">改了什么</th><th style="width:150px">改前</th><th>改后</th></tr>
+      <tr><td>加入活动或礼包</td><td class="o">—</td><td class="n">回流任务（固定，第 3 个）</td></tr>
+      <tr><td>热门资讯 · 弹出时机</td><td class="o">沿用：每次进大厅，含从游戏返回</td><td class="n">本规则另设：当天首次登录</td></tr>
+    </table>
+    <div class="imp">哪些活动或礼包弹不到：每次最多弹 3 个，轮换池先留 1 个，固定的只有 2 个名额。<b>回流任务（固定第 3 个）</b>要等前面的当天次数用完，或轮换池没得弹时才弹得到。</div>
+    <div class="imp">发送对象相同、不会一起弹的规则：<b>回流·礼包</b> 编号 88（发送对象同为群组回流）。一次进入只弹一条规则；要和「回流·礼包」一起弹，把这些活动或礼包加进同一条规则、设进轮换池。</div>
+    <div class="imp">轮流时可能错过的活动或礼包：弹出时机为当天首次登录、活动开始后第一次进大厅的，本例<b>热门资讯、回流任务</b>。本规则 16,580 人都还符合回流·礼包，可能轮不到本规则；那次进入轮到别的规则时，这天就错过，不补弹。</div>
+    <div class="imp">建议加进全部玩家规则排除的群组（仅轮流）：<b>回流</b>。本规则的人也会轮到「其余」编号 85（发送对象全部玩家）；只想让「其余」管剩下的人，把回流加进它的排除群组。</div>
+    <div class="ft"><span class="btno">返回修改</span><span class="btnp">确认保存</span></div>
+  </div>
+</div>
+<script src="_后台框.js"></script>
+</body>
+</html>

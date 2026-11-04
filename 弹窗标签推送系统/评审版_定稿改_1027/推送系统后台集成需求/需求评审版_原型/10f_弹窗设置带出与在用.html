@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>10f 弹窗设置带出与在用</title>
+<link rel="stylesheet" href="_后台框.css">
+<link rel="stylesheet" href="_弹窗.css">
+<style>
+.eh .pill.on{background:#ECF5FF;color:#2F6FCC}.eh .pill.on::before{background:#409EFF}
+.ed .row{flex-wrap:wrap;row-gap:6px;min-height:30px}
+.ed .row>label{width:96px;white-space:nowrap}
+.ed>.sec.full{grid-column:1/-1}
+.ed>.sec.full.last{border-bottom:0}
+.dis{opacity:.5}
+.btno.sm{height:24px;padding:0 9px;font-size:12.5px}
+.inp.ph{color:#A8ABB2}
+.fixed{margin-top:4px}
+.sh .r{margin-left:auto;font-weight:400;font-size:13px}
+.seg2.sm{height:22px}.seg2.sm span{padding:0 8px;font-size:12px}
+table.rt{width:100%;border-collapse:collapse;table-layout:fixed;font-size:12.5px;color:#303133}
+table.rt th{font-weight:500;font-size:12px;color:#9AA0A6;text-align:left;padding:4px 6px;border-bottom:1px solid #E4E7ED;white-space:nowrap}
+table.rt td{padding:7px 6px;border-bottom:1px solid #F0F1F3;vertical-align:top;line-height:20px}
+table.rt td.hd{color:#C0C4CC;text-align:center;padding-left:0;padding-right:0}
+table.rt td.ix{color:#9AA0A6;text-align:right;padding-right:2px}
+table.rt tr.grp td{background:#F7F8FA;color:#4E5560;padding:5px 8px;border-bottom:1px solid #E4E7ED;vertical-align:middle}
+table.rt tr.grp b{color:#1F2329}
+table.rt tr.grp .inp{height:22px;margin:0 3px}
+table.rt tr.hl td{background:#FFF8E8}
+table.rt .an{display:flex;align-items:center;gap:6px;font-weight:600;color:#1F2329}
+table.rt .an .kind{margin-left:0;flex:none}
+table.rt .an{white-space:nowrap}
+.ovp .it>label{white-space:nowrap}
+table.rt .nt{display:block;font-size:12px;color:#9AA0A6;font-weight:400}
+table.rt td.op{text-align:right;white-space:nowrap}
+table.rt td.op .lk+.lk{margin-left:10px}
+table.rt .todo{color:#A9671A}
+em.fy,em.fo{display:inline-block;margin-left:4px;padding:0 4px;border-radius:3px;font-size:11px;font-style:normal;line-height:16px;vertical-align:1px}
+em.fy{background:#F2F3F5;color:#909399}
+em.fo{background:#ECF5FF;color:#2F6FCC;font-weight:600}
+tr.ovr td{background:#F7FAFF}
+.ovp{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 18px;padding:2px 0 4px}
+.ovp .it{display:flex;align-items:center;gap:6px;flex-wrap:wrap;color:#4E5560}
+.ovp .it>label{width:118px;color:#606266;flex:none}
+.ovp .it .inp{height:24px;font-size:12.5px}
+.ovp .was{font-size:11.5px;color:#9AA0A6}
+.ovp .ro2{grid-column:1/-1;display:flex;align-items:center;gap:8px;color:#606266;padding-top:7px;border-top:1px dashed #DCE3EE}
+.mth{width:54px;height:30px;border-radius:3px;background:linear-gradient(135deg,#7A3E2E,#C58B3A);color:#F5D7A1;font-size:10px;font-weight:700;display:inline-flex;align-items:center;justify-content:center}
+.ckl{display:inline-flex;align-items:center;gap:5px;margin-right:12px;color:#303133}
+.pvr{margin-top:8px;border:1px solid #E4E7ED;border-radius:6px;background:#FAFBFC;padding:10px 12px}
+.pvr .ln1{font-size:12.5px;color:#4E5560;line-height:20px}
+.pvr .ln1 b{color:#1F2329}
+.pvr .q{margin-top:8px;font-weight:600;color:#1F2329;font-size:12.5px}
+.pvr .q .m2{font-weight:400;margin-left:6px}
+.pvst{display:inline-block;padding:0 7px;border-radius:3px;font-size:12px;white-space:nowrap}
+.pvst.ok{background:#F0F9EB;color:#3F7A1E}.pvst.no{background:#F4F4F5;color:#606266}.pvst.wait{background:#FDF6EC;color:#A9671A}
+.pvr .ft2{display:flex;align-items:center;gap:10px;margin-top:10px}
+.foot .btno.dis,.foot .btnp.dis{opacity:.45}
+.cf ul.rl{list-style:none;margin:10px 0 0;padding:0;border-top:1px solid #E4E7ED}
+.cf ul.rl li{display:grid;grid-template-columns:1fr 64px 56px 1.25fr;gap:8px;padding:5px 2px;border-bottom:1px solid #F0F2F5;font-size:12.5px;color:#4E5560}
+.cf ul.rl li.h{color:#909399;font-size:12px}
+.cf ul.rl li b{font-weight:500;color:#1F2329}
+.cf ul.rl li i{font-style:normal;color:#909399;font-size:12px;margin-left:4px}
+.cf ul.rl li .keep{color:#A9671A}
+.cf .imp+.imp{margin-top:8px}
+.cf .when{margin-top:10px;font-size:12.5px;color:#4E5560}
+.drawer .fr>label{width:124px;white-space:nowrap;line-height:20px;padding-top:4px}
+.ed>.sec.acts{border-bottom:1px solid #EBEEF5}
+</style>
+</head>
+<body>
+<div class="shot bk" data-page="弹窗" data-crumb="回流">
+  <div class="eh"><h3>回流 <span class="id">编号 83</span></h3><span class="pill on">上架中</span><span class="sp"></span><span class="btno">复制</span><span class="btno">暂停</span><span class="btno">结束</span></div>
+  <div class="ed">
+    <div>
+      <div class="sec">
+        <div class="sh"><span class="n">1</span><span><i style="color:#F56C6C;font-style:normal;margin-right:2px">*</i>场景</span></div>
+        <div class="row"><span class="radio on dis"><i></i>进大厅</span><span class="radio dis"><i></i>破产时</span><span class="radio dis"><i></i>买了指定礼包后</span><span class="inp dis" style="width:132px">礼包（可多选）<span class="dn">⌵</span></span><span class="radio dis"><i></i>押注达到指定金额</span><span class="inp dis" style="width:72px">金额</span></div>
+        <div class="m2">上架后只读；要换场景，复制这条规则后改</div>
+      </div>
+      <div class="sec">
+        <div class="sh"><span class="n">2</span><span><i style="color:#F56C6C;font-style:normal;margin-right:2px">*</i>名称</span></div>
+        <span class="inp v" style="width:100%">回流</span>
+        <div class="m2" style="margin-top:4px">默认「场景·发送对象群组名」，可改</div>
+      </div>
+      <div class="sec">
+        <div class="sh"><span class="n">3</span><span><i style="color:#F56C6C;font-style:normal;margin-right:2px">*</i>发送对象</span></div>
+        <div class="row"><span class="radio"><i></i>全部玩家</span><span class="radio on"><i></i>群组</span><span class="radio"><i></i>上传名单</span><span class="btno sm dis">上传名单文件</span></div>
+        <div class="row"><label>群组</label><span class="inp v" style="width:380px"><span class="tgs"><em class="tg g"><b>群组</b>回流</em></span><span class="dn">⌵</span></span><span class="m2">可多选，如普卡、银卡等卡别群组；可选实验组、对照组群组</span></div>
+        <div class="row dis"><label>多个群组的关系</label><span class="radio on"><i></i>满足任一个</span><span class="radio"><i></i>同时满足全部</span><span class="m2">选 2 个以上群组才出现</span></div>
+        <div class="row"><label>排除群组</label><span class="inp ph" style="width:380px">不排除（可多选）<span class="dn">⌵</span></span></div>
+        <div class="fixed">弹窗固定不弹：黑名单、停权、自我限制、注销处理中，机器人和测试账号（上传名单时除外）</div>
+        <table class="cnt"><tr><td>符合发送对象</td><td class="v">16,580 人</td></tr><tr><td>扣除排除后</td><td class="v">16,580 人</td></tr></table>
+      </div>
+      <div class="sec">
+        <div class="sh"><span class="n">4</span><span><i style="color:#F56C6C;font-style:normal;margin-right:2px">*</i>生效期间</span></div>
+        <div class="row"><span class="radio on"><i></i>长期</span><span class="radio"><i></i>指定起止</span><span class="inp dis" style="width:220px">开始时间 — 结束时间<span class="dn">⌵</span></span></div>
+      </div>
+      <div class="sec">
+        <div class="sh"><span class="n">5</span><span><i style="color:#F56C6C;font-style:normal;margin-right:2px">*</i>每次最多弹几个</span></div>
+        <div class="row"><span class="inp v num" style="width:48px;justify-content:center">3</span><span class="m2">个；进大厅默认 3、其他场景默认 1。轮换池先留走它每次弹的个数，其余给固定的</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="sum">
+        <div class="h">这条规则</div>
+        <div class="big num">16,580<small>人</small></div>
+        <div class="m2">扣除排除后人数</div>
+        <hr>
+        <div class="k2"><span>发送对象</span><b>回流</b></div>
+        <div class="k2"><span>场景</span><b>进大厅</b></div>
+        <div class="k2"><span>多条规则都符合时</span><b>轮流</b></div>
+        <div class="k2"><span>优先级</span><b>4（本场景 7 条参与排序）</b></div>
+        <div class="k2"><span>每次最多弹几个</span><b>3</b></div>
+        <hr>
+        <div class="k2"><span>弹窗</span><b>4 个</b></div>
+        <div class="m2">固定 2 个，轮换池 2 个，轮换池每次弹 1 个</div><div class="m2">→ 每次最多 3 个，固定的实际最多弹 2 个</div>
+      </div>
+    </div>
+    <div class="sec acts">
+      <div class="sh"><span class="n">6</span>弹哪些活动或礼包<span class="r"><span class="lk">＋ 加入活动或礼包</span></span></div>
+      <div class="m2" style="margin:-4px 0 6px">宣传图、跳转页面、点击后是否跳转、弹出时机、次数按活动或礼包存一份，各规则共用，点名称打开它的弹窗设置；规则里默认沿用，可在「本规则另设」里改，只在这条规则生效。先弹固定的，再弹轮换池的。例：活动 2 个＋礼包 1 个＝每次最多弹 3 个、礼包进轮换池每次 1 个。固定＝按先后检查，名额用完、没到时机、今天次数用完就不弹，不等于每次一定弹</div>
+      <table class="rt"><colgroup><col style="width:16px"><col style="width:18px"><col><col style="width:84px"><col style="width:96px"><col style="width:166px"><col style="width:92px"><col style="width:120px"><col style="width:116px"></colgroup><thead><tr><th></th><th></th><th>活动或礼包</th><th>是否进轮换池</th><th>点击后是否跳转</th><th>弹出时机</th><th>每人每天几次</th><th>每人两次至少隔多久</th><th></th></tr></thead><tbody>
+        <tr class="grp"><td colspan="9"><b>固定</b> · 2 个 · 按先后弹；固定的先后：拖动排序，默认新加入的排最后</td></tr>
+        <tr><td class="hd">⠿</td><td class="ix">1</td><td><span class="an"><span class="lk">每日补给计划</span><span class="kind act">活动</span></span></td><td><span class="seg2 sm"><span class="on">否</span><span>是</span></span></td><td>是<em class="fy">沿用</em></td><td>每次进大厅，含从游戏返回<em class="fy">沿用</em></td><td>1 次<em class="fy">沿用</em></td><td>不限<em class="fy">沿用</em></td><td class="op"><span class="lk">另设 ▾</span><span class="lk">移除</span></td></tr><tr class="hl"><td class="hd">⠿</td><td class="ix">2</td><td><span class="an"><span class="lk">热门资讯</span><span class="kind act">活动</span></span></td><td><span class="seg2 sm"><span class="on">否</span><span>是</span></span></td><td>是<em class="fy">沿用</em></td><td>每次进大厅，含从游戏返回<em class="fy">沿用</em></td><td>2 次<em class="fy">沿用</em></td><td>不限<em class="fy">沿用</em></td><td class="op"><span class="lk">另设 ▾</span><span class="lk">移除</span></td></tr>
+        <tr class="grp"><td colspan="9"><b>轮换池</b> · 2 个 · 每次弹<span class="inp v n1" style="width:36px;justify-content:center">1</span>个，按顺序轮流、每次换下一个；轮换池内顺序：拖动排序，默认按进池先后</td></tr>
+        <tr><td class="hd">⠿</td><td class="ix">1</td><td><span class="an"><span class="lk">惊喜三选一</span><span class="kind pay">礼包</span></span></td><td><span class="seg2 sm"><span>否</span><span class="on">是</span></span></td><td>是<em class="fy">沿用</em></td><td>只在从游戏返回时<em class="fy">沿用</em></td><td>1 次<em class="fo">本规则另设</em></td><td>不限<em class="fy">沿用</em></td><td class="op"><span class="lk" style="color:#C47B2B;font-weight:600">已另设 1 项 ▾</span><span class="lk">移除</span></td></tr><tr><td class="hd">⠿</td><td class="ix">2</td><td><span class="an"><span class="lk">储值优惠礼包</span><span class="kind pay">礼包</span></span></td><td><span class="seg2 sm"><span>否</span><span class="on">是</span></span></td><td>是<em class="fy">沿用</em></td><td>只在从游戏返回时<em class="fy">沿用</em></td><td>2 次<em class="fy">沿用</em></td><td>不限<em class="fy">沿用</em></td><td class="op"><span class="lk">另设 ▾</span><span class="lk">移除</span></td></tr>
+      </tbody></table>
+      <div class="addc"><span class="lk">＋ 加入活动或礼包</span><span class="m2">可选范围：未结束的活动和礼包，搜名称或编号、可多选；第一次进弹窗的当场配一次弹窗设置，已有的直接沿用</span></div>
+    </div>
+
+  </div>
+  <div class="foot"><span class="m2">没有改动时保存不可点</span><span class="sp"></span><span class="btno">取消</span><span class="btnp dis">保存</span></div>
+  <div class="bk-pop drawer">
+    <div class="phd"><h4>热门资讯 · 弹窗设置</h4><span class="kind act">活动</span><span class="x">×</span></div>
+    <div class="dtip warn">
+      <div>这份设置各规则共用。<b>另有 5 条规则在用</b>，改了一起变；规则里另设过的项不跟着变；保存后立即对所有规则生效，与本页底部的保存、取消无关 <span class="lk">收起 ▴</span></div>
+      <ul><li><span>银卡已首储 <i>编号 80 · 进大厅 · 上架中</i></span><em>沿用</em></li><li><span>普卡已首储 <i>编号 81 · 进大厅 · 上架中</i></span><em>沿用</em></li><li><span>新增玩家 <i>编号 82 · 进大厅 · 上架中</i></span><em>沿用</em></li><li><span>潜在流失 <i>编号 84 · 进大厅 · 上架中</i></span><em>另设：每人每天几次</em></li><li><span>其余 <i>编号 85 · 进大厅 · 上架中</i></span><em>沿用</em></li></ul>
+    </div>
+    <div class="pb">
+      <div class="fr"><label>对应的活动或礼包</label><div class="fv"><div class="ln" style="flex-direction:column;align-items:flex-start;gap:2px"><span>热门资讯 · 活动</span><span>10/01 00:00 – 10/31 23:59</span></div></div></div>
+      <div class="fr"><label>宣传图</label><div class="fv"><div class="ln"><span class="thumb">热门资讯</span><span class="m2">用活动或礼包自带的<br><span class="lk">上传替换</span></span></div></div></div>
+      <div class="fr"><label><i style="color:#F56C6C;font-style:normal;margin-right:2px">*</i>点击后是否跳转</label><div class="fv"><div class="ln"><span class="radio on"><i></i>是</span><span class="radio"><i></i>否</span><span class="m2">选否：点图只关闭弹窗</span></div></div></div>
+      <div class="fr"><label>跳转页面</label><div class="fv"><div class="ln"><span class="radio on"><i></i>本活动页面</span><span class="radio"><i></i>其他页面</span><span class="inp dis" style="width:96px">选页面<span class="dn">⌵</span></span></div><span class="m2">默认本活动页面：热门资讯页</span></div></div>
+      <div class="fr"><label>弹出时机</label><div class="fv"><div class="ln" style="flex-direction:column;align-items:flex-start;gap:4px"><span class="radio on"><i></i>每次进大厅，含从游戏返回</span><span class="radio"><i></i>只在从游戏返回时</span><span class="radio"><i></i>当天首次登录</span><span class="radio"><i></i>活动开始后第一次进大厅</span></div><span class="m2">仅进大厅；活动默认第一项，礼包默认第二项。<span style="white-space:nowrap">本场景为轮流，</span><span style="white-space:nowrap">没轮到这条规则的那次进入不补弹</span></span></div></div>
+      <div class="fr"><label><i style="color:#F56C6C;font-style:normal;margin-right:2px">*</i>每人每天几次</label><div class="fv"><div class="ln"><span class="inp v num n1">2</span>次</div><span class="m2">同一场景各规则合计；<span style="white-space:nowrap">每天台湾时间 00:00 重新算；</span><span style="white-space:nowrap">活动默认 1 次，礼包默认 2 次</span></span></div></div>
+      <div class="fr"><label>每人两次至少隔多久</label><div class="fv"><div class="ln"><span class="inp ph" style="width:56px">留空</span><span class="inp v sel">分钟<span class="dn">⌵</span></span><span class="m2">留空＝不限</span></div><span class="m2">同一活动两次弹出之间的最短间隔；任意两个弹窗之间的间隔在弹窗场景设置里（弹出间隔）</span><span class="m2">各场景的弹出间隔（只读）：进大厅 30 分钟，破产时 30 分钟，买了指定礼包后 30 分钟，押注达到指定金额 30 分钟；本活动不在任何场景的「不受弹出间隔限制」名单里。<span class="lk">去改</span></span></div></div>
+      <div class="fr sw"><div class="fv"><div class="ln"><span class="tgl"></span><b>在所有规则里暂停</b></div><span class="m2">默认关；打开前先确认在用的规则。只停弹窗，活动照常。<span style="white-space:nowrap">确认后立即生效</span></span></div></div>
+      
+    </div>
+    <div class="ft"><span class="btno">取消</span><span class="btnp">保存</span></div>
+  </div>
+</div>
+<script src="_后台框.js"></script>
+</body>
+</html>

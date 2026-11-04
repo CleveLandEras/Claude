@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>活动配置思考结果</title>
+<style>
+:root{--ground:#f4f3f0;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e3e1dc;--accent:#9a6f24;--green:#2f6b52;--green-soft:#e3efe8;--red:#a8382b;--red-soft:#f7e7e3;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;--green:#7dbb9c;--green-soft:#1c3128;--red:#e48e7f;--red-soft:#3a211c;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;--green:#7dbb9c;--green-soft:#1c3128;--red:#e48e7f;--red-soft:#3a211c;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15.5px;line-height:1.75}
+.wrap{max-width:880px;margin:0 auto;padding:64px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 14px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.5;margin:0 0 14px}
+.bg{font-size:15.5px;color:var(--ink-2);margin:0}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:40px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px 22px 24px}
+.card .k{font-size:13px;font-weight:700;color:var(--muted)}
+.card .v{font-family:var(--serif);font-size:24px;font-weight:700;margin:6px 0 10px;line-height:1.35}
+.card .v.ok{color:var(--green)} .card .v.half{color:var(--red)}
+.card .v small{font-family:var(--sans);font-size:14px;font-weight:400;color:var(--muted);margin-left:6px}
+.card p{font-size:14.5px;color:var(--ink-2);margin:0}
+h2{font-size:14px;font-weight:700;color:var(--muted);margin:48px 0 12px;letter-spacing:.04em}
+.list{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:6px 22px}
+.list div{padding:12px 0;border-bottom:1px solid var(--line);font-size:15px}
+.list div:last-child{border-bottom:none}
+.list b{font-weight:700}
+.list span{color:var(--ink-2)}
+.needs{display:flex;flex-wrap:wrap;gap:10px}
+.needs span{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:6px 16px;font-size:14.5px}
+.foot{margin-top:56px;font-size:13px;color:var(--muted)}
+a{color:var(--accent)}
+@media (max-width:760px){.wrap{padding:32px 16px 64px}h1{font-size:22px}.cards{grid-template-columns:1fr}}
+</style></head><body><div class="wrap">
+
+<p class="meta">活动配置项目 · 思考结果 · 2026-10-28</p>
+<h1>方案方向对，但节庆活动只做了一半，应排进下一期，明年 8 月前完成</h1>
+<p class="bg">项目目标：让运营在后台配置就能上线储值活动和节庆活动，不用每次找研发开发。</p>
+
+<div class="cards">
+  <div class="card"><div class="k">储值活动</div><div class="v ok">做到了</div><p>复制上期活动，改时间和档位，审核后即可上线。</p></div>
+  <div class="card"><div class="k">节庆活动</div><div class="v half">只做了一半</div><p>专题页、抽奖排在「有余力再做」；人数活动、换皮没有排。</p></div>
+  <div class="card"><div class="k">节庆为什么要补</div><div class="v">22<small>／52 个</small></div><p>过去一年「同样模块每次重做」的开发有 52 个，节庆占 22 个；这期最多减掉 12 个（礼包类）。按今年规律，下次节庆开发在明年 8 月。</p></div>
+</div>
+
+<h2>另外两点</h2>
+<div class="list">
+  <div><b>付费活动放商城还是放活动窗口：</b><span>两种放法差别小，等商城改版的计划出来再定。</span></div>
+  <div><b>还有四条规则细节要补：</b><span>老币算不算付费、两种优惠能否叠加、商城默认打开哪页、公告放不放大图。</span></div>
+</div>
+
+<h2>往下推需要</h2>
+<div class="needs"><span>研发估时</span><span>商城改版的计划</span><span>各入口的打开人数</span></div>
+
+<p class="foot">逐条论证：<a href="2026-10-28_入口调整_深入想一遍.html">完整版</a></p>
+
+</div></body></html>

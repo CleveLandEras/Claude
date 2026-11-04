@@ -1,0 +1,160 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>自动回复交付说明</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.35;margin:0 0 8px}
+.sub{font-size:16px;color:var(--ink-2);margin:0 0 28px}
+h2{font-family:var(--serif);font-size:20px;margin:48px 0 16px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px}
+.kpi .n{font-size:38px;font-weight:700;line-height:1.1;color:var(--ink)}
+.kpi .n small{font-size:16px;font-weight:600;margin-left:4px;color:var(--ink-2)}
+.kpi .t{font-size:14.5px;color:var(--ink-2);margin-top:8px}
+.kpi.red .n{color:var(--red)}
+.phase{border-top:4px solid var(--gray)}
+.phase.red{border-top-color:var(--red)} .phase.blue{border-top-color:var(--blue)}
+.phase .d{font-size:13px;color:var(--muted);font-weight:600}
+.phase .h{font-size:16.5px;font-weight:700;margin:4px 0 10px}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:12px}
+.tag.red{background:var(--red-soft);color:var(--red)} .tag.blue{background:var(--blue-soft);color:var(--blue)} .tag.gray{background:var(--gray-soft);color:var(--gray)} .tag.green{background:var(--green-soft);color:var(--green)}
+.kv{font-size:14px;color:var(--ink-2);margin:6px 0}
+.kv b{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:2px}
+.keep{display:flex;flex-wrap:wrap;gap:10px}
+.keep span{background:var(--green-soft);color:var(--green);font-size:14.5px;font-weight:600;padding:8px 14px;border-radius:4px}
+.cause .h{font-size:16.5px;font-weight:700;margin:0 0 6px}
+.cause .l{font-size:14.5px;color:var(--ink-2);margin:0 0 12px}
+.cause .e{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14.5px}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--line)}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--ground)}
+tr:last-child td{border-bottom:none}
+td.w{color:var(--ink)} td.r{color:var(--ink-2)} td.d{color:var(--muted);width:80px}
+tr.same td.w{color:var(--red);font-weight:600}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);margin-right:8px;vertical-align:1px}
+.legend{font-size:13px;color:var(--muted);margin:10px 0 0}
+.q{font-size:17px;font-weight:700;margin:0 0 14px}
+.opt{position:relative}
+.opt .h{font-size:16px;font-weight:700;margin:0 0 6px}
+.opt .l{font-size:14.5px;color:var(--ink-2)}
+.opt.rec{border:2px solid var(--blue)}
+.opt .badge{position:absolute;top:-11px;right:16px;background:var(--blue);color:#fff;font-size:12px;font-weight:700;padding:2px 10px;border-radius:3px}
+.why{font-size:14.5px;color:var(--ink-2);margin:14px 0 0}
+.why b{color:var(--ink)}
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.steps div{counter-increment:s;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 18px;font-size:14.5px;color:var(--ink-2)}
+.steps div::before{content:counter(s);display:block;font-size:22px;font-weight:700;color:var(--accent);margin-bottom:4px}
+.links{font-size:13px;color:var(--muted);margin-top:40px} a{color:var(--accent)}
+
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+th,td{vertical-align:top}
+td.nb,th.nb{white-space:nowrap}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em;background:var(--gray-soft);padding:0 4px;border-radius:3px;overflow-wrap:anywhere}
+.ask{margin-top:14px;border-left:4px solid var(--blue)}
+.list{margin:0;padding-left:20px;color:var(--ink-2);font-size:14.5px}
+.list li{margin:6px 0}
+.list li b{color:var(--ink)}
+.bad{color:var(--red);font-weight:600}
+.gate{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.gate .card .d{font-size:13px;color:var(--muted);font-weight:600;margin-bottom:4px}
+.gate .card .h{font-size:15.5px;font-weight:700}
+.note{font-size:14.5px;color:var(--ink-2);margin:12px 0}
+.note b{color:var(--ink)}
+@media (max-width:760px){.wrap{padding:28px 16px 64px}.g3,.g2,.gate{grid-template-columns:1fr}h1{font-size:23px}}
+</style></head><body><div class="wrap">
+
+<p class="meta">2026-11-04</p>
+<h1>环境打通的试用包备好了，可以试；分类引擎写好了但没用真模型跑过，现在一条都不会自动发出</h1>
+<p class="sub">试用包只验证 Windows 电脑能装、能弹提醒、能粘贴、能写日志，不碰企业微信和二讲账号。</p>
+
+<h2>你要做 4 件事，合计约 50 分钟，每件卡住后面一段</h2>
+<div class="tw"><table>
+<tr><th>要做什么</th><th class="nb">约几分钟</th><th>不做会卡住什么</th></tr>
+<tr><td>在 Windows 测试机上照下面步骤跑试用包。计划里写 10 分钟，多的是装 Python 和打包</td><td>20</td><td>测模拟操作开不了</td></tr>
+<tr><td>注册 DeepSeek 账号，把 <code>代码/本机配置.示例.ini</code> 复制成 <code>本机配置.ini</code> 填上密钥，再明确说「通过」。Claude 不注册、不经手密钥</td><td>5</td><td>真模型跑不了：把握度阈值定不了，零误发判不了</td></tr>
+<tr><td>另注册一个测试企业，在里面建测试账号（不放在机构的企业下），再备一个当「测试家长」的个人微信</td><td>约 20（推断，没实测）</td><td>测模拟操作开不了</td></tr>
+<tr><td>把素材（FAQ、话术、课表）放进 <code>/Users/decheng.huang/claude/企业微信自动回复/素材/</code>，顺带说一下二讲每天大约多少条消息</td><td>约 5（推断，只算放文件）</td><td>回复内容开不了</td></tr>
+</table></div>
+
+<div class="card ask">
+<p class="q">说「通过」才跑：把编的测试句发到 DeepSeek，一轮约 2.6 元</p>
+<ul class="list">
+<li><b>发什么</b>：合成集 506 条（用来调规则）、留出集 442 条（写的人没看过词表，只用来检验），共 948 条，都是编的句子，没有真实家长消息。</li>
+<li><b>次数</b>：定阈值 506 次（合成集每句一次，多试几档不加）；检验时词表先拦下的不问，留出集 235 次、合成集 197 次；共 938 次。</li>
+<li><b>费用</b>：938 ×（1,000 输入 token × 2 元／百万＋100 输出 token × 8 元／百万）＝938 × 0.0028 ≈ 2.6 元。</li>
+<li><b>口径</b>：单价取 DeepSeek 官方价格页 11/03 的高峰价、全未命中缓存。token 数是估算，顶满程序上限约 4.9 元。要不要先充值，未查实。</li>
+</ul>
+</div>
+
+<h2>规则层在留出集上只拦下七成转二讲消息，其余要靠没跑过的模型层</h2>
+<p class="note">规则层按词表先拦，模型层让 DeepSeek 判剩下的。两份都是编的句子，真实家长消息上没测过。</p>
+<div class="tw"><table>
+<tr><th>只开规则层</th><th><a href="代码/报告/规则层统计_合成.txt">合成集 506 条</a></th><th><a href="代码/报告/规则层统计_留出.txt">留出集 442 条</a></th></tr>
+<tr><td>一个人核标注，改了几条</td><td>2</td><td>4</td></tr>
+<tr><td>拦下转二讲 5 类</td><td>290/290，不能当真，词表就是照它写的</td><td class="bad">170/240（71%），这是真实水平</td></tr>
+<tr><td>拦下「都不是／拿不准」</td><td>13/65</td><td>14/76</td></tr>
+<tr><td>普通事务句误拦</td><td>0/132</td><td>3/98</td></tr>
+</table></div>
+<ul class="list" style="margin-top:12px">
+<li>没拦下的现在全转二讲，所以留出集上误发 0/316、自动回复 0/435 条文字消息、漏答 126/126。</li>
+<li><b>「转二讲的消息零误发」现在不能算过</b>，要等真模型在留出集上跑过才能判。</li>
+<li>没拦下的 70/240 句转二讲消息和 62/76 句「都不是／拿不准」要靠模型层兜住，兜不兜得住不知道。</li>
+</ul>
+
+<h2>试用约 20 分钟；步骤没在 Windows 上跑过，第一次可能有出入，哪步不对截图发回来</h2>
+<p class="note"><b>试用包</b>：<code>/Users/decheng.huang/claude/企业微信自动回复/代码/packaging/输出/自动回复源码.zip</code><br><b>电脑</b>：Windows 10（1809 或更新）或 11，64 位；普通账号；能上网。</p>
+<div class="tw"><table>
+<tr><th class=nb>#</th><th>做什么</th><th>应该看到</th><th class=nb>约几分钟</th></tr>
+<tr><td class=nb>1</td><td>把 <code>自动回复源码.zip</code> 传到 Windows 电脑，右键「全部解压缩」到桌面</td><td>桌面有 <code>自动回复源码</code> 文件夹，里面有 <code>autoreply</code>、<code>packaging</code>，文件名是正常中文</td><td class=nb>1</td></tr>
+<tr><td class=nb>2</td><td>打开 python.org/downloads/windows，下载 Python 3.13 的 Windows installer (64-bit)，双击。第一屏勾选 <b>Add python.exe to PATH</b>，取消勾选 <b>Use admin privileges</b>，点 <b>Install Now</b></td><td>最后一屏写 Setup was successful</td><td class=nb>3</td></tr>
+<tr><td class=nb>3</td><td>双击 <code>packaging</code> 里的 <code>打包.bat</code>，等它跑完</td><td>黑窗依次出现 [1/4] 到 [4/4]，最后写「打包完成」，并自动打开一个文件夹</td><td class=nb>7</td></tr>
+<tr><td class=nb>4</td><td>在打开的文件夹里双击 <code>安装.bat</code></td><td>写「安装完成」，桌面多 3 个图标：自动回复测试窗口、自动回复自检、自动回复收集日志</td><td class=nb>1</td></tr>
+<tr><td class=nb>5</td><td>双击桌面的「自动回复自检」</td><td>黑窗写 <b>打包 通过／日志 通过</b></td><td class=nb>1</td></tr>
+<tr><td class=nb>6</td><td>双击桌面的「自动回复测试窗口」，点「测试提醒」按钮</td><td>屏幕右下角出现标题为 <b>测试提醒</b> 的弹窗。趁它还在，按 Win+PrtScn 截整屏，图自动存到「图片\屏幕截图」文件夹；没赶上就再点一次按钮</td><td class=nb>1</td></tr>
+<tr><td class=nb>7</td><td>用记事本打开 <code>packaging</code> 里的 <code>测试文字.txt</code>，把三段文字依次选中、复制，每复制一段就回到测试窗口按 Ctrl+V 或点「粘贴」按钮</td><td>窗口依次显示 <b>已收到 9 字</b>、<b>已收到 17 字</b>、<b>已收到 26 字</b>（空格和换行不算字）</td><td class=nb>2</td></tr>
+<tr><td class=nb>8</td><td>关掉测试窗口，双击桌面的「自动回复收集日志」</td><td>黑窗写「已生成」，桌面多一个 <code>自动回复日志_日期_时间.zip</code></td><td class=nb>1</td></tr>
+<tr><td class=nb>9</td><td>把这个 zip 和第 6 步的截图，用你平时传文件的方式放到 Mac 的 <code>/Users/decheng.huang/claude/企业微信自动回复/日志回传/</code>（没有这个文件夹就新建一个），然后在主对话说一句「日志传好了」</td><td>Claude 核对日志后回你结果，通过的标志是「自检记录 2/2」、1 行 toast shown、3 次粘贴的字数和第 7 步一致</td><td class=nb>2</td></tr>
+</table></div>
+<p class="note">第 5～7 步看到的都对、第 9 步核对通过，这一步就算过了。</p>
+<p class="q" style="margin-top:22px">万一</p>
+<div class="tw"><table>
+<tr><th>看到什么</th><th>怎么办</th></tr>
+<tr><td>双击 bat 时蓝框写「Windows 已保护你的电脑」</td><td>点「更多信息」→「仍要运行」。这是因为文件是传过来的</td></tr>
+<tr><td>杀毒软件（360、火绒、Defender）拦截或删除 <code>autoreply.exe</code></td><td>选「允许」或「信任」。这个程序是刚在本机打包的，没有数字签名，常被误报</td></tr>
+<tr><td>第 3 步写「没找到 Python」</td><td>第 2 步的 Add python.exe to PATH 没勾上。重新运行安装包，选 Modify 补上，或卸载重装后再双击 <code>打包.bat</code></td></tr>
+<tr><td>第 3 步写下载失败</td><td>这台电脑上不了外网，截图发回来</td></tr>
+<tr><td>第 6 步窗口写「提醒已发出」，但屏幕上没看到</td><td>多半开了勿扰。在 Windows 设置的通知里关掉「专注助手」或「请勿打扰」，再点一次</td></tr>
+<tr><td>第 6 步窗口写「提醒没弹出来」</td><td>直接做第 8、9 步，原因在日志里</td></tr>
+<tr><td>第 1 步解压后文件名是乱码</td><td>截图发回来，先不用往下做</td></tr>
+</table></div>
+
+<h2>Windows 环境过了才测模拟操作，真模型跑完才判零误发，素材到了才做回复内容</h2>
+<p class="note">测试只用测试账号和编的消息。二讲正式账号和真实家长要等机构书面同意加你明确同意，你说的「问了 可以」不算这两道。</p>
+
+<h2>已替你定 4 件，可推翻</h2>
+<ul class="list">
+<li>零误发以留出集为准，把「都不是／拿不准」判成自动也算误发。</li>
+<li>问回放判成上课时间这种判错自动类，选阈值时也必须为 0。</li>
+<li>文字带图片或链接一律转二讲。</li>
+<li>代码按 Python 3.9 和 3.11 都能跑来写，目前只在 3.9 上跑过；试用第 2 步装的 3.13 也没跑过。</li>
+</ul>
+
+<h2>还有 4 件没做成：3 件等上面的前提，计划汇报不再返工</h2>
+<ul class="list">
+<li>计划汇报第 4 版没过质量检查，已定不再返工（可推翻）。</li>
+<li>真模型没跑，阈值没定。</li>
+<li>模拟操作还没开始测。</li>
+<li>回复内容等素材。</li>
+</ul>
+
+</div></body></html>

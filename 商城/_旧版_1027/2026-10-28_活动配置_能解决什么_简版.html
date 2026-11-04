@@ -1,0 +1,83 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>活动配置能解决什么</title>
+<style>
+:root{--ground:#f4f3f0;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e3e1dc;--accent:#9a6f24;--red:#a8382b;--red-soft:#f7e7e3;--blue:#1f63a8;--green:#2f6b52;--green-soft:#e3efe8;--amber:#8a5a00;--amber-soft:#f6ecd6;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--green:#7dbb9c;--green-soft:#1c3128;--amber:#e0b866;--amber-soft:#33291a;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--green:#7dbb9c;--green-soft:#1c3128;--amber:#e0b866;--amber-soft:#33291a;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.75}
+.wrap{max-width:940px;margin:0 auto;padding:60px 28px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 14px}
+h1{font-family:var(--serif);font-size:26px;line-height:1.5;margin:0}
+.map{display:grid;grid-template-columns:118px 1fr 1fr;gap:10px;margin-top:40px}
+.colh{font-size:14px;font-weight:700;color:var(--accent);padding:0 4px}
+.rowh{font-family:var(--serif);font-size:17px;font-weight:700;display:flex;align-items:center;justify-content:center;text-align:center;border-radius:10px;line-height:1.4;padding:0 6px}
+.rowh.p{color:var(--red)} .rowh.c{color:var(--blue)}
+.rowh.yes{background:var(--green-soft);color:var(--green)} .rowh.mid{background:var(--amber-soft);color:var(--amber)} .rowh.no{background:var(--red-soft);color:var(--red)}
+.cell{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 18px}
+.cell .h{font-size:15.5px;font-weight:700;line-height:1.55}
+.cell p{margin:5px 0 0;font-size:14px;color:var(--ink-2);line-height:1.7}
+.cell ul{margin:6px 0 0;padding-left:18px;font-size:14px;color:var(--ink-2);line-height:1.7}
+.cell li{margin:2px 0}
+.cell b.n{color:var(--ink)}
+.gap{grid-column:1 / -1;height:10px}
+.mlab{display:none}
+h2{font-family:var(--serif);font-size:20px;margin:52px 0 14px}
+.concl{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:18px 24px}
+.bar{display:flex;gap:3px;margin:4px 0 8px;height:34px;border-radius:6px;overflow:hidden}
+.bar div{display:flex;align-items:center;justify-content:center;font-size:13.5px;font-weight:700;white-space:nowrap}
+.bar .y{flex:12;background:var(--green-soft);color:var(--green)}
+.bar .m{flex:22;background:var(--amber-soft);color:var(--amber)}
+.bar .x{flex:18;background:var(--red-soft);color:var(--red)}
+.concl .cap{font-size:13px;color:var(--muted);margin:0 0 14px}
+.concl .row{padding:12px 0;border-top:1px solid var(--line);font-size:15px;color:var(--ink-2)}
+.concl .row b{color:var(--ink)}
+.foot{margin-top:44px;font-size:13px;color:var(--muted)}
+a{color:var(--accent)}
+@media (max-width:700px){.wrap{padding:32px 16px 64px}h1{font-size:22px}
+.map{grid-template-columns:1fr}.colh{display:none}.rowh{justify-content:flex-start;padding:6px 10px;margin-top:12px}.gap{display:none}
+.mlab{display:block;font-size:12.5px;font-weight:700;color:var(--accent);margin-bottom:2px}
+.bar{flex-direction:column;height:auto}.bar div{padding:6px 0;font-size:13px}}
+</style></head><body><div class="wrap">
+
+<p class="meta">活动配置项目（需求名「入口调整」）· 本期能解决什么、解决不了什么 · 2026-10-28</p>
+<h1>本期能解决礼包、日常储值活动和三个入口的分工；节庆最多解决一部分，跨活动的改动解决不了</h1>
+
+<div class="map">
+  <div></div><div class="colh">① 活动上线</div><div class="colh">② 大厅入口</div>
+
+  <div class="rowh p">问题</div>
+  <div class="cell"><span class="mlab">① 活动上线</span><div class="h">上活动要靠开发，同样的内容反复做</div><p>过去一年 148 个储值、商城类开发需求里，<b class="n">52 个是重复开发</b>：节庆 22、礼包 12、一个改动在各活动各改一遍 18。</p></div>
+  <div class="cell"><span class="mlab">② 大厅入口</span><div class="h">好康、限时活动、公告用途重叠</div><p>同一个活动最多挂在 7 处，每处分别配置；新活动要研发加进入口选项才挂得上。</p></div>
+
+  <div class="rowh c">原因</div>
+  <div class="cell"><span class="mlab">① 活动上线</span><div class="h">没有通用模板，每个活动单独做</div><p>扭蛋机、抽奖大厅等各有一套后台；超值礼包每个包单独做一页；新增至尊卡要每个活动各改一遍。</p></div>
+  <div class="cell"><span class="mlab">② 大厅入口</span><div class="h">没定清楚各管什么，三个入口三套后台</div><p>产品自己的评估：好康原本要承载活动和功能，「淪為活動展示」。</p></div>
+
+  <div class="gap"></div>
+
+  <div class="rowh yes">能解决</div>
+  <div class="cell"><span class="mlab">① 活动上线</span><div class="h">礼包和日常储值活动不用再开发</div><p>礼包、累计储值送奖励、单笔满额加赠、限时加赠做成模板，运营配好、审核后就上线。礼包类重复开发最多减少 12 个。</p></div>
+  <div class="cell"><span class="mlab">② 大厅入口</span><div class="h">三个入口分清用途；新配的活动自动进入口</div><p>银行管花钱，限时活动管免费活动，公告只放消息。用新后台配的活动自动出现在对应入口，不用再找研发加选项。</p></div>
+
+  <div class="rowh mid">看研发时间</div>
+  <div class="cell"><span class="mlab">① 活动上线</span><div class="h">节庆的一部分</div><p>节庆活动汇总页、抽奖排在「有时间才做」。做了能替掉节庆里的活动大页和一部分抽奖开发。</p></div>
+  <div class="cell"><span class="mlab">② 大厅入口</span><div class="h">现有玩法接进新入口；Banner、公告自动生成</div><p>做不了的话，扭蛋机、红包夺宝等现有活动仍在旧后台挂入口；Banner、公告仍要各配一次。</p></div>
+
+  <div class="rowh no">解决不了</div>
+  <div class="cell"><span class="mlab">① 活动上线</span><div class="h">这些仍要开发</div><ul><li>一个改动在各活动各改一遍（18 个）：各玩法自己的后台，本项目不改</li><li>节庆的人数活动、大厅换装：不在本项目里</li><li>全新玩法、抽奖出新规则：模板只能复用已有玩法</li></ul></div>
+  <div class="cell"><span class="mlab">② 大厅入口</span><div class="h">弹窗、推播仍要另配</div><p>它们归推送后台管，投放规则仍由运营在推送后台单独配置。</p></div>
+</div>
+
+<h2>结论</h2>
+<div class="concl">
+  <div class="bar"><div class="y">能解决 ≤12</div><div class="m">节庆 22 · 看研发时间</div><div class="x">解决不了 18</div></div>
+  <p class="cap">过去一年 52 个重复开发，按本期能不能解决分</p>
+  <div class="row"><b>能解决的</b>：礼包和日常储值活动不用再开发，三个入口用途分清。</div>
+  <div class="row"><b>解决不了的</b>：跨活动的改动、全新玩法仍要开发；节庆最多解决一部分。</div>
+  <div class="row"><b>需要你</b>：找研发评估工作量。它决定「看研发时间」那两项能不能做进本期。</div>
+</div>
+
+<p class="foot">依据明细：<a href="2026-10-27_活动配置工具_现状盘点.html">现状盘点</a>　<a href="资料/方案设计稿.md">方案设计稿</a></p>
+
+</div></body></html>

@@ -1,0 +1,1 @@
+- [Session scope: mind-map tool only](session-scope-mindmap-tool.md) — out-of-scope suggestions go to the matching session

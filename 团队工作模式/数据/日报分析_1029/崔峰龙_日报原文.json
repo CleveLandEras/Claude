@@ -1,0 +1,372 @@
+[
+ {
+  "key": "RICH-9140",
+  "summary": "每日報表信件-贈點相關",
+  "created": "2025-07-17",
+  "status": "待办",
+  "sp": null,
+  "timespent": null,
+  "parent": null,
+  "desc": "[https://docs.google.com/spreadsheets/d/1hgg0J9tcOIunw6LVnLC1E3CoOEPEd0OXUcCuJc0CbiI/edit?gid=697011220#gid=697011220](https://docs.google.com/spreadsheets/d/1hgg0J9tcOIunw6LVnLC1E3CoOEPEd0OXUcCuJc0CbiI/edit?gid=697011220#gid=697011220)"
+ },
+ {
+  "key": "RICH-24125",
+  "summary": "9月3日 - 日报",
+  "created": "2026-09-03",
+  "status": "已完成",
+  "sp": 1,
+  "timespent": null,
+  "parent": "9月份产品部相关事项",
+  "desc": "1. 发财树成本拟算 - 4小时\n2. 会议 - 3小时\n3. 泰国人力及规划排成 - 2小時\n\n"
+ },
+ {
+  "key": "RICH-24174",
+  "summary": "9月4日 - 日報",
+  "created": "2026-09-04",
+  "status": "已完成",
+  "sp": 1,
+  "timespent": null,
+  "parent": "9月份产品部相关事项",
+  "desc": "1. 泰国人力及规划排成 - 2小時\n\n    1. 金流部分暫未計算 \n    2. 工作主要優先級\n    3. 泰國產品力 - 玩法 / 功能 調整\n    \n2. 版本排期問題及臨時需求整理 - 2小時\n3. Nina 臨時數據需求人力協調及版本排程調整 - 2小時\n4. 新人sop - 2小時\n5. 短中期規劃整理 - 2小時\n\n"
+ },
+ {
+  "key": "RICH-24335",
+  "summary": "9月7日-日報-fury",
+  "created": "2026-09-07",
+  "status": "已完成",
+  "sp": 1,
+  "timespent": null,
+  "parent": "9月份产品部相关事项",
+  "desc": "1. 版本排程 - 6小時\n2. 泰國 - 翻譯內容同步 / 金流相關確認 - 0.5小時\n3. 泰國 - 市場研究分析 25% - 2小時  \n\n"
+ },
+ {
+  "key": "RICH-24365",
+  "summary": "9月8日-日報-fury",
+  "created": "2026-09-08",
+  "status": "已完成",
+  "sp": 1,
+  "timespent": null,
+  "parent": "9月份产品部相关事项",
+  "desc": "版本排程調整：2小時  \n週前會：2小時  \n魚機boss會議：1小時  \n泰國進度整理：3小時  \n"
+ },
+ {
+  "key": "RICH-24420",
+  "summary": "9月9日-日報- fury",
+  "created": "2026-09-09",
+  "status": "已完成",
+  "sp": 1,
+  "timespent": null,
+  "parent": "9月份产品部相关事项",
+  "desc": "1. 周會\n2. 9月、10月排期調整\n\n"
+ },
+ {
+  "key": "RICH-24536",
+  "summary": "9月10日 - 日报 -fury",
+  "created": "2026-09-14",
+  "status": "已完成",
+  "sp": 1,
+  "timespent": null,
+  "parent": "9月份产品部相关事项",
+  "desc": "版本任务调整"
+ },
+ {
+  "key": "RICH-24537",
+  "summary": "9月11日 - 日报 - fury",
+  "created": "2026-09-14",
+  "status": "已完成",
+  "sp": 1,
+  "timespent": null,
+  "parent": "9月份产品部相关事项",
+  "desc": "1. 版本任务排期\n2. 线上问题跟进\n3. 泰国提审问题跟进\n\n"
+ },
+ {
+  "key": "RICH-24538",
+  "summary": "9月14日 - 日报 - fury",
+  "created": "2026-09-14",
+  "status": "已完成",
+  "sp": 1,
+  "timespent": null,
+  "parent": "9月份产品部相关事项",
+  "desc": "1. 10月15日/22日版本排期\n2. 泰国金流接入跟进\n3. 泰国竟品参考\n\n"
+ },
+ {
+  "key": "RICH-24629",
+  "summary": "9月15日 - 日报 - fury",
+  "created": "2026-09-15",
+  "status": "已完成",
+  "sp": 1,
+  "timespent": null,
+  "parent": "9月份产品部相关事项",
+  "desc": "1. 周会内容整理\n2. 泰国金流接入沟通\n\n"
+ },
+ {
+  "key": "RICH-24710",
+  "summary": "9月16日 - 日报 - fury",
+  "created": "2026-09-17",
+  "status": "已完成",
+  "sp": 1,
+  "timespent": null,
+  "parent": "9月份产品部相关事项",
+  "desc": "1. 提案内容准备\n2. H5 性能验证  \n\n"
+ },
+ {
+  "key": "RICH-24711",
+  "summary": "9月17日 - 日报 - fury",
+  "created": "2026-09-17",
+  "status": "已完成",
+  "sp": 1,
+  "timespent": null,
+  "parent": "9月份产品部相关事项",
+  "desc": "1. 周会\n2. 项目会\n3. 泰国专案沟通\n\n"
+ },
+ {
+  "key": "RICH-24721",
+  "summary": "9月18日 - 日报 - fury",
+  "created": "2026-09-18",
+  "status": "已完成",
+  "sp": 1,
+  "timespent": null,
+  "parent": "9月份产品部相关事项",
+  "desc": ""
+ },
+ {
+  "key": "RICH-24809",
+  "summary": "9月20日 - 日报 - fury",
+  "created": "2026-09-21",
+  "status": "已完成",
+  "sp": 1,
+  "timespent": null,
+  "parent": "9月份产品部相关事项",
+  "desc": "1. 泰国市场分析整理\n2. 10月版本内容调整\n\n"
+ },
+ {
+  "key": "RICH-24811",
+  "summary": "9月21日 - 日报 - fury",
+  "created": "2026-09-21",
+  "status": "已完成",
+  "sp": 1,
+  "timespent": null,
+  "parent": "9月份产品部相关事项",
+  "desc": "1. 泰国市场情况整理\n2. 内容同步\n\n"
+ },
+ {
+  "key": "RICH-24837",
+  "summary": "9月22日 - 日报 - fury",
+  "created": "2026-09-22",
+  "status": "已完成",
+  "sp": 1,
+  "timespent": null,
+  "parent": "9月份产品部相关事项",
+  "desc": "1. 泰国合作mou确认\n2. 泰国市场 主流产品金币比例整理\n\n"
+ },
+ {
+  "key": "RICH-24934",
+  "summary": "9月23日 - 日报 - fury",
+  "created": "2026-09-23",
+  "status": "已完成",
+  "sp": 1,
+  "timespent": null,
+  "parent": "9月份产品部相关事项",
+  "desc": "1. 版本排程同步\n2. 版本排程\n3. 泰国专案跟进\n\n"
+ },
+ {
+  "key": "RICH-24965",
+  "summary": "9月24日 - 日報 - fury",
+  "created": "2026-09-24",
+  "status": "已完成",
+  "sp": 1,
+  "timespent": null,
+  "parent": "9月份产品部相关事项",
+  "desc": "1. 周會\n2. 泰國專案 上線時間及計劃整理\n\n"
+ },
+ {
+  "key": "RICH-24991",
+  "summary": "9月28日 - 日报 - fury",
+  "created": "2026-09-28",
+  "status": "已完成",
+  "sp": 1,
+  "timespent": null,
+  "parent": "9月份产品部相关事项",
+  "desc": "1. 泰国版本规划\n2. 老子版本规划\n3. royalgame vip等级内容整理\n4. \n\n"
+ },
+ {
+  "key": "RICH-25012",
+  "summary": "9月29日 - 日报 - fury",
+  "created": "2026-09-30",
+  "status": "已完成",
+  "sp": 1,
+  "timespent": null,
+  "parent": "9月份产品部相关事项",
+  "desc": "1. 周会内容准备\n2. 泰国金流串接问题沟通\n3. 泰国vip体系确认及内容整理\n\n"
+ },
+ {
+  "key": "RICH-25013",
+  "summary": "9月30日-日报 - fury",
+  "created": "2026-09-30",
+  "status": "已完成",
+  "sp": 1,
+  "timespent": null,
+  "parent": "9月份产品部相关事项",
+  "desc": "1. 泰国vip方案初版\n\n"
+ },
+ {
+  "key": "RICH-25053",
+  "summary": "10月8日 - 日報 -fury",
+  "created": "2026-10-08",
+  "status": "已完成",
+  "sp": 1,
+  "timespent": null,
+  "parent": "崔峰龙--十月管理任务内容集合",
+  "desc": "1. 泰國vip調整\n2. 11月5日版本內容調整‘\n3. 假期遺留問題處理\n4. hotfix\n\n"
+ },
+ {
+  "key": "RICH-25179",
+  "summary": "10月9日-日報-fury",
+  "created": "2026-10-10",
+  "status": "已完成",
+  "sp": 1,
+  "timespent": null,
+  "parent": "崔峰龙--十月管理任务内容集合",
+  "desc": "泰國 \n\n1. vip調整方案\n2. 銀行價格錨定\n\n"
+ },
+ {
+  "key": "RICH-25180",
+  "summary": "10月10日-日報-fury",
+  "created": "2026-10-10",
+  "status": "已完成",
+  "sp": 1,
+  "timespent": null,
+  "parent": "崔峰龙--十月管理任务内容集合",
+  "desc": "QBR Q3報告整理 - 30%"
+ },
+ {
+  "key": "RICH-25252",
+  "summary": "10月12日-日報-fury",
+  "created": "2026-10-13",
+  "status": "已完成",
+  "sp": 1,
+  "timespent": null,
+  "parent": "崔峰龙--十月管理任务内容集合",
+  "desc": "1. 泰国同步会内容准备\n2. 泰国同步会\n3. 老子QBR内容准备\n\n"
+ },
+ {
+  "key": "RICH-25253",
+  "summary": "10月13日-日報-fury",
+  "created": "2026-10-13",
+  "status": "已完成",
+  "sp": 1,
+  "timespent": null,
+  "parent": "崔峰龙--十月管理任务内容集合",
+  "desc": "1. 版本内容调整\n2. 泰国项目进度会\n3. 泰国online环境跟进\n\n"
+ },
+ {
+  "key": "RICH-25371",
+  "summary": "10月14日-日報-fury",
+  "created": "2026-10-15",
+  "status": "已完成",
+  "sp": 1,
+  "timespent": null,
+  "parent": "崔峰龙--十月管理任务内容集合",
+  "desc": "泰國專案：  \n1\\. 日常問題溝通及解決  \n2\\. 泰國金流設定整理"
+ },
+ {
+  "key": "RICH-25372",
+  "summary": "10月15日-日報-fury",
+  "created": "2026-10-15",
+  "status": "已完成",
+  "sp": 1,
+  "timespent": null,
+  "parent": "崔峰龙--十月管理任务内容集合",
+  "desc": "1. 泰國專案日常溝通\n2. 老子線上bug排程處理\n3. 泰國專案 - 金流設定整理\n4. 泰國專案 - 1階段導量計劃制定\n\n"
+ },
+ {
+  "key": "RICH-25558",
+  "summary": "10月16日-日報",
+  "created": "2026-10-20",
+  "status": "已完成",
+  "sp": 1,
+  "timespent": null,
+  "parent": "崔峰龙--十月管理任务内容集合",
+  "desc": "泰國進度跟進"
+ },
+ {
+  "key": "RICH-25559",
+  "summary": "10月19日-日報",
+  "created": "2026-10-20",
+  "status": "已完成",
+  "sp": 1,
+  "timespent": null,
+  "parent": "崔峰龙--十月管理任务内容集合",
+  "desc": "1. 老子版本排期\n2. 泰國常規會議準備\n3. 泰國營運方案確認\n\n"
+ },
+ {
+  "key": "RICH-25560",
+  "summary": "10月20日-日報",
+  "created": "2026-10-20",
+  "status": "已完成",
+  "sp": 1,
+  "timespent": null,
+  "parent": "崔峰龙--十月管理任务内容集合",
+  "desc": "1. 老子版本調整\n2. 泰國方常規溝通\n3. 泰國 銀行禮包設計討論\n\n"
+ },
+ {
+  "key": "RICH-25743",
+  "summary": "10月21日-日報",
+  "created": "2026-10-23",
+  "status": "已完成",
+  "sp": 1,
+  "timespent": null,
+  "parent": "崔峰龙--十月管理任务内容集合",
+  "desc": "泰國項目問題溝通"
+ },
+ {
+  "key": "RICH-25744",
+  "summary": "10月22日-日報",
+  "created": "2026-10-23",
+  "status": "已完成",
+  "sp": 1,
+  "timespent": null,
+  "parent": "崔峰龙--十月管理任务内容集合",
+  "desc": "泰國項目：新方案相關內容整理 - 產品流程、內容、問題\n\nQBRppt整理"
+ },
+ {
+  "key": "RICH-25745",
+  "summary": "10月23日-日報",
+  "created": "2026-10-23",
+  "status": "已完成",
+  "sp": 1,
+  "timespent": null,
+  "parent": "崔峰龙--十月管理任务内容集合",
+  "desc": "泰國項目：新方案相關內容整理 - 產品流程、內容、問題\n\nQBRppt整理"
+ },
+ {
+  "key": "RICH-25874",
+  "summary": "10月26日-日報",
+  "created": "2026-10-28",
+  "status": "已完成",
+  "sp": 1,
+  "timespent": null,
+  "parent": "崔峰龙--十月管理任务内容集合",
+  "desc": "泰國方會議準備  \n泰國專案方向整理及推進\n\nQBR報告準備"
+ },
+ {
+  "key": "RICH-25875",
+  "summary": "10月27日-日報",
+  "created": "2026-10-28",
+  "status": "已完成",
+  "sp": 1,
+  "timespent": null,
+  "parent": "崔峰龙--十月管理任务内容集合",
+  "desc": "QBR會議  \n泰國專案調整跟進"
+ },
+ {
+  "key": "RICH-25876",
+  "summary": "10月28日-日報",
+  "created": "2026-10-28",
+  "status": "待办",
+  "sp": 1,
+  "timespent": null,
+  "parent": "崔峰龙--十月管理任务内容集合",
+  "desc": "泰國專案跟進\n\n插入需求協調"
+ }
+]

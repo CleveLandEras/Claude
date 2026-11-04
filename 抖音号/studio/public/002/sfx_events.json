@@ -1,0 +1,7752 @@
+[
+ {
+  "t": 0.4,
+  "frame": 12,
+  "name": "嗖",
+  "beat": "S01",
+  "key": true,
+  "label": "抢（他→你）",
+  "visual_frame": 15.0
+ },
+ {
+  "t": 0.5,
+  "frame": 15,
+  "name": "噗",
+  "beat": "S01",
+  "key": true,
+  "label": "光点被拿走（叠敲击）",
+  "visual_frame": 15.0
+ },
+ {
+  "t": 0.867,
+  "frame": 26,
+  "name": "布料",
+  "beat": "S01",
+  "key": false,
+  "label": "布料",
+  "visual_frame": 26.0
+ },
+ {
+  "t": 1.6,
+  "frame": 48,
+  "name": "叮",
+  "beat": "S02",
+  "key": false,
+  "label": "白点（我）",
+  "visual_frame": 48.0
+ },
+ {
+  "t": 1.6,
+  "frame": 48,
+  "name": "嗖",
+  "beat": "S02",
+  "key": false,
+  "label": "拉远",
+  "visual_frame": 48.0
+ },
+ {
+  "t": 1.64,
+  "frame": 49,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 49.2
+ },
+ {
+  "t": 1.691,
+  "frame": 51,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 50.72
+ },
+ {
+  "t": 1.741,
+  "frame": 52,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 52.23
+ },
+ {
+  "t": 1.75,
+  "frame": 52,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 52.49
+ },
+ {
+  "t": 1.76,
+  "frame": 53,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 52.79
+ },
+ {
+  "t": 1.799,
+  "frame": 54,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 53.96
+ },
+ {
+  "t": 1.813,
+  "frame": 54,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 54.39
+ },
+ {
+  "t": 1.825,
+  "frame": 55,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 54.75
+ },
+ {
+  "t": 1.825,
+  "frame": 55,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 54.75
+ },
+ {
+  "t": 1.851,
+  "frame": 56,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 55.53
+ },
+ {
+  "t": 1.908,
+  "frame": 57,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 57.24
+ },
+ {
+  "t": 1.913,
+  "frame": 57,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 57.38
+ },
+ {
+  "t": 1.927,
+  "frame": 58,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 57.8
+ },
+ {
+  "t": 1.935,
+  "frame": 58,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 58.04
+ },
+ {
+  "t": 1.945,
+  "frame": 58,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 58.35
+ },
+ {
+  "t": 1.946,
+  "frame": 58,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 58.37
+ },
+ {
+  "t": 1.955,
+  "frame": 59,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 58.64
+ },
+ {
+  "t": 1.967,
+  "frame": 59,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 59.0
+ },
+ {
+  "t": 1.993,
+  "frame": 60,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 59.8
+ },
+ {
+  "t": 1.996,
+  "frame": 60,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 59.87
+ },
+ {
+  "t": 2.0,
+  "frame": 60,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 60.01
+ },
+ {
+  "t": 2.011,
+  "frame": 60,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 60.32
+ },
+ {
+  "t": 2.023,
+  "frame": 61,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 60.7
+ },
+ {
+  "t": 2.024,
+  "frame": 61,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 60.71
+ },
+ {
+  "t": 2.025,
+  "frame": 61,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 60.76
+ },
+ {
+  "t": 2.026,
+  "frame": 61,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 60.79
+ },
+ {
+  "t": 2.038,
+  "frame": 61,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 61.13
+ },
+ {
+  "t": 2.041,
+  "frame": 61,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 61.22
+ },
+ {
+  "t": 2.061,
+  "frame": 62,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 61.82
+ },
+ {
+  "t": 2.061,
+  "frame": 62,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 61.84
+ },
+ {
+  "t": 2.071,
+  "frame": 62,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 62.12
+ },
+ {
+  "t": 2.073,
+  "frame": 62,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 62.19
+ },
+ {
+  "t": 2.096,
+  "frame": 63,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 62.88
+ },
+ {
+  "t": 2.115,
+  "frame": 63,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 63.45
+ },
+ {
+  "t": 2.12,
+  "frame": 64,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 63.6
+ },
+ {
+  "t": 2.153,
+  "frame": 65,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 64.58
+ },
+ {
+  "t": 2.16,
+  "frame": 65,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 64.81
+ },
+ {
+  "t": 2.193,
+  "frame": 66,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 65.79
+ },
+ {
+  "t": 2.196,
+  "frame": 66,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 65.89
+ },
+ {
+  "t": 2.199,
+  "frame": 66,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 65.97
+ },
+ {
+  "t": 2.223,
+  "frame": 67,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 66.68
+ },
+ {
+  "t": 2.249,
+  "frame": 67,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 67.46
+ },
+ {
+  "t": 2.25,
+  "frame": 67,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 67.49
+ },
+ {
+  "t": 2.251,
+  "frame": 68,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 67.52
+ },
+ {
+  "t": 2.259,
+  "frame": 68,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 67.77
+ },
+ {
+  "t": 2.267,
+  "frame": 68,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 68.0
+ },
+ {
+  "t": 2.271,
+  "frame": 68,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 68.12
+ },
+ {
+  "t": 2.281,
+  "frame": 68,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 68.44
+ },
+ {
+  "t": 2.292,
+  "frame": 69,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 68.76
+ },
+ {
+  "t": 2.292,
+  "frame": 69,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 68.76
+ },
+ {
+  "t": 2.294,
+  "frame": 69,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 68.83
+ },
+ {
+  "t": 2.303,
+  "frame": 69,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 69.08
+ },
+ {
+  "t": 2.312,
+  "frame": 69,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 69.37
+ },
+ {
+  "t": 2.329,
+  "frame": 70,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 69.87
+ },
+ {
+  "t": 2.329,
+  "frame": 70,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 69.88
+ },
+ {
+  "t": 2.331,
+  "frame": 70,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 69.92
+ },
+ {
+  "t": 2.338,
+  "frame": 70,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 70.13
+ },
+ {
+  "t": 2.362,
+  "frame": 71,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 70.85
+ },
+ {
+  "t": 2.363,
+  "frame": 71,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 70.88
+ },
+ {
+  "t": 2.371,
+  "frame": 71,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 71.13
+ },
+ {
+  "t": 2.373,
+  "frame": 71,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 71.18
+ },
+ {
+  "t": 2.375,
+  "frame": 71,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 71.25
+ },
+ {
+  "t": 2.383,
+  "frame": 72,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 71.5
+ },
+ {
+  "t": 2.384,
+  "frame": 72,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 71.52
+ },
+ {
+  "t": 2.389,
+  "frame": 72,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 71.67
+ },
+ {
+  "t": 2.395,
+  "frame": 72,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 71.86
+ },
+ {
+  "t": 2.398,
+  "frame": 72,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 71.93
+ },
+ {
+  "t": 2.409,
+  "frame": 72,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 72.26
+ },
+ {
+  "t": 2.417,
+  "frame": 72,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 72.5
+ },
+ {
+  "t": 2.424,
+  "frame": 73,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 72.71
+ },
+ {
+  "t": 2.424,
+  "frame": 73,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 72.73
+ },
+ {
+  "t": 2.428,
+  "frame": 73,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 72.84
+ },
+ {
+  "t": 2.434,
+  "frame": 73,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 73.01
+ },
+ {
+  "t": 2.434,
+  "frame": 73,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 73.01
+ },
+ {
+  "t": 2.441,
+  "frame": 73,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 73.22
+ },
+ {
+  "t": 2.443,
+  "frame": 73,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 73.3
+ },
+ {
+  "t": 2.446,
+  "frame": 73,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 73.38
+ },
+ {
+  "t": 2.452,
+  "frame": 74,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 73.55
+ },
+ {
+  "t": 2.454,
+  "frame": 74,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 73.61
+ },
+ {
+  "t": 2.455,
+  "frame": 74,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 73.65
+ },
+ {
+  "t": 2.455,
+  "frame": 74,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 73.66
+ },
+ {
+  "t": 2.462,
+  "frame": 74,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 73.85
+ },
+ {
+  "t": 2.465,
+  "frame": 74,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 73.96
+ },
+ {
+  "t": 2.467,
+  "frame": 74,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 74.02
+ },
+ {
+  "t": 2.474,
+  "frame": 74,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 74.23
+ },
+ {
+  "t": 2.485,
+  "frame": 75,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 74.54
+ },
+ {
+  "t": 2.494,
+  "frame": 75,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 74.83
+ },
+ {
+  "t": 2.497,
+  "frame": 75,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 74.91
+ },
+ {
+  "t": 2.497,
+  "frame": 75,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 74.91
+ },
+ {
+  "t": 2.503,
+  "frame": 75,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 75.1
+ },
+ {
+  "t": 2.503,
+  "frame": 75,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 75.1
+ },
+ {
+  "t": 2.506,
+  "frame": 75,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 75.18
+ },
+ {
+  "t": 2.509,
+  "frame": 75,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 75.27
+ },
+ {
+  "t": 2.521,
+  "frame": 76,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 75.62
+ },
+ {
+  "t": 2.527,
+  "frame": 76,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 75.81
+ },
+ {
+  "t": 2.533,
+  "frame": 76,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 75.99
+ },
+ {
+  "t": 2.537,
+  "frame": 76,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 76.11
+ },
+ {
+  "t": 2.545,
+  "frame": 76,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 76.36
+ },
+ {
+  "t": 2.546,
+  "frame": 76,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 76.37
+ },
+ {
+  "t": 2.556,
+  "frame": 77,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 76.68
+ },
+ {
+  "t": 2.556,
+  "frame": 77,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 76.69
+ },
+ {
+  "t": 2.559,
+  "frame": 77,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 76.77
+ },
+ {
+  "t": 2.565,
+  "frame": 77,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 76.96
+ },
+ {
+  "t": 2.565,
+  "frame": 77,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 76.96
+ },
+ {
+  "t": 2.566,
+  "frame": 77,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 76.98
+ },
+ {
+  "t": 2.566,
+  "frame": 77,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 76.99
+ },
+ {
+  "t": 2.57,
+  "frame": 77,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 77.09
+ },
+ {
+  "t": 2.578,
+  "frame": 77,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 77.33
+ },
+ {
+  "t": 2.584,
+  "frame": 78,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 77.52
+ },
+ {
+  "t": 2.585,
+  "frame": 78,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 77.54
+ },
+ {
+  "t": 2.585,
+  "frame": 78,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 77.55
+ },
+ {
+  "t": 2.591,
+  "frame": 78,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 77.72
+ },
+ {
+  "t": 2.593,
+  "frame": 78,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 77.8
+ },
+ {
+  "t": 2.596,
+  "frame": 78,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 77.88
+ },
+ {
+  "t": 2.599,
+  "frame": 78,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 77.96
+ },
+ {
+  "t": 2.602,
+  "frame": 78,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 78.05
+ },
+ {
+  "t": 2.603,
+  "frame": 78,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 78.08
+ },
+ {
+  "t": 2.605,
+  "frame": 78,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 78.15
+ },
+ {
+  "t": 2.61,
+  "frame": 78,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 78.3
+ },
+ {
+  "t": 2.616,
+  "frame": 78,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 78.48
+ },
+ {
+  "t": 2.619,
+  "frame": 79,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 78.56
+ },
+ {
+  "t": 2.621,
+  "frame": 79,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 78.64
+ },
+ {
+  "t": 2.632,
+  "frame": 79,
+  "name": "啵",
+  "beat": "S02",
+  "key": false,
+  "label": "啵",
+  "visual_frame": 78.97
+ },
+ {
+  "t": 3.3,
+  "frame": 99,
+  "name": "白圈",
+  "beat": "S02",
+  "key": false,
+  "label": "白圈跳一下",
+  "visual_frame": 99.0
+ },
+ {
+  "t": 3.8,
+  "frame": 114,
+  "name": "叮",
+  "beat": "S03",
+  "key": false,
+  "label": "路线图：老实（淡入）",
+  "visual_frame": 114.0
+ },
+ {
+  "t": 3.85,
+  "frame": 115,
+  "name": "嗒嗒",
+  "beat": "S03",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 115.5
+ },
+ {
+  "t": 3.871,
+  "frame": 116,
+  "name": "嗒嗒",
+  "beat": "S03",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 116.13
+ },
+ {
+  "t": 3.888,
+  "frame": 117,
+  "name": "嗒嗒",
+  "beat": "S03",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 116.63
+ },
+ {
+  "t": 3.911,
+  "frame": 117,
+  "name": "嗒嗒",
+  "beat": "S03",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 117.34
+ },
+ {
+  "t": 3.938,
+  "frame": 118,
+  "name": "嗒嗒",
+  "beat": "S03",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 118.13
+ },
+ {
+  "t": 3.981,
+  "frame": 119,
+  "name": "嗒嗒",
+  "beat": "S03",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 119.42
+ },
+ {
+  "t": 3.993,
+  "frame": 120,
+  "name": "嗒嗒",
+  "beat": "S03",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 119.8
+ },
+ {
+  "t": 4.007,
+  "frame": 120,
+  "name": "嗒嗒",
+  "beat": "S03",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 120.21
+ },
+ {
+  "t": 4.012,
+  "frame": 120,
+  "name": "嗒嗒",
+  "beat": "S03",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 120.35
+ },
+ {
+  "t": 4.018,
+  "frame": 121,
+  "name": "嗒嗒",
+  "beat": "S03",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 120.55
+ },
+ {
+  "t": 4.062,
+  "frame": 122,
+  "name": "嗒嗒",
+  "beat": "S03",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 121.87
+ },
+ {
+  "t": 4.099,
+  "frame": 123,
+  "name": "嗒嗒",
+  "beat": "S03",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 122.98
+ },
+ {
+  "t": 4.104,
+  "frame": 123,
+  "name": "嗒嗒",
+  "beat": "S03",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 123.13
+ },
+ {
+  "t": 4.13,
+  "frame": 124,
+  "name": "嗒嗒",
+  "beat": "S03",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 123.9
+ },
+ {
+  "t": 4.185,
+  "frame": 126,
+  "name": "嗒嗒",
+  "beat": "S03",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 125.54
+ },
+ {
+  "t": 4.23,
+  "frame": 127,
+  "name": "嗒嗒",
+  "beat": "S03",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 126.89
+ },
+ {
+  "t": 4.231,
+  "frame": 127,
+  "name": "嗒嗒",
+  "beat": "S03",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 126.94
+ },
+ {
+  "t": 4.276,
+  "frame": 128,
+  "name": "嗒嗒",
+  "beat": "S03",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 128.28
+ },
+ {
+  "t": 4.312,
+  "frame": 129,
+  "name": "嗒嗒",
+  "beat": "S03",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 129.37
+ },
+ {
+  "t": 4.347,
+  "frame": 130,
+  "name": "嗒嗒",
+  "beat": "S03",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 130.41
+ },
+ {
+  "t": 4.367,
+  "frame": 131,
+  "name": "嗒嗒",
+  "beat": "S03",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 131.02
+ },
+ {
+  "t": 4.383,
+  "frame": 132,
+  "name": "嗒嗒",
+  "beat": "S03",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 131.5
+ },
+ {
+  "t": 4.423,
+  "frame": 133,
+  "name": "嗒嗒",
+  "beat": "S03",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 132.7
+ },
+ {
+  "t": 4.504,
+  "frame": 135,
+  "name": "嗒嗒",
+  "beat": "S03",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 135.11
+ },
+ {
+  "t": 4.521,
+  "frame": 136,
+  "name": "嗒嗒",
+  "beat": "S03",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 135.63
+ },
+ {
+  "t": 4.582,
+  "frame": 137,
+  "name": "嗒嗒",
+  "beat": "S03",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 137.47
+ },
+ {
+  "t": 4.664,
+  "frame": 140,
+  "name": "嗒嗒",
+  "beat": "S03",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 139.91
+ },
+ {
+  "t": 4.68,
+  "frame": 140,
+  "name": "嗒嗒",
+  "beat": "S03",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 140.39
+ },
+ {
+  "t": 4.694,
+  "frame": 141,
+  "name": "嗒嗒",
+  "beat": "S03",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 140.81
+ },
+ {
+  "t": 4.705,
+  "frame": 141,
+  "name": "嗒嗒",
+  "beat": "S03",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 141.14
+ },
+ {
+  "t": 4.834,
+  "frame": 145,
+  "name": "嗒嗒",
+  "beat": "S03",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 145.01
+ },
+ {
+  "t": 4.838,
+  "frame": 145,
+  "name": "嗒嗒",
+  "beat": "S03",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 145.13
+ },
+ {
+  "t": 4.963,
+  "frame": 149,
+  "name": "嗒嗒",
+  "beat": "S03",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 148.88
+ },
+ {
+  "t": 5.169,
+  "frame": 155,
+  "name": "嗒嗒",
+  "beat": "S03",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 155.06
+ },
+ {
+  "t": 5.189,
+  "frame": 156,
+  "name": "嗒嗒",
+  "beat": "S03",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 155.66
+ },
+ {
+  "t": 5.368,
+  "frame": 161,
+  "name": "嗒嗒",
+  "beat": "S03",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 161.03
+ },
+ {
+  "t": 5.609,
+  "frame": 168,
+  "name": "嗒嗒",
+  "beat": "S03",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 168.28
+ },
+ {
+  "t": 5.733,
+  "frame": 172,
+  "name": "咔哒",
+  "beat": "S03",
+  "key": true,
+  "label": "你变红（你也是）",
+  "visual_frame": 172.0
+ },
+ {
+  "t": 5.761,
+  "frame": 173,
+  "name": "嗒嗒",
+  "beat": "S03",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 172.83
+ },
+ {
+  "t": 5.974,
+  "frame": 179,
+  "name": "嗒嗒",
+  "beat": "S03",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 179.21
+ },
+ {
+  "t": 6.078,
+  "frame": 182,
+  "name": "嗒嗒",
+  "beat": "S03",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 182.35
+ },
+ {
+  "t": 6.198,
+  "frame": 186,
+  "name": "嗒嗒",
+  "beat": "S03",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 185.93
+ },
+ {
+  "t": 6.233,
+  "frame": 187,
+  "name": "叮",
+  "beat": "S03",
+  "key": true,
+  "label": "路线图：狠（亮出）",
+  "visual_frame": 187.0
+ },
+ {
+  "t": 6.293,
+  "frame": 189,
+  "name": "嗒嗒",
+  "beat": "S03",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 188.79
+ },
+ {
+  "t": 6.5,
+  "frame": 195,
+  "name": "叮",
+  "beat": "S04",
+  "key": false,
+  "label": "路线图：？跳一下",
+  "visual_frame": 195.0
+ },
+ {
+  "t": 7.8,
+  "frame": 234,
+  "name": "倒带",
+  "beat": "S05",
+  "key": false,
+  "label": "倒带 70→0",
+  "visual_frame": 234.0
+ },
+ {
+  "t": 7.8,
+  "frame": 234,
+  "name": "嗖",
+  "beat": "S05",
+  "key": false,
+  "label": "路线图：倒回老实",
+  "visual_frame": 234.0
+ },
+ {
+  "t": 8.1,
+  "frame": 243,
+  "name": "嗖",
+  "beat": "S05",
+  "key": false,
+  "label": "扎进你的点",
+  "visual_frame": 243.0
+ },
+ {
+  "t": 8.7,
+  "frame": 261,
+  "name": "叮",
+  "beat": "S06",
+  "key": false,
+  "label": "递（骗子）",
+  "visual_frame": 261.0
+ },
+ {
+  "t": 8.733,
+  "frame": 262,
+  "name": "叮",
+  "beat": "S06",
+  "key": false,
+  "label": "递",
+  "visual_frame": 262.0
+ },
+ {
+  "t": 8.8,
+  "frame": 264,
+  "name": "叮",
+  "beat": "S06",
+  "key": false,
+  "label": "递",
+  "visual_frame": 264.0
+ },
+ {
+  "t": 8.833,
+  "frame": 265,
+  "name": "叮",
+  "beat": "S06",
+  "key": false,
+  "label": "递",
+  "visual_frame": 265.0
+ },
+ {
+  "t": 8.9,
+  "frame": 267,
+  "name": "叮",
+  "beat": "S06",
+  "key": false,
+  "label": "递",
+  "visual_frame": 267.0
+ },
+ {
+  "t": 8.933,
+  "frame": 268,
+  "name": "叮",
+  "beat": "S06",
+  "key": false,
+  "label": "递（骗子）",
+  "visual_frame": 268.0
+ },
+ {
+  "t": 9.0,
+  "frame": 270,
+  "name": "叮",
+  "beat": "S06",
+  "key": false,
+  "label": "递",
+  "visual_frame": 270.0
+ },
+ {
+  "t": 9.033,
+  "frame": 271,
+  "name": "叮",
+  "beat": "S06",
+  "key": false,
+  "label": "递（骗子）",
+  "visual_frame": 271.0
+ },
+ {
+  "t": 9.1,
+  "frame": 273,
+  "name": "叮",
+  "beat": "S06",
+  "key": false,
+  "label": "递（骗子）",
+  "visual_frame": 273.0
+ },
+ {
+  "t": 9.133,
+  "frame": 274,
+  "name": "叮",
+  "beat": "S06",
+  "key": false,
+  "label": "递",
+  "visual_frame": 274.0
+ },
+ {
+  "t": 9.433,
+  "frame": 283,
+  "name": "嗖",
+  "beat": "S07",
+  "key": true,
+  "label": "抢（他→你）",
+  "visual_frame": 286.0
+ },
+ {
+  "t": 9.633,
+  "frame": 289,
+  "name": "嗖",
+  "beat": "S07",
+  "key": true,
+  "label": "抢（他→你）",
+  "visual_frame": 292.0
+ },
+ {
+  "t": 9.668,
+  "frame": 290,
+  "name": "噗",
+  "beat": "S07",
+  "key": false,
+  "label": "拿走",
+  "visual_frame": 290.05
+ },
+ {
+  "t": 9.833,
+  "frame": 295,
+  "name": "嗖",
+  "beat": "S07",
+  "key": true,
+  "label": "抢（他→你）",
+  "visual_frame": 298.0
+ },
+ {
+  "t": 9.868,
+  "frame": 296,
+  "name": "噗",
+  "beat": "S07",
+  "key": false,
+  "label": "拿走",
+  "visual_frame": 296.05
+ },
+ {
+  "t": 10.033,
+  "frame": 301,
+  "name": "嗖",
+  "beat": "S07",
+  "key": true,
+  "label": "抢（他→你）",
+  "visual_frame": 304.0
+ },
+ {
+  "t": 10.068,
+  "frame": 302,
+  "name": "噗",
+  "beat": "S07",
+  "key": false,
+  "label": "拿走",
+  "visual_frame": 302.05
+ },
+ {
+  "t": 10.268,
+  "frame": 308,
+  "name": "噗",
+  "beat": "S07",
+  "key": false,
+  "label": "拿走",
+  "visual_frame": 308.05
+ },
+ {
+  "t": 10.5,
+  "frame": 315,
+  "name": "叮",
+  "beat": "S08",
+  "key": false,
+  "label": "叮",
+  "visual_frame": 315.0
+ },
+ {
+  "t": 10.526,
+  "frame": 316,
+  "name": "叮",
+  "beat": "S08",
+  "key": false,
+  "label": "叮",
+  "visual_frame": 315.77
+ },
+ {
+  "t": 10.551,
+  "frame": 317,
+  "name": "叮",
+  "beat": "S08",
+  "key": false,
+  "label": "叮",
+  "visual_frame": 316.54
+ },
+ {
+  "t": 10.577,
+  "frame": 317,
+  "name": "叮",
+  "beat": "S08",
+  "key": false,
+  "label": "叮",
+  "visual_frame": 317.31
+ },
+ {
+  "t": 10.603,
+  "frame": 318,
+  "name": "叮",
+  "beat": "S08",
+  "key": false,
+  "label": "叮",
+  "visual_frame": 318.08
+ },
+ {
+  "t": 10.628,
+  "frame": 319,
+  "name": "叮",
+  "beat": "S08",
+  "key": false,
+  "label": "叮",
+  "visual_frame": 318.85
+ },
+ {
+  "t": 10.654,
+  "frame": 320,
+  "name": "叮",
+  "beat": "S08",
+  "key": false,
+  "label": "叮",
+  "visual_frame": 319.62
+ },
+ {
+  "t": 10.679,
+  "frame": 320,
+  "name": "叮",
+  "beat": "S08",
+  "key": false,
+  "label": "叮",
+  "visual_frame": 320.38
+ },
+ {
+  "t": 10.705,
+  "frame": 321,
+  "name": "叮",
+  "beat": "S08",
+  "key": false,
+  "label": "叮",
+  "visual_frame": 321.15
+ },
+ {
+  "t": 10.731,
+  "frame": 322,
+  "name": "叮",
+  "beat": "S08",
+  "key": false,
+  "label": "叮",
+  "visual_frame": 321.92
+ },
+ {
+  "t": 10.756,
+  "frame": 323,
+  "name": "叮",
+  "beat": "S08",
+  "key": false,
+  "label": "叮",
+  "visual_frame": 322.69
+ },
+ {
+  "t": 10.782,
+  "frame": 323,
+  "name": "叮",
+  "beat": "S08",
+  "key": false,
+  "label": "叮",
+  "visual_frame": 323.46
+ },
+ {
+  "t": 10.808,
+  "frame": 324,
+  "name": "叮",
+  "beat": "S08",
+  "key": false,
+  "label": "叮",
+  "visual_frame": 324.23
+ },
+ {
+  "t": 10.833,
+  "frame": 325,
+  "name": "嗖",
+  "beat": "S08",
+  "key": false,
+  "label": "滑",
+  "visual_frame": 325.0
+ },
+ {
+  "t": 10.894,
+  "frame": 327,
+  "name": "叮",
+  "beat": "S08",
+  "key": false,
+  "label": "叮",
+  "visual_frame": 326.83
+ },
+ {
+  "t": 10.956,
+  "frame": 329,
+  "name": "叮",
+  "beat": "S08",
+  "key": false,
+  "label": "叮",
+  "visual_frame": 328.67
+ },
+ {
+  "t": 11.017,
+  "frame": 331,
+  "name": "叮",
+  "beat": "S08",
+  "key": false,
+  "label": "叮",
+  "visual_frame": 330.5
+ },
+ {
+  "t": 11.067,
+  "frame": 332,
+  "name": "啪",
+  "beat": "S08",
+  "key": true,
+  "label": "手滑落地",
+  "visual_frame": 332.0
+ },
+ {
+  "t": 11.078,
+  "frame": 332,
+  "name": "叮",
+  "beat": "S08",
+  "key": false,
+  "label": "叮",
+  "visual_frame": 332.33
+ },
+ {
+  "t": 11.139,
+  "frame": 334,
+  "name": "叮",
+  "beat": "S08",
+  "key": false,
+  "label": "叮",
+  "visual_frame": 334.17
+ },
+ {
+  "t": 11.2,
+  "frame": 336,
+  "name": "叮",
+  "beat": "S08",
+  "key": false,
+  "label": "叮",
+  "visual_frame": 336.0
+ },
+ {
+  "t": 11.8,
+  "frame": 354,
+  "name": "脚步",
+  "beat": "S09",
+  "key": false,
+  "label": "走下来",
+  "visual_frame": 354.0
+ },
+ {
+  "t": 12.167,
+  "frame": 365,
+  "name": "叮",
+  "beat": "S09",
+  "key": false,
+  "label": "递",
+  "visual_frame": 365.0
+ },
+ {
+  "t": 12.3,
+  "frame": 369,
+  "name": "嗖",
+  "beat": "S09",
+  "key": false,
+  "label": "滑",
+  "visual_frame": 369.0
+ },
+ {
+  "t": 12.367,
+  "frame": 371,
+  "name": "叮",
+  "beat": "S09",
+  "key": false,
+  "label": "递回来",
+  "visual_frame": 371.0
+ },
+ {
+  "t": 12.62,
+  "frame": 379,
+  "name": "啪",
+  "beat": "S09",
+  "key": true,
+  "label": "手滑落地",
+  "visual_frame": 378.6
+ },
+ {
+  "t": 12.9,
+  "frame": 387,
+  "name": "布料",
+  "beat": "S09",
+  "key": false,
+  "label": "布料",
+  "visual_frame": 387.0
+ },
+ {
+  "t": 13.1,
+  "frame": 393,
+  "name": "嗖",
+  "beat": "S09",
+  "key": true,
+  "label": "抢（他→你）",
+  "visual_frame": 396.0
+ },
+ {
+  "t": 13.335,
+  "frame": 400,
+  "name": "噗",
+  "beat": "S09",
+  "key": false,
+  "label": "拿走",
+  "visual_frame": 400.05
+ },
+ {
+  "t": 13.367,
+  "frame": 401,
+  "name": "嗖",
+  "beat": "S09",
+  "key": true,
+  "label": "抢（他→你）",
+  "visual_frame": 404.0
+ },
+ {
+  "t": 13.567,
+  "frame": 407,
+  "name": "嗖",
+  "beat": "S09",
+  "key": true,
+  "label": "抢（他→你）",
+  "visual_frame": 410.0
+ },
+ {
+  "t": 13.602,
+  "frame": 408,
+  "name": "噗",
+  "beat": "S09",
+  "key": false,
+  "label": "拿走",
+  "visual_frame": 408.05
+ },
+ {
+  "t": 13.802,
+  "frame": 414,
+  "name": "噗",
+  "beat": "S09",
+  "key": false,
+  "label": "拿走",
+  "visual_frame": 414.05
+ },
+ {
+  "t": 14.4,
+  "frame": 432,
+  "name": "刷",
+  "beat": "S10",
+  "key": false,
+  "label": "两根条",
+  "visual_frame": 432.0
+ },
+ {
+  "t": 15.3,
+  "frame": 459,
+  "name": "布料",
+  "beat": "S10",
+  "key": false,
+  "label": "布料",
+  "visual_frame": 459.0
+ },
+ {
+  "t": 15.467,
+  "frame": 464,
+  "name": "叮",
+  "beat": "S10",
+  "key": true,
+  "label": "路线图：狠（回到）",
+  "visual_frame": 464.0
+ },
+ {
+  "t": 15.9,
+  "frame": 477,
+  "name": "咔哒",
+  "beat": "S10",
+  "key": false,
+  "label": "换衣（狠）",
+  "visual_frame": 477.0
+ },
+ {
+  "t": 16.1,
+  "frame": 483,
+  "name": "嗖",
+  "beat": "S11",
+  "key": false,
+  "label": "拉到中景",
+  "visual_frame": 483.0
+ },
+ {
+  "t": 16.975,
+  "frame": 509,
+  "name": "咔哒",
+  "beat": "S11",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 509.26
+ },
+ {
+  "t": 16.98,
+  "frame": 509,
+  "name": "咔哒",
+  "beat": "S11",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 509.41
+ },
+ {
+  "t": 17.412,
+  "frame": 522,
+  "name": "咔哒",
+  "beat": "S11",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 522.37
+ },
+ {
+  "t": 17.424,
+  "frame": 523,
+  "name": "咔哒",
+  "beat": "S11",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 522.73
+ },
+ {
+  "t": 17.585,
+  "frame": 528,
+  "name": "咔哒",
+  "beat": "S11",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 527.56
+ },
+ {
+  "t": 17.588,
+  "frame": 528,
+  "name": "咔哒",
+  "beat": "S11",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 527.64
+ },
+ {
+  "t": 18.061,
+  "frame": 542,
+  "name": "咔哒",
+  "beat": "S11",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 541.84
+ },
+ {
+  "t": 18.078,
+  "frame": 542,
+  "name": "咔哒",
+  "beat": "S11",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 542.33
+ },
+ {
+  "t": 18.135,
+  "frame": 544,
+  "name": "咔哒",
+  "beat": "S11",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 544.04
+ },
+ {
+  "t": 18.633,
+  "frame": 559,
+  "name": "叮",
+  "beat": "S12",
+  "key": false,
+  "label": "递",
+  "visual_frame": 559.0
+ },
+ {
+  "t": 18.8,
+  "frame": 564,
+  "name": "嗖",
+  "beat": "S12",
+  "key": false,
+  "label": "滑",
+  "visual_frame": 564.0
+ },
+ {
+  "t": 18.833,
+  "frame": 565,
+  "name": "叮",
+  "beat": "S12",
+  "key": false,
+  "label": "递回来",
+  "visual_frame": 565.0
+ },
+ {
+  "t": 19.12,
+  "frame": 574,
+  "name": "啪",
+  "beat": "S12",
+  "key": true,
+  "label": "手滑落地",
+  "visual_frame": 573.6
+ },
+ {
+  "t": 19.4,
+  "frame": 582,
+  "name": "布料",
+  "beat": "S12",
+  "key": false,
+  "label": "布料",
+  "visual_frame": 582.0
+ },
+ {
+  "t": 19.6,
+  "frame": 588,
+  "name": "嗖",
+  "beat": "S12",
+  "key": true,
+  "label": "抢（你→他）",
+  "visual_frame": 591.0
+ },
+ {
+  "t": 19.8,
+  "frame": 594,
+  "name": "嗖",
+  "beat": "S12",
+  "key": true,
+  "label": "抢（你→他）",
+  "visual_frame": 597.0
+ },
+ {
+  "t": 19.835,
+  "frame": 595,
+  "name": "噗",
+  "beat": "S12",
+  "key": false,
+  "label": "拿走",
+  "visual_frame": 595.05
+ },
+ {
+  "t": 20.0,
+  "frame": 600,
+  "name": "叮",
+  "beat": "S12",
+  "key": false,
+  "label": "堆起来",
+  "visual_frame": 600.0
+ },
+ {
+  "t": 20.0,
+  "frame": 600,
+  "name": "嗖",
+  "beat": "S12",
+  "key": true,
+  "label": "抢（你→他）",
+  "visual_frame": 603.0
+ },
+ {
+  "t": 20.035,
+  "frame": 601,
+  "name": "噗",
+  "beat": "S12",
+  "key": false,
+  "label": "拿走",
+  "visual_frame": 601.05
+ },
+ {
+  "t": 20.1,
+  "frame": 603,
+  "name": "嗖",
+  "beat": "S12",
+  "key": true,
+  "label": "抢（你→他）",
+  "visual_frame": 606.0
+ },
+ {
+  "t": 20.2,
+  "frame": 606,
+  "name": "叮",
+  "beat": "S12",
+  "key": false,
+  "label": "堆起来",
+  "visual_frame": 606.0
+ },
+ {
+  "t": 20.235,
+  "frame": 607,
+  "name": "噗",
+  "beat": "S12",
+  "key": false,
+  "label": "拿走",
+  "visual_frame": 607.05
+ },
+ {
+  "t": 20.335,
+  "frame": 610,
+  "name": "噗",
+  "beat": "S12",
+  "key": false,
+  "label": "拿走",
+  "visual_frame": 610.05
+ },
+ {
+  "t": 20.4,
+  "frame": 612,
+  "name": "叮",
+  "beat": "S12",
+  "key": false,
+  "label": "堆起来",
+  "visual_frame": 612.0
+ },
+ {
+  "t": 20.5,
+  "frame": 615,
+  "name": "叮",
+  "beat": "S13",
+  "key": false,
+  "label": "你的条伸长",
+  "visual_frame": 615.0
+ },
+ {
+  "t": 22.1,
+  "frame": 663,
+  "name": "嗖",
+  "beat": "S14",
+  "key": false,
+  "label": "拉到远景",
+  "visual_frame": 663.0
+ },
+ {
+  "t": 22.119,
+  "frame": 664,
+  "name": "噗",
+  "beat": "S14",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 663.56
+ },
+ {
+  "t": 22.124,
+  "frame": 664,
+  "name": "噗",
+  "beat": "S14",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 663.71
+ },
+ {
+  "t": 22.136,
+  "frame": 664,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 664.08
+ },
+ {
+  "t": 22.153,
+  "frame": 665,
+  "name": "噗",
+  "beat": "S14",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 664.59
+ },
+ {
+  "t": 22.153,
+  "frame": 665,
+  "name": "噗",
+  "beat": "S14",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 664.6
+ },
+ {
+  "t": 22.162,
+  "frame": 665,
+  "name": "噗",
+  "beat": "S14",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 664.85
+ },
+ {
+  "t": 22.163,
+  "frame": 665,
+  "name": "噗",
+  "beat": "S14",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 664.9
+ },
+ {
+  "t": 22.165,
+  "frame": 665,
+  "name": "噗",
+  "beat": "S14",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 664.94
+ },
+ {
+  "t": 22.168,
+  "frame": 665,
+  "name": "噗",
+  "beat": "S14",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 665.04
+ },
+ {
+  "t": 22.181,
+  "frame": 665,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 665.44
+ },
+ {
+  "t": 22.196,
+  "frame": 666,
+  "name": "噗",
+  "beat": "S14",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 665.87
+ },
+ {
+  "t": 22.196,
+  "frame": 666,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 665.87
+ },
+ {
+  "t": 22.211,
+  "frame": 666,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 666.32
+ },
+ {
+  "t": 22.238,
+  "frame": 667,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 667.13
+ },
+ {
+  "t": 22.238,
+  "frame": 667,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 667.14
+ },
+ {
+  "t": 22.243,
+  "frame": 667,
+  "name": "噗",
+  "beat": "S14",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 667.3
+ },
+ {
+  "t": 22.244,
+  "frame": 667,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 667.31
+ },
+ {
+  "t": 22.245,
+  "frame": 667,
+  "name": "噗",
+  "beat": "S14",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 667.36
+ },
+ {
+  "t": 22.251,
+  "frame": 668,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 667.54
+ },
+ {
+  "t": 22.253,
+  "frame": 668,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 667.59
+ },
+ {
+  "t": 22.259,
+  "frame": 668,
+  "name": "噗",
+  "beat": "S14",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 667.76
+ },
+ {
+  "t": 22.26,
+  "frame": 668,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 667.81
+ },
+ {
+  "t": 22.261,
+  "frame": 668,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 667.83
+ },
+ {
+  "t": 22.271,
+  "frame": 668,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 668.14
+ },
+ {
+  "t": 22.272,
+  "frame": 668,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 668.17
+ },
+ {
+  "t": 22.284,
+  "frame": 669,
+  "name": "噗",
+  "beat": "S14",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 668.53
+ },
+ {
+  "t": 22.286,
+  "frame": 669,
+  "name": "噗",
+  "beat": "S14",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 668.57
+ },
+ {
+  "t": 22.287,
+  "frame": 669,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 668.62
+ },
+ {
+  "t": 22.336,
+  "frame": 670,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 670.09
+ },
+ {
+  "t": 22.344,
+  "frame": 670,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 670.31
+ },
+ {
+  "t": 22.356,
+  "frame": 671,
+  "name": "噗",
+  "beat": "S14",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 670.69
+ },
+ {
+  "t": 22.378,
+  "frame": 671,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 671.35
+ },
+ {
+  "t": 22.385,
+  "frame": 672,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 671.54
+ },
+ {
+  "t": 22.409,
+  "frame": 672,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 672.26
+ },
+ {
+  "t": 22.423,
+  "frame": 673,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 672.68
+ },
+ {
+  "t": 22.426,
+  "frame": 673,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 672.78
+ },
+ {
+  "t": 22.428,
+  "frame": 673,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 672.83
+ },
+ {
+  "t": 22.458,
+  "frame": 674,
+  "name": "噗",
+  "beat": "S14",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 673.75
+ },
+ {
+  "t": 22.463,
+  "frame": 674,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 673.89
+ },
+ {
+  "t": 22.467,
+  "frame": 674,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 674.0
+ },
+ {
+  "t": 22.468,
+  "frame": 674,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 674.05
+ },
+ {
+  "t": 22.472,
+  "frame": 674,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 674.17
+ },
+ {
+  "t": 22.477,
+  "frame": 674,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 674.3
+ },
+ {
+  "t": 22.491,
+  "frame": 675,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 674.73
+ },
+ {
+  "t": 22.492,
+  "frame": 675,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 674.77
+ },
+ {
+  "t": 22.493,
+  "frame": 675,
+  "name": "噗",
+  "beat": "S14",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 674.78
+ },
+ {
+  "t": 22.497,
+  "frame": 675,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 674.9
+ },
+ {
+  "t": 22.51,
+  "frame": 675,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 675.3
+ },
+ {
+  "t": 22.519,
+  "frame": 676,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 675.57
+ },
+ {
+  "t": 22.528,
+  "frame": 676,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 675.84
+ },
+ {
+  "t": 22.533,
+  "frame": 676,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 675.99
+ },
+ {
+  "t": 22.533,
+  "frame": 676,
+  "name": "噗",
+  "beat": "S14",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 676.0
+ },
+ {
+  "t": 22.546,
+  "frame": 676,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 676.38
+ },
+ {
+  "t": 22.548,
+  "frame": 676,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 676.44
+ },
+ {
+  "t": 22.548,
+  "frame": 676,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 676.45
+ },
+ {
+  "t": 22.551,
+  "frame": 677,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 676.52
+ },
+ {
+  "t": 22.559,
+  "frame": 677,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 676.76
+ },
+ {
+  "t": 22.564,
+  "frame": 677,
+  "name": "噗",
+  "beat": "S14",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 676.91
+ },
+ {
+  "t": 22.564,
+  "frame": 677,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 676.92
+ },
+ {
+  "t": 22.59,
+  "frame": 678,
+  "name": "噗",
+  "beat": "S14",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 677.71
+ },
+ {
+  "t": 22.592,
+  "frame": 678,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 677.75
+ },
+ {
+  "t": 22.599,
+  "frame": 678,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 677.97
+ },
+ {
+  "t": 22.617,
+  "frame": 679,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 678.52
+ },
+ {
+  "t": 22.65,
+  "frame": 679,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 679.5
+ },
+ {
+  "t": 22.665,
+  "frame": 680,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 679.96
+ },
+ {
+  "t": 22.68,
+  "frame": 680,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 680.41
+ },
+ {
+  "t": 22.686,
+  "frame": 681,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 680.59
+ },
+ {
+  "t": 22.7,
+  "frame": 681,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 681.01
+ },
+ {
+  "t": 22.742,
+  "frame": 682,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 682.26
+ },
+ {
+  "t": 22.764,
+  "frame": 683,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 682.93
+ },
+ {
+  "t": 22.774,
+  "frame": 683,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 683.21
+ },
+ {
+  "t": 22.777,
+  "frame": 683,
+  "name": "噗",
+  "beat": "S14",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 683.3
+ },
+ {
+  "t": 22.791,
+  "frame": 684,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 683.73
+ },
+ {
+  "t": 22.806,
+  "frame": 684,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 684.17
+ },
+ {
+  "t": 22.811,
+  "frame": 684,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 684.32
+ },
+ {
+  "t": 22.833,
+  "frame": 685,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 684.99
+ },
+ {
+  "t": 22.87,
+  "frame": 686,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 686.09
+ },
+ {
+  "t": 22.961,
+  "frame": 689,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 688.83
+ },
+ {
+  "t": 22.975,
+  "frame": 689,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 689.26
+ },
+ {
+  "t": 22.985,
+  "frame": 690,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 689.55
+ },
+ {
+  "t": 23.008,
+  "frame": 690,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 690.25
+ },
+ {
+  "t": 23.034,
+  "frame": 691,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 691.03
+ },
+ {
+  "t": 23.058,
+  "frame": 692,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 691.75
+ },
+ {
+  "t": 23.103,
+  "frame": 693,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 693.08
+ },
+ {
+  "t": 23.158,
+  "frame": 695,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 694.75
+ },
+ {
+  "t": 23.184,
+  "frame": 696,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 695.52
+ },
+ {
+  "t": 23.2,
+  "frame": 696,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 695.99
+ },
+ {
+  "t": 23.242,
+  "frame": 697,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 697.25
+ },
+ {
+  "t": 23.371,
+  "frame": 701,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 701.14
+ },
+ {
+  "t": 23.478,
+  "frame": 704,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 704.33
+ },
+ {
+  "t": 23.593,
+  "frame": 708,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 707.78
+ },
+ {
+  "t": 23.622,
+  "frame": 709,
+  "name": "嗒嗒",
+  "beat": "S14",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 708.67
+ },
+ {
+  "t": 24.033,
+  "frame": 721,
+  "name": "咚",
+  "beat": "S15",
+  "key": true,
+  "label": "和你：咚（叠敲击）",
+  "visual_frame": 721.0
+ },
+ {
+  "t": 24.86,
+  "frame": 746,
+  "name": "嗒嗒",
+  "beat": "S16",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 745.79
+ },
+ {
+  "t": 24.882,
+  "frame": 746,
+  "name": "嗒嗒",
+  "beat": "S16",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 746.46
+ },
+ {
+  "t": 24.991,
+  "frame": 750,
+  "name": "嗒嗒",
+  "beat": "S16",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 749.73
+ },
+ {
+  "t": 25.282,
+  "frame": 758,
+  "name": "嗒嗒",
+  "beat": "S16",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 758.46
+ },
+ {
+  "t": 25.483,
+  "frame": 764,
+  "name": "嗒嗒",
+  "beat": "S16",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 764.49
+ },
+ {
+  "t": 25.506,
+  "frame": 765,
+  "name": "嗒嗒",
+  "beat": "S16",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 765.18
+ },
+ {
+  "t": 25.568,
+  "frame": 767,
+  "name": "嗒嗒",
+  "beat": "S16",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 767.03
+ },
+ {
+  "t": 25.867,
+  "frame": 776,
+  "name": "嗖",
+  "beat": "S17",
+  "key": false,
+  "label": "远处的抢",
+  "visual_frame": 776.0
+ },
+ {
+  "t": 26.367,
+  "frame": 791,
+  "name": "嗖",
+  "beat": "S17",
+  "key": false,
+  "label": "远处的抢",
+  "visual_frame": 791.0
+ },
+ {
+  "t": 26.5,
+  "frame": 795,
+  "name": "影子",
+  "beat": "S17",
+  "key": false,
+  "label": "影子",
+  "visual_frame": 795.0
+ },
+ {
+  "t": 26.867,
+  "frame": 806,
+  "name": "嗖",
+  "beat": "S17",
+  "key": false,
+  "label": "远处的抢",
+  "visual_frame": 806.0
+ },
+ {
+  "t": 27.367,
+  "frame": 821,
+  "name": "嗖",
+  "beat": "S17",
+  "key": false,
+  "label": "远处的抢",
+  "visual_frame": 821.0
+ },
+ {
+  "t": 27.867,
+  "frame": 836,
+  "name": "嗖",
+  "beat": "S17",
+  "key": false,
+  "label": "远处的抢",
+  "visual_frame": 836.0
+ },
+ {
+  "t": 28.2,
+  "frame": 846,
+  "name": "布料",
+  "beat": "S18",
+  "key": false,
+  "label": "一排变蓝",
+  "visual_frame": 846.0
+ },
+ {
+  "t": 29.3,
+  "frame": 879,
+  "name": "脚步",
+  "beat": "S18",
+  "key": false,
+  "label": "走下来",
+  "visual_frame": 879.0
+ },
+ {
+  "t": 29.667,
+  "frame": 890,
+  "name": "叮",
+  "beat": "S18",
+  "key": false,
+  "label": "递",
+  "visual_frame": 890.0
+ },
+ {
+  "t": 29.767,
+  "frame": 893,
+  "name": "嗖",
+  "beat": "S18b",
+  "key": true,
+  "label": "抢（你→他）",
+  "visual_frame": 896.0,
+  "from_beat": "S18"
+ },
+ {
+  "t": 29.8,
+  "frame": 894,
+  "name": "叮",
+  "beat": "S18b",
+  "key": false,
+  "label": "递回来",
+  "visual_frame": 894.0,
+  "from_beat": "S18"
+ },
+ {
+  "t": 29.967,
+  "frame": 899,
+  "name": "嗖",
+  "beat": "S18b",
+  "key": true,
+  "label": "抢（他→你）",
+  "visual_frame": 902.0,
+  "from_beat": "S18"
+ },
+ {
+  "t": 29.972,
+  "frame": 899,
+  "name": "噗",
+  "beat": "S18b",
+  "key": false,
+  "label": "拿走",
+  "visual_frame": 899.15,
+  "from_beat": "S18"
+ },
+ {
+  "t": 30.172,
+  "frame": 905,
+  "name": "噗",
+  "beat": "S18b",
+  "key": false,
+  "label": "拿走",
+  "visual_frame": 905.15,
+  "from_beat": "S18"
+ },
+ {
+  "t": 30.4,
+  "frame": 912,
+  "name": "刷",
+  "beat": "S18b",
+  "key": false,
+  "label": "两根条",
+  "visual_frame": 912.0,
+  "from_beat": "S18"
+ },
+ {
+  "t": 31.2,
+  "frame": 936,
+  "name": "布料",
+  "beat": "S18b",
+  "key": false,
+  "label": "布料",
+  "visual_frame": 936.0,
+  "from_beat": "S18"
+ },
+ {
+  "t": 31.367,
+  "frame": 941,
+  "name": "叮",
+  "beat": "S18b",
+  "key": true,
+  "label": "路线图：有来有往（亮出）",
+  "visual_frame": 941.0
+ },
+ {
+  "t": 31.6,
+  "frame": 948,
+  "name": "咔哒",
+  "beat": "S18b",
+  "key": false,
+  "label": "换衣（有来有往）",
+  "visual_frame": 948.0,
+  "from_beat": "S18"
+ },
+ {
+  "t": 31.9,
+  "frame": 957,
+  "name": "刷",
+  "beat": "S19",
+  "key": true,
+  "label": "硬切到远景",
+  "visual_frame": 957.0
+ },
+ {
+  "t": 31.9,
+  "frame": 957,
+  "name": "嗖",
+  "beat": "S19",
+  "key": false,
+  "label": "拉到远景",
+  "visual_frame": 957.0
+ },
+ {
+  "t": 31.912,
+  "frame": 957,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 957.36
+ },
+ {
+  "t": 31.928,
+  "frame": 958,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 957.83
+ },
+ {
+  "t": 31.939,
+  "frame": 958,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 958.18
+ },
+ {
+  "t": 31.949,
+  "frame": 958,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 958.46
+ },
+ {
+  "t": 31.976,
+  "frame": 959,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 959.27
+ },
+ {
+  "t": 31.988,
+  "frame": 960,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 959.64
+ },
+ {
+  "t": 31.997,
+  "frame": 960,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 959.92
+ },
+ {
+  "t": 32.006,
+  "frame": 960,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 960.17
+ },
+ {
+  "t": 32.006,
+  "frame": 960,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 960.17
+ },
+ {
+  "t": 32.007,
+  "frame": 960,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 960.22
+ },
+ {
+  "t": 32.036,
+  "frame": 961,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 961.09
+ },
+ {
+  "t": 32.043,
+  "frame": 961,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 961.28
+ },
+ {
+  "t": 32.079,
+  "frame": 962,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 962.38
+ },
+ {
+  "t": 32.084,
+  "frame": 963,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 962.51
+ },
+ {
+  "t": 32.084,
+  "frame": 963,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 962.52
+ },
+ {
+  "t": 32.113,
+  "frame": 963,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 963.38
+ },
+ {
+  "t": 32.124,
+  "frame": 964,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 963.72
+ },
+ {
+  "t": 32.134,
+  "frame": 964,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 964.03
+ },
+ {
+  "t": 32.143,
+  "frame": 964,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 964.28
+ },
+ {
+  "t": 32.154,
+  "frame": 965,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 964.61
+ },
+ {
+  "t": 32.158,
+  "frame": 965,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 964.75
+ },
+ {
+  "t": 32.161,
+  "frame": 965,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 964.82
+ },
+ {
+  "t": 32.177,
+  "frame": 965,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 965.3
+ },
+ {
+  "t": 32.179,
+  "frame": 965,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 965.38
+ },
+ {
+  "t": 32.187,
+  "frame": 966,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 965.62
+ },
+ {
+  "t": 32.194,
+  "frame": 966,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 965.82
+ },
+ {
+  "t": 32.202,
+  "frame": 966,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 966.07
+ },
+ {
+  "t": 32.24,
+  "frame": 967,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 967.19
+ },
+ {
+  "t": 32.25,
+  "frame": 967,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 967.49
+ },
+ {
+  "t": 32.283,
+  "frame": 969,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 968.5
+ },
+ {
+  "t": 32.286,
+  "frame": 969,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 968.59
+ },
+ {
+  "t": 32.289,
+  "frame": 969,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 968.66
+ },
+ {
+  "t": 32.3,
+  "frame": 969,
+  "name": "刷",
+  "beat": "S19",
+  "key": false,
+  "label": "蓝色漫开",
+  "visual_frame": 969.0
+ },
+ {
+  "t": 32.303,
+  "frame": 969,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 969.09
+ },
+ {
+  "t": 32.308,
+  "frame": 969,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 969.25
+ },
+ {
+  "t": 32.312,
+  "frame": 969,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 969.37
+ },
+ {
+  "t": 32.316,
+  "frame": 969,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 969.49
+ },
+ {
+  "t": 32.326,
+  "frame": 970,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 969.77
+ },
+ {
+  "t": 32.342,
+  "frame": 970,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 970.27
+ },
+ {
+  "t": 32.347,
+  "frame": 970,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 970.42
+ },
+ {
+  "t": 32.354,
+  "frame": 971,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 970.61
+ },
+ {
+  "t": 32.358,
+  "frame": 971,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 970.73
+ },
+ {
+  "t": 32.361,
+  "frame": 971,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 970.82
+ },
+ {
+  "t": 32.39,
+  "frame": 972,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 971.7
+ },
+ {
+  "t": 32.395,
+  "frame": 972,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 971.85
+ },
+ {
+  "t": 32.407,
+  "frame": 972,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 972.2
+ },
+ {
+  "t": 32.442,
+  "frame": 973,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 973.25
+ },
+ {
+  "t": 32.445,
+  "frame": 973,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 973.36
+ },
+ {
+  "t": 32.451,
+  "frame": 974,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 973.53
+ },
+ {
+  "t": 32.472,
+  "frame": 974,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 974.17
+ },
+ {
+  "t": 32.482,
+  "frame": 974,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 974.47
+ },
+ {
+  "t": 32.493,
+  "frame": 975,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 974.8
+ },
+ {
+  "t": 32.497,
+  "frame": 975,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 974.91
+ },
+ {
+  "t": 32.504,
+  "frame": 975,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 975.12
+ },
+ {
+  "t": 32.512,
+  "frame": 975,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 975.35
+ },
+ {
+  "t": 32.548,
+  "frame": 976,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 976.44
+ },
+ {
+  "t": 32.562,
+  "frame": 977,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 976.85
+ },
+ {
+  "t": 32.576,
+  "frame": 977,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 977.29
+ },
+ {
+  "t": 32.606,
+  "frame": 978,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 978.18
+ },
+ {
+  "t": 32.643,
+  "frame": 979,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 979.29
+ },
+ {
+  "t": 32.654,
+  "frame": 980,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 979.61
+ },
+ {
+  "t": 32.657,
+  "frame": 980,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 979.7
+ },
+ {
+  "t": 32.663,
+  "frame": 980,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 979.9
+ },
+ {
+  "t": 32.665,
+  "frame": 980,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 979.95
+ },
+ {
+  "t": 32.67,
+  "frame": 980,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 980.1
+ },
+ {
+  "t": 32.673,
+  "frame": 980,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 980.18
+ },
+ {
+  "t": 32.691,
+  "frame": 981,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 980.73
+ },
+ {
+  "t": 32.691,
+  "frame": 981,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 980.73
+ },
+ {
+  "t": 32.707,
+  "frame": 981,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 981.2
+ },
+ {
+  "t": 32.712,
+  "frame": 981,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 981.37
+ },
+ {
+  "t": 32.713,
+  "frame": 981,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 981.4
+ },
+ {
+  "t": 32.718,
+  "frame": 982,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 981.55
+ },
+ {
+  "t": 32.726,
+  "frame": 982,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 981.79
+ },
+ {
+  "t": 32.745,
+  "frame": 982,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 982.35
+ },
+ {
+  "t": 32.769,
+  "frame": 983,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 983.06
+ },
+ {
+  "t": 32.781,
+  "frame": 983,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 983.42
+ },
+ {
+  "t": 32.784,
+  "frame": 984,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 983.51
+ },
+ {
+  "t": 32.789,
+  "frame": 984,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 983.67
+ },
+ {
+  "t": 32.793,
+  "frame": 984,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 983.78
+ },
+ {
+  "t": 32.808,
+  "frame": 984,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 984.24
+ },
+ {
+  "t": 32.809,
+  "frame": 984,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 984.26
+ },
+ {
+  "t": 32.822,
+  "frame": 985,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 984.65
+ },
+ {
+  "t": 32.829,
+  "frame": 985,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 984.86
+ },
+ {
+  "t": 32.841,
+  "frame": 985,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 985.24
+ },
+ {
+  "t": 32.846,
+  "frame": 985,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 985.38
+ },
+ {
+  "t": 32.848,
+  "frame": 985,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 985.45
+ },
+ {
+  "t": 32.852,
+  "frame": 986,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 985.56
+ },
+ {
+  "t": 32.856,
+  "frame": 986,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 985.68
+ },
+ {
+  "t": 32.898,
+  "frame": 987,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 986.95
+ },
+ {
+  "t": 32.904,
+  "frame": 987,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 987.11
+ },
+ {
+  "t": 32.914,
+  "frame": 987,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 987.41
+ },
+ {
+  "t": 32.927,
+  "frame": 988,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 987.81
+ },
+ {
+  "t": 32.928,
+  "frame": 988,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 987.85
+ },
+ {
+  "t": 32.979,
+  "frame": 989,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 989.37
+ },
+ {
+  "t": 32.983,
+  "frame": 989,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 989.48
+ },
+ {
+  "t": 32.986,
+  "frame": 990,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 989.58
+ },
+ {
+  "t": 33.03,
+  "frame": 991,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 990.91
+ },
+ {
+  "t": 33.031,
+  "frame": 991,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 990.93
+ },
+ {
+  "t": 33.044,
+  "frame": 991,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 991.33
+ },
+ {
+  "t": 33.082,
+  "frame": 992,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 992.47
+ },
+ {
+  "t": 33.103,
+  "frame": 993,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 993.08
+ },
+ {
+  "t": 33.111,
+  "frame": 993,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 993.34
+ },
+ {
+  "t": 33.138,
+  "frame": 994,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 994.13
+ },
+ {
+  "t": 33.146,
+  "frame": 994,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 994.38
+ },
+ {
+  "t": 33.153,
+  "frame": 995,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 994.58
+ },
+ {
+  "t": 33.164,
+  "frame": 995,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 994.91
+ },
+ {
+  "t": 33.194,
+  "frame": 996,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 995.82
+ },
+ {
+  "t": 33.215,
+  "frame": 996,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 996.46
+ },
+ {
+  "t": 33.233,
+  "frame": 997,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 996.98
+ },
+ {
+  "t": 33.259,
+  "frame": 998,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 997.76
+ },
+ {
+  "t": 33.274,
+  "frame": 998,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 998.23
+ },
+ {
+  "t": 33.287,
+  "frame": 999,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 998.6
+ },
+ {
+  "t": 33.288,
+  "frame": 999,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 998.63
+ },
+ {
+  "t": 33.34,
+  "frame": 1000,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 1000.19
+ },
+ {
+  "t": 33.352,
+  "frame": 1001,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 1000.57
+ },
+ {
+  "t": 33.363,
+  "frame": 1001,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 1000.89
+ },
+ {
+  "t": 33.372,
+  "frame": 1001,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 1001.17
+ },
+ {
+  "t": 33.376,
+  "frame": 1001,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 1001.27
+ },
+ {
+  "t": 33.383,
+  "frame": 1001,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 1001.48
+ },
+ {
+  "t": 33.387,
+  "frame": 1002,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 1001.6
+ },
+ {
+  "t": 33.39,
+  "frame": 1002,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 1001.7
+ },
+ {
+  "t": 33.468,
+  "frame": 1004,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 1004.03
+ },
+ {
+  "t": 33.5,
+  "frame": 1005,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 1005.01
+ },
+ {
+  "t": 33.511,
+  "frame": 1005,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 1005.32
+ },
+ {
+  "t": 33.533,
+  "frame": 1006,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 1005.98
+ },
+ {
+  "t": 33.545,
+  "frame": 1006,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 1006.34
+ },
+ {
+  "t": 33.57,
+  "frame": 1007,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 1007.1
+ },
+ {
+  "t": 33.599,
+  "frame": 1008,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 1007.97
+ },
+ {
+  "t": 33.603,
+  "frame": 1008,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 1008.1
+ },
+ {
+  "t": 33.622,
+  "frame": 1009,
+  "name": "噗",
+  "beat": "S19",
+  "key": false,
+  "label": "噗",
+  "visual_frame": 1008.66
+ },
+ {
+  "t": 33.632,
+  "frame": 1009,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 1008.95
+ },
+ {
+  "t": 33.647,
+  "frame": 1009,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 1009.41
+ },
+ {
+  "t": 33.712,
+  "frame": 1011,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 1011.35
+ },
+ {
+  "t": 33.716,
+  "frame": 1011,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 1011.48
+ },
+ {
+  "t": 33.767,
+  "frame": 1013,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 1013.0
+ },
+ {
+  "t": 33.785,
+  "frame": 1014,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 1013.54
+ },
+ {
+  "t": 33.799,
+  "frame": 1014,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 1013.98
+ },
+ {
+  "t": 33.81,
+  "frame": 1014,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 1014.3
+ },
+ {
+  "t": 33.901,
+  "frame": 1017,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 1017.04
+ },
+ {
+  "t": 33.939,
+  "frame": 1018,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 1018.16
+ },
+ {
+  "t": 33.957,
+  "frame": 1019,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 1018.72
+ },
+ {
+  "t": 34.011,
+  "frame": 1020,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 1020.32
+ },
+ {
+  "t": 34.099,
+  "frame": 1023,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 1022.97
+ },
+ {
+  "t": 34.122,
+  "frame": 1024,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 1023.66
+ },
+ {
+  "t": 34.141,
+  "frame": 1024,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 1024.23
+ },
+ {
+  "t": 34.162,
+  "frame": 1025,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 1024.86
+ },
+ {
+  "t": 34.212,
+  "frame": 1026,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 1026.37
+ },
+ {
+  "t": 34.242,
+  "frame": 1027,
+  "name": "嗒嗒",
+  "beat": "S19",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 1027.27
+ },
+ {
+  "t": 34.289,
+  "frame": 1029,
+  "name": "嗒嗒",
+  "beat": "S20",
+  "key": false,
+  "label": "点变色",
+  "visual_frame": 1028.67,
+  "from_beat": "S19"
+ },
+ {
+  "t": 34.3,
+  "frame": 1029,
+  "name": "嗖",
+  "beat": "S20",
+  "key": false,
+  "label": "推近（往里收）",
+  "visual_frame": 1029.0
+ },
+ {
+  "t": 35.12,
+  "frame": 1054,
+  "name": "啪",
+  "beat": "S20",
+  "key": true,
+  "label": "可手滑：啪",
+  "visual_frame": 1053.6
+ },
+ {
+  "t": 35.6,
+  "frame": 1068,
+  "name": "嗖",
+  "beat": "S21",
+  "key": false,
+  "label": "来回（你→他）",
+  "visual_frame": 1068.0
+ },
+ {
+  "t": 36.0,
+  "frame": 1080,
+  "name": "啵",
+  "beat": "S21",
+  "key": false,
+  "label": "到他那边",
+  "visual_frame": 1080.0
+ },
+ {
+  "t": 36.0,
+  "frame": 1080,
+  "name": "嗖",
+  "beat": "S21",
+  "key": false,
+  "label": "来回（他→你）",
+  "visual_frame": 1080.0
+ },
+ {
+  "t": 36.4,
+  "frame": 1092,
+  "name": "啵",
+  "beat": "S21",
+  "key": false,
+  "label": "到你这边",
+  "visual_frame": 1092.0
+ },
+ {
+  "t": 36.4,
+  "frame": 1092,
+  "name": "嗖",
+  "beat": "S21",
+  "key": false,
+  "label": "来回（你→他）",
+  "visual_frame": 1092.0
+ },
+ {
+  "t": 36.8,
+  "frame": 1104,
+  "name": "啵",
+  "beat": "S21",
+  "key": false,
+  "label": "到他那边",
+  "visual_frame": 1104.0
+ },
+ {
+  "t": 36.8,
+  "frame": 1104,
+  "name": "嗖",
+  "beat": "S21",
+  "key": false,
+  "label": "来回（他→你）",
+  "visual_frame": 1104.0
+ },
+ {
+  "t": 37.2,
+  "frame": 1116,
+  "name": "啵",
+  "beat": "S21",
+  "key": false,
+  "label": "到你这边",
+  "visual_frame": 1116.0
+ },
+ {
+  "t": 37.2,
+  "frame": 1116,
+  "name": "嗖",
+  "beat": "S21",
+  "key": false,
+  "label": "来回（你→他）",
+  "visual_frame": 1116.0
+ },
+ {
+  "t": 37.6,
+  "frame": 1128,
+  "name": "啵",
+  "beat": "S21",
+  "key": false,
+  "label": "到他那边",
+  "visual_frame": 1128.0
+ },
+ {
+  "t": 37.6,
+  "frame": 1128,
+  "name": "嗖",
+  "beat": "S21",
+  "key": false,
+  "label": "来回（他→你）",
+  "visual_frame": 1128.0
+ },
+ {
+  "t": 37.9,
+  "frame": 1137,
+  "name": "布料",
+  "beat": "S22",
+  "key": false,
+  "label": "一排变绿",
+  "visual_frame": 1137.0
+ },
+ {
+  "t": 38.6,
+  "frame": 1158,
+  "name": "脚步",
+  "beat": "S22",
+  "key": false,
+  "label": "走下来",
+  "visual_frame": 1158.0
+ },
+ {
+  "t": 38.6,
+  "frame": 1158,
+  "name": "嗖",
+  "beat": "S22",
+  "key": true,
+  "label": "抢（你→他）",
+  "visual_frame": 1161.0
+ },
+ {
+  "t": 38.79,
+  "frame": 1164,
+  "name": "噗",
+  "beat": "S22",
+  "key": false,
+  "label": "拿走",
+  "visual_frame": 1163.7
+ },
+ {
+  "t": 38.8,
+  "frame": 1164,
+  "name": "嗖",
+  "beat": "S22",
+  "key": true,
+  "label": "抢回去（他→你）",
+  "visual_frame": 1167.0
+ },
+ {
+  "t": 38.99,
+  "frame": 1170,
+  "name": "噗",
+  "beat": "S22",
+  "key": false,
+  "label": "拿走",
+  "visual_frame": 1169.7
+ },
+ {
+  "t": 39.0,
+  "frame": 1170,
+  "name": "嗖",
+  "beat": "S22",
+  "key": true,
+  "label": "抢（你→他）",
+  "visual_frame": 1173.0
+ },
+ {
+  "t": 39.19,
+  "frame": 1176,
+  "name": "噗",
+  "beat": "S22",
+  "key": false,
+  "label": "拿走",
+  "visual_frame": 1175.7
+ },
+ {
+  "t": 39.2,
+  "frame": 1176,
+  "name": "嗖",
+  "beat": "S22",
+  "key": true,
+  "label": "抢回去（他→你）",
+  "visual_frame": 1179.0
+ },
+ {
+  "t": 39.39,
+  "frame": 1182,
+  "name": "噗",
+  "beat": "S22",
+  "key": false,
+  "label": "拿走",
+  "visual_frame": 1181.7
+ },
+ {
+  "t": 39.4,
+  "frame": 1182,
+  "name": "嗖",
+  "beat": "S22",
+  "key": true,
+  "label": "抢（你→他）",
+  "visual_frame": 1185.0
+ },
+ {
+  "t": 39.59,
+  "frame": 1188,
+  "name": "噗",
+  "beat": "S22",
+  "key": false,
+  "label": "拿走",
+  "visual_frame": 1187.7
+ },
+ {
+  "t": 39.7,
+  "frame": 1191,
+  "name": "叮",
+  "beat": "S22",
+  "key": false,
+  "label": "照样递出（暖）",
+  "visual_frame": 1191.0
+ },
+ {
+  "t": 40.2,
+  "frame": 1206,
+  "name": "嗖",
+  "beat": "S23",
+  "key": false,
+  "label": "飞向你的抢",
+  "visual_frame": 1206.0
+ },
+ {
+  "t": 40.233,
+  "frame": 1207,
+  "name": "叮",
+  "beat": "S23",
+  "key": false,
+  "label": "你也递回去",
+  "visual_frame": 1207.0,
+  "from_beat": "S22"
+ },
+ {
+  "t": 40.367,
+  "frame": 1211,
+  "name": "嗖",
+  "beat": "S23",
+  "key": false,
+  "label": "飞向你的抢",
+  "visual_frame": 1211.0
+ },
+ {
+  "t": 40.467,
+  "frame": 1214,
+  "name": "刷",
+  "beat": "S23",
+  "key": false,
+  "label": "两根条",
+  "visual_frame": 1214.0
+ },
+ {
+  "t": 40.533,
+  "frame": 1216,
+  "name": "嗖",
+  "beat": "S23",
+  "key": false,
+  "label": "飞向你的抢",
+  "visual_frame": 1216.0
+ },
+ {
+  "t": 40.7,
+  "frame": 1221,
+  "name": "嗖",
+  "beat": "S23",
+  "key": false,
+  "label": "飞向你的抢",
+  "visual_frame": 1221.0
+ },
+ {
+  "t": 40.867,
+  "frame": 1226,
+  "name": "嗖",
+  "beat": "S23",
+  "key": false,
+  "label": "飞向你的抢",
+  "visual_frame": 1226.0
+ },
+ {
+  "t": 41.033,
+  "frame": 1231,
+  "name": "嗖",
+  "beat": "S23",
+  "key": false,
+  "label": "飞向你的抢",
+  "visual_frame": 1231.0
+ },
+ {
+  "t": 41.2,
+  "frame": 1236,
+  "name": "布料",
+  "beat": "S23",
+  "key": false,
+  "label": "布料",
+  "visual_frame": 1236.0
+ },
+ {
+  "t": 41.2,
+  "frame": 1236,
+  "name": "嗖",
+  "beat": "S23",
+  "key": false,
+  "label": "飞向你的抢",
+  "visual_frame": 1236.0
+ },
+ {
+  "t": 41.367,
+  "frame": 1241,
+  "name": "嗖",
+  "beat": "S23",
+  "key": false,
+  "label": "飞向你的抢",
+  "visual_frame": 1241.0
+ },
+ {
+  "t": 41.367,
+  "frame": 1241,
+  "name": "叮",
+  "beat": "S23",
+  "key": true,
+  "label": "路线图：原谅（亮出）",
+  "visual_frame": 1241.0
+ },
+ {
+  "t": 41.533,
+  "frame": 1246,
+  "name": "嗖",
+  "beat": "S23",
+  "key": false,
+  "label": "飞向你的抢",
+  "visual_frame": 1246.0
+ },
+ {
+  "t": 41.6,
+  "frame": 1248,
+  "name": "咔哒",
+  "beat": "S23",
+  "key": false,
+  "label": "换衣（原谅）",
+  "visual_frame": 1248.0
+ },
+ {
+  "t": 41.667,
+  "frame": 1250,
+  "name": "嗖",
+  "beat": "S23",
+  "key": false,
+  "label": "飞向你的抢",
+  "visual_frame": 1250.0
+ },
+ {
+  "t": 41.867,
+  "frame": 1256,
+  "name": "叹气",
+  "beat": "S23",
+  "key": false,
+  "label": "叹气",
+  "visual_frame": 1256.0
+ },
+ {
+  "t": 42.0,
+  "frame": 1260,
+  "name": "嗖",
+  "beat": "S23",
+  "key": false,
+  "label": "飞向你的抢",
+  "visual_frame": 1260.0
+ },
+ {
+  "t": 42.333,
+  "frame": 1270,
+  "name": "嗖",
+  "beat": "S23",
+  "key": false,
+  "label": "飞向你的抢",
+  "visual_frame": 1270.0
+ },
+ {
+  "t": 42.5,
+  "frame": 1275,
+  "name": "嗖",
+  "beat": "S24",
+  "key": false,
+  "label": "拉到远景",
+  "visual_frame": 1275.0
+ },
+ {
+  "t": 42.853,
+  "frame": 1286,
+  "name": "亮起",
+  "beat": "S24",
+  "key": false,
+  "label": "亮起",
+  "visual_frame": 1285.59
+ },
+ {
+  "t": 42.859,
+  "frame": 1286,
+  "name": "亮起",
+  "beat": "S24",
+  "key": false,
+  "label": "亮起",
+  "visual_frame": 1285.78
+ },
+ {
+  "t": 42.876,
+  "frame": 1286,
+  "name": "亮起",
+  "beat": "S24",
+  "key": false,
+  "label": "亮起",
+  "visual_frame": 1286.29
+ },
+ {
+  "t": 42.885,
+  "frame": 1287,
+  "name": "亮起",
+  "beat": "S24",
+  "key": false,
+  "label": "亮起",
+  "visual_frame": 1286.54
+ },
+ {
+  "t": 42.887,
+  "frame": 1287,
+  "name": "亮起",
+  "beat": "S24",
+  "key": false,
+  "label": "亮起",
+  "visual_frame": 1286.6
+ },
+ {
+  "t": 42.922,
+  "frame": 1288,
+  "name": "亮起",
+  "beat": "S24",
+  "key": false,
+  "label": "亮起",
+  "visual_frame": 1287.67
+ },
+ {
+  "t": 42.929,
+  "frame": 1288,
+  "name": "亮起",
+  "beat": "S24",
+  "key": false,
+  "label": "亮起",
+  "visual_frame": 1287.88
+ },
+ {
+  "t": 42.933,
+  "frame": 1288,
+  "name": "亮起",
+  "beat": "S24",
+  "key": false,
+  "label": "亮起",
+  "visual_frame": 1287.99
+ },
+ {
+  "t": 42.942,
+  "frame": 1288,
+  "name": "亮起",
+  "beat": "S24",
+  "key": false,
+  "label": "亮起",
+  "visual_frame": 1288.25
+ },
+ {
+  "t": 42.952,
+  "frame": 1289,
+  "name": "亮起",
+  "beat": "S24",
+  "key": false,
+  "label": "亮起",
+  "visual_frame": 1288.56
+ },
+ {
+  "t": 42.963,
+  "frame": 1289,
+  "name": "亮起",
+  "beat": "S24",
+  "key": false,
+  "label": "亮起",
+  "visual_frame": 1288.89
+ },
+ {
+  "t": 42.976,
+  "frame": 1289,
+  "name": "亮起",
+  "beat": "S24",
+  "key": false,
+  "label": "亮起",
+  "visual_frame": 1289.28
+ },
+ {
+  "t": 42.991,
+  "frame": 1290,
+  "name": "亮起",
+  "beat": "S24",
+  "key": false,
+  "label": "亮起",
+  "visual_frame": 1289.72
+ },
+ {
+  "t": 42.996,
+  "frame": 1290,
+  "name": "亮起",
+  "beat": "S24",
+  "key": false,
+  "label": "亮起",
+  "visual_frame": 1289.88
+ },
+ {
+  "t": 43.008,
+  "frame": 1290,
+  "name": "亮起",
+  "beat": "S24",
+  "key": false,
+  "label": "亮起",
+  "visual_frame": 1290.25
+ },
+ {
+  "t": 43.023,
+  "frame": 1291,
+  "name": "亮起",
+  "beat": "S24",
+  "key": false,
+  "label": "亮起",
+  "visual_frame": 1290.68
+ },
+ {
+  "t": 43.034,
+  "frame": 1291,
+  "name": "亮起",
+  "beat": "S24",
+  "key": false,
+  "label": "亮起",
+  "visual_frame": 1291.03
+ },
+ {
+  "t": 43.047,
+  "frame": 1291,
+  "name": "亮起",
+  "beat": "S24",
+  "key": false,
+  "label": "亮起",
+  "visual_frame": 1291.4
+ },
+ {
+  "t": 43.054,
+  "frame": 1292,
+  "name": "亮起",
+  "beat": "S24",
+  "key": false,
+  "label": "亮起",
+  "visual_frame": 1291.63
+ },
+ {
+  "t": 43.058,
+  "frame": 1292,
+  "name": "亮起",
+  "beat": "S24",
+  "key": false,
+  "label": "亮起",
+  "visual_frame": 1291.75
+ },
+ {
+  "t": 43.068,
+  "frame": 1292,
+  "name": "亮起",
+  "beat": "S24",
+  "key": false,
+  "label": "亮起",
+  "visual_frame": 1292.03
+ },
+ {
+  "t": 43.081,
+  "frame": 1292,
+  "name": "亮起",
+  "beat": "S24",
+  "key": false,
+  "label": "亮起",
+  "visual_frame": 1292.44
+ },
+ {
+  "t": 43.098,
+  "frame": 1293,
+  "name": "亮起",
+  "beat": "S24",
+  "key": false,
+  "label": "亮起",
+  "visual_frame": 1292.94
+ },
+ {
+  "t": 43.102,
+  "frame": 1293,
+  "name": "亮起",
+  "beat": "S24",
+  "key": false,
+  "label": "亮起",
+  "visual_frame": 1293.06
+ },
+ {
+  "t": 43.123,
+  "frame": 1294,
+  "name": "亮起",
+  "beat": "S24",
+  "key": false,
+  "label": "亮起",
+  "visual_frame": 1293.69
+ },
+ {
+  "t": 43.124,
+  "frame": 1294,
+  "name": "亮起",
+  "beat": "S24",
+  "key": false,
+  "label": "亮起",
+  "visual_frame": 1293.71
+ },
+ {
+  "t": 43.8,
+  "frame": 1314,
+  "name": "唰",
+  "beat": "S24",
+  "key": false,
+  "label": "聚成方块",
+  "visual_frame": 1314.0
+ },
+ {
+  "t": 43.884,
+  "frame": 1317,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1316.52
+ },
+ {
+  "t": 43.886,
+  "frame": 1317,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1316.59
+ },
+ {
+  "t": 43.898,
+  "frame": 1317,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1316.94
+ },
+ {
+  "t": 43.906,
+  "frame": 1317,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1317.19
+ },
+ {
+  "t": 43.908,
+  "frame": 1317,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1317.24
+ },
+ {
+  "t": 43.925,
+  "frame": 1318,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1317.75
+ },
+ {
+  "t": 43.946,
+  "frame": 1318,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1318.38
+ },
+ {
+  "t": 43.951,
+  "frame": 1319,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1318.54
+ },
+ {
+  "t": 43.98,
+  "frame": 1319,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1319.39
+ },
+ {
+  "t": 43.994,
+  "frame": 1320,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1319.82
+ },
+ {
+  "t": 44.009,
+  "frame": 1320,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1320.27
+ },
+ {
+  "t": 44.026,
+  "frame": 1321,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1320.78
+ },
+ {
+  "t": 44.037,
+  "frame": 1321,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1321.1
+ },
+ {
+  "t": 44.037,
+  "frame": 1321,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1321.11
+ },
+ {
+  "t": 44.051,
+  "frame": 1322,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1321.53
+ },
+ {
+  "t": 44.071,
+  "frame": 1322,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1322.14
+ },
+ {
+  "t": 44.077,
+  "frame": 1322,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1322.3
+ },
+ {
+  "t": 44.077,
+  "frame": 1322,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1322.32
+ },
+ {
+  "t": 44.086,
+  "frame": 1323,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1322.57
+ },
+ {
+  "t": 44.105,
+  "frame": 1323,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1323.14
+ },
+ {
+  "t": 44.108,
+  "frame": 1323,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1323.25
+ },
+ {
+  "t": 44.113,
+  "frame": 1323,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1323.39
+ },
+ {
+  "t": 44.133,
+  "frame": 1324,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1323.99
+ },
+ {
+  "t": 44.14,
+  "frame": 1324,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1324.19
+ },
+ {
+  "t": 44.15,
+  "frame": 1324,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1324.49
+ },
+ {
+  "t": 44.154,
+  "frame": 1325,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1324.61
+ },
+ {
+  "t": 44.172,
+  "frame": 1325,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1325.17
+ },
+ {
+  "t": 44.224,
+  "frame": 1327,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1326.73
+ },
+ {
+  "t": 44.228,
+  "frame": 1327,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1326.85
+ },
+ {
+  "t": 44.243,
+  "frame": 1327,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1327.3
+ },
+ {
+  "t": 44.253,
+  "frame": 1328,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1327.6
+ },
+ {
+  "t": 44.256,
+  "frame": 1328,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1327.69
+ },
+ {
+  "t": 44.281,
+  "frame": 1328,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1328.42
+ },
+ {
+  "t": 44.316,
+  "frame": 1329,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1329.48
+ },
+ {
+  "t": 44.325,
+  "frame": 1330,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1329.76
+ },
+ {
+  "t": 44.336,
+  "frame": 1330,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1330.09
+ },
+ {
+  "t": 44.342,
+  "frame": 1330,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1330.26
+ },
+ {
+  "t": 44.343,
+  "frame": 1330,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1330.29
+ },
+ {
+  "t": 44.362,
+  "frame": 1331,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1330.87
+ },
+ {
+  "t": 44.394,
+  "frame": 1332,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1331.83
+ },
+ {
+  "t": 44.401,
+  "frame": 1332,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1332.04
+ },
+ {
+  "t": 44.463,
+  "frame": 1334,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1333.88
+ },
+ {
+  "t": 44.467,
+  "frame": 1334,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1334.02
+ },
+ {
+  "t": 44.492,
+  "frame": 1335,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1334.76
+ },
+ {
+  "t": 44.494,
+  "frame": 1335,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1334.82
+ },
+ {
+  "t": 44.5,
+  "frame": 1335,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1335.01
+ },
+ {
+  "t": 44.504,
+  "frame": 1335,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1335.11
+ },
+ {
+  "t": 44.547,
+  "frame": 1336,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1336.42
+ },
+ {
+  "t": 44.549,
+  "frame": 1336,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1336.48
+ },
+ {
+  "t": 44.57,
+  "frame": 1337,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1337.11
+ },
+ {
+  "t": 44.611,
+  "frame": 1338,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1338.32
+ },
+ {
+  "t": 44.621,
+  "frame": 1339,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1338.62
+ },
+ {
+  "t": 44.622,
+  "frame": 1339,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1338.65
+ },
+ {
+  "t": 44.641,
+  "frame": 1339,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1339.23
+ },
+ {
+  "t": 44.643,
+  "frame": 1339,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1339.3
+ },
+ {
+  "t": 44.659,
+  "frame": 1340,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1339.77
+ },
+ {
+  "t": 44.66,
+  "frame": 1340,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1339.79
+ },
+ {
+  "t": 44.67,
+  "frame": 1340,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1340.11
+ },
+ {
+  "t": 44.682,
+  "frame": 1340,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1340.45
+ },
+ {
+  "t": 44.693,
+  "frame": 1341,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1340.78
+ },
+ {
+  "t": 44.699,
+  "frame": 1341,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1340.98
+ },
+ {
+  "t": 44.703,
+  "frame": 1341,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1341.09
+ },
+ {
+  "t": 44.708,
+  "frame": 1341,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1341.25
+ },
+ {
+  "t": 44.731,
+  "frame": 1342,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1341.92
+ },
+ {
+  "t": 44.732,
+  "frame": 1342,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1341.96
+ },
+ {
+  "t": 44.737,
+  "frame": 1342,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1342.1
+ },
+ {
+  "t": 44.754,
+  "frame": 1343,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1342.63
+ },
+ {
+  "t": 44.803,
+  "frame": 1344,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1344.1
+ },
+ {
+  "t": 44.821,
+  "frame": 1345,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1344.64
+ },
+ {
+  "t": 44.84,
+  "frame": 1345,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1345.2
+ },
+ {
+  "t": 44.841,
+  "frame": 1345,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1345.24
+ },
+ {
+  "t": 44.871,
+  "frame": 1346,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1346.13
+ },
+ {
+  "t": 44.898,
+  "frame": 1347,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1346.94
+ },
+ {
+  "t": 44.9,
+  "frame": 1347,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1346.99
+ },
+ {
+  "t": 44.902,
+  "frame": 1347,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1347.07
+ },
+ {
+  "t": 44.911,
+  "frame": 1347,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1347.33
+ },
+ {
+  "t": 44.959,
+  "frame": 1349,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1348.77
+ },
+ {
+  "t": 44.961,
+  "frame": 1349,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1348.84
+ },
+ {
+  "t": 44.976,
+  "frame": 1349,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1349.28
+ },
+ {
+  "t": 44.979,
+  "frame": 1349,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1349.36
+ },
+ {
+  "t": 45.0,
+  "frame": 1350,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1350.0
+ },
+ {
+  "t": 45.002,
+  "frame": 1350,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1350.06
+ },
+ {
+  "t": 45.03,
+  "frame": 1351,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1350.89
+ },
+ {
+  "t": 45.032,
+  "frame": 1351,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1350.95
+ },
+ {
+  "t": 45.035,
+  "frame": 1351,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1351.05
+ },
+ {
+  "t": 45.045,
+  "frame": 1351,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1351.35
+ },
+ {
+  "t": 45.053,
+  "frame": 1352,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1351.59
+ },
+ {
+  "t": 45.054,
+  "frame": 1352,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1351.62
+ },
+ {
+  "t": 45.065,
+  "frame": 1352,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1351.95
+ },
+ {
+  "t": 45.07,
+  "frame": 1352,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1352.11
+ },
+ {
+  "t": 45.071,
+  "frame": 1352,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1352.13
+ },
+ {
+  "t": 45.083,
+  "frame": 1352,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1352.49
+ },
+ {
+  "t": 45.095,
+  "frame": 1353,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1352.85
+ },
+ {
+  "t": 45.11,
+  "frame": 1353,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1353.3
+ },
+ {
+  "t": 45.113,
+  "frame": 1353,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1353.38
+ },
+ {
+  "t": 45.119,
+  "frame": 1354,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1353.56
+ },
+ {
+  "t": 45.142,
+  "frame": 1354,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1354.27
+ },
+ {
+  "t": 45.166,
+  "frame": 1355,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1354.97
+ },
+ {
+  "t": 45.166,
+  "frame": 1355,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1354.97
+ },
+ {
+  "t": 45.181,
+  "frame": 1355,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1355.42
+ },
+ {
+  "t": 45.198,
+  "frame": 1356,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1355.93
+ },
+ {
+  "t": 45.202,
+  "frame": 1356,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1356.06
+ },
+ {
+  "t": 45.226,
+  "frame": 1357,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1356.77
+ },
+ {
+  "t": 45.237,
+  "frame": 1357,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1357.12
+ },
+ {
+  "t": 45.241,
+  "frame": 1357,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1357.24
+ },
+ {
+  "t": 45.256,
+  "frame": 1358,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1357.68
+ },
+ {
+  "t": 45.267,
+  "frame": 1358,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1358.02
+ },
+ {
+  "t": 45.275,
+  "frame": 1358,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1358.24
+ },
+ {
+  "t": 45.279,
+  "frame": 1358,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1358.37
+ },
+ {
+  "t": 45.308,
+  "frame": 1359,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1359.24
+ },
+ {
+  "t": 45.314,
+  "frame": 1359,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1359.43
+ },
+ {
+  "t": 45.365,
+  "frame": 1361,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1360.96
+ },
+ {
+  "t": 45.387,
+  "frame": 1362,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1361.61
+ },
+ {
+  "t": 45.401,
+  "frame": 1362,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1362.04
+ },
+ {
+  "t": 45.414,
+  "frame": 1362,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1362.42
+ },
+ {
+  "t": 45.416,
+  "frame": 1362,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1362.47
+ },
+ {
+  "t": 45.421,
+  "frame": 1363,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1362.64
+ },
+ {
+  "t": 45.424,
+  "frame": 1363,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1362.72
+ },
+ {
+  "t": 45.426,
+  "frame": 1363,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1362.77
+ },
+ {
+  "t": 45.468,
+  "frame": 1364,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1364.03
+ },
+ {
+  "t": 45.468,
+  "frame": 1364,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1364.04
+ },
+ {
+  "t": 45.483,
+  "frame": 1364,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1364.5
+ },
+ {
+  "t": 45.491,
+  "frame": 1365,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1364.74
+ },
+ {
+  "t": 45.494,
+  "frame": 1365,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1364.82
+ },
+ {
+  "t": 45.516,
+  "frame": 1365,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1365.48
+ },
+ {
+  "t": 45.533,
+  "frame": 1366,
+  "name": "叮",
+  "beat": "S24",
+  "key": false,
+  "label": "翻完：九成会原谅",
+  "visual_frame": 1366.0
+ },
+ {
+  "t": 45.596,
+  "frame": 1368,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1367.89
+ },
+ {
+  "t": 45.597,
+  "frame": 1368,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1367.9
+ },
+ {
+  "t": 45.602,
+  "frame": 1368,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1368.07
+ },
+ {
+  "t": 45.603,
+  "frame": 1368,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1368.09
+ },
+ {
+  "t": 45.61,
+  "frame": 1368,
+  "name": "嗒嗒",
+  "beat": "S24",
+  "key": false,
+  "label": "翻色",
+  "visual_frame": 1368.29
+ },
+ {
+  "t": 46.2,
+  "frame": 1386,
+  "name": "嗖",
+  "beat": "S26",
+  "key": false,
+  "label": "退回点阵",
+  "visual_frame": 1386.0
+ },
+ {
+  "t": 46.6,
+  "frame": 1398,
+  "name": "嗖",
+  "beat": "S26",
+  "key": false,
+  "label": "接着跑：安稳里透出不安，再越来越紧",
+  "visual_frame": 1398.0
+ },
+ {
+  "t": 46.625,
+  "frame": 1399,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1398.76
+ },
+ {
+  "t": 46.63,
+  "frame": 1399,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1398.91
+ },
+ {
+  "t": 46.643,
+  "frame": 1399,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1399.3
+ },
+ {
+  "t": 46.681,
+  "frame": 1400,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1400.44
+ },
+ {
+  "t": 46.709,
+  "frame": 1401,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1401.27
+ },
+ {
+  "t": 46.739,
+  "frame": 1402,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1402.18
+ },
+ {
+  "t": 46.784,
+  "frame": 1404,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1403.52
+ },
+ {
+  "t": 46.817,
+  "frame": 1405,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1404.52
+ },
+ {
+  "t": 46.821,
+  "frame": 1405,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1404.64
+ },
+ {
+  "t": 46.877,
+  "frame": 1406,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1406.3
+ },
+ {
+  "t": 46.91,
+  "frame": 1407,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1407.29
+ },
+ {
+  "t": 46.93,
+  "frame": 1408,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1407.9
+ },
+ {
+  "t": 47.03,
+  "frame": 1411,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1410.91
+ },
+ {
+  "t": 47.162,
+  "frame": 1415,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1414.87
+ },
+ {
+  "t": 47.19,
+  "frame": 1416,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1415.7
+ },
+ {
+  "t": 47.2,
+  "frame": 1416,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1416.01
+ },
+ {
+  "t": 47.249,
+  "frame": 1417,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1417.47
+ },
+ {
+  "t": 47.257,
+  "frame": 1418,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1417.71
+ },
+ {
+  "t": 47.334,
+  "frame": 1420,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1420.02
+ },
+ {
+  "t": 47.404,
+  "frame": 1422,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1422.12
+ },
+ {
+  "t": 47.426,
+  "frame": 1423,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1422.77
+ },
+ {
+  "t": 47.443,
+  "frame": 1423,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1423.29
+ },
+ {
+  "t": 47.47,
+  "frame": 1424,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1424.1
+ },
+ {
+  "t": 47.481,
+  "frame": 1424,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1424.42
+ },
+ {
+  "t": 47.492,
+  "frame": 1425,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1424.75
+ },
+ {
+  "t": 47.501,
+  "frame": 1425,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1425.02
+ },
+ {
+  "t": 47.62,
+  "frame": 1429,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1428.6
+ },
+ {
+  "t": 47.683,
+  "frame": 1430,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1430.5
+ },
+ {
+  "t": 47.782,
+  "frame": 1433,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1433.47
+ },
+ {
+  "t": 47.784,
+  "frame": 1434,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1433.52
+ },
+ {
+  "t": 47.79,
+  "frame": 1434,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1433.69
+ },
+ {
+  "t": 47.808,
+  "frame": 1434,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1434.23
+ },
+ {
+  "t": 47.874,
+  "frame": 1436,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1436.22
+ },
+ {
+  "t": 47.876,
+  "frame": 1436,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1436.29
+ },
+ {
+  "t": 47.912,
+  "frame": 1437,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1437.37
+ },
+ {
+  "t": 47.916,
+  "frame": 1437,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1437.49
+ },
+ {
+  "t": 47.928,
+  "frame": 1438,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1437.84
+ },
+ {
+  "t": 47.934,
+  "frame": 1438,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1438.02
+ },
+ {
+  "t": 47.97,
+  "frame": 1439,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1439.1
+ },
+ {
+  "t": 47.973,
+  "frame": 1439,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1439.2
+ },
+ {
+  "t": 47.994,
+  "frame": 1440,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1439.82
+ },
+ {
+  "t": 48.022,
+  "frame": 1441,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1440.66
+ },
+ {
+  "t": 48.031,
+  "frame": 1441,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1440.94
+ },
+ {
+  "t": 48.034,
+  "frame": 1441,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1441.01
+ },
+ {
+  "t": 48.08,
+  "frame": 1442,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1442.41
+ },
+ {
+  "t": 48.082,
+  "frame": 1442,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1442.47
+ },
+ {
+  "t": 48.147,
+  "frame": 1444,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1444.41
+ },
+ {
+  "t": 48.147,
+  "frame": 1444,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1444.42
+ },
+ {
+  "t": 48.152,
+  "frame": 1445,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1444.57
+ },
+ {
+  "t": 48.169,
+  "frame": 1445,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1445.08
+ },
+ {
+  "t": 48.172,
+  "frame": 1445,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1445.15
+ },
+ {
+  "t": 48.206,
+  "frame": 1446,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1446.19
+ },
+ {
+  "t": 48.221,
+  "frame": 1447,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1446.63
+ },
+ {
+  "t": 48.221,
+  "frame": 1447,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1446.64
+ },
+ {
+  "t": 48.252,
+  "frame": 1448,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1447.57
+ },
+ {
+  "t": 48.256,
+  "frame": 1448,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1447.67
+ },
+ {
+  "t": 48.262,
+  "frame": 1448,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1447.86
+ },
+ {
+  "t": 48.263,
+  "frame": 1448,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1447.88
+ },
+ {
+  "t": 48.293,
+  "frame": 1449,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1448.79
+ },
+ {
+  "t": 48.319,
+  "frame": 1450,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1449.58
+ },
+ {
+  "t": 48.34,
+  "frame": 1450,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1450.19
+ },
+ {
+  "t": 48.341,
+  "frame": 1450,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1450.23
+ },
+ {
+  "t": 48.36,
+  "frame": 1451,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1450.79
+ },
+ {
+  "t": 48.425,
+  "frame": 1453,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1452.74
+ },
+ {
+  "t": 48.436,
+  "frame": 1453,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1453.09
+ },
+ {
+  "t": 48.485,
+  "frame": 1455,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1454.55
+ },
+ {
+  "t": 48.489,
+  "frame": 1455,
+  "name": "啵",
+  "beat": "S26",
+  "key": false,
+  "label": "点变黄",
+  "visual_frame": 1454.68
+ },
+ {
+  "t": 48.622,
+  "frame": 1459,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1458.67
+ },
+ {
+  "t": 48.646,
+  "frame": 1459,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1459.38
+ },
+ {
+  "t": 48.667,
+  "frame": 1460,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1460.0
+ },
+ {
+  "t": 48.698,
+  "frame": 1461,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1460.93
+ },
+ {
+  "t": 48.709,
+  "frame": 1461,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1461.28
+ },
+ {
+  "t": 48.732,
+  "frame": 1462,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1461.97
+ },
+ {
+  "t": 48.767,
+  "frame": 1463,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1463.02
+ },
+ {
+  "t": 48.773,
+  "frame": 1463,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1463.2
+ },
+ {
+  "t": 48.782,
+  "frame": 1463,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1463.47
+ },
+ {
+  "t": 48.787,
+  "frame": 1464,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1463.62
+ },
+ {
+  "t": 48.836,
+  "frame": 1465,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1465.08
+ },
+ {
+  "t": 48.845,
+  "frame": 1465,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1465.36
+ },
+ {
+  "t": 48.867,
+  "frame": 1466,
+  "name": "咚",
+  "beat": "S26b",
+  "key": true,
+  "label": "狠人回到三成：重击",
+  "visual_frame": 1466.0
+ },
+ {
+  "t": 48.879,
+  "frame": 1466,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1466.38
+ },
+ {
+  "t": 48.885,
+  "frame": 1467,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1466.56
+ },
+ {
+  "t": 48.886,
+  "frame": 1467,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1466.57
+ },
+ {
+  "t": 48.917,
+  "frame": 1468,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1467.52
+ },
+ {
+  "t": 48.963,
+  "frame": 1469,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1468.88
+ },
+ {
+  "t": 48.974,
+  "frame": 1469,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1469.22
+ },
+ {
+  "t": 48.995,
+  "frame": 1470,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1469.85
+ },
+ {
+  "t": 49.032,
+  "frame": 1471,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1470.95
+ },
+ {
+  "t": 49.055,
+  "frame": 1472,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1471.66
+ },
+ {
+  "t": 49.127,
+  "frame": 1474,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1473.81
+ },
+ {
+  "t": 49.131,
+  "frame": 1474,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1473.93
+ },
+ {
+  "t": 49.16,
+  "frame": 1475,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1474.81
+ },
+ {
+  "t": 49.163,
+  "frame": 1475,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1474.88
+ },
+ {
+  "t": 49.167,
+  "frame": 1475,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1475.0
+ },
+ {
+  "t": 49.212,
+  "frame": 1476,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1476.37
+ },
+ {
+  "t": 49.225,
+  "frame": 1477,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1476.74
+ },
+ {
+  "t": 49.227,
+  "frame": 1477,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1476.81
+ },
+ {
+  "t": 49.227,
+  "frame": 1477,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1476.81
+ },
+ {
+  "t": 49.232,
+  "frame": 1477,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1476.96
+ },
+ {
+  "t": 49.282,
+  "frame": 1478,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1478.46
+ },
+ {
+  "t": 49.292,
+  "frame": 1479,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1478.76
+ },
+ {
+  "t": 49.315,
+  "frame": 1479,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1479.45
+ },
+ {
+  "t": 49.329,
+  "frame": 1480,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1479.87
+ },
+ {
+  "t": 49.458,
+  "frame": 1484,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1483.74
+ },
+ {
+  "t": 49.497,
+  "frame": 1485,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1484.9
+ },
+ {
+  "t": 49.511,
+  "frame": 1485,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1485.33
+ },
+ {
+  "t": 49.561,
+  "frame": 1487,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1486.84
+ },
+ {
+  "t": 49.602,
+  "frame": 1488,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1488.07
+ },
+ {
+  "t": 49.64,
+  "frame": 1489,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1489.2
+ },
+ {
+  "t": 49.677,
+  "frame": 1490,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1490.32
+ },
+ {
+  "t": 49.764,
+  "frame": 1493,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1492.92
+ },
+ {
+  "t": 49.79,
+  "frame": 1494,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1493.69
+ },
+ {
+  "t": 49.858,
+  "frame": 1496,
+  "name": "嗒嗒",
+  "beat": "S26b",
+  "key": false,
+  "label": "点变红",
+  "visual_frame": 1495.73
+ },
+ {
+  "t": 51.0,
+  "frame": 1530,
+  "name": "嗖",
+  "beat": "S25",
+  "key": false,
+  "label": "点阵散开",
+  "visual_frame": 1530.0
+ },
+ {
+  "t": 51.0,
+  "frame": 1530,
+  "name": "暖音",
+  "beat": "S25",
+  "key": false,
+  "label": "带走句底下的暖音",
+  "visual_frame": 1530.0
+ },
+ {
+  "t": 51.367,
+  "frame": 1541,
+  "name": "叮",
+  "beat": "S25",
+  "key": true,
+  "label": "老实的灯",
+  "visual_frame": 1541.0
+ },
+ {
+  "t": 51.7,
+  "frame": 1551,
+  "name": "叮",
+  "beat": "S25",
+  "key": true,
+  "label": "狠（闷）的灯",
+  "visual_frame": 1551.0
+ },
+ {
+  "t": 52.033,
+  "frame": 1561,
+  "name": "叮",
+  "beat": "S25",
+  "key": true,
+  "label": "有来有往的灯",
+  "visual_frame": 1561.0
+ },
+ {
+  "t": 52.367,
+  "frame": 1571,
+  "name": "叮",
+  "beat": "S25",
+  "key": true,
+  "label": "原谅的灯",
+  "visual_frame": 1571.0
+ },
+ {
+  "t": 53.5,
+  "frame": 1605,
+  "name": "嗖",
+  "beat": "S27",
+  "key": false,
+  "label": "扎进你",
+  "visual_frame": 1605.0
+ },
+ {
+  "t": 54.567,
+  "frame": 1637,
+  "name": "嘀嗒",
+  "beat": "S28",
+  "key": false,
+  "label": "钟表：嘀",
+  "visual_frame": 1637.0
+ },
+ {
+  "t": 54.8,
+  "frame": 1644,
+  "name": "布料",
+  "beat": "S28",
+  "key": false,
+  "label": "布料",
+  "visual_frame": 1644.0
+ },
+ {
+  "t": 54.967,
+  "frame": 1649,
+  "name": "嘀嗒",
+  "beat": "S28",
+  "key": false,
+  "label": "钟表：嗒",
+  "visual_frame": 1649.0
+ },
+ {
+  "t": 55.267,
+  "frame": 1658,
+  "name": "叮",
+  "beat": "S28",
+  "key": false,
+  "label": "选项：再约一次",
+  "visual_frame": 1658.0
+ },
+ {
+  "t": 55.533,
+  "frame": 1666,
+  "name": "叮",
+  "beat": "S28",
+  "key": false,
+  "label": "选项：还是拉黑",
+  "visual_frame": 1666.0
+ }
+]

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <application
+        android:icon="@android:drawable/ic_dialog_info"
+        android:label="测试通知"
+        android:theme="@android:style/Theme.Material.Light.DarkActionBar">
+
+        <activity android:name=".MainActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 点测试通知落到这里，页面上显示是第几条 -->
+        <activity android:name=".DetailActivity" android:exported="false" android:label="测试通知详情" />
+
+        <!-- 调试用：adb 或定时器让它发一条通知 -->
+        <receiver
+            android:name=".PostReceiver"
+            android:exported="true"
+            tools:ignore="ExportedReceiver" />
+    </application>
+</manifest>

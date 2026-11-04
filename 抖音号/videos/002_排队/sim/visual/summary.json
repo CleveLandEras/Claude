@@ -1,0 +1,590 @@
+{
+ "p": 0.6,
+ "n": 100,
+ "colors": {
+  "right_shop": {
+   "light": "#2a78d6",
+   "dark": "#3987e5"
+  },
+  "wrong_shop": {
+   "light": "#eb6834",
+   "dark": "#d95926"
+  }
+ },
+ "wrong_rate_last": {
+  "rate": 0.30558,
+  "ci95": [
+   0.303564851031548,
+   0.3076026176637133
+  ],
+  "k": 61116,
+  "n": 200000
+ },
+ "wrong_rate_analytic": 0.307692307692308,
+ "control_independent_majority_right": 0.972900802242991,
+ "all_speak_last_wrong": 0.02193044213008516,
+ "mean_right_per_person_watching_queue": 0.69075855,
+ "mean_right_per_person_alone": 0.6,
+ "lock": {
+  "p_at_3": 0.519775,
+  "p_le_3": 0.519775,
+  "p_le_5": 0.769845,
+  "p_le_9": 0.947325,
+  "p_never_by_n": 0.0,
+  "mean": 4.84599,
+  "median": 3.0,
+  "q10_50_90": [
+   3.0,
+   3.0,
+   9.0
+  ],
+  "analytic_p_at_3": 0.52,
+  "analytic_mean": 4.846153846153846
+ },
+ "queue_reliability_first_k_same": {
+  "1": {
+   "share_of_queues": 1.0,
+   "p_right": 0.601525,
+   "ci95": [
+    0.5993773723693262,
+    0.603668727521187
+   ]
+  },
+  "2": {
+   "share_of_queues": 0.519775,
+   "p_right": 0.6933865614929536,
+   "ci95": [
+    0.6905764993442065,
+    0.6961823311812771
+   ]
+  },
+  "3": {
+   "share_of_queues": 0.519775,
+   "p_right": 0.6933865614929536,
+   "ci95": [
+    0.6905764993442065,
+    0.6961823311812771
+   ]
+  },
+  "5": {
+   "share_of_queues": 0.519775,
+   "p_right": 0.6933865614929536,
+   "ci95": [
+    0.6905764993442065,
+    0.6961823311812771
+   ]
+  },
+  "10": {
+   "share_of_queues": 0.519775,
+   "p_right": 0.6933865614929536,
+   "ci95": [
+    0.6905764993442065,
+    0.6961823311812771
+   ]
+  },
+  "20": {
+   "share_of_queues": 0.519775,
+   "p_right": 0.6933865614929536,
+   "ci95": [
+    0.6905764993442065,
+    0.6961823311812771
+   ]
+  },
+  "50": {
+   "share_of_queues": 0.519775,
+   "p_right": 0.6933865614929536,
+   "ci95": [
+    0.6905764993442065,
+    0.6961823311812771
+   ]
+  },
+  "100": {
+   "share_of_queues": 0.519775,
+   "p_right": 0.6933865614929536,
+   "ci95": [
+    0.6905764993442065,
+    0.6961823311812771
+   ]
+  }
+ },
+ "wrong_queue_people_with_right_signal": {
+  "mean": 58.6316021990968,
+  "q10_50_90": [
+   52.0,
+   59.0,
+   65.0
+  ],
+  "share_queues_where_majority_had_right_signal": 0.9537109758492048,
+  "right_signal_but_at_wrong_shop_mean": 57.72046599908371,
+  "right_signal_but_at_wrong_shop_q10_50_90": [
+   51.0,
+   58.0,
+   64.0
+  ],
+  "people_at_wrong_shop_mean": 99.08886379998691,
+  "queues_all_100_wrong_share_of_all": 0.15937,
+  "queues_all_100_wrong_share_of_wrong": 0.5215328228287192
+ },
+ "after_lock": {
+  "locked_people_mean": 96.15401,
+  "contrary_mean": 44.353835,
+  "contrary_share_of_locked": 0.46127909798041705,
+  "contrary_followed_share": 1.0,
+  "in_wrong_queues": {
+   "locked_mean": 96.17772759997382,
+   "contrary_mean": 57.72046599908371,
+   "contrary_share": 0.6001437904538246
+  },
+  "in_right_queues": {
+   "locked_mean": 96.14357305377149,
+   "contrary_mean": 38.47183980876127,
+   "contrary_share": 0.4001498861212971
+  }
+ },
+ "batches_of_20": {
+  "mean": 6.1227,
+  "q10_50_90": [
+   4.0,
+   6.0,
+   9.0
+  ],
+  "p_at_least_3": 0.9695,
+  "p_between_4_and_8": 0.7828,
+  "n_batches": 10000
+ },
+ "breaking": [
+  {
+   "label": "基准：全是看队的人",
+   "last_wrong": {
+    "rate": 0.307775,
+    "ci95": [
+     0.30575577578373864,
+     0.3098016085900223
+    ],
+    "k": 61555,
+    "n": 200000
+   },
+   "majority_wrong": {
+    "rate": 0.307775,
+    "ci95": [
+     0.30575577578373864,
+     0.3098016085900223
+    ],
+    "k": 61555,
+    "n": 200000
+   },
+   "mean_wrong_all": 0.31135555,
+   "mean_wrong_herders": 0.31135555,
+   "mean_wrong_special": null,
+   "special_share": 0.0,
+   "analytic_last_wrong": 0.307692307692308,
+   "contrary_locked_followers_mean": 44.38307
+  },
+  {
+   "label": "每 10 人有 1 个只听自己的人（大家知道他不看队）",
+   "last_wrong": {
+    "rate": 0.162445,
+    "ci95": [
+     0.16083489233054504,
+     0.1640680749332597
+    ],
+    "k": 32489,
+    "n": 200000
+   },
+   "majority_wrong": {
+    "rate": 0.192915,
+    "ci95": [
+     0.1911915516920985,
+     0.19465024505866946
+    ],
+    "k": 38583,
+    "n": 200000
+   },
+   "mean_wrong_all": 0.24003425,
+   "mean_wrong_herders": 0.22420620879120878,
+   "mean_wrong_special": 0.40007333333333334,
+   "special_share": 0.09,
+   "analytic_last_wrong": 0.1622392163436354,
+   "contrary_locked_followers_mean": 36.54576
+  },
+  {
+   "label": "每 5 人有 1 个只听自己的人（大家知道他不看队）",
+   "last_wrong": {
+    "rate": 0.111445,
+    "ci95": [
+     0.11007329985317846,
+     0.11283162658899443
+    ],
+    "k": 22289,
+    "n": 200000
+   },
+   "majority_wrong": {
+    "rate": 0.144785,
+    "ci95": [
+     0.14324962321507242,
+     0.14633402246226138
+    ],
+    "k": 28957,
+    "n": 200000
+   },
+   "mean_wrong_all": 0.2282368,
+   "mean_wrong_herders": 0.18790228395061728,
+   "mean_wrong_special": 0.4001892105263158,
+   "special_share": 0.19,
+   "analytic_last_wrong": 0.11167647010106362,
+   "contrary_locked_followers_mean": 31.081695
+  },
+  {
+   "label": "每 3 人有 1 个只听自己的人（大家知道他不看队）",
+   "last_wrong": {
+    "rate": 0.076585,
+    "ci95": [
+     0.07542761798828085,
+     0.07775864760992951
+    ],
+    "k": 15317,
+    "n": 200000
+   },
+   "majority_wrong": {
+    "rate": 0.107095,
+    "ci95": [
+     0.10574726105914191,
+     0.10845783248942116
+    ],
+    "k": 21419,
+    "n": 200000
+   },
+   "mean_wrong_all": 0.24060835,
+   "mean_wrong_herders": 0.16208835820895523,
+   "mean_wrong_special": 0.4000277272727273,
+   "special_share": 0.33,
+   "analytic_last_wrong": 0.0768677500163431,
+   "contrary_locked_followers_mean": 24.881555
+  },
+  {
+   "label": "每 2 人有 1 个只听自己的人（大家知道他不看队）",
+   "last_wrong": {
+    "rate": 0.04973,
+    "ci95": [
+     0.048785879802649645,
+     0.050691417437424974
+    ],
+    "k": 9946,
+    "n": 200000
+   },
+   "majority_wrong": {
+    "rate": 0.072715,
+    "ci95": [
+     0.07158514278779045,
+     0.07386127147748432
+    ],
+    "k": 14543,
+    "n": 200000
+   },
+   "mean_wrong_all": 0.2674872,
+   "mean_wrong_herders": 0.14014333333333334,
+   "mean_wrong_special": 0.4000287755102041,
+   "special_share": 0.49,
+   "analytic_last_wrong": 0.04992214924074367,
+   "contrary_locked_followers_mean": 18.32555
+  },
+  {
+   "label": "每 10 人有 1 个把朋友的话说出来（照样跟队）",
+   "last_wrong": {
+    "rate": 0.162525,
+    "ci95": [
+     0.16091457001546922,
+     0.16414839417511456
+    ],
+    "k": 32505,
+    "n": 200000
+   },
+   "majority_wrong": {
+    "rate": 0.196095,
+    "ci95": [
+     0.19436073423312158,
+     0.19784094035711283
+    ],
+    "k": 39219,
+    "n": 200000
+   },
+   "mean_wrong_all": 0.22451875,
+   "mean_wrong_herders": 0.2245837912087912,
+   "mean_wrong_special": 0.22386111111111112,
+   "special_share": 0.09,
+   "analytic_last_wrong": 0.1622392163436354,
+   "contrary_locked_followers_mean": 36.535985
+  },
+  {
+   "label": "每 5 人有 1 个把朋友的话说出来（照样跟队）",
+   "last_wrong": {
+    "rate": 0.11044,
+    "ci95": [
+     0.10907377534732818,
+     0.1118211897021831
+    ],
+    "k": 22088,
+    "n": 200000
+   },
+   "majority_wrong": {
+    "rate": 0.14969,
+    "ci95": [
+     0.14813312754672206,
+     0.151260329703751
+    ],
+    "k": 29938,
+    "n": 200000
+   },
+   "mean_wrong_all": 0.1863835,
+   "mean_wrong_herders": 0.1867491975308642,
+   "mean_wrong_special": 0.18482447368421054,
+   "special_share": 0.19,
+   "analytic_last_wrong": 0.11167647010106362,
+   "contrary_locked_followers_mean": 31.06777
+  },
+  {
+   "label": "每个人都把朋友的话说出来",
+   "last_wrong": {
+    "rate": 0.022065,
+    "ci95": [
+     0.02143032509056529,
+     0.022718034907735857
+    ],
+    "k": 4413,
+    "n": 200000
+   },
+   "majority_wrong": {
+    "rate": 0.04592,
+    "ci95": [
+     0.045011340535772715,
+     0.04684610306645058
+    ],
+    "k": 9184,
+    "n": 200000
+   },
+   "mean_wrong_all": 0.110651,
+   "mean_wrong_herders": 0.022065,
+   "mean_wrong_special": 0.11154580808080808,
+   "special_share": 0.99,
+   "analytic_last_wrong": 0.021930442130085222,
+   "contrary_locked_followers_mean": 0.392465
+  },
+  {
+   "label": "10% 的人只听自己，但认不出是谁；看队的人会算",
+   "last_wrong": {
+    "rate": 0.2169,
+    "ci95": [
+     0.21509919018198,
+     0.21871168517872605
+    ],
+    "k": 43380,
+    "n": 200000
+   },
+   "majority_wrong": {
+    "rate": 0.24433,
+    "ci95": [
+     0.24245172633082648,
+     0.24621809529923958
+    ],
+    "k": 48866,
+    "n": 200000
+   },
+   "mean_wrong_all": 0.27550075,
+   "mean_wrong_herders": 0.2618282710442451,
+   "mean_wrong_special": 0.39990496955693194,
+   "special_share": 0.0990209,
+   "contrary_locked_followers_mean": 38.209925
+  },
+  {
+   "label": "25% 的人只听自己，但认不出是谁；看队的人会算",
+   "last_wrong": {
+    "rate": 0.150785,
+    "ci95": [
+     0.14922340892586122,
+     0.15236000625989987
+    ],
+    "k": 30157,
+    "n": 200000
+   },
+   "majority_wrong": {
+    "rate": 0.182165,
+    "ci95": [
+     0.1804794761520508,
+     0.18386273356278493
+    ],
+    "k": 36433,
+    "n": 200000
+   },
+   "mean_wrong_all": 0.2632078,
+   "mean_wrong_herders": 0.21810508711008852,
+   "mean_wrong_special": 0.4002846839394312,
+   "special_share": 0.2475728,
+   "contrary_locked_followers_mean": 30.66571
+  },
+  {
+   "label": "50% 的人只听自己，但认不出是谁；看队的人会算",
+   "last_wrong": {
+    "rate": 0.085765,
+    "ci95": [
+     0.08454571507230944,
+     0.08700019787379466
+    ],
+    "k": 17153,
+    "n": 200000
+   },
+   "majority_wrong": {
+    "rate": 0.11216,
+    "ci95": [
+     0.1107844259963949,
+     0.11355047297886553
+    ],
+    "k": 22432,
+    "n": 200000
+   },
+   "mean_wrong_all": 0.2840381,
+   "mean_wrong_herders": 0.1702756329492794,
+   "mean_wrong_special": 0.4000598282372111,
+   "special_share": 0.49508395,
+   "contrary_locked_followers_mean": 19.74149
+  },
+  {
+   "label": "10% 的人只听自己；看队的人只数人头",
+   "last_wrong": {
+    "rate": 0.303505,
+    "ci95": [
+     0.301493753136654,
+     0.30552379527027623
+    ],
+    "k": 60701,
+    "n": 200000
+   },
+   "majority_wrong": {
+    "rate": 0.303505,
+    "ci95": [
+     0.301493753136654,
+     0.30552379527027623
+    ],
+    "k": 60701,
+    "n": 200000
+   },
+   "mean_wrong_all": 0.3166041,
+   "mean_wrong_herders": 0.3074276744627832,
+   "mean_wrong_special": 0.4000647096620813,
+   "special_share": 0.09905785,
+   "contrary_locked_followers_mean": 39.85127
+  },
+  {
+   "label": "25% 的人只听自己；看队的人只数人头",
+   "last_wrong": {
+    "rate": 0.292405,
+    "ci95": [
+     0.29041545846046013,
+     0.29440251635587955
+    ],
+    "k": 58481,
+    "n": 200000
+   },
+   "majority_wrong": {
+    "rate": 0.292405,
+    "ci95": [
+     0.29041545846046013,
+     0.29440251635587955
+    ],
+    "k": 58481,
+    "n": 200000
+   },
+   "mean_wrong_all": 0.3226786,
+   "mean_wrong_herders": 0.29726759387582496,
+   "mean_wrong_special": 0.39998835796586985,
+   "special_share": 0.24737945,
+   "contrary_locked_followers_mean": 33.04626
+  },
+  {
+   "label": "50% 的人只听自己；看队的人只数人头",
+   "last_wrong": {
+    "rate": 0.258375,
+    "ci95": [
+     0.25646116845274997,
+     0.26029811363495964
+    ],
+    "k": 51675,
+    "n": 200000
+   },
+   "majority_wrong": {
+    "rate": 0.258375,
+    "ci95": [
+     0.25646116845274997,
+     0.26029811363495964
+    ],
+    "k": 51675,
+    "n": 200000
+   },
+   "mean_wrong_all": 0.33313355,
+   "mean_wrong_herders": 0.26764138475132293,
+   "mean_wrong_special": 0.3999434972096066,
+   "special_share": 0.4950198,
+   "contrary_locked_followers_mean": 21.66044
+  }
+ ],
+ "you_decision": {
+  "p": 0.6,
+  "pos": 7,
+  "behind": 93,
+  "your_belief_queue_right": 0.6,
+  "A_silent": {
+   "you_right": 0.6,
+   "behind_right_mean": 55.8,
+   "last_wrong": 0.4
+  },
+  "B_speak_and_queue": {
+   "you_right": 0.6,
+   "behind_right_mean": 64.1218934911243,
+   "last_wrong": 0.3076923076923079
+  },
+  "C_go_empty_visible": {
+   "you_right": 0.4,
+   "behind_right_mean": 64.1218934911243,
+   "last_wrong": 0.3076923076923079
+  },
+  "if_queue_really_wrong": {
+   "silent_last_wrong": 1.0,
+   "speak_last_wrong": 0.5846153846153849,
+   "silent_behind_right": 0.0,
+   "speak_behind_right": 38.60236686390534
+  },
+  "if_queue_really_right": {
+   "silent_last_wrong": 0.0,
+   "speak_last_wrong": 0.12307692307692324,
+   "silent_behind_right": 93.0,
+   "speak_behind_right": 81.13491124260361
+  },
+  "mc_silent": {
+   "n_selected": 163769,
+   "queue_wrong_share": 0.4014190719855406,
+   "behind_right_mean": 55.668026305344725,
+   "last_wrong": {
+    "rate": 0.4014190719855406,
+    "ci95": [
+     0.39904730206531147,
+     0.40379546670789646
+    ],
+    "k": 65740,
+    "n": 163769
+   }
+  },
+  "mc_speak": {
+   "n_selected": 164338,
+   "queue_wrong_share": 0.4004186493689834,
+   "behind_right_mean": 64.05165573391425,
+   "last_wrong": {
+    "rate": 0.30843748859058767,
+    "ci95": [
+     0.3062090001829369,
+     0.3106749328008103
+    ],
+    "k": 50688,
+    "n": 164338
+   }
+  }
+ }
+}

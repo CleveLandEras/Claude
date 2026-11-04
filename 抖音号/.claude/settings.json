@@ -1,0 +1,17 @@
+{
+  "language": "简体中文",
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/check_chinese.py\"",
+            "timeout": 10,
+            "statusMessage": "检查回复语言"
+          }
+        ]
+      }
+    ]
+  }
+}

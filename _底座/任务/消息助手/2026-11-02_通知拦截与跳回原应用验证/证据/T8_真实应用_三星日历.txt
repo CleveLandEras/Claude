@@ -1,0 +1,25 @@
+建了日程 jump-test-1（编号 372），提醒时间 14:18:36
+建了日程 jump-test-2（编号 373），提醒时间 14:19:36
+== 对照：直接点日历原通知（不收起）
+收到 | 日历 | com.samsung.android.calendar | 标题=jump-test-1 | 正文=14:18 | 发出=11-02 14:18:36.811 | 入口=有 创建者=com.samsung.andr
+收到 | 日历 | com.samsung.android.calendar | 标题= | 正文= | 发出=11-02 14:18:36.857 | 入口=有 创建者=com.samsung.android.calendar | �
+收到 | 日历 | com.samsung.android.calendar | 标题=jump-test-1 | 正文=14:18 | 发出=11-02 14:18:39.510 | 入口=有 创建者=com.samsung.andr
+收到 | 日历 | com.samsung.android.calendar | 标题= | 正文= | 发出=11-02 14:18:39.515 | 入口=有 创建者=com.samsung.android.calendar | �
+已点：jump-test-1
+前台页面：com.samsung.android.calendar/com.samsung.android.app.calendar.activity.DetailActivity
+屏幕文字：jump-test-1 / 11月 2日 周一 / 14:18 / 14:48 / 我的日历 / 在事件开始时 / 复制 / 编辑
+== 拦下第 2 个日程的提醒
+11-02 14:19:36.601 | 入队 | #6 | 日历 | jump-test-2 | 待推 1 条
+11-02 14:19:36.605 | 收到 | 日历 | com.samsung.android.calendar | 标题= | 正文= | 发出=11-02 14:19:36.249 | 入口=有 创建者=com.samsung
+11-02 14:19:36.611 | 已收起 | 0|com.samsung.android.calendar|1|2147483646|10240 | 距发出 362ms
+存货编号=6
+== 点我们重推的 #6 做法A
+已点：#6 做法A
+前台页面：com.samsung.android.calendar/com.samsung.android.app.calendar.activity.DetailActivity
+屏幕文字：jump-test-2 / 11月 2日 周一 / 14:19 / 14:49 / 我的日历 / 在事件开始时 / 复制 / 编辑
+== 点我们重推的 #6 做法B
+已点：#6 做法B
+前台页面：com.samsung.android.calendar/com.samsung.android.app.calendar.activity.DetailActivity
+屏幕文字：jump-test-2 / 11月 2日 周一 / 14:19 / 14:49 / 我的日历 / 在事件开始时 / 复制 / 编辑
+11-02 14:20:20.347 I/RELAY   (10886): 11-02 14:20:20.346 | B 已发出原入口 | #6 | 日历 | jump-test-2
+测试日程已删：剩余 0 个

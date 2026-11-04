@@ -1,0 +1,151 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>弹窗内容保留</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.35;margin:0 0 8px}
+.sub{font-size:16px;color:var(--ink-2);margin:0 0 28px}
+h2{font-family:var(--serif);font-size:20px;margin:56px 0 16px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px}
+.kpi .n{font-size:38px;font-weight:700;line-height:1.1;color:var(--ink)}
+.kpi .n small{font-size:16px;font-weight:600;margin-left:4px;color:var(--ink-2)}
+.kpi .t{font-size:14.5px;color:var(--ink-2);margin-top:8px}
+.f{margin-bottom:22px}
+.f .h{font-size:17px;font-weight:700;margin:0 0 6px}
+.f .l{font-size:14.5px;color:var(--ink-2);margin:0 0 10px}
+.f .l li{margin:2px 0}
+.f ul{margin:0 0 10px;padding-left:20px}
+.shot img{width:100%;display:block;border:1px solid var(--line);border-radius:4px;background:#fff}
+.shot .c{font-size:12.5px;color:var(--muted);margin-top:6px}
+.shot.mid img{max-width:760px}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14.5px}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--ground);white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td.p{color:var(--muted);width:64px;white-space:nowrap}
+td.w{color:var(--ink);width:36%} td.r{color:var(--ink-2)}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:1px 7px;border-radius:3px;margin-right:6px;vertical-align:1px}
+.tag.red{background:var(--red-soft);color:var(--red)} .tag.blue{background:var(--blue-soft);color:var(--blue)} .tag.gray{background:var(--gray-soft);color:var(--gray)}
+.note{font-size:14.5px;color:var(--ink-2)}
+.note li{margin:4px 0}
+.links{font-size:13px;color:var(--muted);margin-top:48px;line-height:1.9} a{color:var(--accent)}
+@media (max-width:760px){.wrap{padding:32px 16px 72px}.g3,.g2{grid-template-columns:1fr}td.p{white-space:normal}td.w{width:auto}}
+.cmp td.b{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--line)} .cmp td.a{color:var(--ink);font-weight:600}
+.kpi .n.s{font-size:26px}
+.big{font-size:15px;color:var(--ink-2);margin:0 0 12px}
+</style>
+<style>details summary{cursor:pointer} details td,details th{font-size:13.5px;padding:8px 12px}</style></head>
+<body><div class="wrap">
+<p class="meta">推送系统后台 · 弹窗内容 · 2026-10-29</p>
+<h1>弹窗内容保留：后台直接配图、换图；一个活动的图和基础设置配一次，各条规则直接选用；冷却留在规则上</h1>
+<p class="sub">按你的判断改了，导图和 PDF 已更新。之前推荐去掉，是把「本期不在后台换图」当成了定局。那条是 10/16 分析里自己定的，不是你定的；9 月的 Jira 工单早就要过后台配图。</p>
+<p class="note" style="margin:0 0 16px"><span class="tag red">10/29 再改</span>你转述主管的意思是「弹窗内容不该有这个分页，而是直接一次性在弹窗规则里配置」。下面三条理由只证明了该有这个对象，没回答该不该单独一页。现在改为：不单独建「弹窗内容」，每个活动或礼包一份弹窗设置（图、跳转、显示方式、时机、默认次数），在规则里加它时当场配；别的规则选同一活动自动带出；规则里只单独改次数，次数按活动在同一位置合计（替你定，可推翻）。判断方法：「被很多处共用吗」「有自己要维护的东西吗」决定要不要存一份，「在用它的地方就地配得完吗」决定要不要单独一页；草稿里没有哪个活动要两套图或两种显示方式，所以一个活动一份，不另建可多份的内容。下面 01–05 节是保留之前的论证，06 节「已改的文件」已过时。内容单独一页的那版另存在 <code>_旧版_1029内容单独一页/</code>。</p>
+<div class="grid g3">
+  <div class="card kpi"><div class="n s">后台配图</div><div class="t">Jira RICH-24469（2026-09）：「弹窗显示的资源、跳转的 url 都需要可以通过后台配置……目前客端写死了」</div></div>
+  <div class="card kpi"><div class="n">14 <small>/ 14 个</small></div><div class="t">运营草稿工作表 2 里，每个活动、礼包的显示方式和弹出时机在它出现的各条规则里都一样，配一次就能复用</div></div>
+  <div class="card kpi"><div class="n">3 <small>/ 14 个</small></div><div class="t">有 3 个礼包对回流玩家的次数不同，所以规则里留「次数另设」</div></div>
+</div>
+
+<h2><span class="no">01</span>为什么要有弹窗内容：回答主管「新建弹窗内容有什么意义」</h2>
+<table>
+<tr><th>意义</th><th>现在怎样</th><th>依据</th></tr>
+<tr><td class="w">后台直接配图、换图</td><td class="r">写死在客户端的（如周年庆导航页，靠在「游戏设定」参数里加字段）要开单改；随活动配置的要到各活动配置里分别换。都不能按弹窗单独换图、改跳转</td><td class="r">Jira RICH-24469（2026-09），原话见上</td></tr>
+<tr><td class="w">一个活动配一次，各条规则直接选用</td><td class="r">每条规则里每个活动各填一遍显示方式、时机、次数；同一个活动最多出现在 5 条规则里（草稿只细排了计划中 12 个人群里的 7 个，所以是下限）</td><td class="r">运营同事草稿：14 个活动、礼包的显示方式和时机，在各条规则里都一样</td></tr>
+<tr><td class="w">同一个活动可配几张图比效果</td><td class="r">做不到</td><td class="r">建两个内容，分别放进实验组、对照组两条规则，比点击率</td></tr>
+</table>
+<p class="note" style="margin-top:10px">之前定的三问，这一版都过：① 有自己要在后台编辑的东西：宣传图、跳转；② 放在上面的设置给哪群人都一样：显示方式、时机 14/14 一样；③ 值得做：运营 9 月已经开单要，复用省的是每条规则重填。</p>
+
+<h2><span class="no">02</span>内容和规则各放什么</h2>
+<table>
+<tr><th>设置</th><th>放在哪</th><th>依据</th></tr>
+<tr><td class="w">宣传图：选「先弹宣传图」时后台上传、更换，繁中必传，越南文、英文可另传；直接打开的不弹图</td><td class="r">弹窗内容</td><td class="r">这一层存在的主要理由；语言与推播、规则名称一致。草稿 14 个里 2 个先弹宣传图（天天敲蛋礼 V2、BOSS 战）</td></tr>
+<tr><td class="w">怎么显示：先弹宣传图，点了再进；或直接打开它的页面</td><td class="r">弹窗内容</td><td class="r">草稿 14/14 一致。现有后台叫「活动广告页」「活动本身」，这样理解是我方推断，已列进研发待确认第 24 条</td></tr>
+<tr><td class="w">点了去哪：默认它自己的页面，可改选其他已上架的页面；直接打开时打开的就是这一页</td><td class="r">弹窗内容</td><td class="r">Jira RICH-24469 要的「跳转的 url」</td></tr>
+<tr><td class="w">什么时候弹（只大厅，选一种）</td><td class="r">弹窗内容</td><td class="r">草稿 14/14 一致。同一条规则里各项时机不同（限时挑战含返回大厅，天天敲蛋礼不含），所以不能放在规则上</td></tr>
+<tr><td class="w">多久弹一次</td><td class="r">弹窗内容；规则里可另设</td><td class="r">草稿 11 个在各规则一样；惊喜三选一、独享礼包、平台限量/专属礼包对回流（含轻回流）是每天 1 次，其他人每天 2 次。计数按内容、在同一弹窗位置各规则合计</td></tr>
+<tr><td class="w">冷却</td><td class="r">弹窗规则</td><td class="r">主管意见，你已认可。意思随之变了：原来是「同一项两次至少隔多久」，草稿里同一条规则内各项有 0 秒也有 30 分钟；现在是「这条规则弹过后隔多久」，同一项两次的间隔没处设了，后果见 05</td></tr>
+<tr><td class="w">对谁、生效期间、弹哪些内容和顺序、每次最多几个、优先级</td><td class="r">弹窗规则</td><td class="r">同前一版</td></tr>
+</table>
+<details style="margin-top:12px"><summary class="note">展开：运营草稿工作表 2 逐项（14 条规则，其中一条还没排内容；14 个活动礼包出现 43 次；草稿线上没配置）</summary>
+<table style="margin-top:8px">
+<tr><th>活动或礼包</th><th>在几条规则里</th><th>显示方式</th><th>大厅里哪一次进入时弹</th><th>每天几次、冷却</th></tr>
+<tr><td>天天敲蛋礼 V2</td><td>4</td><td>先弹宣传图</td><td>活动开启、首次登入、进入大厅</td><td>1 次、0 秒</td></tr>
+<tr><td>发信送奖</td><td>1</td><td>直接打开</td><td>首次登入、进入大厅</td><td>1 次、0 秒</td></tr>
+<tr><td>热门资讯</td><td>1</td><td>直接打开</td><td>首次登入、进入大厅</td><td>1 次、0 秒</td></tr>
+<tr><td>限时挑战</td><td>3</td><td>直接打开</td><td>首次登入、进入大厅、返回大厅</td><td>2 次、1,800 秒</td></tr>
+<tr><td>卡别直升活动</td><td>3</td><td>直接打开</td><td>首次登入、进入大厅、返回大厅</td><td>2 次、1,800 秒</td></tr>
+<tr><td>BOSS 战</td><td>3</td><td>先弹宣传图</td><td>活动开启、首次登入、进入大厅</td><td>1 次、0 秒</td></tr>
+<tr><td>回流聚宝</td><td>2</td><td>直接打开</td><td>首次登入、进入大厅</td><td>1 次、0 秒</td></tr>
+<tr><td>首储礼包</td><td>4</td><td>直接打开</td><td>返回大厅</td><td>2 次、1,800 秒</td></tr>
+<tr><td>惊喜三选一</td><td>5</td><td>直接打开</td><td>返回大厅</td><td>4 条 2 次、1,800 秒；回流 1 条 1 次、0 秒</td></tr>
+<tr><td>每日礼包</td><td>4</td><td>直接打开</td><td>返回大厅</td><td>2 次、1,800 秒</td></tr>
+<tr><td>独享礼包</td><td>5</td><td>直接打开</td><td>返回大厅</td><td>3 条 2 次、1,800 秒；轻回流、回流 2 条 1 次、0 秒</td></tr>
+<tr><td>平台限量/专属礼包</td><td>5</td><td>直接打开</td><td>返回大厅</td><td>同独享礼包</td></tr>
+<tr><td>生涯限购</td><td>2</td><td>直接打开</td><td>返回大厅</td><td>1 次、0 秒</td></tr>
+<tr><td>限时加码礼包</td><td>1</td><td>直接打开</td><td>返回大厅</td><td>1 次、0 秒</td></tr>
+</table>
+<p class="note">工作表 1：3 条规则，11 个活动出现 28 次（表的下半重复上半，不重复计），各项设置在各条规则里都一样。</p>
+</details>
+
+<h2><span class="no">03</span>和主管看过的评审版比，弹窗内容改了什么</h2>
+<table class="cmp">
+<tr><th>项</th><th>10/28 评审版</th><th>现在</th></tr>
+<tr><td class="p">冷却</td><td class="b">设在弹窗内容上</td><td class="a">设在规则上</td></tr>
+<tr><td class="p">图</td><td class="b">没有，随活动配置</td><td class="a">在内容上后台上传、更换</td></tr>
+<tr><td class="p">点了去哪</td><td class="b">没有</td><td class="a">默认它自己的页面，可改</td></tr>
+<tr><td class="p">次数</td><td class="b">跨位置合计；某群人要不同只能另建内容</td><td class="a">同一位置内合计；规则里可另设</td></tr>
+<tr><td class="p">实验对照组</td><td class="b">要另建一个内容，才不和大厅共用次数</td><td class="a">比规则、比顺序不用另建；比图仍建两个内容</td></tr>
+<tr><td class="p">发送测试</td><td class="b">要经过引用它的位置</td><td class="a">测试账号下次进大厅直接弹这个内容，不经规则</td></tr>
+</table>
+
+<h2><span class="no">04</span>业界：单独建内容层的，多数在那一层放图（Metaplay 没有）</h2>
+<table>
+<tr><th>产品</th><th>内容层</th><th>上面编辑的东西</th><th>冷却、触发在哪</th></tr>
+<tr><td class="w">Google Ad Manager</td><td class="r">素材库，被多条投放计划引用</td><td class="r">图、点击网址；每条投放计划挂素材时可单独改网址、起止时间、启用状态</td><td class="r">频率在投放计划上；素材上也能加总量上限，取更严的</td></tr>
+<tr><td class="w">Appcharge（游戏网页商城）</td><td class="r">版式设计，建弹窗时下拉选</td><td class="r">背景图、标题样式</td><td class="r">弹窗上</td></tr>
+<tr><td class="w">Balancy（游戏运营平台）</td><td class="r">Game Offer，由 Game Event 挂上</td><td class="r">界面、图标、显示位置、排序、奖励、限购</td><td class="r">Event 上</td></tr>
+<tr><td class="w">Metaplay（游戏商城后端）</td><td class="r">Offer，被多个 Offer Group 引用</td><td class="r">商品、奖励、购买上限；没有图片字段</td><td class="r">Group 上</td></tr>
+</table>
+<p class="note" style="margin-top:10px">我们的做法与它们一致：图和显示放在内容上，冷却放在规则上。次数放在内容上、规则里可另设，与 Ad Manager「投放计划和素材都能设上限、取更严的」相近。有一处不同：业界的触发条件多放在规则上，我们把「大厅什么时候弹」放在内容上，因为同一条规则里各项时机不同（见 02）。出处见文末。</p>
+
+<h2><span class="no">05</span>代价和要研发确认的</h2>
+<ul class="note">
+<li><b>后台配图要改客户端：</b>弹窗改按后台下发的图显示，要定图片规格（尺寸、文件大小）和上线要不要发版。研发评审稿当时评为较大开发，已加进研发待确认第 27 条。</li>
+<li><b>多一个对象、一页：</b>每个活动先建内容，再放进规则。上线时现有规则里同一活动或礼包合成一个内容，次数不同的迁成次数另设，原来是活动广告页的用广告页图作初始图；显示方式、时机或同一规则里各项冷却不一致的，列给运营定。运营不用从零建。</li>
+<li><b>冷却改到规则上，同一项会刚弹完又弹：</b>大厅轮流时，首储礼包在 A 规则弹过，下次进大厅轮到 B 规则又会弹。挡它的是次数（如每天 2 次）和大厅每人每天 8 个；要更严，加「同一位置两次弹出至少隔多久」（Braze 全 App 默认 30 秒，Unity LevelPlay 按位置设）。已写进转给主管的追问表，看主管意见再定。</li>
+<li><b>改内容会带到所有用它的规则：</b>改动、下架前列出受影响的规则；某条规则要不同的次数用「次数另设」。</li>
+<li><b>同一活动建两个内容时各自计数：</b>两个内容都在玩家会命中的规则里时（如回流玩家也有卡别），一天可能看到同一活动两次，保存时提示。比图时把两个内容分开放进实验组、对照组的规则里，就不会重叠。</li>
+<li><b>这次内容都要对应活动或礼包：</b>不对应活动的公告类弹窗，研发评审稿列在后续，这次仍不做；以后要做，内容加「不对应活动」一项即可。</li>
+</ul>
+
+<h2><span class="no">06</span>已改的文件</h2>
+<table>
+<tr><th>文件</th><th>改了什么</th></tr>
+<tr><td class="w">功能框架大纲、导图网页、PDF</td><td class="r">弹窗下加「弹窗内容」列表页和新建、编辑页，规则里改成从内容里选并加「另设某个内容的次数」；数据的明细表、单条弹窗规则可按内容看。之后整张导图按 Dk 要求改成「菜单 › 页面 › 功能」的功能框架（见文件目录）；规则细节与上线迁入的写法留在 <code>_旧版_1029按概念分/功能框架_大纲.md</code>去掉版另存在 <code>_旧版_1029去掉弹窗内容/</code></td></tr>
+<tr><td class="w">转给主管的说明</td><td class="r">弹窗那一点改成这一版，正面回答「新建弹窗内容有什么意义」，不再二选一；「可能被追问」加到 9 条（次数和时机为什么放内容、两种次数怎么一起算、冷却改到规则后同一项会不会刚弹完又弹、后台配图研发要改多少）</td></tr>
+<tr><td class="w">研发评审待确认</td><td class="r">加第 27 条：后台配图的客户端改动、图片规格、要不要发版，列为阻塞评审；第 24 条按弹窗内容改写</td></tr>
+<tr><td class="w">导图定了以后原型要改的页</td><td class="r">只改了顶部说明和第二批（保留弹窗内容页，编辑页加图、跳转，去掉冷却）；逐页表还是按去掉写的，导图验收后按新导图重排</td></tr>
+</table>
+
+<p class="links">出处：
+<a href="../分析/参照来源_Jira历史工单.md">Jira 历史工单整理</a>（第 60 行 RICH-24469）·
+<a href="../数据/同事草稿_活动弹窗规则.xlsx">运营同事草稿</a>（工作表 1、2）·
+<a href="../推送系统后台集成需求/4_需求文档.md">研发评审稿</a>（第 234 行）·
+<a href="../评审版_定稿改_1027/推送系统后台集成需求/功能框架_思维导图.html">功能框架导图</a> ·
+<a href="../分析/对标_内容与规则_1028.md">内容与规则对标（10/28，含各家原文链接）</a> ·
+<a href="https://support.google.com/admanager/answer/10017591?hl=en">Google Ad Manager 素材挂接</a> ·
+<a href="https://en.docs.balancy.dev/liveops/smart_offers/">Balancy Offers</a> ·
+<a href="https://docs.metaplay.io/feature-cookbooks/in-game-offers/offer-configuration">Metaplay Offer configuration</a> ·
+<a href="2026-10-28_功能框架与主管意见.html">10/28 简报</a></p>
+</div></body></html>

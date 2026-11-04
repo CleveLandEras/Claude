@@ -1,0 +1,97 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>完整规划与对比</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1000px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:26px;line-height:1.4;margin:0 0 10px}
+.sub{font-size:15.5px;color:var(--ink-2);margin:0 0 8px}
+section{margin-top:52px}
+h2{font-family:var(--serif);font-size:20px;margin:0 0 16px;display:flex;align-items:baseline;gap:14px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);white-space:nowrap}
+.tw{overflow-x:auto;border-radius:6px}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14.5px}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--ground);white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td.w{font-weight:600;white-space:nowrap} td.r{color:var(--ink-2)} td.ok{color:var(--green);white-space:nowrap} td.no{color:var(--red)} td.d{color:var(--muted)}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;white-space:nowrap}
+.tag.red{background:var(--red-soft);color:var(--red)} .tag.blue{background:var(--blue-soft);color:var(--blue)} .tag.green{background:var(--green-soft);color:var(--green)} .tag.gray{background:var(--gray-soft);color:var(--gray)}
+.lbl{font-size:13px;color:var(--muted);font-weight:700;margin:22px 0 8px}
+.obs{font-size:14px;color:var(--ink-2);margin:12px 0 0;padding-left:14px;border-left:3px solid var(--line)}
+.obs b{color:var(--ink)}
+@media (max-width:760px){.wrap{padding:28px 16px 64px}h1{font-size:22px}h2{flex-direction:column;gap:2px}}
+</style></head><body><div class="wrap">
+
+<p class="meta">入口调整 · 按需求理解的完整规划与对比 · 2026-10-27 · 下文两处建议已于当天按建议改完并同步到各文件</p>
+<h1>按需求理解重排后，已有产出方向一致；要补 1 处、首批减 4 项</h1>
+<p class="sub">要补的是工具里漏了「满减」这一项；要减的是首批里需求没提、又最费工的 4 项设置，挪到第二批，好放进约 6 周的开发期。</p>
+
+<section>
+<h2><span class="no">一 范围</span>按需求理解，要做的是五块</h2>
+<div class="tw"><table>
+<tr><th>模块</th><th>需求要求（按理解）</th><th>首批</th><th>之后</th></tr>
+<tr><td class="w">银行（商城）入口</td><td class="r">移到左下原好康位置，放要储值或购买才能参与的内容</td><td class="r">入口移位；现有页签不变，新增「储值活动」页签；好康现有内容迁到对应入口</td><td class="r">页签重组（归银行改版）</td></tr>
+<tr><td class="w">工具属性（后台）</td><td class="r">配置商城活动时选工具：满减、累充、团购、折扣、礼包、抽奖等，再按工具填规则</td><td class="r">礼包、累充、满减、折扣</td><td class="r">抽奖；团购、一元夺宝</td></tr>
+<tr><td class="w">商城活动配置（后台）</td><td class="r">活动靠后台配置上线，周五储值活动或节庆活动配好即上</td><td class="r">时间、参与对象与排除、发奖成本上限、版式与主视觉、复制、审核、活动数据</td><td class="r">见第三节挪到第二批的 4 项</td></tr>
+<tr><td class="w">限时活动</td><td class="r">只放活动，分游戏活动、平台活动</td><td class="r">两个页签；按是否限定游戏自动归类</td><td class="r">—</td></tr>
+<tr><td class="w">公告</td><td class="r">只放信息，分官方、活动、其他</td><td class="r">三个分类；原「最新活动」归入活动类</td><td class="r">—</td></tr>
+</table></div>
+</section>
+
+<section>
+<h2><span class="no">二 步骤</span>文件已有四份，接下来按「确认 → 同步 → 评审 → 开发」走</h2>
+<div class="tw"><table>
+<tr><th>步骤</th><th>产出</th><th>现状</th><th>要做的</th></tr>
+<tr><td class="w">1 需求理解</td><td class="r">需求理解（一屏）</td><td class="ok">已完成</td><td class="r">你拿去和主管确认</td></tr>
+<tr><td class="w">2 方案</td><td class="r">方案设计稿、整体方案</td><td class="ok">已有</td><td class="r">补满减；首批减 4 项（第三节）</td></tr>
+<tr><td class="w">3 评审材料</td><td class="r">需求评审材料（16 页原型＋规则）</td><td class="ok">已有</td><td class="r">同步上面两处</td></tr>
+<tr><td class="w">4 需求文档</td><td class="r">需求文档、Jira 拆分</td><td class="ok">已有</td><td class="r">同步上面两处；Jira 按首批、第二批重排</td></tr>
+<tr><td class="w">5 需求评审</td><td class="r">评审会</td><td class="d">未开始</td><td class="r">主管确认理解后约</td></tr>
+<tr><td class="w">6 研发评审</td><td class="r">评审会、研发估时</td><td class="d">未开始</td><td class="r">按估时定首批最终范围</td></tr>
+<tr><td class="w">7 开发</td><td class="r">问题清单、验收记录</td><td class="d">未开始</td><td class="r">12/11 开始，1/21 完成</td></tr>
+</table></div>
+</section>
+
+<section>
+<h2><span class="no">三 对比</span>和已做的内容比：8 处一致，5 处定得和原文不同，9 项是我们加的</h2>
+
+<p class="lbl">一致（8 处）</p>
+<div class="tw"><table>
+<tr><td class="r">好康位置给银行（商城）· 商城放储值和购买类内容 · 后台选工具再填规则 · 限时活动分游戏与平台 · 公告分三类 · 活动靠配置上线 · 一元夺宝的两种开奖条件 · 12/11 开发、1/21 完成</td></tr>
+</table></div>
+
+<p class="lbl">定得和原文不同（5 处）</p>
+<div class="tw"><table>
+<tr><th>事项</th><th>原文</th><th>已做的</th><th>建议</th></tr>
+<tr><td class="w">满减</td><td class="r">列为一种工具</td><td class="r">并进累充，工具列表里没有「满减」</td><td class="no">补回独立选项；规则按「单笔满额加赠」</td></tr>
+<tr><td class="w">满减、折扣做法</td><td class="r">没说</td><td class="r">做成多送，不直接减价</td><td class="r">保留（App 内购价格档固定）；已写进给主管的稿</td></tr>
+<tr><td class="w">团购</td><td class="r">没说怎么团</td><td class="r">全服人数阶梯返利，不含邀请成团</td><td class="r">保留；已写进给主管的稿</td></tr>
+<tr><td class="w">一元夺宝购券</td><td class="r">「购买奖券」没说用什么买</td><td class="r">只能老币购买或储值赠送</td><td class="r">保留（博弈合规）；已写进给主管的稿</td></tr>
+<tr><td class="w">先后</td><td class="r">没分批</td><td class="r">团购、一元夺宝放最后</td><td class="r">保留；研发估时后再定</td></tr>
+</table></div>
+
+<p class="lbl">需求没提、我们加的（9 项）</p>
+<div class="tw"><table>
+<tr><th>项</th><th>为什么加</th><th>建议</th></tr>
+<tr><td class="w">时间、对象与排除、成本上限</td><td class="r">没有这些，活动配不出来</td><td><span class="tag green">留首批</span></td></tr>
+<tr><td class="w">复制、审核、活动数据</td><td class="r">「周五做个活动」靠复制；发奖涉及成本要审核；配了要能看效果</td><td><span class="tag green">留首批</span></td></tr>
+<tr><td class="w">按参与方式自动归入口</td><td class="r">不然又要在三套后台各配一次</td><td><span class="tag green">留首批</span></td></tr>
+<tr><td class="w">曝光位自动生成</td><td class="r">勾选后自动出 Banner、公告、弹窗草稿</td><td><span class="tag blue">挪第二批</span></td></tr>
+<tr><td class="w">循环时段</td><td class="r">如「每周五 18:00–24:00」自动循环</td><td><span class="tag blue">挪第二批</span>（首批靠复制）</td></tr>
+<tr><td class="w">预估成本、测试账号预览</td><td class="r">上架前看成本、先让测试号试</td><td><span class="tag blue">挪第二批</span></td></tr>
+<tr><td class="w">限时活动取消 20 个上限</td><td class="r">分两页签后每页可能超过 20 个</td><td><span class="tag blue">挪第二批</span></td></tr>
+<tr><td class="w">庆典专题页</td><td class="r">庆典的重复开发最多</td><td><span class="tag gray">已在第二批</span></td></tr>
+<tr><td class="w">现有玩法后台接入入口</td><td class="r">扭蛋机等老玩法也要按新规则出现在入口</td><td><span class="tag gray">已在第二批</span></td></tr>
+</table></div>
+<p class="obs"><b>首批减的 4 项：</b>曝光位自动生成、循环时段、预估成本与测试账号预览、限时活动取消 20 个上限。都不影响「配置上线」本身，挪走后首批只剩配出一个活动必需的部分。</p>
+</section>
+
+</div></body></html>

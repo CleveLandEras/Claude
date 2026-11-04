@@ -1,0 +1,132 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>自动回复计划</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.35;margin:0 0 8px}
+.sub{font-size:16px;color:var(--ink-2);margin:0 0 28px}
+h2{font-family:var(--serif);font-size:20px;margin:48px 0 16px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px}
+.kpi .n{font-size:38px;font-weight:700;line-height:1.1;color:var(--ink)}
+.kpi .n small{font-size:16px;font-weight:600;margin-left:4px;color:var(--ink-2)}
+.kpi .t{font-size:14.5px;color:var(--ink-2);margin-top:8px}
+.kpi.red .n{color:var(--red)}
+.kv{font-size:14.5px;color:var(--ink-2);margin:8px 0}
+.kv b{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:2px}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14px}
+th,td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12.5px;color:var(--muted);font-weight:600;background:var(--ground);white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td.w{color:var(--ink);font-weight:600;white-space:nowrap} td.r{color:var(--ink-2)}
+td.bad{color:var(--red);font-weight:600} td.ok{color:var(--green)}
+tr.rec td.w::after{content:"推荐";display:inline-block;margin-left:6px;font-size:11px;font-weight:700;color:#fff;background:var(--blue);padding:0 6px;border-radius:3px;vertical-align:1px}
+tr.no td{background:var(--red-soft)}
+.legend{font-size:13px;color:var(--muted);margin:10px 0 0}
+.q{font-size:17px;font-weight:700;margin:0 0 10px}
+.dec{margin-bottom:14px}
+.pick{border-radius:5px;padding:10px 14px;font-size:14.5px}
+.pick b{display:block;font-size:12px;font-weight:700;margin-bottom:2px}
+.pick.yes{background:var(--blue-soft)} .pick.yes b{color:var(--blue)}
+.pick.nope{background:var(--gray-soft)} .pick.nope b{color:var(--gray)}
+.dflt{font-size:14px;color:var(--red);margin:10px 0 0}
+.dflt b{font-weight:700}
+.cause .h{font-size:16px;font-weight:700;margin:0 0 6px}
+.cause .l{font-size:14.5px;color:var(--ink-2);margin:0}
+.list{margin:0;padding-left:20px;color:var(--ink-2);font-size:14.5px}
+.list li{margin:5px 0}
+.list li b{color:var(--ink)}
+.note{font-size:14px;color:var(--ink-2);margin:12px 0 0}
+.links{font-size:13px;color:var(--muted);margin-top:40px;line-height:1.9} a{color:var(--accent)}
+@media (max-width:760px){.wrap{padding:28px 16px 64px}.g3,.g2{grid-template-columns:1fr}h1{font-size:23px}td.w{white-space:normal}}
+tr.grp td{background:var(--gray-soft);color:var(--ink);font-weight:700;font-size:14px}
+</style></head><body><div class="wrap">
+
+<p class="meta">资料查于 2026-11-03 · 路线由你 11/03 拍板 · 封号处罚规则只有媒体转述</p>
+<h1>路线已定：先在测试账号上测模拟操作，判「不行」就改官方半自动</h1>
+<p class="sub">照你原话「我觉得可以测试一下模拟人工操作，如果这个不行再试试半自动的」。模拟操作＝程序操作企业微信 Windows 客户端自动收发，回复接 AI 接口判类。11/05 18:00 前请你向机构拿到 4 件答复。</p>
+
+<div class="grid g3">
+  <div class="card"><p class="q">先装环境 1 天，过了马上测模拟操作 6 项，约 4 天</p>
+    <ul class="list"><li>读到消息原文</li><li>找对会话</li><li>发出回复</li><li>发送前校验，防发错会话</li><li>客户端重启、升级后还能用</li><li>连续 3 天稳定</li></ul>
+    <p class="note">只用测试账号和合成消息。分类引擎在 Mac 上同时做。</p></div>
+  <div class="card"><p class="q">任一条成立就判「不行」</p>
+    <ul class="list"><li>20 条消息读到并读全少于 19 条，调整后仍达不到</li><li>发到错的会话 ≥ 1 次</li><li>测试账号收到安全警告、功能被限、被强制下线或被封，立即停</li><li>客户端升级或改版后失效，3 个工作日内修不回</li></ul>
+    <p class="note">判了不行改官方半自动；机构不肯开会话存档就改只用工具栏，完全不配合就改粘贴草稿。</p></div>
+  <div class="card"><p class="q">你要准备 3 样</p>
+    <ul class="list"><li>一台 Windows 测试机</li><li>你另注册一个测试企业，在里面建测试账号：不是二讲正式账号，不放在机构的企业下</li><li>一个当「测试家长」的个人微信，加测试账号为好友</li></ul></div>
+</div>
+<p class="legend">三条退路都不涉封号。官方半自动：靠会话存档（企业微信官方接口，让机构程序读到成员聊天记录，要管理员开）读消息，二讲在聊天工具栏（聊天窗口侧边打开的网页）里点一下，把回复发进当前聊天。只用工具栏：不开会话存档，二讲把原话粘进聊天工具栏再点发送。粘贴草稿：独立工具出答案，二讲复制回企业微信自己发。</p>
+
+<h2><span class="no">01</span>违规看行为本身，跟被不被发现无关；用二讲正式账号前要机构书面同意</h2>
+<div class="grid g2">
+  <div class="card cause"><p class="h">模拟操作违反协议 8.2.1.6</p>
+    <ul class="list">
+      <li><b>违规</b>：协议禁止用非腾讯授权的第三方软件「进行自动化操作」，看的是行为；接 AI 只改回复怎么生成，发送仍是程序操作客户端</li>
+      <li><b>检测</b>：没有公开资料，不能保证不被识别</li>
+      <li><b>后果</b>（媒体转述的处罚规则）：永久封二讲账号，严重时不排除连带封机构的企业账号和管理员账号</li>
+    </ul></div>
+  <div class="card cause"><p class="h">测试和上线分开，上线要两道同意</p>
+    <ul class="list">
+      <li>用二讲正式账号或真实家长之前，先要机构书面同意，你再在对话里明确同意</li>
+      <li>里程碑 1 全过，也只说明测试期内没被识别，不代表正式账号长期不被封</li>
+    </ul></div>
+</div>
+
+<h2><span class="no">02</span>机构的答复分三批要：11/05 前先要 4 件，没答或不同意就按默认走，不耽误测试</h2>
+<div class="tw"><table>
+<tr><th>问机构</th><th>答复会怎样</th><th>没答或不同意</th></tr>
+<tr class="grp"><td colspan="3">现在就问，11/05 18:00 前：答复决定判类模型和测试集；没答就不发真实家长消息到外部服务、只用合成测试集</td></tr>
+<tr><td class="r">1 肯不肯书面同意把去掉姓名电话的家长消息发国产云端模型判类？</td><td class="r">同意：云端判类，推断更准（未实测）。合规前提：若服务商只按机构指示处理、不拿数据训练、数据存境内（未查实），属委托处理，机构要签委托协议、事前做影响评估，是否另需家长同意听机构法务的；服务商拿数据训练则要家长单独同意</td><td class="r">规则加本地小模型，不发外部服务</td></tr>
+<tr><td class="r">2 肯不肯让二讲导出近 1～3 个月家长消息，只在本机去掉姓名电话后离线测？</td><td class="r">肯：在真实说法上测最要紧的误发率</td><td class="r">只用合成测试集</td></tr>
+<tr><td class="r">3 有没有数据或信息安全规定？</td><td class="r">若禁止在工作电脑装第三方软件，二讲正式账号就不能跑模拟操作；测试照常，届时改走官方半自动或粘贴草稿</td><td class="r">按最严理解，不发外部服务；上线前再确认</td></tr>
+<tr><td class="r">4 是否已在用客户管理工具（如微伴助手、尘锋）？</td><td class="r">已有 AI 草稿功能，改官方半自动时可能不必自建</td><td class="r">按没有</td></tr>
+<tr class="grp"><td colspan="3">二讲正式账号上线前问：没有机构书面同意就不上线</td></tr>
+<tr><td class="r">5 肯不肯书面同意用二讲正式账号上线模拟操作，认可二讲账号及连带企业账号、管理员账号的封号风险？</td><td class="r">同意后你再明确同意才上线；测试企业是你另注册的，里程碑 1 不用等它</td><td class="r">不上线，只在测试账号上跑</td></tr>
+<tr class="grp"><td colspan="3">只在模拟操作判「不行」后才问：答复决定退到哪条</td></tr>
+<tr><td class="r">6 肯不肯做管理员配置（建自建应用、开客户联系权限、配聊天工具栏）？</td><td class="r">官方半自动和只用工具栏都要它</td><td class="r">改粘贴草稿</td></tr>
+<tr><td class="r">7 肯不肯开会话存档并付费？开了家长要表态同意</td><td class="r">官方半自动要它读消息；收费只有 2023 年第三方报道，官方价格没查到</td><td class="r">改只用工具栏</td></tr>
+<tr><td class="r">8 有没有备案的 HTTPS 域名和服务器放工具栏页面？</td><td class="r">按推断，官方半自动和只用工具栏都要（未查实）</td><td class="r">改粘贴草稿</td></tr>
+</table></div>
+<p class="legend">判类费用约 17 元／月：每天 200 条（假设），每条约 1,000 输入加 100 输出 token，按 DeepSeek 高峰价、全未命中缓存估。未查实：未认证的测试企业能否用客户联系和会话存档；聊天工具栏发送后要不要再确认。</p>
+
+<h2><span class="no">03</span>分 7 个里程碑，约 3 周：0 最先，过了马上测 1；2 在 Mac 上同时做；1b 只在判「不行」后做</h2>
+<div class="tw"><table>
+<tr><th>里程碑</th><th>交付</th><th>你或二讲要做</th><th>预计</th></tr>
+<tr><td class="w">0 环境打通<br>最先</td><td class="r">Windows 测试机上双击安装、弹窗提醒、一键回传日志、手动粘贴窗口；不碰企业微信</td><td class="r">提供 Windows 测试机；试约 10 分钟</td><td class="r">1 天</td></tr>
+<tr><td class="w">1 测模拟操作<br>0 过了马上做</td><td class="r">6 项实测报告，按 4 条判行不行；回复先用固定测试文本</td><td class="r">准备测试企业、测试账号、测试家长；每天看账号约 2 分钟</td><td class="r">约 4 天（含 3 天观察）</td></tr>
+<tr><td class="w">2 分类引擎<br>Mac 上与 0、1 同时</td><td class="r">评测报告：转二讲 5 类自动发出须为 0 条，另报自动回复率、漏答率</td><td class="r">用云端时注册模型服务账号、填密钥约 5 分钟；看报告约 3 分钟</td><td class="r">3 天</td></tr>
+<tr><td class="w">1b 改官方半自动<br>仅判「不行」后</td><td class="r">官方半自动、只用工具栏或粘贴草稿的收发打通</td><td class="r">办好问 6～8 的机构配合（动后台前你说「通过」才动）；试约 15 分钟</td><td class="r">2～3 天</td></tr>
+<tr><td class="w">3 素材接入<br>素材到后</td><td class="r">按素材原句挑回复、每条带出处；30 条样例</td><td class="r">放素材；转二讲看样例约 10 分钟</td><td class="r">2～3 天</td></tr>
+<tr><td class="w">4 提醒与防错</td><td class="r">转人工提醒、一键暂停、夜间排队、频率上限、核对页、安装说明</td><td class="r">Windows 测试机上安装并试约 20 分钟</td><td class="r">3 天</td></tr>
+<tr><td class="w">5 试运行</td><td class="r">测试账号连续试运行、每天核对，误发一次即停；上线说明</td><td class="r">每天回传日志；判通过或退回；用到真实家长前，机构书面同意、你明确同意</td><td class="r">日历 5～7 天</td></tr>
+</table></div>
+<p class="legend">约 3 周不含等素材、Windows 测试机。另要你给：素材、二讲每天的家长消息量。</p>
+
+<h2><span class="no">04</span>已替你定，可推翻：测试不连累机构，不做规避检测</h2>
+<ul class="list card" style="padding-left:38px">
+  <li>测试账号放你另注册的测试企业；只能用机构企业下的账号时，里程碑 1 开始前也要机构书面同意，因为测试期被识别也可能连累机构</li>
+  <li>「不行」的 4 条数字（见首屏）</li>
+  <li>不做任何专门规避检测的功能：不伪造设备信息、不隐藏进程、不改客户端、不加装成人手的随机延时；限速只防刷屏和误发</li>
+</ul>
+
+<p class="links">出处：
+<a href="https://work.weixin.qq.com/nl/eula">服务协议</a> ·
+<a href="https://developer.work.weixin.qq.com/document/path/91360">会话存档</a> ·
+<a href="https://developer.work.weixin.qq.com/document/path/94354">聊天工具栏</a> ·
+<a href="https://www.cac.gov.cn/2021-08/20/c_1631050028355286.htm">个人信息保护法</a> ·
+<a href="https://api-docs.deepseek.com/zh-cn/quick_start/pricing">DeepSeek 价格</a> ·
+媒体：<a href="https://news.bjd.com.cn/2026/10/24/12006061.shtml">北京日报 10-24</a> ·
+<a href="https://news.pedaily.cn/202306/515561.shtml">会话存档收费报道 2023</a></p>
+</div></body></html>

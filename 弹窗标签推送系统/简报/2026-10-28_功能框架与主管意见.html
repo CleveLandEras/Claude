@@ -1,0 +1,147 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>功能框架与主管意见</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.35;margin:0 0 8px}
+.sub{font-size:16px;color:var(--ink-2);margin:0 0 28px}
+h2{font-family:var(--serif);font-size:20px;margin:56px 0 16px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px}
+.kpi .n{font-size:38px;font-weight:700;line-height:1.1;color:var(--ink)}
+.kpi .n small{font-size:16px;font-weight:600;margin-left:4px;color:var(--ink-2)}
+.kpi .t{font-size:14.5px;color:var(--ink-2);margin-top:8px}
+.f{margin-bottom:22px}
+.f .h{font-size:17px;font-weight:700;margin:0 0 6px}
+.f .l{font-size:14.5px;color:var(--ink-2);margin:0 0 10px}
+.f .l li{margin:2px 0}
+.f ul{margin:0 0 10px;padding-left:20px}
+.shot img{width:100%;display:block;border:1px solid var(--line);border-radius:4px;background:#fff}
+.shot .c{font-size:12.5px;color:var(--muted);margin-top:6px}
+.shot.mid img{max-width:760px}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14.5px}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--ground);white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td.p{color:var(--muted);width:64px;white-space:nowrap}
+td.w{color:var(--ink);width:36%} td.r{color:var(--ink-2)}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:1px 7px;border-radius:3px;margin-right:6px;vertical-align:1px}
+.tag.red{background:var(--red-soft);color:var(--red)} .tag.blue{background:var(--blue-soft);color:var(--blue)} .tag.gray{background:var(--gray-soft);color:var(--gray)}
+.note{font-size:14.5px;color:var(--ink-2)}
+.note li{margin:4px 0}
+.links{font-size:13px;color:var(--muted);margin-top:48px;line-height:1.9} a{color:var(--accent)}
+@media (max-width:760px){.wrap{padding:32px 16px 72px}.g3,.g2{grid-template-columns:1fr}td.p{white-space:normal}td.w{width:auto}}
+.cmp td.b{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--line)} .cmp td.a{color:var(--ink);font-weight:600}
+.kpi .n.s{font-size:26px}
+.big{font-size:15px;color:var(--ink-2);margin:0 0 12px}
+</style></head>
+<body><div class="wrap">
+<p class="meta">推送系统后台 · 主管意见 · 2026-10-28</p>
+<h1>给主管的改成一张功能框架思维导图；冷却回到规则上，弹窗内容不再单独存在，数据补上按推播、按活动筛</h1>
+<p class="sub">主管提的四件事都已改进导图。弹窗内容按你说的认真想过：活动和礼包本身就是内容，不用再包一层。已替你定为去掉，可推翻。</p>
+<div class="grid g3">
+  <div class="card kpi"><div class="n">1 <small>张导图</small></div><div class="t">6 个分支，写到关键设置，每项功能标新增、调整、现有；原型图先停，导图定了再改</div></div>
+  <div class="card kpi"><div class="n s">弹窗内容：去掉</div><div class="t">规则里直接选现有活动、礼包；冷却设在规则上，大厅哪次进入弹、每天几次设在规则的每一项上</div></div>
+  <div class="card kpi"><div class="n s">要你做</div><div class="t">看导图，定弹窗内容去不去；同意后由你转给主管</div></div>
+</div>
+<div class="shot" style="margin-top:22px"><img src="图/2026-10-28_功能框架/导图全景.png" alt="功能框架全景"><div class="c">导图第一屏：中心是后台，左右六个分支，每个分支下是功能；下面每个分支另有一张详图，写到关键设置</div></div>
+
+<p class="note" style="margin-top:14px"><span class="tag red">10/29 改</span>弹窗内容按你 10/29 的判断改为保留：后台配图、基础设置配一次各规则复用，冷却仍在规则上。本页第 01 节和上面「弹窗内容：去掉」作废，见 <a href="2026-10-29_弹窗内容去不去的依据.html">弹窗内容保留</a>。</p>
+<p class="note" style="margin-top:14px"><span class="tag blue">10/29 补</span>导图已按你 10/16 定的口径补了后台数据：弹窗点击后 24 小时内领取、购买，储值类推送发送后 24 小时内付费人数、金额，只作后台数据。10/28 晚交你的旧版在 <code>评审版_定稿改_1027/推送系统后台集成需求/_旧版_1028交付/</code>。</p>
+
+<h2><span class="no">01</span>弹窗内容不再单独存在：活动和礼包本身就是内容，冷却和时机都跟着规则走</h2>
+<p class="note"><span class="tag blue">10/29 补</span>去不去的判断标准和依据（运营同事草稿逐项核对、本期范围、各家官方文档）另写在 <a href="2026-10-29_弹窗内容去不去的依据.html">弹窗内容去不去的依据</a>。</p>
+<div class="f"><p class="h">现在后台怎么配：每条规则里，每个活动各设时机、形式、次数、冷却</p>
+<ul class="l"><li>例：规则「活动类弹窗」（ID 5）给全部玩家，排了 14 个活动，每次进大厅弹 3 个；14 项的冷却全是 0 秒，次数全是每天 1 次。</li>
+<li>只有一条衰退规则用过冷却：「每日补给计划」每天 20 次、冷却 30 分钟，这条规则里只有这一项。</li></ul></div>
+<div class="f"><p class="h">10/28 稿为什么拆出「弹窗内容」，为什么主管说得对</p>
+<ul class="l"><li>当时想让同一个活动在几条规则里只设一次，并让一个人跨规则按同一份次数算，就把时机、次数、冷却挪到了新建的「弹窗内容」上。</li>
+<li>代价：多了一个对象、一页；冷却挂在单个弹窗上，可运营想的是这条规则多久弹一次；还引出补丁，实验的对照组要另建一个内容（ID 111），才不和大厅共用次数。</li></ul></div>
+<table>
+<tr><th>业界做法</th><th>谁这样做</th><th>冷却、时机设在哪</th></tr>
+<tr><td class="w">一条消息自带内容、触发、频率、冷却</td><td class="r">Braze、Firebase、OneSignal、CleverTap、MoEngage、Airship、神策</td><td class="r">消息上，消息本身就是规则</td></tr>
+<tr><td class="w">内容是独立对象，被多条规则引用</td><td class="r">Google Ad Manager 素材库、Metaplay、Balancy、PlayFab</td><td class="r">规则上；内容上最多加一个「每人跨规则总上限」</td></tr>
+<tr><td class="w">冷却、时机设在共用的内容上</td><td class="r">查到的产品里没有</td><td class="r">—</td></tr>
+</table>
+<p class="note" style="margin-top:10px">我们游戏里，活动和礼包已经是独立对象（在营运活动设定、储值品项设定里建），相当于 Ad Manager 的素材、Metaplay 的 offer。弹窗规则直接引用它们，就是业界第二种做法；10/28 稿在活动外面又包了一层，这一层业界没有。</p>
+
+<div class="f" style="margin-top:22px"><p class="h">改后各设置放在哪</p></div>
+<table class="cmp">
+<tr><th>设置</th><th>10/28 稿</th><th>现在</th></tr>
+<tr><td class="p">显示方式</td><td class="b">弹窗内容</td><td class="a">规则里的每一项</td></tr>
+<tr><td class="p">大厅哪一次进入弹</td><td class="b">弹窗内容</td><td class="a">规则里的每一项</td></tr>
+<tr><td class="p">频率（每天、每周、每 N 天或活动期间几次）</td><td class="b">弹窗内容，跨规则、跨位置合计</td><td class="a">规则里的每一项；同一活动在本位置各条规则里弹过的合计，不再跨位置合计，破产时不会因为大厅弹过就不弹</td></tr>
+<tr><td class="p">冷却</td><td class="b">弹窗内容</td><td class="a">规则</td></tr>
+<tr><td class="p">玩家符合多条规则时怎么弹</td><td class="r">位置</td><td class="r">位置（不变）</td></tr>
+</table>
+<div class="grid g2" style="margin-top:14px">
+  <div class="card"><p class="h" style="margin:0 0 6px;font-weight:700">少了什么、怎么补</p><ul class="note" style="margin:0;padding-left:18px">
+  <li>一个活动在 6 条规则里，改次数要改 6 处：规则列表能按「包含的活动」筛，一次找齐。</li>
+  <li>按活动看弹窗效果：数据的「所属活动」筛选与「按活动」视图。</li>
+  <li>提前停掉某个活动的所有弹窗：同样用筛选找出规则逐条移除；活动结束会自动跳过。</li>
+  <li>迁移更简单：现有规则每一项的设置原样迁入，不用再对齐几条规则里不一致的设置。</li></ul></div>
+  <div class="card"><p class="h" style="margin:0 0 6px;font-weight:700">留着的风险</p><ul class="note" style="margin:0;padding-left:18px">
+  <li>大厅用「轮流」时，这次进来轮到 A 规则，下次轮到 B，A 的冷却挡不住 B，玩家可能每次进大厅都有弹窗；兜底是大厅每人每天 8 个。</li>
+  <li>业界另有一层「同一位置两次弹出至少隔多久」（Braze 全 App 默认 30 秒，Unity LevelPlay 按位置设）。主管说冷却放规则，这次没加；评审时若担心连弹，再加这一层。</li></ul></div>
+</div>
+<p class="note" style="margin-top:12px">另一个选项：保留弹窗内容，只放显示方式和大厅弹出时机，次数、冷却放在规则里（图片随活动、礼包本身配置，本期不在推送后台换；10/29 改正，原写「显示方式和宣传图」）。代价是运营每配一个弹窗都要先多建一个对象、多一页。推荐去掉。</p>
+
+<h2><span class="no">02</span>数据补上「找到、筛出、比较」：一排共用筛选，八个视图</h2>
+<p class="big">原来只能分游戏外、游戏内两页看全部推送：找不到某一条、某个活动，也不能挑几条来比。现在先列运营要回答的问题，每个问题都有地方答。</p>
+<table>
+<tr><th>运营要回答的问题</th><th>在哪看、用什么筛</th></tr>
+<tr><td class="w">这周哪条推播点击率最低？</td><td class="r">明细表：推送方式选推播、日期选本周，按点击率排</td></tr>
+<tr><td class="w">编号 43 的推播效果怎样？</td><td class="r">搜编号 43，点进单条：每一步少多少人、按平台和语言拆</td></tr>
+<tr><td class="w">「回流礼包」的推播、短信、弹窗合起来怎样？</td><td class="r">按活动：各推送方式一行，另给合计人数（同一人只算一次）</td></tr>
+<tr><td class="w">条件触发的推播比定时的好还是差？</td><td class="r">总览：筛「条件触发」与「定时」各看一次</td></tr>
+<tr><td class="w">这条推播 iOS 和安卓各怎样？</td><td class="r">单条：按平台拆</td></tr>
+<tr><td class="w">大厅弹窗哪条规则效果最差？</td><td class="r">位置：大厅下各条规则按点击率排</td></tr>
+<tr><td class="w">回流玩家这周收到的推送整体怎样？</td><td class="r">总览：日期选本周，按收到的人属于哪个群组拆开，看回流那一行</td></tr>
+<tr><td class="w">新写的这条和上周那条比，哪个好？实验组和对照组呢？</td><td class="r">对比：勾选几条并排看，按发出后同样时长（如 24 小时）对齐，附同一推送方式前 30 天平均</td></tr>
+</table>
+<ul class="note" style="margin-top:10px">
+<li>依据：Braze、MoEngage、CleverTap、Airship 的推送列表都有名称或编号搜索、推送方式、日期、状态筛选；神策按营销场景把多渠道合起来看；Braze、CleverTap 能勾几条并排比。</li>
+<li>点击、发送之后的结果按你 10/16 定的边界放进后台数据：弹窗点击后 24 小时内领取、购买，推播、短信发送后 24 小时内登录，储值类推送发送后 24 小时内付费人数、金额；只作后台数据，不作效果目标（已定事项第 3 条）。原评审稿漏了领取、购买、付费这几项，这次补回导图。</li>
+<li>没做：列自选、保存筛选（锦上添花）；定时报表（之前已定不做）。按主管眼光复述时，「效果能算到钱吗」是负责人最先问的，评审时大概率会被问到（推断）。</li>
+</ul>
+
+<h2><span class="no">03</span>措辞：主管点的三处改成白话，全图按主管眼光逐个词复述过</h2>
+<table class="cmp">
+<tr><th>原来</th><th>现在</th></tr>
+<tr><td class="b">预计上限拦截</td><td class="a">预计因每天上限收不到的人数</td></tr>
+<tr><td class="b">（10/24；今天起 7 天内只发这一次）</td><td class="a">删掉。这是算预计人数时的范围注释：只算今天起 7 天内的发送，这条每周六发，7 天内只有 10/24 一次。数字是系统自动算的，但这句注释对运营没用，「今天」也看不出是哪天。确认框改为写出按哪一次算，如「按首次发送 10/24 算，之后每次发送前重算」。</td></tr>
+<tr><td class="b">弹窗形式：活动本身、活动广告页</td><td class="a">显示方式：直接打开它的页面，或先弹一张宣传图，点了再进（我方理解，已列进研发确认）</td></tr>
+</table>
+<p class="note" style="margin-top:10px">全图另请没上下文的人按主管眼光逐个词复述，复述不出的都改了，例如：「位置」在弹窗里是「在什么情况下弹」、在快显里是屏幕位置，快显改叫「显示在哪」；「上传名单」与「按名单发停用」读着矛盾，改成「营销部门另外按名单发、按周期排程的短信，改在这里发」；四个新标签补了怎么算；点击率写明分母。</p>
+
+<h2><span class="no">04</span>原型图先停，导图定了再按导图改</h2>
+<ul class="note">
+<li>30 张原型图不再给主管看；导图定了以后按导图改，留给研发评审。现在不改，免得导图再变又白改。</li>
+<li>导图中心叫「推送统一后台」：「触达系统」和写作标准冲突（不用「触达」），改名还在等你定，导图先用这个名字。已替你定，可推翻。</li>
+</ul>
+
+<h2><span class="no">05</span>顺带查出一个上线风险，已列进研发确认</h2>
+<ul class="note"><li>现在大厅的「活动类弹窗」（每次弹 3 个）和储值类的「通用弹窗」（每次弹 1 个）可能是同时在弹。是的话，迁成「只用优先级最高的一条」后，每次进大厅弹的个数会变少；要改成轮流，或把两条合成一条。研发评审时查实。</li></ul>
+
+<h2><span class="no">06</span>为什么没提前看出来，已补进交付前的检查</h2>
+<ul class="note">
+<li>形式：评审材料按你 10/16「需求评审以原型为主」做，没问最终读者主管要看什么。</li>
+<li>冷却放内容上：从「一件事只设一次」推出来，当时对标只查了一条消息自带一切的扁平产品，没查内容独立的那一类。</li>
+<li>数据：只做了指标怎么算，没拿运营问题逐个走一遍。</li>
+<li>交付前必查第 10 条加三项：设置放在运营想到它的那一层；数据按运营问题走一遍；每个词按最终读者复述。</li>
+</ul>
+
+<div class="links">导图：评审版_定稿改_1027/推送系统后台集成需求/功能框架_思维导图.html（同目录另存一份 PDF，8 页：全景 1 页，每个分支从新一页开始，游戏内推送的弹窗、快显各占一页）<br>
+文字版大纲（导图由它生成）：评审版_定稿改_1027/推送系统后台集成需求/功能框架_大纲.md<br>
+对标明细：分析/对标_内容与规则_1028.md、分析/对标_数据筛选与视图_1028.md</div>
+</div></body></html>

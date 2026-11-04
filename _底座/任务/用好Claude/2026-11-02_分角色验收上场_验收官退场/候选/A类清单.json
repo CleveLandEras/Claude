@@ -1,0 +1,112 @@
+[
+  {
+    "目标": "~/.claude/CLAUDE.md",
+    "动作": "改",
+    "改前sha256": "d35780b74795bd86a1c64113d38eb64acf61ca75193387c84b64e667ffc74171",
+    "候选": "候选/home/dot-claude/CLAUDE.md",
+    "改动清单行": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "候选sha256": "f3f17ff40c39e0eeab98112d1d51ac1d4be1bb79979c1816ac536655c8af99a0"
+  },
+  {
+    "目标": "~/.claude/agents/验收官.md",
+    "动作": "移走",
+    "改前sha256": "69208dfc8bb5836cf41ac925eb46dd9afbb5fc752d0dda0b37ca643401b91de1",
+    "候选": null,
+    "改动清单行": [
+      12
+    ]
+  },
+  {
+    "目标": "~/.claude/agents/总验收人.md",
+    "动作": "新建",
+    "改前sha256": null,
+    "候选": "候选/home/dot-claude/agents/总验收人.md",
+    "改动清单行": [
+      13
+    ],
+    "候选sha256": "6e35cda8dde69aa5dc59368b2f35f3bc063bdf6bade6baf2c32d0d468b15f886"
+  },
+  {
+    "目标": "~/.claude/agents/流程抽查员.md",
+    "动作": "改",
+    "改前sha256": "7772248c245f77ea2c85cea382a8c95eb375d11ad581e61d0d3c4715084e36da",
+    "候选": "候选/home/dot-claude/agents/流程抽查员.md",
+    "改动清单行": [
+      14,
+      15
+    ],
+    "候选sha256": "67a0a2c0cba68671786e4db7b8bc9146804387dccc53ed4de7f0edbe8dcccb6e"
+  },
+  {
+    "目标": "~/.claude/skills/开工/SKILL.md",
+    "动作": "改",
+    "改前sha256": "2718109e0f7e0b5249bb2693eeb57b49d5246b05e0974a987847478015f52b01",
+    "候选": "候选/home/dot-claude/skills/开工/SKILL.md",
+    "改动清单行": [
+      16,
+      17
+    ],
+    "候选sha256": "71b191a808d0b3d8d487a6da668e594ecf59e63ec75c2292943c9773e9627b1c"
+  },
+  {
+    "目标": "~/.claude/skills/整理纠正/SKILL.md",
+    "动作": "改",
+    "改前sha256": "b03d1d4d1658c4e57e3b04d1ab62c8d32a69c4b68eb7fc1b39ddd134b42fce12",
+    "候选": "候选/home/dot-claude/skills/整理纠正/SKILL.md",
+    "改动清单行": [
+      18
+    ],
+    "候选sha256": "5ff5f5a4c850c3f452cbd9cd17bd935e96dc0f175c13e0258262ffa0c4d845bf"
+  },
+  {
+    "目标": "~/.claude/skills/验收官考试/",
+    "动作": "移走",
+    "改前sha256": "2be9428b9af0331f60f64bd8db3838928f488d1c27aee441040f25ce7c5411bc",
+    "候选": null,
+    "改动清单行": [
+      19
+    ],
+    "说明": "整个目录移走；目录里只有 SKILL.md，改前sha256 是这个文件的"
+  },
+  {
+    "目标": "~/.claude/skills/验收考试/SKILL.md",
+    "动作": "新建",
+    "改前sha256": null,
+    "候选": "候选/home/dot-claude/skills/验收考试/SKILL.md",
+    "改动清单行": [
+      19
+    ],
+    "候选sha256": "7e601d2dccff61f87394aa37c37717f3a46899aeda45e0f8897ae96e9e0adba5"
+  },
+  {
+    "目标": "~/.claude/hooks/delivery_gate.py",
+    "动作": "改",
+    "改前sha256": "bcd10b439d2d8cc9a0c6f1c4a865f1697acf10c37a134a8e79a7842299f0a3b5",
+    "候选": "候选/home/dot-claude/hooks/delivery_gate.py",
+    "改动清单行": [
+      20
+    ],
+    "候选sha256": "5e139082eb1cfed1984cb5137a77e3862ca65ab2610f63fb669bbf2a927a3f23"
+  },
+  {
+    "目标": "~/.claude/hooks/correction_capture.py",
+    "动作": "改",
+    "改前sha256": "fa05e659f9a8e9c1dc0c05c5cf9c1bca6bbe51515ab2a5f354001deeb915fc37",
+    "候选": "候选/home/dot-claude/hooks/correction_capture.py",
+    "改动清单行": [
+      21
+    ],
+    "候选sha256": "6d4840d13b41a2af77727643e7cbc45d8c2fdf913cb231343754ab9294ea8500"
+  }
+]

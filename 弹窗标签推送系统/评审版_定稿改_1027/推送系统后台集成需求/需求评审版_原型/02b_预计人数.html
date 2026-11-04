@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>02b 发布确认</title>
+<link rel="stylesheet" href="_后台框.css">
+<link rel="stylesheet" href="_弹窗.css">
+<link rel="stylesheet" href="_推送.css">
+<style>.row>label.aw{width:auto;margin-left:8px}.foot>.m2{font-size:12px}.card .nw{white-space:nowrap}.dif .nw{white-space:nowrap}.dif .sub2{margin-top:2px}.dif .lg{display:flex;align-items:baseline;gap:10px;line-height:1.6}.dif .lg b{width:44px;flex:none;font-weight:400;color:#909399}.dif .chk{margin-left:8px;padding:0 4px;border-radius:3px;background:#FDF3E6;color:#A9671A;font-style:normal;font-size:11.5px}</style>
+</head>
+<body>
+<div class="shot bk" data-page="推播" data-crumb="新建推播">
+  <div class="eh"><h3>新建推播</h3><span class="pill draft">草稿</span><span class="sp"></span></div>
+  <div class="ed">
+    <div>
+      <div class="sec">
+        <div class="sh"><span class="n">1</span>名称与类别</div>
+        <div class="row"><label>推送名称</label><span class="inp v" style="width:260px">周末登录送金币提醒 · 潜在流失</span><label style="margin-left:14px">所属活动</label><span class="inp v" style="width:150px">周末登录送金币<span class="dn">⌵</span></span></div>
+        <div class="cards" style="margin-top:8px"><div class="card on"><i class="rd"></i><div><b>营销</b><span>受每人每天上限和勿扰限制</span></div></div><div class="card"><i class="rd"></i><div><b>服务通知</b><span><span class="nw">补偿、维护、账号安全、绑定结果，</span><span class="nw">不计入上限</span></span></div></div></div>
+        <div class="row" style="margin-top:8px"><label>权重</label><span class="inp v num" style="width:56px">50</span><span class="m2" style="line-height:1.5">0–100，越大越优先；名额不够时先留给权重高的定时推送，相同按发送先后</span></div>
+      </div>
+      <div class="sec">
+        <div class="sh"><span class="n">2</span>对象</div>
+        <div class="row"><span class="radio"><i></i>全部玩家</span><span class="radio on"><i></i>标签群组</span><span class="radio"><i></i>名单</span></div>
+        <div class="row"><label>标签群组</label><span class="inp v" style="width:460px"><span class="tgs"><em class="tg g"><b>群组</b>潜在流失·近 14 天登录 1 天</em><em class="tg g"><b>群组</b>潜在流失·近 14 天登录 2–3 天</em></span><span class="dn">⌵</span></span></div>
+        <div class="row"><label>多选时</label><span class="radio on"><i></i>满足任一</span><span class="radio"><i></i>同时满足</span></div>
+        <div class="or1">复杂组合可在「会员标签设定」页存成群组</div>
+        <div class="row"><label>排除</label><span class="inp v" style="width:460px"><span class="tgs"><em class="tg g"><b>群组</b>VIP 名单</em></span><span class="dn">⌵</span></span></div>
+        <div class="fixed">固定不发：黑名单、机器人与测试账号、停权、自我限制、注销处理中的账号</div>
+        <table class="cnt"><tr><td>符合对象</td><td class="v">7,880 人</td></tr><tr><td>扣除排除后</td><td class="v">7,850 人</td></tr><tr class="k"><td>预计可接收</td><td class="v">4,310 人</td></tr></table>
+        <div class="or1">再扣不可接收：未安装 App、通知关闭、同设备去重</div>
+      </div>
+      <div class="sec">
+        <div class="sh"><span class="n">3</span>内容</div>
+        <div class="tabs3"><span class="on">繁中<em class="ok">✓</em></span><span>越南文<em class="chk">待核对</em></span><span>英文<em class="ok">✓</em></span><span class="gen">一键生成另外两种</span></div>
+        <div class="ta"><div><span class="m">标题</span>　週末登入送金幣開跑</div><div><span class="m">内容</span>　週六、週日登入各領 5 萬金幣，連續兩天再加碼！</div></div>
+        <div class="row" style="margin-top:8px"><label>点击跳转</label><span class="inp v" style="width:200px">周末登录送金币<span class="dn">⌵</span></span><span class="m2">从现有活动、礼包里选</span></div>
+      </div>
+      <div class="sec">
+        <div class="sh"><span class="n">4</span>发送时间</div>
+        <div class="cards"><div class="card on"><i class="rd"></i><div><b>定时</b><span>到点按当时对象发送</span></div></div><div class="card"><i class="rd"></i><div><b>条件触发</b><span>满足触发条件时发送</span></div></div></div>
+        <div class="row" style="margin-top:8px"><span class="inp v num" style="width:150px">2026-10-24　19:00</span><label class="aw">重复</label><span class="inp v" style="width:90px">每周六<span class="dn">⌵</span></span><label class="aw">至</label><span class="inp v num" style="width:100px">2026-12-26</span><span class="m2">共 10 次</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="sum">
+        <div class="h">这条推送</div>
+        <div class="big num">4,310<small>人</small></div>
+        <div class="m2">预计可接收</div>
+        <div class="m2">不可接收：未安装 App 2,860</div>
+        <div class="m2">通知关闭 660 · 同设备去重 20</div>
+        <hr>
+        <div class="k2"><span>权重</span><b>50</b></div>
+        <div class="k2"><span>发送</span><b>10/24 19:00 起</b></div>
+        <div class="m2">每周六，至 12/26，共 10 次</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="m2">先发给测试群组看效果，不计入数据</span><span class="sp"></span><span class="btno">取消</span><span class="btno">存为草稿</span><span class="btno">发送测试</span><span class="btnp">保存并发布</span></div>
+  <div class="bk-pop cf" style="--pop-top:70px;width:700px;margin-left:156px">
+    <div class="t">发布「周末登录送金币提醒 · 潜在流失」？</div>
+    <table class="dif">
+      <tr><th style="width:110px">发送时间</th><td>10/24 19:00 起每周六，至 12/26，共 10 次</td></tr>
+      <tr><th>消息类别</th><td>营销 · 计入每人每天上限</td></tr>
+      <tr><th>内容</th><td><div class="lg"><b>繁中</b>週末登入送金幣開跑</div><div class="lg"><b>越南文</b>Đăng nhập cuối tuần nhận xu vàng<em class="chk">待核对</em></div><div class="lg"><b>英文</b>Weekend login coin bonus</div></td></tr>
+      <tr><th>发送测试</th><td>10/21 14:50 已发给测试群组「QA 测试」</td></tr>
+      <tr><th>对象</th><td>潜在流失·近 14 天登录 1 天、<span class="nw">潜在流失·近 14 天登录 2–3 天（满足任一）</span><div class="m2 sub2">排除 VIP 名单 · 固定不发 黑名单、机器人与测试账号、停权、自我限制、注销处理中的账号</div></td></tr>
+      <tr><th>符合对象</th><td class="num">7,880 人</td></tr>
+      <tr><th>扣除排除后</th><td class="num">7,850 人</td></tr>
+      <tr><th>预计可接收</th><td class="num"><b>4,310 人</b><div class="m2" style="margin-top:2px;font-weight:400">再扣不可接收：未安装 App、通知关闭、同设备去重</div></td></tr>
+      <tr><th>预计上限拦截</th><td class="num">0 人（10/24；今天起 7 天内只发这一次）</td></tr>
+      <tr><th>影响其他推送</th><td>无：10/24 其他营销推送不会因此多被拦</td></tr>
+      <tr><th>权重</th><td>50</td></tr>
+    </table>
+    <div class="ft"><span class="btno">返回修改</span><span class="btnp">确认发布</span></div>
+  </div>
+</div>
+<script src="_后台框.js"></script>
+</body>
+</html>

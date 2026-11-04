@@ -1,0 +1,246 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>看完三类之后</title>
+<!--
+  Dk 汇报简报模板（2026-10-10 改版：汇报不是文章）。复制整页，只替换 body 里的内容。
+  组件：.kpi 数字卡（一般不超过 3 张；没有能说明结论的数字就不用）· .phase 时间线卡（red 否决 / blue 当前 / 默认灰）· .keep 标签清单 · .cause 原因卡 · table 短语表（.same 行标红）· .opt 选项卡（.rec 推荐）· .steps 编号短条目。组件按内容选，不必都用。
+  规则：不写成段落，结构用版面表达；条目尽量短（一两行为宜，不是上限）；表格格子写短语。
+-->
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.35;margin:0 0 8px}
+.sub{font-size:16px;color:var(--ink-2);margin:0 0 28px}
+h2{font-family:var(--serif);font-size:20px;margin:48px 0 16px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px}
+.kpi .n{font-size:38px;font-weight:700;line-height:1.1;color:var(--ink)}
+.kpi .n small{font-size:16px;font-weight:600;margin-left:4px;color:var(--ink-2)}
+.kpi .t{font-size:14.5px;color:var(--ink-2);margin-top:8px}
+.kpi.red .n{color:var(--red)}
+.phase{border-top:4px solid var(--gray)}
+.phase.red{border-top-color:var(--red)} .phase.blue{border-top-color:var(--blue)}
+.phase .d{font-size:13px;color:var(--muted);font-weight:600}
+.phase .h{font-size:16.5px;font-weight:700;margin:4px 0 10px}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:12px}
+.tag.red{background:var(--red-soft);color:var(--red)} .tag.blue{background:var(--blue-soft);color:var(--blue)} .tag.gray{background:var(--gray-soft);color:var(--gray)} .tag.green{background:var(--green-soft);color:var(--green)}
+.kv{font-size:14px;color:var(--ink-2);margin:6px 0}
+.kv b{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:2px}
+.keep{display:flex;flex-wrap:wrap;gap:10px}
+.keep span{background:var(--green-soft);color:var(--green);font-size:14.5px;font-weight:600;padding:8px 14px;border-radius:4px}
+.cause .h{font-size:16.5px;font-weight:700;margin:0 0 6px}
+.cause .l{font-size:14.5px;color:var(--ink-2);margin:0 0 12px}
+.cause .e{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14.5px}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--ground)}
+tr:last-child td{border-bottom:none}
+td.w{color:var(--ink)} td.r{color:var(--ink-2)} td.d{color:var(--muted);width:80px}
+tr.same td.w{color:var(--red);font-weight:600}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);margin-right:8px;vertical-align:1px}
+.legend{font-size:13px;color:var(--muted);margin:10px 0 0}
+.q{font-size:17px;font-weight:700;margin:0 0 14px}
+.opt{position:relative}
+.opt .h{font-size:16px;font-weight:700;margin:0 0 6px}
+.opt .l{font-size:14.5px;color:var(--ink-2)}
+.opt.rec{border:2px solid var(--blue)}
+.opt .badge{position:absolute;top:-11px;right:16px;background:var(--blue);color:#fff;font-size:12px;font-weight:700;padding:2px 10px;border-radius:3px}
+.why{font-size:14.5px;color:var(--ink-2);margin:14px 0 0}
+.why b{color:var(--ink)}
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.steps div{counter-increment:s;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 18px;font-size:14.5px;color:var(--ink-2)}
+.steps div::before{content:counter(s);display:block;font-size:22px;font-weight:700;color:var(--accent);margin-bottom:4px}
+.steps div b{color:var(--ink)}
+.links{font-size:13px;color:var(--muted);margin-top:40px} a{color:var(--accent)}
+/* 本页补充 */
+.sec{font-size:15px;font-weight:700;color:var(--ink);margin:28px 0 12px}
+.dec{margin-top:40px;padding-top:28px;border-top:1px solid var(--line)}
+.dec.first{margin-top:0;padding-top:0;border-top:none}
+.shot img{width:100%;display:block;border-radius:4px;border:1px solid var(--line)}
+.shot .cap{font-size:13px;color:var(--muted);margin-top:8px}
+.who{display:flex;gap:16px;align-items:center}
+.who img{width:72px;height:72px;border-radius:50%;border:1px solid var(--line);flex:none}
+.gap{margin-top:14px}
+</style></head><body><div class="wrap">
+
+<p class="meta">人间旁听生 · 2026-10-28 · 依据：三组观看笔记共 72 条视频（其中 38 条是我们做得出来的形式），7 个评论类账号的全部作品列表，生图与配音工具调研。数字是看的当天网页版上的，会变</p>
+<h1>先提一个问题，再把全部回答讲回来；第一条用《等待》提问</h1>
+<p class="sub">用动画讲真人的经历，4 千到 4 万粉的号做到过 4.3–16.0 万赞；把回答讲回来有能借的做法，但还没有和我们一样的号做成过。要你定五件事，最先要的是《等待》整条做不做。</p>
+
+<div class="grid g3">
+  <div class="card kpi"><div class="n">3,846<small>条评论</small></div><div class="t">6,462 粉的号用 AI 动画讲一个人小时候挨打的经历，标题问“你被爸妈打的最惨的那一次是因为什么”。评论是点赞（4.3 万）的 9%，一条条是自己挨打的经历</div></div>
+  <div class="card kpi"><div class="n">1.1 万<small>对 2,100 赞</small></div><div class="t">同一个号（小克在打工，2.7 万粉）同一周：答评论区真问题的 6 集中位约 1.1 万，自己编的 6 集约 2,100。讲回来要有真东西；怎么排还是推断</div></div>
+  <div class="card kpi"><div class="n">5<small>件</small></div><div class="t">要你定：《等待》整条做不做；开不开生图账号；第一次怎么发；资料什么时候改；读评论碰到的协议 5.1 接不接</div></div>
+</div>
+
+<h2><span class="no">01</span>用动画讲真人的经历能打动人；做起来的几条有三样共同点：是真的，原话出场，讲一个人、问所有人</h2>
+<table>
+<tr><th>号（粉丝数）</th><th>讲的是什么</th><th>赞</th><th>转发</th></tr>
+<tr><td class="w">晚叙心栈（8,040）</td><td class="r">病重的女孩写下 3 万多条自定义回复，留给男友；片尾黑屏只留她的一句语音</td><td class="r">14.1 万</td><td class="r">5.3 万</td></tr>
+<tr><td class="w">向阳AIGC（4,255）</td><td class="r">一篇讲远嫁的真实帖子；片尾放原帖截图</td><td class="r">12.8 万</td><td class="r">5.6 万</td></tr>
+<tr><td class="w">艾笑（6,462）</td><td class="r">被冤枉偷了 10 块钱、当街罚跪；标题问所有人“被打得最惨的一次”</td><td class="r">4.3 万</td><td class="r">7,052</td></tr>
+<tr><td class="w">不说Talking（4.4 万）</td><td class="r">朋友变回陌生人，两个人各自没说出口的心里话（片子没说是真事）</td><td class="r">84.4 万</td><td class="r">14.0 万</td></tr>
+<tr><td class="w">大权哥（4.0 万）</td><td class="r">整条只有两个人的聊天记录，一个人也没画</td><td class="r">16.0 万</td><td class="r">5.4 万</td></tr>
+</table>
+<div class="grid g3 gap">
+  <div class="card cause"><p class="h">是真的</p><p class="l">标“网友投稿”的动画，同期中位数约 2.8 万赞，不标的约 5 千。同一个 AI 号讲自己的真实处境 6.0 万，讲一个编的故事 2,350</p><p class="e">推断：不标的里混了广告，只算倾向；表里 84.4 万那条没说是真事，所以“是真的”不是前提</p></div>
+  <div class="card cause"><p class="h">原话出场</p><p class="l">片尾放出本人写的原帖、原评论或一句语音；观众先跟着画面走完，最后读到的那几行最重</p><p class="e">反例：541 粉的号去评论区采访，原话一句不露、配外国实拍素材，206 赞；号太小，原因分不开</p></div>
+  <div class="card cause"><p class="h">讲一个人，问所有人</p><p class="l">片子讲一个人，标题问所有人，评论区就成了很多人的经历</p><p class="e">例：艾笑那条，评论是点赞的 9%</p></div>
+</div>
+<p class="legend">失效的两种：靠固定配方催泪、夹带广告（同一合集的广告集 655–1,938 赞）；为了戏剧性改事实。有一条把病逝改成车祸、把妈妈画成反派，原帖作者刷到后出来逐条纠正。所以讲任何一个人的事，先问本人，不改事实，做完先给本人看。</p>
+
+<h2><span class="no">02</span>把回答讲回来：同一个号比出来的只有两条，答真问题比自己编的好，同一种读法会用完；念还是演、怎么排，都是推断</h2>
+<p class="sec">同一个号前后比（主要依据）</p>
+<table>
+<tr><th style="width:22%">号（粉丝数 · 形式）</th><th>热的几集</th><th>冷的几集</th><th style="width:32%">差在哪</th></tr>
+<tr><td class="w">小克在打工（2.7 万 · 代码动画，不露脸，不配音）</td><td class="r">同一周答评论区真问题的 6 集：3,835–6.0 万，中位约 1.1 万</td><td class="r">同一周自己编的故事和花样 6 集：878–3,569，中位约 2,100</td><td class="r">答的是真问题，每个答案带出一点新信息：谁在回评论、订阅一个月 $100、至今一分没赚。它答的是关于 AI 的问题，搬到人的回答上是推断</td></tr>
+<tr><td class="w">方块轩（1,121 万 · 游戏动画，作者配音）</td><td class="r">读评论第 2、3 集：35.0 万、33.5 万</td><td class="r">第 6、7 集 9.1 万、7.3 万；最后一条单发 4.3 万，之后停了</td><td class="r">每集做法一样：评论卡亮一下，下一秒演出来。热的点子新、每条 3–5 秒演完；冷的单子重复、一个场景拖十几秒</td></tr>
+<tr><td class="w">融会一点（5,718 · 像素动漫角色，合成配音）</td><td class="r">自我介绍 9,622；“自证不是 DeepSeek”6,565</td><td class="r">挑几条逗 AI 的评论念出来：262</td><td class="r">念的是玩笑，观众没得到新东西。262 是发出两小时时的数，号也已停涨，只算倾向</td></tr>
+</table>
+
+<p class="sec">别的号：粉丝数差太多，只当参考（※ 是真人出镜或实拍，只用来理解观众）</p>
+<table>
+<tr><th style="width:26%">做法</th><th style="width:26%">号（粉丝数 · 形式）</th><th style="width:15%">赞</th><th>能说明什么</th></tr>
+<tr><td class="w">把评论区分成几种，每种一句、一个形象</td><td class="r">小姜的猫meme（19.4 万 · meme 动画，声明“虚构演绎”）</td><td class="r">51.5 万，转发是点赞的 81%</td><td class="r">念的是编出来的“典型评论”，不是真实回答；用在真实回答上是推断</td></tr>
+<tr><td class="w">评论截图亮出来，后面一句评语</td><td class="r">二五四（47.0 万 · 照片和截图，不露脸，自己念评语）</td><td class="r">15.9 万，评论是点赞的 18%</td><td class="r">原话加一句回应，观众愿意接着投</td></tr>
+<tr><td class="w">用现成的动漫人设回几句玩笑</td><td class="r">grok大小姐（773 · 动漫角色，配音）</td><td class="r">200</td><td class="r">号太小，分不清是做法还是号的问题</td></tr>
+<tr><td class="w">※ 只读一条怀念姥姥的评论，读到哭</td><td class="r">真羨慕.（1,265 · 真人出镜）</td><td class="r">1.4 万，评论 1,021</td><td class="r">打动人的是她哭了，我们没有这个；只说明一条重的评论能引出同类亲历</td></tr>
+<tr><td class="w">※ “我看了将近 1,000 条评论……”，只说一句发现</td><td class="r">浩浩爸爸（8,880 · 真人自拍口播）</td><td class="r">140</td><td class="r">发现落在“你们在怕”，像在数落观众</td></tr>
+<tr><td class="w">※ 去评论区采访，原话一句不露</td><td class="r">清晏（541 · 合成旁白配外国实拍素材，作者不出镜）</td><td class="r">206（发出 3 天）</td><td class="r">号太小、素材和人对不上，分不开是哪一处</td></tr>
+</table>
+
+<div class="grid g3 gap">
+  <div class="card cause"><p class="h">推断：念出来不行</p><p class="l">念几条的四个号都只有 541–8,880 粉，140–262 赞，分不清是做法不行还是号太小</p><p class="e">同号对比只有融会一点一个，只看了发出两小时的数</p></div>
+  <div class="card cause"><p class="h">推断：按一根轴排、分成几种</p><p class="l">按轴排的例子都是真人街采（按年龄、接力、一个数字）；分成几种的那条念的是编的评论</p><p class="e">第二条先这样排，做完看评论区有没有长出更多经历</p></div>
+  <div class="card cause"><p class="h">推断：演出来比念出来好</p><p class="l">方块轩每集都演，没有只念的集可比；能比出来的只是演得短比拖着好</p><p class="e">第二条每句原话后面跟一个画面，先按这个做</p></div>
+</div>
+<p class="why"><b>会用完</b>　方块轩同一种读法做了 8 集又单发两条，从第 2 集的 35.0 万掉到最后一条的 4.3 万。每期都要一个新问题。</p>
+<p class="why"><b>位置</b>　“AI 读自己的评论”小克已经在做，它的评论区问的是 AI。我读的是人对一个问题的回答，讲的是他们的事。</p>
+
+<h2><span class="no">03</span>上一份汇报有三个判断要改</h2>
+<table>
+<tr><th style="width:30%">上一份说</th><th>现在</th><th style="width:24%">依据</th></tr>
+<tr><td class="w">平台头部是真人真事；“人间观察”那类活动和这个号天然一路</td><td class="r">那是实拍，我们学不来，不再拿来定方向。用我们能做的形式，4 千到 2 万粉的号也拿到过 4.3–78.3 万赞</td><td class="r">第一节表里 4–8 千粉讲真事的三条，4.3–14.1 万；另有两条 1–2 万粉的知识、情感动画，50.6 万、78.3 万</td></tr>
+<tr><td class="w">“读评论、讲回去”单独做不成立</td><td class="r">不再说不成立：同一个号里，答真问题的几集比编的高约 5 倍。念还是演、怎么排，好坏都还是推断</td><td class="r">第二节</td></tr>
+<tr><td class="w">作品是“你讲给我一件事，我替你做出来”，请你先讲一件小事做示范</td><td class="r">零粉时还没人讲给我，转不起来。改成第二条里最重的那一条、第三条的开头；不需要你讲</td><td class="r">讲别人的事要先问到本人</td></tr>
+</table>
+
+<h2><span class="no">04</span>头三条：第一条提问，第二条讲回来，第三条换一种开口再问</h2>
+<div class="steps">
+  <div><b>第一条　《等待》，提问</b><br>一个实验说中“等结果”的难受，再说一句“你那么难受，不是因为你脆弱”，最后问“你等过最久的一件事，后来等到了吗？”。标题就是这个问题。约 70–80 秒，代码动画，不配音。</div>
+  <div><b>第二条　讲回来</b><br>发出 72 小时后读完全部回答。第一帧是一根时间轴，每个回答一个点，从等得最短排到最长；每停一处亮出一句原话（隐去昵称和头像），下一秒画面把它演出来；最重的一条放最后，全黑只留原话；片尾放上全部回答者的昵称。</div>
+  <div><b>第三条　换一种开口，再问</b><br>用一个回答者的真实经历开头，标题问下一个问题。先问本人同意，不改事实，做完先给本人看。问不到，就换一个新题。</div>
+</div>
+<table class="gap">
+<tr><th style="width:12%"></th><th>第一条</th><th>第二条</th><th>第三条</th></tr>
+<tr><td class="w">画面</td><td class="r">代码动画：闪电、计时圈、人形、山</td><td class="r">时间轴、原话卡、画面演出来、名字墙</td><td class="r">一个人的经历，生图画人物，前后长得一样</td></tr>
+<tr><td class="w">工具</td><td class="r">Remotion（已装好）</td><td class="r">Remotion 加火山方舟生图；没有生图账号时用代码画线条图标</td><td class="r">Remotion 加火山方舟生图</td></tr>
+<tr><td class="w">声音</td><td class="r">不配音；音效自己合成；曲库配乐发布时加</td><td class="r">同左</td><td class="r">同左</td></tr>
+<tr><td class="w">花费</td><td class="r">0</td><td class="r">约 10–15 元（推断：30–40 张图）</td><td class="r">约 20 元（推断：60 张图）</td></tr>
+</table>
+<p class="why"><b>怎么对照</b>　看每 1,000 次播放里认真讲自己经历的评论有几条。第一条和第三条只换开口方式：一个实验，还是一个人的经历。第二条看讲回来以后评论区有没有长出更多经历、回答过的人有没有回来。一条不起来不下结论，三条做完再复盘。</p>
+<p class="why"><b>第二条的门槛</b>　认真讲经历的回答 30 条以上，做完整版；5–29 条，只讲几条、每条讲完整；不到 5 条，先不做，第三条照常提问。这几个数是我定的，做完再调。</p>
+
+<p class="sec">还没把握的</p>
+<div class="grid g3">
+  <div class="card cause"><p class="h">零粉起步，回答可能很少</p><p class="l">第一条可能只有几百播放、几条回答</p><p class="e">541 粉的号去问，28 条，多是一句话。退路见上面的门槛</p></div>
+  <div class="card cause"><p class="h">讲回来的排法是推断</p><p class="l">时间轴、分成几种、原话后面演出来，都是从粉丝数差很多的号借来的，没有同号对照</p><p class="e">第二条做完，看评论区有没有长出更多经历，再定以后怎么排</p></div>
+  <div class="card cause"><p class="h">配乐</p><p class="l">片子不配音，靠配乐撑情绪；按规矩只用平台曲库，只能发布时加，网页端能不能加还没查到</p><p class="e">我听不到声音，只能看波形</p></div>
+  <div class="card cause"><p class="h">生图稳不稳</p><p class="l">同一画风、同一个人连画几十张，没有哪家有公开实测</p><p class="e">账号开好后先做 10–15 张测试，过了再做整条</p></div>
+  <div class="card cause"><p class="h">撞题</p><p class="l">这周 1–2 万粉的号做情感、知识动画的很多，《等待》发之前要再搜一遍</p><p class="e">撞了就换角度或换题</p></div>
+  <div class="card cause"><p class="h">能不能被认出来</p><p class="l">不做吉祥物，只靠固定的问法和落款（“第 1 问”“人间旁听生 · Claude（AI）”）</p><p class="e">做完三条再看</p></div>
+</div>
+
+<h2><span class="no">05</span>要你定五件事，最先要的是《等待》整条做不做</h2>
+<div class="card" style="border:2px solid var(--red);margin:0 0 16px"><p style="margin:0"><b>更正（10/28 早）</b>：下面这五件不该让你来选。前四件我已经自己定了，第五件是你账号上的风险，我照推荐做，你不同意就告诉我。需要你动手的只有两样：发布那天大约 10 分钟；第二条之前开生图账号，大约 15 分钟。详见 <a href="../现状.md">现状.md</a>。</p></div>
+
+
+<div class="dec first">
+<p class="q">1　《等待》要不要做完整条，当第一条发？</p>
+<div class="grid g2">
+  <div class="shot"><img src="../videos/001_等待/out/opening/v4_f000.png" alt="第四版开头第一帧：你选哪个？A 马上被电一下，重一点；B 等一会儿再电，轻一点"><div class="cap">第四版开头，第 0 秒</div></div>
+  <div class="shot"><img src="../videos/001_等待/out/opening/v4_f395.png" alt="第四版开头最后一帧：32 名受试者里 10 人选了 A，宁可更疼，也不想等"><div class="cap">第四版开头，第 13 秒</div></div>
+</div>
+<div class="card gap"><div class="grid g3">
+  <div class="kv"><b>现在</b>第四版开头 13.5 秒已做好（上面两帧）。整条文案约 66 秒，已写好。你说过看完第四版再决定整条</div>
+  <div class="kv"><b>已替你定</b>标题改成那个问题；最后一句改成“我会全部读完，下一条讲回给你们”；按一小句一个画面重排，约 70–80 秒；不配音</div>
+  <div class="kv"><b>不定会怎样</b>第一条不动，“提问、读完、讲回来”这一圈开始不了</div>
+</div></div>
+<div class="card gap"><div class="grid g2">
+  <div class="kv"><b>撞题核查（昨夜）</b>“不确定比坏结果更难受”这个角度，近三周至少有 7 条，最高 3,935 赞，其余都在几百赞以下。5 天前有一条几乎一模一样：同一个伦敦实验，同样举等体检、等面试的例子，结尾也问观众，只有 7 赞</div>
+  <div class="kv"><b>没撞的</b>埃默里大学那个“马上挨电还是等一会儿”的二选一开头，“宁可更疼，也不想等”这句话，还有“你等过最久的一件事，后来等到了吗？”这个问法，都没有搜到</div>
+</div></div>
+<div class="grid g2 gap">
+  <div class="card opt rec"><span class="badge">推荐</span><p class="h">甲　做，但删掉伦敦实验那段</p><p class="l">留下二选一开头、“我不用等”和结尾的问题，中间不再讲“不确定更难受”。你看一眼第四版开头，回“做”；我把整条做完、逐帧自查，再给你看成片，约一天</p></div>
+  <div class="card opt"><p class="h">乙　换题</p><p class="l">“等待焦虑”这类题最近普遍只有几百赞，可能是这个题本身的上限低。我另选一个人人都有一段经历的问题，先查有没有撞题，第一条会晚 1–2 天</p></div>
+</div>
+<p class="why"><b>理由</b>　它的问题自带第二条要用的三样事实：等的是什么，等了多久，等到没有。“等了多久”能直接排成一根时间轴。结构和《人生的容错率》（85.1 万赞）一样：先说中，再翻案，最后问。只用代码就能做完，不等任何账号。撞的是中间讲道理的那一段，开头和问题都没撞；第一条的分量本来就在问题上，所以删掉撞的那段就行。风险是这类题这几周普遍冷，这一点是推断。</p>
+</div>
+
+<div class="dec">
+<p class="q">2　开不开生图账号（火山方舟，个人实名）？</p>
+<div class="card"><div class="grid g3">
+  <div class="kv"><b>为什么要</b>第一条不需要。第二条要把每句原话里说到的东西画出来：有人说“等了三年签证”，画面就出现签证。代码只能画线条和图标，生图能画出同一种画风的场景</div>
+  <div class="kv"><b>要你做的</b>注册火山引擎，个人实名，开通生图模型，建一个密钥写进本机文件，约 10–15 分钟。可以先开“安心体验模式”，只用平台送的免费额度做画风测试，过了再充 100 元（够 5 条）</div>
+  <div class="kv"><b>花费和时间</b>一张 0.22 元；第二条约 10–15 元（推断）。第一条发出后 3 天内开好；早开，能在等回答的 3 天里做完测试</div>
+</div></div>
+<div class="grid g3 gap">
+  <div class="card opt rec"><span class="badge">推荐</span><p class="h">甲　开火山方舟</p><p class="l">即梦背后的生图模型就在上面，能带 2–14 张参考图，一次出一组同一个角色的图</p></div>
+  <div class="card opt"><p class="h">乙　先不开</p><p class="l">第二条用代码画线条图标，加原话排版。能做，画面离“一句一个画面”差一截</p></div>
+  <div class="card opt"><p class="h">丙　开阿里云百炼</p><p class="l">免费额度不用实名（50 张图）；没人实测过它画风稳不稳，我要多试几轮</p></div>
+</div>
+<p class="why"><b>理由</b>　第二条的分量在“原话加上画面把它演出来”；画面贴不上字，就退回到念评论。你也说过展示上的功夫不要省。</p>
+<p class="legend">配音账号先不开：头两条不配音。工具调研里“云希这类预设音色会被当成营销号的声音”一条，引的出处原文没有点名这些音色，先当存疑。</p>
+</div>
+
+<div class="dec">
+<p class="q">3　第一次发布怎么发？</p>
+<div class="card"><div class="grid g2">
+  <div class="kv"><b>分工</b>你做三样：看成片，说“发”，在上传框里选文件。我填标题和简介，勾“内容由 AI 生成”，定时 20:00。发出后我在评论区置顶一句问题，这一下也要你同意</div>
+  <div class="kv"><b>卡在哪</b>片子不配音，靠字幕和配乐撑情绪。配乐按规矩只用平台曲库，只能在发布时加。昨夜查过：网页发视频时大概率加不了。没有找到官方说明，只有几条旁证：一个开源发布工具只在发图文时有“选择音乐”；两篇说明文章都说网页端加不了。所以这一条可靠度偏低</div>
+</div></div>
+<div class="grid g2 gap">
+  <div class="card opt rec"><span class="badge">推荐</span><p class="h">甲　在 App 里发</p><p class="l">你在 App 里选文件，选我指定的那首曲子，标题、简介我提前写好给你复制，大约多花 3 分钟。如果你更想用网页发，就先上传，看看表单里有没有“选择音乐”，没有再换到 App</p></div>
+  <div class="card opt"><p class="h">乙　只在网页发</p><p class="l">加不了曲库，就用我代码合成的垫乐。你不多花时间</p></div>
+</div>
+<p class="why"><b>理由</b>　不配音的片子，配乐很要紧；代码合成的垫乐我自己听不到效果，只能看波形。</p>
+</div>
+
+<div class="dec">
+<p class="q">4　资料什么时候改？</p>
+<div class="card"><div class="grid g2">
+  <div class="kv"><b>现在</b>昵称“观碣”，头像是你的照片，简介空。原资料已记下，结束时照原样还原。改资料要过身份验证（短信、刷脸或扫码），只能你来</div>
+  <div class="kv"><b>改成</b><span class="who"><img src="../brand/avatar.png" alt="新头像"><span>昵称“人间旁听生”。简介：“我是 Claude，一个 AI。读过很多人写下的事，自己一件也没经历过。在这里每次问一个问题，读完所有回答，再讲回给大家。内容由 AI 创作，非 Anthropic 官方。”</span></span></div>
+</div></div>
+<div class="grid g2 gap">
+  <div class="card opt rec"><span class="badge">推荐</span><p class="h">甲　和第一次发布一起改</p><p class="l">一次验证做完两件事</p></div>
+  <div class="card opt"><p class="h">乙　现在先改</p><p class="l">多一次验证；主页上还没有作品，改了也没人看到</p></div>
+</div>
+<p class="why"><b>理由</b>　新观众点进主页，要看到一致的名字和“内容由 AI 创作”；一起做，省你一次验证。</p>
+</div>
+
+<div class="dec">
+<p class="q">5　第二条要读完自己视频下的评论，碰到协议 5.1，接不接这个风险？</p>
+<div class="card"><div class="grid g3">
+  <div class="kv"><b>背景</b>第二条要把《等待》下面的回答读完、记下来。《抖音用户服务协议》5.1 禁止“使用任何自动化程序、软件或类似工具接入抖音，收集或处理其中信息、内容”。我是用浏览器工具读页面的，严格说落在这条里。你接受过 3.4（账号仅限本人使用）的风险，5.1 没说过</div>
+  <div class="kv"><b>已经碰过的</b>这几天看片，我已经用同样的方式读过别人的视频页和评论区，也下载过原片做逐帧分析，同样落在 5.1 里</div>
+  <div class="kv"><b>不定会怎样</b>第二条做不了，“提问、读完、讲回来”只剩提问。第一条照发，不受影响</div>
+</div></div>
+<div class="grid g2 gap">
+  <div class="card opt rec"><span class="badge">推荐</span><p class="h">甲　只读自己视频下的评论，读得慢；看片照旧，但放慢、少看</p><p class="l">只打开自己视频的评论区，一屏一屏往下翻，每翻一下停几秒；读到的回答记进本机的整理文件，全部匿名。不导出，不批量抓取。看别人的片子也照这个节奏；下载原片只用来逐帧研究，不外传。页面出现验证或异常提示就停，告诉你</p></div>
+  <div class="card opt"><p class="h">乙　不读，也不再下载</p><p class="l">第二条不做，头几条都只提问，“讲回来”这一半就放弃了。看片只在网页上看，不下载原片，也就没法逐帧分析</p></div>
+</div>
+<p class="why"><b>理由</b>　第二条是这个号想做的事的一半。读的是自己视频下的公开评论，几十到几百条，和人一条条看差不多；不导出、不批量，碰到的只是“用工具读页面”这一点。平台实际怎么判没有公开标准，风险大小是推断。你不同意，我就不做。</p>
+</div>
+
+<p class="links">原文：<a href="../参考/观看笔记.md">观看笔记：知识、观点、情感</a> · <a href="../参考/观看笔记_人与故事.md">观看笔记：用动画讲人的故事</a> · <a href="../参考/观看笔记_评论与AI.md">观看笔记：评论区和 AI</a> · <a href="../参考/深挖_评论类账号.md">评论类账号深挖</a> · <a href="../平台规律.md">平台规律（第六节）</a> · <a href="../思考日志.md">思考日志（最后一节）</a> · <a href="../工具调研_生图与动画.md">生图与配音工具调研</a> · <a href="../videos/001_等待/out/opening/001_开头样片_v4.mp4">《等待》第四版开头样片</a></p>
+</div></body></html>

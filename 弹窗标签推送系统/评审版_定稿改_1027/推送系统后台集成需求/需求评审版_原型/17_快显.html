@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>17 快显</title>
+<link rel="stylesheet" href="_后台框.css">
+<link rel="stylesheet" href="_弹窗.css">
+<link rel="stylesheet" href="_推送.css">
+<style>.row .ro{color:#1F2329}.row .m2.nw{white-space:nowrap}.sum .eq .blk{color:#C47B2B}.foot>.m2{font-size:12px}</style>
+</head>
+<body>
+<div class="shot bk" data-page="快显" data-crumb="新建快显">
+  <div class="eh"><h3>升到 30 级解锁新场馆</h3><span class="pill draft">草稿</span><span class="sp"></span></div>
+  <div class="ed">
+    <div>
+      <div class="sec">
+        <div class="sh"><span class="n">1</span>名称与所属活动</div>
+        <div class="row"><label>推送名称</label><span class="inp v" style="width:216px">升到 30 级解锁新场馆</span><label style="margin-left:14px">所属活动</label><span class="inp v" style="width:130px">不属于活动<span class="dn">⌵</span></span><span class="m2 nw">按点击跳转带入</span></div>
+      </div>
+      <div class="sec">
+        <div class="sh"><span class="n">2</span>对象</div>
+        <div class="row"><span class="radio on"><i></i>触发的玩家</span><span class="m2">条件触发对象为触发玩家，仅在线显示</span></div>
+        <div class="row"><label>限定群组</label><span class="inp" style="width:170px">不限（选填）<span class="dn">⌵</span></span><label style="margin-left:10px">排除</label><span class="inp v" style="width:170px"><span class="tgs"><em class="tg g"><b>群组</b>VIP 名单</em></span><span class="dn">⌵</span></span></div>
+        <div class="fixed">固定不发：黑名单、机器人与测试账号、停权、自我限制、注销处理中的账号</div>
+      </div>
+      <div class="sec">
+        <div class="sh"><span class="n">3</span>内容与显示</div>
+        <div class="tabs3"><span class="on">繁中<em class="ok">✓</em></span><span>越南文<em class="ok">✓</em></span><span>英文<em class="chk">待核对</em></span><span class="gen">一键生成另外两种</span></div>
+        <div class="ta"><span class="m">横幅文字</span>　恭喜升到 30 級！新場館已開放 <span class="m2" style="float:right">14/30</span></div>
+        <div class="row" style="margin-top:8px"><label>显示位置</label><span class="inp v" style="width:140px">局内右上角横幅<span class="dn">⌵</span></span>停留<span class="inp v num" style="width:36px">5</span>秒</div>
+        <div class="row"><label>旧版本</label>不支持该位置时回退到<span class="inp v" style="width:120px">大厅顶部横幅<span class="dn">⌵</span></span></div>
+        <div class="row"><label>点击跳转</label><span class="inp v" style="width:200px">大厅 / 新场馆<span class="dn">⌵</span></span></div>
+      </div>
+      <div class="sec">
+        <div class="sh"><span class="n">4</span>发送时间</div>
+        <div class="cards"><div class="card"><i class="rd"></i><div><b>定时</b><span>到点后按时段显示</span></div></div><div class="card on"><i class="rd"></i><div><b>条件触发</b><span>满足触发条件时显示</span></div></div></div>
+        <div class="row" style="margin-top:10px;margin-bottom:0"><label>触发行为</label></div>
+        <div class="tpk">
+          <div class="g">玩家行为　对象为触发玩家</div>
+          <div class="o on"><i></i><div><b>玩家升级</b><span>升到等级 N 时显示；不填等级为每次升级</span></div></div>
+          <div class="o"><i></i><div><b>完成任务</b><span>完成指定任务（可多选）时显示；不填为任意任务</span></div></div>
+          <div class="o"><i></i><div><b>通行证升级</b><span>升到 1–N 级时每升一级显示；不填为每次升级</span></div></div>
+          <div class="o"><i></i><div><b>中奖</b><span>中奖金额不低于 N 时显示（只有快显）</span></div></div>
+          <div class="g">活动事件　按活动、礼包的时间显示</div>
+          <div class="o"><i></i><div><b>活动或礼包开始、结束前后 N 小时</b><span>活动、礼包改期后自动跟随</span></div></div>
+        </div>
+        <div class="row"><label>参数</label><div class="trig">升到等级<span class="inp v num" style="width:40px">30</span>时显示<span class="m2">不填为每次升级</span></div></div>
+        <div class="row"><label>生效期间</label><span class="inp v num" style="width:110px">2026-10-23</span>至<span class="inp" style="width:110px">长期（选填）</span></div>
+        <div class="row"><label>提醒次数</label><span class="ro">同一条推送每人每天最多 1 次</span><span class="m2">快显不受勿扰</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="sum">
+        <div class="h">横幅预览 · 局内右上角</div>
+        <div class="pvb"><div class="bn">恭喜升到 30 級！新場館已開放</div><div class="tm">5 秒後收起</div><div class="tb"></div></div>
+        <hr>
+        <div class="h">预计显示</div>
+        <div class="big num">294<small>次／天</small></div>
+        <div class="eq"><span>近 7 天日均升到 30 级</span><span>330</span><span>30 分钟内进入牌桌</span><span>312</span><span class="blk">上限拦截</span><span class="blk">−18</span></div>
+        <div class="bars"><i style="height:62%"></i><i style="height:58%"></i><i style="height:66%"></i><i style="height:60%"></i><i style="height:81%"></i><i style="height:88%"></i><i style="height:64%"></i></div>
+        <div class="bl"><span>10/15</span><span>10/21</span></div>
+        <hr>
+        <div class="k2"><span>每人每天上限</span><b>快显 3 次</b></div>
+        <div class="m2">在快显列表顶部设置</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="m2">英文横幅待核对</span><span class="m2">·</span><span class="m2">先发给测试群组看效果，不计入数据</span><span class="sp"></span><span class="btno">取消</span><span class="btno">存为草稿</span><span class="btno">发送测试</span><span class="btnp">保存并发布</span></div>
+</div>
+<script src="_后台框.js"></script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>团队运转数据</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.35;margin:0 0 8px}
+.sub{font-size:16px;color:var(--ink-2);margin:0 0 28px}
+h2{font-family:var(--serif);font-size:20px;margin:48px 0 16px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em;flex:none}
+h3{font-size:15.5px;margin:26px 0 10px}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px}
+.kpi .n{font-size:38px;font-weight:700;line-height:1.1;color:var(--ink)}
+.kpi .n small{font-size:16px;font-weight:600;margin-left:4px;color:var(--ink-2)}
+.kpi .t{font-size:14.5px;color:var(--ink-2);margin-top:8px}
+.kpi.red .n{color:var(--red)}
+.phase{border-top:4px solid var(--gray)}
+.phase.red{border-top-color:var(--red)} .phase.blue{border-top-color:var(--blue)} .phase.green{border-top-color:var(--green)}
+.phase .d{font-size:13px;color:var(--muted);font-weight:600}
+.phase .h{font-size:16.5px;font-weight:700;margin:4px 0 10px}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:10px}
+.tag.red{background:var(--red-soft);color:var(--red)} .tag.blue{background:var(--blue-soft);color:var(--blue)} .tag.gray{background:var(--gray-soft);color:var(--gray)} .tag.green{background:var(--green-soft);color:var(--green)}
+.kv{font-size:14px;color:var(--ink-2);margin:6px 0}
+.kv b{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:2px}
+.keep{display:flex;flex-wrap:wrap;gap:8px}
+.keep span{background:var(--gray-soft);color:var(--ink-2);font-size:13.5px;font-weight:600;padding:5px 11px;border-radius:4px}
+.keep span.hl{background:var(--blue-soft);color:var(--blue)}
+.cause .h{font-size:16px;font-weight:700;margin:0 0 6px}
+.cause .l{font-size:14.5px;color:var(--ink-2);margin:0 0 12px}
+.cause .e{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px;margin:0}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14px}
+th,td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12.5px;color:var(--muted);font-weight:600;background:var(--ground);white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td.w{color:var(--ink);font-weight:600;white-space:nowrap} td.r{color:var(--ink-2)} td.d{color:var(--muted)}
+.legend{font-size:13px;color:var(--muted);margin:10px 0 0}
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.steps div{counter-increment:s;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 18px;font-size:14px;color:var(--ink-2)}
+.steps div::before{content:counter(s);display:block;font-size:22px;font-weight:700;color:var(--accent);margin-bottom:4px}
+.steps div b{display:block;color:var(--ink);font-size:15px;margin-bottom:4px}
+.steps div i{display:block;font-style:normal;font-size:12.5px;color:var(--muted);margin-top:8px;border-top:1px solid var(--line);padding-top:8px}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:6px 0 4px}
+.flow span{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:5px 10px;font-size:13.5px;font-weight:600}
+.flow span.qa{border-color:var(--blue);color:var(--blue)} .flow span.done{border-color:var(--green);color:var(--green)}
+.flow em{font-style:normal;color:var(--muted)}
+.note{font-size:13.5px;color:var(--ink-2);margin:12px 0 0}
+.note b{color:var(--ink)}
+.inf{font-size:12px;font-weight:700;color:var(--accent);margin-right:6px}
+.links{font-size:13px;color:var(--muted);margin-top:40px;line-height:1.9} a{color:var(--accent)}
+@media (max-width:760px){.wrap{padding:28px 16px 64px}.g3,.g4,.g2,.steps{grid-template-columns:1fr}h1{font-size:23px}}
+</style></head><body><div class="wrap">
+
+<p class="meta">团队运转数据 · 2026-10-29 · 依据：Jira「老子有钱 2.0」（RICH 项目）近 90 天（7/31–10/29）工单 3,034 张、80 张单的状态变更抽样，前端组 6 页周会纪要与周报；全部只读。计算由子任务完成，总量、周期、版本、硬期限、负荷等关键数字我已用查询复核</p>
+<h1>团队产能多半花在营运需求上，一个需求约 4 周上线；最不稳的是计划，Jira 里的待办存量也不能当真实负荷看</h1>
+<p class="sub">读这些数字要记住两点：张数不等于工作量（Jira 没有可用的工时字段）；按期率受「换版本」口径影响，只能当上限看。</p>
+
+<div class="grid g3">
+  <div class="card kpi"><div class="n">26<small>天</small></div><div class="t">一个需求从建单到完成的中位数（近 90 天完成 232 个；四分之一超过 39 天）</div></div>
+  <div class="card kpi"><div class="n">38<small>%</small></div><div class="t">近 90 天完成的工单来自营运表单需求；技术优化只占 2.6%</div></div>
+  <div class="card kpi red"><div class="n">10<small>／17</small></div><div class="t">近 90 天到期、标题写了硬期限的需求按期完成；放到全部历史是 50／64（78%）</div></div>
+</div>
+
+<!-- 01 -->
+<h2><span class="no">01</span>产能：近四成做营运表单需求，三分之一的完成单是缺陷，技术优化只占 2.6%</h2>
+<div class="grid g2">
+  <div class="tw"><table>
+  <tr><th>工作来源</th><th>完成张数</th><th>占比</th></tr>
+  <tr><td class="w">营运表单需求</td><td class="r">774</td><td class="d">38.3%</td></tr>
+  <tr><td class="w">其他（无法归类）</td><td class="r">484</td><td class="d">23.9%</td></tr>
+  <tr><td class="w">游戏串接</td><td class="r">223</td><td class="d">11.0%</td></tr>
+  <tr><td class="w">节庆、换皮</td><td class="r">217</td><td class="d">10.7%</td></tr>
+  <tr><td class="w">线上问题、Hotfix</td><td class="r">136</td><td class="d">6.7%</td></tr>
+  <tr><td class="w">金流、风控</td><td class="r">136</td><td class="d">6.7%</td></tr>
+  <tr><td class="w">技术优化</td><td class="r">52</td><td class="d">2.6%</td></tr>
+  </table></div>
+  <div class="card">
+    <div class="kv"><b>分母</b>近 90 天完成 2,349 张，去掉日报与管理集合 327 张，剩 2,022 张；子单按所属需求归类</div>
+    <div class="kv"><b>缺陷占三分之一</b>完成的 2,022 张里缺陷 712 张（35%）</div>
+    <div class="kv"><b>按工种（只看开发子单 848 张）</b>策划 24%、美术 23%、客户端 14%、服务器 14%、后台 11%、web 6%</div>
+    <div class="kv"><b>团队自己提过</b>客户端组 7/30 列了 8 项技术优化「需要PM安排制作」，每项估 2–5 天，至今都没勾选；9/11 前端周会决定建「前端技术任务池」，9/18 决定组件遗留问题「随需求顺带改」</div>
+  </div>
+</div>
+<p class="note"><span class="inf">推断</span>技术优化没有固定的排期份额，主要靠顺带做和任务池消化。「其他」占 24%，说明标题和标签不足以判断来源，这一类的结构看不清。</p>
+
+<!-- 02 -->
+<h2><span class="no">02</span>速度：一个需求中位数 26 天；开工以后，最长的一段是「做完等测」</h2>
+<div class="grid g2">
+  <div class="tw"><table>
+  <tr><th>需求类别</th><th>建单到完成（中位数）</th></tr>
+  <tr><td class="w">线上问题、Hotfix</td><td class="r">7 天</td></tr>
+  <tr><td class="w">技术优化</td><td class="r">14 天（仅 4 个）</td></tr>
+  <tr><td class="w">其他</td><td class="r">20 天</td></tr>
+  <tr><td class="w">营运表单需求</td><td class="r">25 天（P90 74 天，含在需求池排队的时间）</td></tr>
+  <tr><td class="w">金流、风控</td><td class="r">32 天</td></tr>
+  <tr><td class="w">游戏串接</td><td class="r">33 天</td></tr>
+  <tr><td class="w">节庆、换皮</td><td class="r">37 天</td></tr>
+  </table></div>
+  <div class="tw"><table>
+  <tr><th>状态</th><th>开发子单停留（中位数）</th><th>缺陷停留（中位数）</th></tr>
+  <tr><td class="w">待办（开工前）</td><td class="r">13.0 天，占全程 57%</td><td class="r">3.0 小时</td></tr>
+  <tr><td class="w">正在执行</td><td class="r">1.3 天</td><td class="r">1.2 小时</td></tr>
+  <tr><td class="w">To Check（做完等测）</td><td class="r">2.8 天</td><td class="r">5.1 小时，占全程 41%</td></tr>
+  <tr><td class="w">Checking（测试中）</td><td class="r">1.1 天</td><td class="r">0 小时</td></tr>
+  </table></div>
+</div>
+<div class="grid g3" style="margin-top:14px">
+  <div class="card cause"><p class="h">开工后中位 7 天</p><p class="l">开发子单从开工到完成，做完等测占 36%，开发本身占 33%</p><p class="e">抽样：近 60 天完成的开发子单 40 张、缺陷 40 张</p></div>
+  <div class="card cause"><p class="h">打回很少</p><p class="l">80 张里 5 张被测试打回（6%），全是开发子单退回「待办」；缺陷 0 张</p><p class="e">此刻有 85 张单在 To Check 等测</p></div>
+  <div class="card cause"><p class="h">团队自己提过</p><p class="l">小的需求变更时策划、开发、QA「信息不同步而造成理解偏差」，产生缺陷</p><p class="e">9/13 前端周报；约定小变更同步三方并补进原策划案</p></div>
+</div>
+<p class="note"><span class="inf">推断</span>开工前的 13 天多半是按版本计划排队，不一定是卡住。缺陷「测试中」接近 0，说明 QA 多在验完时才连续拖状态，实际测试时间记在 To Check 里；所以「等测」包含真正测试的时间，不全是空等。</p>
+
+<!-- 03 -->
+<h2><span class="no">03</span>计划：9 月版本按期率八成以上，V48 起延后变得看得见；硬期限四成会晚</h2>
+<div class="tw"><table>
+<tr><th>版本（发版日）</th><th>挂该版本的工单</th><th>发版日前完成</th><th>发版后才完成</th><th>至今未完成</th></tr>
+<tr><td class="w">V44（9/10）</td><td class="r">199</td><td class="r">90.5%</td><td class="r">3.5%</td><td class="d">0.5%</td></tr>
+<tr><td class="w">V45（9/17）</td><td class="r">77</td><td class="r">83.1%</td><td class="r">11.7%</td><td class="d">0</td></tr>
+<tr><td class="w">V46（9/24）</td><td class="r">288</td><td class="r">88.2%</td><td class="r">3.1%</td><td class="d">4.2%</td></tr>
+<tr><td class="w">V47（10/15）</td><td class="r">166</td><td class="r">88.0%</td><td class="r">3.0%</td><td class="d">1.8%</td></tr>
+<tr><td class="w">V48（10/22）</td><td class="r">289</td><td class="r">60.6%</td><td class="r">24.2%（70 张，中位晚 5.7 天）</td><td class="d">7.6%</td></tr>
+<tr><td class="w">V49（10/29，发版日上午）</td><td class="r">260</td><td class="r">66.5%</td><td class="r">—</td><td class="d">26.5%</td></tr>
+</table></div>
+<p class="legend">余下的百分比是「已关闭、无完成日期」。9/11 前改版本是「替换」，V44 及更早的数字偏乐观；9/11 后也有单被移除版本，所以各版本的按期率都只能当上限。</p>
+<div class="grid g2" style="margin-top:14px">
+  <div class="card cause"><p class="h">硬期限：近 90 天到期 17 个，按期 10 个</p><p class="l">晚了 6 个，晚 0.6–14.7 天，其中 4 个在 4 天以内；另 1 个已关闭、无完成日期。近 90 天范围内带硬期限的 25 个需求里，24 个是游戏串接</p><p class="e">全部历史：标题写了日期的「不可延期」需求到期 64 个，按期 50 个（78%）；近期低于历史</p></div>
+  <div class="card cause"><p class="h">V48 的跳变多半是口径变化</p><p class="l"><span class="inf">推断</span>9/11 起改成叠加版本，没做完的单留在原版本上，延后从此看得见；不一定是 V48 做得更差</p><p class="e">V48 有 107 张同时挂着更晚的版本</p></div>
+</div>
+
+<!-- 04 -->
+<h2><span class="no">04</span>质量：缺陷集中在少数大需求，九成由 QA 在上线前提出；Hotfix 占比逐月下降</h2>
+<div class="grid g2">
+  <div class="card">
+    <div class="kv"><b>每个需求挂多少缺陷</b>近 90 天完成、有子单的 221 个需求：中位数 1、平均 3.5、P90 10；40% 一个缺陷都没有；最多的一个 100 张（游戏串接）</div>
+    <div class="kv"><b>谁提缺陷</b>近 90 天新建 850 张，QA 提 779 张（92%）；其余 71 张里策划顾亿颉 56 张</div>
+    <div class="kv"><b>归不到需求的缺陷</b>21%（179／850）没有挂父单</div>
+    <div class="kv"><b>团队自己提过</b>10/12 前端周会决定更关注代码质量、缺陷率和个人人效；10/16 起每周分析重点缺陷</div>
+  </div>
+  <div class="tw"><table>
+  <tr><th>月份</th><th>新建缺陷</th><th>带 Hotfix 标签</th><th>Hotfix 占比</th></tr>
+  <tr><td class="w">7 月</td><td class="r">542</td><td class="r">84</td><td class="d">15.5%</td></tr>
+  <tr><td class="w">8 月</td><td class="r">394</td><td class="r">21</td><td class="d">5.3%</td></tr>
+  <tr><td class="w">9 月</td><td class="r">253</td><td class="r">10</td><td class="d">4.0%</td></tr>
+  <tr><td class="w">10 月（至 10/29）</td><td class="r">194</td><td class="r">5</td><td class="d">2.6%</td></tr>
+  </table></div>
+</div>
+<p class="note"><span class="inf">推断</span>缺陷逐月减少，可能是质量变好，也可能是发版少了（9/24 到 10/15 没有发版），数据分不出来。「历史遗留问题」标签 8 月才开始用，数量上升不代表遗留问题变多。</p>
+
+<!-- 05 -->
+<h2><span class="no">05</span>存量与负荷：Jira 未完成 2,019 张，七成建于 90 天前；建单和分派大量经过顾亿颉一人</h2>
+<div class="grid g3">
+  <div class="card cause"><p class="h">存量多是老单</p><p class="l">全项目未完成 2,019 张：1,441 张（71%）建于 90 天前；401 张没有负责人；101 张挂在已停用的账号下</p><p class="e">待办里另有 389 张「Pending」、371 张测试用例</p></div>
+  <div class="card cause"><p class="h">在做的约 220 张</p><p class="l">「正在进行」类 224 张：等测、开发中、卡住（Blocked）为主，10/29 上午分别约 88、72、40 张</p><p class="e">负责人前三名（顾亿颉 29 张居首）只算在职人员占 22%，在做的活不算集中</p></div>
+  <div class="card cause"><p class="h">枢纽在顾亿颉</p><p class="l">名下未完成 502 张（全项目 25%），其中 372 张是带「待排優化」标签的老缺陷；近 90 天建单 586 张，占全项目 22%，是第二名徐佳洋（234 张）的 2.5 倍</p><p class="e"><span class="inf">推断</span>名下多是存量池，不全是手上的活；但需求的分派、拆单、建单大量经过一人</p></div>
+</div>
+<p class="note"><b>团队自己提过</b>　9/11 前端周会：每周看任务有没有阻碍、要不要调人力；10/12：开始关注个人人效（Story Points）。</p>
+
+<h2 style="margin-top:56px">对你意味着什么</h2>
+<div class="grid g3">
+  <div class="card cause"><p class="h">排期按 4 周估，硬期限留缓冲</p><p class="l">一个需求中位数 26 天，四分之一超过 39 天；近 90 天的硬期限 4 成会晚，晚的多在 4 天内</p><p class="e"><span class="inf">推断</span>节庆、串接这类比平均更长</p></div>
+  <div class="card cause"><p class="h">需求有小改动，同步三方并补进原案</p><p class="l">团队 9 月的约定：不影响排期的小变更，同步给策划、开发、QA，并在原策划案上补充说明</p><p class="e">起因是小变更信息不同步产生了缺陷</p></div>
+  <div class="card cause"><p class="h">看进度看子单，不看待办总数</p><p class="l">待办存量七成是 90 天前的老单；要看一个需求，看它下面子单和缺陷的状态，等测的单在 To Check</p><p class="e">要找人推进，先找顾亿颉</p></div>
+</div>
+
+<h3>数据怎么读</h3>
+<div class="keep">
+  <span>只有张数和天数，没有工时</span><span>按期率是上限（换版本口径）</span><span>状态停留是 80 张抽样，只含已完成的单</span><span>工作来源靠标题和标签判断，「其他」占 24%</span><span>团队自述只有前端组的纪要</span><span>搜索可能漏单（发现 1 张）</span>
+</div>
+
+<p class="links">
+原文：<br>
+本文件夹：<a href="2026-10-28_团队工作模式.html">团队工作模式（谁做什么、需求怎么走）</a> · <a href="先看这里.md">先看这里.md</a> · <a href="数据/深入分析_1029/深入分析结果_1029.md">深入分析结果与全部查询</a> · <a href="数据/深入分析_1029/指标结果_1029.json">指标结果（机器可读）</a><br>
+Confluence：<a href="https://xsg-game.atlassian.net/wiki/spaces/JD/pages/305135666">前端周报 9/7–9/13</a> · <a href="https://xsg-game.atlassian.net/wiki/spaces/JD/pages/306511881">前端周会 9/11</a> · <a href="https://xsg-game.atlassian.net/wiki/spaces/JD/pages/313819159">9/18</a> · <a href="https://xsg-game.atlassian.net/wiki/spaces/JD/pages/315916289">10/12</a> · <a href="https://xsg-game.atlassian.net/wiki/spaces/JD/pages/328269854">10/16</a> · <a href="https://xsg-game.atlassian.net/wiki/spaces/JD/pages/200278043">客户端需要优化的</a>
+</p>
+</div></body></html>

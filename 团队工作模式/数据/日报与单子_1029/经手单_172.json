@@ -1,0 +1,2999 @@
+{
+ "query": "project = RICH AND issue in updatedBy(崔峰龙, \"2026-09-01\", \"2026-10-28\")",
+ "queriedAt": "2026-10-29 下午",
+ "total": 172,
+ "issues": [
+  {
+   "key": "RICH-12016",
+   "type": "长篇故事",
+   "summary": "小額呆賬後台管理 - 「优先级调整，盡量安排」",
+   "created": "2025-09-01",
+   "creator": "Meiling Jiang(蒋枚伶)",
+   "assignee": "Meiling Jiang(蒋枚伶)",
+   "labels": [],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": [
+    "08_V50_11.5",
+    "08_V51_11.12",
+    "08_V52_11.19",
+    "08_V53_11.26"
+   ]
+  },
+  {
+   "key": "RICH-17149",
+   "type": "长篇故事",
+   "summary": "【規格優化】好康活動統一架構調整",
+   "created": "2026-02-06",
+   "creator": "以前的用户",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-19605",
+   "type": "长篇故事",
+   "summary": "客端-線上客服，諮詢視窗的照片要可點圖放大-Part1",
+   "created": "2026-05-05",
+   "creator": "Claire Tsai(蔡韋汝)",
+   "assignee": "Shuocheng Zhang(张硕成)",
+   "labels": [
+    "form",
+    "form-37"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V47_10.15"
+   ]
+  },
+  {
+   "key": "RICH-20922",
+   "type": "长篇故事",
+   "summary": "「快閃活動」魚機紅包雨2.0",
+   "created": "2026-06-11",
+   "creator": "Xinpu Fan(范馨普)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-20975",
+   "type": "长篇故事",
+   "summary": "「产品」成就系统",
+   "created": "2026-06-12",
+   "creator": "Yijie Gu(顾亿颉)",
+   "assignee": "Shuocheng Zhang(张硕成)",
+   "labels": [
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": [
+    "08_V49_10.29",
+    "08_V50_11.5",
+    "08_V51_11.12",
+    "08_V52_11.19"
+   ]
+  },
+  {
+   "key": "RICH-22486",
+   "type": "长篇故事",
+   "summary": "【多語系】依語系選擇在該語系可用金流",
+   "created": "2026-07-16",
+   "creator": "Amber Lai(賴雅涵)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-22512",
+   "type": "Requirement",
+   "summary": "【後台】風險控制 / 智慧鎖定會員名單/智慧鎖定例外名單新增搜尋欄位",
+   "created": "2026-07-17",
+   "creator": "Amber Lai(賴雅涵)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "form",
+    "form-37",
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-22537",
+   "type": "长篇故事",
+   "summary": "「棋牌」新增【挑戰書】登錄彈窗",
+   "created": "2026-07-17",
+   "creator": "Shan Jiang(姜珊)",
+   "assignee": "Shuocheng Zhang(张硕成)",
+   "labels": [
+    "form",
+    "form-37"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "正在执行",
+   "statusCat": "indeterminate",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29",
+    "08_V50_11.5"
+   ]
+  },
+  {
+   "key": "RICH-22717",
+   "type": "长篇故事",
+   "summary": "自动化条件判断优化  订单【未交易成功】，就不写入刷退",
+   "created": "2026-07-23",
+   "creator": "Meiling Jiang(蒋枚伶)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-23037",
+   "type": "长篇故事",
+   "summary": "【多語系】預設暱稱多語系",
+   "created": "2026-07-30",
+   "creator": "Jessica Yang(楊欣潔)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-23053",
+   "type": "长篇故事",
+   "summary": "【串接】「不可延期」浩天魚機新增世界Boss活動魚",
+   "created": "2026-07-31",
+   "creator": "Shan Jiang(姜珊)",
+   "assignee": "Yiren Tang(唐轶韧)",
+   "labels": [
+    "form",
+    "form-37"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V46_9.24"
+   ]
+  },
+  {
+   "key": "RICH-23061",
+   "type": "长篇故事",
+   "summary": "LINE黑卡專屬頁面-多語係越南語",
+   "created": "2026-07-31",
+   "creator": "Mary Nguyen",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-23123",
+   "type": "长篇故事",
+   "summary": "【標籤】未儲值第三方金流",
+   "created": "2026-08-03",
+   "creator": "Amber Lai(賴雅涵)",
+   "assignee": "Yijie Gu(顾亿颉)",
+   "labels": [
+    "標簽",
+    "金流"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V46_9.24"
+   ]
+  },
+  {
+   "key": "RICH-23288",
+   "type": "长篇故事",
+   "summary": "【後台優化】後台虛寶管理-新增道具需求增加excel導入功能",
+   "created": "2026-08-07",
+   "creator": "Shan Jiang(姜珊)",
+   "assignee": "Meiling Jiang(蒋枚伶)",
+   "labels": [
+    "form",
+    "form-37"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "正在执行",
+   "statusCat": "indeterminate",
+   "fixVersions": [
+    "08_V50_11.5"
+   ]
+  },
+  {
+   "key": "RICH-23334",
+   "type": "长篇故事",
+   "summary": "「[後台]活動說明-多語系圖片",
+   "created": "2026-08-10",
+   "creator": "Jessica Yang(楊欣潔)",
+   "assignee": "Jiayang Xu(徐佳洋)",
+   "labels": [
+    "form",
+    "form-37"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "正在执行",
+   "statusCat": "indeterminate",
+   "fixVersions": [
+    "08_V50_11.5"
+   ]
+  },
+  {
+   "key": "RICH-23380",
+   "type": "长篇故事",
+   "summary": "「活動優化」紅包狂歡活動優化",
+   "created": "2026-08-11",
+   "creator": "Xinpu Fan(范馨普)",
+   "assignee": "Meiling Jiang(蒋枚伶)",
+   "labels": [
+    "历史遗留问题"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ]
+  },
+  {
+   "key": "RICH-23407",
+   "type": "长篇故事",
+   "summary": "【押注活動】《香腸十八仔》卡別排行榜展示優化",
+   "created": "2026-08-11",
+   "creator": "Shuocheng Zhang(张硕成)",
+   "assignee": "Shuocheng Zhang(张硕成)",
+   "labels": [
+    "form",
+    "form-37",
+    "活動"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_v43_9.3"
+   ]
+  },
+  {
+   "key": "RICH-23415",
+   "type": "长篇故事",
+   "summary": "【儲值押注活動】機會與命運--功能優化",
+   "created": "2026-08-11",
+   "creator": "Jinyu Bai(白金雨)",
+   "assignee": "Meiling Jiang(蒋枚伶)",
+   "labels": [
+    "form",
+    "form-37"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V47_10.15"
+   ]
+  },
+  {
+   "key": "RICH-23464",
+   "type": "长篇故事",
+   "summary": "【第三方遊戲串接】測試環境 去除手機號登錄功能，僅保留帳號登錄",
+   "created": "2026-08-12",
+   "creator": "Yijie Gu(顾亿颉)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-23465",
+   "type": "长篇故事",
+   "summary": "【第三方遊戲串接】增加「IP白名單」，僅白名單可見 手機號登錄",
+   "created": "2026-08-12",
+   "creator": "Yijie Gu(顾亿颉)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-23466",
+   "type": "长篇故事",
+   "summary": "【第三方遊戲串接】測試帳號生成時，增加廠商測試帳號選項",
+   "created": "2026-08-12",
+   "creator": "Yijie Gu(顾亿颉)",
+   "assignee": "Shuocheng Zhang(张硕成)",
+   "labels": [],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": [
+    "08_V53_11.26"
+   ]
+  },
+  {
+   "key": "RICH-23479",
+   "type": "Requirement",
+   "summary": "（有空就插入）【拆單/紅包雨】活動可見條件與參與資格新增【活動周期内儲值】",
+   "created": "2026-08-13",
+   "creator": "Dao Lin(林岛)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "form",
+    "form-37",
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-23501",
+   "type": "Requirement",
+   "summary": "【運營 9.23版本上即可】瘋狂扭蛋機獎勵展示優化",
+   "created": "2026-08-13",
+   "creator": "Jinyu Bai(白金雨)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "form",
+    "form-37",
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-23535",
+   "type": "长篇故事",
+   "summary": "「10月庆典」押注活動 - 祈福財神廟優化",
+   "created": "2026-08-14",
+   "creator": "Jinyu Bai(白金雨)",
+   "assignee": "Jiayang Xu(徐佳洋)",
+   "labels": [
+    "form",
+    "form-37"
+   ],
+   "parent": "RICH-23569",
+   "parentSummary": "26年-10月庆典",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V46_9.24"
+   ]
+  },
+  {
+   "key": "RICH-23569",
+   "type": "Legend",
+   "summary": "26年-10月庆典",
+   "created": "2026-08-17",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Yijie Gu(顾亿颉)",
+   "labels": [],
+   "parent": null,
+   "parentSummary": null,
+   "status": "正在执行",
+   "statusCat": "indeterminate",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-23570",
+   "type": "长篇故事",
+   "summary": "「10月庆典」大廣頁 - 週年慶主題、大獎、活動排程及獎勵",
+   "created": "2026-08-17",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Jiayang Xu(徐佳洋)",
+   "labels": [],
+   "parent": "RICH-23569",
+   "parentSummary": "26年-10月庆典",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V46_9.24"
+   ]
+  },
+  {
+   "key": "RICH-23571",
+   "type": "长篇故事",
+   "summary": "「10月庆典」抽獎大廳 - 通過其他活動獲得抽獎券，通過抽獎大廳抽取大獎",
+   "created": "2026-08-17",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Jiayang Xu(徐佳洋)",
+   "labels": [],
+   "parent": "RICH-23569",
+   "parentSummary": "26年-10月庆典",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V46_9.24"
+   ]
+  },
+  {
+   "key": "RICH-23573",
+   "type": "长篇故事",
+   "summary": "「10月庆典」儲優 - 「儲值\"金\"好康」為期1個月儲優",
+   "created": "2026-08-17",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Meiling Jiang(蒋枚伶)",
+   "labels": [],
+   "parent": "RICH-23569",
+   "parentSummary": "26年-10月庆典",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V46_9.24"
+   ]
+  },
+  {
+   "key": "RICH-23576",
+   "type": "长篇故事",
+   "summary": "「10月庆典」儲值活動 - 金幣小瑪麗",
+   "created": "2026-08-17",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Meiling Jiang(蒋枚伶)",
+   "labels": [],
+   "parent": "RICH-23569",
+   "parentSummary": "26年-10月庆典",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V46_9.24"
+   ]
+  },
+  {
+   "key": "RICH-23577",
+   "type": "长篇故事",
+   "summary": "「10月慶典」押注活動 - 香腸十八仔",
+   "created": "2026-08-17",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Shuocheng Zhang(张硕成)",
+   "labels": [],
+   "parent": "RICH-23569",
+   "parentSummary": "26年-10月庆典",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V46_9.24"
+   ]
+  },
+  {
+   "key": "RICH-23579",
+   "type": "长篇故事",
+   "summary": "「10月庆典」人數活動 - 天天敲蛋禮週年慶UI",
+   "created": "2026-08-17",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Jiayang Xu(徐佳洋)",
+   "labels": [],
+   "parent": "RICH-23569",
+   "parentSummary": "26年-10月庆典",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V47_10.15"
+   ]
+  },
+  {
+   "key": "RICH-23592",
+   "type": "长篇故事",
+   "summary": "「16周年庆」「換皮」三選一新風格",
+   "created": "2026-08-17",
+   "creator": "Amber Lai(賴雅涵)",
+   "assignee": "Meiling Jiang(蒋枚伶)",
+   "labels": [
+    "form",
+    "form-37",
+    "待營運確認"
+   ],
+   "parent": "RICH-23569",
+   "parentSummary": "26年-10月庆典",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V48_10.22"
+   ]
+  },
+  {
+   "key": "RICH-23697",
+   "type": "长篇故事",
+   "summary": "【活動】限時挑戰-任務指定排序&後台紀錄匯出功能&功能優化",
+   "created": "2026-08-19",
+   "creator": "Jessica Yang(楊欣潔)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "form",
+    "form-37",
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-23729",
+   "type": "长篇故事",
+   "summary": "活動多語言適配part3",
+   "created": "2026-08-20",
+   "creator": "Jiayang Xu(徐佳洋)",
+   "assignee": "Shuocheng Zhang(张硕成)",
+   "labels": [],
+   "parent": null,
+   "parentSummary": null,
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V47_10.15"
+   ]
+  },
+  {
+   "key": "RICH-23763",
+   "type": "Requirement",
+   "summary": "【每日補給計畫】匯入功能修復",
+   "created": "2026-08-21",
+   "creator": "Nina.OU",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "form",
+    "form-37",
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-23765",
+   "type": "长篇故事",
+   "summary": "【新金流】遊e卡串接YOE卡",
+   "created": "2026-08-21",
+   "creator": "Amber Lai(賴雅涵)",
+   "assignee": "Meiling Jiang(蒋枚伶)",
+   "labels": [
+    "form",
+    "form-37",
+    "儲值"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ]
+  },
+  {
+   "key": "RICH-23882",
+   "type": "长篇故事",
+   "summary": "【優化需求】登入資源更新失敗（L2002）處理優化",
+   "created": "2026-08-25",
+   "creator": "Yijie Gu(顾亿颉)",
+   "assignee": "Yijie Gu(顾亿颉)",
+   "labels": [],
+   "parent": null,
+   "parentSummary": null,
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V48_10.22"
+   ]
+  },
+  {
+   "key": "RICH-23908",
+   "type": "长篇故事",
+   "summary": "「10月庆典」新遊戲活動 part.1",
+   "created": "2026-08-26",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Jiayang Xu(徐佳洋)",
+   "labels": [],
+   "parent": "RICH-23569",
+   "parentSummary": "26年-10月庆典",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V46_9.24"
+   ]
+  },
+  {
+   "key": "RICH-23911",
+   "type": "长篇故事",
+   "summary": "「10月庆典」遊戲彈窗 - 週年慶導航頁（每日彈出一次） ",
+   "created": "2026-08-26",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Yan Shao(邵岩)",
+   "labels": [],
+   "parent": "RICH-23569",
+   "parentSummary": "26年-10月庆典",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V46_9.24"
+   ]
+  },
+  {
+   "key": "RICH-23956",
+   "type": "长篇故事",
+   "summary": "【新道具/功能part2】Gift Code 免費副獎體驗與獎勵解鎖需求",
+   "created": "2026-08-28",
+   "creator": "Dao Lin(林岛)",
+   "assignee": "Yijie Gu(顾亿颉)",
+   "labels": [],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-23958",
+   "type": "长篇故事",
+   "summary": "「10月庆典」黃金爭霸賽-儲值助陣排行榜",
+   "created": "2026-08-28",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Jessica Yang(楊欣潔)",
+   "labels": [],
+   "parent": "RICH-23569",
+   "parentSummary": "26年-10月庆典",
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-23971",
+   "type": "长篇故事",
+   "summary": "「10月庆典」「換皮」大廳/登錄頁/加載頁",
+   "created": "2026-08-28",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Meiling Jiang(蒋枚伶)",
+   "labels": [],
+   "parent": "RICH-23569",
+   "parentSummary": "26年-10月庆典",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V46_9.24"
+   ]
+  },
+  {
+   "key": "RICH-23984",
+   "type": "长篇故事",
+   "summary": "每日補給儲值加碼送新增版型_累計彩池獎勵",
+   "created": "2026-08-31",
+   "creator": "Amber Lai(賴雅涵)",
+   "assignee": "Meiling Jiang(蒋枚伶)",
+   "labels": [
+    "form",
+    "form-37",
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": [
+    "08_V52_11.19"
+   ]
+  },
+  {
+   "key": "RICH-24001",
+   "type": "长篇故事",
+   "summary": "0903-【急單-行銷】導入越南版H5短連結",
+   "created": "2026-08-31",
+   "creator": "Ailee Hung(洪美筠)",
+   "assignee": "Yugang Li(李玉刚)",
+   "labels": [],
+   "parent": null,
+   "parentSummary": null,
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_v43_9.3"
+   ]
+  },
+  {
+   "key": "RICH-24019",
+   "type": "长篇故事",
+   "summary": "(急)【通路】「美術」更新製作代言人產包封面",
+   "created": "2026-08-31",
+   "creator": "Nina.OU",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-24023",
+   "type": "长篇故事",
+   "summary": "「BOSS戰 4.0」BOSS戰優化需求",
+   "created": "2026-08-31",
+   "creator": "Xinpu Fan(范馨普)",
+   "assignee": "Jiayang Xu(徐佳洋)",
+   "labels": [
+    "form",
+    "form-37"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V48_10.22"
+   ]
+  },
+  {
+   "key": "RICH-24052",
+   "type": "长篇故事",
+   "summary": "【連線格格送】后台優化需求",
+   "created": "2026-09-01",
+   "creator": "Shan Jiang(姜珊)",
+   "assignee": "Jiayang Xu(徐佳洋)",
+   "labels": [],
+   "parent": null,
+   "parentSummary": null,
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V47_10.15"
+   ]
+  },
+  {
+   "key": "RICH-24064",
+   "type": "长篇故事",
+   "summary": "【柏青】CR RUSH上班族_選震盪功能串接(10/29前上線)",
+   "created": "2026-09-01",
+   "creator": "Jessica Yang(楊欣潔)",
+   "assignee": "Yijie Gu(顾亿颉)",
+   "labels": [
+    "form",
+    "form-37",
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-24069",
+   "type": "Requirement",
+   "summary": "【官網】官網遊戲介紹，點擊icon後改為開啟H5並進入該款遊戲",
+   "created": "2026-09-01",
+   "creator": "Jessica Yang(楊欣潔)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "form",
+    "form-37",
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-24075",
+   "type": "长篇故事",
+   "summary": "【優化需求】【iOS】支付訂單異常關閉，避免玩家儲值成功但商品未入帳",
+   "created": "2026-09-02",
+   "creator": "Yijie Gu(顾亿颉)",
+   "assignee": "Jiayang Xu(徐佳洋)",
+   "labels": [],
+   "parent": null,
+   "parentSummary": null,
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V49_10.29"
+   ]
+  },
+  {
+   "key": "RICH-24076",
+   "type": "长篇故事",
+   "summary": "【後台】儲值上限設定 新增 類型「IOS交易時間過長額度鎖定」",
+   "created": "2026-09-02",
+   "creator": "Amber Lai(賴雅涵)",
+   "assignee": "Meiling Jiang(蒋枚伶)",
+   "labels": [
+    "form",
+    "form-37"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V49_10.29"
+   ]
+  },
+  {
+   "key": "RICH-24100",
+   "type": "长篇故事",
+   "summary": "「德州撲克」遊戲數據查詢rd協助提供對應語句",
+   "created": "2026-09-02",
+   "creator": "Shan Jiang(姜珊)",
+   "assignee": "Yijie Gu(顾亿颉)",
+   "labels": [
+    "SQL",
+    "form",
+    "form-37",
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V44_9.10"
+   ]
+  },
+  {
+   "key": "RICH-24115",
+   "type": "长篇故事",
+   "summary": "【尊爵包】點入購買畫面時，先彈出『注意事項』",
+   "created": "2026-09-03",
+   "creator": "Amber Lai(賴雅涵)",
+   "assignee": "Meiling Jiang(蒋枚伶)",
+   "labels": [],
+   "parent": null,
+   "parentSummary": null,
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V46_9.24"
+   ]
+  },
+  {
+   "key": "RICH-24119",
+   "type": "长篇故事",
+   "summary": "「後台」新增異常賬號批量踢出（用戶限制：登錄/玩法准入/道具使用等）權限獨立設計，靈活指派",
+   "created": "2026-09-03",
+   "creator": "Xinpu Fan(范馨普)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "form",
+    "form-37",
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-24124",
+   "type": "长篇故事",
+   "summary": "9月份产品部相关事项",
+   "created": "2026-09-03",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "日报"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "正在执行",
+   "statusCat": "indeterminate",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-24125",
+   "type": "故事",
+   "summary": "9月3日 - 日报",
+   "created": "2026-09-03",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "日报"
+   ],
+   "parent": "RICH-24124",
+   "parentSummary": "9月份产品部相关事项",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-24135",
+   "type": "Requirement",
+   "summary": "【越南好友推薦】活動頁優化-邀請教學",
+   "created": "2026-09-03",
+   "creator": "Mary Nguyen",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "form",
+    "form-37",
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-24143",
+   "type": "长篇故事",
+   "summary": "(急)(急)(急)【虛擬禮券】LINE禮券提出並作廢",
+   "created": "2026-09-03",
+   "creator": "Nina.OU",
+   "assignee": "Meiling Jiang(蒋枚伶)",
+   "labels": [
+    "form",
+    "form-37",
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V44_9.10"
+   ]
+  },
+  {
+   "key": "RICH-24157",
+   "type": "Requirement",
+   "summary": "【越南好友推薦】後台-領獎記錄優化",
+   "created": "2026-09-03",
+   "creator": "Mary Nguyen",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "form",
+    "form-37",
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-24174",
+   "type": "故事",
+   "summary": "9月4日 - 日報",
+   "created": "2026-09-04",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "日报"
+   ],
+   "parent": "RICH-24124",
+   "parentSummary": "9月份产品部相关事项",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-24178",
+   "type": "Requirement",
+   "summary": "【營運】大獎名單顯示邏輯優化",
+   "created": "2026-09-04",
+   "creator": "Jinyu Bai(白金雨)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "form",
+    "form-37",
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-24199",
+   "type": "长篇故事",
+   "summary": "【9/4】至尊回歸禮美術需求調整",
+   "created": "2026-09-04",
+   "creator": "Dao Lin(林岛)",
+   "assignee": "Yijie Gu(顾亿颉)",
+   "labels": [
+    "form",
+    "form-37",
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V44_9.10"
+   ]
+  },
+  {
+   "key": "RICH-24210",
+   "type": "ACC",
+   "summary": "【ACC】天天搖錢樹需求異動造成上線延期說明",
+   "created": "2026-09-04",
+   "creator": "Yijie Gu(顾亿颉)",
+   "assignee": "Yijie Gu(顾亿颉)",
+   "labels": [],
+   "parent": "RICH-23463",
+   "parentSummary": "「常駐活動」天天搖錢樹- 高卡別專屬押注返利",
+   "status": "已接受(ACCEPTED)",
+   "statusCat": "done",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-24278",
+   "type": "长篇故事",
+   "summary": "【10/1不可延期】【遊戲串接】【巨鯨傳説】（魚機）鱷霸王 - 世界王BOSS",
+   "created": "2026-09-07",
+   "creator": "Yijie Gu(顾亿颉)",
+   "assignee": "Hongmei He(何红梅)",
+   "labels": [
+    "不可延期",
+    "串接"
+   ],
+   "parent": "RICH-14218",
+   "parentSummary": "游戏串接内容同步合集",
+   "status": "关闭(Closed)",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V46_9.24"
+   ]
+  },
+  {
+   "key": "RICH-24289",
+   "type": "长篇故事",
+   "summary": "補齊平台活動缺失的多語言資源圖",
+   "created": "2026-09-07",
+   "creator": "Dao Lin(林岛)",
+   "assignee": "Shuocheng Zhang(张硕成)",
+   "labels": [
+    "form",
+    "form-37"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "正在执行",
+   "statusCat": "indeterminate",
+   "fixVersions": [
+    "08_V50_11.5"
+   ]
+  },
+  {
+   "key": "RICH-24299",
+   "type": "长篇故事",
+   "summary": "【11/1不可延期】【遊戲串接】CR RUSH上班族（柏青哥）",
+   "created": "2026-09-07",
+   "creator": "Yijie Gu(顾亿颉)",
+   "assignee": "Yijie Gu(顾亿颉)",
+   "labels": [
+    "不可延期",
+    "串接"
+   ],
+   "parent": "RICH-14218",
+   "parentSummary": "游戏串接内容同步合集",
+   "status": "Checking",
+   "statusCat": "indeterminate",
+   "fixVersions": [
+    "08_V49_10.29"
+   ]
+  },
+  {
+   "key": "RICH-24325",
+   "type": "长篇故事",
+   "summary": "「幸運寶藏」提高低V遊戲人數和儲值人數",
+   "created": "2026-09-07",
+   "creator": "Xinpu Fan(范馨普)",
+   "assignee": "Shuocheng Zhang(张硕成)",
+   "labels": [
+    "form",
+    "form-37",
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "正在执行",
+   "statusCat": "indeterminate",
+   "fixVersions": [
+    "08_V49_10.29",
+    "08_V50_11.5",
+    "08_V51_11.12"
+   ]
+  },
+  {
+   "key": "RICH-24335",
+   "type": "故事",
+   "summary": "9月7日-日報-fury",
+   "created": "2026-09-07",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "日报"
+   ],
+   "parent": "RICH-24124",
+   "parentSummary": "9月份产品部相关事项",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-24343",
+   "type": "长篇故事",
+   "summary": "【BUG轉需求】會員帳號清理需求",
+   "created": "2026-09-08",
+   "creator": "Yijie Gu(顾亿颉)",
+   "assignee": "Shuocheng Zhang(张硕成)",
+   "labels": [],
+   "parent": null,
+   "parentSummary": null,
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V48_10.22"
+   ]
+  },
+  {
+   "key": "RICH-24365",
+   "type": "故事",
+   "summary": "9月8日-日報-fury",
+   "created": "2026-09-08",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "日报"
+   ],
+   "parent": "RICH-24124",
+   "parentSummary": "9月份产品部相关事项",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-24370",
+   "type": "长篇故事",
+   "summary": "「優化需求」至尊回歸禮玩家參與狀態修正",
+   "created": "2026-09-08",
+   "creator": "Xinpu Fan(范馨普)",
+   "assignee": "Jiayang Xu(徐佳洋)",
+   "labels": [
+    "form",
+    "form-37"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V47_10.15"
+   ]
+  },
+  {
+   "key": "RICH-24382",
+   "type": "长篇故事",
+   "summary": "【雙端送審】遊戲 Icon＋iOS 英文商店頁更新",
+   "created": "2026-09-08",
+   "creator": "Miley",
+   "assignee": "Yijie Gu(顾亿颉)",
+   "labels": [
+    "form",
+    "form-37",
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V45_9.17"
+   ]
+  },
+  {
+   "key": "RICH-24383",
+   "type": "长篇故事",
+   "summary": "【客戶端優化】Client-App gcloud auth login 增加 Retry 機制",
+   "created": "2026-09-08",
+   "creator": "Yijie Gu(顾亿颉)",
+   "assignee": "Yijie Gu(顾亿颉)",
+   "labels": [],
+   "parent": null,
+   "parentSummary": null,
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V46_9.24"
+   ]
+  },
+  {
+   "key": "RICH-24391",
+   "type": "长篇故事",
+   "summary": "【停機維護】【技術優化】魚機廳別 Diamond → Advanced 測試及驗收方案",
+   "created": "2026-09-08",
+   "creator": "Yijie Gu(顾亿颉)",
+   "assignee": "Yijie Gu(顾亿颉)",
+   "labels": [],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": [
+    "08_V52_11.19",
+    "08_V53_11.26",
+    "08_V54_12.03"
+   ]
+  },
+  {
+   "key": "RICH-24420",
+   "type": "故事",
+   "summary": "9月9日-日報- fury",
+   "created": "2026-09-09",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "日报"
+   ],
+   "parent": "RICH-24124",
+   "parentSummary": "9月份产品部相关事项",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-24427",
+   "type": "长篇故事",
+   "summary": "「10月庆典」黃金百萬主题需求",
+   "created": "2026-09-09",
+   "creator": "Jiayang Xu(徐佳洋)",
+   "assignee": "Jiayang Xu(徐佳洋)",
+   "labels": [],
+   "parent": "RICH-23569",
+   "parentSummary": "26年-10月庆典",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V47_10.15"
+   ]
+  },
+  {
+   "key": "RICH-24435",
+   "type": "长篇故事",
+   "summary": "【後台風控管理】溢出點數追回工具part1－老幣點數追回",
+   "created": "2026-09-09",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Yijie Gu(顾亿颉)",
+   "labels": [
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V48_10.22"
+   ]
+  },
+  {
+   "key": "RICH-24438",
+   "type": "长篇故事",
+   "summary": "「超額溢點防呆part5」溢點防呆機制優化需求",
+   "created": "2026-09-09",
+   "creator": "Xinpu Fan(范馨普)",
+   "assignee": "Jiayang Xu(徐佳洋)",
+   "labels": [
+    "form",
+    "form-37"
+   ],
+   "parent": "RICH-23000",
+   "parentSummary": "「超額溢點防呆機制」針對儲值活動、禮包設置、活動配置製作防溢出的相關機制",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ]
+  },
+  {
+   "key": "RICH-24458",
+   "type": "长篇故事",
+   "summary": "「林島」卡別補給站優化需求",
+   "created": "2026-09-10",
+   "creator": "Xinpu Fan(范馨普)",
+   "assignee": "Meiling Jiang(蒋枚伶)",
+   "labels": [
+    "form",
+    "form-37"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V48_10.22"
+   ]
+  },
+  {
+   "key": "RICH-24460",
+   "type": "Legend",
+   "summary": "26年-16週年慶",
+   "created": "2026-09-10",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Yijie Gu(顾亿颉)",
+   "labels": [
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-24461",
+   "type": "长篇故事",
+   "summary": "「16週年慶」大廣頁",
+   "created": "2026-09-10",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Jiayang Xu(徐佳洋)",
+   "labels": [],
+   "parent": "RICH-24460",
+   "parentSummary": "26年-16週年慶",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V48_10.22"
+   ]
+  },
+  {
+   "key": "RICH-24463",
+   "type": "长篇故事",
+   "summary": "「16周年庆」儲優 - 「儲值\"金\"好康」為期1個月儲優",
+   "created": "2026-09-10",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Meiling Jiang(蒋枚伶)",
+   "labels": [],
+   "parent": "RICH-24460",
+   "parentSummary": "26年-16週年慶",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V49_10.29"
+   ]
+  },
+  {
+   "key": "RICH-24466",
+   "type": "长篇故事",
+   "summary": "「16週年慶」人數活動 - 敲蛋換皮+新道具icon",
+   "created": "2026-09-10",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Jiayang Xu(徐佳洋)",
+   "labels": [],
+   "parent": "RICH-24460",
+   "parentSummary": "26年-16週年慶",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V48_10.22"
+   ]
+  },
+  {
+   "key": "RICH-24468",
+   "type": "长篇故事",
+   "summary": "「16週年慶」週週玩新機",
+   "created": "2026-09-10",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Jiayang Xu(徐佳洋)",
+   "labels": [],
+   "parent": "RICH-24460",
+   "parentSummary": "26年-16週年慶",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V49_10.29"
+   ]
+  },
+  {
+   "key": "RICH-24469",
+   "type": "长篇故事",
+   "summary": "「16周年庆」遊戲彈窗 - 週年慶導航頁（每日彈出一次） ",
+   "created": "2026-09-10",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Jiayang Xu(徐佳洋)",
+   "labels": [],
+   "parent": "RICH-24460",
+   "parentSummary": "26年-16週年慶",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V49_10.29"
+   ]
+  },
+  {
+   "key": "RICH-24471",
+   "type": "长篇故事",
+   "summary": "「16周年庆」「換皮」大廳/登錄頁/加載頁",
+   "created": "2026-09-10",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Yijie Gu(顾亿颉)",
+   "labels": [],
+   "parent": "RICH-24460",
+   "parentSummary": "26年-16週年慶",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V49_10.29"
+   ]
+  },
+  {
+   "key": "RICH-24485",
+   "type": "长篇故事",
+   "summary": "(急單)【越南】大廳右側icon換圖&好康活動頁 增加引導到好友邀請頁面的按鈕",
+   "created": "2026-09-10",
+   "creator": "Jessica Yang(楊欣潔)",
+   "assignee": "Yijie Gu(顾亿颉)",
+   "labels": [
+    "form",
+    "form-37"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V45_9.17"
+   ]
+  },
+  {
+   "key": "RICH-24497",
+   "type": "长篇故事",
+   "summary": "【拆單】「10月庆典」押注活動 - 祈福財神廟換皮",
+   "created": "2026-09-11",
+   "creator": "Jiayang Xu(徐佳洋)",
+   "assignee": "Jiayang Xu(徐佳洋)",
+   "labels": [],
+   "parent": "RICH-23569",
+   "parentSummary": "26年-10月庆典",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V47_10.15"
+   ]
+  },
+  {
+   "key": "RICH-24499",
+   "type": "长篇故事",
+   "summary": "【拆單】「10月庆典」儲值活動- 瘋狂扭蛋機換皮",
+   "created": "2026-09-11",
+   "creator": "Jiayang Xu(徐佳洋)",
+   "assignee": "Jiayang Xu(徐佳洋)",
+   "labels": [],
+   "parent": "RICH-23569",
+   "parentSummary": "26年-10月庆典",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V47_10.15"
+   ]
+  },
+  {
+   "key": "RICH-24515",
+   "type": "长篇故事",
+   "summary": "AI 翻譯同批次一致性優化",
+   "created": "2026-09-11",
+   "creator": "Jiayang Xu(徐佳洋)",
+   "assignee": "Jiayang Xu(徐佳洋)",
+   "labels": [],
+   "parent": null,
+   "parentSummary": null,
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V45_9.17"
+   ]
+  },
+  {
+   "key": "RICH-24536",
+   "type": "故事",
+   "summary": "9月10日 - 日报 -fury",
+   "created": "2026-09-14",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "日报"
+   ],
+   "parent": "RICH-24124",
+   "parentSummary": "9月份产品部相关事项",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-24537",
+   "type": "故事",
+   "summary": "9月11日 - 日报 - fury",
+   "created": "2026-09-14",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "日报"
+   ],
+   "parent": "RICH-24124",
+   "parentSummary": "9月份产品部相关事项",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-24538",
+   "type": "故事",
+   "summary": "9月14日 - 日报 - fury",
+   "created": "2026-09-14",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "日报"
+   ],
+   "parent": "RICH-24124",
+   "parentSummary": "9月份产品部相关事项",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-24567",
+   "type": "长篇故事",
+   "summary": "「白金雨」《扭蛋機》part2優化__10月30日前完成",
+   "created": "2026-09-14",
+   "creator": "Xinpu Fan(范馨普)",
+   "assignee": "Jiayang Xu(徐佳洋)",
+   "labels": [
+    "form",
+    "form-37"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "正在执行",
+   "statusCat": "indeterminate",
+   "fixVersions": [
+    "08_V51_11.12"
+   ]
+  },
+  {
+   "key": "RICH-24580",
+   "type": "长篇故事",
+   "summary": "「白金雨」歡樂大冒險優化需求「bug修復」「11月30日」",
+   "created": "2026-09-15",
+   "creator": "Xinpu Fan(范馨普)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "form",
+    "form-37",
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-24596",
+   "type": "长篇故事",
+   "summary": "【待定】【遊戲串接】【棋牌】台灣麻將-籌碼專區",
+   "created": "2026-09-15",
+   "creator": "Shan Jiang(姜珊)",
+   "assignee": "Yijie Gu(顾亿颉)",
+   "labels": [
+    "form",
+    "form-37"
+   ],
+   "parent": "RICH-14218",
+   "parentSummary": "游戏串接内容同步合集",
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-24610",
+   "type": "长篇故事",
+   "summary": "「白金雨」金幣小瑪麗、瘋狂扭蛋機加碼贈「美術需求」",
+   "created": "2026-09-15",
+   "creator": "Xinpu Fan(范馨普)",
+   "assignee": "Jiayang Xu(徐佳洋)",
+   "labels": [],
+   "parent": null,
+   "parentSummary": null,
+   "status": "正在执行",
+   "statusCat": "indeterminate",
+   "fixVersions": [
+    "08_V50_11.5"
+   ]
+  },
+  {
+   "key": "RICH-24619",
+   "type": "长篇故事",
+   "summary": "【全平台】【活動排行】加碼獎勵顯示優化",
+   "created": "2026-09-15",
+   "creator": "Angus Lai(黎焯堯)",
+   "assignee": "Shuocheng Zhang(张硕成)",
+   "labels": [
+    "历史遗留问题"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V49_10.29"
+   ]
+  },
+  {
+   "key": "RICH-24629",
+   "type": "故事",
+   "summary": "9月15日 - 日报 - fury",
+   "created": "2026-09-15",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "日报"
+   ],
+   "parent": "RICH-24124",
+   "parentSummary": "9月份产品部相关事项",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-24646",
+   "type": "长篇故事",
+   "summary": "【串接需求】【視訊柏青／柏青哥 Link】維護期間白名單測試機制",
+   "created": "2026-09-16",
+   "creator": "Yijie Gu(顾亿颉)",
+   "assignee": "Yijie Gu(顾亿颉)",
+   "labels": [],
+   "parent": null,
+   "parentSummary": null,
+   "status": "正在执行",
+   "statusCat": "indeterminate",
+   "fixVersions": [
+    "08_V50_11.5"
+   ]
+  },
+  {
+   "key": "RICH-24662",
+   "type": "长篇故事",
+   "summary": "「行銷」Apple商店 進遊深度鏈接後台功能添加",
+   "created": "2026-09-16",
+   "creator": "Miley",
+   "assignee": "Shuocheng Zhang(张硕成)",
+   "labels": [
+    "form",
+    "form-37"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "Checking",
+   "statusCat": "indeterminate",
+   "fixVersions": [
+    "08_V49_10.29",
+    "08_V50_11.5"
+   ]
+  },
+  {
+   "key": "RICH-24668",
+   "type": "长篇故事",
+   "summary": "【技術架構優化】服務端消费延迟相關内容優化",
+   "created": "2026-09-16",
+   "creator": "Yijie Gu(顾亿颉)",
+   "assignee": "Yijie Gu(顾亿颉)",
+   "labels": [],
+   "parent": "RICH-23973",
+   "parentSummary": "消费延迟",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V46_9.24"
+   ]
+  },
+  {
+   "key": "RICH-24677",
+   "type": "长篇故事",
+   "summary": "【客戶端優化】統一座標轉換邏輯，修正飛行動畫與 Tooltip 定位",
+   "created": "2026-09-16",
+   "creator": "Yijie Gu(顾亿颉)",
+   "assignee": "Yijie Gu(顾亿颉)",
+   "labels": [],
+   "parent": null,
+   "parentSummary": null,
+   "status": "正在执行",
+   "statusCat": "indeterminate",
+   "fixVersions": [
+    "08_V50_11.5"
+   ]
+  },
+  {
+   "key": "RICH-24682",
+   "type": "Requirement",
+   "summary": "測試帳號收禮提示異常「疑似bug」描述調整",
+   "created": "2026-09-16",
+   "creator": "Jessica Yang(楊欣潔)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "form",
+    "form-37",
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-24710",
+   "type": "故事",
+   "summary": "9月16日 - 日报 - fury",
+   "created": "2026-09-17",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "日报"
+   ],
+   "parent": "RICH-24124",
+   "parentSummary": "9月份产品部相关事项",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-24711",
+   "type": "故事",
+   "summary": "9月17日 - 日报 - fury",
+   "created": "2026-09-17",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "日报"
+   ],
+   "parent": "RICH-24124",
+   "parentSummary": "9月份产品部相关事项",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-24714",
+   "type": "缺陷",
+   "summary": "【服務器】「魚機」卡別限時任務-依遊戲特性捕獲任務優化",
+   "created": "2026-09-17",
+   "creator": "Shan Jiang(姜珊)",
+   "assignee": "Chunrui Dong(董纯锐)",
+   "labels": [
+    "form",
+    "form-37"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "To Check",
+   "statusCat": "indeterminate",
+   "fixVersions": [
+    "08_V49_10.29"
+   ]
+  },
+  {
+   "key": "RICH-24721",
+   "type": "故事",
+   "summary": "9月18日 - 日报 - fury",
+   "created": "2026-09-18",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "日报"
+   ],
+   "parent": "RICH-24124",
+   "parentSummary": "9月份产品部相关事项",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-24728",
+   "type": "长篇故事",
+   "summary": "祈福財神廟抽獎動畫表現優化需求（10/15完成不可延期）",
+   "created": "2026-09-18",
+   "creator": "Xinpu Fan(范馨普)",
+   "assignee": "Shuocheng Zhang(张硕成)",
+   "labels": [],
+   "parent": null,
+   "parentSummary": null,
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V47_10.15"
+   ]
+  },
+  {
+   "key": "RICH-24748",
+   "type": "长篇故事",
+   "summary": "「優化」崩潰問題處理",
+   "created": "2026-09-18",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Willision LI(黎景)",
+   "labels": [],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-24751",
+   "type": "长篇故事",
+   "summary": "「紅包狂歡」紅包數量採計時段優化",
+   "created": "2026-09-20",
+   "creator": "Meiling Jiang(蒋枚伶)",
+   "assignee": "Meiling Jiang(蒋枚伶)",
+   "labels": [],
+   "parent": null,
+   "parentSummary": null,
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V49_10.29"
+   ]
+  },
+  {
+   "key": "RICH-24779",
+   "type": "长篇故事",
+   "summary": "「林島」至尊回歸禮優化需求",
+   "created": "2026-09-20",
+   "creator": "Xinpu Fan(范馨普)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "form",
+    "form-37",
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-24799",
+   "type": "长篇故事",
+   "summary": "【優化需求】【紅包狂歡】新增隨機任務刷新歷程紀錄，支援任務達成及派獎異常追查",
+   "created": "2026-09-21",
+   "creator": "Yijie Gu(顾亿颉)",
+   "assignee": "Shuocheng Zhang(张硕成)",
+   "labels": [],
+   "parent": null,
+   "parentSummary": null,
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V48_10.22"
+   ]
+  },
+  {
+   "key": "RICH-24809",
+   "type": "故事",
+   "summary": "9月20日 - 日报 - fury",
+   "created": "2026-09-21",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "日报"
+   ],
+   "parent": "RICH-24124",
+   "parentSummary": "9月份产品部相关事项",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-24811",
+   "type": "故事",
+   "summary": "9月21日 - 日报 - fury",
+   "created": "2026-09-21",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "日报"
+   ],
+   "parent": "RICH-24124",
+   "parentSummary": "9月份产品部相关事项",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-24825",
+   "type": "长篇故事",
+   "summary": "「大廳登入頁」代言人圖片變更",
+   "created": "2026-09-21",
+   "creator": "Xinpu Fan(范馨普)",
+   "assignee": null,
+   "labels": [
+    "Hotfix",
+    "form",
+    "form-37",
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-24833",
+   "type": "长篇故事",
+   "summary": "【後台】新尊爵包彈出『注意事項』可控制開關",
+   "created": "2026-09-22",
+   "creator": "Amber Lai(賴雅涵)",
+   "assignee": "Meiling Jiang(蒋枚伶)",
+   "labels": [
+    "form",
+    "form-37",
+    "儲值",
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-24834",
+   "type": "长篇故事",
+   "summary": "「10月庆典」新遊戲活動 part.2",
+   "created": "2026-09-22",
+   "creator": "Jiayang Xu(徐佳洋)",
+   "assignee": "Jiayang Xu(徐佳洋)",
+   "labels": [],
+   "parent": "RICH-23569",
+   "parentSummary": "26年-10月庆典",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V47_10.15"
+   ]
+  },
+  {
+   "key": "RICH-24837",
+   "type": "故事",
+   "summary": "9月22日 - 日报 - fury",
+   "created": "2026-09-22",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "日报"
+   ],
+   "parent": "RICH-24124",
+   "parentSummary": "9月份产品部相关事项",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-24839",
+   "type": "长篇故事",
+   "summary": "【越南版】儲值管道優化",
+   "created": "2026-09-22",
+   "creator": "Mary Nguyen",
+   "assignee": "Jiayang Xu(徐佳洋)",
+   "labels": [
+    "form",
+    "form-37",
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "正在执行",
+   "statusCat": "indeterminate",
+   "fixVersions": [
+    "08_V50_11.5"
+   ]
+  },
+  {
+   "key": "RICH-24855",
+   "type": "长篇故事",
+   "summary": "「16週年慶」抽奖大厅 - 两次抽奖 + 阶段奖励",
+   "created": "2026-09-22",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Jiayang Xu(徐佳洋)",
+   "labels": [],
+   "parent": "RICH-24460",
+   "parentSummary": "26年-16週年慶",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ]
+  },
+  {
+   "key": "RICH-24860",
+   "type": "长篇故事",
+   "summary": "【10/29不可逾期】【遊戲串接】《賽特有錢》（阿努比斯Boss）",
+   "created": "2026-09-22",
+   "creator": "Shan Jiang(姜珊)",
+   "assignee": "Yijie Gu(顾亿颉)",
+   "labels": [
+    "form",
+    "form-37"
+   ],
+   "parent": "RICH-14218",
+   "parentSummary": "游戏串接内容同步合集",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V49_10.29"
+   ]
+  },
+  {
+   "key": "RICH-24902",
+   "type": "长篇故事",
+   "summary": "【後台風控管理】溢出點數追回工具part2－道具資產追回",
+   "created": "2026-09-22",
+   "creator": "Yijie Gu(顾亿颉)",
+   "assignee": "Yijie Gu(顾亿颉)",
+   "labels": [],
+   "parent": null,
+   "parentSummary": null,
+   "status": "正在执行",
+   "statusCat": "indeterminate",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29",
+    "08_V50_11.5"
+   ]
+  },
+  {
+   "key": "RICH-24910",
+   "type": "长篇故事",
+   "summary": "【越南好友推薦】活動頁面內容優化",
+   "created": "2026-09-23",
+   "creator": "Mary Nguyen",
+   "assignee": "Jiayang Xu(徐佳洋)",
+   "labels": [
+    "form",
+    "form-37"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": [
+    "08_V52_11.19",
+    "08_V53_11.26",
+    "08_V54_12.03"
+   ]
+  },
+  {
+   "key": "RICH-24934",
+   "type": "故事",
+   "summary": "9月23日 - 日报 - fury",
+   "created": "2026-09-23",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "日报"
+   ],
+   "parent": "RICH-24124",
+   "parentSummary": "9月份产品部相关事项",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-24943",
+   "type": "缺陷",
+   "summary": "【福袋異動】自選福袋使用後，異動數量與實際使用數量不一致",
+   "created": "2026-09-24",
+   "creator": "Xi Luo(罗玺)",
+   "assignee": "Xi Luo(罗玺)",
+   "labels": [
+    "历史遗留问题"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V47_10.15"
+   ]
+  },
+  {
+   "key": "RICH-24958",
+   "type": "长篇故事",
+   "summary": "Hotfix需求：【歷史遺留】《香腸十八仔》《祈福財神廟》《機會與命運》抽獎券掉落優化",
+   "created": "2026-09-24",
+   "creator": "Jinyu Bai(白金雨)",
+   "assignee": "Shuocheng Zhang(张硕成)",
+   "labels": [
+    "Hotfix",
+    "form",
+    "form-37",
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-24965",
+   "type": "故事",
+   "summary": "9月24日 - 日報 - fury",
+   "created": "2026-09-24",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "日报"
+   ],
+   "parent": "RICH-24124",
+   "parentSummary": "9月份产品部相关事项",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-24991",
+   "type": "故事",
+   "summary": "9月28日 - 日报 - fury",
+   "created": "2026-09-28",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "日报"
+   ],
+   "parent": "RICH-24124",
+   "parentSummary": "9月份产品部相关事项",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-24994",
+   "type": "缺陷",
+   "summary": "天天搖錢樹任務拖拉功能",
+   "created": "2026-09-29",
+   "creator": "Jiayang Xu(徐佳洋)",
+   "assignee": "Yugang Li(李玉刚)",
+   "labels": [
+    "Hotfix",
+    "历史遗留问题"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-25012",
+   "type": "故事",
+   "summary": "9月29日 - 日报 - fury",
+   "created": "2026-09-30",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "日报"
+   ],
+   "parent": "RICH-24124",
+   "parentSummary": "9月份产品部相关事项",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-25013",
+   "type": "故事",
+   "summary": "9月30日-日报 - fury",
+   "created": "2026-09-30",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "日报"
+   ],
+   "parent": "RICH-24124",
+   "parentSummary": "9月份产品部相关事项",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-25025",
+   "type": "长篇故事",
+   "summary": "【自動化刷退】自動化刷退GP新增否認交易狀態與還款",
+   "created": "2026-10-06",
+   "creator": "Amber Lai(賴雅涵)",
+   "assignee": "Meiling Jiang(蒋枚伶)",
+   "labels": [
+    "金流"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": [
+    "08_V52_11.19"
+   ]
+  },
+  {
+   "key": "RICH-25037",
+   "type": "长篇故事",
+   "summary": "「林島」卡別補給站優化需求2",
+   "created": "2026-10-08",
+   "creator": "Dao Lin(林岛)",
+   "assignee": "Meiling Jiang(蒋枚伶)",
+   "labels": [
+    "form",
+    "form-37"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "正在执行",
+   "statusCat": "indeterminate",
+   "fixVersions": [
+    "08_V50_11.5"
+   ]
+  },
+  {
+   "key": "RICH-25049",
+   "type": "长篇故事",
+   "summary": "【雙端送審】check_bundle 優化＋遊戲引擎更新＋GP 支付異常修復",
+   "created": "2026-10-08",
+   "creator": "Yijie Gu(顾亿颉)",
+   "assignee": "Yijie Gu(顾亿颉)",
+   "labels": [],
+   "parent": null,
+   "parentSummary": null,
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V48_10.22"
+   ]
+  },
+  {
+   "key": "RICH-25053",
+   "type": "故事",
+   "summary": "10月8日 - 日報 -fury",
+   "created": "2026-10-08",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "日报"
+   ],
+   "parent": "RICH-25291",
+   "parentSummary": "崔峰龙--十月管理任务内容集合",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-25057",
+   "type": "长篇故事",
+   "summary": "【黑白名單】帳號停權優化",
+   "created": "2026-10-08",
+   "creator": "Nina.OU",
+   "assignee": "Meiling Jiang(蒋枚伶)",
+   "labels": [
+    "form",
+    "form-37",
+    "儲值",
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": [
+    "08_V51_11.12"
+   ]
+  },
+  {
+   "key": "RICH-25067",
+   "type": "缺陷",
+   "summary": "【BUG／緊急 Hotfix】訊息遺失導致遊戲／儲值紀錄缺漏，影響累儲活動與機制",
+   "created": "2026-10-08",
+   "creator": "Yijie Gu(顾亿颉)",
+   "assignee": "Xi Luo(罗玺)",
+   "labels": [
+    "Hotfix"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-25095",
+   "type": "长篇故事",
+   "summary": "押注採計統一需求",
+   "created": "2026-10-09",
+   "creator": "Xinpu Fan(范馨普)",
+   "assignee": "Shuocheng Zhang(张硕成)",
+   "labels": [
+    "form",
+    "form-37"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": [
+    "08_V51_11.12"
+   ]
+  },
+  {
+   "key": "RICH-25112",
+   "type": "长篇故事",
+   "summary": "行销美宣制作",
+   "created": "2026-10-10",
+   "creator": "Jinling Yu(于金伶)",
+   "assignee": "Chen Shen(沈忱)",
+   "labels": [],
+   "parent": null,
+   "parentSummary": null,
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V48_10.22"
+   ]
+  },
+  {
+   "key": "RICH-25162",
+   "type": "长篇故事",
+   "summary": "【後台風控管理】溢出點數追回工具part3－信件資產追回",
+   "created": "2026-10-10",
+   "creator": "Yijie Gu(顾亿颉)",
+   "assignee": "Yijie Gu(顾亿颉)",
+   "labels": [],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": [
+    "08_V51_11.12",
+    "08_V52_11.19"
+   ]
+  },
+  {
+   "key": "RICH-25175",
+   "type": "长篇故事",
+   "summary": "「換皮」瘋狂扭蛋機、祈福財神廟十一月換皮恢復需求",
+   "created": "2026-10-10",
+   "creator": "Meiling Jiang(蒋枚伶)",
+   "assignee": "Meiling Jiang(蒋枚伶)",
+   "labels": [
+    "form",
+    "form-37"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "To Check",
+   "statusCat": "indeterminate",
+   "fixVersions": [
+    "08_V50_11.5"
+   ]
+  },
+  {
+   "key": "RICH-25179",
+   "type": "故事",
+   "summary": "10月9日-日報-fury",
+   "created": "2026-10-10",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "日报"
+   ],
+   "parent": "RICH-25291",
+   "parentSummary": "崔峰龙--十月管理任务内容集合",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-25180",
+   "type": "故事",
+   "summary": "10月10日-日報-fury",
+   "created": "2026-10-10",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "日报"
+   ],
+   "parent": "RICH-25291",
+   "parentSummary": "崔峰龙--十月管理任务内容集合",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-25252",
+   "type": "故事",
+   "summary": "10月12日-日報-fury",
+   "created": "2026-10-13",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "日报"
+   ],
+   "parent": "RICH-25291",
+   "parentSummary": "崔峰龙--十月管理任务内容集合",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-25253",
+   "type": "故事",
+   "summary": "10月13日-日報-fury",
+   "created": "2026-10-13",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "日报"
+   ],
+   "parent": "RICH-25291",
+   "parentSummary": "崔峰龙--十月管理任务内容集合",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-25321",
+   "type": "长篇故事",
+   "summary": "【官網】APK安裝教學頁更新",
+   "created": "2026-10-14",
+   "creator": "Amber Lai(賴雅涵)",
+   "assignee": "Meiling Jiang(蒋枚伶)",
+   "labels": [
+    "form",
+    "form-37",
+    "儲值",
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V49_10.29"
+   ]
+  },
+  {
+   "key": "RICH-25345",
+   "type": "长篇故事",
+   "summary": "「至尊活躍」至尊俱樂部",
+   "created": "2026-10-14",
+   "creator": "Xinpu Fan(范馨普)",
+   "assignee": "Jiayang Xu(徐佳洋)",
+   "labels": [
+    "form",
+    "form-37",
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": [
+    "08_V51_11.12",
+    "08_V52_11.19",
+    "08_V53_11.26"
+   ]
+  },
+  {
+   "key": "RICH-25371",
+   "type": "故事",
+   "summary": "10月14日-日報-fury",
+   "created": "2026-10-15",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "日报"
+   ],
+   "parent": "RICH-25291",
+   "parentSummary": "崔峰龙--十月管理任务内容集合",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-25372",
+   "type": "故事",
+   "summary": "10月15日-日報-fury",
+   "created": "2026-10-15",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "日报"
+   ],
+   "parent": "RICH-25291",
+   "parentSummary": "崔峰龙--十月管理任务内容集合",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-25384",
+   "type": "长篇故事",
+   "summary": "【加急】【登入頁背景圖優化】遊戲登入頁視覺及宣傳素材調整",
+   "created": "2026-10-15",
+   "creator": "Xinpu Fan(范馨普)",
+   "assignee": "Chunrui Dong(董纯锐)",
+   "labels": [],
+   "parent": null,
+   "parentSummary": null,
+   "status": "关闭(Closed)",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V49_10.29"
+   ]
+  },
+  {
+   "key": "RICH-25461",
+   "type": "长篇故事",
+   "summary": "「節日換皮」12.25《扭蛋機》聖誕節換皮需求",
+   "created": "2026-10-19",
+   "creator": "Xinpu Fan(范馨普)",
+   "assignee": null,
+   "labels": [
+    "form",
+    "form-37",
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-25462",
+   "type": "长篇故事",
+   "summary": "「優化」大獎名單優化需求",
+   "created": "2026-10-19",
+   "creator": "Xinpu Fan(范馨普)",
+   "assignee": "Meiling Jiang(蒋枚伶)",
+   "labels": [
+    "form",
+    "form-37",
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": [
+    "08_V52_11.19"
+   ]
+  },
+  {
+   "key": "RICH-25463",
+   "type": "长篇故事",
+   "summary": "「咬分采計」標準設計",
+   "created": "2026-10-19",
+   "creator": "Xinpu Fan(范馨普)",
+   "assignee": "Jiayang Xu(徐佳洋)",
+   "labels": [
+    "form",
+    "form-37"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": [
+    "08_V51_11.12"
+   ]
+  },
+  {
+   "key": "RICH-25482",
+   "type": "长篇故事",
+   "summary": "「扭蛋機節日換皮」11.26感恩節換皮+限時玩法",
+   "created": "2026-10-19",
+   "creator": "Jinyu Bai(白金雨)",
+   "assignee": "Yijie Gu(顾亿颉)",
+   "labels": [
+    "form",
+    "form-37",
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": [
+    "08_V53_11.26"
+   ]
+  },
+  {
+   "key": "RICH-25488",
+   "type": "长篇故事",
+   "summary": "「後台優化」遊戲選擇時枚舉類型標準化",
+   "created": "2026-10-19",
+   "creator": "Xinpu Fan(范馨普)",
+   "assignee": "Shuocheng Zhang(张硕成)",
+   "labels": [
+    "form",
+    "form-37",
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": [
+    "08_V52_11.19"
+   ]
+  },
+  {
+   "key": "RICH-25523",
+   "type": "长篇故事",
+   "summary": "CLONE - 【活動介面優化】每日補給任務強化獎勵顯示(儲值加碼送)_任務磚",
+   "created": "2026-10-19",
+   "creator": "Amber Lai(賴雅涵)",
+   "assignee": "Meiling Jiang(蒋枚伶)",
+   "labels": [
+    "form",
+    "form-37",
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": [
+    "08_V52_11.19"
+   ]
+  },
+  {
+   "key": "RICH-25524",
+   "type": "长篇故事",
+   "summary": "CLONE - 【活動介面優化】每日補給任務強化獎勵顯示(儲值加碼送)_轉盤獎勵",
+   "created": "2026-10-19",
+   "creator": "Amber Lai(賴雅涵)",
+   "assignee": "Meiling Jiang(蒋枚伶)",
+   "labels": [
+    "form",
+    "form-37",
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": [
+    "08_V52_11.19"
+   ]
+  },
+  {
+   "key": "RICH-25542",
+   "type": "长篇故事",
+   "summary": "「優化需求」至尊回歸禮玩家參與狀態修正part2",
+   "created": "2026-10-19",
+   "creator": "Xinpu Fan(范馨普)",
+   "assignee": "Jiayang Xu(徐佳洋)",
+   "labels": [
+    "form",
+    "form-37"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": [
+    "08_V52_11.19"
+   ]
+  },
+  {
+   "key": "RICH-25558",
+   "type": "故事",
+   "summary": "10月16日-日報",
+   "created": "2026-10-20",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "日报"
+   ],
+   "parent": "RICH-25291",
+   "parentSummary": "崔峰龙--十月管理任务内容集合",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-25559",
+   "type": "故事",
+   "summary": "10月19日-日報",
+   "created": "2026-10-20",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "日报"
+   ],
+   "parent": "RICH-25291",
+   "parentSummary": "崔峰龙--十月管理任务内容集合",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-25560",
+   "type": "故事",
+   "summary": "10月20日-日報",
+   "created": "2026-10-20",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "日报"
+   ],
+   "parent": "RICH-25291",
+   "parentSummary": "崔峰龙--十月管理任务内容集合",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-25612",
+   "type": "长篇故事",
+   "summary": "「大廣頁官網需求」大廣頁11/1 0時上線需求",
+   "created": "2026-10-21",
+   "creator": "Xinpu Fan(范馨普)",
+   "assignee": "Jiayang Xu(徐佳洋)",
+   "labels": [
+    "form",
+    "form-37",
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": [
+    "08_V49_10.29"
+   ]
+  },
+  {
+   "key": "RICH-25693",
+   "type": "长篇故事",
+   "summary": "【遊戲】德州撲克跳轉功能需求",
+   "created": "2026-10-23",
+   "creator": "Shan Jiang(姜珊)",
+   "assignee": "Yijie Gu(顾亿颉)",
+   "labels": [
+    "form",
+    "form-37",
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": [
+    "08_V51_11.12"
+   ]
+  },
+  {
+   "key": "RICH-25743",
+   "type": "故事",
+   "summary": "10月21日-日報",
+   "created": "2026-10-23",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "日报"
+   ],
+   "parent": "RICH-25291",
+   "parentSummary": "崔峰龙--十月管理任务内容集合",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-25744",
+   "type": "故事",
+   "summary": "10月22日-日報",
+   "created": "2026-10-23",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "日报"
+   ],
+   "parent": "RICH-25291",
+   "parentSummary": "崔峰龙--十月管理任务内容集合",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-25745",
+   "type": "故事",
+   "summary": "10月23日-日報",
+   "created": "2026-10-23",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "日报"
+   ],
+   "parent": "RICH-25291",
+   "parentSummary": "崔峰龙--十月管理任务内容集合",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-25827",
+   "type": "长篇故事",
+   "summary": "(急單)平台RTP保護功能",
+   "created": "2026-10-27",
+   "creator": "Jessica Yang(楊欣潔)",
+   "assignee": "Yijie Gu(顾亿颉)",
+   "labels": [
+    "form",
+    "form-37",
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "待办",
+   "statusCat": "new",
+   "fixVersions": [
+    "08_V50_11.5"
+   ]
+  },
+  {
+   "key": "RICH-25859",
+   "type": "长篇故事",
+   "summary": "【儲值】交易異動，第三方交易需必填信箱資訊",
+   "created": "2026-10-28",
+   "creator": "Amber Lai(賴雅涵)",
+   "assignee": "Meiling Jiang(蒋枚伶)",
+   "labels": [
+    "form",
+    "form-37",
+    "儲值",
+    "待營運確認"
+   ],
+   "parent": null,
+   "parentSummary": null,
+   "status": "正在执行",
+   "statusCat": "indeterminate",
+   "fixVersions": [
+    "08_V50_11.5"
+   ]
+  },
+  {
+   "key": "RICH-25874",
+   "type": "故事",
+   "summary": "10月26日-日報",
+   "created": "2026-10-28",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "日报"
+   ],
+   "parent": "RICH-25291",
+   "parentSummary": "崔峰龙--十月管理任务内容集合",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-25875",
+   "type": "故事",
+   "summary": "10月27日-日報",
+   "created": "2026-10-28",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "日报"
+   ],
+   "parent": "RICH-25291",
+   "parentSummary": "崔峰龙--十月管理任务内容集合",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": []
+  },
+  {
+   "key": "RICH-25876",
+   "type": "故事",
+   "summary": "10月28日-日報",
+   "created": "2026-10-28",
+   "creator": "Fury Cui(崔峰龙)",
+   "assignee": "Fury Cui(崔峰龙)",
+   "labels": [
+    "日报"
+   ],
+   "parent": "RICH-25291",
+   "parentSummary": "崔峰龙--十月管理任务内容集合",
+   "status": "已完成",
+   "statusCat": "done",
+   "fixVersions": []
+  }
+ ]
+}

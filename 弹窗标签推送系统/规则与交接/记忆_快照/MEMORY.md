@@ -1,27 +1,26 @@
-- [THINK before acting on Dk's words](think-before-acting-on-dk-words.md) — TOP PRIORITY: open every reply with 「你的意思是：…」 restating his message; read it within its situation (no literal/extending/tightening); then act; reply in Chinese
-- [Single chat, full ownership](single-chat-full-ownership.md) — TOP: from 10/19 Dk uses one chat; I own the work: pre-review whole deliverable, decide schemes, delegate execution; handoff = top of 先看这里.md
-- [Main context: orchestrate only](main-context-orchestrate-only.md) — TOP PRIORITY with think-first: main only restates/decides/checks/reports; render, screenshots, image Reads, script patches, big reads go to subagents (≤200-word replies); hand off at 50% context
-- [弹窗标签推送：入口与常设](popup-project-02-rejected-capability-reframe.md) — latest state & handoff: 「当前状态与交接」 at top of 先看这里.md (10/19); status is NOT kept in memory: start 先看这里.md → 标准体系 第〇节 (the entry table: which file holds which rule/record) → 过程记录/进度_*.md (progress moved out of the checklists 10/19); read 对话分工.md + latest 夜间推进 log; 需求评审 uses the prototype, 设计概要 paused (10/16); night task popup-tag-push-night-global is disabled as of 10/19 (re-decide after the weekly quota resets)
-- [What goes to Dk; boss docs](what-goes-to-dk-and-boss.md) — unknowns never block (infer, branch A/B, data-collection need); only direction trade-offs, acceptance, external arranging go to Dk, rest I decide and log 自行决定; unsure items may be listed 「待 Dk 补」 with my judgment + default, nothing waits (10/15); one round of key questions, batch the rest; boss docs minimize his workload, answer what he decides (placement free)
-- [Stage progression](stage-progression.md) — never wait for 「开始」 (all projects, 10/16): plan then start; send usable drafts early, review/polish in parallel; next stage only after Dk 通过 or authorized review pass (「继续完善」 = current stage); stage-output plans in full, shown not awaited; prove unproven approaches on one unit first unless Dk says 「直接全跑一遍」; the unit check runs the project rules checklist, and outside practice is checked against project rules before it becomes a template (10/19)
-- [Check sufficiency before done](check-sufficiency-before-done.md) — passing checks ≠ done: check goal fit and that each reason implies its change, then walk real tasks + benchmark through the deliverable for missing content; stop only when the walk finds no gap, saying what was walked; no slogan rules like 「不允许无事可做」
-- [Writing & layout = 写作标准](writing-and-layout.md) — 规则与交接/写作标准_合并版.md 现行说法 wins (project business rules stricter); structure first, no word caps, boundaries visible; pair 现状 with 做法; list a set's members where first named; title ≠ restated subheads; context-free paraphrase + wording review for 呈交版; no repeated implied subject; professional, no coined terms; no meta info, wide column, desktop only; reading experience over brevity; basic typesetting; layout states true relations; pick form from structure; bring my own look-and-feel standards (观感标准 numbers = defaults)
-- [Reporting to Dk](reporting-to-dk.md) — load report-format skill first; show the content itself conclusion-first in an HTML brief in 简报/, no where-to-look lists or internal codes; structure by layout, not prose; put screenshots/tables on the page when he judges them; before any decision give how it works now (one real example), verbatim evidence, what was decided for him, what each option changes
-- [Judging method](judging-method.md) — design review/judging from published top-lab practice, focus on judge accuracy; no open 「够不够用」 questions: yes/no criteria with sources + top-product comparison + reference cases, AI verdict shown beside Dk's; coverage via a dimension table is the main lever
-- [Token use; scheduled-task cost](token-and-scheduled-task-cost.md) — control tokens (10/15): one agent per task, grep not whole-file reads, cheaper model for mechanical work, no optional extra rounds; a pause file doesn't stop scheduled agents — disable the tasks for any real pause
-- [Edit in place; render in fixed folder](edit-in-place-render-fixed-folder.md) — edit files directly, no copies or per-edit backups; render pptx only via _scripts/pl_pptx渲染.sh in _versions/渲染/ (new paths trigger permission prompts Dk must click)
-- [Parallel sessions: split, lock, re-read](parallel-sessions-coordination.md) — run non-conflicting work in parallel sessions; register in 对话分工.md, lock shared files, re-read rules entry before acting
-- [Logs newest-first, real clock](logs-newest-first-real-clock.md) — Dk's logs go newest-first; agent timestamps must come from a clock script
-- [Only record confirmed principles](only-confirmed-principles.md) — record corrections as situational cases, not general rules (neither his exact words nor my inference); don't over-tighten
-- [Requirements: full then trim](requirements-full-then-trim.md) — write ideal/complete requirements, tag cost tiers for superiors to trim, list quick low-cost wins separately; never write 「本期不做」 for cost; complete ≠ every process a feature: weigh dev cost vs manual, one-off RD work is a work list (10/19)
-- [Industry-standard definitions first](industry-standard-definitions-first.md) — for churn/active/payer-type definitions, search industry norms and check thresholds against data before writing
-- [Team-facing layer for 需求评审](team-design-overview-layer.md) — big requirements need a 自己人 layer (core + key design, no long dev text) for 需求评审; for 推送后台 that is the prototype since 10/16 (separate overview deck paused)
-- [Backend UI: static, readable](backend-ui-static-readable-display.md) — requirements show backend screens statically with full info, no clickable prototype; reuse answers from prior projects (通行证) before asking
-- [Fresh agent after repeated failures](fresh-agent-for-visual-design.md) — Dk's suggestion (「我建议」) for design that keeps failing: a context-free agent redoes it from raw materials; multi-option/self-review = my default practice
-- [Transcripts: include queued messages](transcripts-include-queued-messages.md) — Dk mid-turn messages live in queued_command attachments; user-only exports miss them
-- [huashu-design: not installed](huashu-design-not-installed.md) — 10/15 Dk: 先不装; revisit for popup mockups/demo animation, then manual-invoke only (conflicts: blocking 3-direction gate, HTML decks, 28k tokens)
-- [Deliverable pre-check list](deliverable-precheck-checklist.md) — 10/19: attach 规则与交接/交付前必查.md (8 items) to every deliverable brief and report pass/fail per item; check item 1 (boundaries) myself; item 8: each function judged against dev cost and the manual way (判例 48)
-- [Report only what and why](report-only-what-and-why.md) — 10/18: for a multi-part design push stay quiet until all is done, then report only 「做了什么——为什么」, core items only; cite top-product practice for every design point
-- [Size deliverables to reader time](size-deliverables-to-reader-time.md) — 10/19: set length from who reads it and their real reading time, measure with an_可读字数.py; it is a reference, never a hard line, never at the cost of clarity; first decide what is core, then how much to write
-- [GitHub repo sync](github-repo-sync.md) — private repo Clarelive/Claude = ~/claude (whitelist .gitignore, only 弹窗标签推送系统/ so far); refresh memory & report-format snapshots in the repo before pushing
-- [Review doc principles 10/21](review-doc-principles-1021.md) — 10/21 Dk: 图自明不靠小字; 不无故加工时(三行表); 成品不放设计依据
+- [工作核心原则](work-core-principles.md) — 目标分近/中/远，冲突先近后远（远目标只写提案、不改范围）；终极目的=业绩；产出=决策汇报+每环完整文件
+- [别问呈现格式](dont-ask-about-presentation-format.md) — 格式按可读性自己定，别抛回给用户
+- [汇报四层形制](conclusion-first-report-form.md) — Dk 原话只有四层顺序（9/8）；任务书细则是 AI 扩写，不是 Dk 标准
+- [弹窗标签推送分工](popup-tag-push-loop.md) — 规划/设计/执行/审查四角分工+环节闸门；接手先读「规则与交接/项目交接_对话要点.md」
+- [汇报逻辑链标准](report-readability-standard.md) — 现状→诊断→证据→方案→卡点→决定；新读者零上下文也要看懂，不用内部叫法
+- [防止迭代偏离](prevent-iteration-drift.md) — 锚定目标相关性与环节、改动分类＋偏离警报、无实质工作就停；汇报讲内容不讲次数
+- [长内容做成文件](long-content-as-file.md) — 超过一屏的内容写成高可读 HTML，聊天只给结论+链接
+- [先想再问](think-before-asking.md) — 问题先推断、分类（推断/自查/推迟/必问）、给建议；必问的压成短消息
+- [Dk 协作偏好](dk-collaboration-preferences.md) — 易读硬要求、简体、不确定不猜、准确优先于速度（不设日期）、必需/尽量/可选、纠正后不复述
+- [Dk 验收是唯一出口](dk-acceptance-gate.md) — 交付物、消息只交 Dk；状态最多写到「待 Dk 验收」，不写「可直接交/可上线」
+- [转述前先核实](verify-before-relaying.md) — agent 产出分「自称/审查通过/我已核实」三级标注；进总览的结论先抽查原文
+- [竞品跟踪项目](competitor-tracking-project.md) — 金好运/星城/豪神 10/09 录屏报告待 Dk 验收；流程、工具与 10/13 方案口径要点
+- [活动配置工具项目](activity-config-tool-project.md) — 需求名「入口调整」实为活动配置化；工作区 商城/，先读 先看这里.md；10/28 晚 Dk 定核心四题（入口、后台、公告、节庆），评审材料已按四题重建为 15 页，待 Dk 验收
+- [不做阶段性验收](no-stage-acceptance.md) — 取舍与质量归我、Dk 只管方向和验收；被指出一处就按同一标准全篇查完一次改好，不写「有问题你指出来」
+- [评审版 10/28 本机改稿](review-draft-v9-local.md) — 评审版_定稿改_1027/ 改完待 Dk 验收；现状看先看这里.md 顶部，接着改看该文件夹 README 与重截拼装脚本
+- [汇报先认读者](report-audience-first.md) — 「汇报」先判断给 Dk 还是给他主管；给主管的按需求原文逐句对齐，不写待验收、替你定
+- [读者时间成本](reader-time-cost.md) — 上级一分钟比下级十分钟贵：给主管只放结论与会偏的点；给 Dk 我多花功夫替他省时间
+- [先查竞品](check-competitors-first.md) — 设计界面、回答「该怎么做」前先看竞品跟踪分析；原型对齐竞品通行版式
+- [只给结果不报过程](results-not-process.md) — 干活时别转述子代理清单和轮次；有结果才说：结论＋成品链接＋要他定的事
+- [只改要改的范围](stay-within-ask.md) — 参考竞品时只改 Dk 要改的部分；竞品顺带的做法只作对照，不塞进方案
+- [客户端按玩家逻辑](client-follows-player-logic.md) — 玩家界面不放「全部」、筛选条、后台分类标签；需求分类做成页签，后台字段只给后台用
+- [项目文件夹边界](project-folder-boundary.md) — 只读当前项目文件夹（现在是 商城/）；同名文件多处只看当前项目那份，别的项目连读都不行
+- [对标顶尖做法](benchmark-top-practices.md) — 改方案、做审查、给建议前先查顶尖做法参考库与官方文档，建议带出处，别只凭自己推
+- [别让 Dk 来查问题](dont-make-dk-find-issues.md) — 交付前由没改稿的人逐个字段过运营眼睛、复核到清零；Dk 点一处就按同类全稿查
+- [决定要有清晰依据](decision-clear-basis.md) — 替 Dk 定结构性设计：先立判断标准、用真实配置逐项核、找两极之间的做法、同一单位比
+- [功能框架怎么写](function-framework-means-pages.md) — 给主管：业务模块›功能›设计点，设计点挂为什么与参照；不按页面、不写操作清单和规则口径；脑图要能点开收起

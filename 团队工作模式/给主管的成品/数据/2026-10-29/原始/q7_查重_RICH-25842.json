@@ -1,0 +1,9 @@
+{"_存法": "MCP 结果直接返回在对话里，用 Write 存下。去掉了头像、self、iconUrl、邮箱、类型说明；其余原样。关键词：信用卡、卡號、快速結帳。",
+"_jql": "project = RICH AND issuetype in (Epic, Requirement) AND (summary ~ \"信用卡\" OR summary ~ \"卡號\" OR summary ~ \"快速結帳\") AND created >= -365d ORDER BY created DESC",
+"issues":{"nodes":[
+{"key":"RICH-25842","fields":{"summary":"【儲值】調整信用卡儲值存取上次卡號的文案","issuetype":{"name":"Requirement"},"assignee":{"displayName":"Fury Cui(崔峰龙)"},"fixVersions":[],"created":"2026-10-28T08:41:48.162+0800","status":{"name":"待办","statusCategory":{"key":"new"}}}},
+{"key":"RICH-25786","fields":{"summary":"yoe卡多語言優化，包含官網、序號活動頁面","issuetype":{"name":"长篇故事"},"assignee":{"displayName":"Meiling Jiang(蒋枚伶)"},"fixVersions":[],"created":"2026-10-27T09:52:05.618+0800","status":{"name":"待办","statusCategory":{"key":"new"}}}},
+{"key":"RICH-19566","fields":{"summary":"【通路】新增遊戲GG綠卡序號儲值購買通路","issuetype":{"name":"长篇故事"},"assignee":{"displayName":"以前的用户"},"fixVersions":[{"name":"08_V28_5.21","released":true,"releaseDate":"2026-05-21"}],"created":"2026-04-29T16:47:51.318+0800","status":{"name":"已完成","statusCategory":{"key":"done"}}}},
+{"key":"RICH-17381","fields":{"summary":"測試賬號可以測試內部活動  -集卡可掉落卡包","issuetype":{"name":"长篇故事"},"assignee":{"displayName":"以前的用户"},"fixVersions":[],"created":"2026-02-12T17:22:44.528+0800","status":{"name":"已完成","statusCategory":{"key":"done"}}}},
+{"key":"RICH-15857","fields":{"summary":"測試帳號 每月自動變更卡別需求","issuetype":{"name":"长篇故事"},"assignee":{"displayName":"Jiayang Xu(徐佳洋)"},"fixVersions":[{"name":"08_V25_4.23","released":true,"releaseDate":"2026-04-23"}],"created":"2026-01-02T20:10:26.291+0800","status":{"name":"已完成","statusCategory":{"key":"done"}}}}
+],"pageInfo":{"hasNextPage":false,"endCursor":null}}}

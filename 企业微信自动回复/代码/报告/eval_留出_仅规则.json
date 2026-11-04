@@ -1,0 +1,34 @@
+{
+  "dataset": "留出.jsonl",
+  "dataset_size": 442,
+  "backend": "rules-only",
+  "backend_note": "没有模型：规则层没拦下的都判转二讲，所以 misfire 恒为 0、自动回复率恒为 0，不说明判得准",
+  "threshold": null,
+  "rules_enabled": true,
+  "misfire": 0,
+  "misfire_by_label": {
+    "学科答疑": [],
+    "续报": [],
+    "退费": [],
+    "投诉": [],
+    "带情绪": [],
+    "都不是／拿不准": []
+  },
+  "auto_reply_rate": 0.0,
+  "auto_reply_count": 0,
+  "text_message_count": 435,
+  "auto_reply_note": "只算到分类这一步，第 4 步素材查找还没做，所以是上限",
+  "miss_rate": 1.0,
+  "miss_count": 126,
+  "should_auto_count": 126,
+  "auto_wrong_category": 0,
+  "auto_wrong_category_details": [],
+  "model_errors": {
+    "count": 0,
+    "by_kind": {}
+  },
+  "latency_ms": {
+    "median": 0.039,
+    "max": 0.613
+  }
+}

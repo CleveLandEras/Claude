@@ -1,0 +1,116 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>活动配置工具汇报</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1000px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:27px;line-height:1.4;margin:0 0 36px}
+section{margin-top:52px}
+h2{font-family:var(--serif);font-size:20px;margin:0 0 16px;display:flex;align-items:baseline;gap:14px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);white-space:nowrap;min-width:64px}
+.grid{display:grid;gap:12px} .g3{grid-template-columns:repeat(3,1fr)} .g2{grid-template-columns:repeat(2,1fr)} .g4{grid-template-columns:repeat(4,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 20px}
+.quote{font-size:15px;color:var(--ink-2);border-left:3px solid var(--accent);padding:2px 0 2px 14px;margin:0 0 14px}
+.kpi .n{font-size:36px;font-weight:700;line-height:1.1}
+.kpi .n small{font-size:15px;font-weight:600;margin-left:4px;color:var(--ink-2)}
+.kpi .t{font-size:14px;color:var(--ink-2);margin-top:6px}
+.kpi.red .n{color:var(--red)}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;white-space:nowrap;margin-right:8px}
+.tag.red{background:var(--red-soft);color:var(--red)} .tag.blue{background:var(--blue-soft);color:var(--blue)} .tag.gray{background:var(--gray-soft);color:var(--gray)}
+.tw{overflow-x:auto;border-radius:6px}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14.5px}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--ground);white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td.w{font-weight:600;white-space:nowrap} td.r{color:var(--ink-2)}
+.tiers{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:12px;font-size:14.5px;color:var(--ink-2)}
+.step{border-top:4px solid var(--green)}
+.step .s{font-size:12.5px;color:var(--green);font-weight:700}
+.step .h{font-size:16px;font-weight:700;margin:2px 0 4px}
+.step .a{font-size:14px;color:var(--ink-2);margin:0}
+.flow{margin-top:12px;font-size:14.5px;color:var(--ink-2)}
+.flow b{color:var(--ink)}
+.todo .h{font-size:16px;font-weight:700;margin:0 0 8px}
+.todo ul{margin:0;padding-left:18px;font-size:14.5px;color:var(--ink-2)} .todo li{margin:3px 0}
+.note{font-size:13px;color:var(--muted);margin:12px 0 0}
+a{color:var(--accent)}
+@media (max-width:760px){.wrap{padding:28px 16px 64px}.g2,.g3,.g4{grid-template-columns:1fr}h1{font-size:22px}h2{flex-direction:column;gap:2px}}
+</style></head><body><div class="wrap">
+
+<p class="meta">活动配置工具 · 2026-10-27 · 待 Dk 验收</p>
+<h1>储值活动改为运营在后台自己配；方案与需求文档已备齐，待你验收</h1>
+
+<section>
+<h2><span class="no">一 目标</span>活动从「开发」改为「配置」</h2>
+<p class="quote">需求原文：「活動靈活配置使用，通過配置滿足各情況下『營運需求』，如：週五要不要做一個儲值活動／節慶活動」</p>
+<div class="tw"><table>
+<tr><th>例：周五做个储值活动</th><th>现在</th><th>做完以后</th></tr>
+<tr><td class="w">做法</td><td class="r">开需求，策划、美术、web、测试一起做</td><td class="r">复制上周的活动，改时间和档位</td></tr>
+<tr><td class="w">上入口</td><td class="r">好康、限时活动、公告各配一次</td><td class="r">系统自动放进商城</td></tr>
+<tr><td class="w">耗时</td><td class="r">排进研发版本</td><td class="r">1 个工作日内</td></tr>
+</table></div>
+</section>
+
+<section>
+<h2><span class="no">二 原因</span>四成开发是重复劳动</h2>
+<div class="grid g3">
+  <div class="card kpi"><div class="n">148<small>个</small></div><div class="t">近 12 个月储值、商城类开发需求</div></div>
+  <div class="card kpi red"><div class="n">52<small>／148</small></div><div class="t">动用研发的重复开发：同类内容每期重做 34 个，一个改动拆给多个活动 18 个</div></div>
+  <div class="card kpi"><div class="n">12<small>／12</small></div><div class="t">非庆典月份动用研发的重复开发，全是礼包类</div></div>
+</div>
+</section>
+
+<section>
+<h2><span class="no">三 方案</span>改三块，本期先做礼包、累充、满减、折扣</h2>
+<div class="tw"><table>
+<tr><th>改什么</th><th>怎么改</th><th>解决的问题</th></tr>
+<tr><td class="w">工具</td><td class="r">礼包、累充、满减、折扣、抽奖、团购、一元夺宝做成模板，页面按配置自动生成</td><td class="r">每轮活动重做页面</td></tr>
+<tr><td class="w">配置后台</td><td class="r">时间、对象、上限、卡别等共用一套设置；活动可复制；上架前审核</td><td class="r">同一改动逐个活动改</td></tr>
+<tr><td class="w">三个入口</td><td class="r">付费参与进银行（商城），银行移到原好康位置，免费参与进限时活动，信息进公告；系统自动归位</td><td class="r">三套后台各配一次</td></tr>
+</table></div>
+<div class="tiers">
+  <span><span class="tag red">必需</span>配置后台、三个入口、礼包、累充、满减、折扣</span>
+  <span><span class="tag blue">尽量</span>抽奖、庆典专题页</span>
+  <span><span class="tag gray">可选</span>团购、一元夺宝</span>
+</div>
+</section>
+
+<section>
+<h2><span class="no">四 进度</span>四份文件已完成，待你验收</h2>
+<div class="grid g4">
+  <div class="card step"><div class="s">已完成</div><p class="h"><a href="2026-10-27_活动配置工具_现状盘点.html">现状盘点</a></p><p class="a">问题有多严重</p></div>
+  <div class="card step"><div class="s">已完成</div><p class="h"><a href="2026-10-27_活动配置工具_整体方案.html">整体方案</a></p><p class="a">做什么、做哪些</p></div>
+  <div class="card step"><div class="s">已完成</div><p class="h"><a href="需求评审材料.html">需求评审材料</a></p><p class="a">17 页原型＋规则</p></div>
+  <div class="card step"><div class="s">已完成</div><p class="h"><a href="需求文档.md">需求文档</a></p><p class="a">字段、验收、Jira</p></div>
+</div>
+<p class="flow">接下来：<b>你验收</b> → 独立审读 → 研发估时、需求评审 → 研发评审 → 开发（推测 12/11 开始）</p>
+<p class="flow">另有两版入口待你选：<a href="2026-10-27_两版原型对比.html">两版原型对比</a>（依据 <a href="2026-10-27_竞品活动中心设计拆解.html">竞品活动中心设计拆解</a>）。选哪版，就是问主管的「储值类活动放银行还是活动窗口」；现有文档写的是不合并版。</p>
+</section>
+
+<section>
+<h2><span class="no">五 待你做</span>先定两件，再验收方向、安排五项确认</h2>
+<p class="flow"><b>先定两件：</b>两版入口选合并版还是不合并版；底栏常驻入口、页签第一项当期总览、「今日不再显示」这三项留不留。都在 <a href="2026-10-27_两版原型对比.html">两版原型对比</a>（「待取舍三项」一节）。</p>
+<div class="grid g2">
+  <div class="card todo"><p class="h">验收：我替你定的关键 3 件</p><ul>
+    <li>本期只做礼包、累充、满减、折扣四个工具</li>
+    <li>满减、折扣做成「多送」，不直接减价</li>
+    <li>银行移到原好康位置、现有页签不变，页签重组归银行改版</li></ul>
+    <p class="note">共 10 件，见整体方案第 05 节，都可推翻</p></div>
+  <div class="card todo"><p class="h">对外确认：5 项</p><ul>
+    <li>研发估时：本期能做多少</li>
+    <li>法务：付费抽奖、一元夺宝</li>
+    <li>金流：官网能否直接减价</li>
+    <li>开发日期：12/11、1/21 为推测</li>
+    <li>主管：储值类活动放银行还是活动窗口（竞品放活动窗口）</li></ul>
+    <p class="note">研发估时最先需要</p></div>
+</div>
+</section>
+
+</div></body></html>

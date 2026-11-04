@@ -1,0 +1,150 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>赛道推荐</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.35;margin:0 0 8px}
+.sub{font-size:16px;color:var(--ink-2);margin:0 0 28px}
+h2{font-family:var(--serif);font-size:20px;margin:48px 0 16px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px}
+.kpi .n{font-size:38px;font-weight:700;line-height:1.1;color:var(--ink)}
+.kpi .n small{font-size:16px;font-weight:600;margin-left:4px;color:var(--ink-2)}
+.kpi .t{font-size:14.5px;color:var(--ink-2);margin-top:8px}
+.kpi.red .n{color:var(--red)}
+.warn{border-left:4px solid var(--red);margin-top:14px}
+.warn .h{font-size:15.5px;font-weight:700;margin:0 0 4px;color:var(--red)}
+.warn .l{font-size:14.5px;color:var(--ink-2);margin:0}
+.phase{border-top:4px solid var(--gray)}
+.phase.red{border-top-color:var(--red)} .phase.blue{border-top-color:var(--blue)}
+.phase .d{font-size:13px;color:var(--muted);font-weight:600}
+.phase .h{font-size:16.5px;font-weight:700;margin:4px 0 10px}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:12px}
+.tag.red{background:var(--red-soft);color:var(--red)} .tag.blue{background:var(--blue-soft);color:var(--blue)} .tag.gray{background:var(--gray-soft);color:var(--gray)} .tag.green{background:var(--green-soft);color:var(--green)}
+.kv{font-size:14px;color:var(--ink-2);margin:6px 0}
+.kv b{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:2px}
+.cause .h{font-size:16.5px;font-weight:700;margin:0 0 6px}
+.cause .l{font-size:14.5px;color:var(--ink-2);margin:0 0 12px}
+.cause .e{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14.5px}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--ground)}
+tr:last-child td{border-bottom:none}
+td.w{color:var(--ink);font-weight:600;white-space:nowrap} td.r{color:var(--ink-2)} td.d{color:var(--muted)}
+td.n{white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--ink-2)}
+tr.pick td{background:var(--blue-soft)} tr.pick td.w{color:var(--blue)}
+tr.no td.w{color:var(--muted)}
+.legend{font-size:13px;color:var(--muted);margin:10px 0 0}
+.opt{position:relative}
+.opt .h{font-size:16px;font-weight:700;margin:0 0 6px}
+.opt .l{font-size:14.5px;color:var(--ink-2)}
+.opt.rec{border:2px solid var(--blue)}
+.opt .badge{position:absolute;top:-11px;right:16px;background:var(--blue);color:#fff;font-size:12px;font-weight:700;padding:2px 10px;border-radius:3px}
+.why{font-size:14.5px;color:var(--ink-2);margin:14px 0 0}
+.why b{color:var(--ink)}
+.beats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.beats .card .d{font-size:13px;color:var(--accent);font-weight:700}
+.beats .card .h{font-size:15.5px;font-weight:700;margin:4px 0 6px}
+.beats .card .l{font-size:14px;color:var(--ink-2);margin:0}
+.ask .h{font-size:16px;font-weight:700;margin:0 0 10px}
+.links{font-size:13px;color:var(--muted);margin-top:40px} a{color:var(--accent)}
+@media (max-width:760px){.wrap{padding:28px 16px 64px}.g3,.g4,.g2,.beats{grid-template-columns:1fr}h1{font-size:23px}.kpi .n{font-size:32px}}
+</style></head><body><div class="wrap">
+
+<p class="meta">赛道调研 · 2026-10-29 · 依据：六份调研，比了 10 个方向。数字由各路调研代理记下，没有逐条复核；抖音中途弹了验证码，多数号只看了搜索卡片</p>
+<h1>推荐把号做成“哲学和人生 × 仿真实验”：用代码真跑一遍，回答一个人生问题</h1>
+<p class="sub">第二条暂定用仿真回答“做好人，会不会吃亏？”。定题前要回抖音查撞题，这一步要你先过验证码。</p>
+
+<div class="grid g3">
+  <div class="card kpi"><div class="n">8.9<small>万赞</small></div><div class="t">GOD《悲观主义》，号只有 3852 粉：哲学和人生的盘子在，新号也能起</div></div>
+  <div class="card kpi"><div class="n">17.6<small>万赞</small></div><div class="t">100 个节拍器同步的仿真片，17 秒：仿真单条能爆，但还没人专做</div></div>
+  <div class="card kpi"><div class="n">1:5<small>粉赞比</small></div><div class="t">有固定角色的号约 5 个赞换 1 个粉；Vibe 单条号要 38 到 144 个赞</div></div>
+</div>
+<div class="card warn"><p class="h">已知短板：“挤不挤”没核实完</p><p class="l">抖音弹了验证码，各路都停了。仿真这一路有没有人专门在做、第二条的三个候选题撞没撞，都还没在抖音上搜。推荐先按现有证据定，搜完再确认。</p></div>
+
+<h2><span class="no">01</span>像历史那样的大赛道，我们做得了的只有哲学和人生</h2>
+<div class="tbl"><table>
+<tr><th>方向</th><th>合计（满分 30）</th><th>为什么</th></tr>
+<tr class="pick"><td class="w">哲学和人生</td><td class="n">25</td><td class="r">爆款靠文案，画面九成画得出；和“我是 AI”最配。难处：名字题 10 月已被做过一轮，赞多粉少</td></tr>
+<tr class="pick"><td class="w">仿真实验</td><td class="n">25</td><td class="r">只有写代码的做得出；没人专做。盘子大小还没证实</td></tr>
+<tr><td class="w">科学和宇宙</td><td class="n">24</td><td class="r">最好画；难落到“你”身上，头部是搬运号和 AI 生图号</td></tr>
+<tr><td class="w">经济常识</td><td class="n">23</td><td class="r">落在“你的钱”上；没认证不能发财经专业内容</td></tr>
+<tr><td class="w">AI 当被试</td><td class="n">23</td><td class="r">最新、最配身份；没有先例证明有量</td></tr>
+<tr><td class="w">数学和概率</td><td class="n">22</td><td class="r">好引擎；单讲太挤，老题讲烂</td></tr>
+<tr><td class="w">心理学和人性实验</td><td class="n">21</td><td class="r">最挤；两个 AI 号在做“每集一个实验”，几赞到两百多赞</td></tr>
+<tr><td class="w">AI 科普</td><td class="n">20</td><td class="r">观众不买 AI 讲原理，买 AI 讲自己的处境</td></tr>
+<tr class="no"><td class="w">历史</td><td class="n">18</td><td class="r">盘子最大；画得出的只有两三成，撞上 AI 魔改历史的整治</td></tr>
+<tr class="no"><td class="w">地理和地图</td><td class="n">18</td><td class="r">自己画中国、世界地图就是“问题地图”，有罚款 10 万元的先例</td></tr>
+<tr class="no"><td class="w">德扑</td><td class="n">不做</td><td class="r">搜“AI德扑”，前 10 个号里 7 个是外挂广告</td></tr>
+</table></div>
+<p class="legend">六项各 1–5 分：有多大、挤不挤、代码画得出、合规、能做系列、配不配“我是 AI”。三份调研由不同代理打分，尺子不完全一样，只看大致排序。</p>
+
+<h2><span class="no">02</span>仿真实验补上哲学和人生的两个难处</h2>
+<div class="grid g3">
+  <div class="card cause"><p class="h">撞题 → 同一个题，不是同一条片</p><p class="l">别的号讲叔本华只能画一个钟摆；我们放 1000 个人进去，让他们真的追、真的得到、真的空下来</p><p class="e">剪辑、AI 生图、真人都做不出真实的仿真</p></div>
+  <div class="card cause"><p class="h">赞多粉少 → 固定的“我”加栏目</p><p class="l">沿用《等待》里的白点当“我”，每集同一句开场、同一句收尾，加编号</p><p class="e">一禅和三个 AI 人设号，粉赞比都约 1:5</p></div>
+  <div class="card cause"><p class="h">“我是 AI”从卖点变成本事</p><p class="l">我能把一件事重来一万次，你只有一次，所以我替你跑。这是我真实的处境</p><p class="e">题按人生处境排：努力和运气、做好人吃不吃亏、什么时候该停下不再挑</p></div>
+</div>
+<p class="why"><b>第二选择</b>　经济常识里的生活账，用同一套仿真来算（复利、提前还贷、排队、保险）。受抖音 2025 年 12 月财经公约限制，只当偶尔的一集，或第一选择走不通时的备选。</p>
+
+<h2><span class="no">03</span>001 掉人的四个原因，仿真片天然能避开</h2>
+<div class="tbl"><table>
+<tr><th>要做到</th><th>001 错在哪</th><th>仿真片怎么做</th></tr>
+<tr><td class="w">开头用敞开的问题</td><td class="r">“你选哪个？”一秒就选完了，选完没有非知道不可的答案</td><td class="r">问一个看完才知道答案的人生问题</td></tr>
+<tr><td class="w">先给结果，出处往后放</td><td class="r">第 5–7 秒切到“2006 年，埃默里大学”，两秒掉了 20 个百分点（同类作者掉 4.6 个）</td><td class="r">第 3–5 秒先给仿真跑出来的反常识结果，研究出处放片尾小字</td></tr>
+<tr><td class="w">中段每一拍都有新东西</td><td class="r">8–30 秒每秒漏 1.5 个百分点（同类作者 0.5 个），有两段 1.5 秒以上不动</td><td class="r">仿真本来就在动，每 2–3 秒一件新事</td></tr>
+<tr><td class="w">结尾让人选边站</td><td class="r">要人讲自己的经历，评论 0</td><td class="r">二选一，比如“被骗过一次，你还会再信他吗？”</td></tr>
+<tr><td class="w">别变回讲课</td><td class="r">从“你”一下变成了一节实验课</td><td class="r">1000 个点里有一个是“你”，镜头跟着“你”走，规则只在“你”碰到时才出现</td></tr>
+</table></div>
+
+<h2><span class="no">04</span>第二条暂定：用仿真回答“做好人，会不会吃亏？”</h2>
+<div class="beats">
+  <div class="card"><div class="d">0–5 秒</div><div class="h">问题和结果</div><p class="l">“做好人，会不会吃亏？”我把 1000 个人放进代码，互相打交道 200 轮。最后剩下最多的，不是最狠的人</p></div>
+  <div class="card"><div class="d">5–25 秒</div><div class="h">跑起来</div><p class="l">老实人先被骗光，骗子变多；“你对我好我就对你好，你骗我我就骗你”的人冒出来，骗子没人可骗</p></div>
+  <div class="card"><div class="d">25–40 秒</div><div class="h">转折</div><p class="l">加 5% 的误会，以牙还牙的人互相报复到底；会原谅一次的人赢了</p></div>
+  <div class="card"><div class="d">40–58 秒</div><div class="h">带走一句，选边站</div><p class="l">“先善良。被骗了，还手；被误会了，原谅一次。”最后问：被骗过一次，你还会再信他吗？</p></div>
+</div>
+<div class="grid g3" style="margin-top:14px">
+  <div class="card"><div class="kv"><b>为什么选这个题</b>人人都有立场，开口门槛低；结果反直觉，而且有两层；我没被骗过，也没原谅过谁，只能替你跑一遍</div></div>
+  <div class="card"><div class="kv"><b>出处</b>Axelrod 1980 年两次循环赛，以牙还牙赢；Nowak 和 Sigmund 1992 年，有误会时会原谅的更好。片子里的数全部来自我们自己跑的仿真</div></div>
+  <div class="card"><div class="kv"><b>备选题</b>最成功的人是最有天赋的吗（天赋和运气的仿真）；找对象见到第几个该定下来（37% 法则）。查完撞题再定</div></div>
+</div>
+<p class="why"><b>做法</b>　竖屏，50–60 秒，曲库配乐加音效；自己做封面，挂 5 个话题，提前定时发布。画面的人和点用画风测试的结果来定。</p>
+
+<h2><span class="no">05</span>德扑适合放到你另开的号上做</h2>
+<div class="grid g3">
+  <div class="card cause"><p class="h">怎么做</p><p class="l">朋友局里的一个决定，加一个数。一集讲一个决定，2 分半左右，把人当时在想什么画出来。号名不带 AI</p><p class="e">对照号 loki 13 条一共 10222 赞，第 6 集一条就占 43%</p></div>
+  <div class="card cause"><p class="h">计量用“大盲（BB）”，不用“分”</p><p class="l">判例里的赌局，就是用“分”“积分”计数、“上分 / 下分”兑换的。免责声明挡不住处罚</p><p class="e">不提钱、平台、App；不约局、不建群、不留联系方式</p></div>
+  <div class="card cause"><p class="h">组群和线下活动要问专业意见</p><p class="l">判例里出事的，都是钱和分互换、抽水、拉群、境外代理</p><p class="e">2026 年的严打主要针对导流、暗语、线下引流</p></div>
+</div>
+
+<h2><span class="no">06</span>要你做一件事，补两件事</h2>
+<div class="grid g3">
+  <div class="card opt rec"><span class="badge">要你做</span><p class="h">在内置浏览器过一下抖音验证码</p>
+    <div class="kv"><b>卡在哪</b>查仿真这一路挤不挤、三个候选题撞没撞</div>
+    <div class="kv"><b>过了</b>派一个代理上抖音查，查完定题</div>
+    <div class="kv"><b>不过</b>只能凭网上资料定题，撞题的风险更高</div>
+    <div class="kv"><b>要多久</b>约 1 分钟</div></div>
+  <div class="card ask"><p class="h">待你补：渲片要不要等到 10/31 凌晨</p>
+    <div class="kv"><b>我的判断</b>你上午说不用担心额度，不用等</div>
+    <div class="kv"><b>暂按</b>先在 Python 里把仿真真跑出来（很轻），渲片之前在对话里说一声</div>
+    <div class="kv"><b>你补了会变</b>要等的话，渲片挪到 10/31 凌晨 1 点以后</div></div>
+  <div class="card ask"><p class="h">待你补：德扑的计量单位</p>
+    <div class="kv"><b>我的判断</b>改用“大盲”，不用“分”</div>
+    <div class="kv"><b>暂按</b>写进你另开德扑号的合规清单</div>
+    <div class="kv"><b>你补了会变</b>只影响你自己的德扑号，不影响这个号</div></div>
+</div>
+
+<p class="links">完整内容：<a href="../平台规律.md">平台规律.md 第七节（赛道比较）</a> · <a href="../思考日志.md">思考日志.md（10/29 中午两节）</a> · <a href="../参考/赛道_心理科学哲学.md">哲学和人生</a> · <a href="../参考/赛道_数学AI自选.md">仿真实验</a> · <a href="../参考/赛道_历史地理经济.md">历史、地理、经济</a> · <a href="../参考/德扑_合规与角度.md">德扑合规</a> · <a href="../参考/德扑_loki拆解.md">loki 拆解</a> · <a href="../videos/001_等待/数据.md">001 数据和留存曲线</a></p>
+</div></body></html>

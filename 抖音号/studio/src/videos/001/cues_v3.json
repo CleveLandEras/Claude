@@ -1,0 +1,18 @@
+{
+  "fps": 30,
+  "frames": 405,
+  "pre": 90,
+  "shots": {"choice": 0, "a": 54, "b": 84, "ask": 180, "reveal": 216, "pick": 282, "line": 330},
+  "aShock": 60,
+  "bShock": 176,
+  "count": [90, 120, 150],
+  "rows": 32,
+  "me": 19,
+  "picked": [2, 5, 8, 11, 14, 17, 22, 25, 28, 30],
+  "pickStart": 288,
+  "pickStep": 3,
+  "unfold": [216, 248],
+  "punch1": 336,
+  "punch2": 348,
+  "source": 362
+}

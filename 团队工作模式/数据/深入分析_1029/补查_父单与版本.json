@@ -1,0 +1,3632 @@
+{
+"父单补查_不在90天集合内": [
+{
+"key": "RICH-12016",
+"summary": "小額呆賬後台管理 - 「优先级调整，盡量安排」",
+"type": "长篇故事",
+"status": "待办",
+"statusCat": "new",
+"created": "2025-09-01T10:50:48.626+0800",
+"resolved": null,
+"reporter": "Amber Lai(賴雅涵)",
+"creator": "Meiling Jiang(蒋枚伶)",
+"assignee": "Meiling Jiang(蒋枚伶)",
+"labels": [],
+"fixVersions": [
+{
+"name": "08_V50_11.5",
+"releaseDate": "2026-11-05"
+},
+{
+"name": "08_V51_11.12",
+"releaseDate": "2026-11-12"
+},
+{
+"name": "08_V52_11.19",
+"releaseDate": "2026-11-19"
+},
+{
+"name": "08_V53_11.26",
+"releaseDate": "2026-11-26"
+}
+],
+"parent": null
+},
+{
+"key": "RICH-13286",
+"summary": "游戏维护相关内容集合",
+"type": "Legend",
+"status": "正在执行",
+"statusCat": "indeterminate",
+"created": "2025-10-18T14:06:17.600+0800",
+"resolved": null,
+"reporter": "Jinling Yu(于金伶)",
+"creator": "Jinling Yu(于金伶)",
+"assignee": "Yijie Gu(顾亿颉)",
+"labels": [],
+"fixVersions": [],
+"parent": null
+},
+{
+"key": "RICH-14218",
+"summary": "游戏串接内容同步合集",
+"type": "Legend",
+"status": "正在执行",
+"statusCat": "indeterminate",
+"created": "2025-11-13T13:44:05.644+0800",
+"resolved": null,
+"reporter": "Jinling Yu(于金伶)",
+"creator": "Jinling Yu(于金伶)",
+"assignee": "Yijie Gu(顾亿颉)",
+"labels": [],
+"fixVersions": [],
+"parent": null
+},
+{
+"key": "RICH-16436",
+"summary": "call客（活動）圖片資源使用",
+"type": "长篇故事",
+"status": "待办",
+"statusCat": "new",
+"created": "2026-01-15T17:21:11.769+0800",
+"resolved": null,
+"reporter": "以前的用户",
+"creator": "以前的用户",
+"assignee": "Fury Cui(崔峰龙)",
+"labels": [],
+"fixVersions": [],
+"parent": null
+},
+{
+"key": "RICH-18888",
+"summary": "活动类【Activity服务响应延迟】--消费延迟高",
+"type": "长篇故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-04-09T11:42:34.124+0800",
+"resolved": "2026-07-16T11:26:22.039+0800",
+"reporter": "Jinling Yu(于金伶)",
+"creator": "Jinling Yu(于金伶)",
+"assignee": "Jinling Yu(于金伶)",
+"labels": [],
+"fixVersions": [
+{
+"name": "08_V27_5.14",
+"releaseDate": "2026-05-14"
+},
+{
+"name": "08_V31_6.11",
+"releaseDate": "2026-06-11"
+},
+{
+"name": "08_V32_6.18",
+"releaseDate": "2026-06-18"
+},
+{
+"name": "08_V33_6.25",
+"releaseDate": "2026-06-25"
+}
+],
+"parent": {
+"key": "RICH-23973",
+"summary": "消费延迟",
+"type": "Legend"
+}
+},
+{
+"key": "RICH-19725",
+"summary": "【新遊串接】【 賽特有錢】（魚機）【6/11 不可延期】",
+"type": "长篇故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-05-12T10:43:04.358+0800",
+"resolved": "2026-06-12T15:01:41.937+0800",
+"reporter": "Yijie Gu(顾亿颉)",
+"creator": "Yijie Gu(顾亿颉)",
+"assignee": "Yijie Gu(顾亿颉)",
+"labels": [
+"不可延期",
+"串接"
+],
+"fixVersions": [
+{
+"name": "08_V31_6.11",
+"releaseDate": "2026-06-11"
+}
+],
+"parent": {
+"key": "RICH-14218",
+"summary": "游戏串接内容同步合集",
+"type": "Legend"
+}
+},
+{
+"key": "RICH-19828",
+"summary": "【新增活動】儲優押注三選一",
+"type": "长篇故事",
+"status": "To Be Closed",
+"statusCat": "indeterminate",
+"created": "2026-05-13T18:02:46.248+0800",
+"resolved": null,
+"reporter": "Yijie Gu(顾亿颉)",
+"creator": "Yijie Gu(顾亿颉)",
+"assignee": "Leo Chiu(邱日鴻)",
+"labels": [],
+"fixVersions": [],
+"parent": null
+},
+{
+"key": "RICH-19861",
+"summary": "營運活動多語言資源part.2",
+"type": "长篇故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-05-14T16:18:22.894+0800",
+"resolved": "2026-07-03T10:24:50.699+0800",
+"reporter": "Jiayang Xu(徐佳洋)",
+"creator": "Jiayang Xu(徐佳洋)",
+"assignee": "Jiayang Xu(徐佳洋)",
+"labels": [
+"越南"
+],
+"fixVersions": [],
+"parent": {
+"key": "RICH-19215",
+"summary": "支持越南多语言需求内容",
+"type": "Legend"
+}
+},
+{
+"key": "RICH-20045",
+"summary": "【後台】序號管理匯出可匯出全部資料",
+"type": "长篇故事",
+"status": "正在执行",
+"statusCat": "indeterminate",
+"created": "2026-05-20T17:52:35.953+0800",
+"resolved": null,
+"reporter": "Amber Lai(賴雅涵)",
+"creator": "Amber Lai(賴雅涵)",
+"assignee": "史敏",
+"labels": [
+"待營運確認"
+],
+"fixVersions": [],
+"parent": null
+},
+{
+"key": "RICH-20258",
+"summary": "【6/11 】【遊戲串接】【鴨子獵人】（EVO老虎機）",
+"type": "长篇故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-05-27T20:01:34.387+0800",
+"resolved": "2026-06-12T15:01:40.421+0800",
+"reporter": "Yijie Gu(顾亿颉)",
+"creator": "Yijie Gu(顾亿颉)",
+"assignee": "Yijie Gu(顾亿颉)",
+"labels": [],
+"fixVersions": [
+{
+"name": "08_V31_6.11",
+"releaseDate": "2026-06-11"
+}
+],
+"parent": {
+"key": "RICH-14218",
+"summary": "游戏串接内容同步合集",
+"type": "Legend"
+}
+},
+{
+"key": "RICH-21094",
+"summary": "「快閃活動」BOSS戰功能和玩法-part 2",
+"type": "长篇故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-06-15T10:15:47.576+0800",
+"resolved": "2026-07-23T09:46:52.375+0800",
+"reporter": "史敏",
+"creator": "史敏",
+"assignee": "史敏",
+"labels": [],
+"fixVersions": [
+{
+"name": "08_V36_7.16",
+"releaseDate": "2026-07-16"
+},
+{
+"name": "08_V37_7.23",
+"releaseDate": "2026-07-23"
+}
+],
+"parent": null
+},
+{
+"key": "RICH-21225",
+"summary": "【客端】客服聊天内容增加複製功能",
+"type": "长篇故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-06-16T15:49:55.938+0800",
+"resolved": "2026-06-17T22:18:02.391+0800",
+"reporter": "Jiayang Xu(徐佳洋)",
+"creator": "Jiayang Xu(徐佳洋)",
+"assignee": "Jiayang Xu(徐佳洋)",
+"labels": [],
+"fixVersions": [
+{
+"name": "08_V32_6.18",
+"releaseDate": "2026-06-18"
+}
+],
+"parent": null
+},
+{
+"key": "RICH-21664",
+"summary": "【卡别2.0】金幣小瑪莉",
+"type": "长篇故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-06-29T13:40:27.427+0800",
+"resolved": "2026-07-29T22:59:58.765+0800",
+"reporter": "Meiling Jiang(蒋枚伶)",
+"creator": "Meiling Jiang(蒋枚伶)",
+"assignee": "Meiling Jiang(蒋枚伶)",
+"labels": [],
+"fixVersions": [
+{
+"name": "08_V38_7.30",
+"releaseDate": "2026-07-30"
+}
+],
+"parent": {
+"key": "RICH-21605",
+"summary": "卡別等級2.0 part 1相關調整内容",
+"type": "Legend"
+}
+},
+{
+"key": "RICH-21712",
+"summary": "【卡别2.0】【BOSS戰】新增卡別任務配置及宣傳圖調整",
+"type": "长篇故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-06-29T17:32:59.313+0800",
+"resolved": "2026-07-23T16:51:15.258+0800",
+"reporter": "史敏",
+"creator": "史敏",
+"assignee": "史敏",
+"labels": [],
+"fixVersions": [
+{
+"name": "08_V36_7.16",
+"releaseDate": "2026-07-16"
+},
+{
+"name": "08_V37_7.23",
+"releaseDate": "2026-07-23"
+}
+],
+"parent": {
+"key": "RICH-21605",
+"summary": "卡別等級2.0 part 1相關調整内容",
+"type": "Legend"
+}
+},
+{
+"key": "RICH-21714",
+"summary": "【卡别2.0】【紅包狂歡】新增卡別任務配置及宣傳圖調整",
+"type": "长篇故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-06-29T17:33:48.925+0800",
+"resolved": "2026-07-22T18:04:30.939+0800",
+"reporter": "史敏",
+"creator": "史敏",
+"assignee": "史敏",
+"labels": [],
+"fixVersions": [
+{
+"name": "08_V36_7.16",
+"releaseDate": "2026-07-16"
+},
+{
+"name": "08_V37_7.23",
+"releaseDate": "2026-07-23"
+}
+],
+"parent": {
+"key": "RICH-21605",
+"summary": "卡別等級2.0 part 1相關調整内容",
+"type": "Legend"
+}
+},
+{
+"key": "RICH-21731",
+"summary": "【卡别2.0】月月抽",
+"type": "长篇故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-06-29T17:44:33.303+0800",
+"resolved": "2026-07-29T20:43:52.756+0800",
+"reporter": "Jiayang Xu(徐佳洋)",
+"creator": "Jiayang Xu(徐佳洋)",
+"assignee": "Jiayang Xu(徐佳洋)",
+"labels": [],
+"fixVersions": [
+{
+"name": "08_V38_7.30",
+"releaseDate": "2026-07-30"
+}
+],
+"parent": {
+"key": "RICH-21605",
+"summary": "卡別等級2.0 part 1相關調整内容",
+"type": "Legend"
+}
+},
+{
+"key": "RICH-21746",
+"summary": "【卡別2.0】榮譽榜、活動排行相關内容調整",
+"type": "长篇故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-06-29T18:08:50.880+0800",
+"resolved": "2026-07-29T15:35:28.164+0800",
+"reporter": "Yijie Gu(顾亿颉)",
+"creator": "Yijie Gu(顾亿颉)",
+"assignee": "史敏",
+"labels": [],
+"fixVersions": [
+{
+"name": "08_V38_7.30",
+"releaseDate": "2026-07-30"
+}
+],
+"parent": {
+"key": "RICH-21605",
+"summary": "卡別等級2.0 part 1相關調整内容",
+"type": "Legend"
+}
+},
+{
+"key": "RICH-21747",
+"summary": "【卡別2.0】【宣傳圖】VIP卡別調整介紹說明頁",
+"type": "长篇故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-06-29T18:09:39.549+0800",
+"resolved": "2026-07-29T18:16:57.686+0800",
+"reporter": "Yijie Gu(顾亿颉)",
+"creator": "Yijie Gu(顾亿颉)",
+"assignee": "史敏",
+"labels": [],
+"fixVersions": [
+{
+"name": "08_V38_7.30",
+"releaseDate": "2026-07-30"
+}
+],
+"parent": {
+"key": "RICH-21605",
+"summary": "卡別等級2.0 part 1相關調整内容",
+"type": "Legend"
+}
+},
+{
+"key": "RICH-21974",
+"summary": "【通路】產包活動頁更換",
+"type": "长篇故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-07-03T17:17:08.693+0800",
+"resolved": "2026-07-27T11:14:37.939+0800",
+"reporter": "Nina.OU",
+"creator": "Nina.OU",
+"assignee": "Meiling Jiang(蒋枚伶)",
+"labels": [
+"form",
+"form-37"
+],
+"fixVersions": [
+{
+"name": "08_V38_7.30",
+"releaseDate": "2026-07-30"
+}
+],
+"parent": null
+},
+{
+"key": "RICH-22078",
+"summary": "0707-【行銷】越南版H5新增安全字",
+"type": "长篇故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-07-07T16:51:54.174+0800",
+"resolved": "2026-07-08T21:25:41.135+0800",
+"reporter": "Ailee Hung(洪美筠)",
+"creator": "Ailee Hung(洪美筠)",
+"assignee": "Meiling Jiang(蒋枚伶)",
+"labels": [
+"form",
+"form-37",
+"待營運確認"
+],
+"fixVersions": [
+{
+"name": "08_V35_7.9",
+"releaseDate": "2026-07-09"
+}
+],
+"parent": null
+},
+{
+"key": "RICH-22299",
+"summary": "【7/23-7/30】回歸聚寶優化",
+"type": "长篇故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-07-10T17:14:19.473+0800",
+"resolved": "2026-07-29T17:53:12.295+0800",
+"reporter": "Dao Lin(林岛)",
+"creator": "Dao Lin(林岛)",
+"assignee": "Jiayang Xu(徐佳洋)",
+"labels": [
+"form",
+"form-37"
+],
+"fixVersions": [
+{
+"name": "08_V38_7.30",
+"releaseDate": "2026-07-30"
+}
+],
+"parent": null
+},
+{
+"key": "RICH-22317",
+"summary": "「功能優化」發財金主動推送規則 ",
+"type": "长篇故事",
+"status": "待办",
+"statusCat": "new",
+"created": "2026-07-13T09:49:38.979+0800",
+"resolved": null,
+"reporter": "Fury Cui(崔峰龙)",
+"creator": "Fury Cui(崔峰龙)",
+"assignee": "Fury Cui(崔峰龙)",
+"labels": [
+"待營運確認"
+],
+"fixVersions": [],
+"parent": null
+},
+{
+"key": "RICH-22327",
+"summary": "卡別等級2.0 part 2相關調整内容",
+"type": "Legend",
+"status": "正在执行",
+"statusCat": "indeterminate",
+"created": "2026-07-13T16:05:18.931+0800",
+"resolved": null,
+"reporter": "Fury Cui(崔峰龙)",
+"creator": "Yijie Gu(顾亿颉)",
+"assignee": "Yijie Gu(顾亿颉)",
+"labels": [
+"待營運確認"
+],
+"fixVersions": [],
+"parent": null
+},
+{
+"key": "RICH-22486",
+"summary": "【多語系】依語系選擇在該語系可用金流",
+"type": "长篇故事",
+"status": "待办",
+"statusCat": "new",
+"created": "2026-07-16T14:05:32.908+0800",
+"resolved": null,
+"reporter": "Amber Lai(賴雅涵)",
+"creator": "Amber Lai(賴雅涵)",
+"assignee": "Fury Cui(崔峰龙)",
+"labels": [
+"待營運確認"
+],
+"fixVersions": [],
+"parent": null
+},
+{
+"key": "RICH-22501",
+"summary": "【7/30不可延期】【遊戲串接】【三開女武神】（轉輪）【重點主推】",
+"type": "长篇故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-07-16T19:46:23.616+0800",
+"resolved": "2026-07-30T10:00:12.548+0800",
+"reporter": "Yijie Gu(顾亿颉)",
+"creator": "Yijie Gu(顾亿颉)",
+"assignee": "Yijie Gu(顾亿颉)",
+"labels": [
+"不可延期",
+"串接"
+],
+"fixVersions": [
+{
+"name": "08_V38_7.30",
+"releaseDate": "2026-07-30"
+}
+],
+"parent": {
+"key": "RICH-14218",
+"summary": "游戏串接内容同步合集",
+"type": "Legend"
+}
+},
+{
+"key": "RICH-22517",
+"summary": "領獎單不論後台任何狀態 只要填寫過全部帶入玩家信息",
+"type": "长篇故事",
+"status": "待办",
+"statusCat": "new",
+"created": "2026-07-17T11:23:53.520+0800",
+"resolved": null,
+"reporter": "Meiling Jiang(蒋枚伶)",
+"creator": "Meiling Jiang(蒋枚伶)",
+"assignee": "Fury Cui(崔峰龙)",
+"labels": [
+"待營運確認"
+],
+"fixVersions": [],
+"parent": null
+},
+{
+"key": "RICH-22537",
+"summary": "「棋牌」新增【挑戰書】登錄彈窗",
+"type": "长篇故事",
+"status": "正在执行",
+"statusCat": "indeterminate",
+"created": "2026-07-17T16:43:46.341+0800",
+"resolved": null,
+"reporter": "Shan Jiang(姜珊)",
+"creator": "Shan Jiang(姜珊)",
+"assignee": "Shuocheng Zhang(张硕成)",
+"labels": [
+"form",
+"form-37"
+],
+"fixVersions": [
+{
+"name": "08_V48_10.22",
+"releaseDate": "2026-10-22"
+},
+{
+"name": "08_V49_10.29",
+"releaseDate": "2026-10-29"
+},
+{
+"name": "08_V50_11.5",
+"releaseDate": "2026-11-05"
+}
+],
+"parent": null
+},
+{
+"key": "RICH-22547",
+"summary": "【11/12不可逾期】【遊戲串接】【貢佐的探險 II】（EVO轉輪）",
+"type": "长篇故事",
+"status": "To Check",
+"statusCat": "indeterminate",
+"created": "2026-07-20T09:49:34.585+0800",
+"resolved": null,
+"reporter": "Yijie Gu(顾亿颉)",
+"creator": "Yijie Gu(顾亿颉)",
+"assignee": "Yijie Gu(顾亿颉)",
+"labels": [
+"串接"
+],
+"fixVersions": [
+{
+"name": "08_V51_11.12",
+"releaseDate": "2026-11-12"
+}
+],
+"parent": {
+"key": "RICH-14218",
+"summary": "游戏串接内容同步合集",
+"type": "Legend"
+}
+},
+{
+"key": "RICH-22717",
+"summary": "自动化条件判断优化  订单【未交易成功】，就不写入刷退",
+"type": "长篇故事",
+"status": "待办",
+"statusCat": "new",
+"created": "2026-07-23T09:52:47.833+0800",
+"resolved": null,
+"reporter": "Meiling Jiang(蒋枚伶)",
+"creator": "Meiling Jiang(蒋枚伶)",
+"assignee": "Fury Cui(崔峰龙)",
+"labels": [
+"待營運確認"
+],
+"fixVersions": [],
+"parent": null
+},
+{
+"key": "RICH-22763",
+"summary": "「風控機制」針對活動獎勵異常溢出的告警機制",
+"type": "长篇故事",
+"status": "待办",
+"statusCat": "new",
+"created": "2026-07-23T17:19:04.791+0800",
+"resolved": null,
+"reporter": "Xinpu Fan(范馨普)",
+"creator": "Xinpu Fan(范馨普)",
+"assignee": null,
+"labels": [
+"form",
+"form-37"
+],
+"fixVersions": [],
+"parent": null
+},
+{
+"key": "RICH-22951",
+"summary": "【美術需求7/30】內容新增&宣傳頁面內容調整",
+"type": "长篇故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-07-29T11:00:31.673+0800",
+"resolved": "2026-07-29T20:48:26.827+0800",
+"reporter": "Dao Lin(林岛)",
+"creator": "Dao Lin(林岛)",
+"assignee": "Jiayang Xu(徐佳洋)",
+"labels": [
+"form",
+"form-37",
+"待營運確認"
+],
+"fixVersions": [
+{
+"name": "08_V38_7.30",
+"releaseDate": "2026-07-30"
+}
+],
+"parent": null
+},
+{
+"key": "RICH-23000",
+"summary": "「超額溢點防呆機制」針對儲值活動、禮包設置、活動配置製作防溢出的相關機制",
+"type": "Legend",
+"status": "正在执行",
+"statusCat": "indeterminate",
+"created": "2026-07-29T20:48:55.761+0800",
+"resolved": null,
+"reporter": "Xinpu Fan(范馨普)",
+"creator": "Xinpu Fan(范馨普)",
+"assignee": "Yijie Gu(顾亿颉)",
+"labels": [
+"form",
+"form-37"
+],
+"fixVersions": [
+{
+"name": "08_V49_10.29",
+"releaseDate": "2026-10-29"
+}
+],
+"parent": null
+},
+{
+"key": "RICH-23037",
+"summary": "【多語系】預設暱稱多語系",
+"type": "长篇故事",
+"status": "待办",
+"statusCat": "new",
+"created": "2026-07-30T19:09:37.288+0800",
+"resolved": null,
+"reporter": "Jessica Yang(楊欣潔)",
+"creator": "Jessica Yang(楊欣潔)",
+"assignee": "Fury Cui(崔峰龙)",
+"labels": [
+"待營運確認"
+],
+"fixVersions": [],
+"parent": null
+},
+{
+"key": "RICH-24465",
+"summary": "「16周年庆」押注活動 - 香腸十八仔",
+"type": "长篇故事",
+"status": "待办",
+"statusCat": "new",
+"created": "2026-09-10T14:44:38.270+0800",
+"resolved": null,
+"labels": [],
+"parent": {
+"key": "RICH-24460",
+"summary": "26年-16週年慶",
+"type": "Legend"
+},
+"note": "getJiraIssue 能取到，但 JQL key in 与 90 天查询均未返回"
+}
+],
+"版本补查_建单早于90天": [
+{
+"key": "RICH-23000",
+"summary": "「超額溢點防呆機制」針對儲值活動、禮包設置、活動配置製作防溢出的相關機制",
+"type": "Legend",
+"status": "正在执行",
+"statusCat": "indeterminate",
+"created": "2026-07-29T20:48:55.761+0800",
+"resolved": null,
+"reporter": null,
+"creator": null,
+"assignee": "Yijie Gu(顾亿颉)",
+"labels": [
+"form",
+"form-37"
+],
+"fixVersions": [
+{
+"name": "08_V49_10.29",
+"releaseDate": "2026-10-29"
+}
+],
+"parent": null
+},
+{
+"key": "RICH-22995",
+"summary": "【卡別2.0】【Part2】抽獎大廳",
+"type": "长篇故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-07-29T19:56:00.565+0800",
+"resolved": "2026-09-23T18:53:23.447+0800",
+"reporter": null,
+"creator": null,
+"assignee": "Jiayang Xu(徐佳洋)",
+"labels": [],
+"fixVersions": [
+{
+"name": "08_V46_9.24",
+"releaseDate": "2026-09-24"
+}
+],
+"parent": {
+"key": "RICH-22327",
+"summary": "卡別等級2.0 part 2相關調整内容",
+"type": "Legend"
+}
+},
+{
+"key": "RICH-22936",
+"summary": "【開站檢查】【9/10不可延期】【遊戲串接】祖瑪迷宮（YGR 魚機）-新廠商／新遊戲開站流程檢查表",
+"type": "故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-07-28T20:12:32.357+0800",
+"resolved": "2026-09-10T11:33:24.030+0800",
+"reporter": null,
+"creator": null,
+"assignee": "Yijie Gu(顾亿颉)",
+"labels": [
+"不可延期",
+"串接"
+],
+"fixVersions": [
+{
+"name": "08_V44_9.10",
+"releaseDate": "2026-09-10"
+}
+],
+"parent": {
+"key": "RICH-22820",
+"summary": "【9/10不可延期】【遊戲串接】祖瑪迷宮（YGR 魚機）",
+"type": "长篇故事"
+}
+},
+{
+"key": "RICH-22878",
+"summary": "【服務器】【9/10不可延期】【遊戲串接】祖瑪迷宮（YGR 魚機）",
+"type": "故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-07-27T16:41:13.796+0800",
+"resolved": "2026-09-10T11:33:37.834+0800",
+"reporter": null,
+"creator": null,
+"assignee": "YiYuan Huang(黄益园)",
+"labels": [
+"不可延期",
+"串接"
+],
+"fixVersions": [
+{
+"name": "08_V44_9.10",
+"releaseDate": "2026-09-10"
+}
+],
+"parent": {
+"key": "RICH-22820",
+"summary": "【9/10不可延期】【遊戲串接】祖瑪迷宮（YGR 魚機）",
+"type": "长篇故事"
+}
+},
+{
+"key": "RICH-22834",
+"summary": "【美術】【9/10不可延期】【遊戲串接】祖瑪迷宮（YGR 魚機）-大圖Spine動畫需求",
+"type": "故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-07-24T17:13:52.736+0800",
+"resolved": "2026-09-09T17:00:38.700+0800",
+"reporter": null,
+"creator": null,
+"assignee": "Wencheng Fu(付文成)",
+"labels": [
+"不可延期",
+"串接"
+],
+"fixVersions": [
+{
+"name": "08_V44_9.10",
+"releaseDate": "2026-09-10"
+}
+],
+"parent": {
+"key": "RICH-22820",
+"summary": "【9/10不可延期】【遊戲串接】祖瑪迷宮（YGR 魚機）",
+"type": "长篇故事"
+}
+},
+{
+"key": "RICH-22826",
+"summary": "【icon設計確認】【9/10不可延期】【遊戲串接】祖瑪迷宮（YGR 魚機）",
+"type": "故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-07-24T17:13:25.051+0800",
+"resolved": "2026-09-08T14:32:35.737+0800",
+"reporter": null,
+"creator": null,
+"assignee": "Bea Wang(王蘭君)",
+"labels": [
+"不可延期",
+"串接"
+],
+"fixVersions": [
+{
+"name": "08_V44_9.10",
+"releaseDate": "2026-09-10"
+}
+],
+"parent": {
+"key": "RICH-22820",
+"summary": "【9/10不可延期】【遊戲串接】祖瑪迷宮（YGR 魚機）",
+"type": "长篇故事"
+}
+},
+{
+"key": "RICH-22825",
+"summary": "【美術】【9/10不可延期】【遊戲串接】祖瑪迷宮（YGR 魚機）- 官網遊戲說明內容",
+"type": "故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-07-24T17:13:21.340+0800",
+"resolved": "2026-09-14T10:49:40.261+0800",
+"reporter": null,
+"creator": null,
+"assignee": "Jonathan Kao(高琛侑)",
+"labels": [
+"不可延期",
+"串接"
+],
+"fixVersions": [
+{
+"name": "08_V44_9.10",
+"releaseDate": "2026-09-10"
+}
+],
+"parent": {
+"key": "RICH-22820",
+"summary": "【9/10不可延期】【遊戲串接】祖瑪迷宮（YGR 魚機）",
+"type": "长篇故事"
+}
+},
+{
+"key": "RICH-22824",
+"summary": " 【EP】【9/10不可延期】【遊戲串接】祖瑪迷宮（YGR 魚機）-後台配置",
+"type": "故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-07-24T17:13:15.662+0800",
+"resolved": "2026-09-14T10:49:45.536+0800",
+"reporter": null,
+"creator": null,
+"assignee": "Yijie Gu(顾亿颉)",
+"labels": [
+"不可延期",
+"串接"
+],
+"fixVersions": [
+{
+"name": "08_V44_9.10",
+"releaseDate": "2026-09-10"
+}
+],
+"parent": {
+"key": "RICH-22820",
+"summary": "【9/10不可延期】【遊戲串接】祖瑪迷宮（YGR 魚機）",
+"type": "长篇故事"
+}
+},
+{
+"key": "RICH-22823",
+"summary": "【美術】【9/10不可延期】【遊戲串接】祖瑪迷宮（YGR 魚機）- 靜態icon",
+"type": "故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-07-24T17:13:12.441+0800",
+"resolved": "2026-09-09T17:37:37.391+0800",
+"reporter": null,
+"creator": null,
+"assignee": "Qiansheni Wang(王乾深)",
+"labels": [
+"不可延期",
+"串接"
+],
+"fixVersions": [
+{
+"name": "08_V44_9.10",
+"releaseDate": "2026-09-10"
+}
+],
+"parent": {
+"key": "RICH-22820",
+"summary": "【9/10不可延期】【遊戲串接】祖瑪迷宮（YGR 魚機）",
+"type": "长篇故事"
+}
+},
+{
+"key": "RICH-22822",
+"summary": "【QA】【9/10不可延期】【遊戲串接】祖瑪迷宮（YGR 魚機）",
+"type": "QATask",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-07-24T17:13:09.216+0800",
+"resolved": "2026-09-14T10:50:49.956+0800",
+"reporter": null,
+"creator": null,
+"assignee": "Hongmei He(何红梅)",
+"labels": [
+"不可延期",
+"串接"
+],
+"fixVersions": [
+{
+"name": "08_V44_9.10",
+"releaseDate": "2026-09-10"
+}
+],
+"parent": {
+"key": "RICH-22820",
+"summary": "【9/10不可延期】【遊戲串接】祖瑪迷宮（YGR 魚機）",
+"type": "长篇故事"
+}
+},
+{
+"key": "RICH-22821",
+"summary": "【美術】【9/10不可延期】【遊戲串接】祖瑪迷宮（YGR 魚機）- 每日挑戰主題",
+"type": "故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-07-24T17:13:04.787+0800",
+"resolved": "2026-09-04T17:31:28.243+0800",
+"reporter": null,
+"creator": null,
+"assignee": "Cheng Wei(魏成)",
+"labels": [
+"不可延期",
+"串接"
+],
+"fixVersions": [
+{
+"name": "08_V44_9.10",
+"releaseDate": "2026-09-10"
+}
+],
+"parent": {
+"key": "RICH-22820",
+"summary": "【9/10不可延期】【遊戲串接】祖瑪迷宮（YGR 魚機）",
+"type": "长篇故事"
+}
+},
+{
+"key": "RICH-22820",
+"summary": "【9/10不可延期】【遊戲串接】祖瑪迷宮（YGR 魚機）",
+"type": "长篇故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-07-24T17:12:59.617+0800",
+"resolved": "2026-09-14T10:49:25.754+0800",
+"reporter": null,
+"creator": null,
+"assignee": "Yijie Gu(顾亿颉)",
+"labels": [
+"不可延期",
+"串接"
+],
+"fixVersions": [
+{
+"name": "08_V44_9.10",
+"releaseDate": "2026-09-10"
+}
+],
+"parent": {
+"key": "RICH-14218",
+"summary": "游戏串接内容同步合集",
+"type": "Legend"
+}
+},
+{
+"key": "RICH-22537",
+"summary": "「棋牌」新增【挑戰書】登錄彈窗",
+"type": "长篇故事",
+"status": "正在执行",
+"statusCat": "indeterminate",
+"created": "2026-07-17T16:43:46.341+0800",
+"resolved": null,
+"reporter": null,
+"creator": null,
+"assignee": "Shuocheng Zhang(张硕成)",
+"labels": [
+"form",
+"form-37"
+],
+"fixVersions": [
+{
+"name": "08_V48_10.22",
+"releaseDate": "2026-10-22"
+},
+{
+"name": "08_V49_10.29",
+"releaseDate": "2026-10-29"
+},
+{
+"name": "08_V50_11.5",
+"releaseDate": "2026-11-05"
+}
+],
+"parent": null
+},
+{
+"key": "RICH-22142",
+"summary": "【QA】客端-線上客服，諮詢視窗的照片要可點圖放大",
+"type": "QATask",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-07-07T17:41:02.709+0800",
+"resolved": "2026-10-14T19:25:03.695+0800",
+"reporter": null,
+"creator": null,
+"assignee": "Yugang Li(李玉刚)",
+"labels": [
+"form",
+"form-37"
+],
+"fixVersions": [
+{
+"name": "08_V47_10.15",
+"releaseDate": "2026-10-15"
+}
+],
+"parent": {
+"key": "RICH-19605",
+"summary": "客端-線上客服，諮詢視窗的照片要可點圖放大-Part1",
+"type": "长篇故事"
+}
+},
+{
+"key": "RICH-22141",
+"summary": "【客端】客端-線上客服，諮詢視窗的照片要可點圖放大",
+"type": "故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-07-07T17:40:54.102+0800",
+"resolved": "2026-10-14T19:25:05.488+0800",
+"reporter": null,
+"creator": null,
+"assignee": "Kewei Jin(金科伟）",
+"labels": [
+"form",
+"form-37"
+],
+"fixVersions": [
+{
+"name": "08_V47_10.15",
+"releaseDate": "2026-10-15"
+}
+],
+"parent": {
+"key": "RICH-19605",
+"summary": "客端-線上客服，諮詢視窗的照片要可點圖放大-Part1",
+"type": "长篇故事"
+}
+},
+{
+"key": "RICH-22114",
+"summary": "「QA」儲值累積額度視覺化【優惠禮包、超值禮包】",
+"type": "QATask",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-07-07T17:17:46.068+0800",
+"resolved": "2026-09-07T17:31:16.527+0800",
+"reporter": null,
+"creator": null,
+"assignee": "Xi Luo(罗玺)",
+"labels": [
+"儲值"
+],
+"fixVersions": [
+{
+"name": "08_V44_9.10",
+"releaseDate": "2026-09-10"
+}
+],
+"parent": {
+"key": "RICH-21565",
+"summary": "【卡別2.0】【Part2】儲值累積額度視覺化【優惠禮包、超值禮包】",
+"type": "长篇故事"
+}
+},
+{
+"key": "RICH-22111",
+"summary": "「美術」儲值累積額度視覺化【優惠禮包、超值禮包】",
+"type": "故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-07-07T17:17:39.605+0800",
+"resolved": "2026-09-07T15:55:25.576+0800",
+"reporter": null,
+"creator": null,
+"assignee": "Cheng Wei(魏成)",
+"labels": [
+"儲值"
+],
+"fixVersions": [
+{
+"name": "08_V44_9.10",
+"releaseDate": "2026-09-10"
+}
+],
+"parent": {
+"key": "RICH-21565",
+"summary": "【卡別2.0】【Part2】儲值累積額度視覺化【優惠禮包、超值禮包】",
+"type": "长篇故事"
+}
+},
+{
+"key": "RICH-22109",
+"summary": "「策劃」儲值累積額度視覺化【優惠禮包、超值禮包】",
+"type": "故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-07-07T17:17:33.366+0800",
+"resolved": "2026-07-24T10:54:18.516+0800",
+"reporter": null,
+"creator": null,
+"assignee": "Meiling Jiang(蒋枚伶)",
+"labels": [
+"儲值"
+],
+"fixVersions": [
+{
+"name": "08_V44_9.10",
+"releaseDate": "2026-09-10"
+}
+],
+"parent": {
+"key": "RICH-21565",
+"summary": "【卡別2.0】【Part2】儲值累積額度視覺化【優惠禮包、超值禮包】",
+"type": "长篇故事"
+}
+},
+{
+"key": "RICH-22107",
+"summary": "「web」儲值累積額度視覺化【優惠禮包、超值禮包】",
+"type": "故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-07-07T17:17:23.134+0800",
+"resolved": "2026-09-09T18:27:11.595+0800",
+"reporter": null,
+"creator": null,
+"assignee": " Xiaoyan Zhang(张晓燕)",
+"labels": [
+"儲值"
+],
+"fixVersions": [
+{
+"name": "08_V44_9.10",
+"releaseDate": "2026-09-10"
+}
+],
+"parent": {
+"key": "RICH-21565",
+"summary": "【卡別2.0】【Part2】儲值累積額度視覺化【優惠禮包、超值禮包】",
+"type": "长篇故事"
+}
+},
+{
+"key": "RICH-22106",
+"summary": "「客端」儲值累積額度視覺化【優惠禮包、超值禮包】",
+"type": "故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-07-07T17:17:18.130+0800",
+"resolved": "2026-09-09T18:27:10.819+0800",
+"reporter": null,
+"creator": null,
+"assignee": "Kewei Jin(金科伟）",
+"labels": [
+"儲值"
+],
+"fixVersions": [
+{
+"name": "08_V44_9.10",
+"releaseDate": "2026-09-10"
+}
+],
+"parent": {
+"key": "RICH-21565",
+"summary": "【卡別2.0】【Part2】儲值累積額度視覺化【優惠禮包、超值禮包】",
+"type": "长篇故事"
+}
+},
+{
+"key": "RICH-22105",
+"summary": "「服務器」儲值累積額度視覺化【優惠禮包、超值禮包】",
+"type": "故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-07-07T17:17:12.096+0800",
+"resolved": "2026-09-09T18:27:02.216+0800",
+"reporter": null,
+"creator": null,
+"assignee": "Xuezheng Zhang(张学政)",
+"labels": [
+"儲值"
+],
+"fixVersions": [
+{
+"name": "08_V44_9.10",
+"releaseDate": "2026-09-10"
+}
+],
+"parent": {
+"key": "RICH-21565",
+"summary": "【卡別2.0】【Part2】儲值累積額度視覺化【優惠禮包、超值禮包】",
+"type": "长篇故事"
+}
+},
+{
+"key": "RICH-22104",
+"summary": "「後台」儲值累積額度視覺化【優惠禮包、超值禮包】",
+"type": "故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-07-07T17:16:45.573+0800",
+"resolved": "2026-09-09T18:26:57.441+0800",
+"reporter": null,
+"creator": null,
+"assignee": "Mingwei Shao(邵明伟)",
+"labels": [
+"儲值"
+],
+"fixVersions": [
+{
+"name": "08_V44_9.10",
+"releaseDate": "2026-09-10"
+}
+],
+"parent": {
+"key": "RICH-21565",
+"summary": "【卡別2.0】【Part2】儲值累積額度視覺化【優惠禮包、超值禮包】",
+"type": "长篇故事"
+}
+},
+{
+"key": "RICH-21565",
+"summary": "【卡別2.0】【Part2】儲值累積額度視覺化【優惠禮包、超值禮包】",
+"type": "长篇故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-06-25T16:28:29.041+0800",
+"resolved": "2026-09-09T18:27:14.330+0800",
+"reporter": null,
+"creator": null,
+"assignee": "Meiling Jiang(蒋枚伶)",
+"labels": [
+"儲值"
+],
+"fixVersions": [
+{
+"name": "08_V44_9.10",
+"releaseDate": "2026-09-10"
+}
+],
+"parent": {
+"key": "RICH-22327",
+"summary": "卡別等級2.0 part 2相關調整内容",
+"type": "Legend"
+}
+},
+{
+"key": "RICH-21517",
+"summary": "【行銷】啦啦隊妹仔修圖(兩人共40張)",
+"type": "长篇故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-06-24T17:05:20.248+0800",
+"resolved": "2026-09-04T14:14:17.762+0800",
+"reporter": null,
+"creator": null,
+"assignee": "Chen Shen(沈忱)",
+"labels": [
+"form",
+"form-37"
+],
+"fixVersions": [
+{
+"name": "08_V44_9.10",
+"releaseDate": "2026-09-10"
+},
+{
+"name": "08_V45_9.17",
+"releaseDate": "2026-09-17"
+}
+],
+"parent": null
+},
+{
+"key": "RICH-21492",
+"summary": "【QA】「功能優化」積分賽&小時賽",
+"type": "QATask",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-06-24T14:38:38.777+0800",
+"resolved": "2026-09-04T14:08:21.018+0800",
+"reporter": null,
+"creator": null,
+"assignee": "Mengyuan Li(李梦圆)",
+"labels": [],
+"fixVersions": [
+{
+"name": "08_V44_9.10",
+"releaseDate": "2026-09-10"
+}
+],
+"parent": {
+"key": "RICH-21382",
+"summary": "「積分賽&小時賽」「7月9日」優化需求",
+"type": "长篇故事"
+}
+},
+{
+"key": "RICH-21491",
+"summary": "【後臺】「功能優化」積分賽&小時賽",
+"type": "故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-06-24T14:38:23.922+0800",
+"resolved": "2026-09-09T18:02:01.522+0800",
+"reporter": null,
+"creator": null,
+"assignee": "Xinxiang Zhang(张鑫祥)",
+"labels": [],
+"fixVersions": [
+{
+"name": "08_V44_9.10",
+"releaseDate": "2026-09-10"
+}
+],
+"parent": {
+"key": "RICH-21382",
+"summary": "「積分賽&小時賽」「7月9日」優化需求",
+"type": "长篇故事"
+}
+},
+{
+"key": "RICH-21490",
+"summary": "【服務器】「功能優化」積分賽&小時賽",
+"type": "故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-06-24T14:38:14.792+0800",
+"resolved": "2026-09-09T23:31:23.515+0800",
+"reporter": null,
+"creator": null,
+"assignee": "Xuezheng Zhang(张学政)",
+"labels": [],
+"fixVersions": [
+{
+"name": "08_V44_9.10",
+"releaseDate": "2026-09-10"
+}
+],
+"parent": {
+"key": "RICH-21382",
+"summary": "「積分賽&小時賽」「7月9日」優化需求",
+"type": "长篇故事"
+}
+},
+{
+"key": "RICH-21489",
+"summary": "【客戶端】「功能優化」積分賽&小時賽",
+"type": "故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-06-24T14:38:06.151+0800",
+"resolved": "2026-09-09T18:02:07.492+0800",
+"reporter": null,
+"creator": null,
+"assignee": "Kewei Jin(金科伟）",
+"labels": [],
+"fixVersions": [
+{
+"name": "08_V44_9.10",
+"releaseDate": "2026-09-10"
+}
+],
+"parent": {
+"key": "RICH-21382",
+"summary": "「積分賽&小時賽」「7月9日」優化需求",
+"type": "长篇故事"
+}
+},
+{
+"key": "RICH-21488",
+"summary": "【EP】「功能優化」積分賽&小時賽",
+"type": "故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-06-24T14:37:44.048+0800",
+"resolved": "2026-09-09T20:23:28.975+0800",
+"reporter": null,
+"creator": null,
+"assignee": "Jiayang Xu(徐佳洋)",
+"labels": [],
+"fixVersions": [
+{
+"name": "08_V44_9.10",
+"releaseDate": "2026-09-10"
+}
+],
+"parent": {
+"key": "RICH-21382",
+"summary": "「積分賽&小時賽」「7月9日」優化需求",
+"type": "长篇故事"
+}
+},
+{
+"key": "RICH-21460",
+"summary": "【APK】同設備、同平台玩家異常觸發「帳號已在遊戲中」提示，疑似在線狀態未正確釋放",
+"type": "缺陷",
+"status": "正在执行",
+"statusCat": "indeterminate",
+"created": "2026-06-24T09:41:03.082+0800",
+"resolved": null,
+"reporter": null,
+"creator": null,
+"assignee": "Huidong Fang(方惠东)",
+"labels": [
+"待觀察"
+],
+"fixVersions": [
+{
+"name": "08_V49_10.29",
+"releaseDate": "2026-10-29"
+}
+],
+"parent": null
+},
+{
+"key": "RICH-21382",
+"summary": "「積分賽&小時賽」「7月9日」優化需求",
+"type": "长篇故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-06-22T14:11:58.136+0800",
+"resolved": "2026-09-09T20:23:33.848+0800",
+"reporter": null,
+"creator": null,
+"assignee": "Jiayang Xu(徐佳洋)",
+"labels": [],
+"fixVersions": [
+{
+"name": "08_V44_9.10",
+"releaseDate": "2026-09-10"
+}
+],
+"parent": null
+},
+{
+"key": "RICH-20975",
+"summary": "「产品」成就系统",
+"type": "长篇故事",
+"status": "待办",
+"statusCat": "new",
+"created": "2026-06-12T10:12:23.794+0800",
+"resolved": null,
+"reporter": null,
+"creator": null,
+"assignee": "Shuocheng Zhang(张硕成)",
+"labels": [
+"待營運確認"
+],
+"fixVersions": [
+{
+"name": "08_V49_10.29",
+"releaseDate": "2026-10-29"
+},
+{
+"name": "08_V50_11.5",
+"releaseDate": "2026-11-05"
+},
+{
+"name": "08_V51_11.12",
+"releaseDate": "2026-11-12"
+},
+{
+"name": "08_V52_11.19",
+"releaseDate": "2026-11-19"
+}
+],
+"parent": null
+},
+{
+"key": "RICH-20925",
+"summary": "【服务端】【线上】报表查询-会员登陆记录玩家有连续两个登陆行为",
+"type": "缺陷",
+"status": "Blocked",
+"statusCat": "indeterminate",
+"created": "2026-06-11T16:19:18.683+0800",
+"resolved": null,
+"reporter": null,
+"creator": null,
+"assignee": "Yijie Gu(顾亿颉)",
+"labels": [
+"待觀察"
+],
+"fixVersions": [
+{
+"name": "08_V49_10.29",
+"releaseDate": "2026-10-29"
+}
+],
+"parent": null
+},
+{
+"key": "RICH-20631",
+"summary": "【美术】【通路】超值禮包_老子翻倍包 活動頁",
+"type": "故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-06-08T11:31:32.843+0800",
+"resolved": "2026-09-22T11:51:03.631+0800",
+"reporter": null,
+"creator": null,
+"assignee": "Jonathan Kao(高琛侑)",
+"labels": [
+"form",
+"form-37",
+"儲值"
+],
+"fixVersions": [
+{
+"name": "08_V46_9.24",
+"releaseDate": "2026-09-24"
+}
+],
+"parent": {
+"key": "RICH-17092",
+"summary": "【不可延期】【通路】超值禮包_老子翻倍包 活動頁(延至10月)",
+"type": "长篇故事"
+}
+},
+{
+"key": "RICH-20244",
+"summary": "【需求】錢包異常事件監控（卡點監控）後台管理",
+"type": "QATask",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-05-27T14:43:03.543+0800",
+"resolved": "2026-09-09T17:23:46.617+0800",
+"reporter": null,
+"creator": null,
+"assignee": "Yugang Li(李玉刚)",
+"labels": [
+"待營運確認"
+],
+"fixVersions": [
+{
+"name": "08_V44_9.10",
+"releaseDate": "2026-09-10"
+}
+],
+"parent": {
+"key": "RICH-20240",
+"summary": "【BUG轉需求】錢包異常事件監控（卡點監控）後台管理",
+"type": "长篇故事"
+}
+},
+{
+"key": "RICH-20243",
+"summary": "【EP】【需求】錢包異常事件監控（卡點監控）後台管理",
+"type": "故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-05-27T14:42:59.767+0800",
+"resolved": "2026-09-09T17:37:21.434+0800",
+"reporter": null,
+"creator": null,
+"assignee": "Shuocheng Zhang(张硕成)",
+"labels": [
+"待營運確認"
+],
+"fixVersions": [
+{
+"name": "08_V44_9.10",
+"releaseDate": "2026-09-10"
+}
+],
+"parent": {
+"key": "RICH-20240",
+"summary": "【BUG轉需求】錢包異常事件監控（卡點監控）後台管理",
+"type": "长篇故事"
+}
+},
+{
+"key": "RICH-20242",
+"summary": "【後台】【需求】錢包異常事件監控（卡點監控）後台管理",
+"type": "故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-05-27T14:42:55.664+0800",
+"resolved": "2026-09-09T17:23:42.362+0800",
+"reporter": null,
+"creator": null,
+"assignee": "Meng Yu(余梦)",
+"labels": [
+"待營運確認"
+],
+"fixVersions": [
+{
+"name": "08_V44_9.10",
+"releaseDate": "2026-09-10"
+}
+],
+"parent": {
+"key": "RICH-20240",
+"summary": "【BUG轉需求】錢包異常事件監控（卡點監控）後台管理",
+"type": "长篇故事"
+}
+},
+{
+"key": "RICH-20241",
+"summary": "【服務端】【需求】錢包異常事件監控（卡點監控）後台管理",
+"type": "故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-05-27T14:42:51.791+0800",
+"resolved": "2026-09-09T17:23:39.903+0800",
+"reporter": null,
+"creator": null,
+"assignee": "Xiang Zhang(张翔)",
+"labels": [
+"待營運確認"
+],
+"fixVersions": [
+{
+"name": "08_V44_9.10",
+"releaseDate": "2026-09-10"
+}
+],
+"parent": {
+"key": "RICH-20240",
+"summary": "【BUG轉需求】錢包異常事件監控（卡點監控）後台管理",
+"type": "长篇故事"
+}
+},
+{
+"key": "RICH-20240",
+"summary": "【BUG轉需求】錢包異常事件監控（卡點監控）後台管理",
+"type": "长篇故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-05-27T14:42:49.012+0800",
+"resolved": "2026-09-09T17:23:48.278+0800",
+"reporter": null,
+"creator": null,
+"assignee": "Shuocheng Zhang(张硕成)",
+"labels": [
+"待營運確認"
+],
+"fixVersions": [
+{
+"name": "08_V44_9.10",
+"releaseDate": "2026-09-10"
+}
+],
+"parent": null
+},
+{
+"key": "RICH-19858",
+"summary": "玩家可重複購買卡別直升卡品項(每帳號應限購一次)，且僅獲得一次儲值品項 - part1（僅處理iOS和GP）",
+"type": "缺陷",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-05-14T15:52:29.524+0800",
+"resolved": "2026-09-16T14:02:03.389+0800",
+"reporter": null,
+"creator": null,
+"assignee": "Leo Chiu(邱日鴻)",
+"labels": [],
+"fixVersions": [
+{
+"name": "08_V45_9.17",
+"releaseDate": "2026-09-17"
+}
+],
+"parent": null
+},
+{
+"key": "RICH-19605",
+"summary": "客端-線上客服，諮詢視窗的照片要可點圖放大-Part1",
+"type": "长篇故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-05-05T11:25:16.766+0800",
+"resolved": "2026-10-14T19:25:06.709+0800",
+"reporter": null,
+"creator": null,
+"assignee": "Shuocheng Zhang(张硕成)",
+"labels": [
+"form",
+"form-37"
+],
+"fixVersions": [
+{
+"name": "08_V47_10.15",
+"releaseDate": "2026-10-15"
+}
+],
+"parent": null
+},
+{
+"key": "RICH-19270",
+"summary": "【EP】iOS申請禮包品相準備美術圖片-part3",
+"type": "故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-04-22T15:51:06.733+0800",
+"resolved": "2026-09-16T21:24:50.346+0800",
+"reporter": null,
+"creator": null,
+"assignee": "Yijie Gu(顾亿颉)",
+"labels": [],
+"fixVersions": [
+{
+"name": "08_V46_9.24",
+"releaseDate": "2026-09-24"
+}
+],
+"parent": {
+"key": "RICH-19269",
+"summary": "iOS申請禮包品相準備美術圖片-part3",
+"type": "长篇故事"
+}
+},
+{
+"key": "RICH-19269",
+"summary": "iOS申請禮包品相準備美術圖片-part3",
+"type": "长篇故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-04-22T15:49:59.619+0800",
+"resolved": "2026-09-18T13:43:00.295+0800",
+"reporter": null,
+"creator": null,
+"assignee": "Yijie Gu(顾亿颉)",
+"labels": [],
+"fixVersions": [
+{
+"name": "08_V46_9.24",
+"releaseDate": "2026-09-24"
+}
+],
+"parent": null
+},
+{
+"key": "RICH-17675",
+"summary": "【QA】【通路】超值禮包_老子翻倍包 活動頁",
+"type": "QATask",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-03-06T10:37:14.767+0800",
+"resolved": "2026-09-22T11:50:45.546+0800",
+"reporter": null,
+"creator": null,
+"assignee": "Xi Luo(罗玺)",
+"labels": [
+"form",
+"form-37",
+"儲值"
+],
+"fixVersions": [
+{
+"name": "08_V46_9.24",
+"releaseDate": "2026-09-24"
+}
+],
+"parent": {
+"key": "RICH-17092",
+"summary": "【不可延期】【通路】超值禮包_老子翻倍包 活動頁(延至10月)",
+"type": "长篇故事"
+}
+},
+{
+"key": "RICH-17673",
+"summary": "【WEB】【通路】超值禮包_老子翻倍包 活動頁",
+"type": "故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-03-06T10:36:40.289+0800",
+"resolved": "2026-09-22T11:50:47.026+0800",
+"reporter": null,
+"creator": null,
+"assignee": "Xinxiang Zhang(张鑫祥)",
+"labels": [
+"form",
+"form-37",
+"儲值"
+],
+"fixVersions": [
+{
+"name": "08_V46_9.24",
+"releaseDate": "2026-09-24"
+}
+],
+"parent": {
+"key": "RICH-17092",
+"summary": "【不可延期】【通路】超值禮包_老子翻倍包 活動頁(延至10月)",
+"type": "长篇故事"
+}
+},
+{
+"key": "RICH-17092",
+"summary": "【不可延期】【通路】超值禮包_老子翻倍包 活動頁(延至10月)",
+"type": "长篇故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-02-05T11:33:21.126+0800",
+"resolved": "2026-09-22T11:50:40.299+0800",
+"reporter": null,
+"creator": null,
+"assignee": "Meiling Jiang(蒋枚伶)",
+"labels": [
+"form",
+"form-37",
+"儲值"
+],
+"fixVersions": [
+{
+"name": "08_V46_9.24",
+"releaseDate": "2026-09-24"
+}
+],
+"parent": null
+},
+{
+"key": "RICH-2093",
+"summary": "【服务器】倒计时延迟",
+"type": "缺陷",
+"status": "已完成",
+"statusCat": "done",
+"created": "2025-05-23T18:34:30.120+0800",
+"resolved": "2025-07-30T13:32:52.511+0800",
+"reporter": null,
+"creator": null,
+"assignee": "Qifeng Wang(王齐峰)",
+"labels": [],
+"fixVersions": [
+{
+"name": "08_V46_9.24",
+"releaseDate": "2026-09-24"
+}
+],
+"parent": {
+"key": "RICH-23972",
+"summary": "消费延迟问题修复",
+"type": "长篇故事"
+}
+}
+],
+"说明": {
+"version_outside_90d": [
+{
+"key": "RICH-22109",
+"summary": "「策劃」儲值累積額度視覺化【優惠禮包、超值禮包】",
+"type": "故事",
+"status": "已完成",
+"statusCat": "done",
+"created": "2026-07-07T17:17:33.366+0800",
+"resolved": "2026-07-24T10:54:18.516+0800",
+"assignee": "Meiling Jiang(蒋枚伶)",
+"labels": [
+"儲值"
+],
+"fixVersions": [
+{
+"name": "08_V44_9.10",
+"releaseDate": "2026-09-10"
+}
+],
+"parent": {
+"key": "RICH-21565",
+"summary": "【卡別2.0】【Part2】儲值累積額度視覺化【優惠禮包、超值禮包】",
+"type": "长篇故事"
+}
+},
+{
+"key": "RICH-2093",
+"summary": "【服务器】倒计时延迟",
+"type": "缺陷",
+"status": "已完成",
+"statusCat": "done",
+"created": "2025-05-23T18:34:30.120+0800",
+"resolved": "2025-07-30T13:32:52.511+0800",
+"assignee": "Qifeng Wang(王齐峰)",
+"labels": [],
+"fixVersions": [
+{
+"name": "08_V46_9.24",
+"releaseDate": "2026-09-24"
+}
+],
+"parent": {
+"key": "RICH-23972",
+"summary": "消费延迟问题修复",
+"type": "长篇故事"
+}
+}
+],
+"open_outside_90d": [
+{
+"key": "RICH-9940",
+"type": "缺陷",
+"status": "Pending",
+"statusCat": "new",
+"assignee": "Yijie Gu(顾亿颉)",
+"created": "2025-07-25T14:12:07.513+0800",
+"labels": [
+"待排優化"
+],
+"parent": {
+"key": "RICH-7989",
+"summary": "【後台】会员管理",
+"type": "长篇故事"
+},
+"summary": "【後台】WEB官網使用手機登入，輸入一組沒有使用過的手機，註冊新的會員，查看後台手機綁定平台為空值"
+},
+{
+"key": "RICH-9561",
+"type": "QATask",
+"status": "Blocked",
+"statusCat": "indeterminate",
+"assignee": "Ewan Yang(沈扬)",
+"created": "2025-07-21T14:53:26.157+0800",
+"labels": [],
+"parent": {
+"key": "RICH-9547",
+"summary": "【二轮回归测试】【棋牌-黃金德州撲克】【1:1】多端測試内容：iOS / GP / H5 / liff 快速登入（Line)",
+"type": "长篇故事"
+},
+"summary": "【UI 測試】【遊戲畫面】【點擊交互後關閉畫面】測試需玩家手動點擊才能結束遊戲畫面"
+},
+{
+"key": "RICH-9271",
+"type": "QAlity Test",
+"status": "待办",
+"statusCat": "new",
+"assignee": "Mengyuan Li(李梦圆)",
+"created": "2025-07-18T16:02:34.847+0800",
+"labels": [],
+"parent": null,
+"summary": "报表栏信息检查-时间"
+},
+{
+"key": "RICH-8993",
+"type": "缺陷",
+"status": "Pending",
+"statusCat": "new",
+"assignee": "Yijie Gu(顾亿颉)",
+"created": "2025-07-16T15:41:09.567+0800",
+"labels": [
+"待排優化"
+],
+"parent": null,
+"summary": "【后台】建立任务页面中先选择任务目标为押注并在押注值输入999后将目标切换为储值未清空列表"
+},
+{
+"key": "RICH-8682",
+"type": "QAlity Test",
+"status": "待办",
+"statusCat": "new",
+"assignee": "Mengyuan Li(李梦圆)",
+"created": "2025-07-15T21:01:27.402+0800",
+"labels": [],
+"parent": null,
+"summary": "游戏设定-音效-开启"
+},
+{
+"key": "RICH-8389",
+"type": "QAlity Test",
+"status": "待办",
+"statusCat": "new",
+"assignee": "Mengyuan Li(李梦圆)",
+"created": "2025-07-15T15:47:05.573+0800",
+"labels": [],
+"parent": null,
+"summary": "功能检查-个人资讯-聊天"
+}
+],
+"search_index_gap": [
+{
+"key": "RICH-24465",
+"summary": "「16周年庆」押注活動 - 香腸十八仔",
+"type": "长篇故事",
+"status": "待办",
+"statusCat": "new",
+"created": "2026-09-10T14:44:38.270+0800",
+"resolved": null,
+"labels": [],
+"parent": {
+"key": "RICH-24460",
+"summary": "26年-16週年慶",
+"type": "Legend"
+},
+"note": "getJiraIssue 能取到，但 JQL key in 与 90 天查询均未返回"
+}
+],
+"july_bugs_counts": {
+"jql_total": "project = RICH AND issuetype = Bug AND created >= \"2026-07-01\" AND created < \"2026-08-01\"",
+"total": 542,
+"hotfix": 84,
+"legacy": 0
+}
+},
+"长篇故事子单补查_建单与完成均早于90天": [
+{
+"key": "RICH-20556",
+"type": "QATask",
+"parent": "RICH-20555",
+"created": "2026-06-04T18:04:03.482+0800",
+"resolved": "2026-06-05T17:18:24.212+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-20583",
+"type": "缺陷",
+"parent": "RICH-20555",
+"created": "2026-06-05T10:35:40.835+0800",
+"resolved": "2026-06-05T17:18:21.259+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-20988",
+"type": "故事",
+"parent": "RICH-20987",
+"created": "2026-06-12T11:02:13.155+0800",
+"resolved": "2026-07-01T22:19:41.803+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-20989",
+"type": "故事",
+"parent": "RICH-20987",
+"created": "2026-06-12T11:02:16.612+0800",
+"resolved": "2026-06-18T14:42:44.760+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-20991",
+"type": "故事",
+"parent": "RICH-20987",
+"created": "2026-06-12T11:02:24.022+0800",
+"resolved": "2026-06-22T09:53:49.906+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-20992",
+"type": "故事",
+"parent": "RICH-20987",
+"created": "2026-06-12T11:02:27.423+0800",
+"resolved": "2026-07-08T14:08:29.533+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-20993",
+"type": "故事",
+"parent": "RICH-20987",
+"created": "2026-06-12T11:02:32.668+0800",
+"resolved": "2026-07-01T22:19:55.062+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21184",
+"type": "故事",
+"parent": "RICH-20638",
+"created": "2026-06-15T19:44:27.638+0800",
+"resolved": "2026-07-22T19:40:58.656+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21185",
+"type": "故事",
+"parent": "RICH-20638",
+"created": "2026-06-15T19:44:39.011+0800",
+"resolved": "2026-07-22T19:41:03.271+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21186",
+"type": "故事",
+"parent": "RICH-20638",
+"created": "2026-06-15T19:44:52.845+0800",
+"resolved": "2026-07-22T19:41:07.993+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21187",
+"type": "故事",
+"parent": "RICH-20638",
+"created": "2026-06-15T19:45:04.543+0800",
+"resolved": "2026-07-23T14:38:55.892+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21188",
+"type": "QATask",
+"parent": "RICH-20638",
+"created": "2026-06-15T19:45:14.299+0800",
+"resolved": "2026-07-22T17:36:21.571+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21430",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-23T15:48:04.160+0800",
+"resolved": "2026-06-30T20:38:07.165+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21437",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-23T15:56:06.239+0800",
+"resolved": "2026-06-30T10:26:47.874+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21558",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-25T14:57:00.468+0800",
+"resolved": "2026-06-30T22:46:22.794+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21561",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-25T15:11:41.377+0800",
+"resolved": "2026-06-30T10:12:24.052+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21584",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-25T18:08:21.055+0800",
+"resolved": "2026-06-30T11:20:58.551+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21614",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-26T21:02:17.934+0800",
+"resolved": "2026-06-30T20:29:38.340+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21618",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-26T21:37:44.848+0800",
+"resolved": "2026-06-30T10:20:55.605+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21619",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-26T22:00:09.022+0800",
+"resolved": "2026-07-02T01:24:14.314+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21621",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-26T22:07:30.565+0800",
+"resolved": "2026-07-02T01:27:07.119+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21622",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-26T22:18:24.831+0800",
+"resolved": "2026-06-30T21:49:59.497+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21623",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-26T22:25:04.141+0800",
+"resolved": "2026-06-30T21:50:39.225+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21625",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-26T22:33:30.761+0800",
+"resolved": "2026-07-08T16:39:04.241+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21627",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-26T22:52:30.146+0800",
+"resolved": "2026-07-02T01:33:10.161+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21629",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-26T23:20:02.295+0800",
+"resolved": "2026-07-02T01:30:53.288+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21631",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-29T09:43:52.645+0800",
+"resolved": "2026-06-30T22:57:31.435+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21648",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-29T10:11:22.306+0800",
+"resolved": "2026-06-30T10:50:55.897+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21650",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-29T10:15:19.147+0800",
+"resolved": "2026-06-30T22:59:08.142+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21653",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-29T10:39:27.439+0800",
+"resolved": "2026-06-30T23:00:15.372+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21655",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-29T10:54:10.969+0800",
+"resolved": "2026-06-30T11:11:56.831+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21656",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-29T10:57:55.363+0800",
+"resolved": "2026-06-30T23:03:20.489+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21657",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-29T11:05:44.002+0800",
+"resolved": "2026-06-30T23:16:32.007+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21661",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-29T11:14:15.589+0800",
+"resolved": "2026-06-30T11:07:34.063+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21667",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-29T13:48:54.990+0800",
+"resolved": "2026-07-01T10:25:03.749+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21673",
+"type": "QATask",
+"parent": "RICH-21523",
+"created": "2026-06-29T14:13:24.631+0800",
+"resolved": "2026-07-15T14:03:59.363+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21679",
+"type": "故事",
+"parent": "RICH-18414",
+"created": "2026-06-29T14:35:37.250+0800",
+"resolved": "2026-07-30T20:17:20.358+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21680",
+"type": "故事",
+"parent": "RICH-18414",
+"created": "2026-06-29T14:35:45.716+0800",
+"resolved": "2026-07-30T20:17:21.307+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21681",
+"type": "故事",
+"parent": "RICH-18414",
+"created": "2026-06-29T14:35:55.990+0800",
+"resolved": "2026-07-30T20:17:31.438+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21682",
+"type": "QATask",
+"parent": "RICH-18414",
+"created": "2026-06-29T14:36:07.715+0800",
+"resolved": "2026-07-27T17:31:53.668+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21684",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-29T14:38:14.016+0800",
+"resolved": "2026-06-30T11:12:21.554+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21687",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-29T14:46:33.222+0800",
+"resolved": "2026-07-02T14:30:43.641+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21696",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-29T15:26:31.019+0800",
+"resolved": "2026-07-01T10:15:13.528+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21697",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-29T15:29:43.402+0800",
+"resolved": "2026-06-30T11:01:08.677+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21699",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-29T15:37:35.520+0800",
+"resolved": "2026-06-30T10:55:28.214+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21706",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-29T16:36:37.406+0800",
+"resolved": "2026-07-01T10:30:48.432+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21708",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-29T17:01:12.590+0800",
+"resolved": "2026-07-02T01:42:04.009+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21709",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-29T17:23:37.160+0800",
+"resolved": "2026-07-02T00:39:50.041+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21749",
+"type": "故事",
+"parent": "RICH-21745",
+"created": "2026-06-29T19:02:55.435+0800",
+"resolved": "2026-07-29T09:02:04.142+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21750",
+"type": "QATask",
+"parent": "RICH-21745",
+"created": "2026-06-29T19:03:05.780+0800",
+"resolved": "2026-07-27T17:33:16.514+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21751",
+"type": "故事",
+"parent": "RICH-21745",
+"created": "2026-06-29T19:03:20.137+0800",
+"resolved": "2026-07-27T17:32:28.929+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21752",
+"type": "故事",
+"parent": "RICH-21745",
+"created": "2026-06-29T19:03:28.769+0800",
+"resolved": "2026-07-27T17:32:30.746+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21753",
+"type": "故事",
+"parent": "RICH-21745",
+"created": "2026-06-29T19:03:49.389+0800",
+"resolved": "2026-07-27T17:32:36.360+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21755",
+"type": "故事",
+"parent": "RICH-21745",
+"created": "2026-06-29T19:04:02.448+0800",
+"resolved": "2026-07-27T17:32:38.757+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21759",
+"type": "故事",
+"parent": "RICH-21745",
+"created": "2026-06-29T19:04:33.753+0800",
+"resolved": "2026-07-29T23:22:22.349+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21784",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-29T19:12:03.105+0800",
+"resolved": "2026-07-01T10:43:07.562+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21785",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-29T19:49:36.207+0800",
+"resolved": "2026-07-01T10:41:01.289+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21786",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-29T20:47:58.705+0800",
+"resolved": "2026-07-01T10:48:02.083+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21787",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-29T21:11:24.206+0800",
+"resolved": "2026-07-01T10:50:46.836+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21788",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-29T21:32:32.352+0800",
+"resolved": "2026-07-01T10:52:31.777+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21792",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-30T10:47:09.396+0800",
+"resolved": "2026-07-01T11:10:13.614+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21793",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-30T11:37:14.759+0800",
+"resolved": "2026-07-01T22:27:43.027+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21802",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-30T15:45:56.350+0800",
+"resolved": "2026-07-01T20:33:32.423+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21803",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-30T15:51:23.795+0800",
+"resolved": "2026-07-01T10:28:47.358+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21805",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-30T15:54:12.688+0800",
+"resolved": "2026-07-01T21:13:13.658+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21806",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-30T16:00:46.205+0800",
+"resolved": "2026-07-01T10:15:03.470+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21813",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-30T16:17:02.998+0800",
+"resolved": "2026-07-02T01:31:21.643+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21825",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-30T19:16:40.225+0800",
+"resolved": "2026-07-01T17:18:04.243+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21831",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-30T20:36:45.336+0800",
+"resolved": "2026-07-01T17:17:45.420+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21834",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-30T21:01:56.626+0800",
+"resolved": "2026-07-01T10:14:55.984+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21835",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-30T21:40:13.674+0800",
+"resolved": "2026-07-02T00:32:06.126+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21838",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-30T22:20:50.726+0800",
+"resolved": "2026-07-01T23:36:31.713+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21840",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-30T23:05:22.563+0800",
+"resolved": "2026-07-01T11:20:53.523+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21841",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-30T23:46:21.000+0800",
+"resolved": "2026-07-01T21:14:23.089+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21842",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-06-30T23:53:36.128+0800",
+"resolved": "2026-07-01T20:07:19.589+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21853",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-07-01T14:23:07.640+0800",
+"resolved": "2026-07-01T20:39:28.260+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21854",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-07-01T14:29:51.861+0800",
+"resolved": "2026-07-01T23:36:49.431+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21855",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-07-01T14:35:42.773+0800",
+"resolved": "2026-07-01T21:03:35.811+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21857",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-07-01T15:05:51.640+0800",
+"resolved": "2026-07-08T16:04:59.654+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21860",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-07-01T15:31:58.608+0800",
+"resolved": "2026-07-02T00:28:38.485+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21868",
+"type": "故事",
+"parent": "RICH-19632",
+"created": "2026-07-01T15:59:04.751+0800",
+"resolved": "2026-07-01T16:14:38.871+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21871",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-07-01T16:10:22.395+0800",
+"resolved": "2026-07-01T21:03:17.597+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21872",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-07-01T16:17:46.725+0800",
+"resolved": "2026-07-02T01:49:02.943+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21881",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-07-01T17:26:59.399+0800",
+"resolved": "2026-07-02T01:23:29.320+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21887",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-07-01T17:58:31.292+0800",
+"resolved": "2026-07-08T10:55:54.648+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21889",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-07-01T18:02:13.261+0800",
+"resolved": "2026-07-02T01:20:41.900+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21894",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-07-01T19:51:15.129+0800",
+"resolved": "2026-07-01T21:14:39.099+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21902",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-07-02T00:50:55.715+0800",
+"resolved": "2026-07-06T18:23:26.667+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21903",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-07-02T00:58:13.801+0800",
+"resolved": "2026-07-07T10:09:42.775+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21904",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-07-02T01:16:01.783+0800",
+"resolved": "2026-07-07T11:25:52.305+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21905",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-07-02T01:38:22.260+0800",
+"resolved": "2026-07-16T16:11:00.940+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21917",
+"type": "故事",
+"parent": "RICH-21745",
+"created": "2026-07-02T14:15:41.449+0800",
+"resolved": "2026-07-21T12:55:18.135+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-21983",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-07-06T10:18:10.815+0800",
+"resolved": "2026-07-08T16:33:13.684+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22030",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-07-06T16:39:43.514+0800",
+"resolved": "2026-07-07T15:51:40.814+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22036",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-07-06T18:07:02.617+0800",
+"resolved": "2026-07-07T15:30:32.681+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22052",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-07-07T10:06:02.645+0800",
+"resolved": "2026-07-07T15:16:46.159+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22053",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-07-07T10:16:08.475+0800",
+"resolved": "2026-07-08T13:04:40.400+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22063",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-07-07T11:32:59.326+0800",
+"resolved": "2026-07-08T10:37:52.811+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22064",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-07-07T13:39:28.699+0800",
+"resolved": "2026-07-08T15:39:31.496+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22065",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-07-07T13:39:45.176+0800",
+"resolved": "2026-07-08T16:39:01.431+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22074",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-07-07T16:08:16.363+0800",
+"resolved": "2026-07-16T16:10:49.208+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22076",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-07-07T16:10:44.721+0800",
+"resolved": "2026-07-08T10:39:47.861+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22085",
+"type": "故事",
+"parent": "RICH-14146",
+"created": "2026-07-07T17:10:56.330+0800",
+"resolved": "2026-07-16T16:48:47.053+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22099",
+"type": "故事",
+"parent": "RICH-17981",
+"created": "2026-07-07T17:14:46.291+0800",
+"resolved": "2026-07-08T15:47:36.595+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22102",
+"type": "故事",
+"parent": "RICH-19120",
+"created": "2026-07-07T17:15:32.871+0800",
+"resolved": "2026-07-09T16:15:38.823+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22109",
+"type": "故事",
+"parent": "RICH-21565",
+"created": "2026-07-07T17:17:33.366+0800",
+"resolved": "2026-07-24T10:54:18.516+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22119",
+"type": "故事",
+"parent": "RICH-22043",
+"created": "2026-07-07T17:19:36.824+0800",
+"resolved": "2026-07-13T10:00:28.418+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22152",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-07-07T19:41:42.265+0800",
+"resolved": "2026-07-08T11:04:06.371+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22153",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-07-07T19:42:31.508+0800",
+"resolved": "2026-07-08T12:32:44.918+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22156",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-07-07T20:27:15.298+0800",
+"resolved": "2026-07-08T17:46:57.322+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22164",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-07-08T10:36:15.398+0800",
+"resolved": "2026-07-09T16:20:37.779+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22183",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-07-08T15:53:37.875+0800",
+"resolved": "2026-07-09T17:35:39.276+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22194",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-07-08T17:06:56.920+0800",
+"resolved": "2026-07-09T17:45:13.418+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22201",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-07-08T17:36:59.704+0800",
+"resolved": "2026-07-09T16:20:20.257+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22205",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-07-08T18:07:37.500+0800",
+"resolved": "2026-07-09T17:17:58.018+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22207",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-07-08T18:27:54.805+0800",
+"resolved": "2026-07-09T16:21:36.938+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22208",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-07-08T18:44:17.971+0800",
+"resolved": "2026-07-09T17:12:29.366+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22209",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-07-08T19:11:43.438+0800",
+"resolved": "2026-07-09T16:59:22.923+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22214",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-07-08T20:21:59.696+0800",
+"resolved": "2026-07-17T10:32:31.101+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22215",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-07-08T20:40:05.176+0800",
+"resolved": "2026-07-28T16:28:51.343+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22244",
+"type": "故事",
+"parent": "RICH-17579",
+"created": "2026-07-09T14:02:50.468+0800",
+"resolved": "2026-07-30T16:50:09.826+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22256",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-07-09T16:15:11.051+0800",
+"resolved": "2026-07-13T16:31:49.021+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22288",
+"type": "故事",
+"parent": "RICH-20638",
+"created": "2026-07-10T15:03:25.630+0800",
+"resolved": "2026-07-22T15:09:23.124+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22300",
+"type": "故事",
+"parent": "RICH-20638",
+"created": "2026-07-10T17:18:16.360+0800",
+"resolved": "2026-07-22T18:38:35.780+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22302",
+"type": "故事",
+"parent": "RICH-20638",
+"created": "2026-07-10T17:19:15.053+0800",
+"resolved": "2026-07-23T14:39:08.077+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22303",
+"type": "故事",
+"parent": "RICH-20638",
+"created": "2026-07-10T17:19:24.297+0800",
+"resolved": "2026-07-22T19:37:53.132+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22304",
+"type": "故事",
+"parent": "RICH-20638",
+"created": "2026-07-10T17:19:49.382+0800",
+"resolved": "2026-07-23T11:01:16.143+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22310",
+"type": "故事",
+"parent": "RICH-20638",
+"created": "2026-07-10T18:29:34.538+0800",
+"resolved": "2026-07-22T15:09:14.036+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22324",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-07-13T15:13:26.312+0800",
+"resolved": "2026-07-17T10:11:59.956+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22359",
+"type": "故事",
+"parent": "RICH-22180",
+"created": "2026-07-14T10:01:45.829+0800",
+"resolved": "2026-07-22T10:30:38.663+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22363",
+"type": "故事",
+"parent": "RICH-22180",
+"created": "2026-07-14T10:02:18.074+0800",
+"resolved": "2026-07-16T17:22:51.354+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22372",
+"type": "故事",
+"parent": "RICH-22058",
+"created": "2026-07-14T11:11:38.268+0800",
+"resolved": "2026-07-30T11:09:11.294+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22373",
+"type": "QATask",
+"parent": "RICH-22058",
+"created": "2026-07-14T11:11:49.840+0800",
+"resolved": "2026-07-30T11:09:08.924+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22374",
+"type": "故事",
+"parent": "RICH-22058",
+"created": "2026-07-14T11:11:59.936+0800",
+"resolved": "2026-07-30T15:49:38.040+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22398",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-07-14T16:44:26.295+0800",
+"resolved": "2026-07-15T19:51:31.107+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22405",
+"type": "故事",
+"parent": "RICH-22453",
+"created": "2026-07-15T09:46:33.476+0800",
+"resolved": "2026-07-27T19:56:02.674+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22415",
+"type": "故事",
+"parent": "RICH-22332",
+"created": "2026-07-15T09:49:43.481+0800",
+"resolved": "2026-07-16T15:25:35.545+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22420",
+"type": "故事",
+"parent": "RICH-22249",
+"created": "2026-07-15T09:51:58.412+0800",
+"resolved": "2026-07-27T14:59:02.115+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22482",
+"type": "故事",
+"parent": "RICH-18414",
+"created": "2026-07-15T19:42:00.636+0800",
+"resolved": "2026-07-17T13:56:47.846+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22496",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-07-16T15:41:50.349+0800",
+"resolved": "2026-07-22T10:26:16.667+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22516",
+"type": "缺陷",
+"parent": "RICH-20638",
+"created": "2026-07-17T11:06:43.067+0800",
+"resolved": "2026-07-22T15:28:16.626+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22519",
+"type": "缺陷",
+"parent": "RICH-20638",
+"created": "2026-07-17T11:38:13.194+0800",
+"resolved": "2026-07-22T09:58:03.006+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22526",
+"type": "QATask",
+"parent": "RICH-18414",
+"created": "2026-07-17T14:34:28.030+0800",
+"resolved": "2026-07-30T20:17:34.991+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22534",
+"type": "缺陷",
+"parent": "RICH-20638",
+"created": "2026-07-17T16:32:54.262+0800",
+"resolved": "2026-07-22T09:57:56.709+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22535",
+"type": "缺陷",
+"parent": "RICH-20638",
+"created": "2026-07-17T16:34:50.289+0800",
+"resolved": "2026-07-22T09:57:51.746+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22538",
+"type": "缺陷",
+"parent": "RICH-20638",
+"created": "2026-07-17T16:53:43.326+0800",
+"resolved": "2026-07-22T13:40:16.675+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22541",
+"type": "缺陷",
+"parent": "RICH-20638",
+"created": "2026-07-17T17:49:14.785+0800",
+"resolved": "2026-07-22T11:03:54.047+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22562",
+"type": "故事",
+"parent": "RICH-22520",
+"created": "2026-07-20T10:11:34.423+0800",
+"resolved": "2026-07-21T10:36:29.342+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22571",
+"type": "缺陷",
+"parent": "RICH-20638",
+"created": "2026-07-20T10:54:23.861+0800",
+"resolved": "2026-07-22T09:56:52.126+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22601",
+"type": "缺陷",
+"parent": "RICH-20638",
+"created": "2026-07-20T17:43:03.130+0800",
+"resolved": "2026-07-22T11:03:33.878+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22602",
+"type": "缺陷",
+"parent": "RICH-20638",
+"created": "2026-07-20T17:58:38.657+0800",
+"resolved": "2026-07-22T11:03:28.431+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22608",
+"type": "缺陷",
+"parent": "RICH-20638",
+"created": "2026-07-21T10:14:22.943+0800",
+"resolved": "2026-07-22T11:03:39.147+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22638",
+"type": "缺陷",
+"parent": "RICH-20638",
+"created": "2026-07-21T15:29:48.485+0800",
+"resolved": "2026-07-22T11:03:50.981+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22642",
+"type": "故事",
+"parent": "RICH-22523",
+"created": "2026-07-21T16:11:27.884+0800",
+"resolved": "2026-07-21T16:54:54.008+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22651",
+"type": "缺陷",
+"parent": "RICH-21745",
+"created": "2026-07-21T16:47:39.498+0800",
+"resolved": "2026-07-23T10:42:49.806+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22652",
+"type": "缺陷",
+"parent": "RICH-20987",
+"created": "2026-07-21T16:57:20.512+0800",
+"resolved": "2026-07-22T10:19:48.179+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22653",
+"type": "缺陷",
+"parent": "RICH-21745",
+"created": "2026-07-21T17:02:55.784+0800",
+"resolved": "2026-07-23T10:43:42.685+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22664",
+"type": "缺陷",
+"parent": "RICH-21745",
+"created": "2026-07-21T18:15:58.006+0800",
+"resolved": "2026-07-23T10:46:28.894+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22670",
+"type": "故事",
+"parent": "RICH-22247",
+"created": "2026-07-22T09:53:13.059+0800",
+"resolved": "2026-07-22T13:31:38.130+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22685",
+"type": "缺陷",
+"parent": "RICH-21745",
+"created": "2026-07-22T10:43:52.065+0800",
+"resolved": "2026-07-23T10:48:49.813+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22692",
+"type": "缺陷",
+"parent": "RICH-20638",
+"created": "2026-07-22T11:31:48.722+0800",
+"resolved": "2026-07-22T15:54:34.475+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22711",
+"type": "缺陷",
+"parent": "RICH-21745",
+"created": "2026-07-22T18:05:13.252+0800",
+"resolved": "2026-07-23T14:52:18.649+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22712",
+"type": "缺陷",
+"parent": "RICH-21745",
+"created": "2026-07-22T18:16:05.632+0800",
+"resolved": "2026-07-23T10:52:08.241+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22725",
+"type": "缺陷",
+"parent": "RICH-21745",
+"created": "2026-07-23T11:01:25.492+0800",
+"resolved": "2026-07-24T17:41:01.671+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22728",
+"type": "缺陷",
+"parent": "RICH-21745",
+"created": "2026-07-23T11:23:33.893+0800",
+"resolved": "2026-07-23T17:51:09.687+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22731",
+"type": "缺陷",
+"parent": "RICH-21745",
+"created": "2026-07-23T11:43:47.729+0800",
+"resolved": "2026-07-23T18:00:22.683+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22733",
+"type": "缺陷",
+"parent": "RICH-20638",
+"created": "2026-07-23T11:55:08.162+0800",
+"resolved": "2026-07-27T13:44:39.326+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22742",
+"type": "缺陷",
+"parent": "RICH-21745",
+"created": "2026-07-23T14:59:44.298+0800",
+"resolved": "2026-07-27T16:51:36.165+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22760",
+"type": "缺陷",
+"parent": "RICH-21745",
+"created": "2026-07-23T16:51:28.468+0800",
+"resolved": "2026-07-24T16:59:53.867+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22761",
+"type": "缺陷",
+"parent": "RICH-21745",
+"created": "2026-07-23T17:02:13.817+0800",
+"resolved": "2026-07-24T16:56:14.918+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22764",
+"type": "缺陷",
+"parent": "RICH-21745",
+"created": "2026-07-23T17:39:17.876+0800",
+"resolved": "2026-07-27T15:51:05.462+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22777",
+"type": "故事",
+"parent": "RICH-22330",
+"created": "2026-07-24T10:33:07.068+0800",
+"resolved": "2026-07-24T17:13:48.474+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22780",
+"type": "缺陷",
+"parent": "RICH-18414",
+"created": "2026-07-24T11:20:54.159+0800",
+"resolved": "2026-07-27T11:25:46.999+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22782",
+"type": "缺陷",
+"parent": "RICH-18414",
+"created": "2026-07-24T11:38:10.128+0800",
+"resolved": "2026-07-27T11:34:28.926+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22836",
+"type": "缺陷",
+"parent": "RICH-21745",
+"created": "2026-07-24T17:47:03.405+0800",
+"resolved": "2026-07-27T15:56:22.136+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22859",
+"type": "缺陷",
+"parent": "RICH-18414",
+"created": "2026-07-27T14:15:50.410+0800",
+"resolved": "2026-07-27T16:37:55.841+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22901",
+"type": "缺陷",
+"parent": "RICH-21745",
+"created": "2026-07-28T14:38:57.181+0800",
+"resolved": "2026-07-28T18:25:07.466+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22917",
+"type": "缺陷",
+"parent": "RICH-18414",
+"created": "2026-07-28T16:22:44.357+0800",
+"resolved": "2026-07-28T18:08:51.209+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22923",
+"type": "QATask",
+"parent": "RICH-21745",
+"created": "2026-07-28T17:27:15.778+0800",
+"resolved": "2026-07-29T21:58:23.685+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22932",
+"type": "缺陷",
+"parent": "RICH-22249",
+"created": "2026-07-28T19:21:24.506+0800",
+"resolved": "2026-07-29T16:26:50.998+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22933",
+"type": "缺陷",
+"parent": "RICH-22249",
+"created": "2026-07-28T19:34:32.532+0800",
+"resolved": "2026-07-29T16:41:33.018+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22934",
+"type": "缺陷",
+"parent": "RICH-22249",
+"created": "2026-07-28T19:50:07.847+0800",
+"resolved": "2026-07-29T15:48:27.634+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22949",
+"type": "缺陷",
+"parent": "RICH-21745",
+"created": "2026-07-29T10:46:29.293+0800",
+"resolved": "2026-07-29T17:32:17.034+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22950",
+"type": "缺陷",
+"parent": "RICH-21745",
+"created": "2026-07-29T10:54:14.115+0800",
+"resolved": "2026-07-29T20:38:18.205+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22961",
+"type": "故事",
+"parent": "RICH-21745",
+"created": "2026-07-29T11:54:56.803+0800",
+"resolved": "2026-07-29T14:50:05.645+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22965",
+"type": "缺陷",
+"parent": "RICH-22058",
+"created": "2026-07-29T14:36:04.803+0800",
+"resolved": "2026-07-29T16:57:32.895+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22966",
+"type": "缺陷",
+"parent": "RICH-21745",
+"created": "2026-07-29T14:43:32.767+0800",
+"resolved": "2026-07-29T15:46:13.672+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-22967",
+"type": "缺陷",
+"parent": "RICH-21745",
+"created": "2026-07-29T15:25:47.057+0800",
+"resolved": "2026-07-29T17:43:38.289+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-23003",
+"type": "缺陷",
+"parent": "RICH-18414",
+"created": "2026-07-29T23:05:40.171+0800",
+"resolved": "2026-07-30T20:17:40.365+0800",
+"status": "已完成"
+},
+{
+"key": "RICH-23004",
+"type": "缺陷",
+"parent": "RICH-21745",
+"created": "2026-07-29T23:21:43.213+0800",
+"resolved": "2026-07-30T11:29:35.096+0800",
+"status": "已完成"
+}
+]
+}

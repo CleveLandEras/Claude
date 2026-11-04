@@ -1,0 +1,587 @@
+{
+ "mix": {
+  "file": "/Users/decheng.huang/Documents/dy/studio/public/002/mix.wav",
+  "samples": 2808000,
+  "frames": 1755.0,
+  "I": -15.0,
+  "LRA": 12.0,
+  "TP": -2.3,
+  "loudnorm_I": -15.13,
+  "loudnorm_TP": -2.27,
+  "limiter_min_db": -4.51,
+  "phone_I": -15.5
+ },
+ "music": {
+  "file": "/Users/decheng.huang/Documents/dy/studio/public/002/music.wav",
+  "samples": 2808000,
+  "I": -25.5,
+  "TP": -10.3,
+  "rel_to_sfx_LU": -10.9,
+  "sfx_in_mix_I": -14.6,
+  "bands": {
+   "20–200 Hz": 7.9,
+   "200–2000 Hz": 92.0,
+   "1000–4000 Hz": 1.1,
+   "2000–20000 Hz": 0.0
+  },
+  "sections": {
+   "A 好奇 0.00–6.40": {
+    "M_median": -27.9,
+    "M_max": -24.5
+   },
+   "？ 没解决 6.40–7.80": {
+    "M_median": -23.9,
+    "M_max": -23.0
+   },
+   "B 主旋律 8.40–14.00": {
+    "M_median": -24.9,
+    "M_max": -19.0
+   },
+   "B' 变狠 14.00–22.10": {
+    "M_median": -24.6,
+    "M_max": -20.0
+   },
+   "C 世界冷了 22.10–28.20": {
+    "M_median": -37.5,
+    "M_max": -28.1
+   },
+   "D 回暖 28.20–42.50": {
+    "M_median": -30.6,
+    "M_max": -22.8
+   },
+   "其中 S21 一来一回 35.50–37.90": {
+    "M_median": -28.1,
+    "M_max": -27.4
+   },
+   "E 最暖最满 42.50–46.20": {
+    "M_median": -20.3,
+    "M_max": -18.4
+   },
+   "U 好欺负的人多了（安稳里透出不安） 46.20–48.60": {
+    "M_median": -31.5,
+    "M_max": -26.2
+   },
+   "F 狠人又回来了（转暗） 48.60–51.00": {
+    "M_median": -33.8,
+    "M_max": -30.4
+   },
+   "W 四个你＋带走句（回暖） 51.00–53.50": {
+    "M_median": -36.5,
+    "M_max": -27.9
+   },
+   "S27–S27h 收薄（给钟表让地方） 53.50–54.50": {
+    "M_median": -40.5,
+    "M_max": -35.3
+   },
+   "G 结尾 54.50–58.50": {
+    "M_median": -30.8,
+    "M_max": -26.6
+   }
+  },
+  "max_rise_over_prev10s_db": 0.6,
+  "max_rise_at_s": 41.1,
+  "notes": 264,
+  "music_gain_db": -18.9,
+  "total_gain_db": 4.5
+ },
+ "duck": {
+  "keys": 36,
+  "depth_db": [
+   -6.0,
+   -6.0
+  ]
+ },
+ "key_phone_margin": {
+  "median": 18.25,
+  "lowest": [
+   [
+    7.0,
+    15.467,
+    "路线图：狠（回到）"
+   ],
+   [
+    7.6,
+    6.233,
+    "路线图：狠（亮出）"
+   ],
+   [
+    8.8,
+    11.067,
+    "手滑落地"
+   ],
+   [
+    10.7,
+    12.62,
+    "手滑落地"
+   ]
+  ]
+ },
+ "key_band": {
+  "threshold": -41.0,
+  "n": 36,
+  "failed": [],
+  "weakest": [
+   {
+    "t": 31.9,
+    "label": "硬切到远景",
+    "db": -27.3
+   },
+   {
+    "t": 6.233,
+    "label": "路线图：狠（亮出）",
+    "db": -26.2
+   },
+   {
+    "t": 15.467,
+    "label": "路线图：狠（回到）",
+    "db": -25.5
+   },
+   {
+    "t": 19.6,
+    "label": "抢（你→他）",
+    "db": -25.1
+   }
+  ]
+ },
+ "harmony": [
+  {
+   "t": 3.8,
+   "label": "路线图 淡入",
+   "chord": "Em",
+   "in_chord": true,
+   "in_G_major": true
+  },
+  {
+   "t": 6.23,
+   "label": "路线图 狠",
+   "chord": "G",
+   "in_chord": true,
+   "in_G_major": true
+  },
+  {
+   "t": 6.5,
+   "label": "ask 1",
+   "chord": "D9sus4",
+   "in_chord": true,
+   "in_G_major": true
+  },
+  {
+   "t": 6.6,
+   "label": "ask 2",
+   "chord": "D9sus4",
+   "in_chord": true,
+   "in_G_major": true
+  },
+  {
+   "t": 12.17,
+   "label": "S09 递 G6",
+   "chord": "C",
+   "in_chord": true,
+   "in_G_major": true
+  },
+  {
+   "t": 12.37,
+   "label": "S09 递回来 E6",
+   "chord": "C",
+   "in_chord": true,
+   "in_G_major": true
+  },
+  {
+   "t": 15.47,
+   "label": "路线图 狠",
+   "chord": "Em",
+   "in_chord": true,
+   "in_G_major": true
+  },
+  {
+   "t": 18.63,
+   "label": "S12 递 G6",
+   "chord": "Em",
+   "in_chord": true,
+   "in_G_major": true
+  },
+  {
+   "t": 18.83,
+   "label": "S12 递回来 E6",
+   "chord": "Em",
+   "in_chord": true,
+   "in_G_major": true
+  },
+  {
+   "t": 20.5,
+   "label": "上扬叮 C6",
+   "chord": "Cm",
+   "in_chord": true,
+   "in_G_major": true
+  },
+  {
+   "t": 29.67,
+   "label": "S18 递 G6",
+   "chord": "C",
+   "in_chord": true,
+   "in_G_major": true
+  },
+  {
+   "t": 29.8,
+   "label": "S18 递回来 E6",
+   "chord": "C",
+   "in_chord": true,
+   "in_G_major": true
+  },
+  {
+   "t": 31.37,
+   "label": "路线图 有来有往",
+   "chord": "G",
+   "in_chord": true,
+   "in_G_major": true
+  },
+  {
+   "t": 39.7,
+   "label": "照样递出（暖叮 A5）",
+   "chord": "G",
+   "in_chord": false,
+   "in_G_major": true
+  },
+  {
+   "t": 40.23,
+   "label": "S22 你也递回去 G6",
+   "chord": "G",
+   "in_chord": true,
+   "in_G_major": true
+  },
+  {
+   "t": 41.37,
+   "label": "路线图 原谅",
+   "chord": "Em",
+   "in_chord": true,
+   "in_G_major": true
+  },
+  {
+   "t": 45.53,
+   "label": "翻完 A6",
+   "chord": "D",
+   "in_chord": true,
+   "in_G_major": true
+  },
+  {
+   "t": 51.37,
+   "label": "第 1 盏灯",
+   "chord": "G",
+   "in_chord": true,
+   "in_G_major": true
+  },
+  {
+   "t": 51.7,
+   "label": "第 2 盏灯",
+   "chord": "G",
+   "in_chord": true,
+   "in_G_major": true
+  },
+  {
+   "t": 52.03,
+   "label": "第 3 盏灯",
+   "chord": "G",
+   "in_chord": true,
+   "in_G_major": true
+  },
+  {
+   "t": 52.37,
+   "label": "第 4 盏灯",
+   "chord": "G",
+   "in_chord": true,
+   "in_G_major": true
+  },
+  {
+   "t": 55.27,
+   "label": "选项 再约一次",
+   "chord": "G",
+   "in_chord": true,
+   "in_G_major": true
+  },
+  {
+   "t": 55.53,
+   "label": "选项 拉黑",
+   "chord": "G",
+   "in_chord": true,
+   "in_G_major": true
+  }
+ ],
+ "chords": [
+  [
+   0.0,
+   2.4,
+   "G",
+   "A"
+  ],
+  [
+   2.4,
+   3.6,
+   "C",
+   "A"
+  ],
+  [
+   3.6,
+   4.8,
+   "Em",
+   "A"
+  ],
+  [
+   4.8,
+   6.0,
+   "C",
+   "A"
+  ],
+  [
+   6.0,
+   6.4,
+   "G",
+   "A"
+  ],
+  [
+   6.4,
+   7.8,
+   "D9sus4",
+   "？"
+  ],
+  [
+   8.4,
+   10.8,
+   "G",
+   "B"
+  ],
+  [
+   10.8,
+   12.0,
+   "Em",
+   "B"
+  ],
+  [
+   12.0,
+   13.2,
+   "C",
+   "B"
+  ],
+  [
+   13.2,
+   14.0,
+   "D",
+   "B"
+  ],
+  [
+   14.0,
+   16.4,
+   "Em",
+   "B'"
+  ],
+  [
+   16.4,
+   18.2,
+   "Cm",
+   "B'"
+  ],
+  [
+   18.2,
+   19.4,
+   "Em",
+   "B'"
+  ],
+  [
+   19.4,
+   22.1,
+   "Cm",
+   "B'"
+  ],
+  [
+   22.1,
+   24.27,
+   "Emadd9",
+   "C"
+  ],
+  [
+   24.27,
+   25.1,
+   "Cmaj7",
+   "C"
+  ],
+  [
+   25.1,
+   26.5,
+   "Am9",
+   "C"
+  ],
+  [
+   26.5,
+   28.2,
+   "Em",
+   "C"
+  ],
+  [
+   28.2,
+   29.4,
+   "Em",
+   "D"
+  ],
+  [
+   29.4,
+   31.2,
+   "C",
+   "D"
+  ],
+  [
+   31.2,
+   33.0,
+   "G",
+   "D"
+  ],
+  [
+   33.0,
+   34.0,
+   "D",
+   "D"
+  ],
+  [
+   34.3,
+   35.5,
+   "Em",
+   "D"
+  ],
+  [
+   35.5,
+   37.0,
+   "G",
+   "D"
+  ],
+  [
+   37.0,
+   37.9,
+   "D",
+   "D"
+  ],
+  [
+   37.9,
+   39.1,
+   "C",
+   "D"
+  ],
+  [
+   39.1,
+   39.7,
+   "D",
+   "D"
+  ],
+  [
+   39.7,
+   40.9,
+   "G",
+   "D"
+  ],
+  [
+   40.9,
+   41.5,
+   "Em",
+   "D"
+  ],
+  [
+   41.5,
+   42.5,
+   "C",
+   "D"
+  ],
+  [
+   42.5,
+   43.7,
+   "G",
+   "E"
+  ],
+  [
+   43.7,
+   44.9,
+   "Em",
+   "E"
+  ],
+  [
+   44.9,
+   45.5,
+   "C",
+   "E"
+  ],
+  [
+   45.5,
+   46.1,
+   "D",
+   "E"
+  ],
+  [
+   46.1,
+   46.2,
+   "G",
+   "E"
+  ],
+  [
+   46.2,
+   47.4,
+   "G",
+   "U"
+  ],
+  [
+   47.4,
+   48.0,
+   "Em",
+   "U"
+  ],
+  [
+   48.0,
+   48.3,
+   "C",
+   "U"
+  ],
+  [
+   48.3,
+   48.6,
+   "Cm",
+   "U"
+  ],
+  [
+   48.6,
+   49.9,
+   "Cm",
+   "F"
+  ],
+  [
+   49.9,
+   51.0,
+   "Ab",
+   "F"
+  ],
+  [
+   51.0,
+   53.12,
+   "G",
+   "W"
+  ],
+  [
+   53.12,
+   53.5,
+   "Cadd9",
+   "W"
+  ],
+  [
+   53.5,
+   54.5,
+   "G",
+   "W"
+  ],
+  [
+   54.5,
+   56.58,
+   "G",
+   "G"
+  ],
+  [
+   56.58,
+   58.5,
+   "D9sus4",
+   "G"
+  ]
+ ]
+}

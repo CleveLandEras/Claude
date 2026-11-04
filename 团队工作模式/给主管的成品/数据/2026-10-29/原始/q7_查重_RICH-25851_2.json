@@ -1,0 +1,7 @@
+{"_存法": "MCP 结果直接返回在对话里，用 Write 存下（返工补查，17:13）。去掉了头像、self、iconUrl、邮箱、类型说明；其余原样。关键词：刮刮卡、明池、幸運寶箱、連刮（取自 RICH-25851 链接的表格）。",
+"_jql": "project = RICH AND issuetype in (Epic, Requirement) AND (summary ~ \"刮刮卡\" OR summary ~ \"明池\" OR summary ~ \"幸運寶箱\" OR summary ~ \"連刮\") AND created >= -365d ORDER BY created DESC",
+"issues":{"nodes":[
+{"key":"RICH-19368","fields":{"summary":"APP--刮刮卡","issuetype":{"name":"长篇故事"},"assignee":{"displayName":"Jiayang Xu(徐佳洋)"},"fixVersions":[{"name":"08_V29_5.28","released":true,"releaseDate":"2026-05-28"},{"name":"08_V31_6.11","released":true,"releaseDate":"2026-06-11"}],"created":"2026-04-27T15:35:15.028+0800","status":{"name":"已完成","statusCategory":{"key":"done"}}}},
+{"key":"RICH-14700","fields":{"summary":"【美術】新增刮刮卡-聖誕主題風格","issuetype":{"name":"长篇故事"},"assignee":{"displayName":"Chen Shen(沈忱)"},"fixVersions":[{"name":"08_V8_12.11","released":true,"releaseDate":"2025-12-11"}],"created":"2025-12-01T14:25:15.874+0800","status":{"name":"已完成","statusCategory":{"key":"done"}}}},
+{"key":"RICH-14002","fields":{"summary":"刮刮卡迭代 (儲值活動)","issuetype":{"name":"长篇故事"},"assignee":{"displayName":"Jiayang Xu(徐佳洋)"},"fixVersions":[{"name":"08_V10_12.25","released":true,"releaseDate":"2025-12-25"}],"created":"2025-11-05T19:32:57.990+0800","status":{"name":"已完成","statusCategory":{"key":"done"}}}}
+],"pageInfo":{"hasNextPage":false,"endCursor":null}}}

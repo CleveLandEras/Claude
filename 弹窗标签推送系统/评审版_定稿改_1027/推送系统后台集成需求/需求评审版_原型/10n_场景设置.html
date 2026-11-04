@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>10n 弹窗场景设置</title>
+<link rel="stylesheet" href="_后台框.css">
+<link rel="stylesheet" href="_弹窗.css">
+<style>
+/* 弹窗规则列表（面包板 P1）：列＝优先级、名称编号、发送对象、弹窗、状态、操作；点行展开 */
+.pw.plain>.fbar{margin-top:12px}
+.fbar .afl{width:188px;color:#A8ABB2}
+.fbar .afl.on{width:auto;gap:8px;color:#303133;border-color:#409EFF}
+.fbar .afl .x{margin-left:auto;color:#909399}
+.fbar .swl{margin-left:auto;display:inline-flex;align-items:center;gap:6px;color:#4E5560;font-size:12.5px;white-space:nowrap}
+.tgl{display:inline-block;width:32px;height:18px;border-radius:9px;background:#DCDFE6;position:relative;flex:none}
+.tgl::after{content:"";position:absolute;left:2px;top:2px;width:14px;height:14px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2)}
+.tgl.on{background:#409EFF}
+.tgl.on::after{left:16px}
+.capbar .v b.t{font-size:13px}
+.qtable th{padding-left:12px;padding-right:12px}
+.qtable td.ord{white-space:nowrap}
+.qtable td.ord .hd{display:inline-block;width:14px;margin-right:6px;color:#A8ABB2;font-size:14px;font-weight:400}
+.qtable td.ord .hd.off{color:#E4E7ED}
+.qtable .nm .cv{display:inline-block;width:14px;color:#909399;font-weight:400}
+.qtable td .meta{padding-left:0}
+.qtable td.nmc .meta{padding-left:14px}
+.qtable td.obj{line-height:19px}
+.qtable td.pop{line-height:19px}
+.qtable td.st{white-space:nowrap}
+.qtable td.st.on{color:#1F2329;font-weight:500}
+.qtable td.st::before{content:"";display:inline-block;width:6px;height:6px;margin-right:6px;border-radius:50%;background:#C0C4CC;vertical-align:middle;position:relative;top:-1px}
+.qtable td.st.on::before{background:#409EFF}
+.qtable td.st.ps::before{background:#E6A23C}
+.qtable td.ops{white-space:nowrap;line-height:21px}
+.qtable td.ops .ln{display:block}
+.qtable td.ops .lk+.lk{margin-left:12px}
+.qtable tr.ex td{border-bottom:0}
+.qtable tr.exp td{height:auto;padding:0 12px 12px;background:#fff}
+.expd{margin-left:96px;padding:8px 12px;border:1px solid #E4E7ED;border-radius:6px;background:#FAFBFC;font-size:12.5px;color:#4E5560}
+.expd .eg{display:flex;align-items:flex-start;gap:10px;padding:4px 0}
+.expd .eg+.eg{border-top:1px dashed #E4E7ED}
+.expd .eh{width:132px;flex:none;font-weight:600;color:#303133}
+.expd .ei{display:inline-flex;align-items:center;gap:4px;margin-right:16px;white-space:nowrap}
+.expd .ei i{font-style:normal;color:#909399;font-size:12px}
+.expd .ei.off{color:#B0B3B8}
+.expd .ei.off .kind{opacity:.6}
+.expd .ei u{text-decoration:none;color:#C47B2B;font-size:12px}
+.expd .its{display:flex;flex-wrap:wrap;row-gap:4px}
+.dragbar{display:flex;align-items:center;gap:10px;margin-top:10px;padding:8px 14px;border:1px solid #F0D9B8;border-radius:6px;background:#FFFBF6;font-size:12.5px;color:#4E5560}
+.dragbar .sp{margin-left:auto}
+.qtable tr.mv td{background:#F5F9FF}
+.qtable tr.mv td.ord .hd{color:#409EFF}
+.ftip{margin-top:6px;font-size:12px;color:#909399}
+</style>
+<style>
+.bk-pop.edit{width:580px;background:#fff;border-radius:8px;padding:0;font-size:13px;color:#303133;overflow:hidden}
+.shot.bk .bk-ov>.bk-pop.edit{box-shadow:0 14px 36px rgba(0,0,0,.24)}
+.edit .phd{display:flex;align-items:center;gap:10px;padding:14px 18px 12px;border-bottom:1px solid #E8EAED}
+.edit .phd h4{margin:0;font-size:16px;font-weight:700;color:#1F2329}
+.edit .phd .x{margin-left:auto;width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;border-radius:4px;color:#909399;font-size:18px;line-height:1}
+.edit .pb{padding:14px 18px 16px}
+.edit .ft{display:flex;justify-content:flex-end;align-items:center;gap:8px;padding:12px 18px;border-top:1px solid #E8EAED;background:#FAFBFC}
+.cmp{display:flex;align-items:flex-start;gap:14px}
+.cmp .col{flex:1}
+.cmp .lab{margin-bottom:6px;font-weight:600;color:#303133}
+.cmp ol{list-style:none;margin:0;padding:6px 10px;border:1px solid #E4E7ED;border-radius:6px;background:#FAFBFC}
+.cmp li{line-height:26px;color:#4E5560}
+.cmp li i{display:inline-block;width:20px;font-style:normal;color:#909399}
+.cmp li.chg{color:#2F6FCC;font-weight:600}
+.cmp .arr{padding-top:70px;color:#909399;font-size:16px}
+.edit .note{margin-top:12px;font-size:12px;color:#909399}
+</style>
+<style>
+.pset .lab{margin:0 0 8px;font-size:13px;font-weight:600;color:#303133}
+.pset .lab+.opt{margin-top:0}
+.pset .opt{display:flex;align-items:flex-start;gap:10px;margin-top:8px;padding:10px 12px;border:1px solid #E4E7ED;border-radius:6px}
+.pset .opt.on{border-color:#409EFF;background:#F5F9FF}
+.pset .opt .radio{margin-right:0;padding-top:1px}
+.pset .opt .radio i{flex:none}
+.pset .opt .tx{display:flex;flex-direction:column;gap:2px;min-width:0}
+.pset .opt .tx b{font-weight:600;color:#1F2329}
+.pset .opt .tx span{font-size:12.5px;color:#73767A}
+.pset .sep{height:1px;margin:14px 0 12px;background:#EBEEF5}
+.pset .nrow{display:flex;align-items:center;gap:8px;color:#4E5560;flex-wrap:wrap}
+.pset .nrow .inp{width:64px;justify-content:center}
+.pset .nrow .m2{flex:1;min-width:200px}
+.pset .chp{display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 8px;border:1px solid #DCDFE6;border-radius:4px;background:#F4F5F7;color:#303133;white-space:nowrap}
+.pset .chp .x{color:#909399}
+.pset .note{margin-top:14px;font-size:12px;line-height:1.6;color:#909399}
+</style>
+</head>
+<body>
+<div class="shot bk" data-page="弹窗" data-tabs="*弹窗规则|操作纪录"><div class="pw plain">
+  <div class="ttl"><h3>弹窗</h3><span class="sp"></span><span class="btnp">＋ 新建弹窗规则</span></div>
+  <div class="frow"><div class="subsc"><span class="on">进大厅</span><span>破产时</span><span>买了指定礼包后</span><span>押注达到指定金额</span></div></div>
+  <div class="capbar">
+    <span class="k">弹窗场景设置</span>
+    <span class="v">多条规则都符合时 <b class="t">轮流，每次换下一条</b></span>
+    <span class="div"></span>
+    <span class="v">每人每天最多弹 <b class="num">8</b> 个</span>
+    <span class="div"></span>
+    <span class="v">弹出间隔 <b class="num">30</b> 分钟</span>
+    <span class="div"></span>
+    <span class="v">不受弹出间隔限制 <b class="t">无</b></span>
+    <span class="lk">修改</span>
+  </div>
+  <div class="fbar"><span class="inp srch">名称、编号或发送对象群组名</span><span class="inp afl">按活动或礼包筛选<span class="dn">⌵</span></span><span class="swl"><span class="tgl"></span>显示已结束的</span></div>
+  <table class="qtable">
+    <colgroup><col style="width:66px"><col style="width:132px"><col><col style="width:188px"><col style="width:78px"><col style="width:150px"></colgroup>
+    <tr><th>优先级</th><th>名称、编号</th><th>发送对象<span class="m2" style="font-weight:400;margin-left:8px">人数为约数，10/21 更新</span></th><th>弹窗</th><th>状态</th><th>操作</th></tr>
+    <tr><td class="ord"><span class="hd">⠿</span>1</td><td class="nmc"><div class="nm"><span class="cv">▸</span>银卡已首储</div><div class="meta">编号 80</div></td><td class="obj"><div class="g">银卡已首储</div><div class="meta">8,200 人</div></td><td class="pop"><div>共 3 个</div><div class="meta">每次最多弹 3 个</div></td><td class="st on">上架中</td><td class="ops"><span class="ln"><span class="lk">编辑</span><span class="lk">复制</span><span class="lk">看数据</span></span><span class="ln"><span class="lk">暂停</span><span class="lk">结束</span><span class="lk">操作纪录</span></span></td></tr>
+    <tr><td class="ord"><span class="hd">⠿</span>2</td><td class="nmc"><div class="nm"><span class="cv">▸</span>普卡已首储</div><div class="meta">编号 81</div></td><td class="obj"><div class="g">普卡已首储</div><div class="meta">22,400 人</div></td><td class="pop"><div>共 3 个</div><div class="meta">每次最多弹 3 个</div></td><td class="st on">上架中</td><td class="ops"><span class="ln"><span class="lk">编辑</span><span class="lk">复制</span><span class="lk">看数据</span></span><span class="ln"><span class="lk">暂停</span><span class="lk">结束</span><span class="lk">操作纪录</span></span></td></tr>
+    <tr><td class="ord"><span class="hd">⠿</span>3</td><td class="nmc"><div class="nm"><span class="cv">▸</span>新增玩家</div><div class="meta">编号 82</div></td><td class="obj"><div class="g">新增玩家</div><div class="meta">10,749 人</div></td><td class="pop"><div>共 5 个（轮换池 2 个）<span style="white-space:nowrap">（1 个已结束）</span></div><div class="meta">每次最多弹 3 个</div></td><td class="st on">上架中</td><td class="ops"><span class="ln"><span class="lk">编辑</span><span class="lk">复制</span><span class="lk">看数据</span></span><span class="ln"><span class="lk">暂停</span><span class="lk">结束</span><span class="lk">操作纪录</span></span></td></tr>
+    <tr><td class="ord"><span class="hd">⠿</span>4</td><td class="nmc"><div class="nm"><span class="cv">▸</span>回流</div><div class="meta">编号 83</div></td><td class="obj"><div class="g">回流</div><div class="meta">16,580 人</div></td><td class="pop"><div>共 4 个（轮换池 2 个）</div><div class="meta">每次最多弹 3 个</div></td><td class="st on">上架中</td><td class="ops"><span class="ln"><span class="lk">编辑</span><span class="lk">复制</span><span class="lk">看数据</span></span><span class="ln"><span class="lk">暂停</span><span class="lk">结束</span><span class="lk">操作纪录</span></span></td></tr>
+    <tr><td class="ord"><span class="hd">⠿</span>5</td><td class="nmc"><div class="nm"><span class="cv">▸</span>潜在流失</div><div class="meta">编号 84</div></td><td class="obj"><div class="g"><span class="nw">潜在流失·近 14 天登录 1 天</span> <span class="nw">等 2 个</span></div><div class="meta">满足任一 · 7,850 人</div></td><td class="pop"><div>共 3 个</div><div class="meta">每次最多弹 3 个</div></td><td class="st on">上架中</td><td class="ops"><span class="ln"><span class="lk">编辑</span><span class="lk">复制</span><span class="lk">看数据</span></span><span class="ln"><span class="lk">暂停</span><span class="lk">结束</span><span class="lk">操作纪录</span></span></td></tr>
+    <tr><td class="ord"><span class="hd">⠿</span>6</td><td class="nmc"><div class="nm"><span class="cv">▸</span>其余</div><div class="meta">编号 85</div></td><td class="obj"><div class="g">全部玩家</div><div class="meta">排除 银卡已首储 等 6 个</div><div class="meta">扣除排除后 25,917 人</div></td><td class="pop"><div>共 2 个（1 个已结束）</div><div class="meta">每次最多弹 2 个</div></td><td class="st on">上架中</td><td class="ops"><span class="ln"><span class="lk">编辑</span><span class="lk">复制</span><span class="lk">看数据</span></span><span class="ln"><span class="lk">暂停</span><span class="lk">结束</span><span class="lk">操作纪录</span></span></td></tr>
+    <tr><td class="ord"><span class="hd">⠿</span>7</td><td class="nmc"><div class="nm"><span class="cv">▸</span>节日回归</div><div class="meta">编号 89</div></td><td class="obj"><div class="g">近 30 天未登录</div><div class="meta">3,120 人</div></td><td class="pop"><div>共 2 个</div><div class="meta">每次最多弹 3 个</div></td><td class="st ps">已暂停</td><td class="ops"><span class="ln"><span class="lk">编辑</span><span class="lk">复制</span><span class="lk">看数据</span></span><span class="ln"><span class="lk">恢复</span><span class="lk">结束</span><span class="lk">操作纪录</span></span></td></tr>
+    <tr><td class="ord"><span class="hd off"></span>—</td><td class="nmc"><div class="nm"><span class="cv">▸</span>金卡未首储</div><div class="meta">编号 90</div></td><td class="obj"><div class="g">金卡未首储</div><div class="meta">1,200 人</div></td><td class="pop"><div>还没加活动或礼包</div></td><td class="st">草稿</td><td class="ops"><span class="ln"><span class="lk">编辑</span><span class="lk">删除</span><span class="lk">操作纪录</span></span></td></tr>
+  </table>
+</div>
+  <div class="bk-pop edit pset" style="--pop-top:52px">
+    <div class="phd"><h4>进大厅 · 弹窗场景设置</h4><span class="x">×</span></div>
+    <div class="pb">
+      <div class="lab">多条规则都符合时</div>
+      <div class="opt"><span class="radio"><i></i></span><span class="tx"><b>只用优先级最高的一条（默认）</b><span>玩家符合多条规则时，只按优先级最高的一条弹；排在前面的规则这次进入没有可弹的时，这次不弹，不落到后面的规则</span></span></div>
+      <div class="opt on"><span class="radio on"><i></i></span><span class="tx"><b>轮流，每次换下一条</b><span>玩家符合多条规则时，每次进入轮到下一条</span></span></div>
+      <div class="sep"></div>
+      <div class="lab">每人每天最多弹几个（仅进大厅）</div>
+      <div class="nrow"><span class="inp v num">8</span><span>个</span><span class="m2">留空＝不限；默认 8 个；本场景各条规则合计，按实际弹出算</span></div>
+      <div class="sep"></div>
+      <div class="lab">弹出间隔（分钟）</div>
+      <div class="nrow"><span class="inp v num">30</span><span>分钟</span><span class="m2">留空＝不设；默认 30 分钟；同一玩家同一场景，弹完到下次再弹至少隔多久</span></div>
+      <div class="sep"></div>
+      <div class="lab">不受弹出间隔限制的活动或礼包</div>
+      <div class="nrow ex"><span class="chp">新手七日签到<span class="x">×</span></span><span class="lk">＋ 加入活动或礼包</span><span class="m2">从本场景规则里用到的活动或礼包中选；默认无</span></div>
+      <div class="note">本次改动：不受弹出间隔限制：无 → 新手七日签到</div><div class="note" style="margin-top:6px">只影响之后的弹出，已弹出的不变。本场景在用的 7 条规则都按这份设置弹：银卡已首储、普卡已首储、新增玩家、回流、潜在流失、其余、节日回归</div>
+    </div>
+    <div class="ft"><span class="btno">取消</span><span class="btnp">保存</span></div>
+  </div>
+</div>
+<script src="_后台框.js"></script>
+</body>
+</html>

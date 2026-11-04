@@ -1,0 +1,74 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>活动配置后台建议</title>
+<style>
+:root{--ground:#f4f3f0;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e3e1dc;--accent:#9a6f24;--accent-soft:#f5ecdc;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;--accent-soft:#2f2718;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;--accent-soft:#2f2718;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.8}
+.wrap{max-width:760px;margin:0 auto;padding:64px 28px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 14px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.5;margin:0}
+.bg{margin-top:28px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 24px}
+.bg p{margin:6px 0;font-size:15px;color:var(--ink-2)}
+.bg b{color:var(--ink)}
+h2{font-size:14px;font-weight:700;color:var(--muted);letter-spacing:.06em;margin:48px 0 14px}
+.why{display:grid;gap:14px}
+.r{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px 24px 20px 64px;position:relative}
+.r .n{position:absolute;left:22px;top:21px;width:26px;height:26px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center}
+.r .h{font-size:17px;font-weight:700;line-height:1.6}
+.r p{margin:8px 0 0;font-size:15px;color:var(--ink-2)}
+.split{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.split span{font-size:14px;border:1px solid var(--line);border-radius:6px;padding:4px 12px;color:var(--ink-2);background:var(--ground)}
+.split span b{font-size:17px;color:var(--ink);margin-left:6px}
+.split span.hl{border-color:var(--accent);background:var(--accent-soft)}
+.split span.hl b{color:var(--accent)}
+.side{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:4px 24px}
+.side div{padding:14px 0;border-bottom:1px solid var(--line);font-size:15px;color:var(--ink-2)}
+.side div:last-child{border-bottom:none}
+.side b{color:var(--ink)}
+.foot{margin-top:52px;font-size:13px;color:var(--muted)}
+a{color:var(--accent)}
+@media (max-width:640px){.wrap{padding:32px 16px 64px}h1{font-size:22px}.r{padding:18px 18px 18px 56px}.r .n{left:16px;top:19px}}
+</style></head><body><div class="wrap">
+
+<p class="meta">活动配置后台 · 方案检查结果 · 2026-10-28</p>
+<h1>建议：把节庆活动的配置功能排进第二期，明年 8 月前做完</h1>
+
+<div class="bg">
+  <p><b>现在的问题</b>：游戏里每上一个活动，都要找研发开发一次，同样的内容反复做。过去一年，有 52 个开发需求是这种重复开发。</p>
+  <p><b>这个项目</b>：做一个活动配置后台。运营选好活动类型，填上时间和奖励，审核后就能上线，不用再找研发。第一期预计 12 月中开始开发，1 月下旬完成。</p>
+</div>
+
+<h2>为什么这么建议</h2>
+<div class="why">
+  <div class="r"><span class="n">1</span>
+    <div class="h">第一期只保证日常储值活动</div>
+    <p>第一期做四种：礼包、累计储值送奖励、单笔满额加赠、限时加赠。运营想「这周五做一个储值活动」，复制上次的活动、改时间就能上线。</p>
+  </div>
+  <div class="r"><span class="n">2</span>
+    <div class="h">节庆活动（如周年庆）是重复开发最多的，第一期却不保证做</div>
+    <div class="split"><span class="hl">节庆活动<b>22</b></span><span>礼包<b>12</b></span><span>其他<b>18</b></span><span style="border:none;background:none">合计 52 个</span></div>
+    <p>例：今年 10 月庆典和 16 周年庆，同样的 6 块内容（活动大页、抽奖等）各开发了一遍。节庆要用的活动汇总页和抽奖，排在第一期「有时间再做」。第一期最多减掉礼包这 12 个。</p>
+  </div>
+  <div class="r"><span class="n">3</span>
+    <div class="h">明年 8 月前做完，才赶得上明年的庆典</div>
+    <p>今年两次庆典的开发分别在 8 月 17 日、9 月 10 日开始。明年庆典前还没有这个功能，同样的内容会再开发一遍。</p>
+  </div>
+</div>
+
+<h2>另外两点</h2>
+<div class="side">
+  <div><b>大厅入口</b>：付费活动放商城还是放活动窗口，两种放法区别不大，等商城改版的计划出来再定。</div>
+  <div><b>规则细节</b>：方案里还有四处规则要补写，比如两种优惠同时满足时能不能叠加。不影响上面的结论。</div>
+</div>
+
+<h2>下一步需要</h2>
+<div class="side">
+  <div><b>研发评估工作量</b>：确认第一期做得完，第二期什么时候能开始。</div>
+  <div><b>商城改版的计划</b>：决定付费活动放在哪里。</div>
+</div>
+
+<p class="foot">逐条论证：<a href="2026-10-28_入口调整_深入想一遍.html">完整版</a></p>
+
+</div></body></html>

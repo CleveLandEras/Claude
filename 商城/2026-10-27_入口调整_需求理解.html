@@ -1,0 +1,34 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>入口调整需求理解</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15.5px;line-height:1.65}
+.wrap{max-width:760px;margin:0 auto;padding:48px 24px 72px}
+h1{font-family:var(--serif);font-size:25px;line-height:1.4;margin:0 0 8px}
+.sub{color:var(--ink-2);margin:0 0 24px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:6px 24px}
+.row{display:grid;grid-template-columns:96px 1fr;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:none}
+.k{font-size:13.5px;font-weight:700;color:var(--accent);padding-top:1px}
+.v p{margin:0} .v p+p{margin-top:6px} .v b{font-weight:700}
+.row.q{background:#fbf5e8;margin:0 -24px;padding:16px 24px}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .row.q{background:#2a2418}}
+.note{font-size:13.5px;color:var(--muted);margin:16px 0 0}
+@media (max-width:560px){.row{grid-template-columns:1fr;gap:4px}h1{font-size:21px}}
+</style></head><body><div class="wrap">
+<h1>「入口调整」需求理解</h1>
+<p class="sub">这条需求做两件事：三个入口重新定用途；商城里的活动改为靠后台配置上线。</p>
+<div class="card">
+  <div class="row"><div class="k">好康</div><div class="v"><p>改为金流／商城入口：左下好康的位置换成银行（商城），放必须先储值或购买才能参与的内容；签到、押注这类只把「储值过」当参与资格的活动不算。</p><p>后台为商城活动增加「工具属性」：配置活动时选择满减、累充、团购、折扣、礼包、抽奖等工具，再按该工具填写规则。</p></div></div>
+  <div class="row"><div class="k">限时活动</div><div class="v"><p>只放活动，分两类：<b>游戏活动</b>，限在某些游戏内参加，如排行榜、游戏挑战；<b>平台活动</b>，全平台都能参加，如签到、庆典。</p></div></div>
+  <div class="row"><div class="k">公告</div><div class="v"><p>只放信息，分三类：<b>官方</b>（维护、更新、规则变更）、<b>活动</b>（活动宣传）、<b>其他</b>。</p></div></div>
+  <div class="row"><div class="k">商城活动</div><div class="v"><p><b>现状：</b>商城活动来一个需求单独开发一个，没有可复用的做法，也没有统一的格式和规范。</p><p><b>目标：</b>活动靠后台配置上线。营运临时决定周五做储值活动或节庆活动，配置好即可上线，不用排开发。</p></div></div>
+  <div class="row"><div class="k">一元夺宝</div><div class="v"><p>一种「凑满就开奖」的玩法，两例：</p><p>「储值 10 万台币开奖，送 1000」：全服累计储值满 10 万台币开一次奖，奖品 1000。</p><p>「购买奖券，满 1.1 万，抽 1 万」：卖出的奖券合计满 1.1 万开奖，奖品价值 1 万。</p></div></div>
+  <div class="row q"><div class="k">待定一点</div><div class="v"><p><b>储值类活动放银行，还是放活动窗口？</b></p><p>累充、满减、团购、一元夺宝这类必须先储值才能参加的活动，按需求放在银行（商城）里的「储值活动」页签。三款竞品（金好运、星城、豪神）都放在活动窗口，豪神单开「消费活动」分类，商城只卖礼包。改放活动窗口的话，只是换个位置，工具和规则不变。</p></div></div>
+  <div class="row"><div class="k">时间</div><div class="v"><p>12/11 开始开发，1/21 开发完成。</p></div></div>
+</div>
+<p class="note">其中游戏活动与平台活动的划分、一元夺宝两例的单位、两个日期的含义，是按我们的推测写的。</p>
+</div></body></html>

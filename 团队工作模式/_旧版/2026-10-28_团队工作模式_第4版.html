@@ -1,0 +1,287 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>团队工作模式</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.35;margin:0 0 8px}
+.sub{font-size:16px;color:var(--ink-2);margin:0 0 28px}
+h2{font-family:var(--serif);font-size:20px;margin:48px 0 16px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em;flex:none}
+h3{font-size:15.5px;margin:26px 0 10px}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px}
+.kpi .n{font-size:38px;font-weight:700;line-height:1.1;color:var(--ink)}
+.kpi .n small{font-size:16px;font-weight:600;margin-left:4px;color:var(--ink-2)}
+.kpi .t{font-size:14.5px;color:var(--ink-2);margin-top:8px}
+.kpi.red .n{color:var(--red)}
+.phase{border-top:4px solid var(--gray)}
+.phase.red{border-top-color:var(--red)} .phase.blue{border-top-color:var(--blue)} .phase.green{border-top-color:var(--green)}
+.phase .d{font-size:13px;color:var(--muted);font-weight:600}
+.phase .h{font-size:16.5px;font-weight:700;margin:4px 0 10px}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:10px}
+.tag.red{background:var(--red-soft);color:var(--red)} .tag.blue{background:var(--blue-soft);color:var(--blue)} .tag.gray{background:var(--gray-soft);color:var(--gray)} .tag.green{background:var(--green-soft);color:var(--green)}
+.kv{font-size:14px;color:var(--ink-2);margin:6px 0}
+.kv b{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:2px}
+.keep{display:flex;flex-wrap:wrap;gap:8px}
+.keep span{background:var(--gray-soft);color:var(--ink-2);font-size:13.5px;font-weight:600;padding:5px 11px;border-radius:4px}
+.keep span.hl{background:var(--blue-soft);color:var(--blue)}
+.cause .h{font-size:16px;font-weight:700;margin:0 0 6px}
+.cause .l{font-size:14.5px;color:var(--ink-2);margin:0 0 12px}
+.cause .e{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px;margin:0}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14px}
+th,td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12.5px;color:var(--muted);font-weight:600;background:var(--ground);white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td.w{color:var(--ink);font-weight:600;white-space:nowrap} td.r{color:var(--ink-2)} td.d{color:var(--muted)}
+.legend{font-size:13px;color:var(--muted);margin:10px 0 0}
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.steps div{counter-increment:s;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 18px;font-size:14px;color:var(--ink-2)}
+.steps div::before{content:counter(s);display:block;font-size:22px;font-weight:700;color:var(--accent);margin-bottom:4px}
+.steps div b{display:block;color:var(--ink);font-size:15px;margin-bottom:4px}
+code{font-size:12px;background:var(--gray-soft);padding:1px 4px;border-radius:3px;word-break:break-all}
+.steps div i{display:block;font-style:normal;font-size:12.5px;color:var(--muted);margin-top:8px;border-top:1px solid var(--line);padding-top:8px}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:6px 0 4px}
+.flow span{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:5px 10px;font-size:13.5px;font-weight:600}
+.flow span.qa{border-color:var(--blue);color:var(--blue)} .flow span.done{border-color:var(--green);color:var(--green)}
+.flow em{font-style:normal;color:var(--muted)}
+.note{font-size:13.5px;color:var(--ink-2);margin:12px 0 0}
+.note b{color:var(--ink)}
+.inf{font-size:12px;font-weight:700;color:var(--accent);margin-right:6px}
+.links{font-size:13px;color:var(--muted);margin-top:40px;line-height:1.9} a{color:var(--accent)}
+@media (max-width:760px){.wrap{padding:28px 16px 64px}.g3,.g4,.g2,.steps{grid-template-columns:1fr}h1{font-size:23px}}
+</style></head><body><div class="wrap">
+
+<p class="meta">团队工作模式 · 2026-10-28 · 依据：Jira「老子有钱 2.0」（RICH 项目）近 30 天新建工单 853 张、版本与流转记录（我已核实）；Confluence「Jira Documentation」空间流程文档 15 页（子任务通读，我抽查其中 3 页原文一致）；10/28 晚补查版本变更记录、128 张需求单、崔峰龙 180 天提单（子任务查，关键数字与 2 张单的变更记录我已复核）。全部只读，未改动任何内容</p>
+<h1>团队按「每周四发一版」的流水线干活：营运提需求，策划写规格并拆到各工种，策划和 QA 两道验收后上线</h1>
+<p class="sub">产品部（你和崔峰龙）是需求的筛选口：从营运的需求单里挑出要做的，改成长篇故事、写方向要点、挂版本，交给策划负责人顾亿颉；完整规格、拆单、验收由策划完成。</p>
+
+<div class="grid g3">
+  <div class="card kpi"><div class="n">853<small>张</small></div><div class="t">近 30 天新建工单，其中缺陷 203 张（24%）</div></div>
+  <div class="card kpi"><div class="n">1<small>版／周</small></div><div class="t">每周四发版，每版开发窗口 14 天，相邻两版重叠一周</div></div>
+  <div class="card kpi red"><div class="n">104<small>张</small></div><div class="t">营运需求单停在「待办」、没改成长篇故事；立项的需求单是直接改类型（带表单标签的长篇故事共 292 张）</div></div>
+</div>
+
+<!-- ============ 01 ============ -->
+<h2><span class="no">01</span>四类人，按工种分工；排版本找于金伶，规格和拆单找策划</h2>
+
+<div class="grid g4">
+  <div class="card phase blue"><div class="d">营运部 · 提需求的人</div><div class="h">营运</div>
+    <div class="kv"><b>平台营运（有月度集合）</b>范馨普、林岛、白金雨</div>
+    <div class="kv"><b>提需求单最多</b>楊欣潔、賴雅涵（Amber）</div>
+    <div class="kv"><b>其他</b>姜珊（遊戲營運）、洪美筠（行銷）、Nina.OU（通路）、Mary Nguyen（越南市场、翻译）</div></div>
+  <div class="card phase"><div class="d">产品部</div><div class="h">产品</div>
+    <div class="kv"><b>成员</b>黄德成（你）、崔峰龙</div>
+    <div class="kv"><b>崔峰龙在 Jira 上做的事</b>营运需求单自动指派给崔峰龙；选中的改成长篇故事、写方向要点、挂版本，交给顾亿颉；也发起大主题，如「26年-10月庆典」「卡別等級2.0」</div>
+    <div class="kv"><b>近 180 天产出</b>建了 39 张非日报单，其中 26 张已拆出子单，共 266 张（不含日报）；子单多由策划创建（顾亿颉 63、徐佳洋 50、蒋枚伶 21）</div>
+    <div class="kv"><b>你名下</b>除日报外 1 张：新手通行证数据分析（已完成）</div></div>
+  <div class="card phase green"><div class="d">开发部 · 6 位组长</div><div class="h">研发</div>
+    <div class="kv"><b>策划（EP）</b>顾亿颉<span class="inf">推断为负责人</span>、张硕成、徐佳洋、蒋枚伶</div>
+    <div class="kv"><b>客户端</b>方惠东（组长）、金科伟、黎景、徐志伟</div>
+    <div class="kv"><b>服务器</b>黄益园<span class="inf">推断为组长</span>、张翔、陈雨、张学政、周華鼎</div>
+    <div class="kv"><b>Web 与后台</b>张鑫祥（组长）、邵明伟、陈颖、成唯实、余梦</div>
+    <div class="kv"><b>美术、特效、美宣</b>沈忱（组长）、魏成、丁梦媛、高琛侑、邵岩、王乾深、付文成（特效）、徐凌琳（行銷美宣）</div>
+    <div class="kv"><b>QA</b>黎梦霞（组长）、董纯锐、何红梅、李玉刚、罗玺、李梦圆、邱日鴻、黎焯堯、劉孟姍</div></div>
+  <div class="card phase red"><div class="d">项目管理（文档里叫 PM）</div><div class="h">于金伶</div>
+    <div class="kv"><b>版本「推动者」</b>建版本、写排期规则、安排双迭代</div>
+    <div class="kv"><b>派活</b>给子单指派开发、填估时（Story Points）和起止日期</div>
+    <div class="kv"><b>管人</b>给产品、营运、开发组长每人开月度「管理任务内容集合」记日报</div>
+    <div class="kv"><b>文档</b>迭代流程规范、Jira 操作指南、产品短中期目标与提案机制</div></div>
+</div>
+<p class="note"><b>依据</b>　组别来自 10/13 于金伶开的三组月度集合：「产品部门」2 人、「营运部门」3 人、「开发部门组长」6 人；组员按近 30 天各人经手的工单归类（例：何红梅提 38 张缺陷，归 QA；魏成接 15 张【美術】子单，归美术）。顾亿颉写了策划新人手册和 EP 验收标准，并负责「平台所有活动巡测」「缐上問題協助處理」，所以推断是策划负责人。文档里「EP」和「策划」两种叫法混用，Jira 上【EP】子单都由策划接。</p>
+
+<!-- ============ 02 ============ -->
+<h2><span class="no">02</span>一个需求走八步上线，策划从对齐需求一路跟到验收</h2>
+
+<div class="steps">
+  <div><b>营运提需求，产品筛选</b>营运用表单提需求单，自动指派崔峰龙；选中的直接改成长篇故事、挂版本、交给顾亿颉分派；也有营运直接开长篇故事交给策划<i>例：范馨普 8/11 提「紅包狂歡活動優化」，崔峰龙 8/31 改成长篇故事，9/5 交顾亿颉，9/7 分给蒋枚伶</i></div>
+  <div><b>策划对齐需求</b>先和产品、运营、PM 确认背景与目标；需求大或跨系统时开策划内部评审；再与提需求的营运对齐，「不留理解落差」<i>没找到正式「需求评审会」的规定</i></div>
+  <div><b>策划写完整规格</b>规定：正式文档写在 Confluence、按团队模板、挂到 Jira。实际：常直接写在长篇故事正文里，在产品写的要点上扩写<i>例：「10月庆典」抽奖大厅，崔峰龙写 176 字要点，徐佳洋在同一张单里扩到 7,769 字</i></div>
+  <div><b>拆单、估时、排版本</b>策划在长篇故事下按工种开子单；各组估时；于金伶指派开发、填估时与起止日期，自动化挂版本号<i>例：至尊俱樂部 10/27 一次开 10 张子单；张鑫祥评论「新增活动后台暂时估时3天」</i></div>
+  <div><b>开发自测</b>拖到「正在执行」；提交代码时带工单号；自测、打包部署后改成 To Check，在「日常送测群」发版本号和单号；主流程 OK 后通知策划验收<i>出自客户端开发流程规范（2026-10）</i></div>
+  <div><b>策划验收＋营运确认</b>五条送测门槛全满足才可交 QA；奖励数值、成本、时间、对象由营运或策划确认<i>例：16 周年庆抽奖大厅的 EP 验收单 10/27 关闭</i></div>
+  <div><b>QA 测试</b>QA 部署测试环境，拖到 Checking 开测；问题开成缺陷挂在同一个长篇故事下，修完复验通过才关<i>例：16 周年庆抽奖大厅 10/27–10/28 两天开出 14 张缺陷</i></div>
+  <div><b>营运验收、周四发版</b>提需求的营运做验收，问题必须上线前提，「非紧急情况将不接受临时追版修改」；线上问题走 Hotfix<i>近 90 天带 Hotfix 标签的单 68 张，其中缺陷 44 张</i></div>
+</div>
+
+<h3>真实例子：「16 周年庆」抽奖大厅，一个需求下挂 26 张单</h3>
+<div class="tw"><table>
+<tr><th>子单</th><th>谁开</th><th>谁做</th><th>10/28 状态</th></tr>
+<tr><td class="w">【EP】规格</td><td class="r">顾亿颉</td><td class="r">徐佳洋（策划）</td><td class="d">已完成 10/08</td></tr>
+<tr><td class="w">【服務器】【客端】【web】【后台】</td><td class="r">徐佳洋；后台单由于金伶补开</td><td class="r">张学政、金科伟、余梦、张鑫祥</td><td class="d">都在 Checking（QA 测试中）</td></tr>
+<tr><td class="w">【美術】×2【特效】×2【美宣】</td><td class="r">徐佳洋</td><td class="r">魏成、付文成</td><td class="d">都在 Checking</td></tr>
+<tr><td class="w">【EP驗收】</td><td class="r">徐佳洋</td><td class="r">徐佳洋</td><td class="d">已完成 10/27</td></tr>
+<tr><td class="w">【QA】测试任务</td><td class="r">顾亿颉</td><td class="r">董纯锐</td><td class="d">正在执行</td></tr>
+<tr><td class="w">缺陷 14 张</td><td class="r">董纯锐（QA）</td><td class="r">多数先挂董纯锐，再转金科伟、陈雨、魏成、徐佳洋</td><td class="d">待办、正在执行、To Check、Blocked 都有</td></tr>
+</table></div>
+<p class="legend">EP 验收先关、QA 还在测，符合文档顺序：「RD 開發 → EP 基礎驗收 → 營運業務確認 → 達到可測試標準 → 提交 QA → QA 完整測試」。这个需求同时挂了 V48（10/22）和 V49（10/29）两个版本号。</p>
+
+<h3>产品交付到哪一步：写「方向＋要点」，策划从完整规格接手</h3>
+<div class="tw"><table>
+<tr><th>日期</th><th>谁</th><th>做了什么（RICH-23571「10月庆典」抽奖大厅）</th></tr>
+<tr><td class="w">8/17</td><td class="r">崔峰龙</td><td class="r">建长篇故事，只有标题；挂版本，指派顾亿颉</td></tr>
+<tr><td class="w">8/24</td><td class="r">顾亿颉</td><td class="r">分派给策划徐佳洋</td></tr>
+<tr><td class="w">8/25</td><td class="r">崔峰龙</td><td class="r">写正文 176 字：4 条要点加 1 张图</td></tr>
+<tr><td class="w">8/26–9/22</td><td class="r">徐佳洋</td><td class="r">在同一张单里扩写到 7,769 字（背景、规则、后台配置、流程、验收标准、风险）；创建 9 张工种子单，含【EP驗收單】和 QA 任务；【EP】子单由顾亿颉创建</td></tr>
+<tr><td class="w">9/16–9/23</td><td class="r">邱日鴻（QA）</td><td class="r">测试，创建 13 张缺陷，9/23 验收通过</td></tr>
+</table></div>
+<p class="legend">口径：这张表和崔峰龙名下子单数按 Jira「创建人」统计；报告其余处的「谁开」按「提单人」字段。两者通常一致，但提单人可被改动，例如【EP】子单 RICH-23895 创建人是顾亿颉，提单人现在显示徐佳洋。同样的分工还有两例（子任务查得）：RICH-23463 崔峰龙写到约 6,170 字，顾亿颉扩到约 25,700 字；RICH-24435 崔峰龙写约 80 字，顾亿颉扩到约 12,000 字。崔峰龙 8/10 建的 5 张「產品」长篇故事至今无正文、无子单。</p>
+
+<h3>策划送测的五条门槛与考核（EP 功能驗收流程與評分考核標準，2026-08）</h3>
+<div class="grid g2">
+  <div class="card">
+    <div class="kv"><b>五条全满足才可交 QA，任一不满足「退回 EP/RD 修正」</b></div>
+    <div class="kv">1　核心正向流程能完整走通（例：活动 → 进入 → 完成任务 → 领取 → 奖励结果）</div>
+    <div class="kv">2　核心功能已做完；轻微 UI、非核心文字问题可以有</div>
+    <div class="kv">3　资格判定、状态切换、领取、活动开关等逻辑正确</div>
+    <div class="kv">4　QA 拿到版本就能开测，不用等补条件</div>
+    <div class="kv">5　营运或策划已确认奖励数值、成本、时间、对象、开关</div>
+  </div>
+  <div class="card">
+    <div class="kv"><b>100 分制考核</b>正向流程 40、核心功能完整 25、逻辑与状态 15、UI 与文字 5、防呆与异常 5、验收记录与问题同步 10</div>
+    <div class="kv"><b>评级</b>95 以上优良、90–94 合格、80–89 待改善、80 以下不合格</div>
+    <div class="kv"><b>一票不合格</b>核心流程走不通、核心功能没做完就送测、有 P0/P1 阻塞、QA 无法开测、「已知重大問題未主動揭露」</div>
+    <div class="kv"><b>三方分工</b>策划与开发验「做得對不對」；营运验「是不是我要的、數值與成本對不對」；QA 验整体品质与异常、边界情况</div>
+  </div>
+</div>
+
+<h3>策划文档模板要写的八块（策划需求文档模板，2025-11）</h3>
+<div class="keep">
+  <span>修改记录（v1.0 即冻结需求）</span><span>需求背景</span><span>需求目标（「作为【角色】，我希望【行为】，以便于【目的】」）</span><span>功能说明（新需求／改旧需求两种写法）</span><span>后台字段表</span><span>资源需求</span><span>验收标准 10 条</span><span>拆到长篇故事的子单表</span>
+</div>
+
+<!-- ============ 03 ============ -->
+<h2><span class="no">03</span>流程规范都在 Confluence 的「Jira Documentation」空间：策划和开发写得细，QA 和需求评审基本空白</h2>
+
+<div class="tw"><table>
+<tr><th>文档（页面号）</th><th>讲什么</th><th>作者 · 更新</th></tr>
+<tr><td class="w">策划文档编写与管理规范 — 新人培训手册（105021459）</td><td class="r">策划四步、文档硬规定、营运验收时限、新人四阶段（认知 → 练习稿 → 独立写小需求 → 正式协作）</td><td class="d">顾亿颉 · 2025-11</td></tr>
+<tr><td class="w">产品短中期目标与内部提案机制重建策略（312606777）</td><td class="r">Q4 目标；产品、策划、运营定期提案，形成「分析 → 提案 → 评估 → 落地 → 复盘」闭环</td><td class="d">于金伶 · 2026-09</td></tr>
+<tr><td class="w">EP 功能驗收流程與評分考核標準（290684972）</td><td class="r">送测门槛、100 分考核、三方验收分工</td><td class="d">顾亿颉 · 2026-08</td></tr>
+<tr><td class="w">EP 問題處理流程與規範（197853399）</td><td class="r">线上问题「誰看見誰回復」、每个问题必须有明确负责人、1 小时内确认是否 Hotfix、提单必含 8 项</td><td class="d">顾亿颉 · 2026-04</td></tr>
+<tr><td class="w">客户端开发流程规范（200540175）</td><td class="r">双迭代、分支、提交代码、提测、送测群、当天下午 5 点前的缺陷当天修完</td><td class="d">方惠东 · 2026-10</td></tr>
+<tr><td class="w">RD日常开发Jira规范（7831633）</td><td class="r">开发单与缺陷的状态、每日报工时、拒单与转单找组长</td><td class="d">方惠东 · 2026-01</td></tr>
+<tr><td class="w">Rich Online 线上迭代流程规范（110329902）</td><td class="r">迭代与发版、热更打「Hot fix」标签；部分已过时</td><td class="d">于金伶 · 2025-12</td></tr>
+<tr><td class="w">既有遊戲／廠商串接工作手冊（326598669）</td><td class="r">游戏串接的角色分工与 Jira 模板</td><td class="d">顾亿颉 · 2026-10</td></tr>
+<tr><td class="w">前端周会纪要（9 篇）</td><td class="r">Web 与后台组每周例会；产品、策划的周会纪要没找到</td><td class="d">张鑫祥等 · 至 2026-10-16</td></tr>
+<tr><td class="w">QA 三页（178651154、198508546、145489963）</td><td class="r">流程只有图片读不出、只有目录、空页</td><td class="d">—</td></tr>
+</table></div>
+
+<div class="grid g2" style="margin-top:14px">
+  <div class="card cause"><p class="h">和产品部直接相关的是 Q4 目标这一页</p><p class="l">短期目标：① 10 月庆典、11 月周年庆按时上线；② 结合营运需求优化现有功能，优先「推送框架 / 標籤體系 / 彈窗邏輯」，备选「外贈（掉落）功能 / 成就系統 / 銀行改版（商城方向）/ 通行證功能 / 聚合 裂變+回流」</p><p class="e">提案机制要求产品、策划、运营定期交竞品分析、需求分析和功能优化提案</p></div>
+  <div class="card cause"><p class="h">文档和现状有五处对不上，以现状为准</p><p class="l">① 迭代规范写两周一个迭代、命名「08V2.01-Sprint1」，现在是每周四一版、命名「08_V49_10.29」② 规定策划文档必须写 Confluence，实际有需求只挂 Google 表格 ③ 谁把开发单改到 To Check：2025 年指南写组长打包后自动跳，2026-10 客户端规范写开发自测后手动改 ④ 营运验收：新人手册写上线前，EP 验收规范写交 QA 前 ⑤ 工时两套口径：Work log 填实际时长，日报把 Story Points 当「工时（天）」</p></div>
+</div>
+
+<!-- ============ 04 ============ -->
+<h2><span class="no">04</span>版本每周四发，一个需求常同时挂两三个版本、都在发版前挂好；Jira 有九类单、两条状态线，紧急度写在标题里</h2>
+
+<div class="grid g3">
+  <div class="card cause"><p class="h">命名与排期固定</p><p class="l">版本名「08_V序号_发版日」，已排到 V54（12/03）。于金伶在版本说明里写：「发布日期每 7 天一个（均为周四……），开始日期 = 发布日期 - 14 天（开发窗口14天，与上一版本重叠）」</p><p class="e">例：08_V51_11.12，开始 10/29，发布 11/12</p></div>
+  <div class="card cause"><p class="h">两个版本都在发版前挂好，发版前一天集中关单</p><p class="l">抽查 9 个同挂 V48、V49 的需求：4 个在 V48 发版前 7–10 天加挂 V49，4 个建单时就排了两个版本，1 个先挂 V49 后补 V48；发版后才补挂的 0 例。V49 未完成 10/28 白天 122 张、晚上 80 张（共 260 张）</p><p class="e">推断：提前加挂是预计赶不上，原文和评论没写理由。子单版本由自动化从父单复制；9/11 起由「换版本」改成「叠加版本」</p></div>
+  <div class="card cause"><p class="h">紧急度写在标题里，不用优先级</p><p class="l">样本 682 张单的优先级全部是 Medium。轻重靠标题和标签：「【11/5不可延期】」（33 张）、「(急單)」（6 张）、标签「不可延期」「Hotfix」</p><p class="e">游戏串接按厂商上线日排，硬期限直接写进标题</p></div>
+</div>
+
+<h3>Jira 里有一套自动化在替人改单</h3>
+<div class="keep">
+  <span class="hl">子单自动复制父单版本号</span><span class="hl">需求单自动指派崔峰龙</span><span class="hl">自动填 QA／开发／策划负责人</span><span class="hl">缺陷修完自动改派回 QA</span><span class="hl">超过截止日自动打「延期」</span><span class="hl">自动打「历史遗留问题」标签</span>
+</div>
+<p class="note"><b>依据</b>　RICH-24900（16 周年庆客户端子单）与 RICH-25808（后台缺陷）的变更记录，改动人显示为「Automation for Jira」。例：RICH-24900 10/26 23:30 被自动标「延期」，次日于金伶加「移除延期」。</p>
+
+<h3>九类单各管什么</h3>
+<div class="tw"><table>
+<tr><th>单的类型</th><th>用来做什么</th><th>通常谁开 → 谁接</th></tr>
+<tr><td class="w">Legend</td><td class="r">长篇故事之上的大主题或月度集合（如「26年-16週年慶」「十月份--产品部门任务内容集合」）</td><td class="d">于金伶、崔峰龙、营运 → 多数指派顾亿颉</td></tr>
+<tr><td class="w">长篇故事（Epic）</td><td class="r">一个需求，正文放需求内容和负责人；子单都挂在它下面</td><td class="d">策划或营运 → 策划</td></tr>
+<tr><td class="w">故事（Story）</td><td class="r">按工种拆出的子单；也用来记日报</td><td class="d">策划 → 各工种</td></tr>
+<tr><td class="w">QATask</td><td class="r">一个需求的 QA 测试任务</td><td class="d">策划 → QA</td></tr>
+<tr><td class="w">缺陷（Bug）</td><td class="r">测出的问题。标题「【模块】现象」；正文写测试时间、设备、装置、会员编号、操作、现象、应有现象</td><td class="d">QA → 开发或策划</td></tr>
+<tr><td class="w">Requirement</td><td class="r">营运用表单提的原始需求，自动带「form-37」「待營運確認」标签；选中立项时直接把类型改成长篇故事，不另建单</td><td class="d">营运 → 崔峰龙</td></tr>
+<tr><td class="w">ACC</td><td class="r">需求变更申请（类型说明：「修改当前US方案需要提此单申请」）。状态：发起 → 已接受 → 修改完成</td><td class="d">营运或策划 → 顾亿颉</td></tr>
+<tr><td class="w">子任务</td><td class="r">营运记每日工作明细、请人翻译文案</td><td class="d">营运 → 自己或译者</td></tr>
+<tr><td class="w">QAlity Test</td><td class="r">测试用例</td><td class="d">QA</td></tr>
+</table></div>
+
+<h3>状态怎么走</h3>
+<div class="card">
+  <div class="kv"><b>开发子单</b></div>
+  <div class="flow"><span>待办</span><em>→</em><span>正在执行</span><em>→</em><span class="qa">To Check（做完待测）</span><em>→</em><span class="qa">Checking（QA 测试中）</span><em>→</em><span class="done">已完成</span></div>
+  <div class="kv" style="margin-top:14px"><b>缺陷</b></div>
+  <div class="flow"><span>待办</span><em>→</em><span>正在执行</span><em>→</em><span>Resolved（开发修完）</span><em>→</em><span class="qa">To Check</span><em>→</em><span class="qa">Checking</span><em>→</em><span class="done">已完成</span></div>
+  <p class="note">开发认为不是缺陷可以拒单，转 Blocked 由策划判断：是缺陷就重开，不是就 To Be Closed → 关闭。真实例子 RICH-25808（后台导出卡死）10/27：14:31 陈颖开始修并标 Resolved → 15:15 自动改派回 QA 邱日鴻 → 18:08 邱日鴻验证，评论「驗證OK」后关闭。</p>
+  <p class="note"><b>Hotfix</b>　线上紧急问题 1 小时内确认要不要 Hotfix（文档写由「馳峰」评估）；打「Hot fix」标签并填上线日期；QA 先在线上环境复现，修完再验证。</p>
+</div>
+
+<h3>标题里的常用写法</h3>
+<div class="keep">
+  <span>【EP】【客端】【服務器】【後台】【美術】【特效】【美宣】【QA】【EP驗收】【壓測】＝工种</span>
+  <span>「需求名」＝需求主题</span><span>【11/5不可延期】＝硬期限</span><span>(急單)＝插队</span>
+  <span>【拆單】＝从大需求拆出</span><span>【歷史遺留】＝老问题</span><span>【BUG 轉優化】</span><span>「換皮」＝节日换皮</span>
+</div>
+
+<h3>日报和工时</h3>
+<div class="card">
+  <div class="kv"><b>谁要记</b>产品部 2 人、营运部 3 人、开发组长 6 人，每人一张「十月管理任务内容集合」（于金伶 10/13 开）；开发人员另按规范每天在自己的单上报工时并写明内容</div>
+  <div class="kv"><b>怎么记</b>每天在自己的集合下建一张故事单，标题「日期--姓名」或「X月X日-日報」</div>
+  <div class="kv"><b>规则原文（集合说明）</b>「内容写进描述，工时填 Story Points」；只记「产品制作任务以外记不到的工作量，例如审核 PR、估时、自行处理的优化」</div>
+</div>
+
+<!-- ============ 05 ============ -->
+<h2><span class="no">05</span>你上手：先问清自己的职责，第一周按清单走；方案要变成「长篇故事＋工种子单」才进排期</h2>
+
+<div class="card cause"><p class="h">先弄清：你的职责还没人确认过</p><p class="l"><span class="inf">推断</span>按崔峰龙的做法，产品部的活是「筛选＋方向」：营运需求单都先到崔峰龙，选中的改成长篇故事、写方向要点、挂版本、交顾亿颉；没改类型的 104 张一直待办（抽查 8 张里 1 张确认、2 张疑似已由别的单做掉）。这是崔峰龙的做法，不是你的职责说明，所以列为问主管的第一问</p><p class="e">文档只写策划要「与产品 / 运营 / PM 确认需求」，没写产品的分工；以上来自 Jira 变更记录</p></div>
+
+<h3>第一周清单</h3>
+<div class="steps">
+  <div><b>每天记日报</b>在「黄德成--十月管理任务内容集合」下建一张故事单，标题「X月X日-日報」；内容写描述，工时填 Story Points<i>规则出自集合说明；10/19 那张在样本里仍是待办</i></div>
+  <div><b>读三页文档</b>策划新人手册（105021459）、EP 验收标准（290684972）、产品短中期目标与提案机制（312606777）<i>后者把「推送框架 / 標籤體系 / 彈窗邏輯」列为 Q4 优先</i></div>
+  <div><b>问主管两件事</b>你的职责是什么；手上的方案要不要、什么时候走 Jira 立项<i>答案决定下面的路径和交接粒度</i></div>
+  <div><b>跟崔峰龙过一张单</b>RICH-23571：看 176 字要点怎么被策划扩成 7,769 字规格、拆出子单<i>顺带问没立项的需求单谁来回复</i></div>
+  <div><b>存两个常用查询</b>营运需求单待办：<code>issuetype = Requirement AND statusCategory != Done</code>；下一版未完成：<code>fixVersion = "08_V50_11.5" AND statusCategory != Done</code><i>都加 project = RICH</i></div>
+  <div><b>决定三条问人消息</b>给崔峰龙、于金伶、顾亿颉的草稿已写好，未发送<i>见本文件夹「问人草稿_1028.md」</i></div>
+</div>
+
+<h3>一个方案怎么进流水线<span class="inf" style="margin-left:8px">推断路径</span></h3>
+<div class="card">
+  <div class="flow"><span>写方案</span><em>→</em><span>立项为长篇故事</span><em>→</em><span>写方向要点、挂目标版本</span><em>→</em><span>交顾亿颉分派策划</span><em>→</em><span>策划写规格、拆工种子单</span><em>→</em><span>于金伶估时排期</span><em>→</em><span class="qa">开发 → 策划验收 → QA → 营运验收</span><em>→</em><span class="done">周四发版</span></div>
+  <p class="note">依据：RICH-23380、RICH-23571 的变更记录（崔峰龙从需求单改类型或直接建长篇故事，挂版本后交顾亿颉）。推送这类 Q4 优先项要不要、何时走这条路，由你和主管定；Jira 上目前只有崔峰龙 8 月建的两张同主题单「新手流程内容推送设置」「分卡别内容推送」，无正文、无子单。</p>
+</div>
+
+<h3>产品交接要点模板<span class="inf" style="margin-left:8px">推断</span></h3>
+<div class="tw"><table>
+<tr><th>要点</th><th>写什么</th><th>依据</th></tr>
+<tr><td class="w">背景与目标</td><td class="r">现状问题、数据、为什么现在做；要改善哪个指标</td><td class="d">策划要「与产品 / 运营 / PM 确认需求背景、目的、业务目标」</td></tr>
+<tr><td class="w">范围</td><td class="r">这期做什么、不做什么</td><td class="d">策划文档模板「范围说明和不适用范围」</td></tr>
+<tr><td class="w">规则要点</td><td class="r">3–5 条核心规则，配图或竞品参考</td><td class="d">RICH-23571：4 条要点加 1 张图</td></tr>
+<tr><td class="w">营运确认项</td><td class="r">奖励数值、成本、时间、对象、开关由谁定</td><td class="d">EP 送测门槛第 5 条</td></tr>
+<tr><td class="w">目标版本与硬期限</td><td class="r">想进哪一版；有无「不可延期」</td><td class="d">版本规则</td></tr>
+<tr><td class="w">交给谁</td><td class="r">顾亿颉，由其分派策划</td><td class="d">RICH-23380、RICH-23571 流转</td></tr>
+</table></div>
+<p class="legend">这份模板是我按策划文档模板、EP 送测门槛和两张样例推出来的，不是团队规定。两张样例写法差很多：RICH-23571 写了 176 字（4 条要点加 1 张图），RICH-24435 只有约 80 字（目标和工具需求）；写多细，是要问的第二个问题。</p>
+
+<h3>要问人的事</h3>
+<div class="tw"><table>
+<tr><th>问题</th><th>为什么要知道</th><th>问谁</th></tr>
+<tr><td class="w">你的职责，和手上方案要不要走 Jira 立项</td><td class="r">是否和崔峰龙一样做「筛选＋方向」；决定你接什么需求、方案怎么进排期</td><td class="d">你的主管</td></tr>
+<tr><td class="w">你要写到什么粒度再交策划</td><td class="r">崔峰龙有时只写 80 字要点，有时写到 6,000 字方案；决定工作量和交接点</td><td class="d">你的主管、崔峰龙</td></tr>
+<tr><td class="w">没立项的需求单谁来回复、要不要清理</td><td class="r">104 张待办里有营运已说不用做的；你接需求时从哪看、哪些还算数</td><td class="d">崔峰龙</td></tr>
+<tr><td class="w">需求评审会怎么开、谁参加</td><td class="r">文档只有「策划内部评审」，没有跨部门评审的规定；你的方案要在哪个会上过</td><td class="d">于金伶、顾亿颉</td></tr>
+<tr><td class="w">估时（Story Points）的单位</td><td class="r">服务器组日报写「工时单位：天，取 Story Points 值」，推断是人天；影响你读排期</td><td class="d">于金伶</td></tr>
+<tr><td class="w">「馳峰」是谁</td><td class="r">EP 问题处理规范写紧急问题「直接轉給 馳峰 評估」是否 Hotfix；Jira 现有人员里没找到这个名字</td><td class="d">顾亿颉</td></tr>
+</table></div>
+
+<p class="links">
+原文：<br>
+本文件夹：<a href="先看这里.md">先看这里.md</a>（归属说明与索引）· <a href="数据/查询与来源.md">查询与来源</a>（每个数字的 JQL）· <a href="数据/补查_1028/补查结果_1028.md">10/28 晚补查结果</a>（版本加挂、需求单、产品交付）· <a href="数据/近30天工单样本_682张.json">近 30 天工单样本</a><br>
+Jira：<a href="https://xsg-game.atlassian.net/browse/RICH-23571">RICH-23571 10月庆典抽奖大厅（产品→策划交接）</a> · <a href="https://xsg-game.atlassian.net/browse/RICH-23380">RICH-23380 需求单改成长篇故事</a> · <a href="https://xsg-game.atlassian.net/browse/RICH-24855">RICH-24855 16 周年庆抽奖大厅</a> · <a href="https://xsg-game.atlassian.net/browse/RICH-25345">RICH-25345 至尊俱樂部</a> · <a href="https://xsg-game.atlassian.net/browse/RICH-24900">RICH-24900 客户端子单流转</a> · <a href="https://xsg-game.atlassian.net/browse/RICH-25808">RICH-25808 缺陷流转</a><br>
+Confluence：<a href="https://xsg-game.atlassian.net/wiki/spaces/JD/pages/105021459">策划新人手册</a> · <a href="https://xsg-game.atlassian.net/wiki/spaces/JD/pages/312606777">产品短中期目标与提案机制</a> · <a href="https://xsg-game.atlassian.net/wiki/spaces/JD/pages/290684972">EP 验收标准</a> · <a href="https://xsg-game.atlassian.net/wiki/spaces/JD/pages/197853399">EP 问题处理</a> · <a href="https://xsg-game.atlassian.net/wiki/spaces/JD/pages/200540175">客户端开发流程规范</a> · <a href="https://xsg-game.atlassian.net/wiki/spaces/JD/pages/7831633">RD 日常开发 Jira 规范</a> · <a href="https://xsg-game.atlassian.net/wiki/spaces/JD/pages/110329902">线上迭代流程规范</a> · <a href="https://xsg-game.atlassian.net/wiki/spaces/JD/pages/326598669">游戏串接工作手册</a> · <a href="https://xsg-game.atlassian.net/wiki/spaces/JD/pages/41254915">策划需求文档模板</a>
+</p>
+</div></body></html>

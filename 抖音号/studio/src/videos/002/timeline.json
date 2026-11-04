@@ -1,0 +1,2303 @@
+{
+ "stats": {
+  "now": {
+   "chars": 227,
+   "per_s": 3.88,
+   "dense5": 5.83,
+   "dense5_at": [
+    1.4,
+    6.4
+   ]
+  },
+  "now_no_title": {
+   "chars": 218,
+   "per_s": 3.73,
+   "dense5": 5.77,
+   "dense5_at": [
+    1.6,
+    6.6
+   ]
+  },
+  "orig": {
+   "chars": 329,
+   "per_s": 5.62,
+   "dense5": 6.49,
+   "dense5_at": [
+    17.4,
+    22.4
+   ],
+   "dur": 58.5
+  },
+  "v1": {
+   "chars": 240,
+   "per_s": 4.07,
+   "dense5": 6.0,
+   "dense5_at": [
+    0.0,
+    5.0
+   ],
+   "dur": 58.9
+  },
+  "v2_first8": {
+   "chars": 232,
+   "per_s": 3.95,
+   "dense5": 6.0,
+   "dense5_at": [
+    0.0,
+    5.0
+   ],
+   "dur": 58.7
+  },
+  "v2": {
+   "chars": 216,
+   "per_s": 3.62,
+   "dense5": 5.73,
+   "dense5_at": [
+    11.1,
+    16.1
+   ],
+   "dur": 59.7
+  },
+  "v3_before_cut": {
+   "chars": 247,
+   "per_s": 4.12,
+   "dur": 59.95
+  },
+  "v4": {
+   "chars": 218,
+   "per_s": 3.64,
+   "no_text": "10/31",
+   "dur": 59.95
+  },
+  "no_text_beats": {
+   "n": 10,
+   "of": 32,
+   "share": 0.312,
+   "time_s": 11.4,
+   "time_share": 0.195,
+   "ids": [
+    "S01",
+    "S05",
+    "S08",
+    "S11",
+    "S13",
+    "S16",
+    "S18",
+    "S20",
+    "S27",
+    "S27h"
+   ]
+  },
+  "no_new_text_beats": {
+   "n": 13,
+   "share": 0.406,
+   "time_share": 0.25,
+   "ids": [
+    "S01",
+    "S05",
+    "S07",
+    "S08",
+    "S11",
+    "S13",
+    "S15",
+    "S16",
+    "S18",
+    "S20",
+    "S27",
+    "S27h",
+    "S29"
+   ]
+  },
+  "unreadable": [],
+  "reading_time_share": 0.576,
+  "checklist": {
+   "dur": 58.5,
+   "chars": 227,
+   "per_s": 3.88,
+   "dense5": 5.83,
+   "dense5_at": [
+    1.4,
+    6.4
+   ],
+   "no_text": 12,
+   "of": 32,
+   "share": 0.375,
+   "no_text_time_share": 0.222,
+   "no_text_ids": [
+    "S05",
+    "S07",
+    "S08",
+    "S11",
+    "S13",
+    "S15",
+    "S16",
+    "S18",
+    "S20",
+    "S27",
+    "S27h",
+    "S29"
+   ],
+   "ok_len": true,
+   "ok_cps": true,
+   "ok_no_text": true,
+   "ok_read": true
+  }
+ },
+ "title": "被坑多了，你会变狠吗？（002 横屏，第五版）",
+ "source": "videos/002_做好人/分镜_被坑_横屏.md",
+ "fps": 30,
+ "frames": 1755,
+ "dur": 58.5,
+ "readCps": 6.5,
+ "question": {
+  "text": "被坑多了，你会变狠吗？",
+  "big": [
+   0,
+   48
+  ],
+  "small": [
+   48,
+   114
+  ]
+ },
+ "counterFrom": 114,
+ "gen": [
+  {
+   "f": 0,
+   "gen": 0,
+   "mode": "step"
+  },
+  {
+   "f": 114,
+   "gen": 0,
+   "mode": "hold"
+  },
+  {
+   "f": 168,
+   "gen": 70,
+   "mode": "lin"
+  },
+  {
+   "f": 234,
+   "gen": 70,
+   "mode": "hold"
+  },
+  {
+   "f": 243,
+   "gen": 0,
+   "mode": "lin"
+  },
+  {
+   "f": 260,
+   "gen": 1,
+   "mode": "step"
+  },
+  {
+   "f": 267,
+   "gen": 2,
+   "mode": "step"
+  },
+  {
+   "f": 274,
+   "gen": 3,
+   "mode": "step"
+  },
+  {
+   "f": 276,
+   "gen": 4,
+   "mode": "step"
+  },
+  {
+   "f": 483,
+   "gen": 4,
+   "mode": "hold"
+  },
+  {
+   "f": 502,
+   "gen": 5,
+   "mode": "step"
+  },
+  {
+   "f": 521,
+   "gen": 6,
+   "mode": "step"
+  },
+  {
+   "f": 540,
+   "gen": 7,
+   "mode": "step"
+  },
+  {
+   "f": 663,
+   "gen": 7,
+   "mode": "hold"
+  },
+  {
+   "f": 711,
+   "gen": 62,
+   "mode": "lin"
+  },
+  {
+   "f": 741,
+   "gen": 62,
+   "mode": "hold"
+  },
+  {
+   "f": 846,
+   "gen": 100,
+   "mode": "lin"
+  },
+  {
+   "f": 864,
+   "gen": 108,
+   "mode": "lin"
+  },
+  {
+   "f": 957,
+   "gen": 108,
+   "mode": "hold"
+  },
+  {
+   "f": 1020,
+   "gen": 140,
+   "mode": "lin"
+  },
+  {
+   "f": 1065,
+   "gen": 140,
+   "mode": "hold"
+  },
+  {
+   "f": 1206,
+   "gen": 165,
+   "mode": "lin"
+  },
+  {
+   "f": 1206,
+   "gen": 166,
+   "mode": "step"
+  },
+  {
+   "f": 1250,
+   "gen": 167,
+   "mode": "step"
+  },
+  {
+   "f": 1314,
+   "gen": 167,
+   "mode": "hold"
+  },
+  {
+   "f": 1366,
+   "gen": 300,
+   "mode": "lin"
+  },
+  {
+   "f": 1755,
+   "gen": 297.3,
+   "mode": "hold"
+  }
+ ],
+ "route": {
+  "stages": [
+   {
+    "code": "ALLC",
+    "label": "老实"
+   },
+   {
+    "code": "HARSH",
+    "label": "狠"
+   },
+   {
+    "code": "TFT",
+    "label": "有来有往"
+   },
+   {
+    "code": "GTFT",
+    "label": "原谅"
+   }
+  ],
+  "keys": [
+   {
+    "f": 114,
+    "t": 3.8,
+    "act": "in",
+    "i": 0
+   },
+   {
+    "f": 182,
+    "t": 6.05,
+    "act": "reveal",
+    "i": 1
+   },
+   {
+    "f": 195,
+    "t": 6.5,
+    "act": "ask",
+    "i": 2
+   },
+   {
+    "f": 234,
+    "t": 7.8,
+    "act": "back",
+    "i": 0
+   },
+   {
+    "f": 459,
+    "t": 15.3,
+    "act": "on",
+    "i": 1
+   },
+   {
+    "f": 936,
+    "t": 31.2,
+    "act": "reveal",
+    "i": 2
+   },
+   {
+    "f": 1236,
+    "t": 41.2,
+    "act": "reveal",
+    "i": 3
+   },
+   {
+    "f": 1386,
+    "t": 46.2,
+    "act": "out",
+    "i": -1
+   }
+  ]
+ },
+ "cycle": {
+  "gen0": 300,
+  "gen1": 900,
+  "keys": [
+   [
+    46.6,
+    300
+   ],
+   [
+    48.5,
+    750
+   ],
+   [
+    48.6,
+    750
+   ],
+   [
+    49.9,
+    860
+   ]
+  ],
+  "soft": [
+   "ALLC",
+   "WSLS"
+  ]
+ },
+ "layout": {
+  "W": 1920,
+  "H": 1080,
+  "top": {
+   "y0": 36,
+   "y1": 128,
+   "questionSize": 80,
+   "questionOpacity": 0.8,
+   "counterNum": 96,
+   "counterWord": 80,
+   "counterRight": 1680
+  },
+  "hist": {
+   "y0": 146,
+   "y1": 182,
+   "x0": 120,
+   "x1": 1680
+  },
+  "stage": {
+   "y0": 200,
+   "y1": 820,
+   "x0": 120,
+   "x1": 1680
+  },
+  "sub": {
+   "y0": 830,
+   "lineH": 110,
+   "size": 88,
+   "numSize": 100,
+   "cx": 900,
+   "x0": 190,
+   "x1": 1610,
+   "maxChars": 15
+  },
+  "rightSafe": {
+   "x0": 1680,
+   "y0": 430
+  },
+  "titleBig": 132,
+  "tagYou": 88,
+  "tagStrategy": 80,
+  "harshCounter": {
+   "num": 160,
+   "word": 88
+  },
+  "blockLabel": {
+   "text": 88,
+   "num": 100
+  },
+  "far": {
+   "cols": 50,
+   "rows": 20,
+   "dot": 22,
+   "gap": 30,
+   "ring": 96,
+   "ringStroke": 8
+  },
+  "mid": {
+   "zoom": 4.545454545454546,
+   "dot": 100,
+   "eye": 18
+  },
+  "near": {
+   "headToWaist": 560,
+   "sparkCore": 64,
+   "sparkGlow": 128,
+   "barThick": 32,
+   "barFull": 400
+  },
+  "cells10": 90,
+  "block": {
+   "cell": 26
+  },
+  "hist20": {
+   "barH": 22
+  }
+ },
+ "beats": [
+  {
+   "id": "S01",
+   "t0": 0.0,
+   "t1": 1.6,
+   "f0": 0,
+   "f1": 48,
+   "dur": 1.6,
+   "readFrom": 0.0,
+   "cont": false,
+   "lines": [],
+   "text": "",
+   "shot": "近",
+   "scene": "open",
+   "stop": false,
+   "sub": null,
+   "ev": {
+    "reachIn": [
+     0,
+     15
+    ],
+    "whoosh": 12,
+    "grab": [
+     15,
+     26
+    ],
+    "turnAway": [
+     26,
+     36
+    ],
+    "blank": 27,
+    "worry": [
+     30,
+     44
+    ]
+   },
+   "ev_s": {
+    "reachIn": [
+     0.0,
+     0.5
+    ],
+    "whoosh": 0.4,
+    "grab": [
+     0.5,
+     0.85
+    ],
+    "turnAway": [
+     0.85,
+     1.2
+    ],
+    "blank": 0.9,
+    "worry": [
+     1.0,
+     1.45
+    ]
+   },
+   "read": {
+    "chars": 0,
+    "need_s": 0.0,
+    "have_s": 1.6,
+    "ok": true,
+    "widths": []
+   },
+   "gen": [
+    0,
+    0
+   ]
+  },
+  {
+   "id": "S02",
+   "t0": 1.6,
+   "t1": 3.8,
+   "f0": 48,
+   "f1": 114,
+   "dur": 2.2,
+   "readFrom": 1.6,
+   "cont": false,
+   "lines": [
+    "假如有 1000 个人，",
+    "你是其中一个"
+   ],
+   "text": "假如有 1000 个人，你是其中一个",
+   "shot": "近→远",
+   "scene": "pullback",
+   "stop": false,
+   "sub": null,
+   "ev": {
+    "titleShrink": [
+     48,
+     66
+    ],
+    "fadeNear": [
+     48,
+     60
+    ],
+    "zoomOut": [
+     48,
+     93
+    ],
+    "ringPulse": 99
+   },
+   "ev_s": {
+    "titleShrink": [
+     1.6,
+     2.2
+    ],
+    "fadeNear": [
+     1.6,
+     2.0
+    ],
+    "zoomOut": [
+     1.6,
+     3.1
+    ],
+    "ringPulse": 3.3
+   },
+   "read": {
+    "chars": 13,
+    "need_s": 2.0,
+    "have_s": 2.2,
+    "ok": true,
+    "widths": [
+     821,
+     528
+    ]
+   },
+   "gen": [
+    0,
+    0
+   ]
+  },
+  {
+   "id": "S03",
+   "t0": 3.8,
+   "t1": 6.4,
+   "f0": 114,
+   "f1": 192,
+   "dur": 2.6,
+   "readFrom": 3.8,
+   "cont": false,
+   "lines": [
+    "会。老实人里，几乎都变狠过",
+    [
+     [
+      "你大概也是",
+      "",
+      168
+     ]
+    ]
+   ],
+   "text": "会。老实人里，几乎都变狠过你大概也是",
+   "shot": "远",
+   "scene": "far",
+   "stop": false,
+   "sub": null,
+   "ev": {
+    "routeIn": [
+     114,
+     126
+    ],
+    "qOut": [
+     114,
+     126
+    ],
+    "dimCrowd": [
+     114,
+     126
+    ],
+    "youRed": 172
+   },
+   "ev_s": {
+    "routeIn": [
+     3.8,
+     4.2
+    ],
+    "qOut": [
+     3.8,
+     4.2
+    ],
+    "dimCrowd": [
+     3.8,
+     4.2
+    ],
+    "youRed": 5.75
+   },
+   "read": {
+    "chars": 16,
+    "need_s": 2.46,
+    "have_s": 2.6,
+    "ok": true,
+    "widths": [
+     1144,
+     440
+    ]
+   },
+   "gen": [
+    0,
+    70
+   ]
+  },
+  {
+   "id": "S04",
+   "t0": 6.4,
+   "t1": 7.8,
+   "f0": 192,
+   "f1": 234,
+   "dur": 1.4,
+   "readFrom": 6.4,
+   "cont": false,
+   "lines": [
+    "狠下去，会怎样？"
+   ],
+   "text": "狠下去，会怎样？",
+   "shot": "远",
+   "scene": "far",
+   "stop": false,
+   "sub": null,
+   "ev": {
+    "undim": [
+     192,
+     207
+    ],
+    "ask": 195
+   },
+   "ev_s": {
+    "undim": [
+     6.4,
+     6.9
+    ],
+    "ask": 6.5
+   },
+   "read": {
+    "chars": 6,
+    "need_s": 0.92,
+    "have_s": 1.4,
+    "ok": true,
+    "widths": [
+     704
+    ]
+   },
+   "gen": [
+    70,
+    70
+   ]
+  },
+  {
+   "id": "S05",
+   "t0": 7.8,
+   "t1": 8.4,
+   "f0": 234,
+   "f1": 252,
+   "dur": 0.6,
+   "readFrom": 7.8,
+   "cont": false,
+   "lines": [],
+   "text": "",
+   "shot": "远→近",
+   "scene": "rewind",
+   "stop": false,
+   "sub": null,
+   "ev": {
+    "rewind": [
+     234,
+     243
+    ],
+    "dive": [
+     243,
+     252
+    ]
+   },
+   "ev_s": {
+    "rewind": [
+     7.8,
+     8.1
+    ],
+    "dive": [
+     8.1,
+     8.4
+    ]
+   },
+   "read": {
+    "chars": 0,
+    "need_s": 0.0,
+    "have_s": 0.6,
+    "ok": true,
+    "widths": []
+   },
+   "gen": [
+    70,
+    0
+   ]
+  },
+  {
+   "id": "S06",
+   "t0": 8.4,
+   "t1": 9.2,
+   "f0": 252,
+   "f1": 276,
+   "dur": 0.8,
+   "readFrom": 8.4,
+   "cont": false,
+   "lines": [
+    "先看你怎么变狠的"
+   ],
+   "text": "先看你怎么变狠的",
+   "shot": "近",
+   "scene": "near",
+   "stop": false,
+   "sub": null,
+   "ev": {
+    "gives": [
+     254,
+     275
+    ]
+   },
+   "ev_s": {
+    "gives": [
+     8.46,
+     9.17
+    ]
+   },
+   "read": {
+    "chars": 8,
+    "need_s": 1.23,
+    "have_s": 2.0,
+    "ok": true,
+    "widths": [
+     704
+    ]
+   },
+   "gen": [
+    0,
+    3
+   ]
+  },
+  {
+   "id": "S07",
+   "t0": 9.2,
+   "t1": 10.4,
+   "f0": 276,
+   "f1": 312,
+   "dur": 1.2,
+   "readFrom": 8.4,
+   "cont": true,
+   "lines": [
+    "先看你怎么变狠的"
+   ],
+   "text": "先看你怎么变狠的",
+   "shot": "近",
+   "scene": "near",
+   "stop": false,
+   "sub": null,
+   "ev": {
+    "highlight": 276,
+    "label": 279,
+    "grabs": [
+     286,
+     292,
+     298,
+     304
+    ],
+    "shrink": [
+     286,
+     308
+    ]
+   },
+   "ev_s": {
+    "highlight": 9.2,
+    "label": 9.31,
+    "grabs": [
+     9.52,
+     9.73,
+     9.94,
+     10.15
+    ],
+    "shrink": [
+     9.55,
+     10.26
+    ]
+   },
+   "read": {
+    "chars": 8,
+    "need_s": 1.23,
+    "have_s": 2.0,
+    "ok": true,
+    "widths": [
+     704
+    ]
+   },
+   "gen": [
+    4,
+    4
+   ]
+  },
+  {
+   "id": "S08",
+   "t0": 10.4,
+   "t1": 11.3,
+   "f0": 312,
+   "f1": 339,
+   "dur": 0.9,
+   "readFrom": 10.4,
+   "cont": false,
+   "lines": [],
+   "text": "",
+   "shot": "近（手特写）",
+   "scene": "near",
+   "stop": false,
+   "sub": null,
+   "ev": {
+    "zoomIn": [
+     312,
+     316
+    ],
+    "gives": [
+     315,
+     336
+    ],
+    "slipIndex": 13,
+    "zoomOut": [
+     336,
+     339
+    ]
+   },
+   "ev_s": {
+    "zoomIn": [
+     10.4,
+     10.53
+    ],
+    "gives": [
+     10.5,
+     11.2
+    ],
+    "slipIndex": 13,
+    "zoomOut": [
+     11.2,
+     11.3
+    ]
+   },
+   "read": {
+    "chars": 0,
+    "need_s": 0.0,
+    "have_s": 0.9,
+    "ok": true,
+    "widths": []
+   },
+   "gen": [
+    4,
+    4
+   ]
+  },
+  {
+   "id": "S09",
+   "t0": 11.3,
+   "t1": 14.0,
+   "f0": 339,
+   "f1": 420,
+   "dur": 2.7,
+   "readFrom": 11.3,
+   "cont": false,
+   "lines": [
+    "一次误会，她就记你一辈子"
+   ],
+   "text": "一次误会，她就记你一辈子",
+   "shot": "近",
+   "scene": "near",
+   "stop": false,
+   "sub": null,
+   "ev": {
+    "pick": 339,
+    "walkDown": [
+     340,
+     354
+    ],
+    "label": 351,
+    "giveOk": 358,
+    "slip": 369,
+    "stun": [
+     379,
+     387
+    ],
+    "crossArms": [
+     387,
+     396
+    ],
+    "grabs": [
+     396,
+     404,
+     410
+    ]
+   },
+   "ev_s": {
+    "pick": 11.3,
+    "walkDown": [
+     11.35,
+     11.8
+    ],
+    "label": 11.7,
+    "giveOk": 11.95,
+    "slip": 12.3,
+    "stun": [
+     12.62,
+     12.9
+    ],
+    "crossArms": [
+     12.9,
+     13.2
+    ],
+    "grabs": [
+     13.2,
+     13.45,
+     13.68
+    ]
+   },
+   "read": {
+    "chars": 11,
+    "need_s": 1.69,
+    "have_s": 2.7,
+    "ok": true,
+    "widths": [
+     1056
+    ]
+   },
+   "gen": [
+    4,
+    4
+   ]
+  },
+  {
+   "id": "S10",
+   "t0": 14.0,
+   "t1": 16.1,
+   "f0": 420,
+   "f1": 483,
+   "dur": 2.1,
+   "readFrom": 14.0,
+   "cont": false,
+   "lines": [
+    "记仇的不吃亏，你也学了她"
+   ],
+   "text": "记仇的不吃亏，你也学了她",
+   "shot": "近",
+   "scene": "near",
+   "stop": false,
+   "sub": null,
+   "ev": {
+    "other": [
+     420,
+     429
+    ],
+    "turnHead": [
+     423,
+     432
+    ],
+    "bars": 432,
+    "recolor": [
+     459,
+     477
+    ]
+   },
+   "ev_s": {
+    "other": [
+     14.0,
+     14.3
+    ],
+    "turnHead": [
+     14.1,
+     14.4
+    ],
+    "bars": 14.4,
+    "recolor": [
+     15.3,
+     15.9
+    ]
+   },
+   "read": {
+    "chars": 11,
+    "need_s": 1.69,
+    "have_s": 2.1,
+    "ok": true,
+    "widths": [
+     1056
+    ]
+   },
+   "gen": [
+    4,
+    4
+   ]
+  },
+  {
+   "id": "S11",
+   "t0": 16.1,
+   "t1": 18.2,
+   "f0": 483,
+   "f1": 546,
+   "dur": 2.1,
+   "readFrom": 16.1,
+   "cont": false,
+   "lines": [],
+   "text": "",
+   "shot": "中",
+   "scene": "mid",
+   "stop": false,
+   "sub": null,
+   "ev": {
+    "zoom": [
+     483,
+     492
+    ],
+    "bars": 492
+   },
+   "ev_s": {
+    "zoom": [
+     16.1,
+     16.41
+    ],
+    "bars": 16.41
+   },
+   "read": {
+    "chars": 0,
+    "need_s": 0.0,
+    "have_s": 2.1,
+    "ok": true,
+    "widths": []
+   },
+   "gen": [
+    4,
+    7
+   ]
+  },
+  {
+   "id": "S12",
+   "t0": 18.2,
+   "t1": 20.5,
+   "f0": 546,
+   "f1": 615,
+   "dur": 2.3,
+   "readFrom": 18.2,
+   "cont": false,
+   "lines": [
+    "老实人误会一次，你也记一辈子"
+   ],
+   "text": "老实人误会一次，你也记一辈子",
+   "shot": "近",
+   "scene": "near",
+   "stop": false,
+   "sub": null,
+   "ev": {
+    "giveOk": 552,
+    "slip": 564,
+    "stun": [
+     574,
+     582
+    ],
+    "crossArms": [
+     582,
+     591
+    ],
+    "grabs": [
+     591,
+     597,
+     603,
+     606
+    ]
+   },
+   "ev_s": {
+    "giveOk": 18.4,
+    "slip": 18.8,
+    "stun": [
+     19.12,
+     19.4
+    ],
+    "crossArms": [
+     19.4,
+     19.7
+    ],
+    "grabs": [
+     19.7,
+     19.9,
+     20.1,
+     20.2
+    ]
+   },
+   "read": {
+    "chars": 13,
+    "need_s": 2.0,
+    "have_s": 2.3,
+    "ok": true,
+    "widths": [
+     1232
+    ]
+   },
+   "gen": [
+    7,
+    7
+   ]
+  },
+  {
+   "id": "S13",
+   "t0": 20.5,
+   "t1": 22.1,
+   "f0": 615,
+   "f1": 663,
+   "dur": 1.6,
+   "readFrom": 20.5,
+   "cont": false,
+   "lines": [],
+   "text": "",
+   "shot": "近",
+   "scene": "near",
+   "stop": false,
+   "sub": null,
+   "ev": {
+    "grow": [
+     615,
+     639
+    ],
+    "smirk": [
+     625,
+     642
+    ]
+   },
+   "ev_s": {
+    "grow": [
+     20.5,
+     21.3
+    ],
+    "smirk": [
+     20.84,
+     21.41
+    ]
+   },
+   "read": {
+    "chars": 0,
+    "need_s": 0.0,
+    "have_s": 1.6,
+    "ok": true,
+    "widths": []
+   },
+   "gen": [
+    7,
+    7
+   ]
+  },
+  {
+   "id": "S14",
+   "t0": 22.1,
+   "t1": 23.7,
+   "f0": 663,
+   "f1": 711,
+   "dur": 1.6,
+   "readFrom": 22.1,
+   "cont": false,
+   "lines": [
+    "可狠的人越来越多"
+   ],
+   "text": "可狠的人越来越多",
+   "shot": "远（后段往你推）",
+   "scene": "far",
+   "stop": false,
+   "sub": null,
+   "ev": {
+    "zoom": [
+     663,
+     670
+    ],
+    "pushFrom": 687
+   },
+   "ev_s": {
+    "zoom": [
+     22.1,
+     22.33
+    ],
+    "pushFrom": 22.9
+   },
+   "read": {
+    "chars": 8,
+    "need_s": 1.23,
+    "have_s": 2.6,
+    "ok": true,
+    "widths": [
+     704
+    ]
+   },
+   "gen": [
+    7,
+    60
+   ]
+  },
+  {
+   "id": "S15",
+   "t0": 23.7,
+   "t1": 24.7,
+   "f0": 711,
+   "f1": 741,
+   "dur": 1.0,
+   "readFrom": 22.1,
+   "cont": true,
+   "lines": [
+    "可狠的人越来越多"
+   ],
+   "text": "可狠的人越来越多",
+   "shot": "远（推，定住 0.45 秒）",
+   "scene": "far",
+   "stop": true,
+   "sub": null,
+   "ev": {
+    "lines": [
+     711,
+     721
+    ],
+    "freeze": [
+     721,
+     728
+    ]
+   },
+   "ev_s": {
+    "lines": [
+     23.7,
+     24.02
+    ],
+    "freeze": [
+     24.02,
+     24.26
+    ]
+   },
+   "read": {
+    "chars": 8,
+    "need_s": 1.23,
+    "have_s": 2.6,
+    "ok": true,
+    "widths": [
+     704
+    ]
+   },
+   "gen": [
+    62,
+    62
+   ]
+  },
+  {
+   "id": "S16",
+   "t0": 24.7,
+   "t1": 25.6,
+   "f0": 741,
+   "f1": 768,
+   "dur": 0.9,
+   "readFrom": 24.7,
+   "cont": false,
+   "lines": [],
+   "text": "",
+   "shot": "远→中（一直往你推）",
+   "scene": "far",
+   "stop": false,
+   "sub": null,
+   "ev": {
+    "pushTo": 768
+   },
+   "ev_s": {
+    "pushTo": 25.6
+   },
+   "read": {
+    "chars": 0,
+    "need_s": 0.0,
+    "have_s": 0.9,
+    "ok": true,
+    "widths": []
+   },
+   "gen": [
+    62,
+    71
+   ]
+  },
+  {
+   "id": "S17",
+   "t0": 25.6,
+   "t1": 28.2,
+   "f0": 768,
+   "f1": 846,
+   "dur": 2.6,
+   "readFrom": 25.6,
+   "cont": false,
+   "lines": [
+    "人人都狠，你比当老实人时还差"
+   ],
+   "text": "人人都狠，你比当老实人时还差",
+   "shot": "中近",
+   "scene": "midYou",
+   "stop": false,
+   "sub": null,
+   "ev": {
+    "push": [
+     768,
+     846
+    ],
+    "meIn": [
+     768,
+     780
+    ],
+    "ghostIn": [
+     795,
+     804
+    ],
+    "ghostOut": [
+     831,
+     843
+    ]
+   },
+   "ev_s": {
+    "push": [
+     25.6,
+     28.2
+    ],
+    "meIn": [
+     25.6,
+     26.0
+    ],
+    "ghostIn": [
+     26.5,
+     26.8
+    ],
+    "ghostOut": [
+     27.7,
+     28.1
+    ]
+   },
+   "read": {
+    "chars": 13,
+    "need_s": 2.0,
+    "have_s": 2.6,
+    "ok": true,
+    "widths": [
+     1232
+    ]
+   },
+   "gen": [
+    71,
+    99
+   ]
+  },
+  {
+   "id": "S18",
+   "t0": 28.2,
+   "t1": 29.7,
+   "f0": 846,
+   "f1": 891,
+   "dur": 1.5,
+   "readFrom": 28.2,
+   "cont": false,
+   "lines": [],
+   "text": "",
+   "shot": "近",
+   "scene": "near",
+   "stop": false,
+   "sub": null,
+   "ev": {
+    "rowTurn": [
+     846,
+     864
+    ],
+    "label": 866,
+    "walkDown": [
+     867,
+     879
+    ],
+    "give": 884,
+    "giveBack": 888,
+    "grab": 896,
+    "grabBack": 902,
+    "turnHead": [
+     908,
+     914
+    ],
+    "bars": 912,
+    "recolor": [
+     936,
+     948
+    ]
+   },
+   "ev_s": {
+    "rowTurn": [
+     28.2,
+     28.8
+    ],
+    "label": 28.85,
+    "walkDown": [
+     28.9,
+     29.3
+    ],
+    "give": 29.45,
+    "giveBack": 29.6,
+    "grab": 29.85,
+    "grabBack": 30.05,
+    "turnHead": [
+     30.25,
+     30.45
+    ],
+    "bars": 30.4,
+    "recolor": [
+     31.2,
+     31.6
+    ]
+   },
+   "read": {
+    "chars": 0,
+    "need_s": 0.0,
+    "have_s": 1.5,
+    "ok": true,
+    "widths": []
+   },
+   "gen": [
+    100,
+    108
+   ]
+  },
+  {
+   "id": "S18b",
+   "t0": 29.7,
+   "t1": 31.9,
+   "f0": 891,
+   "f1": 957,
+   "dur": 2.2,
+   "readFrom": 29.7,
+   "cont": false,
+   "as": "S18",
+   "lines": [
+    "有来有往的过得更好，你又学了她"
+   ],
+   "text": "有来有往的过得更好，你又学了她",
+   "shot": "近",
+   "scene": "near",
+   "stop": false,
+   "sub": null,
+   "ev": {},
+   "ev_s": {},
+   "read": {
+    "chars": 14,
+    "need_s": 2.15,
+    "have_s": 2.2,
+    "ok": true,
+    "widths": [
+     1320
+    ]
+   },
+   "gen": [
+    108,
+    108
+   ]
+  },
+  {
+   "id": "S19",
+   "t0": 31.9,
+   "t1": 34.3,
+   "f0": 957,
+   "f1": 1029,
+   "dur": 2.4,
+   "readFrom": 31.9,
+   "cont": false,
+   "lines": [
+    "后来，狠的过得最差"
+   ],
+   "text": "后来，狠的过得最差",
+   "shot": "远",
+   "scene": "far",
+   "stop": false,
+   "sub": null,
+   "ev": {
+    "zoom": [
+     957,
+     969
+    ],
+    "freeze": [
+     1020,
+     1029
+    ]
+   },
+   "ev_s": {
+    "zoom": [
+     31.9,
+     32.3
+    ],
+    "freeze": [
+     34.0,
+     34.3
+    ]
+   },
+   "read": {
+    "chars": 8,
+    "need_s": 1.23,
+    "have_s": 2.4,
+    "ok": true,
+    "widths": [
+     792
+    ]
+   },
+   "gen": [
+    108,
+    140
+   ]
+  },
+  {
+   "id": "S20",
+   "t0": 34.3,
+   "t1": 35.5,
+   "f0": 1029,
+   "f1": 1065,
+   "dur": 1.2,
+   "readFrom": 34.3,
+   "cont": false,
+   "lines": [],
+   "text": "",
+   "shot": "远→近",
+   "scene": "near",
+   "stop": true,
+   "sub": null,
+   "ev": {
+    "push": [
+     1029,
+     1040
+    ],
+    "slip": 1044,
+    "stun": [
+     1054,
+     1065
+    ]
+   },
+   "ev_s": {
+    "push": [
+     34.3,
+     34.65
+    ],
+    "slip": 34.8,
+    "stun": [
+     35.12,
+     35.5
+    ]
+   },
+   "read": {
+    "chars": 0,
+    "need_s": 0.0,
+    "have_s": 1.2,
+    "ok": true,
+    "widths": []
+   },
+   "gen": [
+    140,
+    140
+   ]
+  },
+  {
+   "id": "S21",
+   "t0": 35.5,
+   "t1": 37.9,
+   "f0": 1065,
+   "f1": 1137,
+   "dur": 2.4,
+   "readFrom": 35.5,
+   "cont": false,
+   "lines": [
+    "可有来有往的，一误会就没完没了"
+   ],
+   "text": "可有来有往的，一误会就没完没了",
+   "shot": "近",
+   "scene": "near",
+   "stop": false,
+   "sub": null,
+   "ev": {
+    "pong": [
+     1068,
+     1134
+    ]
+   },
+   "ev_s": {
+    "pong": [
+     35.6,
+     37.8
+    ]
+   },
+   "read": {
+    "chars": 14,
+    "need_s": 2.15,
+    "have_s": 2.4,
+    "ok": true,
+    "widths": [
+     1320
+    ]
+   },
+   "gen": [
+    140,
+    152
+   ]
+  },
+  {
+   "id": "S22",
+   "t0": 37.9,
+   "t1": 40.2,
+   "f0": 1137,
+   "f1": 1206,
+   "dur": 2.3,
+   "readFrom": 37.9,
+   "cont": false,
+   "lines": [
+    "有人会还手，也肯先低头"
+   ],
+   "text": "有人会还手，也肯先低头",
+   "shot": "中→近",
+   "scene": "near",
+   "stop": false,
+   "sub": null,
+   "ev": {
+    "rowGreen": [
+     1137,
+     1146
+    ],
+    "label": 1148,
+    "walkDown": [
+     1149,
+     1158
+    ],
+    "grabs": [
+     1161,
+     1173,
+     1185
+    ],
+    "grabBacks": [
+     1167,
+     1179
+    ],
+    "warm": 1191,
+    "pause": [
+     1194,
+     1198
+    ],
+    "giveBack": 1200
+   },
+   "ev_s": {
+    "rowGreen": [
+     37.9,
+     38.2
+    ],
+    "label": 38.25,
+    "walkDown": [
+     38.3,
+     38.6
+    ],
+    "grabs": [
+     38.7,
+     39.1,
+     39.5
+    ],
+    "grabBacks": [
+     38.9,
+     39.3
+    ],
+    "warm": 39.7,
+    "pause": [
+     39.8,
+     39.95
+    ],
+    "giveBack": 40.0
+   },
+   "read": {
+    "chars": 10,
+    "need_s": 1.54,
+    "have_s": 2.3,
+    "ok": true,
+    "widths": [
+     968
+    ]
+   },
+   "gen": [
+    152,
+    164
+   ]
+  },
+  {
+   "id": "S23",
+   "t0": 40.2,
+   "t1": 42.5,
+   "f0": 1206,
+   "f1": 1275,
+   "dur": 2.3,
+   "readFrom": 40.2,
+   "cont": false,
+   "lines": [
+    "这回，你学会了原谅"
+   ],
+   "text": "这回，你学会了原谅",
+   "shot": "近",
+   "scene": "near",
+   "stop": false,
+   "sub": null,
+   "ev": {
+    "turnHead": [
+     1208,
+     1215
+    ],
+    "bars": 1214,
+    "recolor": [
+     1236,
+     1248
+    ],
+    "gen167": 1250,
+    "relief": [
+     1256,
+     1268
+    ],
+    "grabsDense": [
+     1206,
+     1250
+    ],
+    "grabsSparse": [
+     1250,
+     1275
+    ]
+   },
+   "ev_s": {
+    "turnHead": [
+     40.25,
+     40.5
+    ],
+    "bars": 40.45,
+    "recolor": [
+     41.2,
+     41.6
+    ],
+    "gen167": 41.65,
+    "relief": [
+     41.85,
+     42.25
+    ],
+    "grabsDense": [
+     40.2,
+     41.65
+    ],
+    "grabsSparse": [
+     41.65,
+     42.5
+    ]
+   },
+   "read": {
+    "chars": 8,
+    "need_s": 1.23,
+    "have_s": 2.3,
+    "ok": true,
+    "widths": [
+     792
+    ]
+   },
+   "gen": [
+    165,
+    167
+   ]
+  },
+  {
+   "id": "S24",
+   "t0": 42.5,
+   "t1": 46.2,
+   "f0": 1275,
+   "f1": 1386,
+   "dur": 3.7,
+   "readFrom": 42.5,
+   "cont": false,
+   "lines": [
+    "变狠过的人，",
+    "九成后来学会原谅"
+   ],
+   "text": "变狠过的人，九成后来学会原谅",
+   "shot": "远",
+   "scene": "block",
+   "stop": false,
+   "sub": null,
+   "ev": {
+    "zoom": [
+     1275,
+     1285
+    ],
+    "starters": [
+     1285,
+     1294
+    ],
+    "gather": [
+     1294,
+     1314
+    ],
+    "flip": [
+     1314,
+     1366
+    ],
+    "ding": 1366
+   },
+   "ev_s": {
+    "zoom": [
+     42.5,
+     42.83
+    ],
+    "starters": [
+     42.83,
+     43.15
+    ],
+    "gather": [
+     43.15,
+     43.81
+    ],
+    "flip": [
+     43.81,
+     45.55
+    ],
+    "ding": 45.55
+   },
+   "read": {
+    "chars": 13,
+    "need_s": 2.0,
+    "have_s": 3.7,
+    "ok": true,
+    "widths": [
+     528,
+     704
+    ]
+   },
+   "gen": [
+    167,
+    300
+   ]
+  },
+  {
+   "id": "S26",
+   "t0": 46.2,
+   "t1": 48.6,
+   "f0": 1386,
+   "f1": 1458,
+   "dur": 2.4,
+   "readFrom": 46.2,
+   "cont": false,
+   "lines": [
+    [
+     [
+      "原谅的世界里，",
+      ""
+     ],
+     [
+      "好欺负的人",
+      "ALLC"
+     ],
+     [
+      "多了",
+      ""
+     ]
+    ]
+   ],
+   "text": "原谅的世界里，好欺负的人多了",
+   "shot": "远（接着跑）",
+   "scene": "cycle",
+   "stop": false,
+   "sub": null,
+   "ev": {
+    "routeOut": [
+     1386,
+     1395
+    ],
+    "gather": [
+     1386,
+     1398
+    ],
+    "run": [
+     1398,
+     1455
+    ]
+   },
+   "ev_s": {
+    "routeOut": [
+     46.2,
+     46.5
+    ],
+    "gather": [
+     46.2,
+     46.6
+    ],
+    "run": [
+     46.6,
+     48.5
+    ]
+   },
+   "read": {
+    "chars": 13,
+    "need_s": 2.0,
+    "have_s": 2.4,
+    "ok": true,
+    "widths": [
+     1232
+    ]
+   },
+   "gen": [
+    300,
+    300
+   ]
+  },
+  {
+   "id": "S26b",
+   "t0": 48.6,
+   "t1": 51.0,
+   "f0": 1458,
+   "f1": 1530,
+   "dur": 2.4,
+   "readFrom": 48.6,
+   "cont": false,
+   "as": "S26",
+   "lines": [
+    [
+     [
+      "狠人",
+      "GRIM"
+     ],
+     [
+      "又过得好了，大家又学狠",
+      ""
+     ]
+    ]
+   ],
+   "text": "狠人又过得好了，大家又学狠",
+   "shot": "远（接着跑）",
+   "scene": "cycle",
+   "stop": false,
+   "sub": null,
+   "ev": {
+    "run2": [
+     1458,
+     1497
+    ],
+    "back": 1466,
+    "peak": 1490
+   },
+   "ev_s": {
+    "run2": [
+     48.6,
+     49.9
+    ],
+    "back": 48.87,
+    "peak": 49.66
+   },
+   "read": {
+    "chars": 12,
+    "need_s": 1.85,
+    "have_s": 2.4,
+    "ok": true,
+    "widths": [
+     1144
+    ]
+   },
+   "gen": [
+    300,
+    300
+   ]
+  },
+  {
+   "id": "S25",
+   "t0": 51.0,
+   "t1": 53.5,
+   "f0": 1530,
+   "f1": 1605,
+   "dur": 2.5,
+   "readFrom": 51.0,
+   "cont": false,
+   "lines": [
+    "你会变成谁，",
+    "看身边谁过得好"
+   ],
+   "text": "你会变成谁，看身边谁过得好",
+   "shot": "近（四个你）",
+   "scene": "four",
+   "stop": false,
+   "sub": {
+    "size": 108,
+    "num": 120,
+    "lineH": 132,
+    "y0": 786
+   },
+   "ev": {
+    "scatter": [
+     1530,
+     1537
+    ],
+    "appear": [
+     1533,
+     1540
+    ],
+    "lamps": [
+     1541,
+     1551,
+     1561,
+     1571
+    ]
+   },
+   "ev_s": {
+    "scatter": [
+     51.0,
+     51.22
+    ],
+    "appear": [
+     51.11,
+     51.33
+    ],
+    "lamps": [
+     51.36,
+     51.69,
+     52.02,
+     52.36
+    ]
+   },
+   "read": {
+    "chars": 12,
+    "need_s": 1.85,
+    "have_s": 2.5,
+    "ok": true,
+    "widths": [
+     648,
+     756
+    ]
+   },
+   "gen": [
+    300,
+    300
+   ]
+  },
+  {
+   "id": "S27",
+   "t0": 53.5,
+   "t1": 54.1,
+   "f0": 1605,
+   "f1": 1623,
+   "dur": 0.6,
+   "readFrom": 53.5,
+   "cont": false,
+   "lines": [],
+   "text": "",
+   "shot": "近（四个你→你）",
+   "scene": "endYou",
+   "stop": false,
+   "sub": null,
+   "ev": {
+    "dive": [
+     1605,
+     1618
+    ],
+    "pushFrom": 1618
+   },
+   "ev_s": {
+    "dive": [
+     53.5,
+     53.95
+    ],
+    "pushFrom": 53.95
+   },
+   "read": {
+    "chars": 0,
+    "need_s": 0.0,
+    "have_s": 0.6,
+    "ok": true,
+    "widths": []
+   },
+   "gen": [
+    300,
+    300
+   ]
+  },
+  {
+   "id": "S27h",
+   "t0": 54.1,
+   "t1": 54.5,
+   "f0": 1623,
+   "f1": 1635,
+   "dur": 0.4,
+   "readFrom": 54.1,
+   "cont": false,
+   "lines": [],
+   "text": "",
+   "shot": "近（慢推）",
+   "scene": "endYou",
+   "stop": false,
+   "sub": null,
+   "ev": {},
+   "ev_s": {},
+   "read": {
+    "chars": 0,
+    "need_s": 0.0,
+    "have_s": 0.4,
+    "ok": true,
+    "widths": []
+   },
+   "gen": [
+    300,
+    300
+   ]
+  },
+  {
+   "id": "S28",
+   "t0": 54.5,
+   "t1": 57.5,
+   "f0": 1635,
+   "f1": 1725,
+   "dur": 3.0,
+   "readFrom": 54.5,
+   "cont": false,
+   "lines": [
+    "约好七点，朋友没来。",
+    [
+     [
+      "再约一次",
+      "ASK",
+      1658
+     ],
+     [
+      "，还是",
+      "",
+      1666
+     ],
+     [
+      "拉黑",
+      "ASK",
+      1666
+     ],
+     [
+      "？",
+      "",
+      1666
+     ]
+    ]
+   ],
+   "text": "约好七点，朋友没来。再约一次，还是拉黑？",
+   "shot": "近（慢推）",
+   "scene": "endYou",
+   "stop": false,
+   "sub": null,
+   "ev": {
+    "fourOut": [
+     1635,
+     1644
+    ],
+    "turn": [
+     1644,
+     1665
+    ],
+    "opt1": 1658,
+    "opt2": 1666
+   },
+   "ev_s": {
+    "fourOut": [
+     54.5,
+     54.8
+    ],
+    "turn": [
+     54.8,
+     55.5
+    ],
+    "opt1": 55.25,
+    "opt2": 55.55
+   },
+   "read": {
+    "chars": 16,
+    "need_s": 2.46,
+    "have_s": 4.0,
+    "ok": true,
+    "widths": [
+     880,
+     880
+    ]
+   },
+   "gen": [
+    300,
+    300
+   ]
+  },
+  {
+   "id": "S29",
+   "t0": 57.5,
+   "t1": 58.5,
+   "f0": 1725,
+   "f1": 1755,
+   "dur": 1.0,
+   "readFrom": 54.5,
+   "cont": true,
+   "lines": [
+    "约好七点，朋友没来。",
+    [
+     [
+      "再约一次",
+      "ASK",
+      1658
+     ],
+     [
+      "，还是",
+      "",
+      1666
+     ],
+     [
+      "拉黑",
+      "ASK",
+      1666
+     ],
+     [
+      "？",
+      "",
+      1666
+     ]
+    ]
+   ],
+   "text": "约好七点，朋友没来。再约一次，还是拉黑？",
+   "shot": "近（慢推）",
+   "scene": "endYou",
+   "stop": true,
+   "sub": null,
+   "ev": {},
+   "ev_s": {},
+   "read": {
+    "chars": 16,
+    "need_s": 2.46,
+    "have_s": 4.0,
+    "ok": true,
+    "widths": [
+     880,
+     880
+    ]
+   },
+   "gen": [
+    300,
+    300
+   ]
+  }
+ ]
+}

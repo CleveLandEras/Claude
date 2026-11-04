@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>19 玩家查询</title>
+<link rel="stylesheet" href="../原型样式.css">
+<link rel="stylesheet" href="_后台框.css">
+<style>
+html,body{margin:0;padding:0;background:#fff}
+body{font-family:"Inter","Noto Sans CJK SC","PingFang SC","Microsoft YaHei",sans-serif;font-size:13px;line-height:1.5}
+.shot .z{zoom:1.12}
+.shot .win{padding:0;border:0;border-radius:0;background:#fff;box-shadow:none}
+.shot .fig{width:auto;border:0;border-radius:0}
+.tc{font-family:"Inter","Noto Sans CJK TC","PingFang TC",sans-serif}
+table.et td.l, table.et th.l{padding-left:8px}
+.sub2{display:block;font-size:12px;color:#73767A}
+.h3{font-size:14px;font-weight:600;color:#303133;margin:0 0 2px}
+.cap{font-size:12px;color:#73767A;margin:0 0 8px}
+.who{display:flex;flex-wrap:wrap;gap:4px 22px;margin-top:10px;border:1px solid #E4E7ED;border-radius:6px;padding:9px 12px;color:#303133}
+.who b{font-weight:600}.who .k{color:#73767A;margin-right:4px}
+.chip{display:inline-block;padding:0 7px;border-radius:10px;background:#ECF5FF;color:#2F6FB2;font-size:12px;margin-right:4px}
+.cards{display:grid;align-items:stretch;grid-template-columns:repeat(4,1fr);gap:10px}
+.cd{border:1px solid #E4E7ED;border-radius:6px;padding:9px 11px;border-top:3px solid #67A33A}
+.cd.qno{border-top-color:#C4473A}.cd.qpart{border-top-color:#D9932B}
+.cd{margin:0;align-self:stretch}.cd .w{font-size:12px;color:#73767A}.cd .s{font-size:14px;font-weight:600;margin:2px 0 4px}
+.cd.qno .s{color:#C4473A}.cd.qpart .s{color:#8A5A12}.cd:not(.qno):not(.qpart) .s{color:#3F7A1E}
+.cd .r{font-size:12px;color:#606266;line-height:1.6}
+.pos{display:flex;align-items:baseline;gap:10px;margin:12px 0 6px}
+.pos .n{font-weight:600;color:#303133;flex:none}.pos .m{font-size:12px;color:#73767A;letter-spacing:-.2px;word-break:keep-all;text-wrap:balance}
+.next{margin:0 0 6px;padding:5px 10px;background:#F0F9EB;border-radius:4px;color:#3F7A1E;font-size:12.5px}
+tr.rg td{background:#FAFAFA;color:#303133;font-weight:600;padding:4px 8px;text-align:left}
+tr.rg td span{font-weight:400;color:#73767A;margin-left:8px}
+.st{display:inline-block;padding:0 7px;border-radius:3px;font-size:12px;white-space:nowrap}
+.st.ok{background:#F0F9EB;color:#3F7A1E}.st.used{background:#F4F4F5;color:#606266}.st.cool{background:#FDF6EC;color:#8A5A12}.st.over{background:#F4F4F5;color:#909399}
+tr.ex td{color:#909399;text-align:left;padding:4px 8px}
+tr.low td{color:#9AA0A6;text-align:left;padding:6px 8px;font-weight:400}
+</style>
+<style>.cd .s{white-space:nowrap;font-size:13.5px}</style>
+<style>
+table.et th{border-width:0 0 1px 0;border-color:#E4E7ED;text-align:left;font-weight:500;font-size:12px;color:#9AA0A6;padding:6px 8px}
+table.et td{border-width:0 0 1px 0;border-color:#F0F1F3;text-align:left;padding:7px 8px}
+table.et td.l,table.et th.l{padding-left:8px}
+table.et td:first-child,table.et th:first-child{padding-left:4px}
+.cd.qpart{border-top-color:#C47B2B}.cd.qpart .s{color:#C47B2B}
+.capov{color:#C47B2B}
+.rid{margin-left:6px;font-size:12px;color:#9AA0A6}
+.sub2{white-space:normal}
+</style>
+</head>
+<body>
+<div class="shot bk" data-page="玩家查询"><div class="z"><div class="win"><div class="fig ew">
+  <div class="sec" style="padding:12px 18px 12px">
+    <div style="display:flex;gap:8px;align-items:center"><span class="ein v" style="width:96px">会员编号<span class="dn">⌵</span></span><span class="ein v" style="width:220px">180820055306761</span><span class="ebtn b">查询</span><span style="font-size:12px;color:#73767A">可切换为会员昵称、手机号码；查的是 10/21 15:30 此刻会弹什么；过去没弹的原因只能在单条规则数据里看各原因的次数，查不了某个人</span></div>
+    <div class="who">
+      <span><span class="k">会员编号</span>180820055306761</span><span><span class="k">会员昵称</span>我来称王260134709</span><span><span class="k">手机号码</span>0912***678</span><span><span class="k">标签名称</span><span class="chip">银卡已首储</span><span class="chip">VIP 卡别 · 银卡</span><span class="chip">新增玩家</span><span class="chip">秋季排名赛参与者</span><span class="chip">近 7 天登录</span><span class="chip">近 30 天登录</span><span class="chip">破产实验 · 随机分组号 3–99</span></span><span><span class="k">最后登录</span>10/21 14:05</span><span><span class="k">平台与版本</span>Android · 3.8.2</span><span><span class="k">在线状态</span><b style="color:#3F7A1E">当前在线</b></span>
+    </div>
+  </div>
+  <div class="sec" style="padding:10px 18px 12px">
+    <div class="h3">接收状态</div>
+    <div class="cards">
+      <div class="cd qpart"><div class="w">推播</div><div class="s">已达每天上限</div><div class="r">今天 2/2 条，00:00 恢复<br>服务通知不受限<br>通知已开启（10/01 回报）<br>最近一次 10/21 13:20</div></div>
+      <div class="cd qno"><div class="w">短信</div><div class="s">不可接收 · 无有效手机号</div><div class="r">今天 0/1 条<br>最近一次 10/08 20:00<br>10/08 服务商退回后判定</div></div>
+      <div class="cd"><div class="w">弹窗</div><div class="s">可接收</div><div class="r">今天 3/8 个<br>下次进入时<br>轮到<span style="color:#2F6FCC;text-decoration:underline">银卡已首储</span><br>将弹出储值优惠礼包<br>最近一次 10/21 14:05</div></div>
+      <div class="cd"><div class="w">快显</div><div class="s">可接收</div><div class="r">当前在线<br>今天 0/3 次<br>最近一次 10/21 14:20</div></div>
+    </div>
+  </div>
+  <div class="sec" style="padding:10px 18px 12px">
+    <div class="h3">弹窗</div>
+    <div class="pos"><span class="n">进大厅</span><span class="m">轮流 · 下次进入时轮到<span style="color:#2F6FCC;text-decoration:underline">银卡已首储</span> 编号 80 · 优先级 1 · 发送对象「银卡已首储」8,200 人 · 每次最多弹 3 个</span></div>
+    <table class="et">
+      <colgroup><col style="width:44px"><col style="width:110px"><col style="width:236px"><col></colgroup>
+      <thead><tr><th>顺序</th><th class="l">活动或礼包</th><th class="l">弹出时机、次数</th><th class="l">结果</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td class="l">储值优惠礼包<div class="sub2">礼包 · 固定</div></td><td class="l">只在从游戏返回时 · 每人每天 2 次</td><td class="l"><span class="st ok">将弹出</span> 下次从游戏返回大厅时；今天还没弹过</td></tr>
+        <tr><td>2</td><td class="l">热门资讯<div class="sub2">活动 · 固定</div></td><td class="l">每次进大厅 · 每人每天 2 次</td><td class="l"><span class="st used">已到每人每天几次</span> 本场景各规则合计 2/2，<span style="white-space:nowrap">明天 00:00 起可弹</span></td></tr>
+        <tr><td>3</td><td class="l">每日补给计划<div class="sub2">活动 · 固定</div></td><td class="l">每次进大厅 · 每人每天 1 次</td><td class="l"><span class="st used">已到每人每天几次</span> 14:05 在新增玩家弹过</td></tr>
+        <tr class="low"><td colspan="4">再下一次轮到　新增玩家 编号 82 · 优先级 3 · 每次最多弹 3 个</td></tr>
+      </tbody>
+    </table>
+    <div class="pos"><span class="n">破产时</span><span class="m">只用优先级最高的一条 · 命中对照组 编号 87 · 优先级 2 · 发送对象「破产实验 · 随机分组号 3–99」71,990 人 · 每次最多弹 1 个</span></div>
+    <table class="et">
+      <colgroup><col style="width:44px"><col style="width:110px"><col style="width:236px"><col></colgroup>
+      <thead><tr><th>顺序</th><th class="l">活动或礼包</th><th class="l">弹出时机、次数</th><th class="l">结果</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td class="l">储值优惠礼包<div class="sub2">礼包 · 固定</div></td><td class="l">每人每天 2 次</td><td class="l"><span class="st ok">将弹出</span></td></tr>
+      </tbody>
+    </table>
+    <div class="pos"><span class="n">买了指定礼包后</span><span class="m">未命中</span></div>
+    <div class="pos"><span class="n">押注达到指定金额</span><span class="m">未命中</span></div>
+  </div>
+  <div class="sec" style="padding:10px 18px 12px">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;white-space:nowrap"><span class="h3" style="margin:0">收到记录</span><span style="font-size:12px;color:#73767A">近 30 天推送与弹窗的结果</span><span class="pd-sp"></span><span class="ein" style="width:110px">名称或编号<span class="dn">⌕</span></span><span class="ein v" style="width:96px">方式：全部<span class="dn">⌵</span></span><span class="ein v" style="width:96px">结果：全部<span class="dn">⌵</span></span><span class="ein v" style="width:130px">10/06　至　10/12</span></div>
+    <table class="et">
+      <colgroup><col style="width:88px"><col style="width:68px"><col style="width:196px"><col style="width:260px"><col></colgroup>
+      <thead><tr><th>时间</th><th>推送方式</th><th class="l">名称</th><th class="l">推送内容</th><th class="l">结果</th></tr></thead>
+      <tbody>
+        <tr><td>10/12 15:00</td><td>推播</td><td class="l"><span class="pd-lk">月月抽开奖提醒 #43</span></td><td class="l tc">月月抽今晚開獎，快來看看你的號碼</td><td class="l"><span class="capov">上限拦截</span><span class="sub2">当天 2/2，<span style="white-space:nowrap">占用 #31、#33</span></span></td></tr>
+        <tr><td>10/12 14:40</td><td>推播</td><td class="l"><span class="pd-lk">任务完成奖励提醒 #33</span></td><td class="l tc">任務完成！獎勵已發放，點擊查看</td><td class="l">已点击</td></tr>
+        <tr><td>10/12 14:20</td><td>快显</td><td class="l"><span class="pd-lk">通行证升级提示 #35</span></td><td class="l tc">恭喜升級！通行證獎勵已可領取</td><td class="l">已显示</td></tr>
+        <tr><td>10/12 14:05</td><td>弹窗</td><td class="l">新增玩家<span class="rid">编号 82</span><span class="sub2">进大厅</span></td><td class="l">新手七日签到、热门资讯</td><td class="l">已弹出</td></tr>
+        <tr><td>10/12 14:00</td><td>推播</td><td class="l"><span class="pd-lk">限时挑战开启 #36</span></td><td class="l tc">限時挑戰開跑！完成挑戰領加碼獎勵</td><td class="l"><span class="pd-bad">未到达 · 发送失败</span><span class="sub2">服务商未受理</span><span class="sub2">不计入上限</span></td></tr>
+        <tr><td>10/12 11:00</td><td>推播</td><td class="l"><span class="pd-lk">限时加码礼包未购买提醒 #31</span></td><td class="l tc">您的專屬加碼禮包剩 2 小時，錯過不再！</td><td class="l">已到达</td></tr>
+        <tr><td>10/11 21:00</td><td>弹窗</td><td class="l">银卡已首储<span class="rid">编号 80</span><span class="sub2">进大厅</span></td><td class="l">储值优惠礼包、每日补给计划</td><td class="l">已弹出</td></tr>
+        <tr><td>10/11 20:00</td><td>推播</td><td class="l"><span class="pd-lk">秋季排名赛结算倒数 #34</span></td><td class="l tc">秋季排名賽結算倒數，快來衝排名！</td><td class="l">已到达</td></tr>
+        <tr><td>10/08 20:00</td><td>短信</td><td class="l"><span class="pd-lk">秋季排名赛冲榜提醒 #39</span></td><td class="l tc">【會員通知】秋季排名賽衝榜倒數，登入看排名 退訂回T</td><td class="l"><span class="pd-bad">未到达 · 服务商退回</span><span class="sub2">无有效手机号</span></td></tr>
+        <tr><td colspan="5" class="l" style="color:#73767A;padding:4px 8px">⋮ 共 15 条，向下滚动加载更早的记录</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div></div></div></div>
+<script src="_后台框.js"></script>
+</body>
+</html>

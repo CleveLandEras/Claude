@@ -1,0 +1,13 @@
+- 通用工作原则 10/29 起统一写在 `~/.claude/CLAUDE.md`（所有文件夹都加载）；这里只记弹窗项目的事实和做法。原记忆文件在 `_已并入全局规则_1029/`，只作出处。回复一律用简体中文。
+- [弹窗标签推送：入口与常设](popup-project-02-rejected-capability-reframe.md) — 现状与交接看 先看这里.md 顶部「当前状态与交接」，再读 标准体系 第〇节（哪份规则在哪）和 过程记录/进度_*.md；状态不记在记忆里
+- [写作标准在哪](writing-and-layout.md) — 本项目以 规则与交接/写作标准_合并版.md 的「现行说法」为准；结构先行、边界看得见、现状与做法成对、不写元信息
+- [主对话只做决策与核对](main-context-orchestrate-only.md) — 主对话理解、决策、核对、汇报；渲染、截图、看图、大文件读写交子代理；上下文过半写交接
+- [需求先写全再分档](requirements-full-then-trim.md) — 需求按理想状态写全，成本分档留给上级取舍，低成本快速做法单列；不因成本写「本期不做」
+- [后台界面静态展示](backend-ui-static-readable-display.md) — 需求里的后台界面做成静态、信息完整的展示，不做可点击原型；先复用通行证等旧项目的答案
+- [屡退的设计交新代理重做](fresh-agent-for-visual-design.md) — 同一设计反复被退，交一个没上下文的代理从原始材料重做
+- [直接改原文件；固定目录渲染](edit-in-place-render-fixed-folder.md) — 不做防御性副本；pptx 只用 _scripts/pl_pptx渲染.sh 在 _versions/渲染/ 导出（换目录会触发 Dk 授权弹窗）
+- [控制 token；暂停要停用定时任务](token-and-scheduled-task-cost.md) — 一个任务一个代理、用 grep 不整读、机械活用便宜模型；放暂停文件停不了定时任务，要停用
+- [日志新在上、时间取时钟](logs-newest-first-real-clock.md) — Dk 的日志最新在上；时间戳用脚本取真实时间
+- [查原话要含插话](transcripts-include-queued-messages.md) — Dk 中途插的话在 queued_command 里，只导出用户消息会漏
+- [GitHub 仓库同步](github-repo-sync.md) — 私有仓库 Clarelive/Claude 对应 ~/claude；推送前刷新仓库里的记忆快照与汇报技能
+- [huashu-design 未安装](huashu-design-not-installed.md) — Dk 10/15：先不装

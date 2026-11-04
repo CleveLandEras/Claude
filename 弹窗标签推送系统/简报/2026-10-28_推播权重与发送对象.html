@@ -1,0 +1,119 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>推播权重与发送对象</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.35;margin:0 0 8px}
+.sub{font-size:16px;color:var(--ink-2);margin:0 0 28px}
+h2{font-family:var(--serif);font-size:20px;margin:56px 0 16px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px}
+.kpi .n{font-size:38px;font-weight:700;line-height:1.1;color:var(--ink)}
+.kpi .n small{font-size:16px;font-weight:600;margin-left:4px;color:var(--ink-2)}
+.kpi .t{font-size:14.5px;color:var(--ink-2);margin-top:8px}
+.f{margin-bottom:22px}
+.f .h{font-size:17px;font-weight:700;margin:0 0 6px}
+.f .l{font-size:14.5px;color:var(--ink-2);margin:0 0 10px}
+.f .l li{margin:2px 0}
+.f ul{margin:0 0 10px;padding-left:20px}
+.shot img{width:100%;display:block;border:1px solid var(--line);border-radius:4px;background:#fff}
+.shot .c{font-size:12.5px;color:var(--muted);margin-top:6px}
+.shot.mid img{max-width:760px}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14.5px}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--ground);white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td.p{color:var(--muted);width:64px;white-space:nowrap}
+td.w{color:var(--ink);width:36%} td.r{color:var(--ink-2)}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:1px 7px;border-radius:3px;margin-right:6px;vertical-align:1px}
+.tag.red{background:var(--red-soft);color:var(--red)} .tag.blue{background:var(--blue-soft);color:var(--blue)} .tag.gray{background:var(--gray-soft);color:var(--gray)}
+.note{font-size:14.5px;color:var(--ink-2)}
+.note li{margin:4px 0}
+.links{font-size:13px;color:var(--muted);margin-top:48px;line-height:1.9} a{color:var(--accent)}
+@media (max-width:760px){.wrap{padding:32px 16px 72px}.g3,.g2{grid-template-columns:1fr}td.p{white-space:normal}td.w{width:auto}}
+.cmp td.b{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--line)} .cmp td.a{color:var(--ink);font-weight:600}
+</style></head>
+<body><div class="wrap">
+<p class="meta">推送系统后台 · 需求评审版 · 2026-10-28</p>
+<h1>推播权重改成填 0–100 的数字，列表的发送对象写群组名；全稿同类问题一起改完，待你验收</h1>
+<p class="sub">改完后由没参与修改的人逐张看截图复核，你退回的两处和同类问题都已确认清掉。</p>
+
+<div class="grid g3">
+  <div class="card kpi"><div class="n">0–100</div><div class="t">权重填整数，越大越优先，默认 50，相同按发送先后。服务通知、短信不设权重。</div></div>
+  <div class="card kpi"><div class="n">群组名</div><div class="t">推播、短信、弹窗、快显的列表，对象列都写群组名；有排除的，下一行写排除。</div></div>
+  <div class="card kpi"><div class="n">验收</div><div class="t">要你做的：验收评审版成品（文末链接）。权重范围与默认值是我定的，可推翻。</div></div>
+</div>
+
+<h2><span class="no">01</span>权重：运营在新建页直接填数字，列表、确认框、名额占用都显示这个数</h2>
+<div class="shot"><img src="图/2026-10-28_推播权重与发送对象/02_新建推播.jpg" alt="新建推播"><div class="c">新建推播：「名称与类别」段的权重是数字框，默认 50，旁边写明怎么用</div></div>
+<table class="cmp" style="margin-top:16px">
+<tr><th>位置</th><th>原来</th><th>现在</th></tr>
+<tr><td class="p">新建页</td><td class="b">普通｜优先｜最优先 三选一</td><td class="a">数字框，0–100，默认 50</td></tr>
+<tr><td class="p">列表</td><td class="b">普通、优先</td><td class="a">50、80；服务通知写「—」</td></tr>
+<tr><td class="p">规则</td><td class="b">「最优先」在三种条件下不会被拦</td><td class="a">任一定时推送：当天发给同批玩家、权重不低于它的营销推送不超过上限条数，它就不会被拦</td></tr>
+</table>
+<ul class="note">
+  <li>范围参照 Adobe Journey Optimizer 的 Priority score（0–100，越大越优先），它也是按优先级给后面的推送留名额。</li>
+  <li>弹窗的「优先级」仍是数字越小越先，和推播权重方向相反，规则里已写明。</li>
+</ul>
+
+<h2><span class="no">02</span>发送对象：列表写群组名，运营一眼看出这条发给谁</h2>
+<div class="shot"><img src="图/2026-10-28_推播权重与发送对象/02e_推播定时.jpg" alt="推播定时列表"><div class="c">推播定时列表：发送对象写群组名，下一行写排除；权重列是数字；标题列是玩家看到的繁中标题</div></div>
+<ul class="note">
+  <li>原来这一列写的是 74,480、14,500 这类人数，看不出发给谁；人数看「预计发出」列。</li>
+  <li>条件触发不限群组的写「触发的玩家 · 不限群组」，不再写成「全部玩家」，免得读成发全服。</li>
+  <li>弹窗、快显列表没有别的人数列，第二行写扣除排除后的人数。</li>
+</ul>
+
+<h2><span class="no">03</span>按同类问题查了全稿，另外改掉的集中在三类</h2>
+<div class="f"><div class="h">配置项给具体值</div><ul class="l">
+  <li>弹窗冷却原来只写「不设」或「600 秒」，改为「数字＋分钟／小时／天」。</li>
+  <li>弹窗弹出频率原来是一格文字，改为先选周期（每天、每周、每 N 天、活动期间）再填次数。</li>
+</ul></div>
+<div class="f"><div class="h">列里放的就是列名说的东西，认一条记录要的信息都在</div><ul class="l">
+  <li>弹窗规则列表「对象人数」改为「对象」，写群组名；规则编辑页摘要补上对象。</li>
+  <li>推播名称原来和活动同名（如「秋季排名赛」），改为能区分的名称（「秋季排名赛最后一天提醒」）；标题列放玩家看到的标题。</li>
+  <li>推播、短信列表名称下写消息类别（营销、服务通知）；「操作人」列改为「创建人」，和筛选一致。</li>
+</ul></div>
+<div class="f"><div class="h">同一件事在各页对得上</div><ul class="l">
+  <li>全稿原来有两个「今天」（配置页 10/21、数据页 10/12），统一为 10/21，数据页标为历史区间。</li>
+  <li>单条数据里一条推送拦截 460 人，而当天全部推送只拦了约 45 人次，已改为 40 人；日历每天「4 条条件触发」实际只有 3 条。</li>
+  <li>破产实验的对照组原来弹的礼包和大厅合计每天 1 次，大厅先弹过就不弹，对比会失真；对照组改用只在破产位置弹的内容。</li>
+</ul></div>
+
+<h2><span class="no">04</span>替你定、可推翻</h2>
+<table>
+<tr><th>定了什么</th><th>依据</th><th>不同意改回哪里</th></tr>
+<tr><td class="w">权重 0–100、默认 50</td><td class="r">默认放中间，重要的调高、次要的调低都有空间</td><td class="r">第 1 页新建推播与「上限与勿扰」规则</td></tr>
+<tr><td class="w">停止发送中的推送：已交给服务商的不撤回（原写「待研发确认」）</td><td class="r">同一页另一条已写「已发出的不撤回」，两处矛盾；推送服务商交出后无法撤回</td><td class="r">第 1 页「停止」规则</td></tr>
+<tr><td class="w">大厅兜底规则「其余」的对象写成全部玩家，排除本位置其他规则的群组</td><td class="r">对象只有全部玩家、标签群组、名单三种，原写法不在其中；上架新规则时确认框提醒补排除</td><td class="r">第 4 页弹窗规则「对象」</td></tr>
+<tr><td class="w">只触发一次的条件触发发完后为已结束，列表默认不列</td><td class="r">与定时推送「已结束默认不列」一致</td><td class="r">第 2 页条件触发列表</td></tr>
+</table>
+
+<h2><span class="no">05</span>为什么之前没查出来，已经补上的做法</h2>
+<ul class="note">
+  <li>之前的审查只核「图和规则说的一致」「运营场景能走通」，没有逐个字段问「运营在这里要配出什么」「这一列运营要认什么」。规则里本来就写着「发送对象（符合对象人数）」，图文一致就放过了。</li>
+  <li>做减法时把权重从 1–10 改成三档，是从「名额只有 2–3 条」的算法角度想的，没从运营怎么配出发。</li>
+  <li>已写进交付前必查：交付前由没改过稿的人逐张看截图，逐个字段核「具体值、列内容、跨页一致、截图完整」，改完再由另一位复核，确信问题清零才交给你。</li>
+</ul>
+
+<h2><span class="no">06</span>评审前要向服务商确认的一处</h2>
+<ul class="note">
+  <li>短信规则写「三种语言都按 70 字计 1 则」，英文 112 字计 2 则。多数服务商纯英文按 160 字符计 1 则；如果服务商也这样算，英文示例和费用要改。</li>
+</ul>
+
+<div class="links">
+成品：评审版_定稿改_1027/推送系统后台集成需求/3_原型_需求评审版.html（单文件，34 张图已内嵌）<br>
+还要你定的，和之前一样：系统名「触达系统」要不要改；云端不再引用的旧页删不删；提交推送、覆盖云端。
+</div>
+</div></body></html>

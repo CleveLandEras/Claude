@@ -1,0 +1,60 @@
+== 重启前：监听进程=26362 12:47:18
+== 开机完成 12:47:53（未打开原型，未手动解锁）
+用户状态：State: RUNNING_UNLOCKED  监听进程=不在
+11-02 12:13:50.124 | 屏幕 | 亮
+11-02 12:13:50.432 | 设置 | 做法=A 批次=30秒或3条 收起原通知=true 自动推=true 名单=com.tencent.mm,com.dk.notitest,com.sam
+11-02 12:13:50.556 | 清掉我们的通知
+11-02 12:13:53.820 | 屏幕 | 灭
+11-02 12:45:59.773 | 屏幕 | 亮
+11-02 12:47:17.025 | 设置 | 做法=A 批次=30秒或3条 收起原通知=true 自动推=true 名单=com.tencent.mm,com.dk.notitest,com.sam
+== 开机后约 90 秒 12:49:29：监听进程=不在
+授权仍在：1
+    Allowed notification listeners:
+      com.samsung.accessory.zenithmgr/com.samsung.accessory.hearablemgr.core.notification.NotificationListener:com.dk.msgrelay/com.dk.msgrelay.RelayLi
+      userId=0 value={com.koushikdutta.vysor/com.koushikdutta.vysor.NotificationListenerService, com.samsung.accessory.zenithmgr/com.samsung.accessory
+      ComponentInfo{com.dk.msgrelay/com.dk.msgrelay.RelayListener}
+    Live notification listeners (11):
+11-02 12:13:53.820 | 屏幕 | 灭
+11-02 12:45:59.773 | 屏幕 | 亮
+11-02 12:47:17.025 | 设置 | 做法=A 批次=30秒或3条 收起原通知=true 自动推=true 名单=com.tencent.mm,com
+== 12:49:51 点亮前：监听在连接名单里=0 进程=不在
+== 12:50:03 点亮并解开锁屏 10 秒后：监听在连接名单里=0 进程=不在
+== 12:50:53 再过 50 秒：监听在连接名单里=0 进程=不在
+11-02 12:13:53.820 | 屏幕 | 灭
+11-02 12:45:59.773 | 屏幕 | 亮
+11-02 12:47:17.025 | 设置 | 做法=A 批次=30秒或3条 收起原通知=true 自动推=true 名单=com.tencent.mm,com
+== 系统日志：12:47:44 开机时尝试连接 → Unable to start service … not found（存储未解锁，找不到服务），之后无重试
+== 12:51:36 打开「消息中转」8 秒后：监听在连接名单里=0 进程=10708
+
+== 第二次重启（加了开机后请求重连）12:52:18
+== 开机完成 12:52:52（未打开原型、未点亮屏幕）
+== 12:53:22：监听在连接名单里=0 进程=不在
+11-02 12:13:50.556 | 清掉我们的通知
+11-02 12:13:53.820 | 屏幕 | 灭
+11-02 12:45:59.773 | 屏幕 | 亮
+11-02 12:47:17.025 | 设置 | 做法=A 批次=30秒或3条 收起原通知=true 自动推=true 名单=com.tencent.mm,com.dk.notite
+11-02 12:52:06.735 | 监听已连接 | 进程=11093 | 做法=A 批次=30秒或3条 收起原通知=true 自动推=true 名单=com.
+== 12:54:06：监听在连接名单里=0 进程=不在 开机广播已收到=0
+== 12:54:36：监听在连接名单里=0 进程=不在 开机广播已收到=0
+== 12:55:07：监听在连接名单里=0 进程=不在 开机广播已收到=0
+== 系统日志：12:52:56.879 开机后第二次尝试连接 → .933 进程启动 → 12:52:57.093「Force stopping com.dk.msgrelay … MARs #2」（三星后台管理强行停止），开机广播未送达
+== 12:56:07 打开「消息中转」（会请求重连）6 秒后：监听在连接名单里=0
+11-02 12:45:59.773 | 屏幕 | 亮
+11-02 12:47:17.025 | 设置 | 做法=A 批次=30秒或3条 收起原通知=true 自动推=true 名单=com.tencent.mm,com
+11-02 12:52:06.735 | 监听已连接 | 进程=11093 | 做法=A 批次=30秒或3条 收起原通知=true 自动推=true �
+11-02 12:56:02.103 | 请求重连监听 | 打开开关页
+
+== 12:56:01 打开应用时日志：MARsPolicyManager cancelDisablePolicy com.dk.msgrelay … autorun(2)（打开后解除自启动限制）；请求重连后 6 秒仍未连上
+== 第三次重启（用户打开过一次之后）12:56:45
+== 开机完成 12:57:20（未打开原型、未点亮屏幕）
+== 12:58:00：监听在连接名单里=0 进程=不在
+11-02 12:57:12.714  1268  1268 W ActivityManager: Unable to start service Intent { act=android.service.notification.NotificationListenerService cmp=co
+11-02 12:57:24.219  1268  1328 I ActivityManager: Force stopping com.dk.msgrelay appid=10021 user=0: MARs #2
+11-02 12:45:59.773 | 屏幕 | 亮
+11-02 12:47:17.025 | 设置 | 做法=A 批次=30秒或3条 收起原通知=true 自动推=true 名单=com.tencent.mm,com
+11-02 12:52:06.735 | 监听已连接 | 进程=11093 | 做法=A 批次=30秒或3条 收起原通知=true 自动推=true �
+11-02 12:56:02.103 | 请求重连监听 | 打开开关页
+== 第三次重启结果：12:57:12 开机首次连接失败（not found）；12:57:24「Force stopping com.dk.msgrelay … MARs #2」；开机 40 秒后仍未连上
+== 12:58:42 重装后系统连接监听被拦：BaseRestrictionMgr AutoRun Policy isBindNotificationListenerPackage → MARsPolicyManager「isRestricted by MARs! target : com.dk.msgrelay … type : bindService」；此时原型后台运行权限 RUN_ANY_IN_BACKGROUND=ignore（受限）
+== 13:29 恢复办法：模拟用户打开一次原型（MARsPolicyManager: cancelDisablePolicy com.dk.msgrelay(0) false|0|autorun(2)）→ 紧接着重装触发系统再连一次 → 13:29:51 监听已连接 | 进程=16727
+== 说明：第 1 次重启的日志只记到「开机时找不到服务、之后无重试」，当时没查强行停止记录（日志已被后续重启清掉）；强行停止只在第 2、3 次有记录。用户关开一次通知读取授权能否恢复：没测（要改敏感权限）
