@@ -1,0 +1,177 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>评审版整体验收</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.35;margin:0 0 8px}
+.sub{font-size:16px;color:var(--ink-2);margin:0 0 28px}
+h2{font-family:var(--serif);font-size:20px;margin:56px 0 16px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px}
+.kpi .n{font-size:38px;font-weight:700;line-height:1.1;color:var(--ink)}
+.kpi .n small{font-size:16px;font-weight:600;margin-left:4px;color:var(--ink-2)}
+.kpi .t{font-size:14.5px;color:var(--ink-2);margin-top:8px}
+.f{margin-bottom:22px}
+.f .h{font-size:17px;font-weight:700;margin:0 0 6px}
+.f .l{font-size:14.5px;color:var(--ink-2);margin:0 0 10px}
+.f .l li{margin:2px 0}
+.f ul{margin:0 0 10px;padding-left:20px}
+.shot img{width:100%;display:block;border:1px solid var(--line);border-radius:4px;background:#fff}
+.shot .c{font-size:12.5px;color:var(--muted);margin-top:6px}
+.shot.mid img{max-width:760px}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14.5px}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--ground);white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td.p{color:var(--muted);width:64px;white-space:nowrap}
+td.w{color:var(--ink);width:36%} td.r{color:var(--ink-2)}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:1px 7px;border-radius:3px;margin-right:6px;vertical-align:1px}
+.tag.red{background:var(--red-soft);color:var(--red)} .tag.blue{background:var(--blue-soft);color:var(--blue)} .tag.gray{background:var(--gray-soft);color:var(--gray)}
+.note{font-size:14.5px;color:var(--ink-2)}
+.note li{margin:4px 0}
+.links{font-size:13px;color:var(--muted);margin-top:48px;line-height:1.9} a{color:var(--accent)}
+@media (max-width:760px){.wrap{padding:32px 16px 72px}.g3,.g2{grid-template-columns:1fr}td.p{white-space:normal}td.w{width:auto}}
+</style></head>
+<body><div class="wrap">
+<p class="meta">触达系统需求评审版 · 2026-10-27 · 整体验收</p>
+<h1>评审版改完了，待你验收：数字和示例前后对得上，规则补齐了边界；原来要你定的 3 件已按推荐先做，可推翻</h1>
+<p class="sub">成品在 <a href="../评审版_定稿改_1027/推送系统后台集成需求/3_原型_需求评审版.html">评审版_定稿改_1027/推送系统后台集成需求/3_原型_需求评审版.html</a>。下面先看改完的样子，再看按推荐先做的 3 件。</p>
+
+<div class="grid g3">
+  <div class="card kpi"><div class="n">10<small>页</small></div><div class="t">经运营、研发、视觉、措辞几方复查，必须改的问题都已改完</div></div>
+  <div class="card kpi"><div class="n">34<small>张图</small></div><div class="t">全部按改后的界面重截；界面源文件改了 37 页，单文件成品 15 MB</div></div>
+  <div class="card kpi"><div class="n">3<small>件</small></div><div class="t">已按推荐先做、可推翻：Facebook 与 LINE 写明不在本次；标签与实验保留；弹窗补回每人每天 8 个</div></div>
+</div>
+
+<h2><span class="no">01</span>改完的样子：数字和示例前后对得上，规则补齐了边界</h2>
+
+<div class="f">
+  <div class="h">推播列表按状态计数；条件触发写今天的发出和上限拦截，和名额占用一致</div>
+  <ul class="l">
+    <li>「进行中」改为分状态计数，未开始 9 条与日历 7 天对上；今天发完的写「已结束 · 已发完」，操作只剩查看。</li>
+    <li>条件触发的「发送」列原来是触发人数，改为发出人数；状态下写上限拦截，与名额占用逐条相同。</li>
+    <li>日历下方「今天」一行只写事实：定时无上限拦截 · 条件触发已拦截 94 人 · #53 由 02:30 顺延。</li>
+  </ul>
+  <div class="shot"><img src="图/2026-10-27_评审版整体验收/02e_推播定时.jpg" alt="推播定时列表"><div class="c">第 1 页 · 推播定时列表</div></div>
+  <div class="shot" style="margin-top:12px"><img src="图/2026-10-27_评审版整体验收/02f_推播按行为.jpg" alt="推播条件触发列表"><div class="c">第 1 页 · 推播条件触发列表</div></div>
+</div>
+
+<div class="f">
+  <div class="h">弹窗：规则状态分清整条和单个内容；改对象时保存确认列人数差值</div>
+  <ul class="l">
+    <li>整条规则可暂停、下架；规则里单个弹窗内容的暂停只停这一处。列表补了搜索框和五种状态计数，「上架」改为蓝色，不再和草稿一样灰。</li>
+    <li>10/12 已保存「每日补给计划调到第 1」，第 4 页按已保存画；拖动示例换成「回流任务第 4 → 第 2」。</li>
+    <li>保存确认列出改前、改后；改了对象时另加差值列，人数各占一行（你 10/21 定的）。</li>
+  </ul>
+  <div class="shot"><img src="图/2026-10-27_评审版整体验收/10a_弹窗列表.jpg" alt="弹窗规则列表"><div class="c">第 4 页 · 弹窗规则列表</div></div>
+  <div class="shot mid" style="margin-top:12px"><img src="图/2026-10-27_评审版整体验收/11_保存确认.jpg" alt="保存确认"><div class="c">第 4 页 · 只改了弹窗排序时的保存确认</div></div>
+</div>
+
+<div class="f">
+  <div class="h">玩家查询的示例从登录到弹窗到推播一路对得上</div>
+  <ul class="l">
+    <li>玩家 14:05 当天首次登录，轮到「新增玩家」；下一次进大厅轮到「银卡已首储」：首储礼包时机不符，热门资讯本周第 2 次，每日补给计划 10/14 起可弹。</li>
+    <li>推播今天 2/2 条，占用的 #31、#33 都在收到记录里；短信用数据页里已有的那条。</li>
+    <li>收到记录只列发送时对象包含该玩家的推送，结果列全（含「名额已留给权重更高的推送」），客服能分清没收到是哪一种。</li>
+  </ul>
+  <div class="shot"><img src="图/2026-10-27_评审版整体验收/19_玩家查询.jpg" alt="玩家查询"><div class="c">第 10 页 · 玩家查询</div></div>
+</div>
+
+<div class="f">
+  <div class="h">数据页：可接收人数合计对上，上限拦截全文统一用橙色</div>
+  <ul class="l">
+    <li>每人每天推送量原来 0–3 条合计只有 1.16 万人，比单条推送的发送量还少；调大 0 条一档后，日均可接收 47,980 人，与全部玩家推送的发出 48,210 接近。</li>
+    <li>2 条、3 条两档人少，柱子看不出深浅，改为在柱上直接写到上限的人数（420、10）。</li>
+  </ul>
+  <div class="shot"><img src="图/2026-10-27_评审版整体验收/06b_每人每天收到.jpg" alt="每人每天推送量"><div class="c">第 9 页 · 每人每天推送量</div></div>
+</div>
+
+<div class="f">
+  <div class="h">业务规则补齐的边界</div>
+</div>
+<table>
+<tr><th>哪一块</th><th>补了什么</th></tr>
+<tr><td class="w">推播状态</td><td class="r">重复的定时在发送中也能暂停；恢复时已过最后一次时间的为已结束 · 已到期；已暂停的也能停止；已结束的只能查看</td></tr>
+<tr><td class="w">权重预留</td><td class="r">按发出那一刻玩家所在的群组判断；顺延到次日的按次日算；留了名额的推送被改对象、改日期或降权重，之前为它留名额被拦下的推送不补发；权重 10 在什么条件下一定不被拦截</td></tr>
+<tr><td class="w">名额占用</td><td class="r">查看日可选近 30 天到今天起第 7 天；没发出的写预计；拦截人数可点开导出名单</td></tr>
+<tr><td class="w">弹窗轮流</td><td class="r">记住的是上次实际弹出（以曝光为准）的规则；没有记录时从优先级最小的一条开始；上次那条已下架时按原来的优先级取下一条</td></tr>
+<tr><td class="w">弹出时机与频率</td><td class="r">非首次登录、第 N 次登录、活动开启写明定义；每 N 天按「含今天往前 N 天」算；跨规则、跨位置都合计</td></tr>
+<tr><td class="w">快显</td><td class="r">按曝光计数；条件触发时玩家不在线或不在该位置怎么处理；已结束原因同推播</td></tr>
+<tr><td class="w">操作纪录</td><td class="r">补记暂停、恢复、下架、调整优先级、切换命中方式、弹窗内容的新建与编辑（数据页的改动竖线要用）</td></tr>
+</table>
+
+
+
+<h2><span class="no">02</span>已按推荐做、可推翻</h2>
+<p class="note">原来要你定的 3 件，都能改回，已按推荐先做。不同意的告诉我，按最后一列改回。</p>
+<table>
+<tr><th>事项</th><th>定了什么</th><th>依据</th><th>不同意时改回哪里</th></tr>
+<tr><td class="w">Facebook、LINE</td><td class="r">「后台结构」图注写明：Facebook、LINE 不在本次，营销侧接好这两个渠道后，按短信的方式加入游戏外推送</td><td class="r">需求清单列为必须，前提是营销侧能接入；需求文档 4.2.5 有逐种切换方案。评审版原来一处都没有</td><td class="r">删这一句。要纳入本次就补一页；不纳入的话，需求清单的分级要不要改为可后做，由你定</td></tr>
+<tr><td class="w">会员标签设定的改动、A/B 实验</td><td class="r">保留；第 1 页「标签群组」加一句：与标签需求（另一份需求）同期上线</td><td class="r">需求清单写着「不在这次需求」，但发送测试、人群上限、弹窗实验都要用到群组，删掉后这几处缺了前提</td><td class="r">删这一句；要移出，就删第 1 页「标签群组」和第 4 页「实验」两节，改三处引用</td></tr>
+<tr><td class="w">弹窗每人每天上限</td><td class="r">补回大厅自动弹窗每人每天 8 个（各规则合计，破产等位置不计入），弹窗规则列表顶部加只读栏；玩家查询弹窗卡写「今天 2/8 个」</td><td class="r">已定事项第 22 条把它列为小改动；需求清单「每种推送每人每天上限」为必须；需求文档默认 8 个；你说过上限应和弹窗排序放在一起设</td><td class="r">删第 4 页这条规则和列表顶部栏（5 张图），第 1、9 页各改回一句</td></tr>
+</table>
+<div class="f" style="margin-top:22px"><div class="h">其余替你定的</div></div>
+<ul class="note">
+  <li><b>轮流位置上的首次登录弹窗</b>：只在那次进入正好轮到它所在的规则时弹，没轮到的不补弹；要每位玩家都弹，需把它加进玩家会符合的每条规则。另一种做法是让这类内容不受轮流限制，规则和实现都更复杂，没采用。</li>
+  <li><b>每 N 天 M 次</b>：按「含今天往前 N 天内已弹不到 M 次」算。跨规则合计时只需存弹出时间，最简单。</li>
+  <li><b>条件触发的快显</b>：触发时玩家不在线或不在该显示位置的，30 分钟内进入该位置时显示（破产未回为 24 小时），超时放弃，不计入上限。</li>
+  <li><b>服务通知只限四种</b>：补偿、维护、账号安全、绑定结果；活动、礼包提醒一律选营销，防止拿服务通知绕过上限。</li>
+  <li><b>重复的定时推播在发送中也能暂停</b>：暂停期间到点的不补发。原来只能停止后重建。</li>
+  <li><b>示例数据</b>：保留两套「今天」（推播、弹窗是 10/21，数据和查询是 10/12）；#45 签到加码的对象改为「近 3 天未签到」14,500 人，原来发给全部玩家却只发出 9,380；周年庆改为 10/15 开始，接在 10/08 的预告之后。</li>
+</ul>
+
+<h2><span class="no">03</span>评审时要讲一句的地方</h2>
+<ul class="note">
+  <li><b>两个「谁先」方向相反</b>：推播的权重是数字越大越优先；弹窗的优先级是数字越小越先排。图和规则都写明了方向。</li>
+  <li><b>每天的提醒只能按群组发</b>：群组按定期更新的标签算，选不出「今天还没完成每日任务」这类当天状态，已完成的人也会收到。本期不加「到 X 点仍未完成」这类参数。</li>
+  <li><b>待研发确认</b>：
+    <ul>
+      <li>客户端能否区分「登录后进大厅」和「从游戏返回大厅」；</li>
+      <li>服务端能否取到玩家当天第几次登录；</li>
+      <li>各触发事件从哪个系统来；</li>
+      <li>现有破产位置是否多条同时弹出。</li>
+    </ul>
+    前两项做不到的话，「返回大厅」「第 N 次登录」两种时机要先拿掉。</li>
+</ul>
+
+<h2><span class="no">04</span>交付前必查：按清单逐条查过，查出的已改</h2>
+<p class="note">由一位没看过这项工作的核对人逐条做；首次不过的项已改，改后由我复读，未再派人复核。</p>
+<table>
+<tr><th>条目</th><th>结果</th><th>证据或处理</th></tr>
+<tr><td class="w">1 边界看得见</td><td class="r">过</td><td class="r">只看首屏和侧栏答出 4 部分、10 页；翻到第 7 页答出所在部分与页码。窗口窄于 1100px 或打印时侧栏隐藏，沿用定稿样式未改</td></tr>
+<tr><td class="w">2 标题</td><td class="r">过</td><td class="r">都是短名词短语，同层句式一致；唯一带括号的长状态标签已删括号</td></tr>
+<tr><td class="w">3 措辞</td><td class="r">首次不过，已改</td><td class="r">三句读不准：「随标签需求上线」、权重 10 的三个条件堆在一句、快显「显示窗口」没定义。已改成事实句、拆成三点、写明 30 分钟</td></tr>
+<tr><td class="w">4 只写有效信息</td><td class="r">过</td><td class="r">没有过程痕迹、版本号、被否决的做法</td></tr>
+<tr><td class="w">5 篇幅</td><td class="r">过</td><td class="r">正文约 2,400 字加 34 张图；业务规则约 1.45 万字，默认折叠</td></tr>
+<tr><td class="w">6 阅读体验优先</td><td class="r">首次不过，已改</td><td class="r">同第 1、3 条的读者测试；第 3 条读不准的三句已改</td></tr>
+<tr><td class="w">7 读者最先看的地方</td><td class="r">过</td><td class="r">首屏、各级标题、页头、结尾的摘录逐处查过，我也读了一遍</td></tr>
+<tr><td class="w">8 每个功能三问</td><td class="r">补做，都保留</td><td class="r">只对 10/20 成本收益评估没覆盖的 5 个功能补做，见下表；开发量是推断，待研发评审估</td></tr>
+<tr><td class="w">9 类型卡逐条</td><td class="r">多数过；不过的已改</td><td class="r">已改：同一处写出成员（如「推播、短信、弹窗、快显各一张卡」）；同一界面两种状态改为「展开后」在上、「收起时」在下；去掉字段校验细节。保留：研发要做的改动与业务规则有重复，类型卡要求写明开发什么</td></tr>
+</table>
+<table style="margin-top:14px">
+<tr><th>功能</th><th>谁做、做几次</th><th>开发量（推断）</th><th>不做时的人工做法</th><th>结论</th></tr>
+<tr><td class="w">推播权重与预留</td><td class="r">运营每条营销推送选一次，多数用默认 5</td><td class="r">中到大：发给每人前要算他当天后面更高权重的定时推送</td><td class="r">错开发送时间，或临时调高上限；做不到点名保留</td><td class="r">保留，你 10/27 定的</td></tr>
+<tr><td class="w">按人群的每人每天上限</td><td class="r">运营负责人，活动期间改，约每月几次</td><td class="r">中：按人群顺序取第一条适用的上限</td><td class="r">全体统一一个上限，回流活动时只能全员调高</td><td class="r">保留，定稿里你定的</td></tr>
+<tr><td class="w">名额占用对话框</td><td class="r">运营查拦截原因，每周几次</td><td class="r">中：读当天计数明细，按上限分列</td><td class="r">找研发查库，约 30 分钟一次</td><td class="r">保留</td></tr>
+<tr><td class="w">命中方式与跨规则合计</td><td class="r">每个弹窗位置设一次，很少改</td><td class="r">中：按玩家记住上次弹出的规则，次数按弹窗内容合计</td><td class="r">只有优先级最高；想让多条规则轮着出，只能把内容复制进多条规则</td><td class="r">保留，定稿里你定按位置设</td></tr>
+<tr><td class="w">大厅自动弹窗每人每天上限</td><td class="r">运营负责人设一次</td><td class="r">小：按玩家每天计数</td><td class="r">没有，只能靠各弹窗自己的频率</td><td class="r">保留，已定事项第 22 条</td></tr>
+</table>
+<p class="note">另有一件请你看一眼：写作标准把「触达」列为不用的词，但定稿的系统名、侧栏和每张截图都叫「触达系统」。我沿用定稿，没有改名。</p>
+
+<div class="links">
+成品：<a href="../评审版_定稿改_1027/推送系统后台集成需求/3_原型_需求评审版.html">评审版_定稿改_1027/推送系统后台集成需求/3_原型_需求评审版.html</a>（单文件，34 张图已内嵌）<br>
+改过的文件与上传说明：<a href="../评审版_定稿改_1027/README.md">评审版_定稿改_1027/README.md</a><br>
+本机截图用的是苹方字体，上传云端后按 README 重截一次即换回云端字体。<br>
+前几轮：<a href="2026-10-27_评审版权重与弹出时机.html">权重与弹出时机</a> · <a href="2026-10-27_评审版顺序与用词.html">顺序与用词</a> · <a href="2026-10-27_评审版定稿改动.html">定稿改动</a>
+</div>
+</div></body></html>

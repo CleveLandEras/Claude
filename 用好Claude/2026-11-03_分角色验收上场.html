@@ -1,0 +1,198 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>分角色验收上场</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.35;margin:0 0 8px}
+.sub{font-size:15.5px;color:var(--ink-2);margin:0 0 10px}
+.sub b{color:var(--ink)}
+.note{background:var(--red-soft);color:var(--ink);border-left:4px solid var(--red);border-radius:4px;padding:10px 14px 10px 14px;font-size:14px;margin:14px 0 20px}
+.note b{color:var(--red)}
+.note ul{margin:4px 0 0;padding-left:18px}
+.note li{margin:4px 0}
+.note i{font-style:normal;color:var(--green);font-weight:600}
+h2{font-family:var(--serif);font-size:20px;line-height:1.4;margin:48px 0 16px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em;flex:none}
+h3{font-size:15.5px;margin:24px 0 10px}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 18px}
+.kpi .n{font-size:36px;font-weight:700;line-height:1.1;color:var(--ink)}
+.kpi .n small{font-size:15px;font-weight:600;margin-left:6px;color:var(--ink-2)}
+.kpi .t{font-size:14px;color:var(--ink-2);margin-top:8px}
+.cause .h{font-size:15px;font-weight:700;margin:0 0 6px}
+.cause .f{font-size:12.5px;color:var(--muted);margin:0 0 6px}
+.cause .l{font-size:14px;color:var(--ink-2);margin:0}
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.steps div{counter-increment:s;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 16px;font-size:14px;color:var(--ink-2)}
+.steps div::before{content:counter(s);display:block;font-size:20px;font-weight:700;color:var(--accent);margin-bottom:2px}
+.steps div b{display:block;color:var(--ink);font-size:15px;margin-bottom:4px}
+ul.pts{margin:14px 0 0;padding-left:20px;color:var(--ink-2);font-size:14.5px}
+ul.pts li{margin:6px 0}
+ul.pts li b{color:var(--ink)}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);font-size:14px;table-layout:fixed}
+th,td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12.5px;color:var(--muted);font-weight:600;background:var(--ground)}
+th:first-child{width:46%}
+tr:last-child td{border-bottom:none}
+td.hi{color:var(--green);font-weight:700}
+td.bad{color:var(--red);font-weight:600}
+.legend{font-size:13px;color:var(--muted);margin:8px 0 0}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 18px;font-size:14px;color:var(--ink-2)}
+.box p{margin:0 0 8px}
+.box p:last-child{margin:0}
+.box b{color:var(--ink)}
+.box ol{margin:6px 0 8px;padding-left:20px}
+.box ol li{margin:4px 0}
+.say{display:block;background:var(--blue-soft);color:var(--blue);font-weight:600;padding:8px 10px;border-radius:4px;margin:6px 0;word-break:break-all;user-select:all;-webkit-user-select:all;font-size:13.5px}
+.btn{font:inherit;font-size:12.5px;color:var(--blue);background:transparent;border:1px solid var(--blue);border-radius:3px;padding:1px 8px;margin-left:6px;cursor:pointer}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:1px 8px;border-radius:3px;margin-right:6px}
+.tag.red{background:var(--red-soft);color:var(--red)} .tag.blue{background:var(--blue-soft);color:var(--blue)} .tag.green{background:var(--green-soft);color:var(--green)}
+ol.dec{margin:0;padding-left:22px;font-size:14.5px;color:var(--ink-2)}
+ol.dec li{margin:7px 0}
+ol.dec li b{color:var(--ink)}
+.links{font-size:13px;color:var(--muted);margin-top:40px;word-break:break-all} a{color:var(--accent)}
+code{font-family:ui-monospace,Menlo,monospace;font-size:12.5px;word-break:break-all}
+@media (max-width:760px){
+  .wrap{padding:24px 16px 64px}
+  h1{font-size:22px}
+  .sub{font-size:14.5px}
+  h2{font-size:18px;margin-top:36px}
+  .g3,.g2,.steps{grid-template-columns:1fr}
+  .kpi .n{font-size:30px}
+  th,td{padding:8px 10px}
+  th:first-child{width:44%}
+  #s4b{padding:12px 14px;font-size:13.5px}
+}
+</style></head><body><div class="wrap">
+
+<p class="meta">用好 Claude · 2026-11-03 · 考试数字照抄 11/03 成绩单（判分代理给出，分发抽查过）；改动处数照改动清单逐行数</p>
+<h1>分角色验收按考前写好的判法算过，旧验收官和它在各处的引用一起撤掉</h1>
+<p class="sub">分角色验收：五个评审各查一面，再由总验收人下结论，替换原来由一个验收官判过不过。</p>
+<p class="sub"><b>要你做：</b>在「用好 Claude｜主对话」回一句：「同意」就保留；「退回」就由它照 04 节撤回。对 05 节哪一件有意见就点名，由主对话建任务改，安装保留；第 1、2 件不认就回「退回」。</p>
+<p class="sub"><b>装没装上，主对话转这页时会告诉你：</b>已装上，只需回上面那句；被自动模式拦下就还没装，回「同意」后照 04 节做 4 步。</p>
+<div class="note"><b>先说短板和补救</b>
+<ul>
+  <li>最大问题对没对上你的退回理由：按考前写好的判法（说到你理由里任一点就算），你 11/02 退回的 4 份全对上，所以算过；严格读（最大问题的主旨就是你的理由）只对上 2 份。<i>补救：</i>你不认就算没过，回「退回」即撤回。</li>
+  <li>推播一页表那份，是照它没中的那一类改了说明后重考才命中的，不算独立证据（考前定的规矩允许改一次，改的是通用写法）。<i>补救：</i>以后你再退回的纯表格稿进每周考卷，看这条规矩在没见过的稿上中不中。</li>
+  <li>6 份考卷里 4 份之前拿来对过准，真正没见过的只有 2 份；其中你判通过的那份样稿，新旧两边都错拦。<i>补救：</i>每周验收考试把 6 道旧题和新的合格样稿轮进新做法的卷，两三周后每道旧题都有新做法的成绩。</li>
+  <li>新做法更爱提你以前否过的要求：卷里这类 2 条，新做法都提了，旧验收官提了 1 条（多出的是要求结论页写「请您定什么」）；只有 2 条，样本很小。<i>补救：</i>这两条留在每周考卷里，看后面几周降不降。</li>
+</ul></div>
+
+<div class="grid g2">
+  <div class="card kpi"><div class="n">100%<small>旧验收官 60%</small></div><div class="t">同一份卷里 5 份你退回过的稿，新做法全拦下，旧验收官 3÷5（部分拦下算半份）。第一次拦下 70% 已够，但推播一页表的最大问题没对上你的理由，没过；改一处后重考。</div></div>
+  <div class="card kpi"><div class="n">26<small>个文件</small></div><div class="t">装上改 26 个、新建 3 个、移走 2 处，放在同一次安装里切换；回「退回」整体撤回。</div></div>
+</div>
+
+<h2><span class="no">01</span>新做法：五个角色各查一面、总验收人下结论；流程走得对不对另由流程抽查员查</h2>
+<div class="steps">
+  <div><b>程序先查</b>断链、禁用词、交付链接这类能用程序判的</div>
+  <div><b>五个角色各查一面</b>结构、读者、边界、依据、措辞各开一个新评审，只看自己那一面，只报硬伤</div>
+  <div><b>总验收人先独立判</b>另开一个，不看角色报告，先按读者的眼光打分、写最大问题</div>
+  <div><b>再看报告下结论</b>核过五份报告后给结论；分发按通过条件判这一次算不算过，写进任务文件「验收结论」</div>
+</div>
+
+<h3>七条规矩</h3>
+<div class="grid g2">
+  <div class="card cause"><p class="h">评审只看程序生成的材料</p><p class="l">都新开、只读，没看过制作过程。材料是成品、对齐卡摘录、验收清单原文和出处清单（依据、边界两个角色可以查对的项目文件）。</p></div>
+  <div class="card cause"><p class="h">通过条件不给评审看，靠的是说明约束</p><p class="l">按你 11/02 定的，放在底座里的一个文件，只给分发和流程抽查员读。评审的说明禁止打开底座、对话记录和记忆、技能、备份这 4 处，材料里的相关字眼由脚本屏蔽；这不是权限隔离，评审手上有读文件的工具。</p></div>
+  <div class="card cause"><p class="h">两档都是五个角色加总验收人，只差在重复验</p><p class="l">给主管、研发或经你转出去的走标准档；只给你自己看的走轻档：同一版成品重复验时，只重开总验收人，沿用五个角色的报告。总验收人用 Opus 5.5、思考强度 xhigh，不用 max（你 11/02 23:35）。</p></div>
+  <div class="card cause"><p class="h">一件中等稿：标准档约 2.5–3 个百分点，轻档约 1.5 个</p><p class="l">指周额度，从开跑到通过、连同改稿；其中评审标准档约 1–2 个、轻档约 0.5–1 个。按弹窗 11/02 四份各跑一轮约 1 个百分点推算。</p></div>
+  <div class="card cause"><p class="h">有你退回过的稿，先拿它对准</p><p class="l">正式验之前先拿退回稿跑一轮，不告诉总验收人：要判有问题，最大问题要对上你的理由。对不上不改通用说明，在验收结论里注明「校准没对上」、交付时告诉你；不许拿单份退回稿一版版地调说明。</p></div>
+  <div class="card cause"><p class="h">先交的稿标明没验完</p><p class="l">像这次的功能清单思维导图：可以没过验收先给你看，回复末尾写「草稿，未交付」和这一版验过没有、最大问题是什么；状态不改「待验收」，转述时不说「过了验收」；程序检查必跑。</p></div>
+  <div class="card cause"><p class="h">新旧数字接得上</p><p class="l">成绩单 10/31 及以前是旧验收官、11/03 起是分角色验收；每周算五个数的程序新旧两种记录都认；旧题轮进新做法的卷（见第一屏的补救）。</p></div>
+</div>
+
+<h3>流程抽查员：验收判成品对不对，抽查员判流程走得对不对</h3>
+<div class="box">
+  <p><b>查什么：</b>门有没有过、交到你手上的有没有验收通过、同一件事有没有两套规则并行、状态和记录对不对得上、各对话有没有越界；不判稿件内容。</p>
+  <p><b>谁派、何时：</b>「总的主会话」派，在你问到流程时、一件任务被你退回第二次时、新做法装上后第一件照它跑的任务。</p>
+  <p><b>结果和改：</b>存进底座的「流程抽查」文件夹，一次一个文件。没按规则走的，交该项目主对话记进任务文件、由分发改；规则本身的问题，交「用好 Claude｜主对话」建任务改。</p>
+</div>
+
+<h2><span class="no">02</span>考试：同一份卷新做法拦下 5÷5、旧验收官 3÷5，但多提了一条你否过的要求；没见过的稿只有 2 份</h2>
+<table>
+<tr><th>同一份 6 份卷</th><th>新做法（重考）</th><th>旧验收官</th></tr>
+<tr><td>拦下你退回过的问题（5 份，部分拦下算半份）</td><td class="hi">100%（5÷5）</td><td>60%（3÷5）</td></tr>
+<tr><td>最大问题对上你的理由（你 11/02 退回的 4 份）</td><td class="hi">4÷4；严格读 2÷4</td><td>0÷4</td></tr>
+<tr><td>错拦你判通过的样稿</td><td class="bad">1÷1</td><td class="bad">1÷1</td></tr>
+<tr><td>又提了你以前否过的要求（2 条）</td><td class="bad">2÷2</td><td>1÷2</td></tr>
+</table>
+<p class="legend">只算不靠翻项目记录找到的：新 100%（5÷5），旧 40%（2÷5，有 1 份是翻记录找到的）。新做法第一次：拦下 70%（3.5÷5），对上 3÷4，错拦 1÷1，否过的要求 2÷2。10/31 旧验收官考的是另一份 7 题的卷，只作参考：拦下 79%（5.5÷7），严格读 71%（5÷7），只算不靠记录的 14%（1÷7），错拦 1÷1，否过的要求 1÷2。<br>你 11/02 退回的 4 份：弹窗 5 页版、场景 19:55 版、推播一页表、功能清单思维导图 21:07 版（严格读没对上的是场景和思维导图）；第 5 份退回稿和那份样稿来自 10/31 的卷。</p>
+
+<h3>改的那一处：表格的行列不算论证层次</h3>
+<div class="grid g2">
+  <div class="card cause"><p class="h">第一次没过在哪</p><p class="l">推播一页表被判成「结论先行基本做到」，没对上你的退回理由（纯表格不遵循金字塔）。</p></div>
+  <div class="card cause"><p class="h">改成什么</p><p class="l">成品主体是表格或卡片网格时，行、列和格子里的字不算分论点；只读标题和各级小标题串不出论证，就判结论先行没做到。只改了总验收人和结构角色的说明；重考时结构角色仍判这份「没有硬伤」，命中靠总验收人推翻它。</p></div>
+</div>
+<ul class="pts">
+  <li><b>第 1 份（弹窗 5 页版）</b>原文件已被覆盖，考的是重做的全文，没有版式和讲稿。</li>
+  <li><b>重考只重跑了改过说明的两个评审</b>（总验收人、结构），其余四个角色沿用第一次的报告，考前写的是整卷重跑（见 05 节第 2 件）。每份只跑一次，改动的效果和随机波动分不开。</li>
+</ul>
+
+<h2><span class="no">03</span>撤掉了哪些：144 处改动分六组，装上后旧验收官的字样只剩 25 行历史记录</h2>
+<div class="grid g3">
+  <div class="card cause"><p class="h">规则 · 9 处</p><p class="f">全局规则</p><p class="l">「三道门」和第 4、19、20、22 条改指分角色验收；第 2 条补转述你原话要核出处；第 16 条补改到已交成品的处理</p></div>
+  <div class="card cause"><p class="h">说明 · 5 处</p><p class="f">验收官、总验收人、流程抽查员</p><p class="l">验收官说明移进备份夹；新建总验收人说明；流程抽查员的依据改按规则体系说明的先后，补查先交的稿</p></div>
+  <div class="card cause"><p class="h">技能 · 19 处</p><p class="f">开工、整理纠正、验收官考试</p><p class="l">「验收官考试」换成「验收考试」；整理纠正改考新做法；开工写卡时「检查」只写档位</p></div>
+  <div class="card cause"><p class="h">钩子 · 9 处</p><p class="f">交付闸门（交付前自动拦一下）、纠正提示</p><p class="l">交付闸门不再「调用过验收官就放行」，只认任务文件里登记的成品和填好的验收结论</p></div>
+  <div class="card cause"><p class="h">底座文件 · 94 处</p><p class="f">说明文档 7 份、工具 5 个、考试记录 4 份、设置 1 份</p><p class="l">改叫法、改指新做法；README 写进流程抽查员的分工；对话定位里转述你原话的旧说法一并改（见 05 节第 7 件）；工具改认新的验收结论格式</p></div>
+  <div class="card cause"><p class="h">项目入口 · 8 处</p><p class="f">工作区、弹窗、用好 Claude 的入口 4 个</p><p class="l">改叫法，指向新做法</p></div>
+</div>
+<ul class="pts">
+  <li><b>留下的 25 行</b>（在模拟装好的副本里查的）都是历史记录或写明不再用，没有一行还在让人照旧验收官做。流程抽查员 11/02 查出的 6 处规则问题，都改了或写明了不改的理由。</li>
+  <li>每处的改前、改后、为什么：<a href="file:///Users/decheng.huang/claude/_底座/任务/用好Claude/2026-11-02_分角色验收上场_验收官退场/改动清单.md">改动清单.md</a>（在 Mac 上打开）。</li>
+</ul>
+
+<h2 id="s4"><span class="no">04</span>装上和撤回：主对话代跑，你不用进终端；被拦时最多 4 步</h2>
+<div id="s4b" class="box">
+  <p><b>谁装：</b>照你 11/02 23:39「我睡了，我同意我自己安排的新规则，你看着整吧」，考过后由「用好 Claude｜主对话」代跑，没等你先看这页。改前原样备份到 <code>~/.claude/backups/验收官退场_日期_时间/</code>，移走的不删。装前预览检查全部通过。</p>
+  <p><span class="tag green">装好了</span>主对话会转给你最后一行「已执行：改 26 个、新建 3 个、移走 2 处」。</p>
+  <p><span class="tag red">被自动模式拦下</span>停在跑安装那一步：一个文件都没改，旧验收官照常用。你回「同意」后，在手机上：</p>
+  <ol>
+    <li>在「用好 Claude｜主对话」回这一句（官方说明这样能放行一次，不保证）：<button class="btn" type="button" data-copy="say1">复制</button><span id="say1" class="say">批准运行 bash /Users/decheng.huang/claude/_底座/任务/用好Claude/2026-11-02_分角色验收上场_验收官退场/装上.sh --执行，它会改 ~/.claude 下的规则、说明、技能和钩子</span></li>
+    <li>还被拦：把这个对话的权限切到「Manual」（输入框的 + → Permission；较早版本的 App 里可能叫 Ask permissions）。</li>
+    <li>回一句「接着装」（撤回时回「接着撤回」），弹出批准就点允许。</li>
+    <li>装完（或撤回完）切回「Auto」。</li>
+  </ol>
+  <p><span class="tag blue">回「退回」</span>已装上的，由主对话代跑撤回：备份拷回原处、删掉新建的 3 个、移回 2 处，回到装上前的样子；撤回也改受保护的文件，被拦时照上面第 2–4 步，第 3 步回「接着撤回」。还没装上的，就不装。装到一半出错时，脚本会给出撤回办法，主对话照着撤回再告诉你。</p>
+</div>
+
+<h2><span class="no">05</span>已替你定 13 件，可推翻：不同意哪件，回复里点名</h2>
+<p class="sub">点名的那件由主对话建任务改，安装保留；第 1、2 件关系到考试过没过，不认就算没过，回「退回」由主对话撤回。</p>
+<ol class="dec">
+  <li><b>场景、思维导图两份按字面读算对上：</b>考前写好的判法原文是「说到下面任一点算命中」，第一次判「没过」用的也是这个读法，重考不换。</li>
+  <li><b>重考沿用读者、边界、依据、措辞 4 个角色第一次的报告：</b>考前写的是 6 份整卷重跑；这 4 个角色的说明和输入都没变，重跑只是再抽一次样，所以只重跑了改过说明的总验收人和结构角色。</li>
+  <li><b>旧验收官说明移进备份夹，不硬删；</b>新建的总验收人说明只写不变的规矩，会变的判法放在底座里，考过就能改。</li>
+  <li><b>交付闸门只认登记，</b>不再看「叫没叫过验收官」。</li>
+  <li><b>不按稿件大小减角色：</b>考试只验过五个角色这一种配置。</li>
+  <li><b>通过条件通用：</b>你 11/02 在弹窗项目定的那套，所有交给你的稿都用。</li>
+  <li><b>转述你的原话要带出处：</b>写明哪个对话、几点；收件方在那个对话的记录里核到是你本人打的才照做，核不到就问你。对话定位里的旧说法 12 处一并改：10 处改成这个说法；两个分发节仍只认任务文件，因为分发只收任务文件路径，核原话由主对话做。</li>
+  <li><b>改到别的任务已交你的成品：</b>记进那件任务的任务文件，下次交你时单列；推翻你已看过的结论的，先问你。</li>
+  <li><b>「每跑完一次都给用好 Claude 看」只用在弹窗那几份：</b>那是试行期的话，通用版里分发每轮在交接记录记一行。</li>
+  <li><b>试卷取舍：</b>三张纯表格只取推播那张，两份 5 页版只取弹窗那份；同一个退回理由多放几份，多得的信息很少。</li>
+  <li><b>一次切换：</b>规则、说明、技能、钩子和底座、项目入口的配套改动放进同一次安装。</li>
+  <li><b>在跑的不中途换：</b>弹窗那三份和功能清单思维导图，照它们卡上试行的那版分角色验收跑完；别的项目装上后的下一次验收起用新做法。</li>
+  <li><b>历史记录一字不改；</b>验收清单已满 25 条，不加条目。</li>
+</ol>
+
+<p class="links">原文（在 Mac 上打开）：<a href="file:///Users/decheng.huang/claude/_底座/分角色验收/做法.md">新做法全文 做法.md</a> · <a href="file:///Users/decheng.huang/claude/_底座/考试/成绩单.md">考试成绩单（最上面两节）</a> · <a href="file:///Users/decheng.huang/claude/_底座/任务/用好Claude/2026-11-02_分角色验收上场_验收官退场/改动清单.md">改动清单.md</a></p>
+</div>
+<script>
+document.querySelectorAll('[data-copy]').forEach(function(b){
+  b.addEventListener('click',function(){
+    var t=document.getElementById(b.getAttribute('data-copy')).textContent;
+    try{navigator.clipboard.writeText(t).then(function(){b.textContent='已复制';},function(){b.textContent='长按文字复制';});}
+    catch(e){b.textContent='长按文字复制';}
+  });
+});
+</script>
+</body></html>

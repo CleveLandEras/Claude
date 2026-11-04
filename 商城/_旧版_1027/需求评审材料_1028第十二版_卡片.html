@@ -1,0 +1,293 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>活动配置核心内容</title>
+<style>
+:root{--ground:#f2f1ee;--surface:#fff;--ink:#1b1d21;--ink-2:#454a51;--muted:#80858c;--line:#e3e1dc;--accent:#9a6f24;--accent-soft:#f5ecdc;
+--new:#1f63a8;--new-soft:#e4eef8;--chg:#8a5a00;--chg-soft:#f6ecd6;--keep:#5f646b;--keep-soft:#eceae6;--red:#a8382b;--red-soft:#f7e7e3;--green:#2f6b52;--green-soft:#e3efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#bcc0c5;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;--accent-soft:#2f2718;--new:#7ab0e0;--new-soft:#1b2b3a;--chg:#e0b866;--chg-soft:#33291a;--keep:#a9aeb5;--keep-soft:#262a2f;--red:#e48e7f;--red-soft:#3a211c;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#bcc0c5;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;--accent-soft:#2f2718;--new:#7ab0e0;--new-soft:#1b2b3a;--chg:#e0b866;--chg-soft:#33291a;--keep:#a9aeb5;--keep-soft:#262a2f;--red:#e48e7f;--red-soft:#3a211c;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.8;-webkit-text-size-adjust:100%}
+a{color:var(--accent)}
+/* 版面：目录栏＋正文，整体居中 */
+.layout{display:grid;grid-template-columns:220px minmax(0,1fr);gap:40px;max-width:1440px;margin:0 auto;padding:36px 40px 100px}
+.side{position:sticky;top:28px;align-self:start;max-height:calc(100vh - 56px);overflow-y:auto;font-size:13.5px;line-height:1.5;padding-right:6px}
+.side b{display:block;color:var(--muted);font-size:12.5px;margin:18px 0 6px;letter-spacing:.03em}
+.side b:first-child{margin-top:0}
+.side a{display:block;color:var(--ink-2);text-decoration:none;padding:4px 10px;border-left:2px solid var(--line)}
+.side a:hover{color:var(--accent);border-left-color:var(--accent)}
+.main{min-width:0}
+/* 页 */
+.page{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:38px 48px 34px;margin:0 0 30px;scroll-margin-top:20px}
+.part{margin:60px 0 16px;font-family:var(--serif);font-size:16px;color:var(--accent);font-weight:700;letter-spacing:.06em}
+.ph{display:flex;justify-content:space-between;gap:12px;font-size:13px;color:var(--muted);margin:0 0 8px}
+h2.t{font-family:var(--serif);font-size:25px;line-height:1.5;margin:0 0 26px}
+.lead{margin:-14px 0 22px;font-size:15.5px;color:var(--ink-2)}
+h3.h3{font-size:16px;margin:30px 0 12px}
+.ref{margin-top:24px;padding-top:12px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);line-height:1.6}
+/* 图：宽屏两列，空间不够自动一列 */
+.imgs{display:grid;gap:20px;margin:0 0 24px;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr))}
+.imgs.c1{grid-template-columns:1fr}
+.imgs.t3{grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))}
+figure{margin:0}
+figure img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:8px}
+figure a{display:block}
+figcaption{font-size:14px;color:var(--muted);margin-top:8px;line-height:1.6}
+.lab{display:inline-block;font-size:12.5px;font-weight:700;padding:1px 9px;border-radius:4px;margin-bottom:8px}
+.lab.b{background:var(--keep-soft);color:var(--keep)}.lab.a{background:var(--green-soft);color:var(--green)}
+.was{border:1px dashed var(--line);border-radius:8px;padding:20px 22px;background:var(--ground);font-size:15px;color:var(--ink-2);line-height:1.8}
+.was b{color:var(--ink)}
+/* 要点 */
+.pts{list-style:none;margin:0;padding:0}
+.pts li{display:grid;grid-template-columns:46px minmax(0,1fr);gap:14px;padding:11px 0;border-bottom:1px solid var(--line);font-size:15.5px;color:var(--ink-2);line-height:1.75}
+.pts li:last-child{border-bottom:none}
+.pts b{color:var(--ink)}
+.tg{display:inline-block;font-size:12px;font-weight:700;border-radius:4px;text-align:center;height:22px;line-height:22px;margin-top:3px}
+.tg.n{background:var(--new-soft);color:var(--new)}.tg.c{background:var(--chg-soft);color:var(--chg)}.tg.k{background:var(--keep-soft);color:var(--keep)}
+.tgi{display:inline-block;font-size:12px;font-weight:700;padding:0 8px;border-radius:4px;margin:0 2px;line-height:20px}
+.tgi.n{background:var(--new-soft);color:var(--new)}.tgi.c{background:var(--chg-soft);color:var(--chg)}.tgi.k{background:var(--keep-soft);color:var(--keep)}
+/* 表 */
+.tbx{border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.7}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--ground);white-space:nowrap}
+td{color:var(--ink-2)}
+td.w{font-weight:600;color:var(--ink);min-width:7.5em}
+tr:last-child td{border-bottom:none}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:1px 8px;border-radius:4px;white-space:nowrap}
+.tag.n{background:var(--new-soft);color:var(--new)}.tag.c{background:var(--chg-soft);color:var(--chg)}.tag.g{background:var(--green-soft);color:var(--green)}.tag.y{background:var(--chg-soft);color:var(--chg)}.tag.r{background:var(--red-soft);color:var(--red)}.tag.k{background:var(--keep-soft);color:var(--keep)}
+/* 卡 */
+.cards{display:grid;gap:14px}
+.cards.c2{grid-template-columns:repeat(2,minmax(0,1fr))}.cards.c3{grid-template-columns:repeat(3,minmax(0,1fr))}.cards.c4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.cd{border:1px solid var(--line);border-radius:10px;padding:18px 20px;background:var(--surface);min-width:0}
+.cd .k{font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.04em}
+.cd .h{font-size:16.5px;font-weight:700;line-height:1.55;margin:4px 0 8px;color:var(--ink)}
+.cd p{margin:0;font-size:14.5px;color:var(--ink-2);line-height:1.75}
+.cd ul{margin:0;padding-left:18px;font-size:14.5px;color:var(--ink-2);line-height:1.8}
+.note{margin-top:18px;font-size:15px;color:var(--ink-2);padding:12px 16px;background:var(--ground);border-radius:8px;line-height:1.75}
+.note b{color:var(--ink)}
+/* 问题与原因 */
+.pc{display:grid;grid-template-columns:64px minmax(0,1fr) minmax(0,1fr);gap:12px}
+.pc .rh{font-family:var(--serif);font-weight:700;font-size:17px;display:flex;align-items:center;justify-content:center;border-radius:8px}
+.pc .rh.p{color:var(--red);background:var(--red-soft)}.pc .rh.c{color:var(--new);background:var(--new-soft)}
+.pc .ch{font-size:13.5px;font-weight:700;color:var(--accent);padding:0 4px}
+.bar{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 6px}
+.bar div{font-size:13px;font-weight:700;padding:5px 12px;border-radius:6px;background:var(--red-soft);color:var(--red);white-space:nowrap}
+.barcap{font-size:13px;color:var(--muted)}
+/* 全景 */
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.flow .s{border:1px solid var(--line);background:var(--ground);border-radius:8px;padding:8px 13px;font-size:14.5px;line-height:1.45;color:var(--ink)}
+.flow .s small{display:block;font-size:12.5px;color:var(--muted)}
+.flow .ar{color:var(--muted)}
+.zone{border:1px solid var(--line);border-radius:12px;padding:18px 20px}
+.zone .zt{font-size:13.5px;font-weight:700;color:var(--muted);margin-bottom:12px;letter-spacing:.04em}
+.down{text-align:center;color:var(--muted);font-size:14px;margin:12px 0}
+.ent{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.ent .e{border-radius:10px;padding:16px 18px;background:var(--ground);border:1px solid var(--line)}
+.ent .e b{display:block;font-size:17px;color:var(--ink)}
+.ent .e i{font-style:normal;display:inline-block;font-size:12.5px;font-weight:700;color:var(--accent);margin-left:6px}
+.ent .e span{display:block;font-size:14.5px;color:var(--ink-2);margin-top:6px;line-height:1.7}
+.expo{margin-top:12px;font-size:14.5px;color:var(--ink-2);border-top:1px dashed var(--line);padding-top:12px}
+/* 封面 */
+.cover h1{font-family:var(--serif);font-size:32px;line-height:1.45;margin:6px 0 12px}
+.cover .sub{font-size:16px;color:var(--ink-2);margin:0 0 28px;max-width:48em}
+.toc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:24px}
+.toc a{display:block;text-decoration:none;border:1px solid var(--line);border-radius:10px;padding:13px 16px;color:var(--ink);background:var(--ground)}
+.toc a small{display:block;color:var(--muted);font-size:12.5px}
+.toc a b{font-size:15px}
+.gl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 30px;margin-top:24px;padding:18px 22px;border:1px solid var(--line);border-radius:10px;font-size:14px;color:var(--ink-2);line-height:1.65}
+.gl b{color:var(--ink);margin-right:8px}
+.legend{margin-top:18px;font-size:13.5px;color:var(--muted)}
+/* 屏宽适配 */
+@media (max-width:1280px){.layout{grid-template-columns:minmax(0,1fr);max-width:1080px;padding:28px 32px 90px}.side{display:none}.cards.c4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:900px){.cards.c3,.ent,.toc{grid-template-columns:repeat(2,minmax(0,1fr))}.pc{grid-template-columns:1fr}.pc .ch,.pc .sp{display:none}.pc .rh{justify-content:flex-start;padding:6px 12px}.gl{grid-template-columns:1fr}.page{padding:30px 32px 28px}}
+@media (max-width:640px){.layout{padding:16px 12px 64px}.page{padding:22px 18px 20px;border-radius:12px}h2.t{font-size:20px}.cover h1{font-size:24px}
+.cards.c2,.cards.c3,.cards.c4,.ent,.toc{grid-template-columns:1fr}
+.pts li{grid-template-columns:42px minmax(0,1fr);gap:10px;font-size:15px}
+table{font-size:14px}th,td{padding:10px 12px}}
+</style>
+<style>
+.page{padding:44px 56px 44px}
+h2.t{font-size:26px;margin:0 0 30px}
+.sec{font-size:13px;font-weight:700;color:var(--muted);letter-spacing:.08em;margin:34px 0 12px}
+.sec:first-of-type{margin-top:0}
+.big{font-family:var(--serif);font-size:24px;font-weight:700;line-height:1.5;color:var(--ink);border-left:5px solid var(--green);padding:4px 0 4px 18px;margin:0}
+.cg{display:grid;gap:12px}
+.cg.c2{grid-template-columns:repeat(2,minmax(0,1fr))}.cg.c3{grid-template-columns:repeat(3,minmax(0,1fr))}.cg.c4{grid-template-columns:repeat(4,minmax(0,1fr))}.cg.c5{grid-template-columns:repeat(5,minmax(0,1fr))}
+.c{border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:var(--surface);min-width:0}
+.c b{display:block;font-size:16px;color:var(--ink);line-height:1.45;margin-bottom:6px}
+.c span{display:block;font-size:14.5px;color:var(--ink-2);line-height:1.65}
+.c.rec{border:2px solid var(--green)}
+.c .n{font-family:var(--serif);font-size:32px;font-weight:700;color:var(--ink);line-height:1.2;margin-bottom:4px;display:block}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chips span{border:1px solid var(--line);background:var(--ground);border-radius:999px;padding:6px 16px;font-size:15px;color:var(--ink)}
+.cmp{width:100%;border-collapse:collapse;font-size:15.5px}
+.cmp th,.cmp td{padding:13px 16px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;line-height:1.6}
+.cmp th{font-size:13px;color:var(--muted);font-weight:600;background:var(--ground)}
+.cmp td:first-child{color:var(--muted);font-size:14px;white-space:nowrap;width:1%}
+.cmp tr:last-child td{border-bottom:none}
+.tbl{border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.g2 figcaption,.g3 figcaption{font-size:14px;color:var(--ink-2);margin-top:8px}
+.src{font-size:13px;color:var(--muted);margin-top:10px}
+.inf{font-size:11.5px;font-weight:700;color:var(--chg);background:var(--chg-soft);border-radius:3px;padding:0 5px;margin-left:4px;white-space:nowrap;vertical-align:1px}
+.c span.inf{display:inline-block;font-size:11.5px;line-height:18px;color:var(--chg)}
+@media (max-width:1000px){.cg.c4,.cg.c5{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:700px){.page{padding:24px 18px}.cg.c2,.cg.c3,.cg.c4,.cg.c5,.g2,.g3{grid-template-columns:1fr}}
+</style></head><body><div class="layout">
+<nav class="side">
+<b>活动配置 · 核心内容</b>
+<a href="#p1">1 核心结论</a>
+<a href="#p2">2 问题一 · 合不合并</a>
+<a href="#p3">3 问题一 · 命名与界面</a>
+<a href="#p4">4 问题一 · 竞品与待定</a>
+<a href="#p5">5 问题二 · 后台</a>
+<a href="#p6">6 问题二 · 界面</a>
+<a href="#p7">7 公告、节庆</a>
+<a href="#p8">8 需要确认</a>
+</nav>
+
+<div class="main">
+
+<section class="page" id="p1">
+  <div class="ph"><span>活动配置（入口调整）</span><span>1 / 8</span></div>
+  <h2 class="t">核心结论</h2>
+  <div class="tbl"><table class="cmp">
+    <tr><th>问题</th><th>结论</th></tr>
+    <tr><td>一 · 好康和限时活动</td><td><b>合并为一个「活动」入口；好康位置改为银行</b></td></tr>
+    <tr><td>二 · 运营后台</td><td><b>选工具、填规则、审核后定时上线</b></td></tr>
+    <tr><td>三 · 公告</td><td><b>只放消息，分官方、活动、其他</b></td></tr>
+    <tr><td>四 · 节庆</td><td><b>专题页汇总，活动用工具配置</b></td></tr>
+  </table></div>
+</section>
+
+<section class="page" id="p2">
+  <div class="ph"><span>问题一 · 好康和限时活动</span><span>2 / 8</span></div>
+  <h2 class="t">问题一：合并为一个活动入口</h2>
+  <div class="sec">定位与价值</div>
+  <div class="tbl"><table class="cmp">
+    <tr><th></th><th>好康（左下）</th><th>限时活动（右下）</th></tr>
+    <tr><td>定位</td><td>新手、次新玩家的活动汇总</td><td>老玩家的快速入口</td></tr>
+    <tr><td>独有价值</td><td>大厅最显眼位置；面板内直接参与</td><td>当期一览；剩余天数、红点</td></tr>
+    <tr><td>现状</td><td>与限时活动放同一批活动；「淪為活動展示」</td><td>与好康重复</td></tr>
+  </table></div>
+  <div class="src">定位出自 2025-12 好康改版草案（未见落地）；「淪為活動展示」出自产品 idea 页</div>
+  <div class="sec">结论</div>
+  <p class="big">合并为一个活动入口；好康位置改为银行</p>
+  <div class="sec">依据</div>
+  <div class="cg c4">
+    <div class="c"><b>内容重叠</b><span>「祈福财神庙」挂在 7 处</span></div>
+    <div class="c"><b>长处都保留</b><span>好康的面板 → 右侧<br>限时的列表 → 左侧</span></div>
+    <div class="c"><b>需求原文</b><span>好康「改為 金流／商城」</span></div>
+    <div class="c"><b>竞品</b><span>3 款均只有一个活动入口</span></div>
+  </div>
+</section>
+
+<section class="page" id="p3">
+  <div class="ph"><span>问题一 · 好康和限时活动</span><span>3 / 8</span></div>
+  <h2 class="t">问题一：右下叫「活动」，左下叫「银行」</h2>
+  <div class="sec">命名依据</div>
+  <div class="cg c3">
+    <div class="c"><b>不叫「限时活动」</b><span>含签到、通行证等常驻活动</span></div>
+    <div class="c"><b>叫「活动」</b><span>原文：「限時活動：活動（遊戲活動 和 平台活動的區分）」；竞品都叫「活动」</span></div>
+    <div class="c"><b>左下不叫「好康」</b><span>好康意为福利，点开是付费页<span class="inf">推断</span></span></div>
+  </div>
+  <div class="sec">界面</div>
+  <div class="g3">
+    <figure><a href="需求评审材料_图/p01b_大厅_活动入口.jpg" target="_blank"><img src="需求评审材料_图/p01b_大厅_活动入口.jpg" alt=""></a><figcaption>大厅：左下银行，右下活动</figcaption></figure>
+    <figure><a href="需求评审材料_图/p02b_活动_游戏活动_排行内嵌.jpg" target="_blank"><img src="需求评审材料_图/p02b_活动_游戏活动_排行内嵌.jpg" alt=""></a><figcaption>右侧沿用好康：面板内直接看排行</figcaption></figure>
+    <figure><a href="需求评审材料_图/p02b_活动_平台活动.jpg" target="_blank"><img src="需求评审材料_图/p02b_活动_平台活动.jpg" alt=""></a><figcaption>左侧沿用限时：剩余天数、红点</figcaption></figure>
+  </div>
+</section>
+
+<section class="page" id="p4">
+  <div class="ph"><span>问题一 · 好康和限时活动</span><span>4 / 8</span></div>
+  <h2 class="t">问题一：竞品与待定</h2>
+  <div class="sec">竞品</div>
+  <div class="g3">
+    <figure><a href="竞品参考图/竞品_活动中心结构_金好运_t0006.0.jpg" target="_blank"><img src="竞品参考图/竞品_活动中心结构_金好运_t0006.0.jpg" alt=""></a><figcaption>金好运「活動公告」</figcaption></figure>
+    <figure><a href="竞品参考图/竞品_活动中心结构_星城_t0003.5.jpg" target="_blank"><img src="竞品参考图/竞品_活动中心结构_星城_t0003.5.jpg" alt=""></a><figcaption>星城「活動快訊」</figcaption></figure>
+    <figure><a href="竞品参考图/竞品_付费活动位置_豪神_t0042.0.jpg" target="_blank"><img src="竞品参考图/竞品_付费活动位置_豪神_t0042.0.jpg" alt=""></a><figcaption>豪神「最新活動」</figcaption></figure>
+  </div>
+  <div class="cg c2" style="margin-top:14px">
+    <div class="c"><b>采用</b><span>一个活动入口；分类页签；左列表 + 右侧内容</span></div>
+    <div class="c"><b>不采用</b><span>付费活动、公告放进活动入口</span></div>
+  </div>
+  <div class="sec">待定：累充、满减等储值活动放哪</div>
+  <div class="cg c2">
+    <div class="c rec"><b>A 银行「储值活动」页签（建议）</b><span>付款时看到优惠；原文工具属性写在好康改金流／商城一行</span></div>
+    <div class="c"><b>B「活动」加第三个页签</b><span>竞品做法；不付费的玩家也能看到</span></div>
+  </div>
+</section>
+
+<section class="page" id="p5">
+  <div class="ph"><span>问题二 · 运营后台</span><span>5 / 8</span></div>
+  <h2 class="t">问题二：活动改为后台配置，玩法只开发一次</h2>
+  <div class="sec">运营需求</div>
+  <div class="chips"><span>随时上线</span><span>常用玩法有工具</span><span>配一次处处可用</span><span>不出错</span><span>看得到效果</span></div>
+  <div class="sec">当前问题</div>
+  <div class="cg c4">
+    <div class="c"><span class="n">52 / 148</span><span>储值、商城类需求是重复开发（近一年）</span></div>
+    <div class="c"><span class="n">9 次</span><span>超值礼包每包单独做页面</span></div>
+    <div class="c"><span class="n">3 处</span><span>新活动「至尊回归」入口选不到</span></div>
+    <div class="c"><span class="n">14 张</span><span>庆典大页问题单，多为时间写错</span></div>
+  </div>
+  <div class="sec">原因</div>
+  <div class="chips"><span>每种玩法一套后台</span><span>页面无固定版式</span><span>入口选项写死</span><span>时间画在图上</span></div>
+  <div class="sec">方案</div>
+  <p class="big">选工具 → 填规则 → 审核 → 定时上线</p>
+  <div class="chips" style="margin-top:14px"><span>礼包</span><span>累充</span><span>满减（加赠）</span><span>折扣（加赠）</span><span>抽奖</span><span>团购</span><span>一元夺宝</span></div>
+</section>
+
+<section class="page" id="p6">
+  <div class="ph"><span>问题二 · 运营后台</span><span>6 / 8</span></div>
+  <h2 class="t">问题二：界面</h2>
+  <div class="g2">
+    <figure><a href="需求评审材料_图/04_活动列表.jpg" target="_blank"><img src="需求评审材料_图/04_活动列表.jpg" alt=""></a><figcaption>活动列表</figcaption></figure>
+    <figure><a href="需求评审材料_图/05_新建活动_选工具.jpg" target="_blank"><img src="需求评审材料_图/05_新建活动_选工具.jpg" alt=""></a><figcaption>选工具</figcaption></figure>
+    <figure><a href="需求评审材料_图/11_累充_后台配置.jpg" target="_blank"><img src="需求评审材料_图/11_累充_后台配置.jpg" alt=""></a><figcaption>填规则</figcaption></figure>
+    <figure><a href="需求评审材料_图/09_活动数据.jpg" target="_blank"><img src="需求评审材料_图/09_活动数据.jpg" alt=""></a><figcaption>活动数据</figcaption></figure>
+  </div>
+</section>
+
+<section class="page" id="p7">
+  <div class="ph"><span>问题三、四</span><span>7 / 8</span></div>
+  <h2 class="t">公告只放消息；节庆用专题页汇总</h2>
+  <div class="g2">
+    <div>
+      <div class="sec" style="margin-top:0">公告</div>
+      <div class="cg" style="gap:10px">
+        <div class="c"><b>问题</b><span>「最新活动」大图在推广活动，与好康、限时活动重复</span></div>
+        <div class="c"><b>原因</b><span>热门资讯被当推广位；无分类</span></div>
+        <div class="c rec"><b>方案</b><span>官方｜活动｜其他；只放消息</span></div>
+      </div>
+      <figure style="margin-top:12px"><a href="需求评审材料_图/03_公告_活动页签.jpg" target="_blank"><img src="需求评审材料_图/03_公告_活动页签.jpg" alt=""></a></figure>
+    </div>
+    <div>
+      <div class="sec" style="margin-top:0">节庆</div>
+      <div class="cg" style="gap:10px">
+        <div class="c"><b>问题</b><span>两次庆典同 6 个模块各做一遍，22 个需求</span></div>
+        <div class="c"><b>原因</b><span>活动大页每次做网页</span></div>
+        <div class="c rec"><b>方案</b><span>专题页汇总当期活动；活动用工具配置</span></div>
+      </div>
+      <figure style="margin-top:12px"><a href="需求评审材料_图/17_庆典专题页_玩家聚合页.jpg" target="_blank"><img src="需求评审材料_图/17_庆典专题页_玩家聚合页.jpg" alt=""></a></figure>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="p8">
+  <div class="ph"><span>需要确认</span><span>8 / 8</span></div>
+  <h2 class="t">需要确认的 5 件事</h2>
+  <div class="tbl"><table class="cmp">
+    <tr><th></th><th>问题</th><th>建议</th></tr>
+    <tr><td>1</td><td>右下叫「活动」、左下叫「银行」</td><td><b>可以</b></td></tr>
+    <tr><td>2</td><td>储值活动放银行还是「活动」</td><td><b>银行（A）</b></td></tr>
+    <tr><td>3</td><td>满减、折扣做加赠，不减价</td><td><b>加赠</b>（App 价格档固定）</td></tr>
+    <tr><td>4</td><td>团购做全服返利；一元夺宝不用台币买券</td><td><b>可以</b>（台币买券近博彩）</td></tr>
+    <tr><td>5</td><td>节庆用专题页 + 工具，不做人数活动、换装</td><td><b>可以</b></td></tr>
+  </table></div>
+</section>
+
+</div></div></body></html>

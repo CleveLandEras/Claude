@@ -1,0 +1,18 @@
+== 第 5 次重启（放开限制后第 2 次）14:26:26
+放开情况：RUN_ANY_IN_BACKGROUND: allow 电池白名单=user,com.dk.msgrelay,10021 重启前监听在连接名单里=1
+== 开机完成 14:27:02（没打开原型，没点亮屏幕）
+== 14:27:42：监听在连接名单里=1 进程=4108
+11-02 14:26:54.980  1272  1272 W ActivityManager: Unable to start service Intent { act=android.service.notification.NotificationListenerService cmp=co
+11-02 14:27:07.035  4108  4108 I Zygote  : Process 4108 created for com.dk.msgrelay
+11-02 14:27:43.949 | 收到 | Shell | com.android.shell | 标题=重启后测试
+11-02 14:27:43.953 | 已收起 | 0|com.android.shell|2020|rebootcheck8|2000 | 距发出 260ms
+11-02 14:27:43.955 | 入队 | #1 | Shell | 重启后测试 | 待推 1 条
+11-02 14:27:43.964 | 被移除 | 0|com.android.shell|2020|rebootcheck8|2000 | 原因码=10
+
+== 第 4 次重启（放开限制后第 1 次）：Dk 约 14:09 在手机上把「消息中转」电池设为不受限制，等待脚本 14:09:40 检测到（后台运行=allow、电池白名单含原型）后自动重启。该次的脚本输出文件被第 5 次覆盖，以下是原型自己日志里的原始记录：
+11-02 14:10:26.816 | 监听已连接 | 进程=4115 | 做法=A 批次=30秒或3条 收起原通知=true 自动推=true �
+11-02 14:10:29.022 | 请求重连监听 | 开机完成
+11-02 14:11:01.597 | 收到 | Shell | com.android.shell | 标题=重启后测试
+11-02 14:11:01.602 | 已收起 | 0|com.android.shell|2020|rebootcheck7|2000 | 距发出 266ms
+11-02 14:11:01.603 | 入队 | #1 | Shell | 重启后测试 | 待推 1 条
+11-02 14:11:01.627 | 被移除 | 0|com.android.shell|2020|rebootcheck7|2000 | 原因码=10

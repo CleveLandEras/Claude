@@ -1,0 +1,1 @@
+- [Session scope: mind-map tool only](session-scope-mindmap-tool.md) — this session is only the paste-mind-map tool

@@ -1,0 +1,917 @@
+{
+ "scenario": "误会5%",
+ "seeds": [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15,
+  16,
+  17,
+  18,
+  19,
+  20
+ ],
+ "check": "20 个种子的各打法占比逐代和 results/main_误会5%.json 一致",
+ "definitions": {
+  "starters": "开局是老实人的 500 人",
+  "ever_harsh": "300 代里任何一代当过记仇或骗子",
+  "back_to_forgiving": "第 300 代是会原谅的以牙还牙"
+ },
+ "across_20": {
+  "ever_harsh_share": {
+   "min": 0.916,
+   "median": 0.956,
+   "max": 0.98
+  },
+  "harsh_then_gtft_share": {
+   "min": 0.6551,
+   "median": 0.9055500000000001,
+   "max": 0.9352
+  },
+  "end_harsh": {
+   "min": 0,
+   "median": 0.0,
+   "max": 0
+  },
+  "harsh_gens_median": {
+   "min": 68.0,
+   "median": 93.5,
+   "max": 163.0
+  }
+ },
+ "seed5": {
+  "seed": 5,
+  "n_starters": 500,
+  "ever_harsh": 473,
+  "ever_harsh_share": 0.946,
+  "ever_grim": 342,
+  "ever_alld": 314,
+  "ever_both": 183,
+  "end_gtft": 455,
+  "end_tft": 45,
+  "end_harsh": 0,
+  "harsh_then_gtft": 428,
+  "harsh_then_gtft_share": 0.9049,
+  "harsh_then_tft": 45,
+  "harsh_gens_median": 91.0,
+  "harsh_gens_p10_p90": [
+   48.0,
+   111.0
+  ],
+  "first_switch": {
+   "ALLD": 185,
+   "GRIM": 164,
+   "WSLS": 58,
+   "TFT": 47,
+   "GTFT": 46
+  },
+  "never_harsh_paths": {
+   "ALLC → TFT → GTFT": 18,
+   "ALLC → WSLS → TFT → GTFT": 4,
+   "ALLC → GTFT → TFT → GTFT": 4,
+   "ALLC → WSLS → GTFT": 1
+  }
+ },
+ "seed5_detail": {
+  "mean_score_by_strategy": {
+   "0-10": {
+    "ALLC": 1.941,
+    "ALLD": 2.646,
+    "GRIM": 2.612,
+    "TFT": 2.215,
+    "GTFT": 2.155
+   },
+   "0-31": {
+    "ALLC": 1.73,
+    "ALLD": 1.844,
+    "GRIM": 1.862,
+    "TFT": 1.828,
+    "GTFT": 1.759
+   },
+   "32-61": {
+    "ALLC": 0.746,
+    "ALLD": 1.281,
+    "GRIM": 1.32,
+    "TFT": 1.357,
+    "GTFT": 1.177
+   },
+   "62-100": {
+    "ALLC": null,
+    "ALLD": 1.231,
+    "GRIM": 1.288,
+    "TFT": 1.48,
+    "GTFT": 1.361
+   },
+   "101-129": {
+    "ALLC": null,
+    "ALLD": 1.345,
+    "GRIM": 1.416,
+    "TFT": 2.092,
+    "GTFT": 2.377
+   },
+   "130-166": {
+    "ALLC": null,
+    "ALLD": 1.574,
+    "GRIM": 1.646,
+    "TFT": 2.482,
+    "GTFT": 2.759
+   },
+   "167-300": {
+    "ALLC": null,
+    "ALLD": null,
+    "GRIM": null,
+    "TFT": 2.727,
+    "GTFT": 2.831
+   },
+   "281-300": {
+    "ALLC": null,
+    "ALLD": null,
+    "GRIM": null,
+    "TFT": 2.801,
+    "GTFT": 2.843
+   }
+  },
+  "coop_by_window": {
+   "0-10": 0.543,
+   "0-31": 0.333,
+   "32-61": 0.11,
+   "62-100": 0.121,
+   "101-129": 0.387,
+   "130-166": 0.699,
+   "167-300": 0.842,
+   "281-300": 0.86
+  },
+  "starters_score": {
+   "as_allc": 1.727,
+   "as_harsh_all": 1.393,
+   "as_harsh_gen_lt_32": 1.765,
+   "as_harsh_gen_ge_32": 1.294,
+   "as_harsh_gen_40_100": 1.271,
+   "as_tft": 2.308,
+   "as_gtft": 2.78,
+   "as_gtft_gen_ge_167": 2.831
+  },
+  "harsh_gens_vs_lifetime_score": {
+   "corr": -0.188,
+   "quartiles": [
+    {
+     "harsh_gens": "1-70",
+     "lifetime_mean": 2.247
+    },
+    {
+     "harsh_gens": "70-91",
+     "lifetime_mean": 2.238
+    },
+    {
+     "harsh_gens": "91-103",
+     "lifetime_mean": 2.236
+    },
+    {
+     "harsh_gens": "103-131",
+     "lifetime_mean": 2.227
+    }
+   ]
+  },
+  "allc_switch_by_score_gen0_31": {
+   "low_half_switch_rate": 0.1367,
+   "high_half_switch_rate": 0.062,
+   "low_half_to": {
+    "ALLD": 133,
+    "GRIM": 115,
+    "GTFT": 39,
+    "WSLS": 37,
+    "TFT": 34
+   },
+   "high_half_to": {
+    "ALLD": 64,
+    "GRIM": 56,
+    "WSLS": 23,
+    "TFT": 11,
+    "GTFT": 9
+   }
+  }
+ },
+ "per_seed": [
+  {
+   "seed": 1,
+   "n_starters": 500,
+   "ever_harsh": 479,
+   "ever_harsh_share": 0.958,
+   "ever_grim": 338,
+   "ever_alld": 326,
+   "ever_both": 185,
+   "end_gtft": 451,
+   "end_tft": 49,
+   "end_harsh": 0,
+   "harsh_then_gtft": 434,
+   "harsh_then_gtft_share": 0.9061,
+   "harsh_then_tft": 45,
+   "harsh_gens_median": 95.0,
+   "harsh_gens_p10_p90": [
+    53.0,
+    119.0
+   ],
+   "first_switch": {
+    "ALLD": 206,
+    "GRIM": 165,
+    "WSLS": 55,
+    "TFT": 51,
+    "GTFT": 23
+   },
+   "never_harsh_paths": {
+    "ALLC → TFT → GTFT": 10,
+    "ALLC → WSLS → TFT → GTFT": 5,
+    "ALLC → GTFT → TFT → GTFT": 2,
+    "ALLC → TFT": 2,
+    "ALLC → GTFT → TFT": 1,
+    "ALLC → WSLS → TFT": 1
+   }
+  },
+  {
+   "seed": 2,
+   "n_starters": 500,
+   "ever_harsh": 489,
+   "ever_harsh_share": 0.978,
+   "ever_grim": 439,
+   "ever_alld": 291,
+   "ever_both": 241,
+   "end_gtft": 415,
+   "end_tft": 85,
+   "end_harsh": 0,
+   "harsh_then_gtft": 404,
+   "harsh_then_gtft_share": 0.8262,
+   "harsh_then_tft": 85,
+   "harsh_gens_median": 143.0,
+   "harsh_gens_p10_p90": [
+    90.0,
+    170.0
+   ],
+   "first_switch": {
+    "GRIM": 183,
+    "ALLD": 164,
+    "WSLS": 76,
+    "TFT": 39,
+    "GTFT": 38
+   },
+   "never_harsh_paths": {
+    "ALLC → TFT → GTFT": 7,
+    "ALLC → WSLS → TFT → GTFT": 2,
+    "ALLC → GTFT → TFT → GTFT": 2
+   }
+  },
+  {
+   "seed": 3,
+   "n_starters": 500,
+   "ever_harsh": 475,
+   "ever_harsh_share": 0.95,
+   "ever_grim": 336,
+   "ever_alld": 342,
+   "ever_both": 203,
+   "end_gtft": 458,
+   "end_tft": 42,
+   "end_harsh": 0,
+   "harsh_then_gtft": 436,
+   "harsh_then_gtft_share": 0.9179,
+   "harsh_then_tft": 39,
+   "harsh_gens_median": 92.0,
+   "harsh_gens_p10_p90": [
+    44.400000000000006,
+    114.60000000000002
+   ],
+   "first_switch": {
+    "ALLD": 208,
+    "GRIM": 161,
+    "WSLS": 57,
+    "GTFT": 39,
+    "TFT": 35
+   },
+   "never_harsh_paths": {
+    "ALLC → TFT → GTFT": 9,
+    "ALLC → GTFT → TFT → GTFT": 4,
+    "ALLC → WSLS → TFT → GTFT": 3,
+    "ALLC → TFT → WSLS → TFT → GTFT": 1,
+    "ALLC → TFT → GTFT → TFT → GTFT": 1,
+    "ALLC → WSLS → ALLC → TFT → GTFT": 1,
+    "ALLC → TFT": 1,
+    "ALLC → GTFT": 1,
+    "ALLC → WSLS → ALLC → GTFT → TFT → GTFT": 1,
+    "ALLC → GTFT → TFT → GTFT → TFT → GTFT": 1,
+    "ALLC → WSLS → TFT": 1,
+    "ALLC → TFT → GTFT → TFT": 1
+   }
+  },
+  {
+   "seed": 4,
+   "n_starters": 500,
+   "ever_harsh": 472,
+   "ever_harsh_share": 0.944,
+   "ever_grim": 402,
+   "ever_alld": 235,
+   "ever_both": 165,
+   "end_gtft": 448,
+   "end_tft": 52,
+   "end_harsh": 0,
+   "harsh_then_gtft": 425,
+   "harsh_then_gtft_share": 0.9004,
+   "harsh_then_tft": 47,
+   "harsh_gens_median": 90.5,
+   "harsh_gens_p10_p90": [
+    49.0,
+    114.0
+   ],
+   "first_switch": {
+    "GRIM": 230,
+    "ALLD": 139,
+    "WSLS": 62,
+    "GTFT": 37,
+    "TFT": 32
+   },
+   "never_harsh_paths": {
+    "ALLC → TFT → GTFT": 16,
+    "ALLC → WSLS → TFT → GTFT": 3,
+    "ALLC → GTFT → TFT → GTFT": 2,
+    "ALLC → WSLS → TFT": 2,
+    "ALLC → GTFT → TFT": 1,
+    "ALLC → TFT": 1,
+    "ALLC → GTFT": 1,
+    "ALLC → WSLS → GTFT → TFT → GTFT": 1,
+    "ALLC → TFT → GTFT → TFT": 1
+   }
+  },
+  {
+   "seed": 5,
+   "n_starters": 500,
+   "ever_harsh": 473,
+   "ever_harsh_share": 0.946,
+   "ever_grim": 342,
+   "ever_alld": 314,
+   "ever_both": 183,
+   "end_gtft": 455,
+   "end_tft": 45,
+   "end_harsh": 0,
+   "harsh_then_gtft": 428,
+   "harsh_then_gtft_share": 0.9049,
+   "harsh_then_tft": 45,
+   "harsh_gens_median": 91.0,
+   "harsh_gens_p10_p90": [
+    48.0,
+    111.0
+   ],
+   "first_switch": {
+    "ALLD": 185,
+    "GRIM": 164,
+    "WSLS": 58,
+    "TFT": 47,
+    "GTFT": 46
+   },
+   "never_harsh_paths": {
+    "ALLC → TFT → GTFT": 18,
+    "ALLC → WSLS → TFT → GTFT": 4,
+    "ALLC → GTFT → TFT → GTFT": 4,
+    "ALLC → WSLS → GTFT": 1
+   }
+  },
+  {
+   "seed": 6,
+   "n_starters": 500,
+   "ever_harsh": 485,
+   "ever_harsh_share": 0.97,
+   "ever_grim": 434,
+   "ever_alld": 260,
+   "ever_both": 209,
+   "end_gtft": 368,
+   "end_tft": 132,
+   "end_harsh": 0,
+   "harsh_then_gtft": 354,
+   "harsh_then_gtft_share": 0.7299,
+   "harsh_then_tft": 131,
+   "harsh_gens_median": 127.0,
+   "harsh_gens_p10_p90": [
+    72.4,
+    149.0
+   ],
+   "first_switch": {
+    "GRIM": 235,
+    "ALLD": 147,
+    "WSLS": 53,
+    "TFT": 36,
+    "GTFT": 29
+   },
+   "never_harsh_paths": {
+    "ALLC → TFT → GTFT": 12,
+    "ALLC → WSLS → GTFT → TFT → GTFT": 1,
+    "ALLC → WSLS → TFT → GTFT": 1,
+    "ALLC → TFT": 1
+   }
+  },
+  {
+   "seed": 7,
+   "n_starters": 500,
+   "ever_harsh": 486,
+   "ever_harsh_share": 0.972,
+   "ever_grim": 340,
+   "ever_alld": 324,
+   "ever_both": 178,
+   "end_gtft": 459,
+   "end_tft": 41,
+   "end_harsh": 0,
+   "harsh_then_gtft": 448,
+   "harsh_then_gtft_share": 0.9218,
+   "harsh_then_tft": 38,
+   "harsh_gens_median": 83.0,
+   "harsh_gens_p10_p90": [
+    41.5,
+    108.0
+   ],
+   "first_switch": {
+    "ALLD": 197,
+    "GRIM": 173,
+    "WSLS": 55,
+    "TFT": 46,
+    "GTFT": 29
+   },
+   "never_harsh_paths": {
+    "ALLC → TFT → GTFT": 8,
+    "ALLC → GTFT → TFT → GTFT": 2,
+    "ALLC → GTFT → TFT": 2,
+    "ALLC → WSLS → TFT → GTFT": 1,
+    "ALLC → WSLS → TFT": 1
+   }
+  },
+  {
+   "seed": 8,
+   "n_starters": 500,
+   "ever_harsh": 475,
+   "ever_harsh_share": 0.95,
+   "ever_grim": 366,
+   "ever_alld": 313,
+   "ever_both": 204,
+   "end_gtft": 452,
+   "end_tft": 48,
+   "end_harsh": 0,
+   "harsh_then_gtft": 427,
+   "harsh_then_gtft_share": 0.8989,
+   "harsh_then_tft": 48,
+   "harsh_gens_median": 103.0,
+   "harsh_gens_p10_p90": [
+    54.0,
+    125.60000000000002
+   ],
+   "first_switch": {
+    "ALLD": 185,
+    "GRIM": 182,
+    "WSLS": 62,
+    "TFT": 43,
+    "GTFT": 28
+   },
+   "never_harsh_paths": {
+    "ALLC → TFT → GTFT": 19,
+    "ALLC → GTFT → TFT → GTFT": 2,
+    "ALLC → TFT → GTFT → TFT → GTFT": 1,
+    "ALLC → WSLS → GTFT": 1,
+    "ALLC → WSLS → GTFT → TFT → GTFT": 1,
+    "ALLC → WSLS → TFT → GTFT": 1
+   }
+  },
+  {
+   "seed": 9,
+   "n_starters": 500,
+   "ever_harsh": 458,
+   "ever_harsh_share": 0.916,
+   "ever_grim": 355,
+   "ever_alld": 269,
+   "ever_both": 166,
+   "end_gtft": 450,
+   "end_tft": 50,
+   "end_harsh": 0,
+   "harsh_then_gtft": 412,
+   "harsh_then_gtft_share": 0.8996,
+   "harsh_then_tft": 46,
+   "harsh_gens_median": 78.0,
+   "harsh_gens_p10_p90": [
+    34.0,
+    101.0
+   ],
+   "first_switch": {
+    "GRIM": 198,
+    "ALLD": 153,
+    "WSLS": 70,
+    "TFT": 47,
+    "GTFT": 32
+   },
+   "never_harsh_paths": {
+    "ALLC → TFT → GTFT": 19,
+    "ALLC → WSLS → TFT → GTFT": 7,
+    "ALLC → GTFT": 3,
+    "ALLC → GTFT → TFT → GTFT": 2,
+    "ALLC → TFT": 2,
+    "ALLC → WSLS → GTFT → TFT → GTFT": 2,
+    "ALLC → WSLS → ALLC → GTFT": 1,
+    "ALLC → GTFT → WSLS → TFT → GTFT": 1,
+    "ALLC → GTFT → TFT → GTFT → TFT → GTFT": 1,
+    "ALLC → WSLS → TFT → GTFT → TFT": 1,
+    "ALLC → TFT → WSLS → GTFT → TFT → GTFT": 1,
+    "ALLC → WSLS → GTFT → TFT": 1,
+    "ALLC → WSLS → TFT → GTFT → TFT → GTFT": 1
+   }
+  },
+  {
+   "seed": 10,
+   "n_starters": 500,
+   "ever_harsh": 466,
+   "ever_harsh_share": 0.932,
+   "ever_grim": 358,
+   "ever_alld": 265,
+   "ever_both": 157,
+   "end_gtft": 461,
+   "end_tft": 39,
+   "end_harsh": 0,
+   "harsh_then_gtft": 429,
+   "harsh_then_gtft_share": 0.9206,
+   "harsh_then_tft": 37,
+   "harsh_gens_median": 76.0,
+   "harsh_gens_p10_p90": [
+    34.0,
+    100.0
+   ],
+   "first_switch": {
+    "GRIM": 197,
+    "ALLD": 158,
+    "TFT": 62,
+    "WSLS": 60,
+    "GTFT": 23
+   },
+   "never_harsh_paths": {
+    "ALLC → TFT → GTFT": 24,
+    "ALLC → WSLS → TFT → GTFT": 4,
+    "ALLC → GTFT": 2,
+    "ALLC → TFT": 2,
+    "ALLC → GTFT → TFT → GTFT": 1,
+    "ALLC → WSLS → ALLC → GTFT → TFT → GTFT": 1
+   }
+  },
+  {
+   "seed": 11,
+   "n_starters": 500,
+   "ever_harsh": 463,
+   "ever_harsh_share": 0.926,
+   "ever_grim": 337,
+   "ever_alld": 283,
+   "ever_both": 157,
+   "end_gtft": 469,
+   "end_tft": 31,
+   "end_harsh": 0,
+   "harsh_then_gtft": 433,
+   "harsh_then_gtft_share": 0.9352,
+   "harsh_then_tft": 30,
+   "harsh_gens_median": 68.0,
+   "harsh_gens_p10_p90": [
+    26.0,
+    92.0
+   ],
+   "first_switch": {
+    "GRIM": 191,
+    "ALLD": 170,
+    "WSLS": 65,
+    "GTFT": 39,
+    "TFT": 35
+   },
+   "never_harsh_paths": {
+    "ALLC → TFT → GTFT": 15,
+    "ALLC → WSLS → TFT → GTFT": 8,
+    "ALLC → GTFT": 5,
+    "ALLC → GTFT → TFT → GTFT": 2,
+    "ALLC → TFT → GTFT → TFT → GTFT": 2,
+    "ALLC → WSLS → GTFT": 2,
+    "ALLC → GTFT → ALLC → GTFT": 1,
+    "ALLC → WSLS → GTFT → TFT → GTFT": 1,
+    "ALLC → TFT": 1
+   }
+  },
+  {
+   "seed": 12,
+   "n_starters": 500,
+   "ever_harsh": 483,
+   "ever_harsh_share": 0.966,
+   "ever_grim": 388,
+   "ever_alld": 280,
+   "ever_both": 185,
+   "end_gtft": 432,
+   "end_tft": 68,
+   "end_harsh": 0,
+   "harsh_then_gtft": 419,
+   "harsh_then_gtft_share": 0.8675,
+   "harsh_then_tft": 64,
+   "harsh_gens_median": 115.0,
+   "harsh_gens_p10_p90": [
+    66.2,
+    138.0
+   ],
+   "first_switch": {
+    "GRIM": 197,
+    "ALLD": 172,
+    "WSLS": 54,
+    "GTFT": 40,
+    "TFT": 37
+   },
+   "never_harsh_paths": {
+    "ALLC → TFT → GTFT": 8,
+    "ALLC → TFT": 3,
+    "ALLC → WSLS → TFT → GTFT": 3,
+    "ALLC → GTFT → TFT → GTFT": 2,
+    "ALLC → GTFT → TFT → GTFT → TFT": 1
+   }
+  },
+  {
+   "seed": 13,
+   "n_starters": 500,
+   "ever_harsh": 461,
+   "ever_harsh_share": 0.922,
+   "ever_grim": 339,
+   "ever_alld": 289,
+   "ever_both": 167,
+   "end_gtft": 465,
+   "end_tft": 35,
+   "end_harsh": 0,
+   "harsh_then_gtft": 429,
+   "harsh_then_gtft_share": 0.9306,
+   "harsh_then_tft": 32,
+   "harsh_gens_median": 74.0,
+   "harsh_gens_p10_p90": [
+    30.0,
+    96.0
+   ],
+   "first_switch": {
+    "GRIM": 184,
+    "ALLD": 174,
+    "WSLS": 57,
+    "TFT": 49,
+    "GTFT": 36
+   },
+   "never_harsh_paths": {
+    "ALLC → TFT → GTFT": 22,
+    "ALLC → WSLS → TFT → GTFT": 4,
+    "ALLC → GTFT → TFT → GTFT": 4,
+    "ALLC → GTFT": 3,
+    "ALLC → WSLS → TFT": 2,
+    "ALLC → WSLS → GTFT → TFT → GTFT": 2,
+    "ALLC → TFT": 1,
+    "ALLC → WSLS → GTFT": 1
+   }
+  },
+  {
+   "seed": 14,
+   "n_starters": 500,
+   "ever_harsh": 484,
+   "ever_harsh_share": 0.968,
+   "ever_grim": 370,
+   "ever_alld": 303,
+   "ever_both": 189,
+   "end_gtft": 449,
+   "end_tft": 51,
+   "end_harsh": 0,
+   "harsh_then_gtft": 438,
+   "harsh_then_gtft_share": 0.905,
+   "harsh_then_tft": 46,
+   "harsh_gens_median": 103.0,
+   "harsh_gens_p10_p90": [
+    57.300000000000004,
+    125.0
+   ],
+   "first_switch": {
+    "ALLD": 200,
+    "GRIM": 197,
+    "WSLS": 44,
+    "TFT": 39,
+    "GTFT": 20
+   },
+   "never_harsh_paths": {
+    "ALLC → TFT → GTFT": 9,
+    "ALLC → TFT": 4,
+    "ALLC → WSLS → TFT → GTFT": 1,
+    "ALLC → GTFT": 1,
+    "ALLC → WSLS → TFT": 1
+   }
+  },
+  {
+   "seed": 15,
+   "n_starters": 500,
+   "ever_harsh": 490,
+   "ever_harsh_share": 0.98,
+   "ever_grim": 409,
+   "ever_alld": 324,
+   "ever_both": 243,
+   "end_gtft": 329,
+   "end_tft": 171,
+   "end_harsh": 0,
+   "harsh_then_gtft": 321,
+   "harsh_then_gtft_share": 0.6551,
+   "harsh_then_tft": 169,
+   "harsh_gens_median": 163.0,
+   "harsh_gens_p10_p90": [
+    104.0,
+    189.10000000000002
+   ],
+   "first_switch": {
+    "ALLD": 193,
+    "GRIM": 162,
+    "WSLS": 68,
+    "GTFT": 39,
+    "TFT": 38
+   },
+   "never_harsh_paths": {
+    "ALLC → TFT → GTFT": 6,
+    "ALLC → WSLS → TFT → GTFT": 2,
+    "ALLC → TFT": 1,
+    "ALLC → WSLS → TFT": 1
+   }
+  },
+  {
+   "seed": 16,
+   "n_starters": 500,
+   "ever_harsh": 461,
+   "ever_harsh_share": 0.922,
+   "ever_grim": 356,
+   "ever_alld": 303,
+   "ever_both": 198,
+   "end_gtft": 466,
+   "end_tft": 34,
+   "end_harsh": 0,
+   "harsh_then_gtft": 430,
+   "harsh_then_gtft_share": 0.9328,
+   "harsh_then_tft": 31,
+   "harsh_gens_median": 76.0,
+   "harsh_gens_p10_p90": [
+    32.0,
+    99.0
+   ],
+   "first_switch": {
+    "GRIM": 177,
+    "ALLD": 155,
+    "WSLS": 78,
+    "TFT": 59,
+    "GTFT": 31
+   },
+   "never_harsh_paths": {
+    "ALLC → TFT → GTFT": 28,
+    "ALLC → WSLS → TFT → GTFT": 4,
+    "ALLC → WSLS → GTFT": 3,
+    "ALLC → TFT": 2,
+    "ALLC → GTFT → TFT": 1,
+    "ALLC → GTFT → TFT → GTFT": 1
+   }
+  },
+  {
+   "seed": 17,
+   "n_starters": 500,
+   "ever_harsh": 479,
+   "ever_harsh_share": 0.958,
+   "ever_grim": 341,
+   "ever_alld": 336,
+   "ever_both": 198,
+   "end_gtft": 455,
+   "end_tft": 45,
+   "end_harsh": 0,
+   "harsh_then_gtft": 437,
+   "harsh_then_gtft_share": 0.9123,
+   "harsh_then_tft": 42,
+   "harsh_gens_median": 95.0,
+   "harsh_gens_p10_p90": [
+    45.0,
+    116.0
+   ],
+   "first_switch": {
+    "ALLD": 189,
+    "GRIM": 162,
+    "WSLS": 85,
+    "TFT": 39,
+    "GTFT": 25
+   },
+   "never_harsh_paths": {
+    "ALLC → TFT → GTFT": 10,
+    "ALLC → WSLS → TFT → GTFT": 5,
+    "ALLC → TFT → GTFT → TFT": 1,
+    "ALLC → WSLS → TFT": 1,
+    "ALLC → WSLS → GTFT": 1,
+    "ALLC → TFT → WSLS → TFT → GTFT": 1,
+    "ALLC → WSLS → TFT → GTFT → TFT": 1,
+    "ALLC → GTFT → WSLS → TFT → GTFT": 1
+   }
+  },
+  {
+   "seed": 18,
+   "n_starters": 500,
+   "ever_harsh": 478,
+   "ever_harsh_share": 0.956,
+   "ever_grim": 345,
+   "ever_alld": 319,
+   "ever_both": 186,
+   "end_gtft": 459,
+   "end_tft": 41,
+   "end_harsh": 0,
+   "harsh_then_gtft": 440,
+   "harsh_then_gtft_share": 0.9205,
+   "harsh_then_tft": 38,
+   "harsh_gens_median": 77.5,
+   "harsh_gens_p10_p90": [
+    38.0,
+    101.0
+   ],
+   "first_switch": {
+    "ALLD": 179,
+    "GRIM": 172,
+    "WSLS": 68,
+    "GTFT": 42,
+    "TFT": 39
+   },
+   "never_harsh_paths": {
+    "ALLC → TFT → GTFT": 9,
+    "ALLC → WSLS → TFT → GTFT": 6,
+    "ALLC → GTFT": 3,
+    "ALLC → TFT": 2,
+    "ALLC → GTFT → TFT": 1,
+    "ALLC → GTFT → TFT → GTFT": 1
+   }
+  },
+  {
+   "seed": 19,
+   "n_starters": 500,
+   "ever_harsh": 482,
+   "ever_harsh_share": 0.964,
+   "ever_grim": 386,
+   "ever_alld": 308,
+   "ever_both": 212,
+   "end_gtft": 438,
+   "end_tft": 62,
+   "end_harsh": 0,
+   "harsh_then_gtft": 422,
+   "harsh_then_gtft_share": 0.8755,
+   "harsh_then_tft": 60,
+   "harsh_gens_median": 115.0,
+   "harsh_gens_p10_p90": [
+    66.1,
+    136.0
+   ],
+   "first_switch": {
+    "GRIM": 209,
+    "ALLD": 174,
+    "WSLS": 55,
+    "TFT": 35,
+    "GTFT": 27
+   },
+   "never_harsh_paths": {
+    "ALLC → TFT → GTFT": 11,
+    "ALLC → GTFT → TFT → GTFT": 2,
+    "ALLC → WSLS → TFT → GTFT": 1,
+    "ALLC → GTFT": 1,
+    "ALLC → WSLS → GTFT → TFT → GTFT": 1,
+    "ALLC → WSLS → TFT": 1,
+    "ALLC → TFT": 1
+   }
+  },
+  {
+   "seed": 20,
+   "n_starters": 500,
+   "ever_harsh": 478,
+   "ever_harsh_share": 0.956,
+   "ever_grim": 369,
+   "ever_alld": 314,
+   "ever_both": 205,
+   "end_gtft": 460,
+   "end_tft": 40,
+   "end_harsh": 0,
+   "harsh_then_gtft": 438,
+   "harsh_then_gtft_share": 0.9163,
+   "harsh_then_tft": 40,
+   "harsh_gens_median": 105.0,
+   "harsh_gens_p10_p90": [
+    56.0,
+    128.0
+   ],
+   "first_switch": {
+    "ALLD": 168,
+    "GRIM": 162,
+    "WSLS": 88,
+    "TFT": 43,
+    "GTFT": 39
+   },
+   "never_harsh_paths": {
+    "ALLC → TFT → GTFT": 12,
+    "ALLC → GTFT": 4,
+    "ALLC → WSLS → TFT → GTFT": 3,
+    "ALLC → GTFT → TFT → GTFT": 3
+   }
+  }
+ ]
+}

@@ -1,0 +1,173 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>评审版第8版审查</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.35;margin:0 0 8px}
+.sub{font-size:16px;color:var(--ink-2);margin:0 0 28px}
+h2{font-family:var(--serif);font-size:20px;margin:56px 0 16px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px}
+.kpi .n{font-size:38px;font-weight:700;line-height:1.1;color:var(--ink)}
+.kpi .n small{font-size:16px;font-weight:600;margin-left:4px;color:var(--ink-2)}
+.kpi .t{font-size:14.5px;color:var(--ink-2);margin-top:8px}
+.kpi.red .n{color:var(--red)}
+.phase{border-top:4px solid var(--gray)}
+.phase.blue{border-top-color:var(--blue)}
+.phase .d{font-size:13px;color:var(--muted);font-weight:600}
+.phase .h{font-size:16.5px;font-weight:700;margin:4px 0 10px}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:10px}
+.tag.red{background:var(--red-soft);color:var(--red)} .tag.blue{background:var(--blue-soft);color:var(--blue)} .tag.gray{background:var(--gray-soft);color:var(--gray)}
+.kv{font-size:14.5px;color:var(--ink-2);margin:8px 0}
+.kv b{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:2px}
+.f{margin-bottom:16px}
+.f .h{font-size:17px;font-weight:700;margin:0 0 4px;display:flex;gap:10px;align-items:baseline}
+.f .h .k{font-size:13px;color:var(--red);font-weight:700;flex:none}
+.f .body{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.f .body.one{grid-template-columns:1fr}
+.shot img{width:100%;display:block;border:1px solid var(--line);border-radius:4px}
+.shot .c{font-size:12.5px;color:var(--muted);margin-top:6px}
+.shot.narrow img{max-width:260px}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14.5px}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--ground)}
+tr:last-child td{border-bottom:none}
+td.p{color:var(--muted);width:92px;white-space:nowrap}
+td.w{color:var(--ink)} td.r{color:var(--ink-2)}
+.legend{font-size:13px;color:var(--muted);margin:12px 0 0}
+.q{font-size:17px;font-weight:700;margin:0 0 14px}
+.opt{position:relative}
+.opt .h{font-size:16px;font-weight:700;margin:0 0 6px}
+.opt .l{font-size:14.5px;color:var(--ink-2)}
+.links{font-size:13px;color:var(--muted);margin-top:48px;line-height:1.9} a{color:var(--accent)}
+@media (max-width:760px){.wrap{padding:32px 16px 72px}.g3,.g4,.g2,.f .body{grid-template-columns:1fr}td.p{white-space:normal}}
+</style></head><body><div class="wrap">
+
+<p class="meta">触达系统需求评审版 · 2026-10-27 · 我逐页读了第 8 版全文与 36 张截图，并与云端 10/23 版逐字比对</p>
+<h1>第 8 版新加的两块规则还没写全：多套上限缺「重叠时用哪套」，弹窗轮换的示意图和规则说的不是同一种做法</h1>
+<p class="sub">其余 8 页与 10/23 版文字相同。12 处问题的改法我来定；要你回答 1 件：第 6–8 版是在哪个会话改的，我好在它的源文件上接着改。</p>
+
+<div class="grid g3">
+  <div class="card kpi"><div class="n">2<small>块</small></div><div class="t">新加的内容：推播多套上限与名额占用（第 1 页）；弹窗取用方式（第 4 页）</div></div>
+  <div class="card kpi red"><div class="n">5<small>／12 处</small></div><div class="t">必须改：缺一条规则或前后矛盾，评审时会被问住</div></div>
+  <div class="card kpi"><div class="n">1<small>件</small></div><div class="t">要你答：第 6–8 版的源文件在哪</div></div>
+</div>
+
+<h2><span class="no">01</span>和 10/23 版相比，只改了推播上限、弹窗取用两块</h2>
+<div class="grid g4">
+  <div class="card phase"><div class="d">第 5 版 · 10/23 18:30</div><div class="h">基线</div><span class="tag gray">已在仓库</span>
+    <div class="kv">文字与云端最后一次提交相同，只是重出了截图</div></div>
+  <div class="card phase"><div class="d">第 6 版 · 10/26 20:14</div><div class="h">两块首次加入</div>
+    <div class="kv"><b>推播</b>「修改」打开一个弹层：上半改上限，下半看当天名额占用</div>
+    <div class="kv"><b>弹窗</b>每个弹窗位置可选「轮换位｜顺序」</div></div>
+  <div class="card phase"><div class="d">第 7 版 · 10/27 09:29</div><div class="h">拆成两个弹层</div>
+    <div class="kv">「修改」只管上限与勿扰，上限可按人群设多套，每套带起止日期；「合池」单独看某天名额占用</div></div>
+  <div class="card phase blue"><div class="d">第 8 版 · 10/27 10:05</div><div class="h">当前</div><span class="tag blue">本次审查</span>
+    <div class="kv">上限套去掉起止日期；「看合池」移到日历「今天」一行旁，可按人群看</div></div>
+</div>
+<p class="legend">第 6–8 版的改动不在仓库任何分支上：仓库 6 个分支最新到 10/23，对应第 5 版。</p>
+
+<h2><span class="no">02</span>必须改：5 处缺规则或前后矛盾</h2>
+
+<div class="card f">
+  <p class="h"><span class="k">1</span>一位玩家同时符合两套上限时用哪一套，没写</p>
+  <div class="body">
+    <div>
+      <div class="kv"><b>现在</b>「修改」里有「全部玩家 2 条（默认）」「回流 3 条」两套；规则只写「每套指定人群与营销条数」</div>
+      <div class="kv"><b>问题</b>回流玩家本来就属于全部玩家。再加一套「潜在付费 2 条」时，既是回流又是潜在付费的人按 2 条还是 3 条，研发没法做。合池按「全部玩家」看时写「当前人群上限 2 条」，里面的回流玩家实际是 3 条，也没说怎么算</div>
+      <div class="kv"><b>改法</b>套按列表从上往下排、可拖动，玩家命中多套时用最上面一套；「全部玩家」固定在最下面兜底。合池按人群看时每人按自己那套算，顶部列出该人群涉及的几套上限</div>
+    </div>
+    <div class="shot"><img src="图/2026-10-27_评审版第8版/修改上限.jpg" alt="修改上限与勿扰弹层"><p class="c">第 1 页「修改上限与勿扰」</p></div>
+  </div>
+</div>
+
+<div class="card f">
+  <p class="h"><span class="k">2</span>示例数字是加多套上限之前算的：#47 按新规则能发出，却写「上限拦截 约 85 人」</p>
+  <div class="body">
+    <div>
+      <div class="kv"><b>现在</b>#47 回流礼包 B 只发回流玩家，回流上限 3 条；当天它前面只占了 2 条（#45、#31）</div>
+      <div class="kv"><b>问题</b>按新规则 #47 是第 3 条，发得出去。日历、定时列表、合池、业务规则四处都写拦截 85，评审一对就对不上</div>
+      <div class="kv"><b>改法</b>四处一起重算：#47 改为「占用 3/3」，拦截的例子换成一条发给全部玩家的推送</div>
+    </div>
+    <div class="shot"><img src="图/2026-10-27_评审版第8版/合池.jpg" alt="合池弹层"><p class="c">第 1 页「合池」：#47 对象为回流，仍写上限拦截</p></div>
+  </div>
+</div>
+
+<div class="card f">
+  <p class="h"><span class="k">3</span>「轮换位」的示意图和规则文字写的是两种做法</p>
+  <div class="body">
+    <div>
+      <div class="kv"><b>规则文字</b>每次进入大厅轮到一条规则，弹这条规则里的弹窗</div>
+      <div class="kv"><b>示意图</b>一次进入的 4 个位置在回流、潜在流失两条规则之间逐个交替（位 1 回流、位 2 潜在流失、位 3 回流、位 4 潜在流失）。左边「顺序」只画了回流的 3 个弹窗，回流的弹出数量是 4，漏了回流任务</div>
+      <div class="kv"><b>改法</b>按规则文字重画：第 1 次进入弹回流的 4 个，第 2 次进入弹潜在流失的 3 个，第 3 次回到回流。这样接口仍只返回一条规则，弹出数量和数据都按规则算，研发改得最少；逐个交替要服务端把多条规则的弹窗合并、去重、重定弹出数量。你当时要的如果是逐个交替，告诉我，我改规则文字</div>
+    </div>
+    <div class="shot"><img src="图/2026-10-27_评审版第8版/轮换位示意.jpg" alt="轮换位示意"><p class="c">第 4 页「轮换位示意」</p></div>
+  </div>
+</div>
+
+<div class="card f">
+  <p class="h"><span class="k">4</span>轮换后，同一个弹窗内容在多条规则里会重复计次</p>
+  <div class="body one">
+    <div>
+      <div class="kv"><b>现在</b>弹窗次数、冷却按规则里的每个弹窗分别设；热门资讯在回流、潜在流失两条规则里都是每周 2 次</div>
+      <div class="kv"><b>问题</b>「顺序」下一人只命中一条，不会重复。「轮换位」下同时符合两条的人，一周可能看到 4 次热门资讯；每日补给计划从每 3 天 1 次变成每 3 天 2 次</div>
+      <div class="kv"><b>改法</b>已弹次数按「这位玩家 × 这个弹窗内容」跨规则合计，各规则用自己设的次数判断；冷却同样跨规则算</div>
+    </div>
+  </div>
+</div>
+
+<div class="card f">
+  <p class="h"><span class="k">5</span>玩家查询还按「顺序」画，和弹窗页大厅设的「轮换位」矛盾</p>
+  <div class="body">
+    <div>
+      <div class="kv"><b>现在</b>大厅一段只写「命中银卡已首储」，新增玩家写「优先级低于银卡已首储」，意思是这条不生效</div>
+      <div class="kv"><b>问题</b>第 4 页大厅选的是轮换位，这位玩家的新增玩家规则也会轮到。客服照这页回答玩家会答错</div>
+      <div class="kv"><b>改法</b>大厅一段写「本次轮到 银卡已首储 · 下次轮到 新增玩家」；业务规则按两种取用方式分别写查询结果怎么显示</div>
+    </div>
+    <div class="shot"><img src="图/2026-10-27_评审版第8版/玩家查询_弹窗.jpg" alt="玩家查询弹窗段"><p class="c">第 10 页「玩家查询」弹窗一段</p></div>
+  </div>
+</div>
+
+<h2><span class="no">03</span>应该改：5 处图没自己说明白，或规则没画进图</h2>
+<table>
+<tr><th>页</th><th>现在</th><th>改法</th></tr>
+<tr><td class="p">第 4 页</td><td class="w">列表首图和「调整优先级」「悬停」「点内容」三张都没有取用方式这一行；下一张又把同一张列表加上这一行画了一遍，看起来像重复。编辑规则页右侧摘要也没显示取用方式，规则写了要显示</td><td class="r">取用方式画进首图和后面三张，删掉单独那张列表，保留「轮换位示意」；摘要加一行「取用方式 轮换位」</td></tr>
+<tr><td class="p">第 1 页</td><td class="w">「修改上限与勿扰」里，勿扰画在「回流」套的编辑框里，看起来是回流专属；实际全局一套</td><td class="r">勿扰移到套列表下方单独一栏</td></tr>
+<tr><td class="p">第 9 页</td><td class="w">推播分布按 0、1、2 条（到上限）画，回流玩家可收 3 条</td><td class="r">横轴画到最大一套的条数，「到上限」按每人自己的上限算</td></tr>
+<tr><td class="p">第 3 页</td><td class="w">短信有没有多套上限、名额占用，没写；只写「算法同推播」</td><td class="r">写明短信只有一套：每人每天 1 条，不分人群</td></tr>
+<tr><td class="p">第 1、4 页</td><td class="w">「研发要做的改动」没写新加的两项：按玩家记住每个弹窗位置轮到第几条；按玩家判断适用哪套上限。迁移后各位置默认用哪种取用方式也没写</td><td class="r">补这两项；迁移后默认「顺序」，与现在的行为相同</td></tr>
+</table>
+<div class="grid g2" style="margin-top:14px">
+  <div class="shot"><img src="图/2026-10-27_评审版第8版/弹窗列表_首图.jpg" alt="弹窗列表首图"><p class="c">第 4 页首图：没有取用方式</p></div>
+  <div class="shot"><img src="图/2026-10-27_评审版第8版/弹窗列表_取用方式.jpg" alt="弹窗列表取用方式"><p class="c">紧接着的「取用方式」：同一张列表多了一行</p></div>
+</div>
+
+<h2><span class="no">04</span>文字：2 处违反「不写」的规则</h2>
+<table>
+<tr><th>类别</th><th>现在</th><th>改法</th></tr>
+<tr><td class="p">叫法</td><td class="w">「合池」不是通用说法，看名字猜不出是什么；「上限套」「本档」「上限档」三种叫法混用</td><td class="r">「合池」改「名额占用」；统一叫「上限套」</td></tr>
+<tr><td class="p">和上一版比的话</td><td class="w">「无时间范围」「不含合池」「两事不放同一界面」「合池不放顶栏」「顶栏只读旁仅「修改」」：没看过上一版的读者不知道为什么要说这些。「本原型演示……」「10/23–10/27 为示例条目」「与「调整优先级」同层，位置级」是绘制说明，开头已写「页面数据均为示例」</td><td class="r">全部删掉，只写现在是什么</td></tr>
+</table>
+
+<h2><span class="no">05</span>要你答：第 6–8 版是在哪个会话改的？</h2>
+<div class="grid g2">
+  <div class="card opt"><p class="h">卡在哪</p><p class="l">这三版不在仓库里，我手上只有你下载的成品，没有截图的源文件；你当时对多套上限、合池、轮换位说的原话我也查不到（本机会话和仓库都搜过）。</p></div>
+  <div class="card opt"><p class="h">答案不同，怎么改</p><p class="l">那个会话还在：把这份清单交给它，在它的源文件上改，改完推到仓库。<br>已经没了：我从 10/23 的分支起，按第 8 版把这两块重做，再改这 12 处，多一轮工作量。</p></div>
+  <div class="card opt"><p class="h">不答会怎样</p><p class="l">按「已经没了」处理；第 3 处按推荐写（每次进入轮到一条规则）。</p></div>
+  <div class="card opt"><p class="h">花你多久</p><p class="l">一句话：会话名或链接。</p></div>
+</div>
+
+<p class="links">原文：<code>~/Downloads/3_原型_需求评审版-8.html</code>（12 MB，含 36 张截图）<br>
+本简报的截图：<code>简报/图/2026-10-27_评审版第8版/</code><br>
+本机文件夹停在 10/20，比云端仓库落后 97 个提交；开工前我先同步。</p>
+</div></body></html>

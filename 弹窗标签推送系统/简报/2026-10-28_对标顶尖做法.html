@@ -1,0 +1,140 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>对标顶尖做法</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.35;margin:0 0 8px}
+.sub{font-size:16px;color:var(--ink-2);margin:0 0 28px}
+h2{font-family:var(--serif);font-size:20px;margin:56px 0 16px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px}
+.kpi .n{font-size:38px;font-weight:700;line-height:1.1;color:var(--ink)}
+.kpi .n small{font-size:16px;font-weight:600;margin-left:4px;color:var(--ink-2)}
+.kpi .t{font-size:14.5px;color:var(--ink-2);margin-top:8px}
+.f{margin-bottom:22px}
+.f .h{font-size:17px;font-weight:700;margin:0 0 6px}
+.f .l{font-size:14.5px;color:var(--ink-2);margin:0 0 10px}
+.f .l li{margin:2px 0}
+.f ul{margin:0 0 10px;padding-left:20px}
+.shot img{width:100%;display:block;border:1px solid var(--line);border-radius:4px;background:#fff}
+.shot .c{font-size:12.5px;color:var(--muted);margin-top:6px}
+.shot.mid img{max-width:760px}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14.5px}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--ground);white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td.p{color:var(--muted);width:64px;white-space:nowrap}
+td.w{color:var(--ink);width:36%} td.r{color:var(--ink-2)}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:1px 7px;border-radius:3px;margin-right:6px;vertical-align:1px}
+.tag.red{background:var(--red-soft);color:var(--red)} .tag.blue{background:var(--blue-soft);color:var(--blue)} .tag.gray{background:var(--gray-soft);color:var(--gray)}
+.note{font-size:14.5px;color:var(--ink-2)}
+.note li{margin:4px 0}
+.links{font-size:13px;color:var(--muted);margin-top:48px;line-height:1.9} a{color:var(--accent)}
+@media (max-width:760px){.wrap{padding:32px 16px 72px}.g3,.g2{grid-template-columns:1fr}td.p{white-space:normal}td.w{width:auto}}
+</style></head>
+<body><div class="wrap">
+<p class="meta">推送系统后台 · 需求评审版 · 对标顶尖产品 · 2026-10-28</p>
+<h1>对标 9 家顶尖产品：后台结构不用动，推播补了 6 处小的；弹窗 2 件改成业界做法（你 10/28 定），都已改进评审版</h1>
+<p class="sub">先查项目的顶尖做法参考库，查不到或要核实的再上网看官方文档。对照的是 Braze、MoEngage、CleverTap、OneSignal、Airship、Adobe Journey Optimizer、Firebase，以及游戏商城类的 Appcharge、Unity。每条都附出处；关键的几条我又打开官方页面核过。</p>
+
+<div class="grid g3">
+  <div class="card kpi"><div class="n">6<small>处已补</small></div><div class="t">推播：发布确认补类别、内容和测试记录，日历按状态区分等，都是照业界的小改动</div></div>
+  <div class="card kpi"><div class="n">2<small>件已改</small></div><div class="t">弹窗：时机、频率挪到弹窗内容上；恢复弹窗、快显的「发给测试账号」</div></div>
+  <div class="card kpi"><div class="n">6<small>处我们多做</small></div><div class="t">发布前估拦截、名额占用、按人群上限等，官方文档里都没见到同类，保留</div></div>
+</div>
+
+<h2><span class="no">01</span>弹窗 2 件改成业界做法（你 10/28 定，已改）</h2>
+
+<div class="f">
+  <div class="h">1　弹出时机、频率、冷却挪到弹窗内容上：查到的各家都设在单条消息上，我们是唯一的混合做法</div>
+  <ul class="l">
+    <li><b>业界怎么做</b>：触发时机、显示几次、间隔多久，都设在那一条消息上，计数也按那一条算。要给不同人群不同频率，就另建一条消息。</li>
+  </ul>
+</div>
+<table>
+<tr><th>产品</th><th>次数、频率设在哪</th><th>出处</th></tr>
+<tr><td class="w">Braze</td><td class="r">单个活动的「重新符合资格」：看过后隔多久可再看</td><td class="r"><a href="https://www.braze.com/docs/user_guide/messaging/messaging_fundamentals/re_eligibility">re_eligibility</a></td></tr>
+<tr><td class="w">MoEngage</td><td class="r">单个活动第 3 步：每人最多看几次、两次之间最短间隔</td><td class="r"><a href="https://www.moengage.com/docs/user-guide/campaigns-and-channels/in-app-message/create/create-in-app-campaign">create-in-app-campaign</a></td></tr>
+<tr><td class="w">CleverTap</td><td class="r">单个活动：每会话、每天或活动期内每人一次，或按会话、天、周设次数</td><td class="r"><a href="https://docs.clevertap.com/docs/create-message-inapp">create-message-inapp</a></td></tr>
+<tr><td class="w">OneSignal</td><td class="r">单条消息的排期与频率：只一次（默认）、每次、多次加间隔（我已核实）</td><td class="r"><a href="https://documentation.onesignal.com/docs/in-app-messages-setup">in-app-messages-setup</a></td></tr>
+<tr><td class="w">Airship</td><td class="r">单条消息的「重复显示」：次数上限加最短等待</td><td class="r"><a href="https://www.airship.com/docs/guides/messaging/in-app-experiences/configuration/optional-features/">optional-features</a></td></tr>
+<tr><td class="w">Firebase</td><td class="r">单个活动：默认看过一次不再显示，可改每 N 天</td><td class="r"><a href="https://firebase.google.com/docs/in-app-messaging/compose-campaign">compose-campaign</a></td></tr>
+<tr><td class="w">Appcharge（游戏商城）</td><td class="r">单个弹窗上设频率和冷却，两个都满足才弹</td><td class="r"><a href="https://docs.appcharge.com/guides/webstore/offers/triggered-popups/create-a-triggered-popup">create-a-triggered-popup</a></td></tr>
+</table>
+<div class="f" style="margin-top:14px">
+  <ul class="l">
+    <li><b>我们现在</b>：同一个弹窗内容在每条规则里各设一次，次数却跨规则合在一起算，每条规则再按自己的周期判断。查到的各家都没有这种做法。运营 10/26 问「每周和每天同时存在时怎么触发」，根子就在这里。</li>
+    <li><b>改成</b>：时机、频率、冷却在弹窗内容的编辑页设一次；规则编辑页的弹窗排序只留内容、标记、顺序、移除。同一内容要给不同人群不同频率时，复制成另一个内容，和业界「另建一条消息」一样。弹窗内容加一个「数据」入口，看它跨规则合计的曝光、点击。</li>
+    <li><b>代价</b>：
+      <ul>
+        <li>要改 6 张图：10、10d、11、10e、10c2、19。</li>
+        <li>第 4 页重写两节规则。</li>
+        <li>数据迁移要多一条规则：现网同一内容在各规则设置一致的直接迁；不一致的列清单给运营逐个定，或拆成几个内容（这一条业界没有可参照的，是推断）。</li>
+      </ul>
+    </li>
+    <li><b>推荐改</b>。热门资讯被 6 条规则引用，现在 6 处都填同一个「进入大厅 · 每周 2 次」，改后填一次。</li>
+  </ul>
+  <div class="grid g2">
+    <div class="shot"><img src="图/2026-10-28_对标顶尖做法/10c2_弹窗内容展开.jpg" alt="热门资讯被 6 条规则引用"><div class="c">热门资讯在 6 条规则里各填一次同样的频率</div></div>
+    <div class="shot"><img src="图/2026-10-28_对标顶尖做法/10e_弹窗内容编辑.jpg" alt="弹窗内容编辑"><div class="c">改后时机、频率、冷却加在这页，规则里不再填</div></div>
+  </div>
+</div>
+
+<div class="f">
+  <div class="h">2　恢复弹窗、快显的「发给测试账号」：业界都有，我们现在的替代办法有三个漏洞</div>
+  <ul class="l">
+    <li><b>业界怎么做</b>：Braze、Firebase、OneSignal、MoEngage、CleverTap、Airship 都能把一条应用内消息直接发到测试账号或测试设备上看效果，不计数据。</li>
+    <li><b>我们为什么没有</b>：你 10/21 问「这个发送测试需要开发什么功能？得权衡一下有没有必要」，当时按不无故加开发工时，把弹窗、快显的测试预览删了，改用对象为「名单」的规则代替。</li>
+    <li><b>名单规则代替不了的三处</b>：
+      <ul>
+        <li>大厅是轮流时，测试账号要正好轮到这条规则才看得到。</li>
+        <li>优先级最高的位置上，要把测试规则拖到第 1 才看得到，会挡住真实玩家的规则。</li>
+        <li>条件触发的快显对象只能是触发的玩家，选不了名单，上线前没法自测；要迁入的通行证升级提示就是这种。</li>
+      </ul>
+    </li>
+    <li><b>改成</b>：弹窗内容和快显的编辑页加「发给测试账号」，填会员编号，这些账号下次进入对应位置时强制弹一次，不计次数、不计数据。推播、短信现在就是这样做的。</li>
+    <li><b>推荐改</b>：三处漏洞都会让配错的弹窗直接给真实玩家看到。</li>
+  </ul>
+</div>
+
+<h2><span class="no">02</span>推播：已照业界补的 6 处</h2>
+<table>
+<tr><th>补了什么</th><th>业界做法与出处</th></tr>
+<tr><td class="w">发布确认补消息类别、三种语言的标题、最近一次发送测试</td><td class="r">Braze 审阅页列排期、受众、消息内容，测试也在这一步（<a href="https://www.braze.com/docs/user_guide/messaging/campaigns/creating_campaign">creating_campaign</a>）；Airship 审阅页把预览和摘要并排放、可发测试（<a href="https://www.airship.com/docs/guides/messaging/messages/create">create</a>）</td></tr>
+<tr><td class="w">日历格子按状态区分：已结束变淡、已暂停画斜纹；点格子打开这条推送</td><td class="r">Airship 日历：进行中为实色、已暂停为斜线、已完成为浅色，点开可看消息和报告（我已核实，<a href="https://www.airship.com/docs/guides/messaging/manage-views/">manage-views</a>）</td></tr>
+<tr><td class="w">营销定时选在勿扰时段内时，时间旁提示「勿扰结束时发出」；顺延的按实际发出那一刻的对象发</td><td class="r">Braze 工作区勿扰对固定时间的定时是直接放弃，各家做法不同，选时间时就要让运营知道我们是顺延；Braze 写明顺延不重算分群（<a href="https://www.braze.com/docs/user_guide/messaging/messaging_fundamentals/quiet_hours">quiet_hours</a>）</td></tr>
+<tr><td class="w">已结束的原因加「无可接收玩家」</td><td class="r">OneSignal 有 No Recipients 状态（<a href="https://documentation.onesignal.com/docs/push-notification-message-reports">message reports</a>）</td></tr>
+<tr><td class="w">单条数据：发出后改过设置的，标「发出后改过 N 次」，点开看操作纪录</td><td class="r">MoEngage、OneSignal 的单条报告显示发送时的设置（<a href="https://www.moengage.com/docs/user-guide/campaigns-and-channels/mobile-push/analyze/push-analytics-and-info">push analytics</a>）</td></tr>
+<tr><td class="w">「停止发送中的推送」列入待研发确认</td><td class="r">Adobe 写明停止活动不会停下正在进行的发送；Firebase 开始扇出后不能取消（<a href="https://firebase.google.com/docs/cloud-messaging/send/firebase-console">firebase-console</a>）</td></tr>
+</table>
+
+<h2><span class="no">03</span>保持：和业界同类，或者比业界做得多</h2>
+<ul class="note">
+  <li><b>权重三档加当天预留</b>：和 Adobe 的「优先级加前瞻」同一思路，被挤掉的原因也单列（我已核实，<a href="https://experienceleague.adobe.com/en/docs/journey-optimizer/using/conflict-prioritization/journey-capping">journey-capping</a>）；其余几家是先到先得。</li>
+  <li><b>消息类别、按渠道计上限、自然日重置、测试发送、列表状态与操作、单条漏斗</b>：和 MoEngage、Braze、Adobe 同类。</li>
+  <li><b>我们多做的，官方文档都没见到同类</b>：发布前估算预计上限拦截和对其他推送的影响；名额占用；按人群分别设上限；最优先在条件满足时保证不被拦；按玩家预览下一次会弹什么；玩家查询写出名额被哪几条占了。</li>
+  <li><b>弹窗三层结构、优先级精确排名、大厅每人每天上限、内容库与引用</b>：都有先例（Braze Banners 先建位置、同一位置按优先级出一条；Braze Content Blocks 能列出被哪些消息引用）。</li>
+</ul>
+
+<h2><span class="no">04</span>和业界不同、评审时可能被问的</h2>
+<ul class="note">
+  <li><b>轮流</b>：查到的应用内消息产品都没有按规则轮流，营销类同一次只出最高一条。这是你定的，保留；评审时要能说清它解决什么：同时符合几类人群的玩家，每次进大厅看到不同的内容。</li>
+  <li><b>优先级最高的位置，最高那条没东西可弹就不弹</b>：MoEngage 会落到下一条（我已核实，<a href="https://www.moengage.com/docs/user-guide/campaigns-and-channels/in-app-message/analyze/campaign-delivery-mechanism-for-in-app-messages">delivery mechanism</a>）。定稿里就是不落到下一条，这样破产位置的实验组不会混进「其余」的内容。保留。</li>
+  <li><b>勿扰写死</b>：业界多由每条推送自己选放弃或顺延；我们按定时、条件触发和类别写死，少一个选项。保留。</li>
+</ul>
+
+<div class="links">
+逐项对标与全部链接：<a href="../分析/对标顶尖_弹窗与快显_1028.md">分析/对标顶尖_弹窗与快显_1028.md</a> · <a href="../分析/对标顶尖_推播与短信_1028.md">分析/对标顶尖_推播与短信_1028.md</a><br>参考库：<code>规则与交接/顶尖做法参考库/</code>，这次新查到的做法还没补进库。<br>
+现在的评审版：<a href="../评审版_定稿改_1027/推送系统后台集成需求/3_原型_需求评审版.html">评审版_定稿改_1027/推送系统后台集成需求/3_原型_需求评审版.html</a>
+</div>
+</div></body></html>

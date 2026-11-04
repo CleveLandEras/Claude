@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>新手通行证重构方案 · 全文一览</title>
+<style>
+  :root{
+    --bg:#f4f5f8; --card:#fff; --line:#e1e4ea; --soft:#f7f8fb;
+    --ink:#161b24; --ink2:#4c5563; --ink3:#8f97a4;
+    --brand:#2b3d68; --brandsoft:#e9eef8;
+    --amber:#8f5a06; --amberline:#d99a2b; --ambersoft:#fdf3e0;
+    --red:#8f2f2f; --redsoft:#fbeceb;
+    --green:#255c47; --greensoft:#e7f2ed;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);font-size:16px;line-height:1.7;
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+  .wrap{max-width:940px;margin:0 auto;padding:38px 24px 64px}
+
+  /* 页头 */
+  header{border-bottom:2px solid var(--brand);padding-bottom:13px;margin-bottom:26px}
+  h1{font-size:26px;margin:0 0 6px;font-weight:700;letter-spacing:.5px}
+  .hint{font-size:13px;color:var(--ink3)}
+
+  /* 章卡 */
+  .ch{background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .ch.pend{border-color:var(--amberline)}
+  .top{padding:15px 20px 14px;display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+  .num{font-size:15px;font-weight:700;color:#fff;background:var(--brand);
+    border-radius:5px;padding:1px 9px;flex:none}
+  .ch.pend .num{background:var(--amberline);color:#3d2905}
+  .nm{font-size:14px;color:var(--ink3);flex:none;letter-spacing:1px}
+  .cc{font-size:17px;font-weight:700;line-height:1.55;flex:1 1 100%;margin-top:2px}
+  .cc s{text-decoration:none;background:linear-gradient(transparent 62%,#ffe9a8 62%)}
+  .flag{font-size:11.5px;font-weight:700;color:var(--amber);background:var(--ambersoft);
+    border-radius:4px;padding:2px 8px;flex:none}
+
+  /* 依据区 */
+  .sup{border-top:1px dashed var(--line);background:var(--soft);padding:12px 20px 16px}
+  .slab{font-size:11px;letter-spacing:2px;color:var(--ink3);font-weight:700;margin-bottom:9px}
+  .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:9px}
+  .f{background:var(--card);border:1px solid var(--line);border-radius:7px;padding:9px 12px}
+  .v{display:block;font-size:19px;font-weight:700;color:var(--brand);line-height:1.3}
+  .d{display:block;font-size:12.5px;color:var(--ink2);line-height:1.55;margin-top:2px}
+  .lv{font-size:10.5px;color:var(--ink3);border:1px solid var(--line);
+    border-radius:3px;padding:0 4px;margin-left:5px;vertical-align:2px;font-weight:600}
+
+  /* 归因三层 */
+  .layers{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:9px}
+  .ly{border-radius:7px;padding:10px 13px;border:1px solid}
+  .ly h4{margin:0 0 5px;font-size:13.5px;font-weight:700}
+  .ly p{margin:0;font-size:12.5px;line-height:1.6}
+  .ly.a{background:var(--redsoft);border-color:#eccfcd;color:var(--red)}
+  .ly.b{background:var(--ambersoft);border-color:#eddcbb;color:var(--amber)}
+  .ly.c{background:var(--greensoft);border-color:#c9e0d6;color:var(--green)}
+  .ly.d{background:#eef0f4;border-color:var(--line);color:var(--ink2)}
+
+  /* 判定分支 */
+  .br{display:flex;flex-direction:column;gap:7px}
+  .b1{display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+    background:var(--card);border:1px solid var(--line);border-radius:7px;padding:9px 13px}
+  .cond{font-size:13px;font-weight:700;color:var(--ink);background:#eef0f4;
+    border-radius:5px;padding:2px 9px;flex:none}
+  .to{color:var(--ink3);font-weight:700;flex:none}
+  .res{font-size:13.5px;color:var(--ink2)}
+  .res b{color:var(--ink)}
+  .exc{background:var(--ambersoft);border-color:#eddcbb}
+
+  /* 竞品对比 */
+  table{width:100%;border-collapse:collapse;font-size:13px;background:var(--card)}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left}
+  th{background:#eef0f4;font-weight:700;font-size:12.5px}
+  td.us{background:var(--ambersoft);color:var(--amber);font-weight:600}
+  th.us{background:#f6e6c8;color:var(--amber)}
+
+  /* 步骤条 */
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:9px}
+  .st{background:var(--card);border:1px solid var(--line);border-radius:7px;padding:9px 12px;position:relative}
+  .sn{font-size:11px;font-weight:700;color:#fff;background:var(--brand);
+    border-radius:50%;width:19px;height:19px;display:inline-flex;
+    align-items:center;justify-content:center;margin-bottom:4px}
+  .st p{margin:0;font-size:12.5px;color:var(--ink2);line-height:1.55}
+  .st b{color:var(--ink);font-size:13.5px;display:block}
+
+  /* 章间连接 */
+  .link{display:flex;align-items:center;gap:9px;padding:9px 0 9px 26px;
+    font-size:12.5px;color:var(--ink3)}
+  .link::before{content:"";width:2px;height:26px;background:#ccd2dc;
+    position:absolute;margin-left:-26px}
+  .link.drill{color:var(--amber);font-weight:700}
+  .link.drill::before{background:var(--amberline)}
+  .lw{position:relative}
+
+  /* 核销率横幅 */
+  .key{background:var(--ambersoft);border:1px solid var(--amberline);
+    border-radius:9px;padding:13px 18px;margin:0 0 20px;display:flex;
+    gap:13px;align-items:flex-start}
+  .key .kk{font-size:12px;font-weight:700;color:#fff;background:var(--amber);
+    border-radius:4px;padding:2px 8px;flex:none;margin-top:3px}
+  .key p{margin:0;font-size:14px;color:var(--amber);line-height:1.65}
+  .key b{color:#5c3a03}
+
+  @media (max-width:640px){
+    .wrap{padding:24px 14px 44px}
+    h1{font-size:21px} body{font-size:15px}
+    .cc{font-size:16px}
+    .top{padding:13px 15px 12px} .sup{padding:11px 15px 14px}
+    table{font-size:12px} th,td{padding:6px 7px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>新手通行证 · 重构方案</h1>
+  <div class="hint">全文一览：每章一条结论 + 支撑它的依据 ｜ 依据未标级者均为 1 级可验证数据 ｜ 2026-09-04</div>
+</header>
+
+<div class="key">
+  <span class="kk">全案卡点</span>
+  <p><b>體驗卡核销率（按人群拆）是唯一的第一优先取数项</b>——它同时决定「零章的定位选 C 还是 C'」和「五章走优化还是重构」。这份数据不回，方案在这两处只能留白。</p>
+</div>
+
+<!-- 零 -->
+<section class="ch pend">
+  <div class="top">
+    <span class="num">零</span><span class="nm">定位</span>
+    <span class="flag">待核销率定锤</span>
+    <div class="cc">做<s>常驻赛季证</s>；真正的客户是混在「新注册」里的<s>回流 / 资深玩家</s></div>
+  </div>
+  <div class="sup">
+    <div class="slab">依 据</div>
+    <div class="facts">
+      <div class="f"><span class="v">16 年</span><span class="d">平台在台湾运营年数，主力用户为中年人</span></div>
+      <div class="f"><span class="v">1 + 10</span><span class="d">季度「新用户」里的至尊卡 / 黑卡人数，至尊卡季内储值 NT$25.4 万</span></div>
+      <div class="f"><span class="v">556 人</span><span class="d">季内升到银卡以上、且生命周期 90 天以上</span></div>
+      <div class="f"><span class="v">72%</span><span class="d">购买发生在 Lv0–5（其中 36% 在注册当天）——不是玩出来的买家</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="lw"><div class="link">机制基准：先说清它现在怎么运作</div></div>
+
+<!-- 一 -->
+<section class="ch">
+  <div class="top">
+    <span class="num">一</span><span class="nm">现状</span>
+    <div class="cc">押注 1:1 自动推进、价值<s>压在卡上</s>、<s>零触达</s>的一次性新手证</div>
+  </div>
+  <div class="sup">
+    <div class="slab">依 据</div>
+    <div class="facts">
+      <div class="f"><span class="v">100 级 / 30 天</span><span class="d">仅新用户，一次性，双轨 NT.49→99</span></div>
+      <div class="f"><span class="v">1 : 1</span><span class="d">押注自动换经验、无闸门；任务经验是另一条来源，需手动领</span></div>
+      <div class="f"><span class="v">81.9%</span><span class="d">普通轨价值在卡上，高级轨 74.3%<span class="lv">3 级</span></span></div>
+      <div class="f"><span class="v">0 个</span><span class="d">弹窗 / 红点 / 角标 / 埋点；对照：新手挑战每次进大厅强制弹窗</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="lw"><div class="link">相对这套机制，哪里不对</div></div>
+
+<!-- 二 -->
+<section class="ch">
+  <div class="top">
+    <span class="num">二</span><span class="nm">现象</span>
+    <div class="cc">没坏在「玩」，坏在<s>「领」和「买」</s></div>
+  </div>
+  <div class="sup">
+    <div class="slab">依 据</div>
+    <div class="facts">
+      <div class="f"><span class="v">35.7%</span><span class="d">有押注者从不领任何奖励（9,027 / 25,302 人）</span></div>
+      <div class="f"><span class="v">−34%</span><span class="d">购买率三个月 3.15%→2.08%，同期新手挑战完成率 55.7%→56.4% 纹丝不动<span class="lv">2 级</span></span></div>
+      <div class="f"><span class="v">D5</span><span class="d">买家最快 5 天走完，剩 25 天无进度内容<span class="lv">3 级</span></span></div>
+      <div class="f"><span class="v">24.2%</span><span class="d">每日挑战覆盖率，同期押注任务 77.6%</span></div>
+      <div class="f"><span class="v">Lv12–15</span><span class="d">等级分布密度隆起 1.88，两侧约 1.4，已排除带宽假象</span></div>
+      <div class="f"><span class="v">13.3%</span><span class="d">中位用户（Lv35）只拿到全程老幣的 13.3%，奖励后置<span class="lv">3 级</span></span></div>
+    </div>
+  </div>
+</section>
+
+<div class="lw"><div class="link">每条现象落在哪一层</div></div>
+
+<!-- 三 -->
+<section class="ch">
+  <div class="top">
+    <span class="num">三</span><span class="nm">归因</span>
+    <div class="cc"><s>双病灶</s>：价值结构（设计层）＋ 触达为零（曝光层）</div>
+  </div>
+  <div class="sup">
+    <div class="slab">现象归层</div>
+    <div class="layers">
+      <div class="ly a"><h4>设计层 · 6 条</h4><p>25 天空转 / Lv12–15 隆起 / 奖励后置 / 卡面不可读 / 卡难用 / 高级证价值感知失真</p></div>
+      <div class="ly b"><h4>曝光层 · 3 条</h4><p>购买率下滑 / 零主动触达 / 奖励全手动领取</p></div>
+      <div class="ly d"><h4>目标层 · 0 条</h4><p>一次性新手定位的问题已在零章处理</p></div>
+      <div class="ly c"><h4>待判别 · 3 条</h4><p>35.7% 不领奖是「没看到」还是「不值得点」，待未领奖等级分布；每日挑战低覆盖待 <code>fish_spin</code> 确认</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="lw"><div class="link drill">↳ 最重的是设计层，沿它下钻一层</div></div>
+
+<!-- 四 -->
+<section class="ch">
+  <div class="top">
+    <span class="num">四</span><span class="nm">深挖</span>
+    <div class="cc">不是价值不够，是价值<s>看不见、用不掉</s>——而核销率<s>无任何数据</s></div>
+  </div>
+  <div class="sup">
+    <div class="slab">依 据</div>
+    <div class="facts">
+      <div class="f"><span class="v">74–98%</span><span class="d">价值在卡上：保守口径 74–82%，「12 旋转」口径 97–98%<span class="lv">3 级</span></span></div>
+      <div class="f"><span class="v">8.8 倍</span><span class="d">估值区间宽度，因「100 點 = 12 次旋转」适用范围未确认</span></div>
+      <div class="f"><span class="v">0 条</span><span class="d">卡核销率数据——活动实际发出多少价值，无人知道</span></div>
+      <div class="f"><span class="v">H1 / H2</span><span class="d">看不见：卡面只有游戏名＋點数｜用不掉：7–30 天有效期、绑定指定游戏、需去卡包领用</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="lw"><div class="link">按什么规则判路径</div></div>
+
+<!-- 五 -->
+<section class="ch pend">
+  <div class="top">
+    <span class="num">五</span><span class="nm">判定</span>
+    <span class="flag">规则已定 · 结论留白</span>
+    <div class="cc">核销率定「优化还是重构」；<s>无论哪种，一次性 30 天形态必改</s></div>
+  </div>
+  <div class="sup">
+    <div class="slab">判定规则</div>
+    <div class="br">
+      <div class="b1"><span class="cond">核销率 高</span><span class="to">→</span>
+        <span class="res">卡的价值真实有效，问题在呈现 → <b>优化为主</b>（触达＋可见性），定位偏 C' 回流友好</span></div>
+      <div class="b1"><span class="cond">低 · 打开率低</span><span class="to">→</span>
+        <span class="res">先修最便宜的曝光，复测后再判设计 → <b>分步：先优化后评估</b></span></div>
+      <div class="b1"><span class="cond">低 · 打开率高</span><span class="to">→</span>
+        <span class="res">看到了但不买账，价值结构病 → <b>重构</b>奖励结构与形态</span></div>
+      <div class="b1 exc"><span class="cond">例外</span><span class="to">→</span>
+        <span class="res">形态常驻化<b>不受上表影响</b>：一次性 30 天的缺陷已被实测，只是幅度与优先级由上表决定</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="lw"><div class="link">各分支下能做什么</div></div>
+
+<!-- 六 -->
+<section class="ch">
+  <div class="top">
+    <span class="num">六</span><span class="nm">方案</span>
+    <div class="cc">竞品通行证全是<s>短赛季＋任务计数</s>，无人按金额线性折算</div>
+  </div>
+  <div class="sup">
+    <div class="slab">竞品对照</div>
+    <table>
+      <tr><th></th><th>星城 Online</th><th>豪神娛樂城</th><th class="us">我们现状</th></tr>
+      <tr><th>层级 / 周期</th><td>50 级 / 赛季制</td><td>20 级 / 10 天</td><td class="us">100 级 / 30 天一次性</td></tr>
+      <tr><th>进度来源</th><td>每日任务</td><td>每日任务，按天推进</td><td class="us">押注 1:1 线性折算</td></tr>
+      <tr><th>满级耗时</th><td>约 18 天</td><td>8 天</td><td class="us">中位用户到不了，满级率 3.9%</td></tr>
+      <tr><th>对象</th><td>疑似全员（无确证）</td><td>明确回流定向</td><td class="us">仅新用户</td></tr>
+    </table>
+    <div class="slab" style="margin-top:14px">四条候选方向（不做选型，选型由五章结论决定）</div>
+    <div class="facts">
+      <div class="f"><span class="v">D1 触达重建</span><span class="d">红点 / 角标 / 弹窗串行搭车 / 推送（平台已有推送能力）</span></div>
+      <div class="f"><span class="v">D2 价值可见化</span><span class="d">卡面额折算展示、奖励前置、自动到账</span></div>
+      <div class="f"><span class="v">D3 形态常驻化</span><span class="d">短赛季循环、每日闸门、日任务驱动（平台已有每日任务框架）</span></div>
+      <div class="f"><span class="v">D4 交接钩子</span><span class="d">赛季终点导向长线系统（成就 / VIP）</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="lw"><div class="link">怎么验、怎么上</div></div>
+
+<!-- 七 -->
+<section class="ch">
+  <div class="top">
+    <span class="num">七</span><span class="nm">落地</span>
+    <div class="cc"><s>先补埋点</s>，再取 12 项数（核销率第一优先），最后分流实验验证</div>
+  </div>
+  <div class="sup">
+    <div class="slab">执行顺序</div>
+    <div class="steps">
+      <div class="st"><span class="sn">1</span><b>补打开埋点</b><p>任何改动上线前的硬前提，现在页面无埋点</p></div>
+      <div class="st"><span class="sn">2</span><b>取数 12 项</b><p>核销率第一优先；BI 5 项、研发 5 项、策划与需求方各 1 项</p></div>
+      <div class="st"><span class="sn">3</span><b>套五章规则</b><p>数据回来对号入座，定稿定位与路径</p></div>
+      <div class="st"><span class="sn">4</span><b>分流实验</b><p>弹窗系统支持分流，成本已确认不高</p></div>
+    </div>
+    <div class="slab" style="margin-top:14px">衡量指标</div>
+    <div class="facts">
+      <div class="f"><span class="v">主指标</span><span class="d">目标人群的留存 / 参与</span></div>
+      <div class="f"><span class="v">观察指标</span><span class="d">购买率、首充率——不作为设计冲突时的取舍依据</span></div>
+      <div class="f"><span class="v">护栏指标</span><span class="d">赠点回收率（现为 102.0%）</span></div>
+    </div>
+  </div>
+</section>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+# 换环境时从 ~/Documents/dy 带走什么（rsync 过滤规则，先匹配的生效）
+# 用法：rsync -a --filter='merge 换环境_带走清单.rsync' ~/Documents/dy/ <仓库>/抖音号/
+# 这份只含文字、代码和少量小图。发布过的成片是大文件，要不要带号主定，见 现状.md“换环境交接”。
+
+# 运行时和可重装的
+- .DS_Store
+- /.venv/
+- /tools/node/
+- node_modules/
+- /.claude/scheduled_tasks.lock
+
+# 别人的视频和截帧：不进库，笔记（md）留着
+- /参考/*.mp4
+- /参考/*.png
+
+# 要留的小图：头像品牌、画面颗粒、发布过的封面
++ /brand/***
++ /studio/public/grain/***
++ /videos/*/out/封面/***
++ /videos/001_等待/out/cover_终版_横.png
++ /videos/001_等待/out/cover_终版_竖.png
+
+# 其余媒体都能用脚本重新生成，不带
+- *.mp4
+- *.wav
+- *.png
+- *.jpg
+- *.jpeg

@@ -1,0 +1,20 @@
+== 开始 11-02 13:30:32：30 分钟定时已设好=1
+强制休眠：Now forced in to deep idle mode 
+== 14:01:42 第 31 分钟：用系统 shell 再发一条
+== 14:02:43：省电休眠状态=mState=IDLE 监听进程=16727
+监听在连接名单里=1
+11-02 13:30:38.539 | 屏幕 | 灭
+11-02 14:01:43.645 | 收到 | Shell | com.android.shell | 标题=锁屏测试 | 正文=锁屏31分钟时系统发的一条 | 发出=11-02 14:01:43.272 | 亮屏=
+11-02 14:01:43.649 | 已收起 | 0|com.android.shell|2020|lockcheck|2000 | 距发出 376ms
+11-02 14:01:43.655 | 入队 | #1 | Shell | 锁屏测试 | 待推 1 条
+11-02 14:01:43.670 | 被移除 | 0|com.android.shell|2020|lockcheck|2000 | 原因码=10
+11-02 14:01:43.750 | 收到 | Shell | com.android.shell | 标题= | 正文= | 发出=11-02 14:01:43.493 | 亮屏=false
+11-02 14:01:43.753 | 已收起 | 0|com.android.shell|0|0|com.android.shell|g:Aggregate_NormalNotificationSection|2000|0|com.android.shell|g:Aggregate_NormalNoti
+11-02 14:01:43.775 | 被移除 | 0|com.android.shell|0|0|com.android.shell|g:Aggregate_NormalNotificationSection|2000|0|com.android.shell|g:Aggregate_NormalNoti
+11-02 14:01:43.778 | 被移除 | 0|com.android.shell|2020|rebootcheck6|2000 | 原因码=12
+-- 测试应用：
+== 已恢复：退出强制休眠、恢复真实电源状态
+== 14:03 补查
+11-02 14:02:45.845 | 推送一批 | 到时间 | 1 条 | 做法A   （14:01:43 入队、30 秒批次，休眠中没按时推，退出强制休眠后 14:02:45 才推）
+测试应用的 30 分钟定时：origWhen 14:00:34，系统给的浮动窗口 +22m30s，测试结束时仍未触发（不精确定时被推迟，非监听问题）
+锁屏期间来的那条（系统 shell 发）收到时 亮屏=false，期间没有亮屏记录

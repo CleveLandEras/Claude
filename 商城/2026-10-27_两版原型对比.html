@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>活动入口两版原型</title>
+<style>
+:root{--bg:#f4f5f7;--card:#fff;--ink:#1f2933;--ink2:#52606d;--ink3:#7b8794;--line:#e1e5ea;--soft:#f7f8fa;--acc:#2f7bff;
+  --v1:#1f5fa8;--v1bg:#e6f0fb;--v2:#2b7a4b;--v2bg:#e4f4ea}
+@media (prefers-color-scheme: dark){:root{--bg:#13161a;--card:#1c2026;--ink:#e8ebef;--ink2:#b6bdc7;--ink3:#8b95a1;--line:#2d343c;--soft:#232930;--acc:#6aa4ff;
+  --v1:#7db4f7;--v1bg:#17273b;--v2:#72d199;--v2bg:#15291e}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.75 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;-webkit-text-size-adjust:100%}
+.wrap{display:grid;grid-template-columns:200px minmax(0,1fr);gap:32px;max-width:1360px;margin:0 auto;padding:32px 32px 80px}
+nav{position:sticky;top:24px;align-self:start;max-height:calc(100vh - 48px);overflow:auto;font-size:14.5px;line-height:1.5}
+nav .nt{font-weight:700;font-size:15px;margin-bottom:6px}
+nav .grp{margin:16px 0 6px;font-size:13px;font-weight:700;padding-left:10px;border-left:4px solid var(--c)}
+nav .grp.v1{--c:var(--v1)}nav .grp.v2{--c:var(--v2)}
+nav a{display:block;padding:5px 10px;border-left:2px solid var(--line);color:var(--ink2);text-decoration:none}
+nav a:hover{color:var(--acc);border-left-color:var(--acc)}
+main{min-width:0}
+h1{font-size:30px;line-height:1.35;margin:0 0 22px}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:0 0 8px;scroll-margin-top:20px}
+.cc{background:var(--card);border:1px solid var(--line);border-top:6px solid var(--c);border-radius:12px;padding:16px 22px 10px}
+.cc.c1{--c:var(--v1)}.cc.c2{--c:var(--v2)}
+.cc h2{margin:0 0 8px;font-size:22px;line-height:1.4;color:var(--c);display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.cc h2 small{font-size:14px;font-weight:400;color:var(--ink2)}
+.cr{padding:10px 0;border-top:1px solid var(--line)}
+.cr b{display:block;font-size:14px;color:var(--ink3);font-weight:600}
+.cr span{font-size:15.5px;line-height:1.7}
+.band{background:var(--bg2);border:1px solid var(--line);border-left:10px solid var(--c);border-radius:10px;padding:18px 28px 16px;margin:44px 0 20px;scroll-margin-top:20px}
+.band.v1{--c:var(--v1);--bg2:var(--v1bg)}.band.v2{--c:var(--v2);--bg2:var(--v2bg)}
+.band .pn{font-size:26px;font-weight:700;color:var(--c);line-height:1.4}
+.band .pm{color:var(--ink2);font-size:15px}
+section.pg{background:var(--card);border:1px solid var(--line);border-top:5px solid var(--c);border-radius:12px;padding:22px 32px 26px;margin-bottom:24px;scroll-margin-top:20px}
+section.pg.v1{--c:var(--v1)}section.pg.v2{--c:var(--v2)}
+section.pg h3{margin:0 0 12px;font-size:22px;line-height:1.45}
+figure{margin:0}
+figure img{display:block;width:100%;max-width:1000px;height:auto;border:1px solid var(--line);border-radius:8px;background:#000}
+p.nt{margin:12px 0 0;max-width:1000px;font-size:15px;color:var(--ink2)}
+ol.lg{list-style:none;margin:14px 0 0;padding:0;max-width:1000px}
+ol.lg li{display:flex;gap:10px;align-items:flex-start;padding:5px 0;font-size:15px;line-height:1.65;color:var(--ink)}
+ol.lg i{flex:none;width:22px;height:22px;border-radius:50%;background:#2f7bff;color:#fff;font-style:normal;font-weight:700;font-size:13px;display:inline-flex;align-items:center;justify-content:center;margin-top:2px}
+@media (max-width:1100px){.wrap{grid-template-columns:minmax(0,1fr)}nav{display:none}}
+@media (max-width:760px){
+  .wrap{padding:16px 16px 56px;gap:16px}
+  h1{font-size:24px}
+  .cmp{grid-template-columns:minmax(0,1fr)}
+  section.pg{padding:16px 14px 18px}
+  .band{padding:14px 16px;margin:32px 0 16px}
+  .band .pn{font-size:22px}
+  section.pg h3{font-size:19px}
+  ol.lg li{font-size:14.5px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><div class="nt">两版原型</div><a href="#cmp">对比</a><a href="#extra">待取舍三项</a><div class="grp v1">合并版</div><a href="#f0">大厅</a><a href="#f1">活動中心 · 遊戲活動</a><a href="#f2">活動中心 · 平台活動</a><a href="#f3">活動中心 · 好康</a><a href="#f4">銀行</a><a href="#f5">公告</a><div class="grp v2">不合并版</div><a href="#f6">大厅</a><a href="#f7">銀行 · 儲值活動</a><a href="#f8">限時活動</a><a href="#f9">公告</a></nav>
+<main>
+<h1>活动入口两版原型</h1>
+<div class="cmp" id="cmp"><div class="cc c1"><h2>合并版<small>好康并入限时活动</small></h2><div class="cr"><b>玩家去哪找活动</b><span>右下「活動中心」一个窗口，三个页签：遊戲活動｜平台活動｜好康；公告在右上菜单「公告訊息」</span></div><div class="cr"><b>入口数量</b><span>大厅 2 个活动与商城入口：左下「銀行」、右下「活動中心」；公告在右上菜单；底栏另有重点活动常驻入口</span></div><div class="cr"><b>储值类活动在哪</b><span>「活動中心」的「好康」页签；礼包、折扣在「銀行」的商品上</span></div></div><div class="cc c2"><h2>不合并版<small>好康与限时活动仍是两处</small></h2><div class="cr"><b>玩家去哪找活动</b><span>免费活动在右下「限時活動」（遊戲活動｜平台活動），付费活动在左下「銀行」，公告在右上菜单「公告訊息」</span></div><div class="cr"><b>入口数量</b><span>大厅 3 个窗口入口：左下「銀行」、右下「限時活動」、右上菜单「公告訊息」；底栏另有重点活动常驻入口</span></div><div class="cr"><b>储值类活动在哪</b><span>「銀行」最上方的「儲值活動」页签；礼包、折扣在「銀行」的商品上</span></div></div></div>
+<div id="extra" style="margin:20px 0 8px;background:var(--card);color:var(--ink);border:1px solid var(--line);border-left:4px solid var(--acc);border-radius:6px;padding:16px 20px">
+<p style="margin:0 0 10px;font-weight:700">两版都画了三项竞品借鉴的做法，设计稿和需求文档里还没有，留给你取舍</p>
+<table style="width:100%;border-collapse:collapse;font-size:14px">
+<tr><th style="text-align:left;padding:6px 8px;color:var(--ink3);font-weight:600">做法</th><th style="text-align:left;padding:6px 8px;color:var(--ink3);font-weight:600">参考</th><th style="text-align:left;padding:6px 8px;color:var(--ink3);font-weight:600">和现有文档的关系</th></tr>
+<tr><td style="padding:6px 8px;border-top:1px solid var(--line)">底栏放重点活动常驻入口，图标上标剩余天数</td><td style="padding:6px 8px;border-top:1px solid var(--line)">豪神底栏「歡樂券 22天」</td><td style="padding:6px 8px;border-top:1px solid var(--line)">设计稿写的是底栏原银行按钮空出的位置由银行改版定，没有这一项</td></tr>
+<tr><td style="padding:6px 8px;border-top:1px solid var(--line)">每个页签第一项放当期总览，只列本类活动</td><td style="padding:6px 8px;border-top:1px solid var(--line)">豪神「豪神嘉年華」</td><td style="padding:6px 8px;border-top:1px solid var(--line)">设计稿只有庆典专题页（第二批），没规定放在页签第一项</td></tr>
+<tr><td style="padding:6px 8px;border-top:1px solid var(--line)">活动窗口右上「今日不再顯示」</td><td style="padding:6px 8px;border-top:1px solid var(--line)">星城「活動快訊」</td><td style="padding:6px 8px;border-top:1px solid var(--line)">只有窗口整个自动打开时才有用，涉及 10/13 弹窗方案（活动类按单项弹），文档没有</td></tr>
+</table>
+<p style="margin:10px 0 0;font-size:14px">选哪一版，就是「储值类活动放银行还是放活动窗口」这个问主管的问题：合并版放活动窗口（「好康」页签），不合并版放银行（「儲值活動」页签）。</p>
+</div>
+<div class="band v1" id="v1"><div class="pn">合并版</div><div class="pm"><span>好康并入限时活动，「活動中心」是唯一的活动窗口</span></div></div>
+<section class="pg v1" id="f0"><h3>大厅</h3><figure><img src="两版原型_图/合并版_1_大厅.jpg" alt="合并版 大厅"></figure><ol class="lg"><li><i>①</i>参考 豪神 大厅底栏：重点活动常驻入口，图标上标剩余天数（「歡樂券 22天」）</li><li><i>②</i>参考 豪神 大厅：活动入口只设一个，窗口内分页签；右下「活動中心」</li><li><i>③</i>参考 豪神 大厅顶栏：另有常驻入口带倒计时；我方已有顶栏「首儲 336%」</li><li><i>④</i>公告入口：右上菜单「公告訊息」</li></ol></section>
+<section class="pg v1" id="f1"><h3>活動中心 · 遊戲活動</h3><figure><img src="两版原型_图/合并版_2_活动中心_游戏活动.jpg" alt="合并版 活動中心 · 遊戲活動"></figure><ol class="lg"><li><i>①</i>参考 豪神 最新活動：顶部文字页签，页签带红点；分页思路参考豪神「特別活動｜消費活動」，页签名按我方需求</li><li><i>②</i>参考 豪神 / 金好运 / 星城 活动列表：角标（熱、新）＋名称＋红点；剩余天数为我方新增</li><li><i>③</i>参考 豪神 嘉年華：第一项放当期总览，此页签的总览格只放游戏活动</li><li><i>④</i>参考 豪神 嘉年華：右侧总览格，每格名称加起止日期</li></ol></section>
+<section class="pg v1" id="f2"><h3>活動中心 · 平台活動</h3><figure><img src="两版原型_图/合并版_3_活动中心_平台活动.jpg" alt="合并版 活動中心 · 平台活動"></figure><ol class="lg"><li><i>①</i>参考 豪神 最新活動：顶部文字页签，页签带红点</li><li><i>②</i>参考 豪神 / 金好运 / 星城 活动列表：角标（熱、新）＋名称＋红点；剩余天数为我方新增</li><li><i>③</i>参考 豪神 嘉年華：每个页签的第一项放当期总览，此页签的总览格只放平台活动</li><li><i>④</i>参考 豪神 嘉年華：右侧总览格，每格名称加起止日期</li></ol></section>
+<section class="pg v1" id="f3"><h3>活動中心 · 好康</h3><figure><img src="两版原型_图/合并版_4_活动中心_好康.jpg" alt="合并版 活動中心 · 好康"></figure><ol class="lg"><li><i>①</i>参考 豪神 消費活動：付费活动单列一个页签，页签名按我方需求为「好康」</li><li><i>②</i>参考 豪神 新手助力包：右侧直接放活动页（工具版式页）</li><li><i>③</i>参考 星城 星城回饋卡：「前往商城」按钮，此处为「前往銀行」</li><li><i>④</i>参考 豪神：每个页签默认选中第一项</li></ol></section>
+<section class="pg v1" id="f4"><h3>銀行</h3><figure><img src="两版原型_图/合并版_5_银行.jpg" alt="合并版 銀行"></figure><ol class="lg"><li><i>①</i>参考 星城 商城「優惠專區」：商品卡斜角标，此处为「加赠 X%」</li><li><i>②</i>参考 星城 商城「優惠專區」：指定礼包的专属角标，此处为「满 X 送 Y」</li><li><i>③</i>参考 星城：付款动作集中在商城，窗口只有商品页签</li></ol></section>
+<section class="pg v1" id="f5"><h3>公告</h3><figure><img src="两版原型_图/合并版_6_公告.jpg" alt="合并版 公告"></figure><p class=nt>公告仍从右上菜单进，与不合并版相同</p><ol class="lg"><li><i>①</i>参考 豪神 最新活動：顶部文字页签；红点表示该页签有未读</li><li><i>②</i>参考 星城 官網公告：一行一条，日期＋标题；星城行首的分类标签，此处由页签表示</li><li><i>③</i>参考 金好运 公告（喇叭页签）：右侧直接显示正文，不放主视觉大图</li><li><i>④</i>只有「活動」页签的公告，正文下有「前往活動」按钮</li></ol></section>
+<div class="band v2" id="v2"><div class="pn">不合并版</div><div class="pm"><span>好康与限时活动仍是两处，银行带「儲值活動」页签</span></div></div>
+<section class="pg v2" id="f6"><h3>大厅</h3><figure><img src="两版原型_图/不合并版_1_大厅.jpg" alt="不合并版 大厅"></figure><ol class="lg"><li><i>①</i>参考 豪神 大厅底栏：重点活动常驻入口，图标上标剩余天数</li><li><i>②</i>参考 豪神 / 星城 / 金好运：活动入口在大厅底部大按钮；左下为銀行（原好康位置）</li><li><i>③</i>公告入口：右上菜单「公告訊息」</li></ol></section>
+<section class="pg v2" id="f7"><h3>銀行 · 儲值活動</h3><figure><img src="两版原型_图/不合并版_2_银行.jpg" alt="不合并版 銀行 · 儲值活動"></figure><ol class="lg"><li><i>①</i>参考 豪神 消費活動：付费活动单列一类，此处为银行最上方的页签</li><li><i>②</i>参考 豪神 新手助力包：右侧直接放活动页（工具版式页）</li><li><i>③</i>参考 豪神 / 金好运 / 星城 活动列表：名称＋红点；剩余天数为我方新增</li></ol></section>
+<section class="pg v2" id="f8"><h3>限時活動</h3><figure><img src="两版原型_图/不合并版_3_限时活动.jpg" alt="不合并版 限時活動"></figure><ol class="lg"><li><i>①</i>参考 豪神 最新活動：顶部文字页签（遊戲活動｜平台活動）</li><li><i>②</i>参考 豪神 / 金好运 / 星城 活动列表：角标＋名称＋红点；剩余天数为我方新增</li><li><i>③</i>参考 豪神 嘉年華：第一项放当期总览，右侧总览格带日期</li><li><i>④</i>参考 星城 活動快訊：右上「今日不再顯示」勾选框，自动弹出时使用</li></ol></section>
+<section class="pg v2" id="f9"><h3>公告</h3><figure><img src="两版原型_图/不合并版_4_公告.jpg" alt="不合并版 公告"></figure><ol class="lg"><li><i>①</i>参考 豪神 最新活動：顶部文字页签；红点表示该页签有未读</li><li><i>②</i>参考 星城 官網公告：一行一条，日期＋标题；星城行首的分类标签，此处由页签表示</li><li><i>③</i>参考 金好运 公告（喇叭页签）：右侧直接显示正文，不放主视觉大图</li><li><i>④</i>只有「活動」页签的公告，正文下有「前往活動」按钮</li></ol></section>
+
+</main>
+</div>
+</body>
+</html>

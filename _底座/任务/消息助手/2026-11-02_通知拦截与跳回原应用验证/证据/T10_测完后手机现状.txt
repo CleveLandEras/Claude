@@ -1,0 +1,6 @@
+== 测完后手机现状 11-02 15:20:38
+原型设置： 做法=A 批次=30秒或3条 收起原通知=true 自动推=true 名单=com.dk.notitest
+勿扰 zen_mode=0（0=关）  响铃模式 mode_ringer=2（2=响铃，测试开始时是 0=静音，Dk 自己切的）
+原型后台运行=RUN_ANY_IN_BACKGROUND: allow（Dk 设为不受限制）
+测试日程剩余=0
+电源状态（之后重启过多次，强制休眠和假装拔电的模拟都已清除；下面是手机的真实充电状态）： AC powered: false  USB powered: false 

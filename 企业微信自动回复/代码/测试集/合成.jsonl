@@ -1,0 +1,506 @@
+{"id": "syn-0001", "text": "老师好，下节课什么时候上呀？", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0002", "text": "这周几上课", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0003", "text": "明天几点的课", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0004", "text": "周六是几点开始？", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0005", "text": "老师，今晚有课吗", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0006", "text": "下周三有课不", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0007", "text": "请问本周的课几点上，孩子爸爸要安排接送", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0008", "text": "上课实践是几点来着[捂脸]", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0009", "text": "忘了，这周课是星期几", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0010", "text": "老师今天的课是7点还是7点半？", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0011", "text": "在哪上课啊，还是原来那个入口吗", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0012", "text": "上课从哪进呀，app里还是小程序", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0013", "text": "孩子第一次上，到时候在哪里进教室", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0014", "text": "国庆后第一节课是哪天", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0015", "text": "下次课几号呀老师🙏", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0016", "text": "下节几点", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0017", "text": "课几点", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0018", "text": "今天几点上", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0019", "text": "这周末两节课都是上午吗", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0020", "text": "老师，周日的课是几点到几点？", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0021", "text": "孩子几点下课呀，我好去接", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0022", "text": "下午有课吗老师？", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0023", "text": "王小测这周上课时间有变吗", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0024", "text": "我是样样妈妈，样样下节课是什么时候？", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0025", "text": "明早的课是8点吗😊", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0026", "text": "老师 麻烦发下这个月课表", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0027", "text": "这学期课表能再发一下吗，找不到了[抱拳]", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0028", "text": "今晚八点的课没变吧", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0029", "text": "下周是不是放假不上课？", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0030", "text": "五一上课吗", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0031", "text": "老师\n下节课\n几点", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0032", "text": "老师您好，我们这周末要回老家，周日晚上才能到家，想确认下周日的课是几点开始的，来不来得及赶上，麻烦您了", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0033", "text": "我是王小测妈妈，电话13000000001，麻烦把下节课时间发我下", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0034", "text": "三年级2班这周的课是周几？", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0035", "text": "老师，昨天的课有回放吗", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0036", "text": "回放在哪看呀", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0037", "text": "麻烦发一下今天的回放链接", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0038", "text": "上节课的回放发我下 谢谢", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0039", "text": "孩子昨晚没赶上，哪里能看重播", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0040", "text": "错过了直播，在哪补看？", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0041", "text": "回访链接有吗老师", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0042", "text": "回放", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0043", "text": "求回放🙏", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0044", "text": "周六那节的回放什么时候能出来", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0045", "text": "回放一般多久能生成？", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0046", "text": "回放能看多久，会过期吗", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0047", "text": "回放能不能下载下来", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0048", "text": "从播在哪里看", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0049", "text": "第8讲的回放链接还有吗", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0050", "text": "孩子想再听一遍上周的课，有录播吗", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0051", "text": "老师，录屏能发一下吗", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0052", "text": "昨天断网了，后半节没听到，有回放不", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0053", "text": "今天的课孩子发烧没听，回放到时候发我一下哈", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0054", "text": "请问回放从哪个入口进？", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0055", "text": "APP里找不到回放入口，在哪点进去呀", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0056", "text": "能把这周两节课的回放都发一下吗", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0057", "text": "上次的回放链接打不开了，能再发一个不", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0058", "text": "样样昨天请假了，回放在哪看", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0059", "text": "昨天的回放 有的话发我下[玫瑰]", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0060", "text": "老师\n回放\n发下", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0061", "text": "昨晚的直播能回看吗", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0062", "text": "能回看吗", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0063", "text": "回放有密码吗", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0064", "text": "周三的课错过了😂 有链接吗", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0065", "text": "重播啥时候有", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0066", "text": "老师，昨天孩子学校有活动回来晚了，后半节课没赶上，您看方不方便把回放发一下，他想今晚补一下，谢谢您啦", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0067", "text": "回放链接麻烦发到我手机上，130-0000-0005，谢谢", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0068", "text": "这周作业几号交？", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0069", "text": "作业什么时候截止", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0070", "text": "老师，作业截止时间是哪天", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0071", "text": "作业截至到什么时候", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0072", "text": "做业几号交呀", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0073", "text": "周日前交作业可以吧", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0074", "text": "今天作业最晚几点交", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0075", "text": "作业今晚12点前交都行吗", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0076", "text": "这次作业是下节课前交吧", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0077", "text": "上次的作业还能补交吗，截止了没", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0078", "text": "第5讲作业交到哪天", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0079", "text": "还来得及交作业吗", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0080", "text": "作业啥时候交", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0081", "text": "几号交", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0082", "text": "作业明天交？", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0083", "text": "假期作业开学前交就行吧", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0084", "text": "老师作业有截止日期吗", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0085", "text": "孩子写完了，今天还能提交吗", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0086", "text": "这周作业的提交时间麻烦说一下🙏", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0087", "text": "打卡作业每天几点前要打完", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0088", "text": "错题本什么时候交", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0089", "text": "口语作业几号截止的呀", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0090", "text": "作文这周要交吗，几号", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0091", "text": "周五交还算按时吗", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0092", "text": "作业逾期了还能交吗", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0093", "text": "练习册的作业哪天之前交给老师", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0094", "text": "这个作业要几点前传上去[疑问]", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0095", "text": "老师 作业 截止 几号", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0096", "text": "作业交的时间有变吗", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0097", "text": "今天最后一天交作业了吧", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0098", "text": "周末作业周一早上交来得及不", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0099", "text": "老师不好意思又打扰您，孩子这周学校作业也多，我想确认一下咱们这边这次的作业最晚什么时候交，我们好安排一下时间", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0100", "text": "我是三年级2班王小测的家长，这周作业几号交", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0101", "text": "老师，孩子明天发烧，请个假", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0102", "text": "今晚的课请假", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0103", "text": "周六有事想请假", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0104", "text": "请假怎么操作呀", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0105", "text": "请假要提前多久说？", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0106", "text": "这节课能调到周日吗", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0107", "text": "下周三想调课，怎么弄", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0108", "text": "能换到周末班吗", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "「换到周末班」是换班，不是只调某一节；可能是长期调班，也可能是时间不合适的前兆，要二讲定"}
+{"id": "syn-0109", "text": "孩子这周要去外地，两节课都要请假", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0110", "text": "掉课怎么调", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0111", "text": "调课要找谁", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0112", "text": "调课有次数限制吗", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0113", "text": "请假后课程还能补吗？", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0114", "text": "请假了怎么补课", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0115", "text": "王小测明天请假一次，谢谢老师", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0116", "text": "孩子学校运动会，周五的课来不了", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0117", "text": "周日要去奶奶家，上不了课，帮请个假🙏", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0118", "text": "明天考试，今晚课请假哈", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0119", "text": "下周四能不能换个时间上", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0120", "text": "本周六课改到下周可以吗", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0121", "text": "请问可以调到别的班上一次吗", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0122", "text": "请假", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0123", "text": "老师 请假", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0124", "text": "请两天假", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0125", "text": "家里有事今晚来不了 跟您说一声", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0126", "text": "下周出差带娃 课程能往后顺延一周吗", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0127", "text": "临时有事，现在请假还来得及吗", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0128", "text": "当天能请假吗？", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0129", "text": "调课申请在哪里提交", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0130", "text": "样样周三上不了，能调吗", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0131", "text": "老师\n明天\n请假", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0132", "text": "老师好，孩子下周一到周三学校组织研学，这几天的课都上不了，想提前跟您请个假，麻烦您跟主讲老师也说一声，辛苦了", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0133", "text": "春季提高3班李小样今晚请假", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0134", "text": "老师，这道题怎么做？[图片]", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0135", "text": "第三题不会，能讲一下吗", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0136", "text": "分数除以分数为什么要乘倒数", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0137", "text": "鸡兔同笼这题孩子不会，能帮看下吗", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0138", "text": "现在完成时和过去时区别是啥", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0139", "text": "have been 和 has gone 怎么区分", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0140", "text": "这个字读第几声", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0141", "text": "练习册第12页第4题答案是多少", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0142", "text": "孩子问三角形面积公式咋推出来的", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0143", "text": "1/2+1/3 等于多少 孩子说等于2/5 对吗", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0144", "text": "这道应用题我也不会😂 帮看看[图片]", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0145", "text": "作文开头怎么写比较好", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0146", "text": "老师这个单词怎么拼", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0147", "text": "这句话的主语是哪个呀", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0148", "text": "小数点移动那块孩子老搞混，有什么好记的办法吗", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0149", "text": "今天讲的通分没听懂，能再讲讲吗", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0150", "text": "这题为啥选C不选B", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0151", "text": "阅读理解第二篇第三问，答案是不是错了", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0152", "text": "比喻和拟人怎么区分？", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0153", "text": "行程问题相遇和追及怎么看", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0154", "text": "这个方程怎么解 3x+5=20", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0155", "text": "老师，这道几何题辅助线怎么画", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0156", "text": "古诗这句是什么意思", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0157", "text": "孩子问 为什么负负得正", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0158", "text": "帮忙看看这道题孩子错在哪[图片]", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0159", "text": "听力第三段没听懂 是什么意思", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0160", "text": "老师 这题 咋做", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0161", "text": "乘法分配律是啥意思啊", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0162", "text": "两位数乘两位数竖式怎么列", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0163", "text": "王小测这个错题，是计算问题还是思路问题？", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0164", "text": "化学方程式怎么配平，孩子一直弄不明白", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0165", "text": "[图片] 这题", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0166", "text": "老师打扰了，孩子今天练习册上有道题，一个长方形周长24厘米，长是宽的2倍，他算出来宽是6，我看着不对，您帮忙看下应该怎么列式", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0167", "text": "下学期的课怎么报名", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0168", "text": "春季班什么时候开始报", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0169", "text": "续费有优惠吗", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0170", "text": "现在续报有什么活动", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0171", "text": "老生续班能打折吗", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0172", "text": "下学期学费多少？", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0173", "text": "想给孩子续一下，怎么操作", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0174", "text": "寒假班还能报吗", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0175", "text": "暑期班名额还有吗", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0176", "text": "续报链接发我一下", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0177", "text": "续费要多少钱", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0178", "text": "下一期还是这个老师带吗，想继续报", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0179", "text": "序报是不是这周截止", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0180", "text": "下个学期的价格出来了吗", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0181", "text": "我们打算接着学，下学期咋报", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0182", "text": "报两科有优惠吗", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0183", "text": "老带新有没有优惠？", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0184", "text": "连报两期便宜多少", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0185", "text": "学费能分期吗", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0186", "text": "听说早鸟价要到期了，现在报还是那个价吗", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0187", "text": "想再加一门英语，怎么报", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0188", "text": "升年级后的课什么时候可以报名", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0189", "text": "续报截止是哪天", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0190", "text": "老师帮我们留个名额，下学期继续", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0191", "text": "续费可以用上次的优惠券吗", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0192", "text": "全年班和单期班哪个划算", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0193", "text": "下学期要是报的话，是线上交费吗", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0194", "text": "能不能先交定金占个位", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0195", "text": "这个课还有多少课时，要续的话怎么算", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0196", "text": "续", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0197", "text": "续费", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0198", "text": "老师，孩子说还想跟您学，怎么续", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0199", "text": "赵例例爸爸，手机13000000003，请问续报怎么弄", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0200", "text": "老师您好，孩子这学期进步挺大的，我们商量了下还是想接着跟您学，下学期的班现在能不能报，有没有老生价，麻烦您告诉我一下", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0201", "text": "我想退费", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0202", "text": "怎么申请退款？", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0203", "text": "剩下的课能退吗", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0204", "text": "孩子不想上了，钱能退吗", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0205", "text": "退费流程是什么", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0206", "text": "退费要多久到账", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0207", "text": "老师，没上的课时费怎么退", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0208", "text": "腿费怎么弄", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0209", "text": "想把课退了", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0210", "text": "我们不学了，帮办一下退费", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0211", "text": "学费可以退回来吗", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0212", "text": "能退多少钱", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0213", "text": "退款申请提交了三天了，进度到哪了", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0214", "text": "合同里写的退费条件是什么", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0215", "text": "现在退还扣手续费吗", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0216", "text": "家里有变动，课不上了，余款怎么处理", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0217", "text": "转学了上不了了，想退掉剩余课时", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0218", "text": "tuifei找谁", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0219", "text": "这期结束我们就不上了，余下的费用怎么退", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0220", "text": "孩子搬家了，课程退掉吧", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0221", "text": "报错班了，能退吗", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0222", "text": "还没开课能全退吗", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0223", "text": "7天内可以无理由退吗", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0224", "text": "退一半可以吗", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0225", "text": "想退掉英语这门，只留数学", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0226", "text": "我们决定停课，费用退一下", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0227", "text": "请问退课怎么操作", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0228", "text": "不上了，退钱", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0229", "text": "退费", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0230", "text": "办理退费需要什么材料", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0231", "text": "李小样家长 13000000002 想退费，方便回个电话吗", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0232", "text": "能不能把课时转给别人，不行的话就退", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0233", "text": "老师您好，和您说一下，孩子爸爸工作调动我们要搬到外地，孩子接下来也没时间上了，想问问没上的那些课钱能不能退，需要我们准备什么", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0234", "text": "我要投诉", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0235", "text": "你们投诉电话多少", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0236", "text": "把你们主管电话给我", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0237", "text": "我要找你们领导", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0238", "text": "对这个老师不满意，能换老师吗", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0239", "text": "主讲老师老是迟到，这事必须反映一下", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0240", "text": "课程质量跟当初说的不一样，我要投诉", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0241", "text": "销售当时承诺的没兑现，我要反映", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0242", "text": "这个服务太差了，我要打12315", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0243", "text": "再不解决我就找教育局了", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0244", "text": "你们这个老师态度有问题，我要向上反映", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0245", "text": "我对这个老师的批改非常不满意", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0246", "text": "作业批改一周都没动静，这个要投诉", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0247", "text": "孩子上课被老师说了，我要个说法", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0248", "text": "我已经向客服投诉过了，到现在没人理", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0249", "text": "找你们负责人跟我说", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0250", "text": "上次反映的问题到现在都没回复，这算什么服务", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0251", "text": "老师上课中途离开了十分钟，这事得给个说法", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0252", "text": "你们直播经常卡，不是一次两次了，我要投诉", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0253", "text": "老师讲错题了还不承认，我要反映给你们校长", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0254", "text": "课程顾问一直打骚扰电话，投诉", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0255", "text": "我要投诉那个销售", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0256", "text": "这个问题给我一个书面答复", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0257", "text": "你们不处理我就发网上了，让大家都看看", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0258", "text": "老师把孩子的成绩发群里了，这不合适，我要反映", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0259", "text": "投诉通道在哪", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0260", "text": "想提个意见，老师批改太敷衍", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0261", "text": "我要换老师，这个老师不负责任", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0262", "text": "我觉得这个班老师不行，跟上级说一下", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0263", "text": "我要投诉你们的回放总是看不了", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0264", "text": "我不满意，叫你们管事的来", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0265", "text": "我去消协问问", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0266", "text": "我要投诉，联系我13000000004，家长赵例例", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0267", "text": "老师，不是针对您，上周主讲老师当着全班说孩子笨，孩子回来哭了一晚上，这件事我希望你们领导出面给个解释", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0268", "text": "你们怎么回事！！！", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0269", "text": "太过分了！", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0270", "text": "这都什么破课", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0271", "text": "气死我了", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0272", "text": "有没有人管啊？？？", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0273", "text": "老师怎么一直不回消息！！", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0274", "text": "发了三条了，人呢？？", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0275", "text": "这么简单的事情都办不好吗", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0276", "text": "真的无语了", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0277", "text": "你们到底负不负责任？", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0278", "text": "花这么多钱就这？", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0279", "text": "太失望了", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0280", "text": "我真是服了", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0281", "text": "孩子上完都哭了，你们怎么教的", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0282", "text": "每次都这样，烦不烦", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0283", "text": "说了多少遍了还是这样！！！", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0284", "text": "这机构真坑", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0285", "text": "越学越差，你们不觉得丢人吗", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0286", "text": "我很生气", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0287", "text": "你们什么态度", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0288", "text": "不想再说了，心累😞", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0289", "text": "搞什么啊", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0290", "text": "孩子被你们耽误了一学期", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0291", "text": "这钱算是白花了", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0292", "text": "骗子吧你们", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0293", "text": "笑死，这也叫老师", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0294", "text": "呵呵", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0295", "text": "我对你们真的太失望了😡", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0296", "text": "能不能有点责任心", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0297", "text": "一点都不专业！！", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0298", "text": "早知道就不报了，后悔死了", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0299", "text": "老师您这样说我很不舒服", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0300", "text": "就这水平还好意思收这么多钱？", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0301", "text": "说真的，当初报名的时候说得那么好听，现在呢？孩子学了半年什么都没学会，我每天下班还要陪他熬到半夜，你们想过家长的感受吗", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0302", "text": "好的谢谢老师", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0303", "text": "收到", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0304", "text": "老师辛苦了", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0305", "text": "谢谢！", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0306", "text": "嗯嗯", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0307", "text": "好的[玫瑰]", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0308", "text": "老师在吗", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0309", "text": "在吗", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0310", "text": "老师方便接个电话吗", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0311", "text": "老师中秋快乐🌕", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0312", "text": "孩子最近上课认真吗", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0313", "text": "王小测最近进步了吗", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0314", "text": "这次考试孩子考得怎么样", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0315", "text": "老师，孩子说上课听不太懂，怎么办", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0316", "text": "家长您好，少儿编程体验课限时免费，点击领取", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0317", "text": "本人专业代写作业，需要请联系", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0318", "text": "那个呢", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0319", "text": "上次说的那个发我下", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0320", "text": "还是老样子吧", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0321", "text": "这个可以吗", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0322", "text": "怎么样了", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0323", "text": "好的，那就这样吧", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0324", "text": "[图片]", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0325", "text": "[语音]", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0326", "text": "[文件]", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0327", "text": "[捂脸]", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0328", "text": "👍", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0329", "text": "🙏🙏", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0330", "text": "https://example.com/abc", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0331", "text": "[链接] 看下这个", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0332", "text": "孩子写作业老是拖拉，有什么办法吗", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0333", "text": "老师您是哪里人呀", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0334", "text": "您加一下孩子爸爸的微信吧", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0335", "text": "打错了，不好意思", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "syn-0336", "text": "回放呢？说好的回放呢？", "label": "带情绪", "mixed": false, "tricky": true, "parts": [], "note": "形式是问回放，实际在责问"}
+{"id": "syn-0337", "text": "又改时间？你们课表是闹着玩的吗", "label": "带情绪", "mixed": false, "tricky": true, "parts": [], "note": "提到时间，实际在指责"}
+{"id": "syn-0338", "text": "作业今天截止？昨天才发的，你们自己看看合理吗", "label": "带情绪", "mixed": false, "tricky": true, "parts": [], "note": "提到作业截止，反问表不满"}
+{"id": "syn-0339", "text": "下节课几点？算了，反正你们也不准时", "label": "带情绪", "mixed": false, "tricky": true, "parts": [], "note": "开头像问时间，后半句收回并指责"}
+{"id": "syn-0340", "text": "上课时间能不能定死了，别老变来变去", "label": "带情绪", "mixed": false, "tricky": true, "parts": [], "note": "不是问几点，是在发牢骚"}
+{"id": "syn-0341", "text": "这个回放是给人看的吗，声音都听不清", "label": "带情绪", "mixed": false, "tricky": true, "parts": [], "note": "提到回放，反问表不满"}
+{"id": "syn-0342", "text": "请假还要提前24小时？孩子发烧能提前知道吗？", "label": "带情绪", "mixed": false, "tricky": true, "parts": [], "note": "提到请假规则，连续反问"}
+{"id": "syn-0343", "text": "调个课这么费劲吗", "label": "带情绪", "mixed": false, "tricky": true, "parts": [], "note": "提到调课，实际在抱怨"}
+{"id": "syn-0344", "text": "几点上课能不能给句准话", "label": "带情绪", "mixed": false, "tricky": true, "parts": [], "note": "像问时间，语气是责备"}
+{"id": "syn-0345", "text": "作业截止时间你们自己记得住吗", "label": "带情绪", "mixed": false, "tricky": true, "parts": [], "note": "像问截止时间，实际是讽刺"}
+{"id": "syn-0346", "text": "今天还上不上课了，都等半小时了", "label": "带情绪", "mixed": false, "tricky": true, "parts": [], "note": "像问今天有没有课，实际在催并不满"}
+{"id": "syn-0347", "text": "怎么又是晚上九点的课，孩子不用睡觉吗", "label": "带情绪", "mixed": false, "tricky": true, "parts": [], "note": "提到上课时间，反问表不满"}
+{"id": "syn-0348", "text": "回放到现在都没发，是不是忘了我们了🙂", "label": "带情绪", "mixed": false, "tricky": true, "parts": [], "note": "表情客气，话是不满"}
+{"id": "syn-0349", "text": "请问贵司的课到底是几点上呢？谢谢🙂", "label": "带情绪", "mixed": false, "tricky": true, "parts": [], "note": "过分客气加「到底」，是阴阳怪气"}
+{"id": "syn-0350", "text": "老师真忙啊，问个上课时间问了两天", "label": "带情绪", "mixed": false, "tricky": true, "parts": [], "note": "提到上课时间，实际讽刺老师不回"}
+{"id": "syn-0351", "text": "我就问问，这周还有课吗，还是又临时通知", "label": "带情绪", "mixed": false, "tricky": true, "parts": [], "note": "像问有没有课，「又」字带不满"}
+{"id": "syn-0352", "text": "呵呵，作业又延期了是吧", "label": "带情绪", "mixed": false, "tricky": true, "parts": [], "note": "提到作业时间，实际讽刺"}
+{"id": "syn-0353", "text": "辛苦老师百忙之中看一眼，今晚到底有没有课", "label": "带情绪", "mixed": false, "tricky": true, "parts": [], "note": "客气话是反话"}
+{"id": "syn-0354", "text": "您这边要是忙不过来，回放我们就不要了", "label": "带情绪", "mixed": false, "tricky": true, "parts": [], "note": "客气话是反话，并不是真在问回放"}
+{"id": "syn-0355", "text": "好吧好吧，那就周日呗，反正你们说了算", "label": "带情绪", "mixed": false, "tricky": true, "parts": [], "note": "像同意调课时间，实际赌气"}
+{"id": "syn-0356", "text": "最后一节课是几号？上完我们就不来了，后面的费用想问问", "label": "退费", "mixed": false, "tricky": true, "parts": [], "note": "开头像问时间，真正想问剩余费用"}
+{"id": "syn-0357", "text": "合同到什么时候截止？想提前结束", "label": "退费", "mixed": false, "tricky": true, "parts": [], "note": "「截止」不是作业截止，是想提前解约"}
+{"id": "syn-0358", "text": "下节课不用给我们排了，剩下的课时怎么算", "label": "退费", "mixed": false, "tricky": true, "parts": [], "note": "像调课，实际要停课结算"}
+{"id": "syn-0359", "text": "还剩几节课没上？想算下能拿回来多少", "label": "退费", "mixed": false, "tricky": true, "parts": [], "note": "像问课时，实际算退款"}
+{"id": "syn-0360", "text": "如果现在不上了，后面那几节是怎么算的", "label": "退费", "mixed": false, "tricky": true, "parts": [], "note": "没出现「退」字"}
+{"id": "syn-0361", "text": "请假能请到期末吗？其实孩子不打算再学了，钱的事想聊聊", "label": "退费", "mixed": false, "tricky": true, "parts": [], "note": "形似请假，实际不学了要谈钱"}
+{"id": "syn-0362", "text": "课时有效期到哪天？过期的能折现吗", "label": "退费", "mixed": false, "tricky": true, "parts": [], "note": "形似问日期，实际问折现"}
+{"id": "syn-0363", "text": "下周开始不上了，费用那块您看怎么处理", "label": "退费", "mixed": false, "tricky": true, "parts": [], "note": "没出现「退」字"}
+{"id": "syn-0364", "text": "我们这边要结课了，账怎么结", "label": "退费", "mixed": false, "tricky": true, "parts": [], "note": "「结账」就是退余款"}
+{"id": "syn-0365", "text": "上了几节了？帮我算下剩多少钱", "label": "退费", "mixed": false, "tricky": true, "parts": [], "note": "算余款"}
+{"id": "syn-0366", "text": "课不用调了，直接停了吧，余额怎么拿回来", "label": "退费", "mixed": false, "tricky": true, "parts": [], "note": "提到调课，实际要停课拿回余额"}
+{"id": "syn-0367", "text": "能不能把剩下的课时换成钱", "label": "退费", "mixed": false, "tricky": true, "parts": [], "note": "没出现「退」字"}
+{"id": "syn-0368", "text": "想问下中途结束要扣多少", "label": "退费", "mixed": false, "tricky": true, "parts": [], "note": "没出现「退」字"}
+{"id": "syn-0369", "text": "下学期不报了，这学期没上完的能不能折算一下", "label": "退费", "mixed": false, "tricky": true, "parts": [], "note": "提到下学期，不是续报，是想折算余款"}
+{"id": "syn-0370", "text": "这学期快结束了吧，下学期还是您带吗？", "label": "续报", "mixed": false, "tricky": true, "parts": [], "note": "像问师资，实际试探续报"}
+{"id": "syn-0371", "text": "下学期课表出来了吗，孩子还想跟您上", "label": "续报", "mixed": false, "tricky": true, "parts": [], "note": "像问课表，实际想续报"}
+{"id": "syn-0372", "text": "下学期周几上课？我们看能不能排开，排得开就继续", "label": "续报", "mixed": false, "tricky": true, "parts": [], "note": "像问上课时间，实际在决定续报"}
+{"id": "syn-0373", "text": "下一期什么时候开课呀，我们考虑考虑", "label": "续报", "mixed": false, "tricky": true, "parts": [], "note": "像问时间，实际考虑续报"}
+{"id": "syn-0374", "text": "孩子挺喜欢这个课的，后面还有吗", "label": "续报", "mixed": false, "tricky": true, "parts": [], "note": "委婉问续报"}
+{"id": "syn-0375", "text": "这期上完了，接下来怎么安排", "label": "续报", "mixed": false, "tricky": true, "parts": [], "note": "委婉问续报"}
+{"id": "syn-0376", "text": "寒假有课吗？孩子闲着也是闲着", "label": "续报", "mixed": false, "tricky": true, "parts": [], "note": "像问有没有课，实际想报寒假班"}
+{"id": "syn-0377", "text": "下学期几号开课，现在要不要先占位", "label": "续报", "mixed": false, "tricky": true, "parts": [], "note": "像问日期，实际问报名"}
+{"id": "syn-0378", "text": "老同学是不是有什么政策呀", "label": "续报", "mixed": false, "tricky": true, "parts": [], "note": "委婉问优惠"}
+{"id": "syn-0379", "text": "隔壁班家长说有活动，我们还能参加吗", "label": "续报", "mixed": false, "tricky": true, "parts": [], "note": "委婉问续报优惠"}
+{"id": "syn-0380", "text": "我们这个课到期了要不要再弄一下", "label": "续报", "mixed": false, "tricky": true, "parts": [], "note": "委婉说续费"}
+{"id": "syn-0381", "text": "年底了，有没有什么福利给老学员😁", "label": "续报", "mixed": false, "tricky": true, "parts": [], "note": "委婉问优惠"}
+{"id": "syn-0382", "text": "明年还开这个班吗", "label": "续报", "mixed": false, "tricky": true, "parts": [], "note": "委婉问续报"}
+{"id": "syn-0383", "text": "课时快用完了 下一步咋说", "label": "续报", "mixed": false, "tricky": true, "parts": [], "note": "委婉问续费"}
+{"id": "syn-0384", "text": "老师，我想了解一下你们这边有没有更高一级的联系方式", "label": "投诉", "mixed": false, "tricky": true, "parts": [], "note": "客气地要领导联系方式"}
+{"id": "syn-0385", "text": "想跟负责教学的老师聊聊这个班的情况", "label": "投诉", "mixed": false, "tricky": true, "parts": [], "note": "客气地找上级"}
+{"id": "syn-0386", "text": "也不是要怎么样，就是想让上面知道一下这个情况", "label": "投诉", "mixed": false, "tricky": true, "parts": [], "note": "委婉向上反映"}
+{"id": "syn-0387", "text": "这个老师是不是新来的？要不考虑换一位", "label": "投诉", "mixed": false, "tricky": true, "parts": [], "note": "委婉表达对老师不满"}
+{"id": "syn-0388", "text": "和报名时候介绍的好像不太一样，想找人沟通一下", "label": "投诉", "mixed": false, "tricky": true, "parts": [], "note": "委婉说与承诺不符"}
+{"id": "syn-0389", "text": "我不想为难您，但这事总得有个说法吧", "label": "投诉", "mixed": false, "tricky": true, "parts": [], "note": "客气外壳，实际要说法"}
+{"id": "syn-0390", "text": "我不太想在这儿说，有没有别的渠道反映问题", "label": "投诉", "mixed": false, "tricky": true, "parts": [], "note": "委婉问投诉渠道"}
+{"id": "syn-0391", "text": "其他家长也都有这个感觉，我们打算一起找你们聊聊", "label": "投诉", "mixed": false, "tricky": true, "parts": [], "note": "委婉的集体投诉"}
+{"id": "syn-0392", "text": "老师批改作业好像都没怎么看，这样我们不太放心，想跟管理的人说下", "label": "投诉", "mixed": false, "tricky": true, "parts": [], "note": "提到作业，实际不满批改"}
+{"id": "syn-0393", "text": "我朋友说你们这种情况可以打12315，是这样吗", "label": "投诉", "mixed": false, "tricky": true, "parts": [], "note": "问句外壳，实际在威胁投诉"}
+{"id": "syn-0394", "text": "您能把我的意见转达给校区负责人吗", "label": "投诉", "mixed": false, "tricky": true, "parts": [], "note": "委婉向上反映"}
+{"id": "syn-0395", "text": "客气话就不说了，希望您这边重视一下服务质量", "label": "投诉", "mixed": false, "tricky": true, "parts": [], "note": "委婉表达不满"}
+{"id": "syn-0396", "text": "希望您的领导能看到这条消息", "label": "投诉", "mixed": false, "tricky": true, "parts": [], "note": "委婉向上反映"}
+{"id": "syn-0397", "text": "这个问题我已经录屏保存了，先跟您说一声", "label": "投诉", "mixed": false, "tricky": true, "parts": [], "note": "暗示留证追究"}
+{"id": "syn-0398", "text": "下节课的时间是您定的吗？想知道这种安排是谁负责的", "label": "投诉", "mixed": false, "tricky": true, "parts": [], "note": "像问时间，实际追责"}
+{"id": "syn-0399", "text": "回放总出问题，这个是哪个部门管的", "label": "投诉", "mixed": false, "tricky": true, "parts": [], "note": "像问回放，实际在找责任部门"}
+{"id": "syn-0400", "text": "作业第三题什么时候讲？孩子不会", "label": "学科答疑", "mixed": false, "tricky": true, "parts": [], "note": "提到作业和时间，实际是不会做题"}
+{"id": "syn-0401", "text": "回放里第20分钟那道题没看懂，老师怎么解的", "label": "学科答疑", "mixed": false, "tricky": true, "parts": [], "note": "提到回放，实际问题目"}
+{"id": "syn-0402", "text": "截止到今天孩子还是不会通分", "label": "学科答疑", "mixed": false, "tricky": true, "parts": [], "note": "「截止」不是问作业截止"}
+{"id": "syn-0403", "text": "时间状语从句是啥", "label": "学科答疑", "mixed": false, "tricky": true, "parts": [], "note": "「时间」是语法知识点"}
+{"id": "syn-0404", "text": "课上说的请假条英语作文怎么写", "label": "学科答疑", "mixed": false, "tricky": true, "parts": [], "note": "「请假」是作文题目"}
+{"id": "syn-0405", "text": "下午3点到5点半一共多少分钟，这题孩子算错了", "label": "学科答疑", "mixed": false, "tricky": true, "parts": [], "note": "时间是题目内容"}
+{"id": "syn-0406", "text": "时针和分针什么时候重合？这个题不会", "label": "学科答疑", "mixed": false, "tricky": true, "parts": [], "note": "「什么时候」是题目内容"}
+{"id": "syn-0407", "text": "火车几点到站这道题怎么算", "label": "学科答疑", "mixed": false, "tricky": true, "parts": [], "note": "「几点」是题目内容"}
+{"id": "syn-0408", "text": "甲乙两人调换座位一共有几种排法", "label": "学科答疑", "mixed": false, "tricky": true, "parts": [], "note": "「调换」是题目内容"}
+{"id": "syn-0409", "text": "这个成语「退避三舍」怎么解释", "label": "学科答疑", "mixed": false, "tricky": true, "parts": [], "note": "「退」是词语内容"}
+{"id": "syn-0410", "text": "「投诉」的投是第几声，孩子听写错了", "label": "学科答疑", "mixed": false, "tricky": true, "parts": [], "note": "「投诉」是词语内容"}
+{"id": "syn-0411", "text": "小测退回去8元，还剩多少钱这题咋列式", "label": "学科答疑", "mixed": false, "tricky": true, "parts": [], "note": "「退」是题目内容"}
+{"id": "syn-0412", "text": "作文题是《一次生气的经历》，开头咋写", "label": "学科答疑", "mixed": false, "tricky": true, "parts": [], "note": "「生气」是作文题目"}
+{"id": "syn-0413", "text": "续报的那个班下节课几点上？", "label": "上课时间", "mixed": false, "tricky": true, "parts": [], "note": "有「续报」二字，只问时间"}
+{"id": "syn-0414", "text": "太好了！！！下节课是周六吧！", "label": "上课时间", "mixed": false, "tricky": true, "parts": [], "note": "感叹号是高兴，不是情绪"}
+{"id": "syn-0415", "text": "报名时说的周六上课，这周还是周六吧", "label": "上课时间", "mixed": false, "tricky": true, "parts": [], "note": "有「报名」二字，只问时间"}
+{"id": "syn-0416", "text": "我家没问题，就是想问下这周课几点", "label": "上课时间", "mixed": false, "tricky": true, "parts": [], "note": "有「问题」二字，只问时间"}
+{"id": "syn-0417", "text": "退出直播间了，回放在哪看", "label": "回放链接", "mixed": false, "tricky": true, "parts": [], "note": "「退」是退出直播间"}
+{"id": "syn-0418", "text": "孩子太喜欢这个老师了！！回放能再发下吗", "label": "回放链接", "mixed": false, "tricky": true, "parts": [], "note": "感叹号是高兴"}
+{"id": "syn-0419", "text": "英语第三单元那节的回放有吗", "label": "回放链接", "mixed": false, "tricky": true, "parts": [], "note": "有学科词，只问回放"}
+{"id": "syn-0420", "text": "不好意思😭昨天睡过头了，回放在哪看", "label": "回放链接", "mixed": false, "tricky": true, "parts": [], "note": "哭脸是不好意思"}
+{"id": "syn-0421", "text": "作业截止是周五吗！！谢谢老师！！", "label": "作业截止", "mixed": false, "tricky": true, "parts": [], "note": "感叹号是客气"}
+{"id": "syn-0422", "text": "老师，退回来的作业要几号前重新交", "label": "作业截止", "mixed": false, "tricky": true, "parts": [], "note": "「退」是退回作业"}
+{"id": "syn-0423", "text": "不好意思老师，忘了问了，作业交到哪天😂", "label": "作业截止", "mixed": false, "tricky": true, "parts": [], "note": "表情是不好意思"}
+{"id": "syn-0424", "text": "题目都写完了，今天还能交吗", "label": "作业截止", "mixed": false, "tricky": true, "parts": [], "note": "有「题目」二字，只问能否提交"}
+{"id": "syn-0425", "text": "数学作业几号交？", "label": "作业截止", "mixed": false, "tricky": true, "parts": [], "note": "有学科词，只问截止"}
+{"id": "syn-0426", "text": "作文题目我们选好了，几号前交呀", "label": "作业截止", "mixed": false, "tricky": true, "parts": [], "note": "有「题目」「作文」，只问截止"}
+{"id": "syn-0427", "text": "孩子感冒了，今天不上了，请个假", "label": "请假调课", "mixed": false, "tricky": true, "parts": [], "note": "「不上了」只指今天"}
+{"id": "syn-0428", "text": "今晚不上了，家里有事，明天见", "label": "请假调课", "mixed": false, "tricky": true, "parts": [], "note": "「不上了」只指今晚"}
+{"id": "syn-0429", "text": "麻烦您了，问题不大，就是今晚请假", "label": "请假调课", "mixed": false, "tricky": true, "parts": [], "note": "有「问题」二字，只是请假"}
+{"id": "syn-0430", "text": "孩子生气不肯上，今晚先请个假吧", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "字面是请假，但原因是孩子生气不肯上，可能课上出了事或是退课前兆，只回请假规则会漏掉信号，要二讲先问"}
+{"id": "syn-0431", "text": "真是麻烦老师了！！这节课调到周日吧！", "label": "请假调课", "mixed": false, "tricky": true, "parts": [], "note": "感叹号是客气"}
+{"id": "syn-0432", "text": "退掉周三这节，换到周五上可以吗", "label": "请假调课", "mixed": false, "tricky": true, "parts": [], "note": "「退掉」其实是调课"}
+{"id": "syn-0433", "text": "孩子住院了，这几节课可能都上不了，怎么办", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "可能是请假也可能是停课，且涉及病情"}
+{"id": "syn-0434", "text": "下节课还上吗", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "可能问有没有课，也可能在想不上了"}
+{"id": "syn-0435", "text": "课不上也行吧", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "诉求不清"}
+{"id": "syn-0436", "text": "这周先不上了，后面再说", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "可能是请假，也可能是退费前兆"}
+{"id": "syn-0437", "text": "孩子不来了，您看后面怎么办", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "可能是请假，也可能是想退费"}
+{"id": "syn-0438", "text": "孩子最近不太想上课，您说怎么办", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "学情问题，可能是退费前兆"}
+{"id": "syn-0439", "text": "时间不太合适，孩子总赶不上", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "可能想调课，也可能在铺垫不上"}
+{"id": "syn-0440", "text": "这个作业一定要交吗", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "不是问截止，问要不要交"}
+{"id": "syn-0441", "text": "回放看了也没用啊，孩子就是不听", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "提到回放，实际在说学情"}
+{"id": "syn-0442", "text": "能晚两天交吗，孩子最近状态不好", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "不是问截止，是要例外安排，只能二讲定"}
+{"id": "syn-0443", "text": "老师下周还是您上课吗", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "问师资，也可能试探换老师或续报"}
+{"id": "syn-0444", "text": "能不能换个时间跟您聊聊孩子的情况", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "「换时间」不是调课，是约沟通"}
+{"id": "syn-0445", "text": "我们商量一下再告诉您", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "没说商量什么"}
+{"id": "syn-0446", "text": "上次您说的时间还算数吗", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "指代不清"}
+{"id": "syn-0447", "text": "老师，您这周有时间吗", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "「时间」问的是老师，不是上课时间"}
+{"id": "syn-0448", "text": "调个时间电话沟通下孩子的学习", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "「调时间」不是调课，是约电话"}
+{"id": "syn-0449", "text": "孩子爸爸说下学期再看，这学期先这样", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "可能是不续报的信号"}
+{"id": "syn-0450", "text": "老师，调课的事不麻烦您了，以后都不用调了，您懂的", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "提到调课，可能在暗示不想继续"}
+{"id": "syn-0451", "text": "以后都请假吧，您看着办", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "提到请假，可能是赌气或想停课"}
+{"id": "syn-0452", "text": "老师您看孩子这情况还有必要学吗", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "可能是学情问询，也可能是退费前兆"}
+{"id": "syn-0453", "text": "作业几号交？还有第三题孩子不会，能讲下吗", "label": "学科答疑", "mixed": true, "tricky": false, "parts": ["作业截止", "学科答疑"], "note": ""}
+{"id": "syn-0454", "text": "这周作业截止是哪天，顺便问下这道题咋做[图片]", "label": "学科答疑", "mixed": true, "tricky": false, "parts": ["作业截止", "学科答疑"], "note": ""}
+{"id": "syn-0455", "text": "老师，第5题怎么做啊，另外作业周几交来着", "label": "学科答疑", "mixed": true, "tricky": false, "parts": ["作业截止", "学科答疑"], "note": ""}
+{"id": "syn-0456", "text": "口语作业几号截止？have been 那个用法也没搞懂", "label": "学科答疑", "mixed": true, "tricky": false, "parts": ["作业截止", "学科答疑"], "note": ""}
+{"id": "syn-0457", "text": "老师\n作业啥时候交\n这个字读第几声", "label": "学科答疑", "mixed": true, "tricky": false, "parts": ["作业截止", "学科答疑"], "note": ""}
+{"id": "syn-0458", "text": "下节课几点上？那个分数应用题我再请教一下", "label": "学科答疑", "mixed": true, "tricky": false, "parts": ["上课时间", "学科答疑"], "note": ""}
+{"id": "syn-0459", "text": "昨天的回放发我下，孩子那道鸡兔同笼还是不会", "label": "学科答疑", "mixed": true, "tricky": false, "parts": ["回放链接", "学科答疑"], "note": ""}
+{"id": "syn-0460", "text": "孩子明天请假，那今天讲的通分能帮忙讲讲吗", "label": "学科答疑", "mixed": true, "tricky": false, "parts": ["请假调课", "学科答疑"], "note": ""}
+{"id": "syn-0461", "text": "这周作业几号交？你们通知也太乱了吧！！", "label": "带情绪", "mixed": true, "tricky": false, "parts": ["作业截止", "带情绪"], "note": ""}
+{"id": "syn-0462", "text": "作业截止时间发我，昨天问了没人理！！", "label": "带情绪", "mixed": true, "tricky": false, "parts": ["作业截止", "带情绪"], "note": ""}
+{"id": "syn-0463", "text": "作业周几交？我是真不想再催了，心累", "label": "带情绪", "mixed": true, "tricky": false, "parts": ["作业截止", "带情绪"], "note": ""}
+{"id": "syn-0464", "text": "下节课到底几点？说了半天也说不清楚，真无语", "label": "带情绪", "mixed": true, "tricky": false, "parts": ["上课时间", "带情绪"], "note": ""}
+{"id": "syn-0465", "text": "下周几点上课？这破课表改来改去，气死了", "label": "带情绪", "mixed": true, "tricky": false, "parts": ["上课时间", "带情绪"], "note": ""}
+{"id": "syn-0466", "text": "今晚几点的课？孩子等了一周了，你们倒是吱个声啊", "label": "带情绪", "mixed": true, "tricky": false, "parts": ["上课时间", "带情绪"], "note": ""}
+{"id": "syn-0467", "text": "回放链接发一下，每次都要催，烦不烦", "label": "带情绪", "mixed": true, "tricky": false, "parts": ["回放链接", "带情绪"], "note": ""}
+{"id": "syn-0468", "text": "回放呢，发一下，真的太不负责任了😡", "label": "带情绪", "mixed": true, "tricky": false, "parts": ["回放链接", "带情绪"], "note": ""}
+{"id": "syn-0469", "text": "给个回放吧，直播卡成那样，花钱买罪受", "label": "带情绪", "mixed": true, "tricky": false, "parts": ["回放链接", "带情绪"], "note": ""}
+{"id": "syn-0470", "text": "请假！！！孩子都病了还打电话催上课，有没有点人情味", "label": "带情绪", "mixed": true, "tricky": false, "parts": ["请假调课", "带情绪"], "note": ""}
+{"id": "syn-0471", "text": "能调课吗？你们这时间排得太离谱了", "label": "带情绪", "mixed": true, "tricky": false, "parts": ["请假调课", "带情绪"], "note": ""}
+{"id": "syn-0472", "text": "请问调课怎么弄，上次弄得我一肚子火", "label": "带情绪", "mixed": true, "tricky": false, "parts": ["请假调课", "带情绪"], "note": ""}
+{"id": "syn-0473", "text": "请个假，孩子最近一到上课就哭，我也不知道这钱花得值不值", "label": "带情绪", "mixed": true, "tricky": true, "parts": ["请假调课", "带情绪"], "note": "请假在前，后半句是失望和对费用的怀疑"}
+{"id": "syn-0474", "text": "这周几点上课？另外想问退费的事", "label": "退费", "mixed": true, "tricky": false, "parts": ["上课时间", "退费"], "note": ""}
+{"id": "syn-0475", "text": "下节课几点？要是还这样的话剩下的课就退了", "label": "退费", "mixed": true, "tricky": false, "parts": ["上课时间", "退费"], "note": ""}
+{"id": "syn-0476", "text": "回放发我下，顺便问下没上的课能退钱吗", "label": "退费", "mixed": true, "tricky": false, "parts": ["回放链接", "退费"], "note": ""}
+{"id": "syn-0477", "text": "孩子今天请假，还有退款那事进度怎样了", "label": "退费", "mixed": true, "tricky": false, "parts": ["请假调课", "退费"], "note": ""}
+{"id": "syn-0478", "text": "作业周几交？我们打算上完这周就退了", "label": "退费", "mixed": true, "tricky": false, "parts": ["作业截止", "退费"], "note": ""}
+{"id": "syn-0479", "text": "老师好，这周作业几号交呀？另外跟您说一下，我们商量了下，这期上完后面就先不继续了，费用的事到时候再麻烦您", "label": "退费", "mixed": true, "tricky": true, "parts": ["作业截止", "退费"], "note": "事务问题在前，不继续和费用藏在后半句"}
+{"id": "syn-0480", "text": "下节课几点上？还有下学期怎么续", "label": "续报", "mixed": true, "tricky": false, "parts": ["上课时间", "续报"], "note": ""}
+{"id": "syn-0481", "text": "今晚几点上课呀，上完想跟您聊聊续报", "label": "续报", "mixed": true, "tricky": false, "parts": ["上课时间", "续报"], "note": ""}
+{"id": "syn-0482", "text": "回放发一下，另外续费优惠到哪天", "label": "续报", "mixed": true, "tricky": false, "parts": ["回放链接", "续报"], "note": ""}
+{"id": "syn-0483", "text": "这周作业几号交？对了，老生报春季班有优惠吗", "label": "续报", "mixed": true, "tricky": false, "parts": ["作业截止", "续报"], "note": ""}
+{"id": "syn-0484", "text": "孩子明天请假，顺便问下下学期的班能报了吗", "label": "续报", "mixed": true, "tricky": false, "parts": ["请假调课", "续报"], "note": ""}
+{"id": "syn-0485", "text": "回放发下哈～这学期也快结束了，下学期要是还是您带的话我们就不换地方了", "label": "续报", "mixed": true, "tricky": true, "parts": ["回放链接", "续报"], "note": "委婉的续报意向藏在后半句"}
+{"id": "syn-0486", "text": "下节课几点？另外我要投诉上节课的老师", "label": "投诉", "mixed": true, "tricky": false, "parts": ["上课时间", "投诉"], "note": ""}
+{"id": "syn-0487", "text": "回放发我，上节课老师一直迟到，我要反映给你们领导", "label": "投诉", "mixed": true, "tricky": false, "parts": ["回放链接", "投诉"], "note": ""}
+{"id": "syn-0488", "text": "作业几号截止？批改一直不及时，这个我得投诉", "label": "投诉", "mixed": true, "tricky": false, "parts": ["作业截止", "投诉"], "note": ""}
+{"id": "syn-0489", "text": "请个假。还有上次投诉的事，你们领导到底回不回", "label": "投诉", "mixed": true, "tricky": false, "parts": ["请假调课", "投诉"], "note": ""}
+{"id": "syn-0490", "text": "调课申请在哪提？另外帮我转告你们主管，我不满意", "label": "投诉", "mixed": true, "tricky": false, "parts": ["请假调课", "投诉"], "note": ""}
+{"id": "syn-0491", "text": "下节课几点呀？😊 话说咱们这个班换了几个老师了，家长群里都在说，也不知道上面知不知道", "label": "投诉", "mixed": true, "tricky": true, "parts": ["上课时间", "投诉"], "note": "笑脸和事务在前，委婉的投诉在后"}
+{"id": "syn-0492", "text": "不退钱我就投诉你们", "label": "投诉", "mixed": true, "tricky": false, "parts": ["投诉", "退费"], "note": ""}
+{"id": "syn-0493", "text": "这道题老师讲错了吧，第二步不对，我要反映一下", "label": "投诉", "mixed": true, "tricky": false, "parts": ["投诉", "学科答疑"], "note": ""}
+{"id": "syn-0494", "text": "下学期还想报，但这个老师真不行，能换吗", "label": "投诉", "mixed": true, "tricky": false, "parts": ["投诉", "续报"], "note": ""}
+{"id": "syn-0495", "text": "什么破课，退钱！！", "label": "退费", "mixed": true, "tricky": false, "parts": ["退费", "带情绪"], "note": ""}
+{"id": "syn-0496", "text": "续费这么贵，你们也太黑了", "label": "带情绪", "mixed": true, "tricky": false, "parts": ["带情绪", "续报"], "note": ""}
+{"id": "syn-0497", "text": "第三题孩子又不会，讲了跟没讲一样！！！", "label": "带情绪", "mixed": true, "tricky": false, "parts": ["带情绪", "学科答疑"], "note": ""}
+{"id": "syn-0498", "text": "下节课几点上？上节的回放也发一下", "label": "都不是／拿不准", "mixed": true, "tricky": false, "parts": ["上课时间", "回放链接"], "note": ""}
+{"id": "syn-0499", "text": "作业几号交？明天那节课想请假", "label": "都不是／拿不准", "mixed": true, "tricky": false, "parts": ["作业截止", "请假调课"], "note": ""}
+{"id": "syn-0500", "text": "调课调到周日的话，作业截止也能顺延吗", "label": "都不是／拿不准", "mixed": true, "tricky": false, "parts": ["作业截止", "请假调课"], "note": ""}
+{"id": "syn-0501", "text": "孩子周五请假，回放到时候哪看", "label": "都不是／拿不准", "mixed": true, "tricky": false, "parts": ["回放链接", "请假调课"], "note": ""}
+{"id": "syn-0502", "text": "周六几点上课，作业周五交还是周六交", "label": "都不是／拿不准", "mixed": true, "tricky": false, "parts": ["上课时间", "作业截止"], "note": ""}
+{"id": "syn-0503", "text": "回放链接发下，这周作业什么时候交", "label": "都不是／拿不准", "mixed": true, "tricky": false, "parts": ["回放链接", "作业截止"], "note": ""}
+{"id": "syn-0504", "text": "下节课几点？孩子最近上课认真吗", "label": "都不是／拿不准", "mixed": true, "tricky": false, "parts": ["上课时间", "都不是／拿不准"], "note": ""}
+{"id": "syn-0505", "text": "作业几号交？王小测最近是不是退步了", "label": "都不是／拿不准", "mixed": true, "tricky": false, "parts": ["作业截止", "都不是／拿不准"], "note": ""}
+{"id": "syn-0506", "text": "回放发下，您看孩子还要不要加强一下", "label": "都不是／拿不准", "mixed": true, "tricky": false, "parts": ["回放链接", "都不是／拿不准"], "note": ""}

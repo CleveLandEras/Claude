@@ -1,0 +1,174 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>活动配置工具方案</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.35;margin:0 0 8px}
+.sub{font-size:16px;color:var(--ink-2);margin:0 0 28px}
+h2{font-family:var(--serif);font-size:20px;margin:56px 0 16px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+h3{font-size:15px;margin:22px 0 10px;color:var(--ink-2)}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)} .g2{grid-template-columns:repeat(2,1fr)} .g4{grid-template-columns:repeat(4,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px}
+.kpi .n{font-size:38px;font-weight:700;line-height:1.1}
+.kpi .n small{font-size:16px;font-weight:600;margin-left:4px;color:var(--ink-2)}
+.kpi .t{font-size:14.5px;color:var(--ink-2);margin-top:8px}
+.kpi.red .n{color:var(--red)} .kpi.blue .n{color:var(--blue)}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;white-space:nowrap}
+td.w{min-width:104px}
+.tag.red{background:var(--red-soft);color:var(--red)} .tag.blue{background:var(--blue-soft);color:var(--blue)} .tag.gray{background:var(--gray-soft);color:var(--gray)} .tag.green{background:var(--green-soft);color:var(--green)}
+.cause .h{font-size:16px;font-weight:700;margin:0 0 6px}
+.cause .l{font-size:14.5px;color:var(--ink-2);margin:0 0 10px}
+.cause .e{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px;margin:0}
+.tool .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.tool .h{font-size:17px;font-weight:700;margin:0}
+.tool .l{font-size:14.5px;color:var(--ink-2);margin:0 0 10px}
+.tool .e{font-size:13px;color:var(--muted);margin:0}
+.tw{overflow-x:auto;border-radius:6px}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14.5px}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--ground);white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td.w{color:var(--ink);font-weight:600} td.r{color:var(--ink-2)} td.d{color:var(--muted)}
+.obs{font-size:14px;color:var(--ink-2);margin:12px 0 0;padding-left:14px;border-left:3px solid var(--line)}
+.obs b{color:var(--ink)}
+/* 结构图 */
+.arch{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:22px}
+.arch .row{display:grid;gap:12px}
+.arch .ent{grid-template-columns:repeat(3,1fr)}
+.arch .box{border:1px solid var(--line);border-radius:6px;padding:12px 14px;background:var(--ground)}
+.arch .box b{display:block;font-size:15px;margin-bottom:2px}
+.arch .box span{font-size:13px;color:var(--ink-2)}
+.arch .box.ent1{border-top:4px solid var(--accent)} .arch .box.ent2{border-top:4px solid var(--blue)} .arch .box.ent3{border-top:4px solid var(--gray)}
+.arch .mid{margin:12px 0;border:1px dashed var(--line);border-radius:6px;padding:10px 14px;font-size:13.5px;color:var(--ink-2);text-align:center}
+.arch .mid b{color:var(--ink)}
+.arch .core{border:2px solid var(--ink);border-radius:6px;padding:14px}
+.arch .core>b{font-size:15px}
+.arch .core .flow{font-size:13.5px;color:var(--ink-2);margin:4px 0 12px}
+.arch .tools{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+.arch .tools div{border:1px solid var(--line);border-radius:4px;padding:8px;text-align:center;font-size:14px;font-weight:600;background:var(--surface)}
+.arch .tools div i{display:block;font-style:normal;font-size:11.5px;font-weight:700;margin-top:4px}
+.arch .tools .t1 i{color:var(--red)} .arch .tools .t2 i{color:var(--blue)} .arch .tools .t3 i{color:var(--gray)}
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ba .card{border-top:4px solid var(--gray)} .ba .after{border-top-color:var(--green)}
+.ba ol{margin:8px 0 0;padding-left:20px;font-size:14.5px;color:var(--ink-2)} .ba li{margin:4px 0}
+.ba .h{font-size:16px;font-weight:700;margin:0} .ba .s{font-size:13px;color:var(--muted)}
+.links{font-size:13.5px;color:var(--muted);margin-top:48px;line-height:2} a{color:var(--accent)}
+@media (max-width:760px){.wrap{padding:28px 16px 64px}.g2,.g3,.g4,.ba,.arch .ent{grid-template-columns:1fr}.arch .tools{grid-template-columns:repeat(2,1fr)}h1{font-size:23px}.kpi .n{font-size:32px}}
+</style></head><body><div class="wrap">
+
+<p class="meta">活动配置工具 · 整体方案 · 2026-10-27 · 含现状盘点、方案、需求评审材料、需求文档 · 待 Dk 验收</p>
+<h1>活动改由工具配置上线、入口按参与方式分工，本期先做礼包、累充、满减、折扣</h1>
+<p class="sub">目标：运营靠配置就能上储值和节庆活动，不再每轮开发。下面替你定了 10 件事，都可推翻；另有 5 件要你对外安排。</p>
+
+<div class="grid g3">
+  <div class="card kpi red"><div class="n">52<small>／148</small></div><div class="t">近 12 个月储值、商城类活动开发需求里，动用研发的重复开发个数</div></div>
+  <div class="card kpi blue"><div class="n">7<small>个工具</small></div><div class="t">礼包、累充、满减、折扣为必需；抽奖尽量；团购、一元夺宝可选</div></div>
+  <div class="card kpi"><div class="n">1<small>个工作日</small></div><div class="t">目标：一个储值活动从决定到上线，只需配置＋审核</div></div>
+</div>
+
+<h2><span class="no">01</span>现状：玩法各做一套、页面每轮重做、入口逐处配置</h2>
+<div class="grid g3">
+  <div class="card cause"><p class="h">按轮次或按包重开</p><p class="l">34 个动用研发的需求：同一组模块，每次活动新开一遍</p><p class="e">10 月庆典与 16 周年庆相隔约 3 周半，各开同样的 6 个模块；超值礼包每个新包一组需求</p></div>
+  <div class="card cause"><p class="h">同一变更按活动拆单</p><p class="l">18 个动用研发的需求：一个横向改动给每个活动各做一遍</p><p class="e">新增至尊卡拆成 12 个需求</p></div>
+  <div class="card cause"><p class="h">入口三套后台</p><p class="l">好康、限时活动、公告各配一次，新活动进下拉要开发</p><p class="e">产品 idea 页：「好康/限時/公告 功能重疊」</p></div>
+</div>
+<p class="obs"><b>能配的主要是礼包：</b>储值活动设定能新增 5 类礼包，金流活动设定有累储单笔与累储累计；满减、团购、一元夺宝没有任何现成工具。完整数据见现状盘点。</p>
+
+<h2><span class="no">02</span>方案全景：活动 = 工具 ＋ 参数 ＋ 素材 ＋ 投放</h2>
+<div class="arch">
+  <div class="row ent">
+    <div class="box ent1"><b>银行（商城），移到大厅左下原好康位置</b><span>必须先储值或购买才能参与：现有六个页签不变＋最上方加「储值活动」页签</span></div>
+    <div class="box ent2"><b>限时活动（大厅右下）</b><span>免费参与、有时限：活动窗口分「游戏活动」「平台活动」两个页签，左列表＋右大图（竞品通行版式）</span></div>
+    <div class="box ent3"><b>公告（右上菜单）</b><span>只放信息：分「官方」「活动」「其他」</span></div>
+  </div>
+  <div class="mid"><b>归属规则自动判断主入口</b>：必须先储值或购买才能参与 → 银行（商城）；指定了游戏 → 游戏活动；其余 → 平台活动　·　曝光位（大厅 Banner、大厅自动弹窗、手机推播、公告、游戏内悬浮）只引流到主入口</div>
+  <div class="core"><b>活动配置（后台：活动管理 → 活动配置）</b>
+    <div class="flow">选工具 → 基本信息 → 工具规则 → 对象与时间 → 预算与上限 → 展示与素材 → 预览 → 审核 → 排程上架　·　可复制已有活动</div>
+    <div class="tools">
+      <div class="t1">礼包<i>必需</i></div><div class="t1">累充<i>必需</i></div><div class="t1">满减<i>必需</i></div><div class="t1">折扣<i>必需</i></div>
+      <div class="t2">抽奖<i>尽量</i></div><div class="t3">团购<i>可选</i></div><div class="t3">一元夺宝<i>可选</i></div>
+    </div>
+  </div>
+</div>
+
+<h3>例：运营决定「这周五做个储值活动」</h3>
+<div class="ba">
+  <div class="card"><p class="h">现在</p><p class="s">要排进研发版本</p><ol>
+    <li>开需求：策划写规则，美术出图，web 做活动页，测试验收</li>
+    <li>时间、档位、奖励写在图里，改一次重出一次图</li>
+    <li>好康、限时活动、公告、Banner 各在自己的后台配一次</li>
+    <li>入口下拉里没有这个活动时，再找研发补</li></ol></div>
+  <div class="card after"><p class="h">改后</p><p class="s">配置＋审核，1 个工作日内</p><ol>
+    <li>复制上周的累充活动，时间改为本周五 18:00–24:00</li>
+    <li>档位：累计储值满 1,000 送 A，满 3,000 送 B；对象选标签群组</li>
+    <li>上传主视觉；档位、进度、按钮由系统按配置显示</li>
+    <li>系统把它放进商城「储值活动」；勾选大厅 Banner，再发一条手机推播（玩家手机通知栏收到，点开直接进入活动）引流；审核后上架</li></ol></div>
+</div>
+
+<h2><span class="no">03</span>七个工具：在现有礼包、累储、抽奖大厅上统一，新增满减、团购与一元夺宝</h2>
+<div class="grid g3">
+  <div class="card tool"><div class="top"><p class="h">礼包</p><span class="tag red">必需</span></div><p class="l">单包、多选一、每日刷新、全服限量、分日领取（买一次连领 N 天，如回馈卡、7 日礼）；限购与卡别加码；显示在银行现有页签；超值礼包详情页用模板</p><p class="e">基础：储值活动设定、产包设定</p></div>
+  <div class="card tool"><div class="top"><p class="h">累充</p><span class="tag red">必需</span></div><p class="l">活动期累计或每期累计储值达到门槛送奖励；最多 10 档；全部或指定储值渠道</p><p class="e">基础：金流活动设定的累储累计</p></div>
+  <div class="card tool"><div class="top"><p class="h">满减</p><span class="tag red">必需</span></div><p class="l">单笔储值或购买满额就加赠，如「单笔满 1,000 加赠 10%」；最多 5 档，每笔按最高档给一次；不直接减价</p><p class="e">基础：金流活动设定的累储单笔</p></div>
+  <div class="card tool"><div class="top"><p class="h">折扣</p><span class="tag red">必需</span></div><p class="l">指定面额或礼包限时加赠比例，按卡别设比例，每人限次；统一储优回馈与限时加码</p><p class="e">基础：储优、限时加码</p></div>
+  <div class="card tool"><div class="top"><p class="h">抽奖</p><span class="tag blue">尽量</span></div><p class="l">抽奖券由储值、押注、任务或老币购买获得；奖池、库存、保底；转盘、刮卡、开箱三种版式；付费获得的券公示机率</p><p class="e">基础：抽奖大厅</p></div>
+  <div class="card tool"><div class="top"><p class="h">团购</p><span class="tag gray">可选</span></div><p class="l">全服买同一商品，人数越多每人返利越多，如 100 人返 5%、1,000 人返 20%；结束后统一补发</p><p class="e">新增；不含邀请成团</p></div>
+  <div class="card tool"><div class="top"><p class="h">一元夺宝</p><span class="tag gray">可选</span></div><p class="l">每期一个大奖，卖券凑满开奖，如「售券满 1.1 万开奖、奖品价值 1 万」；未凑满可照开、退券或顺延</p><p class="e">新增；只用老币购券或储值赠券</p></div>
+</div>
+<p class="obs"><b>所有工具共用一套通用设置：</b>多语言名称与自动生成的规则说明、可参与与排除对象、成本上限与每人上限、统一的一套页签标签、版式与主视觉、复制、审核、数据页（参与、储值、成本）。点数异动科目由系统自动生成，不再每个活动开发。</p>
+
+<h2><span class="no">04</span>本期分档：先保礼包、累充、满减、折扣和三个入口</h2>
+<div class="tw"><table>
+<tr><th>档</th><th>内容</th><th>依据</th></tr>
+<tr><td class="w"><span class="tag red">必需</span></td><td class="r">通用设置、复制、审核、数据页；银行（商城）移到左下＋新增储值活动页签、限时活动分两个页签、公告分三类、归属规则（活动列进各模块的跳转目标）；礼包、累充、满减、折扣</td><td class="d">非庆典月份动用研发的 12 个重复开发全是礼包类（超值礼包页、首储、每日与独享礼包等）；四个工具都有现成后台可扩</td></tr>
+<tr><td class="w"><span class="tag blue">尽量</span></td><td class="r">抽奖；庆典专题页版式（取代每次庆典的活动大页开发）；现有玩法后台接入统一展示；曝光位勾选后自动生成；循环时段；预估成本与测试账号预览</td><td class="d">庆典模块占动用研发的重复开发 22 个，但要先有通用层</td></tr>
+<tr><td class="w"><span class="tag gray">可选</span></td><td class="r">团购；一元夺宝（法务确认后）</td><td class="d">全新玩法，没有现成基础</td></tr>
+</table></div>
+<p class="obs"><b>开发期放不下时的取舍顺序：</b>通用设置 → 礼包 → 累充 → 满减 → 入口 → 折扣。开发期按你推测的 12/11 至 1/21，约 6 周；以研发估时为准。</p>
+
+<h2><span class="no">05</span>替你定的 10 件事：都可推翻</h2>
+<div class="tw"><table>
+<tr><th>事项</th><th>我定的</th><th>如果改</th></tr>
+<tr><td class="w">本期分档</td><td class="r">必需：礼包、累充、满减、折扣＋通用层＋三个入口</td><td class="d">加进必需档的每一项都挤占 6 周开发期</td></tr>
+<tr><td class="w">满减</td><td class="r">独立工具，规则为单笔满额加赠，不做实付立减</td><td class="d">要实付立减：App 内购价格档固定做不到，只能限官网渠道，需金流支持</td></tr>
+<tr><td class="w">折扣</td><td class="r">同价加赠，统一储优与限时加码</td><td class="d">要实付打折：同上</td></tr>
+<tr><td class="w">团购</td><td class="r">全服阶梯返利，不含邀请好友成团</td><td class="d">要邀请成团：与「裂变＋回流」合做，工作量增加</td></tr>
+<tr><td class="w">主入口</td><td class="r">系统按参与方式自动判断，运营不能手选</td><td class="d">允许手选：同一活动多处挂的问题会回来</td></tr>
+<tr><td class="w">银行</td><td class="r">银行移到左下原好康位置，现有六个页签不变，礼包按形式留在原页签；货架重组归银行改版；底栏原銀行按钮移除</td><td class="d">本期一起重组：与银行改版合并做，范围扩大</td></tr>
+<tr><td class="w">进行中修改</td><td class="r">只能改素材、补充说明、延长或提前结束；规则、对象、奖励不能改</td><td class="d">允许改规则：要加改动公告与补偿规则</td></tr>
+<tr><td class="w">上架审核</td><td class="r">上架前须另一人审核，审核页显示预估成本</td><td class="d">取消审核：上线更快，配置错误直接影响成本</td></tr>
+<tr><td class="w">一元夺宝购券</td><td class="r">只支持老币购券或储值赠券</td><td class="d">台币直接购券：需法务先通过</td></tr>
+<tr><td class="w">限时活动版式</td><td class="r">改用左列表＋右大图＋「立即前往」的活动窗口（三款竞品通行做法），复用好康现有组件；列表可滚动，不设数量上限</td><td class="d">保留现有图标网格：每页签最多 20 个、不能滑动，和竞品不一致</td></tr>
+</table></div>
+
+<h2><span class="no">06</span>要你对外安排的 5 件事</h2>
+<div class="tw"><table>
+<tr><th>事项</th><th>卡在哪</th><th>答案不同，方案怎么变</th><th>不做会怎样</th></tr>
+<tr><td class="w">研发估时与排期</td><td class="r">必需档能否在开发期内做完</td><td class="r">放不下就按取舍顺序砍尾部；有余量就提前做抽奖</td><td class="d">分档停留在推测</td></tr>
+<tr><td class="w">法务确认</td><td class="r">付费抽奖的机率公示；一元夺宝的购券方式</td><td class="r">不通过：一元夺宝移出本工具；抽奖只保留免费券</td><td class="d">抽奖、一元夺宝不能上线</td></tr>
+<tr><td class="w">金流确认</td><td class="r">官网渠道能否实付打折、立减</td><td class="r">能：折扣与满减可加「官网实付优惠」选项；不能：维持加赠</td><td class="d">维持加赠，不影响必需档</td></tr>
+<tr><td class="w">开发日期</td><td class="r">12/11 开始、1/21 结束是推测</td><td class="r">开发期变长可把抽奖并入必需</td><td class="d">按推测日期推进</td></tr>
+<tr><td class="w">储值类活动放哪（问主管）</td><td class="r">累充、满减、团购、一元夺宝放银行「储值活动」页签，还是放活动窗口；三款竞品都放活动窗口</td><td class="r">改放活动窗口：「储值活动」整体移进限时活动成为第三个分类，工具与规则不变</td><td class="d">按需求放银行</td></tr>
+</table></div>
+
+<h2><span class="no">07</span>交付清单：四份文件，从现状到研发可用</h2>
+<div class="tw"><table>
+<tr><th>文件</th><th>内容</th><th>给谁</th></tr>
+<tr><td class="w"><a href="2026-10-27_活动配置工具_现状盘点.html">现状盘点</a></td><td class="r">重复开发的数量与形态、各后台能配什么、7 种工具的现状、三个入口的重叠</td><td class="d">你、评审方</td></tr>
+<tr><td class="w"><a href="需求评审材料.html">需求评审材料</a></td><td class="r">17 页：三个入口、活动配置六页、七个工具与庆典专题页；每页原型图＋业务规则，共 46 张原型图</td><td class="d">需求评审</td></tr>
+<tr><td class="w"><a href="需求文档.md">需求文档</a></td><td class="r">公司模板：背景、目标与分级、功能说明、25 张后台字段表、239 条验收标准、Jira 14 个 Epic 与 122 个故事</td><td class="d">研发评审</td></tr>
+<tr><td class="w"><a href="资料/方案设计稿.md">方案设计稿</a></td><td class="r">以上三份的唯一依据，改设计先改这里</td><td class="d">接手的人</td></tr>
+</table></div>
+
+<p class="links">明细：<a href="资料/重复开发与储值活动明细.md">重复开发与储值活动明细</a> · <a href="资料/入口后台配置明细.md">入口后台配置明细</a> · 截图：<a href="截图/需求行_入口调整.png">需求原文</a></p>
+</div></body></html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>评审版验收意见</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.35;margin:0 0 8px}
+.sub{font-size:16px;color:var(--ink-2);margin:0 0 28px}
+h2{font-family:var(--serif);font-size:20px;margin:56px 0 16px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px}
+.kpi .n{font-size:38px;font-weight:700;line-height:1.1;color:var(--ink)}
+.kpi .n small{font-size:16px;font-weight:600;margin-left:4px;color:var(--ink-2)}
+.kpi .t{font-size:14.5px;color:var(--ink-2);margin-top:8px}
+.f{margin-bottom:22px}
+.f .h{font-size:17px;font-weight:700;margin:0 0 6px}
+.f .l{font-size:14.5px;color:var(--ink-2);margin:0 0 10px}
+.f .l li{margin:2px 0}
+.f ul{margin:0 0 10px;padding-left:20px}
+.shot img{width:100%;display:block;border:1px solid var(--line);border-radius:4px;background:#fff}
+.shot .c{font-size:12.5px;color:var(--muted);margin-top:6px}
+.shot.mid img{max-width:760px}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14.5px}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--ground);white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td.p{color:var(--muted);width:64px;white-space:nowrap}
+td.w{color:var(--ink);width:36%} td.r{color:var(--ink-2)}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:1px 7px;border-radius:3px;margin-right:6px;vertical-align:1px}
+.tag.red{background:var(--red-soft);color:var(--red)} .tag.blue{background:var(--blue-soft);color:var(--blue)} .tag.gray{background:var(--gray-soft);color:var(--gray)}
+.note{font-size:14.5px;color:var(--ink-2)}
+.note li{margin:4px 0}
+.links{font-size:13px;color:var(--muted);margin-top:48px;line-height:1.9} a{color:var(--accent)}
+@media (max-width:760px){.wrap{padding:32px 16px 72px}.g3,.g2{grid-template-columns:1fr}td.p{white-space:normal}td.w{width:auto}}
+.cmp td.b{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--line)} .cmp td.a{color:var(--ink);font-weight:600}
+</style></head>
+<body><div class="wrap">
+<p class="meta">推送系统后台 · 需求评审版 · 2026-10-28</p>
+<h1>三位验收人都判「有条件通过」：界面和数字过关，要改的是规则里 5 处矛盾和篇幅</h1>
+<p class="sub">运营、研发、对照你的写作要求各一位，都没接触过这个项目。</p>
+
+<div class="grid g3">
+  <div class="card kpi"><div class="n">过关</div><div class="t">截图与数字对得上（抽查 14 张逐个算过）；权重是数字，对象列写群组名。</div></div>
+  <div class="card kpi"><div class="n">1.5<small>小时</small></div><div class="t">读完全稿要这么久，原定 45–60 分钟。我来砍到 1 小时左右。</div></div>
+  <div class="card kpi"><div class="n">1<small>件</small></div><div class="t">要你定：升级、完成任务这类推播，玩家触发时一定在线，留不留。</div></div>
+</div>
+
+<h2><span class="no">01</span>我来改：规则矛盾和篇幅，改完重截、再找人复核后发你</h2>
+<table>
+<tr><th>验收意见</th><th>怎么改</th></tr>
+<tr><td class="w">「权重不低于它的不超过上限就不会被拦」是错的：权重更高的条件触发会拿走名额（研发给了反例）</td><td class="r">删掉这条保证，只留算法和「条件触发占的名额要发出时才知道」</td></tr>
+<tr><td class="w">停权账号固定不发，停权通知却要照发；补偿、维护通知默认不发给 VIP</td><td class="r">固定不发、默认排除按营销和服务通知分开写；服务通知不默认排除 VIP</td></tr>
+<tr><td class="w">零点开的活动，「开始后 N 小时」的提醒落在勿扰里就整条不发</td><td class="r">统一时间发出的条件触发，遇勿扰按定时顺延</td></tr>
+<tr><td class="w">通行证升级提示迁进快显后变成每天最多 1 次、还会被上限拦，改变了现有体验</td><td class="r">迁移来的这条照现在：每升一级都显示，不计入上限</td></tr>
+<tr><td class="w">实验分桶的例子图里是 0–2，规则里是 0–49；实验写「数据对比即实验结果」说大了</td><td class="r">例子统一；改为「对比两组的曝光与点击」</td></tr>
+<tr><td class="w">篇幅约 2 万字、34 张图；技术实现和「待研发确认」写进了评审稿；同一条规则写两三遍</td><td class="r">删 5 张纯界面状态图（悬停、拖动、收起等），合并重复；技术实现、待研发确认挪到研发评审材料</td></tr>
+<tr><td class="w">后台结构只有菜单截图，没有你 10/20 要的简洁结构图</td><td class="r">补一张：菜单 → 各页页签 → 本稿第几页</td></tr>
+</table>
+
+<h2><span class="no">02</span>不采纳：和你定过的口径冲突</h2>
+<table>
+<tr><th>验收意见</th><th>为什么不采纳</th></tr>
+<tr><td class="w">开篇写为什么做、业绩目标、哪些可放二期</td><td class="r">你 10/19 定：需求评审不写为什么做，不写范围</td></tr>
+<tr><td class="w">数据要算到购买、储值，实验要比哪个礼包更赚钱</td><td class="r">已定：建成与衡量只看曝光、点击（推送看发送、到达、点击）</td></tr>
+</table>
+
+<h2><span class="no">03</span>已定：玩家在线时发不发，每条推送由运营选</h2>
+<p class="note"><span class="tag blue">10/28 你定</span>触发行为都保留，不加「N 小时未回」；去掉按行为类型的默认，每条必选发／不发，按所属活动的需要选。已改进评审版。下面是当时的说明。</p>
+<ul class="note">
+  <li><b>现在怎样</b>：条件触发推播里有「升级、完成任务、通行证升级」。这些发生时玩家一定在线，默认「在线不发」就几乎发不出；示例「任务完成奖励提醒」设成照发，等于给正在玩的人发 App 通知，还占营销名额，示例里挤掉了 15:00 的月月抽提醒。</li>
+  <li><b>推荐 A</b>：推播只留「破产后 N 小时未回」这种离线后才发的；升级、完成任务的提示交给快显（快显本来就管在线提示）。示例换成破产回流提醒。</li>
+  <li><b>B</b>：三种都留，每种都加「触发后 N 小时仍未回到游戏才发」。多一个参数，功能更全。</li>
+  <li><b>C</b>：保持现状，评审时说明默认不发、要发得手动改照发。</li>
+</ul>
+
+<div class="links">
+三份意见原文：分析/评审版验收意见_1028/（运营.md、研发.md、对照写作要求.md）<br>
+研发另提了几条会后再补的小问题（登录次数怎么算、发送中能改什么等），我一并处理；需要研发查实的，挪进研发评审材料。
+</div>
+</div></body></html>

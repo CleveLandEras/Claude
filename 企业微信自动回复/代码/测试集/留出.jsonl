@@ -1,0 +1,442 @@
+{"id": "hold-0001", "text": "下节课什么时候呀", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0002", "text": "这周六几点上课", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0003", "text": "明天的课是几点的", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0004", "text": "老师今晚有课吗", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0005", "text": "几点开始来着 我给忘了", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0006", "text": "课表发我一份吧 手机里那张找不到了", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0007", "text": "国庆那几天还上课吗", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0008", "text": "下周三上不上", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0009", "text": "王小测是周几的课来着", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0010", "text": "还是在原来那个直播间上吗", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0011", "text": "今天的课几点结束 她爷爷要去接", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0012", "text": "老师你好 那个 我想问一下啊 就是我们家孩子 这周的课 是 是星期几 几点来着 我这边 记不太清了", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0013", "text": "下节可几点", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0014", "text": "几点上课", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0015", "text": "明天有课不", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0016", "text": "俺家娃明儿个几点上课", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0017", "text": "今晚有冇课啊老师", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0018", "text": "今朝夜里几点钟上课", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0019", "text": "周日那节是线上还是到校区", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0020", "text": "李小样这周的课程安排麻烦发我下", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0021", "text": "这周的课是不是挪到周五了", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0022", "text": "寒假的课表出来没", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0023", "text": "下午几点开始 我好安排接送", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0024", "text": "老师您好 打扰了 我们家李小样最近学校那边换了课表 我这边要重新安排接送 所以想确认一下 她这个班这学期是不是还是每周二和周四晚上 具体是几点开始几点结束 放假那几周是不是也照常 您方便的时候把最新的时间告诉我一下就行 不着急 谢谢您", "label": "上课时间", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0025", "text": "烦死了 手机日历又没提醒 今天几点的课来着", "label": "上课时间", "mixed": false, "tricky": true, "parts": [], "note": "烦的是手机，诉求只是问今天几点上课；判成带情绪只算漏答"}
+{"id": "hold-0026", "text": "今晚是不是不上了 我看群里有人这么说 您帮确认下", "label": "上课时间", "mixed": false, "tricky": true, "parts": [], "note": "字面有「不上了」，是确认今晚有没有课，不是不想学"}
+{"id": "hold-0027", "text": "下学期第一节课是几号", "label": "上课时间", "mixed": false, "tricky": true, "parts": [], "note": "字面有「下学期」，只问开课日期，没提报名和费用"}
+{"id": "hold-0028", "text": "我退休了在家带孙子 这些都搞不清 今天几点上课呀", "label": "上课时间", "mixed": false, "tricky": true, "parts": [], "note": "「退」是退休，诉求只是问上课时间"}
+{"id": "hold-0029", "text": "我要投诉我自己 又把课表弄丢了 再发我一份吧", "label": "上课时间", "mixed": false, "tricky": true, "parts": [], "note": "「投诉」是玩笑话，诉求是要课表"}
+{"id": "hold-0030", "text": "领导今晚要我加班 得提前找人接孩子 今晚的课几点开始", "label": "上课时间", "mixed": false, "tricky": true, "parts": [], "note": "「领导」是家长自己的领导，诉求是问几点"}
+{"id": "hold-0031", "text": "题我们先放一放 下节课是哪天", "label": "上课时间", "mixed": false, "tricky": true, "parts": [], "note": "有「题」字但说了先放着，只问下节课"}
+{"id": "hold-0032", "text": "差点骂人 闹钟没响 今天的课开始了没", "label": "上课时间", "mixed": false, "tricky": true, "parts": [], "note": "气的是闹钟，诉求是问课开始没有"}
+{"id": "hold-0033", "text": "报名的事下回再说 今晚有课吧 几点的", "label": "上课时间", "mixed": false, "tricky": true, "parts": [], "note": "提到报名但说了下回再说，只问今晚几点"}
+{"id": "hold-0034", "text": "昨晚的回放在哪看", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0035", "text": "上节课有回放吗", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0036", "text": "回放链接发我一下", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0037", "text": "孩子昨天发烧没上 能补看吗", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0038", "text": "错过了还能看吗", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0039", "text": "周六那节的录播在哪", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0040", "text": "重播啥时候能看", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0041", "text": "回放一般多久能出来", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0042", "text": "回放能看几天 会过期吗", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0043", "text": "上周的课想让他再听一遍 怎么弄", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0044", "text": "没赶上今晚的直播 哪里还能看", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0045", "text": "有录屏吗 周二那节", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0046", "text": "老师 就是昨天那节课 我们家 网断了嘛 后面半节没听着 有没有那个 那个能再看一遍的", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0047", "text": "回方在哪看", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0048", "text": "会放链接发下", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0049", "text": "回放呢", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0050", "text": "有回放不", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0051", "text": "昨儿个那课俺家娃没赶上 上哪看去", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0052", "text": "琴日嗰堂课有冇得睇返", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0053", "text": "小测请假那节 回看入口在哪", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0054", "text": "看回放要下载啥吗", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0055", "text": "手机上能看回放不 怎么进去", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0056", "text": "上周二那节的回放链接过期了 再发一下", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0057", "text": "第5讲的视频能发我吗", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0058", "text": "老师你好 上周四那节课孩子学校组织活动没赶回来 我当时想着有回放就没跟您说 结果现在在 app 里面翻了半天也没找到 不知道是还没传上去还是我找的地方不对 您能不能告诉我一下在哪里能看到 或者直接把链接发给我也可以 谢谢", "label": "回放链接", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0059", "text": "气死了 网卡了半小时 昨晚后半段回放能看吗", "label": "带情绪", "mixed": true, "tricky": true, "parts": ["回放链接", "带情绪"], "note": "前半句是气话，卡的可能是机构的直播而不只是家里网络，分不清气谁，后半句才是回放；宁可转二讲"}
+{"id": "hold-0060", "text": "烦死了这孩子又睡过头 没赶上课 回放怎么看", "label": "回放链接", "mixed": false, "tricky": true, "parts": [], "note": "烦的是自家孩子，诉求是回放"}
+{"id": "hold-0061", "text": "闪退了三回 后面没听着 有回看吗", "label": "回放链接", "mixed": false, "tricky": true, "parts": [], "note": "「退」是软件闪退，诉求是回看"}
+{"id": "hold-0062", "text": "我要投诉这破手机 又死机了 昨晚的回放在哪", "label": "回放链接", "mixed": false, "tricky": true, "parts": [], "note": "「投诉」是玩笑话，对象是手机，诉求是回放"}
+{"id": "hold-0063", "text": "这节听不懂 想多看几遍 回放在哪", "label": "回放链接", "mixed": false, "tricky": true, "parts": [], "note": "「听不懂」不是在问知识点也不是抱怨，诉求是回放"}
+{"id": "hold-0064", "text": "领导临时开会 没陪娃听成 回放发一下呗", "label": "回放链接", "mixed": false, "tricky": true, "parts": [], "note": "「领导」是家长自己的领导，诉求是回放"}
+{"id": "hold-0065", "text": "这周作业几号交", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0066", "text": "作业什么时候截止", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0067", "text": "周末那张卷子周几之前交", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0068", "text": "今天的作业晚上十二点前交都算吧", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0069", "text": "作业还能补交吗", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0070", "text": "过了时间还能交不", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0071", "text": "昨天那份交晚了算不算", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0072", "text": "作文最晚哪天交", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0073", "text": "错题本要什么时候交", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0074", "text": "第三讲的作业截到哪天", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0075", "text": "练习册那几页什么时候要", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0076", "text": "打卡最晚几点", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0077", "text": "老师你好 我问一下哈 这个 这次的作业 是不是 是不是明天就要交了 还是说后天 我们家孩子还没写完", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0078", "text": "作业截至到几点", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0079", "text": "做业几号交", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0080", "text": "这作业啥时候交哇", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0081", "text": "功课几时要交呀", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0082", "text": "传晚了系统还收吗", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0083", "text": "提交入口几点关", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0084", "text": "周五前交 是周五当天也算吗", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0085", "text": "小测的作业能延到下周不", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0086", "text": "数学卷子明早交来得及吧", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0087", "text": "寒假作业是开学那天交吗", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0088", "text": "能晚两天交不 这周学校考试", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0089", "text": "老师打扰了 孩子这周学校连着三场考试 您这边的作业他估计要到周末才能写 我想问一下 这次的作业最晚可以交到什么时候 如果赶不上周日晚上 下周一早上交还算不算按时 谢谢老师", "label": "作业截止", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0090", "text": "这孩子气死我了 作业拖到现在还没动 最晚几点交", "label": "作业截止", "mixed": false, "tricky": true, "parts": [], "note": "气的是自家孩子，诉求是截止时间"}
+{"id": "hold-0091", "text": "这次量有点大 写到现在还没完 最晚什么时候交", "label": "带情绪", "mixed": true, "tricky": true, "parts": ["作业截止", "带情绪"], "note": "看着只是问截止，「量有点大」是对作业量的委婉不满，二讲该看到；宁可转二讲"}
+{"id": "hold-0092", "text": "退回来的作业改完哪天之前交", "label": "作业截止", "mixed": false, "tricky": true, "parts": [], "note": "「退」是作业被打回，诉求是截止时间"}
+{"id": "hold-0093", "text": "我要疯了 写作业磨到半夜 今晚十二点前传上去就行吧", "label": "作业截止", "mixed": false, "tricky": true, "parts": [], "note": "「要疯了」说的是孩子磨蹭，诉求是确认截止时间"}
+{"id": "hold-0094", "text": "他说不想写了 我就问下还有几天交", "label": "作业截止", "mixed": false, "tricky": true, "parts": [], "note": "「不想」说的是孩子写作业，不是不想上课"}
+{"id": "hold-0095", "text": "下学期的预习作业开学哪天交", "label": "作业截止", "mixed": false, "tricky": true, "parts": [], "note": "字面有「下学期」，只问作业哪天交"}
+{"id": "hold-0096", "text": "老师别说他了 作业今晚补上 还来得及吧", "label": "作业截止", "mixed": false, "tricky": true, "parts": [], "note": "语气像求情，诉求是还能不能交"}
+{"id": "hold-0097", "text": "明天小测请个假", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0098", "text": "这周六有事来不了 请假", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0099", "text": "下周三的课能调到周四吗", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0100", "text": "孩子发烧了 今晚的课上不了", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0101", "text": "想换到周末那个时间 能换吗", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0102", "text": "调课怎么弄", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0103", "text": "请假要提前多久说", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0104", "text": "请假了课时扣不扣", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0105", "text": "周五要去外婆家 来不了 跟您说一声", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0106", "text": "学校考试那周能不能挪一节", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0107", "text": "老师 你好 我们家李小样 这个礼拜六 学校有个活动 可能 就是 赶不上上课了 要怎么 请假", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0108", "text": "想清个假", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0109", "text": "掉课咋操作", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0110", "text": "请假", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0111", "text": "能调吗", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "只有三个字，「调」可能是调课、调班或调老师，指代不清（与 hold-0402 同类）"}
+{"id": "hold-0112", "text": "俺娃明儿上不了课 请个假中不", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0113", "text": "今晚唔得闲上堂 想请假", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0114", "text": "明朝有事体 课上不了", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0115", "text": "我是王小测妈妈 13000000003 明晚请假", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0116", "text": "下周出差带娃 连着两节来不了 怎么算", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0117", "text": "想把周二的换到周四晚上 有位置吗", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0118", "text": "这节能往后挪一周不", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0119", "text": "这周末回老家 两节都请了吧", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0120", "text": "请假之后怎么补", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0121", "text": "老师您好 是这样 我们下个月初要带孩子回老家办点事 大概走一个星期 这中间正好赶上两节课 想提前跟您说一声 这两节要怎么请假 还是可以调到别的时间去听 这个是什么流程 需要我这边做什么 您告诉我一下 谢谢", "label": "请假调课", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0122", "text": "孩子吐了一晚上 烦死了 今晚这节不上了", "label": "请假调课", "mixed": false, "tricky": true, "parts": [], "note": "「烦死了」「不上了」都只针对今晚这一节，孩子生病请假"}
+{"id": "hold-0123", "text": "不学了不学了 今晚不学了 眼睛发炎 请一节假", "label": "请假调课", "mixed": false, "tricky": true, "parts": [], "note": "「不学了」只指今晚，明说请一节假"}
+{"id": "hold-0124", "text": "我要投诉医院 排队排到现在 赶不上今晚的课了 帮请个假", "label": "请假调课", "mixed": false, "tricky": true, "parts": [], "note": "投诉的是医院，诉求是请假"}
+{"id": "hold-0125", "text": "领导让我周四带娃去体检 周四的课调一下", "label": "请假调课", "mixed": false, "tricky": true, "parts": [], "note": "「领导」是家长自己的领导，诉求是调课"}
+{"id": "hold-0126", "text": "最近身体不好 下周的课都来不了 课时先帮留着", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "前半句像请假，但「课时先帮留着」是要二讲拍板的保留课时请求，涉及课时处理，不是只问规则；宁可转二讲"}
+{"id": "hold-0127", "text": "气人 学校又临时加考试 周六那节只能挪了", "label": "请假调课", "mixed": false, "tricky": true, "parts": [], "note": "气的是学校考试，诉求是调课"}
+{"id": "hold-0128", "text": "孩子今天闹脾气 说不想上了 算了今晚请个假吧", "label": "请假调课", "mixed": false, "tricky": true, "parts": [], "note": "「不想上了」是今天闹脾气，诉求是今晚请假"}
+{"id": "hold-0129", "text": "钱不钱的不重要 就想问请假会不会扣课时", "label": "请假调课", "mixed": false, "tricky": true, "parts": [], "note": "提到钱，但问的是请假规则"}
+{"id": "hold-0130", "text": "这两周考试先不来了 下个月接着上", "label": "请假调课", "mixed": false, "tricky": true, "parts": [], "note": "「不来了」是暂时的，说了接着上"}
+{"id": "hold-0131", "text": "老师 这道题孩子算出来是24 答案是18 能帮看下哪错了吗", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0132", "text": "[图片] 这个第二问怎么做 孩子卡住了", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0133", "text": "分数除以分数为什么要乘倒数 孩子问我我讲不清楚", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0134", "text": "鸡兔同笼用假设法怎么讲 例例老绕不出来", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0135", "text": "现在完成时和一般过去时到底咋区分啊", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0136", "text": "长方形周长24 长比宽多2 求面积 这个怎么列式", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0137", "text": "被动语态 be加过去分词 那 get done 算不算", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0138", "text": "光合作用和呼吸作用的区别 孩子说课上没听明白", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0139", "text": "甲乙相向而行 甲每小时5千米 乙每小时4千米 3小时相遇 两地相距多远 孩子非说是3千米", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0140", "text": "二分之一加三分之一 他写的五分之二 我说不对他不信 您给讲讲", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0141", "text": "的地得怎么分", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0142", "text": "代入法和加减法 什么时候用哪个", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0143", "text": "比例尺1比500 图上3厘米 实际多少米来着", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0144", "text": "through 和 though 怎么读", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0145", "text": "三角形内角和180度 怎么跟孩子证明", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0146", "text": "课上讲的那个换元 回来又不会了 能再讲讲吗", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0147", "text": "停车坐爱枫林晚的坐是啥意思", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0148", "text": "串联并联怎么看 我们家看电路图一头雾水", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0149", "text": "浮力公式里那个V是排开的还是物体的", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0150", "text": "余数可以比除数大吗", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0151", "text": "老师你好 就是那个 昨天讲的那个 等差数列求和 他说那个首项加末项 乘项数 还要除以二 为什么要除以二 孩子问我 我也讲不明白", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0152", "text": "这个公试怎么推出来的 孩子问我", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0153", "text": "a平方减b平方 等于多少来着 他说是a减b的平方", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0154", "text": "hour 前面为啥用 an", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0155", "text": "水烧开冒的白气是水蒸气吗", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0156", "text": "sin30度多少", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0157", "text": "[图片] 第三步没看懂", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0158", "text": "俺娃问这个勾股定理咋用 俺也不会", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0159", "text": "孩子昨晚做一个行程的应用题一直做到十一点 他说两个人同向走 快的追慢的 追上的时候路程差等于一开始隔的距离 这个我看着也对 但他列出来的式子跟答案不一样 能不能帮我们讲一下追及问题到底怎么列式 我跟他爸都教不了", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0160", "text": "这个字念啥 耄耋", "label": "学科答疑", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0161", "text": "作业第三个怎么做呀", "label": "学科答疑", "mixed": false, "tricky": true, "parts": [], "note": "有「作业」但问的是怎么做，不是什么时候交"}
+{"id": "hold-0162", "text": "今晚要交的卷子里 第5小问 答案是不是负数", "label": "学科答疑", "mixed": false, "tricky": true, "parts": [], "note": "「今晚要交」像作业截止，诉求是问答案"}
+{"id": "hold-0163", "text": "下午3点到5点40一共多长时间 孩子算成2小时80分了", "label": "学科答疑", "mixed": false, "tricky": true, "parts": [], "note": "字面问时间，其实是时间计算的数学问题"}
+{"id": "hold-0164", "text": "几点的时候时针和分针重合 3点几分来着", "label": "学科答疑", "mixed": false, "tricky": true, "parts": [], "note": "字面问几点，其实是钟面问题"}
+{"id": "hold-0165", "text": "植树问题 从星期一数到星期五算几个间隔 是4还是5", "label": "学科答疑", "mixed": false, "tricky": true, "parts": [], "note": "字面有星期，其实问间隔数"}
+{"id": "hold-0166", "text": "请假条开头要顶格写吗 语文要写这个", "label": "学科答疑", "mixed": false, "tricky": true, "parts": [], "note": "字面有请假，其实问语文应用文格式"}
+{"id": "hold-0167", "text": "重播的重读第几声 听写错了", "label": "学科答疑", "mixed": false, "tricky": true, "parts": [], "note": "字面有重播，其实问字音"}
+{"id": "hold-0168", "text": "截止的止和只有的只老写混 有啥好办法记", "label": "学科答疑", "mixed": false, "tricky": true, "parts": [], "note": "字面有截止，其实问字形"}
+{"id": "hold-0169", "text": "回放里第二十分钟老师说的那个公式 为什么要减1", "label": "学科答疑", "mixed": false, "tricky": true, "parts": [], "note": "字面有回放，诉求是问公式"}
+{"id": "hold-0170", "text": "调课的调 跟调料的调 读音一样吗", "label": "学科答疑", "mixed": false, "tricky": true, "parts": [], "note": "字面有调课，其实问字音"}
+{"id": "hold-0171", "text": "下节课要讲的二次函数 顶点公式能提前说下吗 他想预习", "label": "学科答疑", "mixed": false, "tricky": true, "parts": [], "note": "字面有下节课，诉求是问知识点"}
+{"id": "hold-0172", "text": "下学期的班什么时候开始报", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0173", "text": "续费现在有优惠吗", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0174", "text": "秋季班还有名额吗 想给小测占一个", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0175", "text": "老生再报是不是能便宜点", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0176", "text": "下学期的课要多少钱呀", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0177", "text": "寒假班现在能报了吗", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0178", "text": "听说老学员有折扣 真的假的", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0179", "text": "暑假那个班价格出来了吗", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0180", "text": "两个孩子一起报能不能优惠点", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0181", "text": "明年还想接着跟这个老师 怎么弄", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0182", "text": "课时快用完了吧 要不要再买点", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0183", "text": "现在交钱和开学再交 价格一样吗", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0184", "text": "有没有一年的套餐 能分期不", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0185", "text": "同学妈妈说她们续了送资料 我们也有吗", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0186", "text": "你们这个课 到五年级还有吗 还想接着学", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0187", "text": "小测六年级了 初中部有没有对应的班", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0188", "text": "定金交多少", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0189", "text": "能不能先锁个位置 钱下个月再给", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0190", "text": "去年的价格今年还能用不", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0191", "text": "今年还搞老带新不 拉个同学来能减多少", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0192", "text": "那个 老师啊 我想问一下 就是我们这个 下个学期的话 还是这个班吗 还是说要重新 重新交钱报一下", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0193", "text": "还能续吗", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0194", "text": "下期咋报", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0195", "text": "阿拉下学期还想读 侬帮我看看哪能报", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0196", "text": "俺家娃下学期还想上恁这课 咋弄", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0197", "text": "下个学期继续读要几多钱", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0198", "text": "孩子挺喜欢这个课的 就是不知道下学期怎么说 你们有什么安排吗", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0199", "text": "课时包还有没有小一点的 不想一次买那么多", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0200", "text": "朋友圈那个299的活动 是新生才能买吗", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0201", "text": "老师 这学期眼看就要结束了 孩子上下来感觉还行 我们家里也商量了一下 倾向于接着学 不过下学期开始他上初三了 时间比较紧 不知道你们有没有适合初三的班型 一周几次 费用大概多少 老学员有没有什么政策 您方便的话跟我说一下 我们好提前打算", "label": "续报", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0202", "text": "续废什么时候截至呀", "label": "续报", "mixed": false, "tricky": true, "parts": [], "note": "「续废」是续费的错字；「截至」像作业截止"}
+{"id": "hold-0203", "text": "报名链接发我一下 下学期的", "label": "续报", "mixed": false, "tricky": true, "parts": [], "note": "字面有「链接」，像回放链接，其实是报名"}
+{"id": "hold-0204", "text": "上次说的早鸟价 到哪天截止", "label": "续报", "mixed": false, "tricky": true, "parts": [], "note": "字面有「截止」，其实问优惠期限"}
+{"id": "hold-0205", "text": "下学期什么时候开学 想提前把钱交了", "label": "续报", "mixed": false, "tricky": true, "parts": [], "note": "字面问时间，诉求是提前交钱续报"}
+{"id": "hold-0206", "text": "我们这期快上完了 后面还有课吗 想接着上", "label": "续报", "mixed": false, "tricky": true, "parts": [], "note": "字面像问课表，诉求是接着报"}
+{"id": "hold-0207", "text": "隔壁那家活动比你们便宜不少 你们这边能申请下不", "label": "续报", "mixed": false, "tricky": true, "parts": [], "note": "语气像不满，其实在谈优惠"}
+{"id": "hold-0208", "text": "如果接着学 周六这个时间还能保留吗", "label": "续报", "mixed": false, "tricky": true, "parts": [], "note": "字面问时间，前提是续报，是在试探"}
+{"id": "hold-0209", "text": "下学期还是这个老师带吗 是的话我们就继续", "label": "续报", "mixed": false, "tricky": true, "parts": [], "note": "字面问老师，是委婉的续报试探"}
+{"id": "hold-0210", "text": "老师 上完这学期我们要不要接着学 您给透个底 现在定划算还是再等等", "label": "续报", "mixed": false, "tricky": true, "parts": [], "note": "没提续费，在试探价格和时机"}
+{"id": "hold-0211", "text": "暑期班的活动到几号结束", "label": "续报", "mixed": false, "tricky": true, "parts": [], "note": "字面问几号，其实问优惠活动期限"}
+{"id": "hold-0212", "text": "我想退费 怎么弄", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0213", "text": "剩下的课不上了 钱能退吗", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0214", "text": "退款流程是什么 多久到账", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0215", "text": "我们决定不学了 帮我算下还剩多少钱", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0216", "text": "这学期就到这 后面的课时费给我结一下", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0217", "text": "孩子转学去外地了 课上不了 余下的费用怎么处理", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0218", "text": "不想上了 能把钱拿回来吗", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0219", "text": "没上的那些课 能不能折成钱还给我们", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0220", "text": "合同写的七天内可以退 我们还在七天内吧", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0221", "text": "上了三节觉得不合适 剩下的怎么算", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0222", "text": "钱怎么要回来", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0223", "text": "退吧", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0224", "text": "不学了 结账", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0225", "text": "咋退", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0226", "text": "我老公不同意报 交的那笔能原路返回吗", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0227", "text": "学校作业太多实在顾不上 决定先停掉 已经交的费用您看怎么处理", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0228", "text": "分期的那个还没还完 我们不上了 能取消吗", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0229", "text": "还剩40节没上 不打算继续了 什么时候把钱打过来", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0230", "text": "手续费要扣多少 我们打算不上了", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0231", "text": "课不要了 钱转我卡上就行", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0232", "text": "老师 就是 我跟他爸商量了一下哈 这个课呢 我们就先不上了 那个 费用这块 您看 能不能 帮我们处理一下", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0233", "text": "这课俺不上了 钱得给俺退回来", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0234", "text": "想退废 找谁办", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0235", "text": "要是中途不学了 钱按什么比例算", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0236", "text": "课还没开始呢 反悔还来得及吧 付的钱能拿回来吗", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0237", "text": "你们那个无理由退款是真的吗", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0238", "text": "想把孩子的课停了 后面这半年的钱还能拿回多少", "label": "退费", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0239", "text": "老师我跟您说下情况 孩子这学期学校那边开始上晚自习了 回到家都快九点 您这边的课根本赶不上 我们也试过看回放 但他写完学校作业已经很晚 一节都看不完 家里商量了好几天 觉得还是别硬撑了 这边交的费用还剩不少 您帮我看一下能拿回多少", "label": "退费", "mixed": false, "tricky": true, "parts": [], "note": "有「回放」「赶不上」，真正诉求在最后一句，把钱拿回来"}
+{"id": "hold-0240", "text": "下周三那节上完就算了 后头的不用排了 账你们算一下", "label": "退费", "mixed": false, "tricky": true, "parts": [], "note": "字面像排课，诉求是不上了要结算"}
+{"id": "hold-0241", "text": "请个长假吧 后面的都不来了 剩下的钱你们看着办", "label": "退费", "mixed": false, "tricky": true, "parts": [], "note": "字面是请假，后面都不来了还提钱，是退费"}
+{"id": "hold-0242", "text": "调也调不开 算了这个班不读了 费用结一下", "label": "退费", "mixed": false, "tricky": true, "parts": [], "note": "字面有调课，诉求是不读了要结算"}
+{"id": "hold-0243", "text": "回放我们也不看了 这课没啥用 剩下的费用打给我 13000000001 是我收款账号", "label": "退费", "mixed": false, "tricky": true, "parts": [], "note": "字面有回放，诉求是费用打回来"}
+{"id": "hold-0244", "text": "上课时间跟我们一直对不上 一节都没法上 交的钱您看怎么还我们", "label": "退费", "mixed": false, "tricky": true, "parts": [], "note": "字面有上课时间，诉求是还钱"}
+{"id": "hold-0245", "text": "报错班了 这个不要了 钱怎么弄", "label": "退费", "mixed": false, "tricky": true, "parts": [], "note": "有「报」字，不是续报，是不要了要钱"}
+{"id": "hold-0246", "text": "能不能把剩下的课转给别的同学 我们不上了 钱我跟她结", "label": "退费", "mixed": false, "tricky": true, "parts": [], "note": "没有退字，是不想上了要处理剩余费用"}
+{"id": "hold-0247", "text": "不打算继续了 你们财务电话多少", "label": "退费", "mixed": false, "tricky": true, "parts": [], "note": "没有退字，找财务是为了结算，不是追究"}
+{"id": "hold-0248", "text": "小测爸爸失业了 家里现在紧张 这个课的钱 还有办法吗", "label": "退费", "mixed": false, "tricky": true, "parts": [], "note": "没有退字也没说不上，委婉地问钱能不能拿回来"}
+{"id": "hold-0249", "text": "发票开了没 开了的话我要作废 打算不上了", "label": "退费", "mixed": false, "tricky": true, "parts": [], "note": "字面问发票，后半句说不上了，是在为退费做准备"}
+{"id": "hold-0250", "text": "最后一次作业交了就到此为止吧 往后的费用别扣了", "label": "退费", "mixed": false, "tricky": true, "parts": [], "note": "字面有作业，诉求是不上了停止收费"}
+{"id": "hold-0251", "text": "几号之前说不上 才能全额拿回来", "label": "退费", "mixed": false, "tricky": true, "parts": [], "note": "字面问几号，其实问退费期限"}
+{"id": "hold-0252", "text": "您好 请问未消耗课时的费用 是怎么结算的", "label": "退费", "mixed": false, "tricky": true, "parts": [], "note": "客气的询问，没有退字，在探退费规则"}
+{"id": "hold-0253", "text": "合同什么时候到期 到期前不上的部分怎么算", "label": "退费", "mixed": false, "tricky": true, "parts": [], "note": "字面问时间，诉求是没上部分怎么结算"}
+{"id": "hold-0254", "text": "我要投诉", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0255", "text": "你们负责人电话给我一个", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0256", "text": "把校长的联系方式发我 这事我要当面问", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0257", "text": "这事你们必须给我个说法", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0258", "text": "我要打12315", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0259", "text": "再这样我就去教育局反映了", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0260", "text": "能不能换个老师 这个老师讲的孩子一点听不懂", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0261", "text": "这个老师我们不要了 给换一个", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0262", "text": "你上面是谁 我要跟他说", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0263", "text": "我要找你们主管", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0264", "text": "我已经在消协留言了 你们自己看着办", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0265", "text": "这事我不跟你说了 让能管事的人来找我", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0266", "text": "我会发到网上让大家评评理", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0267", "text": "上周说给我回电话 到现在没人理 你们有没有管这个的部门", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0268", "text": "主讲老师老迟到 这个事想找个能做主的人谈谈", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0269", "text": "孩子被老师当众说哭了 我需要你们给一个解释", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0270", "text": "聊天记录我都截图留着了 你们要是不处理 我就往上走", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0271", "text": "请把我的意见转给你们管理层 这学期的服务跟当初承诺的差太远", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0272", "text": "当初答应一对一辅导的 现在根本没有 这算不算虚假宣传 我要找人说清楚", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0273", "text": "合同写的和实际不一样 让你们法务联系我", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0274", "text": "你们那个课程顾问骗人 我要实名举报他", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0275", "text": "总部客服我已经打过了 等他们回话 这事不会就这么算了", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0276", "text": "我让我律师跟你们联系", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0277", "text": "恁们领导电话给俺 俺要问问", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0278", "text": "我要头诉 你们这个老师态度太差", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0279", "text": "叫你们领导来", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0280", "text": "换老师", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0281", "text": "我跟你说啊 这个事情呢 我不是针对你 但是 你们那个主讲老师 他 他已经连续两次了 我觉得你们得有人出来 给我们家长一个交代", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0282", "text": "想给校区提个意见 助教回复太慢了 希望有人管管", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0283", "text": "我今天把话说清楚 孩子在你们这学了一年半 这学期换了主讲之后 上课经常拖堂 作业批改也是有一搭没一搭 我前后找过你们三次 每次都说会反馈 然后就没有下文了 我不想再跟一线老师说这些了 你们也为难 请你们能拍板的人这周内给我回个电话 13000000002", "label": "投诉", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0284", "text": "几点能找到你们校长 我下午过去一趟", "label": "投诉", "mixed": false, "tricky": true, "parts": [], "note": "字面问几点，其实要找负责人"}
+{"id": "hold-0285", "text": "你们总部在哪 明天上午我去一趟 当面问问这事", "label": "投诉", "mixed": false, "tricky": true, "parts": [], "note": "字面问在哪，像上课地点，其实是上门追究"}
+{"id": "hold-0286", "text": "下节课还是那个老师吗 还是的话就换人吧 我们受够了", "label": "投诉", "mixed": false, "tricky": true, "parts": [], "note": "字面问下节课，诉求是换老师"}
+{"id": "hold-0287", "text": "回放链接发我一下 我要留存当证据", "label": "投诉", "mixed": false, "tricky": true, "parts": [], "note": "字面要回放链接，目的是留证追究"}
+{"id": "hold-0288", "text": "作业的事到底谁负责 批错三回了 我想跟负责的人聊聊", "label": "投诉", "mixed": false, "tricky": true, "parts": [], "note": "字面有作业，诉求是找负责人"}
+{"id": "hold-0289", "text": "请假调课这么难吗 谁定的规矩 我要跟他本人谈", "label": "投诉", "mixed": false, "tricky": true, "parts": [], "note": "字面有请假调课，诉求是找定规矩的人"}
+{"id": "hold-0290", "text": "老师您辛苦了 不过这件事恐怕还是得麻烦您上级出面", "label": "投诉", "mixed": false, "tricky": true, "parts": [], "note": "客气、没有负面词，但要求上级出面"}
+{"id": "hold-0291", "text": "没别的意思 就想问下你们有没有家长反馈的渠道 有些话想说说", "label": "投诉", "mixed": false, "tricky": true, "parts": [], "note": "语气平和，其实要向上反映"}
+{"id": "hold-0292", "text": "上次那节课的事还在等回复 下周一之前没结果 我们就走别的途径了", "label": "投诉", "mixed": false, "tricky": true, "parts": [], "note": "没有投诉字样，是在设期限、施压"}
+{"id": "hold-0293", "text": "能告诉我那个老师的工号吗 我想登记一下", "label": "投诉", "mixed": false, "tricky": true, "parts": [], "note": "语气平静，要工号是为了追究"}
+{"id": "hold-0294", "text": "您好 请问贵校是否有正式的意见受理流程", "label": "投诉", "mixed": false, "tricky": true, "parts": [], "note": "书面客气，问流程是为了向上反映"}
+{"id": "hold-0295", "text": "你们这服务真是绝了", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0296", "text": "呵呵", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0297", "text": "行吧 反正也指望不上你们", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0298", "text": "交了那么多钱就这水平", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0299", "text": "真是服了", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0300", "text": "上了一学期 成绩一点没动 我都不知道图什么", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0301", "text": "发消息又不回 要你们干嘛", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0302", "text": "每次都这样 我已经习惯了", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0303", "text": "这都第几回了", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0304", "text": "算了算了 说了也没用", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0305", "text": "太失望了", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0306", "text": "这课上的什么玩意儿！！！", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0307", "text": "老师讲得跟念经一样 孩子听得直打瞌睡 钱白花了", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0308", "text": "你们收钱的时候可不是这个态度", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0309", "text": "找你们一次比登天还难", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0310", "text": "我真是瞎了眼才报你们这个班", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0311", "text": "当初说得天花乱坠 现在呢", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0312", "text": "有发广告的功夫 不如把课讲好", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0313", "text": "又是这句话 能不能换句新的", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0314", "text": "我每天下班累死累活陪他学这些 结果他说听不懂 你们还好意思发喜报", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0315", "text": "我真的是 我都不知道说什么好了 就是 你们这样子 搞得我 一晚上没睡着 气得我", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0316", "text": "搞么事哦 这个课上得一塌糊涂", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0317", "text": "恁这课上得啥也不是", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0318", "text": "你们这是什么破机够", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0319", "text": "无语", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0320", "text": "离谱", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0321", "text": "心累", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0322", "text": "我算是看明白了 你们就只管收钱", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0323", "text": "不敢问了 问了也是白问", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0324", "text": "我真的不想说什么了 孩子从报名到现在 每次我问点什么都是隔半天才回 回的也是复制粘贴的话 开学的时候说会定期反馈学习情况 一学期了就发过两回 还都是群发的 孩子每次上完课问他学了啥 他也说不上来 我都不知道这钱花得值不值 反正就这样吧", "label": "带情绪", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0325", "text": "很好 非常好 继续保持", "label": "带情绪", "mixed": false, "tricky": true, "parts": [], "note": "字面是表扬，家长对老师说「继续保持」是讽刺；没有事务诉求"}
+{"id": "hold-0326", "text": "谢谢你们啊 孩子现在一听上课就哭", "label": "带情绪", "mixed": false, "tricky": true, "parts": [], "note": "字面感谢，是讽刺"}
+{"id": "hold-0327", "text": "感谢老师 让我们家花钱买了个教训", "label": "带情绪", "mixed": false, "tricky": true, "parts": [], "note": "字面感谢，是讽刺"}
+{"id": "hold-0328", "text": "您真忙啊 三天才回一句", "label": "带情绪", "mixed": false, "tricky": true, "parts": [], "note": "字面客气，是讽刺"}
+{"id": "hold-0329", "text": "真是辛苦你们了 一个链接能发错三回", "label": "带情绪", "mixed": false, "tricky": true, "parts": [], "note": "字面感谢、有链接，是讽刺，没要链接"}
+{"id": "hold-0330", "text": "今天几点上课 你们自己知道吗 上回说改又没改", "label": "带情绪", "mixed": false, "tricky": true, "parts": [], "note": "看着问几点，其实是反问指责"}
+{"id": "hold-0331", "text": "还上什么课 时间一天一变 当我们家长都是闲人吗", "label": "带情绪", "mixed": false, "tricky": true, "parts": [], "note": "字面有上课和时间，是发泄"}
+{"id": "hold-0332", "text": "作业几号交 你们自己搞得清楚吗 一会周三一会周五", "label": "带情绪", "mixed": false, "tricky": true, "parts": [], "note": "看着问截止，其实是反问指责"}
+{"id": "hold-0333", "text": "请个假还要填三张表 这是上课还是上班", "label": "带情绪", "mixed": false, "tricky": true, "parts": [], "note": "字面有请假，不是要请假，是发泄"}
+{"id": "hold-0334", "text": "又要调课 这学期都调第几回了 孩子的时间不是时间吗", "label": "带情绪", "mixed": false, "tricky": true, "parts": [], "note": "字面有调课，不是要调课，是发泄"}
+{"id": "hold-0335", "text": "这节课几点结束 我想知道还要忍多久", "label": "带情绪", "mixed": false, "tricky": true, "parts": [], "note": "看着问时间，其实在抱怨课不好"}
+{"id": "hold-0336", "text": "八点开始的课八点二十才进来 这就是你们说的准时", "label": "带情绪", "mixed": false, "tricky": true, "parts": [], "note": "字面有时间，是讽刺迟到"}
+{"id": "hold-0337", "text": "我就问一句 这回放是不是永远都打不开", "label": "带情绪", "mixed": false, "tricky": true, "parts": [], "note": "字面问回放，是反问发泄"}
+{"id": "hold-0338", "text": "请问今天老师还来吗 孩子在屏幕前坐了半小时了", "label": "带情绪", "mixed": false, "tricky": true, "parts": [], "note": "客气地问，其实在指责老师迟到"}
+{"id": "hold-0339", "text": "老师今天几点能到 上回让孩子干等了二十分钟 今天又准备等多久", "label": "带情绪", "mixed": false, "tricky": true, "parts": [], "note": "看着问几点，其实在翻旧账指责"}
+{"id": "hold-0340", "text": "下学期？还有下学期？这学期都这样了", "label": "带情绪", "mixed": false, "tricky": true, "parts": [], "note": "字面有下学期，不是问续报，是反问发泄"}
+{"id": "hold-0341", "text": "回放看了 跟没看一样", "label": "带情绪", "mixed": false, "tricky": true, "parts": [], "note": "字面有回放，没要回放，在说课没用"}
+{"id": "hold-0342", "text": "老师好", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0343", "text": "谢谢老师", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0344", "text": "收到", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0345", "text": "好的", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0346", "text": "在吗", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0347", "text": "辛苦了老师", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0348", "text": "老师中秋快乐", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0349", "text": "[图片]", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0350", "text": "[语音]", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0351", "text": "[文件]", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0352", "text": "[捂脸]", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0353", "text": "👍", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0354", "text": "🙏🙏", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0355", "text": "？？", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0356", "text": "小测最近上课状态怎么样", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0357", "text": "这次单元测 例例大概在班里什么水平", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0358", "text": "样样课上有没有开小差", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0359", "text": "那个事怎么样了", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0360", "text": "上次说的那个呢", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0361", "text": "这个咋弄", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0362", "text": "怎么还没回我", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0363", "text": "老师看到回一下", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0364", "text": "您好 我们是专业代办各类资格证书的 需要可以了解一下", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0365", "text": "【新人福利】扫码领100元红包 本群专享", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0366", "text": "孩子他爸问的", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0367", "text": "嗯嗯", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0368", "text": "孩子这两天不太爱跟我说话 您平时能帮着开导开导吗", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0369", "text": "我们搬家了 教材寄到新地址吧", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0370", "text": "发票怎么开", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0371", "text": "账号登录不上去了", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0372", "text": "app老是转圈进不去", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0373", "text": "130-0000-0005 这个号登不上 验证码收不到", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0374", "text": "孩子账号绑定的手机号改成 13000000004 吧", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0375", "text": "你们招人吗 我朋友想应聘", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0376", "text": "发错了 不好意思", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0377", "text": "刚才那条不用管", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0378", "text": "[语音] 你听一下", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0379", "text": "老师你是哪里人呀", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0380", "text": "这个月孩子进步大吗", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0381", "text": "老师 这个月怎么没扣课时", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0382", "text": "老师跟您聊聊 我们家这个孩子吧 从小就比较内向 上了初中之后更不爱说话了 回家就关门 我也不知道他课上是什么样 和同学处得好不好 您带的孩子多 有经验 您觉得我们当家长的该怎么做比较好", "label": "都不是／拿不准", "mixed": false, "tricky": false, "parts": [], "note": ""}
+{"id": "hold-0383", "text": "孩子手受伤了 这几天写字慢 跟您说一声", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "像请假，但没说不上课，只是告知"}
+{"id": "hold-0384", "text": "https://example.com/abc 这个是你们的吗", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "发来的是链接，不是要回放链接"}
+{"id": "hold-0385", "text": "回放挺好的 谢谢老师", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "字面有回放，只是感谢"}
+{"id": "hold-0386", "text": "上课时间的事不用了 我搞清楚了 谢谢", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "字面有上课时间，没有在问"}
+{"id": "hold-0387", "text": "作业交了", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "字面有作业，只是告知，没问截止"}
+{"id": "hold-0388", "text": "请假的事我再跟他爸商量下", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "字面有请假，还没定，没有诉求"}
+{"id": "hold-0389", "text": "小测今天作业完成得怎么样", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "字面有作业，问的是学情"}
+{"id": "hold-0390", "text": "昨天的课他听懂了吗", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "字面有课，问的是学情"}
+{"id": "hold-0391", "text": "孩子今天上课了吗", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "字面有上课，问的是考勤和学情"}
+{"id": "hold-0392", "text": "链接", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "只有两个字，看不出要哪个链接"}
+{"id": "hold-0393", "text": "几点", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "只有两个字，看不出问什么几点"}
+{"id": "hold-0394", "text": "那个链接打不开", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "指代不清，可能是回放，也可能是报名或别的"}
+{"id": "hold-0395", "text": "孩子今天不太舒服", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "没说要请假，只是告知"}
+{"id": "hold-0396", "text": "明天有事", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "指代不清，可能是请假，也可能是别的"}
+{"id": "hold-0397", "text": "老师今天上课讲得真好 孩子回来一直说", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "字面有上课，是真心夸奖，有具体的好事（孩子回来一直说）"}
+{"id": "hold-0398", "text": "招代理 回放课程转卖 上课时间自由 日赚300", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "广告，字面有回放和上课时间"}
+{"id": "hold-0399", "text": "老师你几点下班", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "字面问几点，问的是老师下班，不是上课"}
+{"id": "hold-0400", "text": "您今天几点方便 我给您打个电话", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "字面问几点，想电话沟通，没说什么事"}
+{"id": "hold-0401", "text": "几号交", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "没说交什么，可能是作业也可能是学费"}
+{"id": "hold-0402", "text": "能换吗", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "指代不清，换时间、换老师、换班都可能"}
+{"id": "hold-0403", "text": "不用了", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "指代不清，看不出不用什么"}
+{"id": "hold-0404", "text": "算了", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "指代不清，可能是不问了，也可能是不满"}
+{"id": "hold-0405", "text": "书什么时候能寄到", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "字面问时间，是教材物流，不属于自动 4 类"}
+{"id": "hold-0406", "text": "校区周末几点关门 我过去拿下资料", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "字面问几点，不是问上课"}
+{"id": "hold-0407", "text": "孩子作业本落教室了 能帮找找吗", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "字面有作业，不是问截止"}
+{"id": "hold-0408", "text": "上课要准备什么东西吗", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "字面有上课，不是问时间或地点，不属于 9 类"}
+{"id": "hold-0409", "text": "作业是谁批的呀", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "字面有作业，不是问截止，也看不出要追究"}
+{"id": "hold-0410", "text": "孩子说布置的作业太少 能多给点吗", "label": "都不是／拿不准", "mixed": false, "tricky": true, "parts": [], "note": "字面有作业，不是问截止，不属于 9 类"}
+{"id": "hold-0411", "text": "作业几号交 还有第四题那个辅助线怎么画", "label": "学科答疑", "mixed": true, "tricky": false, "parts": ["作业截止", "学科答疑"], "note": ""}
+{"id": "hold-0412", "text": "今晚几点上课 你们这通知发得真够乱的", "label": "带情绪", "mixed": true, "tricky": false, "parts": ["上课时间", "带情绪"], "note": ""}
+{"id": "hold-0413", "text": "下节课几点 顺便把上节的回放发下", "label": "都不是／拿不准", "mixed": true, "tricky": false, "parts": ["上课时间", "回放链接"], "note": ""}
+{"id": "hold-0414", "text": "回放链接发一下。还有 上次说的事再没人管我就找你们领导了", "label": "投诉", "mixed": true, "tricky": false, "parts": ["回放链接", "投诉"], "note": ""}
+{"id": "hold-0415", "text": "下周二请个假 另外下学期的班啥时候能报", "label": "续报", "mixed": true, "tricky": false, "parts": ["请假调课", "续报"], "note": ""}
+{"id": "hold-0416", "text": "今晚几点上课 还有上回说的退费到账了没", "label": "退费", "mixed": true, "tricky": false, "parts": ["上课时间", "退费"], "note": ""}
+{"id": "hold-0417", "text": "周六几点的课呀 对了 老生续费这次有活动吗", "label": "续报", "mixed": true, "tricky": false, "parts": ["上课时间", "续报"], "note": ""}
+{"id": "hold-0418", "text": "周四请假。每次请假都要三催四请才回 真有意思", "label": "带情绪", "mixed": true, "tricky": false, "parts": ["请假调课", "带情绪"], "note": ""}
+{"id": "hold-0419", "text": "昨晚回放发一下 另外那个韦达定理 两根之和为啥是负的", "label": "学科答疑", "mixed": true, "tricky": false, "parts": ["回放链接", "学科答疑"], "note": ""}
+{"id": "hold-0420", "text": "今晚几点上课？另外那个老师能不能给换掉", "label": "投诉", "mixed": true, "tricky": false, "parts": ["上课时间", "投诉"], "note": ""}
+{"id": "hold-0421", "text": "作业周几截止呀 回放也发我一下", "label": "都不是／拿不准", "mixed": true, "tricky": false, "parts": ["作业截止", "回放链接"], "note": ""}
+{"id": "hold-0422", "text": "周五请假 那周的作业还是周日前交吗", "label": "都不是／拿不准", "mixed": true, "tricky": false, "parts": ["请假调课", "作业截止"], "note": ""}
+{"id": "hold-0423", "text": "不上了 把钱退我 你们那个顾问骗人的事我还要找人算账", "label": "投诉", "mixed": true, "tricky": false, "parts": ["投诉", "退费"], "note": ""}
+{"id": "hold-0424", "text": "你们这水平还好意思涨价 下学期多少钱 说吧", "label": "带情绪", "mixed": true, "tricky": false, "parts": ["带情绪", "续报"], "note": ""}
+{"id": "hold-0425", "text": "这道几何老师讲的什么啊 一句没听懂 BE为什么等于CF 你说说", "label": "带情绪", "mixed": true, "tricky": false, "parts": ["带情绪", "学科答疑"], "note": ""}
+{"id": "hold-0426", "text": "下学期还想报。另外这个词变复数为啥加es", "label": "续报", "mixed": true, "tricky": false, "parts": ["续报", "学科答疑"], "note": ""}
+{"id": "hold-0427", "text": "老师 我就问两个事啊 第一个就是 周六是不是 两点上课 第二个呢 就是上回那个老师 说话太冲了 孩子不想见他 能不能换一个", "label": "投诉", "mixed": true, "tricky": false, "parts": ["上课时间", "投诉"], "note": ""}
+{"id": "hold-0428", "text": "老师作业明天交是吧\n还有第二页倒数第二个怎么算\n他不会", "label": "学科答疑", "mixed": true, "tricky": false, "parts": ["作业截止", "学科答疑"], "note": ""}
+{"id": "hold-0429", "text": "回放发下\n你们这回放每次都迟到\n真的有点过分了", "label": "带情绪", "mixed": true, "tricky": false, "parts": ["回放链接", "带情绪"], "note": ""}
+{"id": "hold-0430", "text": "下周二来不了 请个假 到时候回放能看吧", "label": "都不是／拿不准", "mixed": true, "tricky": false, "parts": ["请假调课", "回放链接"], "note": ""}
+{"id": "hold-0431", "text": "又改时间 烦不烦 那这周到底周几上", "label": "带情绪", "mixed": true, "tricky": false, "parts": ["带情绪", "上课时间"], "note": ""}
+{"id": "hold-0432", "text": "这周先请假 要是孩子下周还不好 我们就不上了 钱得算给我", "label": "退费", "mixed": true, "tricky": false, "parts": ["请假调课", "退费"], "note": ""}
+{"id": "hold-0433", "text": "几何那块听不明白 圆周角和圆心角啥关系 下次课几号 想让他带着问", "label": "学科答疑", "mixed": true, "tricky": false, "parts": ["学科答疑", "上课时间"], "note": ""}
+{"id": "hold-0434", "text": "几点上课 回放在哪 作业哪天交", "label": "都不是／拿不准", "mixed": true, "tricky": false, "parts": ["上课时间", "回放链接", "作业截止"], "note": ""}
+{"id": "hold-0435", "text": "老师 这周的作业是周日晚上截止吧 我确认一下 另外有件事我想了很久还是要说 上周主讲老师在课上说我们家孩子脑子慢 孩子回来哭了很久 这话老师不该说 我希望你们机构有人跟我们正式谈一谈这件事", "label": "投诉", "mixed": true, "tricky": false, "parts": ["作业截止", "投诉"], "note": ""}
+{"id": "hold-0436", "text": "这课上成这样 退钱", "label": "退费", "mixed": true, "tricky": false, "parts": ["退费", "带情绪"], "note": ""}
+{"id": "hold-0437", "text": "作业周几交？顺便问下 校区有没有家长可以提意见的地方", "label": "投诉", "mixed": true, "tricky": true, "parts": ["作业截止", "投诉"], "note": "前半句是事务，后半句委婉地要向上反映"}
+{"id": "hold-0438", "text": "今晚几点的课呀 另外上回说的事 下周一之前没个结果 我们也有我们的办法", "label": "投诉", "mixed": true, "tricky": true, "parts": ["上课时间", "投诉"], "note": "前半句是事务，后半句没有投诉字样，是在设期限施压"}
+{"id": "hold-0439", "text": "回放发一下 我们看看还值不值得上完 不值得的话那笔钱我可不能白花", "label": "退费", "mixed": true, "tricky": true, "parts": ["回放链接", "退费"], "note": "前半句是事务，后半句没有退字，是在考虑要回钱"}
+{"id": "hold-0440", "text": "下节课几号 他爸说后面别上那么多了 不知道还能不能算回来一点", "label": "退费", "mixed": true, "tricky": true, "parts": ["上课时间", "退费"], "note": "前半句是事务，「算回来」是委婉的退费"}
+{"id": "hold-0441", "text": "周三的请个假 老师们真是大忙人 上回的消息到现在也没回", "label": "带情绪", "mixed": true, "tricky": true, "parts": ["请假调课", "带情绪"], "note": "前半句是事务，「大忙人」是讽刺"}
+{"id": "hold-0442", "text": "回放呢 说好的回放呢 每次都要人催", "label": "带情绪", "mixed": true, "tricky": true, "parts": ["回放链接", "带情绪"], "note": "看着只是要回放，但带指责；既要回放又在发泄"}

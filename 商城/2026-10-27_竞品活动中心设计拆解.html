@@ -1,0 +1,340 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>竞品活动中心设计拆解</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#7d838b;--line:#e2e0db;--accent:#9a6f24;--accent-soft:#f6efe0;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;--accent-soft:#2b2518;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;--accent-soft:#2b2518;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.65;overflow-wrap:anywhere}
+.wrap{max-width:1200px;margin:0 auto;padding:44px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.4;margin:0 0 10px}
+.lead{font-size:15px;color:var(--ink-2);margin:0 0 26px}
+.grid{display:grid;gap:12px}.g3{grid-template-columns:repeat(3,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 18px}
+.card .t{font-size:12.5px;font-weight:700;color:var(--accent);margin:0 0 4px}
+.card .h{font-size:15.5px;font-weight:700;margin:0 0 4px;line-height:1.5}
+.card .a{font-size:14px;color:var(--ink-2);margin:0}
+.scope{font-size:13px;color:var(--muted);margin:16px 0 0}
+.toc{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:28px 0 0;padding:0;list-style:none}
+.toc a{display:block;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:8px 12px;font-size:13.5px;line-height:1.45;color:var(--ink);text-decoration:none;height:100%}
+.toc a:hover{border-color:var(--accent)}
+.toc b{color:var(--accent);margin-right:6px}
+section{margin-top:56px;scroll-margin-top:16px}
+h2{font-family:var(--serif);font-size:20px;line-height:1.5;margin:0 0 14px;display:flex;align-items:baseline;gap:14px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);white-space:nowrap;min-width:78px}
+.shots{display:grid;gap:12px;margin:0 0 14px}
+.shots.n3{grid-template-columns:repeat(3,1fr)}
+.shots.n2{grid-template-columns:repeat(2,1fr)}
+.shots.n1{grid-template-columns:minmax(0,640px)}
+figure{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+figure a{display:block;line-height:0;background:#0d0d12}
+figure img{width:100%;height:auto;display:block}
+.shots.crop figure img{width:auto;max-width:100%;max-height:560px;margin:0 auto}
+figcaption{padding:8px 12px 10px;font-size:13px;line-height:1.55;color:var(--ink-2)}
+figcaption .ts{color:var(--muted);margin-left:4px;white-space:nowrap}
+.co{display:inline-block;font-size:12px;font-weight:700;padding:1px 7px;border-radius:3px;margin-right:6px;white-space:nowrap;line-height:1.6}
+.co.j{background:var(--green-soft);color:var(--green)}.co.x{background:var(--blue-soft);color:var(--blue)}.co.h{background:var(--red-soft);color:var(--red)}.co.me{background:var(--gray-soft);color:var(--gray)}
+.inf{display:inline-block;font-size:11.5px;font-weight:700;padding:0 6px;border-radius:3px;background:var(--gray-soft);color:var(--gray);margin:0 2px;white-space:nowrap}
+.four{background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.row{display:grid;grid-template-columns:92px 1fr;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:none}
+.k{padding:12px 14px;font-size:13px;font-weight:700;color:var(--muted);background:var(--ground)}
+.v{padding:11px 16px}
+.v ul{margin:0;padding:0;list-style:none}
+.v li{margin:0 0 5px}.v li:last-child{margin-bottom:0}
+.v p{margin:0}
+.src{color:var(--muted);font-size:12.5px;margin-left:4px}
+.row.use .k{background:var(--blue-soft);color:var(--blue)}
+.row.use .v{background:var(--accent-soft);font-weight:600}
+.row.why .k{color:var(--green)}
+.me4{margin-top:30px}
+.me4 h3{font-size:14px;margin:0 0 8px;color:var(--ink-2)}
+.me4 .shots{grid-template-columns:repeat(4,1fr)}
+.miss{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 20px}
+.miss ul{margin:0;padding-left:18px}.miss li{margin:4px 0;color:var(--ink-2);font-size:14.5px}
+.note{font-size:13px;color:var(--muted);margin:12px 0 0}
+a{color:var(--accent)}
+.lb{position:fixed;inset:0;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;z-index:50;padding:16px;cursor:zoom-out}
+.lb.on{display:flex}
+.lb img{max-width:96vw;max-height:92vh;width:auto;height:auto;border-radius:4px}
+figure a{cursor:zoom-in}
+@media (max-width:900px){.toc{grid-template-columns:repeat(2,1fr)}.me4 .shots{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:760px){
+ .wrap{padding:26px 16px 64px}h1{font-size:22px}
+ .g3,.shots.n3,.shots.n2,.shots.n1{grid-template-columns:1fr}
+ h2{flex-direction:column;gap:2px;font-size:18px}
+ .row{grid-template-columns:1fr}.k{padding:8px 14px 0;background:transparent}.v{padding:4px 14px 12px}
+ .row.use .k{background:var(--accent-soft)}
+}
+</style></head><body><div class="wrap">
+
+<p class="meta">活动配置工具 · 竞品设计拆解 · 2026-10-27 · 待 Dk 验收</p>
+<h1>三款竞品都用一个活动中心装全部活动，按玩家怎么参与分页签；两个版本的原型照下面十点画</h1>
+<p class="lead">金好运、星城、豪神娱乐城的活动入口与活动中心，每点配截图，写清竞品怎么做、为什么好、我方现状、画原型怎么用。</p>
+
+<div class="grid g3">
+  <div class="card"><p class="t">三款一致</p><p class="h">一个窗口装全部活动</p><p class="a">左侧列表、右侧大图加按钮、右上关闭；列表项带角标和红点；付费活动也留在这个窗口里，没有挪进商城。</p></div>
+  <div class="card"><p class="t">三款不同</p><p class="h">页签按什么分</p><p class="a">只有豪神把付费活动单列一个页签；星城、金好运的页签只分内容类别（活动／推荐／公告／中奖记录）。</p></div>
+  <div class="card"><p class="t">对两个版本的用法（建议）</p><p class="h">合并版分免费／付费页，不合并版限时活动窗口只分内容</p><p class="a">合并版照豪神画「免费活动｜付费活动」页签；不合并版限时活动窗口沿用「游戏活动｜平台活动」，付费放商城。页签名暂定。</p></div>
+</div>
+<p class="scope">两个版本按任务口径理解：合并版＝好康活动与限时活动合成一个活动窗口（含付费页）；不合并版＝两个入口仍分开，付费活动放商城。如定义不同，设计点 2、8、9 的「怎么用」要改。口径：竞品内容都是 2026-10-09 单账号（新号）录屏所见，未见不等于没有；标「推断」的不是画面原文。出处写法：常规档案_竞品名＋录屏时间戳，档案在「竞品跟踪分析/过程/」。截图上的红框是本页标注，点图放大。</p>
+
+<ul class="toc">
+  <li><a href="#p1"><b>1</b>窗口版式三款一致</a></li>
+  <li><a href="#p2"><b>2</b>只有豪神单列付费页签</a></li>
+  <li><a href="#p3"><b>3</b>列表项：角标＋名称＋红点</a></li>
+  <li><a href="#p4"><b>4</b>右侧三种内容形态</a></li>
+  <li><a href="#p5"><b>5</b>第一项放当期主推</a></li>
+  <li><a href="#p6"><b>6</b>自动打开与「今日不再显示」</a></li>
+  <li><a href="#p7"><b>7</b>同一活动多处露出</a></li>
+  <li><a href="#p8"><b>8</b>公告、中奖记录进活动窗口</a></li>
+  <li><a href="#p9"><b>9</b>付费活动放哪</a></li>
+  <li><a href="#p10"><b>10</b>商城页签（只作对照）</a></li>
+</ul>
+
+<div class="me4">
+  <h3>我方现状对照图（下文「我方现状」都指这四张，点图放大）</h3>
+  <div class="shots">
+    <figure><a href="截图/大厅首页.webp" target="_blank" rel="noopener"><img src="截图/大厅首页.webp" alt="我方大厅首页"></a><figcaption>大厅首页：左下「好康活动」、右下「限时活动」，顶栏「首储 336%」带倒计时</figcaption></figure>
+    <figure><a href="截图/好康活动面板.webp" target="_blank" rel="noopener"><img src="截图/好康活动面板.webp" alt="我方好康活动面板"></a><figcaption>好康活动面板：左侧列表，中间排行榜，右侧游戏图＋「立即玩」</figcaption></figure>
+    <figure><a href="截图/最新活动与公告弹层.webp" target="_blank" rel="noopener"><img src="截图/最新活动与公告弹层.webp" alt="我方最新活动与公告弹层"></a><figcaption>最新活动与公告弹层：左侧竖页签，中间大图，右侧列表（打开路径未确认，暂按右上菜单「公告讯息」）</figcaption></figure>
+    <figure><a href="截图/右上菜单.webp" target="_blank" rel="noopener"><img src="截图/右上菜单.webp" alt="我方右上菜单"></a><figcaption>右上菜单：公告讯息、外赠活动、设定等</figcaption></figure>
+  </div>
+</div>
+
+<!-- 1 -->
+<section id="p1">
+<h2><span class="no">设计点 1</span>活动窗口三款版式相同：左侧列表、右侧大图加按钮、右上关闭；只有页签位置和标题不同</h2>
+<div class="shots n3">
+  <figure><a href="竞品参考图/竞品_活动中心结构_金好运_t0006.0.jpg" target="_blank" rel="noopener"><img src="竞品参考图/竞品_活动中心结构_金好运_t0006.0.jpg" alt="金好运活动窗口"></a><figcaption><span class="co j">金好运</span>无标题；最左 3 个无字图标页签；大图下「查看詳情」；右上 X<span class="ts">t0006.0</span></figcaption></figure>
+  <figure><a href="竞品参考图/竞品_活动中心结构_星城_t0003.5.jpg" target="_blank" rel="noopener"><img src="竞品参考图/竞品_活动中心结构_星城_t0003.5.jpg" alt="星城活动快讯窗口"></a><figcaption><span class="co x">星城</span>标题「活動快訊」；最左 3 个图标＋文字页签；大图下「點擊前往」；右上「今日不再顯示」＋X<span class="ts">t0003.5</span></figcaption></figure>
+  <figure><a href="竞品参考图/竞品_活动中心结构_豪神_t0024.5.jpg" target="_blank" rel="noopener"><img src="竞品参考图/竞品_活动中心结构_豪神_t0024.5.jpg" alt="豪神最新活动窗口"></a><figcaption><span class="co h">豪神</span>标题「最新活動」；顶部 3 个文字页签；右侧是「豪神嘉年華」总览；右上 X<span class="ts">t0024.5</span></figcaption></figure>
+</div>
+<div class="four">
+  <div class="row"><div class="k">怎么做</div><div class="v"><ul>
+    <li><span class="co j">金好运</span>无标题字；页签是最左竖排 3 个无文字图标；大图下「查看詳情」，多数项另有「立即前往」；右上 X。<span class="src">常规档案_金好运 t0006.0、t0017.0</span></li>
+    <li><span class="co x">星城</span>左上标题「活動快訊」；页签是最左竖排 3 个「图标＋文字」；大图下「點擊前往」；右上「今日不再顯示」和 X。<span class="src">常规档案_星城 t0003.5</span></li>
+    <li><span class="co h">豪神</span>左上标题「最新活動」；页签是顶部横排 3 个文字页签；右上 X；嘉年華总览页没有主按钮；10 个格子能否点击、点进去什么，录屏未见。<span class="src">常规档案_豪神 t0024.5</span></li>
+  </ul></div></div>
+  <div class="row why"><div class="k">为什么好</div><div class="v">玩家只学一次：一个窗口里逐项看完所有活动；运营新增活动只是加一行列表项加一张大图。<span class="inf">推断</span></div></div>
+  <div class="row"><div class="k">我方现状</div><div class="v">好康活动面板：左侧列表（排行榜、外赠活动、十月庆典等）、中间是排行榜内容、右侧是游戏图＋「立即玩」，没有页签。最新活动与公告弹层：左侧竖页签、中间大图＋「活动详情」、右侧列表。两个窗口版式不同。</div></div>
+  <div class="row use"><div class="k">画原型时怎么用</div><div class="v">两个版本的活动窗口统一画成：标题＋顶部文字页签、左侧列表、右侧大图＋一个主按钮、右上 X。页签用文字，不用金好运的无字图标（玩家要猜）。<span class="inf">推断</span></div></div>
+</div>
+</section>
+
+<!-- 2 -->
+<section id="p2">
+<h2><span class="no">设计点 2</span>只有豪神把「付费活动」单独分了页签；星城、金好运的页签只分内容类别，付费活动混在免费活动里</h2>
+<div class="shots n2">
+  <figure><a href="竞品参考图/竞品_分类页签_豪神_t0039.5.jpg" target="_blank" rel="noopener"><img src="竞品参考图/竞品_分类页签_豪神_t0039.5.jpg" alt="豪神消费活动页签"></a><figcaption><span class="co h">豪神</span>「消費活動」被选中：3 项，都是付费或储值类<span class="ts">t0039.5</span></figcaption></figure>
+  <figure><a href="竞品参考图/竞品_分类页签_豪神_t0043.0.jpg" target="_blank" rel="noopener"><img src="竞品参考图/竞品_分类页签_豪神_t0043.0.jpg" alt="豪神好康功能页签"></a><figcaption><span class="co h">豪神</span>「好康功能」被选中：5 项，绑定、乐透、刮刮乐、社群<span class="ts">t0043.0</span></figcaption></figure>
+  <figure><a href="竞品参考图/竞品_分类页签_星城_t0008.0.jpg" target="_blank" rel="noopener"><img src="竞品参考图/竞品_分类页签_星城_t0008.0.jpg" alt="星城推荐页签"></a><figcaption><span class="co x">星城</span>「推薦」页（标题「亮點推薦」）：新游戏、储值渠道活动、异业合作混排<span class="ts">t0008.0</span></figcaption></figure>
+  <figure><a href="竞品参考图/竞品_分类页签_金好运_t0035.0.jpg" target="_blank" rel="noopener"><img src="竞品参考图/竞品_分类页签_金好运_t0035.0.jpg" alt="金好运福袋页签"></a><figcaption><span class="co j">金好运</span>福袋页签：中奖记录（画面写「爆分」），5 条；三个页签＝活动／公告／中奖记录<span class="ts">t0035.0</span></figcaption></figure>
+</div>
+<div class="four">
+  <div class="row"><div class="k">怎么做</div><div class="v"><ul>
+    <li><span class="co h">豪神</span>特別活動 10 项（每项带 HOT!）／消費活動 3 项（新手助力包、平安禮包、儲值滿額彩輪轉）／好康功能 5 项（綁定有禮、綁定手機號碼送豪幣、天天幸運球、豪神刮刮樂、好康資訊）。<span class="src">常规档案_豪神 t0024.5、t0039.5、t0043.0</span></li>
+    <li><span class="co x">星城</span>活動 5 项／推薦 10 项（含 4 项储值渠道活动）／公告 6 条。<span class="src">常规档案_星城 t0003.5、t0008.0、t0031.5</span></li>
+    <li><span class="co j">金好运</span>火焰＝活动 15 项（含 4 项储值渠道活动，与排行、签到混排）／喇叭＝公告／福袋＝中奖记录 5 条。<span class="src">常规档案_金好运 t0006.0、t0017.0、t0035.0</span></li>
+  </ul></div></div>
+  <div class="row why"><div class="k">为什么好</div><div class="v">豪神的分法让玩家进窗口就分得清「哪些免费、哪些要花钱」，付费项不挤在免费活动中间。<span class="inf">推断</span></div></div>
+  <div class="row"><div class="k">我方现状</div><div class="v">最新活动与公告弹层的页签是「最新活动」「公告讯息」，活动类型用列表项上的「储值／柏青／转轮」标签区分；好康活动面板没有页签，列表项用「好康」「最新」角标。</div></div>
+  <div class="row use"><div class="k">画原型时怎么用</div><div class="v">合并版：顶部页签把付费活动单列一页，与免费活动分开（豪神写法，页签名暂定）。不合并版：限时活动窗口页签只分内容（游戏活动｜平台活动），不放付费页签，付费放商城。</div></div>
+</div>
+</section>
+
+<!-- 3 -->
+<section id="p3">
+<h2><span class="no">设计点 3</span>列表项三款都是「角标＋名称＋红点」，看过红点消失；日期不写在列表项里</h2>
+<div class="shots n3 crop">
+  <figure><a href="竞品参考图/竞品_列表项角标_金好运_t0006.0.jpg" target="_blank" rel="noopener"><img src="竞品参考图/竞品_列表项角标_金好运_t0006.0.jpg" alt="金好运列表项"></a><figcaption><span class="co j">金好运</span>左上「熱門」「新機」，名称两行，右侧红点；第一项为选中态<span class="ts">t0006.0 局部</span></figcaption></figure>
+  <figure><a href="竞品参考图/竞品_列表项角标_星城_t0008.0.jpg" target="_blank" rel="noopener"><img src="竞品参考图/竞品_列表项角标_星城_t0008.0.jpg" alt="星城列表项"></a><figcaption><span class="co x">星城</span>左上「NEW」「HOT」，右侧红色「N」；第一项为选中态<span class="ts">t0008.0 局部</span></figcaption></figure>
+  <figure><a href="竞品参考图/竞品_列表项角标_豪神_t0024.5.jpg" target="_blank" rel="noopener"><img src="竞品参考图/竞品_列表项角标_豪神_t0024.5.jpg" alt="豪神列表项"></a><figcaption><span class="co h">豪神</span>每项左上「HOT!」，部分项右上红点；第一项为选中态<span class="ts">t0024.5 局部</span></figcaption></figure>
+</div>
+<div class="four">
+  <div class="row"><div class="k">怎么做</div><div class="v"><ul>
+    <li><span class="co j">金好运</span>左上角标「熱門」「新機」，名称最多两行，右侧红色圆点；列表项里没有日期。<span class="src">常规档案_金好运 t0006.0、t0042.0</span></li>
+    <li><span class="co x">星城</span>左上「NEW」「HOT」，右侧红色「N」；推薦页 NEW 3 项、HOT 4 项，其余无标签；列表项里没有日期。<span class="src">常规档案_星城 t0008.0–t0030.5</span></li>
+    <li><span class="co h">豪神</span>特別活動 10 项每项带「HOT!」；消費活動只有「平安禮包」带，好康功能 5 项都没有；日期写在右侧总览格里。<span class="src">常规档案_豪神 t0024.5–t0047.5</span></li>
+    <li>三款所见，看过的列表项红点或「N」会消失。<span class="src">金好运 t0115.5；星城 t0027.5→t0029.0；豪神 t0028.0、t0036.0、t0040.5</span></li>
+  </ul></div></div>
+  <div class="row why"><div class="k">为什么好</div><div class="v">角标说「新、热」，红点说「没看过」，看过即消失，玩家不用记哪些读过。<span class="inf">推断</span></div></div>
+  <div class="row"><div class="k">我方现状</div><div class="v">最新活动弹层右侧列表有红点和类型标签，没有「新」「热」角标，也没有日期；好康活动面板列表项有「好康」「最新」角标，没有红点。</div></div>
+  <div class="row use"><div class="k">画原型时怎么用</div><div class="v">列表项画成「左上角标（新／热）＋名称（最多两行）＋右上红点」。设计稿里加的「剩 N 天」竞品列表里都没有（豪神把天数放在大厅图标角标，见设计点 7），画时保留，并标为我方新增。</div></div>
+</div>
+</section>
+
+<!-- 4 -->
+<section id="p4">
+<h2><span class="no">设计点 4</span>右侧内容区有三种形态：大图加按钮、活动总览格、直接放活动页</h2>
+<div class="shots n2">
+  <figure><a href="竞品参考图/竞品_右侧内容形态_金好运_t0017.0.jpg" target="_blank" rel="noopener"><img src="竞品参考图/竞品_右侧内容形态_金好运_t0017.0.jpg" alt="金好运大图加两个按钮"></a><figcaption><span class="co j">金好运</span>① 大图＋「查看詳情」「立即前往」两个按钮（红框＝「立即前往」）<span class="ts">t0017.0</span></figcaption></figure>
+  <figure><a href="竞品参考图/竞品_右侧内容形态_星城_t0008.0.jpg" target="_blank" rel="noopener"><img src="竞品参考图/竞品_右侧内容形态_星城_t0008.0.jpg" alt="星城大图加点击前往"></a><figcaption><span class="co x">星城</span>① 大图＋「點擊前往」一个按钮（红框）<span class="ts">t0008.0</span></figcaption></figure>
+  <figure><a href="竞品参考图/竞品_右侧内容形态_豪神_t0024.5.jpg" target="_blank" rel="noopener"><img src="竞品参考图/竞品_右侧内容形态_豪神_t0024.5.jpg" alt="豪神嘉年华总览"></a><figcaption><span class="co h">豪神</span>② 嘉年華总览：10 个子活动格，每格带名称和起止日期（红框）<span class="ts">t0024.5</span></figcaption></figure>
+  <figure><a href="竞品参考图/竞品_右侧内容形态_豪神_t0039.5.jpg" target="_blank" rel="noopener"><img src="竞品参考图/竞品_右侧内容形态_豪神_t0039.5.jpg" alt="豪神新手助力包直接嵌入"></a><figcaption><span class="co h">豪神</span>③ 直接放活动页：新手助力包，含 NT 300／NT 30 价格按钮（红框），和大厅里单独弹出的是同一页<span class="ts">t0039.5</span></figcaption></figure>
+</div>
+<div class="four">
+  <div class="row"><div class="k">怎么做</div><div class="v"><ul>
+    <li><b>① 大图＋按钮</b>：金好运两个按钮、星城一个。<span class="src">常规档案_金好运 t0017.0；常规档案_星城 t0008.0</span></li>
+    <li><b>② 活动总览</b>：豪神「豪神嘉年華」一张横幅里放 10 个子活动格，每格有名称和起止日期。<span class="src">常规档案_豪神 t0024.5</span></li>
+    <li><b>③ 直接放活动页</b>：豪神「新手助力包」页和单独弹窗是同一页，「綁定有禮」同理。窗内能否玩完整玩法，录屏未见。<span class="src">常规档案_豪神 t0039.5、t0022.0、t0043.0、t0009.5</span></li>
+  </ul></div></div>
+  <div class="row why"><div class="k">为什么好</div><div class="v">一个窗口同时装得下「看一眼」「看全貌」「直接做」三类活动，运营不必为每个活动另做窗口。<span class="inf">推断</span></div></div>
+  <div class="row"><div class="k">我方现状</div><div class="v">好康活动面板中间直接放排行榜内容（形态③已有），右侧是游戏图＋「立即玩」（形态①）；最新活动弹层是大图＋「活动详情」（形态①）；截图里未见总览格（形态②）。</div></div>
+  <div class="row use"><div class="k">画原型时怎么用</div><div class="v">右侧画三种版式并标注适用：① 大图＋「立即前往」（普通活动）；② 总览格（庆典专题，格内带日期，对应原型源 p17 庆典专题页）；③ 直接放工具页（礼包、免费抽奖，带价格或开始按钮）。</div></div>
+</div>
+</section>
+
+<!-- 5 -->
+<section id="p5">
+<h2><span class="no">设计点 5</span>每个页签的第一项放当期最要推的，并默认选中</h2>
+<div class="shots n3">
+  <figure><a href="竞品参考图/竞品_第一项_金好运_t0006.0.jpg" target="_blank" rel="noopener"><img src="竞品参考图/竞品_第一项_金好运_t0006.0.jpg" alt="金好运第一项"></a><figcaption><span class="co j">金好运</span>第一项＝新机宣传「神來運轉」（红框）<span class="ts">t0006.0</span></figcaption></figure>
+  <figure><a href="竞品参考图/竞品_第一项_星城_t0003.5.jpg" target="_blank" rel="noopener"><img src="竞品参考图/竞品_第一项_星城_t0003.5.jpg" alt="星城第一项"></a><figcaption><span class="co x">星城</span>第一项＝排名赛「行星大獎賽」（红框）<span class="ts">t0003.5</span></figcaption></figure>
+  <figure><a href="竞品参考图/竞品_第一项_豪神_t0024.5.jpg" target="_blank" rel="noopener"><img src="竞品参考图/竞品_第一项_豪神_t0024.5.jpg" alt="豪神第一项"></a><figcaption><span class="co h">豪神</span>第一项＝活动总览「豪神嘉年華」（红框）<span class="ts">t0024.5</span></figcaption></figure>
+</div>
+<div class="four">
+  <div class="row"><div class="k">怎么做</div><div class="v"><ul>
+    <li><span class="co j">金好运</span>第一项是新机宣传「【電子館】新機-神來運轉」，打开即选中。<span class="src">常规档案_金好运 t0006.0</span></li>
+    <li><span class="co x">星城</span>第一项是排名赛「行星大獎賽」（每日前 100 名有奖），打开即选中。<span class="src">常规档案_星城 t0003.5</span></li>
+    <li><span class="co h">豪神</span>特別活動第一项是活动总览「豪神嘉年華」；点开「消費活動」默认显示第一项「新手助力包」，点开「好康功能」默认显示「綁定有禮」。<span class="src">常规档案_豪神 t0024.5、t0039.5、t0043.0</span></li>
+  </ul></div></div>
+  <div class="row why"><div class="k">为什么好</div><div class="v">玩家打开窗口不用点，当期最想推的内容就在眼前；豪神连付费页签、功能页签也各有一个默认主推。<span class="inf">推断</span></div></div>
+  <div class="row"><div class="k">我方现状</div><div class="v">好康活动面板第一项是「排行榜」（选中）；最新活动弹层默认大图是「老子翻倍包」（储值类）。</div></div>
+  <div class="row use"><div class="k">画原型时怎么用</div><div class="v">每个页签的第一项画成选中态的「当期主推」：免费页签放庆典总览或排名赛，付费页签放当期主推礼包；在备注里写明按排序权重取第一项。</div></div>
+</div>
+</section>
+
+<!-- 6 -->
+<section id="p6">
+<h2><span class="no">设计点 6</span>星城的活动窗口自动打开，右上带「今日不再显示」；金好运、豪神录屏里未见这个勾选框</h2>
+<div class="shots n3">
+  <figure><a href="竞品参考图/竞品_自动打开_星城_t0002.0.jpg" target="_blank" rel="noopener"><img src="竞品参考图/竞品_自动打开_星城_t0002.0.jpg" alt="星城大厅转圈"></a><figcaption><span class="co x">星城</span>关掉绑定提示后大厅转圈，随后活动窗口淡入，没看到点击<span class="ts">每秒帧 t0002.0</span></figcaption></figure>
+  <figure><a href="竞品参考图/竞品_自动打开_星城_t0003.5.jpg" target="_blank" rel="noopener"><img src="竞品参考图/竞品_自动打开_星城_t0003.5.jpg" alt="星城今日不再显示"></a><figcaption><span class="co x">星城</span>窗口右上「今日不再顯示」勾选框＋X（红框）<span class="ts">t0003.5</span></figcaption></figure>
+  <figure><a href="竞品参考图/竞品_自动打开_星城_t0034.5.jpg" target="_blank" rel="noopener"><img src="竞品参考图/竞品_自动打开_星城_t0034.5.jpg" alt="星城行星大奖赛弹窗"></a><figcaption><span class="co x">星城</span>关窗后单独弹出的「行星大獎賽」：右上只有 X，未见勾选框<span class="ts">t0034.5</span></figcaption></figure>
+</div>
+<div class="four">
+  <div class="row"><div class="k">怎么做</div><div class="v"><ul>
+    <li><span class="co x">星城</span>活动窗口在录屏中自动出现（<span class="inf">推断</span>依据：淡入前没看到点击）；右上「今日不再顯示」勾选框在活动、推荐、公告三个页签都有，录屏全程没勾；关窗后再弹「行星大獎賽」单项弹窗，弹窗上未见勾选框。<span class="src">常规档案_星城 t0002.0、t0003.5、t0031.5、t0034.5</span></li>
+    <li><span class="co j">金好运</span><span class="co h">豪神</span>活动窗口也是关掉上一个窗口后出现（<span class="inf">推断</span>自动打开）；窗口里未见「今日不再顯示」。<span class="src">常规档案_金好运 t0006.0；常规档案_豪神 t0024.5</span></li>
+  </ul></div></div>
+  <div class="row why"><div class="k">为什么好</div><div class="v">自动打开保证重点活动被看到；勾选框把「今天别再打扰」的决定权交给玩家。<span class="inf">推断</span></div></div>
+  <div class="row"><div class="k">我方现状</div><div class="v">现状盘点（引自对比表）：进大厅最多弹 4 个，按单项活动弹，每项每日 1 次；整窗自动打开有没有、有没有「今日不再显示」未掌握，对照截图里也未见。</div></div>
+  <div class="row use"><div class="k">画原型时怎么用</div><div class="v">「自动弹出的活动窗口」画右上角「今日不再显示」勾选框＋X，标为可选；单项活动弹窗只画 X，不画勾选框（星城写法）。</div></div>
+</div>
+</section>
+
+<!-- 7 -->
+<section id="p7">
+<h2><span class="no">设计点 7</span>同一个活动在活动中心有一行，在大厅还有常驻入口，带剩余天数或倒计时；豪神最完整</h2>
+<div class="shots n2">
+  <figure><a href="竞品参考图/竞品_多处露出_豪神_t0051.0.jpg" target="_blank" rel="noopener"><img src="竞品参考图/竞品_多处露出_豪神_t0051.0.jpg" alt="豪神大厅顶栏限时特惠与底栏歡樂券"></a><figcaption><span class="co h">豪神</span>大厅：顶栏「限時特惠」＋倒计时；底栏「歡樂券」上标「22天」（红框）<span class="ts">t0051.0</span></figcaption></figure>
+  <figure><a href="竞品参考图/竞品_多处露出_豪神_t0053.5.jpg" target="_blank" rel="noopener"><img src="竞品参考图/竞品_多处露出_豪神_t0053.5.jpg" alt="豪神点限时特惠弹出新手助力包"></a><figcaption><span class="co h">豪神</span>点「限時特惠」弹出新手助力包，「限購時間」倒数（红框）<span class="ts">t0053.5</span></figcaption></figure>
+  <figure><a href="竞品参考图/竞品_多处露出_豪神_t0039.5.jpg" target="_blank" rel="noopener"><img src="竞品参考图/竞品_多处露出_豪神_t0039.5.jpg" alt="豪神活动中心里的新手助力包"></a><figcaption><span class="co h">豪神</span>活动中心「消費活動」第一项是同一页，倒计时同步（红框）<span class="ts">t0039.5</span></figcaption></figure>
+  <figure><a href="竞品参考图/竞品_多处露出_豪神_t0101.5.jpg" target="_blank" rel="noopener"><img src="竞品参考图/竞品_多处露出_豪神_t0101.5.jpg" alt="豪神底栏展开天数角标"></a><figcaption><span class="co h">豪神</span>底栏展开：5 个活动图标上标 2天／2天／5天／2天／6天，歡樂券 22天（红框）<span class="ts">t0101.5</span></figcaption></figure>
+</div>
+<div class="four">
+  <div class="row"><div class="k">怎么做</div><div class="v"><ul>
+    <li><span class="co h">豪神</span>「新手助力包」：顶栏「限時特惠」常驻 → 点开是弹窗 → 同一页也在「最新活動」消費活動第 1 项；两处「限購時間」倒数同步。<span class="src">常规档案_豪神 t0051.0、t0053.5、t0039.5</span></li>
+    <li><span class="co h">豪神</span>「豪運歡樂券」：活动中心特別活動第 2 项＋底栏「歡樂券」上标「22天」（活动期 9/22–10/31，<span class="inf">推断</span>角标是剩余天数）；底栏展开后另有 5 个活动图标各带天数角标。<span class="src">常规档案_豪神 t0028.0、t0051.0、t0101.5</span></li>
+    <li><span class="co x">星城</span>「行星大獎賽」：活动页第 1 项＋关窗后单独弹窗。<span class="src">常规档案_星城 t0003.5、t0034.5</span></li>
+    <li><span class="co j">金好运</span>「登入月曆」：火焰页第 9 项＋底栏入口＋录屏开始时单独开着；底栏图标上未见天数角标。<span class="src">常规档案_金好运 t0002.0、t0042.0</span></li>
+  </ul></div></div>
+  <div class="row why"><div class="k">为什么好</div><div class="v">关掉窗口后，大厅还有入口能回来；天数和倒计时让玩家知道还剩多久。<span class="inf">推断</span></div></div>
+  <div class="row"><div class="k">我方现状</div><div class="v">大厅顶栏「首储 336%」带倒计时（00:20:18），是同类的常驻入口；左下「好康活动」、右下「限时活动」入口只有红点，没有剩余天数。</div></div>
+  <div class="row use"><div class="k">画原型时怎么用</div><div class="v">同一个活动画三处：活动窗口里一行、大厅常驻图标、点进去落到同一页。图标上方写剩余天数「N天」，限时礼包写倒计时（豪神写法）。</div></div>
+</div>
+</section>
+
+<!-- 8 -->
+<section id="p8">
+<h2><span class="no">设计点 8</span>金好运、星城把公告放进活动窗口当一个页签；中奖记录只有金好运放进去</h2>
+<div class="shots n3">
+  <figure><a href="竞品参考图/竞品_公告与中奖记录_金好运_t0028.5.jpg" target="_blank" rel="noopener"><img src="竞品参考图/竞品_公告与中奖记录_金好运_t0028.5.jpg" alt="金好运公告页签"></a><figcaption><span class="co j">金好运</span>喇叭页签＝公告：左侧标题列表，右侧正文，版式同活动页<span class="ts">t0028.5</span></figcaption></figure>
+  <figure><a href="竞品参考图/竞品_公告与中奖记录_金好运_t0035.0.jpg" target="_blank" rel="noopener"><img src="竞品参考图/竞品_公告与中奖记录_金好运_t0035.0.jpg" alt="金好运中奖记录页签"></a><figcaption><span class="co j">金好运</span>福袋页签＝中奖记录：每条「日期｜游戏｜金额」，右侧大图无按钮<span class="ts">t0035.0</span></figcaption></figure>
+  <figure><a href="竞品参考图/竞品_公告与中奖记录_星城_t0031.5.jpg" target="_blank" rel="noopener"><img src="竞品参考图/竞品_公告与中奖记录_星城_t0031.5.jpg" alt="星城官网公告页签"></a><figcaption><span class="co x">星城</span>公告页签「官網公告」：每行「分类标签＋日期＋标题」，标签分「活動」「系統」<span class="ts">t0031.5</span></figcaption></figure>
+</div>
+<div class="four">
+  <div class="row"><div class="k">怎么做</div><div class="v"><ul>
+    <li><span class="co j">金好运</span>活动窗口第二个页签（喇叭）是公告，列表项带红点，右侧是正文；第三个页签（福袋）是中奖记录 5 条，右侧是大图，图下没有按钮。<span class="src">常规档案_金好运 t0028.5、t0035.0</span></li>
+    <li><span class="co x">星城</span>活动窗口第三个页签是公告，标题「官網公告」；6 条，3 条标「活動」、3 条标「系統」；中奖记录页签未见。<span class="src">常规档案_星城 t0031.5</span></li>
+    <li><span class="co h">豪神</span>活动窗口只有 3 个页签，没有公告页签；顶栏信封、喇叭图标没点开，公告放哪录屏未见。<span class="src">常规档案_豪神 t0004.0、t0024.5</span></li>
+  </ul></div></div>
+  <div class="row why"><div class="k">为什么好</div><div class="v">玩家在一个窗口里就能看全官方信息，公告和活动能互相引用（金好运大图上写「詳情以公告為主」）。<span class="inf">推断</span></div></div>
+  <div class="row"><div class="k">我方现状</div><div class="v">「公告讯息」是最新活动弹层的第二个页签，右上菜单里也有入口（带 N 角标）；活动窗口里没有中奖记录页，中奖播报在大厅顶部跑马灯。</div></div>
+  <div class="row use"><div class="k">画原型时怎么用</div><div class="v">公告不进活动中心，两版都从右上菜单进，窗口版式与活动窗口一致；金好运、星城把公告放进活动窗口的做法只作对照。公告分官方／活动／其他三个页签，每个页签只列本类公告，列表行画成「日期＋标题」（星城写法，分类由页签表示），右侧只放正文。中奖记录页签不画（我方大厅已有中奖播报），标为可选。</div></div>
+</div>
+</section>
+
+<!-- 9 -->
+<section id="p9">
+<h2><span class="no">设计点 9</span>付费活动三款都留在活动窗口里：豪神单列「消費活動」页并带价格按钮，星城给「前往商城」按钮</h2>
+<div class="shots n2">
+  <figure><a href="竞品参考图/竞品_付费活动位置_豪神_t0042.0.jpg" target="_blank" rel="noopener"><img src="竞品参考图/竞品_付费活动位置_豪神_t0042.0.jpg" alt="豪神消费活动三项"></a><figcaption><span class="co h">豪神</span>「消費活動」页签的 3 项（红框），第 3 项是储值满额转盘<span class="ts">t0042.0</span></figcaption></figure>
+  <figure><a href="竞品参考图/竞品_付费活动位置_豪神_t0056.0.jpg" target="_blank" rel="noopener"><img src="竞品参考图/竞品_付费活动位置_豪神_t0056.0.jpg" alt="豪神商城底部幸运转盘"></a><figcaption><span class="co h">豪神</span>商城窗口底部右端也有「幸運轉盤」入口（红框）<span class="ts">t0056.0</span></figcaption></figure>
+  <figure><a href="竞品参考图/竞品_付费活动位置_星城_t0005.5.jpg" target="_blank" rel="noopener"><img src="竞品参考图/竞品_付费活动位置_星城_t0005.5.jpg" alt="星城回馈卡前往商城"></a><figcaption><span class="co x">星城</span>活动窗口里的「星城回饋卡」：「前往商城！」＋小标「購買後隔日可領取」（红框）<span class="ts">t0005.5</span></figcaption></figure>
+  <figure><a href="竞品参考图/竞品_付费活动位置_星城_t0058.0.jpg" target="_blank" rel="noopener"><img src="竞品参考图/竞品_付费活动位置_星城_t0058.0.jpg" alt="星城商城优惠专区回馈卡角标"></a><figcaption><span class="co x">星城</span>商城「優惠專區」：指定礼包带红色角标「可獲得回饋卡」（红框）<span class="ts">t0058.0</span></figcaption></figure>
+</div>
+<div class="four">
+  <div class="row"><div class="k">怎么做</div><div class="v"><ul>
+    <li><span class="co h">豪神</span>「消費活動」3 项：新手助力包（页内带 NT 300／NT 30 价格按钮）、平安禮包、儲值滿額彩輪轉（储值 4 次送 1 次转盘）；转盘在商城底部也有入口（<span class="inf">推断</span>同一个转盘）。<span class="src">常规档案_豪神 t0039.5、t0042.0、t0056.0</span></li>
+    <li><span class="co x">星城</span>「星城回饋卡」在活动窗口「活動」页第 4 项，按钮「前往商城！」；商城里指定礼包有「可獲得回饋卡」角标。按钮点进去的落点录屏未见。<span class="src">常规档案_星城 t0005.5、t0058.0</span></li>
+    <li><span class="co j">金好运</span>4 项储值渠道活动（全家、MyCard、GASH、iWIN，送最高 15% 金币）与排行、签到混排在活动窗口火焰页；礼包在商城「限購禮包」。<span class="src">常规档案_金好运 t0016.0–t0018.0、t0100.0</span></li>
+  </ul></div></div>
+  <div class="row why"><div class="k">为什么好</div><div class="v">付费活动和免费活动同在一个窗口，玩家不会漏看；豪神把价格按钮放进活动页，少跳一步；星城活动页只讲规则并跳商城，付款动作集中在商城。<span class="inf">推断</span></div></div>
+  <div class="row"><div class="k">我方现状</div><div class="v">储值类活动现在在最新活动弹层里（如「老子翻倍包」标「储值」），好康活动面板列表下方也有带「储值」标签的项（只露出一半）；底栏另有「银行」，顶栏有「首储 336%」。</div></div>
+  <div class="row use"><div class="k">画原型时怎么用</div><div class="v">合并版：付费页签里每项画主按钮，先画「直接带价格按钮」的版本（豪神写法，少一步）。不合并版：付费活动画在商城「储值活动」页签；限时活动窗口不画付费活动，可选留一行「前往商城」入口（星城写法）。</div></div>
+</div>
+</section>
+
+<!-- 10 -->
+<section id="p10">
+<h2><span class="no">设计点 10</span>商城页签三款各不相同：星城按购买节奏分，豪神把储值、存摺、兑换放进一个窗口，金好运只有 2 页（只作对照）</h2>
+<div class="shots n3">
+  <figure><a href="竞品参考图/竞品_商城页签_星城_t0053.0.jpg" target="_blank" rel="noopener"><img src="竞品参考图/竞品_商城页签_星城_t0053.0.jpg" alt="星城商城页签"></a><figcaption><span class="co x">星城</span>左侧竖排 4 页签：每日必買／每週優惠／優惠專區／儲值專區（红框）<span class="ts">t0053.0</span></figcaption></figure>
+  <figure><a href="竞品参考图/竞品_商城页签_豪神_t0056.0.jpg" target="_blank" rel="noopener"><img src="竞品参考图/竞品_商城页签_豪神_t0056.0.jpg" alt="豪神商城页签"></a><figcaption><span class="co h">豪神</span>顶部横排 7 页签：豪幣／存摺／換銀幣／兌換碼／產包／銀幣／保險箱（红框）<span class="ts">t0056.0</span></figcaption></figure>
+  <figure><a href="竞品参考图/竞品_商城页签_金好运_t0100.0.jpg" target="_blank" rel="noopener"><img src="竞品参考图/竞品_商城页签_金好运_t0100.0.jpg" alt="金好运商城页签"></a><figcaption><span class="co j">金好运</span>顶部 2 页签：序號兌換／限購禮包（红框）<span class="ts">t0100.0</span></figcaption></figure>
+</div>
+<div class="four">
+  <div class="row"><div class="k">怎么做</div><div class="v"><ul>
+    <li><span class="co x">星城</span>前三页是礼包（每日、每週、专区，带「UP 20%」角标、限购次数、销售倒数），第四页是 4 个储值渠道卡。<span class="src">常规档案_星城 t0053.0–t0059.5</span></li>
+    <li><span class="co h">豪神</span>首页是 6 个储值渠道，底部是卡别进度条＋「幸運轉盤」；存摺、换银币、兑换码、产包、银币、保险箱在同一窗口的其他页签。<span class="src">常规档案_豪神 t0056.0–t0072.5</span></li>
+    <li><span class="co j">金好运</span>礼包页带「超值產包」子分类；商城约 53 秒才加载出内容，「序號兌換」始终没加载。<span class="src">常规档案_金好运 t0046.0、t0098.5、t0100.0</span></li>
+  </ul></div></div>
+  <div class="row why"><div class="k">为什么好</div><div class="v">星城把「每日／每週」的复购节奏做成页签，玩家知道每天、每周回来买什么。<span class="inf">推断</span></div></div>
+  <div class="row"><div class="k">我方现状</div><div class="v">银行现有 6 个左侧竖排页签（线上购点、优惠礼包、超值礼包、序号储值、赠礼、我的存折），礼包按形式分在现有页签。<span class="src">依据方案设计稿 1.1，银行截图不在上面四张里</span></div></div>
+  <div class="row use"><div class="k">画原型时怎么用</div><div class="v">只作对照，不照搬页签数量：商城窗口沿用我方银行的左侧竖排页签（与星城同向），最上方新增「储值活动」页签。</div></div>
+</div>
+</section>
+
+<section>
+<h2><span class="no">边界</span>录屏里没拍到的，画原型时别当作竞品没有</h2>
+<div class="miss"><ul>
+  <li>三款所有「前往」「查看詳情」点进去后的页面；豪神嘉年華 10 个子活动里 6 项只见名称，内容未见。</li>
+  <li>豪神：公告入口和分类（顶栏信封、喇叭没点）；「特別活動」第 10 项以下。</li>
+  <li>金好运、豪神：活动窗口里的「今日不再顯示」；金好运、星城：大厅图标上的活动剩余天数角标（只见玩法倒计时）。</li>
+  <li>星城：中奖记录页签；公告「其他」类；活动窗口关闭后再次打开它的入口。</li>
+  <li>三个账号都是新号，老玩家、付费玩家看到的可能不同。</li>
+</ul></div>
+<p class="note">截图来源：竞品跟踪分析/素材 下的报告图、关键帧、每秒帧；本页用到的 34 张已复制到「竞品参考图/」，文件名为「竞品_设计点_竞品名_时间戳」。红框为本页标注，原帧未改动。</p>
+</section>
+
+</div>
+<div class="lb" id="lb" role="dialog" aria-label="放大查看"><img alt=""></div>
+<script>
+(function(){
+  var lb=document.getElementById('lb'),im=lb.querySelector('img');
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('figure a');
+    if(a){e.preventDefault();im.src=a.getAttribute('href');lb.classList.add('on');return;}
+    if(lb.classList.contains('on')){lb.classList.remove('on');im.removeAttribute('src');}
+  });
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){lb.classList.remove('on');}});
+})();
+</script>
+</body></html>

@@ -1,0 +1,15 @@
+{
+  "fps": 30,
+  "bpm": 90,
+  "frames": 330,
+  "hint": 60,
+  "scene2": 160,
+  "scene3": 240,
+  "hit": 260,
+  "source": 280,
+  "aStrikes": [20, 60, 100, 140, 180, 220, 260],
+  "bPeriod": 120,
+  "bStrikes": [120, 240],
+  "peopleA": {"start": 184, "step": 3, "n": 10},
+  "peopleB": {"start": 196, "step": 2, "n": 22}
+}

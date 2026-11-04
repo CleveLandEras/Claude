@@ -1,0 +1,2 @@
+- [Supervision: keep sessions thinking](supervision-dont-let-sessions-idle.md) — when Dk is away, every round push each main session to think higher, pick the one point to go deep on, think it through; pushing work comes second; over quota still continue
+- [Progress = timeline](progress-report-as-timeline.md) — when Dk asks 进度如何 after work done while away, give time + concrete action rows, not a status table

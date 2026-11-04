@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>02e 推播定时</title>
+<link rel="stylesheet" href="_后台框.css">
+<link rel="stylesheet" href="_弹窗.css">
+<link rel="stylesheet" href="_推送.css">
+<style>table.pt td.ops{white-space:nowrap}table.pt td.ops .a1{display:inline-block;min-width:30px}table.pt td.ops span+span{margin-left:8px}table.pt td:first-child,table.pt td:nth-last-child(2),table.pt td .nm{white-space:nowrap}table.pt .ell{display:inline-block;max-width:108px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;vertical-align:bottom}table.pt th,table.pt td{padding-left:6px;padding-right:6px}table.pt td:nth-child(5){min-width:104px}</style>
+<style>.capbar .v b.nlk{color:#2F6FCC;cursor:pointer}table.pt td.st.go{color:#1F2329;font-weight:500}table.pt td.st::before{content:"";display:inline-block;width:6px;height:6px;margin-right:6px;border-radius:50%;background:#C0C4CC;vertical-align:middle;position:relative;top:-1px}table.pt td.st.go::before{background:#409EFF}.blk{color:#C47B2B!important;text-decoration:underline;text-decoration-color:#E2B47C;text-underline-offset:2px;cursor:pointer}.pw.plain>.fbar{margin-top:12px}.pw.plain>.chips{margin-top:10px}table.pt.sch,table.pt.trg{table-layout:fixed;width:100%}table.pt.sch td,table.pt.trg td{min-width:0!important;max-width:none!important}table.pt.sch .ell,table.pt.trg .ell{display:block;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}table.pt .st .why{margin-top:2px;font-size:11px;font-weight:400;color:#9AA0A6;line-height:1.35;white-space:nowrap}table.pt td .dl{margin-top:2px;font-size:11px;color:#9AA0A6;line-height:1.35;white-space:nowrap}table.pt .st .sub{max-width:none}table.pt tr.more td{height:auto;padding:9px 6px;font-size:12px;color:#9AA0A6;border-bottom:0}table.pt td.ops span{margin-right:0}table.pt td.ops .a1{min-width:26px}table.pt.sch td:nth-child(8),table.pt.sch th:nth-child(8){padding-left:12px}table.pt.sch td .nm{white-space:normal;word-break:keep-all}</style>
+<style>.btnp.danger{background:#E05A4F;border-color:#E05A4F}table.pt tr.hl td{position:relative;z-index:6;background:#F3F8FF}table.pt tr.hl td:first-child{box-shadow:inset 3px 0 0 #409EFF}</style>
+</head>
+<body>
+<div class="shot bk" data-page="推播" data-tabs="日历|*定时|条件触发|操作纪录"><div class="pw plain">
+  <div class="ttl"><h3>推播</h3><span class="sp"></span><span class="btnp">＋ 新建推播</span></div>
+  <div class="capbar">
+    <span class="k">上限与勿扰</span>
+    <span class="v">每人每天上限 回流 <b class="num">3</b> 条 · 其余玩家 <b class="num">2</b> 条</span>
+    <span class="div"></span>
+    <span class="v">勿扰 <b class="num">00:00–08:00</b>，与短信共用</span>
+    <span class="div"></span>
+    <span class="v">今天达到上限 <b class="num nlk">1,310</b> 人</span>
+    <span class="lk">修改</span>
+  </div>
+  <div class="fbar">
+    <span class="inp srch">名称、编号或所属活动</span>
+    <span class="inp">消息类别<span class="dn">⌵</span></span>
+    <span class="inp">所属活动<span class="dn">⌵</span></span>
+    <span class="inp">对象<span class="dn">⌵</span></span>
+    <span class="inp">创建人<span class="dn">⌵</span></span>
+    <span class="lk" style="align-self:center;white-space:nowrap">更多筛选</span>
+  </div>
+  <div class="chips"><span class="c">发送中 <b>1</b></span><span class="c">未开始 <b>9</b></span><span class="c">已暂停 <b>0</b></span><span class="c">草稿 <b>1</b></span><span class="c">已结束 <b>27</b></span><span class="upd m2">数据更新于 15:30</span></div>
+  <table class="pt sch">
+    <colgroup><col style="width:80px"><col style="width:106px"><col style="width:112px"><col style="width:38px"><col style="width:106px"><col style="width:52px"><col style="width:62px"><col style="width:122px"><col style="width:52px"><col></colgroup>
+    <tr><th>推播时间</th><th>推播</th><th>标题</th><th class="r">权重</th><th>发送对象</th><th class="r">发送</th><th class="r">预计发出</th><th>状态</th><th>创建人</th><th>操作</th></tr>
+    <tr>
+      <td>今天 08:00<div class="dl">由 02:30 顺延</div></td>
+      <td><div class="nm" title="创建 运营01 · 10/20 18:00 ／ 最后修改 运营01 · 10/20 18:00">维护预告</div><div class="meta">#53 · 服务通知</div></td>
+      <td><span class="ell" title="10/22 02:00–06:00 停機維護，期間無法登入，維護後發放補償。">10/22 停機維護</span></td>
+      <td class="r">—</td>
+      <td><span class="ell" title="全部玩家">全部玩家</span></td>
+      <td class="r">48,210</td>
+      <td class="r">48,210</td>
+      <td class="st mute">已结束<div class="why">已发完</div></td>
+      <td>运营01</td>
+      <td class="ops"><span class="a1"></span><span>查看</span><span>数据</span><span>⋯</span></td>
+    </tr>
+    <tr>
+      <td>今天 09:00</td>
+      <td><div class="nm" title="创建 运营01 · 10/02 09:30 ／ 最后修改 运营01 · 10/02 09:30">签到加码提醒</div><div class="meta">#45 · 营销</div></td>
+      <td><span class="ell" title="今天登入簽到，獎勵加倍領取！">今天簽到獎勵加倍</span></td>
+      <td class="r">50</td>
+      <td><span class="ell" title="近 3 天未签到 · 排除 VIP 名单">近 3 天未签到</span><div class="meta">排除 VIP 名单</div></td>
+      <td class="r">9,380</td>
+      <td class="r">9,380</td>
+      <td class="st mute">已结束<div class="why">已发完</div></td>
+      <td>运营01</td>
+      <td class="ops"><span class="a1"></span><span>查看</span><span>数据</span><span>⋯</span></td>
+    </tr>
+    <tr class="hl">
+      <td>今天 15:20</td>
+      <td><div class="nm" title="创建 运营02 · 10/13 11:00 ／ 最后修改 运营02 · 10/13 11:00">回流礼包 B 加码通知</div><div class="meta">#47 · 营销</div></td>
+      <td><span class="ell" title="回流專屬禮包 B 限時加碼，立即查看！">回流禮包 B 加碼</span></td>
+      <td class="r">50</td>
+      <td><span class="ell" title="回流 · 排除 VIP 名单">回流</span><div class="meta">排除 VIP 名单</div></td>
+      <td class="r">10,655</td>
+      <td class="r">13,660</td>
+      <td class="st go">发送中</td>
+      <td>运营02</td>
+      <td class="ops"><span class="a1">停止</span><span>查看</span><span>数据</span><span>⋯</span></td>
+    </tr>
+    <tr>
+      <td>明天 12:30</td>
+      <td><div class="nm" title="创建 运营01 · 10/13 16:30 ／ 最后修改 运营01 · 10/13 16:30">每日任务提醒</div><div class="meta">#49 · 营销</div></td>
+      <td><span class="ell" title="完成今天的每日任務，領取豐富獎勵！">每日任務獎勵待領</span></td>
+      <td class="r">50</td>
+      <td><span class="ell" title="近 7 天登录 · 排除 VIP 名单">近 7 天登录</span><div class="meta">排除 VIP 名单</div></td>
+      <td class="r muted">未发送</td>
+      <td class="r">9,420</td>
+      <td class="st">未开始</td>
+      <td>运营01</td>
+      <td class="ops"><span class="a1">暂停</span><span>编辑</span><span>数据</span><span>⋯</span></td>
+    </tr>
+    <tr>
+      <td>明天 19:00</td>
+      <td><div class="nm" title="创建 运营02 · 10/13 14:00 ／ 最后修改 运营02 · 10/13 14:00">秋季排名赛<wbr>最后一天提醒</div><div class="meta">#48 · 营销</div></td>
+      <td><span class="ell" title="秋季排名賽今晚結算，把握最後衝榜機會！">排名賽今晚結算</span></td>
+      <td class="r">50</td>
+      <td><span class="ell" title="全部玩家 · 排除 VIP 名单">全部玩家</span><div class="meta">排除 VIP 名单</div></td>
+      <td class="r muted">未发送</td>
+      <td class="r">44,130</td>
+      <td class="st">未开始<div class="sub" title="预计上限拦截 4,030 · 名额先留给权重高的 #50 · 点开看名额占用"><span class="blk">预计上限拦截 4,030</span></div></td>
+      <td>运营02</td>
+      <td class="ops"><span class="a1">暂停</span><span>编辑</span><span>数据</span><span>⋯</span></td>
+    </tr>
+    <tr>
+      <td>明天 20:30</td>
+      <td><div class="nm" title="创建 运营02 · 10/14 10:40 ／ 最后修改 运营02 · 10/14 10:40">限时挑战<wbr>第二轮开启</div><div class="meta">#50 · 营销</div></td>
+      <td><span class="ell" title="限時挑戰第二輪開打，完成挑戰領加碼獎勵！">限時挑戰二輪開打</span></td>
+      <td class="r">80</td>
+      <td><span class="ell" title="限时挑战参与者 · 排除 VIP 名单">限时挑战参与者</span><div class="meta">排除 VIP 名单</div></td>
+      <td class="r muted">未发送</td>
+      <td class="r">16,990</td>
+      <td class="st">未开始</td>
+      <td>运营02</td>
+      <td class="ops"><span class="a1">暂停</span><span>编辑</span><span>数据</span><span>⋯</span></td>
+    </tr>
+    <tr class="more"><td colspan="10">⋮　10/23–10/27 还有 6 条未开始、1 条草稿</td></tr>
+  </table>
+  <div class="bk-pop cf" style="--pop-top:216px;width:440px">
+    <div class="t">停止 #47「回流礼包 B 加码通知」？</div>
+    <div class="t2">已发出 10,655 条，还有约 3,005 人不再发送。</div>
+    <div class="ft"><span class="btno">取消</span><span class="btnp danger">确认停止</span></div>
+  </div>
+</div></div>
+<script src="_后台框.js"></script>
+</body>
+</html>

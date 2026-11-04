@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>03 条件触发</title>
+<link rel="stylesheet" href="_后台框.css">
+<link rel="stylesheet" href="_弹窗.css">
+<link rel="stylesheet" href="_推送.css">
+<style>.foot>.m2{font-size:12px}.row .ro{color:#1F2329}.sum .nw{white-space:nowrap}.tpk~.row{margin-top:6px}.eh .pill.on{background:#ECF5FF;color:#2F6FCC}.eh .pill.on::before{background:#409EFF}</style>
+</head>
+<body>
+<div class="shot bk" data-page="推播" data-crumb="限时加码礼包未购买提醒 #31">
+  <div class="eh"><h3>限时加码礼包未购买提醒 <span class="id">#31</span></h3><span class="pill on">生效中</span><span class="sp"></span><span class="btno">复制</span><span class="btno">暂停</span><span class="btno">停止</span></div>
+  <div class="ed">
+    <div>
+      <div class="sec">
+        <div class="sh"><span class="n">1</span>名称与类别</div>
+        <div class="row"><label>推送名称</label><span class="inp v" style="width:260px">限时加码礼包未购买提醒</span><label style="margin-left:14px">所属活动</label><span class="inp v" style="width:150px">限时加码礼包<span class="dn">⌵</span></span></div>
+        <div class="row"><label>消息类别</label><span>营销</span><span class="m2">受每人每天上限和勿扰限制</span></div>
+        <div class="row" style="margin-top:8px"><label>权重</label><span class="inp v num" style="width:56px">50</span><span class="m2" style="line-height:1.5">0–100，越大越优先；名额不够时先留给权重高的定时推送，相同按发送先后<br>条件触发不预留名额，按触发时剩下的名额发</span></div>
+      </div>
+      <div class="sec">
+        <div class="sh"><span class="n">2</span>对象</div>
+        <div class="row"><span class="radio on"><i></i>出现该礼包的玩家</span><span class="m2">每位玩家各自出现的礼包，按该玩家自己的礼包时间发</span></div>
+        <div class="row"><label>限定群组</label><span class="inp" style="width:170px">不限（选填）<span class="dn">⌵</span></span><label style="margin-left:10px">排除</label><span class="inp v" style="width:170px"><span class="tgs"><em class="tg g"><b>群组</b>VIP 名单</em></span><span class="dn">⌵</span></span></div>
+        <div class="fixed">固定不发：黑名单、机器人与测试账号、停权、自我限制、注销处理中的账号</div>
+      </div>
+      <div class="sec">
+        <div class="sh"><span class="n">3</span>内容</div>
+        <div class="tabs3"><span class="on">繁中<em class="ok">✓</em></span><span>越南文<em class="ok">✓</em></span><span>英文<em class="ok">✓</em></span><span class="gen">一键生成另外两种</span></div>
+        <div class="ta"><div><span class="m">标题</span>　限時加碼禮包即將結束</div><div><span class="m">内容</span>　您的專屬加碼禮包剩 2 小時，錯過不再！</div></div>
+        <div class="row" style="margin-top:8px"><label>点击跳转</label><span class="inp v" style="width:200px">限时加码礼包<span class="dn">⌵</span></span></div>
+      </div>
+      <div class="sec">
+        <div class="sh"><span class="n">4</span>发送时间</div>
+        <div class="row"><span class="ro">条件触发</span><span class="m2">满足触发条件时发送 · 发布后不能改</span></div>
+        <div class="row" style="margin-top:4px;margin-bottom:0"><label>触发行为</label></div>
+        <div class="tpk">
+          <div class="g">玩家行为　对象为触发玩家</div>
+          <div class="o"><i></i><div><b>玩家升级</b><span>升到等级 N 时发；不填等级为每次升级</span></div></div>
+          <div class="o"><i></i><div><b>完成任务</b><span>完成指定任务（可多选）时发；不填为任意任务</span></div></div>
+          <div class="o"><i></i><div><b>通行证升级</b><span>升到第 N 级以内时发；不填为每次升级</span></div></div>
+          <div class="o"><i></i><div><b>破产后未回到游戏</b><span>破产 N 小时后仍没回到游戏才发</span></div></div>
+          <div class="g">活动事件　按活动、礼包的时间发</div>
+          <div class="o on"><i></i><div><b>活动或礼包开始、结束前后 N 小时</b><span>活动、礼包改期后自动跟随</span></div></div>
+        </div>
+        <div class="row"><label>参数</label><div class="trig"><span class="inp v" style="width:130px">限时加码礼包<span class="dn">⌵</span></span><span class="inp v" style="width:64px">结束<span class="dn">⌵</span></span><span class="inp v" style="width:52px">前<span class="dn">⌵</span></span><span class="inp v num" style="width:40px">2</span>小时</div></div>
+        <div class="row"><label></label><span class="ck">✓</span>未购买该礼包</div>
+        <div class="row"><label>生效期间</label><span class="inp v num" style="width:110px">2026-09-20</span>至<span class="inp" style="width:110px">长期（选填）</span></div>
+        <div class="row"><label>提醒次数</label><span class="ro">同一条推送每人每天最多 1 次</span></div>
+        <div class="row"><label>命中勿扰</label><span class="ro">放弃发送</span><span class="m2">按玩家各自时间触发的放弃；按活动、礼包统一时间发出的顺延到勿扰结束</span></div>
+        <div class="row"><label style="white-space:nowrap">玩家在线时</label><span class="radio on"><i></i>发</span><span class="radio"><i></i>不发</span><span class="m2">必选，不设默认</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="sum">
+        <div class="h">这条推送</div>
+        <div class="big num">310<small>人／天</small></div>
+        <div class="m2">近 7 天日均触发 · 发出 290</div>
+        <div class="bars"><i style="height:64%"></i><i style="height:61%"></i><i style="height:58%"></i><i style="height:67%"></i><i style="height:79%"></i><i style="height:86%"></i><i style="height:62%"></i></div>
+        <div class="bl"><span>10/15</span><span>10/21</span></div>
+        <hr>
+        <div class="k2"><span>权重</span><b>50</b></div>
+        <div class="m2"><span class="nw">计入每人每天上限；</span><span class="nw">条件触发不预留名额，</span><span class="nw">按触发时剩下的名额发</span></div>
+        <hr>
+        <div class="k2"><span>生效期间</span><b>9/20 起，长期</b></div>
+        <div class="k2"><span>玩家在线时</span><b>发</b></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="m2">先发给测试群组看效果，不计入数据</span><span class="sp"></span><span class="btno">取消</span><span class="btno">发送测试</span><span class="btnp">保存</span></div>
+</div>
+<script src="_后台框.js"></script>
+</body>
+</html>

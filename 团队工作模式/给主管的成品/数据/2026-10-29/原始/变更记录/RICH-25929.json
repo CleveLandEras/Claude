@@ -1,0 +1,62 @@
+{
+ "_存法": "MCP 结果直接返回在对话里，用脚本存下。只留每条记录的 id、作者姓名、时间、改了哪个字段和前后值；头像、邮箱、accountId 去掉，描述正文的前后全文写成（略）。",
+ "issues": {
+  "nodes": [
+   {
+    "key": "RICH-25929",
+    "changelog": {
+     "startAt": 0,
+     "maxResults": 3,
+     "total": 3,
+     "histories": [
+      {
+       "id": "467603",
+       "author": {
+        "displayName": "Fury Cui(崔峰龙)"
+       },
+       "created": "2026-10-29T16:48:19.342+0800",
+       "items": [
+        {
+         "field": "assignee",
+         "fromString": "Fury Cui(崔峰龙)",
+         "toString": "Yijie Gu(顾亿颉)"
+        }
+       ]
+      },
+      {
+       "id": "467602",
+       "author": {
+        "displayName": "Fury Cui(崔峰龙)"
+       },
+       "created": "2026-10-29T16:48:09.068+0800",
+       "items": [
+        {
+         "field": "issuetype",
+         "fromString": "Requirement",
+         "toString": "Epic"
+        }
+       ]
+      },
+      {
+       "id": "467096",
+       "author": {
+        "displayName": "Automation for Jira"
+       },
+       "created": "2026-10-29T15:30:02.250+0800",
+       "items": [
+        {
+         "field": "assignee",
+         "fromString": null,
+         "toString": "Fury Cui(崔峰龙)"
+        }
+       ]
+      }
+     ]
+    },
+    "fields": {
+     "summary": "(急單)客製化派獎V2_增加排除條件 近期RTP較高不派獎"
+    }
+   }
+  ]
+ }
+}

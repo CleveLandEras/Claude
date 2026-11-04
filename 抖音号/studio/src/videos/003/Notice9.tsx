@@ -1,0 +1,859 @@
+// 003《消息提醒》第九版成片画面（Notice003V9）。秒数、字幕、事件全读 timeline9.ts（照 videos/003_消息提醒/文案.md 第九版）。
+// 场景：桌前（看数 → ① 不关 → ② 全关 → 第二天才看到 → ③ 留人：群里照样刷屏，他们发的会响）→ 群聊设置页（先亮设好的样子，再从头教）→ 桌前（测一下）→ 清单屏 → 结尾。
+// 桌前那套（暗房间、暖灯、成片小人、真手机、横幅喷满再震散）、设置页的开关行和头像照 Notice8.tsx 搬过来，按第九版的事件重排；三张小卡、红章、设好的样子、右边小卡是新画的。
+// 实验那句（Fitz 2019）11/02 23:30 主对话定从片里删掉，只写简介，所以这里没有实验画面。
+// 设置页是示意界面，全用代码画，不用截图；不画任何 App 的商标。
+import React from 'react';
+import {AbsoluteFill, random, useCurrentFrame} from 'remotion';
+import {Chair} from '../../components/people/FlatProps';
+import {EXPR, Expr, blink, breath, mixExpr, withBlink} from '../../components/people/face';
+import {ME} from '../../components/people/look';
+import {mixHex} from '../../components/people/geom';
+import {Pose, RPose, mixPose, nudge, poseDef, resolve, solve} from '../../components/people/rig';
+import {FPerson} from '../002/film/FPerson';
+import {AiBadge, AppIcon, CREAM, FilmDefs3, LAMP, Lamp, PhoneBody, RoomBase, SHADOW, Shadow, Sticker, StatusBar, SubBand3, Vignette3} from './film';
+import {Beat9, EV9, FPS9, FRAMES9, SC9, Seg9, beatAt9} from './timeline9';
+
+export const NOTICE9_FRAMES = FRAMES9;
+
+const SANS = '"PingFang SC", "Hiragino Sans GB", "Heiti SC", system-ui, sans-serif';
+const C = {
+  bg: '#101219', ink: '#F4F5F8', soft: '#B9BEC9', gray: '#8A8F99', warm: '#FFC94D', warmBg: '#4A3D1C',
+  red: '#FF5A4E', green: '#3CC27A', wood: '#3F352D', woodTop: '#5A4B3E',
+  page: '#111318', row: '#1C1F27', line: '#2A2E38', off: '#3A3E48',
+};
+
+// —— 小工具（同 Notice8.tsx）——
+const clamp = (v: number, a = 0, b = 1) => Math.max(a, Math.min(b, v));
+const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+const ease = (t: number) => {
+  const x = clamp(t);
+  return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+};
+const easeOut = (t: number) => 1 - Math.pow(1 - clamp(t), 3);
+const easeIn = (t: number) => Math.pow(clamp(t), 3);
+const easeBack = (t: number) => {
+  const x = clamp(t), c1 = 1.70158, c3 = c1 + 1;
+  return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2);
+};
+const pr = (t: number, ab: number[]) => clamp((t - ab[0]) / Math.max(1e-6, ab[1] - ab[0]));
+const pe = (t: number, ab: number[]) => ease(pr(t, ab));
+const po = (t: number, ab: number[]) => easeOut(pr(t, ab));
+const bump = (t: number, a: number, d = 0.3) => {
+  const u = (t - a) / d;
+  return u < 0 || u > 1 ? 0 : Math.sin(Math.PI * u);
+};
+const tw = (s: string, size: number) => [...s].reduce((w, ch) => {
+  if (/[　-鿿＀-￯“”‘’…—①-⑳]/.test(ch)) return w + size;
+  if (ch === ' ') return w + size * 0.3;
+  if (/[0-9]/.test(ch)) return w + size * 0.6;
+  return w + size * 0.58;
+}, 0);
+const inR = (t: number, ab: number[]) => t >= ab[0] && t < ab[1];
+
+type PK = [number, RPose, number?, ((x: number) => number)?];
+const ptrack = (t: number, keys: PK[]): RPose => {
+  let cur = keys[0][1];
+  for (let i = 1; i < keys.length; i++) {
+    const [ti, p, d = 0.3, fn = ease] = keys[i];
+    if (t < ti) break;
+    cur = mixPose(cur, p, fn(clamp((t - ti) / d)));
+  }
+  return cur;
+};
+type EK = [number, Expr, number?];
+const etrack = (t: number, keys: EK[]): Expr => {
+  let cur = keys[0][1];
+  for (let i = 1; i < keys.length; i++) {
+    const [ti, e, d = 0.25] = keys[i];
+    if (t < ti) break;
+    cur = mixExpr(cur, e, ease((t - ti) / d));
+  }
+  return cur;
+};
+
+const Tx: React.FC<{x: number; y: number; size: number; fill?: string; anchor?: 'start' | 'middle' | 'end'; weight?: number; o?: number; children: React.ReactNode}> = (
+  {x, y, size, fill = C.ink, anchor = 'start', weight = 600, o = 1, children},
+) => (
+  <text x={x} y={y} fontSize={size} fontFamily={SANS} fontWeight={weight} fill={fill} textAnchor={anchor} dominantBaseline="central" opacity={o}>{children}</text>
+);
+
+// ================= 人和姿势（同 Notice8.tsx） =================
+const BOARD = poseDef('board');
+const P = (base: Pose, o: Pose) => resolve({...base, ...o});
+const DESK = P(BOARD, {neck: 4, pitch: 0.3, yaw: 0.45, gaze: {x: 1, y: 0.5}});
+const DESK_UP = P(BOARD, {lean: 3, neck: -6, pitch: -0.05, yaw: 0.5, gaze: {x: 1, y: -0.15}});
+const DESK_READ = P(BOARD, {lean: 9, chest: 4, neck: -2, pitch: 0.05, yaw: 0.5, gaze: {x: 1, y: 0}});
+const DESK_SLUMP = P(BOARD, {lean: 6, chest: 9, neck: 6, shrug: -0.8, pitch: 0.2, yaw: 0.5, gaze: {x: 1, y: 0}});
+const DESK_BACK = P(BOARD, {lean: -6, chest: -2, neck: -2, pitch: 0.1, yaw: 0.45, gaze: {x: 1, y: 0.2}});
+const DESK_NOD = P(BOARD, {lean: 4, neck: 4, pitch: 0.25, yaw: 0.5, gaze: {x: 1, y: 0.1}});
+const E = EXPR;
+const SMILE: Expr = {...E.calm, smile: 0.6, lid: 0.2, blush: 0.7};
+
+type Glow = {at: {x: number; y: number}; color: string; amount: number; r?: number};
+const You: React.FC<{fr: number; pose: RPose; expr: Expr; x: number; G: number; s: number; seed: string; part?: 'all' | 'body' | 'arms'; glow?: Glow}> = (
+  {fr, pose, expr, x, G, s, seed, part, glow},
+) => {
+  const b = breath(fr);
+  const r = nudge(pose, {shrug: 0.08 * b, chest: -0.7 * b});
+  const e = withBlink(expr, blink(fr, seed));
+  return <FPerson pose={r} expr={e} look={ME} x={x} y={G} s={s} facing={1} night="#0B0D12" light={{x: -0.25, y: -1}} part={part}
+    tint={{color: LAMP, amount: 0.07}} glow={glow} />;
+};
+
+// ================= 桌前 =================
+const HOOK = {x: 880, G: 900, s: 1.9};
+const DESK_Y = HOOK.G - 88 * HOOK.s;
+const PB = {x: 1080, y: 180, w: 420, h: 720};
+const SC = {x: PB.x + 14, y: PB.y + 14, w: PB.w - 28, h: PB.h - 28};
+const HS = 1.04, HX = 50.8, HY = -46.2;          // 画面 X = HS·x + HX，Y = HS·y + HY
+const PUSH_C = {x: 987, y: 680};
+const pushK = (t: number) => 1 + 0.15 * pe(t, EV9.camPush) * (1 - pe(t, EV9.camBack));
+const deskXf = (t: number) => {
+  const k = pushK(t);
+  return `translate(${PUSH_C.x} ${PUSH_C.y}) scale(${k}) translate(${-PUSH_C.x} ${-PUSH_C.y}) translate(${HX} ${HY}) scale(${HS})`;
+};
+const toScreen = (x: number, y: number) => ({x: HS * x + HX, y: HS * y + HY});
+
+const deskPose = (t: number) => ptrack(t, [
+  [0, DESK], [EV9.buzz[0], DESK_UP, 0.3], [EV9.chatIn[0], DESK_READ, 0.4], [EV9.slump[0], DESK_SLUMP, 0.5],
+  [EV9.cut, DESK, 0.01], [EV9.pickUp, DESK_READ, 0.35],
+  [SC9.desk2[0], DESK_READ, 0.01], [EV9.lockIn, DESK, 0.4], [EV9.look[0], DESK_UP, 0.3], [EV9.nod[0], DESK_NOD, 0.2], [EV9.nod[0] + 0.25, DESK_BACK, 0.4],
+  [SC9.desk3[0], DESK, 0.01], [EV9.testMsg, DESK_UP, 0.3],
+]);
+const deskExpr = (t: number) => etrack(t, [
+  [0, E.calm], [EV9.buzz[0], {...E.surprise, open: 0.3}, 0.15], [1.0, E.calm, 0.4], [EV9.burst[0], {...E.surprise, open: 0.5}, 0.15],
+  [EV9.keyA, E.worry, 0.3], [EV9.noisy[0], {...E.surprise, open: 0.3}, 0.15], [EV9.slump[0], E.sad, 0.4],
+  [EV9.cut, E.calm, 0.01], [EV9.stamp, {...E.surprise, open: 0.45}, 0.12], [EV9.stamp + 0.45, E.worry, 0.35],
+  [SC9.desk2[0], E.calm, 0.01], [EV9.keyRing, SMILE, 0.3], [SC9.desk3[0], E.calm, 0.01], [EV9.testOk, SMILE, 0.3],
+]);
+
+// 手机响：每响一下抖 8 帧、屏幕一闪
+const RINGS = [...EV9.buzz, ...EV9.noisy, EV9.keyRing, EV9.testMsg];
+const shake = (t: number) => {
+  const f = Math.round(t * FPS9);
+  const on = RINGS.some((b) => f >= Math.round(b * FPS9) && f < Math.round(b * FPS9) + 8) || inR(t, EV9.countRun);
+  if (!on) return {dx: 0, rot: 0};
+  const k = f % 2 === 0 ? 1 : -1;
+  return {dx: 5 * k, rot: 2 * k};
+};
+const screenFlash = (t: number) => {
+  let v = 0;
+  for (const a of RINGS) v = Math.max(v, bump(t, a, 0.35));
+  if (inR(t, EV9.countRun)) v = Math.max(v, 0.6 * Math.abs(Math.sin(t * 38)));
+  return v;
+};
+
+type Ban = {at: number; title: string; icon: 'bag' | 'chat' | 'flame'; sub?: string; warm?: boolean; out?: number};
+const BANS_A: Ban[] = [
+  {at: EV9.buzz[0], title: '限时秒杀', icon: 'bag'},
+  {at: EV9.buzz[1], title: '热点新闻', icon: 'flame'},
+  {at: EV9.buzz[2], title: '工作群(52)', icon: 'chat'},
+  {at: EV9.buzz[3], title: '家长群(12)', icon: 'chat'},
+];
+const BANS_C: Ban[] = [
+  {at: EV9.keyRing, title: '王老师', icon: 'chat', sub: '明早8点前交表', warm: true, out: SC9.desk2[1]},
+  {at: EV9.testMsg, title: '小李', icon: 'chat', sub: '@你 测试一下'},
+];
+const BANNER_Y = SC.y + 200;
+const Banners: React.FC<{t: number; list: Ban[]}> = ({t, list}) => {
+  const BH = 100, SUBH = 66;
+  const hgt = (b: Ban) => BH + (b.sub ? SUBH : 0);
+  return (
+    <g>
+      {list.map((n, i) => {
+        if (t < n.at) return null;
+        const fade = n.out !== undefined ? 1 - pr(t, [n.out, n.out + 0.25]) : 1;
+        if (fade <= 0) return null;
+        const below = list.reduce((s, m, j) => (j > i && t >= m.at && (m.out === undefined || t < m.out) ? s + (hgt(m) + 14) * po(t, [m.at, m.at + 0.25]) : s), 0);
+        const y = BANNER_Y + below - 70 * (1 - po(t, [n.at, n.at + 0.25]));
+        const o = pr(t, [n.at, n.at + 0.12]) * fade;
+        const h = hgt(n);
+        return (
+          <g key={i} opacity={o}>
+            <rect x={SC.x + 10} y={y + 6} width={SC.w - 20} height={h} rx={26} fill="#000" opacity={0.3} filter="url(#fBlur8)" />
+            <rect x={SC.x + 10} y={y} width={SC.w - 20} height={h} rx={26} fill={n.warm ? '#3A3320' : '#1E2230'} opacity={0.92} />
+            <rect x={SC.x + 10} y={y} width={SC.w - 20} height={h} rx={26} fill="none" stroke={n.warm ? C.warm : '#FFFFFF'} strokeOpacity={n.warm ? 1 : 0.08} strokeWidth={n.warm ? 4 : 2} />
+            <AppIcon x={SC.x + 46} y={y + 50} size={52} kind={n.icon} />
+            <Tx x={SC.x + 82} y={y + 50} size={n.sub ? 50 : 54} weight={600} fill="#F4F5F8">{n.title}</Tx>
+            {n.sub && <Tx x={SC.x + 30} y={y + BH + 18} size={52} weight={700} fill={n.warm ? C.warm : '#F4F5F8'}>{n.sub}</Tx>}
+          </g>
+        );
+      })}
+    </g>
+  );
+};
+
+// 群聊：消息从下往上排（最后一条贴底），新消息进来整列往上推
+type Msg = {who?: string; text: string; key?: 'warm'; at?: number; hiAt?: number; until?: number};
+const BASE: Msg[] = [
+  {text: '收到'}, {text: '+1'}, {text: '[图片]'}, {text: '好的'}, {text: '收到'}, {text: '哈哈哈'}, {text: '1'}, {text: '收到'},
+  {who: '@所有人', text: '周五开家长会', key: 'warm', hiAt: EV9.keyA}, {text: '+1'}, {text: '收到'},
+  {who: '王老师', text: '明天带水彩笔', key: 'warm', hiAt: EV9.keyB}, {text: '好的'},
+];
+const ADDED: Msg[] = [
+  ...EV9.noisy.map((a, i) => ({text: ['收到', '+1', '好的', '收到', '+1'][i], at: a, until: EV9.cut})),
+  {who: '王老师', text: '明早8点前交表', key: 'warm', at: EV9.silentMsg, hiAt: EV9.stamp - 0.1, until: SC9.desk1[1]},
+];
+const MH = (m: Msg) => (m.who ? 132 : 76);
+const GAP = 12;
+const bellAmt = (t: number) => {
+  if (t >= EV9.bellOn && t < SC9.desk1[1]) return po(t, [EV9.bellOn, EV9.bellOn + 0.2]);
+  if (t >= EV9.bell2 && t < EV9.lockIn) return po(t, [EV9.bell2, EV9.bell2 + 0.2]);
+  return 0;
+};
+const ChatPage: React.FC<{t: number}> = ({t}) => {
+  const slide = po(t, EV9.chatIn);
+  const scrollOff = 6 * 88 * (1 - easeOut(pr(t, EV9.chatScroll)));   // 一开始停在上面 6 条，滚到底
+  const list = [...BASE, ...ADDED.filter((m) => t >= (m.at ?? 0) && (m.until === undefined || t < m.until))];
+  const bottom = SC.y + SC.h - 40;
+  let y = bottom + scrollOff;
+  const rows: React.ReactNode[] = [];
+  for (let i = list.length - 1; i >= 0; i--) {
+    const m = list[i];
+    const inU = m.at !== undefined ? po(t, [m.at, m.at + 0.2]) : 1;
+    const h = MH(m) * inU;
+    y -= h;
+    if (y + h < SC.y + 100) break;
+    const key = m.key === 'warm';
+    const hl = key && m.hiAt !== undefined ? pe(t, [m.hiAt, m.hiAt + 0.25]) : 0;
+    const w = Math.max(tw(m.text, 50), m.who ? tw(m.who, 50) : 0) + 34;
+    rows.push(
+      <g key={i} opacity={inU}>
+        {hl > 0 && <rect x={SC.x + 2} y={y - 6} width={w + 22} height={MH(m) - GAP + 12} rx={20} fill={C.warm} opacity={0.2 * hl} />}
+        <rect x={SC.x + 12} y={y} width={w} height={MH(m) - GAP} rx={14} fill={key ? mixHex('#2A2E37', C.warmBg, hl) : '#2A2E37'} stroke={C.warm} strokeWidth={5 * hl} />
+        {m.who && <Tx x={SC.x + 28} y={y + 36} size={50} fill={mixHex('#C9CED8', C.warm, hl)}>{m.who}</Tx>}
+        <Tx x={SC.x + 28} y={y + (m.who ? 88 : (MH(m) - GAP) / 2)} size={50} fill={key ? mixHex(C.ink, C.warm, hl) : '#D5D9E0'}>{m.text}</Tx>
+      </g>,
+    );
+  }
+  const bell = bellAmt(t);
+  return (
+    <g transform={`translate(${SC.w * (1 - slide)} 0)`}>
+      <rect x={SC.x - 20} y={SC.y} width={SC.w + 20} height={SC.h} fill="#111318" />
+      {rows}
+      <rect x={SC.x} y={SC.y} width={SC.w} height={116} fill="#1C1F26" />
+      <path d={`M ${SC.x + 32} ${SC.y + 66} l -13 13 l 13 13`} fill="none" stroke="#F4F5F8" strokeWidth={4} strokeLinecap="round" strokeLinejoin="round" />
+      <Tx x={SC.x + SC.w / 2 - 20 * bell} y={SC.y + 80} size={52} anchor="middle">班级群</Tx>
+      {bell > 0 && <g transform={`translate(${SC.x + SC.w - 52} ${SC.y + 80}) scale(${0.8 + 0.2 * easeBack(bell)})`} opacity={bell}><MuteBell s={0.9} /></g>}
+    </g>
+  );
+};
+const MuteBell: React.FC<{s?: number; color?: string}> = ({s = 1, color = '#F4F5F8'}) => (
+  <g transform={`scale(${s})`}>
+    <path d="M -16 10 L -16 -4 Q -16 -20 0 -20 Q 16 -20 16 -4 L 16 10 L 21 15 L -21 15 Z" fill={color} />
+    <circle cx={0} cy={21} r={5} fill={color} />
+    <line x1={-22} y1={-22} x2={22} y2={24} stroke="#111318" strokeWidth={8} />
+    <line x1={-22} y1={-22} x2={22} y2={24} stroke={color} strokeWidth={4} strokeLinecap="round" />
+  </g>
+);
+
+// 锁屏（开头、③ 留人、测一下）
+const LockPage: React.FC<{t: number}> = ({t}) => {
+  const late = t >= SC9.desk2[0];
+  // ③：群里还在进（免打扰），只在锁屏底下一行灰字里涨，不亮不抖
+  const quietOn = late && t >= EV9.quiet[0];
+  const n = quietOn ? Math.min(9, 1 + Math.floor((t - EV9.quiet[0]) / 0.25)) : 0;
+  return (
+    <g>
+      <rect x={SC.x} y={SC.y} width={SC.w} height={SC.h} fill="url(#gWall)" />
+      <circle cx={SC.x + 80} cy={SC.y + 520} r={170} fill="#8C6BC8" opacity={0.35} filter="url(#fBlur28)" />
+      <circle cx={SC.x + 330} cy={SC.y + 260} r={140} fill="#5FA3D9" opacity={0.3} filter="url(#fBlur28)" />
+      <Tx x={SC.x + SC.w / 2} y={SC.y + 118} size={104} anchor="middle" weight={300} fill="#EEF2FA">{late ? '20:47' : '20:31'}</Tx>
+      <Banners t={t} list={late ? BANS_C : BANS_A} />
+      {quietOn && (
+        <g opacity={pr(t, [EV9.quiet[0], EV9.quiet[0] + 0.2])}>
+          <rect x={SC.x + 10} y={SC.y + SC.h - 150} width={SC.w - 20} height={96} rx={24} fill="#1E2230" opacity={0.7} />
+          <g transform={`translate(${SC.x + 50} ${SC.y + SC.h - 102})`}><MuteBell s={0.75} color="#AEB4C0" /></g>
+          <Tx x={SC.x + 86} y={SC.y + SC.h - 102} size={50} fill="#C9CED8">班级群 {n} 条</Tx>
+        </g>
+      )}
+    </g>
+  );
+};
+
+const PhoneScreen: React.FC<{t: number}> = ({t}) => {
+  const chat = (t >= EV9.chatIn[0] && t < SC9.desk1[1]) || (t >= SC9.desk2[0] && t < EV9.lockIn);
+  const lockUnder = !chat || t < EV9.chatIn[1];
+  return (
+    <g>
+      <clipPath id="n9scr"><rect x={SC.x} y={SC.y} width={SC.w} height={SC.h} rx={52} /></clipPath>
+      <g clipPath="url(#n9scr)">
+        {lockUnder && <LockPage t={t} />}
+        {chat && <ChatPage t={t} />}
+        <rect x={SC.x} y={SC.y} width={SC.w} height={SC.h} fill="#FFFFFF" opacity={0.14 * screenFlash(t)} />
+        <StatusBar s={SC} />
+      </g>
+    </g>
+  );
+};
+
+// 横幅喷满画面再震散（同 Notice8.tsx 的 Burst，按第九版时间）
+const BURST_NAMES = ['限时秒杀', '热点新闻', '工作群(52)', '家长群(12)', '快递已签收', '直播开始了', '红包到账', '新闻快讯',
+  '小区群(99+)', '你有新消息', '优惠券到期', '同学群(8)', '热搜爆了', '会员续费', '亲戚群(5)', '好友点赞', '外卖已送达', '步数排行',
+  '新品上架', '视频更新', '账单提醒', '系统更新', '天气预警', '评论回复', '体力满了', '签到提醒', '班级群(99+)'];
+const BURST_ICON: ('bag' | 'chat' | 'flame')[] = ['bag', 'flame', 'chat'];
+const HEAD_BOX = {x0: 850, x1: 1100, y0: 400, y1: 660};
+const BURST = (() => {
+  const rows = [1000, 900, 800, 700, 590, 470, 350, 230, 130];
+  const pts: {x: number; y: number; r: number; name: string; icon: 'bag' | 'chat' | 'flame'; w: number}[] = [];
+  let n = 0;
+  rows.forEach((y, ri) => {
+    for (let x = 140 + (ri % 2) * 210; x < 1920 && pts.length < 40; x += 430) {
+      const jx = x + (random(`bx${ri}-${x}`) - 0.5) * 90, jy = y + (random(`by${ri}-${x}`) - 0.5) * 40;
+      if (jx > HEAD_BOX.x0 - 150 && jx < HEAD_BOX.x1 + 150 && jy > HEAD_BOX.y0 - 40 && jy < HEAD_BOX.y1 - 20) continue;
+      const name = BURST_NAMES[n % BURST_NAMES.length];
+      pts.push({x: jx, y: jy, r: (random(`br${ri}-${x}`) - 0.5) * 14, name, icon: BURST_ICON[n % 3], w: 120 + tw(name, 56)});
+      n++;
+    }
+  });
+  return pts.slice(0, 27);
+})();
+const BURST_T = BURST.map((_, i) => EV9.burst[0] + (EV9.burst[1] - 0.2 - EV9.burst[0]) * Math.pow(i / (BURST.length - 1), 0.8));
+const BURST_FROM = {x: 1392, y: 500};
+const Burst: React.FC<{t: number}> = ({t}) => {
+  if (t < EV9.burst[0] || t >= EV9.shatter[1]) return null;
+  const sh = pr(t, EV9.shatter);
+  return (
+    <g>
+      {BURST.map((b, i) => {
+        const s0 = BURST_T[i];
+        if (t < s0) return null;
+        const u = pr(t, [s0, s0 + 0.22]);
+        const e = easeBack(u);
+        let x = lerp(BURST_FROM.x, b.x, easeOut(u)), y = lerp(BURST_FROM.y, b.y, easeOut(u));
+        let rot = b.r * e, o = clamp(u * 5), sc = lerp(0.3, 1, e);
+        if (sh > 0) {
+          const dx = b.x - 960, dy = b.y - 540, d = Math.max(1, Math.hypot(dx, dy));
+          x += (dx / d) * 520 * easeIn(sh); y += (dy / d) * 520 * easeIn(sh);
+          rot += 25 * sh * (b.r >= 0 ? 1 : -1); o *= 1 - sh; sc *= 1 + 0.15 * sh;
+        }
+        const w = b.w, h = 104;
+        return (
+          <g key={i} opacity={o} transform={`translate(${x} ${y}) rotate(${rot}) scale(${sc})`}>
+            <rect x={-w / 2 + 6} y={-h / 2 + 12} width={w} height={h} rx={28} fill="#000" opacity={0.45} filter="url(#fBlur8)" />
+            <rect x={-w / 2} y={-h / 2} width={w} height={h} rx={28} fill="#22273A" />
+            <rect x={-w / 2} y={-h / 2} width={w} height={h} rx={28} fill="none" stroke="#FFFFFF" strokeOpacity={0.12} strokeWidth={2} />
+            <AppIcon x={-w / 2 + 44} y={0} size={56} kind={b.icon} />
+            <Tx x={-w / 2 + 84} y={0} size={56} weight={600} fill="#F4F5F8">{b.name}</Tx>
+          </g>
+        );
+      })}
+    </g>
+  );
+};
+
+const DeskScene: React.FC<{t: number; fr: number}> = ({t, fr}) => {
+  const pose = deskPose(t);
+  const expr = deskExpr(t);
+  const sk0 = shake(t);
+  const deskX = HOOK.x + 30 * HOOK.s;
+  const fl = screenFlash(t);
+  const sk = solve(pose);
+  const glow: Glow = {at: {x: sk.head.x + 45, y: sk.head.y + 5}, color: '#BFD4FF', amount: 0.16 + 0.24 * fl, r: 110};
+  const pc = {x: PB.x + PB.w / 2, y: PB.y + PB.h / 2};
+  return (
+    <g>
+      <RoomBase />
+      <g transform={deskXf(t)}>
+        <Lamp x={940} k={1} f={fr} spread={1.15} floorY={HOOK.G + 6} seed="hook" />
+        <ellipse cx={pc.x} cy={pc.y} rx={520} ry={560} fill="url(#gScreenLight)" opacity={0.35 + 0.4 * fl} style={{mixBlendMode: 'screen'}} />
+        <Chair x={HOOK.x - 10 * HOOK.s} y={HOOK.G} s={HOOK.s} />
+        <rect x={deskX + 14} y={DESK_Y - 9} width={96} height={9} rx={3} fill="#9AA3B2" />
+        <path d={`M ${deskX + 102} ${DESK_Y - 6} L ${deskX + 114} ${DESK_Y - 6} L ${deskX + 136} ${DESK_Y - 118} L ${deskX + 124} ${DESK_Y - 118} Z`} fill="#B7C0CE" />
+        <path d={`M ${deskX + 100} ${DESK_Y - 8} L ${deskX + 122} ${DESK_Y - 116}`} stroke="#DCE7FF" strokeWidth={3} opacity={0.6} />
+        <You fr={fr} pose={pose} expr={expr} x={HOOK.x} G={HOOK.G} s={HOOK.s} seed="hook" part="body" glow={glow} />
+        <Shadow x={deskX + 180} y={HOOK.G + 4} rx={220} ry={14} o={0.55} />
+        <rect x={deskX} y={DESK_Y} width={360} height={18} rx={4} fill={C.woodTop} />
+        <rect x={deskX} y={DESK_Y} width={360} height={5} rx={2.5} fill="#7A6652" />
+        <rect x={deskX + 16} y={DESK_Y + 18} width={14} height={HOOK.G - DESK_Y - 18} fill={C.wood} />
+        <rect x={deskX + 330} y={DESK_Y + 18} width={14} height={HOOK.G - DESK_Y - 18} fill={C.wood} />
+        <g transform={`translate(${sk0.dx} 0) rotate(${sk0.rot} ${pc.x} ${pc.y})`}>
+          <PhoneBody b={PB} />
+          <PhoneScreen t={t} />
+        </g>
+        <You fr={fr} pose={pose} expr={expr} x={HOOK.x} G={HOOK.G} s={HOOK.s} seed="hook" part="arms" glow={glow} />
+      </g>
+      <Burst t={t} />
+      <DeskStickers t={t} />
+    </g>
+  );
+};
+
+// 桌前的贴纸（画面坐标）
+const TAG_X = 1765, TAG_Y = 300;
+const CHIPS = [{text: '王老师', y: 470}, {text: '领导', y: 590}, {text: '@所有人', y: 710}];
+const DeskStickers: React.FC<{t: number}> = ({t}) => {
+  const items: {at: number; out: number; text: string; x: number; y: number; size?: number}[] = [
+    {at: EV9.howTag, out: EV9.burst[0], text: '怎么查，看简介', x: 470, y: 650, size: 50},
+    {at: EV9.tagNo, out: EV9.cut - 0.01, text: '① 不关', x: TAG_X, y: TAG_Y},
+    {at: EV9.cut, out: SC9.desk1[1], text: '② 全关', x: TAG_X, y: TAG_Y},
+    {at: EV9.silentTag, out: EV9.nextDay[0], text: '没提醒', x: TAG_X, y: 620},
+    {at: EV9.tag3, out: SC9.desk2[1], text: '③ 留人', x: TAG_X, y: TAG_Y},
+    {at: EV9.testTag, out: SC9.desk3[1], text: '步骤看简介', x: 470, y: 560},
+  ];
+  return (
+    <g>
+      {items.map((s, i) => {
+        if (t < s.at || t >= s.out + 0.2) return null;
+        const pop = easeBack(pr(t, [s.at, s.at + 0.25]));
+        const o = 1 - pr(t, [s.out, s.out + 0.2]);
+        return <Sticker key={i} x={s.x} y={s.y} text={s.text} size={s.size ?? 56} pop={pop} o={o} />;
+      })}
+      {/* 红章“过了”：盖在“明早8点前交表”那条上 */}
+      {t >= EV9.stamp && t < SC9.desk1[1] && (() => {
+        const u = pr(t, [EV9.stamp, EV9.stamp + 0.18]);
+        const sc = lerp(1.6, 1, easeOut(u));
+        const p = toScreen(SC.x + SC.w, SC.y + SC.h - 40 - 60);          // 手机外右侧，对着那条消息
+        return (
+          <g transform={`translate(${TAG_X} ${p.y}) rotate(-10) scale(${sc})`} opacity={clamp(u * 3)}>
+            <rect x={-78} y={-40} width={156} height={80} rx={14} fill="rgba(40,8,8,0.7)" stroke={C.red} strokeWidth={7} />
+            <Tx x={0} y={2} size={56} anchor="middle" weight={800} fill={C.red}>过了</Tx>
+          </g>
+        );
+      })()}
+      {/* ③ 三张小卡：要留下来的人和 @所有人 */}
+      {t >= EV9.chips[0] && t < SC9.desk2[1] && CHIPS.map((c, i) => {
+        const a = EV9.chips[i];
+        if (t < a) return null;
+        const u = pr(t, [a, a + 0.3]);
+        const ring = i === 0 ? Math.max(0.8, bump(t, EV9.keyRing, 0.5) * 1.0) : 0.8;
+        const flash = i === 0 ? bump(t, EV9.keyRing, 0.5) : 0;
+        return <Sticker key={i} x={lerp(2060, TAG_X, easeOut(u))} y={c.y - 14 * flash} text={c.text} size={54} pop={easeBack(u) + 0.15 * flash} ring={ring} />;
+      })}
+      {t >= EV9.testOk && t < SC9.desk3[1] && (() => {
+        const p = toScreen(PB.x + PB.w - 40, PB.y + 230);
+        const u = easeBack(pr(t, [EV9.testOk, EV9.testOk + 0.3]));
+        return (
+          <g transform={`translate(${p.x + 40} ${p.y}) scale(${u})`}>
+            <circle r={52} fill={C.green} />
+            <path d="M -22 2 L -6 18 L 24 -16" fill="none" stroke="#FFFFFF" strokeWidth={10} strokeLinecap="round" strokeLinejoin="round" />
+          </g>
+        );
+      })()}
+    </g>
+  );
+};
+
+// 计数和“第二天”大字钟（桌前左边）
+const deskCount = (t: number) => {
+  let n = 0;
+  EV9.buzz.forEach((a, i) => { if (t >= a) n = i + 1; });
+  if (t >= EV9.countRun[0]) n = Math.round(4 + 83 * Math.pow(pr(t, EV9.countRun), 1.25));
+  EV9.noisy.forEach((a) => { if (t >= a) n += 1; });
+  return n;
+};
+const COUNTER_AT = {x: 230, y: 514};
+const DeskText: React.FC<{t: number}> = ({t}) => {
+  const showCount = t < EV9.cut;
+  const titleO = 1 - pr(t, [EV9.burst[0], EV9.burst[0] + 0.2]);
+  const n = deskCount(t);
+  let pop = 0;
+  for (const a of [...EV9.buzz, ...EV9.noisy]) pop = Math.max(pop, bump(t, a, 0.25));
+  const k = pushK(t);
+  const cx = (COUNTER_AT.x - PUSH_C.x) * k + PUSH_C.x, cy = (COUNTER_AT.y - PUSH_C.y) * k + PUSH_C.y;
+  const inBurst = t >= EV9.burst[0] && t < EV9.camBack[1];
+  const day = t >= EV9.nextDay[0] && t < SC9.desk1[1];
+  const flip = po(t, EV9.nextDay);
+  return (
+    <>
+      {titleO > 0 && (
+        <div style={{position: 'absolute', left: 0, width: 1920, top: 26, textAlign: 'center', fontFamily: SANS, fontWeight: 700, fontSize: 88, lineHeight: '106px',
+          color: '#FFF8EC', opacity: titleO, textShadow: '0 4px 0 rgba(0,0,0,0.35), 0 8px 30px rgba(0,0,0,0.65)'}}>你今天收到多少条通知？</div>
+      )}
+      {showCount && (
+        <div style={{position: 'absolute', left: cx, top: cy, fontFamily: SANS, fontWeight: 600, fontSize: 60, color: CREAM, whiteSpace: 'nowrap', lineHeight: '72px',
+          transformOrigin: 'center center', transform: `scale(${1 + 0.1 * pop})`, textShadow: SHADOW,
+          background: inBurst ? 'rgba(10,11,16,0.92)' : 'transparent', borderRadius: 16, padding: '0 14px'}}>
+          今天收到<span style={{fontVariantNumeric: 'tabular-nums', display: 'inline-block', textAlign: 'center', background: 'rgba(0,0,0,0.45)', borderRadius: 14,
+            margin: '0 10px', minWidth: 110}}>{n}</span>条
+        </div>
+      )}
+      {day && (
+        <div style={{position: 'absolute', left: 120, top: 380, width: 560, padding: '18px 0', borderRadius: 28, background: 'rgba(12,13,18,0.9)',
+          border: '4px solid rgba(255,255,255,0.12)', textAlign: 'center', fontFamily: SANS, color: CREAM, transformOrigin: 'center top',
+          transform: `perspective(900px) rotateX(${(1 - flip) * -80}deg)`, opacity: clamp(flip * 2)}}>
+          <div style={{fontSize: 60, fontWeight: 700, lineHeight: '76px', color: C.warm}}>第二天</div>
+          <div style={{fontSize: 120, fontWeight: 300, lineHeight: '136px', fontVariantNumeric: 'tabular-nums'}}>9:00</div>
+        </div>
+      )}
+    </>
+  );
+};
+
+// ================= 微信群聊设置页 =================
+const PN = {x: 560, y: 110, w: 800, h: 740};
+const PK = 1.12;                                   // 设置页整体放大（以面板顶边中点为准）
+const sy = (rel: number) => PN.y + rel * PK;        // 面板里的一行，在画面上的 y
+const RH = 110;
+const RY = {name: 120, mute: 230, fold: 340, row2: 450, slots: 570};     // 每行顶边（相对面板）
+const TOG_X = PN.x + PN.w - 90;
+const Toggle: React.FC<{x: number; y: number; on: number}> = ({x, y, on}) => {
+  const w = 108, h = 62, k = clamp(on);
+  return (
+    <g>
+      <rect x={x - w / 2} y={y - h / 2} width={w} height={h} rx={h / 2} fill={mixHex(C.off, C.green, k)} />
+      <circle cx={x - w / 2 + h / 2 + (w - h) * k} cy={y} r={h / 2 - 5} fill="#F4F5F8" />
+    </g>
+  );
+};
+const Row: React.FC<{y: number; label: string; o?: number; dy?: number; right?: React.ReactNode; dim?: boolean}> = ({y, label, o = 1, dy = 0, right, dim}) => (
+  <g opacity={o} transform={`translate(0 ${dy})`}>
+    <rect x={PN.x} y={PN.y + y} width={PN.w} height={RH} fill={C.row} />
+    <rect x={PN.x + 40} y={PN.y + y + RH - 2} width={PN.w - 40} height={2} fill={C.line} />
+    <Tx x={PN.x + 40} y={PN.y + y + RH / 2} size={54} fill={dim ? C.soft : C.ink}>{label}</Tx>
+    {right}
+  </g>
+);
+const Chevron: React.FC<{x: number; y: number}> = ({x, y}) => (
+  <path d={`M ${x - 8} ${y - 16} l 16 16 l -16 16`} fill="none" stroke="#8A8F99" strokeWidth={5} strokeLinecap="round" strokeLinejoin="round" />
+);
+const HlBox: React.FC<{y: number; o: number}> = ({y, o}) => (o > 0 ? (
+  <rect x={PN.x + 6} y={PN.y + y + 4} width={PN.w - 12} height={RH - 8} rx={16} fill="none" stroke={C.warm} strokeWidth={6} opacity={o} />
+) : null);
+const Tap: React.FC<{t: number; at: number; x: number; y: number}> = ({t, at, x, y}) => {
+  if (t < at - 0.3 || t > at + 0.45) return null;
+  const pre = pr(t, [at - 0.3, at - 0.1]);
+  const u = pr(t, [at, at + 0.4]);
+  return (
+    <g>
+      {t < at + 0.12 && <circle cx={x} cy={y} r={26} fill="#FFFFFF" opacity={0.85 * pre} />}
+      {t >= at && <circle cx={x} cy={y} r={26 + 50 * easeOut(u)} fill="none" stroke="#FFFFFF" strokeWidth={6} opacity={0.9 * (1 - u)} />}
+    </g>
+  );
+};
+const AVA: Record<string, string> = {王: '#C77D4A', 领: '#5C7FC9', 张: '#4FA37A', 刘: '#A86BC2', 陈: '#C9605E'};
+const Ava: React.FC<{x: number; y: number; ch: string; o?: number; sc?: number; red?: number; r?: number}> = ({x, y, ch, o = 1, sc = 1, red = 0, r = 52}) => (
+  <g transform={`translate(${x} ${y}) scale(${sc})`} opacity={o}>
+    <circle r={r} fill={AVA[ch] ?? '#777'} />
+    <Tx x={0} y={2} size={r} anchor="middle" weight={700}>{ch}</Tx>
+    {red > 0 && <circle r={r + 8} fill="none" stroke={C.red} strokeWidth={7} opacity={red} />}
+  </g>
+);
+const SLOT_X = (i: number) => PN.x + 90 + i * 128;
+const SLOT_Y = PN.y + RY.slots + 80;
+const Slots: React.FC<{o: number}> = ({o}) => (o > 0 ? (
+  <g opacity={o}>
+    <rect x={PN.x} y={PN.y + RY.slots - 10} width={PN.w} height={180} fill={C.row} />
+    {[0, 1, 2, 3].map((i) => <circle key={i} cx={SLOT_X(i)} cy={SLOT_Y} r={52} fill="none" stroke="#5A606C" strokeWidth={4} strokeDasharray="10 8" />)}
+    <Tx x={PN.x + PN.w - 40} y={SLOT_Y} size={50} anchor="end" fill={C.soft}>最多 4 个</Tx>
+  </g>
+) : null);
+// 一个头像从 (fx, fy) 飞进空位 i
+const flyAva = (t: number, at: number, ch: string, i: number, fx: number, fy: number, key: string, extra?: {red?: number; o?: number}) => {
+  if (t < at) return null;
+  const u = pr(t, [at, at + 0.3]);
+  const x = lerp(fx, SLOT_X(i), easeOut(u)), y = lerp(fy, SLOT_Y, easeOut(u)) - 60 * Math.sin(Math.PI * u);
+  return <Ava key={key} x={x} y={y} ch={ch} sc={lerp(0.5, 1, easeBack(u))} o={extra?.o ?? 1} red={extra?.red} />;
+};
+
+// “以下消息仍通知”页。done = 设好的样子（开头先亮给人看，不点不动）
+const SubPage: React.FC<{t: number; done?: boolean}> = ({t, done}) => {
+  const allOn = done ? 1 : pe(t, [EV9.tapAll + 0.02, EV9.tapAll + 0.17]);
+  const swHl = (i: number) => {
+    if (done) return 0;
+    const a = EV9.sw[i], b = i < 2 ? EV9.sw[i + 1] : EV9.tapAdd - 0.35;
+    return t >= a && t < b ? pr(t, [a, a + 0.12]) : 0;
+  };
+  const addHl = !done && t >= EV9.tapAdd - 0.35 && t < EV9.adds[1] + 0.6 ? 1 : 0;
+  const plus = {x: PN.x + PN.w - 70, y: PN.y + RY.fold + RH + 20 + RH / 2};
+  return (
+    <g>
+      <rect x={PN.x} y={PN.y} width={PN.w} height={PN.h} fill={C.page} />
+      <rect x={PN.x} y={PN.y} width={PN.w} height={110} fill="#1A1D24" />
+      <path d={`M ${PN.x + 44} ${PN.y + 40} l -16 16 l 16 16`} fill="none" stroke="#F4F5F8" strokeWidth={5} strokeLinecap="round" strokeLinejoin="round" />
+      <Tx x={PN.x + PN.w / 2} y={PN.y + 56} size={52} anchor="middle" weight={700}>以下消息仍通知</Tx>
+      <Row y={RY.name} label="@我" right={<Toggle x={TOG_X} y={PN.y + RY.name + RH / 2} on={1} />} />
+      <Row y={RY.mute} label="@所有人" right={<Toggle x={TOG_X} y={PN.y + RY.mute + RH / 2} on={allOn} />} />
+      <Row y={RY.fold} label="群公告" right={<Toggle x={TOG_X} y={PN.y + RY.fold + RH / 2} on={1} />} />
+      <Row y={RY.fold + RH + 20} label="添加成员" right={(
+        <g>
+          <circle cx={plus.x} cy={plus.y} r={34} fill="none" stroke="#C9CED8" strokeWidth={4} />
+          <path d={`M ${plus.x - 16} ${plus.y} h 32 M ${plus.x} ${plus.y - 16} v 32`} stroke="#C9CED8" strokeWidth={5} strokeLinecap="round" />
+        </g>
+      )} />
+      <HlBox y={RY.name} o={swHl(0)} />
+      <HlBox y={RY.mute} o={swHl(1)} />
+      <HlBox y={RY.fold} o={swHl(2)} />
+      <HlBox y={RY.fold + RH + 20} o={addHl} />
+      <Slots o={done ? 1 : po(t, [EV9.tapAdd - 0.35, EV9.tapAdd - 0.1])} />
+      {done ? (
+        <>
+          <Ava x={SLOT_X(0)} y={SLOT_Y} ch="王" />
+          <Ava x={SLOT_X(1)} y={SLOT_Y} ch="领" />
+        </>
+      ) : (
+        <>
+          {flyAva(t, EV9.adds[0], '王', 0, plus.x, plus.y, 'a0')}
+          {flyAva(t, EV9.adds[1], '领', 1, plus.x, plus.y, 'a1')}
+          <Tap t={t} at={EV9.tapAll} x={TOG_X} y={PN.y + RY.mute + RH / 2} />
+          <Tap t={t} at={EV9.tapAdd} x={plus.x} y={plus.y} />
+        </>
+      )}
+    </g>
+  );
+};
+
+// 子页上方弹下的两条 @所有人 横幅
+const AllBanners: React.FC<{t: number}> = ({t}) => {
+  if (t < EV9.allBanners[0] || t >= EV9.subOut[0]) return null;
+  const out = 1 - pr(t, [EV9.subOut[0] - 0.25, EV9.subOut[0]]);   // 子页退回去之前先淡掉，不压在滑动的页面上
+  const list = [
+    {at: EV9.allBanners[0], sub: '@所有人 帮忙投个票', warm: false},
+    {at: EV9.allBanners[1], sub: '@所有人 周五开家长会', warm: true},
+  ];
+  const H = 150;
+  return (
+    <g opacity={out}>
+      {list.map((b, i) => {
+        if (t < b.at) return null;
+        const below = list.reduce((s, m, j) => (j > i && t >= m.at ? s + (H + 14) * po(t, [m.at, m.at + 0.25]) : s), 0);
+        const y = PN.y + 20 + below - 80 * (1 - po(t, [b.at, b.at + 0.25]));
+        const x0 = PN.x + 30, w = PN.w - 60;
+        return (
+          <g key={i} opacity={pr(t, [b.at, b.at + 0.12])}>
+            <rect x={x0 + 6} y={y + 12} width={w} height={H} rx={28} fill="#000" opacity={0.5} filter="url(#fBlur8)" />
+            <rect x={x0} y={y} width={w} height={H} rx={28} fill={b.warm ? '#3A3320' : '#262B38'} />
+            <rect x={x0} y={y} width={w} height={H} rx={28} fill="none" stroke={b.warm ? C.warm : '#FFFFFF'} strokeOpacity={b.warm ? 1 : 0.12} strokeWidth={b.warm ? 5 : 2} />
+            <AppIcon x={x0 + 50} y={y + 48} size={50} kind="chat" />
+            <Tx x={x0 + 90} y={y + 48} size={50} fill="#E4E7ED">班级群</Tx>
+            <Tx x={x0 + 30} y={y + 108} size={50} weight={700} fill={b.warm ? C.warm : '#F4F5F8'}>{b.sub}</Tx>
+          </g>
+        );
+      })}
+    </g>
+  );
+};
+
+// 右边小卡：第二行叫“关注的群成员”的，只加人（画面坐标，在面板外）
+const FCARD = {x: 1432, y: 300, w: 466, h: 470};
+const FollowCard: React.FC<{t: number}> = ({t}) => {
+  if (t < EV9.cardIn || t >= EV9.subOut[0]) return null;
+  const u = po(t, [EV9.cardIn, EV9.cardIn + 0.3]);
+  const o = clamp(u) * (1 - pr(t, [EV9.subOut[0] - 0.25, EV9.subOut[0]]));
+  const sx = (i: number) => FCARD.x + 90 + i * 130;
+  const syy = FCARD.y + 360;
+  const fly = (at: number, ch: string, i: number) => {
+    if (t < at) return null;
+    const v = pr(t, [at, at + 0.3]);
+    return <Ava key={ch} x={lerp(FCARD.x + FCARD.w + 60, sx(i), easeOut(v))} y={syy - 50 * Math.sin(Math.PI * v)} ch={ch} sc={lerp(0.5, 1, easeBack(v))} r={50} />;
+  };
+  return (
+    <g opacity={o} transform={`translate(${(1 - u) * 60} 0)`}>
+      <rect x={FCARD.x + 6} y={FCARD.y + 14} width={FCARD.w} height={FCARD.h} rx={30} fill="#000" opacity={0.45} filter="url(#fBlur16)" />
+      <rect x={FCARD.x} y={FCARD.y} width={FCARD.w} height={FCARD.h} rx={30} fill="#1C2029" stroke="#3A404C" strokeWidth={3} />
+      <Tx x={FCARD.x + 36} y={FCARD.y + 66} size={50} fill={C.soft}>这一行要是叫</Tx>
+      <Tx x={FCARD.x + 30} y={FCARD.y + 146} size={52} weight={700}>“关注的群成员”</Tx>
+      <Tx x={FCARD.x + 36} y={FCARD.y + 230} size={54} weight={800} fill={C.warm}>只加人</Tx>
+      {[0, 1].map((i) => <circle key={i} cx={sx(i)} cy={syy} r={50} fill="none" stroke="#5A606C" strokeWidth={4} strokeDasharray="10 8" />)}
+      {fly(EV9.adds2[0], '王', 0)}
+      {fly(EV9.adds2[1], '领', 1)}
+    </g>
+  );
+};
+
+const SettingsScene: React.FC<{t: number; fr: number}> = ({t, fr}) => {
+  const inU = po(t, EV9.setIn);
+  const outU = pe(t, EV9.setOut);
+  const muteOn = pe(t, [EV9.tapMute + 0.02, EV9.tapMute + 0.17]) * (1 - pe(t, [EV9.tapMuteOff + 0.02, EV9.tapMuteOff + 0.17]));
+  const collapse = pe(t, [EV9.tapMuteOff + 0.1, EV9.tapMuteOff + 0.45]);
+  const rows = po(t, EV9.rowsOut) * (1 - collapse);
+  const foldOn = 1 - pe(t, [EV9.tapFold + 0.02, EV9.tapFold + 0.17]);
+  const hlMute = t >= EV9.preOut[1] && t < EV9.tapMute + 0.3 ? pr(t, [EV9.preOut[1], EV9.preOut[1] + 0.15]) : 0;
+  const hl1 = t >= EV9.hl1 && t < EV9.hl2 ? pr(t, [EV9.hl1, EV9.hl1 + 0.15]) : 0;
+  const hl2 = t >= EV9.hl2 && t < EV9.subIn[0] ? pr(t, [EV9.hl2, EV9.hl2 + 0.15]) : 0;
+  const sub = t >= EV9.subIn[0] && t < EV9.subOut[1] ? po(t, EV9.subIn) * (1 - pe(t, EV9.subOut)) : 0;
+  const pre = t < EV9.preOut[1] ? 1 - pe(t, EV9.preOut) : 0;
+  const m2 = pe(t, EV9.morph2);
+  const slots = po(t, EV9.slotsIn) * (1 - collapse);
+  // 面板抖：@所有人 横幅来的时候
+  let shk = 0;
+  for (const a of EV9.allBanners) { const f = Math.round((t - a) * FPS9); if (f >= 0 && f < 8) shk = f % 2 === 0 ? 5 : -5; }
+  const row2Label = (
+    <g>
+      <g opacity={1 - m2}>
+        <Tx x={PN.x + 40} y={PN.y + RY.row2 + RH / 2} size={54}>以下消息仍通知</Tx>
+        <Chevron x={PN.x + PN.w - 50} y={PN.y + RY.row2 + RH / 2} />
+      </g>
+      <g opacity={m2}>
+        <rect x={PN.x + 30} y={PN.y + RY.row2 + 16} width={PN.w - 60} height={RH - 32} rx={14} fill="none" stroke="#6A707C" strokeWidth={4} strokeDasharray="14 10" />
+        <Tx x={PN.x + PN.w / 2} y={PN.y + RY.row2 + RH / 2} size={56} anchor="middle" fill={C.soft} weight={700}>？</Tx>
+      </g>
+    </g>
+  );
+  const five = ['王', '领', '张', '刘', '陈'];
+  const fromR = {x: PN.x + PN.w + 220, y: PN.y + RY.row2 + RH / 2};
+  const bnc = pr(t, [EV9.bounce, EV9.bounce + 0.45]);
+  return (
+    <g opacity={inU * (1 - outU)} transform={`translate(${shk} ${(1 - inU) * 50 + outU * 40})`}>
+      <RoomBase />
+      <Lamp x={960} k={0.7} f={fr} spread={1.3} seed="set" />
+      {/* 面板（整体放大 PK 倍） */}
+      <g transform={`translate(960 ${PN.y}) scale(${PK}) translate(-960 ${-PN.y})`}>
+      <rect x={PN.x + 10} y={PN.y + 26} width={PN.w} height={PN.h} rx={44} fill="#000" opacity={0.55} filter="url(#fBlur16)" />
+      <clipPath id="n9pn"><rect x={PN.x} y={PN.y} width={PN.w} height={PN.h} rx={44} /></clipPath>
+      <g clipPath="url(#n9pn)">
+        <rect x={PN.x} y={PN.y} width={PN.w} height={PN.h} fill={C.page} />
+        <rect x={PN.x} y={PN.y} width={PN.w} height={110} fill="#1A1D24" />
+        <path d={`M ${PN.x + 44} ${PN.y + 40} l -16 16 l 16 16`} fill="none" stroke="#F4F5F8" strokeWidth={5} strokeLinecap="round" strokeLinejoin="round" />
+        <Tx x={PN.x + PN.w / 2} y={PN.y + 56} size={52} anchor="middle" weight={700}>群聊设置</Tx>
+        <Row y={RY.name} label="群聊名称" dim right={<Tx x={PN.x + PN.w - 40} y={PN.y + RY.name + RH / 2} size={50} anchor="end" fill={C.soft}>班级群</Tx>} />
+        <Row y={RY.mute} label="消息免打扰" right={<Toggle x={TOG_X} y={PN.y + RY.mute + RH / 2} on={muteOn} />} />
+        {rows > 0 && (
+          <g>
+            <Row y={RY.fold} label="折叠该聊天" o={rows} dy={-40 * (1 - rows)} right={<Toggle x={TOG_X} y={PN.y + RY.fold + RH / 2} on={foldOn} />} />
+            <g opacity={rows} transform={`translate(0 ${-60 * (1 - rows)})`}>
+              <rect x={PN.x} y={PN.y + RY.row2} width={PN.w} height={RH} fill={C.row} />
+              {row2Label}
+            </g>
+          </g>
+        )}
+        <HlBox y={RY.mute} o={hlMute} />
+        <HlBox y={RY.fold} o={hl1 * rows} />
+        <HlBox y={RY.row2} o={hl2 * rows} />
+        <Slots o={slots} />
+        {slots > 0 && (
+          <g opacity={slots}>
+            {five.slice(0, 4).map((ch, i) => flyAva(t, EV9.five[i], ch, i, fromR.x, fromR.y, `c${i}`))}
+          </g>
+        )}
+        <Tap t={t} at={EV9.tapMute} x={TOG_X} y={PN.y + RY.mute + RH / 2} />
+        <Tap t={t} at={EV9.tapFold} x={TOG_X} y={PN.y + RY.fold + RH / 2} />
+        <Tap t={t} at={EV9.tapRow2} x={PN.x + PN.w - 120} y={PN.y + RY.row2 + RH / 2} />
+        <Tap t={t} at={EV9.tapMuteOff} x={TOG_X} y={PN.y + RY.mute + RH / 2} />
+        {sub > 0 && <g transform={`translate(${PN.w * (1 - sub)} 0)`}><SubPage t={t} /></g>}
+        {pre > 0 && <g transform={`translate(${PN.w * (1 - pre)} 0)`}><SubPage t={t} done /></g>}
+        <AllBanners t={t} />
+      </g>
+      {/* 第五个头像挤不进，弹出去 */}
+      {t >= EV9.five[4] && t < EV9.tapMuteOff + 0.4 && (() => {
+        const u = pr(t, [EV9.five[4], EV9.five[4] + 0.15]);
+        const x0 = lerp(fromR.x, SLOT_X(4) - 10, easeOut(u)), y0 = SLOT_Y;
+        const x = x0 + 520 * easeOut(bnc), y = y0 - 220 * Math.sin(Math.PI * Math.min(1, bnc * 0.9)) + 60 * bnc;
+        return <Ava x={x} y={y} ch="陈" red={pr(t, [EV9.bounce - 0.1, EV9.bounce])} o={1 - pr(t, [EV9.tapMuteOff, EV9.tapMuteOff + 0.4])} />;
+      })()}
+      </g>
+      {/* 面板上方：在哪儿 */}
+      <Sticker x={960} y={60} text="   微信群 → 右上角“…”   " size={50} pop={1} tilt={0} />
+      <FollowCard t={t} />
+      {/* 贴纸 */}
+      {t >= EV9.doneTag && t < EV9.preOut[0] + 0.2 && (
+        <Sticker x={1660} y={sy(RY.name + RH / 2)} text="设好的样子" size={54} pop={easeBack(pr(t, [EV9.doneTag, EV9.doneTag + 0.25]))} o={1 - pr(t, [EV9.preOut[0], EV9.preOut[0] + 0.2])} />
+      )}
+      {t >= EV9.foldTag && t < EV9.hl2 + 0.2 && (
+        <Sticker x={1665} y={sy(RY.fold + RH / 2)} text="开着可能不响，关掉" size={50} pop={easeBack(pr(t, [EV9.foldTag, EV9.foldTag + 0.25]))} o={1 - pr(t, [EV9.hl2, EV9.hl2 + 0.2])} />
+      )}
+      {t >= EV9.noTag && (
+        <Sticker x={1650} y={sy(RY.mute + RH / 2)} text="开了的，关掉" size={52} pop={easeBack(pr(t, [EV9.noTag, EV9.noTag + 0.25]))} />
+      )}
+      <Vignette3 o={0.7} />
+    </g>
+  );
+};
+
+// ================= 清单屏 =================
+const LIST: {text: string; sub?: boolean}[] = [
+  {text: '① 群聊右上角“…”→ 打开“消息免打扰”'},
+  {text: '② 第一行“折叠该聊天”：关着'},
+  {text: '③ 第二行是“以下消息仍通知”：'},
+  {text: '@我、@所有人、群公告开着，加上老师、领导', sub: true},
+  {text: '是“关注的群成员”：加上老师、领导', sub: true},
+  {text: '两样都没有，或要紧的人超过 4 个：先别开', sub: true},
+  {text: '④ 找群里一个熟人测一下（步骤见简介）'},
+];
+const Checklist: React.FC<{t: number}> = ({t}) => {
+  const inU = po(t, EV9.listIn);
+  const r0 = EV9.listIn[1];
+  const groups = [[0], [1], [2, 3, 4, 5], [6]];
+  const seg = (SC9.list[1] - r0 - 0.2) / groups.length;
+  const gi = Math.floor((t - r0) / seg);
+  return (
+    <div style={{position: 'absolute', left: 60, top: 110, width: 1800, height: 760, borderRadius: 36, background: '#1C2029', border: '3px solid #2E3440',
+      opacity: inU, transform: `translateY(${(1 - inU) * 30}px)`, fontFamily: SANS, color: C.ink, padding: '34px 70px', boxSizing: 'border-box'}}>
+      <div style={{fontSize: 66, fontWeight: 800, lineHeight: '84px', marginBottom: 18}}>微信里，<span style={{color: C.warm}}>又吵又要紧的群</span></div>
+      {LIST.map((r, i) => {
+        const on = t >= r0 && gi >= 0 && gi < groups.length && groups[gi].includes(i);
+        return (
+          <div key={i} style={{paddingLeft: r.sub ? 96 : 26, borderLeft: `10px solid ${on ? C.warm : 'rgba(255,255,255,0.06)'}`, background: on ? 'rgba(255,201,77,0.08)' : 'transparent',
+            fontSize: 56, fontWeight: 600, lineHeight: '84px', whiteSpace: 'nowrap', color: C.ink}}>{r.text}</div>
+        );
+      })}
+    </div>
+  );
+};
+
+// ================= 结尾 =================
+const Ending: React.FC<{t: number; fr: number}> = ({t, fr}) => {
+  const u = po(t, EV9.endIn);
+  const cur = Math.floor((t - EV9.endIn[1]) / 0.5) % 2 === 0;
+  return (
+    <>
+      <svg width={1920} height={1080} viewBox="0 0 1920 1080" style={{position: 'absolute'}}>
+        <FilmDefs3 />
+        <RoomBase />
+        <Lamp x={960} k={0.9} f={fr} spread={1.2} seed="end" />
+        <Vignette3 o={0.8} />
+      </svg>
+      <div style={{position: 'absolute', left: 0, width: 1920, top: 280, textAlign: 'center', fontFamily: SANS, fontWeight: 800, fontSize: 132, lineHeight: '160px',
+        color: '#FFF8EC', opacity: u, transform: `scale(${lerp(0.9, 1, easeBack(u))})`, textShadow: '0 4px 0 rgba(0,0,0,0.35), 0 8px 30px rgba(0,0,0,0.65)'}}>评论区报个数</div>
+      <div style={{position: 'absolute', left: 0, width: 1920, top: 520, textAlign: 'center', fontFamily: SANS, fontWeight: 700, fontSize: 80, lineHeight: '100px',
+        color: CREAM, opacity: pr(t, [EV9.endIn[0] + 0.3, EV9.endIn[0] + 0.5])}}>
+        今天收到
+        <span style={{display: 'inline-block', width: 220, height: 92, margin: '0 18px', verticalAlign: 'middle', borderRadius: 16, border: `5px solid ${C.warm}`,
+          background: 'rgba(0,0,0,0.4)', position: 'relative', top: -6}}>
+          <span style={{position: 'absolute', left: 30, top: 14, width: 6, height: 58, background: C.warm, opacity: cur ? 1 : 0}} />
+        </span>
+        条
+      </div>
+    </>
+  );
+};
+
+// ================= 字幕 =================
+const SubText: React.FC<{beat: Beat9; t: number}> = ({beat, t}) => {
+  if (!beat.sub.length) return null;
+  const size = 64;
+  const o = pr(t, [beat.t0, beat.t0 + 0.07]);
+  return (
+    <div style={{position: 'absolute', left: 0, width: 1920, top: 1000 - size * 0.98, height: size * 1.2, display: 'flex', justifyContent: 'center',
+      fontFamily: SANS, fontWeight: 600, fontSize: size, lineHeight: `${size * 1.2}px`, color: CREAM, whiteSpace: 'pre', opacity: o, textShadow: SHADOW}}>
+      {beat.sub.map((sg: Seg9, i) => (typeof sg === 'string'
+        ? <span key={i}>{sg}</span>
+        : <span key={i} style={{color: sg[1] === 'warm' ? C.warm : C.gray}}>{sg[0]}</span>))}
+    </div>
+  );
+};
+const LowBand: React.FC = () => (
+  <div style={{position: 'absolute', left: 0, top: 880, width: 1920, height: 200,
+    background: 'linear-gradient(180deg, rgba(8,9,13,0) 0%, rgba(8,9,13,0.8) 40%, rgba(8,9,13,0.92) 100%)'}} />
+);
+
+export const Notice9: React.FC<{atFrame?: number}> = ({atFrame}) => {
+  const cf = useCurrentFrame();
+  const fr = atFrame ?? cf;                       // 封面用：固定画某一帧
+  const t = fr / FPS9;
+  const b = beatAt9(t);
+  const list = t >= SC9.list[0] && t < SC9.end;
+  const desk = t < SC9.desk2[1] || (t >= SC9.desk3[0] && t < SC9.list[0]);
+  const settings = t >= SC9.settings[0] && t < SC9.settings[1] + 0.35;
+  const end = t >= SC9.end;
+  return (
+    <AbsoluteFill style={{background: C.bg}}>
+      {(desk || settings || list) && (
+        <svg width={1920} height={1080} viewBox="0 0 1920 1080" style={{position: 'absolute'}}>
+          <FilmDefs3 />
+          {(desk || list) && <DeskScene t={list ? SC9.list[0] - 0.01 : t} fr={fr} />}
+          {(desk || list) && <Vignette3 o={0.85} />}
+          {settings && <SettingsScene t={t} fr={fr} />}
+          {list && <rect width={1920} height={1080} fill="#0A0B0F" opacity={0.85 * pr(t, EV9.dim)} />}
+        </svg>
+      )}
+      {desk ? <SubBand3 /> : <LowBand />}
+      {desk && <DeskText t={t} />}
+      {list && <Checklist t={t} />}
+      {end && <Ending t={t} fr={fr} />}
+      <SubText beat={b} t={t} />
+      <AiBadge />
+    </AbsoluteFill>
+  );
+};

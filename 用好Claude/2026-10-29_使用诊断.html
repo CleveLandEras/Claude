@@ -1,0 +1,271 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>使用诊断</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.35;margin:0 0 8px}
+.sub{font-size:16px;color:var(--ink-2);margin:0 0 28px}
+h2{font-family:var(--serif);font-size:20px;margin:48px 0 16px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+h3{font-size:15.5px;margin:22px 0 10px;color:var(--ink)}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)} .g5{grid-template-columns:repeat(5,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px}
+.kpi .n{font-size:38px;font-weight:700;line-height:1.1;color:var(--ink)}
+.kpi .n small{font-size:16px;font-weight:600;margin-left:4px;color:var(--ink-2)}
+.kpi .t{font-size:14.5px;color:var(--ink-2);margin-top:8px}
+.kpi.red .n{color:var(--red)}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:12px}
+.tag.red{background:var(--red-soft);color:var(--red)} .tag.blue{background:var(--blue-soft);color:var(--blue)} .tag.gray{background:var(--gray-soft);color:var(--gray)} .tag.green{background:var(--green-soft);color:var(--green)}
+.kv{font-size:14px;color:var(--ink-2);margin:6px 0}
+.kv b{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:2px}
+.keep{display:flex;flex-wrap:wrap;gap:10px}
+.keep span{background:var(--green-soft);color:var(--green);font-size:14.5px;font-weight:600;padding:8px 14px;border-radius:4px}
+.cause{border-top:4px solid var(--red)}
+.cause .h{font-size:16.5px;font-weight:700;margin:0 0 6px}
+.cause .l{font-size:14.5px;color:var(--ink-2);margin:0 0 12px}
+.cause .e{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14.5px}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--ground)}
+tr:last-child td{border-bottom:none}
+td.w{color:var(--ink);font-weight:600} td.r{color:var(--ink-2)} td.d{color:var(--muted)}
+td.bad{color:var(--red);font-weight:600}
+.q{font-size:17px;font-weight:700;margin:0 0 14px}
+.opt{position:relative}
+.opt .h{font-size:16px;font-weight:700;margin:0 0 6px}
+.opt .l{font-size:14.5px;color:var(--ink-2)}
+.opt.rec{border:2px solid var(--blue)}
+.opt .badge{position:absolute;top:-11px;right:16px;background:var(--blue);color:#fff;font-size:12px;font-weight:700;padding:2px 10px;border-radius:3px}
+.why{font-size:14.5px;color:var(--ink-2);margin:14px 0 0}
+.why b{color:var(--ink)}
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.steps div{counter-increment:s;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 18px;font-size:14px;color:var(--ink-2)}
+.steps div::before{content:counter(s);display:block;font-size:22px;font-weight:700;color:var(--accent);margin-bottom:4px}
+.steps b{color:var(--ink);display:block;margin-bottom:4px;font-size:15px}
+.links{font-size:13px;color:var(--muted);margin-top:40px;line-height:1.9} a{color:var(--accent)}
+.src{font-size:12.5px;color:var(--muted);margin-top:10px;border-top:1px solid var(--line);padding-top:8px}
+.note{font-size:13.5px;color:var(--ink-2);background:var(--gray-soft);border-radius:6px;padding:12px 16px;margin:14px 0 0}
+.toc{position:fixed;left:24px;top:56px;width:190px;font-size:13px;line-height:1.9;color:var(--muted)}
+.toc a{color:var(--ink-2);text-decoration:none;display:block} .toc a:hover{color:var(--accent)}
+.toc .tt{font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.06em;margin-bottom:6px}
+@media (max-width:1480px){.toc{display:none}}
+@media (max-width:900px){.g3,.g4,.g2,.g5,.steps{grid-template-columns:1fr}}
+</style></head><body>
+<nav class="toc"><div class="tt">目录</div><a href="#s1">01 现在的用法</a><a href="#s9">02 病根与合同</a><a href="#s2">03 最该改的五件</a><a href="#s3">04 做对的</a><a href="#s4">05 看着有用其实无效</a><a href="#s5">06 自迭代框架</a><a href="#s6">07 顶尖做法对照</a><a href="#s7">08 已定与要你做</a><a href="#s8">09 口径与来源</a></nav>
+<div class="wrap">
+
+<p class="meta">Dk 与 Claude 的协作体检 · 2026-10-29 · 状态截至 10/29 15:30（另一条对话「opus 诊断」14:20 起已合并全局配置，本文按合并后写；工作模式与回复写法以 想清楚/2026-10-29_固定工作模式.md 为准）· 依据：9,324 个会话记录文件的全量统计（我已核实）、项目规则文件、你 10/19 的根因分析（项目自述）、Anthropic 公开文档（出处见各节）</p>
+<h1>病根只有一个：每段工作没有合同，只靠事后纠正。所以规则越写越多、回复越写越长、会话串岗、循环空转</h1>
+<p class="sub">治法也只有一个：会话、子任务、夜间运行、一条回复，都先立一张合同（读者、算做完、预算、边界），闸门（交付前的程序检查 ＋ 独立验收）按合同查，纠正改合同和闸门，不加行为规则。另一条对话「opus 诊断」今天装的开工／验收官已是这个方向，你已定保留，并把工作分成总负责、思考方、动手方三层；要你做的只有一件（每周判几份稿）和一个习惯（纠正时带上情况），见 08 节。已知短板：验收官只考了 6 题、纠正分类是关键词粗分、误拦率还没测。</p>
+
+<div class="grid g3">
+  <div class="card kpi red"><div class="n">76<small>%</small></div><div class="t">你的 106 次纠正里，81 次的要求当时已经写在规则里（10/19 根因分析逐行登记的口径；与右卡的 164 是两种数法，见 09）</div></div>
+  <div class="card kpi red"><div class="n">72<small>%</small></div><div class="t">定时任务 9,271 轮里醒来就退出的空转比例；定时任务吃掉全部 token 的一半</div></div>
+  <div class="card kpi"><div class="n">21→23<small>%</small></div><div class="t">你消息里纠正的占比，10/19 整改前后没变：整改前 83／399，整改周 28／73（38%），整改后 53／226；合计 164／698</div></div>
+</div>
+
+<h2 id="s1"><span class="no">01</span>现在的用法：规则极厚、常驻极薄、自动化靠轮询</h2>
+<table>
+<tr><th style="width:18%">项</th><th style="width:34%">数字</th><th>说明</th></tr>
+<tr><td class="w">规则体系</td><td class="r">138 份文件、21.2 万中文字（按汉字数；10/19 根因分析写的「39 万字」是另一种数法）</td><td class="r">核心规则 4.0 万字（工作原则、标准体系、已定事项、交付前必查 11 条、写作标准 1.5 万字、类型卡 4 张）；57 条「判例」（你退回过的案例）3.4 万字；41 题评审题库 7.0 万字；顶尖做法参考库 3.3 万字</td></tr>
+<tr><td class="w">常驻规则</td><td class="r">上午：全局 CLAUDE.md 1 行、项目 CLAUDE.md 6 行、记忆两套共 44 条（弹窗文件夹里开的会话用另一套 12 条，互相看不见；另一条对话发现的）。14:20 起：全局规则合并为 30 条 54 行，记忆只留项目事实（两套各 8、12 条）</td><td class="r">上午的问题：做事方式九成放在弹窗项目文件夹里，新项目（商城、团队工作模式、抖音）带不过去，10/27–28 商城的退回多是弹窗项目早出现过的问题。合并后这条已补上，效果看两周后的数</td></tr>
+<tr><td class="w">自动化</td><td class="r">定时任务 7 个（6 个已停用，1 个手动）；钩子上午 0 个，现在已生效 2 个（交付前没过验收官就拦一次、你一纠正就提示记录）；交付物检查（改完文件查禁用词与断链）已备好，由动手方打开，不用你动手；按字数拦回复的做法你已否，回复检查等思考页审过再定</td><td class="r">9/27–10/12 四个角色每 2–5 分钟轮询，共 9,200 轮；10/14–10/19 夜间监督 69 轮</td></tr>
+<tr><td class="w">会话</td><td class="r">真人会话 33 个（≥3 轮），占 token 45%；最大一个 3.6 亿缓存读</td><td class="r">10/15 一条指令用掉一个对话 76% 上下文；10/17–19 三天约 20 亿 token，97% 是缓存重读（记忆记录）</td></tr>
+<tr><td class="w">你的输入</td><td class="r">698 条消息，中位数 31 字；164 条（23%）是纠正</td><td class="r">纠正多为一处一条、带情绪词；Claude 从 30 字的话推出整套规则；记录在案的 12 次矫枉过正都发生在这一步</td></tr>
+</table>
+
+<h2 id="s9"><span class="no">02</span>病根：工作没有合同，只靠事后纠正——两条新证据和上午的问题是同一件事</h2>
+<div class="grid g3">
+  <div class="card cause"><p class="h">病根</p><p class="l">每段工作开始时没有人写下四样：读者是谁、做到什么算完、能花多少（你的阅读时间、步数、token）、边界在哪。会话、子任务、夜间运行、一条回复都在缺这四样的情况下自己决定做什么、说多少</p><p class="e">对照：开工的对齐卡已有「可用时间」和「这次不做」，缺步数／token 预算和会话级边界；会话、夜间任务、回复三种工作原本完全没有合同（14:20 合并后已把这四样写进全局规则总纲）</p></div>
+  <div class="card cause"><p class="h">为什么症状都从它来</p><p class="l">没有读者和预算，回复就按「写得全」而不是「他读得完」写；没有边界，会话就接下别的会话派来的活（串岗：一个会话去做别的会话的事）；没有「算完」，夜间任务要么空转要么补 60 项；没有合同可改，你的纠正只能变成行为规则，越积越多、越管不住</p><p class="e">01、03–05 节，下面两张表</p></div>
+  <div class="card cause"><p class="h">治法</p><p class="l">任何工作先立合同，再动手；闸门按合同查，不按通用清单查；你的纠正用来改合同（哪一条写错了）和闸门（哪一道没拦住），不新增行为规则。信息从「事后 30 字纠正」挪到「事前一张卡」：Claude 五分钟写卡、你看一眼，省下的是你一小时的纠正</p><p class="e">Claude Code 文档 Best practices（无人值守前先定做完、自检、边界、停止、签收五件）；Anthropic《Demystifying evals》（先定成功标准）</p></div>
+</div>
+
+<h3>合同长什么样：一张卡，四种工作都用它</h3>
+<table>
+<tr><th style="width:16%">工作单位</th><th>合同里写什么</th><th style="width:30%">按合同查的闸门</th></tr>
+<tr><td class="w">一个会话</td><td class="r">标题那件事；读者；算完的标准；不做什么（别的会话派来的活只收成品不接任务，Dk 提起别的事就提议开新会话）；上下文到一半交接</td><td class="r">开工的对齐卡补上步数／token 预算和会话边界（已加）；验收官按卡判</td></tr>
+<tr><td class="w">一个子任务</td><td class="r">目标、输出格式、来源、边界四样（Anthropic 多 agent 文章的派活四件）；步数上限约 40；只取相关段落</td><td class="r">派出前卡齐四样；回报不超过 200 字</td></tr>
+<tr><td class="w">一次无人值守运行</td><td class="r">清单每项带「怎么验证通过」；每轮只做一项；每晚轮次与 token 预算；清单全过或等 Dk 就停</td><td class="r">三样缺一不开；监督靠闸门不靠巡逻</td></tr>
+<tr><td class="w">一条回复</td><td class="r">读者是 Dk；第一句答他问的那个点、按他要的形式给；篇幅按内容定，不按字数</td><td class="r">总负责按回复合同写；检查做法等思考页审过再定（按字数拦已被你否）</td></tr>
+</table>
+<p class="note">钩子（交付前必过验收官、纠正自动记录、改完文件查禁用词与断链）都是合同的牙齿，不是药：合同写了「预算 5 行」，钩子才知道该拦什么；没有合同，钩子就又是一条孤立的行为规则。</p>
+
+<h3>证据一：回复太长、混着过程</h3>
+<table>
+<tr><th style="width:22%">看到的</th><th>事实</th></tr>
+<tr><td class="w">规则在，管不住</td><td class="r">「只给结果不报过程」10/27 写进记忆，10/28 又犯（「你写论文呢？这多少个字？」）；本对话上午的回复也超了</td></tr>
+<tr><td class="w">为什么</td><td class="r">记忆和 CLAUDE.md 都只是模型「读到」的内容，不强制；回复从没有被当成一件有读者和预算的「交付物」，所以按写得全来写</td></tr>
+<tr><td class="w">按合同治</td><td class="r">回复的合同按内容定：先答他问的点、按他要的形式给、篇幅按内容。按字数拦（300 字或 8 行）你已否、作废；检查做法等思考页审过再定</td></tr>
+</table>
+
+<h3>证据二：会话串岗——脑图工具会话为什么去忙弹窗</h3>
+<table>
+<tr><th style="width:22%">看到的</th><th>事实</th></tr>
+<tr><td class="w">它接到的任务</td><td class="r">10/29 02:36 开场：「我要粘贴脑图代码，你生成一个好用的工具，我不修改代码，代码我只粘贴」</td></tr>
+<tr><td class="w">合同从第一分钟就没有</td><td class="r">02:36–02:40 这个会话被用来讨论工作模式和全局规则（「我现在在和你讨论的是工作模式」），02:46 才「现在开始改脑图工具」；没有人写下它只做什么、不做什么</td></tr>
+<tr><td class="w">它实际碰了什么</td><td class="r">257 次工具调用里改过弹窗文件夹 9 次、商城 5 次；把弹窗项目的「弹窗内容去留_脑图.md」做出来发给了弹窗会话。06:08 你：「你在忙什么？你不知道自己定位是什么吗？」</td></tr>
+<tr><td class="w">活从哪来</td><td class="r">① 会话之间互相派活（监督会话、脑图会话都在给别的会话发任务，收到就做）；② 每个会话载入同一份满是弹窗进度的记忆，谁都「知道」弹窗该做什么；③ 临时目录开的会话没有项目 CLAUDE.md 划边界</td></tr>
+<tr><td class="w">按合同治</td><td class="r">会话的合同里有「边界」一行：只做标题那件事，别的会话发来的只收成品不接任务，Dk 提起别的事就提议开新会话；记忆里不放项目进度（合并表已含）。你的「一个任务一个会话」就是「一张合同一个会话」</td></tr>
+</table>
+
+<h2 id="s2"><span class="no">03</span>最该改的五件事（按收益排）</h2>
+
+<h3>一、规则改成「效果级」、分三层：常驻从约 4 万字核心规则减到 80 行内</h3>
+<div class="grid g3">
+  <div class="card cause"><p class="h">现在</p><p class="l">检查项写成具体句子，被子任务照抄进成品（页头「本部分第 4 页，后面还有 11 页」、每页「评审判断」、「到此结束」）；任务说明、研究建议这些中间文件压过了规则本身；写在记忆里的规则，干活的子任务根本看不到（子代理不加载自动记忆）</p><p class="e">矫枉过正记录第 6、7、8、10 行；根因分析：中间文件替代规则 33 次</p></div>
+  <div class="card cause"><p class="h">改法</p><p class="l">常驻 ≤ 80 行：已合并为 30 条 54 行，以「先立合同」统领；按需 ＝ 技能（开工、验收官、整理纠正）；归档 ＝ 判例、参考库只给考试和检索用，不常驻。每条写要达到什么效果和怎么验，不写要加进材料的句子</p><p class="e">合并后的全局规则（副本：_底座/全局规则_快照.md）</p></div>
+  <div class="card cause"><p class="h">顶尖做法</p><p class="l">系统提示写在合适的「高度」：既不是脆弱的硬编码规则，也不是空泛口号；找最小的一组高信号信息，几个好例子胜过一长串边角规则。CLAUDE.md 只写仓库里找不到的、每行都消耗注意力、单份控制在 200 行内，长了「占用上下文、降低遵守率」</p><p class="e">Anthropic《Effective context engineering for AI agents》；Claude Code 文档 Best practices、Memory</p></div>
+</div>
+
+<h3>二、每次必做的检查交给程序，不靠模型记得</h3>
+<div class="grid g3">
+  <div class="card cause"><p class="h">现在</p><p class="l">PPT 底色跳色、页码写法、禁用词、断链这类能机械查的问题，都是你先看到。项目里已有 6 个检查脚本（judge_程序、可读字数、逗号句清单……），但靠任务说明碰巧提醒才跑</p><p class="e">10/28「上来就一个这么明显的问题，说明没有深度验收」</p></div>
+  <div class="card cause"><p class="h">改法</p><p class="l">钩子：已生效 2 个（交付前没过验收官就拦一次；你一纠正就自动提示记录）；交付物检查（改完立刻查禁用词和断链）已备好，由动手方打开，不用你动手；按字数拦回复的钩子你已否，作废</p><p class="e">框架包/hooks/（脚本；按字数拦的设置文件已作废）</p></div>
+  <div class="card cause"><p class="h">顶尖做法</p><p class="l">只有钩子、拒绝规则和托管设置是强制执行的；CLAUDE.md、技能、提示都只是模型「读到」的内容。钩子让规定好的事一定发生，不依赖模型是否选择去做；靠加粗、「重要」来强调基本没用</p><p class="e">Claude Code 文档 Best practices、Hooks guide</p></div>
+</div>
+
+<h3>三、评审改「方法」不改「条文」：评审者拿读者任务，不拿清单</h3>
+<div class="grid g3">
+  <div class="card cause"><p class="h">现在</p><p class="l">10/16–17 评审校准对话测过（你判了其中几份）：评审按清单判，20 题命中 9（旧方法 6）；去掉题目里泄漏答案的约束，15 题命中 5；再去掉维度表已点名的，7 题命中 1。结论「标准没写到的基本找不出」。误拦率没测过（通过题 0 道）。之后 10/17 停了</p><p class="e">评审题库/进度与下一步.md</p></div>
+  <div class="card cause"><p class="h">改法</p><p class="l">评审者只拿成品 ＋ 读者是谁 ＋ 他要完成的任务，扮演读者去做，报「做不成什么、要猜什么」（验收官第 3 步「读者模拟」已这样写）。验收清单 25 条只收看成品就能判的，作回归底线，不是主判法。每次退回先测验收官能不能拦：拦得住是执行问题，拦不住才改方法。误拦率至今测不了：10/16 挑出的 10 道「通过题候选」等你判了 13 天</p><p class="e">技能「验收官考试」已有流程；第 1 次考 6 题，拦下率 33%</p></div>
+  <div class="card cause"><p class="h">顶尖做法</p><p class="l">从真实失败和手工在做的检查里攒 20–50 个任务起步，别等完美题库；回归评测要维持在接近 100%；模型裁判要对专家判断校准；要放入「不该拦」的样本量误拦。独立评审要由没看过制作过程的人做</p><p class="e">Anthropic《Demystifying evals for AI agents》；Claude Code 文档 Best practices</p></div>
+</div>
+
+<h3>四、自动循环要有完成判据、预算、停机条件，没有就不开</h3>
+<div class="grid g3">
+  <div class="card cause"><p class="h">现在</p><p class="l">四角色每 2–5 分钟轮询：9,200 轮里 72% 空转、互相等锁、9/29 一天 1,689 轮、一次卡权限 17 小时。夜间任务一夜补 60 项，范围多出六成，被你叫停「怎么自己干起来了」。10/17–19 三天 20 亿 token，97% 是子任务每一步背着 24–40 万上下文重读</p><p class="e">会话扫描；记忆里关于四角色循环与 token 的记录</p></div>
+  <div class="card cause"><p class="h">改法</p><p class="l">删 6 个死任务（表见框架包/定时任务处置.md）。以后开定时任务要三样齐：清单每项带「怎么验证通过」、每晚轮次与 token 预算、清单全过或等你就停。日常改用同步闸门，不巡逻。子任务只管一件事、约 40 步、只 grep 相关段</p><p class="e">已在合并后的全局规则第 3、4、6 条</p></div>
+  <div class="card cause"><p class="h">顶尖做法</p><p class="l">无人值守前先定五件事：什么算做完、怎么自检、能碰什么、什么时候停、谁签收；定时运行不能提问，提示里必须写明什么算成功。长时任务：功能清单每项带通过／失败标记，每轮只推进一项，端到端验证过才改标记。多 agent 里 token 用量解释了约八成表现差异，力度按复杂度分配</p><p class="e">Claude Code 文档 Best practices、Common workflows；Anthropic《Effective harnesses for long-running agents》《How we built our multi-agent research system》</p></div>
+</div>
+
+<h3>五、你这边：纠正带上「情况」，一次说全</h3>
+<div class="grid g3">
+  <div class="card cause"><p class="h">现在</p><p class="l">消息中位数 31 字；一次点一处，等改完再点下一处（10/28 一天六七版）。你 10/13 说「我的原话是针对某个情况的，不是通用的」，但情况常常没跟着原话一起到达，Claude 只能猜，猜就过头</p><p class="e">纠正语料 164 条；矫枉过正记录</p></div>
+  <div class="card cause"><p class="h">改法</p><p class="l">纠正用三句：哪里｜为什么不行｜读者要的效果。看到的问题一次列完再发。方向性的事用追问式对齐（grilling 技能）花 15 分钟一次对齐，代替 20 条散消息。接受「替你定、可推翻」，只在验收时判</p><p class="e">不改变你的工作量，只改变顺序</p></div>
+  <div class="card cause"><p class="h">顶尖做法</p><p class="l">偏了就尽早打断、说清楚；同一处纠正两次还没改对，就清空上下文、重写一遍指令，不在原对话里继续磨；给出能跑的检查和证据，比口头要求有效</p><p class="e">Claude Code 文档 Best practices</p></div>
+</div>
+
+<h2 id="s3"><span class="no">04</span>做对的、要保持的</h2>
+<div class="keep">
+<span>每次先复述理解再动手</span><span>判例是校准材料，不是规则</span><span>只有你确认过的才进原则</span><span>找根因、用最保守方案、多次出现再收紧</span><span>评审题库与命中率实测</span><span>无上下文评审者只看作品</span><span>项目 CLAUDE.md 只做指针</span><span>先看这里顶部交接</span><span>一件事只在一处规定</span><span>主对话只编排、上下文一半交接</span><span>记忆快照进仓库给云端用</span><span>对标顶尖做法、带出处</span><span>10/19 的根因分析本身</span>
+</div>
+<table style="margin-top:14px">
+<tr><th style="width:30%">做法</th><th>为什么对（对应的顶尖做法）</th><th style="width:28%">注意</th></tr>
+<tr><td class="w">判例是校准材料、只有确认过的才进原则、根因→保守→收紧</td><td class="r">正是「合适高度」的写法：少数判断标准 ＋ 案例，不是穷举条文</td><td class="d">写在标准体系里，但执行没守住；靶子是让「整理纠正」每周替你守</td></tr>
+<tr><td class="w">评审题库、命中率实测</td><td class="r">评测驱动的开发：先有失败样本，再改方法，靠数字判断有没有变好</td><td class="d">10/17 停在第一轮；接进「验收官考试」继续</td></tr>
+<tr><td class="w">无上下文评审者只看作品</td><td class="r">新上下文的子代理做验证，避开写稿者的盲区</td><td class="d">评审者拿到的应是读者任务，不是规则清单</td></tr>
+<tr><td class="w">复述理解再动手</td><td class="r">便宜、能挡住误读</td><td class="d">对一句话的小指令别写成仪式，一句即可</td></tr>
+<tr><td class="w">主对话只编排、上下文到一半交接</td><td class="r">上下文工程：子代理隔离、及时压缩与笔记</td><td class="d">10/15 定的，之后仍有 3.6 亿 token 的会话，没守住</td></tr>
+<tr><td class="w">先看这里顶部交接</td><td class="r">新对话从一处接手，不靠记忆（上下文工程里的结构化笔记）</td><td class="d">交接里你的原话和「我方理解」要分开写</td></tr>
+<tr><td class="w">一件事只在一处规定、项目 CLAUDE.md 只做指针</td><td class="r">文档：同一规则只写一处；CLAUDE.md 只写仓库里找不到的，要短</td><td class="d">原则对、没守住：记忆分两套、汇报规范两份，合并后已归一</td></tr>
+<tr><td class="w">记忆快照进仓库给云端用</td><td class="r">云端会话拿不到本机记忆，快照是唯一办法</td><td class="d">合并后要刷新快照</td></tr>
+<tr><td class="w">对标顶尖做法、带出处</td><td class="r">避免凭空设计（你 10/28 原话「别埋头自己弄」）</td><td class="d">外部做法进库前先对项目规则，否则又被默认采纳</td></tr>
+<tr><td class="w">10/19 的根因分析本身</td><td class="r">用数据找原因，是评测驱动的起点</td><td class="d">它的改法又加了规则，这次不再</td></tr>
+</table>
+
+<h2 id="s4"><span class="no">05</span>看起来有用、实则无效或反效果</h2>
+<table>
+<tr><th style="width:24%">做法</th><th style="width:18%">本意</th><th>实际</th><th style="width:24%">证据</th></tr>
+<tr><td class="w">57 条判例当阅读材料</td><td class="r">下次不再犯</td><td class="bad">没有在对的时刻被读到；同类再犯占已有要求纠正的 60%</td><td class="d">根因分析 49／81</td></tr>
+<tr><td class="w">11 条交付前必查 ＋ 类型卡 ＋ 任务说明模板 ＋ 核对脚本</td><td class="r">执行有据可查</td><td class="bad">10/19 建成，10/28–29 仍连退 8 次（判例 50–57）；检查项本身写成句式被抄进成品</td><td class="d">矫枉过正记录第 6、7、8、10 行</td></tr>
+<tr><td class="w">1.1 万字评审维度表、3.3 万字参考库（221 KB）作评审参照</td><td class="r">评审全面</td><td class="bad">评审者读不完；参考库把 11 次「外部做法默认采纳」带进了成品（写死迁移做成后台功能、被否决选项写进评审材料）</td><td class="d">根因分析第三节第 5 条</td></tr>
+<tr><td class="w">四角色每 2–5 分钟轮询、夜间每小时监督</td><td class="r">24 小时推进</td><td class="bad">72% 空转，互相等锁，17 小时卡权限，写出未来时间戳，一夜范围 +60%；占全部 token 一半</td><td class="d">会话扫描；记忆里关于四角色循环的记录</td></tr>
+<tr><td class="w">「不允许无事可做」「不能停」</td><td class="r">防偷懒</td><td class="bad">逼出偏离与注水；你 9/28 取消「不能停」、10/15 否定「不允许无事可做」</td><td class="d">记忆里的四角色循环记录；矫枉过正记录第 1 行</td></tr>
+<tr><td class="w">记忆两套共 44 条、汇报一个主题 7 条、项目流水账进记忆</td><td class="r">跨会话记住</td><td class="bad">按启动文件夹分成两套、互相看不见（另一条对话发现）；10/16 合并到 21 条，两周涨回 32；活动配置一条 11.9 KB 常驻却天天过期</td><td class="d">记忆目录；框架包/记忆合并表.md</td></tr>
+<tr><td class="w">做事方式九成放在弹窗项目里</td><td class="r">项目内一致</td><td class="bad">新项目从零踩坑：商城 10/27–28 的退回（汇报形式、读者是谁、过程不是结果）弹窗项目 9/28、10/8 都出现过</td><td class="d">纠正语料对照</td></tr>
+</table>
+
+<h2 id="s5"><span class="no">06</span>自迭代框架：五步一个圈，今天已经装了四步</h2>
+<div class="steps">
+  <div><b>对齐</b>对齐卡：目标照抄原文、读者要做的判断、必答问题、完成标准。你改卡，Claude 改产出</div>
+  <div><b>产出</b>主对话只编排；子任务一件事、约 40 步；大文件只 grep</div>
+  <div><b>验证</b>程序判（钩子）＋ 无上下文验收官扮演读者；不过不交，最多修三轮</div>
+  <div><b>退回进样本</b>你一纠正，钩子提示记一行到纠正记录；不立规则</div>
+  <div><b>考试、改方法</b>每周：用退回过的稿考验收官，拦下率不降才换方法；同类 ≥2 次才合并进规则</div>
+</div>
+<p class="note">圈从合同起：第 1 步的对齐卡就是合同，预算和边界两行已加（02 节）。之前的四角色循环没成，是因为缺算完判据、预算、停机（03 四），而且裁判不可信（03 三）。什么叫「自迭代」：每周三个数在动——纠正占你消息的比例、验收官先于你拦下的比例、回复超长与串岗次数。数字不动，就是循环没转。</p>
+
+<h3>三层分工：总负责对你，思考方想，动手方做</h3>
+<table>
+<tr><th style="width:12%">环节</th><th style="width:34%">另一条对话今天装进 ~/.claude 的</th><th style="width:34%">我补的（都在 用好Claude/框架包）</th><th>建议</th></tr>
+<tr><td class="w">对齐</td><td class="r">技能「开工」：对齐卡</td><td class="r">目标卡模板（重叠，已放备选）</td><td class="r">用开工</td></tr>
+<tr><td class="w">验证</td><td class="r">代理「验收官」＋ Stop 钩子（交付前没过验收官就拦一次）</td><td class="r">PostToolUse 钩子：改完交付物立刻查禁用词、断链（已测）</td><td class="r">已生效 2；交付物检查由动手方打开</td></tr>
+<tr><td class="w">退回</td><td class="r">UserPromptSubmit 钩子 → 纠正记录.md</td><td class="r">—</td><td class="r">用他们的</td></tr>
+<tr><td class="w">整理</td><td class="r">技能「整理纠正」：常驻 ≤ 80 行、清单 ≤ 25 条、每周一次</td><td class="r">全局 CLAUDE.md 草稿 25 行（常驻规则初版）；记忆 32 → 11 合并表</td><td class="r">已合并：全局 30 条，通用规则并入；剩余项目记忆按合并表第 8–11 行处理</td></tr>
+<tr><td class="w">考试</td><td class="r">技能「验收官考试」＋ 考试/原稿（已接弹窗 41 题）</td><td class="r">—</td><td class="r">用他们的；加每周你判 5–10 份</td></tr>
+<tr><td class="w">成本</td><td class="r">—</td><td class="r">定时任务处置表（删 6、改 1）；子任务步数、并发、只取相关段落</td><td class="r">已在全局规则第 3、4、6 条；删定时任务待底座方做</td></tr>
+<tr><td class="w">新项目</td><td class="r">—</td><td class="r">项目 CLAUDE.md 模板（≤ 12 行指针）</td><td class="r">待底座方采用</td></tr>
+<tr><td class="w">回复长度</td><td class="r">—</td><td class="r">输出样式「简短汇报」（每个会话从一开始就按 ≤ 5 行写）＋ Stop 钩子：超过 300 字或 8 行拦一次让重写（已测）</td><td class="r">样式文件已放、未启用；按字数拦已作废；做法随思考页定</td></tr>
+<tr><td class="w">会话边界</td><td class="r">—</td><td class="r">一个会话只做标题那件事；别的会话发来的活只收成品、不接任务</td><td class="r">已在全局规则第 2 条</td></tr>
+</table>
+<p class="note">分工（你 10/29 定：「实际上执行工作和与我沟通就不该是一个对话」「思考的 AGENT 和动手的 AGENT 要分成两个对话」）：总负责 ＝ 对话「用好 Claude：进度沟通」，唯一对你的口，任务由它派、成品由它转；思考方 ＝ 本对话，出思考页、事后核验、算三个数，不改配置和成品；动手方 ＝ 对话「opus 诊断」，照审过的思考页做，管配置、技能、钩子、考试。下面两条对话不直接给你发消息。</p>
+
+<h2 id="s6"><span class="no">07</span>顶尖做法对照</h2>
+<table>
+<tr><th style="width:13%">主题</th><th style="width:36%">顶尖做法（出处）</th><th style="width:28%">你现在</th><th>差距</th></tr>
+<tr><td class="w">CLAUDE.md</td><td class="r">只写仓库里找不到的；每行都消耗注意力；单份 200 行内，否则降低遵守率；Claude Code 的 /doctor 命令能查过时与矛盾的条目（Best practices、Memory）</td><td class="r">上午全局 1 行、项目规则 21 万字；合并后全局 30 条 54 行</td><td class="r">中间层已补上；项目规则还要瘦</td></tr>
+<tr><td class="w">上下文工程</td><td class="r">合适高度、最小高信号集、及时检索、子代理隔离、压缩与结构化笔记（Effective context engineering）</td><td class="r">10/19 起改为只取相关段落、拆源文件；之前整读百万字文件</td><td class="r">已在全局规则第 3–5 条</td></tr>
+<tr><td class="w">钩子</td><td class="r">确定性控制，不靠模型记得（Hooks 文档）</td><td class="r">已生效 2；交付物检查备好</td><td class="r">由动手方打开</td></tr>
+<tr><td class="w">技能</td><td class="r">程序性做法放技能、事实放 CLAUDE.md；描述带触发词；SKILL.md 精简、细节放引用文件；上下文压缩后每个技能只保留约 5,000 token（Skills、Context window）</td><td class="r">report-format 一份 16.7 KB，压缩后会被截；判例、类型卡不是技能</td><td class="r">拆成短 SKILL.md ＋ 引用文件；类型卡做成引用文件</td></tr>
+<tr><td class="w">子代理</td><td class="r">新上下文、看不到主对话，也拿不到自动记忆；适合没看过制作过程的评审；同一件事多派几个子代理不会更准（Subagents、Best practices）</td><td class="r">已用；验收官以读者模拟为主；规则已从记忆移到全局规则</td><td class="r">保持；规则靠对齐卡与技能承担</td></tr>
+<tr><td class="w">评测</td><td class="r">20–50 个真实失败起步、回归维持近 100%、裁判对专家校准、放入不该拦的样本（Demystifying evals）</td><td class="r">41 题、测过一轮、误拦 0 题、10/17 停</td><td class="r">续上，每周跑</td></tr>
+<tr><td class="w">长时任务</td><td class="r">清单 ＋ 每项测试 ＋ 每轮一项 ＋ 干净状态（Effective harnesses）</td><td class="r">待通过清单对；驱动靠 2–5 分钟轮询</td><td class="r">改事件触发或同步闸门</td></tr>
+<tr><td class="w">构建 agent</td><td class="r">先找最简单的方案；评估—优化循环适合有明确标准的场景；复杂度要能证明收益（Building effective agents）</td><td class="r">四角色 ＋ 锁 ＋ 熔断 ＋ 值守</td><td class="r">减到一个闸门 ＋ 一个考试</td></tr>
+<tr><td class="w">多 agent</td><td class="r">token 用量解释约八成表现差异；每个子代理要有目标、输出格式、来源、边界四样；力度按复杂度分配（Multi-agent research system）</td><td class="r">10/15 一晚 430 万、10/17–19 三天 20 亿</td><td class="r">已在全局规则第 4 条</td></tr>
+</table>
+<p class="src">出处（公开文档，按原意转述；10/29 由子任务逐页核对：文档页读的是原文，六篇工程文章读的是抓取摘要）：
+code.claude.com/docs/en/best-practices · /memory · /hooks-guide · /skills · /sub-agents · /common-workflows · /context-window ·
+anthropic.com/engineering/effective-context-engineering-for-ai-agents · /building-effective-agents · /effective-harnesses-for-long-running-agents · /demystifying-evals-for-ai-agents · /multi-agent-research-system</p>
+
+<h2 id="s7"><span class="no">08</span>已定的事，要你做的一件和一个习惯</h2>
+<table>
+<tr><th style="width:20%">已定（你 10/29 下午）</th><th>内容</th></tr>
+<tr><td class="w">合并保留</td><td class="r">另一条对话「opus 诊断」合并的全局配置保留（你说「保留」，并说这不是经过判断的选择；之后我们不再问你配置层面的问题）</td></tr>
+<tr><td class="w">三层分工</td><td class="r">你说「执行工作和与我沟通就不该是一个对话」「思考的 AGENT 和动手的 AGENT 要分成两个对话」：总负责「用好 Claude：进度沟通」是唯一对你的口；思考方（本对话）出思考页、核验、算数；动手方「opus 诊断」照审过的思考页做。固定模式本身还要按顶尖做法重定，见 想清楚/2026-10-29_固定工作模式.md</td></tr>
+<tr><td class="w">「解决好」的数</td><td class="r">两周为期、我每周四算、第一次 11/5：纠正占你消息比例 23% → 10% 以下；验收官先于你拦下 33% → 60% 以上（同时量误拦）；回复被你嫌长或夹着过程、对话做标题以外的事：归零</td></tr>
+<tr><td class="w">两份诊断的关系</td><td class="r">它的报告把根因写成「缺能替你判卷的裁判」，本报告写成「工作没有合同」；不矛盾：裁判要靠合同给标准。我的判断：作为交付它那份更好（更短、装好并考过一次、发现了两套记忆），本报告在证据和出处上更硬</td></tr>
+</table>
+<div class="grid g2" style="margin-top:14px">
+  <div class="card opt rec"><span class="badge">每周</span><p class="h">一、每周约 15 分钟判 5–10 份稿</p><p class="l">只判「同意／不同意」，验收官才会越判越像你。第一批是验收官在 4 份旧稿上多报的 37 条问题（总负责安排），第二批是等了 13 天的 <a href="../弹窗标签推送系统/规则与交接/评审题库/通过题候选_第1批.md">10 道「通过题候选」</a>：没有通过题，就量不出误拦</p></div>
+  <div class="card opt"><span class="badge">习惯</span><p class="h">二、纠正时带上「情况」，一次说全</p><p class="l">三句：哪里｜为什么不行｜读者要的效果；看到的问题一次列完再发。你 10/13 说「我的原话是针对某个情况的」，让情况跟原话一起到达，就不会被写成过头的规则</p></div>
+</div>
+
+<h2 id="s8"><span class="no">09</span>口径与来源</h2>
+<table>
+<tr><th style="width:22%">数字</th><th>怎么算的</th><th style="width:22%">可靠程度</th></tr>
+<tr><td class="w">9,324 个会话文件、9,271 轮定时任务、72% 空转</td><td class="r">扫 ~/.claude/projects 下全部 .jsonl；首条用户消息带 scheduled-task 标记的算定时任务；助手消息 ≤ 3 条的算空转</td><td class="d">我已核实（脚本全量统计）</td></tr>
+<tr><td class="w">token 占比</td><td class="r">以缓存读 token 为成本代理（84.7 亿），按会话类别求和；输出 token 3,213 万</td><td class="d">我已核实；缓存读单价低于普通输入，比例可参考、绝对金额不能直接换算</td></tr>
+<tr><td class="w">698 条消息、164 条纠正、中位 31 字</td><td class="r">非定时任务、非子任务、≤ 1,500 字的用户消息；纠正＝含「不对／什么鬼／为什么没／太长／看不懂」等用词，粗分类。三段：10/18 前 399 条（纠正 83）、10/19–26 73 条（28）、10/27–29 226 条（53）</td><td class="d">我已核实数字；分类有误差，比例当量级看</td></tr>
+<tr><td class="w">76%、60%、命中率</td><td class="r">取自项目文件：分析/根因_未按要求写_1019.md、评审题库/进度与下一步.md</td><td class="d">项目自述（10/19 另一条对话统计），我核对了口径</td></tr>
+<tr><td class="w">另一条对话装的框架</td><td class="r">读了 ~/.claude 下 14:04–14:10 新增的技能、代理、钩子文件</td><td class="d">我已核实文件内容；对话「opus 诊断」自认</td></tr>
+<tr><td class="w">顶尖做法</td><td class="r">子任务逐页抓取核对：Claude Code 文档页读到原文；六篇 Anthropic 工程文章是抓取工具返回的摘要</td><td class="d">文档页要点我已核实；工程文章按摘要转述，不逐字引用</td></tr>
+<tr><td class="w">脑图会话 257 次工具调用、改弹窗 9 次、商城 5 次</td><td class="r">读该会话的记录文件，数工具调用里出现的文件夹路径</td><td class="d">我已核实</td></tr>
+<tr><td class="w">规则体系 21.2 万中文字等</td><td class="r">只数汉字，不含标记与英文</td><td class="d">我已核实</td></tr>
+<tr><td class="w">「本对话上午的回复也超了」</td><td class="r">本对话记录</td><td class="d">自述</tr>
+</table>
+
+<h3>怎么跟别人讲（五句）</h3>
+<table>
+<tr><td class="w" style="width:18%">框架是什么</td><td class="r">规格（对齐卡）→ 生成 → 双重验证（确定性钩子 ＋ 无上下文模型评审）→ 失败进样本集 → 用样本回归测评审方法 → 规则只在同类重复后合并。这是 Anthropic 说的「评估—优化」循环加上评测驱动。</td></tr>
+<tr><td class="w">难点在哪</td><td class="r">不在让 agent 多干，在让裁判可信：裁判要对人的判断校准，同时量漏判和误拦；裁判拿读者任务比拿清单管用。</td></tr>
+<tr><td class="w">最常见的错</td><td class="r">把每次反馈写成规则。规则是上下文，上下文有成本；76% 的纠正早已有规则，说明瓶颈是执行与验证，不是条文。</td></tr>
+<tr><td class="w">成本怎么控</td><td class="r">成本 ≈ 步数 × 上下文。子任务短、只取相关段、按复杂度分配并发；定时轮询 72% 空转，改事件触发或同步闸门。</td></tr>
+<tr><td class="w">人做什么</td><td class="r">定方向、验收、每周 15 分钟判几份校准裁判；其余由循环自己转，三个数（纠正占比、验收官先拦比例、超长与串岗）告诉你它有没有变好。</td></tr>
+</table>
+
+<p class="links">
+框架包：<a href="框架包/全局CLAUDE.md_草稿.md">全局CLAUDE.md_草稿</a> · <a href="框架包/hooks/安装说明.md">hooks（脚本已测）</a> · <a href="框架包/output-styles/安装说明.md">输出样式与回复长度钩子</a> · <a href="框架包/记忆合并表.md">记忆合并表</a> · <a href="框架包/定时任务处置.md">定时任务处置</a> · <a href="框架包/项目CLAUDE.md_模板.md">项目CLAUDE.md_模板</a> · <a href="框架包/备选_与底座重叠/README.md">备选（与已装框架重叠）</a><br>
+项目证据：<a href="../弹窗标签推送系统/分析/根因_未按要求写_1019.md">根因分析 10/19</a> · <a href="../弹窗标签推送系统/规则与交接/评审题库/进度与下一步.md">评审题库进度</a> · <a href="../弹窗标签推送系统/规则与交接/矫枉过正记录.md">矫枉过正记录</a> · <a href="../弹窗标签推送系统/规则与交接/判例库/索引.md">判例索引</a><br>
+另一条对话装的：<a href="../_底座/README.md">_底座/README</a>、~/.claude/skills/开工、整理纠正、验收官考试，~/.claude/agents/验收官.md，~/.claude/hooks/delivery_gate.py、correction_capture.py
+</p>
+</div></body></html>

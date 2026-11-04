@@ -1,0 +1,116 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>评审版权重与弹出时机</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.35;margin:0 0 8px}
+.sub{font-size:16px;color:var(--ink-2);margin:0 0 28px}
+h2{font-family:var(--serif);font-size:20px;margin:56px 0 16px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px}
+.kpi .n{font-size:38px;font-weight:700;line-height:1.1;color:var(--ink)}
+.kpi .n small{font-size:16px;font-weight:600;margin-left:4px;color:var(--ink-2)}
+.kpi .t{font-size:14.5px;color:var(--ink-2);margin-top:8px}
+.f{margin-bottom:22px}
+.f .h{font-size:17px;font-weight:700;margin:0 0 6px}
+.f .l{font-size:14.5px;color:var(--ink-2);margin:0 0 10px}
+.f .l li{margin:2px 0}
+.f ul{margin:0 0 10px;padding-left:20px}
+.shot img{width:100%;display:block;border:1px solid var(--line);border-radius:4px;background:#fff}
+.shot .c{font-size:12.5px;color:var(--muted);margin-top:6px}
+.shot.mid img{max-width:760px}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14.5px}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--ground);white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td.p{color:var(--muted);width:64px;white-space:nowrap}
+td.w{color:var(--ink);width:36%} td.r{color:var(--ink-2)}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:1px 7px;border-radius:3px;margin-right:6px;vertical-align:1px}
+.tag.red{background:var(--red-soft);color:var(--red)} .tag.blue{background:var(--blue-soft);color:var(--blue)} .tag.gray{background:var(--gray-soft);color:var(--gray)}
+.note{font-size:14.5px;color:var(--ink-2)}
+.note li{margin:4px 0}
+.links{font-size:13px;color:var(--muted);margin-top:48px;line-height:1.9} a{color:var(--accent)}
+@media (max-width:760px){.wrap{padding:32px 16px 72px}.g3,.g2{grid-template-columns:1fr}td.p{white-space:normal}td.w{width:auto}}
+</style></head>
+<body><div class="wrap">
+<p class="meta">触达系统需求评审版 · 2026-10-27 · 按你定的两件改</p>
+<h1>推播加了权重，名额不够时先留给权重高的；弹窗加回了弹出时机，待你验收</h1>
+<p class="sub">权重 1–10，默认 5，越大越优先。弹出时机六选一，和弹出频率一起判断。下面几处具体做法是我定的，标了「替你定」，都可以推翻。</p>
+
+<div class="grid g3">
+  <div class="card kpi"><div class="n">1–10<small>权重</small></div><div class="t">营销推送都设权重，默认 5；推播列表、新建页、名额占用都显示</div></div>
+  <div class="card kpi"><div class="n">6<small>种时机</small></div><div class="t">大厅自动弹窗每个弹窗内容选一种，默认「进入大厅」</div></div>
+  <div class="card kpi"><div class="n">1<small>件</small></div><div class="t">待研发确认：客户端能不能区分登录进入和返回大厅；已写进文档</div></div>
+</div>
+
+<h2><span class="no">01</span>权重：发给每位玩家前，先为他当天后面权重更高的定时推送留名额</h2>
+<div class="f">
+  <ul class="l">
+    <li><b>怎么算</b>：发给某位玩家前，先数他当天还没发、权重比这条高的定时推送有几条，给它们留出名额；剩下的名额才给这一条。权重相同按发送先后，和现在一样。</li>
+    <li><b>示例</b>：明天 #49 12:30、#48 19:00 权重 5，#50 20:30 权重 8，有 4,030 人三条都会收到。名额先留给 #50，#49 先发占另一条，#48 被拦 4,030 人。原来被拦的是最晚发的 #50。</li>
+    <li><b>替你定</b>：
+      <ul>
+        <li>权重 1–10，默认 5，越大越优先。</li>
+        <li>条件触发推送也设权重，但事先不知道会不会触发，不为它预留名额，按触发时剩下的名额发。</li>
+        <li>被停止或暂停的推送不再占预留。</li>
+        <li>短信每人每天只有 1 条，不设权重。</li>
+      </ul>
+    </li>
+  </ul>
+  <div class="shot"><img src="图/2026-10-27_评审版权重与弹出时机/新建推播_权重.jpg" alt="新建推播权重"><div class="c">第 1 页 · 新建推播：类别下多一行权重，右侧摘要也写权重</div></div>
+  <div class="shot" style="margin-top:12px"><img src="图/2026-10-27_评审版权重与弹出时机/定时列表_权重.jpg" alt="定时列表权重"><div class="c">第 1 页 · 定时列表：加权重列；#50 权重 8，被拦的换成 #48，预计发出随之变动</div></div>
+  <div class="shot" style="margin-top:12px"><img src="图/2026-10-27_评审版权重与弹出时机/日历_明天.jpg" alt="日历明天"><div class="c">第 1 页 · 日历：#48 标为被拦，明天一行写明名额先留给 #50</div></div>
+</div>
+
+<h2><span class="no">02</span>弹出时机：每个弹窗内容选一种时机，和弹出频率一起判断</h2>
+<div class="f">
+  <ul class="l">
+    <li><b>六种时机</b>：
+      <ul>
+        <li>进入大厅（默认，登录后进入和从游戏返回都算）</li>
+        <li>返回大厅</li>
+        <li>首次登录（当天第一次登录后进入）</li>
+        <li>非首次登录</li>
+        <li>第 N 次登录</li>
+        <li>活动开启（所属活动开始后第一次进入）</li>
+      </ul>
+    </li>
+    <li><b>怎么判断</b>：这次进入符合时机，频率没用完、也不在冷却中，才弹。例如回流任务设「第 2 次登录、每日 1 次」：当天第 2 次登录后进大厅时弹，之后当天不再弹。</li>
+    <li><b>原数据怎么迁</b>：现在「每天首次登录弹 1 次」这类写法，拆成时机「首次登录」加频率「每天 1 次」。</li>
+    <li><b>替你定</b>：时机只用于大厅自动弹窗；破产、购买指定礼包、押注达到指定金额在事件发生时弹，不设时机。六种时机按运营反馈研判里列的写。</li>
+  </ul>
+  <div class="shot mid"><img src="图/2026-10-27_评审版权重与弹出时机/弹窗排序_弹出时机.jpg" alt="弹窗排序弹出时机"><div class="c">第 4 页 · 编辑弹窗规则：弹窗排序多一列弹出时机，回流任务为第 2 次登录</div></div>
+</div>
+
+<h2><span class="no">03</span>改到的地方</h2>
+<table>
+<tr><th>页</th><th>权重</th><th>弹出时机</th></tr>
+<tr><td class="p">1</td><td class="r">新建推播、条件触发设置、定时和条件触发列表、日历、名额占用；业务规则补研发改动、算法与示例</td><td class="r">—</td></tr>
+<tr><td class="p">2、3</td><td class="r">条件触发写明也设权重、不预留；短信写明不设权重</td><td class="r">—</td></tr>
+<tr><td class="p">4</td><td class="r">—</td><td class="r">编辑弹窗规则、拖动未保存、保存确认、弹窗内容编辑与展开、命中方式对比；业务规则补研发改动、数据迁移、时机定义与示例、待研发确认</td></tr>
+<tr><td class="p">10</td><td class="r">—</td><td class="r">玩家查询的弹窗表改为「弹出时机与频率」一列</td></tr>
+</table>
+<p class="note">顺带：条件触发列表每行的状态原来写「进行中」，和业务规则「生效中」对不上，已改。</p>
+
+<h2><span class="no">04</span>评审时要讲一句的地方</h2>
+<ul class="note">
+  <li><b>两个「谁先」方向相反</b>：推播的权重是数字越大越优先；弹窗的优先级是数字越小越先排（原来弹窗也叫「权重」，迁移时改名为优先级）。图上和规则里都写明了方向，评审时提一句，免得研发混用。</li>
+  <li><b>待研发确认</b>：客户端能否区分「登录后进入大厅」和「从游戏返回大厅」，服务端能否取到玩家当天第几次登录。做不到的话，「返回大厅」「第 N 次登录」两种时机要先拿掉。已写进第 4 页「待研发确认」。</li>
+</ul>
+
+<div class="links">
+成品：<a href="../评审版_定稿改_1027/推送系统后台集成需求/3_原型_需求评审版.html">评审版_定稿改_1027/推送系统后台集成需求/3_原型_需求评审版.html</a>（16 MB，34 张图已内嵌）<br>
+改过的文件与上传说明：<a href="../评审版_定稿改_1027/README.md">评审版_定稿改_1027/README.md</a><br>
+前几轮：<a href="2026-10-27_评审版顺序与用词.html">顺序与用词</a> · <a href="2026-10-27_评审版定稿改动.html">定稿改动（12 处）</a>
+</div>
+</div></body></html>

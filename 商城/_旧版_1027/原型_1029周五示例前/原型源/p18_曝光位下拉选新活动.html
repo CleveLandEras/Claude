@@ -1,0 +1,21 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><title>p18_曝光位下拉选新活动.html</title><link rel="stylesheet" href="活动配置原型.css">
+<style>
+.dd{position:absolute;left:0;top:36px;width:330px;background:#fff;border:1px solid var(--line);border-radius:6px;box-shadow:0 8px 24px rgba(31,35,41,.16);padding:6px 0;z-index:5;font-size:14px}
+.dd .gh{padding:6px 14px 4px;font-size:12.5px;color:var(--mute)}
+.dd .op{padding:7px 14px;white-space:nowrap}
+.dd .op.new{background:#F2F7FF}
+.dd .op.hl{background:var(--acc);color:#fff;font-weight:600}
+.dd .sepl{height:1px;background:var(--line2);margin:6px 0}
+.callout{position:absolute;left:372px;top:44px;width:250px;border:2px solid #E5484D;border-radius:8px;background:#FFF5F4;padding:10px 14px;color:#B4231C;font-size:14px;line-height:22px;font-weight:600}
+.callout small{display:block;font-weight:400;color:var(--ink2);font-size:12.5px;line-height:19px;margin-top:4px}
+.callout::before{content:"";position:absolute;left:-34px;top:30px;width:32px;border-top:2px solid #E5484D}
+.callout::after{content:"";position:absolute;left:-38px;top:26px;border:5px solid transparent;border-right:7px solid #E5484D}
+.bx{display:inline-flex;align-items:center;justify-content:center;width:150px;height:60px;border:1px dashed var(--line);border-radius:4px;color:var(--mute);font-size:13px;background:var(--fill2)}
+</style></head><body><div class="stage"><div class="shot" id="s1"><div class="adm" style="width:1280px;display:flex"><div class="side" style="float:none;flex:none;width:212px"><div class="g">公告管理</div><div class="it" style="color:#8E959F">公告管理</div><div class="it" style="color:#8E959F">跑马灯设定</div><div class="it" style="color:#8E959F">快显设定</div><div class="it" style="color:#8E959F">游戏 loading 页公告</div><div class="it on">前端大厅 Banner</div><div class="it" style="color:#8E959F">游戏内悬浮活动设定</div></div><div style="flex:1;min-width:0"><div class="adm-hd"><b>前端大厅 Banner</b><span class="st">›　新增</span><span class="sp"></span></div><div class="adm-bd" style="min-height:560px"><div class="sec"><h4>新增 Banner<small>其余栏位照现有页面不变，此图只示意「连结位置」</small></h4>
+<div class="f"><div class="l">标题</div><div class="c"><span class="in" style="width:300px">十一月累计储值</span></div></div>
+<div class="f"><div class="l">图片</div><div class="c"><span class="bx">nov_banner.png</span><span class="hint">沿用现有大厅 Banner 图片规格</span></div></div>
+<div class="f"><div class="l">显示时间</div><div class="c"><span class="in" style="width:170px">2026-11-06 00:00</span><span class="u">–</span><span class="in" style="width:170px">2026-11-30 23:59</span></div></div>
+<div class="f"><div class="l">连结位置</div><div class="c" style="align-items:flex-start"><span class="seg"><span class="on">内页</span><span>外连</span></span><span class="in sel" style="width:120px">活动</span><span style="position:relative;display:inline-block"><span class="in sel" style="width:330px;border-color:var(--acc);box-shadow:0 0 0 2px var(--acc-bg)">十一月累计储值（活动配置）</span>
+<div class="dd"><div class="gh">活动配置里建的活动（建好自动出现）</div><div class="op hl">十一月累计储值（活动配置）</div><div class="op new">老子翻倍包（活动配置）</div><div class="op new">本周500档加赠30%（活动配置）</div><div class="sepl"></div><div class="gh">现有活动</div><div class="op">卡别补给站</div><div class="op">至尊回归</div><div class="op">活动排行</div><div class="op" style="color:var(--mute)">……</div></div>
+<div class="callout">本期：新活动自动出现在下拉里，不用研发补<small>以前每加一种新活动，要研发把它加进「连结位置」下拉</small></div></span></div></div>
+</div></div><div class="adm-ft"><span class="btn">取消</span><span class="btn p">保存</span></div></div></div></div></div></body></html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>评审版顺序与用词</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.35;margin:0 0 8px}
+.sub{font-size:16px;color:var(--ink-2);margin:0 0 28px}
+h2{font-family:var(--serif);font-size:20px;margin:56px 0 16px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px}
+.kpi .n{font-size:38px;font-weight:700;line-height:1.1;color:var(--ink)}
+.kpi .n small{font-size:16px;font-weight:600;margin-left:4px;color:var(--ink-2)}
+.kpi .t{font-size:14.5px;color:var(--ink-2);margin-top:8px}
+.f{margin-bottom:22px}
+.f .h{font-size:17px;font-weight:700;margin:0 0 6px}
+.f .l{font-size:14.5px;color:var(--ink-2);margin:0 0 10px}
+.f .l li{margin:2px 0}
+.f ul{margin:0 0 10px;padding-left:20px}
+.shot img{width:100%;display:block;border:1px solid var(--line);border-radius:4px;background:#fff}
+.shot .c{font-size:12.5px;color:var(--muted);margin-top:6px}
+.shot.mid img{max-width:760px}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14.5px}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--ground);white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td.p{color:var(--muted);width:64px;white-space:nowrap}
+td.w{color:var(--ink);width:36%} td.r{color:var(--ink-2)}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:1px 7px;border-radius:3px;margin-right:6px;vertical-align:1px}
+.tag.red{background:var(--red-soft);color:var(--red)} .tag.blue{background:var(--blue-soft);color:var(--blue)} .tag.gray{background:var(--gray-soft);color:var(--gray)}
+.note{font-size:14.5px;color:var(--ink-2)}
+.note li{margin:4px 0}
+.links{font-size:13px;color:var(--muted);margin-top:48px;line-height:1.9} a{color:var(--accent)}
+@media (max-width:760px){.wrap{padding:32px 16px 72px}.g3,.g2{grid-template-columns:1fr}td.p{white-space:normal}td.w{width:auto}}
+</style></head>
+<body><div class="wrap">
+<p class="meta">触达系统需求评审版 · 2026-10-27 · 在云端 10/27 定稿上改</p>
+<h1>评审版已按阅读顺序重排、用词改成通用说法，整体通查又修了 7 处，待你验收；运营提的 2 个功能缺口要你定</h1>
+<p class="sub">「修改上限」「名额占用」从第 1 页最前面挪到「新建推播」之后。合池、轮换位这些自造的词换成了通用说法。发布确认里那句名额说明删掉了。34 张图全部重截，字体也统一了。</p>
+
+<div class="grid g3">
+  <div class="card kpi"><div class="n">2<small>页</small></div><div class="t">按阅读顺序重排：第 1 页推播、第 4 页弹窗，图和业务规则同一个顺序</div></div>
+  <div class="card kpi"><div class="n">6<small>组说法</small></div><div class="t">改成通用说法，正文和界面一起改</div></div>
+  <div class="card kpi"><div class="n">2<small>件</small></div><div class="t">要你定：推播能不能点名保留、弹窗要不要加回弹出时机</div></div>
+</div>
+
+<h2><span class="no">01</span>阅读顺序：先看排期、再新建、再讲控量，最后是操作纪录</h2>
+<div class="grid g2">
+  <div class="card">
+    <div class="f" style="margin:0"><div class="h">第 1 页 · 按玩家分群推送</div>
+    <ol class="l" style="padding-left:20px;margin:0">
+      <li><b>看排期</b>：日历 → 定时 → 条件触发 → 停止确认</li>
+      <li><b>新建</b>：新建推播 → 发布确认 → 标签群组</li>
+      <li><b>控量</b>：修改上限与勿扰 → 名额占用</li>
+      <li><b>留痕</b>：操作纪录</li>
+    </ol>
+    <p class="l" style="margin-top:10px">原来日历之后紧接着就是修改上限、合池。读者还没看到推播怎么建，就先读上限规则。业务规则的小节也按这个顺序排了。</p></div>
+  </div>
+  <div class="card">
+    <div class="f" style="margin:0"><div class="h">第 4 页 · 按玩家分群配置弹窗</div>
+    <ol class="l" style="padding-left:20px;margin:0">
+      <li><b>规则列表</b>：列表 → 悬停 → 调整优先级 → 破产位置</li>
+      <li><b>命中方式</b>：两种方式对比</li>
+      <li><b>编辑规则</b>：编辑页 → 拖动未保存 → 保存确认</li>
+      <li><b>弹窗内容</b>：内容列表 → 展开引用 → 编辑内容</li>
+    </ol>
+    <p class="l" style="margin-top:10px">原来「拖动未保存」排在编辑页之前，轮换示意夹在列表的几张图中间。业务规则里「命中方式」挪到「优先级」之后。</p></div>
+  </div>
+</div>
+
+<h2><span class="no">02</span>用词：6 组说法换成通用说法，正文和界面一起改</h2>
+<table>
+<tr><th>原来</th><th>改成</th><th>为什么</th></tr>
+<tr><td class="w">合池</td><td class="w">名额占用</td><td class="r">「合池」不是通用说法，看名字猜不出是什么。短信页已经在用「名额」「按发送先后占用」，统一成同一套说法</td></tr>
+<tr><td class="w">上限套</td><td class="w">人群上限</td><td class="r">「套」偏口语，读者要猜。上限是按人群分别设的，直接叫人群上限</td></tr>
+<tr><td class="w">取用方式：轮换位｜顺序</td><td class="w">命中方式：优先级最高｜轮流</td><td class="r">「取用」「轮换位」不是常用词；「顺序」容易读成按顺序全弹，实际是只用优先级最高的一条。全文本来就用「命中」</td></tr>
+<tr><td class="w">弹窗次数、弹出次数</td><td class="w">弹出频率</td><td class="r">同一个字段有两种叫法，又和「弹出数量」只差一个字。运营反馈里也把它叫频率</td></tr>
+<tr><td class="w">只限</td><td class="w">限定群组</td><td class="r">「只限」后面缺了限什么</td></tr>
+<tr><td class="w">常显、露、散标签、不编发送条数、一层</td><td class="w">一直显示、显示、单个标签、发送写「—」、页签</td><td class="r">口语或内部说法</td></tr>
+</table>
+<div class="grid g2" style="margin-top:16px">
+  <div class="shot"><img src="图/2026-10-27_评审版顺序与用词/名额占用.jpg" alt="名额占用"><div class="c">第 1 页 · 名额占用（原叫合池）</div></div>
+  <div class="shot"><img src="图/2026-10-27_评审版顺序与用词/命中方式.jpg" alt="命中方式"><div class="c">第 4 页 · 弹窗列表的命中方式（原叫取用方式：轮换位｜顺序）</div></div>
+</div>
+
+<h2><span class="no">03</span>发布确认里那句名额说明：删掉，三处都已经写过</h2>
+<ul class="note">
+  <li><b>「定时到点再按当时对象重算」</b>：新建页「发送时间」卡片上已写「到点按当时对象发送」，业务规则「发送时间」一节也写了。</li>
+  <li><b>「因每天上限发不出的人数写在该行」</b>：业务规则「列表」一节已写明上限拦截写在定时列表的状态里。</li>
+  <li><b>确认框只用来核对这次发什么、发给谁、多少人</b>：放进其他页面的说明，只会把这三样挤得不好找。这句在确认框里出现了两次，都删了；图注和业务规则里重复的那句也删了。</li>
+</ul>
+<div class="grid g2" style="margin-top:14px">
+  <div class="shot"><img src="图/2026-10-27_评审版顺序与用词/发布确认_改前.jpg" alt="改前"><div class="c">改前</div></div>
+  <div class="shot"><img src="图/2026-10-27_评审版顺序与用词/发布确认_改后.jpg" alt="改后"><div class="c">改后</div></div>
+</div>
+
+<h2><span class="no">04</span>整体通查：又修了 7 处前后对不上或容易误读的地方</h2>
+<table>
+<tr><th>页</th><th>问题</th><th>改成</th></tr>
+<tr><td class="p">6</td><td class="w">数据概览里的 #44、#45、#47 在推播页是另外三条推送；#47 同时出现在 10/12 和 10/21 两天「发送中」</td><td class="r">数据概览这三条改用没用过的 #36、#34、#30</td></tr>
+<tr><td class="p">3</td><td class="w">短信列表写「今天 10/21（二）」，日历上 10/21 是周三</td><td class="r">改为（三），明天改为（四）</td></tr>
+<tr><td class="p">1</td><td class="w">定时、条件触发两页的筛选是「推播类型｜子类型｜平台｜发送对象」，和业务规则不一致；运营反馈里也说它让人以为还有一套分类</td><td class="r">改为消息类别、所属活动、对象、创建人和「更多筛选」，与业务规则一致</td></tr>
+<tr><td class="p">2</td><td class="w">条件触发右侧摘要写「名额 普通」，是拿掉「重要程度」后留下的，读者会以为还有重要选项</td><td class="r">改为「每人每天上限 计入」</td></tr>
+<tr><td class="p">4</td><td class="w">「点热门资讯」和「从规则列表点热门资讯」两张图是同一个画面</td><td class="r">留一张，图注写明两种点法打开的是同一行</td></tr>
+<tr><td class="p">1、4</td><td class="w">运营问过的三件事规则里没写：营销/服务通知和定时/条件触发是什么关系；能不能指定保留哪几条；同一内容能不能既按天又按周</td><td class="r">各补一句：两件事各选一个；按发送先后占名额，不能指定保留；每个内容在一条规则里只选一种弹出频率</td></tr>
+<tr><td class="p">开头</td><td class="w">后台结构图注写「（与下文第一部分一致）」，是文档在讲自己</td><td class="r">删掉</td></tr>
+</table>
+<p class="note">没改：数据页和玩家查询以 10/12 为「今天」，推播页以 10/21 为「今天」。编号不撞以后，两组例子之间没有矛盾，所以保持不变。</p>
+<div class="grid g2" style="margin-top:14px">
+  <div class="shot"><img src="图/2026-10-27_评审版顺序与用词/定时筛选_改前.jpg" alt="定时筛选改前"><div class="c">定时页筛选 · 改前</div></div>
+  <div class="shot"><img src="图/2026-10-27_评审版顺序与用词/定时筛选_改后.jpg" alt="定时筛选改后"><div class="c">定时页筛选 · 改后</div></div>
+</div>
+
+<h2><span class="no">05</span>要你定的 2 件：运营反馈里的两个功能缺口，现稿都还没做</h2>
+<p class="note">来源：云端定稿里的《运营反馈研判_1026》。运营的原话我没看到，下面按研判转述。</p>
+
+<div class="card f" style="margin-top:12px">
+  <div class="h">一、推播能不能点名保留：一天 5 条、上限 2 条时，运营想指定发哪 2 条</div>
+  <ul class="l">
+    <li><b>现状</b>：营销推送只按实际发送先后占名额，先发的先占，后发的被拦。早期稿有「重要程度 + 预留名额」，本版拿掉了。这次规则里已经写明「不能指定优先保留哪几条」。</li>
+    <li><b>选项 A</b>：本版不做，评审时作为已知限制说明；运营靠排期把想保的那条放在当天早一点发。</li>
+    <li><b>选项 B</b>：加回「重要」标记，重要的推送当天预留名额，普通推送不能占。要另外定：预留了没发出去的名额，当天作废还是还给普通推送。</li>
+    <li><b>推荐 A</b>：B 要新定预留规则，研发的计数逻辑也要改；A 靠排期能满足大部分情况。上线后看第 9 页的「上限拦截人次」，冲突多再做 B。</li>
+  </ul>
+</div>
+
+<div class="card f">
+  <div class="h">二、弹窗要不要加回「弹出时机」：第 N 次登录、进入或返回大厅等</div>
+  <ul class="l">
+    <li><b>现状</b>：据研判，10/20 曾和运营对齐过六种弹出时机：活动开启、首次登录、非首次登录、第 N 次登录、进入大厅、返回大厅。现稿只剩弹出频率，如「每天首次登录 1 次」「每周 2 次」。运营说「没按之前的优化做」，有依据。</li>
+    <li><b>选项 A</b>：加回。规则编辑页每个弹窗内容多设一个弹出时机，写清时机和频率怎么一起算，例如「第 3 次登录时弹，每天 1 次」。</li>
+    <li><b>选项 B</b>：本版不加，评审时说明暂不做。</li>
+    <li><b>推荐 A</b>：之前已经和运营对齐过，这次拿掉又没说明，评审时运营很可能拿「没按需求」挡下。代价是规则编辑页多一列，研发多一个判断条件。</li>
+  </ul>
+</div>
+<p class="note">你定了以后我按结果改原型和业务规则。没定之前，现稿按 A（点名保留不做）和 B（弹出时机不加）的现状写。</p>
+
+<div class="links">
+成品：<a href="../评审版_定稿改_1027/推送系统后台集成需求/3_原型_需求评审版.html">评审版_定稿改_1027/推送系统后台集成需求/3_原型_需求评审版.html</a>（15 MB，34 张图已内嵌）<br>
+改过的文件与上传说明：<a href="../评审版_定稿改_1027/README.md">评审版_定稿改_1027/README.md</a><br>
+第一轮 12 处的改动说明：<a href="2026-10-27_评审版定稿改动.html">2026-10-27_评审版定稿改动.html</a>（其中的截图还是改名前的叫法）
+</div>
+</div></body></html>

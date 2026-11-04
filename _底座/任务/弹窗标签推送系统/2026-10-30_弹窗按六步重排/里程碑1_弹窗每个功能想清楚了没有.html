@@ -1,0 +1,864 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>弹窗功能分析</title><style>:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1180px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.35;margin:0 0 8px}
+.sub{font-size:16px;color:var(--ink-2);margin:0 0 20px}
+h2{font-family:var(--serif);font-size:20px;margin:52px 0 12px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+h3{font-size:16px;margin:28px 0 10px}
+.lead{font-size:14px;color:var(--ink-2);margin:0 0 14px}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 18px}
+.kpi .n{font-size:34px;font-weight:700;line-height:1.1}
+.kpi .n small{font-size:15px;font-weight:600;margin-left:4px;color:var(--ink-2)}
+.kpi .t{font-size:14px;color:var(--ink-2);margin-top:8px}
+.warn{background:var(--red-soft);border-radius:6px;padding:12px 16px;margin:16px 0 0;font-size:14px;color:var(--ink)}
+.warn b{color:var(--red)} .warn ul{margin:4px 0 0;padding-left:20px}
+.tg{display:inline-block;font-size:12px;font-weight:700;padding:1px 7px;border-radius:3px;white-space:nowrap}
+.tg.red{background:var(--red-soft);color:var(--red)} .tg.blue{background:var(--blue-soft);color:var(--blue)} .tg.gray{background:var(--gray-soft);color:var(--gray)} .tg.green{background:var(--green-soft);color:var(--green)} .tg.mute{background:var(--gray-soft);color:var(--muted)}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 12px}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);font-size:14px}
+th,td{padding:9px 12px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+th{font-size:12.5px;color:var(--muted);font-weight:600;background:var(--ground)}
+tr:last-child td{border-bottom:none}
+table.chg td:first-child{font-weight:700;white-space:nowrap}
+table.md{font-size:13px} table.md td,table.md th{padding:7px 10px}
+table.md td{min-width:72px}
+table.fl td.s{color:var(--muted);font-size:12px;min-width:160px}
+table.fl td:nth-child(4){min-width:240px}
+table.map{table-layout:fixed;min-width:1100px;font-size:13px}
+table.map th{background:var(--blue-soft);color:var(--blue);font-weight:700;font-size:12.5px}
+table.map td{border-right:1px solid var(--line);padding:8px 9px}
+table.map td.out{background:var(--gray-soft);color:var(--muted)}
+table.map td.empty{background:var(--ground)}
+.tn{font-weight:700;color:var(--accent)}
+.src{font-size:11.5px;color:var(--muted);margin-top:4px}
+.pd{position:relative}
+.pd .h{font-size:16px;font-weight:700;margin:0 0 8px}
+.pd .no{font-size:12px;font-weight:700;color:var(--accent)}
+.pd .kv{font-size:14px;color:var(--ink-2);margin:6px 0}
+.pd .kv b{display:inline-block;min-width:62px;font-size:12.5px;color:var(--muted);font-weight:600}
+.pd .rec{background:var(--blue-soft);border-radius:4px;padding:6px 10px;color:var(--ink)}
+.pd .rec b{color:var(--blue)}
+.more{font-size:14px;color:var(--ink-2);margin:14px 0 0;padding-left:20px}
+.more li{margin:3px 0}
+.flt{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px}
+.flt button,.tgl{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--surface);color:var(--ink-2);border-radius:4px;padding:4px 12px;cursor:pointer}
+.flt button.on{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.tgl{margin-left:10px}
+details.sub{background:var(--surface);border:1px solid var(--line);border-radius:6px;margin:10px 0;padding:0 16px}
+details.sub>summary{cursor:pointer;padding:10px 0;font-size:14px;font-weight:600;color:var(--ink-2)}
+details.cardd{background:var(--surface);border:1px solid var(--line);border-radius:6px;margin:10px 0}
+details.cardd>summary{cursor:pointer;padding:14px 18px;list-style:none;display:grid;grid-template-columns:44px 1fr;column-gap:12px;row-gap:2px}
+details.cardd>summary::-webkit-details-marker{display:none}
+details.cardd>summary .cn{grid-row:span 3;font-size:20px;font-weight:700;color:var(--accent)}
+details.cardd>summary .ct{font-size:16px;font-weight:700}
+details.cardd>summary .cm{font-size:13.5px;color:var(--ink-2)}
+details.cardd[open]>summary{border-bottom:1px solid var(--line)}
+.cb{padding:6px 18px 16px}
+.cb h4{font-size:14.5px;margin:18px 0 8px;color:var(--ink)}
+.cb p,.cb li{font-size:13.5px;color:var(--ink-2)}
+.cb ul,.cb ol{padding-left:20px}
+code{font-size:12px;background:var(--gray-soft);padding:0 4px;border-radius:3px;word-break:break-all}
+.legend2{font-size:12.5px;color:var(--muted);margin:36px 0 0;line-height:1.7}
+.links{font-size:13px;color:var(--muted);margin-top:16px} a{color:var(--accent)}
+@media (max-width:760px){.wrap{padding:28px 16px 64px}.g3,.g2{grid-template-columns:1fr}h1{font-size:23px}details.cardd>summary{grid-template-columns:34px 1fr}}
+</style></head><body><div class="wrap">
+<p class="meta">弹窗按六步重排 · 里程碑 1：每个功能想清楚了没有 · 2026-10-30 · 待 Dk 看</p>
+<h1>弹窗 10 个功能都过了三问；10 件要你定，其中 5 件影响大</h1>
+<p class="sub">最要紧的一件：去掉〔旧〕弹窗类型后，「活动几个＋礼包 1 个」在一条规则里配不出来，现网和运营草稿都是这种组合。推荐让轮换池先留名额。</p>
+<div class="grid g3">
+  <div class="card kpi"><div class="n">34<small>件事</small></div><div class="t">运营在弹窗上要完成的事：29 件有来源（工单、运营草稿、现网截图、已定事项等），5 件没找到原话、标了推断</div></div>
+  <div class="card kpi"><div class="n">95<small>项设置</small></div><div class="t">旧后台和评审稿的设置：保留 37、简化 24、去掉 14、新增 15、移出本任务 5</div></div>
+  <div class="card kpi"><div class="n">82<small>个字段</small></div><div class="t">10 张分析卡，每个字段过三问；要你定 10 件，影响大的 5 件写在下面</div></div>
+</div>
+<div class="warn"><b>还没坐实的</b>
+<ul>
+<li>现网进大厅〔旧〕活动类、储值类两条规则是不是一次都弹，活动类每次 3 个还是 2 个，研发还没答（研发评审待确认第 25 条）。第 1 条的现状和迁移做法都看它。</li>
+<li>旧后台新建规则的表单没有截图，表单里有哪些字段是推断，工单只印证了一部分。</li>
+<li>5 件事没找到运营原话（评审稿已有，先保留）：买了指定礼包后或押注到金额时弹（T8）、规则生效期间（T12）、几条规则轮流弹（T17）、上线前发测试（T25）、改线上规则前看改动（T27）。</li>
+<li>后台能不能读到活动和礼包自带的宣传图，研发还没答。读不到的话，宣传图从「默认用自带的」变成每个活动都要上传。</li>
+<li>来源更正：建任务时把工单 RICH-23076 归为「新活动要发版才能加进弹窗」，原单其实是「发送对象勾至尊卡后不弹」，已按实际内容放进「只对某类玩家弹」（T9）。</li>
+</ul></div>
+
+<h2>和 10/28 评审稿比改了 7 处，最大的是弹窗内容不再单独建页、规则里加了轮换池</h2>
+<div class="tw"><table class="chg">
+<tr><th>改了什么</th><th>10/28 评审稿</th><th>现在</th><th>在哪张卡</th></tr>
+<tr><td>弹窗内容不单独建页</td><td>有〔旧〕弹窗内容页签，内容在那里配</td><td>每个活动或礼包一份弹窗设置，规则里第一次加入时当场配，别的规则自动带出；单独改或暂停时，在规则列表按活动或礼包筛选后打开它的设置</td><td><a href="#card-C">C</a>、<a href="#card-A2">A2</a></td></tr>
+<tr><td>弹出的样子</td><td>〔旧〕显示方式两选一；宣传图只在「先弹宣传图」时才要</td><td>一律弹宣传图（默认用自带的，可换）；只问「点击后是否跳转：是／否」；跳转页面默认活动或礼包自己的页面</td><td><a href="#card-C">C</a></td></tr>
+<tr><td>规则里加轮换池</td><td>规则里只有一串固定顺序</td><td>每个活动或礼包可选是否进轮换池（默认否），轮换池每次弹几个（默认 1），先弹固定的再弹轮换池的；规则列表每条能展开，看有哪些弹窗、是否轮换、顺序</td><td><a href="#card-B2">B2</a>、<a href="#card-A2">A2</a></td></tr>
+<tr><td>本规则另设</td><td>同一内容要给不同人群不同频率时，〔旧〕复制成另一个</td><td>在规则里给某个活动或礼包另设点击后是否跳转、弹出时机、每天几次、两次间隔，只在这条规则生效，活动设置再改也不覆盖</td><td><a href="#card-B3">B3</a></td></tr>
+<tr><td>次数和间隔</td><td>频率周期 4 种（每天、每周、每 N 天、活动期间）加冷却，按内容跨场景计</td><td>只留「每人每天几次」和「每人两次至少隔多久」（默认留空），同一场景各规则合计；场景上加「弹出间隔」（默认 30 分钟），破产礼包这类可设为不受限制</td><td><a href="#card-C">C</a>、<a href="#card-A1">A1</a></td></tr>
+<tr><td>去掉弹窗类型、弹出时机改单选</td><td>〔旧〕储值类、活动类分两条规则；弹出时机 6 项（旧后台可多选）</td><td>活动和礼包排在一条规则里；弹出时机 4 项单选（两处都待你定）</td><td><a href="#card-B2">B2</a>、<a href="#card-C">C</a></td></tr>
+<tr><td>发送对象和名称</td><td>名称分繁中、越南文、英文三份；默认排除 VIP 名单；看不到人数</td><td>名称只留一个，默认自动拼好；不默认排除 VIP 名单（待你定）；加「预计人数」（已扣掉黑名单、测试账号等固定不弹的人）和「多个群组时：满足任一个／同时满足全部」，和推播一致</td><td><a href="#card-B1">B1</a></td></tr>
+</table></div>
+
+<h2>要你定 10 件；影响大的 5 件里，最要紧的是「活动＋礼包」组合配不出来</h2>
+<div class="grid g2">
+<div class="card pd"><div class="no">第 1 条 · 影响卡 A1、A4、B2、B5</div>
+<p class="h">去掉〔旧〕弹窗类型后，「活动几个＋礼包 1 个」在一条规则里配不出来</p>
+<div class="kv"><b>现状</b>现网（10/10 截图）：进大厅〔旧〕活动类每次 3 个、储值类每次 1 个，3 条规则都对全部玩家；两条是不是一次都弹，待研发确认。运营草稿（计划，线上没配）：每批人活动、礼包各一条，每次 2 个活动＋1 个礼包。新后台一个场景一人只用一条规则，两类要合进一条；按现写法「固定的占满时轮换池这次不弹」，两种组合都配不出来。</div>
+<div class="kv rec"><b>推荐</b>「轮换池每次弹几个」从「每次最多弹几个」里先留出名额，固定的最多弹剩下的；轮换池这次没有可弹的，名额让给固定的。例：每次最多 3、轮换池 1 → 固定 2＋礼包 1（进大厅按默认就是这样）。先弹固定的、再弹轮换池的顺序不变，但轮换池先留走名额。</div>
+<div class="kv"><b>备选</b>把「每次最多弹几个」改成「固定的每次弹几个」，和「轮换池每次弹几个」相加为一次最多弹几个。</div>
+<div class="kv"><b>备选二</b>轮换池加一个取法选项（轮流／按顺序取第一个能弹的），能保留按顺序取，但改了你 10/30 定的轮换池含义（换着弹），要你定；不推荐，卡里没加这个字段。</div>
+<div class="kv"><b>两种后果</b>两种做法下礼包都改成在轮换池里轮流，不再总弹排第一个能弹的（现网和草稿都是按顺序取，首储礼包排第 1）。推荐：运营只看一个总数，轮换池空着时名额不浪费；但「每次最多弹几个」不大于「轮换池每次弹几个」时（如破产时等场景默认都是 1），轮换池有能弹的，固定的一个也弹不到，保存时提示这一句、可继续保存。备选：两个数各管各的，总数要运营自己加；轮换池这次没得弹就少弹几个。</div>
+<div class="kv"><b>理由</b>两个数都是已有的，运营不多学概念；改的只是我方补的「固定占满时轮换池不弹」。不加「多条规则都弹」：新用户、卡别、回流几批人重叠，一起弹会超过一次 3 个。</div>
+<div class="kv"><b>迁移</b>若研发确认两条一次都弹：合成一条，活动迁成固定、礼包迁进轮换池（每次弹几个取储值类旧值），「每次最多弹几个」取两条之和，选推荐或备选迁过来都是「活动取前几个＋礼包 1 个」；仍有的差别：同时有几个礼包可弹时，现网总弹排第一的，迁后轮流弹。若确认不是一起弹：不合并，保持两条，按优先级只用一条。</div>
+<div class="kv"><b>都不改</b>维持「固定的占满时轮换池这次不弹」：活动够多时占满名额，礼包仍会被挤掉；要么拆回两条规则、另加「不同类型的规则都弹」的判定，要么接受每次只弹一类。</div></div>
+
+<div class="card pd"><div class="no">第 2 条 · 影响卡 A1</div>
+<p class="h">进大厅「每人每天最多弹几个」默认 8 个</p>
+<div class="kv"><b>现状</b>现网没有总数上限。按运营草稿，普卡银卡一人一天最多能弹 16 个，默认 8 会挡掉一半，其中有付费礼包。</div>
+<div class="kv rec"><b>推荐</b>默认 8 个；上线前把草稿里各批人一天最多能弹几个算给运营看，由运营改。</div>
+<div class="kv"><b>理由</b>8 出自旧草图，已定事项只定了要有上限、没定数；不设就回到一天 14 个以上。</div>
+<div class="kv"><b>不这么定</b>默认留空（不限）：上线后和现网一样多弹，上限要运营自己想起来设。</div></div>
+
+<div class="card pd"><div class="no">第 3 条 · 影响卡 A1</div>
+<p class="h">场景「弹出间隔」默认 30 分钟</p>
+<div class="kv"><b>现状</b>现网没有场景间隔（每项冷却都是 0 秒）。设了以后，玩家半小时内回大厅不再弹，比现在少弹。</div>
+<div class="kv rec"><b>推荐</b>默认 30 分钟。</div>
+<div class="kv"><b>理由</b>运营草稿总规则写「弹出间隔 1800 秒」，是运营给的唯一一个场景上的数。草稿另有「間隔 15 分鐘」，指单个礼包两次之间，不冲突；但场景间隔 30 分钟时，礼包上的 15 分钟实际不起作用。</div>
+<div class="kv"><b>不这么定</b>默认留空（不设）：和现网一样，「刚弹完又弹」靠运营自己设。</div></div>
+
+<div class="card pd"><div class="no">第 4 条 · 影响卡 C、B3、B5</div>
+<p class="h">弹出时机减到 4 项、改单选</p>
+<div class="kv"><b>现状</b>去掉「当天第 2 次登录起」「当天第 N 次登录」后，草稿 43 处时机里 32 处能一一对上；另 11 处（如〔旧〕首次登入＋進入大廳）最近的是「每次进大厅，含从游戏返回」，差别只在当天第一次进大厅没弹出时，从游戏返回会补弹。</div>
+<div class="kv rec"><b>推荐</b>改成 4 项单选。</div>
+<div class="kv"><b>理由</b>去掉的两项在草稿、截图、工单里都没出现；单选让运营不用想组合，保存确认也少两种「轮流时会被错过」的提示。</div>
+<div class="kv"><b>不这么定</b>保留多选：那 11 处能一模一样配出来，运营每次多想一层组合。</div></div>
+
+<div class="card pd"><div class="no">第 5 条 · 影响卡 B1</div>
+<p class="h">发送对象不再默认排除 VIP 名单</p>
+<div class="kv"><b>现状</b>10/28 评审稿照营销推送（推播、短信）写了默认排除 VIP 名单。</div>
+<div class="kv rec"><b>推荐</b>不默认排除，可手动选。</div>
+<div class="kv"><b>理由</b>弹窗在游戏里，是活动和礼包的入口，名单里的人进大厅也该看到；默认排除会让高卡别规则对名单里的人不弹，运营还不知道。VIP 名单和卡别重叠多少没查到。黑名单、停权等「弹窗固定不弹」的人照评审稿系统固定排除，不受这一件影响。</div>
+<div class="kv"><b>不这么定</b>名单里的人默认看不到任何弹窗，要弹得逐条规则去掉排除。</div></div>
+</div>
+<ul class="more">
+<li><b>另外 5 件影响小，在对应卡的「待拍板」一栏，都附了推荐：</b></li>
+<li>第 6 条　次数只按天，不做「每人总共几次」；新手引导要的「一生一次」等新手弹窗接入后台时再加（<a href="#card-C">C</a>）</li>
+<li>第 7 条　「点击后是否跳转」默认「是」；弹出时机活动默认「每次进大厅，含从游戏返回」、礼包默认「只在从游戏返回时」（<a href="#card-C">C</a>）</li>
+<li>第 8 条　去掉旧后台对象上的〔旧〕标签状态开关（<a href="#card-B1">B1</a>）</li>
+<li>第 9 条　改场景设置时不再推算「会影响多少人」，只提示只影响之后的弹出（<a href="#card-A1">A1</a>）</li>
+<li>第 10 条　规则名称只留一个，不再分三种语言（<a href="#card-B1">B1</a>）</li>
+<li><b>研发确认后再问（现在不用定）：</b>〔旧〕活动本身现在照你 10/30 定的统一成先弹宣传图；研发确认它是不是「直接弹出能操作的窗口」后，若是，再问要不要给礼包留直接打开（<a href="#card-C">C</a>、<a href="#card-A4">A4</a>）</li>
+</ul>
+<ul class="more">
+<li><b>已替你定，可推翻</b>（每卡末尾有全部）：</li>
+<li>「每次最多弹几个」按场景给默认：进大厅 3 个，其他场景 1 个。依据：草稿 7 批人每批都是 2 个活动＋1 个礼包，合起来 3；其他场景草稿没有数，现网破产储值弹窗每次弹 1 个（截图 ID7）。</li>
+<li>「每人每天几次」活动默认 1 次、礼包默认 2 次。依据：草稿里活动 17 处有 11 处是 1 次，礼包 26 处有 18 处是 2 次。给默认的标准：某个值占约三分之二以上才给，接近五五开的要运营填。</li>
+<li>两条规则另设了不同的每天次数时，各条规则弹过的次数合计，和这条规则自己的上限比。</li>
+<li>不加新页：活动或礼包的弹窗设置不进规则时，从规则列表按活动或礼包筛选后打开它的设置改和暂停。</li>
+<li>跳转页面默认活动或礼包自己的页面，规则里另设成跳转时总有页面可去。</li>
+<li>一天从 0 点算起，暂按台湾时间，待研发确认；上限、间隔不设时留空，不填 0。</li>
+</ul>
+
+<h2 id="map"><span class="no">01</span>运营在弹窗上要做的 34 件事：最卡的是新活动要发版才能加、图和跳转后台改不了</h2>
+<p class="lead">横向是主线（按运营做事的先后），纵向是任务；每格写任务和来源，红色「推断」是没找到运营原话的。灰色格移出本任务（归功能框架的查询、数据模块）。编号 T1–T34 在功能清单和分析卡里回指。</p>
+<div class="tw"><table class="map"><tr><th>① 准备活动或礼包的弹窗</th><th>② 建规则：场景和发送对象</th><th>③ 定弹哪些和先后</th><th>④ 定次数和间隔</th><th>⑤ 上线前看效果</th><th>⑥ 上线、暂停、查改动</th><th>⑦ 查某个玩家会弹什么</th><th>⑧ 看数据</th><th>⑨ 调整</th></tr><tr><td class=""><span class="tn">T1</span> 新活动或礼包不发版就能选进弹窗<div class="src">来源：工单 19589、21939、22592、Jira 摘录</div></td><td class=""><span class="tn">T7</span> 选在哪个场景弹：进大厅、破产时<div class="src">来源：工单 22317、现网截图</div></td><td class=""><span class="tn">T13</span> 往规则里加几个活动或礼包，排先后<div class="src">来源：工单 2849、运营草稿、现网截图、竞品</div></td><td class=""><span class="tn">T18</span> 定每个活动每人每天弹几次<div class="src">来源：工单 23167、运营草稿、现网截图</div></td><td class=""><span class="tn">T25</span> 让测试账号先看到弹窗<div class="src"><span class="tg red">推断</span></div></td><td class=""><span class="tn">T28</span> 上架、暂停、恢复一条规则<div class="src">来源：现网截图</div></td><td class="out"><span class="tn">T31</span> 输入会员编号，看他会弹哪些、为什么没弹<div class="src">来源：工单 19096、21302、现网截图　<span class="tg gray">移出本任务</span></div></td><td class="out"><span class="tn">T32</span> 看弹了多少人次、多少人点了<div class="src">来源：已定事项　<span class="tg gray">移出本任务</span></div></td><td class=""><span class="tn">T34</span> 按效果换先后、改次数、换图、拿掉<div class="src">来源：运营草稿</div></td></tr><tr><td class=""><span class="tn">T2</span> 换弹出的宣传图，不找研发<div class="src">来源：工单 24469、运营草稿</div></td><td class=""><span class="tn">T8</span> 买了指定礼包后、押注到指定金额时弹<div class="src"><span class="tg red">推断</span></div></td><td class=""><span class="tn">T14</span> 定每次最多弹几个<div class="src">来源：运营草稿、现网截图</div></td><td class=""><span class="tn">T19</span> 定同一活动两次至少隔多久<div class="src">来源：工单 22932、运营草稿</div></td><td class=""><span class="tn">T26</span> 上线前看某个玩家下次会弹什么<div class="src">来源：工单 19069、Jira 摘录</div></td><td class=""><span class="tn">T29</span> 查谁什么时候改过什么<div class="src">来源：现网截图、已定事项</div></td><td class="empty"></td><td class="out"><span class="tn">T33</span> 比实验组和对照组<div class="src">来源：已定事项　<span class="tg gray">移出本任务</span></div></td><td class="empty"></td></tr><tr><td class=""><span class="tn">T3</span> 定玩家点了弹窗去不去某页、去哪页<div class="src">来源：工单 24469、现网截图、Dk 原话</div></td><td class=""><span class="tn">T9</span> 只对某类玩家弹<div class="src">来源：工单 23076、运营草稿、现网截图</div></td><td class=""><span class="tn">T15</span> 让几个活动换着弹，不总是同一批<div class="src">来源：运营草稿、Dk 原话、竞品</div></td><td class=""><span class="tn">T20</span> 定活动在哪一刻弹<div class="src">来源：工单 22932、运营草稿、现网截图</div></td><td class=""><span class="tn">T27</span> 改在线规则前看清改了什么、影响谁<div class="src"><span class="tg red">推断</span></div></td><td class=""><span class="tn">T30</span> 把旧后台的规则搬过来，停掉旧入口<div class="src">来源：现网截图、评审稿</div></td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr><tr><td class=""><span class="tn">T4</span> 一个活动在几条规则里只配一次<div class="src">来源：工单 22042、运营草稿</div></td><td class=""><span class="tn">T10</span> 不该看到的人不弹<div class="src">来源：工单 24521、23228</div></td><td class=""><span class="tn">T16</span> 一人符合几条规则时定弹哪条<div class="src">来源：工单 23002、18850、运营草稿</div></td><td class=""><span class="tn">T21</span> 给某条规则里的某个活动单独改次数或时机<div class="src">来源：运营草稿、已定事项</div></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr><tr><td class=""><span class="tn">T5</span> 临时让某个活动在所有规则里都不弹<div class="src">来源：工单 24833、Dk 原话</div></td><td class=""><span class="tn">T11</span> 拿一部分人做实验、留对照组<div class="src">来源：已定事项</div></td><td class=""><span class="tn">T17</span> 几条规则轮流弹<div class="src"><span class="tg red">推断</span></div></td><td class=""><span class="tn">T22</span> 一人一天不被同一活动弹太多次<div class="src">来源：工单 22729、已定事项</div></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr><tr><td class=""><span class="tn">T6</span> 改活动设置前看它在哪几条规则里用着<div class="src">来源：已定事项</div></td><td class=""><span class="tn">T12</span> 让规则只在一段时间里生效<div class="src"><span class="tg red">推断</span></div></td><td class="empty"></td><td class=""><span class="tn">T23</span> 刚弹完别马上又弹，破产礼包这类除外<div class="src">来源：工单 22317、运营草稿</div></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr><tr><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class=""><span class="tn">T24</span> 每人每天总共最多弹几个<div class="src">来源：已定事项、竞品</div></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr></table></div>
+<details class="sub"><summary>每个任务的来源原文（工单原话照抄）</summary><div class="tw"><table class="md"><tr><th>编号</th><th>主线</th><th>任务（运营的话）</th><th>来源</th></tr><tr><td>T1</td><td>①</td><td>新上的活动或礼包，不等发版就能选进弹窗</td><td>来源：RICH-19589（长篇故事）「登入強彈天天敲蛋禮，自動可領取加碼蛋獎勵」「需添加至活動彈窗  進行配置」；RICH-21939（缺陷）「後台&gt;大廳自動彈窗&gt;編輯活動ID20&gt;新增欄位確認下拉」下「沒有紅包狂歡」；RICH-22592（缺陷）「限時活動、大廳自動彈窗、好康入口，都沒有＂至尊回歸＂可供選擇」；Jira 摘录 <code>弹窗/分析/参照来源_Jira历史工单.md</code> 第 57 行：活动下拉写死在代码里，新活动要发版才能选</td></tr><tr><td>T2</td><td>①</td><td>换弹出的宣传图，不用找研发改客户端</td><td>来源：RICH-24469（长篇故事）「彈窗顯示的資源，彈窗跳轉的url都需要可以通過後臺配置處理（目前這塊是客端寫死了）」；草稿工作表2第48、51行，天天敲蛋禮V2、BOSS戰 的弹窗形式填〔旧〕「活動廣告頁」</td></tr><tr><td>T3</td><td>①</td><td>定玩家点了弹窗之后去不去某个页面、去哪一页</td><td>来源：RICH-24469 同上「彈窗跳轉的url」；截图：〔旧〕弹窗形式两种「活动本身／活动广告页」（截图转录第 50 行）；Dk 10/30 定「点击后是否跳转：是／否，选是填跳转页面」（对齐卡「已定、要遵守的」）</td></tr><tr><td>T4</td><td>①</td><td>一个活动或礼包在几条规则里都要弹时，只配一次，改一处各规则跟着变</td><td>来源：草稿工作表2：14 个活动和礼包在 14 条规则里出现 43 次，同一个最多出现在 5 条（<code>弹窗/分析/思考笔记_弹窗设置跟着活动走_1029.md</code> 第 26 行）；草稿工作表2第48–51行三档卡别的规则逐格相同；旁证 RICH-22042（快显，长篇故事）「不另外建立獨立「快顯庫」，改為直接配置於各活動中」</td></tr><tr><td>T5</td><td>①</td><td>临时让某个活动或礼包在所有规则里都不弹，活动照常开</td><td>来源：RICH-24833（长篇故事）「目前是強制彈出，主要是目前有想要宣導的訊息，可能一段時間所有vip都知道規則後就可以關閉」「開關可做在尊爵包上，或是用參數控制都可以」；Dk 10/29「保留开关」（对齐卡）</td></tr><tr><td>T6</td><td>①</td><td>改一个活动或礼包的弹窗设置前，先看它在哪几条规则里用着</td><td>来源：已定事项第 22 条，10/12 方案 17 项改动里的「引用清单」；和 T4 连着：共用一份设置后，改一处会影响多条规则</td></tr><tr><td>T7</td><td>②</td><td>选这条规则在哪个场景弹：进大厅、破产时</td><td>来源：截图：规则列表〔旧〕弹窗位置两种「大厅自动弹窗／游戏破产弹窗」，线上 3 条规则（截图转录第 25、29–33 行）；RICH-22317（长篇故事，破产时）「用戶金幣不滿足當前押注時，先彈出「納福禮包」，當用戶取消時「彈出發財金」」</td></tr><tr><td>T8</td><td>②</td><td>玩家买了指定礼包后、押注达到指定金额时弹</td><td>推断：工单、草稿、截图里都没找到运营提过；10/28 评审稿已把这两个列为场景（<code>弹窗/分析/功能清单_评审版_1028.md</code> 第 234–237 行），原出处没追到，卡 B1 要写明这个缺口</td></tr><tr><td>T9</td><td>②</td><td>只对某类玩家弹：按卡别、有没有首储、是不是回流分规则</td><td>来源：草稿工作表2第21、44、67行「派发对象」：未首儲／已首儲用戶，普卡銀卡／金卡白金卡／鑽石卡黑卡至尊卡，輕回流／回流；截图：对象「全部玩家／标签」（截图转录第 25 行）；RICH-23076（缺陷）「大廳自動彈窗vip卡別 至尊卡 都不會彈窗後臺設定的彈窗」（对象条件勾至尊卡后不弹）</td></tr><tr><td>T10</td><td>②</td><td>不该看到的人不弹：黑名单、没首储的新号</td><td>来源：RICH-24521（缺陷）操作「配置每日挑战限制黑名单不可见」后，現象「大廳限時活動彈窗，依然可见每日挑战」；RICH-23228（缺陷）「卡別直升在新帳號未首儲情況下會彈出彈窗」</td></tr><tr><td>T11</td><td>②</td><td>拿一部分人做实验、留一组对照，比较弹窗效果</td><td>来源：已定事项第 22 条「实验组与对照组」（10/12 方案 17 项改动之一）</td></tr><tr><td>T12</td><td>②</td><td>让规则只在一段时间里生效，到期自己停</td><td>推断：草稿和截图都没有起止一栏；依据：弹的多是限时活动（RICH-19589、22592 说的都是限时活动），10/28 评审稿加了「生效期间：长期或指定起止」（功能清单_评审版_1028 第 254 行）</td></tr><tr><td>T13</td><td>③</td><td>往规则里加几个活动或礼包，排好谁先弹</td><td>来源：截图：〔旧〕弹窗排序，活动类 14 项、储值类 7 项和 8 项（截图转录第 35–48 行）；草稿工作表2第47–51行「彈窗排序」；RICH-2849（缺陷）标题「平台專屬、平台限購彈窗顯示順序為，先判斷禮包價值高低，再判斷權重高低」；竞品结论稿第 21 行：重点内容排在汇总窗口前面并单独弹</td></tr><tr><td>T14</td><td>③</td><td>定一次进大厅最多弹几个</td><td>来源：截图：〔旧〕弹出数量，活动类 3、储值类 1（截图转录第 29–33 行）；草稿工作表2第46行「縂彈窗數量 2」、第57行「縂彈窗數量 1」；草稿工作表1第18行「单次弹窗最大数量 ≤ 3次」</td></tr><tr><td>T15</td><td>③</td><td>让几个活动换着弹，每次只弹其中一两个，不总是同一批</td><td>来源：Dk 10/30 定「是否进轮换池」「轮换池每次弹几个」（对齐卡）；旁证：草稿工作表2第44–51行排了 4 个、每次最多 2 个，排在后面的要等前面次数用完才弹得到；竞品结论稿第 24 行：我方活动类一天最多 14 个</td></tr><tr><td>T16</td><td>③</td><td>一个人同时符合几条规则时，定弹哪条</td><td>来源：RICH-23002（对象条件「未綁手機」「未首儲」「未月儲」都符合时）应弹「第一優先順序→首儲優惠」；RICH-18850（缺陷）应有现象「同一类型不允许相同权重」；草稿工作表2第22、45、68行「彈窗权重」（10 和 20、1、30 和 40）</td></tr><tr><td>T17</td><td>③</td><td>几条规则对同一批人轮流弹，每次换下一条</td><td>推断：工单、草稿里都没有运营提过；依据：草稿工作表2第45行三档卡别的规则权重都是 1，权重相同时要有办法定谁弹；10/28 评审稿加了「轮流」（功能清单_评审版_1028 第 317 行）</td></tr><tr><td>T18</td><td>④</td><td>定每个活动或礼包每人每天弹几次</td><td>来源：草稿工作表2「弹窗次数（每日）」一栏只有 1 和 2（第48–51行、第59–63行）；截图：每项「弹窗次数 1 次」（截图转录第 38 行）；RICH-23167（缺陷）「彈窗次數 (每日)」填 0 保存后再看显示空白</td></tr><tr><td>T19</td><td>④</td><td>定同一个活动两次之间至少隔多久</td><td>来源：草稿工作表2第49–50行冷却 1800 秒；草稿工作表2第4–5行「每日2次，間隔15分鐘」；RICH-22932（缺陷）标题「後台彈窗時機選擇＂首次登入＂、＂活動開啓＂時，冷卻時間沒有固定」</td></tr><tr><td>T20</td><td>④</td><td>定活动在哪一刻弹：当天第一次登录、每次进大厅、从游戏回到大厅、活动刚开始</td><td>来源：截图：〔旧〕弹窗时机 4 种「活动开启／首次登入／进入大厅／返回大厅」（截图转录第 50 行）；草稿工作表1第3、7、8行「首次返回大廳 - 彈出首充禮包」「當日首次登錄 - 彈出 卡別直升活動 / 卡別限定每日禮包 / 敲蛋禮活動」；RICH-22932、22934（首次登入、活動開啓、返回大廳）</td></tr><tr><td>T21</td><td>④</td><td>给某条规则里的某个活动单独改次数或时机，别的规则不受影响</td><td>来源：草稿工作表2第82–86行，回流规则里驚喜三選一、獨享禮包、平臺限量/專屬禮包每天 1 次、冷却 0；同样的礼包在第59–63行普卡銀卡规则里每天 2 次、1800 秒；已定事项第 26 条</td></tr><tr><td>T22</td><td>④</td><td>同一个人一天里不被同一个活动弹太多次，不管他符合几条规则、换了几个平台</td><td>来源：RICH-22729（缺陷）「在A平台觸發平台至尊彈窗後至B平台LOGIN後仍有觸發至尊彈窗」，应有现象「應只會跳一次」；已定事项第 25 条「每天几次按活动跨规则合计」</td></tr><tr><td>T23</td><td>④</td><td>刚弹完别马上又弹，破产礼包这类除外</td><td>来源：草稿工作表1第19行「弹出间隔 1800秒，破产礼包/发财金除外」；RICH-22317「同一用戶於 30 秒內不重複彈出納福禮包與發財金序列」</td></tr><tr><td>T24</td><td>④</td><td>每人每天总共最多弹几个</td><td>来源：已定事项第 22 条「每人每日弹窗上限」；竞品结论稿第 24 行：我方活动类每项每日 1 次，一天最多 14 个；截图转录第 75 行旧草图「每人每日上限 [8] 个」</td></tr><tr><td>T25</td><td>⑤</td><td>上线前让测试账号先看到这个弹窗，看图和跳转对不对</td><td>推断：工单里没有运营提过；依据：Jira 摘录第 58 行，「活动弹窗每日弹出设置」上线后才发现「部分活动不按配置弹」（RICH-23185、23195）；图和跳转改成后台配（RICH-24469）后，运营要能自己验；研发评审待确认第 26 条（测试群组里放测试账号）</td></tr><tr><td>T26</td><td>⑤</td><td>上线前看某个玩家下次会弹什么、为什么</td><td>来源：Jira 摘录第 96 行 RICH-19069（摘录，未读原单）：后台配好储值类排序后客户端储值类弹窗全部不弹，摘录结论「弹窗配置要能预览某玩家此刻会弹什么」；摘录第 150 行把 19069、19096、21302、23002 归为同一需求</td></tr><tr><td>T27</td><td>⑤</td><td>改在线上的规则前，看清改了什么、会影响谁</td><td>推断：没有运营原话；依据：Jira 摘录第 55 行 RICH-19069「改 A 坏 B」；10/28 评审稿加了保存确认（功能清单_评审版_1028 第 334 行）</td></tr><tr><td>T28</td><td>⑥</td><td>上架、暂停、恢复一条规则</td><td>来源：截图：筛选「状态」当前值「上架中」（截图转录第 25 行）；列表另有状态、操作时间、操作人，只有文字描述（截图转录第 26 行）</td></tr><tr><td>T29</td><td>⑥</td><td>查谁、什么时候改过什么</td><td>来源：截图：顶部页签「操作纪录」（截图转录第 24 行）；已定事项第 22 条「变更记录」</td></tr><tr><td>T30</td><td>⑥</td><td>把旧后台现有的规则搬到新后台，停掉旧入口</td><td>来源：截图：线上 3 条规则、活动类 14 项（截图转录第 29–48 行），换后台时这些不能断；10/28 评审稿列了旧入口停用与迁移（功能清单_评审版_1028 第 356–360 行）</td></tr><tr><td>T31</td><td>⑦</td><td>输入会员编号，看他会弹哪些、什么顺序、为什么没弹某个</td><td>来源：RICH-19096（缺陷）「EP要求需要顯示彈窗活動ID」；RICH-21302（缺陷）「应显示独享礼包名称」；截图：玩家弹窗顺序查询列的是规则里全部排序项，不是实际会弹的（截图转录第 52–57 行）。玩家查询归功能框架任务（对齐卡「这次不做」），本任务只用它的判定</td></tr><tr><td>T32</td><td>⑧</td><td>看每个弹窗弹了多少人次、多少人点了</td><td>来源：已定事项第 23 条，主管原句「增加數據情況（發送量，到達率等）」。数据归功能框架任务，本任务只改叫法</td></tr><tr><td>T33</td><td>⑧</td><td>比较实验组和对照组的弹窗效果</td><td>来源：已定事项第 22 条「实验组与对照组」。数据归功能框架任务</td></tr><tr><td>T34</td><td>⑨</td><td>按效果调整：换先后、改次数、换图、拿掉某个</td><td>来源：草稿两份计划不同，工作表1第45–53行回流规则排 9 项、回流聚寶为〔旧〕「活動廣告頁」，工作表2第71行回流规则只排回流聚寶、为〔旧〕「活動本身」；思考笔记 1029 第 29 行：天天敲蛋禮V2、BOSS戰 线上是〔旧〕活动本身，草稿改成〔旧〕活动广告页</td></tr></table></div></details>
+<h2 id="list"><span class="no">02</span>功能清单 95 项：去掉 14 项、简化 24 项，主要是去掉弹窗类型和频率周期、弹窗内容并到活动或礼包上</h2>
+<p class="lead">点上面的按钮按去向筛选。「对应卡」指第 03 节的分析卡。来源一列的简称见本页末尾。</p>
+<div class="flt" id="flt"><button class="on" data-g="">全部 95</button><button data-g="保留">保留 37</button><button data-g="简化">简化 24</button><button data-g="去掉">去掉 14</button><button data-g="新增">新增 15</button><button data-g="移出本任务">移出本任务 5</button></div><div class="tw"><table class="md fl" id="fl"><tr><th>行</th><th>旧后台或评审稿的设置</th><th>去向</th><th>理由</th><th>对应任务</th><th>对应卡</th><th>来源</th></tr><tr data-g="简化"><td>1</td><td>评审稿·弹窗菜单与页签：弹窗规则、弹窗内容、操作纪录三个页签，规则下按四个场景分页签</td><td><span class="tg blue">简化</span></td><td>去掉「弹窗内容」页签（已定不单独建页，已定表第 1 条），剩「弹窗规则」（按场景分页签）和「操作纪录」</td><td>T7、T29</td><td>A</td><td class="s">〔评〕第 227–229 行</td></tr><tr data-g="保留"><td>2</td><td>评审稿·〔旧〕位置设置：每个场景页签下一行只读显示，点「修改」改</td><td><span class="tg gray">保留</span></td><td>改叫「场景设置」，每个场景一份，放在该场景页签顶部</td><td>T16、T23、T24</td><td>A</td><td class="s">〔评〕第 301–303 行；旧后台清单第 20 项</td></tr><tr data-g="简化"><td>3</td><td>规则之间的先后：按权重排，同类不许同权重</td><td><span class="tg blue">简化</span></td><td>改成「优先级」，在同一场景的规则列表里拖动，拖出来不会有相同的，不再有同权重报错</td><td>T16</td><td>A</td><td class="s">〔J〕RICH-18850、23002、2849；草稿工作表2第 22、45、68 行「彈窗权重」；旧后台清单第 18 项；〔框〕第 168 行</td></tr><tr data-g="保留"><td>4</td><td>评审稿·多条规则都符合时：只用优先级最高的一条（默认）／轮流，每次换下一条</td><td><span class="tg gray">保留</span></td><td>一人符合几条规则时要有定法；规则之间叫「轮流」，和规则内的「轮换池」分开叫（叫法表）</td><td>T16、T17</td><td>A</td><td class="s">〔评〕第 311–329 行；〔框〕第 154–157 行；旧后台清单第 20 项</td></tr><tr data-g="保留"><td>5</td><td>每人每天最多弹几个（仅进大厅），默认 8 个</td><td><span class="tg gray">保留</span></td><td>管一天的总量；我方现在活动类一天最多能弹 14 个（竞品结论稿第 24 行）</td><td>T24</td><td>A</td><td class="s">〔评〕第 304 行；〔框〕第 158–159 行；已定事项第 22 条；旧后台清单第 20 项</td></tr><tr data-g="新增"><td>6</td><td>弹出间隔：每人同一场景，弹完到下次至少隔多久，默认 30 分钟</td><td><span class="tg green">新增</span></td><td>旧后台没有；管「刚弹完又弹」</td><td>T23</td><td>A</td><td class="s">〔框〕第 160–161 行；已定事项第 25 条；草稿工作表1第 19 行</td></tr><tr data-g="新增"><td>7</td><td>不受弹出间隔限制的活动或礼包（如破产礼包）</td><td><span class="tg green">新增</span></td><td>破产时礼包和发财金要连着弹（RICH-22317）</td><td>T23</td><td>A</td><td class="s">〔框〕第 162–163 行；已定事项第 25 条；草稿工作表1第 19 行「破产礼包/发财金除外」</td></tr><tr data-g="移出本任务"><td>8</td><td>评审稿·场景设置旁显示今天达上限人数，点人数进每人每天推送量游戏内页签</td><td><span class="tg mute">移出本任务</span></td><td>人数统计是数据，归功能框架任务的数据模块；场景设置里只留入口</td><td>T32</td><td>A（只放入口）</td><td class="s">〔评〕第 304–305 行</td></tr><tr data-g="简化"><td>9</td><td>评审稿·改「多条规则都符合时」：写下一次进入规则会变的人数，点人数按「原轮到规则 → 改后命中规则」列人数；改上限：写今天预计多拦或少拦多少人</td><td><span class="tg blue">简化</span></td><td>保存前只提示「只影响之后的弹出」并列出这个场景在用的规则；逐条人数要按每人回放轮流记录才算得出，没有运营原话要它</td><td>T27</td><td>A</td><td class="s">〔评〕第 307–309 行</td></tr><tr data-g="保留"><td>10</td><td>评审稿·场景设置改动只影响之后的弹出，已弹出的不变；保存后记一条操作纪录</td><td><span class="tg gray">保留</span></td><td>运营要知道改了何时生效，事后查得到谁改的</td><td>T27、T29</td><td>A</td><td class="s">〔评〕第 306、310 行</td></tr><tr data-g="保留"><td>11</td><td>〔旧〕规则列表筛选·弹窗名称（输入）</td><td><span class="tg gray">保留</span></td><td>并成「搜索：名称或编号」</td><td>T28</td><td>A</td><td class="s">〔截〕截图转录第 25 行；旧后台清单第 1 项；〔框〕第 167 行</td></tr><tr data-g="去掉"><td>12</td><td>〔旧〕规则列表筛选·弹窗类型</td><td><span class="tg red">去掉</span></td><td>类型去掉了（第 48 行），没有可筛的值</td><td>T13</td><td>A</td><td class="s">〔截〕截图转录第 25 行；旧后台清单第 1 项</td></tr><tr data-g="简化"><td>13</td><td>〔旧〕规则列表筛选·弹窗位置</td><td><span class="tg blue">简化</span></td><td>改成按场景分页签，进页就只看一个场景，不用每次选筛选</td><td>T7</td><td>A</td><td class="s">〔截〕截图转录第 25 行；旧后台清单第 1 项；〔框〕第 165 行</td></tr><tr data-g="简化"><td>14</td><td>〔旧〕规则列表筛选·对象</td><td><span class="tg blue">简化</span></td><td>并入搜索：搜索框按名称、编号或发送对象群组名找，一个框管三样，按人群找规则仍能做（卡 A2）</td><td>T9、T28</td><td>A</td><td class="s">〔截〕截图转录第 25 行；旧后台清单第 1 项</td></tr><tr data-g="简化"><td>15</td><td>〔旧〕规则列表筛选·状态</td><td><span class="tg blue">简化</span></td><td>改成「显示已结束的：是／否」，默认否；原状态下拉的真实用途只是藏不藏已结束的，草稿、已暂停的看每行状态列（卡 A2）</td><td>T28</td><td>A</td><td class="s">〔截〕截图转录第 25 行；旧后台清单第 1 项；〔框〕第 170–175 行</td></tr><tr data-g="新增"><td>16</td><td>规则列表·按活动或礼包筛选</td><td><span class="tg green">新增</span></td><td>改一个活动前要找到它在哪些规则里；也是单独打开该活动弹窗设置的入口（不加新页，已替你定，可推翻）</td><td>T5、T6</td><td>A、C</td><td class="s">〔框〕第 169 行</td></tr><tr data-g="保留"><td>17</td><td>〔旧〕列表列·弹窗活动 ID</td><td><span class="tg gray">保留</span></td><td>改叫「编号」，查问题时和研发、客服对得上</td><td>T28、T31</td><td>A</td><td class="s">〔截〕截图转录第 26 行；旧后台清单第 2 项；RICH-19096「EP要求需要顯示彈窗活動ID」</td></tr><tr data-g="去掉"><td>18</td><td>〔旧〕列表列·弹窗类型</td><td><span class="tg red">去掉</span></td><td>类型去掉了（第 48 行），这一列没有值</td><td>T13</td><td>A</td><td class="s">〔截〕截图转录第 26 行；旧后台清单第 2 项</td></tr><tr data-g="保留"><td>19</td><td>〔旧〕列表列·弹窗名称</td><td><span class="tg gray">保留</span></td><td>运营靠名称认规则</td><td>T28</td><td>A</td><td class="s">〔截〕截图转录第 26 行；旧后台清单第 2 项</td></tr><tr data-g="简化"><td>20</td><td>〔旧〕列表列·弹窗排序（列表里直接列出全部排序项）</td><td><span class="tg blue">简化</span></td><td>改成每条能展开，看有哪些弹窗、是否进轮换池、顺序（Dk 10/30）；收起时和第 21 行合成一列「弹窗」，写「共 N 个（轮换池 M 个），每次最多弹 K 个」，列表不被撑长（卡 A2）</td><td>T13、T15</td><td>A</td><td class="s">〔截〕截图转录第 26、35–37 行；旧后台清单第 2 项</td></tr><tr data-g="简化"><td>21</td><td>〔旧〕列表列·弹出数量</td><td><span class="tg blue">简化</span></td><td>和第 20 行合成一列「弹窗」，数值改叫「每次最多弹几个」，不单占一列（卡 A2）</td><td>T14</td><td>A</td><td class="s">〔截〕截图转录第 26 行；旧后台清单第 2 项；〔框〕第 166 行</td></tr><tr data-g="去掉"><td>22</td><td>〔旧〕列表列·弹窗位置</td><td><span class="tg red">去掉</span></td><td>已按场景分页签，列里不用再写</td><td>T7</td><td>A</td><td class="s">〔截〕截图转录第 26 行；旧后台清单第 2 项</td></tr><tr data-g="保留"><td>23</td><td>〔旧〕列表列·对象</td><td><span class="tg gray">保留</span></td><td>改叫发送对象，写群组名，下方写排除和扣除后人数</td><td>T9、T10</td><td>A</td><td class="s">〔截〕截图转录第 26 行；旧后台清单第 2 项；〔评〕第 239 行</td></tr><tr data-g="去掉"><td>24</td><td>〔旧〕列表列·标签状态</td><td><span class="tg red">去掉</span></td><td>标签状态整个去掉（第 41 行），这一列没有值</td><td>T9</td><td>A</td><td class="s">〔截〕截图转录第 26 行；旧后台清单第 2 项</td></tr><tr data-g="保留"><td>25</td><td>〔旧〕列表列·操作▾</td><td><span class="tg gray">保留</span></td><td>编辑、复制、暂停、恢复、看数据从这里进</td><td>T28</td><td>A</td><td class="s">〔截〕截图转录第 26 行；旧后台清单第 2 项</td></tr><tr data-g="去掉"><td>26</td><td>〔文〕规则的操作时间、操作人</td><td><span class="tg red">去掉</span></td><td>列表不放；谁、什么时候改的到操作纪录看（卡 A3），列表只留每天要看的列（卡 A2）</td><td>T29</td><td>A</td><td class="s">截图转录第 26 行（只有文字描述）；旧后台清单第 14 项</td></tr><tr data-g="保留"><td>27</td><td>〔旧〕规则状态（截图只见「上架中」）</td><td><span class="tg gray">保留</span></td><td>状态为草稿、未开始、上架中、已暂停、已结束；暂停能恢复，已结束不能；只有上架中的参与弹出</td><td>T28</td><td>A</td><td class="s">〔截〕截图转录第 25 行；旧后台清单第 14 项；〔评〕第 243–248 行</td></tr><tr data-g="保留"><td>28</td><td>评审稿·按状态给操作：上架的可编辑、看数据，草稿只能编辑，已结束可查看、看数据</td><td><span class="tg gray">保留</span></td><td>免得改到已结束的规则</td><td>T28</td><td>A</td><td class="s">〔评〕第 240–242 行</td></tr><tr data-g="保留"><td>29</td><td>评审稿·新建的规则排在本场景最后</td><td><span class="tg gray">保留</span></td><td>新规则不抢在线规则的人，要提前由运营自己往前拖</td><td>T16</td><td>A</td><td class="s">〔评〕第 255 行</td></tr><tr data-g="保留"><td>30</td><td>复制规则</td><td><span class="tg gray">保留</span></td><td>场景上架后不能改，换场景或给相近人群建规则时不用重填</td><td>T7、T9</td><td>A</td><td class="s">〔框〕第 176 行；〔评〕第 233 行</td></tr><tr data-g="保留"><td>31</td><td>〔旧〕操作纪录页签</td><td><span class="tg gray">保留</span></td><td>范围扩到场景设置、规则、活动或礼包的弹窗设置三处的改动</td><td>T29</td><td>A（末尾一节）</td><td class="s">〔截〕截图转录第 24 行；旧后台清单第 15 项；已定事项第 22 条「变更记录」</td></tr><tr data-g="保留"><td>32</td><td>评审稿·旧入口停用与迁移：「大厅弹窗顺序设定」「弹窗排序配置」停用，由弹窗规则承接，迁入名称、对象、内容、形式、冷却、弹出数量；上线时各场景迁为「只用优先级最高的一条」，破产若现为多条同弹改为只弹一条</td><td><span class="tg gray">保留</span></td><td>线上 3 条规则不能断；迁入时〔旧〕弹窗形式按研发待确认第 24 条的结果对到「点击后是否跳转」，活动类、储值类两条：研发确认一起弹的合成一条（活动类的项为固定、储值类的项进轮换池，轮换池每次弹几个取储值类旧值，每次最多弹几个取两条之和），不是一起弹的保持两条（卡 A4 规则第 6 条）</td><td>T30</td><td>A（单列一节）</td><td class="s">〔评〕第 315–316、356–360 行；旧后台清单第 20 项</td></tr><tr data-g="保留"><td>33</td><td>〔旧〕弹窗名称（新增时填）</td><td><span class="tg gray">保留</span></td><td>运营在列表里靠名称认规则</td><td>T28</td><td>B1</td><td class="s">〔截〕列表有名称（截图转录第 26 行）；旧后台清单第 4 项；表单字段为推断（截图转录第 62 行）</td></tr><tr data-g="简化"><td>34</td><td>评审稿·名称分繁中、越南文、英文三份，繁中必填</td><td><span class="tg blue">简化</span></td><td>规则名只有后台运营看，玩家看不到，只留一个名称</td><td>T28</td><td>B1</td><td class="s">〔评〕第 251 行；〔框〕第 185 行</td></tr><tr data-g="简化"><td>35</td><td>〔旧〕弹窗位置（新增时选）</td><td><span class="tg blue">简化</span></td><td>改叫「场景」（Dk 10/29），先选场景再填别的；上架后不能改，要换就复制</td><td>T7</td><td>B1</td><td class="s">〔截〕截图转录第 25、29–33 行；旧后台清单第 5 项；表单字段为推断（截图转录第 62 行）</td></tr><tr data-g="保留"><td>36</td><td>评审稿·场景「进大厅」「破产时」</td><td><span class="tg gray">保留</span></td><td>对应旧后台的两种，名称换成运营的说法</td><td>T7</td><td>B1</td><td class="s">〔框〕第 150–151 行；〔评〕第 230–233 行</td></tr><tr data-g="保留"><td>37</td><td>评审稿·场景「买了指定礼包后」，选礼包</td><td><span class="tg gray">保留</span></td><td>评审稿已列，运营原话没找到（T8 推断），卡 B1 三问里写这个缺口</td><td>T8</td><td>B1</td><td class="s">〔评〕第 234–237 行；〔框〕第 152、181–182 行</td></tr><tr data-g="保留"><td>38</td><td>评审稿·场景「押注达到指定金额」，填金额</td><td><span class="tg gray">保留</span></td><td>评审稿已列，运营原话没找到（T8 推断），卡 B1 三问里写这个缺口</td><td>T8</td><td>B1</td><td class="s">〔评〕第 234–237 行；〔框〕第 153、183–184 行</td></tr><tr data-g="保留"><td>39</td><td>评审稿·这两个场景事件一发生就弹，不设弹出时机</td><td><span class="tg gray">保留</span></td><td>事件本身就是时机，再选时机多余</td><td>T8、T20</td><td>B1、C</td><td class="s">〔评〕第 237 行</td></tr><tr data-g="保留"><td>40</td><td>〔旧〕对象：全部玩家／标签（标签名称＋群组 ID）</td><td><span class="tg gray">保留</span></td><td>改叫「发送对象」：全部玩家、群组；草稿 14 条规则全按人群分</td><td>T9</td><td>B1</td><td class="s">〔截〕截图转录第 25 行；〔文〕截图转录第 66 行；旧后台清单第 6 项；RICH-23076</td></tr><tr data-g="去掉"><td>41</td><td>〔旧〕标签状态（对象上的启用开关）</td><td><span class="tg red">去掉</span></td><td>规则自己有上架、暂停，群组的启停在会员标签模块管，规则上再放一个开关是重复；它的确切作用只有文字描述</td><td>T9、T28</td><td>B1</td><td class="s">〔文〕截图转录第 66 行；旧后台清单第 6 项；表单字段为推断（截图转录第 62 行）</td></tr><tr data-g="保留"><td>42</td><td>评审稿·发送对象可选上传名单</td><td><span class="tg gray">保留</span></td><td>与推播、短信写法一致，能临时对一批会员编号弹；弹窗上没找到运营原话，卡 B1 三问里写</td><td>T9</td><td>B1</td><td class="s">〔评〕第 258 行；〔框〕第 189 行</td></tr><tr data-g="保留"><td>43</td><td>评审稿·排除群组</td><td><span class="tg gray">保留</span></td><td>没首储的新号这类人要能排掉；黑名单等由系统固定不弹（第 95 行）</td><td>T10</td><td>B1</td><td class="s">〔评〕第 258 行；〔框〕第 190 行；RICH-24521、23228</td></tr><tr data-g="简化"><td>44</td><td>评审稿·默认排除 VIP 名单（同营销推送）</td><td><span class="tg blue">简化</span></td><td>改为不默认排除、可手动选：这是照营销推送搬来的，弹窗在游戏里，是活动和礼包的入口；草稿给高卡别单独配了规则（工作表2第 44 行）</td><td>T10</td><td>B1</td><td class="s">〔评〕第 259 行；〔框〕第 191 行</td></tr><tr data-g="简化"><td>45</td><td>评审稿·同一人可符合多条规则，各条人数不相加；覆盖其余玩家的规则要排除本场景其他规则的群组，上架新规则时提醒加进「其余」规则的排除</td><td><span class="tg blue">简化</span></td><td>只用优先级最高的一条时，「其余」规则排最后自然只接剩下的人，不用手动排除；只在轮流时提示</td><td>T16、T17</td><td>B1、B5</td><td class="s">〔评〕第 260–263 行</td></tr><tr data-g="简化"><td>46</td><td>评审稿·实验组、对照组（发送对象里的群组可选）</td><td><span class="tg blue">简化</span></td><td>只留「发送对象选实验组、对照组两个群组，各建一条规则」；评审稿里「两条规则的弹窗内容只在本场景使用、次数不和其他场景合计」，每个活动或礼包一份设置后，次数本来就按同一场景算，不用另设</td><td>T11</td><td>B1</td><td class="s">〔评〕第 346–355 行；〔框〕第 188 行；已定事项第 22 条</td></tr><tr data-g="保留"><td>47</td><td>评审稿·生效期间：长期／指定起止</td><td><span class="tg gray">保留</span></td><td>限时活动的规则到期自己停；来源是推断（T12）</td><td>T12</td><td>B1</td><td class="s">〔评〕第 254 行；〔框〕第 193–195 行；旧后台清单第 20 项</td></tr><tr data-g="去掉"><td>48</td><td>〔旧〕弹窗类型：储值类弹窗／活动类弹窗</td><td><span class="tg red">去掉</span></td><td>类型只用来把礼包和活动分两条规则各排各的；新规则里活动和礼包可排在一起，「必弹的」设固定、「换着弹的」进轮换池就能表达</td><td>T13、T14</td><td>B2</td><td class="s">〔截〕截图转录第 25、29–33 行；旧后台清单第 3 项；表单字段为推断（截图转录第 62 行）</td></tr><tr data-g="保留"><td>49</td><td>〔旧〕弹出数量：每次弹几个，活动类 3、储值类 1</td><td><span class="tg gray">保留</span></td><td>改叫「每次最多弹几个」，新建时默认进大厅 3、其他场景 1（卡 B2：草稿 7 批人每批活动 2＋礼包 1，合起来 3）；运营要控制一次进大厅挡几屏</td><td>T14</td><td>B2</td><td class="s">〔截〕截图转录第 29–33 行；旧后台清单第 7 项；草稿工作表2第 46、57 行；〔框〕第 192 行；表单字段为推断（截图转录第 62 行）</td></tr><tr data-g="保留"><td>50</td><td>〔旧〕弹窗排序：加入活动或礼包、拖动排先后</td><td><span class="tg gray">保留</span></td><td>改叫「弹哪些活动或礼包、排先后」；首选内容要先弹（竞品结论稿第 21 行）</td><td>T13</td><td>B2</td><td class="s">〔截〕截图转录第 35–48 行；旧后台清单第 8 项；草稿工作表2第 47 行；〔框〕第 196 行</td></tr><tr data-g="去掉"><td>51</td><td>〔旧〕排序规则「同顺序的，新建的在前」</td><td><span class="tg red">去掉</span></td><td>拖动排出来不会有同顺序</td><td>T13</td><td>B2</td><td class="s">旧后台清单第 8 项（A87）</td></tr><tr data-g="保留"><td>52</td><td>〔旧〕排序项·项目：活动或礼包下拉，写死在代码，新活动要发版才能选</td><td><span class="tg gray">保留</span></td><td>下拉留着，选项改成活动后台、礼包后台里在期的自动带出，新活动上线不发版就能选</td><td>T1</td><td>B2、C</td><td class="s">〔截〕截图转录第 38 行；旧后台清单第 9 项；RICH-19589、21939、22592</td></tr><tr data-g="新增"><td>53</td><td>活动或礼包第一次加入规则时当场配它的弹窗设置，别的规则自动带出</td><td><span class="tg green">新增</span></td><td>一个活动在 5 条规则里只配一次（草稿）</td><td>T4</td><td>B2、C</td><td class="s">对齐卡已定（已定表第 1 条）；〔框〕第 196–197 行</td></tr><tr data-g="简化"><td>54</td><td>评审稿·规则里的弹窗排序只读显示标记、形式、时机、频率、冷却</td><td><span class="tg blue">简化</span></td><td>显示活动或礼包的设置，可点开另设（已定事项第 26 条），不再只读</td><td>T21</td><td>B2、B3</td><td class="s">〔评〕第 264–266 行</td></tr><tr data-g="新增"><td>55</td><td>是否进轮换池：是／否，默认否</td><td><span class="tg green">新增</span></td><td>让一部分活动换着弹，不总是同一批</td><td>T15</td><td>B2</td><td class="s">Dk 10/30（对齐卡）</td></tr><tr data-g="新增"><td>56</td><td>轮换池内顺序，运营排</td><td><span class="tg green">新增</span></td><td>定轮到谁先；不另设输入，在规则里轮换池那一段拖动排（卡 B2）</td><td>T15</td><td>B2</td><td class="s">Dk 10/30（对齐卡）</td></tr><tr data-g="新增"><td>57</td><td>轮换池每次弹几个，默认 1 个</td><td><span class="tg green">新增</span></td><td>定每次从池里拿几个</td><td>T15</td><td>B2</td><td class="s">Dk 10/30（对齐卡）</td></tr><tr data-g="新增"><td>58</td><td>先弹固定的、再弹轮换池的，合计不超过「每次最多弹几个」；固定的占满时轮换池这次不弹、保存时提示</td><td><span class="tg green">新增</span></td><td>两个数要说清谁让谁；待拍板第 1 条推荐改成轮换池先留名额</td><td>T14、T15</td><td>B2、B5</td><td class="s">已替你定，可推翻（先弹固定的再弹轮换池的是 Dk 10/30 定的，其余是我方补的）</td></tr><tr data-g="保留"><td>59</td><td>评审稿·本规则另设：可另设〔旧〕显示方式、弹出时机、次数；不可另设宣传图、跳转页面；每项默认沿用</td><td><span class="tg gray">保留</span></td><td>可另设项里〔旧〕显示方式换成「点击后是否跳转」；另设后活动设置再改不覆盖</td><td>T21</td><td>B3</td><td class="s">〔框〕第 222–225 行；已定事项第 26 条</td></tr><tr data-g="去掉"><td>60</td><td>评审稿·同一内容要给不同人群不同频率时，复制成另一个</td><td><span class="tg red">去掉</span></td><td>改用规则里「本规则另设」（已定事项第 26 条）</td><td>T21</td><td>B3</td><td class="s">〔评〕第 277 行</td></tr><tr data-g="保留"><td>61</td><td>评审稿·发送测试：选测试群组或填会员编号，单次最多 50 人；下次进入时强制弹一次，不受先后、次数与上限限制，不计次数与数据，记操作纪录</td><td><span class="tg gray">保留</span></td><td>从〔旧〕弹窗内容页挪到规则里（不再单独建内容页）；写法和推播、短信一致（测试对象、每次最多），测哪些活动或礼包默认全选（卡 B4）；上线前看图和跳转对不对</td><td>T25</td><td>B4</td><td class="s">〔评〕第 340–345 行；〔框〕第 226–228 行；旧后台清单第 20 项</td></tr><tr data-g="简化"><td>62</td><td>评审稿·按玩家预览：输入会员编号，看下一次进入各场景会弹什么及原因</td><td><span class="tg blue">简化</span></td><td>在规则里只看这条规则的场景、按正在编辑的这一版算，不用选场景；看全部场景去玩家查询（第 89 行），判定同一套（卡 B4）</td><td>T26</td><td>B4</td><td class="s">〔评〕第 330–333 行；旧后台清单第 20 项</td></tr><tr data-g="保留"><td>63</td><td>评审稿·规则保存确认：按「改了什么｜改前｜改后」列；改了对象或排除另加差值；只改排序的列前后</td><td><span class="tg gray">保留</span></td><td>改线上规则前看清改动（RICH-19069「改 A 坏 B」，Jira 摘录第 55 行）</td><td>T27</td><td>B5</td><td class="s">〔评〕第 334–337 行</td></tr><tr data-g="简化"><td>64</td><td>评审稿·保存确认里：轮流场景有特定时机的内容时，提示同时符合其他规则的人数；内容改成这几种时机且被轮流规则用到时逐条提示</td><td><span class="tg blue">简化</span></td><td>若去掉「当天第 2 次登录起」「当天第 N 次登录」（待拍板第 4 条），只剩「当天首次登录」「活动开始后第一次进大厅」会被轮流错过，提示只管这两种</td><td>T17、T27</td><td>B5</td><td class="s">〔评〕第 338–339 行</td></tr><tr data-g="保留"><td>65</td><td>评审稿·只用优先级最高的一条时，上架时提示新规则排第几、谁会弹不到</td><td><span class="tg gray">保留</span></td><td>排在后面的规则可能一个人也弹不到，要提醒</td><td>T16、T27</td><td>B5</td><td class="s">〔评〕第 256 行</td></tr><tr data-g="新增"><td>66</td><td>素材：后台不能配，客户端写死或靠「游戏设定」参数</td><td><span class="tg green">新增</span></td><td>宣传图：默认用活动或礼包自带的，可上传替换（Dk 10/30）</td><td>T2</td><td>C</td><td class="s">〔J〕RICH-24469；旧后台清单第 17 项</td></tr><tr data-g="简化"><td>67</td><td>〔旧〕排序项·弹窗形式：活动本身／活动广告页</td><td><span class="tg blue">简化</span></td><td>三问：为什么填——定玩家看到什么、点了去哪；不填会怎样——客户端不知道弹什么；能不能更简单——能，弹出的一律是宣传图，只问「点击后是否跳转：是／否」（Dk 10/30）</td><td>T2、T3</td><td>C</td><td class="s">〔截〕截图转录第 50 行；旧后台清单第 11 项；研发评审待确认第 24 条</td></tr><tr data-g="简化"><td>68</td><td>评审稿·〔旧〕显示方式：直接打开活动或礼包页面／先弹宣传图，点图再打开</td><td><span class="tg blue">简化</span></td><td>换成「点击后是否跳转：是／否」（Dk 10/30）</td><td>T2、T3</td><td>C</td><td class="s">〔框〕第 198–200 行</td></tr><tr data-g="简化"><td>69</td><td>评审稿·宣传图只在「先弹宣传图」时才要</td><td><span class="tg blue">简化</span></td><td>弹出的一律是宣传图，默认用自带的、可替换，不再看条件（Dk 10/30）</td><td>T2</td><td>C</td><td class="s">〔框〕第 201–203 行</td></tr><tr data-g="新增"><td>70</td><td>点击后是否跳转：是／否</td><td><span class="tg green">新增</span></td><td>运营只需决定点了去不去；默认「是」（卡 C，默认值见待拍板第 7 条）</td><td>T3</td><td>C</td><td class="s">Dk 10/30（对齐卡）</td></tr><tr data-g="新增"><td>71</td><td>跳转：后台不能配 → 跳转页面，选「是」才填，默认活动或礼包自己的页面，可改为其他页面</td><td><span class="tg green">新增</span></td><td>规则里另设成「是」时总有页面可跳；默认活动或礼包自己的页面是已替你定，可推翻</td><td>T3</td><td>C</td><td class="s">〔J〕RICH-24469；旧后台清单第 17 项；〔框〕第 204 行</td></tr><tr data-g="简化"><td>72</td><td>〔旧〕排序项·弹窗时机：多选，活动开启／首次登入／进入大厅／返回大厅</td><td><span class="tg blue">简化</span></td><td>改单选：草稿里的组合都含「进入大厅」（评审稿定义含从游戏返回）或只有「返回大厅」，单选表达得了；跟着活动或礼包存一份，规则里可另设</td><td>T20</td><td>C、B3</td><td class="s">〔截〕截图转录第 50 行；旧后台清单第 10 项；RICH-22932、22934；草稿工作表2「弹窗时机」列</td></tr><tr data-g="去掉"><td>73</td><td>评审稿·弹出时机里的「当天第 2 次登录起」「当天第 N 次登录」</td><td><span class="tg red">去掉</span></td><td>草稿、截图、工单都没用到；少两个选项运营更快选对</td><td>T20</td><td>C</td><td class="s">〔评〕第 283–284 行；〔框〕第 209–210 行</td></tr><tr data-g="保留"><td>74</td><td>评审稿·弹出时机其余选项：每次进大厅含从游戏返回（默认）、只在从游戏返回时、当天首次登录、活动开始后第一次进大厅</td><td><span class="tg gray">保留</span></td><td>都对得上草稿或截图（草稿工作表1第 3、7 行；截图转录第 50 行）</td><td>T20</td><td>C</td><td class="s">〔评〕第 280–282、285 行；〔框〕第 206–208、211–212 行</td></tr><tr data-g="保留"><td>75</td><td>〔旧〕排序项·弹窗次数：每日 N 次</td><td><span class="tg gray">保留</span></td><td>改叫「每人每天几次」，跟着活动存一份、规则里可另设（已定事项第 25、26 条）</td><td>T18、T21</td><td>C、B3</td><td class="s">〔截〕截图转录第 38 行；旧后台清单第 12 项；RICH-23167；草稿工作表2「弹窗次数（每日）」列</td></tr><tr data-g="去掉"><td>76</td><td>评审稿·弹出频率的周期：每天、每周、每 N 天、活动期间</td><td><span class="tg red">去掉</span></td><td>已定事项第 25 条写成「每天 N 次」；草稿工作表2的规则里全是每日</td><td>T18</td><td>C</td><td class="s">〔评〕第 288–293 行</td></tr><tr data-g="简化"><td>77</td><td>评审稿·已弹次数「同一内容在任何规则、〔旧〕位置弹过都算」</td><td><span class="tg blue">简化</span></td><td>改成同一场景里各规则合计（〔框〕第 217 行），破产时弹的礼包不占进大厅的次数；两条规则另设了不同次数时怎么合计由卡 C 写</td><td>T22</td><td>C</td><td class="s">〔评〕第 294–295 行</td></tr><tr data-g="简化"><td>78</td><td>〔旧〕排序项·冷却时间（秒）</td><td><span class="tg blue">简化</span></td><td>并进次数，改叫「每人两次至少隔多久」，默认不设（已定事项第 25 条及细化）</td><td>T19</td><td>C、B3</td><td class="s">〔截〕截图转录第 38 行；旧后台清单第 13 项；RICH-22932；草稿工作表2「冷却时间（秒）」列</td></tr><tr data-g="简化"><td>79</td><td>评审稿·冷却：填数字选分钟、小时或天，0 为不设，按玩家和内容跨规则、跨场景计</td><td><span class="tg blue">简化</span></td><td>单位留分钟、小时；不设就空着，不用填 0；计算范围改为同一场景各规则合计</td><td>T19</td><td>C</td><td class="s">〔评〕第 296–300 行</td></tr><tr data-g="新增"><td>80</td><td>临时开关某个弹窗：现在没有，要另开单</td><td><span class="tg green">新增</span></td><td>「在所有规则里暂停」：默认关，打开前列出在用的规则，只停弹窗、活动照常（Dk 10/29；〔框〕第 218–221 行）</td><td>T5</td><td>C</td><td class="s">〔J〕RICH-24833；旧后台清单第 19 项</td></tr><tr data-g="简化"><td>81</td><td>评审稿·弹窗内容下架：确认框列出用到它的规则，下架后各规则跳过</td><td><span class="tg blue">简化</span></td><td>改成「在所有规则里暂停」开关，能停也能恢复</td><td>T5</td><td>C</td><td class="s">〔评〕第 274 行</td></tr><tr data-g="保留"><td>82</td><td>另有几条规则在用（引用清单）</td><td><span class="tg gray">保留</span></td><td>改共用的设置前看到会影响哪些规则</td><td>T6</td><td>C</td><td class="s">已定事项第 22 条；〔评〕第 276 行「改被多条规则引用的内容，保存前列受影响规则」</td></tr><tr data-g="保留"><td>83</td><td>评审稿·对应活动或礼包未开始、已结束时所有规则跳过</td><td><span class="tg gray">保留</span></td><td>活动下线后不用逐条规则去删</td><td>T1、T34</td><td>C</td><td class="s">〔评〕第 275 行</td></tr><tr data-g="新增"><td>84</td><td>活动或礼包弹窗设置的入口：不进规则时，在规则列表按活动或礼包筛选后点活动名，打开它的弹窗设置侧边框，在那里改和暂停</td><td><span class="tg green">新增</span></td><td>不加新页也有地方单独改和暂停</td><td>T5、T6</td><td>C、A</td><td class="s">已替你定，可推翻</td></tr><tr data-g="去掉"><td>85</td><td>评审稿·弹窗内容页签：列表列为标记、弹出时机、频率与冷却、引用规则数、状态，展开看用到它的规则</td><td><span class="tg red">去掉</span></td><td>已定不单独建页（已定表第 1 条）；找某个活动用规则列表按活动或礼包筛选（第 16 行）</td><td>T4、T6</td><td>C</td><td class="s">〔评〕第 268–270 行；旧后台清单第 20 项</td></tr><tr data-g="去掉"><td>86</td><td>评审稿·弹窗内容的标记：储值或活动</td><td><span class="tg red">去掉</span></td><td>类型去掉后标记没用处（第 48 行）</td><td>T13</td><td>C</td><td class="s">〔评〕第 271、273 行</td></tr><tr data-g="去掉"><td>87</td><td>评审稿·弹窗内容的对应礼包</td><td><span class="tg red">去掉</span></td><td>选的就是活动或礼包本身，不用再对应一次</td><td>T1</td><td>C</td><td class="s">〔评〕第 271 行</td></tr><tr data-g="保留"><td>88</td><td>评审稿·弹窗内容的弹出时机、频率、冷却由用到它的规则共用</td><td><span class="tg gray">保留</span></td><td>换成活动或礼包的弹窗设置，各规则共用、规则里可另设</td><td>T4</td><td>C</td><td class="s">〔评〕第 272 行</td></tr><tr data-g="移出本任务"><td>89</td><td>〔旧〕玩家弹窗顺序查询：按会员编号查，自动弹窗和破产弹窗两张表，列的是全部排序项</td><td><span class="tg mute">移出本任务</span></td><td>归功能框架任务的查询模块；要改成列实际会弹的、写没弹的原因，判定和第 62 行同一套</td><td>T31</td><td>—（B4 引用判定）</td><td class="s">〔截〕截图转录第 52–57 行；旧后台清单第 16 项；RICH-19096、21302；〔评〕第 359 行（并入玩家查询）</td></tr><tr data-g="移出本任务"><td>90</td><td>弹窗数据：规则列表「看数据」进的数据页（原型 13、14）</td><td><span class="tg mute">移出本任务</span></td><td>归功能框架任务的数据模块，本任务只改叫法（对齐卡「这次不做」）</td><td>T32</td><td>—</td><td class="s">〔评〕第 240、242 行；已定事项第 23 条</td></tr><tr data-g="移出本任务"><td>91</td><td>评审稿·实验在数据概览游戏内页签对比两组曝光与点击</td><td><span class="tg mute">移出本任务</span></td><td>对比数据归功能框架任务的数据模块</td><td>T33</td><td>—</td><td class="s">〔评〕第 351 行</td></tr><tr data-g="移出本任务"><td>92</td><td>快显随活动配置</td><td><span class="tg mute">移出本任务</span></td><td>快显不在本任务，只作「每个活动或礼包一份弹窗设置」的旁证</td><td>T4</td><td>—</td><td class="s">〔J〕RICH-22042</td></tr><tr data-g="新增"><td>93</td><td>预计人数（只读）：符合发送对象、扣除排除后两个数，随选随算</td><td><span class="tg green">新增</span></td><td>弹窗原来没有；配规则时当场看出群组选错、人数为 0</td><td>T9、T10</td><td>B1</td><td class="s">已定事项第 22 条「人数预览」；〔框〕新建推播「预计人数」</td></tr><tr data-g="新增"><td>94</td><td>多个群组时：满足任一个／同时满足全部，默认满足任一个</td><td><span class="tg green">新增</span></td><td>弹窗原来没有，和推播同一个选人组件；草稿多群组是任一个</td><td>T9</td><td>B1</td><td class="s">已定事项第 22 条「群组交集」；〔框〕新建推播「多个群组时」；草稿工作表2第 44 行「普卡, 銀卡」</td></tr><tr data-g="保留"><td>95</td><td>评审稿·固定不弹：黑名单、停权、自我限制、注销处理中的账号，机器人和测试账号（发送对象为上传名单时除外）；系统固定排除，运营不用设、不能移出</td><td><span class="tg gray">保留</span></td><td>黑名单的人仍弹出每日挑战（RICH-24521）就是这类，要系统固定排除；叫法用原型的「弹窗固定不弹」；卡 B1 预计人数已扣掉这些人</td><td>T10</td><td>B1</td><td class="s">〔评〕第 259 行「固定不发」；原型第 1 页「弹窗固定不弹」（<code>弹窗/评审版_定稿改_1027/推送系统后台集成需求/需求评审版源.html</code>）；〔J〕RICH-24521</td></tr></table></div>
+<details class="sub"><summary>功能分到哪张卡</summary><div class="tw"><table class="md"><tr><th>卡</th><th>功能（运营要做的动作或对象）</th><th>本表行</th><th>承接任务</th></tr><tr><td>A 弹窗场景设置与规则列表</td><td>场景设置（多条规则都符合时、每人每天最多弹几个、弹出间隔及不受限制的）；规则列表（按场景分页签、搜索、按活动或礼包筛选、拖动定优先级、每条展开、状态、复制）；操作纪录（末尾一节）；旧入口停用与迁移（单列一节）</td><td>1–32（另 16、84 与 C 共用）</td><td>T7、T13–T17、T23、T24、T27–T30</td></tr><tr><td>B1 场景和发送对象</td><td>新建（编辑）弹窗规则：场景、名称、发送对象（全部玩家、群组含实验组和对照组、上传名单）、排除群组、多个群组时、预计人数（已扣掉固定不弹的人）、生效期间；固定不弹（系统排除，运营不设）</td><td>33–47、93–95</td><td>T7–T12</td></tr><tr><td>B2 弹哪些活动或礼包及轮换池</td><td>每次最多弹几个；加入活动或礼包、排先后（第一次加入时当场配弹窗设置）；是否进轮换池、池内顺序、轮换池每次弹几个；先弹固定再弹轮换池</td><td>48–58</td><td>T1、T4、T13–T15</td></tr><tr><td>B3 本规则另设</td><td>在某条规则里给某个活动或礼包另设点击后是否跳转、弹出时机、每人每天几次、每人两次至少隔多久</td><td>59–60（另 54、72、75、78 与 C 共用）</td><td>T21</td></tr><tr><td>B4 发送测试和按玩家预览</td><td>上线前发给测试账号看；输入会员编号看下次会弹什么、为什么</td><td>61–62</td><td>T25、T26</td></tr><tr><td>B5 保存确认</td><td>改了什么、改前改后、影响谁；固定占满轮换池、排在后面弹不到的提醒</td><td>63–65（另 45、58）</td><td>T16、T17、T27</td></tr><tr><td>C 活动或礼包的弹窗设置</td><td>新活动或礼包自动进可选列表；宣传图；点击后是否跳转；跳转页面；弹出时机；每人每天几次；每人两次至少隔多久；在所有规则里暂停；另有几条规则在用；入口（按活动或礼包筛选后打开侧边框）；活动过期自动跳过</td><td>66–88（另 52、53）</td><td>T1–T6、T18–T20、T22、T34</td></tr><tr><td>移出本任务</td><td>玩家弹窗顺序查询、弹窗数据（含场景设置旁的达上限人数）、实验对比数据（归功能框架任务）；快显</td><td>89–92（另第 8 行，卡 A 只放入口）</td><td>T31–T33</td></tr></table></div>
+<p><b>几处要先定的写法落在哪张卡</b></p>
+<div class="tw"><table class="md"><tr><th>要定的事</th><th>落在</th><th>怎么处理</th></tr><tr><td>跳转页面默认什么</td><td>C（跳转页面）、B3（本规则另设）</td><td>已替你定，可推翻：跳转页面默认活动或礼包自己的页面，可改；规则里另设成「是」时总有页面可跳</td></tr><tr><td>两条规则另设了不同的每天次数怎么合计</td><td>C（每人每天几次）、B3</td><td>已替你定，可推翻：同一场景各规则弹过的次数合计，和每条规则自己的上限比（卡 C）</td></tr><tr><td>每次最多弹几个和轮换池每次弹几个谁让谁</td><td>B2、B5</td><td>轮换池的字段和默认值是 Dk 10/30 定的；「固定的占满时轮换池这次不弹」是已替你定，待拍板第 1 条在问要不要改，见第 58 行</td></tr><tr><td>轮流和轮换池的叫法</td><td>A（叫法）</td><td>已替你定，可推翻：规则之间叫「轮流」，规则内叫「轮换池」，见下面叫法表</td></tr><tr><td>不进规则时从哪改活动或礼包的弹窗设置</td><td>C（入口）、A（按活动或礼包筛选）</td><td>已替你定，可推翻：不加新页，规则列表按活动或礼包筛选后点活动名打开侧边框，见第 84 行</td></tr></table></div></details><details class="sub"><summary>已定、要遵守的每条落在哪张卡</summary><p>已定、要遵守的，每条落在哪张卡</p>
+<p>原文照抄对齐卡「已定、要遵守的」；第 8 行是对齐卡材料点名的已定事项第 22 条。</p>
+<div class="tw"><table class="md"><tr><th>#</th><th>已定（原文）</th><th>落在</th><th>本表行</th></tr><tr><td>1</td><td>每个活动或礼包存一份弹窗设置，在规则里第一次加入时当场配，别的规则自动带出，不单独建〔旧〕弹窗内容页（推荐 C，<code>弹窗标签推送系统/评审版_定稿改_1027/推送系统后台集成需求/弹窗内容去留_大纲.md</code>）</td><td>C（字段归属、入口）；B2（加入时当场配）</td><td>53、84、85</td></tr><tr><td>2</td><td>冷却按已定事项第 25 条及细化</td><td>C（每人每天几次、每人两次至少隔多久，默认不设）；A（弹出间隔、例外）；B3（本规则另设）</td><td>6、7、75、78、79</td></tr><tr><td>3</td><td>规则里能另设的项按第 26 条（〔旧〕「显示方式」已改成「是否跳转」）</td><td>B3（本规则另设）；C</td><td>59、60、54</td></tr><tr><td>4</td><td>弹出的是宣传图（默认用活动或礼包自带的，可替换），「点击后是否跳转：是／否」，选是填跳转页面（Dk 10/30）</td><td>C</td><td>66–71</td></tr><tr><td>5</td><td>「在所有规则里暂停」开关（Dk 10/29「保留开关」）</td><td>C</td><td>80、81</td></tr><tr><td>6</td><td>弹窗的四个触发点叫「场景」（Dk 10/29）</td><td>B1（场景字段）；A（按场景分页签、场景设置）；所有卡的叫法</td><td>2、13、35–39</td></tr><tr><td>7</td><td>规则里每个活动或礼包可选「是否进轮换池：是／否，默认否」，轮换池内顺序由运营排，规则里设「轮换池每次弹几个」默认 1 个，先弹固定的再弹轮换池的；规则列表每条能展开，看到有哪些弹窗、是否轮换、顺序（Dk 10/30）</td><td>B2（字段）；A（规则列表展开）</td><td>55–58、20</td></tr><tr><td>8</td><td>已定事项第 22 条里和弹窗有关的：每人每日弹窗上限、变更记录、引用清单、实验组与对照组、新手弹窗接入后台</td><td>每人每日弹窗上限→A；变更记录→A 操作纪录；引用清单→C「另有几条规则在用」；实验组与对照组→B1 发送对象；新手弹窗接入后台→现在弹窗段没有，本清单没给卡，见待拍板第 6 条</td><td>5、31、82、46</td></tr></table></div></details><details class="sub"><summary>叫法表（全部卡共用）</summary><p>（三组卡共用，不各自起名）</p>
+<p>规则之间叫「轮流」，规则内叫「轮换池」，不混用。左列是要用的叫法，右列是不再用的。</p>
+<div class="tw"><table class="md"><tr><th>叫法</th><th>指什么</th><th>不再用</th></tr><tr><td>场景</td><td>弹窗的四个触发点：进大厅、破产时、买了指定礼包后、押注达到指定金额</td><td>〔旧〕弹窗位置、位置</td></tr><tr><td>场景设置</td><td>每个场景一份：多条规则都符合时、每人每天最多弹几个、弹出间隔</td><td>〔旧〕位置设置</td></tr><tr><td>多条规则都符合时</td><td>一个人符合同一场景几条规则时弹哪条：只用优先级最高的一条／轮流，每次换下一条</td><td>〔旧〕命中方式</td></tr><tr><td>轮流</td><td>只用于规则之间：每次换下一条规则</td><td>不用于规则内</td></tr><tr><td>优先级</td><td>同一场景里规则的先后，在列表里拖动</td><td>〔旧〕权重、彈窗权重</td></tr><tr><td>每人每天最多弹几个</td><td>场景层：一人一天在这个场景最多弹几个</td><td>〔旧〕每人每日上限</td></tr><tr><td>弹出间隔</td><td>场景层：每人同一场景，弹完到下次至少隔多久</td><td>〔旧〕冷却（场景层不叫冷却）</td></tr><tr><td>不受弹出间隔限制的活动或礼包</td><td>弹出间隔的例外，如破产礼包</td><td>〔旧〕除外</td></tr><tr><td>弹窗规则</td><td>一个场景里对一批人弹哪些活动或礼包的一条设置</td><td>〔旧〕弹窗顺序设定</td></tr><tr><td>编号</td><td>规则编号</td><td>〔旧〕弹窗活动 ID</td></tr><tr><td>发送对象</td><td>全部玩家、群组、上传名单</td><td>〔旧〕对象、派发对象</td></tr><tr><td>排除群组</td><td>发送对象里再排掉的群组</td><td>—</td></tr><tr><td>生效期间</td><td>长期或指定起止</td><td>—</td></tr><tr><td>每次最多弹几个</td><td>一条规则一次最多弹几个</td><td>〔旧〕弹出数量、縂彈窗數量</td></tr><tr><td>弹哪些活动或礼包、排先后</td><td>规则里加入的活动或礼包及顺序</td><td>〔旧〕弹窗排序</td></tr><tr><td>固定</td><td>规则里不进轮换池的活动或礼包，按顺序先弹</td><td>—</td></tr><tr><td>轮换池</td><td>只用于规则内：进池的活动或礼包每次轮到其中几个</td><td>不叫「轮流」</td></tr><tr><td>是否进轮换池</td><td>是／否，默认否</td><td>—</td></tr><tr><td>轮换池每次弹几个</td><td>默认 1 个</td><td>—</td></tr><tr><td>活动或礼包的弹窗设置</td><td>每个活动或礼包一份：宣传图、点击后是否跳转、跳转页面、弹出时机、每人每天几次、每人两次至少隔多久、在所有规则里暂停</td><td>〔旧〕弹窗内容</td></tr><tr><td>宣传图</td><td>弹出的那张图，默认用活动或礼包自带的</td><td>〔旧〕活动广告页</td></tr><tr><td>点击后是否跳转</td><td>是／否</td><td>〔旧〕显示方式、弹窗形式、活动本身、活动广告页</td></tr><tr><td>跳转页面</td><td>选「是」时点图去的页面，默认活动或礼包自己的页面</td><td>—</td></tr><tr><td>弹出时机</td><td>在哪一刻弹</td><td>〔旧〕弹窗时机</td></tr><tr><td>每人每天几次</td><td>一个活动或礼包每人每天最多弹几次，同一场景各规则合计</td><td>〔旧〕弹窗次数、弹出频率</td></tr><tr><td>每人两次至少隔多久</td><td>同一个活动或礼包两次之间，默认不设</td><td>〔旧〕冷却、冷却时间</td></tr><tr><td>在所有规则里暂停</td><td>活动或礼包上的开关，只停弹窗</td><td>〔旧〕下架</td></tr><tr><td>本规则另设</td><td>在一条规则里给某个活动或礼包另设，只在这条规则生效</td><td>〔旧〕复制成另一个</td></tr><tr><td>另有几条规则在用</td><td>活动或礼包的弹窗设置被几条规则用到</td><td>〔旧〕引用清单、引用规则数</td></tr><tr><td>发送测试</td><td>发给测试账号强制弹一次</td><td>〔旧〕弹窗内容发送测试</td></tr><tr><td>按玩家预览</td><td>输入会员编号看下次会弹什么、为什么</td><td>—</td></tr><tr><td>保存确认</td><td>保存线上规则前列出改了什么</td><td>—</td></tr><tr><td>操作纪录</td><td>场景设置、规则、活动或礼包的弹窗设置的改动记录（「纪录」沿用旧后台写法）</td><td>〔旧〕变更记录</td></tr></table></div></details><details class="sub"><summary>覆盖对照：旧后台和评审稿的每个设置都在表里</summary><ul>
+<li>旧后台粗清单 20 项 → 本表行：第 1 项→11–15；第 2 项→17–25；第 3 项→48（另 12、18、86）；第 4 项→33；第 5 项→35；第 6 项→40、41；第 7 项→49；第 8 项→50、51；第 9 项→52；第 10 项→72；第 11 项→67；第 12 项→75；第 13 项→78；第 14 项→26、27；第 15 项→31；第 16 项→89；第 17 项→66、71；第 18 项→3；第 19 项→80；第 20 项→2、4、5、43、47、61、62、85、46、32。</li>
+<li>10/28 评审稿弹窗部分 20 个二级节点（〔评〕第 226–360 行）→ 本表行：弹窗菜单与页签（227）→1；弹窗〔旧〕位置（230）→35、36、30；购买指定礼包、押注达到指定金额（234）→37–39；弹窗规则列表（238）→23、28、90；规则状态（243）→27；新建与编辑规则（249）→34、47、29、65、49；规则对象与排除（257）→42–45、95；弹窗排序（264）→54、50、63；弹窗内容（268）→85–88、81–83、60；弹出时机（278）→73、74；弹出频率（288）→76、77；冷却（296）→79；〔旧〕位置设置（301）→2、5、8–10；命中方式·优先级最高（311）→4、32；命中方式·轮流（317）→4；按玩家预览（330）→62；规则保存确认（334）→63、64；弹窗内容发送测试（340）→61；实验（346）→46、91；旧入口停用与数据迁移（356）→32、89。</li>
+</ul></details>
+<h2 id="cards"><span class="no">03</span>10 张分析卡、82 个字段都过了三问：图、跳转、次数跟着活动或礼包存一份，规则里能另设</h2>
+<p class="lead">三问：运营为什么要填它？不填会怎样？能不能更简单（改成是否、给默认值、自动带出、去掉，逐个试过）？每卡默认收起，点卡头展开；卡头写这张卡和 10/28 评审稿比改了什么。<button class="tgl" id="tgl">全部展开</button></p>
+<details class="cardd" id="card-A1"><summary><span class="cn">A1</span><span class="ct">弹窗场景设置</span><span class="cm">这张卡改了什么：〔旧〕位置设置改叫「场景设置」；新增弹出间隔和不受间隔限制的活动或礼包；去掉改设置时的人数推算；今天达上限人数移到数据模块（这里只放入口）</span><span class="cm">字段 5 个｜待拍板：第 1 条、第 2 条、第 3 条、第 9 条</span></summary><div class="cb"><p><b>1. 功能名｜对应任务</b><br>弹窗场景设置（四个场景各一份）｜T16、T17、T22、T23、T24、T27</p>
+<p><b>2. 谁在什么场景用</b><br>配弹窗的运营。新后台上线时每个场景设一次，之后少改：上一批新规则时、客服反映玩家一次进大厅被弹太多时、破产礼包要连着弹时。入口在弹窗规则页每个场景页签顶部，一行只读显示，点「修改」在对话框里改、保存。</p>
+<p><b>3. 要解决什么问题（带来源）</b></p>
+<ul>
+<li>一个人同时符合同一场景几条规则时弹哪条：RICH-23002（未綁手機、未首儲、未月儲都符合时）应弹「第一優先順序→首儲優惠」；草稿按人群分规则，新用户、卡别、回流几批人重叠，靠〔旧〕彈窗权重只取一条（工作表1第 20 行「優先顯示權重大的內容」，工作表2第 22、45、68 行）。</li>
+<li>一天弹太多：我方活动类每项每日 1 次，一天最多 14 个（竞品结论稿第 24 行）；已定事项第 22 条要「每人每日弹窗上限」。</li>
+<li>刚弹完又弹：草稿总规则「弹出间隔 1800秒，破产礼包/发财金除外」（工作表1第 19 行）；已定事项第 25 条。</li>
+<li>破产时礼包要连着弹：RICH-22317「用戶金幣不滿足當前押注時，先彈出「納福禮包」，當用戶取消時「彈出發財金」」。</li>
+</ul>
+<p><b>4. 字段表</b></p>
+<div class="tw"><table class="md"><tr><th>字段名</th><th>选项和默认值</th><th>为什么要填</th><th>不填会怎样</th><th>能不能更简单 → 结论</th><th>旧后台对应</th><th>来源</th></tr><tr><td>场景</td><td>进大厅、破产时、买了指定礼包后、押注达到指定金额；每个场景一份，不用选，跟着所在页签</td><td>四个场景玩家处境不同：进大厅是闲时，破产时要救急，弹几个、隔多久不能一刀切</td><td>不用填；若只设一份全局的，破产礼包会被进大厅的上限和间隔挡掉</td><td>是否：不适用，四选一不是二选一；默认：不用填，打开哪个页签就是哪个场景；带出：是，跟着页签；去掉（只留一份全局）：不能，破产时不该受进大厅的上限和间隔管 → 保留，做成页签，不做成要选的字段</td><td>旧后台清单第 5 项〔旧〕弹窗位置（大厅自动弹窗／游戏破产弹窗）</td><td>〔截〕截图转录第 25 行；〔评〕第 230–233 行；Dk 10/29 叫「场景」</td></tr><tr><td>多条规则都符合时</td><td>单选：只用优先级最高的一条／轮流，每次换下一条；默认：只用优先级最高的一条</td><td>一个人常同时在几批人里（新用户多半也是普卡），要定这次按哪条规则弹</td><td>有默认，不动就只用优先级最高的一条；若没有这项规则，几条规则全弹，一次进大厅可能 2＋2＋1 个以上（草稿工作表2第 23、46、57 行）</td><td>是否：可写成「要不要轮流：否／是」，但两个选项各带一句说明更不易误解（弹-11），保留单选；默认：只用优先级最高的一条（现网按〔旧〕权重同类只取一条，RICH-18850）；带出：不能，各场景做法可以不同；去掉「轮流」：能少一个选项，但 Dk 已定保留（对标第 102 行「轮流保留（Dk 已定）」；功能框架任务第 26 行），运营原话没找到（故事地图 T17 标推断）→ 保留；选项里缺「都弹」，见待拍板第 1 条</td><td>旧后台清单第 18 项（规则之间按〔旧〕权重排）</td><td>〔评〕第 311–329 行；清单第 4 行</td></tr><tr><td>每人每天最多弹几个（仅进大厅）</td><td>填整数，留空表示不限；默认 8 个</td><td>管一个人一天在大厅总共被弹几个；单看每个活动的「每人每天几次」管不住总数，加一个活动就多弹几次</td><td>有默认 8；若留空，按草稿普卡银卡一人一天最多能弹 16 个（活动 4 个合计 6 次，工作表2第 48–51 行；礼包 5 个各 2 次，第 59–63 行）</td><td>是否：不改，直接填数即可，留空表示不限，不用 0 表示不限（RICH-23167 填 0 保存后再看显示空白，易误会）；默认：8 个，影响运营不动手时弹几个，见待拍板第 2 条；带出：不能，没有可带的来源；去掉：不能，已定事项第 22 条要它 → 保留，只在进大厅有（破产时救急礼包不该被一天总数挡；另两个场景按事件弹，次数已由活动的每人每天几次管）</td><td>无（旧后台清单第 20 项，评审稿新加）</td><td>已定事项第 22 条；〔评〕第 304 行；截图转录第 75 行 V4 草图「每人每日上限 [8] 个」；清单第 5 行</td></tr><tr><td>弹出间隔</td><td>时长（分钟）；每个场景一个；留空表示不设；默认 30 分钟</td><td>管「刚弹完又弹」：玩家从游戏回到大厅、或短时间反复进出大厅时不被连着弹</td><td>有默认；若留空（不设），回到大厅就可能再弹，各活动的「每人两次至少隔多久」默认不设，管不住不同活动接连弹</td><td>是否：不改，要的是时长；默认：30 分钟（草稿总规则 1800 秒，工作表1第 19 行），比现网多一道限制，见待拍板第 3 条；带出：不能；去掉：不能，已定事项第 25 条要「同一〔旧〕位置加『两次弹出至少隔多久』」，且活动上的间隔默认不设，去掉就没有东西管刚弹完又弹 → 保留</td><td>无（旧后台只有每项〔旧〕冷却时间，旧后台清单第 13 项）</td><td>已定事项第 25 条及细化；清单第 6 行</td></tr><tr><td>不受弹出间隔限制的活动或礼包</td><td>从这个场景规则里用到的活动或礼包中多选；默认：无</td><td>破产时纳福礼包、发财金要连着弹（RICH-22317），不能等 30 分钟</td><td>默认无；破产场景设了间隔又不设例外，破产礼包会被前一个弹窗挡住，玩家破产时看不到救急礼包</td><td>是否：不能，要指定是哪几个；默认：无，只有破产场景有已知需要，迁移时破产场景按草稿填破产礼包；带出：不能，系统判断不了哪个是救急礼包；去掉（改成破产场景间隔留空不设）：不能，破产场景里还有首储礼包等另外 7 个礼包（截图 ID7 共 8 项，截图转录第 37 行）要受间隔管，只有破产礼包、发财金要每次都弹 → 保留</td><td>无</td><td>已定事项第 25 条「可设例外（如破产礼包）」；草稿工作表1第 19 行；清单第 7 行</td></tr></table></div>
+<p><b>5. 规则</b></p>
+<ol>
+<li value="1">每个场景一份场景设置；保存后只影响之后的弹出，已弹出的不变；保存记一条操作纪录（写改前、改后）。</li>
+<li value="2">只用优先级最高的一条：玩家进入场景时，在这个场景「上架中」、发送对象包含他、在生效期间内的规则里，取优先级最高的一条，只按这条弹；这条这次没有可弹的（次数用完、在间隔内、都暂停了），这次不弹，不往下一条找（沿用〔评〕第 314 行）。</li>
+<li value="3">轮流：符合的多条上架规则按优先级排成一轮，每次进入轮到下一条；这条没有可弹的就再下一条；整轮都没有可弹的这次不弹；按玩家记住每个场景上次实际弹出的规则；不按天重新开始（沿用〔评〕第 318–329 行）。</li>
+<li value="4">每人每天最多弹几个：只算进大厅；按实际显示计（弹-01）；一天从 0 点算起，暂按台湾时间，待研发确认；到 0 点清零；一次进入里弹到上限就停，剩下的这次不弹；不受弹出间隔限制的活动或礼包也计入。</li>
+<li value="5">弹出间隔：同一玩家、同一场景，从上一次弹出算起，不到间隔时这次进入不弹；一次进入里连着弹的几个不受间隔限制（间隔管两次进入之间）；不同场景各算各的。</li>
+<li value="6">例外：列在「不受弹出间隔限制」里的活动或礼包，间隔内也照弹，仍受它自己的每人每天几次；间隔内这次进入只弹例外里的，其余照样不弹；例外的弹出也算「上一次弹出」，重新开始计间隔。</li>
+</ol>
+<p><b>6. 异常</b></p>
+<ul>
+<li>上限、间隔填 0 或负数：不许保存，提示「留空表示不限」「留空表示不设」；留空时只读行写「不限」「不设」。</li>
+<li>例外里的活动或礼包过期、被活动后台关闭、或在所有规则里暂停：照常跳过不弹；例外名单里标灰写原因，不自动删（续期后还要用）。</li>
+<li>例外里选的活动或礼包后来不在这个场景任何规则里：名单里写「本场景没有规则在用」，不影响保存。</li>
+<li>和上限冲突：进大厅的例外项也计入每人每天最多弹几个，到上限照样不弹。</li>
+<li>「多条规则都符合时」改了选项：玩家记住的「上次那条」作废，改成轮流时从优先级最高的开始（〔评〕第 324 行）。</li>
+<li>场景里所有规则的活动都过期或暂停：场景设置不受影响，规则列表行上标「没有可弹的」（卡 A2）。</li>
+<li>两个运营同时改：后保存的提示「已被某人在某时改过」，看过再存。</li>
+<li>图没传、跳转页面没填、规则另设和活动设置冲突：不在本卡（卡 C、卡 B3）。</li>
+</ul>
+<p><b>7. 和顶尖做法比</b></p>
+<ul>
+<li>设置放在一组所在那一层，点「修改」进对话框，单选加保存，每个选项一句说明，写明只影响以后（弹-11，Google Ad Manager 轮换设置）：同。</li>
+<li>改设置前提示「将影响 N 人」：弹-11 写明查过的产品官方文档都没有；评审稿有，本卡简化掉（待拍板第 9 条）：和顶尖做法一致。</li>
+<li>只用优先级最高的一条：Braze、CleverTap 同；MoEngage 最高那条没过检查会落到次高（对标第 102 行）：我们不落，不同。理由：低优先级的规则可能是给另一批人的专门安排（如实验组），落下去会混；沿用评审稿，已替你定。</li>
+<li>轮流：应用内消息产品没查到先例，Google Ad Manager 的素材轮换只在同一投放单内（对标第 102 行）：不同，Dk 已定保留。</li>
+<li>每人每天上限：MoEngage 可按触发类型分设、00:00 重置；CleverTap 按每会话、每天设（对标第 103 行）：同（按场景设、从 0 点算起）。</li>
+<li>弹出间隔：Braze 两条应用内消息之间有最短间隔，MoEngage 可设活动之间的最小间隔（弹-06）；弹-12「两条之间的最小间隔设在全局或〔旧〕位置上」：同。</li>
+<li>间隔的例外：参考库里没查到：不同（多做），理由是破产救急，来自草稿总规则。</li>
+<li>竞品只有玩家端：一次进大厅金好运 1 个、星城 2 个、豪神 7 到 8 个（竞品结论稿第 17–19 行），只作佐证，不用来定默认值。</li>
+</ul>
+<p><b>8. 验收标准</b></p>
+<ul>
+<li>测试账号在「弹窗固定不弹」里（功能清单第 95 行），按群组发不到：下面用测试账号验上线规则的，发送对象用上传名单（名单不受固定不弹限制），或用发送测试（卡 B4）。</li>
+<li>四个场景页签顶部各有一行场景设置，改一个场景不影响其他场景。</li>
+<li>测试账号同时符合同一场景两条上架规则：选「只用优先级最高的一条」时只弹优先级高那条的弹窗；改成轮流后，连续三次进入依次按第 1、2、1 条弹。</li>
+<li>进大厅上限设 3：测试账号当天第 4 个弹窗不弹，0 点后恢复。</li>
+<li>弹出间隔设 30 分钟：一次进入连弹 2 个不受影响；弹完 29 分钟内再进大厅不弹，30 分钟后再进会弹。</li>
+<li>破产场景把破产礼包设为例外：间隔内再次破产仍弹破产礼包，同场景其他礼包不弹。</li>
+<li>上限或间隔填 0 保存被拦，提示留空表示不限或不设。</li>
+<li>每次保存，操作纪录里有一条，写改前、改后。</li>
+</ul>
+<p><b>9. 已定事项落点</b></p>
+<ul>
+<li>功能清单第四节第 2 条，已定事项第 25 条原文：「同一〔旧〕位置加『两次弹出至少隔多久』，可设例外（如破产礼包）；不要规则整体〔旧〕冷却」；细化原文：「『刚弹完又弹』由同一〔旧〕位置两次弹出的间隔管」→ 落在字段「弹出间隔」「不受弹出间隔限制的活动或礼包」；场景层不设规则整体的间隔。未改（叫法按叫法表写成「弹出间隔」，含义不变）。</li>
+<li>功能清单第四节第 6 条，对齐卡原文：「弹窗的四个触发点叫『场景』（Dk 10/29）」→ 字段「场景」，本卡名「弹窗场景设置」。未改。</li>
+<li>功能清单第四节第 8 条，已定事项第 22 条原文里的「每人每日弹窗上限」→ 字段「每人每天最多弹几个（仅进大厅）」。未改（叫法按叫法表）。默认值 8 已定事项没定，进待拍板第 2 条。</li>
+<li>另，叫法表约定（不是已定，已替你定，可推翻）：规则之间叫「轮流」，规则内叫「轮换池」，不混用 → 字段「多条规则都符合时」的选项写「轮流，每次换下一条」。</li>
+</ul>
+<p><b>10. 待拍板／待研发确认</b></p>
+<ul>
+<li>待拍板第 1 条：问题｜现网和运营草稿要分开看。现网（10/10 截图，截图转录第 31–33 行）：进大厅〔旧〕活动类 ID5 每次 3 个、储值类 ID6 每次 1 个，3 条规则都对全部玩家；两条是不是一次进大厅都弹、ID5 每次 3 个还是 2 个，待研发确认（研发评审待确认第 25 条；竞品结论稿第 24 行记我方每次进大厅最多 4 个，只是旁证）。运营草稿（计划，线上没配）：每批人活动类、储值类各一条，每次 2 个活动＋1 个礼包（工作表2第 46 行总数 2、第 57 行总数 1，两类〔旧〕权重都是 1；工作表1第 18 行单次最多 3）。新后台同一场景一人只用一条规则，两类要合进一条；按现写法「先弹固定的，固定的占满时轮换池这次不弹」（后半句是我方补的，已替你定，可推翻），两种组合都配不出来：活动设固定，4 个活动会把名额占满，礼包进轮换池弹不到；反过来礼包设固定也一样。｜推荐｜不在「多条规则都符合时」加「都弹」；「轮换池每次弹几个」从「每次最多弹几个」里先留出名额：固定的最多弹「每次最多弹几个 − 轮换池每次弹几个」个，轮换池这次没有可弹的，名额让给固定的。先弹固定的、再弹轮换池的顺序不变（Dk 10/30 原话），但轮换池先留走名额。例：每次最多 3、轮换池每次 1 → 固定 2＋礼包 1（进大厅按默认就是这样，卡 B2）。备选：把「每次最多弹几个」改成「固定的每次弹几个」，和「轮换池每次弹几个」相加为一次最多弹几个。备选二：轮换池加一个取法选项（轮流／按顺序取第一个能弹的），能保留按顺序取，但改了 Dk 10/30 定的轮换池含义（换着弹），由 Dk 定；不推荐，卡里不加这个字段。｜后果｜两种做法下礼包都改成在轮换池里轮流，不再总弹排第一个能弹的（现网和草稿工作表2第 59–63 行都是按顺序取，首储礼包排第 1）。按推荐：运营只看一个熟悉的总数，轮换池空着时名额不浪费；但「每次最多弹几个」≤「轮换池每次弹几个」时（如破产时等场景按默认都是 1），轮换池有能弹的，固定的一个也弹不到，轮换池空时固定的才补位；卡 B5 保存确认对这种配置提示「轮换池有能弹的时候，固定的一个也弹不到」，可继续保存。按备选：两个数各管各的，一次最多弹几个要运营自己相加，轮换池这次没有可弹的就少弹几个，不让给固定的。两种都不改（维持「固定的占满时轮换池这次不弹」）：活动能弹的够多时会占满名额，礼包仍会被挤掉。｜迁移｜若研发确认现网两条一次进大厅都弹：两条合成一条（卡 A4 规则第 6 条）：活动类的项迁成固定（是否进轮换池：否），按原顺序；储值类的项迁进轮换池（是否进轮换池：是），池内按原顺序，「轮换池每次弹几个」取储值类旧值；「每次最多弹几个」取两条之和。选推荐或备选（备选时「固定的每次弹几个」取活动类旧值），迁过来都是「活动取前几个＋礼包 1 个」，运营不用上线前手动改；仍有的差别：同一批人同时有几个礼包可弹时，现网总弹排第一的，迁后在轮换池里轮流弹。若研发确认不是一起弹（只取一条）：不合并，保持两条，场景设「只用优先级最高的一条」，优先级按现网实际先取的那条排前，迁移前后弹法不变；这条待拍板仍要定，因为草稿计划的「2 个活动＋1 个礼包」要在一条规则里配出来。｜理由｜加「都弹」会让同一场景所有符合的规则一起弹，草稿里新用户、卡别、回流几批人重叠，本来按〔旧〕权重只取一条，一起弹会超过单次 3 个；留名额只改我方补的「固定的占满时轮换池这次不弹」那半句，运营用已有的两个数就能配出这个组合。和功能清单第 48、58 行、卡 B2 是同一件事。</li>
+<li>待拍板第 3 条：问题｜场景的弹出间隔默认 30 分钟；现网没有场景间隔（截图每项〔旧〕冷却时间 0 秒，截图转录第 36 行），设了以后玩家半小时内回到大厅不再弹，比现在少弹。｜推荐｜默认 30 分钟。｜理由｜草稿总规则「弹出间隔 1800秒」（工作表1第 19 行）是运营给的唯一一个场景层的数。已定事项第 25 条记的「15 分钟和 1800 秒哪个对，待问运营」，推断其实不冲突：15 分钟出自策略总表单个礼包的频率建议「每日2次，間隔15分鐘」（工作表2第 4–5 行），对应的是活动上的「每人两次至少隔多久」，不是场景间隔；场景间隔 30 分钟时，活动上的 15 分钟实际不起作用（已定事项第 25 条细化已写），运营要知道。</li>
+<li>待拍板第 2 条：问题｜进大厅每人每天最多弹几个默认 8 个；现网没有总数上限，按草稿普卡银卡一人一天最多能弹 16 个，默认 8 会挡掉一半，其中有付费礼包。｜推荐｜默认 8 个；上线前把草稿各人群一天最多能弹几个算出来给运营看，由运营改。｜理由｜8 出自 V4 草图（截图转录第 75 行），已定事项第 22 条只定了要有上限、没定数，也没有运营原话；数大了等于没设，不设又回到一天 14 个以上（竞品结论稿第 24 行）。</li>
+<li>待拍板第 9 条：问题｜评审稿改场景设置时会写「下一次进入规则会变的人数」，点开按「原轮到的规则 → 改后的规则」列人数，改上限时写「今天预计多拦或少拦多少人」（〔评〕第 307–309 行）；本卡简化为只提示「只影响之后的弹出」并列出这个场景在用的规则，运营改之前看不到影响多少人。｜推荐｜简化。｜理由｜没有运营原话要它（故事地图 T27 标推断）；要按每个玩家回放轮流记录才算得出，研发量大；查过的产品官方文档都没有「将影响 N 人」（弹-11）。</li>
+<li>待研发确认：①现网大厅活动类、储值类两条是否一起弹、ID5 每次弹 3 个还是 2 个（研发评审待确认第 25 条）；②客户端什么时候拿到新的场景设置，是登录时还是每次进场景（弹-07 提醒生效时机要写明）；③发财金是不是后台可选的活动或礼包。</li>
+<li>已替你定，可推翻：最高那条没有可弹的不往下找（沿用评审稿）；上限按实际显示计；间隔只管两次进入之间；例外的弹出也重新计间隔；上限、间隔留空表示不限或不设，不用 0；一天从 0 点算起，暂按台湾时间，待研发确认；「固定的占满时轮换池这次不弹」（待拍板第 1 条在问要不要改）。</li>
+</ul></div></details><details class="cardd" id="card-A2"><summary><span class="cn">A2</span><span class="ct">弹窗规则列表</span><span class="cm">这张卡改了什么：去掉〔旧〕弹窗内容页签；每条规则能展开看有哪些弹窗、是否进轮换池、顺序；新增按活动或礼包筛选（也是单独打开活动弹窗设置的入口）；按发送对象筛选并入搜索；状态筛选改成「显示已结束的」；弹窗个数和每次最多弹几个合成一列；拖动优先级后要点保存才生效；操作时间、操作人移到操作纪录</span><span class="cm">字段 18 个｜待拍板：无</span></summary><div class="cb"><p><b>1. 功能名｜对应任务</b><br>弹窗规则列表｜T5、T6、T7、T13、T14、T15、T16、T17、T28、T34</p>
+<p><b>2. 谁在什么场景用</b><br>配弹窗的运营每天进弹窗后台先看的页。上新活动前，按活动或礼包筛选看它在哪几条规则里；有人问「某个活动怎么没弹」时，展开规则看它在不在、是固定还是进了轮换池、排第几；调一条规则的先后；暂停、恢复；复制一条给相近人群。</p>
+<p><b>3. 要解决什么问题（带来源）</b></p>
+<ul>
+<li>旧后台列表把全部排序项摊在一格里（活动类 14 项，每项 5 行，截图转录第 33–36 行），列表很长；Dk 10/30：「原型图里的弹窗规则，是可以展开看内容的，可以直接看到有哪些弹窗、是否轮换、顺序如何」（功能框架任务第 25 行）。</li>
+<li>规则先后靠填〔旧〕权重，同类不许同〔旧〕权重（RICH-18850）；草稿写「優先顯示權重大的內容」（工作表1第 20 行），评审稿是「数字最小的优先」（〔评〕第 312 行），方向容易弄反。</li>
+<li>找一个活动在哪几条规则里：旧后台只能逐条看；草稿 14 个活动和礼包在 14 条规则里出现 43 次，同一个最多在 5 条（思考笔记 1029 第 26 行）。</li>
+<li>已定不单独建〔旧〕弹窗内容页（已定表第 1 条），运营不进规则时，也要有地方单独改和暂停一个活动或礼包的弹窗设置。</li>
+</ul>
+<p><b>4. 字段表</b></p>
+<div class="tw"><table class="md"><tr><th>字段名</th><th>选项和默认值</th><th>为什么要填／要看</th><th>不填／没有会怎样</th><th>能不能更简单 → 结论</th><th>旧后台对应</th><th>来源</th></tr><tr><td>按场景分页签</td><td>进大厅、破产时、买了指定礼包后、押注达到指定金额，另有「操作纪录」页签；默认打开进大厅</td><td>优先级只在同一场景内比，分开看才排得清</td><td>没有页签就要每次选筛选，跨场景的规则混在一起没法拖优先级</td><td>是否：不适用；默认：打开进大厅（规则最多）；带出：不需要；去掉（改回筛选）：不能，拖优先级必须在一个场景里拖 → 保留</td><td>旧后台清单第 1 项〔旧〕弹窗位置筛选、第 2 项〔旧〕位置列</td><td>〔评〕第 227–229 行；清单第 1、13、22 行</td></tr><tr><td>优先级</td><td>同一场景内拖动排序，1 在最上、最先；拖完点「保存顺序」生效；默认：新建或复制的规则上架时排在本场景最后</td><td>一个人符合几条规则时按它定弹哪条（卡 A1）</td><td>有默认（排最后），新规则不抢在线规则的人</td><td>是否：不适用；默认：排最后（〔评〕第 255 行）；带出：不能，先后是运营的判断；去掉填数字、改成拖动：这本身就是简化，不会同号、不会弄反大小 → 保留拖动</td><td>旧后台清单第 18 项（〔旧〕权重）</td><td>RICH-18850、23002；草稿工作表1第 20 行；清单第 3、29 行</td></tr><tr><td>搜索</td><td>名称、编号或发送对象群组名，包含即算；默认空</td><td>按名字、编号找规则；按群组名找「这批人在哪几条规则里」</td><td>列出本场景全部规则</td><td>是否：不适用；默认：空；带出：不适用；去掉：一个场景十几条规则（草稿进大厅 14 条）肉眼也能找，但它顺带替掉〔旧〕按对象筛选，一个框管三样 → 保留，并把按发送对象筛选并进来（清单第 14 行由去掉改为简化）</td><td>旧后台清单第 1 项〔旧〕弹窗名称输入、对象筛选</td><td>〔截〕截图转录第 25 行；清单第 11、14 行</td></tr><tr><td>显示已结束的</td><td>是／否；默认否</td><td>平时只看在跑的和要上的，查历史时才看已结束的</td><td>默认不显示已结束，列表不被历史规则撑长</td><td>是否：可以，原状态下拉的真实用途只有「藏不藏已结束的」，草稿和已暂停的每行状态列看得到 → 改成是否；默认：否；带出：不适用；去掉：不能，每个限时活动都会留下一批已结束的规则 → 简化（清单第 15 行由保留改为简化）</td><td>旧后台清单第 1 项〔旧〕状态筛选</td><td>〔截〕截图转录第 25 行；清单第 15 行</td></tr><tr><td>按活动或礼包筛选</td><td>从活动或礼包列表选一个；默认不筛；只筛当前场景</td><td>改一个活动前找它在本场景哪几条规则里（T6）；筛选后点活动名打开它的弹窗设置侧边框，单独改和暂停（不加新页，已替你定，可推翻）</td><td>不筛</td><td>是否：不适用；默认：不筛；带出：可选列表从活动后台、礼包后台带出（卡 C）；去掉：不能，去掉后没有地方单独改或暂停一个活动的弹窗设置 → 保留</td><td>无</td><td>清单第 16、84 行</td></tr><tr><td>每行·名称</td><td>新建时填的名称，只读</td><td>运营靠名字认规则</td><td>只能看编号认</td><td>是否：不适用；默认：不适用；带出：是，取规则名称；去掉：不能 → 保留</td><td>旧后台清单第 2 项〔旧〕弹窗名称</td><td>〔截〕截图转录第 26 行；清单第 19 行</td></tr><tr><td>每行·编号</td><td>系统生成，只读</td><td>查问题时和研发、客服对得上：RICH-19096「EP要求需要顯示彈窗活動ID」</td><td>运营说名称、研发查编号，对不上</td><td>是否：不适用；默认：不适用；带出：系统生成，运营不填；去掉：不能（RICH-19096）→ 保留</td><td>旧后台清单第 2 项〔旧〕弹窗活动 ID</td><td>〔截〕截图转录第 26 行；清单第 17 行</td></tr><tr><td>每行·发送对象和人数</td><td>群组名；下方写排除的群组和扣掉排除后的人数</td><td>看这条规则给谁，判断和别的规则人群重不重</td><td>要点进规则才知道给谁</td><td>是否：不适用；默认：不适用；带出：是，从规则的发送对象带出；去掉人数：不去，规则人群是不是空的，一眼就能看出（推断：人数为 0 是规则没弹的常见原因）→ 保留</td><td>旧后台清单第 2 项〔旧〕对象列</td><td>〔评〕第 239 行；清单第 23 行</td></tr><tr><td>每行·弹窗</td><td>写「共 N 个（轮换池 M 个），每次最多弹 K 个」，只读；明细在展开里</td><td>收起时也看得出规则里有几个弹窗、一次挡几屏</td><td>收起时看不出规则里有没有东西</td><td>是否：不适用；默认：收起；带出：全部从规则带出；去掉：不能；合并：原「弹窗个数」「每次最多弹几个」两列合成一列 → 简化</td><td>旧后台清单第 2 项〔旧〕弹窗排序列、〔旧〕弹出数量列</td><td>〔截〕截图转录第 26 行；清单第 20、21 行</td></tr><tr><td>每行·状态</td><td>草稿、未开始、上架中、已暂停、已结束；系统按操作和生效期间自动变</td><td>知道这条现在弹不弹</td><td>看不出哪条在弹</td><td>是否（上架／不上架）：不能，已暂停能恢复、已结束不能、未开始要等时间，混在一起运营会以为暂停的已经结束；默认：保存并上架后为上架中，设了起止、未到开始为未开始；带出：是，系统自动变，运营不手改；去掉：不能 → 保留</td><td>旧后台清单第 14 项（截图只见「上架中」）</td><td>〔评〕第 243–248 行；清单第 27 行</td></tr><tr><td>每行·操作</td><td>按状态给：草稿＝编辑、删除；未开始、上架中＝编辑、复制、暂停、结束、看数据；已暂停＝编辑、恢复、复制、结束、看数据；已结束＝查看、复制、看数据</td><td>免得对已结束的规则点编辑；暂停、恢复、结束是日常动作</td><td>运营能对已结束的规则点编辑，改了也不生效</td><td>是否：不适用；默认：不适用；带出：按状态自动给能点的操作；去掉「结束」只留暂停：不能，长期规则不再用时要能收起，结束后默认不显示 → 保留，按状态给；「看数据」只放入口（数据归功能框架任务）</td><td>旧后台清单第 2 项〔旧〕操作▾</td><td>〔截〕截图转录第 26 行；〔评〕第 240–242 行；清单第 25、28 行</td></tr><tr><td>每行·操作时间、操作人</td><td>不放在列表里</td><td>想知道谁最近动过这条</td><td>到操作纪录看（卡 A3）</td><td>是否：不适用；默认：不适用；带出：可以带，但每天看列表用不到；去掉：可以，操作纪录里有 → 去掉</td><td>旧后台清单第 14 项（〔文〕操作时间、操作人）</td><td>截图转录第 26 行；清单第 26 行</td></tr><tr><td>展开·有哪些弹窗</td><td>活动或礼包名，按顺序列，只读；默认收起，点行展开</td><td>Dk 10/30 要「直接看到有哪些弹窗」；排查某活动怎么没弹，先看它在不在这条规则里</td><td>要进编辑页才看得到</td><td>是否：不适用；默认：收起，列表不被撑长；带出：全部从规则带出；去掉：不能，Dk 已定 → 保留</td><td>旧后台清单第 2 项〔旧〕弹窗排序列（全部摊开）</td><td>Dk 10/30（功能框架任务第 25 行）；清单第 20 行</td></tr><tr><td>展开·是否进轮换池</td><td>每个弹窗标「固定」或「轮换池」，只读</td><td>Dk 10/30 要看「是否轮换」；轮换池的不一定每次弹</td><td>看不出某个活动为什么这次没弹</td><td>是否：本来就是是否，这里只读显示；默认：否（固定）；带出：从规则带出；去掉：不能，Dk 已定 → 保留</td><td>无</td><td>对齐卡已定（Dk 10/30）；清单第 20 行</td></tr><tr><td>展开·顺序</td><td>固定的在前，按 1、2…；轮换池的在后，按池内顺序 1、2…</td><td>看谁先弹</td><td>看不出先后</td><td>是否：不适用；默认：不适用；带出：从规则带出；去掉单独的序号列：可以，顺序直接用列出的先后加序号表示，不另占一列 → 简化</td><td>旧后台清单第 8 项〔旧〕弹窗排序</td><td>对齐卡已定（Dk 10/30）；清单第 20 行</td></tr><tr><td>展开·轮换池每次弹几个</td><td>写在轮换池那组的标题上：「轮换池（每次弹 1 个）」，只读</td><td>不写就读不懂轮换池一次出几个；Dk 原话只列了三样，这一项是为了读懂轮换池才加</td><td>运营要进编辑页才知道</td><td>是否：不适用；默认：1 个（规则里设）；带出：从规则带出；去掉：可以去，但展开后看不出这条规则每次弹哪几个 → 保留在组标题上，不另占一列</td><td>无</td><td>对齐卡已定（Dk 10/30）</td></tr><tr><td>展开·这次不会弹的标注</td><td>已过期、被活动后台关闭、在所有规则里暂停、没有宣传图的弹窗标灰并写原因；系统自动标</td><td>规则里排着却谁都弹不了的，排查时要一眼看到</td><td>运营以为它会弹，去找别的原因</td><td>是否：不适用；默认：不适用；带出：系统按活动状态自动标，运营不填；去掉：可以，原因可用按玩家预览查（卡 B4），但这些是不分玩家、谁都弹不了的原因，列表里就能看出，省一次查询 → 保留</td><td>无</td><td>推断：排查「某活动怎么没弹」先排除谁都弹不了的原因；清单第 83 行（卡 C）</td></tr><tr><td>复制规则</td><td>复制出一条草稿，带上全部设置（场景、发送对象、弹窗和顺序、本规则另设），名称加「（副本）」；默认不上架</td><td>场景上架后不能改，换场景要复制（〔评〕第 233 行）；给相近人群建规则不用重填，草稿三档卡别规则逐格相同（工作表2第 48–51 行）</td><td>每条重填 4 个活动和各自设置</td><td>是否：不适用；默认：复制成草稿，不直接上架；带出：全部设置带出；去掉：不能 → 保留</td><td>无</td><td>〔评〕第 233 行；清单第 30 行</td></tr></table></div>
+<p>旧后台列表里本卡去掉的（理由见功能清单）：〔旧〕弹窗类型筛选（清单第 12 行）、〔旧〕弹窗类型列（第 18 行）、〔旧〕弹窗位置列（第 22 行，已按场景分页签）、〔旧〕标签状态列（第 24 行，卡 B1）。</p>
+<p><b>5. 规则</b></p>
+<ol>
+<li value="1">列表只列当前场景页签的规则；「显示已结束的」为否时不列已结束的。</li>
+<li value="2">优先级只给未开始、上架中、已暂停的规则排号，1 最先；已暂停的恢复后回原来的号；草稿和已结束的不排号，列在下面。只有上架中的规则参与弹出。</li>
+<li value="3">拖动后不立即生效；点「保存顺序」时列出改前、改后的顺序，写明只影响之后的弹出，确认后生效，记一条操作纪录（弹-11）。</li>
+<li value="4">新建、复制出来的规则，草稿上架时排在本场景最后。</li>
+<li value="5">有搜索或筛选时不能拖动（筛选后序号不连续，拖了会乱）。</li>
+<li value="6">按活动或礼包筛选：列出本场景里含这个活动或礼包的规则，固定和轮换池里的都算；筛选后活动名可点，打开它的弹窗设置侧边框（卡 C）。跨场景看它在几条规则里，用卡 C 的「另有几条规则在用」。</li>
+<li value="7">状态自动变：保存并上架为上架中；设了起止、未到开始为未开始；到结束时间为已结束；暂停为已暂停，恢复回上架中或未开始；点结束为已结束，不能恢复。</li>
+<li value="8">展开里全部只读，要改进编辑（卡 B）。</li>
+<li value="9">复制生成草稿，全部设置带出，名称加「（副本）」，可改场景（卡 B1）。</li>
+</ol>
+<p><b>6. 异常</b></p>
+<ul>
+<li>规则里的活动或礼包过期、被活动后台关闭：展开里标灰写原因，弹出时跳过；规则里全部都弹不了时，行上标「没有可弹的」。</li>
+<li>活动或礼包在所有规则里暂停：展开里标「已在所有规则里暂停」。</li>
+<li>图没传：卡 C 定宣传图默认用活动或礼包自带的；连自带的也没有时，展开里标「没有宣传图」，弹出时跳过（研发评审待确认第 27 条：后台能不能读到自带的图）。</li>
+<li>跳转页面没填：不会出现，默认跳活动或礼包自己的页面（已替你定，可推翻）。</li>
+<li>名额被占：按现写法（固定的占满时轮换池这次不弹，已替你定，可推翻），固定的个数已到「每次最多弹几个」时，展开里轮换池组标题写「固定的已占满，轮换池弹不到」，保存时也提示（卡 B5）。若待拍板第 1 条按推荐（轮换池先留名额），换成：「每次最多弹几个」≤「轮换池每次弹几个」时，展开里固定组标题写「轮换池有能弹的时候，固定的一个也弹不到」，保存时也提示（卡 B5）。</li>
+<li>规则另设和活动设置冲突：列表不显示另设的值（卡 B3）。</li>
+<li>拖动时别人已改过顺序：保存时提示「顺序已被某人在某时改过」，刷新后再拖。</li>
+<li>点结束：确认框写「结束后不能恢复」。删除草稿：确认框写「删除后找不回」。</li>
+<li>和上限或间隔冲突、所有活动都被暂停：上限和间隔见卡 A1；所有活动都暂停时，各规则行标「没有可弹的」。</li>
+</ul>
+<p><b>7. 和顶尖做法比</b></p>
+<ul>
+<li>优先级拖动：Braze「Set exact priority」拖动排序（对标第 101 行）：同。Braze 同级时新建的优先，我们新建的排最后：不同，理由是新规则不抢在线规则的人，要先由运营自己往前拖。</li>
+<li>拖完点保存才生效：弹-11（作用于一组投放的设置要点保存，不在列表上点一下就生效）：同。</li>
+<li>按活动或礼包找规则：Braze Content Blocks 能看被哪些消息用到（对标第 106 行，弹-12）：同。我们在列表里筛，另在卡 C 写「另有几条规则在用」。</li>
+<li>复制：营销类应用内消息复用靠复制（弹-12）：同。</li>
+<li>展开看规则里有哪些弹窗：参考库没有对应条目，不比。</li>
+<li>列表看数据：弹-04 列表看今日曝光与点击率：数据归功能框架任务，本卡只放「看数据」入口。</li>
+</ul>
+<p><b>8. 验收标准</b></p>
+<ul>
+<li>测试账号在「弹窗固定不弹」里（功能清单第 95 行），按群组发不到：下面用测试账号验上线规则的，发送对象用上传名单（名单不受固定不弹限制），或用发送测试（卡 B4）。</li>
+<li>四个场景页签各只列本场景的规则；默认不列已结束的，「显示已结束的」选是后才列。</li>
+<li>把一条规则拖到第 1 位，不点保存刷新后顺序不变；点保存，确认框列出改前、改后，确认后测试账号同时符合这两条时弹新的第 1 条。</li>
+<li>有搜索或筛选时不能拖动。</li>
+<li>新建规则上架后排在本场景最后。</li>
+<li>搜某个群组名，列出发送对象或排除群组里有它的规则。</li>
+<li>按某活动筛选后只剩含它的规则；点活动名打开它的弹窗设置侧边框。</li>
+<li>展开一条规则，能看到每个弹窗的名称、固定还是轮换池、顺序，轮换池组标题上写每次弹几个；过期的标灰并写原因。</li>
+<li>各状态只出现规定的操作：已结束的没有编辑、恢复；草稿没有暂停、看数据。</li>
+<li>复制得到一条草稿，各项设置和原规则一致，名称带「（副本）」。</li>
+</ul>
+<p><b>9. 已定事项落点</b></p>
+<ul>
+<li>功能清单第四节第 7 条，对齐卡原文后半句：「规则列表每条能展开，看到有哪些弹窗、是否轮换、顺序（Dk 10/30）」→ 字段「展开·有哪些弹窗」「展开·是否进轮换池」「展开·顺序」。未改；另加「轮换池每次弹几个」「这次不会弹的标注」两项只读标注，理由见字段表。</li>
+<li>功能清单第四节第 6 条，对齐卡原文：「弹窗的四个触发点叫『场景』（Dk 10/29）」→ 字段「按场景分页签」。未改。</li>
+<li>功能清单第四节第 1 条，对齐卡原文：「每个活动或礼包存一份弹窗设置，在规则里第一次加入时当场配，别的规则自动带出，不单独建〔旧〕弹窗内容页（推荐做法 C（每个活动或礼包一份弹窗设置））」→ 页签里不再有〔旧〕弹窗内容页签；「按活动或礼包筛选」作为单独打开活动弹窗设置的入口（已替你定，可推翻）。未改。</li>
+<li>叫法表约定（已替你定，可推翻）→ 展开里只写「轮换池」，不写「轮流」。</li>
+</ul>
+<p><b>10. 待拍板／待研发确认</b></p>
+<ul>
+<li>待拍板：无。本卡的简化都不减少运营能做的事：按发送对象筛选并进搜索、状态筛选改成「显示已结束的」、两列合一、操作时间和操作人移到操作纪录。</li>
+<li>待研发确认：研发评审待确认第 27 条（后台能不能读到活动自带的宣传图），决定「没有宣传图」这个标注会不会出现。</li>
+<li>已替你定，可推翻：拖完要点保存才生效；有筛选时不能拖；草稿和已结束的不排号；复制带上本规则另设；草稿可以删除；按活动或礼包筛选只筛当前场景。</li>
+</ul></div></details><details class="cardd" id="card-A3"><summary><span class="cn">A3</span><span class="ct">操作纪录（弹窗部分）</span><span class="cm">这张卡改了什么：范围加上活动或礼包的弹窗设置；弹窗页的「操作纪录」页签就是全后台操作纪录筛好弹窗三处，不另建一套</span><span class="cm">字段 6 个｜待拍板：无</span></summary><div class="cb"><p><b>1. 功能名｜对应任务</b><br>操作纪录（弹窗部分）｜T29</p>
+<p><b>2. 谁在什么场景用</b><br>运营或主管发现某个弹窗突然不弹或多弹，查谁在什么时候改了什么；客服转来玩家投诉时，对一下那个时间点的设置。</p>
+<p><b>3. 要解决什么问题（带来源）</b></p>
+<ul>
+<li>旧后台弹窗页有「操作纪录」页签（〔截〕截图转录第 24 行）；已定事项第 22 条要「〔旧〕变更记录」。</li>
+<li>每个活动或礼包一份弹窗设置以后，一份设置被几条规则共用，改一处几条规则一起变（故事地图 T4、T6），更要查得到是谁改的。</li>
+<li>功能框架已有全后台的操作纪录（〔框〕「操作纪录」节点），范围里还没有活动或礼包的弹窗设置，里程碑 2 换功能框架弹窗段时补上。</li>
+</ul>
+<p><b>4. 字段表</b></p>
+<div class="tw"><table class="md"><tr><th>字段名</th><th>选项和默认值</th><th>为什么要填／要看</th><th>不填／没有会怎样</th><th>能不能更简单 → 结论</th><th>旧后台对应</th><th>来源</th></tr><tr><td>入口</td><td>弹窗页的「操作纪录」页签，打开的是全后台操作纪录，已筛好弹窗的三处改动</td><td>运营在弹窗页上查改动最顺手</td><td>要跳到别的菜单再筛</td><td>是否：不适用；默认：打开时已筛好弹窗；带出：不另建一套记录，用全后台那一份；去掉页签只留全后台菜单：可以，但旧后台就在弹窗页上，运营习惯在这里找 → 保留页签，内容用同一份</td><td>旧后台清单第 15 项</td><td>〔截〕截图转录第 24 行；清单第 1、31 行</td></tr><tr><td>记录范围</td><td>场景设置；弹窗规则（新建、编辑、调优先级、暂停、恢复、结束、复制、删除草稿）；活动或礼包的弹窗设置（含在所有规则里暂停）；系统改动（规则到期结束、活动或礼包过期）</td><td>这几处改动都会改变玩家看到什么</td><td>改了活动设置导致几条规则一起变，查不到原因</td><td>是否：不适用；默认：全记，不让运营选；带出：系统自动记，运营不填；去掉活动或礼包的弹窗设置：不能，一份设置被几条规则共用，它是一改影响最大的地方 → 保留</td><td>旧后台清单第 15 项（旧范围截图未露出）</td><td>已定事项第 22 条；〔框〕操作纪录「系统改动」；清单第 31 行</td></tr><tr><td>时间、操作人</td><td>系统自动记；系统改动的操作人写「系统」</td><td>知道谁、什么时候改的</td><td>查不到责任人和时间点</td><td>是否：不适用；默认：不适用；带出：自动记；去掉：不能 → 保留</td><td>旧后台清单第 14 项（〔文〕操作时间、操作人）</td><td>〔框〕操作纪录「每行：操作人、时间、改前、改后」</td></tr><tr><td>改的是哪个</td><td>场景名，或规则名称和编号，或活动或礼包名</td><td>一眼看出改的是哪条</td><td>只有改前改后，不知道是哪条规则的</td><td>是否：不适用；默认：不适用；带出：自动记，名称存当时的（后来改名也认得出）；去掉：不能 → 保留</td><td>无</td><td>推断：没有它改前改后读不懂</td></tr><tr><td>改前、改后</td><td>每个改了的字段一行：字段名、改前、改后；调优先级写改前、改后的顺序</td><td>看清改了什么，必要时照着改回去</td><td>只知道有人改过，不知道改了什么</td><td>是否：不适用；默认：不适用；带出：自动记；去掉：不能 → 保留</td><td>无</td><td>〔框〕操作纪录；〔评〕第 310 行</td></tr><tr><td>筛选</td><td>搜索名称或编号；时间范围，默认近 7 天</td><td>按规则或活动找它的改动，按时间对投诉</td><td>一页翻到底</td><td>是否：不适用；默认：近 7 天；带出：从规则列表的操作里点进来时，带出这条规则的名称；去掉按操作人筛选：可以，每行已写操作人 → 只留搜索和时间范围</td><td>无</td><td>推断：排查都是从「哪条规则、哪天」开始</td></tr></table></div>
+<p><b>5. 规则</b></p>
+<ol>
+<li value="1">每次保存记一条；一次保存改了几项，写在同一条里逐项列。</li>
+<li value="2">调优先级记一条，写改前、改后的顺序。</li>
+<li value="3">规则到期结束、活动或礼包过期，系统记一条，操作人写「系统」。</li>
+<li value="4">记录不能改、不能删。</li>
+<li value="5">只记改动，不记查看。</li>
+</ol>
+<p><b>6. 异常</b></p>
+<ul>
+<li>两人几乎同时保存：各记一条，按时间先后排。</li>
+<li>活动或礼包被活动后台删除：记录里的名称保留当时的。</li>
+<li>活动改期带动规则生效时间变：记为系统改动（〔框〕操作纪录「活动改期带动的时间变化」）。</li>
+<li>过期、图没传、跳转页面没填、上限和间隔冲突、另设冲突、所有活动都暂停：都不是改动，不在本卡；其中「在所有规则里暂停」开关被打开或关掉时记一条。</li>
+</ul>
+<p><b>7. 和顶尖做法比</b><br>参考库里没有操作纪录这一项，不比。旧后台的弹窗页和推荐礼包管理都有操作纪录（截图转录第 24、67 行），沿用。</p>
+<p><b>8. 验收标准</b></p>
+<ul>
+<li>改一次场景设置、调一次优先级、暂停一条规则、改一个活动的弹窗设置，操作纪录里各有一条，时间、操作人、改的是哪个、改前改后都对。</li>
+<li>从弹窗页的「操作纪录」页签进去，只看到这三处和系统改动。</li>
+<li>记录上没有编辑、删除按钮。</li>
+</ul>
+<p><b>9. 已定事项落点</b></p>
+<ul>
+<li>功能清单第四节第 8 条，已定事项第 22 条原文里的「〔旧〕变更记录」→ 本卡。未改（叫法按叫法表写成「操作纪录」）。</li>
+<li>里程碑 2 换功能框架弹窗段时，全后台「操作纪录」的范围要补「活动或礼包的弹窗设置」。</li>
+</ul>
+<p><b>10. 待拍板／待研发确认</b></p>
+<ul>
+<li>待拍板：无。</li>
+<li>待研发确认：记录保留多久。</li>
+<li>已替你定，可推翻：弹窗页签就是全后台操作纪录筛好弹窗；不按操作人筛选；默认近 7 天；不记查看。</li>
+</ul></div></details><details class="cardd" id="card-A4"><summary><span class="cn">A4</span><span class="ct">旧入口停用与数据迁移</span><span class="cm">这张卡改了什么：〔旧〕弹窗形式迁到活动或礼包上的「点击后是否跳转」；时机、次数、〔旧〕冷却迁到活动或礼包的弹窗设置上，不迁成规则层的设置；活动类、储值类两条旧规则：研发确认一起弹的合成一条（活动类的项迁成固定、储值类的项迁进轮换池，每次最多弹几个取两条之和），不是一起弹的保持两条</span><span class="cm">字段 11 个｜待拍板：第 1 条；研发确认后再问 1 件</span></summary><div class="cb"><p><b>1. 功能名｜对应任务</b><br>旧入口停用与数据迁移｜T30</p>
+<p><b>2. 谁在什么场景用</b><br>研发在新后台上线时做一次；配弹窗的运营上线当天逐条核对迁过来的规则对不对。</p>
+<p><b>3. 要解决什么问题（带来源）</b><br>线上现有 3 条规则：ID5 活动类 14 项、ID6 储值类 7 项、ID7 破产 8 项（〔截〕截图转录第 31–37 行）。换后台时玩家看到的弹窗不能断，也不能新旧两边一起弹（〔评〕第 356–360 行）。</p>
+<p><b>4. 字段表</b>（迁移对照：每行一个旧字段迁到哪；「为什么要填」写为什么要迁，「不填会怎样」写不迁会怎样）</p>
+<div class="tw"><table class="md"><tr><th>字段名</th><th>选项和默认值</th><th>为什么要填（为什么要迁）</th><th>不填会怎样（不迁会怎样）</th><th>能不能更简单 → 结论</th><th>旧后台对应</th><th>来源</th></tr><tr><td>名称、编号</td><td>原样迁，编号沿用旧的</td><td>运营认名称，客服、研发认编号（RICH-19096）</td><td>新旧对不上，查问题时找不到</td><td>是否：不适用；默认：原值；带出：自动迁，运营不填；去掉（重新编号）：不能 → 原样迁</td><td>旧后台清单第 2、4 项</td><td>〔截〕截图转录第 26、31–33 行</td></tr><tr><td>场景</td><td>〔旧〕大厅自动弹窗→进大厅；〔旧〕游戏破产弹窗→破产时</td><td>新后台按场景分页签、按场景比优先级</td><td>规则没有场景，进不了任何页签</td><td>是否：不适用；默认：按左边对照；带出：自动对；去掉：不能 → 自动对</td><td>旧后台清单第 5 项</td><td>〔截〕截图转录第 31–33 行</td></tr><tr><td>发送对象</td><td>全部玩家→全部玩家；标签（标签名称＋群组 ID）→群组；〔旧〕标签状态不迁（卡 B1 去掉）</td><td>规则给谁要原样</td><td>规则给错人或没人</td><td>是否：不适用；默认：现网 3 条都是全部玩家，原样迁；带出：自动迁；去掉〔旧〕标签状态：可以（清单第 41 行）→ 原样迁，标签状态不迁</td><td>旧后台清单第 6 项</td><td>〔截〕截图转录第 31–33 行</td></tr><tr><td>每次最多弹几个</td><td>单独一条的取原值；研发确认活动类、储值类两条一起弹、合成一条的，取两条之和（ID5 是 3 还是 2，以库里为准）</td><td>一次进入弹几个要和现在一样</td><td>弹多或弹少</td><td>是否：不适用；默认：原值，合成一条的取两条之和；带出：自动迁；去掉：不能 → 原值，合成时取两条之和</td><td>旧后台清单第 7 项〔旧〕弹出数量</td><td>〔截〕截图转录第 31–33 行；研发评审待确认第 25 条</td></tr><tr><td>〔旧〕弹窗类型</td><td>不迁；同场景同一批人的活动类、储值类两条，研发确认一起弹的合成一条：活动类的项为固定、储值类的项进轮换池，轮换池每次弹几个取储值类旧值，每次最多弹几个取两条之和；不是一起弹的保持两条（规则第 6 条）</td><td>类型只用来把礼包和活动分两条各排各的（清单第 48 行）</td><td>不影响，新后台没有这个字段</td><td>是否：不适用；默认：不适用；带出：不适用；去掉：可以（卡 B2），但两条一起弹的组合要另想办法 → 不迁，两条按规则第 6 条合成或保持</td><td>旧后台清单第 3 项</td><td>〔截〕截图转录第 31–33 行；清单第 48 行</td></tr><tr><td>弹哪些活动或礼包、排先后</td><td>原顺序；合成一条的，活动类旧规则的项是否进轮换池为否（固定），储值类旧规则的项为是（轮换池，池内按原顺序）；单独一条或保持两条的全部为否</td><td>现在每条规则按顺序弹，迁过来要一样</td><td>规则是空的，什么都不弹</td><td>是否：活动类的项为否、储值类的项为是，和现在一样「活动取前几个＋礼包取一个」；默认：原顺序；带出：自动迁；去掉：不能 → 原样迁</td><td>旧后台清单第 8、9 项〔旧〕弹窗排序</td><td>〔截〕截图转录第 33–37 行</td></tr><tr><td>时机、次数、〔旧〕冷却 → 活动或礼包的弹窗设置</td><td>〔旧〕弹窗时机→弹出时机（选项对到卡 C）；〔旧〕弹窗次数→每人每天几次；〔旧〕冷却时间 0 秒→每人两次至少隔多久「不设」</td><td>已定表第 1 条（每个活动或礼包一份弹窗设置）和已定事项第 25 条：这几项存在活动或礼包上</td><td>迁过来的活动没有时机和次数，弹不出或乱弹</td><td>是否：不适用；默认：原值（截图全是每天 1 次、〔旧〕冷却 0 秒）；带出：ID5 里每个活动只出现一次，直接成为活动上的设置，不用另设；去掉：不能 → 迁到活动或礼包上</td><td>旧后台清单第 10、12、13 项</td><td>〔截〕截图转录第 33–36 行；〔评〕第 360–362 行</td></tr><tr><td>〔旧〕弹窗形式 → 点击后是否跳转</td><td>按研发评审待确认第 24 条的结果对（卡 C）</td><td>新后台弹的都是宣传图，点击后是否跳转存在活动或礼包上</td><td>迁过来的活动不知道点了去不去</td><td>是否：新字段本来就是是否；默认：等第 24 条结果再定对法；带出：自动迁；去掉：不能 → 按第 24 条结果对</td><td>旧后台清单第 11 项</td><td>〔截〕截图转录第 36 行；研发评审待确认第 24 条</td></tr><tr><td>场景设置初值</td><td>多条规则都符合时＝只用优先级最高的一条；每人每天最多弹几个、弹出间隔＝按待拍板第 2、3 条拍板的值；不受间隔限制＝破产时填破产礼包</td><td>新后台每个场景都要有一份设置</td><td>场景设置是空的，系统不知道怎么选规则</td><td>是否：不适用；默认：只用优先级最高的一条（〔评〕第 315 行；现网同类规则按〔旧〕权重只取一条）；带出：不能，旧后台没有这几项；去掉：不能 → 按左边设</td><td>无</td><td>〔评〕第 315–316 行；草稿工作表1第 19 行</td></tr><tr><td>旧入口</td><td>「大厅弹窗顺序设定」「弹窗排序配置」在新规则上架的同一刻停用，旧页面只读；「玩家弹窗顺序查询」并入玩家查询（功能框架任务）</td><td>不能新旧两边一起弹，也不能两边都能改</td><td>两边都生效，玩家一次进大厅被弹两遍</td><td>是否：不适用；默认：同一刻切换；带出：不适用；去掉只读、直接下线：可以，但上线头几天运营要对照旧配置 → 只读</td><td>无</td><td>〔评〕第 356–359 行；清单第 32、89 行</td></tr><tr><td>〔旧〕操作纪录</td><td>不迁；旧页面只读保留，可查</td><td>上线前谁改过什么偶尔还要查</td><td>旧记录查不到</td><td>是否：不适用；默认：不迁；带出：不迁，新后台从上线起记；去掉旧记录：不能，要留着查 → 不迁、旧页只读</td><td>旧后台清单第 15 项</td><td>〔截〕截图转录第 24 行</td></tr></table></div>
+<p><b>5. 规则</b></p>
+<ol>
+<li value="1">迁移由研发跑一次；迁完新规则先是草稿，运营在列表里逐条展开，对照旧后台核对。</li>
+<li value="2">新规则上架和旧入口停用在同一刻；任何时候新旧两边不能同时生效。</li>
+<li value="3">迁移不改变玩家看到的弹窗，除了规则第 6 条两条合成一条、待拍板第 1、2、3 条拍板后带来的变化；这些变化写进上线说明。</li>
+<li value="4">切换选在低峰时段；当天已弹次数是否接着算，待研发确认。</li>
+<li value="5">客户端什么时候拿到新配置，写进上线说明（弹-07）。</li>
+<li value="6">同一场景、同一批人的〔旧〕活动类、储值类两条旧规则怎么迁，看研发评审待确认第 25 条（目标是玩家看到的不变；已替你定，可推翻）。若研发确认一次进大厅两条都弹：合成一条新规则，活动类旧规则的项迁成固定（是否进轮换池：否），按原顺序；储值类旧规则的项迁进轮换池（是否进轮换池：是），池内按原顺序，「轮换池每次弹几个」取储值类旧规则的每次弹几个；「每次最多弹几个」取两条之和。待拍板第 1 条选推荐（留名额）或备选（「固定的每次弹几个」取活动类旧值），迁过来都是「活动取前几个＋礼包 1 个」，运营不用上线前手动改。仍有的差别写进上线说明：同一批人同时有几个礼包可弹时，现网总弹排第一的，迁后在轮换池里轮流弹；待拍板第 1 条若两种都不选（维持「固定的占满时轮换池这次不弹」），活动能弹的够多时礼包仍会被挤掉。若研发确认不是一起弹（只取一条）：不合并，保持两条，场景设「只用优先级最高的一条」，优先级按现网实际先取的那条排前，迁移前后弹法不变。</li>
+</ol>
+<p><b>6. 异常</b></p>
+<ul>
+<li>旧规则里的项在活动后台、礼包后台找不到（推断：如热门资讯这类写死在客户端的）：迁移清单列出，由运营手动选对应活动或去掉。</li>
+<li>同场景两条规则一起弹：见规则第 6 条和待拍板第 1 条。</li>
+<li>切换前用按玩家预览（卡 B4）抽查几个玩家，和旧「玩家弹窗顺序查询」结果不一致的：不切换，查清再切。</li>
+<li>切换后发现问题要退回：旧入口能不能恢复，待研发确认。</li>
+<li>活动过期、图没传、跳转页面没填：迁过来的活动按卡 C 处理；宣传图默认用自带的（研发评审待确认第 27 条）。</li>
+<li>和上限或间隔冲突：迁移后第一次启用上限和间隔，现网没有，这就是待拍板第 2、3 条要拍板的原因。</li>
+<li>规则另设和活动设置冲突：现网每个活动只在一条规则里，迁移时不产生另设。</li>
+<li>所有活动都被暂停：迁移时不会出现，迁过来的活动全部是「未暂停」。</li>
+</ul>
+<p><b>7. 和顶尖做法比</b></p>
+<ul>
+<li>生效时机要写明：OneSignal 应用内消息在 App 启动时拉取，Unity 在新会话开始时刷新（弹-07）：同，我方什么时候拉取待研发确认。</li>
+<li>迁移本身参考库里没有，不比。</li>
+</ul>
+<p><b>8. 验收标准</b></p>
+<ul>
+<li>测试账号在「弹窗固定不弹」里（功能清单第 95 行），按群组发不到：下面用测试账号验上线规则的，发送对象用上传名单（名单不受固定不弹限制），或用发送测试（卡 B4）。</li>
+<li>迁移后每条规则的名称、编号、场景、发送对象、每次最多弹几个、弹窗和顺序，和旧后台截图逐项一致；研发确认两条一起弹、合成一条的，活动类的项为固定、按原顺序，储值类的项在轮换池里、按原顺序，轮换池每次弹几个等于储值类旧值，每次最多弹几个是两条之和；保持两条的，两条各自和旧规则一致。</li>
+<li>迁过来的每个活动的弹出时机、每人每天几次、每人两次至少隔多久，和旧后台一致。</li>
+<li>同一测试账号切换前后进大厅，弹的弹窗一致；不一致的只有两条合成（规则第 6 条）和待拍板第 1、2、3 条带来的，并已写进上线说明。</li>
+<li>切换后旧入口只读、改不了；测试账号进大厅弹窗个数不超过新规则的每次最多弹几个（证明没有新旧一起弹）。</li>
+</ul>
+<p><b>9. 已定事项落点</b></p>
+<ul>
+<li>功能清单第四节第 2 条，已定事项第 25 条原文：「每一项的〔旧〕冷却并进次数，写成『每天 N 次，两次至少隔多久』，活动上存默认、规则里可改」「不要规则整体〔旧〕冷却」→ 迁移时〔旧〕冷却时间迁到活动上的「每人两次至少隔多久」，不迁成规则层的设置。未改。</li>
+<li>功能清单第四节第 3 条，已定事项第 26 条原文：「图和跳转按活动存一份，不在规则里另设」→ 〔旧〕弹窗形式迁到活动或礼包上的「点击后是否跳转」。未改。</li>
+</ul>
+<p><b>10. 待拍板／待研发确认</b></p>
+<ul>
+<li>待拍板：无新增。两条旧规则怎么迁按研发确认分两种写（规则第 6 条，已替你定，可推翻）；待拍板第 1 条两种都不选时礼包仍会被挤掉，见卡 A1 第 10 栏。</li>
+<li>待研发确认：①当天已弹次数切换后是否接着算；②客户端什么时候拿到新配置；③旧入口停用后能不能退回；④写死在客户端的项能不能在活动后台选到；⑤ID5 每次弹 3 个还是 2 个（研发评审待确认第 25 条）；⑥〔旧〕弹窗形式两种的确切意思（第 24 条）。</li>
+<li>已替你定，可推翻：迁过来先是草稿、运营核过再上架；旧页面只读保留；〔旧〕操作纪录不迁；两条旧规则一起弹的合成一条（活动类迁成固定、储值类迁进轮换池），不是一起弹的保持两条。</li>
+</ul></div></details><details class="cardd" id="card-B1"><summary><span class="cn">B1</span><span class="ct">场景和发送对象</span><span class="cm">这张卡改了什么：名称三种语言改成一个、默认自动拼好；不再默认排除 VIP 名单；加「预计人数」和「多个群组时」（推播已有，弹窗原来没有）；实验组与对照组不另设规则；场景默认带出所在页签；去掉旧后台的〔旧〕标签状态。</span><span class="cm">字段 9 个｜待拍板：第 5 条、第 8 条、第 10 条</span></summary><div class="cb"><h4>1. 功能名｜对应任务</h4>
+<p>新建（编辑）弹窗规则：选场景、给谁弹、什么时候生效｜T7、T8、T9、T10、T11、T12、T28</p>
+<h4>2. 谁在什么场景用</h4>
+<p>运营新建或编辑一条弹窗规则的第一步：在规则列表某个场景页签点「新建」，先定这条规则在哪个场景弹、给哪类玩家弹、从什么时候生效，再去 B2 选弹哪些活动或礼包。新活动上线、调整人群分层时用；草稿一次计划 14 条规则（7 类人群各两条，工作表2第 20–80 行）。</p>
+<h4>3. 要解决什么问题</h4>
+<ul>
+<li>定在哪一刻弹：线上有〔旧〕弹窗位置两种「大厅自动弹窗／游戏破产弹窗」（截图，截图转录第 25、29–33 行）；破产时要先弹納福禮包、取消后弹發財金（RICH-22317）。另两个场景「买了指定礼包后」「押注达到指定金额」只在 10/28 评审稿出现，运营原话没找到（T8，推断）。</li>
+<li>只对某类玩家弹：草稿 14 条规则全按人群分，派发对象有未首儲／已首儲、普卡銀卡／金卡白金卡／鑽石卡黑卡至尊卡、輕回流／回流（草稿工作表2第 21、44、67 行）；RICH-23076「大廳自動彈窗vip卡別 至尊卡 都不會彈窗後臺設定的彈窗」。</li>
+<li>不该看到的人不弹：RICH-24521 黑名单的人仍看到每日挑战弹窗（这类由系统固定不弹，规则 5）；RICH-23228「卡別直升在新帳號未首儲情況下會彈出彈窗」（这类用排除群组）。</li>
+<li>做实验比效果：已定事项第 22 条「实验组与对照组」（T11）。</li>
+<li>规则只在一段时间里生效：推断（T12），弹的多是限时活动（RICH-19589、22592）。</li>
+<li>配完当场知道覆盖多少人：已定事项第 22 条「人数预览」。</li>
+</ul>
+<h4>4. 字段表</h4>
+<div class="tw"><table class="md"><tr><th>字段名</th><th>选项和默认值</th><th>为什么要填</th><th>不填会怎样</th><th>能不能更简单（四种试法）→ 结论</th><th>旧后台对应</th><th>来源</th></tr><tr><td>场景（必填）</td><td>进大厅／破产时／买了指定礼包后／押注达到指定金额；默认＝点「新建」时所在的场景页签</td><td>先后、每人每天最多弹几个、弹出间隔都按场景算（卡 A），规则要属于一个场景</td><td>系统不知道在哪一刻判定这条规则，不能保存</td><td>改成是否：不能，四选一｜给默认值：可以，取所在页签｜自动带出：从页签带出，和默认值是一回事｜去掉：不能，四个场景的时机和人不同 → <b>简化：默认带出</b>；上架后不能改，换场景用复制（卡 A）</td><td>旧后台清单第 5 项</td><td>截图 截图转录第 25、29–33 行；功能清单第 35–36 行；Dk 10/29 叫「场景」</td></tr><tr><td>场景参数：礼包或金额</td><td>「买了指定礼包后」选礼包，可选多个，买了其中任一个都算；「押注达到指定金额」填金额；无默认；另两个场景不出现</td><td>这两个场景要说清买哪个礼包、押多少才弹</td><td>任何购买、任何押注都弹，打扰所有付费、下注的人；不能保存</td><td>改成是否：不能｜给默认值：不能，没有通用的礼包或金额｜自动带出：不能，礼包、金额是运营的意图｜去掉：不能，除非去掉这两个场景（四个场景是已定的）→ <b>保留</b>；押注按单笔还是累计待研发确认</td><td>无（评审稿新加）</td><td>〔评〕第 234–237 行；功能清单第 37–38 行；研发待确认第 1 条</td></tr><tr><td>名称（必填）</td><td>一个名称；默认自动填「场景·发送对象群组名」，可改</td><td>列表、操作纪录、数据页靠名称认规则</td><td>只剩编号，认不出哪条是给哪类人的</td><td>改成是否：不能｜给默认值：可以，自动拼「场景·群组名」｜自动带出：拼名就是从场景和群组带出｜去掉：不能，只看编号认不出 → <b>简化：三种语言改一个（待拍板第 10 条），默认自动拼名</b></td><td>旧后台清单第 4 项</td><td>截图 截图转录第 26 行；功能清单第 33–34 行</td></tr><tr><td>发送对象（必填）</td><td>全部玩家／群组（可多选）／上传名单；无默认</td><td>草稿 14 条规则全按人群分</td><td>不知道给谁弹，不能保存</td><td>改成是否：不能，三选一｜给默认值：不给，默认「全部玩家」一忘改就对所有人弹｜自动带出：复制规则时带出（卡 A），新建时不能｜去掉：不能 → <b>保留</b>，和推播用同一个选人组件；上传名单弹窗上没找到运营原话，留着是和推播一致</td><td>旧后台清单第 6 项</td><td>截图 截图转录第 25 行；草稿工作表2第 21、44、67 行；功能清单第 40、42 行</td></tr><tr><td>多个群组时</td><td>满足任一个／同时满足全部；默认满足任一个；选 2 个以上群组才出现</td><td>草稿「普卡, 銀卡」是任一个；「金卡且未首储」这类要同时满足</td><td>按默认取任一个，和草稿写法一致</td><td>改成是否：可读成「是否要同时满足全部」，和两选一等价｜给默认值：默认满足任一个｜自动带出：不能｜去掉：可以，要交集时去会员标签另建群组；没去，因为已定事项第 22 条列了「群组交集」、推播已有 → <b>新增（弹窗原来没有）</b></td><td>旧后台清单第 6 项（能不能选多个没截到）</td><td>已定事项第 22 条；功能框架推播「多个群组时」；草稿工作表2第 44 行</td></tr><tr><td>实验组与对照组（不是单独字段）</td><td>在发送对象里选会员标签按随机分桶号建的两个群组，各建一条规则</td><td>已定事项第 22 条，要比两组的弹窗效果</td><td>不做实验时不用管</td><td>改成是否：可做成「是否实验」自动分组，要多一套分组设置，不做｜给默认值：不适用，选群组时才用｜自动带出：两组的对比数据自动出（数据归功能框架任务）｜去掉专门设置：可以，就是选两个群组 → <b>简化</b>：去掉评审稿「两条规则的〔旧〕弹窗内容只在本场景使用、次数不和其他场景合计」，次数本来按同一场景合计</td><td>无</td><td>已定事项第 22 条；〔评〕第 346–355 行；功能清单第 46 行</td></tr><tr><td>排除群组（选填）</td><td>多选群组；默认空，不再默认排除 VIP 名单</td><td>没首储的新号这类人要能排掉（黑名单、停权等由系统固定不弹，不用在这里选）</td><td>发送对象里的人全弹</td><td>改成是否：不能｜给默认值：默认空（评审稿默认排除 VIP 名单，改掉，待拍板第 5 条）｜自动带出：复制规则时带出｜去掉：不能，否则排掉没首储的人要另建交集群组 → <b>保留，默认改为空</b></td><td>无（评审稿新加）</td><td>〔评〕第 258–259 行；RICH-24521、23228；功能清单第 43–44 行</td></tr><tr><td>预计人数（只读）</td><td>两个数：符合发送对象 N 人、扣除排除后 M 人；随选随算；两个数都已扣掉固定不弹的人（黑名单、停权、自我限制、注销处理中的账号，机器人和测试账号；发送对象为上传名单时不扣机器人和测试账号）</td><td>不用填；让运营当场看出群组选错、人数为 0</td><td>没有它，上架后要到数据里才发现没人弹</td><td>改成是否：不适用｜给默认值：不适用｜自动带出：是，系统算｜去掉：可以只留「扣除排除后」一个数；留两个是为看出排除拿掉多少人，和推播一致 → <b>新增（弹窗原来没有）</b>；不要推播的第三个数「预计可接收」，进游戏的人都收得到</td><td>无</td><td>已定事项第 22 条「人数预览」；功能框架推播「预计人数」；功能清单第 23 行（列表写扣除后人数）、第 95 行（固定不弹）</td></tr><tr><td>生效期间（必填）</td><td>长期／指定起止（到分钟，台湾时间）；默认长期</td><td>规则能提前配好、到点开始，节日或限时人群的规则到点停</td><td>按默认长期，上架即生效</td><td>改成是否：已是两选一｜给默认值：默认长期｜自动带出：结束时间不用跟活动带，活动或礼包结束后各规则自动跳过它（卡 C）｜去掉：结束时间大多可去，开始时间去不掉（提前配、到点生效没别的办法）→ <b>保留，默认长期</b>；来源是推断（T12）</td><td>无（评审稿新加）</td><td>〔评〕第 254 行；功能清单第 47 行</td></tr></table></div>
+<p>去掉的旧设置：〔旧〕标签状态（功能清单第 41 行，待拍板第 8 条）；评审稿「覆盖其余玩家的规则要排除本场景其他规则的群组，上架时提醒」（功能清单第 45 行，改为规则 8 的写法）。</p>
+<p>系统固定排除、运营不设的：固定不弹（黑名单、停权、自我限制、注销处理中的账号，机器人和测试账号；功能清单第 95 行），照评审稿保留，不是字段，见规则 5、6。</p>
+<h4>5. 规则</h4>
+<ol>
+<li value="1">进大厅：这条规则按卡 C 的弹出时机判定。破产时、买了指定礼包后、押注达到指定金额：事件发生时判定，不看弹出时机（功能清单第 39 行）。</li>
+<li value="2">场景在草稿状态能改；上架后（上架中、已暂停、已结束）不能改，要换场景用「复制规则」（卡 A）。草稿改了场景，场景参数清空，已加的活动或礼包保留。</li>
+<li value="3">买了指定礼包后：玩家买到所选任一礼包后判定一次。押注达到指定金额：押注额大于等于所填金额时判定；同一场景几条规则填了不同礼包或金额时，只有参数符合的规则参与（研发待确认第 1 条）。</li>
+<li value="4">发送对象：全部玩家＝所有玩家；群组按「多个群组时」取任一或全部；上传名单按会员编号，上传后不变。判定时按玩家那一刻所在的群组算。</li>
+<li value="5">排除优先：在任一排除群组里的人，即使在发送对象里也不弹这条规则。固定不弹的人（黑名单、停权、自我限制、注销处理中的账号，机器人和测试账号）在任何弹窗规则里都不弹，运营不用设、也不能移出；发送对象为上传名单时，机器人和测试账号照名单弹（和推播、短信同一套判定，评审版原型「弹窗固定不弹」）。</li>
+<li value="6">预计人数：两个数都先扣掉固定不弹的人（规则 5）；符合发送对象＝所选群组或名单去重后的人数；扣除排除后＝再去掉在任一排除群组里的人。不扣「被优先级更高的规则先接走」的人，那部分在保存确认里提示（B5）。</li>
+<li value="7">生效期间按台湾时间：指定起止的，开始前状态为未开始、过了结束时间为已结束（卡 A）；长期的一直有效，直到运营暂停。</li>
+<li value="8">一个人符合同一场景几条规则时弹哪条，由场景设置「多条规则都符合时」和优先级决定（卡 A）。选「只用优先级最高的一条」时，发送对象为全部玩家的兜底规则排最后，只接到前面没接走的人，不用手动排除其他规则的群组；选「轮流」时，保存确认提示同时符合其他规则的人数（B5）。</li>
+<li value="9">实验组与对照组：两条规则在同一场景，优先级排在会符合的其他规则前面，否则组里的人会被前面的规则接走（〔评〕第 353 行）。要比「弹与不弹」时，对照组那条规则可以不加活动或礼包（B2 规则 7）。</li>
+</ol>
+<h4>6. 异常</h4>
+<ul>
+<li>发送对象或排除群组里的群组被删除：编辑页标红，规则不能再上架；已上架的按剩下的群组算，列表标出（卡 A）。</li>
+<li>预计人数为 0：可以保存，保存确认提示「这条规则现在没有人符合」。</li>
+<li>发送对象和排除群组选了同一个群组：当场提示，扣除排除后为 0。</li>
+<li>上传名单里有不存在的会员编号：上传时列出无效编号个数，只用有效的。</li>
+<li>「买了指定礼包后」所选礼包已结束：规则里标「礼包已结束」，这条规则不会再被触发。</li>
+<li>生效期间结束早于开始、或结束早于现在：不能保存。</li>
+<li>生效期间到了而规则里的活动还没结束：规则到期即停，以规则为准。</li>
+<li>活动或礼包过期、图没传、跳转页面没填、和上限或间隔冲突、规则另设和活动设置冲突、所有活动都被暂停：本卡字段不涉及，见 B2、B3、卡 A、卡 C。</li>
+</ul>
+<h4>7. 和顶尖做法比</h4>
+<div class="tw"><table class="md"><tr><th>项</th><th>顶尖怎么做</th><th>我们</th><th>同／不同及理由</th></tr><tr><td>场景</td><td>弹-06：按事件触发（开始会话、购买、自定义事件），一条消息可设多个触发、取「或」</td><td>一条规则只属一个场景</td><td>不同：先后、每人每天最多弹几个、弹出间隔都按场景算（卡 A），一条规则跨场景就算不清</td></tr><tr><td>发送对象和排除</td><td>弹-05：Braze、OneSignal 按分群投放，可包含、可排除</td><td>群组、排除群组</td><td>同</td></tr><tr><td>生效期间</td><td>弹-06：可设起止时间，按用户本地时区</td><td>按台湾时间</td><td>不同：后台统一按台湾时间（〔评〕第 288–293 行）</td></tr><tr><td>预计人数</td><td>弹-06：Firebase 发布前显示可触达比例</td><td>显示人数</td><td>同</td></tr><tr><td>实验组与对照组</td><td>参考库弹-01 至弹-12 没收这一项</td><td>两个群组各一条规则</td><td>未比（缺口）</td></tr><tr><td>竞品</td><td>只有玩家端录屏，看不到后台怎么选人</td><td>—</td><td>不比</td></tr></table></div>
+<h4>8. 验收标准</h4>
+<ul>
+<li>测试账号在「弹窗固定不弹」里（功能清单第 95 行），按群组发不到：下面用测试账号验上线规则的，发送对象用上传名单（名单不受固定不弹限制），或用发送测试（卡 B4）。第 4、5、9 条验的是群组逻辑，在测试环境用不带测试账号标记的普通玩家账号验，不请研发临时放开固定不弹（放开后验的就不是上线时的逻辑）。</li>
+</ul>
+<ol>
+<li value="1">在「破产时」页签点新建，场景默认是「破产时」；规则上架后场景不能改，复制出的新规则能改。</li>
+<li value="2">选「买了指定礼包后」不选礼包、选「押注达到指定金额」不填金额，不能保存。</li>
+<li value="3">只有一个名称输入框，默认填「场景·群组名」；改过的以改的为准。</li>
+<li value="4">发送对象选两个群组、选「同时满足全部」，只在其中一个群组的普通玩家账号不弹，两个都在的弹；改成「满足任一个」后两类账号都弹。</li>
+<li value="5">普通玩家账号同时在发送对象和排除群组里，不弹。</li>
+<li value="6">新建规则时排除群组为空，没有自动带入 VIP 名单。</li>
+<li value="7">改发送对象或排除群组后预计人数刷新，两个数和会员标签里的群组人数（去重后）一致。</li>
+<li value="8">生效期间设为明天 10:00 开始：今天状态为未开始、测试账号不弹；到点后弹。结束早于开始不能保存。</li>
+<li value="9">实验组、对照组两条规则在同一场景，两组的普通玩家账号各自只弹各自规则里的活动或礼包。</li>
+<li value="10">发送对象选一个含黑名单账号的群组：预计人数不含黑名单的人；黑名单账号进场景不弹，排除群组里不用选黑名单。</li>
+</ol>
+<h4>9. 已定事项落点</h4>
+<div class="tw"><table class="md"><tr><th>已定（原文照抄）</th><th>本卡怎么承接</th><th>改没改</th></tr><tr><td>「弹窗的四个触发点叫「场景」（Dk 10/29）。」（对齐卡「已定、要遵守的」，已定表第 6 条）</td><td>字段「场景」，四个选项</td><td>未改</td></tr><tr><td>已定事项第 22 条：「17 项改动＝现有功能可做 6 项＋需开发 11 项（小改动 7：每人每日弹窗上限、群组交集、人数预览、口径说明、变更记录、引用清单、快显与 Facebook、LINE 效果记录；…）」；「组内随机对照→实验组与对照组」</td><td>实验组与对照组→字段「实验组与对照组」；群组交集→字段「多个群组时」；人数预览→字段「预计人数」（功能清单第四节第 8 行只列了实验组与对照组，另两项本卡补承接）</td><td>未改</td></tr><tr><td>其余已定（已定表第 1、2、3、4、5、7 条：每个活动或礼包一份弹窗设置、冷却、规则里能另设的项、宣传图与是否跳转、在所有规则里暂停、轮换池）</td><td>不在本卡，见 B2、B3、卡 A、卡 C</td><td>—</td></tr></table></div>
+<h4>10. 待拍板／待研发确认</h4>
+<p><b>待拍板</b>（编号同网页首屏；问题｜推荐｜理由）</p>
+<ul>
+<li>第 5 条 新建弹窗规则时不再默认排除 VIP 名单？｜不默认排除，可手动选｜默认排除是照营销推送（推播、短信）搬的；弹窗在游戏里，是活动和礼包的入口，名单里的人进大厅也该看到；默认排除会让高卡别规则对名单里的人不弹而运营不知道（VIP 名单和卡别重叠多少没查到）。</li>
+<li>第 8 条 去掉〔旧〕标签状态？｜去掉｜规则自己有上架、暂停，群组在会员标签模块启停，两处已够；它的作用只有文字描述（截图转录第 66 行），若它是「关掉后改对全部玩家弹」，去掉后要临时放开人群只能改发送对象。</li>
+<li>第 10 条 规则名称只留一个，不再分繁中、越南文、英文？｜只留一个｜规则名只有后台运营看，玩家看不到；若全后台统一要求名称三种语言（推播、短信也如此）则保留，归功能框架任务统一定。</li>
+</ul>
+<p><b>待研发确认</b></p>
+<ul>
+<li>研发待确认第 1 条：「买了指定礼包后」「押注达到指定金额」现在有没有；押注金额按单笔、单局、当天累计还是本次登录累计；同场景几条规则参数不同时是否只有参数符合的参与。</li>
+<li>判定时用的群组多久更新一次（会员标签的更新频率），决定新进群组的人多久后开始弹。</li>
+</ul>
+<p><b>已替你定，可推翻</b></p>
+<ul>
+<li>场景默认带出所在页签；名称默认自动拼「场景·群组名」。</li>
+<li>「多个群组时」两选一、默认满足任一个，跟推播一致（依据已定事项第 22 条「群组交集」）。</li>
+<li>「买了指定礼包后」可选多个礼包，买了任一个都算。</li>
+<li>预计人数给两个数，不扣被优先级更高规则接走的人（那部分归 B5）。</li>
+<li>对照组要比「弹与不弹」时，对照组规则可以不加活动或礼包。</li>
+<li>固定不弹的名单照评审稿保留（黑名单、停权、自我限制、注销处理中的账号，机器人和测试账号），运营不设，预计人数扣掉这些人。</li>
+</ul></div></details><details class="cardd" id="card-B2"><summary><span class="cn">B2</span><span class="ct">弹哪些活动或礼包及轮换池</span><span class="cm">这张卡改了什么：去掉〔旧〕弹窗类型，活动和礼包排在同一条规则里；新增「是否进轮换池」「轮换池每次弹几个」，轮换池内顺序就在列表里拖；可选列表自动带出新活动；第一次加入时当场配弹窗设置，别的规则带出；「每次最多弹几个」给默认值（进大厅 3、其他场景 1）；写清固定的弹不了时后面怎么补。</span><span class="cm">字段 6 个｜待拍板：第 1 条</span></summary><div class="cb"><h4>1. 功能名｜对应任务</h4>
+<p>在规则里定弹哪些活动或礼包、谁先弹、哪些换着弹｜T1、T4、T13、T14、T15</p>
+<h4>2. 谁在什么场景用</h4>
+<p>运营在新建或编辑弹窗规则时，定完场景和发送对象（B1）后用：往规则里加活动或礼包、排先后、挑几个进轮换池、定每次弹几个。新活动上线要加进去、活动结束要换下来、按效果调先后时都用（T34）。草稿里同一个活动最多出现在 5 条规则（思考笔记 1029 第 26 行）。</p>
+<h4>3. 要解决什么问题</h4>
+<ul>
+<li>新活动要发版才能选进弹窗：RICH-21939「後台&gt;大廳自動彈窗&gt;編輯活動ID20&gt;新增欄位確認下拉」下「沒有紅包狂歡」；RICH-22592「都沒有＂至尊回歸＂可供選擇」；RICH-19589「需添加至活動彈窗  進行配置」（T1）。</li>
+<li>一个活动在几条规则里要配好几遍：草稿 14 个活动和礼包在 14 条规则里出现 43 次（T4）。</li>
+<li>定谁先弹、一次弹几个：现网截图〔旧〕弹出数量活动类 3、储值类 1（截图转录第 29–33 行）；运营草稿（计划）14 条规则里 7 条每次 2 个、7 条每次 1 个，即 7 批人每批活动 2 个＋礼包 1 个（工作表2第 23、34、46、57、69、80 行）；草稿核心规则「单次弹窗最大数量 ≤ 3次」（工作表1第 18 行）（T13、T14）。</li>
+<li>排在后面的总弹不到：草稿 14 条里有 10 条加的个数多于每次弹的个数（如工作表2第 44–51 行排 4 个、每次 2 个），后面的要等前面次数用完；Dk 10/30 定轮换池，让几个活动换着弹（T15）。</li>
+</ul>
+<h4>4. 字段表</h4>
+<div class="tw"><table class="md"><tr><th>字段名</th><th>选项和默认值</th><th>为什么要填</th><th>不填会怎样</th><th>能不能更简单（四种试法）→ 结论</th><th>旧后台对应</th><th>来源</th></tr><tr><td>每次最多弹几个（必填）</td><td>正整数；默认按场景：进大厅 3 个，破产时、买了指定礼包后、押注达到指定金额 1 个；不设上限（一天总量由卡 A「每人每天最多弹几个」管）</td><td>一次触发最多挡几屏要运营定</td><td>按默认，进大厅每次弹排在前面能弹的 3 个，其他场景 1 个</td><td>改成是否：不能｜给默认值：可以。标准（各卡统一）：草稿里这个值按场景分开、按合并后口径（同一批人活动类、储值类两条相加）算，某个值占约三分之二以上才给默认，接近五五开的不给。草稿 7 批人每批都是活动 2＋礼包 1，进大厅合并后 7 批里 7 批是 3 → 默认 3；草稿没有其他场景的规则 → 默认 1｜自动带出：不能按加入个数算，草稿 10 条规则靠「前面用完后面补上」，加的多于弹的；可以改成「固定的每次弹几个＋轮换池每次弹几个」相加，要改含义，是待拍板第 1 条的备选｜去掉：不能 → <b>保留，默认进大厅 3、其他场景 1（已替你定，可推翻）</b></td><td>旧后台清单第 7 项</td><td>截图 截图转录第 29–33 行；草稿工作表2第 23、34、46、57、69、80 行；工作表1第 18 行「单次弹窗最大数量 ≤ 3次」；功能清单第 49 行</td></tr><tr><td>弹哪些活动或礼包</td><td>活动后台、礼包后台里未结束的自动列出，新上的不用发版（卡 C）；可搜名称或编号，可选多个；同一个在一条规则里只能加一次</td><td>规则的内容就是弹哪些</td><td>可以保存，但这条规则的人在本场景什么都不弹，保存时提示</td><td>改成是否：不能｜给默认值：不能，没有通用的一批｜自动带出：可选列表自动带出；已配过的活动加入时设置自动带出（已定表第 1 条）｜去掉：不能 → <b>保留，可选列表改为自动带出</b></td><td>旧后台清单第 8、9 项</td><td>截图 截图转录第 35–48 行；RICH-19589、21939、22592；功能清单第 50、52、53 行</td></tr><tr><td>先后（固定的弹出顺序）</td><td>拖动排；新加入的排在固定的最后</td><td>首选内容要先弹；名额少于个数时，先后决定谁弹</td><td>按加入的先后弹</td><td>改成是否：不能｜给默认值：按加入先后｜自动带出：不能，按礼包价值自动排只见于 RICH-2849 标题，且会让活动排不到礼包前面｜去掉：不能，名额少于个数时谁弹全靠它 → <b>保留</b>；去掉〔旧〕「同顺序新建的在前」（拖出来不会同顺序）</td><td>旧后台清单第 8 项</td><td>截图 截图转录第 35–48 行；草稿工作表2第 47 行；竞品结论稿第 21 行；功能清单第 50–51 行</td></tr><tr><td>是否进轮换池（每个活动或礼包）</td><td>是／否，默认否</td><td>让一部分活动换着弹，不总是同一批</td><td>按默认否，全按固定先后弹，排后面的要等前面次数用完</td><td>改成是否：已是｜给默认值：默认否｜自动带出：不能，哪些要换着弹是运营的意图｜去掉：不能，Dk 10/30 已定 → <b>照已定</b></td><td>无</td><td>Dk 10/30（对齐卡）；功能清单第 55 行</td></tr><tr><td>轮换池内顺序</td><td>在轮换池那一段里拖动；默认按进池的先后</td><td>定轮到谁先</td><td>按进池的先后轮</td><td>改成是否：不能｜给默认值：按进池先后｜自动带出：可以随机，但运营猜不到下次是谁、测试也判不了对错，不做｜去掉单独输入：可以，和固定那段同一种拖动 → <b>简化：不另设输入，在列表里拖</b></td><td>无</td><td>Dk 10/30（对齐卡）；功能清单第 56 行</td></tr><tr><td>轮换池每次弹几个</td><td>1 到「池内个数」和「每次最多弹几个」中较小的；默认 1 个；有活动或礼包进池才出现</td><td>定每次从池里拿几个</td><td>按默认 1 个</td><td>改成是否：不能｜给默认值：默认 1 个｜自动带出：可算成「每次最多弹几个减固定个数」，但固定多于名额时算出 0，不做｜去掉：不能，Dk 10/30「可设，默认 1 个」→ <b>照已定</b></td><td>无</td><td>Dk 10/30（对齐卡）；功能清单第 57 行</td></tr></table></div>
+<p>去掉的旧设置：〔旧〕弹窗类型（功能清单第 48 行，待拍板第 1 条）；〔旧〕「同顺序的，新建的在前」（第 51 行）；评审稿规则里只读显示时机、频率等（第 54 行，改为显示活动或礼包的设置、可点开另设，见 B3）。</p>
+<h4>5. 规则</h4>
+<ol>
+<li value="1"><b>弹出顺序</b>：这条规则被选中后（卡 A「多条规则都符合时」），先按先后检查固定的，能弹的依次放进这次的名单，放满「每次最多弹几个」为止；还有名额，再从轮换池取，最多取「轮换池每次弹几个」个。名单按固定在前、轮换池在后，一个接一个弹（Dk 10/30「先弹固定的再弹轮换池的」；「放满为止、轮换池这次不弹」是我方补的，已替你定，可推翻，待拍板第 1 条在问要不要改，见规则 9）。</li>
+<li value="2"><b>能弹</b>＝同时满足：活动或礼包已开始、未结束、没被「在所有规则里暂停」（卡 C）；进大厅时弹出时机符合（卡 C，本规则另设过的按另设，B3）；这个人这个活动今天在本场景各规则合计弹过的次数没到「每人每天几次」（卡 C）；距上次弹它已过「每人两次至少隔多久」（卡 C）。场景的弹出间隔没过时，这次整个不弹；「每人每天最多弹几个」剩下的名额少于名单时，按名单先后截断（卡 A）。</li>
+<li value="3"><b>补位</b>：固定的有一个这次弹不了，后面的固定项补上；固定的全弹不了，名额留给轮换池，但池里仍最多取「轮换池每次弹几个」个。</li>
+<li value="4"><b>轮换池怎么轮</b>：按玩家、按规则记住池里上次实际弹出的那一项（以客户端上报弹出为准，和研发待确认第 20 条的口径一致）；下次从它的下一项往后取，弹不了的跳过，到末尾回到第一项；转一圈都弹不了，这次池里不弹。跨天不清零，每天只进一次大厅的人也能轮到后面的。</li>
+<li value="5"><b>改池以后</b>：加入、移出、拖动池内顺序后，从上次弹出那一项在新顺序里的下一项接着轮；那一项被移出了，从第一项开始。</li>
+<li value="6"><b>第一次加入</b>（已定表第 1 条）：所选活动或礼包还没有弹窗设置的，当场展开它的弹窗设置（字段见卡 C），配完才算加入；已有的，带出设置摘要（点击后是否跳转、弹出时机、每人每天几次、每人两次至少隔多久），可点「本规则另设」（B3）。同一个活动或礼包在不同规则里共用一份设置，次数按同一场景各规则合计（卡 C）。</li>
+<li value="7"><b>保存时检查</b>（提示放在 B5 保存确认里）：固定的个数大于等于「每次最多弹几个」且有项进池 →「固定的都能弹时，轮换池这次不弹；固定的次数用完后才轮到池里的」；都是固定的且个数多于「每次最多弹几个」→「排在第 N 个以后的，要等前面的次数用完才弹得到」；一个都没加 →「这条规则的人在本场景什么都不弹」。三种都能保存。</li>
+<li value="8">发送测试不推进轮换池、不计次数（B4）。</li>
+<li value="9"><b>待拍板第 1 条通过后怎么变</b>：按推荐（轮换池先留名额）：先弹固定的、再弹轮换池的顺序不变，但轮换池先留走名额。第 1 条改成固定的最多放到「每次最多弹几个 − 轮换池每次弹几个」个，轮换池这次没有可弹的，名额让给固定的；例：每次最多 3、轮换池每次 1 → 固定 2＋轮换池 1（进大厅按默认就是这样）。「每次最多弹几个」≤「轮换池每次弹几个」时（如破产时等场景按默认都是 1），轮换池有能弹的，固定的一个也弹不到，轮换池空时固定的才补位；第 7 条第一种提示换成「轮换池有能弹的时候，固定的一个也弹不到」，可继续保存（B5）。按备选（「每次最多弹几个」改成「固定的每次弹几个」，和「轮换池每次弹几个」相加）：第 1 条改成固定的放到「固定的每次弹几个」为止，轮换池另取，两边互不挤占，第 7 条第一种提示取消。</li>
+</ol>
+<p><b>例</b>（草稿工作表2第 44–51 行，普卡、銀卡活动规则；草稿没有固定和轮换池这两个概念，这里按草稿的先后和次数映射）：固定＝天天敲蛋禮V2（每天 1 次）；轮换池＝限時挑戰（每天 2 次，两次隔 30 分钟）、卡別直升活動（同）、BOSS戰（每天 1 次）；每次最多弹几个 2，轮换池每次弹几个 1；假设弹出时机都符合、每次都过了场景弹出间隔。第 1 次：天天敲蛋禮V2＋限時挑戰；第 2 次：天天敲蛋禮V2 今天用完，池里轮到卡別直升活動，池只取 1 个，这次只弹 1 个；第 3 次：BOSS戰；第 4 次：限時挑戰；第 5 次：卡別直升活動；第 6 次：池里都用完，不弹。</p>
+<h4>6. 异常</h4>
+<ul>
+<li>活动或礼包过期或下架：留在规则里，标「已结束，跳过」，不自动删，后面的补上；全都结束时规则列表标出（卡 A、卡 C）。</li>
+<li>某个活动被「在所有规则里暂停」：本规则跳过它，补位照常；所有活动都被暂停：这条规则本场景什么都不弹。这时要不要改用下一条规则，归卡 A「多条规则都符合时」。</li>
+<li>图没传、跳转页面没填：第一次加入时当场配，卡 C 定为必填的没填完不能加入。</li>
+<li>和上限或间隔冲突：场景「每人每天最多弹几个」剩余名额少于名单，按名单先后截断，固定的在前所以先保住；场景弹出间隔没过，这次整个不弹（卡 A）。</li>
+<li>规则另设和活动设置冲突：本规则另设过的项以另设为准，活动设置再改不覆盖（已定事项第 26 条，B3）。</li>
+<li>轮换池只剩 1 项：每次都轮到它，相当于固定，保存不报错。</li>
+<li>移出后「轮换池每次弹几个」大于池内个数，或「每次最多弹几个」改小到小于它：自动改成可取的最大值，保存确认里列出。</li>
+<li>活动后台删除了活动：按已结束处理。</li>
+</ul>
+<h4>7. 和顶尖做法比</h4>
+<div class="tw"><table class="md"><tr><th>项</th><th>顶尖怎么做</th><th>我们</th><th>同／不同及理由</th></tr><tr><td>一次连弹几个</td><td>弹-04：游戏商城按优先级依次弹、频次与间隔同时满足才弹；对标第 100 行：Braze 每次只出最高一条，Appcharge 购买后一个接一个弹</td><td>按先后连弹到「每次最多弹几个」</td><td>同 Appcharge；不同于 Braze：旧后台和草稿都是一次连弹 1–3 个</td></tr><tr><td>先后</td><td>对标第 99 行：Braze「Set exact priority」拖动排精确先后</td><td>拖动排</td><td>同</td></tr><tr><td>轮换池</td><td>弹-11：Google Ad Manager 素材轮换只在同一投放单内，轮换方式设在这一组所在那一层；对标第 100 行：应用内消息产品没查到轮换</td><td>轮换池设在规则里，只在一条规则内轮</td><td>同 Ad Manager（在一组内轮、设在这一层）</td></tr><tr><td>一个活动被多条规则用</td><td>弹-12：游戏 LiveOps 把 offer 做成独立对象，被多条规则引用</td><td>活动或礼包本身是对象，第一次加入时配一份，别的规则带出</td><td>同</td></tr><tr><td>竞品（玩家端佐证）</td><td>竞品结论稿第 21 行：重点内容单独弹（2/3）；第 24 行：我方每次进大厅最多 4 个（活动类取前 3、储值类取第 1）</td><td>先后排第一的固定项＝重点单独弹</td><td>同；第 24 行是线上两种〔旧〕类型的规则同时弹的旁证（是否同时弹待研发确认第 25 条），牵涉待拍板第 1 条</td></tr></table></div>
+<h4>8. 验收标准</h4>
+<ul>
+<li>测试账号在「弹窗固定不弹」里（功能清单第 95 行），按群组发不到：下面用测试账号验上线规则的，发送对象用上传名单（名单不受固定不弹限制），或用发送测试（卡 B4）。</li>
+</ul>
+<ol>
+<li value="1">在进大厅页签新建规则时「每次最多弹几个」默认 3，在其他场景页签默认 1；「是否进轮换池」默认否；有项进池后出现「轮换池每次弹几个」，默认 1 个，输入不能超过池内个数和每次最多弹几个。</li>
+<li value="2">按第 5 节的例配好，同一测试账号连续触发 6 次，弹出依次和例子一致。</li>
+<li value="3">次日第 1 次触发，池里接着前一天轮到的下一项，不从第一项重来。</li>
+<li value="4">活动后台新上的活动，不发版就出现在可选列表。</li>
+<li value="5">一个没配过弹窗设置的活动第一次加入时要求当场配；在另一条规则里加同一个活动，自动带出刚配的设置，不再要求填。</li>
+<li value="6">同一个活动不能在一条规则里加两次。</li>
+<li value="7">把固定第一个的活动设为已结束，测试账号不弹它，第二个补上；规则里它标「已结束」。</li>
+<li value="8">固定个数大于等于每次最多弹几个且有项进池、或一个都没加时，保存确认出现第 5 节规则 7 的对应提示，仍能保存。</li>
+<li value="9">发送测试后再正常触发，轮换池轮到的项不变。</li>
+<li value="10">待拍板第 1 条按推荐通过时：破产时规则每次最多弹几个 1、固定 1 个、轮换池 1 个且池里能弹：触发时只弹轮换池的 1 个，固定的不弹；保存确认出「轮换池有能弹的时候，固定的一个也弹不到」，仍能保存。把池里的项都暂停后再触发：固定的补上。</li>
+</ol>
+<h4>9. 已定事项落点</h4>
+<div class="tw"><table class="md"><tr><th>已定（原文照抄，对齐卡「已定、要遵守的」）</th><th>本卡怎么承接</th><th>改没改</th></tr><tr><td>「每个活动或礼包存一份弹窗设置，在规则里第一次加入时当场配，别的规则自动带出，不单独建〔旧〕弹窗内容页（推荐做法 C（每个活动或礼包一份弹窗设置），<code>弹窗标签推送系统/评审版_定稿改_1027/推送系统后台集成需求/弹窗内容去留_大纲.md</code>）。」</td><td>字段「弹哪些活动或礼包」的加入动作；规则 6</td><td>未改</td></tr><tr><td>「规则里每个活动或礼包可选「是否进轮换池：是／否，默认否」，轮换池内顺序由运营排，规则里设「轮换池每次弹几个」默认 1 个，先弹固定的再弹轮换池的；规则列表每条能展开，看到有哪些弹窗、是否轮换、顺序（Dk 10/30）。」</td><td>字段「是否进轮换池」「轮换池内顺序」「轮换池每次弹几个」；规则 1、4；「规则列表每条能展开」在卡 A。我方补的「合计不超过每次最多弹几个，固定的占满时轮换池这次不弹、保存时提示」（不是已定，已替你定，可推翻）→ 规则 1、7</td><td>Dk 定的未改；我方补的那半句有异议 → 待拍板第 1 条（按推荐：先弹固定的、再弹轮换池的顺序不变，但轮换池先留走名额，规则 9）</td></tr><tr><td>「冷却按已定事项第 25 条及细化；规则里能另设的项按第 26 条（〔旧〕「显示方式」已改成「是否跳转」）。」</td><td>规则 2「能弹」用到的每人每天几次、两次至少隔多久、弹出间隔，定义在卡 C、卡 A；加入后可点「本规则另设」，详见 B3</td><td>未改</td></tr><tr><td>其余已定（宣传图与是否跳转、在所有规则里暂停、场景）</td><td>不在本卡，见卡 C、B1</td><td>—</td></tr></table></div>
+<h4>10. 待拍板／待研发确认</h4>
+<p><b>待拍板</b>（编号同网页首屏）</p>
+<ul>
+<li>第 1 条（全文在卡 A1 第 10 栏，本卡不单独推荐）：去掉〔旧〕弹窗类型后，现网（截图：活动类每次 3 个＋储值类每次 1 个，两条是否一次进大厅都弹待研发确认第 25 条）和运营草稿计划的（每批人 2 个活动＋1 个礼包）在一条规则里都配不出来。推荐给轮换池先留名额：先弹固定的、再弹轮换池的顺序不变，但轮换池先留走名额；「每次最多弹几个」≤「轮换池每次弹几个」时，轮换池有能弹的，固定的一个也弹不到（保存确认提示，B5）。备选：把「每次最多弹几个」改成「固定的每次弹几个」，和「轮换池每次弹几个」相加。两种做法下礼包都改成在轮换池里轮流，不再总弹排第一个能弹的（现网和草稿工作表2第 59–63 行都是按顺序取，首储礼包排第 1）。备选二：轮换池加一个取法选项（轮流／按顺序取第一个能弹的），能保留按顺序取，但改了 Dk 10/30 定的轮换池含义（换着弹），由 Dk 定；不推荐，卡里不加这个字段。迁移：研发确认两条一起弹的合成一条（活动类的项迁成固定，储值类的项迁进轮换池，「轮换池每次弹几个」取储值类旧值，「每次最多弹几个」取两条之和），不是一起弹的保持两条（卡 A4 规则第 6 条）。</li>
+</ul>
+<p><b>待研发确认</b></p>
+<ul>
+<li>研发待确认第 25 条：大厅〔旧〕活动类弹窗（ID 5）和储值类（ID 6）是不是一次进大厅两条都弹；活动类每次弹 3 个还是 2 个。</li>
+<li>轮换池「上次弹出的那一项」按玩家、按规则记在服务端，和研发待确认第 20 条（轮流按玩家记上次实际弹出的规则）一起评估。</li>
+</ul>
+<p><b>已替你定，可推翻</b></p>
+<ul>
+<li>「每次最多弹几个」默认进大厅 3、其他场景 1，不设上限（标准：草稿按场景、按合并后口径某个值占约三分之二以上才给默认；进大厅：草稿 7 批人每批 2 个活动＋1 个礼包；其他场景草稿没有数，现网破产储值弹窗每次弹 1 个，截图 ID7，截图转录第 31 行）。</li>
+<li>「固定的放满每次最多弹几个时，轮换池这次不弹」（待拍板第 1 条在问要不要改）。</li>
+<li>轮换池内顺序不另设输入，在轮换池那一段里拖；固定的一段在前、轮换池一段在后（界面细节归里程碑 2）。</li>
+<li>轮换池跨天不清零；改池后从上次弹出那一项的下一项接着轮。</li>
+<li>固定的弹不了时后面的补上；固定全弹不了时轮换池仍只取「轮换池每次弹几个」个。</li>
+<li>一个都没加的规则能保存、能上架（对照组「不弹」要用），保存时提示。</li>
+</ul></div></details><details class="cardd" id="card-B3"><summary><span class="cn">B3</span><span class="ct">本规则另设</span><span class="cm">这张卡改了什么：规则里每个活动或礼包旁显示它沿用的设置，点开可在这条规则里另设点击后是否跳转、弹出时机、每人每天几次、每人两次至少隔多久，另设过的项能一键恢复沿用；可另设项里〔旧〕显示方式换成点击后是否跳转；〔旧〕「复制成另一个」去掉。</span><span class="cm">字段 6 个｜待拍板：第 4 条</span></summary><div class="cb"><h4>1. 功能名｜对应任务编号</h4>
+<p>本规则另设｜T21（另涉 T3 点了去哪页、T22 一人一天不被同一活动弹太多次）</p>
+<h4>2. 谁在什么场景用</h4>
+<ul>
+<li>运营在新建或编辑弹窗规则时，在「弹哪些活动或礼包、排先后」的列表里，发现这批人要的次数（或弹出时机、点了跳不跳）和活动或礼包的弹窗设置不同，就在这一行点「本规则另设」。</li>
+<li>用得不多：按草稿算，14 条规则 43 处活动或礼包里要另设 5 处，都是回流规则里礼包的次数（<code>弹窗/分析/思考笔记_弹窗设置跟着活动走_1029.md</code> 第四节）。</li>
+</ul>
+<h4>3. 要解决什么问题</h4>
+<ul>
+<li>活动或礼包的弹窗设置只存一份、被多条规则共用（对齐卡「已定、要遵守的」第 1 条）。某批人要不同次数时，改共用设置会连带改掉别的规则。</li>
+<li>来源：草稿工作表2第 59–63 行（普卡、银卡规则：驚喜三選一、獨享禮包、平臺限量/專屬禮包每天 2 次、两次隔 1800 秒）对第 82–86 行（回流规则：同样三个礼包每天 1 次、冷却 0 秒）；已定事项第 26 条。</li>
+<li>10/28 评审稿的办法是把同一个活动「复制成另一个」，同一活动就有两份设置，换图、换跳转要改两处。</li>
+<li>来源：〔评〕第 277 行；功能清单第 60 行（去掉）。</li>
+</ul>
+<h4>4. 字段表</h4>
+<p>每个活动或礼包在规则里占一行；下表是这一行点「本规则另设」展开后的项。没动过的项灰色显示活动或礼包的值、标「沿用」。</p>
+<div class="tw"><table class="md"><tr><th>字段名</th><th>选项和默认值</th><th>为什么要填</th><th>不填会怎样</th><th>能不能更简单（四试 → 结论）</th><th>旧后台对应</th><th>来源</th></tr><tr><td>点击后是否跳转（本规则）</td><td>是／否；默认沿用活动或礼包的设置</td><td>这批人点图去不去活动页要和别的人群不同时用（推断：草稿里没有这种例子）</td><td>沿用活动或礼包的设置，和别的规则一样</td><td>改成是否：本来就是是／否。给默认值：默认沿用。自动带出：沿用值自动带出，选「是」时跳转页面也自动用活动或礼包的，不用填。去掉：证据上可以（草稿 11 个跨规则活动在各规则的〔旧〕弹窗形式都一样，思考笔记 1029 第二节），但已定事项第 26 条为防这个前提错，放开到每一项。→ 结论：保留，默认沿用；能简化没简化，卡在已定事项第 26 条</td><td>旧后台清单第 11 项（旧后台每条规则每项单独设）</td><td>已定事项第 26 条；Dk 10/30 是否跳转；功能清单第 59 行</td></tr><tr><td>弹出时机（本规则）</td><td>选项同卡 C 的弹出时机；默认沿用；场景不是进大厅时这一项不出现</td><td>同一活动对不同人群要在不同时刻弹，比如回流的人只在当天首次登录弹（推断）</td><td>沿用活动或礼包的弹出时机</td><td>改成是否：不能，选项多于两个。给默认值：默认沿用。自动带出：沿用值自动带出；场景不是进大厅时整项不出现（〔框〕第 205 行「仅进大厅」）。去掉：证据上可以（草稿 11 个跨规则活动在各规则的〔旧〕弹窗时机都一样），已定事项第 26 条要求保留。→ 结论：保留，默认沿用，非进大厅场景不显示；能简化没简化，卡在已定事项第 26 条</td><td>旧后台清单第 10 项</td><td>已定事项第 26 条；功能清单第 72 行</td></tr><tr><td>每人每天几次（本规则）</td><td>数字，取值范围同卡 C；默认沿用（活动或礼包上默认活动 1 次、礼包 2 次，见卡 C）</td><td>草稿里同一礼包对普卡、银卡每天 2 次，对回流的人 1 次；四项里只有这项草稿真用到</td><td>回流的人会和普卡、银卡一样每天被弹 2 次</td><td>改成是否：不能，是数字。给默认值：默认沿用。自动带出：沿用值自动带出，填时旁边显示活动或礼包的值作对照。去掉：不能，草稿有 5 处要用；去掉后只能改共用设置（连带改别的规则）或回到「复制成另一个」。→ 结论：保留，默认沿用</td><td>旧后台清单第 12 项</td><td>草稿工作表2第 59–63 行对第 82–86 行；已定事项第 25、26 条</td></tr><tr><td>每人两次至少隔多久（本规则）</td><td>数字，单位分钟或小时，留空即不限；默认沿用（活动或礼包上默认留空）；每人每天几次为 1 时也显示</td><td>把次数从 1 改成 2 时要定两次隔多久；草稿里每天 2 次的都隔 1800 秒</td><td>沿用活动或礼包的间隔</td><td>改成是否：不能，要时长。给默认值：默认沿用。自动带出：沿用值自动带出。按次数收起：不收起，间隔从上次显示算起、不按天清零，每人每天几次为 1 时跨天仍起作用（如隔 24 小时），所以也显示，和卡 C 一致。去掉：本场景的弹出间隔已管住「刚弹完又弹」（已定事项第 25 条细化），多数时候这项不起作用；但已定事项第 26 条把它列为可另设。→ 结论：保留，默认沿用；能简化没简化，卡在已定事项第 26 条</td><td>旧后台清单第 13 项</td><td>已定事项第 25、26 条；草稿工作表2第 49–50、59–63 行</td></tr><tr><td>恢复沿用</td><td>每个另设过的项旁一个按钮；没另设时不出现</td><td>另设后，活动或礼包的设置再改，这项不会跟着变；想重新跟着变要有回去的路</td><td>这项一直停在另设的值，活动或礼包改次数时这条规则不跟</td><td>改成是否：每项本来就是「沿用／另设」两态，按钮就是切回沿用，不另加开关。给默认值：没另设时就是沿用，不用点。自动带出：不能自动判断运营要定住还是要跟，所以改成和活动相同的值也照另设算。去掉：不能，去掉后只能把活动或礼包从规则里删掉重加，会丢掉先后和是否进轮换池。→ 结论：保留为按钮</td><td>无（新增）</td><td>已定事项第 26 条「没另设的项仍跟着变」</td></tr><tr><td>宣传图、跳转页面（只读）</td><td>只读显示活动或礼包的；旁边一个链接，打开它的弹窗设置去改</td><td>运营不填；另设成「是」时要看到会跳去哪页</td><td>不显示的话，另设成「是」时不知道玩家会被带到哪</td><td>改成是否：不涉及。给默认值：就是活动或礼包的（跳转页面默认它自己的页面）。自动带出：是，全部自动带出。去掉：图可以不显示；跳转页面只在本规则「点击后是否跳转」为「是」时显示。→ 结论：只读带出，跳转页面按是否跳转出现</td><td>旧后台清单第 17 项（旧后台不能配）</td><td>已定事项第 26 条「图和跳转按活动存一份」；跳转页面默认活动或礼包自己的页面（已替你定，可推翻，见卡 C）</td></tr></table></div>
+<h4>5. 规则</h4>
+<ol>
+<li value="1">规则里每个活动或礼包显示这条规则实际用的四项：点击后是否跳转、弹出时机、每人每天几次、每人两次至少隔多久。沿用的标「沿用」，另设的标「本规则另设」。</li>
+<li value="2">另设只在这条规则生效；别的规则、活动或礼包的弹窗设置都不变。</li>
+<li value="3">活动或礼包的弹窗设置改了某一项：这条规则里没另设的这项跟着变，另设过的这项不变。四项分开算，例如另设了次数、没另设弹出时机，弹出时机仍跟着变。</li>
+<li value="4">点「恢复沿用」：这项马上改回活动或礼包当前的值，之后跟着它变。</li>
+<li value="5">宣传图、跳转页面不能在规则里另设。本规则另设「点击后是否跳转：是」时，点图打开活动或礼包弹窗设置里的跳转页面；那里没改过就是活动或礼包自己的页面，所以总有页面可跳（跳转页面默认它自己的页面，已替你定，可推翻，见卡 C）。</li>
+<li value="6">场景不是进大厅（破产时、买了指定礼包后、押注达到指定金额）时，弹出时机不显示、不能另设。</li>
+<li value="7">次数怎么合计：一个活动或礼包当天在同一场景各条规则里弹过的次数加成一个数；轮到某条规则时，拿这个数和这条规则的上限比，小于上限才弹。这条规则另设了次数就用另设值，没另设就用活动或礼包的值（已替你定，可推翻，理由见第 10 栏）。<br>· 例：獨享禮包的弹窗设置每天 2 次（草稿工作表2第 62 行），普卡银卡规则沿用，回流规则另设每天 1 次（第 83 行）。一个人同时是普卡和回流，进大厅场景设为轮流：今天经普卡银卡规则弹过 1 次后，轮到回流规则时合计 1、不小于 1，不弹；再轮到普卡银卡规则时合计 1、小于 2，弹。</li>
+<li value="8">两次至少隔多久：这个活动或礼包在同一场景上次弹出的时间只有一个；轮到某条规则时，用这条规则的值（另设或沿用）判断够不够久。间隔从上次显示算起、不按天清零，每人每天几次为 1 时也起作用：例如隔 24 小时，今天 20 点弹过，明天 20 点前不弹（卡 C 规则 8 同此）。</li>
+<li value="9">复制规则时另设一起复制。把活动或礼包从规则里删掉，它在这条规则的另设一起删；再加回来时全部沿用。</li>
+<li value="10">活动或礼包的弹窗设置里列「另有几条规则在用」时，标出哪几条规则另设了哪几项（改了这几项那几条规则不跟）；界面在卡 C。</li>
+<li value="11">上架中、已暂停的规则改了另设，保存时进保存确认（卡 B5），改动列表写「沿用 2 次 → 本规则另设 1 次」这样的前后值。</li>
+</ol>
+<h4>6. 异常</h4>
+<div class="tw"><table class="md"><tr><th>情况</th><th>系统怎么做</th><th>运营看到什么</th></tr><tr><td>活动或礼包未开始、已结束或下架</td><td>这条规则跳过它；另设保留，再上线时照另设算</td><td>这一行标「已结束」或「未开始」</td></tr><tr><td>图没传（没有自带的、也没上传）</td><td>另设管不到图，按卡 C 处理：这条规则跳过它</td><td>这一行提示「没有宣传图，到它的弹窗设置里上传」，附链接</td></tr><tr><td>跳转页面没填</td><td>不会出现：跳转页面默认活动或礼包自己的页面。若研发确认某类礼包没有自己的页面（研发评审待确认第 24 条），活动或礼包上为「否」、规则里另设「是」时不让保存</td><td>提示「它没有可跳转的页面，先在它的弹窗设置里填跳转页面」</td></tr><tr><td>另设的每人每天几次大于场景的每人每天最多弹几个</td><td>照存；实际弹的次数受场景上限管</td><td>这一项旁提示「本场景每人每天最多弹 N 个」，保存确认里再列一次</td></tr><tr><td>另设的两次间隔短于场景的弹出间隔</td><td>照存；场景弹出间隔先管住，另设的间隔不起作用（已定事项第 25 条细化）；若它在「不受弹出间隔限制的活动或礼包」里，按另设的间隔</td><td>这一项旁提示「本场景两次弹出至少隔 N 分钟，短于它的不起作用」</td></tr><tr><td>规则另设和活动或礼包的设置不同</td><td>不是错误：这条规则按另设，别的规则按各自的</td><td>这一行标「本规则另设」</td></tr><tr><td>活动或礼包打开了「在所有规则里暂停」</td><td>暂停优先，规则里另设了也不弹</td><td>这一行标「已在所有规则里暂停」，另设仍可改</td></tr><tr><td>规则里的活动或礼包全部暂停或全部结束</td><td>轮到这条规则时什么也不弹；落不落到下一条规则按卡 A</td><td>规则顶部提示「这条规则现在没有能弹的」</td></tr><tr><td>草稿规则把场景从进大厅改成别的场景</td><td>另设的弹出时机清掉（别的场景没有弹出时机）</td><td>提示「已清掉 N 个另设的弹出时机」</td></tr></table></div>
+<h4>7. 和顶尖做法比</h4>
+<div class="tw"><table class="md"><tr><th>做法（出处）</th><th>同／不同</th><th>不同的理由</th></tr><tr><td>Google Ad Manager：素材在素材库，挂到多个投放单；每个挂接可单独覆盖起止时间、点击网址、启用状态，频率不在挂接上（<code>弹窗/分析/对标_内容与规则_1028.md</code> 第 31、46 行）</td><td>同：共用一份，在挂接处单独覆盖。不同①：我们在规则里能另设次数和间隔。不同②：它能覆盖点击网址，我们跳转页面不能另设</td><td>①草稿里次数随人群变（第 59–63 对 82–86 行），已定事项第 26 条；②已定事项第 26 条「图和跳转按活动存一份」，草稿没有按人群换页面的例子</td></tr><tr><td>Unity Game Overrides：默认值在配置上，按受众覆盖，冲突时按优先级只取一个值（同文件第 34 行）</td><td>同：默认值加按人群覆盖</td><td>—</td></tr><tr><td>参考库弹-12：查到的产品没有把〔旧〕冷却或时机设在被共用的内容上（<code>弹窗/规则与交接/顶尖做法参考库/弹窗与应用内消息.md</code>）</td><td>不同：我们活动或礼包上存默认值、规则可另设</td><td>已定事项第 25、26 条（Dk 10/29）；按草稿算，存默认加另设共填约 66 处，每条规则各填约 100 处（思考笔记 1029 第四节）</td></tr><tr><td>Metaplay：每组上限不跨组，另设跨组合计的每人总上限；一份内容被几条规则共用时，要同时说清规则内算几次、跨规则合计几次（对标_内容与规则_1028 第 119 行）</td><td>同：两种都说清（规则第 7 条）</td><td>—</td></tr><tr><td>参考库弹-11：已有值先只读显示，点了才编辑（Atlassian inline edit）</td><td>同：沿用值灰色只读，点「本规则另设」才可改</td><td>—</td></tr></table></div>
+<h4>8. 验收标准</h4>
+<ul>
+<li>测试账号在「弹窗固定不弹」里（功能清单第 95 行），按群组发不到：下面用测试账号验上线规则的，发送对象用上传名单（名单不受固定不弹限制），或用发送测试（卡 B4）。</li>
+</ul>
+<ol>
+<li value="1">活动 A 的弹窗设置每天 2 次；规则甲沿用，规则乙另设 1 次。把 A 改成 3 次 → 甲显示 3「沿用」，乙仍是 1「本规则另设」。</li>
+<li value="2">乙点「恢复沿用」→ 显示 3「沿用」；再把 A 改成 4 次 → 乙显示 4。</li>
+<li value="3">乙只另设了次数；把 A 的弹出时机改成当天首次登录 → 乙的弹出时机跟着变，次数不变。</li>
+<li value="4">A 的点击后是否跳转为否、跳转页面没改过；乙另设为是 → 乙的玩家点图打开 A 自己的页面，甲的玩家点图不跳。</li>
+<li value="5">规则里宣传图、跳转页面不能编辑，点链接打开 A 的弹窗设置。</li>
+<li value="6">场景为破产时的规则，展开「本规则另设」后没有弹出时机。</li>
+<li value="7">按规则第 7 条的例子造一个同时符合两条规则的测试账号（场景设轮流），三次进大厅的弹不弹和例子一致。</li>
+<li value="8">A 打开「在所有规则里暂停」→ 乙另设了也不弹。</li>
+<li value="9">复制规则乙 → 新规则里 A 的另设一样；从乙删掉 A 再加回 → 四项全部「沿用」。</li>
+<li value="10">A 每天 1 次，乙另设两次至少隔 24 小时 → 乙那一行仍显示「每人两次至少隔多久」；乙的玩家今天 20 点弹过 A，明天 20 点前进大厅不弹 A，20 点后弹。</li>
+</ol>
+<h4>9. 已定事项落点</h4>
+<div class="tw"><table class="md"><tr><th>已定（原文照抄）</th><th>出处</th><th>本卡怎么承接</th><th>改了没有</th></tr><tr><td>「〔旧〕冷却按已定事项第 25 条及细化；规则里能另设的项按第 26 条（「〔旧〕显示方式」已改成「是否跳转」）」</td><td>对齐卡「已定、要遵守的」第 2、3 条</td><td>字段 1–4 就是第 26 条的四项</td><td>未改</td></tr><tr><td>「每个活动或礼包的弹窗设置里，〔旧〕显示方式、什么时候弹、次数（每天几次、两次至少隔多久）是可覆盖的默认值，规则里可给其中某个活动另设任何一项，只在这条规则里生效；没另设的沿用活动上的设置，改活动设置时，规则里另设过的那几项不跟着变，没另设的项仍跟着变。图和跳转按活动存一份，不在规则里另设。」</td><td>已定事项第 26 条</td><td>规则 1–5；字段 5「恢复沿用」让「没另设」这个状态回得去</td><td>未改；〔旧〕显示方式按 Dk 10/30 叫「点击后是否跳转」</td></tr><tr><td>「每一项的〔旧〕冷却并进次数，写成「每天 N 次，两次至少隔多久」，活动上存默认、规则里可改」；细化：「活动上的「两次至少隔多久」默认不设」「「一天被几条规则各弹一遍」由每天几次按活动跨规则合计管」</td><td>已定事项第 25 条及细化</td><td>字段 3、4；规则 7、8 写清合计怎么比</td><td>未改；合计范围用功能清单第 77 行的「同一场景各规则合计」（卡 C 承接）</td></tr><tr><td>「弹出的是宣传图（默认用活动或礼包自带的，可替换），「点击后是否跳转：是／否」，选是填跳转页面（Dk 10/30）」</td><td>对齐卡「已定、要遵守的」第 4 条</td><td>字段 1、6；规则 5：规则里另设「是」时用活动或礼包的跳转页面（主落点卡 C）</td><td>未改</td></tr><tr><td>「「在所有规则里暂停」开关（Dk 10/29「保留开关」）」</td><td>对齐卡「已定、要遵守的」第 5 条</td><td>异常第 7 行：暂停优先于另设（主落点卡 C）</td><td>未改</td></tr><tr><td>「弹窗的四个触发点叫「场景」（Dk 10/29）」</td><td>对齐卡「已定、要遵守的」第 6 条</td><td>全卡叫法；规则 6</td><td>未改</td></tr></table></div>
+<h4>10. 待拍板／待研发确认</h4>
+<p><b>待拍板</b>：无。</p>
+<ul>
+<li>理由：可另设的四项照已定事项第 26 条，〔旧〕显示方式按 Dk 10/30 换了叫法，没有多出或少掉运营能配的东西。</li>
+<li>次数合计（规则第 7 条）不进待拍板：它是第 25 条「跨规则合计」和第 26 条「只在这条规则里生效」同时成立的唯一算法。取各规则里最小的，回流规则的另设会压住普卡银卡规则，违反「只在这条规则里生效」；各规则分开算，违反「跨规则合计」。所以它只是系统怎么算。</li>
+</ul>
+<p><b>待研发确认</b></p>
+<ul>
+<li>礼包有没有自己的页面可跳（研发评审待确认第 24 条）。没有的话，规则里另设「是」之前要先在礼包的弹窗设置里填跳转页面（异常第 3 行）。</li>
+<li>服务端按「规则 × 活动或礼包」存另设值，并且四项分开记「沿用／另设」。研发评审待确认第 18 条只写了「规则里另设了按规则的」，没写分项记沿用。</li>
+</ul>
+<p><b>已替你定，可推翻</b></p>
+<ul>
+<li>「恢复沿用」做成每项旁一个按钮，不另加整体的「本规则另设：是／否」开关。</li>
+<li>另设的值和活动或礼包当前的值相同时，仍按另设存（运营可能就是要定住）。</li>
+<li>次数合计按规则第 7 条：同一场景各规则合计已弹次数，和这条规则自己的上限比。</li>
+<li>场景不是进大厅时不显示弹出时机；草稿规则换场景时清掉另设的弹出时机并提示。</li>
+<li>另设次数大于场景上限、另设间隔短于场景弹出间隔时只提示，不拦保存。</li>
+<li>「每人两次至少隔多久」在每人每天几次为 1 时也显示（卡 C 同此）。</li>
+</ul></div></details><details class="cardd" id="card-B4"><summary><span class="cn">B4</span><span class="ct">发送测试和按玩家预览</span><span class="cm">这张卡改了什么：发送测试从〔旧〕弹窗内容页挪进规则，按正在编辑的这一版，把规则里勾选的活动或礼包按先后全弹一遍给测试对象，写法和推播、短信一致（测试对象、每次最多）；按玩家预览只看这条规则的场景、按正在编辑的这一版算，写出这次弹哪几个、每个没弹的原因、轮换池这次和之后依次轮到哪个。</span><span class="cm">字段 5 个｜待拍板：无</span></summary><div class="cb"><h4>1. 功能名｜对应任务编号</h4>
+<p>发送测试｜T25；按玩家预览｜T26</p>
+<h4>2. 谁在什么场景用</h4>
+<ul>
+<li><b>发送测试</b>：运营新建规则、换了图或改了跳转后，在上架前（或改上架中的规则、保存前）用自己的测试账号在手机上看图对不对、点了跳得对不对。每次新建、改动规则都可能用（参考库弹-03 取舍：运营每次新建、改动弹窗都用）。</li>
+<li><b>按玩家预览</b>：运营在规则编辑页填一个会员编号（自己的测试账号，或想确认的某档玩家），看这个人下一次进这个场景会弹哪几个、为什么没弹某个、轮换池接下来轮到谁。所有场景、上线后客服查玩家归玩家查询（T31，功能框架任务）。</li>
+</ul>
+<h4>3. 要解决什么问题</h4>
+<ul>
+<li>配置上线后才发现不按配置弹：「活動彈窗每日彈出設置」上线后一批缺陷，部分活动不按配置弹（RICH-23185、23195，<code>弹窗/分析/参照来源_Jira历史工单.md</code> 第 58 行）。</li>
+<li>图和跳转改成后台配以后，配错图或页面要在玩家看到前发现：RICH-24469「彈窗顯示的資源，彈窗跳轉的url都需要可以通過後臺配置處理」。</li>
+<li>后台配好储值类排序后，客户端储值类弹窗全部不弹；摘录结论是要能预览某玩家此刻会弹什么（RICH-19069，Jira 摘录第 96 行，未读原单）。</li>
+<li>规则里有固定、轮换池、次数、间隔、场景上限几层，运营光看配置算不出某个人这次弹哪几个（推断，T26）。</li>
+</ul>
+<h4>4. 字段表</h4>
+<div class="tw"><table class="md"><tr><th>字段名</th><th>选项和默认值</th><th>为什么要填</th><th>不填会怎样</th><th>能不能更简单（四试 → 结论）</th><th>旧后台对应</th><th>来源</th></tr><tr><td>测试对象（发送测试）</td><td>测试群组（「是否测试群组」选是的群组）、会员编号（可填多个）；默认带出本人上次用过的测试对象，没用过时空着</td><td>定在谁的手机上强制弹，运营用自己的测试账号看</td><td>不能发</td><td>改成是否：不能，要选人。给默认值：没有能通用的默认人，改为带出上次用过的。自动带出：上次用过的测试对象自动带出。去掉会员编号只留测试群组：不能，新开的测试账号要先进群组才能测，多一步；整项去掉：不能。→ 结论：保留，写法同推播、短信「测试对象：测试群组、会员编号」</td><td>旧后台清单第 20 项（评审稿新加）</td><td>〔评〕第 340–341 行；〔框〕第 56–57、133–134 行（推播、短信新写法）；研发评审待确认第 26 条</td></tr><tr><td>每次最多（发送测试）</td><td>固定 50 人，运营不填；测试群组按群组人数算</td><td>运营不填；是上限，防止把强制弹、不受次数限制的测试当成正式发给一批真实玩家</td><td>不涉及；超过 50 人不让发</td><td>改成是否：不涉及。给默认值：固定 50 人。自动带出：选测试群组时显示人数，超过 50 当场提示。去掉：不能，会员编号能填真实玩家，没上限就能绕开次数和上限给一批真人强弹。→ 结论：保留为固定上限，只显示不填</td><td>旧后台清单第 20 项</td><td>〔评〕第 341 行；〔框〕第 58 行</td></tr><tr><td>测哪些活动或礼包（发送测试）</td><td>规则里的活动或礼包逐个勾选；默认全选，按规则里排的先后</td><td>只改了一个礼包的图时，只看这一个</td><td>默认全选，规则里的全部按先后弹一遍（固定的、轮换池里的都弹）</td><td>改成是否：每个活动或礼包就是「测不测」两态，勾选即是。给默认值：默认全选，不动就是全部。自动带出：不自动猜「这次改过的」，猜错会漏测。去掉：可以去，代价是改一张图要连看整条规则，草稿最长的规则排了 9 个（工作表1第 45–53 行）。→ 结论：保留勾选，默认全选；能简化没简化，因为去掉后每次要连看 9 个</td><td>无（新增；评审稿按单个〔旧〕弹窗内容测）</td><td>功能清单第 61 行；推断</td></tr><tr><td>会员编号（按玩家预览）</td><td>填一个会员编号；默认空</td><td>预览按这个人的发送对象、今天已弹次数、上次弹出时间算，不同的人结果不同</td><td>不能预览</td><td>改成是否：不能。给默认值：不能，没有「典型玩家」可作默认。自动带出：带出上次预览过的会员编号。去掉：不能，没有人就算不出次数和间隔。→ 结论：保留，必填，一次一个</td><td>旧后台清单第 16 项（旧后台玩家弹窗顺序查询按会员编号查）</td><td>〔评〕第 330–333 行；RICH-19069 摘录</td></tr><tr><td>预览哪个场景、按哪一版算（按玩家预览）</td><td>运营不选：自动用这条规则的场景、正在编辑的这一版</td><td>运营不填；列出来是因为 10/28 评审稿预览的是「下一次进入各〔旧〕位置」，要说清为什么收窄</td><td>自动按本规则的场景、编辑中的这一版算</td><td>改成是否：不涉及。给默认值：本规则的场景、编辑中的这一版。自动带出：两样都从当前编辑页带出。去掉选择：可以，在规则里只关心这条规则的场景；所有场景到玩家查询看。→ 结论：去掉选择，自动带出</td><td>旧后台清单第 16 项</td><td>〔评〕第 332 行</td></tr></table></div>
+<h4>5. 规则</h4>
+<p><b>发送测试</b></p>
+<ol>
+<li value="1">点「发送测试」：测试对象下一次进入这条规则的场景时，把勾选的活动或礼包按规则里排的先后全弹一遍；固定的、轮换池里的都弹，不按「每次最多弹几个」「轮换池每次弹几个」截。</li>
+<li value="2">发送测试不看：发送对象、排除群组、规则状态（草稿也能测）、生效期间、优先级和轮流、每人每天几次、两次至少隔多久、场景的弹出间隔、每人每天最多弹几个、在所有规则里暂停。测试账号在「弹窗固定不弹」里，这一限制对发送测试不生效（研发评审待确认第 26 条，原文叫〔旧〕固定不发）。</li>
+<li value="3">用正在编辑的这一版，没保存的改动也算；宣传图、点击后是否跳转、跳转页面按这一版，含本规则另设。</li>
+<li value="4">不计已弹次数、不更新上次弹出时间、不移动轮换池轮到的位置、不进弹窗数据（和卡 B2 验收第 9 条一致）。</li>
+<li value="5">每发一次记一条操作纪录：谁、哪条规则、测试对象、测了哪些、时间。</li>
+<li value="6">发送后列出每个测试账号的状态：等待弹出／已弹（时间）。同一账号再发一次，替换上次还没弹的；规则删除时，没弹的作废。</li>
+<li value="7">测试对象合计超过 50 人不能发。发送前确认框写人数和会员编号，供核对有没有填错成真实玩家。</li>
+</ol>
+<p><b>按玩家预览</b></p>
+<ol>
+<li value="8">填会员编号，点「预览」：按这条规则的场景、正在编辑的这一版算。这条规则当作已上架、在生效期间；其他规则、场景设置、这个人今天已弹次数和上次弹出时间按线上实际。</li>
+<li value="9">判定和服务端、玩家查询用同一套（研发评审待确认第 18 条）：先看场景弹出间隔，再看多条规则都符合时轮到哪条，再按规则里的固定、轮换池和每个活动或礼包的弹出时机、次数、间隔算出弹哪几个。</li>
+<li value="10">结果写四样：<br>· ①这次轮到哪条规则；不是本规则时，写轮到的那条和原因（优先级更高／轮流轮到别的／不在发送对象／在排除群组）。<br>· ②这次会弹哪几个，按先后，标「固定」或「轮换池」。<br>· ③本规则里每个没弹的活动或礼包写一个原因：已到每人每天几次／两次间隔未到（写还差多久）／弹出时机不符／已达每次最多弹几个／固定的已占满／轮换池这次没轮到／已在所有规则里暂停／未开始或已结束／没有宣传图／场景弹出间隔未到／已达每人每天最多弹几个。<br>· ④轮换池：这次轮到哪个、之后依次轮到哪个（怎么往后轮以卡 B2 为准）。</li>
+<li value="11">上架中的规则有没保存的改动时，结果分「现在线上」「改后」两栏。</li>
+<li value="12">预览只读，不改任何数据。</li>
+</ol>
+<h4>6. 异常</h4>
+<div class="tw"><table class="md"><tr><th>情况</th><th>系统怎么做</th><th>运营看到什么</th></tr><tr><td>活动或礼包未开始、已结束或下架</td><td>发送测试照样弹图；点图要去的页面还没开放时客户端怎么显示，待研发确认</td><td>预览写「未开始」或「已结束」</td></tr><tr><td>图没传</td><td>发送测试跳过它</td><td>发送前提示「X 没有宣传图，不会弹」；预览原因写「没有宣传图」</td></tr><tr><td>跳转页面没填</td><td>不会出现：默认活动或礼包自己的页面</td><td>—</td></tr><tr><td>和上限或间隔冲突</td><td>发送测试不受限；预览照实算</td><td>预览写出是哪一个限制挡住（次数、间隔、场景上限、每次最多弹几个）</td></tr><tr><td>规则另设和活动或礼包的设置不同</td><td>发送测试和预览都按本规则另设</td><td>预览里这一项标「本规则另设」</td></tr><tr><td>规则里的活动或礼包全部「在所有规则里暂停」</td><td>发送测试照样弹（为了上线前能看）</td><td>预览每个都写「已在所有规则里暂停」</td></tr><tr><td>会员编号不存在</td><td>不发、不预览</td><td>提示「找不到会员编号 X」</td></tr><tr><td>场景是破产时、押注达到指定金额</td><td>测试账号要真去触发这个场景才弹</td><td>发送后提示「要让测试账号破产（或押注到指定金额）才会弹」；能不能改成下次进大厅就弹，待研发确认</td></tr><tr><td>测试账号一直没进场景</td><td>一直等待；同一账号再发或规则删除时作废</td><td>状态一直是「等待弹出」</td></tr><tr><td>规则里一个活动或礼包都没有</td><td>发送测试、预览按钮不可点</td><td>按钮旁写「先加活动或礼包」</td></tr></table></div>
+<h4>7. 和顶尖做法比</h4>
+<div class="tw"><table class="md"><tr><th>做法（出处）</th><th>同／不同</th><th>不同的理由</th></tr><tr><td>测试发送：Braze 的 Test 页签、Firebase 按设备 ID 测试、OneSignal 发给测试用户、MoEngage 的 Test Campaign、CleverTap 发给测试档案、Airship 的测试组（<code>弹窗/分析/对标顶尖_弹窗与快显_1028.md</code> 第 104 行）；参考库弹-03：按测试设备或测试用户强制显示、不计数据</td><td>同：强制显示、不计数据。不同①：上限写 50 人，弹-03 取舍里记的是「最多 10 个账号」。不同②：按整条规则的先后连着弹</td><td>①和 10/28 评审稿、推播、短信的「每次最多 50 人」一致（〔框〕第 58、135 行）；②我们一条规则要连弹几个（同文件第 100 行）</td></tr><tr><td>编辑时看效果：Braze 的 Preview 页签可按指定、随机或自定义用户看；Firebase 预览在编辑页右侧（同文件第 104 行）</td><td>同：在编辑页按指定玩家看</td><td>—</td></tr><tr><td>按人查原因：Braze 只能在分群里查某人是否符合；MoEngage 只按活动汇总没弹的原因（同文件第 104 行），原因分类如「Higher priority campaign available」「Maximum Times Shown」「Minimum Delay Condition」（同文件第 107 行）</td><td>不同：我们按单个玩家逐项写原因（规则第 10 条）；原因分类参照 MoEngage</td><td>运营不设审批，预览顶替审批（参考库弹-03 取舍）；对标建议「按玩家预览保留」（同文件第 104 行）</td></tr></table></div>
+<h4>8. 验收标准</h4>
+<ol>
+<li value="1">规则是草稿、测试账号不在发送对象里、规则里的活动今天已弹到每人每天几次：发送测试后，测试账号下一次进该场景，勾选的全部按先后弹出。</li>
+<li value="2">测试弹出后，该账号的已弹次数、上次弹出时间不变，弹窗数据里没有这几次。</li>
+<li value="3">测试对象合计 51 人时不能发。</li>
+<li value="4">操作纪录多一条，写谁、哪条规则、测试对象、测了哪些、时间。</li>
+<li value="5">没保存的改动（换了跳转页面）发送测试，测试账号点图按改后的页面跳。</li>
+<li value="6">预览用走查样本：草稿工作表2第 44–51 行（普卡、银卡，每次最多弹几个 2）；天天敲蛋禮V2 设固定，限時挑戰、卡別直升活動、BOSS戰 进轮换池（草稿没有固定和轮换池，这里假设排第 1 的天天敲蛋禮V2 设固定、其余三个进轮换池，为的是在一条真实规则里同时测到固定和轮换池），轮换池每次弹几个 1。对一个今天还没弹过的普卡玩家预览 → 这次：天天敲蛋禮V2（固定）、限時挑戰（轮换池）；轮换池之后依次：卡別直升活動 → BOSS戰。</li>
+<li value="7">预览后马上让这个玩家进该场景（期间没有别的改动），实际弹出和预览「这次」一致。</li>
+<li value="8">第 10 条③里每种没弹的原因各造一例，预览写出的原因和造的一致。</li>
+<li value="9">上架中的规则把每次最多弹几个从 2 改成 1、不保存，预览分「现在线上」「改后」两栏。按现写法（固定的占满时轮换池这次不弹），改后一栏少了限時挑戰，原因写「固定的已占满」；若待拍板第 1 条按推荐通过（轮换池先留名额），改后一栏只弹限時挑戰，少了天天敲蛋禮V2，原因写「已达每次最多弹几个」。</li>
+</ol>
+<h4>9. 已定事项落点</h4>
+<div class="tw"><table class="md"><tr><th>已定（原文照抄）</th><th>出处</th><th>本卡怎么承接</th><th>改了没有</th></tr><tr><td>「每个活动或礼包存一份弹窗设置，在规则里第一次加入时当场配，别的规则自动带出，不单独建〔旧〕弹窗内容页（推荐做法 C（每个活动或礼包一份弹窗设置）…）」</td><td>对齐卡「已定、要遵守的」第 1 条</td><td>没有单独的内容页，发送测试挪进规则（功能清单第 61 行）</td><td>未改</td></tr><tr><td>「弹出的是宣传图（默认用活动或礼包自带的，可替换），「点击后是否跳转：是／否」，选是填跳转页面（Dk 10/30）」</td><td>对齐卡「已定、要遵守的」第 4 条</td><td>发送测试就是在真机上验这三样</td><td>未改</td></tr><tr><td>「「在所有规则里暂停」开关（Dk 10/29「保留开关」）」</td><td>对齐卡「已定、要遵守的」第 5 条</td><td>发送测试不受暂停影响；预览写原因「已在所有规则里暂停」</td><td>未改</td></tr><tr><td>「弹窗的四个触发点叫「场景」（Dk 10/29）」</td><td>对齐卡「已定、要遵守的」第 6 条</td><td>全卡叫法；预览按本规则的场景</td><td>未改</td></tr><tr><td>「规则里每个活动或礼包可选「是否进轮换池：是／否，默认否」，轮换池内顺序由运营排，规则里设「轮换池每次弹几个」默认 1 个，先弹固定的再弹轮换池的…（Dk 10/30）」</td><td>对齐卡「已定、要遵守的」第 7 条</td><td>预览标「固定」「轮换池」，写轮换池这次和之后依次轮到哪个</td><td>未改</td></tr></table></div>
+<h4>10. 待拍板／待研发确认</h4>
+<p><b>待拍板</b>：无。</p>
+<ul>
+<li>理由：发送测试、按玩家预览都是 10/28 评审稿已有的能力。预览只看本规则的场景，是收窄了在规则页看的范围，所有场景仍能在玩家查询里看，没有少掉运营能配的东西。</li>
+</ul>
+<p><b>待研发确认</b></p>
+<ul>
+<li>破产时、押注达到指定金额的规则发送测试：测试账号要真去触发才弹。能不能改成测试账号下次进大厅就弹？这要看客户端在这些场景的弹窗样子是不是和大厅一样。</li>
+<li>活动或礼包还没开始时点图跳转，客户端怎么显示。</li>
+<li>测试群组里放的是不是测试账号，发送测试不受「弹窗固定不弹」限制（研发评审待确认第 26 条，原文叫〔旧〕测试账号固定不发）。</li>
+<li>发送测试和预览都按没保存的这一版算，服务端要能收一份临时配置。</li>
+</ul>
+<p><b>已替你定，可推翻</b></p>
+<ul>
+<li>每次最多 50 人，跟推播、短信一致，不用参考库弹-03 记的 10 个。</li>
+<li>测哪些活动或礼包默认全选；测试对象默认带出本人上次用过的。</li>
+<li>发送测试不看规则状态、生效期间、在所有规则里暂停。</li>
+<li>同一账号再发一次替换没弹的；规则删除时没弹的作废。</li>
+<li>预览只看本规则的场景、按编辑中的这一版；上架中的规则有改动时分两栏。</li>
+</ul></div></details><details class="cardd" id="card-B5"><summary><span class="cn">B5</span><span class="ct">保存确认</span><span class="cm">这张卡改了什么：保留 10/28 评审稿的「改了什么｜改前｜改后」和发送对象人数差；新加「规则里弹不弹得到」提示（名额被占：现写法是固定的占满时轮换池不弹，按待拍板第 1 条推荐是轮换池有能弹时固定的一个也弹不到；排在后面的固定项要等前面次数用完）、本规则另设的改动、一句生效说明；轮流时会错过的弹出时机只管当天首次登录、活动开始后第一次进大厅两种；「其余规则要排除」的提醒只在轮流时出。</span><span class="cm">字段 7 个｜待拍板：第 1 条、第 4 条</span></summary><div class="cb"><h4>1. 功能名｜对应任务编号</h4>
+<p>保存确认｜T27（另涉 T16 一人符合几条规则时弹哪条、T17 几条规则轮流弹）</p>
+<h4>2. 谁在什么场景用</h4>
+<ul>
+<li>运营改上架中或已暂停的规则后点保存，或把新规则上架时，弹出确认框；看完点确认才生效，点取消回编辑页。</li>
+<li>草稿保存不弹。改线上规则时用，频率跟着活动换期走（推断：草稿 7 批人每批活动、礼包各一条，共 14 条）。</li>
+<li>场景设置的保存确认在卡 A，活动或礼包弹窗设置的保存确认（列另有几条规则在用）在卡 C，本卡只管弹窗规则。</li>
+</ul>
+<h4>3. 要解决什么问题</h4>
+<ul>
+<li>改一条规则把别处弄坏：RICH-19069「改 A 坏 B」（<code>弹窗/分析/参照来源_Jira历史工单.md</code> 第 55 行）。</li>
+<li>运营不设审批，改线上规则自己发，确认框是上线前最后一道（<code>弹窗/规则与交接/顶尖做法参考库/弹窗与应用内消息.md</code> 弹-03 取舍：使用者是运营、不设审批）。</li>
+<li>多条规则、固定和轮换池、次数和上限叠在一起，改一处看不出会让谁弹不到、哪个活动被挤掉（推断；RICH-23002：几个条件都符合时按优先顺序只弹一个）。</li>
+<li>改设置前要写出后果、写明只影响以后（参考库弹-11：Ad Manager、NN/g 确认框）。</li>
+</ul>
+<h4>4. 字段表</h4>
+<p>本卡的「字段」是确认框里显示的项，运营不填只看；三问按「为什么要看／不显示会怎样／能不能更简单」答，列名照固定栏目。</p>
+<div class="tw"><table class="md"><tr><th>字段名</th><th>选项和默认值</th><th>为什么要填</th><th>不填会怎样</th><th>能不能更简单（四试 → 结论）</th><th>旧后台对应</th><th>来源</th></tr><tr><td>改了什么｜改前｜改后</td><td>每处改动一行；只改了规则里活动或礼包的先后时列先后的前后；含是否进轮换池、本规则另设（写「沿用 2 次 → 本规则另设 1 次」）</td><td>线上规则改错就直接影响玩家，保存前最后核一遍</td><td>改错要等玩家反映或看数据才发现（RICH-19069「改 A 坏 B」）</td><td>改成是否：不能，「有改动／没改动」看不出改了哪。给默认值：不涉及。自动带出：是，系统对比改前改后自动列，运营不填。去掉：不能，运营改线上规则不经审批，这是最后一道。→ 结论：保留，自动列</td><td>无</td><td>〔评〕第 334–335、337 行；功能清单第 63 行</td></tr><tr><td>发送对象人数变化</td><td>改了发送对象或排除群组时出：改前约 N 人、改后约 M 人、差值</td><td>换群组或加排除后，运营要知道多了还是少了、差多少</td><td>排错一个群组，一大批人突然不弹也看不出来</td><td>改成是否：不能，要看量级。给默认值：不涉及。自动带出：是，按群组人数算（已定事项第 22 条「人数预览」）。去掉：可以只列群组名不列人数，但看不出量级。→ 结论：保留，只在改了发送对象或排除群组时出</td><td>旧后台清单第 6 项（发送对象）</td><td>〔评〕第 336 行</td></tr><tr><td>排第几、谁弹不到</td><td>场景为「只用优先级最高的一条」、新规则上架或改了发送对象时出：本规则排第几，它的发送对象里约多少人同时符合排在前面的规则（这些人弹不到本规则）</td><td>新规则默认排在本场景最后，和前面规则重叠的人永远轮不到它</td><td>运营以为上架了，其实一大半人弹不到</td><td>改成是否：可以只写「有人弹不到」，但不知道多少就判断不了要不要调先后，不改。给默认值：不涉及。自动带出：是，按群组交集算（已定事项第 22 条「群组交集」）。去掉：不能。→ 结论：保留，写人数</td><td>旧后台清单第 18 项（规则间先后）</td><td>〔评〕第 256 行；功能清单第 65 行</td></tr><tr><td>规则里弹不弹得到</td><td>按配置算，两种情况各一句。①名额被占，随待拍板第 1 条：现写法（固定的占满时轮换池这次不弹）——固定的个数不少于每次最多弹几个且有项进池：「固定的都还能弹时，轮换池这次不弹」；固定的加轮换池每次弹几个超过每次最多弹几个：「轮换池这次最多只弹 K 个」。按推荐（轮换池先留名额）——每次最多弹几个 ≤ 轮换池每次弹几个、且有固定项：「轮换池有能弹的时候，固定的一个也弹不到」（轮换池空时固定的补位）。按备选——两边各有名额，①不出。②排在后面的固定项：固定的个数超过固定能用的名额（现写法是每次最多弹几个；推荐是每次最多弹几个 − 轮换池每次弹几个；备选是固定的每次弹几个）：「第 X 个起的固定项，要等前面的当天次数用完才弹得到」</td><td>先弹固定的再弹轮换池的、合计不超过每次最多弹几个，运营加固定项时不一定想到一边会把另一边挤掉、后面的轮不到</td><td>运营以为轮换池在轮、排了的都会弹；草稿第 48–51 行排了 4 个、每次最多 2 个，后两个要等前面次数用完（故事地图 T15 旁证）；按推荐时，破产时等场景每次最多默认 1，一有项进池固定的就弹不到，运营想不到</td><td>改成是否：可以，只在会挤掉时出一句，不挤就不出。给默认值：不涉及。自动带出：是，按配置算，不看具体玩家。去掉：不能，固定加轮换池是新概念，运营没有直觉；拦住不让存：不拦，运营可能就是要一边优先（另一边次数用完或没得弹时才轮到）。→ 结论：两种合成一项，只提示不拦，可继续保存</td><td>旧后台清单第 7、8 项（〔旧〕弹出数量、排序）</td><td>待拍板第 1 条；「固定的占满时轮换池这次不弹」是已替你定，可推翻；功能清单第 58 行</td></tr><tr><td>轮流时会错过的弹出时机</td><td>场景为「轮流」、本规则有弹出时机为当天首次登录或活动开始后第一次进大厅的活动或礼包时出：逐个列名字，和本规则里约多少人同时符合本场景其他规则</td><td>轮流时，一个人当天首次登录那一下可能轮到别的规则，这个活动当天就错过、不补弹（〔评〕第 329 行）</td><td>运营以为当天首次登录必弹</td><td>改成是否：不能，要列出是哪几个。给默认值：不涉及。自动带出：是。去掉：不能，错过不补弹是规则，运营看不出；收窄：只管这两种时机（每次进大厅、只在从游戏返回时不会错过）。→ 结论：保留，只管两种；若待拍板第 4 条不通过（保留「当天第 2 次登录起」「当天第 N 次登录」），这两种也要管</td><td>旧后台清单第 10 项</td><td>〔评〕第 338 行；功能清单第 64 行</td></tr><tr><td>轮流时其余规则的排除提醒</td><td>场景为「轮流」、本场景有发送对象为全部玩家的其他规则、本规则发送对象是群组或名单时出：「本规则的人会在两条规则间轮流；只想让 X 管其余的人，把本规则的群组加进 X 的排除群组」</td><td>轮流时「全部玩家」那条也会轮到本规则的人，运营原意常是它只管剩下的人</td><td>本规则的人一半次数弹到「全部玩家」那条的内容</td><td>改成是否：不涉及。给默认值：不涉及。自动带出：是。去掉：只用优先级最高的一条时可以去，「全部玩家」那条排最后自然只接剩下的人；轮流时不能去。→ 结论：只在轮流时出</td><td>无</td><td>〔评〕第 260–263 行；功能清单第 45 行</td></tr><tr><td>什么时候生效</td><td>固定一句：「确认后，玩家下一次进入这个场景起按新设置；今天已弹的次数不清零」</td><td>运营要知道改了是不是马上生效、今天弹过的人会不会再弹一轮</td><td>改了次数后运营以为重新计数，或以为要等明天</td><td>改成是否：不涉及。给默认值：固定文字。自动带出：是。去掉：可以去，但参考库弹-07 要求写明生效时机、弹-11 要求写明只影响以后。→ 结论：保留一句</td><td>无</td><td>参考库弹-07、弹-11；研发评审待确认第 18 条（已弹次数按实际弹出计）</td></tr></table></div>
+<h4>5. 规则</h4>
+<ol>
+<li value="1">什么时候弹确认框：上架中、已暂停的规则点保存；草稿或新规则点上架。草稿保存不弹；没有改动时保存按钮不可点。</li>
+<li value="2">确认框里各项只在有内容时出现；没有任何提示时只列改动和生效说明。</li>
+<li value="3">提示不拦保存：点确认就生效；点取消回编辑页，改动还在。</li>
+<li value="4">改动列表的范围：规则名称、场景（只有草稿能改）、发送对象、排除群组、生效期间、每次最多弹几个、加入或删掉的活动或礼包、先后、是否进轮换池、轮换池内顺序、轮换池每次弹几个、本规则另设的每一项（含恢复沿用）。</li>
+<li value="5">人数按点保存那一刻的群组人数算，写「约」；上传名单按名单里的会员编号数。</li>
+<li value="6">「弹不到」人数＝本规则发送对象（扣掉排除群组）和本场景排在它前面、上架中、在生效期间的规则发送对象的交集人数。</li>
+<li value="7">规则里弹不弹得到：设固定的个数 N、每次最多弹几个 M、轮换池每次弹几个 K（没有项进池时 K 按 0 算）。现写法：N ≥ M 且有项进池时出「轮换池这次不弹」；N &lt; M &lt; N＋K 时出「轮换池这次最多只弹 M−N 个」；N &gt; M 时另出「第 M＋1 个起的固定项要等前面的当天次数用完」。按待拍板第 1 条推荐：M ≤ K 且 N ≥ 1 时出「轮换池有能弹的时候，固定的一个也弹不到」；M &gt; K 且 N &gt; M−K 时出「第 M−K＋1 个起的固定项要等前面的当天次数用完，或轮换池没得弹时才弹得到」。按备选（固定的每次弹几个 F）：N &gt; F 时出「第 F＋1 个起的固定项要等前面的当天次数用完」。</li>
+<li value="8">轮流时会错过的弹出时机：只在场景设为轮流时算；弹出时机按这条规则实际用的（沿用或本规则另设）；人数＝本规则发送对象里同时符合本场景其他上架规则的人数。</li>
+<li value="9">点确认后记一条操作纪录，内容同改动列表（操作纪录在卡 A）。</li>
+</ol>
+<h4>6. 异常</h4>
+<div class="tw"><table class="md"><tr><th>情况</th><th>系统怎么做</th><th>运营看到什么</th></tr><tr><td>规则里有活动或礼包已结束或下架</td><td>照常保存，这条规则跳过它</td><td>「X 已结束，这条规则会跳过它」</td></tr><tr><td>图没传</td><td>照常保存，这条规则跳过它（以卡 C 为准）</td><td>「X 没有宣传图，不会弹」</td></tr><tr><td>跳转页面没填</td><td>不会出现：默认活动或礼包自己的页面</td><td>—</td></tr><tr><td>本规则另设的次数大于场景的每人每天最多弹几个</td><td>照常保存</td><td>「本场景每人每天最多弹 N 个，X 另设的 M 次可能弹不满」（卡 B3 异常）</td></tr><tr><td>规则另设和活动或礼包的设置不同</td><td>不是错误</td><td>改动列表里写前后值</td></tr><tr><td>规则里的活动或礼包全部「在所有规则里暂停」</td><td>照常保存</td><td>「这条规则里的都已在所有规则里暂停，上架后一个也不弹」</td></tr><tr><td>打开编辑后，别人改过同一条规则</td><td>不让直接覆盖</td><td>「这条规则在你打开后被 X 改过」，要刷新后再改</td></tr><tr><td>群组人数还在计算</td><td>不拦</td><td>人数写「计算中」</td></tr><tr><td>生效期间已结束还点上架</td><td>不让上架（生效期间字段在卡 B1）</td><td>「生效期间已结束」</td></tr></table></div>
+<h4>7. 和顶尖做法比</h4>
+<div class="tw"><table class="md"><tr><th>做法（出处）</th><th>同／不同</th><th>不同的理由</th></tr><tr><td>参考库弹-11：改设置前写出后果；Ad Manager 可看与其他投放单抢量的影响，NN/g 要求确认框写清会发生什么、写明只影响以后的投放；「将影响 N 位用户」查过的产品官方文档都未写</td><td>同：确认框写后果、写只影响以后。不同：我们写人数</td><td>已定事项第 22 条把「群组交集」「人数预览」列为小改动，算得出；弹-11 取舍记为「按原则多做的」</td></tr><tr><td>参考库弹-06：Firebase 发布前显示可触达比例</td><td>同：上架前给人数</td><td>—</td></tr><tr><td>生效时机：Airship 排程消息要重新保存才用新版本；OneSignal 模板改了只影响之后的发送（<code>弹窗/分析/对标_内容与规则_1028.md</code> 第 116–118 行）；参考库弹-07：OneSignal 在 App 启动时拉取</td><td>同：写明从下一次进入起</td><td>—</td></tr><tr><td>只出最高一条：Braze「only the message with the highest priority is delivered」（<code>弹窗/分析/对标顶尖_弹窗与快显_1028.md</code> 第 102 行）</td><td>同：只用优先级最高的一条时，排后面的规则会有人弹不到，所以写「谁弹不到」</td><td>—</td></tr></table></div>
+<h4>8. 验收标准</h4>
+<ul>
+<li>测试账号在「弹窗固定不弹」里（功能清单第 95 行），按群组发不到：下面用测试账号验上线规则的，发送对象用上传名单（名单不受固定不弹限制），或用发送测试（卡 B4）。</li>
+</ul>
+<ol>
+<li value="1">上架中的规则把每次最多弹几个从 2 改成 3，点保存：确认框有一行「每次最多弹几个｜2｜3」；点确认后操作纪录有同样一行。</li>
+<li value="2">只调换规则里两个活动的先后：确认框列出先后的前后。</li>
+<li value="3">加一个排除群组：确认框写改前、改后人数和差值，差值等于两数之差。</li>
+<li value="4">场景为只用优先级最高的一条，造一条发送对象和排第一的规则重叠 1,000 人的新规则：上架时写「排第 N，约 1,000 人弹不到」。</li>
+<li value="5">用走查样本（草稿工作表2第 44–51 行：每次最多弹几个 2，天天敲蛋禮V2 固定，其余三个进轮换池，轮换池每次弹几个 1；草稿没有固定和轮换池，这里按先后和次数映射；本条按现写法验）：原样保存不出「弹不弹得到」提示；把卡別直升活動改成固定 → 出「轮换池这次不弹」；再把每次最多弹几个改成 1 → 另出「第 2 个起的固定项要等前面的当天次数用完」。</li>
+<li value="6">场景设轮流，规则里天天敲蛋禮V2 的弹出时机是当天首次登录：保存时列出它和同时符合其他规则的人数；场景改回只用优先级最高的一条后，不再出。</li>
+<li value="7">草稿保存不弹确认框；没有改动时保存按钮不可点。</li>
+<li value="8">确认框点取消：线上规则不变，编辑页改动还在。</li>
+<li value="9">确认后测试账号下一次进场景按新设置弹，今天已弹的次数没有清零。</li>
+<li value="10">待拍板第 1 条按推荐通过时：破产时规则每次最多弹几个 1、轮换池每次弹几个 1，固定 1 个、池里 1 个：保存时出「轮换池有能弹的时候，固定的一个也弹不到」，点确认仍能保存；把每次最多弹几个改成 2，这条提示不出。</li>
+</ol>
+<h4>9. 已定事项落点</h4>
+<div class="tw"><table class="md"><tr><th>已定（原文照抄）</th><th>出处</th><th>本卡怎么承接</th><th>改了没有</th></tr><tr><td>「规则里每个活动或礼包可选「是否进轮换池：是／否，默认否」，轮换池内顺序由运营排，规则里设「轮换池每次弹几个」默认 1 个，先弹固定的再弹轮换池的；规则列表每条能展开，看到有哪些弹窗、是否轮换、顺序（Dk 10/30）」</td><td>对齐卡「已定、要遵守的」，已定表第 7 条</td><td>「规则里弹不弹得到」按「先弹固定的再弹轮换池的」算；默认否、默认 1 个不动</td><td>未改</td></tr><tr><td>「〔旧〕冷却按已定事项第 25 条及细化；规则里能另设的项按第 26 条（「〔旧〕显示方式」已改成「是否跳转」）」</td><td>对齐卡「已定、要遵守的」，已定表第 2 条</td><td>改动列表含本规则另设的每一项</td><td>未改</td></tr><tr><td>「「在所有规则里暂停」开关（Dk 10/29「保留开关」）」</td><td>对齐卡「已定、要遵守的」，已定表第 5 条</td><td>异常：全部暂停时提示「上架后一个也不弹」</td><td>未改</td></tr><tr><td>「弹窗的四个触发点叫「场景」（Dk 10/29）」</td><td>对齐卡「已定、要遵守的」，已定表第 6 条</td><td>全卡叫法</td><td>未改</td></tr><tr><td>「小改动 7：每人每日弹窗上限、群组交集、人数预览、口径说明、〔旧〕变更记录、引用清单……」</td><td>已定事项第 22 条</td><td>人数变化、谁弹不到用「人数预览」「群组交集」；确认后记操作纪录（即〔旧〕变更记录，卡 A）</td><td>未改</td></tr></table></div>
+<h4>10. 待拍板／待研发确认</h4>
+<p><b>待拍板</b>：无。</p>
+<ul>
+<li>理由：确认框只提示不拦，没有改变运营能配什么。轮流时会错过的弹出时机收成两种，取决于待拍板第 4 条；第 4 条不通过时这里加两种，本卡不另列。</li>
+<li>「规则里弹不弹得到」①随待拍板第 1 条变，三种写法都在字段表和规则第 7 条：按推荐，「固定的占满」那句换成「轮换池有能弹的时候，固定的一个也弹不到」，提示不取消，可继续保存；按备选，①不出；两种都不选，按现写法。②三种都有，只是固定能用的名额算法不同。</li>
+</ul>
+<p><b>待研发确认</b></p>
+<ul>
+<li>「下一次进入起按新设置」：玩家要不要重新登录或客户端重新拉取才生效（参考库弹-07）。不是马上生效的话，生效说明改成实际的时机。</li>
+<li>保存时能不能当场算出群组交集人数（已定事项第 22 条列为小改动「群组交集」）；算得慢的写「计算中」。</li>
+</ul>
+<p><b>已替你定，可推翻</b></p>
+<ul>
+<li>所有提示只提示、不拦保存，包括固定的占满时轮换池不弹、按推荐时固定的一个也弹不到。</li>
+<li>现写法里「先弹固定的、再弹轮换池的，合计不超过每次最多弹几个，固定的占满时轮换池这次不弹、保存时提示」，后半句是我方补的（Dk 定的是先弹固定的再弹轮换池的），待拍板第 1 条在问要不要改。</li>
+<li>草稿保存不弹确认框。</li>
+<li>名额被占、排在后面的固定项两种提示合成「规则里弹不弹得到」一项。</li>
+<li>「其余规则要排除」的提醒只在轮流时出（功能清单第 45 行）。</li>
+<li>改规则不清零今天已弹的次数。</li>
+<li>别人改过同一条规则时不让直接覆盖。</li>
+</ul></div></details><details class="cardd" id="card-C"><summary><span class="cn">C</span><span class="ct">活动或礼包的弹窗设置</span><span class="cm">这张卡改了什么：①〔旧〕显示方式两选一改成「点击后是否跳转：是／否」；②宣传图不再只在「先弹宣传图」时才要，一律有，默认用自带的；③跳转页面加默认值「本活动或礼包页面」，活动上选「否」时也保留，规则里另设成「是」时总有页面可跳（已替你定，可推翻）；④弹出时机从 6 项减到 4 项、单选（待拍板第 4 条），默认值按活动、礼包分开给（待拍板第 7 条）；⑤每人每天几次按活动、礼包分开给默认：活动 1 次、礼包 2 次（已替你定，可推翻）；⑥写清次数怎么跨规则合计：同一场景各规则合计，和各条规则自己的上限比（已替你定，可推翻）；⑦不加新页，从规则列表按活动或礼包筛选后打开这份设置（已替你定，可推翻）；⑧不再有单独的〔旧〕弹窗内容页、标记、对应礼包。</span><span class="cm">字段 9 个｜待拍板：第 4 条、第 6 条、第 7 条；研发确认后再问 1 件</span></summary><div class="cb"><h4>1. 功能名｜对应任务</h4>
+<p>活动或礼包的弹窗设置｜T1、T2、T3、T4、T5、T6、T18、T19、T20、T22、T34</p>
+<h4>2. 谁在什么场景用</h4>
+<ul>
+<li>配弹窗的运营，四种时候：</li>
+<li>新活动或礼包上线前，第一次把它加进某条规则：当场看一眼宣传图、点了去哪、每人每天几次（默认活动 1 次、礼包 2 次），不改就能保存（T1–T4）。</li>
+<li>同一个活动再加进别的人群的规则：不再填，直接带出（T4）；某条规则要不一样，在那条规则里「本规则另设」（卡 B3）。</li>
+<li>活动进行中：换图、改跳转、改次数，改前看它在几条规则里用着（T2、T3、T6、T34）；临时让它哪儿都不弹（T5）。</li>
+<li>活动结束：不用管，各规则自动跳过（T1、T34）。</li>
+</ul>
+<h4>3. 要解决什么问题</h4>
+<div class="tw"><table class="md"><tr><th>问题</th><th>来源</th></tr><tr><td>新活动要等发版才能选进弹窗</td><td>RICH-19589「需添加至活動彈窗  進行配置」；RICH-21939 下拉「沒有紅包狂歡」；RICH-22592「都沒有＂至尊回歸＂可供選擇」</td></tr><tr><td>换图、改跳转要找研发改客户端</td><td>RICH-24469「彈窗顯示的資源，彈窗跳轉的url都需要可以通過後臺配置處理（目前這塊是客端寫死了）」</td></tr><tr><td>同一个活动在几条规则里重复填、改时漏改</td><td>草稿工作表2：14 个活动和礼包在 14 条规则里出现 43 处，同一个最多在 5 条（思考笔记 1029 第 26 行）；第 48–51 行三档卡别逐格相同</td></tr><tr><td>一个人一天被同一个活动弹太多次，换平台又弹</td><td>RICH-22729「在A平台觸發平台至尊彈窗後至B平台LOGIN後仍有觸發至尊彈窗」，应有现象「應只會跳一次」</td></tr><tr><td>想临时关掉某个弹窗，现在要另开单</td><td>RICH-24833「可能一段時間所有vip都知道規則後就可以關閉」</td></tr><tr><td>改共用的设置前不知道会影响哪些规则</td><td>已定事项第 22 条〔旧〕引用清单</td></tr></table></div>
+<h4>4. 字段表</h4>
+<p>「能不能更简单」逐个试四种：改成是否／给默认值／自动带出／去掉，→ 后是结论。</p>
+<div class="tw"><table class="md"><tr><th>字段名</th><th>选项和默认值</th><th>为什么要填</th><th>不填会怎样</th><th>能不能更简单 → 结论</th><th>旧后台对应</th><th>来源</th></tr><tr><td>对应的活动或礼包</td><td>不在这里填：在规则里加入时选的那一个；侧边框顶部只读显示名称、是活动还是礼包、起止时间</td><td>运营不用填，它定这份设置属于谁，活动后台、礼包后台里建好的、未结束的都能选到，不用发版</td><td>不会不填：没选活动就打不开这份设置</td><td>改成是否：不适用，它是一个对象不是开关；给默认值：不能，选哪个是运营的决定；自动带出：是，可选列表从活动后台、礼包后台自动带出，新活动建好就有；去掉：不能，这份设置要挂在活动或礼包上 → 只读显示，可选列表自动带出</td><td>旧后台清单第 9 项</td><td>清单第 52、87 行；RICH-19589、21939、22592</td></tr><tr><td>宣传图</td><td>默认：用活动或礼包自带的图；可上传替换；替换后可「恢复用自带的」</td><td>弹出的就是这张图，运营要确认玩家看到的样子，活动换主视觉时要能换</td><td>不传就用自带的；没有自带图时（如部分礼包）不传不能保存</td><td>改成是否：不能，图是内容；可做成「用自带的／上传替换」，等于默认值加替换；给默认值：可以，默认用自带的；自动带出：可以，从活动或礼包读（待研发确认 R1）；去掉：不能，弹出的就是它，RICH-24469 要能在后台换 → 默认自带，要换才传</td><td>旧后台清单第 17 项</td><td>清单第 66、69 行；RICH-24469；Dk 10/30</td></tr><tr><td>点击后是否跳转</td><td>是／否；默认：是（待拍板第 7 条；不加默认时，此项必选、无默认）</td><td>定玩家点图后去不去别的页面：活动、礼包要点进去参加或购买，纯告知的图只看不跳</td><td>有默认值就不会空着；若不给默认，客户端不知道点图后做什么</td><td>改成是否：已改，原〔旧〕活动本身／〔旧〕活动广告页两选一，本质是点了去不去（Dk 10/30）；给默认值：可以，默认是，草稿 43 处只有〔旧〕活动本身 36 处、〔旧〕活动广告页 7 处，按研发待确认第 24 条现在的理解（两种都是先弹图）都对到「是」（推断，见 R2）；自动带出：第二条规则起自动带出，第一次不能从活动后台读，活动上没有这项；去掉：不能，Dk 10/30 定了是／否两档，纯告知的图（如 RICH-24833 想宣导的讯息）点了不该乱跳 → 保留是／否，默认是</td><td>旧后台清单第 11 项</td><td>清单第 67、68、70 行；研发待确认第 24 条</td></tr><tr><td>跳转页面</td><td>本活动或礼包页面（默认）／其他页面：从可跳转的页面里选；「点击后是否跳转」为是时才显示</td><td>定点图后打开哪一页；多数是本活动，少数要导到别处（如商城）</td><td>有默认值不会空；选了「其他页面」没选具体页面不能保存</td><td>改成是否：部分可以，做成「本活动或礼包页面／其他页面」二选一，选其他才出页面列表；给默认值：可以，默认本活动或礼包页面（已替你定，可推翻）；自动带出：可以，默认页面从活动或礼包读出；去掉：不能，RICH-24469 要跳转 url 能在后台配，去掉后只能跳本活动 → 保留，默认本活动或礼包页面</td><td>旧后台清单第 17 项</td><td>清单第 71 行；RICH-24469；〔旧〕原选项「直接打开活动或礼包页面」打开的就是它自己的页面</td></tr><tr><td>弹出时机（仅进大厅）</td><td>单选 4 项：每次进大厅，含从游戏返回／只在从游戏返回时／当天首次登录／活动开始后第一次进大厅；默认：活动为「每次进大厅，含从游戏返回」，礼包为「只在从游戏返回时」（待拍板第 4、7 条）</td><td>定在哪一刻弹：活动多在进大厅时弹，礼包多在打完一局回到大厅时弹</td><td>有默认值不会空；默认不对时，礼包会在玩家刚登录、还没玩时就弹</td><td>改成是否：不能，4 种时机不是开关；给默认值：可以，按是活动还是礼包给两个默认，草稿 43 处里储值类（都是礼包）26 处全是〔旧〕返回大廳，活动类 17 处全含〔旧〕進入大廳；自动带出：第二条规则起带出，第一次只能按活动或礼包带默认值，活动后台没有这项；去掉：不能，草稿同一条规则里各项时机不同（工作表2第 48–49 行）；可去掉其中两项「当天第 2 次登录起」「当天第 N 次登录」，草稿、截图、工单都没出现过 → 4 项单选，按类型给默认</td><td>旧后台清单第 10 项</td><td>清单第 72–74 行；〔截〕截图转录第 50 行；草稿工作表2第 19–86 行（43 处，本卡统计）；RICH-22932、22934</td></tr><tr><td>每人每天几次</td><td>1 以上的整数；默认：活动 1 次、礼包 2 次（已替你定，可推翻）</td><td>定一个人一天最多看到这个活动几次；草稿里有 1 次和 2 次两种</td><td>有默认值不会空；清空、填 0 或小数不能保存（RICH-23167 填 0 后显示空白）</td><td>改成是否：不能，草稿要的是 1 次或 2 次，不是弹不弹；给默认值：可以，按活动、礼包分开给，活动 1 次、礼包 2 次（已替你定，可推翻）。标准：草稿里某个值占约三分之二以上才给默认，接近五五开的不给。草稿工作表2里活动 17 处有 11 处是 1 次（约三分之二），礼包 26 处有 18 处是 2 次（约七成），都够；不分类型时 43 处是 2 次 24 处、1 次 19 处，接近五五开，所以按类型分开给。照草稿算，默认不对的按出现次数是活动 6 处、礼包 8 处；按活动或礼包计（设置跟着活动或礼包存一份），运营只要改 2 个活动（限時挑戰、卡別直升活動改成每天 2 次）、2 个礼包（生涯限購、限時加碼禮包改成每天 1 次）各一次，另加回流规则里 5 处本规则另设（獨享禮包、平臺限量/專屬禮包、驚喜三選一在回流规则里每天 1 次），在侧边框里看得到、可改；自动带出：第二条规则起带出；去掉：不能，RICH-22729 要「應只會跳一次」，已定事项第 25 条要每天 N 次 → 保留，按活动、礼包给默认</td><td>旧后台清单第 12 项</td><td>清单第 75–77 行；〔截〕截图转录第 38 行；已定事项第 25 条；草稿工作表2第 19–86 行（本卡统计）</td></tr><tr><td>每人两次至少隔多久</td><td>默认留空（不限）；要设时填数字，单位分钟或小时；每人每天几次为 1 时也显示</td><td>一天弹 2 次以上时，管同一个活动两次之间别挨太近，尤其是不受弹出间隔限制的（如破产礼包）；每天 1 次时也能管跨天的间隔（如今天 23 点弹过，明天 0 点后不马上再弹）</td><td>留空就不限，同一个活动两次之间只受场景的弹出间隔管</td><td>改成是否：已经是，留空就是不限，要设才填数，不另加开关；给默认值：默认留空（已定事项第 25 条细化「默认不设」）；自动带出：第二条规则起带出；按次数隐藏：不隐藏，间隔从上次显示算起、不按天清零，每天 1 次时跨天仍起作用，所以每天 1 次也显示，卡 B3 同此（已替你定，可推翻）；去掉：不能，已定事项第 25 条细化保留它，它在弹出间隔设得更短、或本活动不受弹出间隔限制时起作用（弹窗内容去留大纲「几种做法都要定的 › 〔旧〕冷却」） → 保留，默认留空，每天 1 次时也显示（草稿每天 1 次的 19 处冷却全是 0 秒，每天 2 次的 24 处全是 1800 秒）</td><td>旧后台清单第 13 项</td><td>清单第 78–79 行；〔截〕截图转录第 38 行；草稿工作表2（每天 2 次的 24 处全是 1800 秒）</td></tr><tr><td>在所有规则里暂停</td><td>开关，默认：关；打开前确认框列出在用的规则；只停弹窗，活动照常</td><td>临时让这个活动或礼包哪儿都不弹，不用一条条规则去删，事后还能恢复</td><td>默认关，照常弹</td><td>改成是否：已经是开关；给默认值：默认关；自动带出：不适用，它只有一份，所有规则共用；活动结束由系统自动跳过，不用运营开；去掉：不能，Dk 10/29「保留开关」，RICH-24833 要能临时关 → 保留</td><td>旧后台清单第 19 项</td><td>清单第 80、81 行；〔框〕第 218–221 行</td></tr><tr><td>另有几条规则在用</td><td>只读：写「另有 N 条规则在用」（从规则列表打开时写「共 N 条规则在用」），点开列规则名、场景、状态、这条规则另设了哪几项；跨场景合计</td><td>运营不用填，系统算；改宣传图、跳转、次数前要知道会带动哪几条规则，哪几条另设过、不跟着变</td><td>不显示的话，在一条规则里改了默认值，会悄悄改到别的规则（大纲的推荐做法 C「代价」）</td><td>改成是否：不能，要的是哪几条，不是有没有；给默认值：不适用，系统算出；自动带出：是，系统按规则引用算；去掉：不能，已定事项第 22 条〔旧〕引用清单 → 只读显示，可点开</td><td>旧后台清单第 20 项</td><td>清单第 82 行；已定事项第 22 条</td></tr></table></div>
+<p><b>入口</b>（不是字段，按同样的问法过一遍）</p>
+<div class="tw"><table class="md"><tr><th>入口</th><th>什么时候用</th><th>没有这个入口会怎样</th><th>能不能更简单 → 结论</th><th>来源</th></tr><tr><td>① 第一次把活动或礼包加进规则时，当场打开侧边框配</td><td>新活动第一次进弹窗</td><td>要先去另一页建好再回来选，多一页、多一次跳转（弹窗内容去留大纲的做法 B 的代价）</td><td>已是最简单：默认值都带好（每人每天几次活动 1 次、礼包 2 次），运营看一眼图和次数就能保存</td><td>对齐卡「已定、要遵守的」第 1 条；清单第 53 行；卡 B2</td></tr><tr><td>② 别的规则加入同一个活动或礼包时，自动带出</td><td>同一个活动给另一批人弹</td><td>每条规则重填，43 处要填 172 项（弹窗内容去留大纲的做法 A）</td><td>已是最简单：不弹填写框，规则里那一行直接显示「沿用活动设置」，要不同就点「本规则另设」（卡 B3）</td><td>对齐卡「已定、要遵守的」第 1 条；清单第 53、54 行</td></tr><tr><td>③ 不进规则时：规则列表按活动或礼包筛选，点活动名打开同一个侧边框，在里面改和暂停</td><td>只想换图、改次数或临时暂停，不改任何规则</td><td>只能随便打开一条用它的规则去改，不知道该开哪条；要暂停也找不到地方</td><td>不加新页（已替你定，可推翻）：弹窗内容去留大纲的做法 D 比已定的做法 C 只多一个集中列出全部活动弹窗设置的列表页，没有运营要它，先不做；筛选在当前场景页签里生效，侧边框里的在用规则跨场景列全</td><td>清单第 16、84 行；卡 A</td></tr></table></div>
+<h4>5. 规则（系统怎么算）</h4>
+<ol>
+<li value="1">每个活动或礼包只有一份弹窗设置。第一次加进任一条规则时建立；之后加进别的规则，直接用这一份，不再填。</li>
+<li value="2">在任何入口改这份设置，改的都是同一份。保存时若另有规则在用，确认框列出这些规则；某条规则对被改的项另设过，写明「这条规则另设过，不跟着变」（已定事项第 26 条）。</li>
+<li value="3">宣传图：没上传时用活动或礼包自带的图，活动后台换了自带图，弹窗跟着换；上传过的用上传的，不跟着活动后台变；点「恢复用自带的」回到自带图。</li>
+<li value="4">点击后是否跳转为「是」：玩家点图打开跳转页面；为「否」：点图只关闭弹窗。</li>
+<li value="5">跳转页面默认本活动或礼包页面。活动上选「否」时跳转页面不显示，但仍存着默认值；某条规则另设「点击后是否跳转：是」时，跳到这里存的页面（跳转页面默认它自己的页面：已替你定，可推翻）。跳转页面不能在规则里另设（已定事项第 26 条）。</li>
+<li value="6">弹出时机只在场景「进大厅」起作用；破产时、买了指定礼包后、押注达到指定金额三个场景事件一发生就弹，不看弹出时机（清单第 39 行）。</li>
+<li value="7"><b>每人每天几次怎么数（已替你定，可推翻）</b>：按会员编号数，不按设备、平台（RICH-22729）；只数实际显示出来的（弹-01「显示才计」），被场景的每人每天最多弹几个、弹出间隔挡下没显示的不算；发送测试不算（卡 B4）；一天从 0 点算起，暂按台湾时间，待研发确认（R5）。同一个活动或礼包、同一个场景里，各条规则弹过的次数合计；不同场景分开数，破产时弹的礼包不占它在进大厅的次数（清单第 77 行）。某条规则轮到它时，拿「今天合计已弹次数」和<b>这条规则自己的上限</b>比：这条规则另设过就用另设值，没另设用活动设置；小于上限才弹。<br>· 例（弹窗内容去留大纲「几种做法都要定的 › 次数 › 怎么比」原例，数字取自草稿工作表2第 36 行和第 82 行）：驚喜三選一在活动设置里每天 2 次；「已首儲用戶」规则沿用 2 次，「回流」规则另设 1 次。同一个人两条规则都符合、场景是「轮流」时：今天已弹 1 次后，回流规则不再弹它，已首储规则还能弹 1 次；弹满 2 次后两条都不弹。<br>· 只用优先级最高的一条时也要合计：一个人当天从一条规则换到另一条（如当天首储，从未首储规则换到已首储规则），已弹次数接着算，不清零。<br>· 后果写明：规则里另设的较小次数，管的是「这条规则还弹不弹」，不保证这批人一天总共只看到这么多次；一个人同时符合几条规则时，一天最多看到其中最大的那个数。</li>
+<li value="8">每人两次至少隔多久：同一个人、同一个活动或礼包、同一个场景，从上次显示到这次至少隔这么久，各规则合计；和规则自己的上限一样，用这条规则的另设值或活动设置。它和场景的弹出间隔都满足才弹（已定事项第 25 条）。间隔不按天清零：跨天也从上次显示算起，所以每人每天几次为 1 时它也起作用，侧边框照常显示（例：隔 24 小时，今天 20 点弹过，明天 20 点前不弹）。</li>
+<li value="9">在所有规则里暂停打开后：所有场景的所有规则都跳过它，按规则里的先后轮到下一个，和没加入一样；活动、礼包本身照常开。关闭后恢复弹，当天已弹次数照算。暂停期间，规则列表展开和规则编辑里它那一行标「已暂停」。</li>
+<li value="10">活动或礼包未开始、已结束（含在活动后台被删）时，所有规则自动跳过它，不用改规则（清单第 83 行）；未开始的可以先配。规则列表展开里标「未开始」「已结束」。</li>
+<li value="11">活动后台、礼包后台里建好的、未结束的活动和礼包，自动出现在规则「加入活动或礼包」的可选列表，不用发版（清单第 52 行）。</li>
+<li value="12">这份设置的每次改动（含暂停、恢复）记一条操作纪录（卡 A 末节）。</li>
+</ol>
+<h4>6. 异常</h4>
+<div class="tw"><table class="md"><tr><th>情况</th><th>系统怎么做</th><th>运营看到什么</th></tr><tr><td>活动或礼包过期、在活动后台被删</td><td>所有规则跳过它；设置保留</td><td>规则展开、侧边框标「已结束」</td></tr><tr><td>礼包没有自带宣传图、推送后台读不到自带图</td><td>不传图不能保存</td><td>侧边框写「这个礼包没有自带宣传图，请上传」</td></tr><tr><td>上传的图不合规格</td><td>不收</td><td>上传处写明规格（尺寸、大小、格式待研发确认 R1）</td></tr><tr><td>跳转页面选了「其他页面」没选具体页</td><td>不能保存</td><td>提示选页面</td></tr><tr><td>跳转页面指向的活动已结束或页面已下线</td><td>玩家点图只关闭弹窗，不报错</td><td>侧边框和规则展开标「跳转页面已失效」</td></tr><tr><td>每人每天几次填 0、空、小数</td><td>不能保存</td><td>提示「填 1 以上的整数；不想让它弹，用『在所有规则里暂停』」</td></tr><tr><td>和场景的每人每天最多弹几个、弹出间隔冲突</td><td>场景层先管：已到上限或没过弹出间隔就不弹，这次不算次数，之后不补弹</td><td>按玩家预览里写没弹的原因（卡 B4）</td></tr><tr><td>规则另设和活动设置不同</td><td>另设过的项以规则为准，活动设置再改也不覆盖；活动上「否」、规则另设「是」时跳到活动存的跳转页面</td><td>规则里那一行写「这条另设」；改活动设置时确认框点名另设过的规则</td></tr><tr><td>一条规则里的活动或礼包全被暂停或全已结束</td><td>这条规则这次一个也弹不出；是否落到下一条规则由卡 A「多条规则都符合时」定</td><td>打开暂停前，确认框点名「暂停后这条规则没有可弹的」；规则列表该行标「没有可弹的」</td></tr><tr><td>两个运营同时改同一份设置</td><td>后保存的人保存失败</td><td>提示「已被某某修改，请刷新后再改」</td></tr></table></div>
+<h4>7. 和顶尖做法比</h4>
+<div class="tw"><table class="md"><tr><th>设计点</th><th>顶尖做法（出处）</th><th>同／不同</th><th>不同的理由</th></tr><tr><td>内容存一份，在投放规则里当场新建或选已有</td><td>Google Ad Manager 素材库，投放计划里也能当场新建素材（弹窗内容去留大纲「顶尖做法」；参考库弹-12 GAM 链接）</td><td>同；但不做单独的素材库页</td><td>单独的素材库页就是弹窗内容去留大纲的做法 D，比已定的做法 C 只多这一个列表，没有运营数据说明要它，先不做</td></tr><tr><td>改一处、所有引用处一起变，能看被谁引用</td><td>Braze Content Blocks（弹-12；对标 1028 第二节「内容库与引用」行）</td><td>同</td><td>—</td></tr><tr><td>弹出时机、同一项两次间隔设在共用的一份上</td><td>查到的产品都设在投放规则上（弹-12）</td><td>不同</td><td>草稿里同一个活动在各规则的时机一致（弹窗内容去留大纲的判断标准③）；已定事项第 26 条允许规则里另设，前提错了也能逐条改</td></tr><tr><td>共用的一份上设跨规则的每人上限</td><td>Metaplay 跨 Offer Group 每人上限、GAM 素材跨投放上限（弹-12；弹窗内容去留大纲）</td><td>同</td><td>—</td></tr><tr><td>图默认取对象自带的</td><td>Balancy 的 offer 自带图标、界面（弹窗内容去留大纲）</td><td>同</td><td>—</td></tr><tr><td>一键停用，所有引用处跳过</td><td>查到的内容库没有（对标 1028 第二节：我们比 Braze「多了〔旧〕下架自动跳过」）</td><td>不同</td><td>RICH-24833 要临时关；不单独建页后靠这个开关补上（大纲的推荐做法 C「配套」）</td></tr><tr><td>只在实际显示时计次数</td><td>Braze 等（弹-01）</td><td>同</td><td>—</td></tr></table></div>
+<p>竞品（金好运、星城、豪神）只有玩家端录屏（<code>~/claude/竞品跟踪分析/</code>），回答不了这些字段怎么设，本卡不引用。</p>
+<h4>8. 验收标准（上线后测试能判）</h4>
+<ol>
+<li value="1">在活动后台新建一个活动，不发版，弹窗规则「加入活动或礼包」的可选列表里就能选到它。</li>
+<li value="2">第一次把天天敲蛋禮V2 加进一条规则：侧边框已带好宣传图（自带）、点击后是否跳转「是」、跳转页面「天天敲蛋禮V2 页面」、弹出时机「每次进大厅，含从游戏返回」、每人每天几次 1 次；不填任何项就能保存。第一次把首儲禮包加进规则：每人每天几次带好 2 次、弹出时机「只在从游戏返回时」。</li>
+<li value="3">再把天天敲蛋禮V2 加进第二条规则：不弹填写框，那一行写「沿用活动设置」，侧边框写「另有 1 条规则在用」。</li>
+<li value="4">在侧边框上传新图并保存：确认框列出另外在用的规则；保存后，用它的每条规则下次弹出的都是新图；点「恢复用自带的」后回到自带图。</li>
+<li value="5">点击后是否跳转选「否」：玩家点图只关闭弹窗；选「是」：打开本活动页；改选其他页面：打开所选页面。</li>
+<li value="6">活动设置选「否」，某条规则另设「是」：在这条规则下弹出时点图，打开本活动页。</li>
+<li value="7">规则 7 的例子：驚喜三選一每天 2 次，回流规则另设 1 次，场景设为轮流，测试号同时符合已首储、回流两条规则：当天弹过 1 次后，经回流规则不再弹；经已首储规则还能弹 1 次；第 3 次两条都不弹。</li>
+<li value="8">同一会员编号每天 1 次，在 A 平台弹过后，当天换 B 平台登录不再弹（RICH-22729）。</li>
+<li value="9">同一礼包在破产时弹过 1 次，不占它在进大厅的次数。</li>
+<li value="10">每人每天 2 次、两次至少隔 30 分钟：弹过后 30 分钟内再进大厅不弹它。每人每天 1 次时侧边框仍显示「每人两次至少隔多久」；设隔 24 小时，今天 20 点弹过，明天 20 点前进大厅不弹它，20 点后弹。</li>
+<li value="11">每人每天几次填 0 或空，保存不了。</li>
+<li value="12">打开在所有规则里暂停：确认框列出在用规则；确认后各场景各规则都不弹它，活动入口照常能进；关闭后恢复弹。</li>
+<li value="13">活动到期后不改任何规则，各规则都不再弹它；规则展开里标「已结束」。</li>
+<li value="14">规则列表按活动或礼包筛选天天敲蛋禮V2：列表只剩用它的规则；点活动名打开侧边框，能改、能暂停，和从规则里打开的是同一份。</li>
+<li value="15">没有自带图的礼包，不传图保存不了。</li>
+</ol>
+<h4>9. 已定事项落点</h4>
+<div class="tw"><table class="md"><tr><th>已定（原文，注出处）</th><th>本卡怎么承接</th><th>改没改</th></tr><tr><td>「每个活动或礼包存一份弹窗设置，在规则里第一次加入时当场配，别的规则自动带出，不单独建〔旧〕弹窗内容页（推荐做法 C（每个活动或礼包一份弹窗设置）…）」（对齐卡「已定」第 1 条）</td><td>规则 1、2；入口①②；入口③（不进规则时从规则列表打开，不加新页）</td><td>未改</td></tr><tr><td>「〔旧〕冷却按已定事项第 25 条及细化；规则里能另设的项按第 26 条（〔旧〕「显示方式」已改成「是否跳转」）」（对齐卡「已定」第 2、3 条）</td><td>每人每天几次、每人两次至少隔多久两个字段；规则 7、8</td><td>未改</td></tr><tr><td>「每一项的〔旧〕冷却并进次数，写成「每天 N 次，两次至少隔多久」，活动上存默认、规则里可改」；细化「活动上的「两次至少隔多久」默认不设，需要时再填」「「一天被几条规则各弹一遍」由每天几次按活动跨规则合计管」（已定事项第 25 条）</td><td>两个字段都存在活动设置上、规则里可另设；隔多久默认留空；规则 7 跨规则合计</td><td>未改；合计时两条规则数字不同怎么比，写进规则 7，属「已替你定，可推翻」，理由见第 10 栏</td></tr><tr><td>「每个活动或礼包的弹窗设置里，〔旧〕显示方式、什么时候弹、次数（每天几次、两次至少隔多久）是可覆盖的默认值，规则里可给其中某个活动另设任何一项…图和跳转按活动存一份，不在规则里另设」（已定事项第 26 条）</td><td>宣传图、跳转页面只存在这里；其余四项是可覆盖的默认值（另设在卡 B3）；规则 2、5</td><td>未改；〔旧〕显示方式按对齐卡换成点击后是否跳转</td></tr><tr><td>「弹出的是宣传图（默认用活动或礼包自带的，可替换），「点击后是否跳转：是／否」，选是填跳转页面（Dk 10/30）」（对齐卡「已定」第 4 条）</td><td>宣传图、点击后是否跳转、跳转页面三个字段；规则 3–5</td><td>未改；另提议给「点击后是否跳转」加默认值「是」，不动两个选项 → 待拍板第 7 条</td></tr><tr><td>「「在所有规则里暂停」开关（Dk 10/29「保留开关」）」（对齐卡「已定」第 5 条）</td><td>在所有规则里暂停字段；规则 9</td><td>未改</td></tr><tr><td>「弹窗的四个触发点叫「场景」（Dk 10/29）」（对齐卡「已定」第 6 条）</td><td>本卡一律叫场景；弹出时机写「仅进大厅」；次数按同一场景合计</td><td>未改</td></tr><tr><td>「小改动 7：每人每日弹窗上限、群组交集、人数预览、口径说明、〔旧〕变更记录、〔旧〕引用清单…」（已定事项第 22 条）</td><td>〔旧〕引用清单 → 「另有几条规则在用」字段；改动记操作纪录（规则 12，卡 A）</td><td>未改</td></tr></table></div>
+<h4>10. 待拍板／待研发确认</h4>
+<p><b>待拍板</b>（改变运营不动手时的结果、或能配的范围变窄的）</p>
+<div class="tw"><table class="md"><tr><th>待拍板</th><th>问题</th><th>推荐</th><th>理由</th></tr><tr><td>第 4 条 弹出时机改单选 4 项</td><td>去掉「当天第 2 次登录起」「当天第 N 次登录」，并且不能多选</td><td>改</td><td>两项在草稿、截图、工单里都没出现。草稿 43 处的时机组合只有 4 种：32 处能一一对上（〔旧〕返回大廳 26 → 只在从游戏返回时；〔旧〕首次登入、進入大廳、返回大廳 6 → 每次进大厅，含从游戏返回）；另 11 处（〔旧〕首次登入、進入大廳 4，〔旧〕活動開啓、首次登入、進入大廳 7）没有恰好对应的单选项，最近的是「每次进大厅，含从游戏返回」，这 11 处都是每天 1 次，差别只在当天第一次进大厅没弹出时、从游戏返回会补弹。若要一模一样，就要保留多选，运营每次多想一层组合</td></tr><tr><td>第 6 条 次数只按天</td><td>只做「每人每天几次」，不做「每人总共几次」：草稿策略总表新手引导写「生涯一次」（工作表2第 3 行），只按天配不出</td><td>只按天；新手弹窗接入后台时再加「每人总共几次」</td><td>已定事项第 25 条写的是每天 N 次；草稿 14 条规则全是每日次数；要一生一次的只有新手引导，它现在是客户端写死的，不在弹窗规则里</td></tr><tr><td>第 7 条 加默认值</td><td>不加默认时，「点击后是否跳转」必选、无默认，「弹出时机」一律默认「每次进大厅」。要不要改成：点击后是否跳转默认「是」；弹出时机活动默认「每次进大厅，含从游戏返回」、礼包默认「只在从游戏返回时」</td><td>改</td><td>草稿 43 处的〔旧〕弹窗形式只有〔旧〕活动本身 36 处、〔旧〕活动广告页 7 处，按研发待确认第 24 条现在的理解（两种都是先弹图）都对到「是」（推断，见 R2），默认「是」加跳转页面默认本活动，再加上每人每天几次按类型带好，第一次配时运营可以不填任何项；储值类（都是礼包）26 处全是〔旧〕返回大廳、活动类 17 处全含〔旧〕進入大廳，按类型给默认能少改 26 处。默认错了运营在侧边框里看得到、可改</td></tr></table></div>
+<p><b>已替你定，可推翻</b></p>
+<ul>
+<li>每人每天几次跨规则合计时，两条规则数字不同怎么比：写成规则 7「各条规则合计已弹次数，和这条规则自己的上限比」。不进待拍板：能配的项、默认值、能配的范围都没变，只定系统怎么数，且就是弹窗内容去留大纲「几种做法都要定的 › 次数 › 怎么比」的原例。后果已写进规则 7：另设的较小次数管不住「这批人一天总共看几次」，同时符合几条规则的人最多看到最大的那个数；另一种「取最严」会让一条规则自己设的次数被别的规则的另设压低，运营在这条规则上设 2 次却只弹 1 次，更难懂。影响面：弹窗内容去留大纲的粗算约 1,046 人，占近一月活跃 62,292 人的 1.7%（9/16 数据，口径是推断）。</li>
+<li>不进规则时从哪改、从哪暂停：写成入口③，不加新页。不进待拍板：属于入口摆放，运营能做的没少（改、暂停都能做），「集中看全部活动设置的列表」是弹窗内容去留大纲的做法 D，对齐卡已定「不单独建弹窗内容页」，先不做。</li>
+<li>「每人两次至少隔多久」在每人每天几次为 1 时也显示：间隔从上次显示算起、不按天清零，跨天仍起作用（如隔 24 小时）；卡 B3 同此。</li>
+<li>宣传图可「恢复用自带的」；没上传时跟着活动后台的自带图变。</li>
+<li>跳转页面失效时点图只关闭弹窗，不报错，后台标「跳转页面已失效」。</li>
+<li>每人每天几次默认活动 1 次、礼包 2 次：按「草稿里某个值占约三分之二以上才给默认」的标准（活动 17 处有 11 处 1 次，礼包 26 处有 18 处 2 次）；默认不对时运营在侧边框里看得到、可改。</li>
+<li>跳转页面默认活动或礼包自己的页面，可改为其他页面；规则里另设「点击后是否跳转：是」时总有页面可跳。依据：〔旧〕原选项「直接打开活动或礼包页面」打开的就是它自己的页面；RICH-24469 要跳转 url 能在后台配。</li>
+</ul>
+<p><b>待研发确认</b>（若 A 则…，若 B 则…；暂按）</p>
+<div class="tw"><table class="md"><tr><th>#</th><th>问什么</th><th>若 A 则…，若 B 则…</th><th>暂按</th></tr><tr><td>R1</td><td>推送后台能不能读到活动、礼包自带的宣传图；礼包有没有自带图；图片规格；客户端按后台下发的图显示要改多少、要不要发版（研发待确认第 27 条，阻塞需求评审）</td><td>读得到：宣传图默认自带、要换才传；读不到：第一次加入时必须上传，宣传图从「默认自带」变成必填，运营每个活动多传一次图</td><td>读得到</td></tr><tr><td>R2</td><td>〔旧〕活动本身、〔旧〕活动广告页的确切意思（研发待确认第 24 条）</td><td>若〔旧〕活动本身是直接弹出能操作的活动窗口：迁入时对到「是、跳本活动页」，玩家多点一次（「研发确认后再问」的一件，见网页首屏），回来再问要不要给礼包留「直接打开」；若两种都是先弹图：都对到「是」，没有变化</td><td>照 Dk 10/30，两种都对到「是」</td></tr><tr><td>R3</td><td>「其他页面」能选哪些：游戏内可跳转页面的清单从哪来，还是填链接（RICH-24469 原话是 url）</td><td>有页面清单：下拉选；只能填链接：填链接并校验</td><td>下拉选</td></tr><tr><td>R4</td><td>每人每天几次能不能按会员编号跨平台合计（RICH-22729）</td><td>能：照规则 7；不能：只能按平台各算，A 平台弹过、B 平台还会再弹</td><td>能</td></tr><tr><td>R5</td><td>「一天」从几点算起、按哪个时区</td><td>和场景的每人每天最多弹几个用同一个口径</td><td>从 0 点算起，暂按台湾时间</td></tr></table></div></div></details>
+<div class="legend2"><b>来源简称</b>　〔截〕现网后台 10/10 截图（「截图转录第 N 行」是截图文字转录文件的行号）；〔文〕旧后台只有文字描述、没有截图；〔评〕10/28 评审稿功能清单的行号；〔框〕功能框架 10/30 版弹窗段的行号；〔J〕或 RICH-xxxxx 为 Jira 工单；草稿＝运营草稿《活动弹窗规则》（运营的计划，线上没配置）；「旧后台清单第 N 项」＝本任务列的旧后台弹窗设置清单；弹-xx＝顶尖做法参考库的条目；「研发评审待确认第 N 条」＝需求评审前要研发答的问题清单；〔旧〕标在旧后台或评审稿原词前，这些词新后台不再用。</div>
+<p class="links">底稿：<a href="里程碑1_底稿/待拍板汇总.md">待拍板汇总</a> · <a href="里程碑1_底稿/故事地图.md">故事地图</a> · <a href="里程碑1_底稿/功能清单.md">功能清单</a> · 分析卡：<a href="里程碑1_底稿/卡A_弹窗场景设置与规则列表.md">A</a> <a href="里程碑1_底稿/卡B1_场景和发送对象.md">B1</a> <a href="里程碑1_底稿/卡B2_弹哪些活动或礼包及轮换池.md">B2</a> <a href="里程碑1_底稿/卡B3_本规则另设.md">B3</a> <a href="里程碑1_底稿/卡B4_发送测试和按玩家预览.md">B4</a> <a href="里程碑1_底稿/卡B5_保存确认.md">B5</a> <a href="里程碑1_底稿/卡C_活动或礼包的弹窗设置.md">C</a></p>
+</div>
+<script>
+(function(){var b=document.querySelectorAll('#flt button'),r=document.querySelectorAll('#fl tr[data-g]');
+b.forEach(function(x){x.onclick=function(){b.forEach(function(y){y.classList.remove('on')});x.classList.add('on');var g=x.getAttribute('data-g');r.forEach(function(t){t.style.display=(!g||t.getAttribute('data-g')===g)?'':'none'})}});
+var t=document.getElementById('tgl'),open=false;t.onclick=function(){open=!open;document.querySelectorAll('details.cardd').forEach(function(d){d.open=open});t.textContent=open?'全部收起':'全部展开'};
+document.querySelectorAll('a[href^="#card-"]').forEach(function(a){a.addEventListener('click',function(){var d=document.querySelector(a.getAttribute('href'));if(d)d.open=true})});})();
+</script></body></html>

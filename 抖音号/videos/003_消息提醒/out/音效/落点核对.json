@@ -1,0 +1,2410 @@
+{
+ "file": "/Users/decheng.huang/Documents/dy/studio/public/003/sfx.wav",
+ "samples": 2937600,
+ "seconds": 61.2,
+ "sr": 48000,
+ "I": -19.0,
+ "LRA": 19.0,
+ "TP": -4.4,
+ "limiter_min_db": 0.0,
+ "freeze_rms_dbfs": -96.3,
+ "events": 207,
+ "solo_off": [],
+ "required": [
+  [
+   0.3,
+   "手机震一下（拼单立减，计数 1；8 帧）"
+  ],
+  [
+   0.3,
+   "提示音：拼单立减"
+  ],
+  [
+   0.88,
+   "手机震两下（工作群（37），计数 2；8 帧）"
+  ],
+  [
+   0.88,
+   "提示音：工作群（叮咚）"
+  ],
+  [
+   2.6,
+   "手机震两下（热榜第一，计数 3；8 帧）"
+  ],
+  [
+   2.6,
+   "提示音：热榜第一"
+  ],
+  [
+   6.9,
+   "手往后撤、握拳（10 帧）"
+  ],
+  [
+   7.55,
+   "手机又震（8 帧里三下，计数 4）"
+  ],
+  [
+   7.55,
+   "提示音：又一条推送"
+  ],
+  [
+   8.2,
+   "计数狂涨，手机一直抖（到震散为止）"
+  ],
+  [
+   8.2,
+   "横幅喷出 1/27"
+  ],
+  [
+   8.263,
+   "横幅喷出 2/27"
+  ],
+  [
+   8.322,
+   "横幅喷出 3/27"
+  ],
+  [
+   8.379,
+   "横幅喷出 4/27"
+  ],
+  [
+   8.433,
+   "横幅喷出 5/27"
+  ],
+  [
+   8.485,
+   "横幅喷出 6/27"
+  ],
+  [
+   8.534,
+   "横幅喷出 7/27"
+  ],
+  [
+   8.581,
+   "横幅喷出 8/27"
+  ],
+  [
+   8.625,
+   "横幅喷出 9/27"
+  ],
+  [
+   8.668,
+   "横幅喷出 10/27"
+  ],
+  [
+   8.708,
+   "横幅喷出 11/27"
+  ],
+  [
+   8.747,
+   "横幅喷出 12/27"
+  ],
+  [
+   8.784,
+   "横幅喷出 13/27"
+  ],
+  [
+   8.819,
+   "横幅喷出 14/27"
+  ],
+  [
+   8.852,
+   "横幅喷出 15/27"
+  ],
+  [
+   8.884,
+   "横幅喷出 16/27"
+  ],
+  [
+   8.915,
+   "横幅喷出 17/27"
+  ],
+  [
+   8.944,
+   "横幅喷出 18/27"
+  ],
+  [
+   8.971,
+   "横幅喷出 19/27"
+  ],
+  [
+   8.998,
+   "横幅喷出 20/27"
+  ],
+  [
+   9.023,
+   "横幅喷出 21/27"
+  ],
+  [
+   9.046,
+   "横幅喷出 22/27"
+  ],
+  [
+   9.069,
+   "横幅喷出 23/27"
+  ],
+  [
+   9.091,
+   "横幅喷出 24/27"
+  ],
+  [
+   9.112,
+   "横幅喷出 25/27"
+  ],
+  [
+   9.131,
+   "横幅喷出 26/27"
+  ],
+  [
+   9.15,
+   "横幅喷出 27/27"
+  ],
+  [
+   8.2,
+   "计数滴答 1/27"
+  ],
+  [
+   8.28,
+   "计数滴答 2/27"
+  ],
+  [
+   8.356,
+   "计数滴答 3/27"
+  ],
+  [
+   8.428,
+   "计数滴答 4/27"
+  ],
+  [
+   8.497,
+   "计数滴答 5/27"
+  ],
+  [
+   8.562,
+   "计数滴答 6/27"
+  ],
+  [
+   8.624,
+   "计数滴答 7/27"
+  ],
+  [
+   8.683,
+   "计数滴答 8/27"
+  ],
+  [
+   8.739,
+   "计数滴答 9/27"
+  ],
+  [
+   8.792,
+   "计数滴答 10/27"
+  ],
+  [
+   8.842,
+   "计数滴答 11/27"
+  ],
+  [
+   8.89,
+   "计数滴答 12/27"
+  ],
+  [
+   8.935,
+   "计数滴答 13/27"
+  ],
+  [
+   8.979,
+   "计数滴答 14/27"
+  ],
+  [
+   9.02,
+   "计数滴答 15/27"
+  ],
+  [
+   9.059,
+   "计数滴答 16/27"
+  ],
+  [
+   9.096,
+   "计数滴答 17/27"
+  ],
+  [
+   9.131,
+   "计数滴答 18/27"
+  ],
+  [
+   9.164,
+   "计数滴答 19/27"
+  ],
+  [
+   9.196,
+   "计数滴答 20/27"
+  ],
+  [
+   9.226,
+   "计数滴答 21/27"
+  ],
+  [
+   9.255,
+   "计数滴答 22/27"
+  ],
+  [
+   9.282,
+   "计数滴答 23/27"
+  ],
+  [
+   9.308,
+   "计数滴答 24/27"
+  ],
+  [
+   9.333,
+   "计数滴答 25/27"
+  ],
+  [
+   9.358,
+   "计数滴答 26/27"
+  ],
+  [
+   9.383,
+   "计数滴答 27/27"
+  ],
+  [
+   9.4,
+   "120：横幅全部震散（3 帧）"
+  ],
+  [
+   9.4,
+   "120 停住、闪一下"
+  ],
+  [
+   9.6,
+   "120 再闪一下"
+  ],
+  [
+   10.585,
+   "转场：标题卡落下（6 帧）"
+  ],
+  [
+   10.6,
+   "转场：标题卡“同一天，三种设法”落地"
+  ],
+  [
+   15.4,
+   "小钟走（第 0 分钟）"
+  ],
+  [
+   15.895,
+   "小钟走（第 5 分钟）"
+  ],
+  [
+   16.024,
+   "小钟走（第 10 分钟）"
+  ],
+  [
+   16.114,
+   "小钟走（第 15 分钟）"
+  ],
+  [
+   16.186,
+   "小钟走（第 20 分钟）"
+  ],
+  [
+   16.247,
+   "小钟走（第 25 分钟）"
+  ],
+  [
+   16.3,
+   "小钟走（第 30 分钟）"
+  ],
+  [
+   16.353,
+   "小钟走（第 35 分钟）"
+  ],
+  [
+   16.414,
+   "小钟走（第 40 分钟）"
+  ],
+  [
+   16.486,
+   "小钟走（第 45 分钟）"
+  ],
+  [
+   16.576,
+   "小钟走（第 50 分钟）"
+  ],
+  [
+   16.705,
+   "小钟走（第 55 分钟）"
+  ],
+  [
+   17.2,
+   "小钟走完一小时（15:40）"
+  ],
+  [
+   18.0,
+   "中栏的你一惊"
+  ],
+  [
+   24.28,
+   "广告推送消失（轻噗）"
+  ],
+  [
+   25.73,
+   "置顶：图钉按下"
+  ],
+  [
+   27.12,
+   "静音铃 1"
+  ],
+  [
+   27.32,
+   "静音铃 2"
+  ],
+  [
+   27.52,
+   "静音铃 3"
+  ],
+  [
+   29.25,
+   "盒子开盖（9 点）"
+  ],
+  [
+   29.75,
+   "盒子开盖（15 点）"
+  ],
+  [
+   30.25,
+   "盒子开盖（21 点）"
+  ],
+  [
+   39.7,
+   "截图快门"
+  ],
+  [
+   58.4,
+   "按钮弹出：工作群"
+  ],
+  [
+   58.6,
+   "按钮弹出：家长群"
+  ],
+  [
+   58.8,
+   "按钮弹出：班级群"
+  ],
+  [
+   59.0,
+   "按钮弹出：亲戚群"
+  ]
+ ],
+ "key": 26,
+ "checked": 124,
+ "off_by_more_than_1_frame": [
+  {
+   "t": 8.433,
+   "kind": "喷出",
+   "label": "横幅喷出 5/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 0.0,
+   "rise_db": 5.8,
+   "band_1_4k_db": -27.3
+  },
+  {
+   "t": 8.625,
+   "kind": "喷出",
+   "label": "横幅喷出 9/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 1.0,
+   "rise_db": 5.5,
+   "band_1_4k_db": -27.3
+  },
+  {
+   "t": 8.668,
+   "kind": "喷出",
+   "label": "横幅喷出 10/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 1.0,
+   "rise_db": 5.3,
+   "band_1_4k_db": -27.2
+  },
+  {
+   "t": 8.708,
+   "kind": "喷出",
+   "label": "横幅喷出 11/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 1.0,
+   "rise_db": 5.9,
+   "band_1_4k_db": -27.0
+  },
+  {
+   "t": 8.747,
+   "kind": "喷出",
+   "label": "横幅喷出 12/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 1.0,
+   "rise_db": 4.3,
+   "band_1_4k_db": -26.5
+  },
+  {
+   "t": 8.784,
+   "kind": "喷出",
+   "label": "横幅喷出 13/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 1.0,
+   "rise_db": 3.6,
+   "band_1_4k_db": -26.0
+  },
+  {
+   "t": 8.852,
+   "kind": "喷出",
+   "label": "横幅喷出 15/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 1.0,
+   "rise_db": 5.9,
+   "band_1_4k_db": -26.0
+  },
+  {
+   "t": 8.915,
+   "kind": "喷出",
+   "label": "横幅喷出 17/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 1.0,
+   "rise_db": 5.9,
+   "band_1_4k_db": -25.7
+  },
+  {
+   "t": 8.971,
+   "kind": "喷出",
+   "label": "横幅喷出 19/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 1.0,
+   "rise_db": 4.1,
+   "band_1_4k_db": -24.9
+  },
+  {
+   "t": 9.023,
+   "kind": "喷出",
+   "label": "横幅喷出 21/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 1.0,
+   "rise_db": 5.9,
+   "band_1_4k_db": -24.6
+  },
+  {
+   "t": 9.046,
+   "kind": "喷出",
+   "label": "横幅喷出 22/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 1.0,
+   "rise_db": 3.5,
+   "band_1_4k_db": -24.3
+  },
+  {
+   "t": 9.091,
+   "kind": "喷出",
+   "label": "横幅喷出 24/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 1.0,
+   "rise_db": 4.8,
+   "band_1_4k_db": -24.0
+  },
+  {
+   "t": 9.112,
+   "kind": "喷出",
+   "label": "横幅喷出 25/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 1.0,
+   "rise_db": 4.4,
+   "band_1_4k_db": -24.0
+  },
+  {
+   "t": 9.131,
+   "kind": "喷出",
+   "label": "横幅喷出 26/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 1.0,
+   "rise_db": 4.5,
+   "band_1_4k_db": -24.5
+  },
+  {
+   "t": 9.15,
+   "kind": "喷出",
+   "label": "横幅喷出 27/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 1.0,
+   "rise_db": 3.4,
+   "band_1_4k_db": -25.2
+  },
+  {
+   "t": 8.428,
+   "kind": "滴答",
+   "label": "计数滴答 4/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 0.0,
+   "rise_db": 4.8,
+   "band_1_4k_db": -27.6
+  },
+  {
+   "t": 8.562,
+   "kind": "滴答",
+   "label": "计数滴答 6/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 0.0,
+   "rise_db": 4.7,
+   "band_1_4k_db": -26.7
+  },
+  {
+   "t": 8.624,
+   "kind": "滴答",
+   "label": "计数滴答 7/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 0.0,
+   "rise_db": 5.8,
+   "band_1_4k_db": -27.2
+  },
+  {
+   "t": 8.683,
+   "kind": "滴答",
+   "label": "计数滴答 8/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 0.0,
+   "rise_db": 5.7,
+   "band_1_4k_db": -27.1
+  },
+  {
+   "t": 8.739,
+   "kind": "滴答",
+   "label": "计数滴答 9/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 0.0,
+   "rise_db": 5.9,
+   "band_1_4k_db": -26.9
+  },
+  {
+   "t": 8.792,
+   "kind": "滴答",
+   "label": "计数滴答 10/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 0.0,
+   "rise_db": 3.8,
+   "band_1_4k_db": -25.9
+  },
+  {
+   "t": 8.842,
+   "kind": "滴答",
+   "label": "计数滴答 11/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 0.0,
+   "rise_db": 4.9,
+   "band_1_4k_db": -26.1
+  },
+  {
+   "t": 8.89,
+   "kind": "滴答",
+   "label": "计数滴答 12/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 0.0,
+   "rise_db": 4.3,
+   "band_1_4k_db": -25.8
+  },
+  {
+   "t": 8.935,
+   "kind": "滴答",
+   "label": "计数滴答 13/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 0.0,
+   "rise_db": 5.1,
+   "band_1_4k_db": -25.5
+  },
+  {
+   "t": 8.979,
+   "kind": "滴答",
+   "label": "计数滴答 14/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 0.0,
+   "rise_db": 3.5,
+   "band_1_4k_db": -24.9
+  },
+  {
+   "t": 9.02,
+   "kind": "滴答",
+   "label": "计数滴答 15/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 0.0,
+   "rise_db": 3.3,
+   "band_1_4k_db": -24.6
+  },
+  {
+   "t": 9.059,
+   "kind": "滴答",
+   "label": "计数滴答 16/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 0.0,
+   "rise_db": 4.7,
+   "band_1_4k_db": -23.9
+  },
+  {
+   "t": 9.131,
+   "kind": "滴答",
+   "label": "计数滴答 18/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 0.0,
+   "rise_db": 1.9,
+   "band_1_4k_db": -24.5
+  },
+  {
+   "t": 9.164,
+   "kind": "滴答",
+   "label": "计数滴答 19/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 0.0,
+   "rise_db": 4.6,
+   "band_1_4k_db": -25.7
+  },
+  {
+   "t": 9.196,
+   "kind": "滴答",
+   "label": "计数滴答 20/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 0.0,
+   "rise_db": 4.1,
+   "band_1_4k_db": -27.9
+  },
+  {
+   "t": 9.6,
+   "kind": "叮",
+   "label": "120 再闪一下",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 0.0,
+   "rise_db": 2.1,
+   "band_1_4k_db": -24.0
+  },
+  {
+   "t": 12.348,
+   "kind": "嘀",
+   "label": "全开：手机又亮",
+   "key": false,
+   "spec": null,
+   "onset": 12.306,
+   "err_ms": -42.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 45.5,
+   "band_1_4k_db": -31.7
+  },
+  {
+   "t": 22.6,
+   "kind": "刷",
+   "label": "消息分成四类（发牌）",
+   "key": false,
+   "spec": null,
+   "onset": 22.556,
+   "err_ms": -44.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 8.3,
+   "band_1_4k_db": -33.5
+  },
+  {
+   "t": 22.88,
+   "kind": "啵",
+   "label": "分类标签弹出",
+   "key": false,
+   "spec": null,
+   "onset": 22.842,
+   "err_ms": -38.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 9.7,
+   "band_1_4k_db": -32.6
+  },
+  {
+   "t": 37.42,
+   "kind": "翻书",
+   "label": "翻一页（是分出来的）",
+   "key": false,
+   "spec": null,
+   "onset": 37.374,
+   "err_ms": -46.0,
+   "solo_err_ms": 1.0,
+   "rise_db": 6.5,
+   "band_1_4k_db": -41.0
+  }
+ ],
+ "key_weak_1_4k": [],
+ "rows": [
+  {
+   "t": 0.3,
+   "kind": "震动",
+   "label": "手机震一下（拼单立减，计数 1；8 帧）",
+   "key": true,
+   "spec": [
+    "手机震动＋通知提示音 第 1 下",
+    0.3,
+    "分镜 0–1.8 拍：0.3 秒手机亮、震一下，计数跳成 1；画面抖 8 帧"
+   ],
+   "onset": 0.3,
+   "err_ms": -0.0,
+   "solo_err_ms": 7.0,
+   "rise_db": 86.9,
+   "band_1_4k_db": -32.0
+  },
+  {
+   "t": 0.3,
+   "kind": "提示音",
+   "label": "提示音：拼单立减",
+   "key": true,
+   "spec": null,
+   "onset": 0.3,
+   "err_ms": -0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 85.4,
+   "band_1_4k_db": -32.0
+  },
+  {
+   "t": 0.88,
+   "kind": "震动",
+   "label": "手机震两下（工作群（37），计数 2；8 帧）",
+   "key": true,
+   "spec": [
+    "手机震动＋通知提示音 第 2 下",
+    0.88,
+    "时间表 buzz[1]：工作群（37）（v2 提前到第 1 秒）；画面抖 8 帧"
+   ],
+   "onset": 0.88,
+   "err_ms": -0.0,
+   "solo_err_ms": 7.0,
+   "rise_db": 29.5,
+   "band_1_4k_db": -21.4
+  },
+  {
+   "t": 0.88,
+   "kind": "提示音",
+   "label": "提示音：工作群（叮咚）",
+   "key": true,
+   "spec": null,
+   "onset": 0.88,
+   "err_ms": -0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 29.6,
+   "band_1_4k_db": -21.4
+  },
+  {
+   "t": 2.6,
+   "kind": "震动",
+   "label": "手机震两下（热榜第一，计数 3；8 帧）",
+   "key": true,
+   "spec": [
+    "手机震动＋通知提示音 第 3 下",
+    2.6,
+    "分镜 1.8–3.2 拍：又震两下，计数 1→3；画面抖 8 帧"
+   ],
+   "onset": 2.6,
+   "err_ms": 0.0,
+   "solo_err_ms": 6.0,
+   "rise_db": 41.6,
+   "band_1_4k_db": -24.6
+  },
+  {
+   "t": 2.6,
+   "kind": "提示音",
+   "label": "提示音：热榜第一",
+   "key": true,
+   "spec": null,
+   "onset": 2.6,
+   "err_ms": 0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 40.3,
+   "band_1_4k_db": -24.6
+  },
+  {
+   "t": 3.2,
+   "kind": "叮",
+   "label": "要紧的那条亮起（暖叮 F5）",
+   "key": false,
+   "spec": null,
+   "onset": 3.2,
+   "err_ms": 0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 26.5,
+   "band_1_4k_db": -34.5
+  },
+  {
+   "t": 4.2,
+   "kind": "嗒",
+   "label": "停在第 23 条，其余变灰",
+   "key": false,
+   "spec": null,
+   "onset": 4.2,
+   "err_ms": 0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 14.1,
+   "band_1_4k_db": -33.7
+  },
+  {
+   "t": 6.9,
+   "kind": "布料",
+   "label": "手往后撤、握拳（10 帧）",
+   "key": false,
+   "spec": [
+    "手往后撤的布料声（10 帧）",
+    6.9,
+    "评委改：手先往前探 3 帧、再往后撤 10 帧并握拳，布料声对到后撤开始（约 6.9 秒）"
+   ],
+   "onset": 6.906,
+   "err_ms": 6.0,
+   "solo_err_ms": 6.0,
+   "rise_db": 55.7,
+   "band_1_4k_db": -46.1
+  },
+  {
+   "t": 7.55,
+   "kind": "震动",
+   "label": "手机又震（8 帧里三下，计数 4）",
+   "key": true,
+   "spec": [
+    "手机震动＋通知提示音 第 4 下",
+    7.55,
+    "分镜 7.2–8.2 拍：手机又亮一下（v2：7.55 秒，计数加到 4）；画面抖 8 帧"
+   ],
+   "onset": 7.55,
+   "err_ms": 0.0,
+   "solo_err_ms": 6.0,
+   "rise_db": 84.4,
+   "band_1_4k_db": -32.6
+  },
+  {
+   "t": 7.55,
+   "kind": "提示音",
+   "label": "提示音：又一条推送",
+   "key": true,
+   "spec": null,
+   "onset": 7.55,
+   "err_ms": 0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 82.9,
+   "band_1_4k_db": -32.6
+  },
+  {
+   "t": 8.2,
+   "kind": "震动",
+   "label": "计数狂涨，手机一直抖（到震散为止）",
+   "key": false,
+   "spec": null,
+   "onset": 8.2,
+   "err_ms": -0.0,
+   "solo_err_ms": 6.0,
+   "rise_db": 33.2,
+   "band_1_4k_db": -31.3
+  },
+  {
+   "t": 8.2,
+   "kind": "喷出",
+   "label": "横幅喷出 1/27",
+   "key": false,
+   "spec": [
+    "横幅从手机喷出（27 条，越来越密）",
+    8.2,
+    "评委改：8.20–9.15 秒 27 条横幅喷出铺满画面；间隔 62 → 19 毫秒，音高往上走"
+   ],
+   "onset": 8.2,
+   "err_ms": -0.0,
+   "solo_err_ms": 1.0,
+   "rise_db": 32.9,
+   "band_1_4k_db": -31.3
+  },
+  {
+   "t": 8.263,
+   "kind": "喷出",
+   "label": "横幅喷出 2/27",
+   "key": false,
+   "spec": null,
+   "onset": 8.266,
+   "err_ms": 3.0,
+   "solo_err_ms": 1.0,
+   "rise_db": 7.4,
+   "band_1_4k_db": -28.3
+  },
+  {
+   "t": 8.322,
+   "kind": "喷出",
+   "label": "横幅喷出 3/27",
+   "key": false,
+   "spec": null,
+   "onset": 8.33,
+   "err_ms": 8.0,
+   "solo_err_ms": 1.0,
+   "rise_db": 6.8,
+   "band_1_4k_db": -28.3
+  },
+  {
+   "t": 8.379,
+   "kind": "喷出",
+   "label": "横幅喷出 4/27",
+   "key": false,
+   "spec": null,
+   "onset": 8.382,
+   "err_ms": 3.0,
+   "solo_err_ms": 1.0,
+   "rise_db": 7.7,
+   "band_1_4k_db": -28.1
+  },
+  {
+   "t": 8.433,
+   "kind": "喷出",
+   "label": "横幅喷出 5/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 0.0,
+   "rise_db": 5.8,
+   "band_1_4k_db": -27.3
+  },
+  {
+   "t": 8.485,
+   "kind": "喷出",
+   "label": "横幅喷出 6/27",
+   "key": false,
+   "spec": null,
+   "onset": 8.472,
+   "err_ms": -13.0,
+   "solo_err_ms": 1.0,
+   "rise_db": 6.2,
+   "band_1_4k_db": -27.1
+  },
+  {
+   "t": 8.534,
+   "kind": "喷出",
+   "label": "横幅喷出 7/27",
+   "key": false,
+   "spec": null,
+   "onset": 8.538,
+   "err_ms": 4.0,
+   "solo_err_ms": 1.0,
+   "rise_db": 6.8,
+   "band_1_4k_db": -26.9
+  },
+  {
+   "t": 8.581,
+   "kind": "喷出",
+   "label": "横幅喷出 8/27",
+   "key": false,
+   "spec": null,
+   "onset": 8.598,
+   "err_ms": 17.0,
+   "solo_err_ms": 1.0,
+   "rise_db": 6.9,
+   "band_1_4k_db": -26.8
+  },
+  {
+   "t": 8.625,
+   "kind": "喷出",
+   "label": "横幅喷出 9/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 1.0,
+   "rise_db": 5.5,
+   "band_1_4k_db": -27.3
+  },
+  {
+   "t": 8.668,
+   "kind": "喷出",
+   "label": "横幅喷出 10/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 1.0,
+   "rise_db": 5.3,
+   "band_1_4k_db": -27.2
+  },
+  {
+   "t": 8.708,
+   "kind": "喷出",
+   "label": "横幅喷出 11/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 1.0,
+   "rise_db": 5.9,
+   "band_1_4k_db": -27.0
+  },
+  {
+   "t": 8.747,
+   "kind": "喷出",
+   "label": "横幅喷出 12/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 1.0,
+   "rise_db": 4.3,
+   "band_1_4k_db": -26.5
+  },
+  {
+   "t": 8.784,
+   "kind": "喷出",
+   "label": "横幅喷出 13/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 1.0,
+   "rise_db": 3.6,
+   "band_1_4k_db": -26.0
+  },
+  {
+   "t": 8.819,
+   "kind": "喷出",
+   "label": "横幅喷出 14/27",
+   "key": false,
+   "spec": null,
+   "onset": 8.807,
+   "err_ms": -12.0,
+   "solo_err_ms": 1.0,
+   "rise_db": 6.1,
+   "band_1_4k_db": -26.0
+  },
+  {
+   "t": 8.852,
+   "kind": "喷出",
+   "label": "横幅喷出 15/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 1.0,
+   "rise_db": 5.9,
+   "band_1_4k_db": -26.0
+  },
+  {
+   "t": 8.884,
+   "kind": "喷出",
+   "label": "横幅喷出 16/27",
+   "key": false,
+   "spec": null,
+   "onset": 8.877,
+   "err_ms": -7.0,
+   "solo_err_ms": 1.0,
+   "rise_db": 6.2,
+   "band_1_4k_db": -25.9
+  },
+  {
+   "t": 8.915,
+   "kind": "喷出",
+   "label": "横幅喷出 17/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 1.0,
+   "rise_db": 5.9,
+   "band_1_4k_db": -25.7
+  },
+  {
+   "t": 8.944,
+   "kind": "喷出",
+   "label": "横幅喷出 18/27",
+   "key": false,
+   "spec": null,
+   "onset": 8.947,
+   "err_ms": 3.0,
+   "solo_err_ms": 1.0,
+   "rise_db": 7.9,
+   "band_1_4k_db": -25.3
+  },
+  {
+   "t": 8.971,
+   "kind": "喷出",
+   "label": "横幅喷出 19/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 1.0,
+   "rise_db": 4.1,
+   "band_1_4k_db": -24.9
+  },
+  {
+   "t": 8.998,
+   "kind": "喷出",
+   "label": "横幅喷出 20/27",
+   "key": false,
+   "spec": null,
+   "onset": 9.005,
+   "err_ms": 7.0,
+   "solo_err_ms": 1.0,
+   "rise_db": 6.4,
+   "band_1_4k_db": -24.7
+  },
+  {
+   "t": 9.023,
+   "kind": "喷出",
+   "label": "横幅喷出 21/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 1.0,
+   "rise_db": 5.9,
+   "band_1_4k_db": -24.6
+  },
+  {
+   "t": 9.046,
+   "kind": "喷出",
+   "label": "横幅喷出 22/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 1.0,
+   "rise_db": 3.5,
+   "band_1_4k_db": -24.3
+  },
+  {
+   "t": 9.069,
+   "kind": "喷出",
+   "label": "横幅喷出 23/27",
+   "key": false,
+   "spec": null,
+   "onset": 9.077,
+   "err_ms": 8.0,
+   "solo_err_ms": 1.0,
+   "rise_db": 6.3,
+   "band_1_4k_db": -24.2
+  },
+  {
+   "t": 9.091,
+   "kind": "喷出",
+   "label": "横幅喷出 24/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 1.0,
+   "rise_db": 4.8,
+   "band_1_4k_db": -24.0
+  },
+  {
+   "t": 9.112,
+   "kind": "喷出",
+   "label": "横幅喷出 25/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 1.0,
+   "rise_db": 4.4,
+   "band_1_4k_db": -24.0
+  },
+  {
+   "t": 9.131,
+   "kind": "喷出",
+   "label": "横幅喷出 26/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 1.0,
+   "rise_db": 4.5,
+   "band_1_4k_db": -24.5
+  },
+  {
+   "t": 9.15,
+   "kind": "喷出",
+   "label": "横幅喷出 27/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 1.0,
+   "rise_db": 3.4,
+   "band_1_4k_db": -25.2
+  },
+  {
+   "t": 8.2,
+   "kind": "滴答",
+   "label": "计数滴答 1/27",
+   "key": false,
+   "spec": [
+    "计数跳动的滴答（越来越快）",
+    8.2,
+    "分镜 8.2–9.4：从 4 跑到 120，共 27 下，间隔 80→25 毫秒"
+   ],
+   "onset": 8.2,
+   "err_ms": -0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 32.9,
+   "band_1_4k_db": -31.3
+  },
+  {
+   "t": 8.28,
+   "kind": "滴答",
+   "label": "计数滴答 2/27",
+   "key": false,
+   "spec": null,
+   "onset": 8.281,
+   "err_ms": 1.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 9.7,
+   "band_1_4k_db": -28.6
+  },
+  {
+   "t": 8.356,
+   "kind": "滴答",
+   "label": "计数滴答 3/27",
+   "key": false,
+   "spec": null,
+   "onset": 8.341,
+   "err_ms": -15.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 6.6,
+   "band_1_4k_db": -28.3
+  },
+  {
+   "t": 8.428,
+   "kind": "滴答",
+   "label": "计数滴答 4/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 0.0,
+   "rise_db": 4.8,
+   "band_1_4k_db": -27.6
+  },
+  {
+   "t": 8.497,
+   "kind": "滴答",
+   "label": "计数滴答 5/27",
+   "key": false,
+   "spec": null,
+   "onset": 8.493,
+   "err_ms": -4.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 7.7,
+   "band_1_4k_db": -26.9
+  },
+  {
+   "t": 8.562,
+   "kind": "滴答",
+   "label": "计数滴答 6/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 0.0,
+   "rise_db": 4.7,
+   "band_1_4k_db": -26.7
+  },
+  {
+   "t": 8.624,
+   "kind": "滴答",
+   "label": "计数滴答 7/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 0.0,
+   "rise_db": 5.8,
+   "band_1_4k_db": -27.2
+  },
+  {
+   "t": 8.683,
+   "kind": "滴答",
+   "label": "计数滴答 8/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 0.0,
+   "rise_db": 5.7,
+   "band_1_4k_db": -27.1
+  },
+  {
+   "t": 8.739,
+   "kind": "滴答",
+   "label": "计数滴答 9/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 0.0,
+   "rise_db": 5.9,
+   "band_1_4k_db": -26.9
+  },
+  {
+   "t": 8.792,
+   "kind": "滴答",
+   "label": "计数滴答 10/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 0.0,
+   "rise_db": 3.8,
+   "band_1_4k_db": -25.9
+  },
+  {
+   "t": 8.842,
+   "kind": "滴答",
+   "label": "计数滴答 11/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 0.0,
+   "rise_db": 4.9,
+   "band_1_4k_db": -26.1
+  },
+  {
+   "t": 8.89,
+   "kind": "滴答",
+   "label": "计数滴答 12/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 0.0,
+   "rise_db": 4.3,
+   "band_1_4k_db": -25.8
+  },
+  {
+   "t": 8.935,
+   "kind": "滴答",
+   "label": "计数滴答 13/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 0.0,
+   "rise_db": 5.1,
+   "band_1_4k_db": -25.5
+  },
+  {
+   "t": 8.979,
+   "kind": "滴答",
+   "label": "计数滴答 14/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 0.0,
+   "rise_db": 3.5,
+   "band_1_4k_db": -24.9
+  },
+  {
+   "t": 9.02,
+   "kind": "滴答",
+   "label": "计数滴答 15/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 0.0,
+   "rise_db": 3.3,
+   "band_1_4k_db": -24.6
+  },
+  {
+   "t": 9.059,
+   "kind": "滴答",
+   "label": "计数滴答 16/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 0.0,
+   "rise_db": 4.7,
+   "band_1_4k_db": -23.9
+  },
+  {
+   "t": 9.096,
+   "kind": "滴答",
+   "label": "计数滴答 17/27",
+   "key": false,
+   "spec": null,
+   "onset": 9.096,
+   "err_ms": -0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 7.8,
+   "band_1_4k_db": -23.8
+  },
+  {
+   "t": 9.131,
+   "kind": "滴答",
+   "label": "计数滴答 18/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 0.0,
+   "rise_db": 1.9,
+   "band_1_4k_db": -24.5
+  },
+  {
+   "t": 9.164,
+   "kind": "滴答",
+   "label": "计数滴答 19/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 0.0,
+   "rise_db": 4.6,
+   "band_1_4k_db": -25.7
+  },
+  {
+   "t": 9.196,
+   "kind": "滴答",
+   "label": "计数滴答 20/27",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 0.0,
+   "rise_db": 4.1,
+   "band_1_4k_db": -27.9
+  },
+  {
+   "t": 9.226,
+   "kind": "滴答",
+   "label": "计数滴答 21/27",
+   "key": false,
+   "spec": null,
+   "onset": 9.227,
+   "err_ms": 1.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 7.3,
+   "band_1_4k_db": -31.9
+  },
+  {
+   "t": 9.255,
+   "kind": "滴答",
+   "label": "计数滴答 22/27",
+   "key": false,
+   "spec": null,
+   "onset": 9.257,
+   "err_ms": 2.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 7.1,
+   "band_1_4k_db": -36.2
+  },
+  {
+   "t": 9.282,
+   "kind": "滴答",
+   "label": "计数滴答 23/27",
+   "key": false,
+   "spec": null,
+   "onset": 9.283,
+   "err_ms": 1.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 7.9,
+   "band_1_4k_db": -36.2
+  },
+  {
+   "t": 9.308,
+   "kind": "滴答",
+   "label": "计数滴答 24/27",
+   "key": false,
+   "spec": null,
+   "onset": 9.309,
+   "err_ms": 1.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 7.0,
+   "band_1_4k_db": -36.0
+  },
+  {
+   "t": 9.333,
+   "kind": "滴答",
+   "label": "计数滴答 25/27",
+   "key": false,
+   "spec": null,
+   "onset": 9.334,
+   "err_ms": 1.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 6.5,
+   "band_1_4k_db": -33.3
+  },
+  {
+   "t": 9.358,
+   "kind": "滴答",
+   "label": "计数滴答 26/27",
+   "key": false,
+   "spec": null,
+   "onset": 9.359,
+   "err_ms": 1.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 7.1,
+   "band_1_4k_db": -23.1
+  },
+  {
+   "t": 9.383,
+   "kind": "滴答",
+   "label": "计数滴答 27/27",
+   "key": false,
+   "spec": null,
+   "onset": 9.383,
+   "err_ms": -0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 12.6,
+   "band_1_4k_db": -20.7
+  },
+  {
+   "t": 9.4,
+   "kind": "震散",
+   "label": "120：横幅全部震散（3 帧）",
+   "key": true,
+   "spec": [
+    "9.4 秒横幅震散",
+    9.4,
+    "评委改：第 9.4 秒计数停在 120，3 帧内横幅全部震散"
+   ],
+   "onset": 9.4,
+   "err_ms": -0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 29.1,
+   "band_1_4k_db": -19.9
+  },
+  {
+   "t": 9.4,
+   "kind": "叮",
+   "label": "120 停住、闪一下",
+   "key": false,
+   "spec": null,
+   "onset": 9.4,
+   "err_ms": -0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 29.1,
+   "band_1_4k_db": -19.9
+  },
+  {
+   "t": 9.6,
+   "kind": "叮",
+   "label": "120 再闪一下",
+   "key": false,
+   "spec": null,
+   "onset": null,
+   "err_ms": null,
+   "solo_err_ms": 0.0,
+   "rise_db": 2.1,
+   "band_1_4k_db": -24.0
+  },
+  {
+   "t": 10.6,
+   "kind": "咚",
+   "label": "转场：标题卡“同一天，三种设法”落地",
+   "key": true,
+   "spec": [
+    "标题卡“同一天，三种设法”的转场声（对到落地）",
+    10.6,
+    "评委改：10.4 起 6 帧落下、2 帧回弹，转场声对到 10.6 落地那一下"
+   ],
+   "onset": 10.6,
+   "err_ms": 0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 23.9,
+   "band_1_4k_db": -23.6
+  },
+  {
+   "t": 11.08,
+   "kind": "笃",
+   "label": "标签落下：全开",
+   "key": false,
+   "spec": null,
+   "onset": 11.08,
+   "err_ms": 0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 25.7,
+   "band_1_4k_db": -29.2
+  },
+  {
+   "t": 11.433,
+   "kind": "笃",
+   "label": "标签滑到位：全关",
+   "key": false,
+   "spec": null,
+   "onset": 11.433,
+   "err_ms": -0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 33.1,
+   "band_1_4k_db": -26.5
+  },
+  {
+   "t": 11.48,
+   "kind": "笃",
+   "label": "标签落下：先分开",
+   "key": false,
+   "spec": null,
+   "onset": 11.482,
+   "err_ms": 2.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 9.1,
+   "band_1_4k_db": -25.7
+  },
+  {
+   "t": 11.963,
+   "kind": "嘀",
+   "label": "全开：手机又亮",
+   "key": false,
+   "spec": null,
+   "onset": 11.963,
+   "err_ms": -0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 62.3,
+   "band_1_4k_db": -42.3
+  },
+  {
+   "t": 12.348,
+   "kind": "嘀",
+   "label": "全开：手机又亮",
+   "key": false,
+   "spec": null,
+   "onset": 12.306,
+   "err_ms": -42.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 45.5,
+   "band_1_4k_db": -31.7
+  },
+  {
+   "t": 12.732,
+   "kind": "嘀",
+   "label": "全开：手机又亮",
+   "key": false,
+   "spec": null,
+   "onset": 12.732,
+   "err_ms": -0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 50.7,
+   "band_1_4k_db": -42.3
+  },
+  {
+   "t": 13.117,
+   "kind": "嘀",
+   "label": "全开：手机又亮",
+   "key": false,
+   "spec": null,
+   "onset": 13.117,
+   "err_ms": -0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 55.8,
+   "band_1_4k_db": -31.9
+  },
+  {
+   "t": 14.22,
+   "kind": "嗒",
+   "label": "手机离开桌面",
+   "key": false,
+   "spec": null,
+   "onset": 14.206,
+   "err_ms": -14.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 22.2,
+   "band_1_4k_db": -36.7
+  },
+  {
+   "t": 14.55,
+   "kind": "嗒",
+   "label": "中栏读数 +1（45→46，自己拿起来的）",
+   "key": false,
+   "spec": null,
+   "onset": 14.55,
+   "err_ms": -0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 71.8,
+   "band_1_4k_db": -46.3
+  },
+  {
+   "t": 15.51,
+   "kind": "嗒",
+   "label": "手机放回桌上",
+   "key": false,
+   "spec": null,
+   "onset": 15.51,
+   "err_ms": -0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 40.6,
+   "band_1_4k_db": -32.7
+  },
+  {
+   "t": 15.4,
+   "kind": "嘀嗒",
+   "label": "小钟走（第 0 分钟）",
+   "key": true,
+   "spec": [
+    "全关段：小钟走动（12 下＋走完一下）",
+    15.4,
+    "分镜 15.0–18.0 拍：小钟走一圈（1 小时）；时间表 clockTurn 15.4–17.2"
+   ],
+   "onset": 15.4,
+   "err_ms": -0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 87.9,
+   "band_1_4k_db": -29.4
+  },
+  {
+   "t": 15.895,
+   "kind": "嘀嗒",
+   "label": "小钟走（第 5 分钟）",
+   "key": false,
+   "spec": null,
+   "onset": 15.895,
+   "err_ms": -0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 83.1,
+   "band_1_4k_db": -31.6
+  },
+  {
+   "t": 16.024,
+   "kind": "嘀嗒",
+   "label": "小钟走（第 10 分钟）",
+   "key": false,
+   "spec": null,
+   "onset": 16.024,
+   "err_ms": -0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 50.1,
+   "band_1_4k_db": -32.5
+  },
+  {
+   "t": 16.114,
+   "kind": "嘀嗒",
+   "label": "小钟走（第 15 分钟）",
+   "key": false,
+   "spec": null,
+   "onset": 16.114,
+   "err_ms": -0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 44.2,
+   "band_1_4k_db": -32.1
+  },
+  {
+   "t": 16.186,
+   "kind": "嘀嗒",
+   "label": "小钟走（第 20 分钟）",
+   "key": false,
+   "spec": null,
+   "onset": 16.186,
+   "err_ms": -0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 29.5,
+   "band_1_4k_db": -29.8
+  },
+  {
+   "t": 16.247,
+   "kind": "嘀嗒",
+   "label": "小钟走（第 25 分钟）",
+   "key": false,
+   "spec": null,
+   "onset": 16.247,
+   "err_ms": -0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 29.7,
+   "band_1_4k_db": -28.3
+  },
+  {
+   "t": 16.3,
+   "kind": "嘀嗒",
+   "label": "小钟走（第 30 分钟）",
+   "key": false,
+   "spec": null,
+   "onset": 16.3,
+   "err_ms": 0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 27.0,
+   "band_1_4k_db": -27.2
+  },
+  {
+   "t": 16.353,
+   "kind": "嘀嗒",
+   "label": "小钟走（第 35 分钟）",
+   "key": false,
+   "spec": null,
+   "onset": 16.353,
+   "err_ms": -0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 29.5,
+   "band_1_4k_db": -27.1
+  },
+  {
+   "t": 16.414,
+   "kind": "嘀嗒",
+   "label": "小钟走（第 40 分钟）",
+   "key": false,
+   "spec": null,
+   "onset": 16.414,
+   "err_ms": -0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 29.9,
+   "band_1_4k_db": -29.7
+  },
+  {
+   "t": 16.486,
+   "kind": "嘀嗒",
+   "label": "小钟走（第 45 分钟）",
+   "key": false,
+   "spec": null,
+   "onset": 16.486,
+   "err_ms": -0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 36.6,
+   "band_1_4k_db": -31.4
+  },
+  {
+   "t": 16.576,
+   "kind": "嘀嗒",
+   "label": "小钟走（第 50 分钟）",
+   "key": false,
+   "spec": null,
+   "onset": 16.576,
+   "err_ms": -0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 42.3,
+   "band_1_4k_db": -31.7
+  },
+  {
+   "t": 16.705,
+   "kind": "嘀嗒",
+   "label": "小钟走（第 55 分钟）",
+   "key": false,
+   "spec": null,
+   "onset": 16.705,
+   "err_ms": -0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 61.7,
+   "band_1_4k_db": -31.5
+  },
+  {
+   "t": 17.2,
+   "kind": "嘀嗒",
+   "label": "小钟走完一小时（15:40）",
+   "key": false,
+   "spec": null,
+   "onset": 17.2,
+   "err_ms": 0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 87.4,
+   "band_1_4k_db": -26.5
+  },
+  {
+   "t": 17.23,
+   "kind": "提示音",
+   "label": "交表那条到 15:40 才弹出来（闷的工作群提示音）",
+   "key": false,
+   "spec": null,
+   "onset": 17.231,
+   "err_ms": 1.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 10.6,
+   "band_1_4k_db": -25.1
+  },
+  {
+   "t": 18.0,
+   "kind": "惊",
+   "label": "中栏的你一惊",
+   "key": true,
+   "spec": [
+    "全关段：“一惊”的一下",
+    18.0,
+    "分镜 18.0–19.0 拍：中栏的“你”一惊，手机翻过来"
+   ],
+   "onset": 18.0,
+   "err_ms": 0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 35.6,
+   "band_1_4k_db": -20.6
+  },
+  {
+   "t": 18.56,
+   "kind": "嗒",
+   "label": "手机翻过来",
+   "key": false,
+   "spec": null,
+   "onset": 18.56,
+   "err_ms": -0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 51.7,
+   "band_1_4k_db": -33.5
+  },
+  {
+   "t": 19.4,
+   "kind": "咚",
+   "label": "“交表”卡片压到头上",
+   "key": false,
+   "spec": null,
+   "onset": 19.4,
+   "err_ms": 0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 85.2,
+   "band_1_4k_db": -26.1
+  },
+  {
+   "t": 21.6,
+   "kind": "嗖",
+   "label": "推向右栏（先分开，从推镜头开始）",
+   "key": false,
+   "spec": null,
+   "onset": 21.602,
+   "err_ms": 2.0,
+   "solo_err_ms": 2.0,
+   "rise_db": 56.4,
+   "band_1_4k_db": -49.1
+  },
+  {
+   "t": 22.6,
+   "kind": "刷",
+   "label": "消息分成四类（发牌）",
+   "key": false,
+   "spec": null,
+   "onset": 22.556,
+   "err_ms": -44.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 8.3,
+   "band_1_4k_db": -33.5
+  },
+  {
+   "t": 22.88,
+   "kind": "啵",
+   "label": "分类标签弹出",
+   "key": false,
+   "spec": null,
+   "onset": 22.842,
+   "err_ms": -38.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 9.7,
+   "band_1_4k_db": -32.6
+  },
+  {
+   "t": 22.94,
+   "kind": "啵",
+   "label": "分类标签弹出",
+   "key": false,
+   "spec": null,
+   "onset": 22.94,
+   "err_ms": -0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 25.1,
+   "band_1_4k_db": -30.7
+  },
+  {
+   "t": 23.0,
+   "kind": "啵",
+   "label": "分类标签弹出",
+   "key": false,
+   "spec": null,
+   "onset": 22.981,
+   "err_ms": -19.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 7.2,
+   "band_1_4k_db": -29.6
+  },
+  {
+   "t": 23.06,
+   "kind": "啵",
+   "label": "分类标签弹出",
+   "key": false,
+   "spec": null,
+   "onset": 23.06,
+   "err_ms": -0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 30.4,
+   "band_1_4k_db": -31.4
+  },
+  {
+   "t": 24.28,
+   "kind": "噗",
+   "label": "广告推送消失（轻噗）",
+   "key": true,
+   "spec": [
+    "先分开段：广告推送消失（轻柔的“噗”）",
+    24.0,
+    "分镜 22.6–24.6 拍：“广告推送”那堆变灰、缩小、消失；时间表 adGone 23.9–24.4"
+   ],
+   "onset": 24.28,
+   "err_ms": 0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 37.0,
+   "band_1_4k_db": -21.4
+  },
+  {
+   "t": 25.73,
+   "kind": "咔",
+   "label": "置顶：图钉按下",
+   "key": true,
+   "spec": [
+    "先分开段：置顶（轻“咔”）",
+    25.6,
+    "分镜 24.6–27.0 拍：两张卡升到最上，加图钉；时间表 pins 25.6–25.95（图钉 25.73 落到底）"
+   ],
+   "onset": 25.729,
+   "err_ms": -0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 91.4,
+   "band_1_4k_db": -22.9
+  },
+  {
+   "t": 26.2,
+   "kind": "提示音",
+   "label": "置顶的群照常亮",
+   "key": false,
+   "spec": null,
+   "onset": 26.2,
+   "err_ms": 0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 70.4,
+   "band_1_4k_db": -29.4
+  },
+  {
+   "t": 26.6,
+   "kind": "提示音",
+   "label": "置顶的群照常亮",
+   "key": false,
+   "spec": null,
+   "onset": 26.601,
+   "err_ms": 1.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 8.2,
+   "band_1_4k_db": -30.8
+  },
+  {
+   "t": 27.12,
+   "kind": "闷铃",
+   "label": "静音铃 1",
+   "key": true,
+   "spec": [
+    "先分开段：静音铃（闷一下）第 1 个",
+    27.1,
+    "分镜 27.0–28.6 拍：其余群卡片挂上静音铃；时间表 bells 27.1、27.3、27.5"
+   ],
+   "onset": 27.12,
+   "err_ms": 0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 24.4,
+   "band_1_4k_db": -30.8
+  },
+  {
+   "t": 27.32,
+   "kind": "闷铃",
+   "label": "静音铃 2",
+   "key": true,
+   "spec": [
+    "先分开段：静音铃（闷一下）第 2 个",
+    27.3,
+    "分镜 27.0–28.6 拍：其余群卡片挂上静音铃；时间表 bells 27.1、27.3、27.5"
+   ],
+   "onset": 27.32,
+   "err_ms": 0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 21.3,
+   "band_1_4k_db": -33.3
+  },
+  {
+   "t": 27.52,
+   "kind": "闷铃",
+   "label": "静音铃 3",
+   "key": true,
+   "spec": [
+    "先分开段：静音铃（闷一下）第 3 个",
+    27.5,
+    "分镜 27.0–28.6 拍：其余群卡片挂上静音铃；时间表 bells 27.1、27.3、27.5"
+   ],
+   "onset": 27.52,
+   "err_ms": 0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 14.7,
+   "band_1_4k_db": -35.4
+  },
+  {
+   "t": 28.774,
+   "kind": "嗒",
+   "label": "小盒子出来",
+   "key": false,
+   "spec": null,
+   "onset": 28.75,
+   "err_ms": -24.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 8.3,
+   "band_1_4k_db": -44.2
+  },
+  {
+   "t": 29.25,
+   "kind": "开盖",
+   "label": "盒子开盖（9 点）",
+   "key": true,
+   "spec": [
+    "先分开段：盒子开盖 第 1 次（9 点）",
+    29.25,
+    "分镜 28.6–31.0 拍：时间轴 9、15、21 点各开一次盒子；时间表 stops[i][1]"
+   ],
+   "onset": 29.25,
+   "err_ms": 0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 76.6,
+   "band_1_4k_db": -28.5
+  },
+  {
+   "t": 29.75,
+   "kind": "开盖",
+   "label": "盒子开盖（15 点）",
+   "key": true,
+   "spec": [
+    "先分开段：盒子开盖 第 2 次（15 点）",
+    29.75,
+    "分镜 28.6–31.0 拍：时间轴 9、15、21 点各开一次盒子；时间表 stops[i][1]"
+   ],
+   "onset": 29.75,
+   "err_ms": 0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 38.9,
+   "band_1_4k_db": -27.4
+  },
+  {
+   "t": 30.25,
+   "kind": "开盖",
+   "label": "盒子开盖（21 点）",
+   "key": true,
+   "spec": [
+    "先分开段：盒子开盖 第 3 次（21 点）",
+    30.25,
+    "分镜 28.6–31.0 拍：时间轴 9、15、21 点各开一次盒子；时间表 stops[i][1]"
+   ],
+   "onset": 30.25,
+   "err_ms": 0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 36.5,
+   "band_1_4k_db": -27.0
+  },
+  {
+   "t": 30.8,
+   "kind": "提示音",
+   "label": "私聊照常亮",
+   "key": false,
+   "spec": null,
+   "onset": 30.8,
+   "err_ms": 0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 30.1,
+   "band_1_4k_db": -51.3
+  },
+  {
+   "t": 31.75,
+   "kind": "提示音",
+   "label": "工作群“明早 8 点前交表”立刻亮",
+   "key": true,
+   "spec": null,
+   "onset": 31.75,
+   "err_ms": 0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 41.2,
+   "band_1_4k_db": -22.1
+  },
+  {
+   "t": 32.9,
+   "kind": "叮",
+   "label": "右栏“晚看到 0 件”",
+   "key": false,
+   "spec": null,
+   "onset": 32.9,
+   "err_ms": -0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 18.0,
+   "band_1_4k_db": -31.3
+  },
+  {
+   "t": 34.4,
+   "kind": "翻书",
+   "label": "把书翻开",
+   "key": false,
+   "spec": null,
+   "onset": 34.4,
+   "err_ms": -0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 17.4,
+   "band_1_4k_db": -39.2
+  },
+  {
+   "t": 37.42,
+   "kind": "翻书",
+   "label": "翻一页（是分出来的）",
+   "key": false,
+   "spec": null,
+   "onset": 37.374,
+   "err_ms": -46.0,
+   "solo_err_ms": 1.0,
+   "rise_db": 6.5,
+   "band_1_4k_db": -41.0
+  },
+  {
+   "t": 39.7,
+   "kind": "快门",
+   "label": "截图快门",
+   "key": true,
+   "spec": [
+    "清单开始：截图快门声",
+    39.7,
+    "分镜 39.6 起清单屏 1；时间表 shot 39.7（画面闪白）"
+   ],
+   "onset": 39.7,
+   "err_ms": 0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 93.2,
+   "band_1_4k_db": -25.7
+  },
+  {
+   "t": 58.4,
+   "kind": "啵",
+   "label": "按钮弹出：工作群",
+   "key": true,
+   "spec": [
+    "结尾：按钮弹出 第 1 个",
+    58.4,
+    "分镜 58.2–61.2 拍：四个按钮一个一个弹出来，间隔 0.2 秒"
+   ],
+   "onset": 58.4,
+   "err_ms": 0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 87.4,
+   "band_1_4k_db": -21.3
+  },
+  {
+   "t": 58.6,
+   "kind": "啵",
+   "label": "按钮弹出：家长群",
+   "key": true,
+   "spec": [
+    "结尾：按钮弹出 第 2 个",
+    58.6,
+    "分镜 58.2–61.2 拍：四个按钮一个一个弹出来，间隔 0.2 秒"
+   ],
+   "onset": 58.6,
+   "err_ms": 0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 23.8,
+   "band_1_4k_db": -21.1
+  },
+  {
+   "t": 58.8,
+   "kind": "啵",
+   "label": "按钮弹出：班级群",
+   "key": true,
+   "spec": [
+    "结尾：按钮弹出 第 3 个",
+    58.8,
+    "分镜 58.2–61.2 拍：四个按钮一个一个弹出来，间隔 0.2 秒"
+   ],
+   "onset": 58.8,
+   "err_ms": -0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 27.6,
+   "band_1_4k_db": -20.9
+  },
+  {
+   "t": 59.0,
+   "kind": "啵",
+   "label": "按钮弹出：亲戚群",
+   "key": true,
+   "spec": [
+    "结尾：按钮弹出 第 4 个",
+    59.0,
+    "分镜 58.2–61.2 拍：四个按钮一个一个弹出来，间隔 0.2 秒"
+   ],
+   "onset": 59.0,
+   "err_ms": 0.0,
+   "solo_err_ms": 0.0,
+   "rise_db": 23.9,
+   "band_1_4k_db": -20.9
+  }
+ ]
+}

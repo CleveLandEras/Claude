@@ -1,0 +1,140 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>后台减法与观感</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.35;margin:0 0 8px}
+.sub{font-size:16px;color:var(--ink-2);margin:0 0 28px}
+h2{font-family:var(--serif);font-size:20px;margin:56px 0 16px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px}
+.kpi .n{font-size:38px;font-weight:700;line-height:1.1;color:var(--ink)}
+.kpi .n small{font-size:16px;font-weight:600;margin-left:4px;color:var(--ink-2)}
+.kpi .t{font-size:14.5px;color:var(--ink-2);margin-top:8px}
+.f{margin-bottom:22px}
+.f .h{font-size:17px;font-weight:700;margin:0 0 6px}
+.f .l{font-size:14.5px;color:var(--ink-2);margin:0 0 10px}
+.f .l li{margin:2px 0}
+.f ul{margin:0 0 10px;padding-left:20px}
+.shot img{width:100%;display:block;border:1px solid var(--line);border-radius:4px;background:#fff}
+.shot .c{font-size:12.5px;color:var(--muted);margin-top:6px}
+.shot.mid img{max-width:760px}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14.5px}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--ground);white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td.p{color:var(--muted);width:64px;white-space:nowrap}
+td.w{color:var(--ink);width:36%} td.r{color:var(--ink-2)}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:1px 7px;border-radius:3px;margin-right:6px;vertical-align:1px}
+.tag.red{background:var(--red-soft);color:var(--red)} .tag.blue{background:var(--blue-soft);color:var(--blue)} .tag.gray{background:var(--gray-soft);color:var(--gray)}
+.note{font-size:14.5px;color:var(--ink-2)}
+.note li{margin:4px 0}
+.links{font-size:13px;color:var(--muted);margin-top:48px;line-height:1.9} a{color:var(--accent)}
+@media (max-width:760px){.wrap{padding:32px 16px 72px}.g3,.g2{grid-template-columns:1fr}td.p{white-space:normal}td.w{width:auto}}
+</style></head>
+<body><div class="wrap">
+<p class="meta">推送系统后台 · 需求评审版 · 减法与观感 · 2026-10-28</p>
+<h1>减了 9 处并改了观感；改完再查，删后留下的空档已补</h1>
+<p class="sub">判断标准：一个功能谁用、多久用一次、不做时人工怎么办、研发要做多大。研发量是推断，参考了 10/20 的成本收益评估。其中 3 处那份评估当时就建议简化，定稿里没有落实；我不确定是不是你否过，所以一并列出。你 10/28 定了全部照改，01–04 节已改进评审版。</p>
+
+<div class="grid g3">
+  <div class="card kpi"><div class="n">3<small>处</small></div><div class="t">研发重、用得少：条件触发的勿扰顺延、弹窗每次进入都记录、快显的破产未回触发</div></div>
+  <div class="card kpi"><div class="n">6<small>处</small></div><div class="t">多一个概念、很少用：每天定点、服务通知勿扰设置、提醒间隔、单处暂停、编辑页的优先级、两种方式对比</div></div>
+  <div class="card kpi"><div class="n">2<small>处观感</small></div><div class="t">顺延不再用表示拦截的橙色；弹窗编辑页去掉优先级表后短约四分之一</div></div>
+</div>
+
+<h2><span class="no">01</span>研发重、用得少：建议删或简化</h2>
+<table>
+<tr><th>功能</th><th>为什么减</th><th>减了以后</th></tr>
+<tr><td class="w">条件触发「命中勿扰时顺延」<br><span class="tag gray">第 2 页</span></td><td class="r">要做延后队列，到勿扰结束再重判条件和上限，礼包可能已过期。10/20 评估研发量为大，用得少</td><td class="r">条件触发命中勿扰一律放弃，错过一次提醒。定时推送的整条顺延保留</td></tr>
+<tr><td class="w">弹窗记录「每次进大厅都记一行，展开看其他规则和没轮到的原因」<br><span class="tag gray">第 10 页</span></td><td class="r">玩家每进一次大厅，都要存所有规则的判定结果，量最大。10/20 评估只要求看每个弹窗弹没弹（当时已评为研发量大），后来又加上了没弹的进入和其他规则</td><td class="r">只记实际弹出的那几次，展开看每个弹窗弹没弹。没弹的原因用「下一次进入」的实时判定看，玩家查询和按玩家预览都有</td></tr>
+<tr><td class="w">快显的「破产后未回到游戏」触发<br><span class="tag gray">第 5 页</span></td><td class="r">快显只给在线玩家看，玩家破产后不在线，只能为它单开一个 24 小时的等待窗口，是全文唯一的例外</td><td class="r">这个场景由推播负责，第 2 页已有同名触发；快显的其余触发不变</td></tr>
+</table>
+
+<h2><span class="no">02</span>多一个概念、很少用：建议删或改成固定值</h2>
+<table>
+<tr><th>功能</th><th>为什么减</th><th>减了以后</th></tr>
+<tr><td class="w">「每天定点＋状态」触发<br><span class="tag gray">第 2 页</span></td><td class="r">和定时的「每天重复」是同一件事：每天几点发给当时在某个群组里的人。为了区分，规则得另写一条，它还不进日历、不预留名额，成了名额计算的例外。你 10/20 说过「两个重复的肯定要把不通用的那个删了」</td><td class="r">用定时每天重复；重复的期限从 90 天放宽到不限，长期的也能配</td></tr>
+<tr><td class="w">服务通知的勿扰设置（「修改」里可改为照发）<br><span class="tag gray">第 1 页</span></td><td class="r">10/20 评估：运营负责人基本不会改，建议删掉下拉，固定下来</td><td class="r">固定为：服务通知遇勿扰顺延，账号安全通知照发。「修改」对话框少一行</td></tr>
+<tr><td class="w">提醒间隔可填小时数<br><span class="tag gray">第 2 页</span></td><td class="r">10/20 评估：运营不会改默认。按小时算，「完成每日任务」这类每天一次的提醒，第二天早一点完成就会被跳过</td><td class="r">固定为同一条推送每人每天最多 1 次，按自然日算，不可配</td></tr>
+<tr><td class="w">规则里单个弹窗的「暂停」<br><span class="tag gray">第 4 页</span></td><td class="r">规则可整条暂停，内容可下架，再加一层单处暂停，就多出「引用状态」：列表里要标灰字，内容页要多一列。只停一处的情况很少</td><td class="r">要停某条规则里的某个弹窗，就从这条规则里移除，以后再加回来</td></tr>
+<tr><td class="w">编辑页里的优先级输入框和 6 条规则表<br><span class="tag gray">第 4 页</span></td><td class="r">优先级在列表里拖动也能改，两处改同一个值，还要规定填了已占用的数字怎么顺移。这一节约占编辑页的四分之一</td><td class="r">优先级只在列表里拖动改；编辑页右侧摘要只读写「优先级 4 / 6」</td></tr>
+<tr><td class="w">「两种方式对比」对话框<br><span class="tag gray">第 4 页</span></td><td class="r">后台里专门做一张图解页，只是为了教运营。命中方式旁边已经有一句说明</td><td class="r">删掉对话框，评审版少一张图；两种方式的区别写在业务规则里</td></tr>
+</table>
+<div class="grid g2" style="margin-top:14px">
+  <div class="shot"><img src="图/2026-10-28_后台减法与观感/03_触发行为与设置.jpg" alt="条件触发设置"><div class="c">第 2 页 · 条件触发编辑页：每天定点、提醒间隔、命中勿扰都在这里</div></div>
+  <div class="shot"><img src="图/2026-10-28_后台减法与观感/10_优先级一节.jpg" alt="编辑页优先级一节"><div class="c">第 4 页 · 编辑页的优先级一节：和列表拖动重复</div></div>
+</div>
+
+<h2><span class="no">03</span>可选：顺手的两处</h2>
+<ul class="note">
+  <li><b>推播权重 1–10 改三档</b>：普通、优先、最优先。每人每天只有 2–3 条名额，10 档分不出差别。</li>
+  <li><b>「排名变化」先不放进界面</b>：现在是灰着的「待排行榜接入」，排行榜接入前运营用不了，只多占一行。</li>
+</ul>
+
+<h2><span class="no">04</span>观感：一种颜色、一张长页</h2>
+<div class="f">
+  <div class="h">顺延不再用橙色：橙色只留给上限拦截和要注意的提示</div>
+  <ul class="l">
+    <li><b>现在</b>：日历里「维护预告」由 02:30 顺延到 08:00，用的是和「秋季排名赛」上限拦截同样的橙色边条，图例写「顺延、上限拦截」。顺延是正常处理，看着却像出了问题。</li>
+    <li><b>改成</b>：顺延用灰色边条，图例分成两项。</li>
+  </ul>
+  <div class="shot"><img src="图/2026-10-28_后台减法与观感/02a_日历顶部.jpg" alt="日历顶部"><div class="c">第 1 页 · 日历：08:00 维护预告是顺延，也是橙色</div></div>
+</div>
+<div class="f">
+  <div class="h">弹窗编辑页太长：去掉优先级一节后短约四分之一</div>
+  <ul class="l">
+    <li>现在有 6 段，截图高 2,454 像素，是全文最长的一张。去掉第 02 节说的优先级输入和规则表后，剩位置、名称、对象、弹窗排序、生效期间 5 段。</li>
+  </ul>
+</div>
+<p class="note">其余界面这几轮已经统一过：颜色、表格、状态计数、操作列、筛选区都是一套写法，没有再要改的。</p>
+
+<h2><span class="no">05</span>照这样减要动的地方</h2>
+<table>
+<tr><th>减什么</th><th>要改的图</th><th>要改的规则</th></tr>
+<tr><td class="w">01 研发重的 3 处</td><td class="r">03（命中勿扰一行）、17（触发行为少一项）、19（收到记录里没弹的那次进入删掉）</td><td class="r">第 2 页「勿扰与在线」两条，第 5 页「发送时间」一句，第 10 页「收到记录」一句</td></tr>
+<tr><td class="w">02 多概念的 6 处</td><td class="r">03、17（触发行为少一项、提醒间隔一行）、02h（少一行）、10、10d、11（去掉暂停与优先级一节）、10a、10c2（去掉已暂停标注与引用状态列）；删 10k</td><td class="r">第 1 页「上限与勿扰」，第 2 页「触发与对象」「提醒间隔」，第 4 页「列表」「优先级」「命中方式」各改一两句</td></tr>
+<tr><td class="w">04 观感</td><td class="r">00、02a（顺延改灰、图例分两项）</td><td class="r">第 1 页「日历」一句</td></tr>
+</table>
+<p class="note">建议 01、02、04 一起做：都是删东西，不加新概念，评审版会更短。03 的两处你说要就顺手做。</p>
+
+<h2><span class="no">06</span>改完再查：删后留下的空档已补</h2>
+<p class="note">改完后请一位没看过上下文的人重查。被删的东西在图、规则、数据页里都没有残留，4 个运营场景都能走通。删了以后出现的空档和矛盾如下，都已补上：</p>
+<table>
+<tr><th>空档或矛盾</th><th>补成什么</th></tr>
+<tr><td class="w">删了「每天定点」，靠定时每天重复，但没写它在列表、日历、数据里怎么显示</td><td class="r">列表占一行，写「每周六 · 第 1/10 次」这样的重复方式与次数，发送列写累计；日历每次都画；某一次失败只算那一次</td></tr>
+<tr><td class="w">条件触发的服务通知遇勿扰：一处写放弃，一处写顺延</td><td class="r">服务通知不论定时还是条件触发都顺延，账号安全照发；账号安全通知从哪个系统发，列进待研发确认</td></tr>
+<tr><td class="w">玩家查询缺「iOS 旧版本无到达回执」「结果不明」，单条数据里这两类约占发送的 12%</td><td class="r">推播、短信的结果补上这两种</td></tr>
+<tr><td class="w">被引用的弹窗内容不能下架，要停一个内容得逐条规则移除；活动结束后内容怎么办没写</td><td class="r">内容可直接下架，各规则里自动跳过；对应活动未开始或已结束时也自动跳过</td></tr>
+<tr><td class="w">优先级最高的位置上，新规则排在最后，可能永远命中不到</td><td class="r">保存并上架时提示排第几、会不会被前面的规则挡住</td></tr>
+<tr><td class="w">轮流位置的漏弹提示会让人以为要把内容放进全部规则</td><td class="r">改成按人数提示：「回流 16,564 人里有 2,140 人同时符合其他规则，那一次可能轮不到」</td></tr>
+<tr><td class="w">删了弹窗的逐次记录，但漏斗仍要按次统计；「原因看实时判定」会让客服拿今天的判定解释昨天</td><td class="r">写明服务端按次记录只用于统计、不进玩家查询；过去某次为什么没弹查不到</td></tr>
+<tr><td class="w">示例：「银卡已首储」的玩家弹「首储礼包」，一看就会被问</td><td class="r">内容改名「储值优惠礼包」</td></tr>
+<tr><td class="w">短信「今明两天名额」是全文唯一的进度条，条长含义没写</td><td class="r">改成和推播日历下方一样的两行文字</td></tr>
+<tr><td class="w">截图底部被截：浏览器可视区比窗口矮约 87 像素，高图底部会丢，每人每天推送量的改动清单就没了</td><td class="r">截图脚本已修，34 张全部重截</td></tr>
+</table>
+<div class="f" style="margin-top:22px">
+  <div class="h">已定：每天的提醒先不做「只发给还没完成的人」，评审时说明这条边界（你 10/28 定）</div>
+  <ul class="l">
+    <li><b>现在</b>：删了「每天定点＋状态」后，每天提醒完成每日任务只能用定时每天重复，发给近期登录的群组；群组按定期更新的标签算，选不出「今天还没完成」，已完成的人也会收到，还占 1 条名额。规则里已写明这条边界。</li>
+    <li><b>选项</b>：甲　先这样，评审时说明；乙　在「完成任务」触发上加一个参数「到 X 点仍未完成」，研发量要研发评估。</li>
+    <li><b>推荐甲</b>：本期先不加；运营真要用，再按研发评估决定。</li>
+  </ul>
+</div>
+
+<div class="links">
+现在的评审版：<a href="../评审版_定稿改_1027/推送系统后台集成需求/3_原型_需求评审版.html">评审版_定稿改_1027/推送系统后台集成需求/3_原型_需求评审版.html</a><br>
+依据：<code>分析/功能成本收益_1020.md</code>（第 2.14、2.16、3.2、12.6 条）· 类型卡「两个重复的肯定要把不通用的那个删了」<br>
+上一份：<a href="2026-10-28_后台界面第一性原理.html">后台界面第一性原理</a>
+</div>
+</div></body></html>

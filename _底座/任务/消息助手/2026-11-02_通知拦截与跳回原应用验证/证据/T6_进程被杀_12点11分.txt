@@ -1,0 +1,7 @@
+== 原型进程退出记录：12:46 用 dumpsys activity exit-info com.dk.msgrelay 查到的原文（之后重装原型，系统清掉了这个包的旧退出记录，现在已查不到）
+          timestamp=2026-11-02 12:11:14.341 pid=20721 realUid=10021 packageUid=10021 definingUid=10021 user=0
+          process=com.dk.msgrelay reason=2 (SIGNALED) subreason=0 (UNKNOWN) status=9
+          importance=125 pss=0.00 rss=108MB description=null state=empty trace=null
+== 前后对照（原型自己的日志，摘录在下面）：11:52:58 屏幕灭 → 12:11:14 进程被杀（信号 9）→ 12:11:17 监听已连接 | 进程=26362（系统自动重连；内存里攒着的通知和点击入口清零）
+11-02 11:52:58.305 | 屏幕 | 灭
+11-02 12:11:17.034 | 监听已连接 | 进程=26362 | 做法=A 批次=30秒或3条 收起原通知=true 自动

@@ -1,0 +1,1810 @@
+{
+ "query": "project = RICH AND fixVersion = \"08_V48_10.22\" AND fixVersion = \"08_V49_10.29\"",
+ "queriedAt": "2026-10-28 晚",
+ "summary": {
+  "total": 107,
+  "undone": 25,
+  "byCreatedBeforeAfter1022": {
+   "created<=10-22": 74,
+   "created>10-22": 33
+  },
+  "createdAfter1022_types": {
+   "缺陷": 32,
+   "故事": 1
+  },
+  "undone_types": {
+   "长篇故事": 3,
+   "故事": 13,
+   "QATask": 3,
+   "Legend": 2,
+   "缺陷": 4
+  },
+  "undone_status": {
+   "Coding": 4,
+   "Checking": 6,
+   "To Check": 6,
+   "待办": 5,
+   "Blocked": 4
+  },
+  "withV50": 20,
+  "parents": [
+   [
+    "RICH-23765",
+    25
+   ],
+   [
+    "RICH-24855",
+    24
+   ],
+   [
+    "RICH-23380",
+    19
+   ],
+   [
+    "RICH-24438",
+    13
+   ],
+   [
+    "RICH-24902",
+    9
+   ],
+   [
+    "RICH-22537",
+    8
+   ],
+   [
+    null,
+    6
+   ],
+   [
+    "RICH-23000",
+    1
+   ],
+   [
+    "RICH-24460",
+    1
+   ],
+   [
+    "RICH-25134",
+    1
+   ]
+  ]
+ },
+ "issues": [
+  {
+   "key": "RICH-22537",
+   "type": "长篇故事",
+   "status": "Coding",
+   "statusCategory": "正在进行",
+   "assignee": "Shuocheng Zhang(张硕成)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29",
+    "08_V50_11.5"
+   ],
+   "parentKey": null,
+   "parentSummary": null,
+   "created": "2026-07-17",
+   "resolved": null,
+   "summary": "「棋牌」新增【挑戰書】登錄彈窗"
+  },
+  {
+   "key": "RICH-23380",
+   "type": "长篇故事",
+   "status": "Checking",
+   "statusCategory": "正在进行",
+   "assignee": "Meiling Jiang(蒋枚伶)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": null,
+   "parentSummary": null,
+   "created": "2026-08-11",
+   "resolved": null,
+   "summary": "「活動優化」紅包狂歡活動優化"
+  },
+  {
+   "key": "RICH-23529",
+   "type": "故事",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Shuocheng Zhang(张硕成)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29",
+    "08_V50_11.5"
+   ],
+   "parentKey": "RICH-22537",
+   "parentSummary": "「棋牌」新增【挑戰書】登錄彈窗",
+   "created": "2026-08-14",
+   "resolved": "2026-09-14",
+   "summary": "【EP】「棋牌」挑戰書活動"
+  },
+  {
+   "key": "RICH-23530",
+   "type": "故事",
+   "status": "To Check",
+   "statusCategory": "正在进行",
+   "assignee": "Willision LI(黎景)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29",
+    "08_V50_11.5"
+   ],
+   "parentKey": "RICH-22537",
+   "parentSummary": "「棋牌」新增【挑戰書】登錄彈窗",
+   "created": "2026-08-14",
+   "resolved": null,
+   "summary": "【客戶端】「棋牌」挑戰書活動"
+  },
+  {
+   "key": "RICH-23531",
+   "type": "故事",
+   "status": "To Check",
+   "statusCategory": "正在进行",
+   "assignee": "Xuezheng Zhang(张学政)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29",
+    "08_V50_11.5"
+   ],
+   "parentKey": "RICH-22537",
+   "parentSummary": "「棋牌」新增【挑戰書】登錄彈窗",
+   "created": "2026-08-14",
+   "resolved": null,
+   "summary": "【服務器】「棋牌」挑戰書活動"
+  },
+  {
+   "key": "RICH-23532",
+   "type": "故事",
+   "status": "To Check",
+   "statusCategory": "正在进行",
+   "assignee": "Meng Yu(余梦)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29",
+    "08_V50_11.5"
+   ],
+   "parentKey": "RICH-22537",
+   "parentSummary": "「棋牌」新增【挑戰書】登錄彈窗",
+   "created": "2026-08-14",
+   "resolved": null,
+   "summary": "【後臺】「棋牌」挑戰書活動"
+  },
+  {
+   "key": "RICH-23533",
+   "type": "故事",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Yan Shao(邵岩)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29",
+    "08_V50_11.5"
+   ],
+   "parentKey": "RICH-22537",
+   "parentSummary": "「棋牌」新增【挑戰書】登錄彈窗",
+   "created": "2026-08-14",
+   "resolved": "2026-09-24",
+   "summary": "【美術UI】「棋牌」挑戰書活動"
+  },
+  {
+   "key": "RICH-23534",
+   "type": "QATask",
+   "status": "待办",
+   "statusCategory": "待办",
+   "assignee": "Yugang Li(李玉刚)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29",
+    "08_V50_11.5"
+   ],
+   "parentKey": "RICH-22537",
+   "parentSummary": "「棋牌」新增【挑戰書】登錄彈窗",
+   "created": "2026-08-14",
+   "resolved": null,
+   "summary": "【QA】「棋牌」挑戰書活動"
+  },
+  {
+   "key": "RICH-23765",
+   "type": "长篇故事",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Meiling Jiang(蒋枚伶)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": null,
+   "parentSummary": null,
+   "created": "2026-08-21",
+   "resolved": "2026-10-28",
+   "summary": "【新金流】遊e卡串接YOE卡"
+  },
+  {
+   "key": "RICH-23831",
+   "type": "缺陷",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Hongmei He(何红梅)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-24438",
+   "parentSummary": "「超額溢點防呆part5」溢點防呆機制優化需求",
+   "created": "2026-08-24",
+   "resolved": "2026-10-20",
+   "summary": "【後臺】配置預設值時，老幣的預警條件使用了“數量門檻”，應該使用“價值門檻”"
+  },
+  {
+   "key": "RICH-23891",
+   "type": "缺陷",
+   "status": "关闭(Closed)",
+   "statusCategory": "完成",
+   "assignee": "Hongmei He(何红梅)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-24438",
+   "parentSummary": "「超額溢點防呆part5」溢點防呆機制優化需求",
+   "created": "2026-08-25",
+   "resolved": null,
+   "summary": "【紅包狂歡】獎池、紅包掉落獎勵、紅包大賞福袋，沒有支持價值預警，也沒有算入總價值"
+  },
+  {
+   "key": "RICH-24062",
+   "type": "缺陷",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Hongmei He(何红梅)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-24438",
+   "parentSummary": "「超額溢點防呆part5」溢點防呆機制優化需求",
+   "created": "2026-09-01",
+   "resolved": "2026-10-20",
+   "summary": "【每日補給計劃】高額成本彈窗計算的縂成本價值與所有獎勵縂價值不一致"
+  },
+  {
+   "key": "RICH-24319",
+   "type": "故事",
+   "status": "Checking",
+   "statusCategory": "正在进行",
+   "assignee": "Willision LI(黎景)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-23380",
+   "parentSummary": "「活動優化」紅包狂歡活動優化",
+   "created": "2026-09-07",
+   "resolved": null,
+   "summary": "「客端」「活動優化」紅包狂歡活動優化"
+  },
+  {
+   "key": "RICH-24320",
+   "type": "故事",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Yan Shao(邵岩)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-23380",
+   "parentSummary": "「活動優化」紅包狂歡活動優化",
+   "created": "2026-09-07",
+   "resolved": "2026-09-24",
+   "summary": "「美術」「活動優化」紅包狂歡活動優化"
+  },
+  {
+   "key": "RICH-24321",
+   "type": "故事",
+   "status": "Checking",
+   "statusCategory": "正在进行",
+   "assignee": "YiYuan Huang(黄益园)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-23380",
+   "parentSummary": "「活動優化」紅包狂歡活動優化",
+   "created": "2026-09-07",
+   "resolved": null,
+   "summary": "「服務器」「活動優化」紅包狂歡活動優化"
+  },
+  {
+   "key": "RICH-24322",
+   "type": "故事",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Meiling Jiang(蒋枚伶)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-23380",
+   "parentSummary": "「活動優化」紅包狂歡活動優化",
+   "created": "2026-09-07",
+   "resolved": "2026-09-09",
+   "summary": "「EP」「活動優化」紅包狂歡活動優化"
+  },
+  {
+   "key": "RICH-24323",
+   "type": "QATask",
+   "status": "Coding",
+   "statusCategory": "正在进行",
+   "assignee": "Leo Chiu(邱日鴻)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-23380",
+   "parentSummary": "「活動優化」紅包狂歡活動優化",
+   "created": "2026-09-07",
+   "resolved": null,
+   "summary": "「QA」「活動優化」紅包狂歡活動優化"
+  },
+  {
+   "key": "RICH-24324",
+   "type": "故事",
+   "status": "Checking",
+   "statusCategory": "正在进行",
+   "assignee": "Ying Chen(陈颖)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-23380",
+   "parentSummary": "「活動優化」紅包狂歡活動優化",
+   "created": "2026-09-07",
+   "resolved": null,
+   "summary": "「後台」「活動優化」紅包狂歡活動優化"
+  },
+  {
+   "key": "RICH-24371",
+   "type": "故事",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Zhiwei Xu(徐志伟)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-23765",
+   "parentSummary": "【新金流】遊e卡串接YOE卡",
+   "created": "2026-09-08",
+   "resolved": "2026-10-28",
+   "summary": "「客端」【新金流】遊e卡串接(預計10/1上)"
+  },
+  {
+   "key": "RICH-24372",
+   "type": "故事",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Meng Yu(余梦)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-23765",
+   "parentSummary": "【新金流】遊e卡串接YOE卡",
+   "created": "2026-09-08",
+   "resolved": "2026-10-28",
+   "summary": "「web」【新金流】遊e卡串接(預計10/1上)"
+  },
+  {
+   "key": "RICH-24373",
+   "type": "故事",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Yu Chen(陈雨)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-23765",
+   "parentSummary": "【新金流】遊e卡串接YOE卡",
+   "created": "2026-09-08",
+   "resolved": "2026-10-28",
+   "summary": "「服務器」【新金流】遊e卡串接(預計10/1上)"
+  },
+  {
+   "key": "RICH-24374",
+   "type": "故事",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Weishi Cheng(成唯实)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-23765",
+   "parentSummary": "【新金流】遊e卡串接YOE卡",
+   "created": "2026-09-08",
+   "resolved": "2026-10-28",
+   "summary": "「後台」【新金流】遊e卡串接(預計10/1上)"
+  },
+  {
+   "key": "RICH-24375",
+   "type": "故事",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Meiling Jiang(蒋枚伶)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-23765",
+   "parentSummary": "【新金流】遊e卡串接YOE卡",
+   "created": "2026-09-08",
+   "resolved": "2026-09-30",
+   "summary": "「策劃」【新金流】遊e卡串接(預計10/1上)"
+  },
+  {
+   "key": "RICH-24376",
+   "type": "QATask",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Xi Luo(罗玺)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-23765",
+   "parentSummary": "【新金流】遊e卡串接YOE卡",
+   "created": "2026-09-08",
+   "resolved": "2026-10-28",
+   "summary": "「QA」【新金流】遊e卡串接(預計10/1上)"
+  },
+  {
+   "key": "RICH-24377",
+   "type": "故事",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Delphia Ding(丁梦媛)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-23765",
+   "parentSummary": "【新金流】遊e卡串接YOE卡",
+   "created": "2026-09-08",
+   "resolved": "2026-10-28",
+   "summary": "「美術web」【新金流】遊e卡串接"
+  },
+  {
+   "key": "RICH-24419",
+   "type": "故事",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Yan Shao(邵岩)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-23765",
+   "parentSummary": "【新金流】遊e卡串接YOE卡",
+   "created": "2026-09-09",
+   "resolved": "2026-10-28",
+   "summary": "【美术客端】【新金流】遊e卡串接"
+  },
+  {
+   "key": "RICH-24438",
+   "type": "长篇故事",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Jiayang Xu(徐佳洋)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-23000",
+   "parentSummary": "「超額溢點防呆機制」針對儲值活動、禮包設置、活動配置製作防溢出的相關機制",
+   "created": "2026-09-09",
+   "resolved": "2026-10-22",
+   "summary": "「超額溢點防呆part5」溢點防呆機制優化需求"
+  },
+  {
+   "key": "RICH-24547",
+   "type": "Legend",
+   "status": "待办",
+   "statusCategory": "待办",
+   "assignee": "Yijie Gu(顾亿颉)",
+   "fixVersions": [
+    "08_V46_9.24",
+    "08_V47_10.15",
+    "08_V48_10.22",
+    "08_V49_10.29",
+    "08_V50_11.5"
+   ],
+   "parentKey": null,
+   "parentSummary": null,
+   "created": "2026-09-14",
+   "resolved": null,
+   "summary": "平台所有活动巡测"
+  },
+  {
+   "key": "RICH-24764",
+   "type": "Legend",
+   "status": "Coding",
+   "statusCategory": "正在进行",
+   "assignee": "Xinxiang Zhang(张鑫祥)",
+   "fixVersions": [
+    "08_V47_10.15",
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": null,
+   "parentSummary": null,
+   "created": "2026-09-20",
+   "resolved": null,
+   "summary": "十月--前端技术代码优化工作集合"
+  },
+  {
+   "key": "RICH-24855",
+   "type": "长篇故事",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Jiayang Xu(徐佳洋)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-24460",
+   "parentSummary": "26年-16週年慶",
+   "created": "2026-09-22",
+   "resolved": "2026-10-28",
+   "summary": "「16週年慶」抽奖大厅 - 两次抽奖 + 阶段奖励"
+  },
+  {
+   "key": "RICH-24883",
+   "type": "QATask",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Chunrui Dong(董纯锐)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-24855",
+   "parentSummary": "「16週年慶」抽奖大厅 - 两次抽奖 + 阶段奖励",
+   "created": "2026-09-22",
+   "resolved": "2026-10-28",
+   "summary": "【QA】「16周年庆」抽奖大厅 - 两次抽奖 + 阶段奖励"
+  },
+  {
+   "key": "RICH-24887",
+   "type": "故事",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Jiayang Xu(徐佳洋)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-24855",
+   "parentSummary": "「16週年慶」抽奖大厅 - 两次抽奖 + 阶段奖励",
+   "created": "2026-09-22",
+   "resolved": "2026-10-08",
+   "summary": "【EP】「16周年庆」抽奖大厅 - 两次抽奖 + 阶段奖励"
+  },
+  {
+   "key": "RICH-24899",
+   "type": "故事",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Xuezheng Zhang(张学政)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-24855",
+   "parentSummary": "「16週年慶」抽奖大厅 - 两次抽奖 + 阶段奖励",
+   "created": "2026-09-22",
+   "resolved": "2026-10-28",
+   "summary": "【服務器】「16周年庆」抽奖大厅 - 两次抽奖 + 阶段奖励"
+  },
+  {
+   "key": "RICH-24900",
+   "type": "故事",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Kewei Jin(金科伟）",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-24855",
+   "parentSummary": "「16週年慶」抽奖大厅 - 两次抽奖 + 阶段奖励",
+   "created": "2026-09-22",
+   "resolved": "2026-10-28",
+   "summary": "【客端】「16周年庆」抽奖大厅 - 两次抽奖 + 阶段奖励"
+  },
+  {
+   "key": "RICH-24901",
+   "type": "故事",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Cheng Wei(魏成)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-24855",
+   "parentSummary": "「16週年慶」抽奖大厅 - 两次抽奖 + 阶段奖励",
+   "created": "2026-09-22",
+   "resolved": "2026-10-28",
+   "summary": "【美術】「16周年庆」抽奖大厅 - 两次抽奖 + 阶段奖励"
+  },
+  {
+   "key": "RICH-24902",
+   "type": "长篇故事",
+   "status": "Coding",
+   "statusCategory": "正在进行",
+   "assignee": "Yijie Gu(顾亿颉)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29",
+    "08_V50_11.5"
+   ],
+   "parentKey": null,
+   "parentSummary": null,
+   "created": "2026-09-22",
+   "resolved": null,
+   "summary": "【後台風控管理】溢出點數追回工具part2－道具資產追回"
+  },
+  {
+   "key": "RICH-24903",
+   "type": "故事",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Yijie Gu(顾亿颉)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29",
+    "08_V50_11.5"
+   ],
+   "parentKey": "RICH-24902",
+   "parentSummary": "【後台風控管理】溢出點數追回工具part2－道具資產追回",
+   "created": "2026-09-22",
+   "resolved": "2026-10-21",
+   "summary": " 【EP】【後台風控管理】溢出點數追回工具part2－道具資產追回"
+  },
+  {
+   "key": "RICH-24904",
+   "type": "故事",
+   "status": "To Check",
+   "statusCategory": "正在进行",
+   "assignee": "Weishi Cheng(成唯实)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29",
+    "08_V50_11.5"
+   ],
+   "parentKey": "RICH-24902",
+   "parentSummary": "【後台風控管理】溢出點數追回工具part2－道具資產追回",
+   "created": "2026-09-22",
+   "resolved": null,
+   "summary": "【後台】【後台風控管理】溢出點數追回工具part2－道具資產追回"
+  },
+  {
+   "key": "RICH-24905",
+   "type": "故事",
+   "status": "To Check",
+   "statusCategory": "正在进行",
+   "assignee": "Xiang Zhang(张翔)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29",
+    "08_V50_11.5"
+   ],
+   "parentKey": "RICH-24902",
+   "parentSummary": "【後台風控管理】溢出點數追回工具part2－道具資產追回",
+   "created": "2026-09-22",
+   "resolved": null,
+   "summary": "【服務端】【後台風控管理】溢出點數追回工具part2－道具資產追回"
+  },
+  {
+   "key": "RICH-24906",
+   "type": "QATask",
+   "status": "待办",
+   "statusCategory": "待办",
+   "assignee": "Chunrui Dong(董纯锐)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29",
+    "08_V50_11.5"
+   ],
+   "parentKey": "RICH-24902",
+   "parentSummary": "【後台風控管理】溢出點數追回工具part2－道具資產追回",
+   "created": "2026-09-22",
+   "resolved": null,
+   "summary": "【QA】【後台風控管理】溢出點數追回工具part2－道具資產追回"
+  },
+  {
+   "key": "RICH-25020",
+   "type": "故事",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Meng Yu(余梦)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-24855",
+   "parentSummary": "「16週年慶」抽奖大厅 - 两次抽奖 + 阶段奖励",
+   "created": "2026-09-30",
+   "resolved": "2026-10-28",
+   "summary": "【web】「16周年庆」抽奖大厅 - 两次抽奖 + 阶段奖励"
+  },
+  {
+   "key": "RICH-25058",
+   "type": "故事",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Jiayang Xu(徐佳洋)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-24438",
+   "parentSummary": "「超額溢點防呆part5」溢點防呆機制優化需求",
+   "created": "2026-10-08",
+   "resolved": "2026-10-12",
+   "summary": "【EP】「超額溢點防呆part5」溢點防呆機制優化需求"
+  },
+  {
+   "key": "RICH-25059",
+   "type": "故事",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Weishi Cheng(成唯实)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-24438",
+   "parentSummary": "「超額溢點防呆part5」溢點防呆機制優化需求",
+   "created": "2026-10-08",
+   "resolved": "2026-10-21",
+   "summary": "【後台】「超額溢點防呆part5」溢點防呆機制優化需求"
+  },
+  {
+   "key": "RICH-25060",
+   "type": "QATask",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Hongmei He(何红梅)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-24438",
+   "parentSummary": "「超額溢點防呆part5」溢點防呆機制優化需求",
+   "created": "2026-10-08",
+   "resolved": "2026-10-21",
+   "summary": "【QA】「超額溢點防呆part5」溢點防呆機制優化需求"
+  },
+  {
+   "key": "RICH-25127",
+   "type": "故事",
+   "status": "待办",
+   "statusCategory": "待办",
+   "assignee": "Yijie Gu(顾亿颉)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29",
+    "08_V50_11.5"
+   ],
+   "parentKey": "RICH-24902",
+   "parentSummary": "【後台風控管理】溢出點數追回工具part2－道具資產追回",
+   "created": "2026-10-10",
+   "resolved": null,
+   "summary": "【EP驗收】【後台風控管理】溢出點數追回工具part2－道具資產追回"
+  },
+  {
+   "key": "RICH-25137",
+   "type": "故事",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Linglin Xu(徐凌琳)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-25134",
+   "parentSummary": "【美宣】行销通路运营",
+   "created": "2026-09-22",
+   "resolved": "2026-10-16",
+   "summary": "【遊戲】1026-鬼突_新機預告+上線圖"
+  },
+  {
+   "key": "RICH-25140",
+   "type": "故事",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Jiayang Xu(徐佳洋)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-24855",
+   "parentSummary": "「16週年慶」抽奖大厅 - 两次抽奖 + 阶段奖励",
+   "created": "2026-10-10",
+   "resolved": "2026-10-27",
+   "summary": "【EP驗收】「16周年庆」抽奖大厅 - 两次抽奖 + 阶段奖励"
+  },
+  {
+   "key": "RICH-25143",
+   "type": "故事",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Meiling Jiang(蒋枚伶)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-23380",
+   "parentSummary": "「活動優化」紅包狂歡活動優化",
+   "created": "2026-10-10",
+   "resolved": "2026-10-28",
+   "summary": "【EP验收单】「活動優化」紅包狂歡活動優化"
+  },
+  {
+   "key": "RICH-25145",
+   "type": "故事",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Meiling Jiang(蒋枚伶)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-23765",
+   "parentSummary": "【新金流】遊e卡串接YOE卡",
+   "created": "2026-10-10",
+   "resolved": "2026-10-28",
+   "summary": "【验收单】【新金流】遊e卡串接"
+  },
+  {
+   "key": "RICH-25168",
+   "type": "故事",
+   "status": "Checking",
+   "statusCategory": "正在进行",
+   "assignee": "YiYuan Huang(黄益园)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-23380",
+   "parentSummary": "「活動優化」紅包狂歡活動優化",
+   "created": "2026-10-10",
+   "resolved": null,
+   "summary": "【服务器压测】「活動優化」紅包狂歡活動優化"
+  },
+  {
+   "key": "RICH-25184",
+   "type": "故事",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Xinxiang Zhang(张鑫祥)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-24855",
+   "parentSummary": "「16週年慶」抽奖大厅 - 两次抽奖 + 阶段奖励",
+   "created": "2026-10-12",
+   "resolved": "2026-10-28",
+   "summary": "【后台】「16周年庆」抽奖大厅 - 两次抽奖 + 阶段奖励"
+  },
+  {
+   "key": "RICH-25188",
+   "type": "故事",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Delphia Ding(丁梦媛)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-23765",
+   "parentSummary": "【新金流】遊e卡串接YOE卡",
+   "created": "2026-10-12",
+   "resolved": "2026-10-28",
+   "summary": "【美术】金流通路厂商logo更换"
+  },
+  {
+   "key": "RICH-25193",
+   "type": "故事",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Wencheng Fu(付文成)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-24855",
+   "parentSummary": "「16週年慶」抽奖大厅 - 两次抽奖 + 阶段奖励",
+   "created": "2026-10-12",
+   "resolved": "2026-10-28",
+   "summary": "【特效】「16周年庆」抽奖大厅 - 两次抽奖 + 阶段奖励"
+  },
+  {
+   "key": "RICH-25231",
+   "type": "故事",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Wencheng Fu(付文成)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-24855",
+   "parentSummary": "「16週年慶」抽奖大厅 - 两次抽奖 + 阶段奖励",
+   "created": "2026-10-12",
+   "resolved": "2026-10-28",
+   "summary": "【特效】「16周年庆」直播抽獎換皮特效"
+  },
+  {
+   "key": "RICH-25246",
+   "type": "故事",
+   "status": "Checking",
+   "statusCategory": "正在进行",
+   "assignee": "Yan Shao(邵岩)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-23380",
+   "parentSummary": "「活動優化」紅包狂歡活動優化",
+   "created": "2026-10-13",
+   "resolved": null,
+   "summary": "【美术】红包狂欢开案后美术ui需求异动修改"
+  },
+  {
+   "key": "RICH-25265",
+   "type": "故事",
+   "status": "待办",
+   "statusCategory": "待办",
+   "assignee": "Shuocheng Zhang(张硕成)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29",
+    "08_V50_11.5"
+   ],
+   "parentKey": "RICH-22537",
+   "parentSummary": "「棋牌」新增【挑戰書】登錄彈窗",
+   "created": "2026-10-13",
+   "resolved": null,
+   "summary": "【EP验收单】「棋牌」挑戰書活動"
+  },
+  {
+   "key": "RICH-25309",
+   "type": "缺陷",
+   "status": "Blocked",
+   "statusCategory": "正在进行",
+   "assignee": "Yijie Gu(顾亿颉)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29",
+    "08_V50_11.5"
+   ],
+   "parentKey": "RICH-24902",
+   "parentSummary": "【後台風控管理】溢出點數追回工具part2－道具資產追回",
+   "created": "2026-10-14",
+   "resolved": null,
+   "summary": "【服務器】已取消的案件，其來源事件ID異常不可使用"
+  },
+  {
+   "key": "RICH-25346",
+   "type": "缺陷",
+   "status": "Blocked",
+   "statusCategory": "正在进行",
+   "assignee": "Yijie Gu(顾亿颉)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29",
+    "08_V50_11.5"
+   ],
+   "parentKey": "RICH-24902",
+   "parentSummary": "【後台風控管理】溢出點數追回工具part2－道具資產追回",
+   "created": "2026-10-14",
+   "resolved": null,
+   "summary": "【后台】智慧鎖定名單的導入的數據中“是否鎖定道具”一項異常"
+  },
+  {
+   "key": "RICH-25395",
+   "type": "缺陷",
+   "status": "Blocked",
+   "statusCategory": "正在进行",
+   "assignee": "Chunrui Dong(董纯锐)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29",
+    "08_V50_11.5"
+   ],
+   "parentKey": "RICH-24902",
+   "parentSummary": "【後台風控管理】溢出點數追回工具part2－道具資產追回",
+   "created": "2026-10-15",
+   "resolved": null,
+   "summary": "【客戶端】被鎖定道具的賬號仍可以使用背包道具"
+  },
+  {
+   "key": "RICH-25421",
+   "type": "缺陷",
+   "status": "Blocked",
+   "statusCategory": "正在进行",
+   "assignee": "Chunrui Dong(董纯锐)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29",
+    "08_V50_11.5"
+   ],
+   "parentKey": "RICH-24902",
+   "parentSummary": "【後台風控管理】溢出點數追回工具part2－道具資產追回",
+   "created": "2026-10-15",
+   "resolved": null,
+   "summary": "【后台】手動添加智慧鎖定名單，其鎖定原因與實際不符"
+  },
+  {
+   "key": "RICH-25555",
+   "type": "缺陷",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Hongmei He(何红梅)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-24438",
+   "parentSummary": "「超額溢點防呆part5」溢點防呆機制優化需求",
+   "created": "2026-10-20",
+   "resolved": "2026-10-20",
+   "summary": "【超額溢點防呆part5】老幣數量超過數量預警時，單項配置總價值依然會報紅提示"
+  },
+  {
+   "key": "RICH-25566",
+   "type": "QATask",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Hongmei He(何红梅)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-24438",
+   "parentSummary": "「超額溢點防呆part5」溢點防呆機制優化需求",
+   "created": "2026-10-20",
+   "resolved": "2026-10-20",
+   "summary": "【QA】「超額溢點防呆part5」溢點防呆機制優化需求-检查相關活動防呆"
+  },
+  {
+   "key": "RICH-25576",
+   "type": "缺陷",
+   "status": "关闭(Closed)",
+   "statusCategory": "完成",
+   "assignee": "Hongmei He(何红梅)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-24438",
+   "parentSummary": "「超額溢點防呆part5」溢點防呆機制優化需求",
+   "created": "2026-10-20",
+   "resolved": null,
+   "summary": "【防呆相關活動檢查】祈福財神廟，抽獎池沒有單獨計算價值"
+  },
+  {
+   "key": "RICH-25596",
+   "type": "缺陷",
+   "status": "关闭(Closed)",
+   "statusCategory": "完成",
+   "assignee": "Hongmei He(何红梅)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-24438",
+   "parentSummary": "「超額溢點防呆part5」溢點防呆機制優化需求",
+   "created": "2026-10-20",
+   "resolved": null,
+   "summary": "【防呆相關活動檢查】回歸聚寶，召回禮包沒有單獨計算獎池的縂價值"
+  },
+  {
+   "key": "RICH-25597",
+   "type": "缺陷",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Hongmei He(何红梅)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-24438",
+   "parentSummary": "「超額溢點防呆part5」溢點防呆機制優化需求",
+   "created": "2026-10-20",
+   "resolved": "2026-10-21",
+   "summary": "【防呆相關活動檢查】回歸聚寶，回流任务沒有單獨計算獎池的縂價值"
+  },
+  {
+   "key": "RICH-25598",
+   "type": "故事",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Cheng Wei(魏成)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-24855",
+   "parentSummary": "「16週年慶」抽奖大厅 - 两次抽奖 + 阶段奖励",
+   "created": "2026-10-20",
+   "resolved": "2026-10-28",
+   "summary": "【美宣】「16周年庆」抽奖大厅 - 两次抽奖 + 阶段奖励"
+  },
+  {
+   "key": "RICH-25600",
+   "type": "故事",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Cheng Wei(魏成)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-24855",
+   "parentSummary": "「16週年慶」抽奖大厅 - 两次抽奖 + 阶段奖励",
+   "created": "2026-10-20",
+   "resolved": "2026-10-28",
+   "summary": "【美術】「16周年庆」直播抽獎換皮UI"
+  },
+  {
+   "key": "RICH-25606",
+   "type": "缺陷",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Hongmei He(何红梅)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-24438",
+   "parentSummary": "「超額溢點防呆part5」溢點防呆機制優化需求",
+   "created": "2026-10-21",
+   "resolved": "2026-10-21",
+   "summary": "【防呆相關活動檢查】回歸聚寶，回流禮包沒有單獨計算獎池的縂價值"
+  },
+  {
+   "key": "RICH-25625",
+   "type": "缺陷",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Hongmei He(何红梅)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-24438",
+   "parentSummary": "「超額溢點防呆part5」溢點防呆機制優化需求",
+   "created": "2026-10-21",
+   "resolved": "2026-10-21",
+   "summary": "【紅包狂歡】階段任務、挑戰任務，沒有計算單獎池價值"
+  },
+  {
+   "key": "RICH-25635",
+   "type": "故事",
+   "status": "To Check",
+   "statusCategory": "正在进行",
+   "assignee": "Wencheng Fu(付文成)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29",
+    "08_V50_11.5"
+   ],
+   "parentKey": "RICH-22537",
+   "parentSummary": "「棋牌」新增【挑戰書】登錄彈窗",
+   "created": "2026-10-22",
+   "resolved": null,
+   "summary": "【美術動畫】「棋牌」挑戰書活動"
+  },
+  {
+   "key": "RICH-25659",
+   "type": "缺陷",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Xi Luo(罗玺)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-23765",
+   "parentSummary": "【新金流】遊e卡串接YOE卡",
+   "created": "2026-10-22",
+   "resolved": "2026-10-27",
+   "summary": "【游e卡】金流儲值活動 - 列表查詢 查詢活動排序亂序"
+  },
+  {
+   "key": "RICH-25662",
+   "type": "缺陷",
+   "status": "关闭(Closed)",
+   "statusCategory": "完成",
+   "assignee": "Xi Luo(罗玺)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-23765",
+   "parentSummary": "【新金流】遊e卡串接YOE卡",
+   "created": "2026-10-22",
+   "resolved": null,
+   "summary": "【游e卡】输入错误厂商配置，却可以创建订单"
+  },
+  {
+   "key": "RICH-25664",
+   "type": "缺陷",
+   "status": "关闭(Closed)",
+   "statusCategory": "完成",
+   "assignee": "Xi Luo(罗玺)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-23765",
+   "parentSummary": "【新金流】遊e卡串接YOE卡",
+   "created": "2026-10-22",
+   "resolved": null,
+   "summary": "【游e卡】后台订单查询 显示的金流名称 与配置不符"
+  },
+  {
+   "key": "RICH-25676",
+   "type": "缺陷",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Xi Luo(罗玺)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-23765",
+   "parentSummary": "【新金流】遊e卡串接YOE卡",
+   "created": "2026-10-22",
+   "resolved": "2026-10-23",
+   "summary": "【游e卡】【共用平臺】訂單 共用平臺時間超過60min后訂單未交易失敗"
+  },
+  {
+   "key": "RICH-25686",
+   "type": "缺陷",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Xi Luo(罗玺)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-23765",
+   "parentSummary": "【新金流】遊e卡串接YOE卡",
+   "created": "2026-10-23",
+   "resolved": "2026-10-27",
+   "summary": "【游e卡】金流活動設定 有未填项 保存失败 没有标红提示，没有跳到未填位置"
+  },
+  {
+   "key": "RICH-25688",
+   "type": "缺陷",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Xi Luo(罗玺)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-23765",
+   "parentSummary": "【新金流】遊e卡串接YOE卡",
+   "created": "2026-10-23",
+   "resolved": "2026-10-27",
+   "summary": "【游e卡】序號活動頁 momo圖標與需求不一致"
+  },
+  {
+   "key": "RICH-25694",
+   "type": "缺陷",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Xi Luo(罗玺)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-23765",
+   "parentSummary": "【新金流】遊e卡串接YOE卡",
+   "created": "2026-10-23",
+   "resolved": "2026-10-27",
+   "summary": "【游e卡】客端序号储值界面点击使用教学，不会跳转到序号储值对应教学"
+  },
+  {
+   "key": "RICH-25697",
+   "type": "缺陷",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Xi Luo(罗玺)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-23765",
+   "parentSummary": "【新金流】遊e卡串接YOE卡",
+   "created": "2026-10-23",
+   "resolved": "2026-10-26",
+   "summary": "【游e卡】ios 广告页序号储值前往到厂商界面 无法关闭"
+  },
+  {
+   "key": "RICH-25739",
+   "type": "缺陷",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Xi Luo(罗玺)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-23765",
+   "parentSummary": "【新金流】遊e卡串接YOE卡",
+   "created": "2026-10-23",
+   "resolved": "2026-10-26",
+   "summary": "【游e卡】mweb 超值礼包/优惠礼包 点击使用教学，不会跳转到对应教学"
+  },
+  {
+   "key": "RICH-25756",
+   "type": "缺陷",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Xi Luo(罗玺)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-23765",
+   "parentSummary": "【新金流】遊e卡串接YOE卡",
+   "created": "2026-10-26",
+   "resolved": "2026-10-27",
+   "summary": "【礼物卡】礼物卡奖励配置 道具选择 只能选择一般运营道具，实体礼物被禁能了，线上需配置实体礼物"
+  },
+  {
+   "key": "RICH-25758",
+   "type": "缺陷",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Xi Luo(罗玺)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-23765",
+   "parentSummary": "【新金流】遊e卡串接YOE卡",
+   "created": "2026-10-26",
+   "resolved": "2026-10-27",
+   "summary": "【礼物卡】新增 无暂存功能  需求描述要新赠此功能"
+  },
+  {
+   "key": "RICH-25761",
+   "type": "缺陷",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Xi Luo(罗玺)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-23765",
+   "parentSummary": "【新金流】遊e卡串接YOE卡",
+   "created": "2026-10-26",
+   "resolved": "2026-10-27",
+   "summary": "【礼物卡】获奖名单 新增活动后 进行操作 编辑 查看 复制 点击无反应频率很高"
+  },
+  {
+   "key": "RICH-25775",
+   "type": "缺陷",
+   "status": "关闭(Closed)",
+   "statusCategory": "完成",
+   "assignee": "Xi Luo(罗玺)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-23765",
+   "parentSummary": "【新金流】遊e卡串接YOE卡",
+   "created": "2026-10-26",
+   "resolved": null,
+   "summary": "【游e卡】yoe序号储值使用教学 EN 配置图片不对"
+  },
+  {
+   "key": "RICH-25791",
+   "type": "缺陷",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Leo Chiu(邱日鴻)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-23380",
+   "parentSummary": "「活動優化」紅包狂歡活動優化",
+   "created": "2026-10-27",
+   "resolved": "2026-10-27",
+   "summary": "【後台】後台>紅包狂歡>新增>確認卡別限制領取次數，沒有提示文字、輸入框，默認顯示1"
+  },
+  {
+   "key": "RICH-25792",
+   "type": "缺陷",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Leo Chiu(邱日鴻)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-23380",
+   "parentSummary": "「活動優化」紅包狂歡活動優化",
+   "created": "2026-10-27",
+   "resolved": "2026-10-27",
+   "summary": "【服務器】後台>紅包狂歡>領獎紀錄>活動ID6828，10:03左右>確認紀錄，沒有領取人的卡別等資訊"
+  },
+  {
+   "key": "RICH-25793",
+   "type": "缺陷",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Angus Lai(黎焯堯)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-23380",
+   "parentSummary": "「活動優化」紅包狂歡活動優化",
+   "created": "2026-10-27",
+   "resolved": "2026-10-27",
+   "summary": "【後台】紅包狂歡活動優化，後台紅包大賞開關，沒有默認開啟"
+  },
+  {
+   "key": "RICH-25797",
+   "type": "故事",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Delphia Ding(丁梦媛)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-23765",
+   "parentSummary": "【新金流】遊e卡串接YOE卡",
+   "created": "2026-10-27",
+   "resolved": "2026-10-28",
+   "summary": "【美术】新增多语言的美术需求"
+  },
+  {
+   "key": "RICH-25806",
+   "type": "缺陷",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Angus Lai(黎焯堯)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-23380",
+   "parentSummary": "「活動優化」紅包狂歡活動優化",
+   "created": "2026-10-27",
+   "resolved": "2026-10-27",
+   "summary": "【後台】紅包狂歡活動優化，後台配置頁面，＂阶段任务＂、＂挑战任务＂為簡體字"
+  },
+  {
+   "key": "RICH-25808",
+   "type": "缺陷",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Leo Chiu(邱日鴻)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-23380",
+   "parentSummary": "「活動優化」紅包狂歡活動優化",
+   "created": "2026-10-27",
+   "resolved": "2026-10-27",
+   "summary": "【後台】後台>紅包狂歡>領獎紀錄>匯出，匯出成功後，畫面卡死"
+  },
+  {
+   "key": "RICH-25810",
+   "type": "缺陷",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Chunrui Dong(董纯锐)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-24855",
+   "parentSummary": "「16週年慶」抽奖大厅 - 两次抽奖 + 阶段奖励",
+   "created": "2026-10-27",
+   "resolved": "2026-10-28",
+   "summary": "【客戶端】 儲值領卷和押注領卷后，需要重新打開頁面/獲得新一輪獎卷才會刷新“領卷抽獎”“滿卷領獎”頁面的獎卷數量"
+  },
+  {
+   "key": "RICH-25819",
+   "type": "缺陷",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Leo Chiu(邱日鴻)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-23380",
+   "parentSummary": "「活動優化」紅包狂歡活動優化",
+   "created": "2026-10-27",
+   "resolved": "2026-10-28",
+   "summary": "【客端】卡別抽獎為1的會員>嘗試在第2輪抽獎中抽獎，狀態會變回未抽獎"
+  },
+  {
+   "key": "RICH-25823",
+   "type": "缺陷",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Chunrui Dong(董纯锐)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-24855",
+   "parentSummary": "「16週年慶」抽奖大厅 - 两次抽奖 + 阶段奖励",
+   "created": "2026-10-27",
+   "resolved": "2026-10-28",
+   "summary": "【美術】抽獎大廳彈窗中美術文案與關閉按鈕重叠"
+  },
+  {
+   "key": "RICH-25824",
+   "type": "缺陷",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Chunrui Dong(董纯锐)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-24855",
+   "parentSummary": "「16週年慶」抽奖大厅 - 两次抽奖 + 阶段奖励",
+   "created": "2026-10-27",
+   "resolved": "2026-10-28",
+   "summary": "【客戶端】抽獎大廳彈窗中《前往活動》按鈕的背景圖未更新"
+  },
+  {
+   "key": "RICH-25826",
+   "type": "缺陷",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Leo Chiu(邱日鴻)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-23380",
+   "parentSummary": "「活動優化」紅包狂歡活動優化",
+   "created": "2026-10-27",
+   "resolved": "2026-10-28",
+   "summary": "【後台】會員抽取手氣紅包>先查詢任意會員>查詢>移除會員資料>查詢手氣紅包>確認後台紀錄，保留會員的篩選"
+  },
+  {
+   "key": "RICH-25834",
+   "type": "缺陷",
+   "status": "关闭(Closed)",
+   "statusCategory": "完成",
+   "assignee": "Chunrui Dong(董纯锐)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-24855",
+   "parentSummary": "「16週年慶」抽奖大厅 - 两次抽奖 + 阶段奖励",
+   "created": "2026-10-27",
+   "resolved": null,
+   "summary": "【客戶端】未綁定手機號、未首儲的賬號異常可以參與活動"
+  },
+  {
+   "key": "RICH-25836",
+   "type": "缺陷",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Chunrui Dong(董纯锐)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-24855",
+   "parentSummary": "「16週年慶」抽奖大厅 - 两次抽奖 + 阶段奖励",
+   "created": "2026-10-27",
+   "resolved": "2026-10-28",
+   "summary": "【客戶端】儅玩家未達到任何轉盤的要求時，默認展示的轉盤有誤"
+  },
+  {
+   "key": "RICH-25837",
+   "type": "缺陷",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Leo Chiu(邱日鴻)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-23380",
+   "parentSummary": "「活動優化」紅包狂歡活動優化",
+   "created": "2026-10-27",
+   "resolved": "2026-10-28",
+   "summary": "【服務器】活動6844>會員246719508232224>參加抽獎>確認後台紀錄，領取時間同步了，卡別限制次數也沒有了"
+  },
+  {
+   "key": "RICH-25838",
+   "type": "缺陷",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Xi Luo(罗玺)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-23765",
+   "parentSummary": "【新金流】遊e卡串接YOE卡",
+   "created": "2026-10-27",
+   "resolved": "2026-10-28",
+   "summary": "【游e卡】序号储值活动 礼物卡查询按钮  以及  领奖方式页面   无多语言图片资源"
+  },
+  {
+   "key": "RICH-25843",
+   "type": "缺陷",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Chunrui Dong(董纯锐)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-24855",
+   "parentSummary": "「16週年慶」抽奖大厅 - 两次抽奖 + 阶段奖励",
+   "created": "2026-10-28",
+   "resolved": "2026-10-28",
+   "summary": "【客戶端】第二天“未獲得轉盤抽獎資格的玩家”進入領卷抽獎界面，資格提示彈窗邏輯異常，且有報錯、"
+  },
+  {
+   "key": "RICH-25850",
+   "type": "缺陷",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Chunrui Dong(董纯锐)",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ],
+   "parentKey": "RICH-24855",
+   "parentSummary": "「16週年慶」抽奖大厅 - 两次抽奖 + 阶段奖励",
+   "created": "2026-10-28",
+   "resolved": "2026-10-28",
+   "summary": "【客戶端】抽獎大廳小紅點異常無法消除"
+  },
+  {
+   "key": "RICH-25852",
+   "type": "缺陷",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Chunrui Dong(董纯锐)",
+   "parentKey": "RICH-24855",
+   "parentSummary": "「16週年慶」抽奖大厅 - 两次抽奖 + 阶段奖励",
+   "created": "2026-10-28",
+   "resolved": "2026-10-28",
+   "summary": "【客戶端】抽獎大廳纍儲送卷界面異常顯示爲空",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ]
+  },
+  {
+   "key": "RICH-25860",
+   "type": "缺陷",
+   "status": "关闭(Closed)",
+   "statusCategory": "完成",
+   "assignee": "Chunrui Dong(董纯锐)",
+   "parentKey": "RICH-24855",
+   "parentSummary": "「16週年慶」抽奖大厅 - 两次抽奖 + 阶段奖励",
+   "created": "2026-10-28",
+   "resolved": null,
+   "summary": "【客戶端】次日轉盤資格確定彈窗中的文案有誤",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ]
+  },
+  {
+   "key": "RICH-25869",
+   "type": "缺陷",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Chunrui Dong(董纯锐)",
+   "parentKey": "RICH-24855",
+   "parentSummary": "「16週年慶」抽奖大厅 - 两次抽奖 + 阶段奖励",
+   "created": "2026-10-28",
+   "resolved": "2026-10-28",
+   "summary": "【客戶端】領卷抽獎的歷史記錄中轉盤等級數據錯誤",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ]
+  },
+  {
+   "key": "RICH-25873",
+   "type": "缺陷",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Leo Chiu(邱日鴻)",
+   "parentKey": "RICH-23380",
+   "parentSummary": "「活動優化」紅包狂歡活動優化",
+   "created": "2026-10-28",
+   "resolved": "2026-10-28",
+   "summary": "【服務器】後台設定紅包時間與保留時間相同>玩家登入>確認活動畫面，第二個紅包開始就會進入倒數+未開始的循環",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ]
+  },
+  {
+   "key": "RICH-25888",
+   "type": "缺陷",
+   "status": "关闭(Closed)",
+   "statusCategory": "完成",
+   "assignee": "Chunrui Dong(董纯锐)",
+   "parentKey": "RICH-24855",
+   "parentSummary": "「16週年慶」抽奖大厅 - 两次抽奖 + 阶段奖励",
+   "created": "2026-10-28",
+   "resolved": null,
+   "summary": "【客戶端】越南語版本下滿卷領獎的獎勵選擇彈窗内容未進行翻譯",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ]
+  },
+  {
+   "key": "RICH-25889",
+   "type": "缺陷",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Chunrui Dong(董纯锐)",
+   "parentKey": "RICH-24855",
+   "parentSummary": "「16週年慶」抽奖大厅 - 两次抽奖 + 阶段奖励",
+   "created": "2026-10-28",
+   "resolved": "2026-10-28",
+   "summary": "【客戶端】抽獎大廳界面部分文案跑版",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ]
+  },
+  {
+   "key": "RICH-25899",
+   "type": "缺陷",
+   "status": "已完成",
+   "statusCategory": "完成",
+   "assignee": "Leo Chiu(邱日鴻)",
+   "parentKey": "RICH-23380",
+   "parentSummary": "「活動優化」紅包狂歡活動優化",
+   "created": "2026-10-28",
+   "resolved": "2026-10-28",
+   "summary": "【服務器】設定1小時，10分、20分的循環>在51分時>出去再進來遊戲，能看到60分這個紅包的倒數",
+   "fixVersions": [
+    "08_V48_10.22",
+    "08_V49_10.29"
+   ]
+  }
+ ]
+}

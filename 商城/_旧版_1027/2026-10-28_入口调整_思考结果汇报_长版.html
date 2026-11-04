@@ -1,0 +1,229 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>入口调整思考汇报</title>
+<style>
+:root{--ground:#f4f3f0;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e3e1dc;--accent:#9a6f24;--accent-soft:#f5ecdc;--green:#2f6b52;--green-soft:#e3efe8;--red:#a8382b;--red-soft:#f7e7e3;--amber:#8a5a00;--amber-soft:#f6ecd6;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;--accent-soft:#2f2718;--green:#7dbb9c;--green-soft:#1c3128;--red:#e48e7f;--red-soft:#3a211c;--amber:#e0b866;--amber-soft:#33291a;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;--accent-soft:#2f2718;--green:#7dbb9c;--green-soft:#1c3128;--red:#e48e7f;--red-soft:#3a211c;--amber:#e0b866;--amber-soft:#33291a;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.75}
+.wrap{max-width:960px;margin:0 auto;padding:56px 32px 112px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 12px;letter-spacing:.02em}
+h1{font-family:var(--serif);font-size:27px;line-height:1.45;margin:0 0 12px}
+.sub{font-size:15.5px;color:var(--ink-2);margin:0;max-width:44em}
+
+/* 结论树 */
+.tree{margin-top:36px}
+.root{position:relative;background:var(--ink);color:var(--ground);border-radius:8px;padding:16px 22px;font-size:16px;font-weight:600;text-align:center;line-height:1.6}
+.root::after{content:"";position:absolute;left:50%;bottom:-13px;height:13px;border-left:1.5px solid var(--line)}
+.branches{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:26px}
+.branches::before{content:"";position:absolute;top:-13px;left:12.5%;right:12.5%;border-top:1.5px solid var(--line)}
+.branch{position:relative;display:block;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px 18px 18px;text-decoration:none;color:inherit}
+.branch::before{content:"";position:absolute;top:-14px;left:50%;height:14px;border-left:1.5px solid var(--line)}
+.branch:hover{border-color:var(--accent)}
+.branch .k{font-size:12.5px;font-weight:700;color:var(--accent);letter-spacing:.04em}
+.branch .h{font-size:15.5px;font-weight:700;margin:6px 0 8px;line-height:1.5}
+.branch .l{font-size:13.5px;color:var(--ink-2);margin:0;line-height:1.65}
+.branch .go{display:block;margin-top:10px;font-size:12.5px;color:var(--muted)}
+
+/* 章节 */
+section{margin-top:76px}
+h2{font-family:var(--serif);font-size:21px;line-height:1.5;margin:0 0 6px;display:flex;align-items:baseline;gap:14px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);white-space:nowrap}
+.lead{font-size:14.5px;color:var(--muted);margin:0 0 22px 0}
+
+/* 支撑点 */
+.pts{display:grid;gap:12px}
+.pt{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:18px 22px}
+.pt-h{display:flex;gap:12px;align-items:baseline;font-size:16px;font-weight:700;line-height:1.55}
+.pt-h .n{flex:none;width:22px;height:22px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-size:12.5px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;transform:translateY(-1px)}
+.ev{list-style:none;margin:10px 0 0 34px;padding:0}
+.ev li{font-size:14.5px;color:var(--ink-2);margin:6px 0;line-height:1.7}
+.src{display:inline-block;font-size:11.5px;color:var(--muted);border:1px solid var(--line);border-radius:3px;padding:0 6px;margin-right:8px;line-height:1.7;white-space:nowrap;vertical-align:1px}
+.src.i{color:var(--amber);background:var(--amber-soft);border-color:transparent;font-weight:700}
+.inf{display:inline-block;font-size:11.5px;font-weight:700;color:var(--amber);background:var(--amber-soft);border-radius:3px;padding:0 6px;margin-left:6px;line-height:1.7;white-space:nowrap;vertical-align:1px}
+
+/* 倾向 */
+.lean{margin-top:14px;background:var(--green-soft);border-radius:8px;padding:14px 22px;font-size:14.5px;color:var(--ink)}
+.lean b{color:var(--green)}
+
+/* 需求原文 */
+.req{margin:10px 0 4px 34px}
+.req img{display:block;max-width:100%;border:1px solid var(--line);border-radius:6px}
+.cover{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0 34px}
+.chip{font-size:13px;padding:3px 10px;border-radius:14px;background:var(--ground);border:1px solid var(--line);color:var(--ink-2);white-space:nowrap}
+.chip b{font-weight:700;margin-left:4px}
+.chip.ok b{color:var(--green)} .chip.half b{color:var(--red)} .chip.part b{color:var(--amber)}
+
+/* 数字卡 */
+.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.numc{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:18px 20px}
+.numc .v{font-family:var(--serif);font-size:30px;font-weight:700;line-height:1.2}
+.numc .v small{font-family:var(--sans);font-size:13.5px;font-weight:400;color:var(--muted);margin-left:6px}
+.numc .t{font-size:15px;font-weight:700;margin:8px 0 4px}
+.numc .d{font-size:13.5px;color:var(--ink-2);margin:0;line-height:1.65}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:1px 8px;border-radius:3px;margin-top:10px}
+.tag.green{background:var(--green-soft);color:var(--green)} .tag.amber{background:var(--amber-soft);color:var(--amber)} .tag.red{background:var(--red-soft);color:var(--red)}
+.note{margin-top:14px;font-size:14px;color:var(--ink-2);padding-left:14px;border-left:3px solid var(--line)}
+.note p{margin:6px 0}
+.note b{color:var(--ink)}
+
+/* 规则 2×2 */
+.g2{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.rule{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:18px 20px}
+.rule .h{font-size:15.5px;font-weight:700;line-height:1.55;margin:0 0 8px}
+.rule .row{font-size:14px;color:var(--ink-2);margin:4px 0;line-height:1.65;display:flex;gap:10px}
+.rule .row .lb{flex:none;font-size:12px;font-weight:700;color:var(--muted);width:3.6em;white-space:nowrap;padding-top:2px}
+
+/* 需要你的 */
+.asks{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.ask{background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:8px;padding:16px 20px}
+.ask .h{font-size:16px;font-weight:700;margin:0 0 8px}
+.ask .row{font-size:13.5px;color:var(--ink-2);margin:6px 0;line-height:1.65}
+.ask .row .lb{display:block;font-size:12px;font-weight:700;color:var(--muted)}
+.small{margin-top:16px;font-size:13.5px;color:var(--ink-2)}
+.small ul{margin:4px 0 0;padding-left:18px} .small li{margin:3px 0}
+
+.foot{margin-top:64px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);line-height:2}
+.foot a{color:var(--accent);margin-right:14px}
+a{color:var(--accent)}
+@media (max-width:760px){.wrap{padding:30px 16px 72px}h1{font-size:22px}h2{flex-direction:column;gap:2px}
+.branches,.nums,.g2,.asks{grid-template-columns:1fr}
+.branches::before,.branch::before,.root::after{display:none}.branches{margin-top:14px}
+.ev,.req,.cover{margin-left:0}}
+</style></head><body><div class="wrap">
+
+<p class="meta">活动配置工具（需求表项目名「入口调整」）· 思考结果汇报 · 2026-10-28</p>
+<h1>方案主体站得住；入口可以晚定，节庆缺时间表，重复开发的预期要收窄</h1>
+<p class="sub">回到需求原文和盘点数据，把现有方案的前提逐条检验了一遍。没有要你现在定的事；往下推需要你对外拿三样东西。</p>
+
+<div class="tree">
+  <div class="root">现有方案不用推翻：调三件事，补四条规则</div>
+  <div class="branches">
+    <a class="branch" href="#s1"><div class="k">入口</div><div class="h">储值类活动放哪，分量不大</div><p class="l">两版只差累充、满减的列表放哪；最晚需求评审前定</p><span class="go">看第一节 ↓</span></a>
+    <a class="branch" href="#s2"><div class="k">节庆</div><div class="h">只接住一半，缺时间表</div><p class="l">庆典占每期重做的 22 个；第二批要在 2027 年 8 月中前上线</p><span class="go">看第二节 ↓</span></a>
+    <a class="branch" href="#s3"><div class="k">预期</div><div class="h">必需档最多消掉 12 个重复开发</div><p class="l">52 个里礼包类能消；庆典看尽量档；拆单类防不住</p><span class="go">看第三节 ↓</span></a>
+    <a class="branch" href="#s4"><div class="k">规则</div><div class="h">四条要补</div><p class="l">老币算不算购买、折扣满减叠加、银行默认页签、公告大图</p><span class="go">看第四节 ↓</span></a>
+  </div>
+</div>
+
+<!-- 一 入口 -->
+<section id="s1">
+<h2><span class="no">一</span>储值类活动放银行还是活动窗口，分量不大，最晚需求评审前定</h2>
+<p class="lead">「合并版」把储值类活动放进活动窗口的「好康」页签；「不合并版」放在银行的「储值活动」页签，现有文档写的是这一版。</p>
+<div class="pts">
+  <div class="pt"><div class="pt-h"><span class="n">1</span>两版只差一块，必需档里只涉及累充、满减</div>
+    <ul class="ev">
+      <li><span class="src">方案设计稿</span>工具、规则、后台、商品上的角标两版一样，只差储值类活动的列表放在哪个窗口</li>
+      <li><span class="src">方案设计稿</span>必需档四个工具里，礼包、折扣本来就显示在银行商品上；团购、一元夺宝在可选档，抽奖在尽量档</li>
+    </ul></div>
+  <div class="pt"><div class="pt-h"><span class="n">2</span>补上「另一处也露出」以后，两版很像</div>
+    <ul class="ev">
+      <li><span class="src">竞品录屏</span>三款都把付费活动放活动窗口，但商城里也露出：星城回馈卡有商城角标，豪神储值转盘在商城底部有入口。新号单次录屏，把握中等</li>
+      <li><span class="src i">推断</span>两版各自的好处都能补到对方：不合并版用银行红点和曝光位，让没打算花钱的人也看到；合并版在购买页显示累充进度，让付款时看得到下一档</li>
+    </ul></div>
+  <div class="pt"><div class="pt-h"><span class="n">3</span>剩下实打实的差别只有一条：要不要往银行里加页签</div>
+    <ul class="ev">
+      <li><span class="src">Jira 盘点</span>银行改版也在改这个窗口，但我们只知道它的标题和建单日（6 月），内容和进度都没查到</li>
+      <li><span class="src">需求原文</span>「工具属性」紧接在「好康改为金流／商城」下面，略偏不合并；但你说过工具属性是后台功能，原文没写客户端放哪</li>
+    </ul></div>
+  <div class="pt"><div class="pt-h"><span class="n">4</span>今早《入口怎么改》推荐不合并，理由不够</div>
+    <ul class="ev">
+      <li><span class="src">那页的论证</span>原则「一个入口对应一种目的」没错，但累充既是花钱、也是参加活动，原则判不出它归哪边；主管的两句话只是佐证。那页最后的问题撤回，不用答</li>
+    </ul></div>
+</div>
+<div class="lean"><b>倾向</b>　需求评审前，跟着银行改版的计划定；问不到就按现有文档（不合并版）。设计稿已写的边界是：本项目做储值活动页签，银行改版做货架重组。</div>
+</section>
+
+<!-- 二 节庆 -->
+<section id="s2">
+<h2><span class="no">二</span>节庆活动只接住一半：不必挤进必需档，但要给第二批定时间</h2>
+<p class="lead">需求红字举了两个例子：周五做一个储值活动、节庆活动。前一个接住了，后一个只接住一半。</p>
+<div class="pts">
+  <div class="pt"><div class="pt-h"><span class="n">1</span>需求红字的其余几条都接住了，方案主体站得住</div>
+    <div class="req"><img src="截图/需求行_入口调整.png" alt="需求原文：入口调整一行，红字为主管强调"></div>
+    <div class="cover">
+      <span class="chip ok">好康改为金流／商城<b>接住</b></span>
+      <span class="chip ok">活动灵活配置<b>接住</b></span>
+      <span class="chip ok">周五做储值活动<b>接住</b></span>
+      <span class="chip part">商城活动碎片化<b>部分</b></span>
+      <span class="chip half">节庆活动<b>一半</b></span>
+    </div></div>
+  <div class="pt"><div class="pt-h"><span class="n">2</span>庆典是重复开发最大的来源</div>
+    <ul class="ev">
+      <li><span class="src">Jira 盘点</span>每期都要重做的 34 个开发需求里，庆典占 22 个，礼包占 12 个</li>
+      <li><span class="src">Jira 盘点</span>10 月庆典、16 周年庆两批建单相隔约 3 周半，活动大页、抽奖大厅、储优、人数活动、导航弹窗、换皮各做一遍</li>
+    </ul></div>
+  <div class="pt"><div class="pt-h"><span class="n">3</span>但不急在首批：下一个已证实的高峰在 2027 年庆典季</div>
+    <ul class="ev">
+      <li><span class="src">Jira 盘点</span>今年两批庆典需求在 8/17、9/10 建单；今年春节（2/17）前后没有出现同组模块重做</li>
+      <li><span class="src">方案设计稿</span>庆典放尽量档，是因为要先有通用层，这个理由成立。缺的是尽量档没有时间：拖过明年 8 月中，同一组模块会再做一遍</li>
+    </ul></div>
+  <div class="pt"><div class="pt-h"><span class="n">4</span>做了也只能消掉一部分；春节也靠不上这个项目</div>
+    <ul class="ev">
+      <li><span class="src">Jira 盘点</span>两次庆典的抽奖大厅规则不同，10/22 的需求说明又加了新玩法；人数活动、换皮不在任何一档</li>
+      <li><span class="src i">推断</span>2027 年春节是 2 月 6 日，离 1/21 只有 16 天，新工具来不及扛春节；春节活动多半还按老办法开发，会和本项目抢同一批研发</li>
+    </ul></div>
+</div>
+<div class="lean"><b>倾向</b>　第二批（庆典专题页、抽奖）定在 2027 年 8 月中以前上线，赶在下一个庆典季建单之前。</div>
+</section>
+
+<!-- 三 预期 -->
+<section id="s3">
+<h2><span class="no">三</span>必需档能消掉的重复开发最多 12 个，远少于 52 个</h2>
+<p class="lead">52 个是近 12 个月动用研发的重复开发需求，按来源分三类。</p>
+<div class="nums">
+  <div class="numc"><div class="v">12<small>／52 个</small></div><div class="t">礼包：每出新包、换图就重开</div><p class="d">礼包工具加超值礼包详情页模板，都在必需档。12 是上限：换图、新类型、首储调整要逐个看</p><span class="tag green">大部分能消</span></div>
+  <div class="numc"><div class="v">22<small>／52 个</small></div><div class="t">庆典：同一组模块每次重做</div><p class="d">活动大页、储优宣传页靠专题页，抽奖大厅靠抽奖，都在尽量档；人数活动、换皮不在任何一档</p><span class="tag amber">看尽量档</span></div>
+  <div class="numc"><div class="v">18<small>／52 个</small></div><div class="t">一个改动拆给各活动各做一遍</div><p class="d">如新增至尊卡拆了 12 个，落在扭蛋机、转盘、抽奖大厅、排行榜等玩法自己的后台；这些后台本期最多接入展示设置</p><span class="tag red">防不住下一次</span></div>
+</div>
+<div class="note">
+  <p><b>准备好一个答案</b>：现在的材料拿 52 个当现状依据，没有承诺本期消掉多少。被问到时，答案是「必需档最多消掉礼包类 12 个，庆典看尽量档」。</p>
+  <p><b>给研发评审的建议</b>：把「对象、卡别」做成玩法后台以后也能调用的共用设置；玩法后台接上以后，再加一个卡别只改一处。</p>
+  <p><b>口径</b>：按类别对应，没有拿 52 个需求逐个核对。</p>
+</div>
+</section>
+
+<!-- 四 规则 -->
+<section id="s4">
+<h2><span class="no">四</span>方案里有四条规则要补</h2>
+<p class="lead">都是方案设计稿、需求文档里没写或写得会出问题的地方。</p>
+<div class="g2">
+  <div class="rule"><div class="h">用老币买也算「购买」，老币玩法会被判成储值类</div>
+    <div class="row"><span class="lb">会怎样</span><span>老币抽奖、老币买券的一元夺宝不进平台活动，没打算花钱的玩家不容易看到<span class="inf">推断</span></span></div>
+    <div class="row"><span class="lb">建议</span><span>「购买」只算花台币；一元夺宝和抽奖一样按券的来源判断</span></div></div>
+  <div class="rule"><div class="h">同一笔储值同时碰上折扣和满减，叠不叠加没写</div>
+    <div class="row"><span class="lb">会怎样</span><span>活动容易上以后同时跑的加赠变多，可能多发，成本算不清</span></div>
+    <div class="row"><span class="lb">建议</span><span>默认不叠加，只取对玩家最有利的一个；活动列表显示同时段在跑的加赠</span></div></div>
+  <div class="rule"><div class="h">银行有储值活动就默认打开它（不合并版）</div>
+    <div class="row"><span class="lb">会怎样</span><span>储值活动常开以后，只想买币的玩家几乎每次都要多点一下</span></div>
+    <div class="row"><span class="lb">建议</span><span>默认开「线上购点」，储值活动靠页签红点和购买页上的累充进度提示</span></div></div>
+  <div class="rule"><div class="h">公告「活动」类不放大图</div>
+    <div class="row"><span class="lb">会怎样</span><span>现在的「最新活动」是大图推广位（例：老子翻倍包），改成文字列表会少一个推广位</span></div>
+    <div class="row"><span class="lb">建议</span><span>先查这个弹层登录时会不会自动弹出、点击有多少，再定</span></div></div>
+</div>
+<div class="note"><p>另有一处写法：设计稿「抽奖」一节「主入口」那一行写「券可由储值或购买获得」，应与需求文档一致改成「只能」；「合规」那一行是有意从宽，不动。</p></div>
+</section>
+
+<!-- 五 需要你的 -->
+<section id="s5">
+<h2><span class="no">五</span>往下推，需要你对外拿三样东西</h2>
+<p class="lead">都是只有你能安排的事。拿到之前，现有文档不动。</p>
+<div class="asks">
+  <div class="ask"><div class="h">研发估时</div>
+    <div class="row"><span class="lb">定什么</span>必需档放不放得下；第二批什么时候能做</div>
+    <div class="row"><span class="lb">结果不同</span>放不下就按现有顺序往下砍：通用设置、礼包、累充、满减、入口、折扣。同期春节活动占的研发要算进去</div></div>
+  <div class="ask"><div class="h">银行改版的计划</div>
+    <div class="row"><span class="lb">定什么</span>储值类活动放哪；两个项目谁来改银行</div>
+    <div class="row"><span class="lb">结果不同</span>本来就要在银行放活动：不合并。只重排货架、不想加页签：合并。问不到：按现有文档</div></div>
+  <div class="ask"><div class="h">入口数据</div>
+    <div class="row"><span class="lb">定什么</span>储值类活动放哪；三个入口各自的「价值」怎么衡量</div>
+    <div class="row"><span class="lb">结果不同</span>看好康按钮（银行要搬过去），不看现在底栏的银行。打开的人不比限时活动少：偏不合并；远少于限时活动：偏合并</div></div>
+</div>
+<div class="small">补了更准、不补也照常推进的两条：
+  <ul><li>春节活动打算怎么做。我判断多半按老办法开发；是的话，研发估时要扣掉这部分。</li>
+  <li>「最新活动」弹层登录时会不会自动弹出。会弹的话，公告「活动」类应保留大图。</li></ul></div>
+</section>
+
+<p class="foot">完整论证（逐条表格版）：<a href="2026-10-28_入口调整_深入想一遍.html">入口调整深入想一遍</a><br>依据：<a href="2026-10-28_第一性原理_入口怎么改.html">今早《入口怎么改》</a><a href="2026-10-27_两版原型对比.html">两版原型对比</a><a href="资料/方案设计稿.md">方案设计稿</a><a href="资料/竞品对照_入口与工具.md">竞品对照</a><a href="资料/重复开发与储值活动明细.md">重复开发明细</a><a href="资料/入口后台配置明细.md">入口后台明细</a></p>
+
+</div></body></html>

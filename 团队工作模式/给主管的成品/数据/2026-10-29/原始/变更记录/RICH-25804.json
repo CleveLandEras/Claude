@@ -1,0 +1,235 @@
+{
+ "_存法": "MCP 结果直接返回在对话里，用脚本存下。只留每条记录的 id、作者姓名、时间、改了哪个字段和前后值；头像、邮箱、accountId 去掉，描述正文的前后全文写成（略）。",
+ "issues": {
+  "nodes": [
+   {
+    "key": "RICH-25804",
+    "changelog": {
+     "startAt": 0,
+     "maxResults": 15,
+     "total": 15,
+     "histories": [
+      {
+       "id": "467454",
+       "author": {
+        "displayName": "Chen Shen(沈忱)"
+       },
+       "created": "2026-10-29T16:06:04.802+0800",
+       "items": [
+        {
+         "field": "Fix Version",
+         "fromString": null,
+         "toString": "08_V50_11.5"
+        }
+       ]
+      },
+      {
+       "id": "467453",
+       "author": {
+        "displayName": "Chen Shen(沈忱)"
+       },
+       "created": "2026-10-29T16:05:51.899+0800",
+       "items": [
+        {
+         "field": "status",
+         "fromString": "Designed(设计完成)",
+         "toString": "To Check"
+        }
+       ]
+      },
+      {
+       "id": "467452",
+       "author": {
+        "displayName": "Chen Shen(沈忱)"
+       },
+       "created": "2026-10-29T16:05:49.212+0800",
+       "items": [
+        {
+         "field": "status",
+         "fromString": "Doing",
+         "toString": "Designed(设计完成)"
+        }
+       ]
+      },
+      {
+       "id": "467451",
+       "author": {
+        "displayName": "Chen Shen(沈忱)"
+       },
+       "created": "2026-10-29T16:05:40.026+0800",
+       "items": [
+        {
+         "field": "status",
+         "fromString": "To Do",
+         "toString": "Doing"
+        }
+       ]
+      },
+      {
+       "id": "467450",
+       "author": {
+        "displayName": "Chen Shen(沈忱)"
+       },
+       "created": "2026-10-29T16:05:34.486+0800",
+       "items": [
+        {
+         "field": "duedate",
+         "fromString": null,
+         "toString": "2026-10-29 00:00:00.0"
+        }
+       ]
+      },
+      {
+       "id": "467449",
+       "author": {
+        "displayName": "Chen Shen(沈忱)"
+       },
+       "created": "2026-10-29T16:05:29.495+0800",
+       "items": [
+        {
+         "field": "Start date",
+         "fromString": null,
+         "toString": "29/十月/26"
+        }
+       ]
+      },
+      {
+       "id": "467446",
+       "author": {
+        "displayName": "Chen Shen(沈忱)"
+       },
+       "created": "2026-10-29T16:04:52.491+0800",
+       "items": [
+        {
+         "field": "Story Points",
+         "fromString": null,
+         "toString": "0.1"
+        }
+       ]
+      },
+      {
+       "id": "467445",
+       "author": {
+        "displayName": "Chen Shen(沈忱)"
+       },
+       "created": "2026-10-29T16:04:45.473+0800",
+       "items": [
+        {
+         "field": "assignee",
+         "fromString": "Chen Shen(沈忱)",
+         "toString": "Cheng Wei(魏成)"
+        }
+       ]
+      },
+      {
+       "id": "467227",
+       "author": {
+        "displayName": "Fury Cui(崔峰龙)"
+       },
+       "created": "2026-10-29T15:44:23.832+0800",
+       "items": [
+        {
+         "field": "issuetype",
+         "fromString": "Requirement",
+         "toString": "Epic"
+        }
+       ]
+      },
+      {
+       "id": "467222",
+       "author": {
+        "displayName": "Fury Cui(崔峰龙)"
+       },
+       "created": "2026-10-29T15:44:04.196+0800",
+       "items": [
+        {
+         "field": "assignee",
+         "fromString": "Fury Cui(崔峰龙)",
+         "toString": "Chen Shen(沈忱)"
+        }
+       ]
+      },
+      {
+       "id": "467190",
+       "author": {
+        "displayName": "Chen Shen(沈忱)"
+       },
+       "created": "2026-10-29T15:40:14.001+0800",
+       "items": [
+        {
+         "field": "assignee",
+         "fromString": "Chen Shen(沈忱)",
+         "toString": "Fury Cui(崔峰龙)"
+        }
+       ]
+      },
+      {
+       "id": "467162",
+       "author": {
+        "displayName": "Chen Shen(沈忱)"
+       },
+       "created": "2026-10-29T15:39:12.432+0800",
+       "items": [
+        {
+         "field": "assignee",
+         "fromString": "Fury Cui(崔峰龙)",
+         "toString": "Chen Shen(沈忱)"
+        }
+       ]
+      },
+      {
+       "id": "463488",
+       "author": {
+        "displayName": "Xinpu Fan(范馨普)"
+       },
+       "created": "2026-10-27T11:45:46.833+0800",
+       "items": [
+        {
+         "field": "Attachment",
+         "fromString": null,
+         "toString": "图像.jpeg"
+        },
+        {
+         "field": "Attachment",
+         "fromString": null,
+         "toString": "图像 (1).jpeg"
+        }
+       ]
+      },
+      {
+       "id": "463489",
+       "author": {
+        "displayName": "Xinpu Fan(范馨普)"
+       },
+       "created": "2026-10-27T11:45:46.190+0800",
+       "items": [
+        {
+         "field": "description",
+         "fromString": "（略）",
+         "toString": "（略）"
+        }
+       ]
+      },
+      {
+       "id": "463438",
+       "author": {
+        "displayName": "Automation for Jira"
+       },
+       "created": "2026-10-27T11:37:55.019+0800",
+       "items": [
+        {
+         "field": "assignee",
+         "fromString": null,
+         "toString": "Fury Cui(崔峰龙)"
+        }
+       ]
+      }
+     ]
+    },
+    "fields": {
+     "summary": "「道具卡」週年慶BMW卡和賓士卡製作需求"
+    }
+   }
+  ]
+ }
+}

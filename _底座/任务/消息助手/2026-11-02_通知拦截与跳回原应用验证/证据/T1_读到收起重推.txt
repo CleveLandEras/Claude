@@ -1,0 +1,28 @@
+11-02 11:24:38.947 I/NTEST   (17755): 发出 #1 | 11:24:38 | adb
+11-02 11:24:39.182 I/RELAY   (17402): 11-02 11:24:39.181 | 收到 | 测试通知 | com.dk.notitest | 标题=测试通知 #1 | 正文=发出时间 11:24:38（adb） | 发出=11-02 11:24:38.943 | key=0|com.dk.notitest|1|null|10130 | 渠道=test 重要性=4 有声音=true 震动=true | 亮屏=true | 入口=有 创建者=com.dk.notitest | 组摘要=false 常驻=false
+11-02 11:24:39.183 I/RELAY   (17402): 11-02 11:24:39.183 | 已收起 | 0|com.dk.notitest|1|null|10130 | 距发出 240ms
+11-02 11:24:39.184 I/RELAY   (17402): 11-02 11:24:39.184 | 入队 | #1 | 测试通知 | 测试通知 #1 | 待推 1 条
+11-02 11:24:39.214 I/RELAY   (17402): 11-02 11:24:39.214 | 被移除 | 0|com.dk.notitest|1|null|10130 | 原因码=10
+11-02 11:24:40.032 I/NTEST   (17755): 发出 #2 | 11:24:40 | adb
+11-02 11:24:40.261 I/RELAY   (17402): 11-02 11:24:40.261 | 收到 | 测试通知 | com.dk.notitest | 标题=测试通知 #2 | 正文=发出时间 11:24:40（adb） | 发出=11-02 11:24:40.031 | key=0|com.dk.notitest|2|null|10130 | 渠道=test 重要性=4 有声音=true 震动=true | 亮屏=true | 入口=有 创建者=com.dk.notitest | 组摘要=false 常驻=false
+11-02 11:24:40.263 I/RELAY   (17402): 11-02 11:24:40.263 | 已收起 | 0|com.dk.notitest|2|null|10130 | 距发出 232ms
+11-02 11:24:40.264 I/RELAY   (17402): 11-02 11:24:40.264 | 入队 | #2 | 测试通知 | 测试通知 #2 | 待推 2 条
+11-02 11:24:40.289 I/RELAY   (17402): 11-02 11:24:40.288 | 被移除 | 0|com.dk.notitest|2|null|10130 | 原因码=10
+11-02 11:24:41.150 I/NTEST   (17755): 发出 #3 | 11:24:41 | adb
+11-02 11:24:41.403 I/RELAY   (17402): 11-02 11:24:41.403 | 收到 | 测试通知 | com.dk.notitest | 标题=测试通知 #3 | 正文=发出时间 11:24:41（adb） | 发出=11-02 11:24:41.148 | key=0|com.dk.notitest|3|null|10130 | 渠道=test 重要性=4 有声音=true 震动=true | 亮屏=true | 入口=有 创建者=com.dk.notitest | 组摘要=false 常驻=false
+11-02 11:24:41.407 I/RELAY   (17402): 11-02 11:24:41.406 | 已收起 | 0|com.dk.notitest|3|null|10130 | 距发出 258ms
+11-02 11:24:41.408 I/RELAY   (17402): 11-02 11:24:41.407 | 入队 | #3 | 测试通知 | 测试通知 #3 | 待推 3 条
+11-02 11:24:41.409 I/RELAY   (17402): 11-02 11:24:41.409 | 推送一批 | 凑够3条 | 3 条 | 做法A
+11-02 11:24:41.423 I/RELAY   (17402): 11-02 11:24:41.423 | 重推 | #1 | 做法A | 测试通知 | 测试通知 #1 | 入口=有
+11-02 11:24:41.430 I/RELAY   (17402): 11-02 11:24:41.430 | 重推 | #2 | 做法A | 测试通知 | 测试通知 #2 | 入口=有
+11-02 11:24:41.439 I/RELAY   (17402): 11-02 11:24:41.439 | 重推 | #3 | 做法A | 测试通知 | 测试通知 #3 | 入口=有
+11-02 11:24:41.449 I/RELAY   (17402): 11-02 11:24:41.449 | 被移除 | 0|com.dk.notitest|3|null|10130 | 原因码=10
+11-02 11:24:39.156 notification_alert [0|com.dk.notitest|1|null|10130,11,11,0,0,0]
+11-02 11:24:39.183 notification_cancel [10021,17402,com.dk.notitest,1,NULL,0,0,2,10,{com.dk.msgrelay/com.dk.msgrelay.RelayListener}]
+11-02 11:24:39.184 notification_canceled [0|com.dk.notitest|1|null|10130,10,241,241,0,-1,-1,{com.dk.msgrelay/com.dk.msgrelay.RelayListener}]
+11-02 11:24:40.243 notification_alert [0|com.dk.notitest|2|null|10130,11,11,0,0,0]
+11-02 11:24:40.263 notification_cancel [10021,17402,com.dk.notitest,2,NULL,0,0,2,10,{com.dk.msgrelay/com.dk.msgrelay.RelayListener}]
+11-02 11:24:40.264 notification_canceled [0|com.dk.notitest|2|null|10130,10,233,233,0,-1,-1,{com.dk.msgrelay/com.dk.msgrelay.RelayListener}]
+11-02 11:24:41.374 notification_alert [0|com.dk.notitest|3|null|10130,11,11,0,0,0]
+11-02 11:24:41.406 notification_cancel [10021,17402,com.dk.notitest,3,NULL,0,0,2,10,{com.dk.msgrelay/com.dk.msgrelay.RelayListener}]
+11-02 11:24:41.409 notification_canceled [0|com.dk.notitest|3|null|10130,10,260,260,0,-1,-1,{com.dk.msgrelay/com.dk.msgrelay.RelayListener}]

@@ -1,0 +1,7 @@
+- 通用工作原则 10/29 起统一写在 `~/.claude/CLAUDE.md`（所有文件夹都加载）；这里只记弹窗项目的事实，做法和规则在规则文件里（见 `~/claude/_底座/规则体系说明.md`）。原记忆文件在 `_已并入全局规则_1029/`，只作出处。
+- [弹窗标签推送：入口与常设](popup-project-02-rejected-capability-reframe.md) — 现状与交接看 先看这里.md 顶部「当前状态与交接」，再读 标准体系 第〇节（哪份规则在哪）和 过程记录/进度_*.md；状态不记在记忆里
+- [写作标准在哪](writing-and-layout.md) — 本项目以 规则与交接/写作标准_合并版.md 的「现行说法」为准
+- [暂停要停用定时任务](token-and-scheduled-task-cost.md) — 放暂停文件停不了定时任务，要停用
+- [查原话要含插话](transcripts-include-queued-messages.md) — Dk 中途插的话在 queued_command 里，只导出用户消息会漏
+- [GitHub 仓库同步](github-repo-sync.md) — 私有仓库 Clarelive/Claude 对应 ~/claude；推送前刷新仓库里的汇报技能副本
+- [huashu-design 未安装](huashu-design-not-installed.md) — Dk 10/15：先不装

@@ -1,0 +1,21 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><title>p19_限时活动入口_加两栏.html</title><link rel="stylesheet" href="活动配置原型.css">
+<style>
+.bx{display:inline-flex;align-items:center;justify-content:center;border:1px dashed var(--line);border-radius:4px;color:var(--mute);font-size:13px;background:var(--fill2);text-align:center;line-height:18px}
+.newrow{display:flex;align-items:center;gap:44px;margin:14px 0 6px}
+.newbox{position:relative;flex:none;width:560px;border:2px solid #E5484D;border-radius:8px;background:#FFF5F4;padding:20px 16px 8px 0}
+.newbox .flag{position:absolute;left:14px;top:-12px;height:22px;padding:0 10px;border-radius:3px;background:#E5484D;color:#fff;font-size:12.5px;font-weight:600;display:inline-flex;align-items:center}
+.newbox .f>.l{width:116px}
+.callout{position:relative;flex:none;width:390px;border:2px solid #E5484D;border-radius:8px;background:#FFF5F4;padding:10px 14px;color:#B4231C;font-size:14px;line-height:22px;font-weight:600}
+.callout small{display:block;font-weight:400;color:var(--ink2);font-size:12.5px;line-height:19px;margin-top:4px}
+.callout::before{content:"";position:absolute;left:-42px;top:50%;width:40px;border-top:2px solid #E5484D}
+.callout::after{content:"";position:absolute;left:-46px;top:50%;margin-top:-4px;border:5px solid transparent;border-right:7px solid #E5484D}
+</style></head><body><div class="stage"><div class="shot" id="s1"><div class="adm" style="width:1280px;display:flex"><div class="side" style="float:none;flex:none;width:212px"><div class="g">活動管理</div><div class="it" style="color:#8E959F">營運活動設定</div><div class="it" style="color:#8E959F">儲值活動</div><div class="it" style="color:#8E959F">押注活動</div><div class="it" style="color:#8E959F">人數活動</div><div class="it" style="color:#8E959F">簽到活動</div><div class="it" style="color:#8E959F">抽獎大廳</div><div class="it" style="color:#8E959F">活動排行</div><div class="it" style="color:#8E959F">好康設定</div><div class="it on">大廳限時活動入口</div><div class="it" style="color:#8E959F">大廳自動彈窗管理</div><div class="it" style="color:#8E959F">……</div></div><div style="flex:1;min-width:0"><div class="adm-hd"><b>大廳限時活動入口</b><span class="st">›　編輯</span><span class="sp"></span></div><div class="adm-bd"><div class="sec"><h4>編輯入口<small>现有栏位按已上线的需求单整理；红框两栏为本期新增，其余照现有页面不变</small></h4>
+<div class="f"><div class="l">連結位置</div><div class="c"><span class="in dis" style="width:120px"><span class="lock"></span>活動</span><span class="in sel" style="width:220px">月月抽</span><span class="hint">第一个框固定为「活動」；活动时间、可见对象不在这里配，读关联活动的设定</span></div></div>
+<div class="f"><div class="l">活動圖</div><div class="c"><span class="bx" style="width:84px;height:84px">icon</span><span class="btn s">更換</span><span class="hint">活动图标，支持 spine</span></div></div>
+<div class="f"><div class="l">標籤</div><div class="c"><span class="in sel" style="width:140px">登入</span><span class="hint">非必填；押注／儲值／登入／分享／回歸／其他，选了玩家端显示对应角标</span></div></div>
+<div class="f"><div class="l">排序權重</div><div class="c"><span class="in" style="width:120px">80</span><span class="hint">整数，大的在前</span></div></div>
+<div class="newrow"><div class="newbox"><span class="flag">本期新增</span>
+<div class="f"><div class="l"><span class="rq">*</span>所在頁籤</div><div class="c"><span class="rad"><i></i>遊戲活動</span><span class="rad on"><i></i>平台活動</span></div></div>
+<div class="f"><div class="l"><span class="rq">*</span>右側大圖</div><div class="c" style="align-items:flex-end"><span class="bx" style="width:192px;height:108px">上傳圖片<br>（1 張）</span><span class="hint" style="padding-bottom:2px">960×540（尺寸为示意）</span></div></div>
+</div><div class="callout">本期新增两栏<small>玩家端活动窗口按「所在页签」分进「游戏活动」「平台活动」两个页签，右侧显示这张大图</small></div></div>
+</div></div><div class="adm-ft"><span class="btn">取消</span><span class="btn p">保存</span></div></div></div></div></div></body></html>

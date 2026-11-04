@@ -1,0 +1,389 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>讲功能的汇报做法</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:40px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.35;margin:0 0 6px}
+.sub{font-size:16px;color:var(--ink-2);margin:0 0 20px}
+h2{font-family:var(--serif);font-size:20px;margin:52px 0 16px;display:flex;align-items:baseline;gap:12px;scroll-margin-top:16px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)} .g2{grid-template-columns:repeat(2,1fr)} .g4{grid-template-columns:repeat(4,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 18px}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px}
+.tag.red{background:var(--red-soft);color:var(--red)} .tag.green{background:var(--green-soft);color:var(--green)}
+.kv{font-size:14px;color:var(--ink-2);margin:8px 0 0}
+.kv b{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:1px}
+.kv.main{color:var(--ink)}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14px}
+th,td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--ground)}
+tr:last-child td{border-bottom:none}
+td{color:var(--ink-2)} td.w{color:var(--ink);font-weight:600}
+tr.grp td{background:var(--ground);color:var(--ink);font-weight:700;font-size:13.5px;padding:8px 14px}
+a{color:var(--accent)}
+.links{font-size:13px;color:var(--muted);margin-top:36px}
+
+/* 全貌 */
+.chain{display:flex;align-items:stretch;gap:0;background:var(--ink);border-radius:6px;padding:14px 12px;margin-bottom:12px}
+.node{flex:1;min-width:0;color:var(--surface);text-decoration:none;padding:2px 8px}
+.node .n{font-size:12px;font-weight:700;opacity:.65}
+.node .h{display:block;font-size:17px;font-weight:700;line-height:1.35}
+.node .t{display:block;font-size:12.5px;line-height:1.45;opacity:.82;margin-top:2px}
+.ar{align-self:center;color:var(--surface);opacity:.55;font-size:16px;flex:none}
+.thumbs{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:12px}
+.thumbs a{display:block;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;text-decoration:none;color:var(--ink)}
+.thumbs img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
+.thumbs span{display:block;font-size:13.5px;font-weight:600;padding:6px 10px;border-top:1px solid var(--line)}
+.mini{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.mini a{display:block;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:10px 14px;text-decoration:none;color:var(--ink-2);font-size:13.5px;line-height:1.5}
+.mini b{color:var(--ink);font-size:15px;margin-right:6px}
+.short{font-size:13.5px;color:var(--ink-2);margin:12px 0 0;padding-left:12px;border-left:3px solid var(--red)}
+.short b{color:var(--red)}
+
+/* 来源：Dk 说过 与 Claude 加的 分开 */
+.who{display:inline-block;font-size:11.5px;font-weight:700;padding:0 6px;border-radius:3px;margin-right:6px;white-space:nowrap}
+.who.dk{background:var(--blue-soft);color:var(--blue)}
+.who.cl{background:var(--gray-soft);color:var(--gray)}
+.src{font-size:12.5px;color:var(--muted);line-height:1.55;margin-top:6px}
+.srcs{border-top:1px solid var(--line);margin-top:10px;padding-top:4px}
+.legend{font-size:13px;color:var(--ink-2);margin:0 0 12px}
+
+/* 六步 */
+.step .num{font-size:22px;font-weight:700;color:var(--accent);line-height:1;margin-right:8px}
+.step .h{font-size:16.5px;font-weight:700;margin:0 0 2px;display:flex;align-items:baseline}
+
+/* 模板 */
+.common{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+.common div{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:10px 12px;font-size:13.5px;color:var(--ink-2)}
+.common b{display:block;color:var(--ink);font-size:14px}
+.tpl{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 18px;margin-bottom:14px;scroll-margin-top:16px}
+.tpl .title{font-size:16.5px;font-weight:700;margin:0 0 12px}
+.tpl .title small{font-size:14px;font-weight:400;color:var(--ink-2);margin-left:8px}
+.tpl .two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.fig{margin:0}
+.fig a{display:block}
+.fig img{display:block;width:100%;border:1px solid var(--line);border-radius:4px}
+.fig figcaption{font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.45}
+.fig figcaption .tag{margin-right:6px}
+.subs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.tpl .kv:first-child{margin-top:0}
+
+/* 指标 */
+.metric .h{font-size:18px;font-weight:700;margin:0}
+.metric .l{font-size:14px;color:var(--ink-2);margin:0 0 8px}
+.metric ul{margin:2px 0 0;padding-left:18px;font-size:14px;color:var(--ink-2)}
+.metric li{margin:2px 0}
+.check{background:var(--ground);border-radius:4px;padding:10px 12px;margin-top:10px;font-size:14px;color:var(--ink)}
+.check b{display:block;font-size:12px;color:var(--muted);font-weight:600}
+.limits{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;align-items:center;font-size:13.5px}
+.limits span{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:3px 10px;color:var(--ink-2)}
+.limits .who{margin-right:2px}
+td .ok{display:block;font-size:12px;color:var(--muted);margin-top:3px}
+.prin td:nth-child(1){width:21%} .prin td:nth-child(2){width:26%} .prin td:nth-child(3){width:23%}
+
+@media (max-width:820px){.wrap{padding:28px 16px 64px}.g3,.g2,.g4,.common,.mini,.tpl .two{grid-template-columns:1fr}.thumbs{grid-template-columns:repeat(2,1fr)}.chain{flex-direction:column;gap:6px}.ar{transform:rotate(90deg);align-self:flex-start;margin-left:12px}.prin td,.prin th,table{font-size:13px}}
+</style></head><body><div class="wrap">
+
+<p class="meta">汇报做法 · 2026-11-04 · 从「弹窗、推播一场汇报」提炼 · 配图是该汇报 11/04 的版本（第 3、5 页 10:14 版，其余 10:01 版），内容还可能再改 · 待验收</p>
+<h1>讲功能的汇报，照这 6 步、5 种页做</h1>
+<p class="sub">最后只用高效、好懂两个指标判。不限弹窗推播，讲别的功能换内容就能用。</p>
+
+<nav class="chain" aria-label="六步">
+  <a class="node" href="#steps"><span class="n">1</span><span class="h">定一件事</span><span class="t">听众带走哪一句</span></a><span class="ar">→</span>
+  <a class="node" href="#steps"><span class="n">2</span><span class="h">搭骨架</span><span class="t">列全，归成一套分法</span></a><span class="ar">→</span>
+  <a class="node" href="#steps"><span class="n">3</span><span class="h">写讲法</span><span class="t">怎么说、哪里停、问谁</span></a><span class="ar">→</span>
+  <a class="node" href="#steps"><span class="n">4</span><span class="h">先构图</span><span class="t">每页定主次，只画块</span></a><span class="ar">→</span>
+  <a class="node" href="#steps"><span class="n">5</span><span class="h">再填字</span><span class="t">屏上屏下分开放</span></a><span class="ar">→</span>
+  <a class="node" href="#steps"><span class="n">6</span><span class="h">用听众的眼睛测</span><span class="t">冷读、缩图、限时</span></a>
+</nav>
+
+<div class="thumbs">
+  <a href="#t1"><img src="2026-11-04_给主管讲功能的汇报做法/p02.jpg" alt="开场页"><span>开场与过渡</span></a>
+  <a href="#t2"><img src="2026-11-04_给主管讲功能的汇报做法/p03.jpg" alt="界面页"><span>界面</span></a>
+  <a href="#t3"><img src="2026-11-04_给主管讲功能的汇报做法/p04.jpg" alt="取舍页"><span>取舍</span></a>
+  <a href="#t4"><img src="2026-11-04_给主管讲功能的汇报做法/p05.jpg" alt="操作流程页"><span>操作流程</span></a>
+  <a href="#t5"><img src="2026-11-04_给主管讲功能的汇报做法/p06.jpg" alt="数据页"><span>数据</span></a>
+</div>
+
+<div class="mini">
+  <a href="#metrics"><b>2 个指标</b>好懂靠冷读，高效靠缩图和限时</a>
+  <a href="#principles"><b>12 条原理</b>记得住 3 · 一眼懂 5 · 屏上放什么 4</a>
+  <a href="#traps"><b>8 个坑</b>多半是先写细节、对着规则不看读者</a>
+</div>
+
+<p class="short"><b>先知道两点</b>　Dk 11/04 认可的是 19:02 版的结构和版式；配图是改完他提的五处的版本（第 3、5 页 10:14 版，其余 10:01 版），整份细节评审还没跑完。冷读是逐页做的，换块没过渡、轮换没解释这两处它没提，是 Dk 指出的，所以第 6 步要通看整场。</p>
+
+<h2 id="steps"><span class="no">01</span>六步：先定一件事和全貌，最后才填字</h2>
+<p class="legend">第一遍看粗体和黑字就够，灰字是来源。<span class="who dk">Dk 说过</span>后面是时间，对话都是「弹窗标签推送｜主对话」，另注的除外。<span class="who cl">Claude 加的</span>Dk 认可的是整体结果，没有逐条定过。</p>
+<div class="grid g3">
+
+  <div class="card step">
+    <p class="h"><span class="num">1</span>定一件事</p>
+    <p class="kv main"><b>做</b>写清谁听、听完带走哪一句、哪一处要他判断、讲多久。</p>
+    <p class="kv"><b>做好</b>那一句、那一处都写得出；后面每个取舍都能回到这两样上判。</p>
+    <p class="kv"><b>为什么</b>不先定，内容就会越加越多，页面什么都想说。</p>
+    <div class="srcs">
+      <p class="src"><span class="who dk">Dk 说过</span>11/02 20:2x 只讲核心；11/03 17:0x 高效、好懂是最终指标</p>
+      <p class="src"><span class="who cl">Claude 加的</span>先写出那一句；整场限 10 分钟</p>
+    </div>
+  </div>
+
+  <div class="card step">
+    <p class="h"><span class="num">2</span>搭骨架</p>
+    <p class="kv main"><b>做</b>先把要讲的功能列全，再归成一套分法（这次是模块 › 界面 › 功能），只留核心，其余进追问或前置文件。</p>
+    <p class="kv"><b>做好</b>全场一套分法、一套叫法；页标题连起来读得出顺序；听众能复述「两块、各三个界面」。</p>
+    <p class="kv"><b>为什么</b>一次只抓得住约 4 块；两套分法放一场就记不住。</p>
+    <div class="srcs">
+      <p class="src"><span class="who dk">Dk 说过</span>11/02 20:3x 先列内容再做；11/03 10:4x 要有层级；11/03 14:0x 两块各分三部分，记得住最要紧</p>
+      <p class="src"><span class="who cl">Claude 加的</span>全场只用一套分法；标题连读能看出顺序</p>
+    </div>
+  </div>
+
+  <div class="card step">
+    <p class="h"><span class="num">3</span>写讲法</p>
+    <p class="kv main"><b>做</b>定开场说什么、先讲谁后讲谁、哪里停下问、请谁表态。讲功能本身，不讲改了什么。讲稿写进备注，和页面同一顺序，发出去的版本删掉备注。</p>
+    <p class="kv"><b>做好</b>每次要表态都是一个具体问题；常见追问有备答；讲稿按字数估在时限内。</p>
+    <p class="kv"><b>为什么</b>听众边听边看。只设计页面，当面讲不出层次。</p>
+    <div class="srcs">
+      <p class="src"><span class="who dk">Dk 说过</span>11/02 18:2x 要设计怎么说；11/03 11:0x 讲功能不讲改动；11/03 14:0x 这场的讲法，含讲完一块停一下、简单的放后面</p>
+      <p class="src"><span class="who cl">Claude 加的</span>操作页讲稿用一个真实任务走一遍；问具体问题，不问「有什么意见」</p>
+    </div>
+  </div>
+
+  <div class="card step">
+    <p class="h"><span class="num">4</span>先构图</p>
+    <p class="kv main"><b>做</b>每页写一句「这页的那一件事」，定主、次、辅三层，先看通行的好版式再选，画只有块和带头句（标题下那句结论）的草图。</p>
+    <p class="kv"><b>做好</b>只看草图，看得出分几块、谁统领谁、块和块什么关系。版式不行就换，不在上面挪。</p>
+    <p class="kv"><b>为什么</b>句子写完再排版，结构显不出来；错的版式微调改不好。</p>
+    <div class="srcs">
+      <p class="src"><span class="who dk">Dk 说过</span>11/03 12:2x 先画结构和整体；14:4x、16:2x 先参考顶尖做法，重想不微调；17:2x 一页一个目标</p>
+      <p class="src"><span class="who cl">Claude 加的</span>主次辅三层（只靠字号、粗细、颜色拉开，不靠加框）</p>
+    </div>
+  </div>
+
+  <div class="card step">
+    <p class="h"><span class="num">5</span>再填字</p>
+    <p class="kv main"><b>做</b>屏上只放界面看得到的东西和结论句。一读就懂、界面又不显示的说明进讲稿。听众不懂的词当页说清。</p>
+    <p class="kv"><b>做好</b>标题、带头句一句一件事，说得出具体功能；定过要拿掉的不放回。</p>
+    <p class="kv"><b>为什么</b>屏上的字和讲的话重复，听众分心；词听不懂，后面都白讲。</p>
+    <div class="srcs">
+      <p class="src"><span class="who dk">Dk 说过</span>11/03 14:1x 重要位置的句子短而准；15:2x 这类说明由他来讲；11/04 09:4x 轮换这类词要说清</p>
+      <p class="src"><span class="who cl">Claude 加的</span>字数、字号限值（见第 03 节）</p>
+    </div>
+  </div>
+
+  <div class="card step">
+    <p class="h"><span class="num">6</span>用听众的眼睛测</p>
+    <p class="kv main"><b>做</b>渲染成图，给没看过的人看图和讲稿（冷读），再缩小看第一眼，查法见第 03 节。交出去前自己先通看整场。每改好一页就进文件，评审并行跑，不停下等。</p>
+    <p class="kv"><b>做好</b>冷读全过，缩图第一眼在主角上，时长在限内。</p>
+    <p class="kv"><b>为什么</b>对着细则打勾可以全过，听众还是看不懂；只有测结果才算数。</p>
+    <div class="srcs">
+      <p class="src"><span class="who dk">Dk 说过</span>11/02 17:4x 分阶段给他看核心；11/03 10:4x 不因等他审核而停；17:2x 先出结果再优化</p>
+      <p class="src"><span class="who cl">Claude 加的</span>冷读、缩图、转给 Dk 前先通看</p>
+    </div>
+  </div>
+</div>
+
+<h2 id="templates"><span class="no">02</span>五种页：每种只追一个目标</h2>
+<div class="common">
+  <div><b>标题是导航</b>用词组说这是哪块、哪个界面，不下结论。<span class="src" style="display:block"><span class="who dk">Dk 说过</span>11/03 15:4x、15:5x</span></div>
+  <div><b>带头句是结论</b>标题下面一句，这页要带走的那句，比说明字强。<span class="src" style="display:block"><span class="who cl">Claude 加的</span>大字粗体、紧贴标题</span></div>
+  <div><b>分主、次、辅三层</b>主只有一样，全页唯一实底；次是撑它的两三样；辅再小一档、灰色。每块一个颜色，其余用灰。<span class="src" style="display:block"><span class="who cl">Claude 加的</span></span></div>
+  <div><b>同类页同版式</b>两块的同类页只换颜色，听众第二遍不用重新认。<span class="src" style="display:block"><span class="who cl">Claude 加的</span></span></div>
+</div>
+
+<div class="tpl" id="t1">
+  <p class="title">开场与过渡<small>让听众知道讲几块、讲到哪了</small></p>
+  <div class="two">
+    <div>
+      <figure class="fig"><a href="2026-11-04_给主管讲功能的汇报做法/p02.jpg" target="_blank"><img src="2026-11-04_给主管讲功能的汇报做法/p02.jpg" alt="第 2 页：两块共用三个界面"></a><figcaption>第 2 页：两块放同一条带上，三张界面卡只画骨架</figcaption></figure>
+      <div class="subs">
+        <figure class="fig"><a href="2026-11-04_给主管讲功能的汇报做法/p01.jpg" target="_blank"><img src="2026-11-04_给主管讲功能的汇报做法/p01.jpg" alt="第 1 页"></a><figcaption>第 1 页：今天讲两块</figcaption></figure>
+        <figure class="fig"><a href="2026-11-04_给主管讲功能的汇报做法/p07.jpg" target="_blank"><img src="2026-11-04_给主管讲功能的汇报做法/p07.jpg" alt="第 7 页"></a><figcaption>第 7 页：同一条带，标亮下一块</figcaption></figure>
+      </div>
+    </div>
+    <div>
+      <p class="kv main"><b>目标</b>记住「两块、各三个界面」；换块时一眼知道换了。</p>
+      <p class="kv"><b>画法</b>开场两页各只做一件事。第 1 页只放两张中等卡；第 2 页把两块放同一条带上，下面三张界面卡只画骨架，箭头连出讲的顺序。过渡页沿用那条带，把下一块标亮，大字说接下来讲谁。</p>
+      <p class="kv"><b>为什么</b>放同一条带上，一眼看出两块共用这三个界面；只画骨架，认得出是哪种界面又不被细节分散；只改标题里的字，听众注意不到已经换块。</p>
+      <div class="srcs">
+        <p class="src"><span class="who dk">Dk 说过</span>11/03 14:0x 顺序和讲完停一下；17:2x 开场各做一件事、两块画进一个块、卡不填内容；11/04 09:4x 换块要过渡</p>
+        <p class="src"><span class="who cl">Claude 加的</span>过渡单独一页；标题里块名上色；页面拿掉的模块讲稿带一句。标亮法借自 <a href="https://www.notion.com/pricing">Notion 定价页</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tpl" id="t2">
+  <p class="title">界面<small>讲清一个界面有什么、怎么组织</small></p>
+  <div class="two">
+    <div>
+      <figure class="fig"><a href="2026-11-04_给主管讲功能的汇报做法/p03.jpg" target="_blank"><img src="2026-11-04_给主管讲功能的汇报做法/p03.jpg" alt="第 3 页：弹窗主界面"></a><figcaption>第 3 页：弹窗主界面。推播主界面（第 8 页）同版式</figcaption></figure>
+    </div>
+    <div>
+      <p class="kv main"><b>目标</b>知道这个界面按什么组织、能做什么。</p>
+      <p class="kv"><b>画法</b>左边简化示意，灰条代行，不放截图；要讲的部分用这一块的颜色，其余灰。右边 ①②③ 编号说明，和示意同号对齐。听众容易混的词当页标出（这次：人群是弹给谁，场景是什么时候弹）。</p>
+      <p class="kv"><b>为什么</b>示意只留要讲的，眼睛不迷路；编号对齐，不用猜这句说哪块；词分不清，后面的结构都听不进去。</p>
+      <div class="srcs">
+        <p class="src"><span class="who dk">Dk 说过</span>11/03 11:0x 讲功能是什么；15:2x 主管把场景和人群混过，要先分清</p>
+        <p class="src"><span class="who cl">Claude 加的</span>灰条示意、编号对齐、两个词的标注。借自 <a href="https://linear.app">Linear 线稿</a>、<a href="https://docs.stripe.com/payments/checkout/how-checkout-works">Stripe 编号步骤</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tpl" id="t3">
+  <p class="title">取舍<small>让听众在这一处判断行不行</small></p>
+  <div class="two">
+    <figure class="fig"><a href="2026-11-04_给主管讲功能的汇报做法/改前_第4页_1758渲染.jpg" target="_blank"><img src="2026-11-04_给主管讲功能的汇报做法/改前_第4页_1758渲染.jpg" alt="改前第 4 页：八行对照句"></a><figcaption><span class="tag red">改前</span>11/03 17:58 渲染：八行互为镜像的句子，要读完再自己拼</figcaption></figure>
+    <figure class="fig"><a href="2026-11-04_给主管讲功能的汇报做法/p04.jpg" target="_blank"><img src="2026-11-04_给主管讲功能的汇报做法/p04.jpg" alt="改后第 4 页：同一个例子两种画法"></a><figcaption><span class="tag green">改后</span>10:01 版：同一个例子画两遍，差别一眼可见。推荐方向是 Dk 11/04 另改的，这里只比画法</figcaption></figure>
+  </div>
+  <div class="two" style="margin-top:12px">
+    <div>
+      <p class="kv main"><b>目标</b>只在这一处请听众表态。</p>
+      <p class="kv"><b>画法</b>同一个具体例子在两种做法下各画一遍；推荐的放左边，全页只有它粗边浅底；代价各一行灰字。要问的话放讲稿，问具体的（如「不同场景让不同人群先弹，实际会有吗」）。</p>
+    </div>
+    <div>
+      <p class="kv" style="margin-top:0"><b>为什么</b>镜像句读起来一样长、一样重，听众分不出差别在哪；画出来，差别在位置上。</p>
+      <div class="srcs">
+        <p class="src"><span class="who dk">Dk 说过</span>11/03 14:0x 在这里解释为什么、问运营能不能认可；11/04 09:4x 推荐改先按人群</p>
+        <p class="src"><span class="who cl">Claude 加的</span>11/03 18:44 把对照句换成同一个例子；推荐放前面；问具体问题。卡片标亮借自 <a href="https://www.notion.com/pricing">Notion</a>、<a href="https://linear.app/pricing">Linear</a> 定价页</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tpl" id="t4">
+  <p class="title">操作流程<small>讲运营建一条要走几步</small></p>
+  <div class="two">
+    <figure class="fig"><a href="2026-11-04_给主管讲功能的汇报做法/改前_第5页_1721渲染.jpg" target="_blank"><img src="2026-11-04_给主管讲功能的汇报做法/改前_第5页_1721渲染.jpg" alt="改前第 5 页：四根长条"></a><figcaption><span class="tag red">改前</span>11/03 17:21 渲染：四根实底长条一样重，说明散成三列，眼睛没有落点</figcaption></figure>
+    <figure class="fig"><a href="2026-11-04_给主管讲功能的汇报做法/p05.jpg" target="_blank"><img src="2026-11-04_给主管讲功能的汇报做法/p05.jpg" alt="改后第 5 页：流程图"></a><figcaption><span class="tag green">改后</span>10:14 版：只有带头句讲的第 3 步是实底，说明并成一栏。推播新建（第 9 页）同版式</figcaption></figure>
+  </div>
+  <div class="two" style="margin-top:12px">
+    <div>
+      <p class="kv main"><b>目标</b>看出先后和岔路，记住最要紧的一步。</p>
+      <p class="kv"><b>画法</b>每步一个节点，箭头竖着连，要选择的地方写出选项；节点只写这步做什么，补充放右边一栏。带头句讲哪一步，哪一步就是全页唯一实底。讲稿用一个真实任务走一遍，不加页。</p>
+    </div>
+    <div>
+      <p class="kv" style="margin-top:0"><b>为什么</b>有箭头才读得出先后；全都一样重，就等于没有重点。</p>
+      <div class="srcs">
+        <p class="src"><span class="who dk">Dk 说过</span>11/03 15:1x 有箭头看着省力；17:1x 新建页用流程图</p>
+        <p class="src"><span class="who cl">Claude 加的</span>唯一实底（11/03 18:54）；一种箭头只表一种意思；真实任务走一遍。编号和箭头规矩借自 <a href="https://docs.stripe.com/payments/checkout/how-checkout-works">Stripe</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tpl" id="t5">
+  <p class="title">数据<small>讲这个界面看什么、掉的人去哪查</small></p>
+  <div class="two">
+    <div>
+      <figure class="fig"><a href="2026-11-04_给主管讲功能的汇报做法/p06.jpg" target="_blank"><img src="2026-11-04_给主管讲功能的汇报做法/p06.jpg" alt="第 6 页：弹窗数据"></a><figcaption>第 6 页：弹窗数据。推播数据（第 10 页）同版式</figcaption></figure>
+    </div>
+    <div>
+      <p class="kv main"><b>目标</b>知道看哪几步，没走到下一步的原因在哪查。</p>
+      <p class="kv"><b>画法</b>左边几根灰柱从左到右变矮，柱间箭头；要讲的那一段用这一块的颜色实底，引线连到右边原因列表。比前几页讲得短。</p>
+      <p class="kv"><b>为什么</b>高低显出掉在哪一步；引线直接说明原因解释的是哪一段，不用再写一句。</p>
+      <p class="kv"><b>注意</b>柱高是示意、不标数，听众可能当成真数，讲的时候带一句。</p>
+      <div class="srcs">
+        <p class="src"><span class="who dk">Dk 说过</span>11/04 09:4x 推播看发出、到达、曝光、点击四步，到达不等于看见；发送前排除的人不算效果</p>
+        <p class="src"><span class="who cl">Claude 加的</span>整个漏斗加引线的画法。借自 <a href="https://amplitude.com/docs/analytics/charts/funnel-analysis/funnel-analysis-interpret">Amplitude 漏斗图</a>、<a href="https://www.ycombinator.com/library/4T-how-to-design-a-better-pitch-deck">YC 结论写在图上</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2 id="metrics"><span class="no">03</span>两个指标：好懂靠冷读查，高效靠缩图和限时查</h2>
+<div class="grid g2">
+  <div class="card metric">
+    <p class="h">好懂</p>
+    <p class="l">听众边听边看，不用自己猜</p>
+    <ul>
+      <li>全场一套分法、一套叫法</li>
+      <li>关系画出来：先后用箭头，包含用框套框，对比左右并排</li>
+      <li>比较两种做法，画同一个例子</li>
+      <li>听众不懂的词当页说清</li>
+    </ul>
+    <div class="check"><b>怎么查（冷读）</b>把每页图和这页讲稿给没看过材料的人，答三问：这页讲什么、眼睛先落在哪、块和块什么关系。答错一问，这页不过。讲稿讲到的不算页面缺。</div>
+  </div>
+  <div class="card metric">
+    <p class="h">高效</p>
+    <p class="l">一眼看到重点，讲的人不超时</p>
+    <ul>
+      <li>一页一件事，其余删掉或进讲稿</li>
+      <li>主角最显眼：带头句大字粗体，实底只给主角</li>
+      <li>不带信息的都删：跳转、指引、只贴类别名的标题</li>
+    </ul>
+    <div class="check"><b>怎么查（缩图加限时）</b>页面缩到约四分之一，第一眼落在这页主角上。讲稿字数按每分钟 240 字估，不超时限（这次约 2340 字、约 9.8 分钟，限 10 分钟）。</div>
+  </div>
+</div>
+<div class="limits">
+  <span class="who cl" style="background:var(--gray-soft);border:none;padding:0 6px;color:var(--gray)">Claude 加的限值</span>
+  <span>标题 28 磅</span><span>带头句 22 磅粗体</span><span>正文不小于 18 磅</span><span>灰字不小于 14 磅</span><span>标题不超过 12 字</span><span>带头句不超过 15 字，说不清时可放开</span><span>每页正文不超过 300 字</span>
+</div>
+<p class="src"><span class="who dk">Dk 说过</span>11/03 17:0x 这两个是最终指标；11/02 21:3x 跳转占字数。三问、缩图、字数估时长都是 Claude 加的查法。</p>
+
+<h2 id="principles"><span class="no">04</span>十二条原理：管记得住、一眼懂、屏上放什么</h2>
+<p class="legend">金字塔 Dk 11/02 提，峰终 Dk 11/03 14:0x 提，其余是 Claude 查来的。研究多来自学习材料、机械图等场景，用到汇报是类比，这场没有单独验证。灰字写出处核到哪一步。</p>
+<table class="prin">
+<tr><th>原理</th><th>为什么管用</th><th>这次用在哪</th><th>出处</th></tr>
+<tr class="grp"><td colspan="4">听众怎么记得住</td></tr>
+<tr><td class="w">金字塔：结论在上，下层回答上层引出的疑问</td><td>听众先有框架，后面的内容有地方放</td><td>模块 › 界面 › 功能；带头句先说结论</td><td>Minto <a href="https://www.schweitzer-online.de/en/buch/Minto/Pyramid-Principle/9780273710516/B206749/">《The Pyramid Principle》</a><span class="ok">核到书目；要点据二手摘要，没翻原书</span></td></tr>
+<tr><td class="w">一次只抓得住约 4 块</td><td>块数超了，听众就要丢东西</td><td>两块、各三个界面</td><td>Cowan 2001 <a href="https://www.cambridge.org/core/journals/behavioral-and-brain-sciences/article/magical-number-4-in-shortterm-memory-a-reconsideration-of-mental-storage-capacity/44023F1147D4A1D44BDC0AD226838496">Behavioral and Brain Sciences 24(1)</a><span class="ok">核到摘要</span></td></tr>
+<tr><td class="w">峰终定律：回忆主要留下最强烈处和结尾</td><td>结尾好讲，留下的印象好</td><td>相对简单的推播放最后</td><td>Kahneman 等 1993 <a href="https://ius.uzh.ch/dam/jcr:5ae9adc9-61ec-4174-b37c-4b752f36c23b/Kahnemann%20et%20al.%20-%20When%20More%20Pain%20is%20Preferred%20to%20Less%20(1993).pdf">Psychological Science 4(6)</a><span class="ok">核到书目和摘录；实验讲疼痛的记忆</span></td></tr>
+<tr class="grp"><td colspan="4">画面怎么一眼看懂</td></tr>
+<tr><td class="w">一眼测：一页约 3 秒看懂</td><td>页面要读很久，听众就顾不上听</td><td>缩图看第一眼</td><td>Duarte 2012 <a href="https://hbr.org/2012/10/do-your-slides-pass-the-glance-test">HBR 文</a><span class="ok">核到原文；《slide:ology》书名没核到，网站拒绝抓取</span></td></tr>
+<tr><td class="w">视觉层级：大小、颜色对比、分组告诉眼睛先看哪</td><td>分量一样，眼睛就没有落点</td><td>主次辅三层；实底只给主角</td><td>NN/g <a href="https://www.nngroup.com/articles/visual-hierarchy-ux-definition/">Visual Hierarchy in UX</a><span class="ok">核到原文</span></td></tr>
+<tr><td class="w">对齐、对比、重复、亲近</td><td>有关系的靠近，听众不用读字就看得出分组</td><td>一套网格和字号；同类页同版式</td><td>Williams <a href="https://pearson.com/en-us/subject-catalog/p/non-designer-s-design-book-the/P200000000691/9780133966343">《The Non-Designer's Design Book》</a><span class="ok">核到出版社页和目录，没翻内文</span></td></tr>
+<tr><td class="w">图把关系摆在位置上</td><td>读者少做搜索和推断</td><td>界面画骨架；比较画例子</td><td>Larkin &amp; Simon 1987 <a href="https://mechanism.ucsd.edu/bill/teaching/F12/cs200/Readings/larkin.whyadiagramissometimesworth.1987.pdf">Cognitive Science 11</a><span class="ok">核到书目和摘要片段</span></td></tr>
+<tr><td class="w">箭头让图读成过程：没箭头读作有哪些部件，有箭头读作怎么运作</td><td>答了 Dk 11/03 15:1x 的疑问（为什么有箭头看着省力）：先后不用自己猜</td><td>新建页流程图；三个界面之间的箭头</td><td>Heiser &amp; Tversky 2006 <a href="https://www.tc.columbia.edu/faculty/bt2158/faculty-profile/files/sincomprehendingandproducingmechanicaldiagrams.PDF">Cognitive Science 30(3)</a><span class="ok">核到摘要。反面：有研究称编号箭头理解上未必更好（记作 Jian &amp; Wu 2014），这一篇没核到</span></td></tr>
+<tr class="grp"><td colspan="4">屏上放什么、怎么讲</td></tr>
+<tr><td class="w">冗余、连贯、提示：别重复讲话，删无关内容，标出组织结构</td><td>图加讲解胜过再叠同样的字（10/10 次实验，中位效应量 0.69）；删无关（10/11，1.32）；提示（3/3，0.60）</td><td>说明进讲稿；删不带信息的；标题里块名上色</td><td>Mayer <a href="https://www.cambridge.org/core/books/abs/cambridge-handbook-of-multimedia-learning/principles-for-reducing-extraneous-processing-in-multimedia-learning-coherence-signaling-redundancy-spatial-contiguity-and-temporal-contiguity-principles/C98AB3A6CE760DD63C048936EA0B3B44">剑桥多媒体学习手册第 12 章</a><span class="ok">核到摘要页，全文付费没读</span></td></tr>
+<tr><td class="w">断言加证据：一句断言，下面放图，不放要点列表</td><td>听众先知道看图看什么</td><td>断言放带头句，标题留作导航（按 Dk 11/03 15:4x 变通）</td><td>Alley <a href="https://www.assertion-evidence.com/">assertion-evidence.com</a><span class="ok">核到官网；官网没列研究数据</span></td></tr>
+<tr><td class="w">先粗后细；提案写清问题、投入、方案、风险、不做什么</td><td>粗稿让人盯结构，不纠结细节，也留得出改的余地</td><td>先构图再填字；取舍页写代价</td><td>Basecamp《Shape Up》<a href="https://basecamp.com/shapeup/1.3-chapter-04">第 4 章</a>、<a href="https://basecamp.com/shapeup/1.5-chapter-06">第 6 章</a><span class="ok">核到原文</span></td></tr>
+<tr><td class="w">一页设计：把设计画在一页，一眼看全貌</td><td>限在一页，只能留核心，也好传阅</td><td>开场两页；这份文件的第一屏</td><td>Librande <a href="https://www.gdcvault.com/play/1012356/One-Page">GDC 2010 One-Page Designs</a><span class="ok">核到 GDC 简介，演讲没看</span></td></tr>
+</table>
+
+<h2 id="traps"><span class="no">05</span>八个坑：多半是先写细节、对着规则不看读者</h2>
+<table>
+<tr><th style="width:17%">坑</th><th style="width:30%">当时什么样</th><th style="width:27%">怎么避开</th><th>来源</th></tr>
+<tr><td class="w">只看规则，不看读者</td><td>每次纠正抄成一条新细则，到 18 条；评审逐条打勾，同一个病换说法出现三次</td><td>归成几组带为什么的经验；最后只用两个指标判</td><td><span class="who dk">Dk 说过</span>11/03 17:0x、17:1x</td></tr>
+<tr><td class="w">把说明又加回页面</td><td>Dk 定过由他口头讲的一句，改稿时因框架里确有这个设置，又放回第 3、4 页</td><td>定过要拿掉的，谁再提都不放回，改讲稿；非放不可先问 Dk</td><td><span class="who dk">Dk 说过</span>11/03 15:2x<br><span class="who cl">Claude 加的</span>不放回这条</td></tr>
+<tr><td class="w">版式之后才想</td><td>句子写完一次排版，整页靠左一长条；之后又在错的版式上逐页挪</td><td>先构图看全貌；版式不行就换</td><td><span class="who dk">Dk 说过</span>11/03 12:2x、16:2x</td></tr>
+<tr><td class="w">主次分不出</td><td>每样都加框，分量一样；带头句 14 磅灰字比说明还弱；一页要做四件事</td><td>动手前写那一件事、定三层；实底只给主角；缩图测</td><td><span class="who dk">Dk 说过</span>11/03 17:0x、17:2x<br><span class="who cl">Claude 加的</span>18:44 通看发现字号倒挂</td></tr>
+<tr><td class="w">砍页时把为什么也砍了</td><td>19 页砍到 5 页，只剩标题和关键词；再压成一张表，又没了层次</td><td>砍枝不砍逻辑：下层要答上层引出的疑问；表格不等于结构</td><td><span class="who dk">Dk 说过</span>11/02 20:2x、22:5x 打低分；22:4x 纯表格（总的主会话）</td></tr>
+<tr><td class="w">讲成改动清单</td><td>结论写「改成…」，每句挂现在的问题，听众听不到功能本身</td><td>介绍功能；和现在的对照只放追问</td><td><span class="who dk">Dk 说过</span>11/03 11:0x</td></tr>
+<tr><td class="w">逐页都对，跨页漏了</td><td>换块没过渡、轮换没解释，交接记录里的冷读结论都没提</td><td>整场通看一遍；冷读加问哪个词听不懂（建议，没试过）</td><td><span class="who dk">Dk 说过</span>11/04 09:4x<br><span class="who cl">Claude 加的</span>避开的做法</td></tr>
+<tr><td class="w">有现成做法还自己摸索</td><td>层级、全貌、短句一条条被纠正出来，摸索了几天</td><td>动手前先查顶尖做法，例子写进一张表，页页对得上</td><td><span class="who dk">Dk 说过</span>11/03 14:4x</td></tr>
+</table>
+
+<h2 id="open"><span class="no">06</span>已替你定的和没核到的</h2>
+<div class="grid g2">
+  <div class="card">
+    <p class="kv main" style="margin-top:0"><b>已替你定，可推翻</b></p>
+    <ul style="margin:4px 0 0;padding-left:18px;font-size:14px;color:var(--ink-2)">
+      <li>6 步、5 种页、12 条的分法是 Claude 从这场归纳的，过渡页并进了开场这一种。</li>
+      <li>第 4 页改前图用 11/03 17:58 渲染那张：16:58 那版不是八行对照，这张才是。</li>
+    </ul>
+  </div>
+  <div class="card">
+    <p class="kv main" style="margin-top:0"><b>没核到、没验证</b></p>
+    <ul style="margin:4px 0 0;padding-left:18px;font-size:14px;color:var(--ink-2)">
+      <li>12 条出处都核到了：4 条读了原文，8 条只到摘要或书目。没核到两处：《slide:ology》书名、Jian &amp; Wu 2014。</li>
+      <li>版式例子的链接来自 11/03 的版式参考表（子代理自称亲见），这次没重新打开。</li>
+      <li>时长只按字数估，这场没有真人计时。这份做法只在这一场 10 分钟的同部门汇报上用过。</li>
+    </ul>
+  </div>
+</div>
+
+<p class="links">成品：<a href="../评审版_定稿改_1027/推送系统后台集成需求/弹窗推播汇报_给主管.pptx">弹窗推播汇报_给主管.pptx</a>（讲稿在备注里）　版式参考表：~/claude/_底座/任务/弹窗标签推送系统/2026-11-03_弹窗推播一场汇报_给主管/参考版式.md</p>
+</div></body></html>

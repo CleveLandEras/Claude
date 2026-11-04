@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>02f 推播条件触发</title>
+<link rel="stylesheet" href="_后台框.css">
+<link rel="stylesheet" href="_弹窗.css">
+<link rel="stylesheet" href="_推送.css">
+<style>
+.shot .pt td:nth-child(1),
+.shot .pt td:nth-child(3),
+.shot .pt td:nth-child(4),
+.shot .pt td:nth-child(7){white-space:nowrap}
+.shot .pt .ell{max-width:none;overflow:visible;text-overflow:clip}
+</style>
+<style>table.pt th:nth-child(2){width:136px}table.pt th:nth-child(5){width:96px}table.pt td:nth-child(8){white-space:nowrap}</style>
+<style>table.pt td.ops{white-space:nowrap}table.pt td.ops .a1{display:inline-block;min-width:30px}table.pt td.ops span+span{margin-left:8px}table.pt td:first-child,table.pt td:nth-last-child(2),table.pt td .nm{white-space:nowrap}table.pt .ell{display:inline-block;max-width:108px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;vertical-align:bottom}table.pt th,table.pt td{padding-left:6px;padding-right:6px}table.pt td:nth-child(5){min-width:104px}</style>
+<style>table.pt td .nm{white-space:normal;min-width:96px}table.pt td:nth-child(3){max-width:112px}table.pt td:nth-child(6){white-space:nowrap}</style>
+<style>.capbar .v b.nlk{color:#2F6FCC;cursor:pointer}table.pt td.st.go{color:#1F2329;font-weight:500}table.pt td.st::before{content:"";display:inline-block;width:6px;height:6px;margin-right:6px;border-radius:50%;background:#C0C4CC;vertical-align:middle;position:relative;top:-1px}table.pt td.st.go::before{background:#409EFF}.blk{color:#C47B2B!important;text-decoration:underline;text-decoration-color:#E2B47C;text-underline-offset:2px;cursor:pointer}.pw.plain>.fbar{margin-top:12px}.pw.plain>.chips{margin-top:10px}table.pt.sch,table.pt.trg{table-layout:fixed;width:100%}table.pt.sch td,table.pt.trg td{min-width:0!important;max-width:none!important}table.pt.sch .ell,table.pt.trg .ell{display:block;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}table.pt .st .why{margin-top:2px;font-size:11px;font-weight:400;color:#9AA0A6;line-height:1.35;white-space:nowrap}table.pt td .dl{margin-top:2px;font-size:11px;color:#9AA0A6;line-height:1.35;white-space:nowrap}table.pt .st .sub{max-width:none}table.pt tr.more td{height:auto;padding:9px 6px;font-size:12px;color:#9AA0A6;border-bottom:0}table.pt td.ops span{margin-right:0}table.pt td.ops .a1{min-width:26px}table.pt.sch td:nth-child(8),table.pt.sch th:nth-child(8){padding-left:12px}table.pt.trg td .nm{white-space:normal;min-width:0;word-break:keep-all}table.pt.trg td:nth-child(3){padding-right:6px}table.pt.trg td:nth-child(4),table.pt.trg th:nth-child(4){text-align:center}table.pt.trg td:nth-child(5){white-space:nowrap}table.pt.trg td:nth-child(7),table.pt.trg th:nth-child(7){padding-left:12px}</style>
+</head>
+<body>
+<div class="shot bk" data-page="推播" data-tabs="日历|定时|*条件触发|操作纪录"><div class="pw plain">
+  <div class="ttl"><h3>推播</h3><span class="sp"></span><span class="btnp">＋ 新建推播</span></div>
+  <div class="capbar">
+    <span class="k">上限与勿扰</span>
+    <span class="v">每人每天上限 回流 <b class="num">3</b> 条 · 其余玩家 <b class="num">2</b> 条</span>
+    <span class="div"></span>
+    <span class="v">勿扰 <b class="num">00:00–08:00</b>，与短信共用</span>
+    <span class="div"></span>
+    <span class="v">今天达到上限 <b class="num nlk">1,310</b> 人</span>
+    <span class="lk">修改</span>
+  </div>
+  <div class="fbar">
+    <span class="inp srch">名称、编号或所属活动</span>
+    <span class="inp">消息类别<span class="dn">⌵</span></span>
+    <span class="inp">所属活动<span class="dn">⌵</span></span>
+    <span class="inp">对象<span class="dn">⌵</span></span>
+    <span class="inp">创建人<span class="dn">⌵</span></span>
+    <span class="lk" style="align-self:center;white-space:nowrap">更多筛选</span>
+  </div>
+  <div class="chips"><span class="c">生效中 <b>3</b></span><span class="c">未开始 <b>0</b></span><span class="c">已暂停 <b>0</b></span><span class="c">草稿 <b>0</b></span><span class="c">已结束 <b>4</b></span><span class="upd m2">数据更新于 15:30</span></div>
+  <table class="pt trg">
+    <colgroup><col style="width:113px"><col style="width:88px"><col style="width:135px"><col style="width:36px"><col style="width:110px"><col style="width:112px"><col style="width:82px"><col style="width:51px"><col></colgroup>
+    <tr><th>触发行为</th><th>推播</th><th>标题</th><th class="r">权重</th><th>发送对象</th><th class="r">发送</th><th>状态</th><th>创建人</th><th>操作</th></tr>
+    <tr>
+      <td>礼包结束前 2 小时<div class="meta">限时加码礼包<br>未购买</div></td>
+      <td><div class="nm" title="创建 运营02 · 8/25 10:00 ／ 最后修改 运营02 · 10/09 16:12">限时加码礼包<wbr>未购买提醒</div><div class="meta">#31 · 营销</div></td>
+      <td><span class="ell" title="您的專屬加碼禮包剩 2 小時，錯過不再！">限時加碼禮包即將結束</span></td>
+      <td class="r">50</td>
+      <td>出现该礼包的玩家<div class="meta">不限群组</div><div class="meta">排除 VIP 名单</div></td>
+      <td class="r">今天 230<div class="meta">近 7 天日均 290</div></td>
+      <td class="st go">生效中<div class="sub"><span class="blk">上限拦截 18</span></div></td>
+      <td>运营02</td>
+      <td class="ops"><span class="a1">暂停</span><span>编辑</span><span>数据</span><span>⋯</span></td>
+    </tr>
+    <tr>
+      <td>完成每日任务</td>
+      <td><div class="nm" title="创建 运营01 · 8/28 15:00 ／ 最后修改 运营01 · 8/28 15:00">任务完成<wbr>奖励提醒</div><div class="meta">#33 · 营销</div></td>
+      <td><span class="ell" title="任務完成！獎勵已發放，點擊查看">任務完成！獎勵已發放</span></td>
+      <td class="r">50</td>
+      <td>触发的玩家<div class="meta">不限群组</div><div class="meta">排除 VIP 名单</div></td>
+      <td class="r">今天 1,140<div class="meta">近 7 天日均 1,240</div></td>
+      <td class="st go">生效中<div class="sub"><span class="blk">上限拦截 40</span></div></td>
+      <td>运营01</td>
+      <td class="ops"><span class="a1">暂停</span><span>编辑</span><span>数据</span><span>⋯</span></td>
+    </tr>
+    <tr>
+      <td>破产后 2 小时未回</td>
+      <td><div class="nm" title="创建 运营02 · 9/08 11:30 ／ 最后修改 运营02 · 10/08 14:20">破产回流提醒</div><div class="meta">#44 · 营销</div></td>
+      <td><span class="ell" title="金幣用完了？回到遊戲領取補給金幣！">回來領補給金幣！</span></td>
+      <td class="r">50</td>
+      <td>触发的玩家<div class="meta">不限群组</div><div class="meta">排除 VIP 名单</div></td>
+      <td class="r">今天 100<div class="meta">近 7 天日均 160</div></td>
+      <td class="st go">生效中<div class="sub"><span class="blk">上限拦截 36</span></div></td>
+      <td>运营02</td>
+      <td class="ops"><span class="a1">暂停</span><span>编辑</span><span>数据</span><span>⋯</span></td>
+    </tr>
+  </table>
+</div></div>
+<script src="_后台框.js"></script>
+</body>
+</html>

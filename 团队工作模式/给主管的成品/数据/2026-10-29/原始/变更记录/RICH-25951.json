@@ -1,0 +1,146 @@
+{
+ "_存法": "MCP 结果直接返回在对话里，用脚本存下。只留每条记录的 id、作者姓名、时间、改了哪个字段和前后值；头像、邮箱、accountId 去掉，描述正文的前后全文写成（略）。",
+ "issues": {
+  "nodes": [
+   {
+    "key": "RICH-25951",
+    "changelog": {
+     "startAt": 0,
+     "maxResults": 9,
+     "total": 9,
+     "histories": [
+      {
+       "id": "467594",
+       "author": {
+        "displayName": "Shuocheng Zhang(张硕成)"
+       },
+       "created": "2026-10-29T16:33:48.010+0800",
+       "items": [
+        {
+         "field": "reporter",
+         "fromString": "Shuocheng Zhang(张硕成)",
+         "toString": "Claire Tsai(蔡韋汝)"
+        }
+       ]
+      },
+      {
+       "id": "467593",
+       "author": {
+        "displayName": "Shuocheng Zhang(张硕成)"
+       },
+       "created": "2026-10-29T16:33:14.006+0800",
+       "items": [
+        {
+         "field": "assignee",
+         "fromString": "Shuocheng Zhang(张硕成)",
+         "toString": "Fury Cui(崔峰龙)"
+        }
+       ]
+      },
+      {
+       "id": "467592",
+       "author": {
+        "displayName": "Shuocheng Zhang(张硕成)"
+       },
+       "created": "2026-10-29T16:32:57.397+0800",
+       "items": [
+        {
+         "field": "Serial number",
+         "fromString": "11",
+         "toString": "20"
+        }
+       ]
+      },
+      {
+       "id": "467591",
+       "author": {
+        "displayName": "Shuocheng Zhang(张硕成)"
+       },
+       "created": "2026-10-29T16:32:44.995+0800",
+       "items": [
+        {
+         "field": "labels",
+         "fromString": "form form-37",
+         "toString": "form form-37 待營運確認"
+        }
+       ]
+      },
+      {
+       "id": "467580",
+       "author": {
+        "displayName": "Shuocheng Zhang(张硕成)"
+       },
+       "created": "2026-10-29T16:30:05.572+0800",
+       "items": [
+        {
+         "field": "description",
+         "fromString": "（略）",
+         "toString": "（略）"
+        }
+       ]
+      },
+      {
+       "id": "467556",
+       "author": {
+        "displayName": "Shuocheng Zhang(张硕成)"
+       },
+       "created": "2026-10-29T16:24:43.136+0800",
+       "items": [
+        {
+         "field": "Attachment",
+         "fromString": null,
+         "toString": "現況點圖片無法放大.mp4"
+        }
+       ]
+      },
+      {
+       "id": "467551",
+       "author": {
+        "displayName": "Shuocheng Zhang(张硕成)"
+       },
+       "created": "2026-10-29T16:23:55.632+0800",
+       "items": [
+        {
+         "field": "Attachment",
+         "fromString": null,
+         "toString": "Record_2026-08-31-21-10-45.mp4"
+        }
+       ]
+      },
+      {
+       "id": "467537",
+       "author": {
+        "displayName": "Shuocheng Zhang(张硕成)"
+       },
+       "created": "2026-10-29T16:22:58.033+0800",
+       "items": [
+        {
+         "field": "description",
+         "fromString": "（略）",
+         "toString": "（略）"
+        }
+       ]
+      },
+      {
+       "id": "467523",
+       "author": {
+        "displayName": "Shuocheng Zhang(张硕成)"
+       },
+       "created": "2026-10-29T16:18:58.852+0800",
+       "items": [
+        {
+         "field": "Link",
+         "fromString": null,
+         "toString": "This work item clones RICH-25358"
+        }
+       ]
+      }
+     ]
+    },
+    "fields": {
+     "summary": "客端-線上客服，諮詢視窗的照片要可點圖放大-Part3"
+    }
+   }
+  ]
+ }
+}

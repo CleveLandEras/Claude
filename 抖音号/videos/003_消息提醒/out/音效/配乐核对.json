@@ -1,0 +1,712 @@
+{
+ "mix": {
+  "file": "/Users/decheng.huang/Documents/dy/studio/public/003/mix.wav",
+  "sr": 48000,
+  "samples": 2937600,
+  "seconds": 61.2,
+  "I": -14.0,
+  "LRA": 6.7,
+  "TP": -2.2,
+  "loudnorm_I": -14.02,
+  "loudnorm_TP": -2.23,
+  "limiter_min_db": -4.1,
+  "phone_I": -16.7,
+  "I_first15": -12.8,
+  "first15_minus_all": 1.2,
+  "ride_db": -3.24,
+  "ride_steps": [
+   [
+    0.0,
+    3.3
+   ],
+   [
+    -2.88,
+    1.7
+   ],
+   [
+    -3.24,
+    1.5
+   ]
+  ]
+ },
+ "music": {
+  "file": "/Users/decheng.huang/Documents/dy/studio/public/003/music.wav",
+  "I": -16.7,
+  "TP": -1.2,
+  "sfx_in_mix_I": -12.8,
+  "rel_to_sfx_LU": -3.9,
+  "bands": {
+   "20–200 Hz": 31.9,
+   "200–2000 Hz": 68.1,
+   "1000–4000 Hz": 3.4,
+   "2000–20000 Hz": 0.0
+  },
+  "sections_M_median": {
+   "A 钩子": -17.6,
+   "A' 计数": -16.9,
+   "T 标题卡": -16.5,
+   "B1 全开": -15.9,
+   "B2 全关": -22.4,
+   "R 推镜头": -13.4,
+   "C 先分开": -17.1,
+   "C2 拉回": -15.3,
+   "D 金句": -19.4,
+   "E 清单": -16.9,
+   "F 结尾": -22.4
+  },
+  "notes": 299
+ },
+ "key_margin": {
+  "median": 12.0,
+  "rows": [
+   {
+    "t": 0.3,
+    "label": "手机震一下（拼单立减，计数 1；8 帧）",
+    "sfx_M": -11.7,
+    "music_M": -21.3,
+    "margin": 9.6
+   },
+   {
+    "t": 0.3,
+    "label": "提示音：拼单立减",
+    "sfx_M": -11.7,
+    "music_M": -21.3,
+    "margin": 9.6
+   },
+   {
+    "t": 0.88,
+    "label": "手机震两下（工作群（37），计数 2；8 帧）",
+    "sfx_M": -11.2,
+    "music_M": -21.3,
+    "margin": 10.1
+   },
+   {
+    "t": 0.88,
+    "label": "提示音：工作群（叮咚）",
+    "sfx_M": -11.2,
+    "music_M": -21.3,
+    "margin": 10.1
+   },
+   {
+    "t": 2.6,
+    "label": "手机震两下（热榜第一，计数 3；8 帧）",
+    "sfx_M": -13.1,
+    "music_M": -23.5,
+    "margin": 10.4
+   },
+   {
+    "t": 2.6,
+    "label": "提示音：热榜第一",
+    "sfx_M": -13.1,
+    "music_M": -23.5,
+    "margin": 10.4
+   },
+   {
+    "t": 7.55,
+    "label": "手机又震（8 帧里三下，计数 4）",
+    "sfx_M": -12.3,
+    "music_M": -27.5,
+    "margin": 15.2
+   },
+   {
+    "t": 7.55,
+    "label": "提示音：又一条推送",
+    "sfx_M": -12.3,
+    "music_M": -27.5,
+    "margin": 15.2
+   },
+   {
+    "t": 9.4,
+    "label": "120：横幅全部震散（3 帧）",
+    "sfx_M": -11.0,
+    "music_M": -17.9,
+    "margin": 6.9
+   },
+   {
+    "t": 10.6,
+    "label": "转场：标题卡“同一天，三种设法”落地",
+    "sfx_M": -15.0,
+    "music_M": -27.7,
+    "margin": 12.7
+   },
+   {
+    "t": 15.4,
+    "label": "小钟走（第 0 分钟）",
+    "sfx_M": -17.8,
+    "music_M": -30.0,
+    "margin": 12.2
+   },
+   {
+    "t": 18.0,
+    "label": "中栏的你一惊",
+    "sfx_M": -9.3,
+    "music_M": -40.3,
+    "margin": 31.0
+   },
+   {
+    "t": 24.28,
+    "label": "广告推送消失（轻噗）",
+    "sfx_M": -9.6,
+    "music_M": -17.9,
+    "margin": 8.3
+   },
+   {
+    "t": 25.73,
+    "label": "置顶：图钉按下",
+    "sfx_M": -12.5,
+    "music_M": -18.4,
+    "margin": 5.9
+   },
+   {
+    "t": 27.12,
+    "label": "静音铃 1",
+    "sfx_M": -11.3,
+    "music_M": -26.1,
+    "margin": 14.8
+   },
+   {
+    "t": 27.32,
+    "label": "静音铃 2",
+    "sfx_M": -11.3,
+    "music_M": -26.8,
+    "margin": 15.5
+   },
+   {
+    "t": 27.52,
+    "label": "静音铃 3",
+    "sfx_M": -12.5,
+    "music_M": -25.8,
+    "margin": 13.3
+   },
+   {
+    "t": 29.25,
+    "label": "盒子开盖（9 点）",
+    "sfx_M": -12.1,
+    "music_M": -19.6,
+    "margin": 7.5
+   },
+   {
+    "t": 29.75,
+    "label": "盒子开盖（15 点）",
+    "sfx_M": -10.4,
+    "music_M": -21.8,
+    "margin": 11.4
+   },
+   {
+    "t": 30.25,
+    "label": "盒子开盖（21 点）",
+    "sfx_M": -12.1,
+    "music_M": -23.9,
+    "margin": 11.8
+   },
+   {
+    "t": 31.75,
+    "label": "工作群“明早 8 点前交表”立刻亮",
+    "sfx_M": -7.0,
+    "music_M": -21.4,
+    "margin": 14.4
+   },
+   {
+    "t": 39.7,
+    "label": "截图快门",
+    "sfx_M": -11.4,
+    "music_M": -31.1,
+    "margin": 19.7
+   },
+   {
+    "t": 58.4,
+    "label": "按钮弹出：工作群",
+    "sfx_M": -10.5,
+    "music_M": -21.6,
+    "margin": 11.1
+   },
+   {
+    "t": 58.6,
+    "label": "按钮弹出：家长群",
+    "sfx_M": -10.1,
+    "music_M": -26.4,
+    "margin": 16.3
+   },
+   {
+    "t": 58.8,
+    "label": "按钮弹出：班级群",
+    "sfx_M": -9.4,
+    "music_M": -33.7,
+    "margin": 24.3
+   },
+   {
+    "t": 59.0,
+    "label": "按钮弹出：亲戚群",
+    "sfx_M": -9.4,
+    "music_M": -37.0,
+    "margin": 27.6
+   }
+  ]
+ },
+ "freeze": {
+  "rms_dbfs": -96.3,
+  "peak_dbfs": -90.3,
+  "before_rms_dbfs": -19.8,
+  "M_max_lufs": -90.1
+ },
+ "harmony": [
+  {
+   "t": 0.3,
+   "label": "拼单立减 A5",
+   "chord": "Dm",
+   "in_chord": true
+  },
+  {
+   "t": 0.38,
+   "label": "拼单立减 D6",
+   "chord": "Dm",
+   "in_chord": true
+  },
+  {
+   "t": 0.88,
+   "label": "工作群 D6",
+   "chord": "Dm",
+   "in_chord": true
+  },
+  {
+   "t": 1.04,
+   "label": "工作群 A5",
+   "chord": "Dm",
+   "in_chord": true
+  },
+  {
+   "t": 2.6,
+   "label": "热榜 F6",
+   "chord": "Bb",
+   "in_chord": true
+  },
+  {
+   "t": 2.69,
+   "label": "热榜 D6",
+   "chord": "Bb",
+   "in_chord": true
+  },
+  {
+   "t": 3.2,
+   "label": "要紧的那条 F5",
+   "chord": "Bb",
+   "in_chord": true
+  },
+  {
+   "t": 4.2,
+   "label": "停在第 23 条 D6",
+   "chord": "Bb",
+   "in_chord": true
+  },
+  {
+   "t": 7.55,
+   "label": "又一条 A5",
+   "chord": "Dm",
+   "in_chord": true
+  },
+  {
+   "t": 7.62,
+   "label": "又一条 D6",
+   "chord": "Dm",
+   "in_chord": true
+  },
+  {
+   "t": 7.69,
+   "label": "又一条 F6",
+   "chord": "Dm",
+   "in_chord": true
+  },
+  {
+   "t": 9.4,
+   "label": "120 A6",
+   "chord": "Dm",
+   "in_chord": true
+  },
+  {
+   "t": 9.6,
+   "label": "120 再闪 A6",
+   "chord": "Dm",
+   "in_chord": true
+  },
+  {
+   "t": 11.08,
+   "label": "标签",
+   "chord": "Dmadd9",
+   "in_chord": true
+  },
+  {
+   "t": 11.28,
+   "label": "标签",
+   "chord": "Dmadd9",
+   "in_chord": true
+  },
+  {
+   "t": 11.48,
+   "label": "标签",
+   "chord": "Dmadd9",
+   "in_chord": true
+  },
+  {
+   "t": 14.55,
+   "label": "读数 +1 A5",
+   "chord": "Dm",
+   "in_chord": true
+  },
+  {
+   "t": 17.23,
+   "label": "交表晚到（闷）D6",
+   "chord": "Dm",
+   "in_chord": true
+  },
+  {
+   "t": 17.39,
+   "label": "交表晚到（闷）A5",
+   "chord": "Dm",
+   "in_chord": true
+  },
+  {
+   "t": 26.2,
+   "label": "置顶的群照常亮 D6",
+   "chord": "D",
+   "in_chord": true
+  },
+  {
+   "t": 26.36,
+   "label": "置顶的群照常亮 A5",
+   "chord": "D",
+   "in_chord": true
+  },
+  {
+   "t": 26.6,
+   "label": "置顶的群照常亮 D6",
+   "chord": "D",
+   "in_chord": true
+  },
+  {
+   "t": 26.76,
+   "label": "置顶的群照常亮 A5",
+   "chord": "D",
+   "in_chord": true
+  },
+  {
+   "t": 27.12,
+   "label": "静音铃 1",
+   "chord": "D",
+   "in_chord": true
+  },
+  {
+   "t": 27.32,
+   "label": "静音铃 2",
+   "chord": "D",
+   "in_chord": true
+  },
+  {
+   "t": 27.52,
+   "label": "静音铃 3",
+   "chord": "Bm",
+   "in_chord": true
+  },
+  {
+   "t": 29.31,
+   "label": "开盖 1",
+   "chord": "D",
+   "in_chord": true
+  },
+  {
+   "t": 29.81,
+   "label": "开盖 2",
+   "chord": "D",
+   "in_chord": true
+  },
+  {
+   "t": 30.31,
+   "label": "开盖 3",
+   "chord": "D",
+   "in_chord": true
+  },
+  {
+   "t": 30.8,
+   "label": "私聊 A5",
+   "chord": "D",
+   "in_chord": true
+  },
+  {
+   "t": 30.92,
+   "label": "私聊 D6",
+   "chord": "D",
+   "in_chord": true
+  },
+  {
+   "t": 31.75,
+   "label": "工作群立刻亮 D6",
+   "chord": "D",
+   "in_chord": true
+  },
+  {
+   "t": 31.91,
+   "label": "工作群立刻亮 A5",
+   "chord": "D",
+   "in_chord": true
+  },
+  {
+   "t": 32.9,
+   "label": "右栏 0 件 A6",
+   "chord": "A",
+   "in_chord": true
+  },
+  {
+   "t": 58.4,
+   "label": "按钮 1",
+   "chord": "Dadd9",
+   "in_chord": true
+  },
+  {
+   "t": 58.6,
+   "label": "按钮 2",
+   "chord": "Dadd9",
+   "in_chord": true
+  },
+  {
+   "t": 58.8,
+   "label": "按钮 3",
+   "chord": "Dadd9",
+   "in_chord": true
+  },
+  {
+   "t": 59.0,
+   "label": "按钮 4",
+   "chord": "Dadd9",
+   "in_chord": true
+  }
+ ],
+ "chords": [
+  [
+   0.0,
+   2.4,
+   "Dm",
+   "A"
+  ],
+  [
+   2.4,
+   4.8,
+   "Bb",
+   "A"
+  ],
+  [
+   4.8,
+   6.0,
+   "Gm",
+   "A"
+  ],
+  [
+   6.0,
+   7.2,
+   "A",
+   "A"
+  ],
+  [
+   7.2,
+   8.2,
+   "Dm",
+   "A"
+  ],
+  [
+   8.2,
+   9.4,
+   "A",
+   "A'"
+  ],
+  [
+   9.4,
+   10.4,
+   "Dm",
+   "A'"
+  ],
+  [
+   10.6,
+   11.8,
+   "Dmadd9",
+   "T"
+  ],
+  [
+   11.8,
+   13.4,
+   "Dm",
+   "B1"
+  ],
+  [
+   13.4,
+   15.4,
+   "Dm",
+   "B2"
+  ],
+  [
+   15.4,
+   17.2,
+   "Bb",
+   "B2"
+  ],
+  [
+   17.2,
+   18.0,
+   "Dm",
+   "B2"
+  ],
+  [
+   18.0,
+   19.0,
+   "A",
+   "B2"
+  ],
+  [
+   19.0,
+   21.6,
+   "Dm",
+   "B2"
+  ],
+  [
+   21.6,
+   22.6,
+   "A7",
+   "R"
+  ],
+  [
+   22.6,
+   23.8,
+   "D",
+   "C"
+  ],
+  [
+   23.8,
+   25.0,
+   "G",
+   "C"
+  ],
+  [
+   25.0,
+   26.2,
+   "A",
+   "C"
+  ],
+  [
+   26.2,
+   27.4,
+   "D",
+   "C"
+  ],
+  [
+   27.4,
+   28.6,
+   "Bm",
+   "C"
+  ],
+  [
+   28.6,
+   29.2,
+   "G",
+   "C"
+  ],
+  [
+   29.2,
+   31.0,
+   "D",
+   "C"
+  ],
+  [
+   31.0,
+   32.2,
+   "D",
+   "C2"
+  ],
+  [
+   32.2,
+   32.8,
+   "G",
+   "C2"
+  ],
+  [
+   32.8,
+   33.6,
+   "A",
+   "C2"
+  ],
+  [
+   33.6,
+   34.6,
+   "Dadd9",
+   "D"
+  ],
+  [
+   34.6,
+   36.6,
+   "Gmaj7",
+   "D"
+  ],
+  [
+   36.6,
+   38.6,
+   "Dadd9",
+   "D"
+  ],
+  [
+   39.85,
+   42.2,
+   "D",
+   "E"
+  ],
+  [
+   42.2,
+   44.6,
+   "Bm",
+   "E"
+  ],
+  [
+   44.6,
+   47.2,
+   "G",
+   "E"
+  ],
+  [
+   47.2,
+   49.6,
+   "D",
+   "E"
+  ],
+  [
+   49.6,
+   52.2,
+   "A",
+   "E"
+  ],
+  [
+   52.2,
+   54.6,
+   "Bm",
+   "E"
+  ],
+  [
+   54.6,
+   57.0,
+   "G",
+   "E"
+  ],
+  [
+   57.0,
+   58.2,
+   "A",
+   "E"
+  ],
+  [
+   58.2,
+   59.5,
+   "Dadd9",
+   "F"
+  ],
+  [
+   59.5,
+   61.2,
+   "Asus4",
+   "F"
+  ]
+ ]
+}

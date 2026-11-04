@@ -1,0 +1,212 @@
+{
+ "_存法": "MCP 结果直接返回在对话里，用脚本存下。只留每条记录的 id、作者姓名、时间、改了哪个字段和前后值；头像、邮箱、accountId 去掉，描述正文的前后全文写成（略）。",
+ "issues": {
+  "nodes": [
+   {
+    "key": "RICH-25827",
+    "changelog": {
+     "startAt": 0,
+     "maxResults": 13,
+     "total": 13,
+     "histories": [
+      {
+       "id": "467595",
+       "author": {
+        "displayName": "Jessica Yang(楊欣潔)"
+       },
+       "created": "2026-10-29T16:37:10.411+0800",
+       "items": [
+        {
+         "field": "Attachment",
+         "fromString": null,
+         "toString": "image-20261029-083356.png"
+        }
+       ]
+      },
+      {
+       "id": "467596",
+       "author": {
+        "displayName": "Jessica Yang(楊欣潔)"
+       },
+       "created": "2026-10-29T16:37:10.056+0800",
+       "items": [
+        {
+         "field": "description",
+         "fromString": "（略）",
+         "toString": "（略）"
+        }
+       ]
+      },
+      {
+       "id": "466944",
+       "author": {
+        "displayName": "Jessica Yang(楊欣潔)"
+       },
+       "created": "2026-10-29T15:17:30.893+0800",
+       "items": [
+        {
+         "field": "Attachment",
+         "fromString": null,
+         "toString": "image-20261029-071727.png"
+        }
+       ]
+      },
+      {
+       "id": "466945",
+       "author": {
+        "displayName": "Jessica Yang(楊欣潔)"
+       },
+       "created": "2026-10-29T15:17:30.603+0800",
+       "items": [
+        {
+         "field": "description",
+         "fromString": "（略）",
+         "toString": "（略）"
+        }
+       ]
+      },
+      {
+       "id": "466943",
+       "author": {
+        "displayName": "Jessica Yang(楊欣潔)"
+       },
+       "created": "2026-10-29T15:16:06.809+0800",
+       "items": [
+        {
+         "field": "description",
+         "fromString": "（略）",
+         "toString": "（略）"
+        }
+       ]
+      },
+      {
+       "id": "465095",
+       "author": {
+        "displayName": "Fury Cui(崔峰龙)"
+       },
+       "created": "2026-10-28T14:33:22.936+0800",
+       "items": [
+        {
+         "field": "Fix Version",
+         "fromString": "08_V52_11.19",
+         "toString": null
+        },
+        {
+         "field": "Fix Version",
+         "fromString": null,
+         "toString": "08_V50_11.5"
+        }
+       ]
+      },
+      {
+       "id": "464876",
+       "author": {
+        "displayName": "Jessica Yang(楊欣潔)"
+       },
+       "created": "2026-10-28T11:37:57.631+0800",
+       "items": [
+        {
+         "field": "description",
+         "fromString": "（略）",
+         "toString": "（略）"
+        }
+       ]
+      },
+      {
+       "id": "464875",
+       "author": {
+        "displayName": "Jessica Yang(楊欣潔)"
+       },
+       "created": "2026-10-28T11:36:34.589+0800",
+       "items": [
+        {
+         "field": "description",
+         "fromString": "（略）",
+         "toString": "（略）"
+        }
+       ]
+      },
+      {
+       "id": "464617",
+       "author": {
+        "displayName": "Fury Cui(崔峰龙)"
+       },
+       "created": "2026-10-28T09:48:16.275+0800",
+       "items": [
+        {
+         "field": "Fix Version",
+         "fromString": "08_V50_11.5",
+         "toString": null
+        },
+        {
+         "field": "Fix Version",
+         "fromString": null,
+         "toString": "08_V52_11.19"
+        }
+       ]
+      },
+      {
+       "id": "464421",
+       "author": {
+        "displayName": "Fury Cui(崔峰龙)"
+       },
+       "created": "2026-10-27T18:42:26.618+0800",
+       "items": [
+        {
+         "field": "assignee",
+         "fromString": "Fury Cui(崔峰龙)",
+         "toString": "Yijie Gu(顾亿颉)"
+        }
+       ]
+      },
+      {
+       "id": "464420",
+       "author": {
+        "displayName": "Fury Cui(崔峰龙)"
+       },
+       "created": "2026-10-27T18:42:16.439+0800",
+       "items": [
+        {
+         "field": "Fix Version",
+         "fromString": null,
+         "toString": "08_V50_11.5"
+        }
+       ]
+      },
+      {
+       "id": "464252",
+       "author": {
+        "displayName": "Fury Cui(崔峰龙)"
+       },
+       "created": "2026-10-27T17:46:35.964+0800",
+       "items": [
+        {
+         "field": "issuetype",
+         "fromString": "Requirement",
+         "toString": "Epic"
+        }
+       ]
+      },
+      {
+       "id": "464212",
+       "author": {
+        "displayName": "Automation for Jira"
+       },
+       "created": "2026-10-27T17:33:26.718+0800",
+       "items": [
+        {
+         "field": "assignee",
+         "fromString": null,
+         "toString": "Fury Cui(崔峰龙)"
+        }
+       ]
+      }
+     ]
+    },
+    "fields": {
+     "summary": "(急單)平台RTP保護功能"
+    }
+   }
+  ]
+ }
+}

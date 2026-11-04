@@ -1,0 +1,4 @@
+.venv-windows/
+build/
+dist/
+输出/

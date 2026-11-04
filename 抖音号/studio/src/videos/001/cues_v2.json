@@ -1,0 +1,40 @@
+{
+  "fps": 30,
+  "bpm": 90,
+  "frames": 345,
+  "aStrikes": [
+    20,
+    60,
+    100,
+    140
+  ],
+  "bPeriod": 120,
+  "bStrikes": [
+    120
+  ],
+  "select": [
+    40,
+    80,
+    120
+  ],
+  "type": {
+    "start": 50,
+    "step": 3,
+    "n": 8
+  },
+  "morph": 148,
+  "scene2": 164,
+  "cells": {
+    "start": 186,
+    "step": 1.4,
+    "n": 32
+  },
+  "scene3": 240,
+  "pick": {
+    "start": 244,
+    "step": 2,
+    "n": 10
+  },
+  "hit": 280,
+  "source": 296
+}

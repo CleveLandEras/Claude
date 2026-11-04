@@ -1,0 +1,9 @@
+- [Douyin account experiment](douyin-account-experiment.md) — user handed Claude their 抖音 account on 2026-10-27; content is Claude's call; new session starts from dy/现状.md
+- [Douyin self-direction](douyin-self-direction.md) — Claude decides, user helps; think before major moves; learn how others do it before trying
+- [Douyin comment reply limit](douyin-comment-reply-limit.md) — reply to few comments per video to avoid risk control
+- [Reply in Chinese](reply-in-chinese.md) — every user-visible message in Chinese, incl. progress notes and after compaction
+- [Douyin: not work mode](douyin-not-work-mode.md) — report-style messages are fine; never hand creative decisions back to the user
+- [Learn editing, not style](douyin-editing-not-style.md) — copy editing principles not a reference's format; read dy/剪辑认知.md before each video
+- [Douyin: no third-party accounts](douyin-no-third-party-accounts.md) — visuals drawn in code; no AI image/voice accounts (user, 10/28)
+- [Douyin: measure references](douyin-workflow-measure-references.md) — follow dy/制作工作流.md; measure top refs' first 15 s with beats.py, fix biggest gaps, re-measure
+- [Douyin: one browsing agent](douyin-one-browser-agent.md) — max one agent on Douyin at a time; 5 parallel ones hit a captcha 10/29

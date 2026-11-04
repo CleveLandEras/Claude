@@ -1,0 +1,115 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>通知跳回验证</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:27px;line-height:1.4;margin:0 0 8px}
+.sub{font-size:16px;color:var(--ink-2);margin:0 0 24px}
+h2{font-family:var(--serif);font-size:20px;margin:44px 0 16px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px}
+.kpi .n{font-size:36px;font-weight:700;line-height:1.1;color:var(--ink)}
+.kpi .n small{font-size:16px;font-weight:600;margin-left:4px;color:var(--ink-2)}
+.kpi .t{font-size:14px;color:var(--ink-2);margin-top:8px}
+.kpi.red .n{color:var(--red)} .kpi.green .n{color:var(--green)}
+.ask{border:2px solid var(--blue);margin-top:14px}
+.ask .h{font-size:15.5px;font-weight:700;margin:0 0 4px} .ask .l{font-size:14.5px;color:var(--ink-2);margin:0 0 12px} .ask .l:last-child{margin:0}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:10px}
+.tag.red{background:var(--red-soft);color:var(--red)} .tag.green{background:var(--green-soft);color:var(--green)}
+.cause .h{font-size:16.5px;font-weight:700;margin:0 0 6px}
+.cause .l{font-size:14.5px;color:var(--ink-2);margin:0}
+.cause .e{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px;margin:10px 0 0}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14px}
+th,td{padding:9px 11px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12.5px;color:var(--muted);font-weight:600;background:var(--ground);white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td.k{color:var(--ink);font-weight:600;white-space:nowrap} td.ok{color:var(--green);white-space:nowrap} td.no{color:var(--red);font-weight:600;white-space:nowrap} td.na{color:var(--muted);white-space:nowrap} td.m{color:var(--ink-2);font-size:13px;min-width:220px}
+.legend{font-size:13px;color:var(--muted);margin:10px 0 0}
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.steps div{counter-increment:s;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 18px;font-size:14.5px;color:var(--ink-2)}
+.steps div::before{content:counter(s);display:block;font-size:22px;font-weight:700;color:var(--accent);margin-bottom:4px}
+.steps b{color:var(--ink)}
+ul.s{margin:0;padding-left:18px;color:var(--ink-2);font-size:14.5px} ul.s li{margin:4px 0}
+.links{font-size:13px;color:var(--muted);margin-top:40px} a{color:var(--accent)}
+code{font-size:13px;background:var(--gray-soft);padding:1px 5px;border-radius:3px}
+@media (max-width:720px){.wrap{padding:28px 16px 64px}.g2,.g3,.steps{grid-template-columns:1fr}h1{font-size:22px}}
+</style></head><body><div class="wrap">
+
+<p class="meta">消息助手 · 技术验证 · 2026-11-02 · 依据：手机系统日志、界面文字读取、截图（我已逐条核对，原始记录见文末证据文件夹）</p>
+<h1>跳回原应用：能（在 2 个应用上验证）。三星 Galaxy A54（SM-A5460）、安卓 16（One UI 8.5）上，测试应用和手机自带的三星日历，A、B 两种做法都落到和直接点原通知同一页</h1>
+<p class="sub">你要筛的电商、资讯、游戏类应用，测试期间一条通知都没来，还没测到。常驻要用户配合：这台国行三星默认拦住原型，重启后监听起不来；用户把它的电池设成「不受限制」后，2 次重启都自己恢复了。</p>
+
+<div class="grid g3">
+  <div class="card kpi green"><div class="n">16<small>／16</small></div><div class="t">次点开都落到正确页：测试应用、三星日历各 8 次（A、B 各 4 种情况：马上点、过 1 分钟、过 10 分钟、原应用被划掉后）</div></div>
+  <div class="card kpi"><div class="n">0.01<small>秒</small></div><div class="t">不压制时原通知只响这么久（3 次测量）：我们收起它后，系统随即停掉了声音</div></div>
+  <div class="card kpi"><div class="n">2<small>／2</small></div><div class="t">次重启在电池设成「不受限制」后都自己恢复；默认设置下 3 次重启都没恢复</div></div>
+</div>
+
+<div class="card ask">
+  <p class="h">这次没有要你做的事。做正式产品前还要先验 5 项</p>
+  <p class="l">要筛的真实应用的点击入口 · 各品牌能不能常驻 · 进程被杀时不丢通知 · 勿扰时放行我们自己的推送 · 省电休眠下批次定时准不准（详见第 04 节）</p>
+</div>
+
+<h2><span class="no">01</span>四件事：读到、拦下、跳回都通过；常驻在默认设置下重启不通过，用户放开限制后通过</h2>
+<div class="tw"><table>
+<tr><th>要验证的</th><th>测试应用 A</th><th>测试应用 B</th><th>三星日历 A</th><th>三星日历 B</th><th>短信</th><th>微信</th><th>说明</th></tr>
+<tr><td class="k">1 能读到</td><td class="ok">通过</td><td class="ok">通过</td><td class="ok">通过</td><td class="ok">通过</td><td class="na">没测</td><td class="na">没测</td><td class="m">应用名、标题、正文、发出时间都读到</td></tr>
+<tr><td class="k">2 能拦下</td><td class="ok">通过</td><td class="ok">通过</td><td class="ok">通过</td><td class="ok">通过</td><td class="na">没测</td><td class="na">没测</td><td class="m">原通知发出后 0.23～0.36 秒被收起</td></tr>
+<tr><td class="k">3 重推后马上点</td><td class="ok">通过</td><td class="ok">通过</td><td class="ok">通过</td><td class="ok">通过</td><td class="na">没测</td><td class="na">没测</td><td class="m">测试应用落到对应编号的详情页；日历落到对应日程的详情页</td></tr>
+<tr><td class="k">　收起后过 1 分钟再点</td><td class="ok">通过</td><td class="ok">通过</td><td class="ok">通过</td><td class="ok">通过</td><td class="na">没测</td><td class="na">没测</td><td class="m">日历实测在收起后约 1.5 分钟点</td></tr>
+<tr><td class="k">　收起后过 10 分钟再点</td><td class="ok">通过</td><td class="ok">通过</td><td class="ok">通过</td><td class="ok">通过</td><td class="na">没测</td><td class="na">没测</td><td class="m">日历实测在收起后约 11 分钟点</td></tr>
+<tr><td class="k">　原应用被划掉后再点</td><td class="ok">通过</td><td class="ok">通过</td><td class="ok">通过</td><td class="ok">通过</td><td class="na">没测</td><td class="na">没测</td><td class="m">划掉后进程已不在，系统里的入口还在，点开会重新拉起应用。日历两个日程各自落到自己的页，没有串台；同一条入口先后用了 3 次都有效</td></tr>
+<tr><td class="k">4 常驻：切到别的应用</td><td class="ok">通过</td><td class="ok">通过</td><td class="na">没测</td><td class="na">没测</td><td class="na">没测</td><td class="na">没测</td><td class="m">停在「设置」页 1 分钟后照常收到</td></tr>
+<tr><td class="k">　锁屏 30 分钟</td><td class="ok">通过</td><td class="ok">通过</td><td class="na">没测</td><td class="na">没测</td><td class="na">没测</td><td class="na">没测</td><td class="m">灭屏并强制省电休眠 31 分钟，进程没换，新通知 0.38 秒收到；但另一次灭屏约 18 分钟时进程被杀，3 秒后自动重连，攒着的通知丢了（见第 03 节）</td></tr>
+<tr><td class="k">　重启手机（默认设置）</td><td class="no">不通过</td><td class="no">不通过</td><td class="na">没测</td><td class="na">没测</td><td class="na">没测</td><td class="na">没测</td><td class="m">3 次重启都没自己恢复（见第 03 节）</td></tr>
+<tr><td class="k">　重启手机（电池设为不受限制）</td><td class="ok">通过</td><td class="ok">通过</td><td class="na">没测</td><td class="na">没测</td><td class="na">没测</td><td class="na">没测</td><td class="m">2 次重启都自己恢复，新通知 0.26～0.27 秒收到并收起</td></tr>
+</table></div>
+<p class="legend">「通过」＝点我们重推的通知后，前台页面和屏幕上的内容（编号、日程名）与直接点原通知一致。短信、微信没测：你说「微信和短信没那么重要，本身微信消息一般来说不需要筛选」，也没安排插卡和微信号。常驻几行测的是监听服务本身，和通知来自哪个应用无关，所以只用测试应用（和系统 shell 发的通知）测。A、B 在测到的情况里结果完全一样；正式产品暂按 B（先进我们的透明页再转发原入口）：多一步，但能记下用户点了哪条，入口失效时还能退回打开原应用。可推翻。</p>
+
+<h2><span class="no">02</span>原通知先响一声：把原应用的渠道设成静音有效；开勿扰会连我们的推送一起静音</h2>
+<div class="grid g3">
+  <div class="card cause"><span class="tag green">已测 3 次 · 不压制</span><p class="h">原通知只响 0.008～0.010 秒</p><p class="l">系统决定响铃后 0.015～0.025 秒，我们就收到并收起了原通知；声音约 0.5 秒后才开始播放，开始后约 0.01 秒，系统因为通知已被收起而停掉声音。我们重推的每次都完整响约 2.2 秒。</p><p class="e">震动：系统判定要震，但震动记录里没有这几次，推断没震（三星默认响铃时不震动）。亮屏：锁屏 31 分钟时来的那条（系统 shell 发出）没有点亮屏幕；测试应用的通知在灭屏时没测成。</p></div>
+  <div class="card cause"><span class="tag red">已测 · a 开勿扰</span><p class="h">原通知不响，我们重推的也不响</p><p class="l">原型请求系统打开勿扰（只允许重要打扰）后，原通知和我们重推的都被系统判为不响，也都没有声音播放记录。</p><p class="e">要让我们的推送照常响，得把原型设成勿扰的例外，这个没测（见第 04 节）。</p></div>
+  <div class="card cause"><span class="tag green">已测 · b 渠道静音</span><p class="h">原通知不响，我们重推的照常响</p><p class="l">测试应用发到一个本来就是静音的渠道，系统看到的效果和用户把它设成静音相同：原通知没有任何响铃判定，我们重推的完整响约 2.2 秒。</p><p class="e">代价：用户要逐个应用去设。</p></div>
+</div>
+<p class="legend">做正式产品要「先收起，后判断」：0.01 秒的前提是收到就收起。如果让 AI 先判断再收起，判断期间原通知会响出来。</p>
+
+<h2><span class="no">03</span>常驻有两个实打实的风险，都来自三星自己的后台管理</h2>
+<div class="grid g2">
+  <div class="card cause"><p class="h">默认设置下重启后起不来，用户设「不受限制」后能恢复</p><p class="l">你把原型的电池设成「不受限制」后，又重启了 2 次，开机后系统都自己把原型拉起来连上了。只打开一次原型不够：第 3 次重启前刚打开过，照样被强行停止。默认设置下 3 次重启都没自己恢复。开机时系统去连监听服务，先是找不到服务（手机还没解锁）；第 2 次重启时，系统解锁后又连了一次，原型刚启动 0.16 秒就被三星后台管理强行停止，第 3 次也有同样的强行停止记录。原型自己请求重连、用户打开应用，都没让它连上。</p><p class="e">日志原文：「Unable to start service … not found」「Force stopping com.dk.msgrelay … MARs #2」「isRestricted by MARs! … type : bindService」。第 1 次重启只记到找不到服务，没查强行停止。默认设置下唯一连上的一次，是打开原型后又重装触发的，真实用户不会有重装这一步。用户关开一次通知读取授权能不能恢复，没测。</p></div>
+  <div class="card cause"><p class="h">进程会被杀，攒着的通知会丢</p><p class="l">灭屏约 18 分钟后（12:11），原型进程被直接杀掉（信号 9）。系统 3 秒后自动重连，监听恢复了，但内存里攒着的通知和点击入口全丢了：点击入口只能放在内存里，存不了盘。</p><p class="e">另一次灭屏并强制省电休眠 31 分钟，进程没换，也没断开。</p></div>
+</div>
+
+<h2><span class="no">04</span>要做成正式产品，还缺这 5 项技术验证</h2>
+<div class="steps">
+  <div><b>要筛的真实应用的点击入口</b><br>为什么：只测了测试应用和三星日历。各家造入口的方式不同：可能复用同一个入口，点开串到别的商品或聊天；可能只能用一次；也可能被原应用作废。<br>怎么验：装 5～10 个要筛的应用（电商、短视频、资讯、游戏），各收 3 条，照本次流程测；再用同一应用的两条不同通知，查会不会串台。</div>
+  <div><b>各品牌能不能常驻</b><br>为什么：国行三星已证实默认拦截、设「不受限制」后能恢复（只测了 2 次）；小米、OPPO、vivo、荣耀、华为（非纯血鸿蒙）各有自己的自启动管理，放开的路径各不相同。<br>怎么验：每个品牌一台，测放开限制后重启能否恢复、锁屏一整夜会不会被杀；同时测引导用户完成设置要几步、多少人能做完；放开了还不行，就测「发现断开时引导用户关开一次授权」能否恢复。</div>
+  <div><b>进程被杀时不丢通知</b><br>为什么：攒批期间进程被杀，入口就没了。<br>怎么验：原型加一种「延后提醒」做法：不自己收起，改请系统把原通知延后到批次时间再弹出（安卓接口 snoozeNotification），让系统保管原通知和入口；测进程被杀后能否照常弹出、点开能否跳回、弹出时会不会再响。</div>
+  <div><b>勿扰时放行我们自己的推送</b><br>为什么：开勿扰会连我们一起静音；渠道静音又要用户逐个应用去设。<br>怎么验：测把原型设成勿扰例外后，是否只静音原通知；再测第三种办法：监听服务请求系统暂停所有通知声音（安卓接口 requestListenerHints），由我们自己决定哪条出声。</div>
+  <div><b>省电休眠下批次定时准不准</b><br>为什么：原型用的是普通计时器。实测省电休眠中 30 秒的批次没有按时推，等休眠结束才推出（14:01:43 进队，14:02:45 推出）。<br>怎么验：改用系统闹钟后，在真实拔电、锁屏一整夜的条件下，统计推送时间的偏差。</div>
+</div>
+
+<h2><span class="no">05</span>已替你定，可推翻</h2>
+<ul class="s">
+<li>在这个对话里直接动手，没有另开分发（依据你说的「你自己用吧」「注意token消耗」）。</li>
+<li>不测微信、短信；加测手机自带的三星日历作为真实应用样本（在不同步的本地日历里建了 6 个测试日程，测完都已删）。</li>
+<li>勿扰由原型自己请求系统开关（正式产品也会这么做）；渠道静音用「测试应用发到静音渠道」来模拟用户的设置。两项测完都已恢复原样。</li>
+<li>通知读取授权、电池「不受限制」这类敏感权限和系统设置，留给你在设置里点，我不用命令代改。</li>
+<li>正式产品暂按 B 做法（理由见第 01 节表下）。</li>
+<li>原型里加了「开机后请求系统重连」，在国行三星上实测无效，留着不碍事。</li>
+</ul>
+<p class="legend">手机现状（证据 T10）：原型还装着、电池仍是你设的「不受限制」；监听名单已改回只看测试应用，不会再收起你其他应用的通知；勿扰已关；响铃模式是你切的响铃；测试日程已全部删除。</p>
+
+<p class="links">一条命令编出两个调试包：<code>cd ~/Documents/消息助手 &amp;&amp; ./build.sh</code>　·　源码：<a href="file:///Users/decheng.huang/Documents/%E6%B6%88%E6%81%AF%E5%8A%A9%E6%89%8B/">消息助手文件夹</a>（原型 relay/，测试应用 testapp/，测试脚本 tools/）　·　原始记录：<a href="file:///Users/decheng.huang/claude/_%E5%BA%95%E5%BA%A7/%E4%BB%BB%E5%8A%A1/%E6%B6%88%E6%81%AF%E5%8A%A9%E6%89%8B/2026-11-02_%E9%80%9A%E7%9F%A5%E6%8B%A6%E6%88%AA%E4%B8%8E%E8%B7%B3%E5%9B%9E%E5%8E%9F%E5%BA%94%E7%94%A8%E9%AA%8C%E8%AF%81/%E8%AF%81%E6%8D%AE/">证据文件夹</a>（日志、页面记录、截图）</p>
+</div></body></html>

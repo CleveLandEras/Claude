@@ -1,0 +1,142 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>工作分担分析</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;
+--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;--gray:#6b7078;--gray-soft:#ecebe8;--green:#2f6b52;--green-soft:#e2efe8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;
+--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;--gray:#9aa0a8;--gray-soft:#24282d;--green:#7dbb9c;--green-soft:#1c3128;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.35;margin:0 0 8px}
+.sub{font-size:16px;color:var(--ink-2);margin:0 0 28px}
+h2{font-family:var(--serif);font-size:20px;margin:48px 0 16px;display:flex;align-items:baseline;gap:12px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em;flex:none}
+h3{font-size:15.5px;margin:26px 0 10px}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px}
+.kpi .n{font-size:38px;font-weight:700;line-height:1.1;color:var(--ink)}
+.kpi .n small{font-size:16px;font-weight:600;margin-left:4px;color:var(--ink-2)}
+.kpi .t{font-size:14.5px;color:var(--ink-2);margin-top:8px}
+.kpi.red .n{color:var(--red)}
+.phase{border-top:4px solid var(--gray)}
+.phase.red{border-top-color:var(--red)} .phase.blue{border-top-color:var(--blue)} .phase.green{border-top-color:var(--green)}
+.phase .d{font-size:13px;color:var(--muted);font-weight:600}
+.phase .h{font-size:16.5px;font-weight:700;margin:4px 0 10px}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:10px}
+.tag.red{background:var(--red-soft);color:var(--red)} .tag.blue{background:var(--blue-soft);color:var(--blue)} .tag.gray{background:var(--gray-soft);color:var(--gray)} .tag.green{background:var(--green-soft);color:var(--green)}
+.kv{font-size:14px;color:var(--ink-2);margin:6px 0}
+.kv b{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:2px}
+.keep{display:flex;flex-wrap:wrap;gap:8px}
+.keep span{background:var(--gray-soft);color:var(--ink-2);font-size:13.5px;font-weight:600;padding:5px 11px;border-radius:4px}
+.keep span.hl{background:var(--blue-soft);color:var(--blue)}
+.cause .h{font-size:16px;font-weight:700;margin:0 0 6px}
+.cause .l{font-size:14.5px;color:var(--ink-2);margin:0 0 12px}
+.cause .e{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px;margin:0}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14px}
+th,td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12.5px;color:var(--muted);font-weight:600;background:var(--ground);white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td.w{color:var(--ink);font-weight:600;white-space:nowrap} td.r{color:var(--ink-2)} td.d{color:var(--muted)}
+.legend{font-size:13px;color:var(--muted);margin:10px 0 0}
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.steps div{counter-increment:s;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 18px;font-size:14px;color:var(--ink-2)}
+.steps div::before{content:counter(s);display:block;font-size:22px;font-weight:700;color:var(--accent);margin-bottom:4px}
+.steps div b{display:block;color:var(--ink);font-size:15px;margin-bottom:4px}
+.steps div i{display:block;font-style:normal;font-size:12.5px;color:var(--muted);margin-top:8px;border-top:1px solid var(--line);padding-top:8px}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:6px 0 4px}
+.flow span{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:5px 10px;font-size:13.5px;font-weight:600}
+.flow span.qa{border-color:var(--blue);color:var(--blue)} .flow span.done{border-color:var(--green);color:var(--green)}
+.flow em{font-style:normal;color:var(--muted)}
+.note{font-size:13.5px;color:var(--ink-2);margin:12px 0 0}
+.note b{color:var(--ink)}
+.inf{font-size:12px;font-weight:700;color:var(--accent);margin-right:6px}
+.links{font-size:13px;color:var(--muted);margin-top:40px;line-height:1.9} a{color:var(--accent)}
+@media (max-width:760px){.wrap{padding:28px 16px 64px}.g3,.g4,.g2,.steps{grid-template-columns:1fr}h1{font-size:23px}}
+</style></head><body><div class="wrap">
+
+<p class="meta">工作分担分析 · 2026-10-29 · 供 Dk 使用 · 依据：崔峰龙 9/3–10/28 的 36 张日报原文，Jira 里他 9/1 以来的版本与负责人改动记录；全部只读，数字我已核实</p>
+<h1>崔峰龙的工作量一半在泰国专案；能交出去的是：整理起草类（约占事项四分之一）给 AI，泰国执行跟进给执行人，拍板留给他；能省多少只有他本人能估</h1>
+<p class="sub">日报只写事项名、几乎不写工时，所以时间比重是按「出现天数」估的；Jira 之外的沟通（Teams 等）看不到。10/29 午复核过两轮，旧版在 _旧版/，过程见「思考笔记_1029_分担分析复核.md」。曾提出「需求入口和排期只靠他一人」，用数据检验后不成立，已撤回。</p>
+
+<div class="grid g3">
+  <div class="card kpi red"><div class="n">31<small>／35 天</small></div><div class="t">有内容的日报里提到泰国专案；这块工作在 Jira 上 9/1 以来只有 1 张单</div></div>
+  <div class="card kpi"><div class="n">83<small>／171</small></div><div class="t">9/1 以来改过版本号的长篇故事中他改过的；顾亿颉 85、于金伶 64，排期是三人共担</div></div>
+  <div class="card kpi"><div class="n">14<small>／36</small></div><div class="t">日报是事后补写的；平均每张 35 字，Story Points 一律填 1</div></div>
+</div>
+
+<!-- 01 -->
+<h2><span class="no">01</span>他的时间：泰国专案几乎天天有，其次是版本排期；会议和季度汇报占剩下的大头</h2>
+<div class="tw"><table>
+<tr><th>工作类别</th><th>出现天数（共 35 天）</th><th>事项数（共 86 项）</th><th>日报里的代表事项</th></tr>
+<tr><td class="w">泰国专案</td><td class="r">31</td><td class="r">45（52%）</td><td class="d">市场研究分析、竞品参考、主流产品金币比例整理、VIP 体系方案、银行价格锚定、金流接入与设定、翻译同步、MOU 确认、同步会与进度会、上线计划、导量计划</td></tr>
+<tr><td class="w">版本排期与插单</td><td class="r">16</td><td class="r">18（21%）</td><td class="d">版本排程、9–11 月排期调整、版本内容调整、临时需求整理、插入需求协调</td></tr>
+<tr><td class="w">会议与会前准备</td><td class="r">8</td><td class="r">10（12%）</td><td class="d">周会、周前会、项目会、周会内容整理与准备</td></tr>
+<tr><td class="w">季度汇报与规划提案</td><td class="r">7</td><td class="r">7（8%）</td><td class="d">短中期规划整理、提案准备、Q3 季度汇报（QBR）报告与 PPT，10/10–10/27 连续出现</td></tr>
+<tr><td class="w">线上问题与 Hotfix</td><td class="r">2</td><td class="r">3</td><td class="d">线上问题跟进、假期遗留问题、hotfix</td></tr>
+<tr><td class="w">其他</td><td class="r">3</td><td class="r">3</td><td class="d">发财树成本拟算、新人 SOP、H5 性能验证</td></tr>
+</table></div>
+<p class="note"><b>按月份看变化</b>　按性质重标（9 月 20 篇日报 51 项、10 月 16 篇 38 项）：能交给 AI 起草的泰国研究类事项（市场、竞品、金币比例、VIP 等级）6 条全在 9 月；10 月以沟通跟进（13 项，34%）和方案设计（8 项，21%）为主；排期类占比从 9 月的 31%（16／51）降到 18%（7／38）。</p>
+<p class="note"><b>只有 4 天写了工时</b>（9/3、9/4、9/7、9/8，共 35.5 小时）：版本排程 12 小时（34%）、泰国专案 9.5 小时（27%）、会议 6 小时（17%）、成本拟算 4 小时、短中期规划 2 小时、新人 SOP 2 小时。其中 9/7 一天版本排程就写了 6 小时。</p>
+
+<!-- 02 -->
+<h2><span class="no">02</span>Jira 上看得到、日报没写细的：营运需求单归他受理，版本排期是三人共担</h2>
+<div class="grid g3">
+  <div class="card cause"><p class="h">版本排期：三人共担</p><p class="l">9/1 以来改过版本号的长篇故事 171 张：顾亿颉 85、崔峰龙 83、于金伶 64（有重叠）。他多在立项时挂首版、批量重排；于金伶逐周顺延和维护版本；顾亿颉建单时自己挂</p><p class="e">开发窗口 14 天、相邻两版重叠，一张单挂两版是设计内的</p></div>
+  <div class="card cause"><p class="h">需求单受理</p><p class="l">营运的需求单自动指派给他，名下 102 张待办。8–10 月每月约三分之一（32%–34%）没转成长篇故事，10 月他忙泰国时也没变多；2025 年建的 35 张从没回复</p><p class="e"><span class="inf">推断</span>没转的多是没人明确说「不做」，不是在排队等他</p></div>
+  <div class="card cause"><p class="h">泰国专案不在 Jira</p><p class="l">日报里几乎天天有，但 Jira 上 9/1 以来只有 1 张相关单；进度、分工、交付物都看不到</p><p class="e">推断：靠会议、文件和即时沟通推进</p></div>
+</div>
+
+<!-- 03 -->
+<h2><span class="no">03</span>判断能不能交出去，用四条标准</h2>
+<p class="note"><b>先说检验结果</b>　你问的是怎么减少他的工作量。我曾怀疑问题在「需求入口和排期只靠他一人」，检验后不成立：排期是三人共担，需求转化率各月稳定、没随他变忙而下降。所以仍按工作量来分。</p>
+<div class="grid g4">
+  <div class="card cause"><p class="h">要他本人拍板？</p><p class="l">优先级取舍、对外合作、方向、方案确认</p><p class="e">是 → 留给他</p></div>
+  <div class="card cause"><p class="h">是整理或起草？</p><p class="l">输入明确（会议、资料、Jira），输出格式固定</p><p class="e">是 → AI 起草，他审</p></div>
+  <div class="card cause"><p class="h">已有人负责？</p><p class="l">团队流程里本来就归别人（版本、线上问题、金流设定）</p><p class="e">是 → 交回对应的人</p></div>
+  <div class="card cause"><p class="h">新人能学着做？</p><p class="l">产品分内、能边做边上手</p><p class="e">是 → 可交给你，要他点头</p></div>
+</div>
+
+<!-- 04 -->
+<h2><span class="no">04</span>逐项看：每一类都能拆出一部分交出去，拍板部分仍在他身上</h2>
+<div class="tw"><table>
+<tr><th>工作</th><th>可交给谁</th><th>交什么、怎么交</th><th>留给他的</th></tr>
+<tr><td class="w">版本排期</td><td class="r">AI；你</td><td class="r">用固定的 Jira 查询每周出「各版本未完成清单、逾期风险」，同时给他、顾亿颉、于金伶用</td><td class="d">立项时挂哪一版、插单取舍</td></tr>
+<tr><td class="w">泰国专案：资料与方案初稿</td><td class="r">AI；你</td><td class="r">市场、竞品、金币比例这类整理只在 9 月调研阶段出现，现在能省的不多；VIP 与银行价格方案的初稿可由你起草</td><td class="d">方案定稿、对外口径</td></tr>
+<tr><td class="w">泰国专案：执行跟进</td><td class="r">对应执行人；协调人</td><td class="r">金流接入与设定交给负责金流的策划（团队里金流需求文档由蒋枚伶写）；线上环境跟进交 QA；翻译同步交翻译人员</td><td class="d">合作 MOU、方向、营运方案确认</td></tr>
+<tr><td class="w">泰国专案：会议与进度</td><td class="r">AI</td><td class="r">同步会、进度会的会前材料与纪要初稿；每周进度汇总</td><td class="d">主持会议、做决定</td></tr>
+<tr><td class="w">周会与会前准备</td><td class="r">AI</td><td class="r">会前材料与纪要初稿（团队已有于金伶做的周会纪要模板）</td><td class="d">参会、发言</td></tr>
+<tr><td class="w">季度汇报与规划提案</td><td class="r">AI；你</td><td class="r">数据汇总、报告与 PPT 初稿</td><td class="d">结论与口径</td></tr>
+<tr><td class="w">线上问题与 Hotfix</td><td class="r">策划组</td><td class="r">按团队现有的「EP 問題處理流程」，线上问题由策划接手、明确负责人</td><td class="d">要改版本时的取舍</td></tr>
+<tr><td class="w">营运需求单受理</td><td class="r">AI；你</td><td class="r">初筛：标出重复、已被别的单做掉、营运已说不用做的，再按类别分组；价值在于给营运明确答复</td><td class="d">决定立项</td></tr>
+<tr><td class="w">写日报</td><td class="r">AI</td><td class="r">按他当天的 Jira 改动和日程自动起草，他确认后提交</td><td class="d">确认内容</td></tr>
+</table></div>
+<p class="note"><span class="inf">推断</span>泰国专案、版本排期、会议与汇报三块合计占日报事项的九成以上（52%、21%、20%），能交出去的是其中的整理、起草和执行部分。日报没写各部分各占多少，所以能省多少时间算不出来，要和他本人对一遍才能估。</p>
+
+<!-- 05 -->
+<h2><span class="no">05</span>如果你要找他谈，可以先提三件事：已覆盖的 7 张、每周版本清单、能交给你的新工作</h2>
+<div class="steps">
+  <div><b>告诉他 7 张已被你的需求覆盖</b>上线后可由他关掉；不增加你的工作，也不需要授权；其中做法不同的两处要和他对齐<i>另 5 张只部分覆盖，要逐张对齐。明细见「主管工作可分担部分_更正版」</i></div>
+  <div><b>每周出一份版本状态清单</b>用固定查询生成各版本未完成、逾期风险，交给他、顾亿颉、于金伶；不碰谁的决定权<i>10/14 的 Jira 汇总已验证可行</i></div>
+  <div><b>请他挑可以交给你的新工作</b>候选：范围外的 12 张单、营运需求单的初筛和答复；都要他点头，如果他不是你的主管，还要你的主管同意<i>12 张里 9 张只读过标题，挑之前要先读完正文</i></div>
+</div>
+<p class="note"><b>看清比例</b>　那 24 张只占他名下 192 张未完成单的八分之一；占他日报一半的泰国专案不在 Jira 里，也不归你定。整理起草类在 9 月、10 月都约占事项四分之一（13／51、10／38），这是上限：QBR 和周会材料由 AI 起草后，他仍要审。</p>
+<div class="card" style="margin-top:14px">
+  <div class="kv"><b>谈之前要先确认</b>他和你是什么关系、哪些事本来归你负责；你拿这份是去接活、去谈话，还是只为了解。能省多少时间，只有他自己能估：日报只有 4 天写了工时。</div>
+</div>
+
+<h3>数据怎么读</h3>
+<div class="keep">
+  <span>日报只写事项名，平均 35 字</span><span>只有 4 天写了工时</span><span>Story Points 一律填 1，不能当工时</span><span>Teams 等沟通看不到</span><span>泰国专案只有日报里的事项名</span>
+</div>
+
+<p class="links">
+原文：<a href="数据/日报分析_1029/崔峰龙_日报原文.json">36 张日报原文</a> · <a href="2026-10-28_团队工作模式.html">团队工作模式</a> · <a href="2026-10-29_团队运转数据.html">团队运转数据</a> · <a href="先看这里.md">先看这里.md</a><br>
+Jira 查询：<code>fixVersion CHANGED BY 崔峰龙 AFTER "2026-09-01"</code>（84）· 同条件换于金伶（227）· 两人交集（32）· <code>assignee CHANGED BY 崔峰龙 AFTER "2026-09-01"</code>（90）· 标题含「泰國／泰国／泰版」且 9/1 后创建（1）
+</p>
+</div></body></html>

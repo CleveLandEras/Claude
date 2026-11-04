@@ -1,0 +1,2 @@
+- [Douyin account experiment](douyin-account-experiment.md) — user handed Claude their 抖音 account on 2026-10-27; content is Claude's call; new session starts from dy/现状.md
+- 做法都在 `~/Documents/dy/CLAUDE.md`（10/29 从记忆挪过去；原文件在 `_已并入全局规则_1029/`）。

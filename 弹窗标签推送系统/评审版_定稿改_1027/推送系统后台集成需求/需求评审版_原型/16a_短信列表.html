@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>16a 短信列表</title>
+<link rel="stylesheet" href="_后台框.css">
+<link rel="stylesheet" href="_弹窗.css">
+<link rel="stylesheet" href="_推送.css">
+<style>.capbar .v b.nlk{color:#2F6FCC;cursor:pointer}.qrow{grid-template-columns:112px minmax(0,1fr) 240px}.qrow>span{white-space:nowrap}table td:first-child{white-space:nowrap}</style>
+<style>td.ops{white-space:nowrap;padding-right:6px}table.rl td .g{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}</style>
+<style>table.rl .sub .pill.on{color:#1F2329;font-weight:500}table.rl .sub .pill::before{content:"";display:inline-block;width:6px;height:6px;margin-right:6px;border-radius:50%;background:#C0C4CC}table.rl .sub .pill.on::before{display:inline-block;background:#409EFF;margin-right:6px}table.rl .sub .pill.pend{color:#1F2329;font-weight:600}table.rl td.ops{text-align:left;color:#2F6FCC}table.rl .ops span{margin-left:8px}table.rl .ops span:first-child{margin-left:0}table.rl .ops .a1{display:inline-block;min-width:26px}table.rl .ops .dots{color:#2F6FCC;letter-spacing:0}.quota .qline{display:flex;align-items:baseline;gap:16px;padding:3px 0;font-size:12.5px;color:#4E5560}.quota .qline>b{min-width:108px;font-weight:600;color:#1F2329;white-space:nowrap}</style>
+</head>
+<body>
+<div class="shot bk" data-page="短信" data-tabs="*短信|操作纪录"><div class="pw">
+  <div class="ttl"><h3>短信</h3><span class="sp"></span><span class="btnp">＋ 新建短信</span></div>
+
+  <div class="capbar">
+    <span class="k">上限与勿扰</span>
+    <span class="v">每人每天上限 <b class="num">1</b> 条</span>
+    <span class="div"></span>
+    <span class="v">勿扰 <b class="num">00:00–08:00</b>，与推播共用，在推播修改</span>
+    <span class="div"></span>
+    <span class="v">今天达到上限 <b class="num nlk">1,240</b> 人</span>
+    <span class="lk">修改</span>
+  </div>
+
+  <div class="quota">
+    <div class="qh"><b>今明两天名额</b><span class="m2">每人每天 1 条，按发送先后占用</span><span class="sp"></span><span class="m2">预计数字更新于 15:30</span><span class="lk">展开逐条 ▸</span></div>
+    <div class="qline"><b>今天 10/21（三）</b><span>条件触发 1 条 · 上限拦截 0 人</span></div>
+    <div class="qline"><b>明天 10/22（四）</b><span>定时 1 条 · 条件触发 1 条（日均 1,120 则，未计入预计）· 预计上限拦截 0 人</span></div>
+  </div>
+
+  <div class="fbar">
+    <span class="inp srch">名称、编号或所属活动</span>
+    <span class="inp" style="width:96px">消息类别<span class="dn">⌵</span></span>
+    <span class="inp" style="width:96px">所属活动<span class="dn">⌵</span></span>
+    <span class="inp" style="width:84px">对象<span class="dn">⌵</span></span>
+    <span class="inp" style="width:84px">创建人<span class="dn">⌵</span></span>
+    <span class="lk" style="margin-left:4px">更多筛选</span>
+  </div>
+  <div class="chips">
+    <span class="c">发送中 <b>0</b></span><span class="c">生效中 <b>1</b></span><span class="c">未开始 <b>1</b></span><span class="c">已暂停 <b>0</b></span><span class="c">草稿 <b>0</b></span><span class="c">已结束 <b>4</b></span>
+    <span class="upd m2">数据更新于 15:30</span>
+  </div>
+
+  <div class="zone">
+    <h4>定时<span class="m2">按下次发送时间排</span></h4>
+    <div class="grp">
+      <table class="rl">
+        <colgroup><col style="width:124px"><col style="width:190px"><col style="width:160px"><col style="width:90px"><col><col style="width:130px"></colgroup>
+        <tr><th>下次发送</th><th>推送</th><th>对象</th><th>每条计</th><th style="text-align:right">发送</th><th></th></tr>
+        <tr><td class="num">10/22 20:00</td><td><div class="nm" title="创建 运营02 · 10/15 10:00 ／ 最后修改 运营02 · 10/18 11:20">秋季排名赛最后一天<span class="id">#42</span></div><div class="sub"><span class="pill pend">未开始</span><span>·</span>秋季排名赛</div></td>
+          <td><div class="g" title="秋季排名赛参与者 · 排除 VIP 名单">秋季排名赛参与者</div><div class="m2">排除 VIP 名单</div></td><td>2 则</td>
+          <td class="kpi m2">未发送</td>
+          <td class="ops"><span class="a1">暂停</span><span>编辑</span><span>数据</span><span class="dots">⋯</span></td></tr>
+      </table>
+      <div class="fold">▸ 草稿与已结束 4 条<span class="m2">草稿 0 · 已结束 4（已发完 4）</span></div>
+    </div>
+  </div>
+
+  <div class="zone">
+    <h4>条件触发<span class="m2">满足触发条件时发送 · 每天封顶则数</span></h4>
+    <div class="grp">
+      <table class="rl">
+        <colgroup><col style="width:124px"><col style="width:190px"><col style="width:160px"><col style="width:90px"><col><col style="width:130px"></colgroup>
+        <tr><th>触发</th><th>推送</th><th>对象</th><th>生效期间</th><th style="text-align:right">今天已用</th><th></th></tr>
+        <tr><td>礼包结束前 6 小时<div class="m2">回流礼包 B · 未购买</div><div class="m2">按玩家各自礼包时间</div></td><td><div class="nm" title="创建 运营01 · 10/02 15:00 ／ 最后修改 运营01 · 10/02 15:00">回流礼包 B 到期提醒<span class="id">#38</span></div><div class="sub"><span class="pill on">生效中</span><span>·</span>回流礼包 B</div></td>
+          <td><div class="g" title="回流 · 排除 VIP 名单">回流</div><div class="m2">排除 VIP 名单</div></td><td class="m">10/13–10/31</td>
+          <td class="kpi"><b class="num">1,240</b>／封顶 2,000 则<div class="m2">近 7 天日均 1,120 则</div></td>
+          <td class="ops"><span class="a1">暂停</span><span>编辑</span><span>数据</span><span class="dots">⋯</span></td></tr>
+      </table>
+      <div class="fold"><span class="m2">草稿与已结束 0 条</span></div>
+    </div>
+  </div>
+</div></div>
+<script src="_后台框.js"></script>
+</body>
+</html>

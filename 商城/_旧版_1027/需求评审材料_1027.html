@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>活动配置工具需求</title>
+<style>
+:root{
+  --bg:#f4f5f7; --card:#fff; --ink:#1f2933; --ink2:#52606d; --ink3:#7b8794;
+  --line:#e1e5ea; --soft:#f7f8fa; --accent:#1f5fa8; --accent-bg:#eef4fb;
+  --p1:#1f5fa8; --p1bg:#e6f0fb;
+  --p2:#2b7a4b; --p2bg:#e4f4ea;
+  --p3:#9a5b00; --p3bg:#fff1d6;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#13161a; --card:#1c2026; --ink:#e8ebef; --ink2:#b6bdc7; --ink3:#8b95a1;
+    --line:#2d343c; --soft:#232930; --accent:#7db4f7; --accent-bg:#1b2a3d;
+    --p1:#7db4f7; --p1bg:#17273b;
+    --p2:#72d199; --p2bg:#15291e;
+    --p3:#f2b862; --p3bg:#2d2512;
+  }
+  .shots img{filter:brightness(.93)}
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.75 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;-webkit-text-size-adjust:100%}
+.wrap{display:grid;grid-template-columns:244px minmax(0,1fr);gap:32px;max-width:1480px;margin:0 auto;padding:32px 32px 80px}
+nav{position:sticky;top:24px;align-self:start;max-height:calc(100vh - 48px);overflow:auto;font-size:14.5px;line-height:1.5}
+nav .nt{font-weight:700;font-size:15px;margin-bottom:4px}
+nav .grp{margin:16px 0 6px;font-size:13px;font-weight:700;padding-left:10px;border-left:4px solid var(--c)}
+nav .grp span{display:block;color:var(--ink3);font-weight:400}
+nav a{display:block;padding:5px 10px;border-left:2px solid var(--line);color:var(--ink2);text-decoration:none}
+nav a:hover{color:var(--accent);border-left-color:var(--accent);background:var(--accent-bg)}
+.g1{--c:var(--p1)}.g2{--c:var(--p2)}.g3{--c:var(--p3)}
+main{min-width:0}
+header.top{margin-bottom:26px}
+header.top h1{font-size:30px;line-height:1.35;margin:0}
+.partband{background:var(--pbg);border:1px solid var(--line);border-left:10px solid var(--pc);border-radius:10px;padding:20px 30px 18px;margin:44px 0 22px;scroll-margin-top:20px}
+.partband .pn{font-size:14px;font-weight:700;color:var(--pc);letter-spacing:.06em}
+.partband .pm{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin:2px 0 0}
+.partband .pm b{font-size:26px;line-height:1.4}
+.partband .pm span{color:var(--ink2);font-size:15px}
+.pt1{--pc:var(--p1);--pbg:var(--p1bg)}.pt2{--pc:var(--p2);--pbg:var(--p2bg)}.pt3{--pc:var(--p3);--pbg:var(--p3bg)}
+section.pg{background:var(--card);border:1px solid var(--line);border-top:5px solid var(--pc);border-radius:12px;padding:26px 40px 38px;margin-bottom:28px;scroll-margin-top:20px}
+.kick{display:flex;align-items:center;flex-wrap:wrap;gap:8px 14px;font-size:14px;color:var(--ink2);margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.kick .pchip{display:inline-block;padding:1px 12px;border-radius:12px;background:var(--pc);color:var(--card);font-size:13.5px;font-weight:700;white-space:nowrap}
+h2{font-size:26px;line-height:1.45;margin:0 0 14px;font-weight:700}
+h3.bk{margin:30px 0 10px;font-size:15px;font-weight:700;color:var(--pc);letter-spacing:.04em}
+h4.rg{margin:18px 0 6px;font-size:15px;font-weight:700;color:var(--ink)}
+h3.bk + h4.rg{margin-top:4px}
+table{border-collapse:collapse;width:100%;font-size:15px;line-height:1.7}
+td{border-bottom:1px solid var(--line);padding:10px 14px;text-align:left;vertical-align:top}
+.shots{display:flex;flex-direction:column;gap:22px;margin:4px 0 6px}
+.shots figure{margin:0}
+.shots img{display:block;max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;background:#fff}
+.shots figcaption{max-width:980px;margin-top:6px;font-size:13.5px;color:var(--ink3);line-height:1.5}
+/* 开屏：结构图 */
+.arch{margin:0 0 8px;container-type:inline-size}
+.arch h2{font-size:21px;line-height:1.4;margin:0 0 12px}
+.frame{border:2px solid var(--ink);border-radius:12px;background:var(--card);padding:16px}
+.flow{display:grid;grid-template-columns:minmax(0,1.2fr) 28px minmax(0,1.1fr) 28px minmax(0,1.25fr) 28px minmax(0,.95fr);align-items:stretch}
+.fcol{background:var(--pbg);border-top:4px solid var(--pc);border-radius:9px;padding:10px 8px 12px;display:flex;flex-direction:column;gap:9px}
+.fcol.mid{--pc:var(--ink2);--pbg:var(--soft)}
+.fch .tier{margin-left:8px;vertical-align:2px}
+.grpgap{margin-top:6px}
+.fch{font-size:16px;font-weight:700;color:var(--pc)}
+.node{display:block;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 9px 9px;color:var(--ink);text-decoration:none;line-height:1.5}
+a.node:hover{border-color:var(--pc)}
+.nm{display:flex;align-items:center;gap:6px;font-size:15.5px;font-weight:700;white-space:nowrap}
+.nm .tier{margin-left:auto}
+.sub{display:flex;flex-wrap:wrap;gap:5px 6px;margin-top:6px}
+.sub a{display:inline-block;background:var(--card);border:1.5px solid var(--pc);border-radius:7px;padding:1px 9px;color:var(--ink);text-decoration:none;font-size:13.5px;line-height:1.6}
+.sub a:hover{background:var(--pc);color:var(--card)}
+.rl{margin:6px 0 0;padding:0;list-style:none;font-size:13.5px;color:var(--ink2);line-height:1.6}
+.rl li{padding:2px 0}
+.tier{font-size:11.5px;font-weight:600;padding:0 7px;border-radius:9px;line-height:18px;white-space:nowrap;border:1px solid var(--ink)}
+.tier.t1{background:var(--ink);color:var(--card)}
+.tier.t2{background:transparent;color:var(--ink)}
+.tier.t3{border:1px dashed var(--ink3);color:var(--ink3)}
+.strip{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;margin-top:14px;padding-top:12px;border-top:1px dashed var(--line)}
+.strip .c{border:1px solid var(--line);border-radius:7px;padding:1px 10px;font-size:13.5px;background:var(--card);line-height:1.6}
+.farrow{display:flex;align-items:center;justify-content:center;font-size:26px;color:var(--ink3)}
+.farrow .av{display:none}
+@media (max-width:1100px){.wrap{grid-template-columns:minmax(0,1fr)}nav{display:none}}
+@container (max-width:880px){
+  .flow{grid-template-columns:minmax(0,1fr)}
+  .farrow{padding:4px 0}.farrow .ah{display:none}.farrow .av{display:inline}
+}
+@media (max-width:700px){
+  .flow{grid-template-columns:minmax(0,1fr)}
+  .farrow{padding:4px 0}.farrow .ah{display:none}.farrow .av{display:inline}
+}
+@media (max-width:700px){
+  .wrap{padding:16px 16px 56px;gap:16px}
+  header.top h1{font-size:24px}
+  section.pg{padding:18px 16px 24px}
+  .partband{padding:14px 16px;margin:32px 0 16px}
+  .partband .pm b{font-size:22px}
+  h2{font-size:22px}
+  td{padding:9px 6px}
+  .frame{padding:10px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav>
+<div class="nt">活动配置工具</div><div class="grp g1">第一部分　入口<span>第 1–3 页</span></div><a href="#p1">1 银行</a><a href="#p2">2 限时活动</a><a href="#p3">3 公告</a><div class="grp g2">第二部分　活动配置<span>第 4–9 页</span></div><a href="#p4">4 活动列表</a><a href="#p5">5 新建活动</a><a href="#p6">6 对象、时间与上限</a><a href="#p7">7 展示、素材与预览</a><a href="#p8">8 审核与上架</a><a href="#p9">9 活动数据</a><div class="grp g3">第三部分　工具与专题页<span>第 10–17 页</span></div><a href="#p10">10 礼包</a><a href="#p11">11 累充</a><a href="#p12">12 满减</a><a href="#p13">13 折扣</a><a href="#p14">14 抽奖</a><a href="#p15">15 团购</a><a href="#p16">16 一元夺宝</a><a href="#p17">17 庆典专题页</a>
+</nav>
+<main>
+<header class="top" id="top">
+  <h1>活动配置工具</h1>
+</header>
+<section class="arch">
+  <h2>整体结构</h2>
+  <div class="frame">
+    <div class="flow">
+      <div class="fcol pt1">
+        <div class="fch">三个入口</div>
+        <a class="node" href="#p1"><div class="nm">银行（商城）<span class="tier t1">必需</span></div><div class="sub"><span style="font-size:13.5px;color:var(--ink2)">新增「储值活动」页签，加现有六个页签</span></div></a>
+        <a class="node" href="#p2"><div class="nm">限时活动<span class="tier t1">必需</span></div><div class="sub"><span style="font-size:13.5px;color:var(--ink2)">游戏活动 · 平台活动</span></div></a>
+        <a class="node" href="#p3"><div class="nm">公告<span class="tier t1">必需</span></div><div class="sub"><span style="font-size:13.5px;color:var(--ink2)">官方 · 活动 · 其他</span></div></a>
+      </div>
+      <div class="farrow"><span class="ah">←</span><span class="av">↑</span></div>
+      <div class="fcol mid">
+        <div class="fch">归属规则<span class="tier t1">必需</span></div>
+        <a class="node" href="#p7"><div class="nm">必须先储值或购买</div><div class="rl">→ 银行</div></a>
+        <a class="node" href="#p7"><div class="nm">指定游戏</div><div class="rl">→ 限时活动 · 游戏活动</div></a>
+        <a class="node" href="#p7"><div class="nm">其余</div><div class="rl">→ 限时活动 · 平台活动</div></a>
+      </div>
+      <div class="farrow"><span class="ah">←</span><span class="av">↑</span></div>
+      <div class="fcol pt2">
+        <div class="fch">活动配置</div>
+        <div class="node"><div class="nm">通用设置<span class="tier t1">必需</span></div>
+          <div class="sub"><a href="#p4">4 活动列表</a><a href="#p5">5 新建活动</a><a href="#p6">6 对象、时间与上限</a><a href="#p7">7 展示、素材与预览</a><a href="#p8">8 审核与上架</a><a href="#p9">9 活动数据</a></div></div>
+      </div>
+      <div class="farrow"><span class="ah">→</span><span class="av">↓</span></div>
+      <div class="fcol pt3">
+        <div class="fch">七个工具</div>
+        <a class="node" href="#p10"><div class="nm">礼包<span class="tier t1">必需</span></div></a>
+        <a class="node" href="#p11"><div class="nm">累充<span class="tier t1">必需</span></div></a>
+        <a class="node" href="#p12"><div class="nm">满减<span class="tier t1">必需</span></div></a>
+        <a class="node" href="#p13"><div class="nm">折扣<span class="tier t1">必需</span></div></a>
+        <a class="node" href="#p14"><div class="nm">抽奖<span class="tier t2">尽量</span></div></a>
+        <a class="node" href="#p15"><div class="nm">团购<span class="tier t3">可选</span></div></a>
+        <a class="node" href="#p16"><div class="nm">一元夺宝<span class="tier t3">可选</span></div></a>
+        <div class="fch grpgap">聚合版式</div>
+        <a class="node" href="#p17"><div class="nm">庆典专题页<span class="tier t2">尽量</span></div></a>
+      </div>
+    </div>
+    <div class="strip"><span class="tier t2">尽量</span><span class="c">曝光位勾选后自动生成</span><span class="c">循环时段</span><span class="c">预估成本与测试账号预览</span></div>
+  </div>
+</section>
+
+<div class="partband pt1" id="part1"><div class="pn">第一部分</div><div class="pm"><b>入口</b><span>第 1–3 页</span></div></div>
+<section class="pg pt1" id="p1">
+  <div class="kick"><span class="pchip">第一部分　入口</span><span class="pos">第 1 页 / 共 17 页</span></div>
+  <h2>银行</h2>
+  <div class="shots"><figure><img src="需求评审材料_图/01_商城_大厅入口.jpg" alt="大厅：左下为银行，右下为限时活动，右上菜单进入公告讯息" style="width:960px"><figcaption>大厅：左下为银行，右下为限时活动，右上菜单进入公告讯息</figcaption></figure><figure><img src="需求评审材料_图/01_商城_储值活动页签.jpg" alt="银行窗口：左侧竖排页签，最上方新增「储值活动」，其右为活动列表和所选活动的版式页" style="width:960px"><figcaption>银行窗口：左侧竖排页签，最上方新增「储值活动」，其右为活动列表和所选活动的版式页</figcaption></figure></div>
+  <h3 class="bk">业务规则</h3>
+  <h4 class="rg">位置与定位</h4><table class="rule"><tr><td>银行（商城）位于大厅左下：银行移到原「好康活動」按钮的位置，底栏原「銀行」按钮移除。</td></tr><tr><td>银行放所有必须先储值或购买才能参与的内容。</td></tr><tr><td>底栏空出的位置放什么，由银行改版决定。</td></tr></table><h4 class="rg">页签</h4><table class="rule"><tr><td>银行沿用现有窗口，左侧竖排页签依次为：储值活动、线上购点、优惠礼包、超值礼包、序号储值、赠礼、我的存折。</td></tr><tr><td>线上购点、优惠礼包、超值礼包、序号储值、赠礼、我的存折是银行现有页签，内容不变；窗口右上的卡别累积额度进度条保留。</td></tr><tr><td>优惠礼包页签下有三个子页签：平台限量、专属礼包、卡别限购。</td></tr><tr><td>打开银行时，有进行中的储值活动则默认显示「储值活动」页签，否则显示「线上购点」。</td></tr></table><h4 class="rg">储值活动页签</h4><table class="rule"><tr><td>「储值活动」页签只放累充、满减、团购、付费抽奖、一元夺宝活动；归属规则见第 7 页。</td></tr><tr><td>页签内左侧为活动列表，按排序权重排列，每项显示「新」「热」角标（可无）、活动名称、剩余时间和红点。</td></tr><tr><td>页签内右侧显示所选活动的版式页，各工具的版式见第 10–16 页。</td></tr></table><h4 class="rg">礼包与折扣的显示位置</h4><table class="rule"><tr><td>礼包按形式显示在现有页签：每日刷新、多选一在线上购点；全服限量、专属、卡别限购、分日领取在优惠礼包的对应子页签；超值礼包在超值礼包页签。</td></tr><tr><td>折扣以「加赠 X%」角标显示在参与的面额与礼包上，沿用现在「336%」「108%」的角标样式。</td></tr></table>
+</section>
+<section class="pg pt1" id="p2">
+  <div class="kick"><span class="pchip">第一部分　入口</span><span class="pos">第 2 页 / 共 17 页</span></div>
+  <h2>限时活动</h2>
+  <div class="shots"><figure><img src="需求评审材料_图/02_限时活动_平台活动.jpg" alt="限时活动「平台活动」页签：左侧活动列表，右侧主视觉大图、活动期间与「立即前往」" style="width:960px"><figcaption>限时活动「平台活动」页签：左侧活动列表，右侧主视觉大图、活动期间与「立即前往」</figcaption></figure><figure><img src="需求评审材料_图/02_限时活动_游戏活动.jpg" alt="限时活动「游戏活动」页签" style="width:960px"><figcaption>限时活动「游戏活动」页签</figcaption></figure><figure><img src="需求评审材料_图/02_限时活动_免费抽奖.jpg" alt="免费抽奖：右侧直接显示抽奖的版式页" style="width:960px"><figcaption>免费抽奖：右侧直接显示抽奖的版式页</figcaption></figure></div>
+  <h3 class="bk">业务规则</h3>
+  <h4 class="rg">位置与定位</h4><table class="rule"><tr><td>限时活动入口位于大厅右下，位置不变。</td></tr><tr><td>限时活动放免费参与、有时限的活动。</td></tr><tr><td>限时活动是一个活动窗口，沿用现有好康面板的左列表与右大图组件。</td></tr></table><h4 class="rg">页签</h4><table class="rule"><tr><td>窗口顶部有两个页签：游戏活动、平台活动。</td></tr><tr><td>打开窗口时，默认显示有红点的页签；两个页签都没有红点时，显示「平台活动」。</td></tr></table><h4 class="rg">左侧活动列表</h4><table class="rule"><tr><td>每项显示「新」「热」角标（可无）、活动名称、剩余时间和红点；剩余时间显示「剩 N 天」，最后一天显示「今日截止」。</td></tr><tr><td>列表按排序权重排列，默认选中第一项。</td></tr><tr><td>列表不设数量上限，超过一屏时可上下滚动。</td></tr></table><h4 class="rg">右侧内容</h4><table class="rule"><tr><td>右侧显示所选活动的主视觉大图；图下由系统显示活动期间，按钮为「立即前往」，点击后跳转到活动页。</td></tr><tr><td>工具配出的免费活动（如免费抽奖），右侧直接显示该工具的版式页。</td></tr><tr><td>活动查询（获奖名单）放在窗口底部。</td></tr></table><h4 class="rg">归属页签</h4><table class="rule"><tr><td>参与条件不含储值或购买、且参与游戏选了「指定游戏」（只在某些游戏内参与）的活动，进入「游戏活动」页签，如排行榜、外赠掉落、游戏挑战、新游戏活动、按游戏类别开放的红包雨、BOSS 战。</td></tr><tr><td>参与条件不含储值或购买、且未选指定游戏的活动，进入「平台活动」页签，如签到、庆典主活动、人数活动、回归、全平台抽奖。</td></tr></table>
+</section>
+<section class="pg pt1" id="p3">
+  <div class="kick"><span class="pchip">第一部分　入口</span><span class="pos">第 3 页 / 共 17 页</span></div>
+  <h2>公告</h2>
+  <div class="shots"><figure><img src="需求评审材料_图/03_公告_右上菜单.jpg" alt="右上菜单中的「公告訊息」" style="width:960px"><figcaption>右上菜单中的「公告訊息」</figcaption></figure><figure><img src="需求评审材料_图/03_公告_活动页签.jpg" alt="公告「活動」页签：左侧日期＋标题列表，右侧正文，正文下有「前往活動」按钮" style="width:960px"><figcaption>公告「活動」页签：左侧日期＋标题列表，右侧正文，正文下有「前往活動」按钮</figcaption></figure><figure><img src="需求评审材料_图/03_公告_官方页签.jpg" alt="公告「官方」页签：右侧阅读区无按钮" style="width:960px"><figcaption>公告「官方」页签：右侧阅读区无按钮</figcaption></figure></div>
+  <h3 class="bk">业务规则</h3>
+  <h4 class="rg">入口与定位</h4><table class="rule"><tr><td>公告入口为右上菜单中的「公告訊息」。</td></tr><tr><td>公告只放信息，不承载玩法。</td></tr></table><h4 class="rg">页签</h4><table class="rule"><tr><td>窗口顶部有三个页签：官方、活动、其他，页签带未读红点。</td></tr><tr><td>三类公告分开，每个页签只列本类公告，不混其他类。</td></tr><tr><td>「官方」放维护、版本更新、规则与条款变更；现有的「系统公告」归入官方。</td></tr><tr><td>「活动」放活动公告；现有的「最新活动」归入活动。</td></tr><tr><td>「其他」放客服、社群、合作等内容。</td></tr></table><h4 class="rg">列表</h4><table class="rule"><tr><td>左侧列表按日期倒序，每行显示日期和标题，未读的公告带红点。</td></tr><tr><td>打开窗口时，默认显示有未读的页签里最新的一条公告。</td></tr></table><h4 class="rg">阅读区</h4><table class="rule"><tr><td>右侧阅读区显示标题、日期、正文，不放主视觉大图。</td></tr><tr><td>「活动」页签的公告，正文下有「前往活动」按钮，点击后跳转到该活动的主入口。</td></tr></table>
+</section>
+<div class="partband pt2" id="part2"><div class="pn">第二部分</div><div class="pm"><b>活动配置</b><span>第 4–9 页</span></div></div>
+<section class="pg pt2" id="p4">
+  <div class="kick"><span class="pchip">第二部分　活动配置</span><span class="pos">第 4 页 / 共 17 页</span></div>
+  <h2>活动列表</h2>
+  <div class="shots"><figure><img src="需求评审材料_图/04_活动列表.jpg" alt="活动列表：状态、储值金额、成本进度和各状态下的操作" style="width:1280px"><figcaption>活动列表：状态、储值金额、成本进度和各状态下的操作</figcaption></figure><figure><img src="需求评审材料_图/04_账号权限.jpg" alt="账号权限：按工具勾选查看、编辑、审核，编辑与审核都含查看" style="width:760px"><figcaption>账号权限：按工具勾选查看、编辑、审核，编辑与审核都含查看</figcaption></figure></div>
+  <h3 class="bk">业务规则</h3>
+  <h4 class="rg">列表</h4><table class="rule"><tr><td>后台新增菜单「活动管理 → 活动配置」，所有工具的活动都在这里管理。</td></tr><tr><td>列表显示每个进行中活动的储值金额，以及成本进度（成本 / 上限）。</td></tr><tr><td>任一活动可「复制为新活动」，带出全部设置，改时间与素材即可再上架。</td></tr></table><h4 class="rg">权限</h4><table class="rule"><tr><td>账号权限分三种：查看、编辑、审核，按工具分别授予。</td></tr><tr><td>编辑和审核都含查看权限。</td></tr><tr><td>编辑与审核可同时授予一人，但创建人或修改人不能审核自己提交的内容。</td></tr></table>
+</section>
+<section class="pg pt2" id="p5">
+  <div class="kick"><span class="pchip">第二部分　活动配置</span><span class="pos">第 5 页 / 共 17 页</span></div>
+  <h2>新建活动</h2>
+  <div class="shots"><figure><img src="需求评审材料_图/05_新建活动_选工具.jpg" alt="新建活动第 1 步：选工具" style="width:980px"><figcaption>新建活动第 1 步：选工具</figcaption></figure><figure><img src="需求评审材料_图/05_新建活动_基本信息.jpg" alt="新建活动第 2 步：基本信息" style="width:980px"><figcaption>新建活动第 2 步：基本信息</figcaption></figure></div>
+  <h3 class="bk">业务规则</h3>
+  <h4 class="rg">新建流程</h4><table class="rule"><tr><td>活动按九步新建：选工具、基本信息、工具规则、对象与时间、预算与上限、展示与素材、预览、提交审核、排程上架。</td></tr><tr><td>每个活动选七个工具中的一个：礼包、累充、满减、折扣、抽奖、团购、一元夺宝；各工具的规则见第 10–16 页。</td></tr></table><h4 class="rg">基本信息</h4><table class="rule"><tr><td>活动名称必填，支持繁中、英文、越南文三种语言。</td></tr><tr><td>活动说明里的规则摘要由系统按工具规则自动生成，包含时间、档位、奖励、限购；摘要下方可补充说明，补充说明支持多语言。</td></tr><tr><td>活动编号由系统生成。</td></tr><tr><td>点数异动科目由系统按「工具名-活动编号」自动生成。</td></tr></table>
+</section>
+<section class="pg pt2" id="p6">
+  <div class="kick"><span class="pchip">第二部分　活动配置</span><span class="pos">第 6 页 / 共 17 页</span></div>
+  <h2>对象、时间与上限</h2>
+  <div class="shots"><figure><img src="需求评审材料_图/06_时间.jpg" alt="时间：开始、结束时间与领奖截止" style="width:980px"><figcaption>时间：开始、结束时间与领奖截止</figcaption></figure><figure><img src="需求评审材料_图/06_对象与平台.jpg" alt="对象、平台与参与游戏" style="width:980px"><figcaption>对象、平台与参与游戏</figcaption></figure><figure><img src="需求评审材料_图/06_预算与上限.jpg" alt="预算与上限，以及奖励折算" style="width:980px"><figcaption>预算与上限，以及奖励折算</figcaption></figure></div>
+  <h3 class="bk">业务规则</h3>
+  <h4 class="rg">时间</h4><table class="rule"><tr><td>开始时间和结束时间必填；系统按 UTC 存储，界面按所在时区显示。</td></tr><tr><td>领奖截止：活动结束后 N 天内可领取未领的奖励，默认 3 天；过期未领的奖励不补发。</td></tr></table><h4 class="rg">对象与平台</h4><table class="rule"><tr><td>可参与对象从全部玩家、标签群组、卡别、指定会员名单（上传）中选择；判定沿用现有「活动分组与可参与对象」。</td></tr><tr><td>排除对象从黑名单、VIP 名单、指定名单、等级区间中选择；排除优先于可参与。</td></tr><tr><td>同一活动分组内只派发一次，沿用现有规则。</td></tr><tr><td>平台可多选：H5、iOS、GP、APK、WEB。</td></tr></table><h4 class="rg">参与游戏</h4><table class="rule"><tr><td>参与游戏分全部游戏（默认）和指定游戏两种；指定游戏可多选，也可按游戏类别选：转轮、柏青、鱼机、棋牌、视讯。</td></tr><tr><td>选了指定游戏的活动，主入口按第 7 页的归属规则判断。</td></tr></table><h4 class="rg">预算与上限</h4><table class="rule"><tr><td>活动总成本上限按奖励折算老币计；成本达到上限时，活动自动结束，并通知创建人和审核人。</td></tr><tr><td>奖励折算老币的方式：老币按面值；道具按道具设定里的价值（老币）；没有价值的道具，在活动里填写折算值，否则不能提交审核。</td></tr><tr><td>每人上限为每人在本活动可得奖励的折算上限。</td></tr><tr><td></td></tr></table>
+</section>
+<section class="pg pt2" id="p7">
+  <div class="kick"><span class="pchip">第二部分　活动配置</span><span class="pos">第 7 页 / 共 17 页</span></div>
+  <h2>展示、素材与预览</h2>
+  <div class="shots"><figure><img src="需求评审材料_图/07_展示与素材.jpg" alt="展示与素材：主入口、页签标签、排序权重、曝光位、版式与主视觉图" style="width:980px"><figcaption>展示与素材：主入口、页签标签、排序权重、曝光位、版式与主视觉图</figcaption></figure><figure><img src="需求评审材料_图/07_主入口判断.jpg" alt="主入口的判断顺序" style="width:980px"><figcaption>主入口的判断顺序</figcaption></figure><figure><img src="需求评审材料_图/07_后台预览.jpg" alt="后台预览：竖版与横版的玩家端页面，可切换语言" style="width:980px"><figcaption>后台预览：竖版与横版的玩家端页面，可切换语言</figcaption></figure></div>
+  <h3 class="bk">业务规则</h3>
+  <h4 class="rg">主入口</h4><table class="rule"><tr><td>每个活动只有一个主入口，由系统按活动配置判断，运营不手选。</td></tr><tr><td>必须先储值或购买才能参与的活动，主入口为银行；包括工具为礼包、累充、满减、折扣、团购、一元夺宝的活动，以及抽奖券只能靠储值、购买获得的抽奖活动。</td></tr><tr><td>礼包、折扣显示在银行现有页签的商品上，累充、满减、团购、付费抽奖、一元夺宝进「储值活动」页签。</td></tr><tr><td>只把「本期储值过」作为参与资格的押注、登入、任务等活动，不算必须先储值或购买，按下面两条判断。</td></tr><tr><td>活动内可选的付费道具（如可选购买的加速包）不算，活动本身按核心玩法判断。</td></tr><tr><td>「买一次、之后每天领」（如回馈卡、7 日礼）按购买处理，主入口为银行。</td></tr><tr><td>不属于银行、且参与游戏选了「指定游戏」的活动，主入口为限时活动 · 游戏活动。</td></tr><tr><td>其余活动的主入口为限时活动 · 平台活动。</td></tr></table><h4 class="rg">页签标签与排序</h4><table class="rule"><tr><td>页签标签统一为储值、押注、登入、分享、回归、其他六个，取代现有好康、限时活动、热门资讯三套标签；标签只用于后台排序、筛选与统计，不在玩家界面显示。</td></tr><tr><td>每个活动另可勾选「新」「热」角标。</td></tr><tr><td>排序权重为整数，大的在前；权重相同时，开始时间晚的在前。</td></tr></table><h4 class="rg">曝光位</h4><table class="rule"><tr><td>曝光位只做引流，点击后都跳转到活动的主入口。</td></tr><tr><td>活动会出现在大厅 Banner、自动弹窗、推播（发到玩家手机通知栏的消息）、公告、游戏内悬浮的跳转目标里，由各模块自行配置。</td></tr></table><h4 class="rg">素材</h4><table class="rule"><tr><td>每个工具提供固定版式：抽奖按形式分转盘、刮卡、开箱三套，其余工具各 1–2 套，见第 10–16 页。</td></tr><tr><td>时间、档位、奖励、进度、按钮由系统按配置渲染，不画在图里。</td></tr><tr><td>主视觉图上传 1 张主图，支持 spine；主题色可不填。</td></tr></table><h4 class="rg">预览</h4><table class="rule"><tr><td>后台预览按所选版式渲染玩家端页面，竖版、横版各一，可切换语言。</td></tr><tr><td>提交审核前，至少预览一次。</td></tr></table><h4 class="rg">现有玩法</h4><table class="rule"><tr><td>扭蛋机、每日补给、红包夺宝、抽奖大厅、BOSS 战、红包雨等现有玩法保留各自后台的规则配置，只接入展示设置（主入口判断、页签标签、排序、曝光位），与新工具活动出现在同一套入口里。</td></tr></table>
+</section>
+<section class="pg pt2" id="p8">
+  <div class="kick"><span class="pchip">第二部分　活动配置</span><span class="pos">第 8 页 / 共 17 页</span></div>
+  <h2>审核与上架</h2>
+  <div class="shots"><figure><img src="需求评审材料_图/08_审核页.jpg" alt="提交审核：规则摘要与审核人" style="width:980px"><figcaption>提交审核：规则摘要与审核人</figcaption></figure><figure><img src="需求评审材料_图/08_进行中的活动.jpg" alt="进行中的活动：可修改与不可修改的内容" style="width:980px"><figcaption>进行中的活动：可修改与不可修改的内容</figcaption></figure><figure><img src="需求评审材料_图/08_操作记录.jpg" alt="操作记录" style="width:980px"><figcaption>操作记录</figcaption></figure></div>
+  <h3 class="bk">业务规则</h3>
+  <h4 class="rg">状态</h4><table class="rule"><tr><td>活动状态依次为草稿、待审核、已排程、进行中、已结束；待审核的活动可退回草稿。</td></tr><tr><td>已排程、进行中的活动可下架。</td></tr><tr><td>进行中的活动可修改素材、说明补充，可延长结束时间、提前结束、上调成本上限。</td></tr><tr><td>进行中的活动不可修改工具规则、对象、奖励、开始时间。</td></tr><tr><td>进行中活动的修改要审核；提前结束与下架不需审核，立即生效。</td></tr></table><h4 class="rg">审核</h4><table class="rule"><tr><td>活动上架前，须由另一位有审核权限的人审核通过。</td></tr><tr><td>审核页显示规则摘要。</td></tr></table><h4 class="rg">操作记录</h4><table class="rule"><tr><td>后台记录活动的新建、修改、审核、上下架、提前结束，每条记录含记录人和时间。</td></tr><tr><td>修改记录显示改前与改后。</td></tr></table>
+</section>
+<section class="pg pt2" id="p9">
+  <div class="kick"><span class="pchip">第二部分　活动配置</span><span class="pos">第 9 页 / 共 17 页</span></div>
+  <h2>活动数据</h2>
+  <div class="shots"><figure><img src="需求评审材料_图/09_活动数据.jpg" alt="单个活动的数据页：指标、按日趋势、导出" style="width:980px"><figcaption>单个活动的数据页：指标、按日趋势、导出</figcaption></figure></div>
+  <h3 class="bk">业务规则</h3>
+  <h4 class="rg">数据页</h4><table class="rule"><tr><td>每个活动一张数据页，显示曝光人数、打开人数、参与人数、储值人数、储值金额、发奖成本（折算老币）、储值额 / 成本，并提供按日趋势。</td></tr><tr><td>数据页可导出参与名单和领奖记录。</td></tr></table><h4 class="rg">储值归因</h4><table class="rule"><tr><td>活动期内、在活动页内发起的储值，记为该活动的储值。</td></tr><tr><td>累充类活动的储值，按该活动设定的统计方式计。</td></tr></table>
+</section>
+<div class="partband pt3" id="part3"><div class="pn">第三部分</div><div class="pm"><b>工具与专题页</b><span>第 10–17 页</span></div></div>
+<section class="pg pt3" id="p10">
+  <div class="kick"><span class="pchip">第三部分　工具与专题页</span><span class="pos">第 10 页 / 共 17 页</span></div>
+  <h2>礼包</h2>
+  <div class="shots"><figure><img src="需求评审材料_图/10_礼包_后台配置.jpg" alt="礼包规则：形式、商品与内容、限购、卡别加码" style="width:980px"><figcaption>礼包规则：形式、商品与内容、限购、卡别加码</figcaption></figure><figure><img src="需求评审材料_图/10_礼包_分日领取配置.jpg" alt="分日领取：领取天数与每天的奖励" style="width:980px"><figcaption>分日领取：领取天数与每天的奖励</figcaption></figure><figure><img src="需求评审材料_图/10_礼包_线上购点.jpg" alt="线上购点：每日刷新、三选一的礼包卡" style="width:960px"><figcaption>线上购点：每日刷新、三选一的礼包卡</figcaption></figure><figure><img src="需求评审材料_图/10_礼包_优惠礼包.jpg" alt="优惠礼包：平台限量子页签里的礼包卡" style="width:960px"><figcaption>优惠礼包：平台限量子页签里的礼包卡</figcaption></figure><figure><img src="需求评审材料_图/10_礼包_分日领取页.jpg" alt="分日领取的领取页：第几天、今日奖励、领取按钮" style="width:960px"><figcaption>分日领取的领取页：第几天、今日奖励、领取按钮</figcaption></figure><figure><img src="需求评审材料_图/10_礼包_超值礼包详情页.jpg" alt="超值礼包详情页" style="width:960px"><figcaption>超值礼包详情页</figcaption></figure></div>
+  <h3 class="bk">业务规则</h3>
+  <h4 class="rg">用途</h4><table class="rule"><tr><td>卖一组道具或加赠，统一现有六类礼包：独享、三选一、每日、平台限量、专属、超值。</td></tr></table><h4 class="rg">形式</h4><table class="rule"><tr><td>形式分五种：单包；多选一（2–3 个包选 1）；每日刷新（每日 0 点重置可买次数）；全服限量（总份数售完即止）；分日领取。</td></tr><tr><td>多选一时，玩家每期只能买其中 1 个包，买任一包算 1 次限购。</td></tr></table><h4 class="rg">分日领取</h4><table class="rule"><tr><td>买一次，之后分 N 天领取，N 为 2–30 天；每天的奖励可分别设置。</td></tr><tr><td>购买当天或次日起，玩家每天登录后手动领取，可领时显示红点；当天未领的作废，不补领。</td></tr><tr><td>例：回馈卡（买指定礼包后每天领 4%）、7 日礼（买一次连领 7 天）。</td></tr></table><h4 class="rg">商品与限购</h4><table class="rule"><tr><td>商品从现有储值品项里选价格档；App 内购价格档固定，只能选已有档位。</td></tr><tr><td>内容为道具 × 数量，可设多项，可标「价值 X 老币」。</td></tr><tr><td>限购：每人每期 N 次；全服 N 份，全服限量形式必填。</td></tr><tr><td>首储礼包用限购规则「每人终身 1 次」处理；首储的优先级链（首储 → 生涯限购 → 储优 → 基本品项）不变。</td></tr><tr><td>卡别加码：按卡别设加赠比例，沿用现有卡别加码回馈。</td></tr><tr><td>多选一的限购次数和卡别加码都按活动设置，对各包同样生效。</td></tr></table><h4 class="rg">显示位置</h4><table class="rule"><tr><td>每日刷新、多选一的礼包显示在银行「线上购点」页签。</td></tr><tr><td>全服限量、专属、卡别限购、分日领取的礼包显示在银行「优惠礼包」页签的对应子页签。</td></tr><tr><td>超值礼包显示在银行「超值礼包」页签。</td></tr></table><h4 class="rg">版式</h4><table class="rule"><tr><td>礼包卡沿用银行现有卡片样式：限量、限购次数、倒计时、加赠角标。</td></tr><tr><td>分日领取另有领取页，显示第几天、今日奖励、领取按钮。</td></tr><tr><td>超值礼包详情页用统一模板：主图、内容清单、价格、购买按钮、倒计时；不再为每个包单独做活动页。</td></tr></table><h4 class="rg">现有设定</h4><table class="rule"><tr><td>上线后，礼包类活动改在活动配置里新建；储值活动设定里的独享、三选一、每日、平台限量、专属五类停止新建，已有活动跑到期。</td></tr><tr><td>储值品项与产包设定不变，商品和价格档仍在那里维护。</td></tr></table>
+</section>
+<section class="pg pt3" id="p11">
+  <div class="kick"><span class="pchip">第三部分　工具与专题页</span><span class="pos">第 11 页 / 共 17 页</span></div>
+  <h2>累充</h2>
+  <div class="shots"><figure><img src="需求评审材料_图/11_累充_后台配置.jpg" alt="累充规则：统计方式、储值渠道、档位、领取" style="width:980px"><figcaption>累充规则：统计方式、储值渠道、档位、领取</figcaption></figure><figure><img src="需求评审材料_图/11_累充_玩家版式.jpg" alt="银行「储值活动」页签里的累充版式" style="width:960px"><figcaption>银行「储值活动」页签里的累充版式</figcaption></figure></div>
+  <h3 class="bk">业务规则</h3>
+  <h4 class="rg">用途</h4><table class="rule"><tr><td>储值达到门槛送奖励，如「周五 18:00–24:00 累计储值满 1,000 送 A，满 3,000 送 B」。</td></tr></table><h4 class="rg">统计与渠道</h4><table class="rule"><tr><td>统计方式分两种：活动期累计；每期累计（循环活动每期重置）。</td></tr><tr><td>储值渠道为全部，或指定以下渠道：App 内购、官网、FunPay 全家、MyCard、Gash、iWIN、ibon、游戏绿卡、游e卡。</td></tr></table><h4 class="rg">档位与领取</h4><table class="rule"><tr><td>档位为门槛金额（台币）对应奖励（道具 × 数量），最多 10 档，逐档领取。</td></tr><tr><td>领取方式为达成自动发放或玩家手动领取，默认手动；可领取时显示红点。</td></tr></table><h4 class="rg">版式</h4><table class="rule"><tr><td>版式含进度条（已储值 / 下一档）、档位列表、领取按钮。</td></tr></table><h4 class="rg">现有设定</h4><table class="rule"><tr><td>现有金流活动设定里的「累储单笔」「累储累计」只支持第三方渠道，累充扩为全渠道并接入通用设置；这两类停止新建，已有活动跑到期。</td></tr><tr><td>金流活动设定里的序号活动、礼物卡活动不变。</td></tr></table>
+</section>
+<section class="pg pt3" id="p12">
+  <div class="kick"><span class="pchip">第三部分　工具与专题页</span><span class="pos">第 12 页 / 共 17 页</span></div>
+  <h2>满减</h2>
+  <div class="shots"><figure><img src="需求评审材料_图/12_满减_后台配置.jpg" alt="满减规则：储值渠道、适用商品、档位、每人限次" style="width:980px"><figcaption>满减规则：储值渠道、适用商品、档位、每人限次</figcaption></figure><figure><img src="需求评审材料_图/12_满减_线上购点角标.jpg" alt="线上购点页：面额上的「满 X 送 Y」角标" style="width:960px"><figcaption>线上购点页：面额上的「满 X 送 Y」角标</figcaption></figure><figure><img src="需求评审材料_图/12_满减_储值活动页.jpg" alt="「储值活动」页签里的满减版式：档位与剩余次数" style="width:960px"><figcaption>「储值活动」页签里的满减版式：档位与剩余次数</figcaption></figure></div>
+  <h3 class="bk">业务规则</h3>
+  <h4 class="rg">用途</h4><table class="rule"><tr><td>单笔储值或购买满额就加赠，如「本周末单笔储值满 1,000 加赠 10%」。</td></tr><tr><td>满减只做加赠，不做实付立减。</td></tr></table><h4 class="rg">渠道与商品</h4><table class="rule"><tr><td>储值渠道为全部，或指定以下渠道：App 内购、官网、FunPay 全家、MyCard、Gash、iWIN、ibon、游戏绿卡、游e卡。</td></tr><tr><td>适用商品为全部面额，或指定面额、礼包。</td></tr></table><h4 class="rg">档位与限次</h4><table class="rule"><tr><td>档位为单笔金额门槛（台币）对应加赠，最多 5 档；加赠为加赠比例或固定道具。</td></tr><tr><td>每笔只按达到的最高档给一次。</td></tr><tr><td>每人限次：每期最多 N 次。</td></tr></table><h4 class="rg">版式</h4><table class="rule"><tr><td>银行里对应的面额与礼包上，显示「满 X 送 Y」角标。</td></tr><tr><td>「储值活动」页签列出档位与剩余次数。</td></tr></table><h4 class="rg">和累充、折扣的区别</h4><table class="rule"><tr><td>满减看单笔金额；累充看累计金额；折扣不设门槛，指定商品直接加赠。</td></tr></table>
+</section>
+<section class="pg pt3" id="p13">
+  <div class="kick"><span class="pchip">第三部分　工具与专题页</span><span class="pos">第 13 页 / 共 17 页</span></div>
+  <h2>折扣</h2>
+  <div class="shots"><figure><img src="需求评审材料_图/13_折扣_后台配置.jpg" alt="折扣规则：适用商品、加赠、卡别比例" style="width:980px"><figcaption>折扣规则：适用商品、加赠、卡别比例</figcaption></figure><figure><img src="需求评审材料_图/13_折扣_线上购点角标.jpg" alt="线上购点页：面额上的「加赠 X%」角标与倒计时" style="width:960px"><figcaption>线上购点页：面额上的「加赠 X%」角标与倒计时</figcaption></figure><figure><img src="需求评审材料_图/13_折扣_礼包角标.jpg" alt="优惠礼包页：礼包上的「加赠 X%」角标与倒计时" style="width:960px"><figcaption>优惠礼包页：礼包上的「加赠 X%」角标与倒计时</figcaption></figure></div>
+  <h3 class="bk">业务规则</h3>
+  <h4 class="rg">用途</h4><table class="rule"><tr><td>指定面额或礼包限时多给，如「本周储值 500 档加赠 30%」。</td></tr></table><h4 class="rg">规则</h4><table class="rule"><tr><td>适用商品为指定面额或礼包。</td></tr><tr><td>多给的方式为加赠比例或固定加赠数量。</td></tr><tr><td>每人可限次；可按卡别设不同比例。</td></tr><tr><td>折扣为同价加赠，不做实付打折；统一现有的储优回馈与限时加码。</td></tr><tr><td>与首储、生涯限购同时满足时，按现有优先级链取一个，不叠加。</td></tr></table><h4 class="rg">版式</h4><table class="rule"><tr><td>银行里参与折扣的面额与礼包上，显示「加赠 X%」角标和倒计时，沿用现在「336%」「108%」的角标样式。</td></tr><tr><td>折扣不进「储值活动」页签。</td></tr></table>
+</section>
+<section class="pg pt3" id="p14">
+  <div class="kick"><span class="pchip">第三部分　工具与专题页</span><span class="pos">第 14 页 / 共 17 页</span></div>
+  <h2>抽奖</h2>
+  <div class="shots"><figure><img src="需求评审材料_图/14_抽奖_后台配置.jpg" alt="抽奖规则：抽奖券、奖池、保底、形式与上限" style="width:980px"><figcaption>抽奖规则：抽奖券、奖池、保底、形式与上限</figcaption></figure><figure><img src="需求评审材料_图/14_抽奖_转盘.jpg" alt="转盘版式：抽奖券数、每日剩余、满券领奖与机率公示" style="width:960px"><figcaption>转盘版式：抽奖券数、每日剩余、满券领奖与机率公示</figcaption></figure><figure><img src="需求评审材料_图/14_抽奖_刮卡与开箱.jpg" alt="刮卡与开箱版式" style="width:960px"><figcaption>刮卡与开箱版式</figcaption></figure></div>
+  <h3 class="bk">业务规则</h3>
+  <h4 class="rg">用途</h4><table class="rule"><tr><td>抽奖券抽奖池，如抽奖大厅、庆典抽奖。</td></tr></table><h4 class="rg">抽奖券</h4><table class="rule"><tr><td>券种最多 3 种。</td></tr><tr><td>券的获取方式可多选：每储值 X 台币得 1 张；每押注 X 得 1 张；完成任务得券；用老币购买。</td></tr></table><h4 class="rg">奖池与保底</h4><table class="rule"><tr><td>奖池设奖品 × 数量 × 机率，机率合计 100%。</td></tr><tr><td>每个奖品可设库存；必须设 1 个不限库存的兜底奖。</td></tr><tr><td>某奖品库存抽完后，其机率并入兜底奖，其他奖品的机率不变，公示随之更新。</td></tr><tr><td>保底：连续 N 抽未中指定奖品，第 N 抽必中；N 由运营填写，可不设。</td></tr></table><h4 class="rg">形式与上限</h4><table class="rule"><tr><td>形式分三种：转盘、刮卡、开箱；只换版式，规则相同。</td></tr><tr><td>活动设有每日抽奖上限。</td></tr><tr><td>满券领奖：累计获得券数达到门槛即可领奖。</td></tr></table><h4 class="rg">机率公示</h4><table class="rule"><tr><td>抽奖券可由储值或购买获得时，抽奖页面公示各奖项机率。</td></tr></table>
+</section>
+<section class="pg pt3" id="p15">
+  <div class="kick"><span class="pchip">第三部分　工具与专题页</span><span class="pos">第 15 页 / 共 17 页</span></div>
+  <h2>团购</h2>
+  <div class="shots"><figure><img src="需求评审材料_图/15_团购_后台配置.jpg" alt="团购规则：商品、返利形式、人数阶梯" style="width:980px"><figcaption>团购规则：商品、返利形式、人数阶梯</figcaption></figure><figure><img src="需求评审材料_图/15_团购_玩家版式.jpg" alt="「储值活动」页签里的团购版式" style="width:960px"><figcaption>「储值活动」页签里的团购版式</figcaption></figure></div>
+  <h3 class="bk">业务规则</h3>
+  <h4 class="rg">用途</h4><table class="rule"><tr><td>全服玩家一起买同一商品，人数越多每人返利越多，如「100 人返 5%，300 人返 10%，1,000 人返 20%」。</td></tr></table><h4 class="rg">人数阶梯</h4><table class="rule"><tr><td>团购商品为礼包或面额。</td></tr><tr><td>人数阶梯最多 5 阶，按购买人数计；同一人多次购买算 1 人。</td></tr></table><h4 class="rg">返利</h4><table class="rule"><tr><td>返利形式二选一：按购买者在团购商品上所得老币的比例补发老币（同一人多次购买按合计），或每阶补发固定道具。</td></tr><tr><td>活动结束后，按最终达到的阶梯统一补发给所有购买者，不累加低阶返利。</td></tr></table><h4 class="rg">边界与版式</h4><table class="rule"><tr><td>不含邀请好友成团。</td></tr><tr><td>版式显示当前参团人数、阶梯进度、我的预计返利、购买按钮。</td></tr></table>
+</section>
+<section class="pg pt3" id="p16">
+  <div class="kick"><span class="pchip">第三部分　工具与专题页</span><span class="pos">第 16 页 / 共 17 页</span></div>
+  <h2>一元夺宝</h2>
+  <div class="shots"><figure><img src="需求评审材料_图/16_一元夺宝_后台配置.jpg" alt="一元夺宝规则：每期设置、开奖、期数、公示" style="width:980px"><figcaption>一元夺宝规则：每期设置、开奖、期数、公示</figcaption></figure><figure><img src="需求评审材料_图/16_一元夺宝_两个示例.jpg" alt="需求原文两个示例的每期设置" style="width:980px"><figcaption>需求原文两个示例的每期设置</figcaption></figure><figure><img src="需求评审材料_图/16_一元夺宝_玩家版式.jpg" alt="「储值活动」页签里的一元夺宝版式" style="width:960px"><figcaption>「储值活动」页签里的一元夺宝版式</figcaption></figure></div>
+  <h3 class="bk">业务规则</h3>
+  <h4 class="rg">用途</h4><table class="rule"><tr><td>每期一个大奖，卖券凑满即开奖。</td></tr><tr><td>示例一，需求原文「购买奖券，满 1.1 万，抽 1 万」：奖品价值 1 万，售券满 1.1 万开奖。</td></tr><tr><td>示例二，需求原文「储值 10 万台币开奖，送 1000」：开奖条件为全服当期累计储值满 10 万台币，奖品 1,000（原文未写单位）。</td></tr><tr><td>两个示例的每期截止时间原文未写，举例时按 7 天。</td></tr></table><h4 class="rg">每期设置</h4><table class="rule"><tr><td>每期设置奖品、开奖条件、每期截止时间、券价格与获取方式，以及每人每期限购数。</td></tr><tr><td>开奖条件二选一：售券数满 N 张；全服当期累计储值满 X 台币。</td></tr><tr><td>每期截止时间必填。</td></tr><tr><td>券只有两种获取方式：老币购买，或每储值 X 台币得 1 张；不支持用台币直接购券。</td></tr></table><h4 class="rg">开奖</h4><table class="rule"><tr><td>达到开奖条件后，立即按券号随机开出中奖者，默认 1 名，可设多名。</td></tr><tr><td>到截止时间仍未达到开奖条件时，三选一：照常开奖；退还券（老币购买的退回老币，储值赠券作废）；顺延到下一期。</td></tr></table><h4 class="rg">期数与公示</h4><table class="rule"><tr><td>当期开奖后自动开下一期，直到活动结束或达到期数上限。</td></tr><tr><td>每期公示参与人数、开奖号码、中奖人，中奖人昵称遮蔽。</td></tr></table><h4 class="rg">版式</h4><table class="rule"><tr><td>版式显示当期奖品图、进度（已售券数 / 目标，或已储值 / 目标）、截止倒计时、我的券号、购券按钮、往期开奖记录。</td></tr></table>
+</section>
+<section class="pg pt3" id="p17">
+  <div class="kick"><span class="pchip">第三部分　工具与专题页</span><span class="pos">第 17 页 / 共 17 页</span></div>
+  <h2>庆典专题页</h2>
+  <div class="shots"><figure><img src="需求评审材料_图/17_庆典专题页_后台配置.jpg" alt="庆典专题页后台配置：头图、时间、曝光位、页签分组与活动排序" style="width:980px"><figcaption>庆典专题页后台配置：头图、时间、曝光位、页签分组与活动排序</figcaption></figure><figure><img src="需求评审材料_图/17_庆典专题页_玩家聚合页.jpg" alt="玩家看到的专题页：页签、活动卡，以及未开始、已结束的卡片" style="width:960px"><figcaption>玩家看到的专题页：页签、活动卡，以及未开始、已结束的卡片</figcaption></figure></div>
+  <h3 class="bk">业务规则</h3>
+  <h4 class="rg">用途</h4><table class="rule"><tr><td>庆典期间，把多个活动放进一个页面，取代每次庆典单独开发的活动大页。</td></tr><tr><td>庆典专题页不是工具，是一种聚合版式；专题页本身不含玩法，不发奖。</td></tr></table><h4 class="rg">配置</h4><table class="rule"><tr><td>头图使用主视觉。</td></tr><tr><td>页签分组最多 6 个，如储优、抽奖、押注活动。</td></tr><tr><td>每个页签下，从已配置的活动中选若干个，按顺序排列。</td></tr></table><h4 class="rg">活动卡</h4><table class="rule"><tr><td>每张活动卡显示活动名称、时间、主视觉缩略图和前往按钮；前往按钮跳转到该活动的主入口。</td></tr><tr><td>所选活动未开始或已结束时，卡片显示「即将开始」或「已结束」。</td></tr></table><h4 class="rg">时间与主入口</h4><table class="rule"><tr><td>专题页的开始时间和结束时间独立设置。</td></tr><tr><td>专题页的主入口为限时活动 · 平台活动；可勾选大厅 Banner、大厅自动弹窗等曝光位。</td></tr></table>
+</section>
+
+</main>
+</div>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>入口怎么改</title>
+<style>
+:root{--ground:#f3f2ef;--surface:#fff;--ink:#1b1d21;--ink-2:#4a4f56;--muted:#868b92;--line:#e2e0db;--accent:#9a6f24;--green:#2f6b52;--green-soft:#e2efe8;--red:#a8382b;--red-soft:#f7e6e2;--blue:#1f63a8;--blue-soft:#e4eef8;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif SC",Georgia,serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;--green:#7dbb9c;--green-soft:#1c3128;--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;}}
+:root[data-theme="dark"]{--ground:#131518;--surface:#1b1e22;--ink:#e9e8e4;--ink-2:#b9bdc2;--muted:#8a9098;--line:#2e3339;--accent:#d6ab5c;--green:#7dbb9c;--green-soft:#1c3128;--red:#e48e7f;--red-soft:#3a211c;--blue:#7ab0e0;--blue-soft:#1b2b3a;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.65}
+.wrap{max-width:980px;margin:0 auto;padding:48px 32px 96px}
+.meta{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:26px;line-height:1.4;margin:0 0 10px}
+.sub{font-size:15.5px;color:var(--ink-2);margin:0}
+section{margin-top:48px}
+h2{font-family:var(--serif);font-size:20px;margin:0 0 14px;display:flex;align-items:baseline;gap:14px}
+h2 .no{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--accent);white-space:nowrap}
+.grid{display:grid;gap:12px} .g3{grid-template-columns:repeat(3,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 20px}
+.card .k{font-size:13px;font-weight:700;color:var(--accent)}
+.card .h{font-size:16px;font-weight:700;margin:4px 0 6px}
+.card .l{font-size:14.5px;color:var(--ink-2);margin:0}
+.tw{overflow-x:auto;border-radius:6px}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:14.5px}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--ground);white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td.w{font-weight:600;white-space:nowrap} td.r{color:var(--ink-2)} td.q{color:var(--ink-2);font-size:14px}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;white-space:nowrap}
+.tag.green{background:var(--green-soft);color:var(--green)} .tag.red{background:var(--red-soft);color:var(--red)} .tag.blue{background:var(--blue-soft);color:var(--blue)}
+.obs{font-size:14px;color:var(--ink-2);margin:12px 0 0;padding-left:14px;border-left:3px solid var(--line)}
+.obs b{color:var(--ink)}
+a{color:var(--accent)}
+@media (max-width:760px){.wrap{padding:28px 16px 64px}.g3{grid-template-columns:1fr}h1{font-size:22px}h2{flex-direction:column;gap:2px}}
+</style></head><body><div class="wrap">
+
+<p class="meta">入口调整 · 从第一性原理推 · 2026-10-28</p>
+<h1>一个入口只对应玩家的一种目的：花钱去银行、玩活动去限时活动、看消息去公告；这正好就是主管写的三句话</h1>
+<p class="sub">按这个原则，两版选「不合并版」，储值类活动放银行，「待定一点」可以自己定掉；三项借鉴留一项、挪一项、删一项。</p>
+
+<section>
+<h2><span class="no">一 出发点</span>先问三方各自要什么</h2>
+<div class="grid g3">
+  <div class="card"><div class="k">玩家</div><p class="h">带着目的来，只想去一个地方</p><p class="l">想买东西、想参加活动、想看消息，是三种不同的目的。入口和目的一一对应，玩家就不用记「这类活动在哪」。</p></div>
+  <div class="card"><div class="k">营运</div><p class="h">配一次，活动自己出现在对的地方</p><p class="l">不再在三套后台各配一次，也不用判断该挂哪里；活动按「玩家怎么参与」自动归位。</p></div>
+  <div class="card"><div class="k">业绩</div><p class="h">储值优惠要出现在玩家准备花钱的地方</p><p class="l">储值类活动是为了提高付费率和客单价，最该出现在玩家打开钱包的那一刻，同时要能被还没打算花钱的玩家看到。</p></div>
+</div>
+<p class="obs"><b>推出的原则：</b>一个入口对应一种目的；跨入口的引流用曝光位（Banner、弹窗、推播、按钮角标），不靠把同一类活动放进两个窗口。</p>
+</section>
+
+<section>
+<h2><span class="no">二 对照</span>原则推出的分工，和主管的三句话一一对上</h2>
+<div class="tw"><table>
+<tr><th>玩家目的</th><th>原则推出的入口</th><th>主管原文</th><th>对上了吗</th></tr>
+<tr><td class="w">花钱</td><td class="r">银行（左下大按钮）：卖商品，也放储值优惠活动</td><td class="q">「好康：改為 金流／商城（入口載體）」＋「增加工具屬性：滿減／累充／團購／折扣／禮包／抽獎等」</td><td><span class="tag green">对上</span></td></tr>
+<tr><td class="w">玩活动</td><td class="r">限时活动（右下）：免费参加的活动，按在哪玩分游戏、平台</td><td class="q">「限時活動：活動（遊戲活動 和 平台活動的區分）」</td><td><span class="tag green">对上</span></td></tr>
+<tr><td class="w">看消息</td><td class="r">公告（右上菜单）：只放信息，分官方、活动、其他</td><td class="q">「公告：官方／活動／其他」</td><td><span class="tag green">对上</span></td></tr>
+<tr><td class="w">营运配活动</td><td class="r">选工具、填参数、审核上线；系统按参与方式归位</td><td class="q">「最終目標：活動靈活配置使用，通過配置滿足各情況下『營運需求』」</td><td><span class="tag green">对上</span></td></tr>
+</table></div>
+<p class="obs"><b>主管把好康和限时活动写成两句、给了两种用途</b>（一个改成金流／商城，一个只放活动），说明他要的就是两个入口各管一件事，不是把它们并成一个。</p>
+</section>
+
+<section>
+<h2><span class="no">三 定掉待定的事</span>两版选不合并版，储值类活动放银行</h2>
+<div class="tw"><table>
+<tr><th>待定的事</th><th>按原则怎么定</th><th>为什么</th></tr>
+<tr><td class="w">合并还是不合并</td><td class="r"><span class="tag green">不合并版</span></td><td class="r">合并版把「花钱」和「玩活动」放进同一个窗口，一个入口对应两种目的；也和主管把两者分写两句不一致</td></tr>
+<tr><td class="w">储值类活动放哪</td><td class="r"><span class="tag green">放银行</span>，最上方「储值活动」页签</td><td class="r">玩家打开银行时就是准备花钱的时候，储值优惠在这里转化最直接；银行换到左下大按钮，本来就是为了让它更显眼</td></tr>
+<tr><td class="w">不开银行的玩家看不到怎么办</td><td class="r">补两处：银行按钮在有储值活动时显示红点和剩余时间；重点储值活动用曝光位引流（Banner、弹窗、推播）</td><td class="r">竞品把付费活动放活动窗口，是为了让不花钱的玩家也看到；我们用按钮角标和曝光位达到同样的效果，不必打破「一个入口一种目的」。大厅顶栏「首儲 336%」倒计时已经是这种做法</td></tr>
+</table></div>
+<p class="obs"><b>竞品不同的地方：</b>三款都把付费活动放活动窗口。我们的情况不同：银行要换到左下最大的位置，本身就是主入口，适合承载储值活动。</p>
+</section>
+
+<section>
+<h2><span class="no">四 三项借鉴</span>留一项、挪一项、删一项</h2>
+<div class="tw"><table>
+<tr><th>借鉴的做法</th><th>定</th><th>为什么</th></tr>
+<tr><td class="w">页签第一项放当期总览（只列本类）</td><td><span class="tag green">留</span>，并进庆典专题页（第二批）</td><td class="r">庆典期间玩家一眼看到整期安排；两次庆典的同一组模块各重做了一遍（22 个开发需求），总览用配置生成就省掉这部分开发，正对「节庆活动靠配置上线」</td></tr>
+<tr><td class="w">底栏重点活动常驻入口带剩余天数</td><td><span class="tag blue">挪到第二批</span></td><td class="r">有用（快速进入＋提醒快结束），但底栏空位怎么用归银行改版定；首批先用银行按钮角标解决储值活动的提醒</td></tr>
+<tr><td class="w">活动窗口「今日不再显示」</td><td><span class="tag red">删</span></td><td class="r">只在整个窗口自动打开时才有用；10/13 弹窗方案是按单项活动弹，不整窗打开活动窗口</td></tr>
+</table></div>
+</section>
+
+<section>
+<h2><span class="no">五 照这样定要改的地方</span>改动小，主体文档本来就是不合并版</h2>
+<div class="tw"><table>
+<tr><th>文件</th><th>改什么</th></tr>
+<tr><td class="w">设计稿、需求文档、评审材料</td><td class="r">补「银行按钮在有储值活动时显示红点和剩余时间」；当期总览并进庆典专题页规则；风险表删「储值类活动放哪」</td></tr>
+<tr><td class="w">两版原型对比</td><td class="r">标明选定不合并版；不合并版的图去掉「今日不再显示」、底栏常驻入口改标「第二批」</td></tr>
+<tr><td class="w">给主管的两份稿</td><td class="r">删「待定一点」，改为写明「储值类活动放银行，银行按钮带储值活动提醒」</td></tr>
+</table></div>
+<p class="obs">以上还没改，等你点头。<a href="2026-10-27_两版原型对比.html">两版原型对比</a> · <a href="2026-10-27_竞品活动中心设计拆解.html">竞品活动中心设计拆解</a></p>
+</section>
+
+</div></body></html>

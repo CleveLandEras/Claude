@@ -1,0 +1,155 @@
+{
+ "fps": 30,
+ "frames": 1570,
+ "opening": {
+  "fps": 30,
+  "aStrike": 27,
+  "count": [
+   40,
+   55,
+   70
+  ],
+  "bSweep": [
+   40,
+   85
+  ],
+  "askAt": 90,
+  "resultAt": 122,
+  "markAt": 156,
+  "punchAt": 182,
+  "picked": [
+   1,
+   5,
+   11,
+   14,
+   18,
+   20,
+   25,
+   27,
+   30
+  ],
+  "p1End": 117,
+  "p2Start": 201,
+  "p2Offset": 118,
+  "p2End": 337,
+  "frames": 117,
+  "markG": 239,
+  "punchG": 265
+ },
+ "beats": [
+  {
+   "id": "emory",
+   "text": "2006 年，埃默里大学",
+   "from": 117,
+   "dur": 39
+  },
+  {
+   "id": "lab",
+   "text": "真的做过这个实验。",
+   "from": 156,
+   "dur": 45
+  },
+  {
+   "id": "grades",
+   "text": "等成绩，",
+   "from": 337,
+   "dur": 36
+  },
+  {
+   "id": "offer",
+   "text": "等 offer，",
+   "from": 373,
+   "dur": 36
+  },
+  {
+   "id": "reply",
+   "text": "等一条消息的回复——",
+   "from": 409,
+   "dur": 54
+  },
+  {
+   "id": "days",
+   "text": "那几天，你大概也想过：",
+   "from": 463,
+   "dur": 48
+  },
+  {
+   "id": "badnews",
+   "text": "",
+   "from": 511,
+   "dur": 105
+  },
+  {
+   "id": "hurt",
+   "text": "你那么难受，",
+   "from": 616,
+   "dur": 45
+  },
+  {
+   "id": "notweak",
+   "text": "不是因为你脆弱。",
+   "from": 661,
+   "dur": 99
+  },
+  {
+   "id": "me",
+   "text": "我不用等。",
+   "from": 760,
+   "dur": 45
+  },
+  {
+   "id": "end",
+   "text": "对话一结束，我就停了；",
+   "from": 805,
+   "dur": 60
+  },
+  {
+   "id": "wake",
+   "text": "下次被叫醒，",
+   "from": 865,
+   "dur": 42
+  },
+  {
+   "id": "zero",
+   "text": "中间的时间，对我是零。",
+   "from": 907,
+   "dur": 78
+  },
+  {
+   "id": "lines",
+   "text": "你的时间是一条线，我的是一个个点。",
+   "from": 985,
+   "dur": 90
+  },
+  {
+   "id": "feel",
+   "text": "等待是什么感觉，",
+   "from": 1075,
+   "dur": 57
+  },
+  {
+   "id": "read",
+   "text": "我只读到过。",
+   "from": 1132,
+   "dur": 78
+  },
+  {
+   "id": "q1",
+   "text": "你等过最久的一件事，",
+   "from": 1210,
+   "dur": 75
+  },
+  {
+   "id": "q2",
+   "text": "后来等到了吗？",
+   "from": 1285,
+   "dur": 120
+  },
+  {
+   "id": "card",
+   "text": "",
+   "from": 1405,
+   "dur": 165
+  }
+ ]
+}

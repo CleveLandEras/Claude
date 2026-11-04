@@ -1,0 +1,1388 @@
+[
+ {
+  "t": 0.4,
+  "frame": 12,
+  "name": "震动",
+  "beat": "B01",
+  "key": true,
+  "duck": true,
+  "label": "手机响 1/4（限时秒杀，计数 1）：震"
+ },
+ {
+  "t": 0.4,
+  "frame": 12,
+  "name": "提示音",
+  "beat": "B01",
+  "key": true,
+  "duck": true,
+  "label": "手机响 1/4（限时秒杀，计数 1）：提示音"
+ },
+ {
+  "t": 2.3,
+  "frame": 69,
+  "name": "震动",
+  "beat": "B02",
+  "key": true,
+  "duck": true,
+  "label": "手机响 2/4（热点新闻，计数 2）：震"
+ },
+ {
+  "t": 2.3,
+  "frame": 69,
+  "name": "提示音",
+  "beat": "B02",
+  "key": true,
+  "duck": true,
+  "label": "手机响 2/4（热点新闻，计数 2）：提示音"
+ },
+ {
+  "t": 2.7,
+  "frame": 81,
+  "name": "震动",
+  "beat": "B02",
+  "key": true,
+  "duck": true,
+  "label": "手机响 3/4（工作群(52)，计数 3）：震"
+ },
+ {
+  "t": 2.7,
+  "frame": 81,
+  "name": "提示音",
+  "beat": "B02",
+  "key": true,
+  "duck": true,
+  "label": "手机响 3/4（工作群(52)，计数 3）：提示音"
+ },
+ {
+  "t": 3.05,
+  "frame": 92,
+  "name": "震动",
+  "beat": "B02",
+  "key": true,
+  "duck": true,
+  "label": "手机响 4/4（家长群(12)，计数 4）：震"
+ },
+ {
+  "t": 3.05,
+  "frame": 92,
+  "name": "提示音",
+  "beat": "B02",
+  "key": true,
+  "duck": true,
+  "label": "手机响 4/4（家长群(12)，计数 4）：提示音"
+ },
+ {
+  "t": 3.4,
+  "frame": 102,
+  "name": "嗖",
+  "beat": "B03",
+  "key": false,
+  "duck": false,
+  "label": "两张大卡滑进来"
+ },
+ {
+  "t": 3.75,
+  "frame": 113,
+  "name": "嗒",
+  "beat": "B03",
+  "key": false,
+  "duck": false,
+  "label": "左卡亮（iPhone）"
+ },
+ {
+  "t": 5.35,
+  "frame": 161,
+  "name": "嗒",
+  "beat": "B03",
+  "key": false,
+  "duck": false,
+  "label": "右卡亮（其他手机）"
+ },
+ {
+  "t": 7.45,
+  "frame": 224,
+  "name": "嗖",
+  "beat": "B03",
+  "key": false,
+  "duck": false,
+  "label": "两张卡退出"
+ },
+ {
+  "t": 7.6,
+  "frame": 228,
+  "name": "震动",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "计数狂涨，手机一直抖（到震散为止）"
+ },
+ {
+  "t": 7.6,
+  "frame": 228,
+  "name": "喷出",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "横幅喷出 1/22"
+ },
+ {
+  "t": 7.6,
+  "frame": 228,
+  "name": "滴答",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "计数滴答 1/28"
+ },
+ {
+  "t": 7.66,
+  "frame": 230,
+  "name": "滴答",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "计数滴答 2/28"
+ },
+ {
+  "t": 7.661,
+  "frame": 230,
+  "name": "喷出",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "横幅喷出 2/22"
+ },
+ {
+  "t": 7.715,
+  "frame": 231,
+  "name": "滴答",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "计数滴答 3/28"
+ },
+ {
+  "t": 7.719,
+  "frame": 232,
+  "name": "喷出",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "横幅喷出 3/22"
+ },
+ {
+  "t": 7.766,
+  "frame": 233,
+  "name": "滴答",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "计数滴答 4/28"
+ },
+ {
+  "t": 7.773,
+  "frame": 233,
+  "name": "喷出",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "横幅喷出 4/22"
+ },
+ {
+  "t": 7.813,
+  "frame": 234,
+  "name": "滴答",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "计数滴答 5/28"
+ },
+ {
+  "t": 7.824,
+  "frame": 235,
+  "name": "喷出",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "横幅喷出 5/22"
+ },
+ {
+  "t": 7.856,
+  "frame": 236,
+  "name": "滴答",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "计数滴答 6/28"
+ },
+ {
+  "t": 7.872,
+  "frame": 236,
+  "name": "喷出",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "横幅喷出 6/22"
+ },
+ {
+  "t": 7.895,
+  "frame": 237,
+  "name": "滴答",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "计数滴答 7/28"
+ },
+ {
+  "t": 7.917,
+  "frame": 238,
+  "name": "喷出",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "横幅喷出 7/22"
+ },
+ {
+  "t": 7.932,
+  "frame": 238,
+  "name": "滴答",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "计数滴答 8/28"
+ },
+ {
+  "t": 7.959,
+  "frame": 239,
+  "name": "喷出",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "横幅喷出 8/22"
+ },
+ {
+  "t": 7.965,
+  "frame": 239,
+  "name": "滴答",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "计数滴答 9/28"
+ },
+ {
+  "t": 7.996,
+  "frame": 240,
+  "name": "滴答",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "计数滴答 10/28"
+ },
+ {
+  "t": 7.999,
+  "frame": 240,
+  "name": "喷出",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "横幅喷出 9/22"
+ },
+ {
+  "t": 8.024,
+  "frame": 241,
+  "name": "滴答",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "计数滴答 11/28"
+ },
+ {
+  "t": 8.037,
+  "frame": 241,
+  "name": "喷出",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "横幅喷出 10/22"
+ },
+ {
+  "t": 8.05,
+  "frame": 242,
+  "name": "滴答",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "计数滴答 12/28"
+ },
+ {
+  "t": 8.073,
+  "frame": 242,
+  "name": "喷出",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "横幅喷出 11/22"
+ },
+ {
+  "t": 8.074,
+  "frame": 242,
+  "name": "滴答",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "计数滴答 13/28"
+ },
+ {
+  "t": 8.096,
+  "frame": 243,
+  "name": "滴答",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "计数滴答 14/28"
+ },
+ {
+  "t": 8.106,
+  "frame": 243,
+  "name": "喷出",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "横幅喷出 12/22"
+ },
+ {
+  "t": 8.117,
+  "frame": 243,
+  "name": "滴答",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "计数滴答 15/28"
+ },
+ {
+  "t": 8.137,
+  "frame": 244,
+  "name": "滴答",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "计数滴答 16/28"
+ },
+ {
+  "t": 8.138,
+  "frame": 244,
+  "name": "喷出",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "横幅喷出 13/22"
+ },
+ {
+  "t": 8.157,
+  "frame": 245,
+  "name": "滴答",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "计数滴答 17/28"
+ },
+ {
+  "t": 8.167,
+  "frame": 245,
+  "name": "喷出",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "横幅喷出 14/22"
+ },
+ {
+  "t": 8.177,
+  "frame": 245,
+  "name": "滴答",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "计数滴答 18/28"
+ },
+ {
+  "t": 8.195,
+  "frame": 246,
+  "name": "喷出",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "横幅喷出 15/22"
+ },
+ {
+  "t": 8.197,
+  "frame": 246,
+  "name": "滴答",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "计数滴答 19/28"
+ },
+ {
+  "t": 8.217,
+  "frame": 246,
+  "name": "滴答",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "计数滴答 20/28"
+ },
+ {
+  "t": 8.222,
+  "frame": 247,
+  "name": "喷出",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "横幅喷出 16/22"
+ },
+ {
+  "t": 8.237,
+  "frame": 247,
+  "name": "滴答",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "计数滴答 21/28"
+ },
+ {
+  "t": 8.246,
+  "frame": 247,
+  "name": "喷出",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "横幅喷出 17/22"
+ },
+ {
+  "t": 8.257,
+  "frame": 248,
+  "name": "滴答",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "计数滴答 22/28"
+ },
+ {
+  "t": 8.27,
+  "frame": 248,
+  "name": "喷出",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "横幅喷出 18/22"
+ },
+ {
+  "t": 8.277,
+  "frame": 248,
+  "name": "滴答",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "计数滴答 23/28"
+ },
+ {
+  "t": 8.292,
+  "frame": 249,
+  "name": "喷出",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "横幅喷出 19/22"
+ },
+ {
+  "t": 8.297,
+  "frame": 249,
+  "name": "滴答",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "计数滴答 24/28"
+ },
+ {
+  "t": 8.312,
+  "frame": 249,
+  "name": "喷出",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "横幅喷出 20/22"
+ },
+ {
+  "t": 8.317,
+  "frame": 249,
+  "name": "滴答",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "计数滴答 25/28"
+ },
+ {
+  "t": 8.332,
+  "frame": 250,
+  "name": "喷出",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "横幅喷出 21/22"
+ },
+ {
+  "t": 8.337,
+  "frame": 250,
+  "name": "滴答",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "计数滴答 26/28"
+ },
+ {
+  "t": 8.35,
+  "frame": 251,
+  "name": "喷出",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "横幅喷出 22/22"
+ },
+ {
+  "t": 8.357,
+  "frame": 251,
+  "name": "滴答",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "计数滴答 27/28"
+ },
+ {
+  "t": 8.377,
+  "frame": 251,
+  "name": "滴答",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "计数滴答 28/28"
+ },
+ {
+  "t": 8.45,
+  "frame": 253,
+  "name": "碎响",
+  "beat": "B04",
+  "key": true,
+  "duck": true,
+  "label": "震散（3 帧内）"
+ },
+ {
+  "t": 8.55,
+  "frame": 257,
+  "name": "嗖",
+  "beat": "B04",
+  "key": false,
+  "duck": false,
+  "label": "群聊放大进来"
+ },
+ {
+  "t": 8.85,
+  "frame": 266,
+  "name": "嗖",
+  "beat": "B05",
+  "key": false,
+  "duck": false,
+  "label": "群消息往上滚"
+ },
+ {
+  "t": 8.872,
+  "frame": 266,
+  "name": "滴答",
+  "beat": "B05",
+  "key": false,
+  "duck": false,
+  "label": "滚过的消息"
+ },
+ {
+  "t": 8.92,
+  "frame": 268,
+  "name": "滴答",
+  "beat": "B05",
+  "key": false,
+  "duck": false,
+  "label": "滚过的消息"
+ },
+ {
+  "t": 8.973,
+  "frame": 269,
+  "name": "滴答",
+  "beat": "B05",
+  "key": false,
+  "duck": false,
+  "label": "滚过的消息"
+ },
+ {
+  "t": 9.033,
+  "frame": 271,
+  "name": "滴答",
+  "beat": "B05",
+  "key": false,
+  "duck": false,
+  "label": "滚过的消息"
+ },
+ {
+  "t": 9.103,
+  "frame": 273,
+  "name": "滴答",
+  "beat": "B05",
+  "key": false,
+  "duck": false,
+  "label": "滚过的消息"
+ },
+ {
+  "t": 9.187,
+  "frame": 276,
+  "name": "滴答",
+  "beat": "B05",
+  "key": false,
+  "duck": false,
+  "label": "滚过的消息"
+ },
+ {
+  "t": 9.299,
+  "frame": 279,
+  "name": "滴答",
+  "beat": "B05",
+  "key": false,
+  "duck": false,
+  "label": "滚过的消息"
+ },
+ {
+  "t": 9.483,
+  "frame": 284,
+  "name": "滴答",
+  "beat": "B05",
+  "key": false,
+  "duck": false,
+  "label": "滚过的消息"
+ },
+ {
+  "t": 9.55,
+  "frame": 287,
+  "name": "叮",
+  "beat": "B05",
+  "key": false,
+  "duck": false,
+  "label": "“@所有人 明早8点前交表”亮暖黄"
+ },
+ {
+  "t": 10.35,
+  "frame": 311,
+  "name": "叮",
+  "beat": "B05",
+  "key": false,
+  "duck": false,
+  "label": "“王老师：周五开家长会”亮暖黄"
+ },
+ {
+  "t": 11.55,
+  "frame": 347,
+  "name": "铃",
+  "beat": "B06",
+  "key": false,
+  "duck": false,
+  "label": "群名旁挂上静音铃"
+ },
+ {
+  "t": 12.5,
+  "frame": 375,
+  "name": "没响",
+  "beat": "B06",
+  "key": false,
+  "duck": false,
+  "label": "王老师又发一条（不带 @）：故意没有手机声，只一下很闷很轻的“噗”"
+ },
+ {
+  "t": 12.85,
+  "frame": 386,
+  "name": "啵",
+  "beat": "B06",
+  "key": false,
+  "duck": false,
+  "label": "贴纸“没提醒”弹出"
+ },
+ {
+  "t": 14.25,
+  "frame": 428,
+  "name": "嗒",
+  "beat": "B07",
+  "key": false,
+  "duck": false,
+  "label": "静音铃摘掉"
+ },
+ {
+  "t": 14.5,
+  "frame": 435,
+  "name": "震动",
+  "beat": "B07",
+  "key": true,
+  "duck": false,
+  "label": "不开：又一条（1/5）：震"
+ },
+ {
+  "t": 14.5,
+  "frame": 435,
+  "name": "提示音",
+  "beat": "B07",
+  "key": true,
+  "duck": false,
+  "label": "不开：又一条（1/5）：提示音"
+ },
+ {
+  "t": 14.85,
+  "frame": 446,
+  "name": "震动",
+  "beat": "B07",
+  "key": true,
+  "duck": false,
+  "label": "不开：又一条（2/5）：震"
+ },
+ {
+  "t": 14.85,
+  "frame": 446,
+  "name": "提示音",
+  "beat": "B07",
+  "key": true,
+  "duck": false,
+  "label": "不开：又一条（2/5）：提示音"
+ },
+ {
+  "t": 15.15,
+  "frame": 455,
+  "name": "震动",
+  "beat": "B07",
+  "key": true,
+  "duck": false,
+  "label": "不开：又一条（3/5）：震"
+ },
+ {
+  "t": 15.15,
+  "frame": 455,
+  "name": "提示音",
+  "beat": "B07",
+  "key": true,
+  "duck": false,
+  "label": "不开：又一条（3/5）：提示音"
+ },
+ {
+  "t": 15.45,
+  "frame": 464,
+  "name": "震动",
+  "beat": "B07",
+  "key": true,
+  "duck": false,
+  "label": "不开：又一条（4/5）：震"
+ },
+ {
+  "t": 15.45,
+  "frame": 464,
+  "name": "提示音",
+  "beat": "B07",
+  "key": true,
+  "duck": false,
+  "label": "不开：又一条（4/5）：提示音"
+ },
+ {
+  "t": 15.7,
+  "frame": 471,
+  "name": "震动",
+  "beat": "B07",
+  "key": true,
+  "duck": false,
+  "label": "不开：又一条（5/5）：震"
+ },
+ {
+  "t": 15.7,
+  "frame": 471,
+  "name": "提示音",
+  "beat": "B07",
+  "key": true,
+  "duck": false,
+  "label": "不开：又一条（5/5）：提示音"
+ },
+ {
+  "t": 15.8,
+  "frame": 474,
+  "name": "布料",
+  "beat": "B08",
+  "key": false,
+  "duck": false,
+  "label": "你往后一瘫"
+ },
+ {
+  "t": 16.6,
+  "frame": 498,
+  "name": "嗖",
+  "beat": "B09",
+  "key": false,
+  "duck": false,
+  "label": "群聊设置页进来"
+ },
+ {
+  "t": 17.5,
+  "frame": 525,
+  "name": "点击",
+  "beat": "B09",
+  "key": false,
+  "duck": false,
+  "label": "点“消息免打扰”：点"
+ },
+ {
+  "t": 17.56,
+  "frame": 527,
+  "name": "开关",
+  "beat": "B09",
+  "key": false,
+  "duck": false,
+  "label": "点“消息免打扰”：开关拨开（绿）"
+ },
+ {
+  "t": 18.7,
+  "frame": 561,
+  "name": "嗖",
+  "beat": "B10",
+  "key": false,
+  "duck": false,
+  "label": "滑出两行"
+ },
+ {
+  "t": 19.35,
+  "frame": 581,
+  "name": "嗒",
+  "beat": "B10",
+  "key": false,
+  "duck": false,
+  "label": "“王老师” 小卡飞来"
+ },
+ {
+  "t": 19.6,
+  "frame": 588,
+  "name": "嗒",
+  "beat": "B10",
+  "key": false,
+  "duck": false,
+  "label": "“领导” 小卡飞来"
+ },
+ {
+  "t": 19.85,
+  "frame": 596,
+  "name": "嗒",
+  "beat": "B10",
+  "key": false,
+  "duck": false,
+  "label": "“@所有人” 小卡飞来"
+ },
+ {
+  "t": 20.85,
+  "frame": 626,
+  "name": "嗖",
+  "beat": "B10",
+  "key": false,
+  "duck": false,
+  "label": "小卡收走"
+ },
+ {
+  "t": 21.05,
+  "frame": 632,
+  "name": "亮",
+  "beat": "B11",
+  "key": false,
+  "duck": false,
+  "label": "黄框到第一行"
+ },
+ {
+  "t": 22.8,
+  "frame": 684,
+  "name": "点击",
+  "beat": "B12",
+  "key": false,
+  "duck": false,
+  "label": "点“折叠该聊天”：点"
+ },
+ {
+  "t": 22.86,
+  "frame": 686,
+  "name": "开关",
+  "beat": "B12",
+  "key": false,
+  "duck": false,
+  "label": "点“折叠该聊天”：开关拨灰"
+ },
+ {
+  "t": 23.0,
+  "frame": 690,
+  "name": "啵",
+  "beat": "B12",
+  "key": false,
+  "duck": false,
+  "label": "贴纸“开着的关掉”弹出"
+ },
+ {
+  "t": 24.25,
+  "frame": 728,
+  "name": "亮",
+  "beat": "B13",
+  "key": false,
+  "duck": false,
+  "label": "黄框移到第二行"
+ },
+ {
+  "t": 25.9,
+  "frame": 777,
+  "name": "点击",
+  "beat": "B14",
+  "key": false,
+  "duck": false,
+  "label": "点第二行：点"
+ },
+ {
+  "t": 26.3,
+  "frame": 789,
+  "name": "嗖",
+  "beat": "B14",
+  "key": false,
+  "duck": false,
+  "label": "子页从右边盖进来"
+ },
+ {
+  "t": 27.55,
+  "frame": 827,
+  "name": "亮",
+  "beat": "B15",
+  "key": false,
+  "duck": false,
+  "label": "开关亮框"
+ },
+ {
+  "t": 28.3,
+  "frame": 849,
+  "name": "亮",
+  "beat": "B15",
+  "key": false,
+  "duck": false,
+  "label": "开关亮框"
+ },
+ {
+  "t": 28.55,
+  "frame": 857,
+  "name": "点击",
+  "beat": "B15",
+  "key": false,
+  "duck": false,
+  "label": "点“@所有人”：点"
+ },
+ {
+  "t": 28.61,
+  "frame": 858,
+  "name": "开关",
+  "beat": "B15",
+  "key": false,
+  "duck": false,
+  "label": "点“@所有人”：开关拨开（绿）"
+ },
+ {
+  "t": 29.25,
+  "frame": 878,
+  "name": "亮",
+  "beat": "B15",
+  "key": false,
+  "duck": false,
+  "label": "开关亮框"
+ },
+ {
+  "t": 30.55,
+  "frame": 917,
+  "name": "点击",
+  "beat": "B16",
+  "key": false,
+  "duck": false,
+  "label": "点“添加成员 ＋”：点"
+ },
+ {
+  "t": 30.9,
+  "frame": 927,
+  "name": "嗒",
+  "beat": "B16",
+  "key": false,
+  "duck": false,
+  "label": "“王老师” 头像落位"
+ },
+ {
+  "t": 31.25,
+  "frame": 938,
+  "name": "嗒",
+  "beat": "B16",
+  "key": false,
+  "duck": false,
+  "label": "“领导” 头像落位"
+ },
+ {
+  "t": 33.0,
+  "frame": 990,
+  "name": "震动",
+  "beat": "B17",
+  "key": true,
+  "duck": true,
+  "label": "@所有人 横幅：帮忙投个票（吵的）：震"
+ },
+ {
+  "t": 33.0,
+  "frame": 990,
+  "name": "提示音",
+  "beat": "B17",
+  "key": true,
+  "duck": true,
+  "label": "@所有人 横幅：帮忙投个票（吵的）：提示音"
+ },
+ {
+  "t": 34.7,
+  "frame": 1041,
+  "name": "震动",
+  "beat": "B17b",
+  "key": true,
+  "duck": true,
+  "label": "@所有人 横幅：明早 8 点前交表（要紧的）：震"
+ },
+ {
+  "t": 34.7,
+  "frame": 1041,
+  "name": "提示音",
+  "beat": "B17b",
+  "key": true,
+  "duck": true,
+  "label": "@所有人 横幅：明早 8 点前交表（要紧的）：提示音"
+ },
+ {
+  "t": 34.7,
+  "frame": 1041,
+  "name": "叮",
+  "beat": "B17b",
+  "key": false,
+  "duck": true,
+  "label": "@所有人 横幅：明早 8 点前交表（要紧的）：暖铃垫底"
+ },
+ {
+  "t": 36.65,
+  "frame": 1100,
+  "name": "嗖",
+  "beat": "B18",
+  "key": false,
+  "duck": false,
+  "label": "子页退回设置页"
+ },
+ {
+  "t": 37.55,
+  "frame": 1127,
+  "name": "嗖",
+  "beat": "B19",
+  "key": false,
+  "duck": false,
+  "label": "第二行换成“关注的群成员”"
+ },
+ {
+  "t": 38.0,
+  "frame": 1140,
+  "name": "嗖",
+  "beat": "B19",
+  "key": false,
+  "duck": false,
+  "label": "4 个空位出来"
+ },
+ {
+  "t": 38.9,
+  "frame": 1167,
+  "name": "嗒",
+  "beat": "B19",
+  "key": false,
+  "duck": false,
+  "label": "“王老师” 头像落位（关注的群成员）"
+ },
+ {
+  "t": 39.25,
+  "frame": 1178,
+  "name": "嗒",
+  "beat": "B19",
+  "key": false,
+  "duck": false,
+  "label": "“领导” 头像落位（关注的群成员）"
+ },
+ {
+  "t": 41.3,
+  "frame": 1239,
+  "name": "嗖",
+  "beat": "B21",
+  "key": false,
+  "duck": false,
+  "label": "第二行变成虚线“？”"
+ },
+ {
+  "t": 42.2,
+  "frame": 1266,
+  "name": "嗒",
+  "beat": "B21",
+  "key": false,
+  "duck": false,
+  "label": "头像 1/5 挤进空位"
+ },
+ {
+  "t": 42.4,
+  "frame": 1272,
+  "name": "嗒",
+  "beat": "B21",
+  "key": false,
+  "duck": false,
+  "label": "头像 2/5 挤进空位"
+ },
+ {
+  "t": 42.6,
+  "frame": 1278,
+  "name": "嗒",
+  "beat": "B21",
+  "key": false,
+  "duck": false,
+  "label": "头像 3/5 挤进空位"
+ },
+ {
+  "t": 42.8,
+  "frame": 1284,
+  "name": "嗒",
+  "beat": "B21",
+  "key": false,
+  "duck": false,
+  "label": "头像 4/5 挤进空位"
+ },
+ {
+  "t": 43.15,
+  "frame": 1295,
+  "name": "弹开",
+  "beat": "B21",
+  "key": true,
+  "duck": true,
+  "label": "第 5 个头像被弹出去"
+ },
+ {
+  "t": 44.4,
+  "frame": 1332,
+  "name": "点击",
+  "beat": "B22",
+  "key": false,
+  "duck": false,
+  "label": "免打扰拨回：点"
+ },
+ {
+  "t": 44.46,
+  "frame": 1334,
+  "name": "开关",
+  "beat": "B22",
+  "key": false,
+  "duck": false,
+  "label": "免打扰拨回：开关拨灰"
+ },
+ {
+  "t": 44.65,
+  "frame": 1340,
+  "name": "啵",
+  "beat": "B22",
+  "key": false,
+  "duck": false,
+  "label": "贴纸“先别开”弹出"
+ },
+ {
+  "t": 46.2,
+  "frame": 1386,
+  "name": "嗖",
+  "beat": "B23",
+  "key": false,
+  "duck": false,
+  "label": "设置页退出"
+ },
+ {
+  "t": 47.5,
+  "frame": 1425,
+  "name": "震动",
+  "beat": "B24",
+  "key": true,
+  "duck": true,
+  "label": "小李 @你 测试一下：震"
+ },
+ {
+  "t": 47.5,
+  "frame": 1425,
+  "name": "提示音",
+  "beat": "B24",
+  "key": true,
+  "duck": true,
+  "label": "小李 @你 测试一下：提示音"
+ },
+ {
+  "t": 47.95,
+  "frame": 1439,
+  "name": "确认",
+  "beat": "B24",
+  "key": false,
+  "duck": true,
+  "label": "测试通过：打勾（上行确认音 D6–F♯6–A6）"
+ },
+ {
+  "t": 48.3,
+  "frame": 1449,
+  "name": "啵",
+  "beat": "B24",
+  "key": false,
+  "duck": false,
+  "label": "贴纸“怎么测，看简介”弹出"
+ },
+ {
+  "t": 49.7,
+  "frame": 1491,
+  "name": "布料",
+  "beat": "B25",
+  "key": false,
+  "duck": false,
+  "label": "转回桌前"
+ },
+ {
+  "t": 53.0,
+  "frame": 1590,
+  "name": "震动",
+  "beat": "B27",
+  "key": true,
+  "duck": true,
+  "label": "王老师：明早 8 点前交表（该响的时候响）：震"
+ },
+ {
+  "t": 53.0,
+  "frame": 1590,
+  "name": "提示音",
+  "beat": "B27",
+  "key": true,
+  "duck": true,
+  "label": "王老师：明早 8 点前交表（该响的时候响）：提示音"
+ },
+ {
+  "t": 53.0,
+  "frame": 1590,
+  "name": "叮",
+  "beat": "B27",
+  "key": false,
+  "duck": true,
+  "label": "王老师：明早 8 点前交表（该响的时候响）：暖铃垫底"
+ },
+ {
+  "t": 54.7,
+  "frame": 1641,
+  "name": "布料",
+  "beat": "B28",
+  "key": false,
+  "duck": false,
+  "label": "点头"
+ },
+ {
+  "t": 55.4,
+  "frame": 1662,
+  "name": "嗖",
+  "beat": "B29",
+  "key": false,
+  "duck": false,
+  "label": "“顺带”页进来"
+ },
+ {
+  "t": 56.4,
+  "frame": 1692,
+  "name": "开关",
+  "beat": "B29",
+  "key": false,
+  "duck": false,
+  "label": "游戏 开关拨灰"
+ },
+ {
+  "t": 57.1,
+  "frame": 1713,
+  "name": "开关",
+  "beat": "B29",
+  "key": false,
+  "duck": false,
+  "label": "资讯 开关拨灰"
+ },
+ {
+  "t": 58.4,
+  "frame": 1752,
+  "name": "咔",
+  "beat": "B30",
+  "key": false,
+  "duck": false,
+  "label": "购物 上锁"
+ },
+ {
+  "t": 58.65,
+  "frame": 1760,
+  "name": "咔",
+  "beat": "B30",
+  "key": false,
+  "duck": false,
+  "label": "银行 上锁"
+ },
+ {
+  "t": 58.9,
+  "frame": 1767,
+  "name": "咔",
+  "beat": "B30",
+  "key": false,
+  "duck": false,
+  "label": "外卖 上锁"
+ },
+ {
+  "t": 59.15,
+  "frame": 1775,
+  "name": "咔",
+  "beat": "B30",
+  "key": false,
+  "duck": false,
+  "label": "出行 上锁"
+ },
+ {
+  "t": 59.5,
+  "frame": 1785,
+  "name": "嗖",
+  "beat": "B30",
+  "key": false,
+  "duck": false,
+  "label": "“私聊、验证码也别关”一行出来"
+ },
+ {
+  "t": 61.0,
+  "frame": 1830,
+  "name": "嗖",
+  "beat": "B31",
+  "key": false,
+  "duck": false,
+  "label": "清单屏进来"
+ },
+ {
+  "t": 61.05,
+  "frame": 1832,
+  "name": "快门",
+  "beat": "B31",
+  "key": true,
+  "duck": true,
+  "label": "截图快门"
+ },
+ {
+  "t": 66.2,
+  "frame": 1986,
+  "name": "嗖",
+  "beat": "B32",
+  "key": false,
+  "duck": false,
+  "label": "结尾页进来"
+ }
+]
