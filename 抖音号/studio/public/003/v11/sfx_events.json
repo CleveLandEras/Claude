@@ -1,0 +1,731 @@
+[
+ {
+  "t": 0.55,
+  "frame": 17,
+  "name": "提示音",
+  "beat": "S01",
+  "key": true,
+  "duck": false,
+  "label": "提醒盖上来 1"
+ },
+ {
+  "t": 0.55,
+  "frame": 17,
+  "name": "震动",
+  "beat": "S01",
+  "key": false,
+  "duck": false,
+  "label": "震 1"
+ },
+ {
+  "t": 1.85,
+  "frame": 56,
+  "name": "提示音",
+  "beat": "S01",
+  "key": true,
+  "duck": false,
+  "label": "提醒盖上来 2"
+ },
+ {
+  "t": 3.0,
+  "frame": 90,
+  "name": "提示音",
+  "beat": "S01",
+  "key": true,
+  "duck": false,
+  "label": "提醒盖上来 3"
+ },
+ {
+  "t": 3.0,
+  "frame": 90,
+  "name": "震动",
+  "beat": "S01",
+  "key": false,
+  "duck": false,
+  "label": "震 3"
+ },
+ {
+  "t": 3.95,
+  "frame": 119,
+  "name": "提示音",
+  "beat": "S01",
+  "key": true,
+  "duck": false,
+  "label": "提醒盖上来 4"
+ },
+ {
+  "t": 4.8,
+  "frame": 144,
+  "name": "提示音",
+  "beat": "S01",
+  "key": true,
+  "duck": false,
+  "label": "提醒盖上来 5"
+ },
+ {
+  "t": 4.8,
+  "frame": 144,
+  "name": "震动",
+  "beat": "S01",
+  "key": false,
+  "duck": false,
+  "label": "震 5"
+ },
+ {
+  "t": 5.5,
+  "frame": 165,
+  "name": "提示音",
+  "beat": "S01",
+  "key": true,
+  "duck": false,
+  "label": "提醒盖上来 6"
+ },
+ {
+  "t": 6.1,
+  "frame": 183,
+  "name": "提示音",
+  "beat": "S01",
+  "key": true,
+  "duck": false,
+  "label": "提醒盖上来 7"
+ },
+ {
+  "t": 6.1,
+  "frame": 183,
+  "name": "震动",
+  "beat": "S01",
+  "key": false,
+  "duck": false,
+  "label": "震 7"
+ },
+ {
+  "t": 6.6,
+  "frame": 198,
+  "name": "提示音",
+  "beat": "S01",
+  "key": true,
+  "duck": false,
+  "label": "提醒盖上来 8"
+ },
+ {
+  "t": 7.05,
+  "frame": 212,
+  "name": "提示音",
+  "beat": "S01",
+  "key": true,
+  "duck": false,
+  "label": "提醒盖上来 9"
+ },
+ {
+  "t": 7.05,
+  "frame": 212,
+  "name": "震动",
+  "beat": "S01",
+  "key": false,
+  "duck": false,
+  "label": "震 9"
+ },
+ {
+  "t": 7.45,
+  "frame": 224,
+  "name": "提示音",
+  "beat": "S01",
+  "key": true,
+  "duck": false,
+  "label": "提醒盖上来 10"
+ },
+ {
+  "t": 7.8,
+  "frame": 234,
+  "name": "提示音",
+  "beat": "S01",
+  "key": true,
+  "duck": false,
+  "label": "提醒盖上来 11"
+ },
+ {
+  "t": 7.8,
+  "frame": 234,
+  "name": "震动",
+  "beat": "S01",
+  "key": false,
+  "duck": false,
+  "label": "震 11"
+ },
+ {
+  "t": 8.1,
+  "frame": 243,
+  "name": "提示音",
+  "beat": "S01",
+  "key": true,
+  "duck": false,
+  "label": "提醒盖上来 12"
+ },
+ {
+  "t": 8.38,
+  "frame": 251,
+  "name": "提示音",
+  "beat": "S01",
+  "key": true,
+  "duck": false,
+  "label": "提醒盖上来 13"
+ },
+ {
+  "t": 8.38,
+  "frame": 251,
+  "name": "震动",
+  "beat": "S01",
+  "key": false,
+  "duck": false,
+  "label": "震 13"
+ },
+ {
+  "t": 8.63,
+  "frame": 259,
+  "name": "提示音",
+  "beat": "S01",
+  "key": true,
+  "duck": false,
+  "label": "提醒盖上来 14"
+ },
+ {
+  "t": 8.85,
+  "frame": 266,
+  "name": "提示音",
+  "beat": "S01",
+  "key": true,
+  "duck": false,
+  "label": "提醒盖上来 15"
+ },
+ {
+  "t": 8.85,
+  "frame": 266,
+  "name": "震动",
+  "beat": "S01",
+  "key": false,
+  "duck": false,
+  "label": "震 15"
+ },
+ {
+  "t": 9.05,
+  "frame": 272,
+  "name": "提示音",
+  "beat": "S01",
+  "key": true,
+  "duck": false,
+  "label": "提醒盖上来 16"
+ },
+ {
+  "t": 9.23,
+  "frame": 277,
+  "name": "提示音",
+  "beat": "S01",
+  "key": true,
+  "duck": false,
+  "label": "提醒盖上来 17"
+ },
+ {
+  "t": 9.23,
+  "frame": 277,
+  "name": "震动",
+  "beat": "S01",
+  "key": false,
+  "duck": false,
+  "label": "震 17"
+ },
+ {
+  "t": 9.39,
+  "frame": 282,
+  "name": "提示音",
+  "beat": "S01",
+  "key": true,
+  "duck": false,
+  "label": "提醒盖上来 18"
+ },
+ {
+  "t": 9.54,
+  "frame": 286,
+  "name": "提示音",
+  "beat": "S01",
+  "key": true,
+  "duck": false,
+  "label": "提醒盖上来 19"
+ },
+ {
+  "t": 9.54,
+  "frame": 286,
+  "name": "震动",
+  "beat": "S01",
+  "key": false,
+  "duck": false,
+  "label": "震 19"
+ },
+ {
+  "t": 9.68,
+  "frame": 290,
+  "name": "提示音",
+  "beat": "S01",
+  "key": true,
+  "duck": false,
+  "label": "提醒盖上来 20"
+ },
+ {
+  "t": 9.81,
+  "frame": 294,
+  "name": "提示音",
+  "beat": "S01",
+  "key": true,
+  "duck": false,
+  "label": "提醒盖上来 21"
+ },
+ {
+  "t": 9.81,
+  "frame": 294,
+  "name": "震动",
+  "beat": "S01",
+  "key": false,
+  "duck": false,
+  "label": "震 21"
+ },
+ {
+  "t": 9.93,
+  "frame": 298,
+  "name": "提示音",
+  "beat": "S01",
+  "key": true,
+  "duck": false,
+  "label": "提醒盖上来 22"
+ },
+ {
+  "t": 10.04,
+  "frame": 301,
+  "name": "提示音",
+  "beat": "S01",
+  "key": true,
+  "duck": false,
+  "label": "提醒盖上来 23"
+ },
+ {
+  "t": 10.04,
+  "frame": 301,
+  "name": "震动",
+  "beat": "S01",
+  "key": false,
+  "duck": false,
+  "label": "震 23"
+ },
+ {
+  "t": 10.15,
+  "frame": 305,
+  "name": "提示音",
+  "beat": "S01",
+  "key": true,
+  "duck": false,
+  "label": "提醒盖上来 24"
+ },
+ {
+  "t": 10.25,
+  "frame": 308,
+  "name": "提示音",
+  "beat": "S01",
+  "key": true,
+  "duck": false,
+  "label": "提醒盖上来 25"
+ },
+ {
+  "t": 10.25,
+  "frame": 308,
+  "name": "震动",
+  "beat": "S01",
+  "key": false,
+  "duck": false,
+  "label": "震 25"
+ },
+ {
+  "t": 10.35,
+  "frame": 311,
+  "name": "提示音",
+  "beat": "S01",
+  "key": true,
+  "duck": false,
+  "label": "提醒盖上来 26"
+ },
+ {
+  "t": 10.44,
+  "frame": 313,
+  "name": "提示音",
+  "beat": "S01",
+  "key": true,
+  "duck": false,
+  "label": "提醒盖上来 27"
+ },
+ {
+  "t": 10.44,
+  "frame": 313,
+  "name": "震动",
+  "beat": "S01",
+  "key": false,
+  "duck": false,
+  "label": "震 27"
+ },
+ {
+  "t": 10.53,
+  "frame": 316,
+  "name": "提示音",
+  "beat": "S01",
+  "key": true,
+  "duck": false,
+  "label": "提醒盖上来 28"
+ },
+ {
+  "t": 10.62,
+  "frame": 319,
+  "name": "提示音",
+  "beat": "S01",
+  "key": true,
+  "duck": false,
+  "label": "提醒盖上来 29"
+ },
+ {
+  "t": 10.62,
+  "frame": 319,
+  "name": "震动",
+  "beat": "S01",
+  "key": false,
+  "duck": false,
+  "label": "震 29"
+ },
+ {
+  "t": 10.7,
+  "frame": 321,
+  "name": "提示音",
+  "beat": "S01",
+  "key": true,
+  "duck": false,
+  "label": "提醒盖上来 30"
+ },
+ {
+  "t": 10.78,
+  "frame": 323,
+  "name": "提示音",
+  "beat": "S01",
+  "key": true,
+  "duck": false,
+  "label": "提醒盖上来 31"
+ },
+ {
+  "t": 10.78,
+  "frame": 323,
+  "name": "震动",
+  "beat": "S01",
+  "key": false,
+  "duck": false,
+  "label": "震 31"
+ },
+ {
+  "t": 10.86,
+  "frame": 326,
+  "name": "提示音",
+  "beat": "S01",
+  "key": true,
+  "duck": false,
+  "label": "提醒盖上来 32"
+ },
+ {
+  "t": 12.5,
+  "frame": 375,
+  "name": "线",
+  "beat": "S03",
+  "key": false,
+  "duck": false,
+  "label": "一根线拉出来 thread"
+ },
+ {
+  "t": 12.7,
+  "frame": 381,
+  "name": "气泡",
+  "beat": "S03",
+  "key": false,
+  "duck": false,
+  "label": "气泡冒出 1/16"
+ },
+ {
+  "t": 12.84,
+  "frame": 385,
+  "name": "气泡",
+  "beat": "S03",
+  "key": false,
+  "duck": false,
+  "label": "气泡冒出 2/16"
+ },
+ {
+  "t": 12.98,
+  "frame": 389,
+  "name": "气泡",
+  "beat": "S03",
+  "key": false,
+  "duck": false,
+  "label": "气泡冒出 3/16"
+ },
+ {
+  "t": 13.12,
+  "frame": 394,
+  "name": "气泡",
+  "beat": "S03",
+  "key": false,
+  "duck": false,
+  "label": "气泡冒出 4/16"
+ },
+ {
+  "t": 13.26,
+  "frame": 398,
+  "name": "气泡",
+  "beat": "S03",
+  "key": false,
+  "duck": false,
+  "label": "气泡冒出 5/16"
+ },
+ {
+  "t": 13.4,
+  "frame": 402,
+  "name": "气泡",
+  "beat": "S03",
+  "key": false,
+  "duck": false,
+  "label": "气泡冒出 6/16"
+ },
+ {
+  "t": 13.54,
+  "frame": 406,
+  "name": "气泡",
+  "beat": "S03",
+  "key": false,
+  "duck": false,
+  "label": "气泡冒出 7/16"
+ },
+ {
+  "t": 13.68,
+  "frame": 410,
+  "name": "气泡",
+  "beat": "S03",
+  "key": false,
+  "duck": false,
+  "label": "气泡冒出 8/16"
+ },
+ {
+  "t": 13.82,
+  "frame": 415,
+  "name": "气泡",
+  "beat": "S03",
+  "key": false,
+  "duck": false,
+  "label": "气泡冒出 9/16"
+ },
+ {
+  "t": 13.96,
+  "frame": 419,
+  "name": "气泡",
+  "beat": "S03",
+  "key": false,
+  "duck": false,
+  "label": "气泡冒出 10/16"
+ },
+ {
+  "t": 14.1,
+  "frame": 423,
+  "name": "气泡",
+  "beat": "S03",
+  "key": false,
+  "duck": false,
+  "label": "气泡冒出 11/16"
+ },
+ {
+  "t": 14.24,
+  "frame": 427,
+  "name": "气泡",
+  "beat": "S03",
+  "key": false,
+  "duck": false,
+  "label": "气泡冒出 12/16"
+ },
+ {
+  "t": 14.38,
+  "frame": 431,
+  "name": "气泡",
+  "beat": "S03",
+  "key": false,
+  "duck": false,
+  "label": "气泡冒出 13/16"
+ },
+ {
+  "t": 14.52,
+  "frame": 436,
+  "name": "气泡",
+  "beat": "S03",
+  "key": false,
+  "duck": false,
+  "label": "气泡冒出 14/16"
+ },
+ {
+  "t": 14.66,
+  "frame": 440,
+  "name": "气泡",
+  "beat": "S03",
+  "key": false,
+  "duck": false,
+  "label": "气泡冒出 15/16"
+ },
+ {
+  "t": 14.8,
+  "frame": 444,
+  "name": "气泡",
+  "beat": "S03",
+  "key": false,
+  "duck": false,
+  "label": "气泡冒出 16/16"
+ },
+ {
+  "t": 15.0,
+  "frame": 450,
+  "name": "嗖",
+  "beat": "S03",
+  "key": false,
+  "duck": false,
+  "label": "气泡一下散开 bubblesOut"
+ },
+ {
+  "t": 16.9,
+  "frame": 507,
+  "name": "震动",
+  "beat": "S04",
+  "key": true,
+  "duck": true,
+  "label": "手机来一条 rings[0]：震"
+ },
+ {
+  "t": 16.9,
+  "frame": 507,
+  "name": "提示音",
+  "beat": "S04",
+  "key": true,
+  "duck": true,
+  "label": "手机来一条 rings[0]：提示音"
+ },
+ {
+  "t": 17.5,
+  "frame": 525,
+  "name": "震动",
+  "beat": "S04",
+  "key": true,
+  "duck": true,
+  "label": "手机来一条 rings[1]：震"
+ },
+ {
+  "t": 17.5,
+  "frame": 525,
+  "name": "提示音",
+  "beat": "S04",
+  "key": true,
+  "duck": true,
+  "label": "手机来一条 rings[1]：提示音"
+ },
+ {
+  "t": 30.0,
+  "frame": 900,
+  "name": "落字",
+  "beat": "S10",
+  "key": false,
+  "duck": false,
+  "label": "看一条 line1"
+ },
+ {
+  "t": 30.45,
+  "frame": 914,
+  "name": "落字",
+  "beat": "S10",
+  "key": false,
+  "duck": false,
+  "label": "看一条 line2"
+ },
+ {
+  "t": 30.9,
+  "frame": 927,
+  "name": "落字",
+  "beat": "S10",
+  "key": false,
+  "duck": false,
+  "label": "看一条 line3"
+ },
+ {
+  "t": 31.35,
+  "frame": 941,
+  "name": "嗒",
+  "beat": "S10",
+  "key": false,
+  "duck": false,
+  "label": "看一条 looks[1]"
+ },
+ {
+  "t": 34.75,
+  "frame": 1043,
+  "name": "重击",
+  "beat": "S12",
+  "key": true,
+  "duck": true,
+  "label": "注意力被吸走 fear"
+ },
+ {
+  "t": 35.2,
+  "frame": 1056,
+  "name": "嗒",
+  "beat": "S12",
+  "key": false,
+  "duck": false,
+  "label": "看一条 looks[3]"
+ },
+ {
+  "t": 39.15,
+  "frame": 1175,
+  "name": "嗖",
+  "beat": "S14",
+  "key": false,
+  "duck": false,
+  "label": "“办法放在简介”进来 hintIn"
+ },
+ {
+  "t": 40.3,
+  "frame": 1209,
+  "name": "嗖",
+  "beat": "S15",
+  "key": false,
+  "duck": false,
+  "label": "结尾页进来 endIn"
+ },
+ {
+  "t": 41.2,
+  "frame": 1236,
+  "name": "嗒",
+  "beat": "S15",
+  "key": false,
+  "duck": false,
+  "label": "空框闪过 guess[0]"
+ },
+ {
+  "t": 41.8,
+  "frame": 1254,
+  "name": "嗒",
+  "beat": "S15",
+  "key": false,
+  "duck": false,
+  "label": "空框闪过 guess[1]"
+ },
+ {
+  "t": 42.4,
+  "frame": 1272,
+  "name": "嗒",
+  "beat": "S15",
+  "key": false,
+  "duck": false,
+  "label": "空框闪过 guess[2]"
+ }
+]

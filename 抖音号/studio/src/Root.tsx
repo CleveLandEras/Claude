@@ -20,7 +20,11 @@ import {GRAY003_FRAMES, Gray003} from './videos/003/Gray003';
 import {FILM003_FRAMES, Film003} from './videos/003/Film003';
 import {NOTICE8_FRAMES, Notice8} from './videos/003/Notice8';
 import {NOTICE9_FRAMES, Notice9} from './videos/003/Notice9';
+import {NOTICE10_FRAMES, Notice10} from './videos/003/Notice10';
 import {Cover003} from './videos/003/Cover003';
+import {Cover10} from './videos/003/Cover10';
+import {Cover11} from './videos/003/Cover11';
+import {NOTICE11_FRAMES, Notice11} from './videos/003/Notice11';
 
 export const Root: React.FC = () => (
   <>
@@ -84,8 +88,18 @@ export const Root: React.FC = () => (
     <Composition id="Notice003V8" component={Notice8} durationInFrames={NOTICE8_FRAMES} fps={30} width={1920} height={1080} />
     {/* 003 第九版成片（11/02 深夜）：时间表 videos/003/timeline9.ts，画面 videos/003/Notice9.tsx */}
     <Composition id="Notice003V9" component={Notice9} durationInFrames={NOTICE9_FRAMES} fps={30} width={1920} height={1080} />
+    {/* 003 v10（第三版，不教学的观点片，11/04）：时间表 videos/003/timeline10.ts，画面 videos/003/Notice10.tsx */}
+    <Composition id="Notice003V10" component={Notice10} durationInFrames={NOTICE10_FRAMES} fps={30} width={1920} height={1080} />
+    {/* 003 v11（第四版：手机提醒，不是微信，11/04）：时间表 videos/003/timeline11.ts，画面 videos/003/Notice11.tsx */}
+    <Composition id="Notice003V11" component={Notice11} durationInFrames={NOTICE11_FRAMES} fps={30} width={1920} height={1080} />
     {/* 003 封面：竖版 3:4、横版 4:3（videos/003/Cover003.tsx） */}
     <Still id="Notice003Cover34" component={Cover003} width={1080} height={1440} defaultProps={{w: 1080, h: 1440}} />
     <Still id="Notice003Cover43" component={Cover003} width={1440} height={1080} defaultProps={{w: 1440, h: 1080}} />
+    {/* 003 v10 封面 */}
+    <Still id="Notice003Cover10Tall" component={Cover10} width={1080} height={1440} defaultProps={{w: 1080, h: 1440}} />
+    <Still id="Notice003Cover10Wide" component={Cover10} width={1440} height={1080} defaultProps={{w: 1440, h: 1080}} />
+    {/* 003 v11 封面 */}
+    <Still id="Notice003Cover11Tall" component={Cover11} width={1080} height={1440} defaultProps={{w: 1080, h: 1440}} />
+    <Still id="Notice003Cover11Wide" component={Cover11} width={1440} height={1080} defaultProps={{w: 1440, h: 1080}} />
   </>
 );
